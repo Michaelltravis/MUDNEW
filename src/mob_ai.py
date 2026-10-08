@@ -624,6 +624,13 @@ async def _mitigate_hit(mob, char, damage):
         await mob.room.send_to_room(
             f"{c['bright_cyan']}{name} sidesteps at the last instant — the blow finds only air!{c['reset']}"
         )
+        # the RIPOSTE: a sidestep costs you this round's attack, so a clean one
+        # pays it back — your next strike lands perfectly (progression-01
+        # mastery v3: without this the reaction layer lost tempo and never
+        # out-performed brace + bash)
+        if hasattr(char, 'send') and not getattr(char, 'perfect_next', False):
+            char.perfect_next = True
+            await char.send(f"{c['bright_yellow']}RIPOSTE — you slip the blow and read the opening: your next strike will land PERFECTLY!{c['reset']}")
         return None
     # hero toughness (same reduction the auto-attack path applies)
     try:
