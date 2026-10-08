@@ -183,6 +183,19 @@ What this says:
 - Interrupt's 8 s cooldown after a failure means a second cast in the same fight cannot be
   answered; at 70% that is now the main way a caster fight is lost.
 
+**Caster v3 — spell capped at 60% of max HP for non-boss casters** (`caster-v3/`): the two
+buttons die 3 of 6 (was 5 of 6), the reaction layer 3 of 5 (was 4 of 5, then 2 of 5). No more
+one-shots: the biggest spell hit is now exactly the cap (51 on an 85-HP warrior) and deaths come
+from accumulated damage against "Challenging"/"Dangerous" targets, which is what those words
+should mean. Two things this surfaced for the human:
+1. **Hit-dice variance.** Two level-10 warriors forged the same way rolled **53** and **85** max HP.
+   A 60% cap is 31 for one and 51 for the other; the same "Moderate" mage is a fair fight for one
+   and a coin-flip for the other. Level-up HP rolls (`player.level_up`, `random.randint(1,
+   hit_dice)`) are the widest variance in the whole progression record.
+2. The L12 "Moderate" mage still killed each warrior once in two tries; "Moderate" for a caster
+   two levels up is optimistic. Either the `consider` tiers should weigh caster roles up a step,
+   or the cap should be lower for "Moderate" gaps. Left as a dial.
+
 ## Not a gauntlet piece
 There is no BrowserQuest reference for progression (it has no levels). This record is the
 measurement itself; a future round can re-run `curve.py` after retuning and compare the table.
