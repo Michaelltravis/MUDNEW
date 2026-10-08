@@ -4187,7 +4187,25 @@
         const cam = this.cameras.main;
         const offX = cam.scrollX - this.player.x, offY = cam.scrollY - this.player.y;
         const oldX = this.player.x, oldY = this.player.y;
+        // the room we leave keeps its full rendered content (props, trees, mobs)
+        // as a snapshot parked at its neighbour offset, fading into the painted
+        // haze, so the rebuild never shows things popping out of existence
+        let ghost = null;
+        try {
+          ghost = this.add.renderTexture(0, 0, this.pxW, this.pxH).setOrigin(0, 0);
+          ghost.draw(this.tileLayer.list.slice());
+          for (const ent of this.entities.values()) {
+            if (ent.doll && ent.doll.container) ghost.draw(ent.doll.container);
+            else if (ent.art) ghost.draw(ent.art);
+            else if (ent.sprite && ent.sprite.alpha > 0) ghost.draw(ent.sprite);
+          }
+        } catch (_) { if (ghost) { ghost.destroy(); ghost = null; } }
         this.buildRoom(layout, entryDir);
+        if (ghost) {
+          ghost.setPosition(slide[0], slide[1]).setDepth(-8.3);
+          this.bgLayer.add(ghost);
+          this.tweens.add({ targets: ghost, alpha: 0, delay: 900, duration: 1400, onComplete: () => { try { ghost.destroy(); } catch (_) {} } });
+        }
         // continuous position: where the player WAS, expressed in the new room's
         // frame (the gap they walked through is the gap they arrive by), so
         // there is no 4-tile hop from exit gap to entry marker; fall back to the
