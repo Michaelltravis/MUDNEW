@@ -178,7 +178,7 @@
       "hp_dice": "4d10+64",
       "level": 4,
       "long_desc": "A VERY gaunt looking newbie... it looks like a zombie!",
-      "name": "newbie",
+      "name": "zombie",
       "short_desc": "the zombiefied newbie",
       "vnum": 18607,
       "inventory": [
@@ -402,7 +402,7 @@
       "hp_dice": "4d10+64",
       "level": 4,
       "long_desc": "A newbie is here wandering about aimlessly.",
-      "name": "newbie",
+      "name": "wanderer",
       "short_desc": "the lost newbie",
       "vnum": 18614,
       "inventory": [
@@ -427,7 +427,7 @@
       "hp_dice": "5d10+76",
       "level": 5,
       "long_desc": "A newbie is here, and he looks quite sure of himself.",
-      "name": "newbie",
+      "name": "veteran",
       "short_desc": "the smart newbie",
       "vnum": 18615,
       "inventory": [

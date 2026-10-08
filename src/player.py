@@ -892,7 +892,9 @@ class Player(Character):
         # Calculate derived stats based on class
         class_data = player.config.CLASSES[char_class]
         # HP: 12-22 range based on class and constitution
-        player.max_hp = 12 + class_data['hit_dice'] // 2 + (player.con - 10) // 2
+        # progression-01: a level-1 bard or thief rolled 13-14 HP and died to level-1
+        # creatures; the first ten minutes must not hinge on a CON roll — floor at 16
+        player.max_hp = max(16, 12 + class_data['hit_dice'] // 2 + (player.con - 10) // 2)
         # Mana: ~100 base, scales with INT + WIS
         player.max_mana = 100 + class_data['mana_dice'] * 5 + (player.int + player.wis - 20) * 2
         # Moves: 100+ base, scales with constitution
