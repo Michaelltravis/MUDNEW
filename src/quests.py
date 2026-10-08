@@ -1325,15 +1325,18 @@ QUEST_DEFINITIONS = {
     },
     'tutorial_8_exploration': {
         'name': 'Into the Unknown',
-        'description': 'Venture beyond the city walls! Head to the East Gate and fight a creature outside. From the Temple, go south, south, east, east, east to reach the East Gate, then east again to go outside. Try fighting a rabbit, a fox, or a deer in the Light Forest — they are safe for your level. Return to the Temple when done.',
+        # progression-01: this used to send newcomers out the EAST gate, where the only
+        # creatures are level-4 aggressive goblins; the rabbits, foxes and deer live in
+        # the Light Forest beyond the WEST gate (6001 and the shaded paths north of it).
+        'description': 'Venture beyond the city walls! Head out the West Gate to the Light Forest and fight a creature there. From the Temple, go south, south, then west six times to reach the Edge of the Forest, and once more west onto the forest trail. Try fighting a rabbit or a fox — they are safe for your level. Return to the Temple when done.',
         'type': 'tutorial',
         'level_min': 1,
         'level_max': 5,
         'quest_giver': 3200,
         'objectives': [
-            {'type': 'visit', 'description': 'Reach Outside the East Gate (go south, south, east, east, east, east from Temple)', 'target': '3053', 'required': 1},
-            {'type': 'kill', 'description': 'Defeat a creature outside the city (try "kill rabbit" or "kill fox")', 'target': 'any', 'required': 1},
-            {'type': 'visit', 'description': 'Return to the Temple (go west back through the gate, then retrace your steps north)', 'target': '3001', 'required': 1}
+            {'type': 'visit', 'description': 'Reach the trail through the Light Forest (south, south, then west seven times from the Temple)', 'target': '6001', 'required': 1},
+            {'type': 'kill', 'description': 'Defeat a creature in the forest (try "kill rabbit" or "kill fox" — the shaded path north has both)', 'target': 'any', 'required': 1},
+            {'type': 'visit', 'description': 'Return to the Temple (east back through the West Gate, then north from Temple Square)', 'target': '3001', 'required': 1}
         ],
         'rewards': {'exp': 300, 'gold': 150, 'title': 'the Initiated'},
         'next_quest': 'tutorial_9_newbie_zone',

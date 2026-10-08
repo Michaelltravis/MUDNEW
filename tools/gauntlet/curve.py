@@ -27,18 +27,19 @@ def strip(s): return ANSI.sub('', s or '')
 # each step: label, then (vnum, keyword) candidates — the first one present is fought
 # (fidos and drunks wander; a sentinel alternative keeps the ladder measurable)
 LADDER = [
+    # the tutorial's own route: training dummy, then the Newbie Zone the chain sends you to
     ('training dummy (tutorial)', [(3078, 'dummy')]),
-    ('fido / janitor (level 1)', [(3012, 'fido'), (3016, 'fido'), (3006, 'janitor')]),
-    ('rat / beggar (level 1)', [(3074, 'rat'), (3044, 'beggar'), (3048, 'beggar')]),
-    ('drunk (level 2)', [(3007, 'drunk'), (3048, 'patron')]),
-    ('street urchin (level 2)', [(3024, 'urchin'), (3007, 'drunk')]),
-    ('drunk patron (level 3)', [(3048, 'patron'), (3032, 'rottweiler'), (3032, 'raven')]),
-    ('rottweiler / wolf (level 3-4)', [(3032, 'rottweiler'), (3032, 'wolf'), (3032, 'snake')]),
-    ('pickpocket (level 5)', [(3026, 'pickpocket'), (3026, 'mercenary')]),
-    ('mercenary (level 5)', [(3026, 'mercenary'), (3026, 'pickpocket')]),
-    ('second lap: level 1-2', [(3012, 'fido'), (3006, 'janitor'), (3024, 'urchin'), (3007, 'drunk')]),
-    ('second lap: level 2', [(3024, 'urchin'), (3007, 'drunk'), (3048, 'patron')]),
-    ('second lap: level 2-3', [(3007, 'drunk'), (3048, 'patron'), (3024, 'urchin')]),
+    ('newbie zone: crawler (L1)', [(18602, 'crawler'), (18606, 'crawler'), (18609, 'crawler')]),
+    ('newbie zone: newbie (L2)', [(18600, 'newbie'), (18607, 'newbie'), (18646, 'newbie')]),
+    ('newbie zone: crawler (L1)', [(18609, 'crawler'), (18606, 'crawler'), (18602, 'crawler')]),
+    ('newbie zone: newbie (L2)', [(18607, 'newbie'), (18646, 'newbie'), (18600, 'newbie')]),
+    ('newbie zone: keeper (L3)', [(18606, 'keeper'), (18640, 'newbie')]),
+    ('newbie zone: quasit (L3)', [(18621, 'quasit'), (18627, 'quasit'), (18636, 'quasit')]),
+    ('newbie zone: newbie (L4)', [(18604, 'newbie'), (18620, 'newbie'), (18624, 'newbie')]),
+    ('newbie zone: quasit (L3)', [(18638, 'quasit'), (18627, 'quasit'), (18636, 'quasit')]),
+    ('newbie zone: newbie (L4)', [(18633, 'newbie'), (18637, 'newbie'), (18620, 'newbie')]),
+    ('newbie zone: pitbeast (L5)', [(18605, 'pitbeast'), (18645, 'newbie')]),
+    ('newbie zone: balcony newbie (L5)', [(18645, 'newbie'), (18605, 'pitbeast')]),
 ]
 TELEGRAPH = re.compile(r'\(brace or sidestep', re.I)
 DEATH = re.compile(r'\bis dead\b|has been slain|You killed|is DEAD', re.I)
