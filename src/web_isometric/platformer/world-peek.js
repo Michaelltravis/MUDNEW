@@ -100,7 +100,12 @@
     setTimeout(step, 60);
   }
 
-  // called from buildRoom once the real room is painted
+  // called from buildRoom once the real room is painted: stitched-zone step 1.
+  // Every room of the zone within RADIUS map cells of the current one is drawn
+  // at its atlas offset (same z level), nearest first, so the world reads as
+  // one map: the destination is visible well before arrival and an edge with no
+  // exit still shows the room that sits beyond it rather than void.
+  const RADIUS = 2;
   function render(scene, layout) {
     const cur = layout && layout.vnum;
     if (!cur) return;
@@ -112,17 +117,31 @@
     loadAtlas().then(a => {
       if (!scene.layout || scene.layout.vnum !== cur) return;   // moved on while the atlas loaded
       const here = a.rooms[cur]; if (!here) return;
-      // the camera may only look past edges that actually open somewhere
-      try {
-        const ex = here.exits || {}, cam = scene.cameras.main;
-        const x0 = ex.west ? -scene.pxW : 0, y0 = ex.north ? -scene.pxH : 0;
-        const x1 = ex.east ? scene.pxW * 2 : scene.pxW, y1 = ex.south ? scene.pxH * 2 : scene.pxH;
-        cam.setBounds(x0, y0, x1 - x0, y1 - y0);
-      } catch (_) {}
+      const placed = [];
+      for (const room of Object.values(a.rooms)) {
+        if (room.vnum === cur || room.zone !== here.zone || room.z !== here.z) continue;
+        const dx = room.x - here.x, dy = room.y - here.y;
+        if (Math.abs(dx) > RADIUS || Math.abs(dy) > RADIUS) continue;
+        placed.push({ room, dx, dy, d: Math.abs(dx) + Math.abs(dy) });
+      }
+      // direct neighbours by exit always count, even when the atlas coordinate
+      // solver had to slide them (collisions): they are drawn by exit direction
       for (const [dir, vnum] of Object.entries(here.exits || {})) {
-        const off = OFF[dir]; if (!off) continue;
-        const room = a.rooms[vnum]; if (!room) continue;
-        try { drawNeighbour(scene, room, off[0] * scene.pxW, off[1] * scene.pxH, dir); } catch (e) { console.warn('peek', vnum, e); }
+        const off = OFF[dir]; const room = a.rooms[vnum];
+        if (!off || !room || placed.some(p => p.room.vnum === vnum)) continue;
+        placed.push({ room, dx: off[0], dy: off[1], d: 1 });
+      }
+      placed.sort((p, q) => p.d - q.d);
+      // the camera may roam over everything that is drawn
+      try {
+        let x0 = 0, y0 = 0, x1 = scene.pxW, y1 = scene.pxH;
+        for (const p of placed) { x0 = Math.min(x0, p.dx * scene.pxW); y0 = Math.min(y0, p.dy * scene.pxH); x1 = Math.max(x1, (p.dx + 1) * scene.pxW); y1 = Math.max(y1, (p.dy + 1) * scene.pxH); }
+        scene.cameras.main.setBounds(x0, y0, x1 - x0, y1 - y0);
+      } catch (_) {}
+      const seen = new Set();
+      for (const p of placed) {
+        const key = `${p.dx},${p.dy}`; if (seen.has(key)) continue; seen.add(key);
+        try { drawNeighbour(scene, p.room, p.dx * scene.pxW, p.dy * scene.pxH, null); } catch (e) { console.warn('peek', p.room.vnum, e); }
       }
     });
   }

@@ -39,7 +39,10 @@ read this file, `docs/art/SOURCES.md`, then the plan.
 - After round 3 (unjudged): the player's world position now carries across the rebuild (no
   4-tile hop) and the room just left stays at full brightness before fading to haze; see
   `docs/gauntlet/artlock/walk_crossing_round4.png`. The remaining tell is the camera settle.
-- NEXT (architectural, the biggest remaining item): a stitched-zone renderer. Build the whole
+- Stitched-zone step 1 done (`world-peek.js`): every room of the zone within a 2-cell radius
+  of the current one is drawn at its atlas offset (same z), nearest first, and the camera may
+  roam the whole drawn extent; the room you leave stays as a fading rendered snapshot.
+- NEXT (architectural, the biggest remaining item): the full stitched-zone renderer. Build the whole
   zone as one tilemap from `/atlas` coordinates (each room = its deterministic layout placed at
   x*W, y*H; corridors drawn for non-adjacent exits), paint per room into one big canvas on idle,
   keep one physics world with openings between rooms, and derive the room change from the
