@@ -4595,7 +4595,11 @@ class CommandHandler:
                 await player.send(f"{c['yellow']}You need {int(cd - now) + 1}s before you can interrupt again.{c['reset']}")
                 return
             skill = player.skills.get('kick', 0) if hasattr(player, 'skills') else 0
-            chance = min(90, max(30, skill if skill else 35))
+            # A DECLARED cast is the moment the prompt tells you to act: answering it is
+            # mostly skill-of-timing, not dice. (progression-01 caster tier: at 35% the
+            # prompt was a lie — three of three failed and the fireball one-shot a
+            # level-10 warrior from 60/73.) Kick skill still sharpens it.
+            chance = min(95, 70 + skill // 4)
             if random.randint(1, 100) <= chance:
                 label = intent.get('label', 'casting')
                 target.pending_intent = None
