@@ -806,6 +806,53 @@
       return rt ? this._storeStaticRT(layout.vnum, rt) : null;
     }
 
+    // ---- REBUILD phase 2: optimistic crossing ----
+    // "Crossing still feels like switching rooms": the client used to send the move at
+    // the doorway and wait for the server before switching. Now the hero simply walks
+    // on; the moment they leave this room's rectangle into a neighbour that is already
+    // laid out, the switch happens HERE, from data we hold (atlas layout + the last map
+    // payload's creatures), and the move goes to the server in the background. Only a
+    // refusal from the server (or 30 s of silence) puts you back.
+    crossTarget(dir) {
+      const L = this.layout;
+      if (!L || !L.exits || !['north', 'south', 'east', 'west'].includes(dir)) return null;
+      const ex = L.exits[dir];
+      const to = ex && ex.to_room;
+      if (!to) return null;
+      if (ex.door && (ex.door.state === 'closed' || ex.door.locked)) return null;   // doors keep the old path (open/unlock)
+      const o = (this._peekOffsets || {})[to];
+      if (!o || !o.layout) return null;
+      const want = { east: [this.pxW, 0], west: [-this.pxW, 0], south: [0, this.pxH], north: [0, -this.pxH] }[dir];
+      if (o.ox !== want[0] || o.oy !== want[1]) return null;
+      if (this._zoneNum != null && o.zone != null && o.zone !== this._zoneNum) return null;   // zone changes keep the server path
+      return o;
+    }
+    optimisticEnter(dir, o) {
+      const vnum = o.layout.vnum;
+      MH.state.optimistic = { vnum, dir, at: Date.now(), prev: { layout: this.layout, vnum: this.lastVnum } };
+      MH.state.pendingMove = null;
+      this.lastVnum = vnum;
+      this.slideTransition(o.layout, dir);
+      // creatures: the last payload already lists this room's occupants
+      const lp = MH.state.lastPayload;
+      const entry = lp && (lp.rooms || []).find(r => r.vnum === vnum);
+      if (entry) { try { this.syncEntities(entry); } catch (_) {} }
+      MH.sendCommand(dir, false);
+      MH.bus.emit('room.entered', { room: { vnum, name: o.name, flags: o.flags, description: o.description }, zoneName: this._zoneName, seamless: true, optimistic: true });
+    }
+    revertOptimistic(reason) {
+      const op = MH.state.optimistic; if (!op) return;
+      MH.state.optimistic = null;
+      const REV = { east: 'west', west: 'east', north: 'south', south: 'north' };
+      this.lastVnum = op.prev.vnum;
+      this.slideTransition(op.prev.layout, REV[op.dir]);
+      const T = TD().T;
+      this.player.x = Phaser.Math.Clamp(this.player.x, T * 1.6, this.pxW - T * 1.6);
+      this.player.y = Phaser.Math.Clamp(this.player.y, T * 1.6, this.pxH - T * 1.6);
+      if (reason) MH.bus.emit('flash', reason);
+      this._blockedDir = op.dir; this._blockedUntil = Date.now() + 3500;
+    }
+
     // ---- stitched zone: physics across rooms ----
     // Neighbour layouts become static bodies at their offsets, so the hero can
     // keep walking through the gap into the next room while the server confirms
@@ -4138,6 +4185,7 @@
 
     // ---------- movement / exits ----------
     onMoveBlocked(e) {
+      if (MH.state.optimistic) { this.revertOptimistic(e && e.line); return; }
       const pm = MH.state.pendingMove;
       MH.state.pendingMove = null;
       MH.bus.emit('flash', e.line);
@@ -4325,10 +4373,18 @@
       const player = payload.player;
       if (!player) return;
       const roomEntry = (payload.rooms || []).find(r => r.vnum === player.vnum) || { mobs: [], players: [], items: [] };
+      // optimistic crossing in flight: a payload still placing us in the room we just
+      // walked out of is stale (the server has not processed the move yet) — ignore it
+      const op = MH.state.optimistic;
+      if (op) {
+        if (player.vnum === op.prev.vnum && Date.now() - op.at < 30000) return;
+        if (player.vnum === op.vnum) MH.state.optimistic = null;   // confirmed
+      }
       const roomData = cur && cur.vnum === player.vnum
         ? Object.assign({}, cur)
         : { vnum: player.vnum, name: roomEntry.name, description: '', sector: roomEntry.sector, flags: roomEntry.flags || [], exits: {} };
       roomData.zone = roomEntry.zone;
+      this._zoneNum = roomEntry.zone; this._zoneName = roomEntry.zoneName || this._zoneName;
       if (!cur || cur.vnum !== player.vnum) {
         (roomEntry.exits || []).forEach(d => { roomData.exits[d] = { to_room: null, door: (roomEntry.doors || {})[d] || null }; });
       } else {
@@ -5048,6 +5104,31 @@
         const T = TD().T;
         let wantExit = null;
         let force = false;
+        // optimistic crossing: the hero has walked out of this room's rectangle
+        if (L && !this.dead && !MH.state.optimistic) {
+          const px = this.player.x, py = this.player.y;
+          const out = px > this.pxW ? 'east' : px < 0 ? 'west' : py > this.pxH ? 'south' : py < 0 ? 'north' : null;
+          if (out) {
+            const o = this.crossTarget(out);
+            if (MH.state.inCombat) {
+              this.player.x = Phaser.Math.Clamp(px, T, this.pxW - T); this.player.y = Phaser.Math.Clamp(py, T, this.pxH - T);
+              if (!this._gateFlash || now - this._gateFlash > 2500) { this._gateFlash = now; MH.bus.emit('flash', "You're fighting! Flee to escape, or finish it."); }
+            } else if (o) {
+              this.optimisticEnter(out, o);
+            } else if (L.exits && L.exits[out] && !locked) {
+              this.requestMove(out);   // no laid-out neighbour (zone edge, door): the server path
+            }
+          }
+        }
+        // Never undo on a short timer: the server answers moves in order, so a slow
+        // confirmation is still coming, and undoing it made the hero cross again and send a
+        // SECOND move (two rooms in one step — found in testing). Only an explicit refusal
+        // (onMoveBlocked) undoes; a server that says nothing for 30 s is treated as a refusal.
+        if (MH.state.optimistic && Date.now() - MH.state.optimistic.at > 30000) {
+          const lp = MH.state.lastPayload;
+          if (lp && lp.player && lp.player.vnum === MH.state.optimistic.prev.vnum) this.revertOptimistic('The way is blocked.');
+          else MH.state.optimistic = null;
+        }
         if (L && L.gaps) {
           const atTop = b.blocked.up || this.player.y < T * 1.4;
           const atBot = b.blocked.down || this.player.y > this.pxH - T * 1.4;
@@ -5086,6 +5167,8 @@
         }
         // a direction the server just refused (class/level lock, exhaustion):
         // don't ram it again until the cooldown passes or you press elsewhere
+        // a crossable cardinal exit is taken by walking through it, not at the doorway
+        if (wantExit && !force && this.crossTarget(wantExit)) wantExit = null;
         if (wantExit && wantExit === this._blockedDir && now < this._blockedUntil) {
           if (pressedDir && pressedDir !== this._blockedDir) this._blockedDir = null;
           wantExit = null;

@@ -74,7 +74,10 @@
     const { W, H, T, grid } = layout;
     const { BLOCK, WATER } = MH.TD || { BLOCK: 1, WATER: 2 };
     const pal = palette(room);
-    (scene._peekOffsets = scene._peekOffsets || {})[room.vnum] = { ox, oy, layout };   // for far entities
+    // for far entities and the optimistic crossing (scene.optimisticEnter switches to this
+    // room on the client the moment you walk into it, before the server confirms)
+    (scene._peekOffsets = scene._peekOffsets || {})[room.vnum] = { ox, oy, layout, zone: room.zone,
+      name: room.name, flags: room.flags || [], description: room.description || '' };
     if (scene.addNeighbourSolids && Math.abs(dx) + Math.abs(dy) === 1) { try { scene.addNeighbourSolids(layout, ox, oy); } catch (_) {} }   // physics across the shared edge
     try { blendSeam(scene, pal, livePal, ox, oy, dx, dy, W, H, T); } catch (_) {}
     // adjacent rooms are the same ground you are standing on: no tint, no seam;

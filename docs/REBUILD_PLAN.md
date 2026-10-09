@@ -54,8 +54,21 @@ far away) and kept in a bounded cache. Only a zone change (or up/down) fades.
   match; all 3012 rooms pass `tools/qc_platformer_rooms.js`.
 - Measured and ruled out: the server answers moves instantly (telnet and the websocket bridge);
   the 9 s crossings seen in headless tests are the test machine's ~1 fps software renderer.
-- Next: play it on real hardware; if crossings still read as a switch, the remaining step is a
-  client-side optimistic crossing (switch at the boundary, confirm in the background).
+- Owner after step 1: "crossing still feels like switching rooms".
+
+### Phase 2 — status, step 2: optimistic crossing (shipped)
+- The move is no longer sent at the doorway. The hero walks on through the opening; the moment
+  they leave the room's rectangle into a laid-out neighbour in the same zone, the client switches
+  rooms itself (atlas layout + the last payload's creatures, ~5–10 ms when the neighbour is
+  already painted) and sends the move in the background.
+- Payloads that still place you in the room you just left are ignored while the move is in
+  flight; the server's confirmation just clears the flag.
+- Only an explicit refusal from the server (or 30 s of silence) puts you back, just inside the
+  edge. A short undo timer was tried and removed: on a slow confirmation it undid the switch,
+  the hero crossed again and the server moved two rooms.
+- Kept on the server path: closed/locked doors (opening them), zone changes, up/down, combat
+  (you're held inside the room with "Flee to escape").
+
 
 ## Phase 3 — real-time action combat
 - Server: replace round resolution for web players with per-action resolution — an attack is a
