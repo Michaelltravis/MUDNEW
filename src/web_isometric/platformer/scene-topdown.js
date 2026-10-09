@@ -389,6 +389,7 @@
       MH.bus.on('player.death', () => this.fxPlayerDeath());
       MH.bus.on('level.up', () => this.fxLevelUp());
       MH.bus.on('move.blocked', e => this.onMoveBlocked(e));
+      MH.bus.on('terminal.output', o => this.noteServerReply(o && (o.text || o.html)));
       MH.bus.on('ui.typing', on => {
         this.input.keyboard.enabled = !on;
         // enabled=false alone doesn't stop Phaser preventDefaulting WASD/arrows/
@@ -806,6 +807,19 @@
       return rt ? this._storeStaticRT(layout.vnum, rt) : null;
     }
 
+    // A move is "in flight" until the server has ANSWERED it (its "> dir" echo) plus 0.8 s
+    // for the map update, capped at 10 s. The old fixed 2.5 s lock re-sent the move whenever
+    // the reply was slower than that, and the server then walked the hero two rooms.
+    // An unconfirmed optimistic crossing counts too: sending a second move from the new
+    // room's doorway before the first is confirmed walked the hero two rooms.
+    moveInFlight() {
+      if (MH.state.optimistic) return true;
+      const pm = MH.state.pendingMove; if (!pm) return false;
+      const now = Date.now();
+      if (pm.replied) return now - pm.replied < 3000;   // arrival clears it sooner (onMap)
+      return now - pm.sentAt < 10000;
+    }
+
     // ---- REBUILD phase 2: optimistic crossing ----
     // "Crossing still feels like switching rooms": the client used to send the move at
     // the doorway and wait for the server before switching. Now the hero simply walks
@@ -839,6 +853,18 @@
       if (entry) { try { this.syncEntities(entry); } catch (_) {} }
       MH.sendCommand(dir, false);
       MH.bus.emit('room.entered', { room: { vnum, name: o.name, flags: o.flags, description: o.description }, zoneName: this._zoneName, seamless: true, optimistic: true });
+    }
+    // Called on every server output chunk: the server echoes "> <dir>" at the start of its
+    // reply to our move, so that chunk tells us the move has been PROCESSED. From then on a
+    // map update still showing the old room means the move did not happen (exhaustion,
+    // a refusal the parser does not know, a posture) — undo at once instead of hanging.
+    noteServerReply(text) {
+      const plain = String(text || '').replace(/<[^>]+>/g, '').replace(/&gt;/g, '>');
+      const echoes = dir => new RegExp('>\\s*' + dir + '\\b', 'i').test(plain);
+      const op = MH.state.optimistic;
+      if (op && !op.replied && echoes(op.dir)) op.replied = Date.now();
+      const pm = MH.state.pendingMove;
+      if (pm && !pm.replied && echoes(pm.dir)) pm.replied = Date.now();
     }
     revertOptimistic(reason) {
       const op = MH.state.optimistic; if (!op) return;
@@ -4300,7 +4326,7 @@
 
     requestMove(dir) {
       const st = MH.state;
-      if (st.pendingMove && Date.now() - st.pendingMove.sentAt < 2500) return;
+      if (this.moveInFlight()) return;
       st.pendingMove = { dir, sentAt: Date.now() };
       this.exitSuppress = Date.now() + 700;   // no double-fire while in flight
       this.travelFlourish(dir);
@@ -4377,7 +4403,11 @@
       // walked out of is stale (the server has not processed the move yet) — ignore it
       const op = MH.state.optimistic;
       if (op) {
-        if (player.vnum === op.prev.vnum && Date.now() - op.at < 30000) return;
+        // (text replies and map updates travel on different sockets, so an update sent just
+        //  before the move was processed can land after its reply: ignore it too, and let the
+        //  1.5 s check in update() decide from the LATEST update)
+        if (player.vnum === op.prev.vnum && Date.now() - op.at < 30000
+            && (!op.replied || Date.now() - op.replied <= 1500)) return;
         if (player.vnum === op.vnum) MH.state.optimistic = null;   // confirmed
       }
       const roomData = cur && cur.vnum === player.vnum
@@ -5008,7 +5038,8 @@
 
       // a move that never got an answer (lost line, eaten message) must not
       // wedge the input forever
-      if (MH.state.pendingMove && Date.now() - MH.state.pendingMove.sentAt > 4000) MH.state.pendingMove = null;
+      // (expiry lives in moveInFlight(): a fixed 4 s clear here re-sent slow moves)
+      if (MH.state.pendingMove && !this.moveInFlight()) MH.state.pendingMove = null;
       // keyboard can never stay wedged off while the game has focus -
       // unless a window deliberately froze the world
       if (!this.input.keyboard.enabled && !MH.state.uiFrozen) {
@@ -5031,7 +5062,7 @@
         this._combatIdle = 0;
       }
       if (this.wornAura) this.wornAura.setPosition(this.player.x, this.player.y + 4);
-      const locked = !!MH.state.pendingMove && Date.now() - MH.state.pendingMove.sentAt < 2500;
+      const locked = this.moveInFlight();
       const manual = ax !== 0 || ay !== 0;
       if (manual && this.autoNav) this.autoNav = null;
 
@@ -5124,6 +5155,12 @@
         // confirmation is still coming, and undoing it made the hero cross again and send a
         // SECOND move (two rooms in one step — found in testing). Only an explicit refusal
         // (onMoveBlocked) undoes; a server that says nothing for 30 s is treated as a refusal.
+        // the server has answered the move: give its map update 1.5 s, then trust it
+        if (MH.state.optimistic && MH.state.optimistic.replied && Date.now() - MH.state.optimistic.replied > 1500) {
+          const lp = MH.state.lastPayload;
+          if (lp && lp.player && lp.player.vnum === MH.state.optimistic.prev.vnum) this.revertOptimistic('You can\'t go that way right now.');
+          else MH.state.optimistic = null;
+        }
         if (MH.state.optimistic && Date.now() - MH.state.optimistic.at > 30000) {
           const lp = MH.state.lastPayload;
           if (lp && lp.player && lp.player.vnum === MH.state.optimistic.prev.vnum) this.revertOptimistic('The way is blocked.');
@@ -5167,8 +5204,18 @@
         }
         // a direction the server just refused (class/level lock, exhaustion):
         // don't ram it again until the cooldown passes or you press elsewhere
-        // a crossable cardinal exit is taken by walking through it, not at the doorway
-        if (wantExit && !force && this.crossTarget(wantExit)) wantExit = null;
+        // a crossable cardinal exit is taken by walking through it, not at the doorway —
+        // but if the hero has pressed at the opening for 0.6 s without getting out (a
+        // neighbour wall, a one-way exit, physics bounds), fall back to the server path.
+        // Without this fallback the hero simply hung at the edge (owner report).
+        if (wantExit && !force && this.crossTarget(wantExit)) {
+          const dtMs = Math.min(200, (this.game && this.game.loop && this.game.loop.delta) || 16);
+          if (!this._edgePress || this._edgePress.dir !== wantExit) this._edgePress = { dir: wantExit, held: 0 };
+          this._edgePress.held += dtMs;
+          if (this._edgePress.held < 600) wantExit = null;
+        } else {
+          this._edgePress = null;
+        }
         if (wantExit && wantExit === this._blockedDir && now < this._blockedUntil) {
           if (pressedDir && pressedDir !== this._blockedDir) this._blockedDir = null;
           wantExit = null;
