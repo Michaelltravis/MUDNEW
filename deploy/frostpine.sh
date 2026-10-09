@@ -26,7 +26,9 @@ fi
 
 # keep the live copies of runtime files across the reset
 keep=$(mktemp -d)
-git status --porcelain --untracked-files=no | awk '{print $2}' | grep -E "$RUNTIME_RE" | while read -r f; do
+# (the `|| true` matters: with pipefail, "no runtime files modified" made grep exit 1 and
+#  silently killed the whole deploy right after "== pull" — reported from the first real run)
+git status --porcelain --untracked-files=no | awk '{print $2}' | { grep -E "$RUNTIME_RE" || true; } | while read -r f; do
   mkdir -p "$keep/$(dirname "$f")"; cp -p "$f" "$keep/$f"
 done
 git checkout -q "$BRANCH" 2>/dev/null || git checkout -q -B "$BRANCH" "origin/$BRANCH"
@@ -41,9 +43,19 @@ python3 -m pip install -q aiohttp 2>/dev/null || pip3 install -q aiohttp || true
 if [ "${NO_RESTART:-0}" = "1" ]; then echo "== files updated, server not restarted (NO_RESTART=1)"; exit 0; fi
 
 echo "== restart"
-pkill -f "python3 main.py" 2>/dev/null || true
-sleep 3
-pkill -9 -f "python3 main.py" 2>/dev/null || true
+# Stop whatever holds the game ports, however it was started ("python3 main.py" from run.sh,
+# "python3 src/main.py" from older notes, a launchd job...). Matching on the process name alone
+# missed the older form: the old server kept the ports, the new one could not bind, and the
+# health check below happily talked to the OLD server.
+# (always succeeds: lsof exits 1 when a port is free, and under set -e + pipefail that alone
+#  would abort the deploy between stopping the old server and starting the new one)
+ports_pids() { lsof -ti tcp:4000 -sTCP:LISTEN 2>/dev/null; lsof -ti tcp:4001 -sTCP:LISTEN 2>/dev/null; lsof -ti tcp:4003 -sTCP:LISTEN 2>/dev/null; true; }
+old_pids=$(ports_pids | sort -u | tr '\n' ' ')
+[ -n "$old_pids" ] && echo "   stopping $old_pids" && kill $old_pids 2>/dev/null || true
+pkill -f "main.py" 2>/dev/null || true
+for i in $(seq 1 10); do [ -z "$(ports_pids)" ] && break; sleep 1; done
+left=$(ports_pids | sort -u | tr '\n' ' '); [ -n "$left" ] && kill -9 $left 2>/dev/null || true
+sleep 1
 nohup ./run.sh > server.log 2>&1 &
 up=0
 for i in $(seq 1 60); do
@@ -52,7 +64,13 @@ for i in $(seq 1 60); do
 done
 if [ "$up" = 1 ]; then echo "== up: web map :4001, bridge+art :4003, telnet :4000"
 else echo "!! server did not answer on :4001/:4003 within 60 s — see server.log"; tail -20 server.log; exit 1; fi
-curl -sf -o /dev/null http://localhost:4003/art/manifest.json \
-  && echo "== art served on :4003 (the proxy must route mud.frostpine.net/art/* to :4003, like /ws)" \
-  || echo "!! /art/manifest.json not served — characters will render as silhouettes"
+# /art/ only exists in the new build, so it doubles as "is the NEW server the one answering?"
+if curl -sf -o /dev/null http://localhost:4003/art/manifest.json; then
+  echo "== new build is serving (art on :4003; the proxy must route mud.frostpine.net/art/* to :4003, like /ws)"
+else
+  echo "!! :4003 answers but /art/manifest.json is 404 — an OLD server is still holding the ports."
+  echo "   listening: $(lsof -nP -iTCP:4003 -sTCP:LISTEN 2>/dev/null | tail -n +2 | awk '{print $1" pid "$2}' | tr '\n' ' ')"
+  echo "   server.log:"; tail -5 server.log | sed 's/^/     /'
+  exit 1
+fi
 echo "== open https://map.frostpine.net/platformer"
