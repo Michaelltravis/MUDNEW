@@ -4,6 +4,7 @@
 import * as THREE from 'three';
 import { Batcher, trs } from './assets.js';
 import { cutout } from './cutout.js';
+import { townStreet, furnish, interiorKind, interiorFloorKey, graveyard, isGraveyard } from './terrain-town.js';
 
 export const ROOM_W = 24, ROOM_H = 15;
 const FLOOR = 0, BLOCK = 1, WATER = 4;
@@ -90,21 +91,25 @@ export function buildRoom(layout, ox, oz, kits, room) {
   const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? BLOCK : grid[y * W + x];
   const D = kits.dungeon, N = kits.nature;
 
+  const ctx = () => ({ layout, ox, oz, kits, room, b, rng, runs: runs(grid, W, H), occ: asOccluder, torches, owned });
   if (PAVED.has(theme)) {
     const town = theme === 'city';
+    const kind = theme === 'inside' ? interiorKind(layout) : null;
     // ---- floor: KayKit stone tiles at 1 m ----
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
       // under everything but the wall ring (obstacles stand ON the floor)
       if (at(x, y) === BLOCK && (x === 0 || y === 0 || x === W - 1 || y === H - 1)) continue;
       const r = rng();
       const key = town ? (r < 0.1 ? 'floor_tile_small_weeds_A' : 'floor_tile_small_broken_A')
-        : r < 0.07 ? 'floor_tile_small_broken_A' : r < 0.13 ? 'floor_tile_small_weeds_A' : 'floor_tile_small';
+        : (kind && interiorFloorKey(kind, r, layout.vnum))
+        || (r < 0.07 ? 'floor_tile_small_broken_A' : r < 0.13 ? 'floor_tile_small_weeds_A' : 'floor_tile_small');
       b.add(D.get(key), trs(ox + x + 0.5, -0.05, oz + y + 0.5, Math.floor(rng() * 4) * Math.PI / 2, 0.5, 0.5, 0.5), { shadow: false });
     }
     // ---- walls: border runs as stretched KayKit wall pieces ----
     const wall = asOccluder(D.get('wall'));
-    const WALL_H = town ? 2.0 : 2.6;
-    for (const run of runs(grid, W, H)) {
+    const WALL_H = 2.6;
+    if (town && kits.town) townStreet(ctx());
+    for (const run of (town && kits.town) ? [] : runs(grid, W, H)) {
       const L = run.b - run.a + 1;
       const n = Math.max(1, Math.round(L / 4)), w = L / n;
       for (let i = 0; i < n; i++) {
@@ -122,7 +127,8 @@ export function buildRoom(layout, ox, oz, kits, room) {
       }
     }
     // ---- interior obstacles (they block in the grid) ----
-    for (const o of layout.obstacles || []) {
+    if (kind && kits.furniture) furnish(ctx(), kind);
+    for (const o of (kind && kits.furniture) || (town && kits.town) ? [] : layout.obstacles || []) {
       if (o.big) {
         const key = town ? ['crates_stacked', 'barrel_large', 'keg'][Math.floor(rng() * 3)]
           : rng() < 0.55 ? 'pillar' : rng() < 0.5 ? 'crates_stacked' : 'barrel_large';
@@ -135,7 +141,7 @@ export function buildRoom(layout, ox, oz, kits, room) {
       }
     }
     // ---- decorative props (walk-through): small things only ----
-    for (const p of layout.props || []) {
+    for (const p of (kind && kits.furniture) || (town && kits.town) ? [] : layout.props || []) {
       if (town) {
         // a standing torch lights the street
         if (rng() < 0.5) {
@@ -258,6 +264,7 @@ export function buildRoom(layout, ox, oz, kits, room) {
     }
   }
 
+  if (!PAVED.has(theme) && kits.graveyard && isGraveyard(layout)) graveyard(ctx());
   b.build(group);
   const doors = room ? exitFeatures(group, layout, ox, oz, room, kits, owned) : {};
   // flames: tiny HDR spheres so the bloom pass picks them up

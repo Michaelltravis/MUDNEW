@@ -64,6 +64,15 @@ stored once, meshopt-compressed).
 | Animals Pack | Quaternius | fox, fish, bird, chick, whale (FBX) | https://opengameart.org/content/5-low-poly-animals |
 | Farm Animals | Quaternius | cow, horse, zebra, llama, pig, pug, sheep (FBX) | https://opengameart.org/content/lowpoly-animated-farm-animal-pack |
 
+| KayKit Medieval Hexagon 1.0 | Kay Lousberg | town houses, tavern, smithy, church, market, towers, wells, town walls, street props (64 used) | https://kaylousberg.itch.io/kaykit-medieval-hexagon (mirror: github.com/KayKit-Game-Assets/KayKit-Medieval-Hexagon-Pack-1.0) |
+| KayKit Furniture Bits 1.0 | Kay Lousberg | beds, tables, chairs, shelves, cabinets, rugs, lamps, books, pictures (all 53) | https://kaylousberg.itch.io/furniture-bits (mirror: github.com/KayKit-Game-Assets/KayKit-Furniture-Bits-1.0) |
+| KayKit Halloween Bits 1.0 | Kay Lousberg | graves, gravestones, fences, lanterns, benches, shrines, dead trees (all 63) | https://kaylousberg.itch.io/halloween-bits (mirror: github.com/KayKit-Game-Assets/KayKit-Halloween-Bits-1.0) |
+
+Towns, interiors and graveyards are placed by `world3d/terrain-town.js`: houses fill empty
+map cells beside streets, shopfronts (pressed to two tiles) stand where a street meets an
+indoor room and are chosen by that room's name, interiors are furnished by kind (temple, shop,
+tavern, bank, library, bedroom, guild, throne room, house).
+
 Creatures (`art3d/mobs/`, 38 models, 2.6 MB) are converted from FBX by `build.mjs` with
 FBX2glTF (npm `fbx2gltf`), textured, turned to face +Z (`tools/art3d/mob-yaw.json`), scaled to
 1 m and listed with their clip names in `mobs/index.json`. Rats, spiders, snakes, rabbits and

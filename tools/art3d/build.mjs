@@ -34,7 +34,8 @@ const DUNGEON = ['wall', 'wall_corner', 'wall_doorway', 'wall_half', 'wall_broke
   'column', 'torch_mounted', 'torch_lit', 'barrel_large', 'barrel_small', 'box_large', 'box_stacked',
   'crates_stacked', 'chest', 'chest_gold', 'banner_patternA_red', 'banner_thin_red', 'rubble_large',
   'rubble_half', 'candle_lit', 'candle_triple', 'table_long_decorated_A', 'keg', 'stairs',
-  'coin_stack_large', 'sword_shield'];
+  'coin_stack_large', 'sword_shield', 'floor_wood_small', 'floor_wood_small_dark', 'floor_wood_large',
+  'shelf_large', 'shelves', 'banner_patternB_blue', 'banner_shield_white'];
 const NATURE = ['CommonTree_1', 'CommonTree_2', 'CommonTree_3', 'Pine_1', 'Pine_2', 'TwistedTree_1',
   'DeadTree_1', 'DeadTree_2', 'Bush_Common', 'Bush_Common_Flowers', 'Fern_1', 'Grass_Common_Short',
   'Grass_Common_Tall', 'Grass_Wispy_Tall', 'Flower_3_Group', 'Flower_4_Group', 'Mushroom_Common',
@@ -58,6 +59,21 @@ const MOBS = [
 ];
 const MOB_YAW = JSON.parse(fs.existsSync(new URL('./mob-yaw.json', import.meta.url)) ? fs.readFileSync(new URL('./mob-yaw.json', import.meta.url), 'utf8') : '{}');
 
+// all model files under a pack folder, by base name
+function packModels(dir) {
+  const out = new Map();
+  const walk = d => {
+    for (const f of fs.readdirSync(path.join(CACHE, d), { withFileTypes: true })) {
+      const rel = `${d}/${f.name}`;
+      if (f.isDirectory()) walk(rel);
+      else if (/\.(gltf|glb)$/.test(f.name)) out.set(f.name.replace(/\.gltf\.glb$|\.gltf$|\.glb$/, ''), rel);
+    }
+  };
+  if (fs.existsSync(path.join(CACHE, dir))) walk(dir);
+  return out;
+}
+const kitFrom = (dir, pick = () => true) => [...packModels(dir)].filter(([k]) => pick(k)).sort().map(([key, src]) => ({ key, src }));
+
 const JOBS = [
   ...['Knight', 'Barbarian', 'Mage', 'Rogue', 'Rogue_Hooded'].map(n =>
     ({ kind: 'char', src: `${ADV}/${n}.glb`, out: `chars/${n.toLowerCase()}.glb` })),
@@ -71,6 +87,11 @@ const JOBS = [
   { kind: 'kit', out: 'kits/nature.glb', texture: 512, dropNormalMaps: true, dropVertexColors: true, greenLeaves: true,
     items: NATURE.map(k => ({ key: k, src: `${NAT}/${k}.gltf` })) },
   ...MOBS.map(m => ({ kind: 'mob', ...m, out: `mobs/${m.name}.glb`, texture: 256 })),
+  // towns: KayKit Medieval Hexagon houses, shops, temple, walls and street props
+  { kind: 'kit', out: 'kits/town.glb', items: kitFrom('kaykit-hexagon') },
+  // interiors: KayKit Furniture Bits; graveyards: KayKit Halloween Bits
+  { kind: 'kit', out: 'kits/furniture.glb', items: kitFrom('kaykit-furniture') },
+  { kind: 'kit', out: 'kits/graveyard.glb', items: kitFrom('kaykit-halloween') },
 ];
 
 function findFile(dir, key) {
@@ -181,6 +202,9 @@ const LICENCES = {
   'kaykit-dungeon-remastered.txt': 'kaykit-dungeon/addons/kaykit_dungeon_remastered/Assets/LICENSE.txt',
   'quaternius-stylized-nature-megakit.txt': 'quaternius-nature/License_Standard.txt',
   'quaternius-farm-animals.txt': 'quaternius-farm/Farm Animals by @Quaternius/License.txt',
+  'kaykit-medieval-hexagon.txt': 'kaykit-hexagon/addons/kaykit_medieval_hexagon_pack/LICENSE.txt',
+  'kaykit-furniture-bits.txt': 'kaykit-furniture/addons/kaykit_furniture_bits/Assets/LICENSE.txt',
+  'kaykit-halloween-bits.txt': 'kaykit-halloween/addons/kaykit_halloween_bits/Assets/LICENSE.txt',
 };
 fs.mkdirSync(path.join(OUT, 'licenses'), { recursive: true });
 for (const [dst, src] of Object.entries(LICENCES)) fs.copyFileSync(path.join(CACHE, src), path.join(OUT, 'licenses', dst));

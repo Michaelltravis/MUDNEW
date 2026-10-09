@@ -32,6 +32,30 @@ listing=$(curl -fsSL "https://data.jsdelivr.com/v1/packages/gh/KayKit-Game-Asset
 kaykit KayKit-Dungeon-Remastered-1.0 kaykit-dungeon "$D/LICENSE.txt" \
   $(printf '%s' "$listing" | python3 -c "import sys,json; [print(f['name'][1:]) for f in json.load(sys.stdin)['files'] if '/Assets/gltf/' in f['name'] and f['name'].endswith('.glb')]")
 
+# KayKit packs that ship .gltf + .bin + one texture: fetch every file of the chosen models
+kaykit_gltf() {  # kaykit_gltf <repo> <local dir> <regex of model names>
+  local repo="$1" dir="$2" re="$3"
+  local list
+  list=$(curl -fsSL "https://data.jsdelivr.com/v1/packages/gh/KayKit-Game-Assets/$repo@main?structure=flat")
+  kaykit "$repo" "$dir" $(printf '%s' "$list" | python3 -c "
+import sys, json, re
+rx = re.compile(sys.argv[1])
+for f in json.load(sys.stdin)['files']:
+    n = f['name'][1:]
+    base = n.rsplit('/', 1)[-1].rsplit('.', 1)[0]
+    if '/gltf/' in n and (n.endswith('.png') or (n.endswith(('.gltf', '.bin')) and rx.fullmatch(base))):
+        print(n)
+    elif n.endswith('LICENSE.txt'):
+        print(n)
+" "$re")
+}
+# towns: houses, shops, temple, walls, market props (KayKit Medieval Hexagon)
+kaykit_gltf KayKit-Medieval-Hexagon-Pack-1.0 kaykit-hexagon \
+  '(building_(home_A|home_B|tavern|blacksmith|church|market|tower_A|well|windmill|barracks|watermill)_(blue|red|yellow|green))|barrel|bucket_water|crate_A_big|crate_B_small|crate_long_A|sack|wheelbarrow|weaponrack|tent|fence_wood_straight|fence_stone_straight|wall_straight|wall_straight_gate|wall_corner_A_outside|trees_A_medium|tree_single_A|pallet|resource_lumber|target|ladder'
+# interiors (KayKit Furniture Bits) and graveyards (KayKit Halloween Bits): every model
+kaykit_gltf KayKit-Furniture-Bits-1.0 kaykit-furniture '.*'
+kaykit_gltf KayKit-Halloween-Bits-1.0 kaykit-halloween '.*'
+
 # Quaternius Stylized Nature MegaKit (standard, CC0) from OpenGameArt
 N="$CACHE/quaternius-nature"
 get "https://opengameart.org/sites/default/files/stylized_nature_megakitstandard.zip" "$N/nature.zip"

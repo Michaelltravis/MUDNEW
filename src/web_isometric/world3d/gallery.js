@@ -5,8 +5,9 @@ import { trs, spawnMob, mobIndexReady, spawnCharacter } from './assets.js';
 import { BESTIARY } from './bestiary.js';
 import { makeProc } from './proc.js';
 
-export function showGallery(engine, kit) {
-  const names = [...kit.keys()];
+export function showGallery(engine, kit, scale = 1) {
+  const only = new URLSearchParams(location.search).get('only');
+  const names = [...kit.keys()].filter(n => !only || only.split(',').some(o => n.includes(o)));
   const cols = 8, step = 5;
   const floor = new THREE.Mesh(new THREE.PlaneGeometry(cols * step + 6, Math.ceil(names.length / cols) * step + 6),
     new THREE.MeshStandardMaterial({ color: 0x6d6a60, roughness: 1 }));
@@ -18,11 +19,13 @@ export function showGallery(engine, kit) {
     const m = kit.get(n);
     for (const p of m.parts) {
       const mesh = new THREE.Mesh(p.geometry, p.material);
-      mesh.applyMatrix4(trs((i % cols) * step, 0, Math.floor(i / cols) * step, 0, 1));
+      mesh.applyMatrix4(trs((i % cols) * step, 0, Math.floor(i / cols) * step, 0, scale));
       mesh.castShadow = mesh.receiveShadow = true;
       engine.scene.add(mesh);
     }
   });
+  names.forEach((n, i) => engine.scene.add(new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1),
+    new THREE.Vector3((i % cols) * step, 0.05, Math.floor(i / cols) * step), 2.2, 0xff3030, 0.5, 0.3)));
   console.log('gallery order:', names.join(', '));
   engine.setMood('day', true);
   return new THREE.Vector3(cols * step / 2, 0, step * 1.5);

@@ -18,7 +18,8 @@ const params = new URLSearchParams(location.search);
 const pref = k => { try { return localStorage.getItem(k); } catch (_) { return null; } };
 const engine = createEngine($('#stage'), { quality: params.get('q') || pref('mh3d_quality') || 'high' });
 attachPerf(engine, $('#perf'));
-const loaded = Promise.all([loadKit('dungeon'), loadKit('nature')]).then(([dungeon, nature]) => ({ dungeon, nature }));
+const loaded = Promise.all(['dungeon', 'nature', 'town', 'furniture', 'graveyard'].map(k => loadKit(k)))
+  .then(([dungeon, nature, town, furniture, graveyard]) => ({ dungeon, nature, town, furniture, graveyard }));
 
 if (params.has('demo')) runDemo(); else runGame();
 
@@ -28,8 +29,9 @@ async function runDemo() {
     const { showGallery, showMobGallery } = await import('./gallery.js');
     const g = params.get('gallery');
     const { showBeastGallery } = await import('./gallery.js');
+    const extra = ['town', 'furniture', 'graveyard'].includes(g) ? await loadKit(g) : null;
     const at = g === 'mobs' ? await showMobGallery(engine) : g === 'beasts' ? await showBeastGallery(engine)
-      : showGallery(engine, g === 'nature' ? kits.nature : kits.dungeon);
+      : showGallery(engine, extra || (g === 'nature' ? kits.nature : kits.dungeon), Number(params.get('scale')) || 1);
     engine.rig.target.copy(at); engine.placeCamera(true);
     window.MH3D = { engine, THREE };
   } else {

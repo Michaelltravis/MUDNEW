@@ -154,3 +154,10 @@ the 2D client and its HUD stay at `/platformer`.
   procedural rats, spiders, snakes, rabbits and slimes; `world3d/bestiary.js` maps MUD names to
   bodies; creatures fighting you turn and strike each round, the dead fall before they vanish,
   flyers hover. Checked with `/play?demo&gallery=beasts` and in the live sewers and pet shop.
+- Towns and interiors: streets get whole houses where they border empty map cells and
+  shopfronts (chosen by the shop behind: smithy, tavern, church, market...) where they border
+  an indoor room, low stone town walls elsewhere; interiors named as a temple, shop, tavern,
+  bank, library, bedroom, guild hall, throne room or house are furnished (wood or stone floor,
+  wall shelves, tables with stools, beds, benches and an altar, rugs, lamps); graveyards get
+  rows of graves, fences and lanterns (`world3d/terrain-town.js`; KayKit Medieval Hexagon,
+  Furniture Bits, Halloween Bits).
