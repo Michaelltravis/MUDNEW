@@ -1241,6 +1241,20 @@ class WebMapServer:
                     logger.debug(f"Failed to parse WebSocket message: {e}")
                     continue
 
+                if payload.get('type') in ('pos', 'mobpos'):
+                    # combat v2 (combat_range.py): the 3D client says where its hero stands
+                    # and where it placed the creatures of its room; only for its own player
+                    player = self.world.players.get((client.player_name or '').lower())
+                    if player and player.room and payload.get('vnum') == player.room.vnum:
+                        from combat_range import set_pos, mob_seed
+                        if payload.get('type') == 'pos':
+                            try:
+                                set_pos(player, float(payload.get('x')), float(payload.get('z')))
+                            except (TypeError, ValueError):
+                                pass
+                        else:
+                            mob_seed(player.room, payload.get('mobs') or [])
+                    continue
                 if payload.get('type') == 'subscribe':
                     client.player_name = payload.get('player')
                     client.mode = payload.get('mode', 'full')

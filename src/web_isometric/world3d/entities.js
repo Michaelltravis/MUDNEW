@@ -91,6 +91,15 @@ export class Entities {
     return new THREE.Vector3(room.ox + s.x / 16 + jx * 0.8, 0, room.oz + s.y / 16 + jz * 0.8);
   }
 
+  // a server position (room-local metres) for a creature in a fight: walk it there
+  place(e, m) {
+    if (m.x == null || m.z == null || !this.zone) return;
+    const room = this.zone.rooms.get(e.vnum);
+    if (!room) return;
+    const goal = new THREE.Vector3(room.ox + m.x, 0, room.oz + m.z);
+    if (!e.root || e.root.position.distanceTo(goal) > 0.15) e.goal = goal;
+  }
+
   // payload.nearby: [{vnum, mobs, players, doors, items}]
   sync(payload, selfName) {
     // a payload without `nearby` (an older /state reply) says nothing about who is around:
@@ -110,6 +119,7 @@ export class Entities {
       if (!e) { this.create(key, w); continue; }
       e.data = w.data;
       if (e.vnum !== w.vnum) { e.vnum = w.vnum; e.goal = this.slot(w.vnum, key); }
+      else this.place(e, w.data);
     }
   }
 
@@ -119,6 +129,7 @@ export class Entities {
       const e = m.id != null ? this.list.get(`m${m.id}`) : null;
       if (!e) continue;
       Object.assign(e.data, m);
+      this.place(e, m);
       if (m.fighting && e.actor && e.root && this.hero) {
         e.root.rotation.y = Math.atan2(this.hero.x - e.root.position.x, this.hero.z - e.root.position.z);
         e.actor.once(['1H_Melee_Attack_Chop', '1H_Melee_Attack_Slice_Diagonal', '1H_Melee_Attack_Stab'][(hashStr(e.key) + Date.now()) % 3], 0.08, 1.1);

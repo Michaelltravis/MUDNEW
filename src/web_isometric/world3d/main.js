@@ -358,6 +358,24 @@ async function runGame() {
     return best;
   }
 
+  // ---- positions for the server's range rules (combat_range.py) ----
+  // the hero's spot in its room ~5x a second in a fight (2x otherwise, only when it
+  // changes), and once per room the spots where this client placed the creatures
+  let posClock = 0, lastPos = '', seeded = '';
+  function reportPositions(dt) {
+    const sock = MH.state.mapSocket;
+    if ((posClock -= dt) > 0 || !heroRoom || !sock || sock.readyState !== 1) return;
+    posClock = MH.state.inCombat ? 0.2 : 0.5;
+    const p = hero.root.position;
+    const x = +(p.x - heroRoom.ox).toFixed(2), z = +(p.z - heroRoom.oz).toFixed(2);
+    const key = `${heroRoom.vnum}:${x}:${z}`;
+    if (key !== lastPos) { lastPos = key; sock.send(JSON.stringify({ type: 'pos', vnum: heroRoom.vnum, x, z })); }
+    const mobs = [...ents.list.values()].filter(e => e.kind === 'mob' && e.vnum === heroRoom.vnum && e.root && e.data.id != null)
+      .map(e => ({ id: e.data.id, x: +(e.root.position.x - heroRoom.ox).toFixed(2), z: +(e.root.position.z - heroRoom.oz).toFixed(2) }));
+    const mk = `${heroRoom.vnum}:${mobs.map(m => m.id).join(',')}`;
+    if (mobs.length && mk !== seeded) { seeded = mk; sock.send(JSON.stringify({ type: 'mobpos', vnum: heroRoom.vnum, mobs })); }
+  }
+
   // ---- the frame ----
   engine.onTick((dt, t) => {
     if (!hero) { if (backdrop) backdrop.update(dt, t); return; }
@@ -388,5 +406,6 @@ async function runGame() {
     ents.update(dt, t, p);
     mm.update(p, ctl.yaw);
     sync.tick();
+    reportPositions(dt);
   });
 }
