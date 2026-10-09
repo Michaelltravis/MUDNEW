@@ -24,7 +24,7 @@
   // flat colours for a neighbour cell grid from the zone theme / sector palette
   function palette(room) {
     const zt0 = MH.ZONE_THEMES && MH.zoneThemeKey ? MH.ZONE_THEMES[MH.zoneThemeKey(room.zone)] : null;
-    const sector = MH.themeForSector ? MH.themeForSector(room.sector || 'default') : 'default';
+    const sector = MH.roomTheme ? MH.roomTheme(room) : (MH.themeForSector ? MH.themeForSector(room.sector || 'default') : 'default');
     const zt = MH.roomPalette ? MH.roomPalette(zt0, sector) : zt0;
     const hex = c => (typeof c === 'string' && c[0] === '#') ? parseInt(c.slice(1), 16) : (typeof c === 'number' ? c : 0x50463c);
     return {
@@ -79,8 +79,10 @@
     try { blendSeam(scene, pal, livePal, ox, oy, dx, dy, W, H, T); } catch (_) {}
     // adjacent rooms are the same ground you are standing on: no tint, no seam;
     // only the outer ring recedes into haze
-    const HAZE = dist > 1 ? 0xe2e5ec : 0xffffff;   // outer ring: a whisper, not a step
-    const hazeTween = (obj) => { if (dist > 1) scene.tweens.addCounter({ from: 0, to: 1, duration: 900, delay: 700, onUpdate: t => { const v = t.getValue(); const c = Math.round(0xff - (0xff - 0xe2) * v), c2 = Math.round(0xff - (0xff - 0xe5) * v), c3 = Math.round(0xff - (0xff - 0xec) * v); if (obj.active) obj.setTint((c << 16) | (c2 << 8) | c3); } }); };
+    const dark = (room.flags || []).includes('dark');
+    // a dark room stays dark seen from next door (it used to show as bright slabs at the edges)
+    const HAZE = dark ? 0x2a2d38 : dist > 1 ? 0xe2e5ec : 0xffffff;   // outer ring: a whisper, not a step
+    const hazeTween = (obj) => { if (dist > 1 && !dark) scene.tweens.addCounter({ from: 0, to: 1, duration: 900, delay: 700, onUpdate: t => { const v = t.getValue(); const c = Math.round(0xff - (0xff - 0xe2) * v), c2 = Math.round(0xff - (0xff - 0xe5) * v), c3 = Math.round(0xff - (0xff - 0xec) * v); if (obj.active) obj.setTint((c << 16) | (c2 << 8) | c3); } }); };
     // walls, props and furniture: a cached static snapshot is parked at the
     // offset at once; an unvisited room is pre-rendered in the deferred queue
     const parkStatic = (rt, bright) => {
@@ -122,7 +124,7 @@
       g.fillStyle(col, 1); g.fillRect(ox + x * T, oy + y * T, T, T);
     }
     // distance haze: the next room is seen, not visited
-    if (dist > 1) { g.fillStyle(0x06080c, 0.10); g.fillRect(ox, oy, W * T, H * T); }
+    if (dist > 1 || dark) { g.fillStyle(0x06080c, dark ? 0.78 : 0.10); g.fillRect(ox, oy, W * T, H * T); }
     scene.bgLayer.add(g);
     // step 2: the real painterly ground, deferred so the room you are in
     // renders first; one neighbour per tick, dropped if you have moved on

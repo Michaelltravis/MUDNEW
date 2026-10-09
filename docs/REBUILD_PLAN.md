@@ -21,9 +21,22 @@ playing it, not by screenshots.
   dark rooms say so ("too dark — hold a light"); neighbours of dark rooms are darkened too.
 - Done when: a 1920-wide window shows a room and its neighbours with a HUD under ~15% of the screen.
 
-## Phase 2 — movement
-- Crossing a room edge is instant on the client (optimistic move, no lock); the server confirms
-  in the background and only a refusal snaps you back.
+## Phase 1 — status: shipped
+Camera shows ~34×19 tiles (2.5× on a 1920 window instead of 4.25×); HUD scale (auto trims wide
+windows; Settings → HUD size); smaller LOOT tag; enclosed zones (sewers, mines, crypts…) render
+underground whatever their old sector tags; neighbours of dark rooms are dark; a dark room says
+"hold a light". Exposed by the wider view: neighbour paintings arrive slowly (100–160 ms each,
+thrown away on every room change) — solved structurally in phase 2.
+
+## Phase 2 — movement (owner, after phase 1: "seamless walking between rooms, no room switching")
+The zone is ONE map: rooms laid out on the atlas grid, openings where exits connect, walls where
+they don't, one physics world, camera follows. Walking into another room's area sends the move to
+the server in the background; nothing on screen rebuilds. Creatures and players stand in their
+rooms' areas. Room paintings are made around the player progressively (nearest first, lower detail
+far away) and kept in a bounded cache. Only a zone change (or up/down) fades.
+
+- (superseded by the one-map design above; kept for the refusal rule) the server confirms in the
+  background and only a refusal snaps you back.
 - Wide openings: where two rooms connect, the shared wall is open across a third of its length.
 - Faster walk; click-to-move with pathing across rooms (the minimap auto-walk, in the world).
 - Done when: holding a direction through five rooms never stops the hero.

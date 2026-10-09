@@ -30,6 +30,9 @@
     overflow: hidden;
   }
   #game-root { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  /* REBUILD phase 1: one HUD scale for every fixed panel (Settings → HUD size; auto trims wide windows) */
+  #topbar, #room-banner, #guide, #party-bar, #hud, #hotbar, #belt, #buff-bar, #side-col, #target-frame,
+  #stance-bar, #command-row, #dock, #help-btn, #welcome-card, #combat-chip, #momentum-chip, #finisher-chip { zoom: var(--uis, 1); }
   #game-root canvas { image-rendering: auto; }
 
   /* ---- Login ---- */
@@ -2910,6 +2913,12 @@
     <div class="gfx-row gfx-motion" id="gfx-motion-row">
       <span class="gfx-lbl">Reduced motion</span>
       <span class="gfx-switch" id="gfx-motion"><i></i></span>
+    </div>
+    <div class="gfx-row">
+      <span class="gfx-lbl">HUD size</span>
+      <span class="gfx-seg" id="gfx-uiscale">
+        <span data-u="auto">Auto</span><span data-u="s">S</span><span data-u="m">M</span><span data-u="l">L</span>
+      </span>
     </div>
     <div class="gfx-row">
       <span class="gfx-lbl">Text size</span>

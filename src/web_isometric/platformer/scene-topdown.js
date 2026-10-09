@@ -71,11 +71,14 @@
         this._lastFit = { cw, ch, left: ins.left, right: ins.right, top: ins.top, bottom: ins.bottom };
         const vw = Math.max(160, cw - ins.left - ins.right);
         const vh = Math.max(160, ch - ins.top - ins.bottom);
-        const raw = Math.min(vw / this.pxW, vh / this.pxH);
-        // continuous-world step 1: the room is a notch LARGER than the viewport
-        // and the camera follows the player, so approaching an exit reveals the
-        // neighbouring room (pre-rendered by world-peek.js) through the gap
-        const z = Phaser.Math.Clamp(Math.floor(raw * 1.3 * 4) / 4, 1.0, 5.0);
+        // REBUILD phase 1 (first real playtest: "the UI is too large"): the camera
+        // shows a fixed amount of WORLD — about 34x19 tiles, the room and a slice
+        // of each neighbour — whatever the window size. The old rule (1.3x "fit one
+        // room") drew a 16-px tile 68 px wide on a 1920 window and showed less than
+        // one room. Quarter-step zoom keeps pixel art crisp.
+        const T0 = (MH.TD && MH.TD.T) || 16;
+        const want = Math.min(vw / (34 * T0), vh / (19 * T0));
+        const z = Phaser.Math.Clamp(Math.floor(want * 4) / 4, 1.5, 4.0);
         const cam = this.cameras.main;
         cam.setViewport(ins.left, ins.top, vw, vh);
         cam.setZoom(z);
@@ -3800,8 +3803,8 @@
     showLootTag(x, y, onClick) {
       this.hideLootTag();
       const t = this.add.text(x, y, '▼ LOOT', {
-        fontFamily: 'Oxanium, Trebuchet MS, sans-serif', resolution: 3, fontSize: '11px', fontStyle: 'bold',
-        color: '#1a1208', backgroundColor: '#ffd44a', padding: { x: 5, y: 2 },
+        fontFamily: 'Oxanium, Trebuchet MS, sans-serif', resolution: 3, fontSize: '8px', fontStyle: 'bold',
+        color: '#1a1208', backgroundColor: '#ffd44a', padding: { x: 4, y: 1 },
       }).setOrigin(0.5, 1).setDepth(62).setAlpha(0);
       t.setInteractive({ useHandCursor: true });
       t.on('pointerdown', () => { if (onClick) onClick(); this.hideLootTag(); });

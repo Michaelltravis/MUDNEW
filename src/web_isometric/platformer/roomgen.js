@@ -226,9 +226,22 @@
     return seen;
   }
 
+  // A zone whose theme is ENCLOSED (sewers, mines, crypts, drow tunnels...) is
+  // underground whatever its rooms' old sector tags say: the stock sewer zones tag
+  // most rooms forest/field/mountain/city, which grew canopy, deer and daylight in a
+  // sewer (first real playtest). Outdoor sector themes are mapped to 'dungeon'.
+  const OUTDOOR_THEMES = new Set(['forest', 'field', 'hills', 'mountain', 'city', 'default', 'desert']);
+  MH.roomTheme = function roomTheme(roomData) {
+    const sector = MH.themeForSector(roomData.sector || 'default');
+    const zk = MH.zoneThemeKey ? MH.zoneThemeKey(roomData.zone) : null;
+    const zt = zk && MH.ZONE_THEMES ? MH.ZONE_THEMES[zk] : null;
+    if (zt && zt.light && zt.light.enclosed && OUTDOOR_THEMES.has(sector)) return 'dungeon';
+    return sector;
+  };
+
   MH.generateRoomTopDown = function generateRoomTopDown(roomData) {
     const vnum = Number(roomData.vnum) || 0;
-    const sector = MH.themeForSector(roomData.sector || 'default');
+    const sector = MH.roomTheme(roomData);
     const rng = MH.mulberry32(((vnum * 2654435761) ^ 0x5eada) >>> 0);
     const exits = roomData.exits || {};
     const has = dir => Object.prototype.hasOwnProperty.call(exits, dir);

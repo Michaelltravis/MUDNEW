@@ -21,6 +21,7 @@
     textSize: lsGet('mh_text_size') || 'normal',          // normal | large | huge
     highContrast: lsGet('mh_high_contrast') === '1',
     dmgNumbers: lsGet('mh_dmg_numbers') !== '0',          // floating combat numbers, default on
+    uiScale: lsGet('mh_ui_scale') || 'auto',               // auto | s | m | l  (REBUILD phase 1)
   };
   function applyPrefs() {
     const b = document.body;
@@ -28,7 +29,12 @@
     b.classList.toggle('uitext-large', MH.prefs.textSize === 'large');
     b.classList.toggle('uitext-huge', MH.prefs.textSize === 'huge');
     b.classList.toggle('hicontrast', !!MH.prefs.highContrast);
+    // HUD scale: 'auto' trims the HUD on wide windows (first playtest: "the UI is too large")
+    const autoScale = window.innerWidth >= 1700 ? 0.8 : window.innerWidth >= 1400 ? 0.9 : 1;
+    const S = { s: 0.75, m: 0.9, l: 1.05 };
+    document.documentElement.style.setProperty('--uis', String(S[MH.prefs.uiScale] || autoScale));
   }
+  window.addEventListener('resize', () => { if (MH.prefs.uiScale === 'auto') applyPrefs(); });
   applyPrefs();
 
   // ---- WebAudio cues: you should HEAR combat ----
@@ -4105,12 +4111,13 @@
         const btn = $('gfx-toggle'), menu = $('gfx-menu');
         if (!btn || !menu || !MH.gfx) return;
         const seg = $('gfx-seg'), sw = $('gfx-motion');
-        const tseg = $('gfx-textsize'), soundSw = $('gfx-sound'), dmgSw = $('gfx-dmgnum'), contrastSw = $('gfx-contrast');
+        const tseg = $('gfx-textsize'), soundSw = $('gfx-sound'), dmgSw = $('gfx-dmgnum'), contrastSw = $('gfx-contrast'), useg = $('gfx-uiscale');
         const soundOn = () => lsGet('misthollow_ambience') !== 'off';
         const sync = () => {
           seg.querySelectorAll('span').forEach(s => s.classList.toggle('on', s.dataset.q === MH.gfx.quality));
           sw.classList.toggle('on', MH.gfx.reducedMotion);
           if (tseg) tseg.querySelectorAll('span').forEach(s => s.classList.toggle('on', s.dataset.t === MH.prefs.textSize));
+          if (useg) useg.querySelectorAll('span').forEach(s => s.classList.toggle('on', s.dataset.u === MH.prefs.uiScale));
           if (soundSw) soundSw.classList.toggle('on', soundOn());
           if (dmgSw) dmgSw.classList.toggle('on', MH.prefs.dmgNumbers);
           if (contrastSw) contrastSw.classList.toggle('on', MH.prefs.highContrast);
@@ -4128,6 +4135,12 @@
         if (tseg) tseg.querySelectorAll('span').forEach(s => s.addEventListener('click', () => {
           MH.prefs.textSize = s.dataset.t; lsSet('mh_text_size', s.dataset.t); applyPrefs(); sync();
           flash('Text size: ' + s.dataset.t); if (MH.sfx) MH.sfx.ui();
+        }));
+        // HUD scale
+        if (useg) useg.querySelectorAll('span').forEach(s => s.addEventListener('click', () => {
+          MH.prefs.uiScale = s.dataset.u; lsSet('mh_ui_scale', s.dataset.u); applyPrefs(); sync();
+          window.dispatchEvent(new Event('resize'));   // re-fit the camera to the new HUD size
+          flash('HUD size: ' + ({ auto: 'auto', s: 'small', m: 'medium', l: 'large' })[s.dataset.u]); if (MH.sfx) MH.sfx.ui();
         }));
         // sound (reuses the 🔊 ambience toggle so one switch governs all audio)
         if (soundSw) soundSw.addEventListener('click', () => {
@@ -4286,6 +4299,13 @@
       MH.bus.on('move.blocked', () => cancelWalk());
       MH.bus.on('player.death', () => cancelWalk());
       MH.bus.on('room.entered', ({ room, zoneName, seamless }) => showRoom(room, zoneName, seamless));
+      // a dark room is a MUD rule (bring a light), not a broken render: say so once
+      let darkHinted = false;
+      MH.bus.on('room.entered', ({ room }) => {
+        if (darkHinted || !room || !(room.flags || []).includes('dark')) return;
+        darkHinted = true;
+        setTimeout(() => flash('It is dark here — hold a light (a torch or lantern) to see further'), 900);
+      });
       MH.bus.on('flash', flash);
       MH.bus.on('move.blocked', e => {}); // scene flashes it
       MH.bus.on('chat', e => { chatLine(e.line); clogLine(e.line.replace(/\x1b\[[0-9;]*m/g, '').replace(/</g, '&lt;'), 'chat'); });
