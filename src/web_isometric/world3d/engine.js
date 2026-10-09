@@ -122,9 +122,11 @@ export function createEngine(container, opts = {}) {
   // ---- loop ----
   const ticks = [];
   const clock = new THREE.Clock();
-  let frames = 0;
+  let frames = 0, stopUntil = 0;
   function frame() {
-    const dt = Math.min(clock.getDelta(), 0.05);
+    // hit-stop: a big blow freezes the world for a few frames (time crawls, it never stops)
+    const raw = Math.min(clock.getDelta(), 0.05);
+    const dt = performance.now() < stopUntil ? raw * 0.06 : raw;
     const t = clock.elapsedTime;
     for (const fn of ticks) fn(dt, t);
     rig.dist += (rig.wantDist - rig.dist) * (1 - Math.exp(-dt * 10));
@@ -143,6 +145,7 @@ export function createEngine(container, opts = {}) {
   return {
     THREE, renderer, scene, camera, rig, sun, hemi, quality: q,
     onTick: fn => ticks.push(fn),
+    hitStop: ms => { stopUntil = Math.max(stopUntil, performance.now() + ms); },
     setMood, placeCamera,
     get frames() { return frames; },
   };

@@ -148,12 +148,16 @@ class CombatHandler:
     }
 
     NPC_ATTACK_NOUNS = ('blow', 'strike', 'swing')
+    RANGED_NOUNS = {'ranger': 'arrow', 'mage': 'arcane bolt', 'necromancer': 'shadow bolt'}
 
     @classmethod
     def damage_forms(cls, damage_word: str, you_verb: str, attacker=None) -> tuple:
         """Return (noun, 3rd-person verb, adjective) for a hit line."""
         verb, adj = cls.DAMAGE_FORMS.get(damage_word, (damage_word + 's', damage_word))
         noun = cls.WEAPON_NOUNS.get(you_verb, 'blow')
+        if attacker is not None and cls.is_player(attacker):
+            # combat v2: archers and casters fight from range, so their ordinary blow is a shot
+            noun = cls.RANGED_NOUNS.get(str(getattr(attacker, 'char_class', '')).lower(), noun)
         if attacker is not None and not cls.is_player(attacker) and you_verb == 'hit':
             # unarmed NPCs: rotate the noun so the same line never repeats
             i = (getattr(attacker, '_hit_noun_i', -1) + 1) % len(cls.NPC_ATTACK_NOUNS)
@@ -379,8 +383,9 @@ class CombatHandler:
                 summoned_guard.position = 'fighting'
 
     @classmethod
-    async def start_combat(cls, attacker: 'Character', defender: 'Character'):
-        """Initiate combat between two characters."""
+    async def start_combat(cls, attacker: 'Character', defender: 'Character', first_strike: bool = True):
+        """Initiate combat between two characters (first_strike=False: an ability opens
+        the fight and is the first blow, so no ordinary swing goes with it)."""
         # Safety: don't start combat with dead targets
         if not defender or defender.hp <= 0:
             return
@@ -463,7 +468,8 @@ class CombatHandler:
                 ch._low_health_tip_shown = True   # combat owns the low-HP warning now
 
         # First strike
-        await cls.one_round(attacker, defender)
+        if first_strike:
+            await cls.one_round(attacker, defender)
 
     @classmethod
     async def one_round(cls, attacker: 'Character', defender: 'Character'):

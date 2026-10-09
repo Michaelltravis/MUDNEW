@@ -26,7 +26,7 @@ export const ABILITY_FX = {
   // ranger
   truesight_shot: { anim: '1H_Ranged_Shoot', kind: 'shot', school: 'physical' },
   wildbond_strike: { anim: '1H_Melee_Attack_Slice_Horizontal', kind: 'melee', school: 'nature' },
-  loosing_storm: { anim: '1H_Ranged_Shooting', kind: 'volley', school: 'physical', radius: 3.5 },
+  loosing_storm: { anim: '1H_Ranged_Shoot', kind: 'volley', school: 'physical', radius: 3.5 },
   quarry_mark: { anim: '1H_Ranged_Aiming', kind: 'mark', school: 'nature' },
   call_lightning: { anim: 'Spellcast_Raise', kind: 'beam', school: 'lightning', sky: true },
   // thief / assassin
@@ -83,13 +83,14 @@ const RANGED_AUTO = { ranger: { kind: 'shot', school: 'physical' }, mage: { kind
 const COLORS = { dmgOut: '#ffe9a8', dmgIn: '#ff6a52', heal: '#7dff8f', miss: '#b8b8c4', crit: '#ffb02a', parry: '#8cc8ff', block: '#9ad0ff', dodge: '#d8e0ff', spell: '#e0b8ff' };
 
 export class CombatView {
-  constructor({ engine, fx, ents, getHero, heroName, onOutOfRange }) {
+  constructor({ engine, fx, ents, getHero, heroName, onOutOfRange, onWound }) {
     this.engine = engine;
     this.fx = fx;
     this.ents = ents;
     this.getHero = getHero;           // () => { actor, ctl, cls }
     this.heroName = heroName;         // () => name
     this.onOutOfRange = onOutOfRange; // (event) => void
+    this.onWound = onWound;           // (entity) => void: its health changed
     this.telegraphs = new Map();      // mob id -> telegraph
     this.impacts = new Map();         // "src>dst" -> {at, crit, n}: when this action's blow lands
     this._v = new THREE.Vector3();
@@ -138,8 +139,9 @@ export class CombatView {
     for (const e of list || []) {
       if (e.k === 'move') { this.move(e); continue; }
       if (e.k === 'dmg') { this.wound(e); continue; }
-      // deaths after the killing number has risen
+      // deaths after the killing number has risen; stars once the stunning blow has landed
       if (e.k === 'death') { setTimeout(() => this.event(e), 650); continue; }
+      if (e.k === 'stun') { setTimeout(() => this.event(e), 360); continue; }
       const key = e.src ? JSON.stringify(e.src) : '_';
       const n = seq.get(key) || 0;
       seq.set(key, n + 1);
@@ -169,11 +171,15 @@ export class CombatView {
     const show = () => {
       const dst = this.resolve(e.dst);
       if (!dst) return;
-      if (dst.ent && dst.ent.data && dst.ent.data.hp != null) dst.ent.data.hp = Math.max(0, dst.ent.data.hp - e.amt);
+      // the server says what is left after this wound, so the bar never counts a blow twice
+      // (the round's own update may already have arrived)
+      const killing = e.left != null ? e.left <= 0 : false;
+      if (dst.ent && dst.ent.data && e.left != null) { dst.ent.data.hp = e.left; if (this.onWound) this.onWound(dst.ent); }
       const p = this.chest(dst);
       this.fx.text(p, crit ? `${e.amt}!` : `${e.amt}`, { color: dst.hero ? COLORS.dmgIn : crit ? COLORS.crit : COLORS.dmgOut, crit, size: dst.hero ? 17 : 19 });
       if (!imp || imp.n > 1) { this.fx.flash(dst.root, dst.hero ? 0xff2a1a : 0xffe0c0, 0.12); if (e.school) this.fx.impact(p, e.school); }
       if (crit || (dst.hero && e.amt >= 15)) this.fx.shake(crit ? 0.22 : 0.14, 0.2);
+      if ((crit || killing) && this.engine.hitStop) this.engine.hitStop(killing ? 90 : 70);
       // a second or third blow in the same round gets its own swing
       if (imp && imp.n > 1) { const src = this.resolve(e.src); if (src && !src.hero) this.play(src, '1H_Melee_Attack_Slice_Diagonal', 1.3); }
     };
@@ -188,9 +194,11 @@ export class CombatView {
       case 'buff': case 'debuff': return this.buff(e);
       case 'windup': return this.windup(e);
       case 'resolve': return this.resolveWindup(e);
+      case 'cancel': return this.cancelWindup(e);
       case 'death': return this.death(e);
       case 'stun': return this.stun(e);
       case 'oor': return this.onOutOfRange && this.onOutOfRange(e);
+      case 'fizzle': return this.fizzle(e);
       default: return null;
     }
   }
@@ -201,7 +209,8 @@ export class CombatView {
     if (!src) return;
     if (dst) this.face(src, dst);
     const cls = String(src.cls || '').toLowerCase();
-    const ranged = e.ranged || (src.hero || !src.mob) && RANGED_AUTO[cls];
+    // heroes shoot what their class shoots (arrows, arcane or shadow bolts); creatures as the server says
+    const ranged = ((src.hero || !src.mob) && RANGED_AUTO[cls]) || e.ranged;
     let anim;
     if (src.hero || !src.mob) { const list = SWING[cls] || SWING.paladin; anim = list[Math.floor(Math.random() * list.length)]; }
     else anim = ['1H_Melee_Attack_Chop', '1H_Melee_Attack_Slice_Diagonal', '1H_Melee_Attack_Stab'][Math.floor(Math.random() * 3)];
@@ -209,7 +218,8 @@ export class CombatView {
     if (!dst) return;
     const land = () => this.land(e, src, dst, e.school || 'physical');
     if (ranged) {
-      const r = typeof ranged === 'object' ? ranged : { kind: 'shot', school: 'physical' };
+      const r = typeof ranged === 'object' ? ranged
+        : e.style === 'bolt' ? { kind: 'bolt', school: e.school || 'arcane', size: 0.2 } : { kind: 'shot', school: 'physical' };
       const speed = r.kind === 'shot' ? 26 : 18;
       const flight = 250 + this.chest(src).distanceTo(this.chest(dst)) / speed * 1000;
       this.expect(e, flight);
@@ -256,10 +266,12 @@ export class CombatView {
     const LAND = { melee: 320, dash: 330, shot: 300 + flight, volley: 700, bolt: 300 + flight + ((v.count || 1) - 1) * 120,
       beam: 380, drain: 420, pillar: 450, nova: 380, cone: 420, cloud: 380, mark: 400 };
     if (dst) this.expect({ ...e, src: e.src, dst: e.dst }, LAND[v.kind] || 300);
+    // a skill or spell lands unless the server says otherwise (parried, resisted...); the
+    // number comes with its wound event
     const landAll = () => {
-      if (dst) this.land({ ...e, heavy: v.heavy }, src, dst, school);
-      for (const t of e.also || []) { const w = this.resolve(t.dst); if (w) this.land({ ...t, heavy: v.heavy }, src, w, school); }
-      if (v.stun && dst && (e.res === 'hit' || e.amt > 0)) this.stun({ dst: e.dst });
+      if (dst && dst !== src) this.land({ ...e, res: e.res || 'hit', heavy: v.heavy }, src, dst, school);
+      for (const t of e.also || []) { const w = this.resolve(t.dst); if (w) this.land({ ...t, res: t.res || 'hit', heavy: v.heavy }, src, w, school); }
+      // (stuns come from the server as their own events, with their real length)
     };
     switch (v.kind) {
       case 'melee':
@@ -346,6 +358,19 @@ export class CombatView {
     }
   }
 
+  // a spell that came apart in the caster's hands: a puff of grey smoke, a few sparks
+  fizzle(e) {
+    const src = this.resolve(e.src);
+    if (!src) return;
+    if (!src.hero) this.play(src, 'Spellcast_Shoot', 1.1);
+    const p = this.chest(src).add(new THREE.Vector3(0, 0.25, 0));
+    setTimeout(() => {
+      this.fx.p.emit(p, { count: 18, color: 0x8a8a96, speed: 1.1, up: 0.9, life: 0.9, size: 0.38, grow: 0.5, drag: 1.6 });
+      this.fx.sparks(p, this.colorOf(e.school || 'arcane'), 6);
+      this.fx.text(p.clone().setY(p.y + 0.5), 'Fizzled', { color: '#b8b0c8', size: 14, rise: 0.6 });
+    }, 320);
+  }
+
   guess(name, e) {
     const s = e.school || '';
     if (/heal|cure|mend|restore|renew/.test(name)) return { anim: 'Spellcast_Raise', kind: 'heal', school: 'holy' };
@@ -412,13 +437,34 @@ export class CombatView {
     const t = this.telegraphs.get(key);
     if (t) { t.cancel(); this.telegraphs.delete(key); }
     const src = this.resolve(e.src);
+    const a = e.area || {};
+    // the blow lands on the ground it marked (a heavy blow or a spell where you stood)
+    const at = a.x != null ? new THREE.Vector3(a.x, 0, a.z) : src ? src.root.position.clone() : null;
     if (src) {
-      this.fx.shockwave(src.root.position, { school: e.school || 'physical', radius: (e.area && e.area.r) || 3 });
-      if (src.actor) src.actor.once('2H_Melee_Attack_Chop', 0.06, 1.2);
-      this.fx.shake(0.18, 0.25);
+      const tgt = at && a.x != null ? { root: { position: at } } : null;
+      if (tgt) this.face(src, tgt);
+      if (src.actor) src.actor.once(e.kind === 'cast' ? 'Spellcast_Shoot' : e.kind === 'aoe' ? '2H_Melee_Attack_Spin' : '2H_Melee_Attack_Chop', 0.06, 1.2);
+    }
+    if (at) {
+      const school = e.school || 'physical';
+      if (e.kind === 'cast' && src) this.fx.projectile(this.chest(src), at.clone().setY(0.4), { school, size: 0.3, speed: 18, delay: 0.2, onHit: p => this.fx.impact(p, school, true) });
+      setTimeout(() => { this.fx.shockwave(at, { school, radius: a.r || 3 }); this.fx.shake(0.18, 0.25); }, e.kind === 'cast' ? 450 : 250);
     }
     for (const h of e.hits || []) { const d = this.resolve(h.dst); if (d) this.land(h, src, d, e.school || 'physical'); }
     if (e.dodged) for (const ref of e.dodged) { const d = this.resolve(ref); if (d) this.fx.text(this.chest(d), 'Evaded!', { color: '#a8ffd0', size: 16 }); }
+  }
+  // a wind-up broken before it landed (staggered, kicked, snared, killed, the fight over)
+  cancelWindup(e) {
+    const key = e.src && e.src.m != null ? `m${e.src.m}` : 'x';
+    const t = this.telegraphs.get(key);
+    if (t) { t.fade(); this.telegraphs.delete(key); }
+    const src = this.resolve(e.src);
+    if (!src || e.reason === 'death' || e.reason === 'end') return;
+    const p = this.chest(src);
+    this.fx.sparks(p, 0xffe066, 16);
+    const word = { stagger: 'Staggered!', snare: 'Snared!' }[e.reason] || 'Interrupted!';
+    this.fx.text(p.clone().setY(src.root.position.y + 2.6), word, { color: '#ffe066', size: 15, rise: 0.6 });
+    if (src.actor && !(src.ent && src.ent.dying)) src.actor.once(Math.random() < 0.5 ? 'Hit_A' : 'Hit_B', 0.05, 1.0);
   }
   death(e) {
     const dst = this.resolve(e.dst);

@@ -61,6 +61,36 @@ def _capture(ch, lines):
     return restore
 
 
+def _hold_output(ch, lines):
+    """Keep what `ch` is sent while a wrapped call runs, undelivered (see _wrap_execute)."""
+    if ch is None or not hasattr(ch, 'send'):
+        return lambda: None
+    had = 'send' in getattr(ch, '__dict__', {})
+    own = ch.__dict__.get('send') if had else None
+
+    async def send(msg='', *a, **k):
+        lines.append((msg, a, k))
+
+    try:
+        ch.send = send
+    except Exception:
+        return lambda: None
+
+    def restore():
+        try:
+            if had:
+                ch.send = own
+            else:
+                del ch.send
+        except Exception:
+            pass
+    return restore
+
+
+_NOT_FIGHTING = ('must be fighting', "aren't fighting anyone", 'not fighting anyone', 'you need to be fighting',
+                 'only usable in combat', 'must be in combat')
+
+
 def _plain(lines):
     import re
     return re.sub(r'\x1b\[[0-9;]*[A-Za-z]', '', ' '.join(lines)).lower()
@@ -135,10 +165,15 @@ def _wrap_one_round():
         res = ('crit' if 'critical hit' in text else 'hit') if wounded or 'damage]' in text else _outcome(text)
         if res:
             ev.emit_at(room, mark, 'attack', src=attacker, dst=defender, res=res, ranged=ranged or None,
-                       weapon=_weapon_kind(attacker), perfect=('perfect strike' in text) or None)
-        if scale != 1 and wounded and _is_player(attacker):
+                       weapon=_weapon_kind(attacker), perfect=('perfect strike' in text) or None,
+                       style=cr.mob_style(attacker) if ranged and not _is_player(attacker) else None)
+        if scale != 1 and wounded and _is_player(attacker) and time.time() - getattr(attacker, '_pb_said', 0) > 9:
+            attacker._pb_said = time.time()
             c = attacker.config.COLORS
-            await attacker.send(f"{c['yellow']}Too close for a clean shot — step back to draw properly.{c['reset']}")
+            cls_name = str(getattr(attacker, 'char_class', '')).lower()
+            tip = ("Too close for a clean shot — step back to draw properly." if cls_name == 'ranger'
+                   else "Too close to shape your bolts — step back to cast cleanly.")
+            await attacker.send(f"{c['yellow']}{tip}{c['reset']}")
 
     CombatHandler.one_round = classmethod(one_round)
 
@@ -158,7 +193,7 @@ def _wrap_take_damage(klass):
         result = await orig(self, amount, *args, **kwargs)
         dealt = hp0 - getattr(self, 'hp', hp0)
         if dealt > 0 and room is not None:
-            ev.emit(room, 'dmg', src=attacker, dst=self, amt=int(dealt),
+            ev.emit(room, 'dmg', src=attacker, dst=self, amt=int(dealt), left=max(0, int(getattr(self, 'hp', 0))),
                     school=None if dtype in (None, 'physical', 'magic') else str(dtype))
         return result
 
@@ -236,13 +271,35 @@ def _wrap_execute():
             ev.emit(room, 'oor', src=player, dst=target, ability=name, need=rng, dist=round(d, 1))
             return
         lines = []
-        undo = _capture(player, lines)
         mark = ev.mark(room)
-        try:
-            with ev.hold():
-                await orig(cls, player, cmd, args)
-        finally:
-            undo()
+        opener = (target is not None and not _is_player(target) and getattr(player, 'fighting', None) is None
+                  and getattr(target, 'room', None) is room and getattr(target, 'hp', 0) > 0
+                  and shape != 'self' and not shape.startswith('nova'))
+        if opener:
+            # Not yet fighting: many skills refuse ("You must be fighting!"). Aimed at a
+            # creature in reach, the skill opens the fight instead, as its first blow.
+            held = []
+            undo = _hold_output(player, held)
+            try:
+                with ev.hold():
+                    await orig(cls, player, cmd, args)
+            finally:
+                undo()
+            if any(w in _plain([m for m, _a, _k in held]) for w in _NOT_FIGHTING):
+                from combat import CombatHandler
+                await CombatHandler.start_combat(player, target, first_strike=False)
+                opener = False      # now fighting: use it for real below
+            else:
+                for m, a, k in held:
+                    await player.send(m, *a, **k)
+                lines = [m for m, _a, _k in held]
+        if not opener:
+            undo = _capture(player, lines)
+            try:
+                with ev.hold():
+                    await orig(cls, player, cmd, args)
+            finally:
+                undo()
         text = _plain(lines)
         if any(w in text for w in ("you don't know", 'huh?', 'not ready', 'cooldown', 'must wait', 'not enough',
                                    'too exhausted', 'you need', "can't", 'cannot', 'who?', 'not here', 'nobody')):
@@ -291,6 +348,12 @@ def _wrap_mob_ai():
 
     async def declare_intents(mob):
         before = getattr(mob, 'pending_intent', None)
+        # a creature only winds up a special it can deliver: a smash or a sweep from beside
+        # you, a spell from within its casting range (it plants its feet while winding up)
+        tgt = getattr(mob, 'fighting', None)
+        d = cr.distance(mob, tgt) if tgt is not None and not before else None
+        if d is not None and d > cr.mob_reach(mob)[0] + 1.5:
+            return
         await orig_declare(mob)
         intent = getattr(mob, 'pending_intent', None)
         if intent and intent is not before and getattr(mob, 'room', None) is not None:
@@ -360,14 +423,63 @@ def _wrap_mob_ai():
     mob_ai._cast_offensive = _cast_offensive
 
 
+def _wrap_intent_cancel(Mobile):
+    """A wind-up can be broken before it lands: a stagger, a kick, a snare, death, the fight
+    ending. Whatever clears a creature's pending intent outside its own resolution sends a
+    'cancel', so the client takes the marked ground away at once."""
+    def get(self):
+        return self.__dict__.get('_pending_intent')
+
+    def set_(self, value):
+        old = self.__dict__.get('_pending_intent')
+        self.__dict__['_pending_intent'] = value
+        if not old or value is not None or getattr(self, '_resolving_intent', None) is old:
+            return
+        room = getattr(self, 'room', None)
+        if room is None:
+            return
+        now = time.time()
+        if getattr(self, 'hp', 1) <= 0 or getattr(self, 'position', '') == 'dead':
+            reason = 'death'
+        elif getattr(self, 'staggered_until', 0) > now:
+            reason = 'stagger'
+        elif getattr(self, 'fighting', None) is None:
+            reason = 'end'
+        elif getattr(self, 'stunned_rounds', 0) > 0:
+            reason = 'snare'
+        else:
+            reason = 'interrupt'
+        ev.emit(room, 'cancel', src=self, label=old.get('label'), reason=reason)
+
+    Mobile.pending_intent = property(get, set_)
+
+
+def _wrap_stuns(Character):
+    """Stuns (bash, trips, snares, a stagger...) are set in many places as stunned_rounds;
+    whenever it rises, the client gets a 'stun' with how long the stars should circle."""
+    def get(self):
+        return self.__dict__.get('_stunned_rounds', 0)
+
+    def set_(self, value):
+        old = self.__dict__.get('_stunned_rounds', 0) or 0
+        self.__dict__['_stunned_rounds'] = value
+        try:
+            if (value or 0) > old and getattr(self, 'room', None) is not None and getattr(self, 'hp', 1) > 0:
+                ev.emit(self.room, 'stun', dst=self, secs=round(min(4, value) * cr.round_seconds(), 1))
+        except Exception:
+            pass
+
+    Character.stunned_rounds = property(get, set_)
+
+
 def _outside(mob, char, area):
     p = cr.pos_of(char)
     if p is None:
         return False
-    if area.get('on') == 'src':
-        c = cr.pos_of(mob) or (area['x'], area['z'])
-    else:
-        c = (area['x'], area['z'])
+    # the marked ground stays where it was marked (a creature winding up does not move)
+    c = (area['x'], area['z']) if area.get('x') is not None else cr.pos_of(mob)
+    if c is None:
+        return False
     return ((p[0] - c[0]) ** 2 + (p[1] - c[1]) ** 2) ** 0.5 > area.get('r', 2) + 0.35
 
 
@@ -378,13 +490,23 @@ def _wrap_spells():
 
     async def apply_spell(cls, caster, target, spell, spell_name):
         room = getattr(caster, 'room', None)
-        tgt = target if target is not None and target is not caster else None
+        tgt = target if target is not None and target is not caster and not isinstance(target, str) else None
+        hp0 = getattr(target, 'hp', None) if target is not None and not isinstance(target, str) else None
+        mark = ev.mark(room) if room is not None else None
+        lines = []
+        undo = _capture(caster, lines)
+        try:
+            with ev.hold():
+                result = await orig_apply(cls, caster, target, spell, spell_name)
+        finally:
+            undo()
         if room is not None:
-            ev.emit(room, 'spell', src=caster, dst=tgt, spell=spell_name, school=cr.spell_school(spell_name, spell, caster),
-                    shape=cr.ability_range(spell_name, True)[1])
-        hp0 = getattr(target, 'hp', None) if target is not None else None
-        with ev.hold():
-            result = await orig_apply(cls, caster, target, spell, spell_name)
+            # the cast goes ahead of the wounds it caused, with how it went
+            text = _plain(lines)
+            res = ('resist' if any(w in text for w in ('resists your spell', 'shrugs off', 'unaffected'))
+                   else 'immune' if 'immune' in text else None)
+            ev.emit_at(room, mark, 'spell', src=caster, dst=tgt, spell=spell_name, res=res,
+                       school=cr.spell_school(spell_name, spell, caster), shape=cr.ability_range(spell_name, True)[1])
         if target is not None and hp0 is not None and getattr(target, 'hp', hp0) > hp0 and room is not None:
             ev.emit(room, 'heal', src=caster, dst=target, amt=int(target.hp - hp0), school=cr.spell_school(spell_name, spell, caster))
         return result
@@ -397,10 +519,11 @@ def install():
     if _installed:
         return
     _installed = True
-    from player import Player
+    from player import Player, Character
     from mobs import Mobile
     for step in (_wrap_one_round, lambda: _wrap_take_damage(Player), lambda: _wrap_take_damage(Mobile),
-                 _wrap_deaths, _wrap_execute, _wrap_mob_ai, _wrap_spells):
+                 _wrap_deaths, _wrap_execute, _wrap_mob_ai, _wrap_spells, lambda: _wrap_intent_cancel(Mobile),
+                 lambda: _wrap_stuns(Character)):
         try:
             step()
         except Exception as e:

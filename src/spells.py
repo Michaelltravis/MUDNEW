@@ -1939,13 +1939,6 @@ class SpellHandler:
             await caster.send(f"{c['red']}You don't have enough mana to cast that spell.{c['reset']}")
             return
             
-        # Check proficiency for failure
-        proficiency = caster.spells.get(spell_name, 50)
-        if random.randint(1, 100) > proficiency:
-            caster.mana -= mana_cost // 2
-            await caster.send(f"{c['yellow']}You lose your concentration and the spell fizzles.{c['reset']}")
-            return
-            
         # Get target
         target = await cls.get_target(caster, spell, target_name)
         if target is None and spell.get('target') in ('object', 'door'):
@@ -1962,6 +1955,21 @@ class SpellHandler:
                 return
         except Exception:
             pass
+
+        # Check proficiency for failure (after the target and reach checks: you can't
+        # fizzle a spell at someone you can't reach)
+        proficiency = caster.spells.get(spell_name, 50)
+        if random.randint(1, 100) > proficiency:
+            caster.mana -= mana_cost // 2
+            await caster.send(f"{c['yellow']}You lose your concentration and the spell fizzles.{c['reset']}")
+            try:
+                import combat_events
+                from combat_range import spell_school
+                combat_events.emit(caster.room, 'fizzle', caster, target if target is not caster and not isinstance(target, str) else None,
+                                   spell=spell_name, school=spell_school(spell_name, spell, caster))
+            except Exception:
+                pass
+            return
 
         # Deduct mana
         caster.mana -= mana_cost
@@ -2077,6 +2085,16 @@ class SpellHandler:
                         )
                     return
         
+        # Saving throw (debuffs like sleep) before any message: a resisted spell never
+        # announces that it worked
+        if spell.get('save') and target is not None and target != caster and not isinstance(target, str):
+            save_roll = random.randint(1, 20) + target.wis // 2
+            if save_roll > 10 + caster.level // 2:
+                await caster.send(f"{c['yellow']}{target.name} resists your spell!{c['reset']}")
+                if hasattr(target, 'send'):
+                    await target.send(f"{c['cyan']}You resist the spell!{c['reset']}")
+                return
+
         # Send cast messages
         if isinstance(target, str):
             # Object/door/special target strings
@@ -2123,15 +2141,6 @@ class SpellHandler:
                 await cls.handle_special_spell(caster, target, spell)
             return
 
-        # Check for saving throw (for debuffs)
-        if spell.get('save') and target != caster:
-            save_roll = random.randint(1, 20) + target.wis // 2
-            if save_roll > 10 + caster.level // 2:
-                await caster.send(f"{c['yellow']}{target.name} resists your spell!{c['reset']}")
-                if hasattr(target, 'send'):
-                    await target.send(f"{c['cyan']}You resist the spell!{c['reset']}")
-                return
-                
         # Apply damage spells
         if 'damage_dice' in spell:
             # Room-target spells (like earthquake) handle damage in their special handler

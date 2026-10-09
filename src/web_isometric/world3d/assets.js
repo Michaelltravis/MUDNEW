@@ -212,11 +212,21 @@ function aliasFor(names) {
   const bite = find(/^Bite_Front$/, /^Bite$/, /^Bite_InPlace$/, /^Jump$/) || idle;
   const hit = find(/^HitRecieve$/, /^HitReact/, /Hit/) || null;
   const death = find(/^Death$/) || null;
+  const jump = find(/^Jump$/) || bite;                              // a hop: dodges, stomps, rearing up
+  const roar = find(/^Bite_InPlace$/, /^Bite_Front$/, /^Bite$/) || bite;   // breath, spit, a spell
   const a = {
     Idle: idle, Idle_B: idle, Idle_Combat: idle, Unarmed_Idle: idle, Spellcasting: idle,
     Walking_A: walk, Walking_B: walk, Walking_C: walk, Walking_D_Skeletons: walk, Running_A: run, Running_B: run,
     '1H_Melee_Attack_Chop': bite, '1H_Melee_Attack_Slice_Diagonal': bite, '1H_Melee_Attack_Stab': bite,
-    Spellcast_Shoot: bite, Hit_A: hit || idle, Hit_B: hit || idle, Death_A: death || idle, Death_B: death || idle,
+    '1H_Melee_Attack_Slice_Horizontal': bite, '1H_Melee_Attack_Jump_Chop': jump,
+    '2H_Melee_Attack_Chop': bite, '2H_Melee_Attack_Slice': bite, '2H_Melee_Attack_Stab': bite, '2H_Melee_Attack_Spin': jump,
+    Dualwield_Melee_Attack_Chop: bite, Dualwield_Melee_Attack_Slice: bite, Dualwield_Melee_Attack_Stab: bite,
+    Unarmed_Melee_Attack_Kick: bite, Unarmed_Melee_Attack_Punch_A: bite, Throw: bite, Block_Attack: bite,
+    Spellcast_Shoot: roar, Spellcast_Long: roar, Spellcast_Raise: roar, Spellcast_Summon: roar,
+    '1H_Ranged_Shoot': roar, '2H_Ranged_Shoot': roar,
+    Block: jump, Cheer: jump, Taunt: find(/^No$/) || jump,
+    Dodge_Left: jump, Dodge_Right: jump, Dodge_Backward: jump, Dodge_Forward: jump,
+    Hit_A: hit || idle, Hit_B: hit || idle, Block_Hit: hit || idle, Death_A: death || idle, Death_B: death || idle,
   };
   return has(idle) ? a : a;
 }

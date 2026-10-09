@@ -365,6 +365,13 @@ export class FX {
     this.scene.add(g);
     const item = this.add({ update(dt) {
       t += dt;
+      if (item.fading != null) {          // broken before it landed: the mark drains away
+        item.fading -= dt;
+        const a = Math.max(0, item.fading / 0.3);
+        fillMat.opacity = 0.16 * a; edgeMat.opacity = 0.85 * a; growMat.opacity = 0.32 * a;
+        g.scale.setScalar(radius * (1 + (1 - a) * 0.15));
+        return item.fading > 0;
+      }
       const k = Math.min(1, t / time);
       grow.scale.setScalar(k);
       edgeMat.opacity = 0.6 + Math.sin(t * 18) * 0.25 * k;
@@ -372,6 +379,7 @@ export class FX {
       return t < time + 0.15 && !item.cancelled;
     }, dispose() { self.scene.remove(g); baseGeo.dispose(); edgeGeo.dispose(); fillMat.dispose(); edgeMat.dispose(); growMat.dispose(); } });
     item.cancel = () => { item.cancelled = true; };
+    item.fade = () => { if (item.fading == null) item.fading = 0.3; };
     return item;
   }
 }

@@ -169,3 +169,51 @@ the 2D client and its HUD stay at `/platformer`.
   attributes (prime stat marked), hit / damage / armour / stance, experience ("max level" at
   the cap), active effects; skills and spells with proficiency, unlearned ones dimmed; talents.
 - Still to come from the owner's notes: going up and down stairs, locking and unlocking doors.
+
+### M3 — combat on the new engine (owner, 2026-10-09: "I need to see some combat actions… distance from NPCs can and should matter")
+Combat v2 keeps the server's rules (rounds, skills, spells, proficiency, poise, brace and
+sidestep, creature wind-ups) and adds positions, reach and a structured event for every line
+the combat log prints, so the 3D client animates exactly what the log says.
+- **Events** (`src/combat_events.py`, `src/combat_hooks.py`): swing, skill, spell, wound,
+  heal, death, fizzle, wind-up, resolve, cancel, out-of-reach and creature moves, batched per
+  room in the order the log prints them, sent to the web clients standing in the room
+  (`combat_events` on the map socket). Telnet output is unchanged.
+- **Timing**: a round is 3 s; creatures act 1.3 s after the heroes, so blows alternate instead
+  of landing in one heap. A number rises when its blow lands (a sword 0.3 s into the swing, an
+  arrow or bolt when it arrives); a creature's second and third blows follow 0.42 s apart; the
+  dead fall after the killing number. Pressing a skill starts its own animation at once; the
+  server's answer adds what flies and lands. A creature's wind-up marks the ground for the 4.3 s
+  until it lands.
+- **Positions** (`src/combat_range.py`): metres inside a room (24 × 15). The client reports
+  the hero's spot (5×/s in a fight) and where it placed the creatures; the server moves
+  creatures in a fight (5×/s): melee ones close to reach, archers and casters keep their
+  preferred distance, everyone keeps 1.1 m apart. Telnet players have no position and are
+  always in reach.
+- **Reach**: an ordinary blow needs its class's reach (out of it: no blow, a message; melee
+  heroes walk in by themselves, archers and casters keep their spot). Skills and spells check
+  their range before they cost anything; the client walks just far enough (an archer stops at
+  bow range). A skill aimed at a creature you are not fighting yet opens the fight.
+- **Dodging**: a heavy blow comes down where you stood when it began (2 m), a spell where you
+  stood (1.7 m), a sweep around the creature (4 m). Step out before it lands and it "hits only
+  ground"; brace and sidestep still work, and staggering or kicking the creature breaks it.
+
+| Class | Ordinary blow | Skills and spells (metres) | How it plays |
+|---|---|---|---|
+| Warrior | melee 2.5 | bash, kick, execute 2.5 · cleave cone 3 · charge dash from 15 · rally aura 8 · rescue 6 | charge in, hold the front |
+| Paladin | melee 2.5 | censure, order verdict 2.5 · holy smite 14 · absolution heal 12 · halo aura 5 · turn undead cone 8 | front line with a ranged smite |
+| Cleric | melee 2.5 | holy smite 14 · cure light, heal, bless 12 · flamestrike blast 3 at 14 · turn undead cone 8 | mid-range healer |
+| Ranger | bow 16 (under 3 m: 60 % damage) | truesight shot 18 · loosing storm blast 3.5 at 16 · quarry mark 20 · call lightning 16 · wildbond strike 2.5 | keep your distance |
+| Thief | melee 2.5 | backstab, circle, trip, low blow, jackpot 2.5 · pocket sand 5 | in close |
+| Assassin | melee 2.5 | backstab, expose, vital, feint, execute contract 2.5 · mark 15 · fade | mark from afar, strike close |
+| Mage | arcane bolt 10 (weak point-blank) | magic missile 18 · fireball blast 3 at 16 · lightning bolt 18 · towerbolt 20 · sleep 12 · chill touch 2.5 | back line, blasts |
+| Necromancer | shadow bolt 10 | soul bolt 16 · soul siphon 10 · soul reap blast 4 at 14 · chill touch 2.5 · animate dead | back line, drains |
+| Bard | melee 2.5 | mockery 14 · fascinate 12 · discordant note cone 7 · crescendo aura 6 | mid-range support |
+| Creatures | melee 2.2 | archers 15 (prefer 9) · casters 13 (prefer 8) · healers and support 12 (prefer 8) | |
+
+Areas (cone, blast, aura) are drawn on the ground; who they hit is still decided by each
+skill's own server code.
+- Fixed on the way: `cast 'lightning bolt' orc` (any two-word spell with a target) looked for
+  a target called "bolt orc"; spells now fizzle only after the target and range checks, and a
+  fizzle shows on screen; an archer's or caster's ordinary blow reads as an arrow or bolt in the
+  log; Tab prefers enemies over shopkeepers, trainers and quest-givers; overlapping hit flashes
+  could leave a model stuck red.

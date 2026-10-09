@@ -5462,53 +5462,52 @@ class CommandHandler:
             return
 
         # Join all args to handle quoted spell names
-        full_args = ' '.join(args)
+        raw = ' '.join(args).strip()
+        quoted = None
+        if raw[:1] in ("'", '"'):
+            close = raw.find(raw[0], 1)
+            quoted = raw[1:close] if close > 0 else raw[1:]
+            rest = raw[close + 1:].strip() if close > 0 else ''
+        full_args = raw.replace("'", "").replace('"', '').strip()
 
-        # Remove quotes if present
-        full_args = full_args.replace("'", "").replace('"', '').strip()
-        
         # Safety check for empty input after quote removal
         if not full_args:
             await player.send("Cast what spell?")
             return
-        
-        # Smart spell matching: try progressively longer spell names
-        # This handles "animate dead knight" -> spell="animate_dead", target="knight"
+
         words = full_args.lower().split()
         if not words:
             await player.send("Cast what spell?")
             return
-            
+
+        def lookup(name):
+            """Exact spell key, else the shortest known spell starting with it."""
+            if name in player.spells:
+                return name
+            hits = sorted((k for k in player.spells if k.startswith(name)), key=len)
+            return hits[0] if hits else None
+
         matching_spell = None
         target_name = None
-        
-        # Try matching 1 word, 2 words, 3 words as the spell name
-        for num_words in range(1, min(4, len(words) + 1)):
-            spell_try = '_'.join(words[:num_words])
-            
-            # Check exact match first
-            if spell_try in player.spells:
-                matching_spell = spell_try
-                target_name = ' '.join(words[num_words:]) if num_words < len(words) else None
-                break
-            
-            # Check prefix match
-            for spell_key in player.spells:
-                if spell_key.startswith(spell_try):
-                    matching_spell = spell_key
-                    target_name = ' '.join(words[num_words:]) if num_words < len(words) else None
-                    break
-            
-            if matching_spell:
-                break
-
+        if quoted is not None and quoted.strip():
+            # cast 'lightning bolt' orc: the quotes say where the spell's name ends
+            matching_spell = lookup('_'.join(quoted.lower().split()))
+            target_name = rest.lower() or None
         if not matching_spell:
-            # Fall back to simple first-word matching
-            spell_input = words[0]
-            for spell_key in player.spells:
-                if spell_key == spell_input or spell_key.startswith(spell_input):
-                    matching_spell = spell_key
-                    target_name = ' '.join(words[1:]) if len(words) > 1 else None
+            # unquoted: the longest run of leading words that names a spell wins, so
+            # "cast magic missile orc" is magic_missile at "orc", not magic_missile at
+            # "missile orc" ("animate dead knight" -> animate_dead, "knight")
+            for num_words in range(min(3, len(words)), 0, -1):
+                spell_try = '_'.join(words[:num_words])
+                found = spell_try if spell_try in player.spells else None
+                if not found and num_words == 1:
+                    found = lookup(spell_try)
+                elif not found:
+                    hits = [k for k in player.spells if k.startswith(spell_try)]
+                    found = min(hits, key=len) if hits else None
+                if found:
+                    matching_spell = found
+                    target_name = ' '.join(words[num_words:]) or None
                     break
 
         if not matching_spell:
@@ -17410,8 +17409,10 @@ class CommandHandler:
             # Remove the mob
             if target in player.room.characters:
                 player.room.characters.remove(target)
-            if target in player.world.mobs:
-                player.world.mobs.remove(target)
+            # world.npcs is the live mob registry (world.mobs never existed: purge dropped the caller)
+            if target in player.world.npcs:
+                player.world.npcs.remove(target)
+            cls._unfight(player.room, target)
             await player.send(f"{c['bright_magenta']}{target.name} vanishes in a puff of smoke.{c['reset']}")
             return
         
@@ -17422,8 +17423,9 @@ class CommandHandler:
         for char in player.room.characters[:]:
             if isinstance(char, Mobile):
                 player.room.characters.remove(char)
-                if char in player.world.mobs:
-                    player.world.mobs.remove(char)
+                if char in player.world.npcs:
+                    player.world.npcs.remove(char)
+                cls._unfight(player.room, char)
                 purged_mobs += 1
                 
         for item in player.room.items[:]:
@@ -17437,6 +17439,16 @@ class CommandHandler:
             exclude=[player]
         )
     
+    @staticmethod
+    def _unfight(room, gone):
+        """A purged creature leaves every fight it was in (no one keeps swinging at air)."""
+        gone.fighting = None
+        for ch in list(getattr(room, 'characters', []) or []):
+            if getattr(ch, 'fighting', None) is gone:
+                ch.fighting = None
+                if getattr(ch, 'position', '') == 'fighting':
+                    ch.position = 'standing'
+
     @classmethod
     async def cmd_restore(cls, player: 'Player', args: List[str]):
         """Fully restore HP/mana/move for self or a target (immortal only).

@@ -99,6 +99,20 @@ def mob_reach(mob):
     return (MOB_MELEE, MOB_MELEE * 0.8)
 
 
+def mob_style(mob):
+    """How a ranged creature's ordinary attack looks: 'arrow' or 'bolt' (None: melee)."""
+    try:
+        from map_system import _mob_roles
+        roles = set(_mob_roles(mob))
+    except Exception:
+        return None
+    if 'archer' in roles:
+        return 'arrow'
+    if roles & {'caster', 'healer', 'support'}:
+        return 'bolt'
+    return None
+
+
 # ---- positions ----
 def pos_of(ch):
     """(x, z) in the combatant's current room, or None if unknown (telnet players)."""
@@ -234,6 +248,8 @@ def move_tick(world, dt):
             continue
         if time.time() < getattr(npc, 'staggered_until', 0) or getattr(npc, 'stunned_rounds', 0) > 0:
             continue
+        if getattr(npc, 'pending_intent', None):
+            continue      # winding up: it plants its feet, so the marked ground stays where it is
         mp, tp = pos_of(npc), pos_of(tgt)
         if mp is None or tp is None:
             continue

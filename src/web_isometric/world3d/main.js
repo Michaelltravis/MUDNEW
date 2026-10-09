@@ -11,7 +11,7 @@ import { Sync } from './sync.js';
 import { Entities, classModel } from './entities.js';
 import { cutout } from './cutout.js';
 import { FX } from './fx.js';
-import { CombatView } from './combat.js';
+import { CombatView, ABILITY_FX } from './combat.js';
 import { attachPerf } from './perf.js';
 import { buildDemo } from './demo.js';
 
@@ -70,6 +70,7 @@ async function runGame() {
     getHero: () => hero && { actor: hero, ctl, cls: (MH.state.player && MH.state.player.char_class || '').toLowerCase() },
     heroName: () => MH.state.playerName,
     onOutOfRange: e => outOfRange(e),
+    onWound: ent => { if (ents.targeted === ent) hud.setTarget({ kind: ent.kind, ...ent.data }); },
   });
   MH.bus.on('combat.events', p => { if (hero) combat.handle(p.events); });
   const mm = createMinimap($('#minimap'), room => travelTo(room));
@@ -126,7 +127,7 @@ async function runGame() {
     ents.sync(payload, MH.state.playerName);
     mm.setExplored((payload.rooms || []).map(r => r.vnum));
     mm.setTime(payload.time);
-    window.MH3D = { engine, zone: () => zone, hero, ctl, sync, ents, THREE };
+    window.MH3D = { engine, zone: () => zone, hero, ctl, sync, ents, fx, combat, THREE };
   }
 
   function enterZone(zm) {
@@ -286,31 +287,49 @@ async function runGame() {
   MH.bus.on('hud.cycleTarget', () => {
     if (!hero) return;
     const p = hero.root.position;
-    const list = [...ents.list.values()].filter(e => e.kind === 'mob' && e.root && e.root.position.distanceTo(p) < 22)
-      .sort((a, b) => (b.data.hostile - a.data.hostile) || a.root.position.distanceTo(p) - b.root.position.distanceTo(p));
+    // enemies first: whoever is fighting you, then the hostile, then the rest by distance;
+    // shopkeepers, trainers and quest-givers only when nothing else is around
+    const near = [...ents.list.values()].filter(e => e.kind === 'mob' && e.root && e.root.position.distanceTo(p) < 22);
+    const foes = near.filter(e => !(e.data.shopkeeper || e.data.trainer || e.data.quest));
+    const list = (foes.length ? foes : near)
+      .sort((a, b) => (!!b.data.fighting - !!a.data.fighting) || (!!b.data.hostile - !!a.data.hostile)
+        || a.root.position.distanceTo(p) - b.root.position.distanceTo(p));
     if (!list.length) return hud.toast('Nothing nearby to target.');
     const i = list.findIndex(e => e.key === ents.target);
     ents.setTarget(list[(i + 1) % list.length].key);
   });
   const keyword = t => MH.mobKeyword(t.data.name);
-  // the server fights within one room: walk into the target's room first, then strike
-  function inReach(t, then) {
-    if (heroRoom && t.vnum === heroRoom.vnum && hero.root.position.distanceTo(t.root.position) < 3.2) return then();
-    ctl.walkTo(t.root.position.x, t.root.position.z, () => { if (heroRoom && t.vnum === heroRoom.vnum) then(); });
+  // how far from its target an action reaches (combat_range.py via /combatdata);
+  // null for actions centred on the hero (rally, fade, crescendo...)
+  function rangeOf(id, spell) {
+    if (id === 'attack') return reachOf();
+    const ab = ranges.abilities && ranges.abilities[id];
+    if (ab) return /^(self|nova)/.test(ab.shape) ? null : ab.range;
+    return spell ? ranges.spellDefault || 14 : ranges.melee || 2.5;
+  }
+  // the server fights within one room: be in the target's room and within the action's
+  // reach, walking only as far as needed (an archer stops at bow range, not in its face)
+  function inReach(t, range, then) {
+    const same = heroRoom && t.vnum === heroRoom.vnum;
+    const p = hero.root.position, q = t.root.position;
+    const d = Math.hypot(q.x - p.x, q.z - p.z);
+    if (range == null || (same && d <= range + 0.3)) return then();
+    const need = same ? range : Math.min(range, 4);    // another room: step well inside it
+    approach(t, need, () => { if (heroRoom && t.vnum === heroRoom.vnum) then(); });
   }
   function attack() {
     const t = ents.targeted;
     if (!t || !t.root) return hud.toast('No target — click a creature or press Tab.');
     if (t.kind !== 'mob') return hud.toast('You cannot attack that.');
-    inReach(t, () => {
+    inReach(t, reachOf(), () => {
       ctl.face(t.root.position.x, t.root.position.z);
-      ctl.swing();
+      // (the opening blow comes back at once as an attack event, with the class's swing)
       if (!MH.state.inCombat) { const cmd = `kill ${keyword(t)}`; lastAction = { cmd, at: performance.now() }; MH.sendCommand(cmd); }
     });
   }
   MH.bus.on('hud.attack', attack);
   // the server refused an action for distance: close in (or step back) and retry once
-  let lastAction = null;
+  let lastAction = null, oorToast = 0;
   function approach(target, need, then) {
     const p = hero.root.position, q = target.root.position;
     const dx = p.x - q.x, dz = p.z - q.z, d = Math.hypot(dx, dz) || 1;
@@ -321,9 +340,11 @@ async function runGame() {
     const ref = e.dst && e.dst.m != null ? ents.list.get(`m${e.dst.m}`) : ents.targeted;
     const t = ref && ref.root ? ref : ents.targeted;
     if (!t || !t.root) return hud.toast(e.need ? `Too far — get within ${e.need} m` : 'Out of range');
-    // the round's blow fell short: a melee hero closes in on its own (keys still win)
+    // the round's blow fell short: a melee hero closes in on its own (keys still win);
+    // archers and casters keep the spot they chose and are told the range instead
     if (e.auto) {
-      if (!ctl.keys.size && !ctl.path) approach(t, e.need || reachOf());
+      if (!(ranges.auto[myClass()] || {}).ranged) { if (!ctl.keys.size && !ctl.path) approach(t, e.need || reachOf()); }
+      else if (performance.now() - oorToast > 5000) { oorToast = performance.now(); hud.toast(`Out of range — get within ${e.need || reachOf()} m`); }
       return;
     }
     // an ability: walk into its reach and use it again
@@ -338,14 +359,17 @@ async function runGame() {
     const t = ents.targeted;
     const name = ab.id.replace(/_/g, ' ');
     const base = ab.spell ? `cast '${name}'` : name;
+    // the hero starts the ability's own move on the key press; the server's event then
+    // only adds what flies and lands (combat.js skips a second swing)
+    const anim = (ABILITY_FX[ab.id] && ABILITY_FX[ab.id].anim) || (ab.spell ? 'Spellcast_Shoot' : '1H_Melee_Attack_Stab');
     if (ab.self || !t || t.kind !== 'mob') {
       if (!ab.self && !t) return hud.toast('No target — click a creature or press Tab.');
-      ctl.swing(ab.spell ? 'Spellcast_Shoot' : '1H_Melee_Attack_Stab'); ctl.localSwingAt = performance.now();
+      ctl.swing(anim); ctl.localSwingAt = performance.now();
       return MH.sendCommand(base);
     }
-    inReach(t, () => {
+    inReach(t, rangeOf(ab.id, ab.spell), () => {
       ctl.face(t.root.position.x, t.root.position.z);
-      ctl.swing(ab.spell ? 'Spellcast_Shoot' : '1H_Melee_Attack_Stab'); ctl.localSwingAt = performance.now();
+      ctl.swing(anim); ctl.localSwingAt = performance.now();
       const cmd = `${base} ${keyword(t)}`;
       lastAction = { cmd, at: performance.now() };
       MH.sendCommand(cmd);
