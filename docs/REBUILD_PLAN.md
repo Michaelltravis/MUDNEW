@@ -161,3 +161,11 @@ the 2D client and its HUD stay at `/platformer`.
   wall shelves, tables with stools, beds, benches and an altar, rugs, lamps); graveyards get
   rows of graves, fences and lanterns (`world3d/terrain-town.js`; KayKit Medieval Hexagon,
   Furniture Bits, Halloween Bits).
+- Inventory (I): worn gear in its slots, the bag as a grid with the 2D client's painted item
+  icons (`platformer/items.js`), tooltips (type, slot, level, damage, armour, effects, procs,
+  weight, value), a menu per item (wear, wield, hold, quaff, eat, drink, recite, zap, brandish,
+  read, look inside, examine, drop; remove for worn gear; double-click does the first), gold.
+- Character sheet (C; K opens its skills tab): the hero turning in a 3D portrait, vitals,
+  attributes (prime stat marked), hit / damage / armour / stance, experience ("max level" at
+  the cap), active effects; skills and spells with proficiency, unlearned ones dimmed; talents.
+- Still to come from the owner's notes: going up and down stairs, locking and unlocking doors.

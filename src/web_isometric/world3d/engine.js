@@ -23,7 +23,7 @@ export const MOODS = {
   // a lit interior (temple, shop, inn): warm and readable, no strong sun
   interior: { sky: 0xffe6c4, ground: 0x3a2c1e, hemi: 0.85, sun: 0xffe2b8, sunI: 0.9, fog: 0x1c1712, near: 26, far: 70, exposure: 1.05 },
   dusk: { sky: 0xf0b890, ground: 0x3a2a24, hemi: 0.7, sun: 0xff9a5a, sunI: 1.5, fog: 0x6a5060, near: 30, far: 80, exposure: 1.05 },
-  night: { sky: 0x4a5a8a, ground: 0x141418, hemi: 0.42, sun: 0x9ab0ff, sunI: 0.55, fog: 0x0e1424, near: 24, far: 66, exposure: 1.2 },
+  night: { sky: 0x5a6a9a, ground: 0x1a1a22, hemi: 0.58, sun: 0xa8bcff, sunI: 0.75, fog: 0x121a2c, near: 26, far: 70, exposure: 1.25 },
 };
 
 export function createEngine(container, opts = {}) {

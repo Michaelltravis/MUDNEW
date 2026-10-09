@@ -62,13 +62,27 @@
 </div>
 
 <div id="menu" class="hud panel hidden">
-  <button data-cmd="score" data-tip="Character (C)">🛡</button>
-  <button data-cmd="inventory" data-tip="Inventory (I)">🎒</button>
+  <button data-act="character" data-tip="Character (C)">🛡</button>
+  <button data-act="inventory" data-tip="Inventory (I)">🎒</button>
   <button data-cmd="equipment" data-tip="Equipment">⚔</button>
-  <button data-cmd="spells" data-tip="Spells & skills (K)">✦</button>
+  <button data-act="abilities" data-tip="Skills &amp; spells (K)">✦</button>
   <button data-cmd="quests" data-tip="Quests (L)">📜</button>
   <button data-act="settings" data-tip="Settings">⚙</button>
 </div>
+
+<div id="inventory" class="hud panel hidden">
+  <div class="win-head"><span>Inventory</span><button class="inv-close win-x" title="Close (I)">✕</button></div>
+  <div class="inv-body">
+    <div class="inv-doll"></div>
+    <div class="inv-right"><div class="inv-bag"></div><div class="inv-foot"><span class="inv-gold"></span><span class="inv-count"></span></div></div>
+  </div>
+</div>
+<div id="character" class="hud panel hidden">
+  <div class="win-head"><span>Character</span><span class="ch-tabs"><button data-tab="overview" class="on">Overview</button><button data-tab="abilities">Skills &amp; spells</button></span><button class="ch-close win-x" title="Close (C)">✕</button></div>
+  <div class="ch-wrap"><div class="ch-portrait"><canvas width="440" height="520"></canvas></div><div class="ch-body"></div></div>
+</div>
+<div id="item-tip" class="hidden"></div>
+<div id="item-menu" class="hidden"></div>
 
 <div id="settings" class="hud panel hidden">
   <h4>Settings</h4>
@@ -105,6 +119,7 @@
 <script src="/platformer/net.js?v={{V}}"></script>
 <script src="/platformer/parser.js?v={{V}}"></script>
 <script src="/platformer/themes-zones.js?v={{V}}"></script>
+<script src="/platformer/items.js?v={{V}}"></script>
 <script src="/v/{{V}}/world3d/hud-shim.js"></script>
 <script src="/platformer/roomgen.js?v={{V}}"></script>
 <script type="module" src="/v/{{V}}/world3d/main.js"></script>

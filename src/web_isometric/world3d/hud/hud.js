@@ -3,6 +3,8 @@
 // driven by the shared net.js state (`map` payloads, `combat.update`, server text).
 // Actions go out as bus events ('hud.attack', 'hud.ability', 'hud.flee') for main.js,
 // which knows the target and plays the hero's animation.
+import { createInventory } from './inventory.js';
+import { createCharacter } from './character.js';
 const $ = s => document.querySelector(s);
 const ls = { get(k) { try { return localStorage.getItem(k); } catch (_) { return null; } },
   set(k, v) { try { localStorage.setItem(k, v); } catch (_) {} } };
@@ -32,6 +34,8 @@ export function createHud() {
     menu: $('#menu'), settings: $('#settings'), slots: $('#slots'),
   };
   const st = { player: null, kitKey: '', slots: [], cooldowns: {}, cdAt: 0, target: null, history: [], hi: -1 };
+  const inventory = createInventory();
+  const character = createCharacter();
 
   // ---- scale ----
   function applyScale() {
@@ -77,8 +81,9 @@ export function createHud() {
     mpOrb.querySelector('.val').textContent = `${res.cur}/${res.max}`;
     mpOrb.querySelector('.lab').textContent = res.name;
     const floor = p.exp_floor || 0, next = p.exp_to_level || 0;
-    $('#xpbar b').style.width = next > floor ? pct((p.exp || 0) - floor, next - floor) : '0%';
-    $('#xpbar').title = `Experience: ${p.exp || 0}${next ? ` / ${next}` : ''}`;
+    const capped = !next || next - floor > 1e9;
+    $('#xpbar b').style.width = capped ? '100%' : next > floor ? pct((p.exp || 0) - floor, next - floor) : '0%';
+    $('#xpbar').title = capped ? 'Max level' : `Experience: ${p.exp || 0} / ${next}`;
     // buffs and debuffs
     const aff = Array.isArray(p.affects) ? p.affects : [];
     $('#buffs').innerHTML = aff.slice(0, 8).map(a => {
@@ -86,6 +91,8 @@ export function createHud() {
       const bad = /poison|curse|blind|slow|weak|stun|bleed|burn|fear|snare|root/.test(n);
       return n ? `<i class="${bad ? 'bad' : ''}">${n}</i>` : '';
     }).join('');
+    inventory.update(p);
+    character.update(p);
     st.cooldowns = p.cooldowns || {};
     st.cdAt = performance.now();
     buildKit(p);
@@ -209,6 +216,11 @@ export function createHud() {
   // ---- menu + settings ----
   els.menu.querySelectorAll('button[data-cmd]').forEach(b => b.addEventListener('click', () => MH.sendCommand(b.dataset.cmd)));
   els.menu.querySelector('[data-act="settings"]').addEventListener('click', () => els.settings.classList.toggle('hidden'));
+  els.menu.querySelector('[data-act="inventory"]').addEventListener('click', () => inventory.toggle());
+  els.menu.querySelector('[data-act="character"]').addEventListener('click', () => character.toggle());
+  els.menu.querySelector('[data-act="abilities"]').addEventListener('click', () => {
+    character.toggle(true); document.querySelector('#character .ch-tabs [data-tab="abilities"]').click();
+  });
   const syncSettings = () => {
     const q = ls.get('mh3d_quality') || 'high', u = ls.get('mh3d_ui') || 'auto';
     els.settings.querySelectorAll('[data-set="quality"] button').forEach(b => b.classList.toggle('on', b.dataset.v === q));
@@ -233,9 +245,17 @@ export function createHud() {
     if (k === 'Enter') { els.input.focus(); e.preventDefault(); return; }
     if (k === 'f' || k === 'F' || k === ' ') { use(st.slots[0]); e.preventDefault(); return; }
     if (/^[1-8]$/.test(k)) { use(st.slots.find(s => s.key === k)); e.preventDefault(); return; }
-    if (k === 'Escape') { MH.bus.emit('hud.untarget'); els.settings.classList.add('hidden'); return; }
+    if (k === 'Escape') {
+      if (inventory.open || character.open) { inventory.toggle(false); character.toggle(false); return; }
+      MH.bus.emit('hud.untarget'); els.settings.classList.add('hidden'); return;
+    }
+    if ((k === 'i' || k === 'I') && !e.ctrlKey && !e.metaKey) { inventory.toggle(); e.preventDefault(); return; }
+    if ((k === 'c' || k === 'C') && !e.ctrlKey && !e.metaKey) { character.toggle(); e.preventDefault(); return; }
+    if ((k === 'k' || k === 'K') && !e.ctrlKey && !e.metaKey) {
+      character.toggle(true); document.querySelector('#character .ch-tabs [data-tab="abilities"]').click(); e.preventDefault(); return;
+    }
     if (k === 'Tab') { MH.bus.emit('hud.cycleTarget'); e.preventDefault(); return; }
-    const cmd = { c: 'score', i: 'inventory', k: 'spells', l: 'quests' }[k.toLowerCase()];
+    const cmd = { l: 'quests' }[k.toLowerCase()];
     if (cmd && !e.ctrlKey && !e.metaKey && !e.altKey) { MH.sendCommand(cmd); e.preventDefault(); }
   });
 
