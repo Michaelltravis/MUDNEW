@@ -845,6 +845,7 @@ def build_combat_payload(player) -> dict:
                     quest_mark = ''
             mob = {
                 'id': _mob_uid(entity),
+                **_pos_fields(entity),
                 'name': getattr(entity, 'name', 'Unknown'),
                 'level': getattr(entity, 'level', 1),
                 'hostile': getattr(entity, 'aggressive', False) or getattr(entity, 'hostile', False),
@@ -1126,6 +1127,15 @@ def _mob_roles(entity) -> list:
     except Exception:
         return []
 
+def _pos_fields(entity):
+    """x/z in metres inside the creature's room, when combat v2 has placed it."""
+    p = getattr(entity, 'web_pos', None)
+    room = getattr(entity, 'room', None)
+    if p and room is not None and p[0] == getattr(room, 'vnum', None):
+        return {'x': round(p[1], 2), 'z': round(p[2], 2)}
+    return {}
+
+
 def _mob_uid(entity) -> int:
     """A stable id for one live mob, so clients can follow it across updates (mobs have
     no unique name: three "a rat" in one room are three ids)."""
@@ -1160,6 +1170,7 @@ def _room_entities(room, vnum, player):
                     quest_mark = ''
             mob_info = {
                 'id': _mob_uid(entity),
+                **_pos_fields(entity),
                 'name': getattr(entity, 'name', 'Unknown'),
                 'level': getattr(entity, 'level', 1),
                 'hostile': getattr(entity, 'aggressive', False) or getattr(entity, 'hostile', False),
