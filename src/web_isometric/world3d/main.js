@@ -25,9 +25,13 @@ if (params.has('demo')) runDemo(); else runGame();
 async function runDemo() {
   const kits = await loaded;
   if (params.get('gallery')) {
-    const { showGallery } = await import('./gallery.js');
-    const at = showGallery(engine, params.get('gallery') === 'nature' ? kits.nature : kits.dungeon);
+    const { showGallery, showMobGallery } = await import('./gallery.js');
+    const g = params.get('gallery');
+    const { showBeastGallery } = await import('./gallery.js');
+    const at = g === 'mobs' ? await showMobGallery(engine) : g === 'beasts' ? await showBeastGallery(engine)
+      : showGallery(engine, g === 'nature' ? kits.nature : kits.dungeon);
     engine.rig.target.copy(at); engine.placeCamera(true);
+    window.MH3D = { engine, THREE };
   } else {
     const banner = $('#banner');
     const demo = await buildDemo(engine, kits, {

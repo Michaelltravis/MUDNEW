@@ -4,7 +4,9 @@
 // M1 uses the KayKit cast for people and undead and soft wisps for beasts; M2 maps every
 // archetype to its own model.
 import * as THREE from 'three';
-import { spawnCharacter } from './assets.js';
+import { spawnCharacter, spawnMob } from './assets.js';
+import { beastLook } from './bestiary.js';
+import { makeProc } from './proc.js';
 
 const ANIMAL = /\b(rabbit|hare|fox|wolf|wolves|bear|deer|stag|elk|rat|rats|mouse|spider|snake|serpent|bat|bird|crow|raven|boar|cat|kitten|dog|hound|puppy|horse|pony|cow|bull|sheep|lamb|chicken|hen|rooster|frog|toad|lizard|beetle|ant|bee|wasp|scorpion|crab|fish|eel|squirrel|owl|hawk|eagle|goat|pig|hog|worm|slime|ooze|jelly|mosquito|fly|leech|badger|weasel|otter|duck|goose|swan|vulture|lion|tiger|panther|cougar|lynx|ape|monkey|gorilla|wyrm|drake|dragon|basilisk|griffon|unicorn|centipede|millipede|tick|moth|butterfly|cockroach)\b/;
 const UNDEAD = /\b(skeleton|zombie|ghoul|undead|lich|wight|bone|bones|corpse|ghost|spectre|specter|wraith|mummy|revenant|banshee|shade|phantom|vampire)\b/;
@@ -19,18 +21,29 @@ export function classModel(cls) {
   return { model, tint };
 }
 
+// how high above its feet a creature's nameplate floats
+function plateHeight(e) {
+  const box = new THREE.Box3().setFromObject(e.root);
+  const top = box.max.y - e.root.position.y;
+  return Math.max(0.9, Math.min(4, isFinite(top) ? top + 0.35 : 2.75));
+}
+
 function hashStr(s) { let h = 2166136261; for (const ch of String(s)) h = Math.imul(h ^ ch.charCodeAt(0), 16777619); return h >>> 0; }
 
 function mobLook(m) {
   const n = String(m.name || '').toLowerCase();
   const h = hashStr(m.id || n);
   const pick = list => list[h % list.length];
-  if (ANIMAL.test(n)) return { wisp: true };
+  const beast = beastLook(n);
+  if (beast) return { beast };
   if (UNDEAD.test(n)) return { model: pick(['skeleton_warrior', 'skeleton_minion', 'skeleton_rogue', 'skeleton_mage']) };
   if (m.shopkeeper) return { model: 'barbarian', tint: 0xf0dcc0 };
   if (m.trainer) return { model: 'knight', tint: 0xf8f0e0 };
   if (/\b(guard|soldier|knight|captain|watch|sentry|warden|cityguard)\b/.test(n)) return { model: 'knight', tint: 0xc8d0e0 };
   if (/\b(mage|wizard|witch|priest|priestess|sage|cleric|monk|acolyte|shaman|druid|sorcer\w*|necromancer|apprentice)\b/.test(n)) return { model: 'mage', tint: pick([0xffffff, 0xd8c8f0, 0xc8e0d0]) };
+  if (ANIMAL.test(n)) return { wisp: true };
+  if (/\b(orc|orcs|half-orc|hobgoblin|bugbear|gnoll|kobold|bandit|brigand|thug|ruffian|raider|cultist)\b/.test(n))
+    return { model: pick(['barbarian', 'rogue_hooded', 'rogue']), tint: pick([0x8fb07a, 0x9a8a7a, 0x8a7a9a]) };
   if (m.hostile) return { model: pick(['barbarian', 'rogue', 'rogue_hooded']), tint: pick([0x9ab88a, 0xb89a8a, 0x8a8aa8]) };
   return { model: pick(['rogue_hooded', 'rogue', 'barbarian', 'knight', 'mage']), tint: pick([0xe8e0d0, 0xd0c8b8, 0xc8d0d8, 0xe0d0c0]) };
 }
@@ -57,6 +70,8 @@ export class Entities {
     this.zone = null;
     this.list = new Map();         // key -> entity
     this.target = null;            // key of the selected entity
+    this.dying = [];               // fallen creatures, removed after their death animation
+    this.hero = null;              // hero position (combat facing)
     this._v = new THREE.Vector3();
   }
 
@@ -102,7 +117,12 @@ export class Entities {
   combat(payload) {
     for (const m of payload.mobs || []) {
       const e = m.id != null ? this.list.get(`m${m.id}`) : null;
-      if (e) Object.assign(e.data, m);
+      if (!e) continue;
+      Object.assign(e.data, m);
+      if (m.fighting && e.actor && e.root && this.hero) {
+        e.root.rotation.y = Math.atan2(this.hero.x - e.root.position.x, this.hero.z - e.root.position.z);
+        e.actor.once(['1H_Melee_Attack_Chop', '1H_Melee_Attack_Slice_Diagonal', '1H_Melee_Attack_Stab'][(hashStr(e.key) + Date.now()) % 3], 0.08, 1.1);
+      }
     }
   }
 
@@ -117,13 +137,30 @@ export class Entities {
     e.plate.querySelector('.nm').textContent = w.data.name;
     this.plates.appendChild(e.plate);
     const look = w.kind === 'player' ? classModel(w.data.char_class) : mobLook(w.data);
+    const grow = w.data.boss ? 1.35 : 1;
+    if (look.beast) {
+      const b = look.beast;
+      const ready = actor => {
+        if (!e.alive) return;
+        e.actor = actor;
+        e.root = actor.root;
+        e.fly = b.fly || 0;
+        e.root.position.copy(at);
+        e.root.rotation.y = (hashStr(key) % 628) / 100;
+        actor.play(w.data.hostile ? 'Idle_Combat' : 'Idle', 0, 0.85 + (hashStr(key) % 30) / 100);
+        this.engine.scene.add(e.root);
+      };
+      if (b.proc) ready(makeProc(b.proc, { height: b.h * grow, tint: b.tint, seed: hashStr(key) }));
+      else spawnMob(b.mob, { height: b.h * grow, tint: b.tint }).then(ready).catch(() => {});
+      return;
+    }
     if (look.wisp) {
       e.root = makeWisp(w.data.hostile);
       e.root.position.copy(at);
       this.engine.scene.add(e.root);
       return;
     }
-    spawnCharacter(look.model, { tint: look.tint }).then(actor => {
+    spawnCharacter(look.model, { tint: look.tint, scale: grow !== 1 ? grow : undefined }).then(actor => {
       if (!e.alive) return;
       e.actor = actor;
       e.root = actor.root;
@@ -137,9 +174,15 @@ export class Entities {
   remove(e, now) {
     e.alive = false;
     if (e.plate) e.plate.remove();
-    if (e.root) this.engine.scene.remove(e.root);
     if (this.target === e.key) this.setTarget(null);
     this.list.delete(e.key);
+    if (!e.root) return;
+    // a creature that was fighting or out of health died: let it fall, then clear it away
+    const died = !now && e.actor && e.kind === 'mob' && ((e.data.maxHp && e.data.hp <= 0) || e.data.fighting);
+    if (!died) { this.engine.scene.remove(e.root); return; }
+    e.actor.once('Death_A', 0.1, 1);
+    e.actor.play('Death_A');
+    this.dying.push({ e, left: 2.2 });
   }
 
   setTarget(key) {
@@ -171,6 +214,12 @@ export class Entities {
   update(dt, t, hero) {
     const cam = this.engine.camera, cv = this.engine.renderer.domElement;
     const w = cv.clientWidth, h = cv.clientHeight;
+    this.hero = hero;
+    for (let i = this.dying.length - 1; i >= 0; i--) {
+      const d = this.dying[i];
+      d.e.actor.update(dt);
+      if ((d.left -= dt) <= 0) { this.engine.scene.remove(d.e.root); this.dying.splice(i, 1); }
+    }
     for (const e of this.list.values()) {
       if (!e.root) continue;
       // walking to a new room's spot
@@ -186,11 +235,12 @@ export class Entities {
       }
       if (e.actor) e.actor.update(dt);
       else if (e.root.userData.core) e.root.userData.core.position.y = 0.9 + Math.sin(t * 2.4 + (hashStr(e.key) % 7)) * 0.12;
+      if (e.fly) e.root.position.y = e.fly + Math.sin(t * 2.1 + (hashStr(e.key) % 9)) * 0.12;
       // nameplate
       const dist = e.root.position.distanceTo(hero);
       const show = dist < 26 || this.target === e.key;
       if (!show) { e.plate.style.display = 'none'; continue; }
-      this._v.copy(e.root.position).setY(e.actor ? 2.75 : 1.7).project(cam);
+      this._v.copy(e.root.position).setY(e.root.position.y + (e.plateY || (e.plateY = plateHeight(e)))).project(cam);
       if (this._v.z > 1 || Math.abs(this._v.x) > 1.1 || Math.abs(this._v.y) > 1.1) { e.plate.style.display = 'none'; continue; }
       e.plate.style.display = '';
       e.plate.style.transform = `translate(${((this._v.x + 1) / 2 * w).toFixed(1)}px, ${((1 - this._v.y) / 2 * h).toFixed(1)}px) translate(-50%, -100%)`;

@@ -119,14 +119,16 @@ const LOADOUTS = {
 };
 
 export class Actor {
-  constructor(root, clips) {
+  constructor(root, clips, alias = null) {
     this.root = root;
     this.mixer = new THREE.AnimationMixer(root);
     this.clips = clips;
+    this.alias = alias;        // creature models: our clip names -> theirs
     this.actions = new Map();
     this.current = null;
   }
   action(name) {
+    if (this.alias) name = this.alias[name] || name;
     if (!this.actions.has(name)) {
       const clip = this.clips.get(name);
       if (!clip) return null;
@@ -185,4 +187,47 @@ export async function spawnCharacter(name, opts = {}) {
     });
   }
   return new Actor(root, clips);
+}
+
+// ---- creatures (mobs/*.glb: 1 m tall, facing +Z, each with its own clips) ----
+const mobCache = new Map();
+let mobIndex = null;
+export function mobIndexReady() {
+  if (!mobIndex) mobIndex = fetch(ART + 'mobs/index.json').then(r => r.json()).catch(() => ({}));
+  return mobIndex;
+}
+function loadMob(name) {
+  if (!mobCache.has(name)) mobCache.set(name, load(`mobs/${name}.glb`));
+  return mobCache.get(name);
+}
+// map the names the game plays (the KayKit set) to whatever this creature has
+function aliasFor(names) {
+  const has = n => names.includes(n);
+  const find = (...res) => { for (const re of res) { const n = names.find(x => re.test(x)); if (n) return n; } return null; };
+  const idle = find(/^Idle$/, /^Flying$/, /^Swimming$/, /Idle/, /Action/) || names[0];
+  const walk = find(/^Walk$/, /^Walking$/, /^WalkSlow$/, /^Flying$/, /^Swimming$/, /^Run$/) || idle;
+  const run = find(/^Run$/, /^Walk$/, /^Walking$/, /^Flying$/, /^Swimming$/) || walk;
+  const bite = find(/^Bite_Front$/, /^Bite$/, /^Bite_InPlace$/, /^Jump$/) || idle;
+  const hit = find(/^HitRecieve$/, /^HitReact/, /Hit/) || null;
+  const death = find(/^Death$/) || null;
+  const a = {
+    Idle: idle, Idle_B: idle, Idle_Combat: idle, Unarmed_Idle: idle, Spellcasting: idle,
+    Walking_A: walk, Walking_B: walk, Walking_C: walk, Walking_D_Skeletons: walk, Running_A: run, Running_B: run,
+    '1H_Melee_Attack_Chop': bite, '1H_Melee_Attack_Slice_Diagonal': bite, '1H_Melee_Attack_Stab': bite,
+    Spellcast_Shoot: bite, Hit_A: hit || idle, Hit_B: hit || idle, Death_A: death || idle, Death_B: death || idle,
+  };
+  return has(idle) ? a : a;
+}
+export async function spawnMob(name, opts = {}) {
+  const gltf = await loadMob(name);
+  const root = SkeletonUtils.clone(gltf.scene);
+  root.traverse(o => {
+    if (o.isMesh) {
+      o.castShadow = true; o.receiveShadow = true; o.frustumCulled = false;
+      if (opts.tint) { o.material = o.material.clone(); o.material.color.multiply(new THREE.Color(opts.tint)); }
+    }
+  });
+  root.scale.setScalar(opts.height || 1);
+  const clips = new Map(gltf.animations.map(c => [c.name, c]));
+  return new Actor(root, clips, aliasFor([...clips.keys()]));
 }

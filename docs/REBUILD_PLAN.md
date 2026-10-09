@@ -145,3 +145,12 @@ the 2D client and its HUD stay at `/platformer`.
 - M1b next: town buildings and interior theming (KayKit Medieval Hexagon, Furniture Bits),
   graveyards (Halloween Bits), monster/animal models (Quaternius), quest tracker and panels
   (inventory, character, spells), polish from the owner's playtest.
+
+### M1b — progress (owner's order: monster models → towns and interiors → inventory → character panels)
+- Owner after M1a: walking and the HUD feel good; stairs and lock/unlock doors to fix later;
+  no monsters were visible in the sewers (fixed: /state replies wiped them during fights);
+  wants to see more of the character's face (camera pitch now follows zoom, 34°–58°).
+- Monster models: 38 CC0 Quaternius creatures (OpenGameArt, FBX → glTF in tools/art3d) plus
+  procedural rats, spiders, snakes, rabbits and slimes; `world3d/bestiary.js` maps MUD names to
+  bodies; creatures fighting you turn and strike each round, the dead fall before they vanish,
+  flyers hover. Checked with `/play?demo&gallery=beasts` and in the live sewers and pet shop.

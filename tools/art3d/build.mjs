@@ -7,9 +7,14 @@
 //   kit   - many static models merged into ONE file: shared textures are stored once and
 //           the client loads a whole kit with one request; each model is a top-level
 //           node named after its key
+//   mob   - an animated creature from an FBX (Quaternius packs): converted with FBX2glTF,
+//           its texture attached, turned to face +Z, scaled to 1 m tall with its feet at
+//           the origin, animation names cleaned ("MonsterArmature|Walk" -> "Walk")
 import fs from 'node:fs';
+import os from 'node:os';
+import { spawnSync } from 'node:child_process';
 import path from 'node:path';
-import { NodeIO } from '@gltf-transform/core';
+import { NodeIO, getBounds } from '@gltf-transform/core';
 import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
 import { dedup, prune, weld, resample, meshopt, textureCompress, mergeDocuments, unpartition } from '@gltf-transform/functions';
 import { MeshoptEncoder, MeshoptDecoder } from 'meshoptimizer';
@@ -36,6 +41,23 @@ const NATURE = ['CommonTree_1', 'CommonTree_2', 'CommonTree_3', 'Pine_1', 'Pine_
   'Rock_Medium_1', 'Rock_Medium_2', 'Rock_Medium_3', 'Pebble_Round_1', 'Pebble_Round_3',
   'RockPath_Round_Wide', 'Plant_1', 'Plant_7', 'Clover_1'];
 
+const CUTE = 'quaternius-cute-monsters/Cute Animated Monsters - Aug 2020';
+const ANV2 = 'quaternius-animals-2/Animal Pack Vol.2 by @Quaternius';
+const ANV1 = 'quaternius-animals/Animals Pack by Quaternius';
+const FARM = 'quaternius-farm/Farm Animals by @Quaternius';
+// yaw (radians) turns each model to face +Z, the way the client points every actor
+const MOBS = [
+  ...['Alien', 'Alien_Tall', 'Bat', 'Bee', 'Cactus', 'Chicken', 'Crab', 'Cthulhu', 'Cyclops', 'Deer', 'Demon',
+    'Ghost', 'GreenDemon', 'Mushroom', 'Panda', 'Penguin', 'Pig', 'Skull', 'Tree', 'YellowDragon', 'Yeti']
+    .map(n => ({ name: n.toLowerCase(), fbx: `${CUTE}/FBX/${n}.fbx`, tex: `${CUTE}/Textures/${n}_Texture.png`, yaw: 0 })),
+  ...['Cat', 'Dog', 'Eagle', 'Piranha', 'Wolf'].map(n => ({ name: n.toLowerCase(), fbx: `${ANV2}/FBX/${n}.fbx`, yaw: 0 })),
+  ...[['Red Fox', 'fox'], ['Fish', 'fish'], ['bird', 'bird'], ['Chick', 'chick'], ['Whale', 'whale']]
+    .map(([n, k]) => ({ name: k, fbx: `${ANV1}/FBX/${n}.fbx`, yaw: 0 })),
+  ...['Cow', 'Horse', 'Llama', 'Pig', 'Pug', 'Sheep', 'Zebra']
+    .map(n => ({ name: n === 'Pig' ? 'farm_pig' : n.toLowerCase(), fbx: `${FARM}/FBX/${n}.fbx`, yaw: 0 })),
+];
+const MOB_YAW = JSON.parse(fs.existsSync(new URL('./mob-yaw.json', import.meta.url)) ? fs.readFileSync(new URL('./mob-yaw.json', import.meta.url), 'utf8') : '{}');
+
 const JOBS = [
   ...['Knight', 'Barbarian', 'Mage', 'Rogue', 'Rogue_Hooded'].map(n =>
     ({ kind: 'char', src: `${ADV}/${n}.glb`, out: `chars/${n.toLowerCase()}.glb` })),
@@ -48,6 +70,7 @@ const JOBS = [
   // multiplies it into the base colour, which paints the leaves red. Drop it.
   { kind: 'kit', out: 'kits/nature.glb', texture: 512, dropNormalMaps: true, dropVertexColors: true, greenLeaves: true,
     items: NATURE.map(k => ({ key: k, src: `${NAT}/${k}.gltf` })) },
+  ...MOBS.map(m => ({ kind: 'mob', ...m, out: `mobs/${m.name}.glb`, texture: 256 })),
 ];
 
 function findFile(dir, key) {
@@ -157,13 +180,68 @@ const LICENCES = {
   'kaykit-skeletons.txt': 'kaykit-skeletons/addons/kaykit_character_pack_skeletons/LICENSE.txt',
   'kaykit-dungeon-remastered.txt': 'kaykit-dungeon/addons/kaykit_dungeon_remastered/Assets/LICENSE.txt',
   'quaternius-stylized-nature-megakit.txt': 'quaternius-nature/License_Standard.txt',
+  'quaternius-farm-animals.txt': 'quaternius-farm/Farm Animals by @Quaternius/License.txt',
 };
 fs.mkdirSync(path.join(OUT, 'licenses'), { recursive: true });
 for (const [dst, src] of Object.entries(LICENCES)) fs.copyFileSync(path.join(CACHE, src), path.join(OUT, 'licenses', dst));
 
+// ---- animated creatures from FBX ----
+const FBX2GLTF = path.resolve(path.dirname(new URL(import.meta.url).pathname),
+  'node_modules/fbx2gltf/bin', process.platform === 'darwin' ? 'Darwin' : process.platform === 'win32' ? 'Windows_NT' : 'Linux',
+  process.platform === 'win32' ? 'FBX2glTF.exe' : 'FBX2glTF');
+
+async function buildMob(job) {
+  const tmp = path.join(os.tmpdir(), `mob_${job.name}_${process.pid}`);
+  const r = spawnSync(FBX2GLTF, ['--binary', '--input', path.join(CACHE, job.fbx), '--output', tmp], { encoding: 'utf8' });
+  if (r.status !== 0) throw new Error(`FBX2glTF failed on ${job.fbx}: ${r.stderr || r.stdout}`);
+  const doc = await io.read(tmp + '.glb');
+  fs.rmSync(tmp + '.glb', { force: true });
+  const root = doc.getRoot();
+  // lights exported from the source scene are not ours
+  for (const ext of root.listExtensionsUsed()) if (ext.extensionName === 'KHR_lights_punctual') ext.dispose();
+  // the cute monsters keep their colours in one atlas texture beside the FBX files
+  if (job.tex && fs.existsSync(path.join(CACHE, job.tex))) {
+    const tex = doc.createTexture(job.name).setImage(fs.readFileSync(path.join(CACHE, job.tex))).setMimeType('image/png');
+    for (const m of root.listMaterials()) m.setBaseColorTexture(tex).setBaseColorFactor([1, 1, 1, 1]);
+  }
+  for (const m of root.listMaterials()) m.setMetallicFactor(0).setRoughnessFactor(0.85);
+  for (const a of root.listAnimations()) a.setName(a.getName().replace(/^.*\|/, '').replace(/\.\d+$/, (x) => x));
+  // face +Z, feet on the ground, 1 m tall
+  const scene = root.getDefaultScene() || root.listScenes()[0];
+  const holder = doc.createNode(job.name);
+  for (const c of scene.listChildren()) { scene.removeChild(c); holder.addChild(c); }
+  scene.addChild(holder);
+  const yaw = MOB_YAW[job.name] ?? job.yaw ?? 0;
+  holder.setRotation([0, Math.sin(yaw / 2), 0, Math.cos(yaw / 2)]);
+  const b = getBounds(scene);
+  const h = Math.max(1e-3, b.max[1] - b.min[1]);
+  const s = 1 / h;
+  holder.setScale([s, s, s]);
+  const b2 = getBounds(scene);
+  holder.setTranslation([-(b2.min[0] + b2.max[0]) / 2, -b2.min[1], -(b2.min[2] + b2.max[2]) / 2]);
+  await doc.transform(resample(), weld());
+  MOB_INDEX[job.name] = { anims: root.listAnimations().map(a => a.getName()) };
+  return finish(doc, job);
+}
+const MOB_INDEX = {};
+
 const only = process.argv[3];
 for (const job of JOBS) {
   if (only && !job.out.includes(only)) continue;
-  const size = job.kind === 'char' ? await buildChar(job) : job.kind === 'anims' ? await buildAnims(job) : await buildKit(job);
+  const size = job.kind === 'char' ? await buildChar(job) : job.kind === 'anims' ? await buildAnims(job)
+    : job.kind === 'mob' ? await buildMob(job) : await buildKit(job);
   console.log(`${job.out}  ${(size / 1024).toFixed(0)} KB`);
 }
+// the client's creature registry reads each model's clip names from here
+if (Object.keys(MOB_INDEX).length) {
+  const file = path.join(OUT, 'mobs', 'index.json');
+  const prev = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : {};
+  fs.writeFileSync(file, JSON.stringify({ ...prev, ...MOB_INDEX }, null, 1));
+}
+// packs that ship without a licence file: record the licence stated on their OpenGameArt page
+const NOTE = (name, url) => `${name} by Quaternius (quaternius.com)\nLicence: CC0 1.0 Universal (public domain dedication), as stated at ${url}\n`;
+for (const [f, n, u] of [
+  ['quaternius-cute-animated-monsters.txt', 'Cute Animated Monsters (Aug 2020)', 'https://opengameart.org/content/textured-cute-monster-pack'],
+  ['quaternius-animal-pack-vol2.txt', 'Animal Pack Vol.2', 'https://opengameart.org/content/animated-animales-low-poly'],
+  ['quaternius-animals-pack.txt', 'Animals Pack', 'https://opengameart.org/content/5-low-poly-animals'],
+]) fs.writeFileSync(path.join(OUT, 'licenses', f), NOTE(n, u));

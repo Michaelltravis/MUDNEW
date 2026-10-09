@@ -37,4 +37,15 @@ N="$CACHE/quaternius-nature"
 get "https://opengameart.org/sites/default/files/stylized_nature_megakitstandard.zip" "$N/nature.zip"
 [ -d "$N/glTF" ] || (cd "$N" && unzip -q -o nature.zip 'glTF/*' License_Standard.txt)
 
+# Quaternius animated creatures (CC0) from OpenGameArt: FBX + textures, converted by build.mjs
+oga() {  # oga <zip file name on OGA> <local dir>
+  local d="$CACHE/$2"
+  get "https://opengameart.org/sites/default/files/$1" "$d/pack.zip"
+  [ -f "$d/.unzipped" ] || (cd "$d" && unzip -q -o pack.zip && touch .unzipped)
+}
+oga "cute_animated_monsters_-_aug_2020.zip" quaternius-cute-monsters
+oga "Animal%20Pack%20Vol.2%20by%20%40Quaternius.zip" quaternius-animals-2
+oga "Animals%20Pack%20by%20Quaternius.zip" quaternius-animals
+oga "Farm%20Animals%20by%20%40Quaternius.zip" quaternius-farm
+
 echo "cache ready: $CACHE"

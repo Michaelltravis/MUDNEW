@@ -59,6 +59,19 @@ stored once, meshopt-compressed).
 | KayKit Dungeon Remastered 1.0 | Kay Lousberg | walls, floors, pillars, torches, barrels, crates, chests, rubble, stairs (37 used of 200+) | https://kaylousberg.itch.io/kaykit-dungeon-remastered (mirror: github.com/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0) |
 | Stylized Nature MegaKit (standard) | Quaternius | trees, pines, dead trees, bushes, ferns, grass, flowers, rocks, pebbles (26 used) | https://opengameart.org/content/stylized-nature-megakit, https://quaternius.com |
 
+| Cute Animated Monsters (Aug 2020) | Quaternius | 21 monsters: bat, bee, crab, cyclops, demons, ghost, skull, treant, mushroom, yeti, panda, dragon, alien, cthulhu… (FBX + textures) | https://opengameart.org/content/textured-cute-monster-pack |
+| Animal Pack Vol.2 | Quaternius | wolf, dog, cat, eagle, piranha (FBX) | https://opengameart.org/content/animated-animales-low-poly |
+| Animals Pack | Quaternius | fox, fish, bird, chick, whale (FBX) | https://opengameart.org/content/5-low-poly-animals |
+| Farm Animals | Quaternius | cow, horse, zebra, llama, pig, pug, sheep (FBX) | https://opengameart.org/content/lowpoly-animated-farm-animal-pack |
+
+Creatures (`art3d/mobs/`, 38 models, 2.6 MB) are converted from FBX by `build.mjs` with
+FBX2glTF (npm `fbx2gltf`), textured, turned to face +Z (`tools/art3d/mob-yaw.json`), scaled to
+1 m and listed with their clip names in `mobs/index.json`. Rats, spiders, snakes, rabbits and
+slimes have no CC0 model: `world3d/proc.js` builds them from primitives. Which body a creature
+gets is decided by name in `world3d/bestiary.js`. (Quaternius' newer "Ultimate Monsters" and
+"Ultimate Animated Animals" are CC0 too, but their Google Drive links refuse downloads from
+this environment — "quota exceeded" — so the OpenGameArt packs above are used.)
+
 Build notes: the nature kit's COLOR_0 (wind masks for Quaternius' own shader) is dropped
 because glTF multiplies it into the colour; its bushes use the twisted tree's autumn-red leaf
 atlas, which the build remixes to green; normal maps are dropped and textures resized to 512.
