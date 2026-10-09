@@ -314,8 +314,15 @@ async function runGame() {
     const p = hero.root.position, q = t.root.position;
     const d = Math.hypot(q.x - p.x, q.z - p.z);
     if (range == null || (same && d <= range + 0.3)) return then();
-    const need = same ? range : Math.min(range, 4);    // another room: step well inside it
-    approach(t, need, () => { if (heroRoom && t.vnum === heroRoom.vnum) then(); });
+    if (same) return approach(t, range, then);
+    // another room (the server fights room by room): stop just inside the target's room,
+    // at the action's reach if the room is big enough for it
+    const room = zone && zone.rooms.get(t.vnum);
+    if (!room) return approach(t, Math.min(range, 4), () => { if (heroRoom && t.vnum === heroRoom.vnum) then(); });
+    const k = Math.max(1.2, range - 0.6) / (d || 1);
+    const x = Math.min(room.ox + ROOM_W - 1.5, Math.max(room.ox + 1.5, q.x + (p.x - q.x) * k));
+    const z = Math.min(room.oz + ROOM_H - 1.5, Math.max(room.oz + 1.5, q.z + (p.z - q.z) * k));
+    ctl.walkTo(x, z, () => { if (heroRoom && t.vnum === heroRoom.vnum) then(); });
   }
   function attack() {
     const t = ents.targeted;

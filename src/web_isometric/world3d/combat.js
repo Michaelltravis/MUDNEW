@@ -125,7 +125,7 @@ export class CombatView {
     if (who.hero) {
       // the hero already swung the moment the key was pressed: don't swing twice
       const ctl = this.getHero().ctl;
-      if (performance.now() - (ctl.localSwingAt || 0) > 700) ctl.swing(anim);
+      if (performance.now() - (ctl.localSwingAt || 0) > 700) ctl.swing(anim, true);
       return 0.45;
     }
     return who.actor.once(anim, 0.08, speed) || 0.5;
@@ -241,14 +241,14 @@ export class CombatView {
       this.fx.impact(p, school, crit || e.heavy);
       this.fx.flash(dst.root, heroHit ? 0xff2a1a : 0xffe0c0, 0.16);
       if (dst.actor && !dst.hero && !(dst.ent && dst.ent.dying)) dst.actor.once(Math.random() < 0.5 ? 'Hit_A' : 'Hit_B', 0.05, 1.2);
-      if (dst.hero) this.getHero().ctl.swing(Math.random() < 0.5 ? 'Hit_A' : 'Hit_B');
+      if (dst.hero) this.getHero().ctl.swing(Math.random() < 0.5 ? 'Hit_A' : 'Hit_B', true);
       // (the number itself comes with the wound event: the amount actually taken)
     } else {
       const word = { miss: 'Miss', dodge: 'Dodge', parry: 'Parry', block: 'Block', resist: 'Resist', immune: 'Immune' }[res] || res;
       this.fx.text(p, word, { color: COLORS[res] || COLORS.miss, size: 15 });
       if (res === 'parry' || res === 'block') { this.fx.sparks(p, 0xbfe0ff, 10); if (dst.actor && !dst.hero) dst.actor.once('Block_Hit', 0.05, 1.3); }
       if (res === 'dodge' && dst.actor && !dst.hero) dst.actor.once(Math.random() < 0.5 ? 'Dodge_Left' : 'Dodge_Right', 0.05, 1.4);
-      if (res === 'dodge' && dst.hero) this.getHero().ctl.swing(Math.random() < 0.5 ? 'Dodge_Left' : 'Dodge_Right');
+      if (res === 'dodge' && dst.hero) this.getHero().ctl.swing(Math.random() < 0.5 ? 'Dodge_Left' : 'Dodge_Right', true);
     }
   }
 

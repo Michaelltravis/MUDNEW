@@ -146,10 +146,20 @@ export class Actor {
     if (this.current) this.current.fadeOut(fade);
     this.current = a;
   }
+  // cut a play-once short (the hero started running mid-swing)
+  stopOnce(fade = 0.1) {
+    const a = this.onceAction;
+    this.onceAction = null;
+    if (!a || a === this.current) return;
+    a.fadeOut(fade);
+    // once() faded the base loop out: bring it back, or the model drops to its bind pose
+    if (this.current) this.current.reset().fadeIn(fade).play();
+  }
   // play once (an attack, a hit), then fall back to the base loop
   once(name, fade = 0.08, timeScale = 1) {
     const a = this.action(name);
     if (!a) return 0;
+    this.onceAction = a;
     const base = this.current;
     a.reset().setLoop(THREE.LoopOnce, 1);
     a.clampWhenFinished = false;

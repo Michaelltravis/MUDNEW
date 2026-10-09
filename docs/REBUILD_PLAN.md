@@ -104,9 +104,9 @@ CC0 low-poly (KayKit, Quaternius) — see `docs/art/SOURCES.md`.
 | milestone | what | status |
 |---|---|---|
 | M0 | look and engine spike (now `/play?demo`) — four real room layouts (glade, brook, crypt, hall) stitched into one world, a knight on WASD/click with run/attack animations, skeletons, sun + shadows, torch lights, fog, bloom, see-through walls, F3 perf overlay | shipped; look approved (owner: "wow this looks awesome"; RTX 4070: 144 fps, 6.9 ms) |
-| M1 | seamless world on real zones: `/zonemap`, terrain builders per theme, controller with A*, `webmove`, doors, passages, zone changes, login + HUD | **M1a shipped** (see below); M1b next |
+| M1 | seamless world on real zones: `/zonemap`, terrain builders per theme, controller with A*, `webmove`, doors, passages, zone changes, login + HUD | **M1a shipped**; M1b shipped (monsters, towns and interiors, inventory, character sheet) |
 | M2 | living world: class heroes, mob models, NPCs, items, other players' positions | |
-| M3 | combat in 3D, then Phase 3 real-time combat | |
+| M3 | combat in 3D, then Phase 3 real-time combat | **combat v2 ready for the owner's test** (see below): events, reach, timing, wind-ups |
 | M4 | polish, switch-over, retire the Phaser client | |
 
 M0 notes: all URLs under `/v/<commit>/` are immutable (served gzip, `web_map.py`
@@ -217,3 +217,12 @@ skill's own server code.
   fizzle shows on screen; an archer's or caster's ordinary blow reads as an arrow or bolt in the
   log; Tab prefers enemies over shopkeepers, trainers and quest-givers; overlapping hit flashes
   could leave a model stuck red.
+- Verified here: `tests/test_combat_v2.py` (3 runs green: out of reach → no blow + `oor`, the
+  creature walks in, swings and wounds as events, a skill opens a fight, a wind-up lands
+  4.32 s after its 4.3 s mark, stepping out of it makes it miss, a stagger cancels it) and
+  `tests/test_webmove.py`; Playwright with a level-15 mage (magic missile, fireball, lightning
+  bolt, sleep, towerbolt as an opener, fizzles, the bear's sweep, the kill; no page errors),
+  ranger and cleric. This container renders WebGL at ~1 fps, so the feel (timing of swings,
+  bolts and numbers) is for the owner to judge on a real GPU.
+- Next, from the owner's test: tune numbers (round length, reach, wind-up time) and the look
+  of each skill; then Phase 3 (per-action resolution) if rounds still feel slow.

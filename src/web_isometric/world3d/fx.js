@@ -143,7 +143,13 @@ export class FX {
     d.style.color = color;
     d.style.fontSize = `${crit ? size * 1.45 : size}px`;
     this.overlay.appendChild(d);
-    this.texts.push({ d, p: pos.clone().add(new THREE.Vector3(side + (Math.random() - 0.5) * 0.5, 0, (Math.random() - 0.5) * 0.3)), t: 0, life, rise, crit });
+    // words born together over the same head (a flurry, a crit and a stun) fan out instead
+    // of printing on top of each other
+    let stack = 0;
+    for (const o of this.texts) if (o.t < 0.45 && o.p0.distanceToSquared(pos) < 0.5) stack++;
+    const fan = stack ? (stack % 2 ? 0.45 : -0.45) * Math.ceil(stack / 2) : 0;
+    const p = pos.clone().add(new THREE.Vector3(side + fan + (Math.random() - 0.5) * 0.3, stack * 0.3, (Math.random() - 0.5) * 0.3));
+    this.texts.push({ d, p0: pos.clone(), p, t: 0, life, rise, crit });
   }
   updateTexts(dt) {
     const cam = this.engine.camera, cv = this.engine.renderer.domElement;

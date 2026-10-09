@@ -114,6 +114,11 @@ export class Controller {
       return 0;
     }
     this.lock = Math.max(0, this.lock - dt);
+    // a soft swing (an auto-attack, a flinch) never roots you: moving cuts it short
+    if (this.lock > 0 && this.soft && this.enabled && !MH.state.uiFrozen && this.wish().lengthSq() > 0) {
+      this.lock = 0;
+      this.actor.stopOnce(0.1);
+    }
     const w = this.enabled && !MH.state.uiFrozen && this.lock === 0 ? this.wish() : new THREE.Vector2();
     const top = this.keys.has('shift') ? WALK : RUN;
     const want = w.clone().multiplyScalar(top);
@@ -144,10 +149,14 @@ export class Controller {
     return speed;
   }
 
-  swing(anim = '1H_Melee_Attack_Chop') {
-    if (this.lock > 0) return;
+  // soft: drawn from a server event (a round's blow, being hit) — skipped while you run,
+  // cancelled when you start moving; a key press (soft = false) commits you for a moment
+  swing(anim = '1H_Melee_Attack_Chop', soft = false) {
+    if (this.lock > 0 && !this.soft) return;      // nothing cuts into a committed move
+    if (soft && (this.keys.size || this.path || this.dashing || this.vel.lengthSq() > 1)) return;
     const d = this.actor.once(anim, 0.06, 1.25);
     this.lock = Math.min(0.55, d * 0.7);
+    this.soft = soft;
   }
   face(x, z) { this.yaw = Math.atan2(x - this.pos.x, z - this.pos.z); }
 }
