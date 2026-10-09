@@ -10,6 +10,8 @@ import { Controller, findPath } from './controller.js';
 import { Sync } from './sync.js';
 import { Entities, classModel } from './entities.js';
 import { cutout } from './cutout.js';
+import { FX } from './fx.js';
+import { CombatView } from './combat.js';
 import { attachPerf } from './perf.js';
 import { buildDemo } from './demo.js';
 
@@ -57,6 +59,14 @@ async function runGame() {
   $('#loading').classList.add('done');
 
   const ents = new Entities(engine, $('#plates'));
+  const fx = new FX(engine, $('#fct'));
+  const combat = new CombatView({
+    engine, fx, ents,
+    getHero: () => hero && { actor: hero, ctl, cls: (MH.state.player && MH.state.player.char_class || '').toLowerCase() },
+    heroName: () => MH.state.playerName,
+    onOutOfRange: e => outOfRange(e),
+  });
+  MH.bus.on('combat.events', p => { if (hero) combat.handle(p.events); });
   const mm = createMinimap($('#minimap'), room => travelTo(room));
   let zone = null, hero = null, ctl = null, sync = null, heroRoom = null;
   let starting = null, slide = null, hop = null, lastPayload = null, leashToast = 0, doorToast = 0;
@@ -78,12 +88,7 @@ async function runGame() {
     ents.combat(p);
     const t = ents.targeted;
     if (t) hud.setTarget({ kind: t.kind, ...t.data });
-    // each round: the hero swings at whoever they fight
-    if (hero && p.in_combat !== false && MH.state.inCombat) {
-      const foe = t && t.root && t.vnum === (heroRoom && heroRoom.vnum) ? t : null;
-      if (foe) ctl.face(foe.root.position.x, foe.root.position.z);
-      ctl.swing(['1H_Melee_Attack_Chop', '1H_Melee_Attack_Slice_Diagonal', '1H_Melee_Attack_Stab'][Math.floor(Math.random() * 3)]);
-    }
+    // (swings, hits and casts are drawn from the server's combat events: combat.js)
   });
   MH.bus.on('move.result', res => { if (sync) sync.onResult(res); });
   MH.bus.on('target.set', t => hud.setTarget(t));
@@ -295,10 +300,24 @@ async function runGame() {
     inReach(t, () => {
       ctl.face(t.root.position.x, t.root.position.z);
       ctl.swing();
-      if (!MH.state.inCombat) MH.sendCommand(`kill ${keyword(t)}`);
+      if (!MH.state.inCombat) { const cmd = `kill ${keyword(t)}`; lastAction = { cmd, at: performance.now() }; MH.sendCommand(cmd); }
     });
   }
   MH.bus.on('hud.attack', attack);
+  // the server refused an action for distance: close in (or step back) and retry once
+  let lastAction = null;
+  function outOfRange(e) {
+    const t = ents.targeted;
+    if (!t || !t.root || !lastAction || performance.now() - lastAction.at > 4000) {
+      hud.toast(e.need ? `Too far — get within ${e.need} m` : 'Out of range');
+      return;
+    }
+    const need = Math.max(1.2, (e.need || 2.4) - 0.6);
+    const p = hero.root.position, q = t.root.position;
+    const dx = p.x - q.x, dz = p.z - q.z, d = Math.hypot(dx, dz) || 1;
+    const retry = lastAction; lastAction = null;
+    ctl.walkTo(q.x + dx / d * need, q.z + dz / d * need, () => MH.sendCommand(retry.cmd));
+  }
   MH.bus.on('hud.flee', () => MH.sendCommand('flee'));
   MH.bus.on('hud.ability', ab => {
     const t = ents.targeted;
@@ -306,13 +325,15 @@ async function runGame() {
     const base = ab.spell ? `cast '${name}'` : name;
     if (ab.self || !t || t.kind !== 'mob') {
       if (!ab.self && !t) return hud.toast('No target — click a creature or press Tab.');
-      ctl.swing(ab.spell ? 'Spellcast_Shoot' : '1H_Melee_Attack_Stab');
+      ctl.swing(ab.spell ? 'Spellcast_Shoot' : '1H_Melee_Attack_Stab'); ctl.localSwingAt = performance.now();
       return MH.sendCommand(base);
     }
     inReach(t, () => {
       ctl.face(t.root.position.x, t.root.position.z);
-      ctl.swing(ab.spell ? 'Spellcast_Shoot' : '1H_Melee_Attack_Stab');
-      MH.sendCommand(`${base} ${keyword(t)}`);
+      ctl.swing(ab.spell ? 'Spellcast_Shoot' : '1H_Melee_Attack_Stab'); ctl.localSwingAt = performance.now();
+      const cmd = `${base} ${keyword(t)}`;
+      lastAction = { cmd, at: performance.now() };
+      MH.sendCommand(cmd);
     });
   });
   // doors: E opens the nearest closed door of this room

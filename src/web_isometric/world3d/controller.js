@@ -94,7 +94,25 @@ export class Controller {
       && !b(x + d, z + d) && !b(x - d, z + d) && !b(x + d, z - d) && !b(x - d, z - d);
   }
 
+  // a short rush to a point (charge, lunges): eased, stops at the last open spot
+  dash(x, z, time = 0.25) {
+    this.dashing = { fx: this.pos.x, fz: this.pos.z, tx: x, tz: z, t: 0, time };
+    this.path = null;
+    this.yaw = Math.atan2(x - this.pos.x, z - this.pos.z);
+  }
+
   update(dt) {
+    if (this.dashing) {
+      const d = this.dashing;
+      d.t = Math.min(1, d.t + dt / d.time);
+      const k = 1 - Math.pow(1 - d.t, 3);
+      const nx = d.fx + (d.tx - d.fx) * k, nz = d.fz + (d.tz - d.fz) * k;
+      if (this.free(nx, nz)) { this.pos.x = nx; this.pos.z = nz; } else d.t = 1;
+      this.actor.root.rotation.y = this.yaw;
+      if (d.t >= 1) this.dashing = null;
+      this.vel.set(0, 0);
+      return 0;
+    }
     this.lock = Math.max(0, this.lock - dt);
     const w = this.enabled && !MH.state.uiFrozen && this.lock === 0 ? this.wish() : new THREE.Vector2();
     const top = this.keys.has('shift') ? WALK : RUN;

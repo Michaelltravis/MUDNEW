@@ -285,6 +285,7 @@
         else if (payload.type === 'loot_roll') MH.bus.emit('loot.roll', payload);
         else if (payload.type === 'loot_result') MH.bus.emit('loot.result', payload);
         else if (payload.type === 'move_result') MH.bus.emit('move.result', payload);
+        else if (payload.type === 'combat_events') MH.bus.emit('combat.events', payload);
       } catch (err) {
         console.warn('map socket parse error', err);
       }

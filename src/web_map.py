@@ -212,6 +212,26 @@ class WebMapServer:
                 except Exception:
                     self.clients.discard(client)
 
+    async def send_room_event(self, room, event: dict):
+        """A small structured event (combat_events.py) to the web clients of everyone in
+        `room` — no map payload, so it is cheap enough to send many times a round."""
+        names = {getattr(ch, 'name', '').lower() for ch in (getattr(room, 'characters', None) or [])
+                 if hasattr(ch, 'account_name')}
+        if not names:
+            return
+        data = json.dumps(event)
+        dead = []
+        for client in list(self.clients):
+            if (client.player_name or '').lower() not in names:
+                continue
+            try:
+                if not await self._ws_send(client.writer, data):
+                    dead.append(client)
+            except Exception:
+                dead.append(client)
+        for client in dead:
+            self.clients.discard(client)
+
     async def notify_combat(self, player):
         """Push a lightweight vitals/entity update during combat rounds, to the
         fighter AND to everyone else standing in the room (each sees the round
