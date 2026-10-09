@@ -35,6 +35,7 @@ _CT_3D = {'js': 'text/javascript', 'json': 'application/json', 'css': 'text/css'
           'glb': 'model/gltf-binary', 'png': 'image/png', 'webp': 'image/webp'}
 _GZIP_3D = {'js', 'json', 'css', 'glb'}
 _static_cache = {}   # full path -> (mtime, raw bytes, gzipped bytes or None)
+_zonemap_bytes = {}  # zone -> (json bytes, gzipped)
 _asset_version = None
 
 
@@ -186,13 +187,15 @@ class WebMapServer:
         if matching_clients == 0:
             logger.warning(f"notify_player: NO connected clients for '{player.name}' (total clients: {len(self.clients)}, names: {client_names})")
 
-    async def notify_room(self, room, event=None):
+    async def notify_room(self, room, event=None, skip=None):
         """Push fresh map payloads to every connected player standing in the
         room - optionally preceded by a lightweight event (mob movement) so
         graphical clients can animate the cause before the roster updates."""
         if not room:
             return
         for ch in list(getattr(room, 'characters', [])):
+            if ch is skip:
+                continue
             name = getattr(ch, 'name', None)
             if not name or not hasattr(ch, 'connection'):
                 continue
@@ -360,6 +363,36 @@ class WebMapServer:
                             break
                 body = json.dumps(dict(result, found=True)) if result else json.dumps({'found': False})
                 await self._http_response(writer, 200, 'OK', body, content_type='application/json')
+            elif path.startswith('/zonemap'):
+                # one zone as a continuous space for the 3D client (/play); static per run
+                from map_system import build_zonemap
+                q = parse_qs(urlparse(path).query)
+                try:
+                    zone = int((q.get('zone') or [''])[0]) if q.get('zone') else None
+                    if zone is None and q.get('vnum'):
+                        room = self.world.rooms.get(int(q['vnum'][0]))
+                        zone = room.zone.number if room and room.zone else None
+                except ValueError:
+                    zone = None
+                data = build_zonemap(self.world, zone) if zone is not None else None
+                if not data:
+                    await self._http_response(writer, 404, 'Not Found', json.dumps({'found': False}),
+                                              content_type='application/json')
+                    return
+                hit = _zonemap_bytes.get(zone)
+                if not hit:
+                    raw = json.dumps(data, separators=(',', ':')).encode()
+                    hit = _zonemap_bytes[zone] = (raw, gzip.compress(raw, 6))
+                gz = 'gzip' in headers.get('accept-encoding', '')
+                body = hit[1] if gz else hit[0]
+                head = ["HTTP/1.1 200 OK", "Content-Type: application/json", f"Content-Length: {len(body)}",
+                        "Cache-Control: no-cache", "Vary: Accept-Encoding", "Access-Control-Allow-Origin: *",
+                        "Connection: close"] + (["Content-Encoding: gzip"] if gz else [])
+                writer.write(("\r\n".join(head) + "\r\n\r\n").encode())
+                if method != 'HEAD':
+                    writer.write(body)
+                await writer.drain()
+                return
             elif path.startswith('/atlas'):
                 # the complete world atlas (static; cached server-side)
                 from map_system import build_atlas

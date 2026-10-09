@@ -2,6 +2,7 @@
 Map rendering and coordinate utilities for Misthollow.
 """
 
+import itertools
 from typing import Dict, Tuple, Set, List, Optional
 
 from config import Config
@@ -327,7 +328,7 @@ def render_ascii_map(player, mode: str = 'local', size: int = 11) -> str:
 
     # Filter rooms by mode
     rooms: Dict[int, object] = {}
-    if mode == 'zone' and player.room and player.room.zone:
+    if mode in ('zone', 'near') and player.room and player.room.zone:
         zone_rooms = set(player.room.zone.rooms.keys())
         for vnum in explored:
             if vnum in zone_rooms:
@@ -843,6 +844,7 @@ def build_combat_payload(player) -> dict:
                 except Exception:
                     quest_mark = ''
             mob = {
+                'id': _mob_uid(entity),
                 'name': getattr(entity, 'name', 'Unknown'),
                 'level': getattr(entity, 'level', 1),
                 'hostile': getattr(entity, 'aggressive', False) or getattr(entity, 'hostile', False),
@@ -909,6 +911,137 @@ def build_combat_payload(player) -> dict:
         'players': others,
         'group': build_group_block(player),
     }
+
+
+_ZONEMAP_CACHE: Dict[int, dict] = {}
+_MOB_UIDS = itertools.count(1)
+_ZONECELL_INDEX: Dict[int, Dict[int, list]] = {}
+CARDINALS = ('north', 'south', 'east', 'west')
+
+
+def _door_info(exit_data) -> Optional[dict]:
+    """A door on an exit, in either of the two formats the zone files use."""
+    if not isinstance(exit_data, dict):
+        return None
+    door = exit_data.get('door')
+    if isinstance(door, dict):
+        return {'name': door.get('name', 'door'),
+                'closed': door.get('state') == 'closed' or bool(door.get('closed')),
+                'locked': bool(door.get('locked'))}
+    flags = exit_data.get('flags') or []
+    if 'door' in flags:
+        name = (exit_data.get('keyword') or 'door').split()[0]
+        return {'name': name, 'closed': 'closed' in flags, 'locked': 'locked' in flags}
+    return None
+
+
+def build_zonemap(world, zone_num: int) -> Optional[dict]:
+    """One zone laid out as a single continuous space for the 3D client (/play).
+
+    The same BFS as the atlas, but over the zone's own rooms only (a zone laid out on
+    its own misplaces far fewer exits than the global atlas), then:
+      - every up/down level becomes its own island, side by side on x;
+      - rooms the layout had to stack on one cell move to the nearest free cell;
+      - every exit is classified: 'open' (the target sits in the next cell AND its
+        opposite exit points back, so the two rooms can share an opening), 'passage'
+        (same zone, any other placement, up/down, named exits) or 'zone' (another zone).
+    Static data only (doors are reported as built; live door state is in map_data).
+    Hidden exits are left out until the client knows which ones the player found."""
+    if zone_num in _ZONEMAP_CACHE:
+        return _ZONEMAP_CACHE[zone_num]
+    zone = world.zones.get(zone_num)
+    rooms = {v: r for v, r in world.rooms.items() if r.zone is not None and r.zone.number == zone_num}
+    if not zone or not rooms:
+        return None
+    coords = compute_room_coords(rooms, min(rooms))
+
+    # islands: level 0 first, then 1, -1, 2, -2 ... each to the right of the last
+    levels: Dict[int, List[int]] = {}
+    for v, (x, y, z) in coords.items():
+        levels.setdefault(z, []).append(v)
+    cells: Dict[int, Tuple[int, int]] = {}
+    taken: Set[Tuple[int, int]] = set()
+    left = 0
+    for z in sorted(levels, key=lambda lv: (abs(lv), -lv)):
+        vs = levels[z]
+        minx = min(coords[v][0] for v in vs)
+        miny = min(coords[v][1] for v in vs)
+        right = left
+        for v in vs:   # coords keeps placement order, so the first claimant keeps a cell
+            cell = (coords[v][0] - minx + left, coords[v][1] - miny)
+            if cell in taken:
+                cell = _nearest_free(cell, taken)
+            cells[v] = cell
+            taken.add(cell)
+            right = max(right, cell[0])
+        left = right + 3
+
+    out_rooms = []
+    links = set()
+    for v, room in rooms.items():
+        cx, cy = cells[v]
+        exits = {}
+        for direction, ed in (room.exits or {}).items():
+            if not isinstance(ed, dict) or ed.get('hidden'):
+                continue
+            to = _get_exit_target_vnum(ed)
+            target = world.rooms.get(to) if to is not None else None
+            if not target:
+                continue
+            tz = target.zone.number if target.zone else None
+            entry = {'to': to, 'kind': 'zone' if tz != zone_num else 'passage'}
+            if tz != zone_num:
+                entry['zone'] = tz
+                links.add(tz)
+            elif direction in CARDINALS and to in cells:
+                ox, oy, _ = DIR_OFFSETS[direction]
+                back = (target.exits or {}).get(REVERSE_DIR[direction])
+                if (cells[to] == (cx + ox, cy + oy) and isinstance(back, dict)
+                        and not back.get('hidden') and _get_exit_target_vnum(back) == v):
+                    entry['kind'] = 'open'
+            door = _door_info(ed)
+            if door:
+                entry['door'] = door
+            exits[direction] = entry
+        out_rooms.append({
+            'vnum': v, 'name': room.name, 'sector': getattr(room, 'sector_type', '') or '',
+            'flags': list(room.flags) if hasattr(room, 'flags') else [],
+            'description': getattr(room, 'description', '') or '',
+            'cell': [cx, cy], 'level': coords[v][2], 'exits': exits,
+        })
+    w = max(c[0] for c in cells.values()) + 1
+    h = max(c[1] for c in cells.values()) + 1
+    _ZONEMAP_CACHE[zone_num] = data = {
+        'type': 'zonemap', 'zone': zone_num, 'name': zone.name,
+        'size': [w, h], 'rooms': out_rooms, 'links': sorted(z for z in links if z is not None),
+    }
+    return data
+
+
+def _nearest_free(cell: Tuple[int, int], taken: Set[Tuple[int, int]]) -> Tuple[int, int]:
+    x, y = cell
+    for r in range(1, 64):
+        ring = [(x + dx, y + dy) for dx in range(-r, r + 1) for dy in range(-r, r + 1)
+                if max(abs(dx), abs(dy)) == r and y + dy >= 0]
+        for c in ring:
+            if c not in taken:
+                return c
+    return (x + 64, y)
+
+
+def zone_cell(world, vnum: int) -> Optional[Tuple[int, int, int]]:
+    """(zone, cx, cy) of a room in its zone map."""
+    room = world.rooms.get(vnum)
+    if not room or not room.zone:
+        return None
+    zm = build_zonemap(world, room.zone.number)
+    if not zm:
+        return None
+    idx = _ZONECELL_INDEX.get(zm['zone'])
+    if idx is None:
+        idx = _ZONECELL_INDEX[zm['zone']] = {r['vnum']: r['cell'] for r in zm['rooms']}
+    c = idx.get(vnum)
+    return (room.zone.number, c[0], c[1]) if c else None
 
 
 _ATLAS_CACHE = None
@@ -993,6 +1126,115 @@ def _mob_roles(entity) -> list:
     except Exception:
         return []
 
+def _mob_uid(entity) -> int:
+    """A stable id for one live mob, so clients can follow it across updates (mobs have
+    no unique name: three "a rat" in one room are three ids)."""
+    uid = getattr(entity, '_web_uid', None)
+    if uid is None:
+        uid = next(_MOB_UIDS)
+        try:
+            entity._web_uid = uid
+        except Exception:
+            pass
+    return uid
+
+
+def _room_entities(room, vnum, player):
+    """Mobs, other players, doors and floor items of one room, as the map payload
+    lists them (used for every explored room and for the 3D client's nearby rooms)."""
+    # Build mob list for this room
+    mob_list = []
+    if hasattr(room, 'characters'):
+        for entity in room.characters:
+            if hasattr(entity, 'account_name'):
+                continue  # skip players (handled below)
+            quest_mark = ''
+            # quest scan is per-mob, per-room, per-push: only the CURRENT
+            # room renders markers, so only compute it there (a veteran
+            # character's full explored set made every step crawl)
+            if hasattr(entity, 'vnum') and player.room and vnum == player.room.vnum:
+                try:
+                    from quests import QuestManager
+                    quest_mark = QuestManager.get_quest_giver_indicator(player, entity.vnum)
+                except Exception:
+                    quest_mark = ''
+            mob_info = {
+                'id': _mob_uid(entity),
+                'name': getattr(entity, 'name', 'Unknown'),
+                'level': getattr(entity, 'level', 1),
+                'hostile': getattr(entity, 'aggressive', False) or getattr(entity, 'hostile', False),
+                'boss': 'boss' in (getattr(entity, 'flags', None) or []) or getattr(entity, 'is_boss', False),
+                'roles': _mob_roles(entity),
+                'shopkeeper': getattr(entity, 'special', '') == 'shopkeeper',
+            'trainer': getattr(entity, 'special', '') in ('trainer', 'guildmaster'),
+                'quest': quest_mark,
+                'flags': list(getattr(entity, 'flags', []) or []),
+                'pose': _mob_pose(entity),
+                'sex': (getattr(entity, 'sex', 'male') or 'male'),
+                'char_class': (getattr(entity, 'char_class', '') or ''),
+            }
+            # Include HP if available
+            hp = getattr(entity, 'hp', None)
+            max_hp = getattr(entity, 'max_hp', None)
+            if hp is not None and max_hp:
+                mob_info['hp'] = hp
+                mob_info['maxHp'] = max_hp
+            mob_list.append(mob_info)
+
+    # Build other-players list for this room
+    player_list = []
+    if hasattr(room, 'characters'):
+        for entity in room.characters:
+            if hasattr(entity, 'account_name') and entity is not player:
+                player_list.append({
+                    'name': getattr(entity, 'name', 'Unknown'),
+                    'level': getattr(entity, 'level', 1),
+                    'char_class': getattr(entity, 'char_class', ''),
+                    'hp': getattr(entity, 'hp', 0),
+                    'maxHp': getattr(entity, 'max_hp', 1),
+                    **_ally_combat(entity, player),
+                })
+
+    # Build door info for exits
+    doors = {}
+    if hasattr(room, 'exits'):
+        raw_exits = room.exits if isinstance(room.exits, dict) else {}
+        for direction, exit_data in raw_exits.items():
+            if isinstance(exit_data, dict) and 'door' in exit_data:
+                door = exit_data['door']
+                doors[direction] = {
+                    'name': door.get('name', 'door'),
+                    'state': door.get('state', 'open'),
+                    'locked': bool(door.get('locked', False)),
+                }
+
+    # Items on ground
+    item_list = []
+    for item in (getattr(room, 'items', None) or getattr(room, 'contents', []))[:12]:
+        item_list.append(item_info(item))
+    return mob_list, player_list, doors, item_list
+
+
+def _nearby_entities(player, radius: int = 3) -> list:
+    room = getattr(player, 'room', None)
+    if not room:
+        return []
+    zc = zone_cell(player.world, room.vnum)
+    if not zc:
+        return []
+    zn, px, py = zc
+    out = []
+    for v, (cx, cy) in (_ZONECELL_INDEX.get(zn) or {}).items():
+        if abs(cx - px) > radius or abs(cy - py) > radius:
+            continue
+        r = player.world.rooms.get(v)
+        if not r:
+            continue
+        mobs, players, doors, items = _room_entities(r, v, player)
+        out.append({'vnum': v, 'mobs': mobs, 'players': players, 'doors': doors, 'items': items})
+    return out
+
+
 def build_map_payload(player, mode: str = 'full') -> dict:
     """Build map data payload for the web map UI."""
     explored = set(getattr(player, 'explored_rooms', set()))
@@ -1070,75 +1312,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
         if zone_num not in zones_seen:
             zones_seen[zone_num] = zone_name
         
-        # Build mob list for this room
-        mob_list = []
-        if hasattr(room, 'characters'):
-            for entity in room.characters:
-                if hasattr(entity, 'account_name'):
-                    continue  # skip players (handled below)
-                quest_mark = ''
-                # quest scan is per-mob, per-room, per-push: only the CURRENT
-                # room renders markers, so only compute it there (a veteran
-                # character's full explored set made every step crawl)
-                if hasattr(entity, 'vnum') and player.room and vnum == player.room.vnum:
-                    try:
-                        from quests import QuestManager
-                        quest_mark = QuestManager.get_quest_giver_indicator(player, entity.vnum)
-                    except Exception:
-                        quest_mark = ''
-                mob_info = {
-                    'name': getattr(entity, 'name', 'Unknown'),
-                    'level': getattr(entity, 'level', 1),
-                    'hostile': getattr(entity, 'aggressive', False) or getattr(entity, 'hostile', False),
-                    'boss': 'boss' in (getattr(entity, 'flags', None) or []) or getattr(entity, 'is_boss', False),
-                    'roles': _mob_roles(entity),
-                    'shopkeeper': getattr(entity, 'special', '') == 'shopkeeper',
-                'trainer': getattr(entity, 'special', '') in ('trainer', 'guildmaster'),
-                    'quest': quest_mark,
-                    'flags': list(getattr(entity, 'flags', []) or []),
-                    'pose': _mob_pose(entity),
-                    'sex': (getattr(entity, 'sex', 'male') or 'male'),
-                    'char_class': (getattr(entity, 'char_class', '') or ''),
-                }
-                # Include HP if available
-                hp = getattr(entity, 'hp', None)
-                max_hp = getattr(entity, 'max_hp', None)
-                if hp is not None and max_hp:
-                    mob_info['hp'] = hp
-                    mob_info['maxHp'] = max_hp
-                mob_list.append(mob_info)
-
-        # Build other-players list for this room
-        player_list = []
-        if hasattr(room, 'characters'):
-            for entity in room.characters:
-                if hasattr(entity, 'account_name') and entity is not player:
-                    player_list.append({
-                        'name': getattr(entity, 'name', 'Unknown'),
-                        'level': getattr(entity, 'level', 1),
-                        'char_class': getattr(entity, 'char_class', ''),
-                        'hp': getattr(entity, 'hp', 0),
-                        'maxHp': getattr(entity, 'max_hp', 1),
-                        **_ally_combat(entity, player),
-                    })
-
-        # Build door info for exits
-        doors = {}
-        if hasattr(room, 'exits'):
-            raw_exits = room.exits if isinstance(room.exits, dict) else {}
-            for direction, exit_data in raw_exits.items():
-                if isinstance(exit_data, dict) and 'door' in exit_data:
-                    door = exit_data['door']
-                    doors[direction] = {
-                        'name': door.get('name', 'door'),
-                        'state': door.get('state', 'open'),
-                        'locked': bool(door.get('locked', False)),
-                    }
-
-        # Items on ground
-        item_list = []
-        for item in (getattr(room, 'items', None) or getattr(room, 'contents', []))[:12]:
-            item_list.append(item_info(item))
+        mob_list, player_list, doors, item_list = _room_entities(room, vnum, player)
 
         room_items.append({
             'vnum': vnum,
@@ -1287,7 +1461,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
         except Exception:
             pass
 
-    return {
+    payload = {
         'type': 'map_data',
         'rooms': room_items,
         'frontier': valid_frontier,
@@ -1362,3 +1536,8 @@ def build_map_payload(player, mode: str = 'full') -> dict:
         },
         'group': build_group_block(player),
     }
+    if mode == 'near':
+        # the 3D client draws every room around the hero, explored or not: send their
+        # occupants so monsters ahead are standing there before you walk in
+        payload['nearby'] = _nearby_entities(player)
+    return payload

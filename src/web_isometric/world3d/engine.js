@@ -20,6 +20,10 @@ export const MOODS = {
   day: { sky: 0xcfe2ff, ground: 0x5a4a32, hemi: 1.15, sun: 0xfff1d6, sunI: 2.6, fog: 0xa9bfd0, near: 34, far: 90, exposure: 1.0 },
   forest: { sky: 0xbfe0c8, ground: 0x3a3424, hemi: 1.0, sun: 0xffe6b8, sunI: 2.3, fog: 0x8fae9a, near: 30, far: 80, exposure: 1.0 },
   crypt: { sky: 0x5a6a8a, ground: 0x1a140e, hemi: 0.32, sun: 0x8090c0, sunI: 0.25, fog: 0x0d0f16, near: 18, far: 52, exposure: 1.15 },
+  // a lit interior (temple, shop, inn): warm and readable, no strong sun
+  interior: { sky: 0xffe6c4, ground: 0x3a2c1e, hemi: 0.85, sun: 0xffe2b8, sunI: 0.9, fog: 0x1c1712, near: 26, far: 70, exposure: 1.05 },
+  dusk: { sky: 0xf0b890, ground: 0x3a2a24, hemi: 0.7, sun: 0xff9a5a, sunI: 1.5, fog: 0x6a5060, near: 30, far: 80, exposure: 1.05 },
+  night: { sky: 0x4a5a8a, ground: 0x141418, hemi: 0.42, sun: 0x9ab0ff, sunI: 0.55, fog: 0x0e1424, near: 24, far: 66, exposure: 1.2 },
 };
 
 export function createEngine(container, opts = {}) {

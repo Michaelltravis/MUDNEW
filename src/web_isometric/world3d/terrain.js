@@ -10,6 +10,9 @@ const FLOOR = 0, BLOCK = 1, WATER = 4;
 
 const INDOOR = new Set(['inside', 'dungeon', 'cave']);
 export const isIndoor = theme => INDOOR.has(theme);
+// stone floor and walls: interiors and dungeons, and town streets (walled, open sky)
+const PAVED = new Set(['inside', 'dungeon', 'cave', 'city']);
+const CARD = { north: [0, -1], south: [0, 1], east: [1, 0], west: [-1, 0] };
 
 // ---- deterministic noise (world-space, so neighbouring rooms join seamlessly) ----
 function hash2(x, y) {
@@ -72,9 +75,13 @@ function runs(grid, W, H) {
   return out;
 }
 
-export function buildRoom(layout, ox, oz, kits) {
+// `room` (optional) is the zone's room record: its exits place doors, passage markers
+// and stairs. Returns the group, torch positions, door meshes and the geometries this
+// room owns (to dispose when it is released).
+export function buildRoom(layout, ox, oz, kits, room) {
   const { grid, W, H } = layout;
   const theme = layout.theme;
+  const owned = [];
   const rng = MH.mulberry32((layout.vnum * 2246822519) ^ 0x3d);
   const group = new THREE.Group();
   group.name = `room_${layout.vnum}`;
@@ -83,18 +90,20 @@ export function buildRoom(layout, ox, oz, kits) {
   const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? BLOCK : grid[y * W + x];
   const D = kits.dungeon, N = kits.nature;
 
-  if (isIndoor(theme)) {
+  if (PAVED.has(theme)) {
+    const town = theme === 'city';
     // ---- floor: KayKit stone tiles at 1 m ----
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
       // under everything but the wall ring (obstacles stand ON the floor)
       if (at(x, y) === BLOCK && (x === 0 || y === 0 || x === W - 1 || y === H - 1)) continue;
       const r = rng();
-      const key = r < 0.07 ? 'floor_tile_small_broken_A' : r < 0.13 ? 'floor_tile_small_weeds_A' : 'floor_tile_small';
+      const key = town ? (r < 0.1 ? 'floor_tile_small_weeds_A' : 'floor_tile_small_broken_A')
+        : r < 0.07 ? 'floor_tile_small_broken_A' : r < 0.13 ? 'floor_tile_small_weeds_A' : 'floor_tile_small';
       b.add(D.get(key), trs(ox + x + 0.5, -0.05, oz + y + 0.5, Math.floor(rng() * 4) * Math.PI / 2, 0.5, 0.5, 0.5), { shadow: false });
     }
     // ---- walls: border runs as stretched KayKit wall pieces ----
     const wall = asOccluder(D.get('wall'));
-    const WALL_H = 2.6;
+    const WALL_H = town ? 2.0 : 2.6;
     for (const run of runs(grid, W, H)) {
       const L = run.b - run.a + 1;
       const n = Math.max(1, Math.round(L / 4)), w = L / n;
@@ -104,7 +113,7 @@ export function buildRoom(layout, ox, oz, kits) {
         b.add(wall, trs(x, 0, z, yaw, w / 4, WALL_H / 4, 1));
       }
       // torches on the north wall, facing into the room, every ~6 m
-      if (run.horiz && run.line === 0 && L >= 4) {
+      if (!town && run.horiz && run.line === 0 && L >= 4) {
         for (let tx = run.a + 2; tx <= run.b - 1; tx += 6) {
           if (at(tx, 1) === BLOCK) continue;
           b.add(D.get('torch_mounted'), trs(ox + tx + 0.5, 1.55, oz + 1.0, 0, 1), { shadow: false });
@@ -115,7 +124,8 @@ export function buildRoom(layout, ox, oz, kits) {
     // ---- interior obstacles (they block in the grid) ----
     for (const o of layout.obstacles || []) {
       if (o.big) {
-        const key = rng() < 0.55 ? 'pillar' : rng() < 0.5 ? 'crates_stacked' : 'barrel_large';
+        const key = town ? ['crates_stacked', 'barrel_large', 'keg'][Math.floor(rng() * 3)]
+          : rng() < 0.55 ? 'pillar' : rng() < 0.5 ? 'crates_stacked' : 'barrel_large';
         const s = key === 'pillar' ? 1 : 0.9;
         b.add(asOccluder(D.get(key)), trs(ox + o.x + 1, 0, oz + o.y + 1, Math.floor(rng() * 4) * Math.PI / 2, s, key === 'pillar' ? 0.66 : s, s));
       } else {
@@ -126,6 +136,14 @@ export function buildRoom(layout, ox, oz, kits) {
     }
     // ---- decorative props (walk-through): small things only ----
     for (const p of layout.props || []) {
+      if (town) {
+        // a standing torch lights the street
+        if (rng() < 0.5) {
+          b.add(D.get('torch_lit'), trs(ox + p.x + 0.5, 0.4, oz + p.y + 0.5, 0, 1.6), { shadow: false });
+          torches.push(new THREE.Vector3(ox + p.x + 0.5, 1.6, oz + p.y + 0.5));
+        } else b.add(D.get('barrel_small'), trs(ox + p.x + 0.5, 0, oz + p.y + 0.5, rng() * 6.28, 0.8));
+        continue;
+      }
       const key = ['candle_triple', 'candle_lit', 'coin_stack_large', 'candle_triple'][Math.floor(rng() * 4)];
       const s = key === 'coin_stack_large' ? 0.45 : 0.9;
       b.add(D.get(key), trs(ox + p.x + 0.5, 0, oz + p.y + 0.5, rng() * Math.PI * 2, s), { shadow: false });
@@ -167,7 +185,8 @@ export function buildRoom(layout, ox, oz, kits) {
     }
     geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
     geo.computeVertexNormals();
-    const ground = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.95, metalness: 0 }));
+    owned.push(geo);
+    const ground = new THREE.Mesh(geo, GROUND_MAT);
     ground.receiveShadow = true;
     group.add(ground);
 
@@ -175,9 +194,7 @@ export function buildRoom(layout, ox, oz, kits) {
     const wq = [];
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (at(x, y) === WATER) wq.push([x, y]);
     if (wq.length) {
-      const wg = new THREE.PlaneGeometry(1, 1);
-      wg.rotateX(-Math.PI / 2);
-      const wm = new THREE.InstancedMesh(wg, WATER_MAT, wq.length);
+      const wm = new THREE.InstancedMesh(WATER_GEO, WATER_MAT, wq.length);
       wq.forEach(([x, y], i) => wm.setMatrixAt(i, trs(ox + x + 0.5, -0.12, oz + y + 0.5, 0, 1.02)));
       wm.receiveShadow = true;
       group.add(wm);
@@ -242,14 +259,143 @@ export function buildRoom(layout, ox, oz, kits) {
   }
 
   b.build(group);
+  const doors = room ? exitFeatures(group, layout, ox, oz, room, kits, owned) : {};
   // flames: tiny HDR spheres so the bloom pass picks them up
   for (const t of torches) {
     const f = new THREE.Mesh(FLAME_GEO, FLAME_MAT);
     f.position.copy(t).add(new THREE.Vector3(0, -0.05, -0.12));
     group.add(f);
   }
-  return { group, torches, layout, ox, oz };
+  return { group, torches, layout, ox, oz, doors, owned };
 }
+
+// ---- exits: doors in shared openings, glowing markers on passages, stairs ----
+function exitFeatures(group, layout, ox, oz, room, kits, owned) {
+  const doors = {};
+  const zone = room.zoneRef;
+  for (const [dir, e] of Object.entries(room.data.exits)) {
+    const g = layout.gaps[dir];
+    if (CARD[dir] && g) {
+      const horiz = dir === 'north' || dir === 'south';
+      const a = horiz ? g.x0 : g.y0, bnd = horiz ? g.x1 + 1 : g.y1 + 1;
+      const mid = (a + bnd) / 2, span = bnd - a;
+      // the boundary line of this side of the room
+      const edge = dir === 'north' ? 0 : dir === 'south' ? ROOM_H : dir === 'west' ? 0 : ROOM_W;
+      const [x, z] = horiz ? [ox + mid, oz + edge] : [ox + edge, oz + mid];
+      if (e.kind === 'open' && e.door && (dir === 'south' || dir === 'east')) {
+        const d = makeDoor(span, horiz);
+        d.position.set(x, 0, z);
+        d.userData.setOpen(!(room.doors[dir] && room.doors[dir].closed));
+        group.add(d);
+        doors[dir] = d;
+      } else if (e.kind !== 'open') {
+        const zoneExit = e.kind === 'zone';
+        const inward = horiz ? (dir === 'north' ? 0.35 : -0.35) : (dir === 'west' ? 0.35 : -0.35);
+        const m = new THREE.Mesh(CURTAIN_GEO, zoneExit ? CURTAIN_GOLD : CURTAIN_BLUE);
+        m.scale.set(span, 1, 1);
+        m.position.set(horiz ? x : x + inward, 1.25, horiz ? z + inward : z);
+        if (!horiz) m.rotation.y = Math.PI / 2;
+        group.add(m);
+        const target = zone && zone.rooms.get(e.to);
+        const label = zoneExit ? 'To another region' : `↗ ${target ? target.name : 'Onward'}`;
+        const sp = labelSprite(label, zoneExit ? '#ffd88a' : '#cfe6ff', owned);
+        sp.position.set(m.position.x, 2.9, m.position.z);
+        group.add(sp);
+      }
+    }
+  }
+  for (const [key, t] of [['up', layout.stairsUp], ['down', layout.stairsDown]]) {
+    if (!t) continue;
+    const st = kits.dungeon.get('stairs');
+    if (st) for (const p of st.parts) {
+      const mesh = new THREE.Mesh(p.geometry, p.material);
+      mesh.applyMatrix4(trs(ox + t.x + 0.5, key === 'down' ? -0.9 : 0, oz + t.y + 0.5, key === 'up' ? Math.PI : 0, 0.42));
+      mesh.castShadow = mesh.receiveShadow = true;
+      group.add(mesh);
+    }
+    const sp = labelSprite(key === 'up' ? '▲ Up' : '▼ Down', '#e8e2c8', owned);
+    sp.position.set(ox + t.x + 0.5, 2.6, oz + t.y + 0.5);
+    group.add(sp);
+  }
+  for (const pt of layout.portals || []) {
+    const ring = new THREE.Mesh(PORTAL_GEO, PORTAL_MAT);
+    ring.rotation.x = -Math.PI / 2;
+    ring.position.set(ox + pt.x + 0.5, 0.06, oz + pt.y + 0.5);
+    group.add(ring);
+    const sp = labelSprite(`✦ ${pt.name}`, '#e6d0ff', owned);
+    sp.position.set(ox + pt.x + 0.5, 2.2, oz + pt.y + 0.5);
+    group.add(sp);
+  }
+  return doors;
+}
+
+// a plank door (double for wide openings) that swings open on its hinges
+function makeDoor(span, horiz) {
+  const g = new THREE.Group();
+  const leaves = span > 5.5 ? 2 : 1, w = span / leaves;
+  const parts = [];
+  for (let i = 0; i < leaves; i++) {
+    const hinge = new THREE.Group();
+    const along = -span / 2 + (i === 0 ? 0 : span);
+    const leaf = new THREE.Mesh(DOOR_GEO, DOOR_MAT);
+    leaf.scale.set(w, 1, 1);
+    leaf.position.x = i === 0 ? w / 2 : -w / 2;
+    leaf.castShadow = leaf.receiveShadow = true;
+    hinge.add(leaf);
+    hinge.position.x = along;
+    g.add(hinge);
+    parts.push({ hinge, sign: i === 0 ? 1 : -1 });
+  }
+  if (!horiz) g.rotation.y = Math.PI / 2;
+  g.userData.setOpen = open => { for (const p of parts) p.hinge.rotation.y = open ? p.sign * -1.45 : 0; };
+  return g;
+}
+
+function labelSprite(text, color, owned) {
+  const c = document.createElement('canvas');
+  const ctx = c.getContext('2d');
+  ctx.font = '600 30px Georgia, serif';
+  const w = Math.ceil(ctx.measureText(text).width) + 28;
+  c.width = w; c.height = 46;
+  ctx.font = '600 30px Georgia, serif';
+  ctx.fillStyle = 'rgba(8,8,12,0.55)';
+  ctx.beginPath(); ctx.roundRect(0, 0, w, 46, 10); ctx.fill();
+  ctx.fillStyle = color; ctx.textBaseline = 'middle';
+  ctx.fillText(text, 14, 24);
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  owned.push(tex);
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, depthWrite: false, transparent: true }));
+  sp.scale.set(w / 46 * 0.62, 0.62, 1);
+  sp.renderOrder = 5;
+  return sp;
+}
+
+function curtainTexture() {
+  const c = document.createElement('canvas');
+  c.width = 4; c.height = 64;
+  const ctx = c.getContext('2d');
+  const g = ctx.createLinearGradient(0, 0, 0, 64);
+  g.addColorStop(0, 'rgba(255,255,255,0)');
+  g.addColorStop(0.55, 'rgba(255,255,255,0.35)');
+  g.addColorStop(1, 'rgba(255,255,255,0.9)');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, 4, 64);
+  const t = new THREE.CanvasTexture(c);
+  return t;
+}
+const CURTAIN_TEX = curtainTexture();
+const CURTAIN_GEO = new THREE.PlaneGeometry(1, 2.5);
+const curtain = color => new THREE.MeshBasicMaterial({ color, map: CURTAIN_TEX, transparent: true, depthWrite: false,
+  blending: THREE.AdditiveBlending, side: THREE.DoubleSide });
+const CURTAIN_BLUE = curtain(new THREE.Color(0.55, 0.8, 1.6));
+const CURTAIN_GOLD = curtain(new THREE.Color(1.8, 1.25, 0.45));
+const PORTAL_GEO = new THREE.RingGeometry(0.55, 0.85, 32);
+const PORTAL_MAT = new THREE.MeshBasicMaterial({ color: new THREE.Color(1.6, 0.9, 2.4), transparent: true, opacity: 0.85,
+  blending: THREE.AdditiveBlending, depthWrite: false });
+const DOOR_GEO = new THREE.BoxGeometry(1, 2.4, 0.18).translate(0, 1.2, 0);
+const DOOR_MAT = new THREE.MeshStandardMaterial({ color: 0x6b4426, roughness: 0.85 });
+const GROUND_MAT = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.95, metalness: 0 });
+const WATER_GEO = new THREE.PlaneGeometry(1, 1).rotateX(-Math.PI / 2);
 
 const WATER_MAT = new THREE.MeshStandardMaterial({ color: 0x2f6f86, roughness: 0.12, metalness: 0.2, transparent: true, opacity: 0.82 });
 const FLAME_GEO = new THREE.SphereGeometry(0.11, 10, 8);

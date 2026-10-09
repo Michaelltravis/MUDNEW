@@ -1,18 +1,13 @@
-// M0 look-and-feel spike (/play): four real room layouts from the MUD's room generator
-// stitched into one world — a forest glade and a brook above, a crypt below — a knight
-// you can walk through all of it without a single stop, and the crypt's skeletons.
-// No server yet: this page exists to judge the look, the camera and the walking.
+// The look-and-feel scene from milestone M0: four real room layouts from the MUD's room
+// generator (a glade, a brook, a crypt, a hall) stitched into one world, a knight and the
+// crypt's skeletons. It is the backdrop behind the login screen (the camera drifts over
+// it) and, at /play?demo, a playable page for checking art, camera and performance
+// (/play?demo&gallery=dungeon|nature lays out a whole kit).
 import * as THREE from 'three';
-import { createEngine } from './engine.js';
-import { loadKit, spawnCharacter } from './assets.js';
+import { spawnCharacter } from './assets.js';
 import { World } from './world.js';
 import { Controller } from './controller.js';
 import { cutout } from './cutout.js';
-import { attachPerf } from './perf.js';
-
-const params = new URLSearchParams(location.search);
-const engine = createEngine(document.getElementById('stage'), { quality: params.get('q') || 'high' });
-attachPerf(engine, document.getElementById('perf'));
 
 const ROOMS = [
   { cx: 0, cy: 0, vnum: 990001, sector: 'forest', name: 'Whispering Glade',
@@ -29,29 +24,20 @@ const ROOMS = [
     exits: { north: { to_room: 990002 }, west: { to_room: 990003 } } },
 ];
 
-async function main() {
-  const [dungeon, nature] = await Promise.all([loadKit('dungeon'), loadKit('nature')]);
-  if (params.get('gallery')) {
-    const { showGallery } = await import('./gallery.js');
-    const at = showGallery(engine, params.get('gallery') === 'nature' ? nature : dungeon);
-    engine.rig.target.copy(at); engine.placeCamera(true);
-    window.MH3D = { engine, THREE };
-    document.getElementById('loading').classList.add('done');
-    return;
-  }
-  const world = new World(engine, { dungeon, nature });
-  for (const r of ROOMS) world.addRoom(r, r.cx, r.cy);
+export async function buildDemo(engine, kits, { interactive = false, banner = null } = {}) {
+  const world = new World(engine, kits);
+  const groups = [];
+  for (const r of ROOMS) groups.push(world.addRoom(r, r.cx, r.cy).group);
 
-  // ---- the hero ----
   const hero = await spawnCharacter('knight');
   engine.scene.add(hero.root);
   const start = world.centre(world.byVnum.get(990001));
   hero.root.position.copy(start);
   const ctl = new Controller(engine, hero, (x, z) => world.blocked(x, z));
+  ctl.enabled = interactive;
   engine.rig.target.copy(start);
   engine.placeCamera(true);
 
-  // ---- the crypt's residents ----
   const slot = (vnum, i) => {
     const r = world.byVnum.get(vnum), s = r.layout.spawnSlots[i % r.layout.spawnSlots.length];
     return new THREE.Vector3(r.ox + s.x / 16, 0, r.oz + s.y / 16);
@@ -73,26 +59,37 @@ async function main() {
     actors.push(a);
   }
 
-  // ---- room awareness: mood and the room-name banner ----
-  const banner = document.getElementById('room-name');
-  let here = null, bannerT = 0;
+  const onKey = e => { if ((e.key === ' ' || e.key === 'f') && !e.repeat) { ctl.swing(); e.preventDefault(); } };
+  const onDown = e => {
+    if (e.button !== 0) return;
+    const g = ctl.groundAt(e.clientX, e.clientY);
+    if (g) ctl.walkTo(g.x, g.z);
+  };
+  if (interactive) {
+    window.addEventListener('keydown', onKey);
+    engine.renderer.domElement.addEventListener('pointerdown', onDown);
+  }
+
+  let here = null;
   const enter = room => {
     here = room;
-    engine.setMood(room.indoor ? 'crypt' : 'forest', !banner.textContent);
-    banner.textContent = room.name;
-    banner.style.opacity = 1;
-    bannerT = 2.2;
+    engine.setMood(room.indoor ? 'crypt' : 'forest', !banner);
+    if (banner) banner(room.name);
   };
-
-  engine.onTick((dt, t) => {
-    ctl.update(dt);
+  let orbit = 0;
+  function update(dt, t) {
+    if (interactive) ctl.update(dt);
+    else {
+      // behind the login card: drift slowly over the glade and the crypt
+      orbit += dt * 0.06;
+      engine.rig.target.set(24 + Math.sin(orbit) * 12, 0, 15 + Math.sin(orbit * 0.7) * 6);
+    }
     const p = hero.root.position;
-    engine.rig.target.set(p.x, 0, p.z);
-    cutout.update(engine.camera, p);
-    world.update(dt, t, p);
-    const room = world.roomAt(p.x, p.z);
+    if (interactive) engine.rig.target.set(p.x, 0, p.z);
+    cutout.update(engine.camera, interactive ? p : engine.rig.target);
+    world.update(dt, t, interactive ? p : engine.rig.target);
+    const room = world.roomAt(interactive ? p.x : engine.rig.target.x, interactive ? p.z : engine.rig.target.z);
     if (room && room !== here) enter(room);
-    if (bannerT > 0 && (bannerT -= dt) <= 0) banner.style.opacity = 0;
     for (const a of actors) {
       if (a.patrol) {
         a.patrol.t += dt * 0.35;
@@ -103,15 +100,13 @@ async function main() {
       }
       a.update(dt);
     }
-  });
-
-  window.MH3D = { engine, world, hero, ctl, THREE };
-  setTimeout(() => document.getElementById('hint').style.opacity = 0, 9000);
-  document.getElementById('loading').classList.add('done');
+  }
+  function dispose() {
+    window.removeEventListener('keydown', onKey);
+    engine.renderer.domElement.removeEventListener('pointerdown', onDown);
+    for (const g of groups) engine.scene.remove(g);
+    for (const a of actors) engine.scene.remove(a.root);
+    for (const l of world.lights) engine.scene.remove(l);
+  }
+  return { world, hero, ctl, update, dispose };
 }
-
-main().catch(err => {
-  console.error(err);
-  const l = document.getElementById('loading');
-  l.textContent = 'Could not start the 3D client: ' + err.message;
-});

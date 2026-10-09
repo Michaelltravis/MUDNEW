@@ -103,8 +103,8 @@ CC0 low-poly (KayKit, Quaternius) — see `docs/art/SOURCES.md`.
 
 | milestone | what | status |
 |---|---|---|
-| M0 | look and engine spike: `/play` — four real room layouts (glade, brook, crypt, hall) stitched into one world, a knight on WASD/click with run/attack animations, skeletons, sun + shadows, torch lights, fog, bloom, see-through walls, F3 perf overlay | **shipped, awaiting the owner's look check** |
-| M1 | seamless world on real zones: `/zonemap`, terrain builders per theme, controller with A*, `webmove`, doors, passages, zone changes, login + HUD | next, after the look is approved |
+| M0 | look and engine spike (now `/play?demo`) — four real room layouts (glade, brook, crypt, hall) stitched into one world, a knight on WASD/click with run/attack animations, skeletons, sun + shadows, torch lights, fog, bloom, see-through walls, F3 perf overlay | shipped; look approved (owner: "wow this looks awesome"; RTX 4070: 144 fps, 6.9 ms) |
+| M1 | seamless world on real zones: `/zonemap`, terrain builders per theme, controller with A*, `webmove`, doors, passages, zone changes, login + HUD | **M1a shipped** (see below); M1b next |
 | M2 | living world: class heroes, mob models, NPCs, items, other players' positions | |
 | M3 | combat in 3D, then Phase 3 real-time combat | |
 | M4 | polish, switch-over, retire the Phaser client | |
@@ -115,3 +115,33 @@ geometry before instancing (the optimiser's quantised positions clamp at 1 m oth
 Headless test here: holding S walks the knight from the glade into the crypt at constant speed
 across the room boundary (`z = 15`), no stop; ~110 draw calls, ~450k triangles with four rooms
 in view. Smoothness and FPS are for the owner's Mac (F3 → "Copy perf report").
+
+### M1a — the real game in 3D at `/play` (2026-10-09)
+Owner: "you can redo the HUD to match the new 3d format" — `/play` has its own page and HUD;
+the 2D client and its HUD stay at `/platformer`.
+
+- Server: `/zonemap?zone=N|vnum=V` (`map_system.build_zonemap`: per-zone layout, up/down
+  levels as islands, every exit `open` / `passage` / `zone`; all 60 zones: no shared cells,
+  every `open` exit mutual and adjacent, 80 % of in-zone exits open); `webmove <from> <to>`
+  (commands.py) answering a structured `move_result` on the map socket, no echo, name-only
+  room output; `mode='near'` payloads add `nearby` rooms (within 3 cells, explored or not)
+  with stable mob ids; one payload per move instead of two.
+- Client (`src/web_isometric/world3d/`): `zone.js` (one coordinate space per zone, rooms
+  streamed within 2 cells, crossings legal only through open exits, passage triggers),
+  `sync.js` (moves sent without waiting; refusal → slide back with the server's reason;
+  server-made moves relocate the hero, across zones too), `entities.js` (mobs/NPCs/players
+  from `nearby`, nameplates, click/Tab targeting; beasts are placeholder wisps until M2),
+  `controller.js` (A* click-to-move, minimap travel), doors (E opens), stairs / portals /
+  zone-border passages with labels.
+- HUD (`world3d/hud/`): login over a drifting 3D backdrop, character creation with the class
+  model on a plinth, player frame, health/resource orbs, action bar (3 buttons to start,
+  grows at levels 6 and 11, cooldowns), target frame with consider text, room/zone banner,
+  toasts, chat log + command line, minimap from the zone map (click a room to walk there),
+  menu (character, inventory, equipment, spells, quests), settings (quality, HUD size, F3).
+- Verified here: `tests/test_webmove.py` (11 checks incl. closed door and sleeping
+  refusals) and Playwright: login → Temple of Midgaard → hold W → server confirms the next
+  room two frames after the hero enters it; temple stairs → God Simplex (zone hop); admin
+  goto → The Whispering Woods (server-made zone change); Tab targets the nearest creature.
+- M1b next: town buildings and interior theming (KayKit Medieval Hexagon, Furniture Bits),
+  graveyards (Halloween Bits), monster/animal models (Quaternius), quest tracker and panels
+  (inventory, character, spells), polish from the owner's playtest.

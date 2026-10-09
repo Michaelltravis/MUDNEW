@@ -224,7 +224,7 @@
   function sendMapSubscribe() {
     const st = MH.state;
     if (!st.playerName || !st.mapSocket || st.mapSocket.readyState !== WebSocket.OPEN) return;
-    st.mapSocket.send(JSON.stringify({ type: 'subscribe', player: st.playerName, mode: 'full' }));
+    st.mapSocket.send(JSON.stringify({ type: 'subscribe', player: st.playerName, mode: MH.mapMode || 'full' }));
   }
   function startResubscribe() {
     stopResubscribe();
@@ -282,6 +282,7 @@
         else if (payload.type === 'ambient') MH.bus.emit('ambient.echo', payload.text || '');
         else if (payload.type === 'loot_roll') MH.bus.emit('loot.roll', payload);
         else if (payload.type === 'loot_result') MH.bus.emit('loot.result', payload);
+        else if (payload.type === 'move_result') MH.bus.emit('move.result', payload);
       } catch (err) {
         console.warn('map socket parse error', err);
       }

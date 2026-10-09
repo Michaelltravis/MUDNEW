@@ -4,31 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Misthollow</title>
-<style>
-  html, body { margin: 0; height: 100%; background: #07080b; overflow: hidden; }
-  body { font: 13px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; color: #e8e2d4; }
-  #stage { position: fixed; inset: 0; }
-  #stage canvas { display: block; width: 100%; height: 100%; }
-  /* cheap vignette: a CSS layer, not a post-processing pass */
-  #vignette { position: fixed; inset: 0; pointer-events: none;
-    background: radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,.42) 100%); }
-  #loading { position: fixed; inset: 0; display: grid; place-items: center; background: #07080b;
-    color: #cbbf9f; letter-spacing: .08em; transition: opacity .6s; }
-  #loading.done { opacity: 0; pointer-events: none; }
-  #hint { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); padding: 6px 12px;
-    background: rgba(10,10,14,.62); border: 1px solid rgba(255,240,200,.14); border-radius: 6px;
-    color: #d8cfb8; white-space: nowrap; pointer-events: none; transition: opacity 1s; }
-  #room-name { position: fixed; left: 50%; top: 18px; transform: translateX(-50%);
-    font: 600 17px/1 Georgia, "Times New Roman", serif; letter-spacing: .06em; color: #f1e6c8;
-    text-shadow: 0 2px 8px #000; pointer-events: none; transition: opacity .5s; }
-  #perf { position: fixed; right: 10px; top: 10px; min-width: 210px; padding: 8px 10px;
-    background: rgba(8,9,12,.82); border: 1px solid rgba(255,255,255,.12); border-radius: 6px;
-    font: 12px/1.45 ui-monospace, Menlo, Consolas, monospace; color: #d6e2d0; display: none; }
-  #perf.on { display: block; }
-  #perf button { margin-top: 6px; width: 100%; font: inherit; color: #111; background: #d8c48c;
-    border: 0; border-radius: 4px; padding: 4px; cursor: pointer; }
-  @media (max-width: 600px) { #hint { font-size: 11px; } }
-</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/v/{{V}}/world3d/hud/hud.css">
 <script type="importmap">
 { "imports": {
   "three": "/v/{{V}}/vendor/three/three.module.min.js",
@@ -39,26 +18,95 @@
 <body>
 <div id="stage"></div>
 <div id="vignette"></div>
-<div id="room-name"></div>
-<div id="hint">WASD or click to move · Space to attack · scroll to zoom · F3 performance</div>
+<div id="plates"></div>
+
+<div id="player-frame" class="hud panel hidden">
+  <div class="portrait"><span class="ini">?</span><span class="lvl">1</span></div>
+  <div class="who">
+    <div class="name"></div>
+    <div class="cls"></div>
+    <div class="bar hp"><b></b></div>
+    <div class="bar mp"><b></b></div>
+    <div id="buffs"></div>
+  </div>
+</div>
+
+<div id="target-frame" class="hud panel hidden">
+  <button class="tclose" title="Clear target (Esc)">✕</button>
+  <div class="tname"></div>
+  <div class="tsub"></div>
+  <div class="bar"><b></b></div>
+</div>
+
+<div id="banner" class="hud"><div class="zone"></div><div class="room"></div></div>
+<div id="toasts" class="hud"></div>
+
+<div id="minimap" class="hud panel hidden">
+  <div class="mm-head"><span class="mm-zone"></span><span class="mm-time"></span></div>
+  <canvas width="392" height="352"></canvas>
+  <div class="mm-room"></div>
+</div>
+
+<div id="actionbar" class="hud hidden">
+  <div class="orb hp"><div class="fill"></div><div class="gloss"></div><div class="val"></div><div class="lab">Health</div></div>
+  <div id="bar-mid" class="panel">
+    <div id="xpbar" title="Experience"><b></b></div>
+    <div id="slots"></div>
+  </div>
+  <div class="orb mp"><div class="fill"></div><div class="gloss"></div><div class="val"></div><div class="lab">Mana</div></div>
+</div>
+
+<div id="chat" class="hud panel hidden">
+  <div id="log"></div>
+  <input id="chat-input" placeholder="Press Enter to talk or type a command…" autocomplete="off" spellcheck="false">
+</div>
+
+<div id="menu" class="hud panel hidden">
+  <button data-cmd="score" data-tip="Character (C)">🛡</button>
+  <button data-cmd="inventory" data-tip="Inventory (I)">🎒</button>
+  <button data-cmd="equipment" data-tip="Equipment">⚔</button>
+  <button data-cmd="spells" data-tip="Spells & skills (K)">✦</button>
+  <button data-cmd="quests" data-tip="Quests (L)">📜</button>
+  <button data-act="settings" data-tip="Settings">⚙</button>
+</div>
+
+<div id="settings" class="hud panel hidden">
+  <h4>Settings</h4>
+  <div class="row">Graphics <span class="seg" data-set="quality"><button data-v="low">Low</button><button data-v="med">Med</button><button data-v="high">High</button></span></div>
+  <div class="row">HUD size <span class="seg" data-set="ui"><button data-v="auto">Auto</button><button data-v="0.85">S</button><button data-v="1">M</button><button data-v="1.15">L</button></span></div>
+  <div class="row">Performance <span class="seg"><button data-act="perf">F3</button></span></div>
+  <div class="row">Old 2D client <span class="seg"><button data-act="classic">Open</button></span></div>
+</div>
+
+<div id="login">
+  <div class="card panel">
+    <h1>MISTHOLLOW</h1>
+    <div class="sub">A MUD, reforged</div>
+    <input id="login-name" placeholder="Name" autocomplete="username" maxlength="12">
+    <input id="login-pass" type="password" placeholder="Password" autocomplete="current-password">
+    <button class="btn" id="login-btn">Enter the realm</button>
+    <button class="btn alt" id="create-btn">Forge a new hero</button>
+    <div id="login-status"></div>
+  </div>
+</div>
+
+<div id="create" class="hidden">
+  <div class="card panel">
+    <div class="step"></div>
+    <h2></h2>
+    <div class="hint"></div>
+    <div class="body"></div>
+  </div>
+</div>
+
 <div id="perf"></div>
 <div id="loading">MISTHOLLOW</div>
+
+<script src="/platformer/net.js?v={{V}}"></script>
+<script src="/platformer/parser.js?v={{V}}"></script>
+<script src="/platformer/themes-zones.js?v={{V}}"></script>
+<script src="/v/{{V}}/world3d/hud-shim.js"></script>
 <script src="/platformer/roomgen.js?v={{V}}"></script>
-<script>
-  // roomgen.js needs two helpers that live in the Phaser client's sprites.js
-  window.MH = window.MH || {};
-  MH.mulberry32 = MH.mulberry32 || function (seed) {
-    let a = seed >>> 0;
-    return function () {
-      a |= 0; a = (a + 0x6D2B79F5) | 0;
-      let t = Math.imul(a ^ (a >>> 15), 1 | a);
-      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-    };
-  };
-  MH.themeForSector = MH.themeForSector || (s => ['inside', 'city', 'dungeon', 'cave', 'forest', 'field', 'hills',
-    'mountain', 'desert', 'swamp', 'water_swim', 'water_noswim', 'underwater', 'flying', 'default'].includes(s) ? s : 'default');
-</script>
-<script type="module" src="/v/{{V}}/world3d/spike.js"></script>
+<script type="module" src="/v/{{V}}/world3d/main.js"></script>
 </body>
 </html>

@@ -653,7 +653,7 @@ class CommandHandler:
             try:
                 ev = {'type': 'player_move', 'name': player.name, 'from': getattr(old_room, 'vnum', None), 'to': getattr(target_room, 'vnum', None)}
                 await wm.notify_room(old_room, dict(ev, action='leave'))
-                await wm.notify_room(target_room, dict(ev, action='arrive'))
+                await wm.notify_room(target_room, dict(ev, action='arrive'), skip=player)
             except Exception:
                 pass
 
@@ -812,8 +812,11 @@ class CommandHandler:
         except Exception:
             pass
 
-        # Show new room
-        await player.do_look([])
+        # Show new room (a 3D-client move shows only the name: the client draws the room)
+        if getattr(player, '_web_quiet_move', False):
+            await player.send(f"{c['cyan']}{target_room.name}{c['reset']}")
+        else:
+            await player.do_look([])
 
         # Room entry triggers (NPC greetings, etc.)
         await cls._room_entry_triggers(player)
@@ -952,6 +955,72 @@ class CommandHandler:
 
         return move_cost
         
+    @classmethod
+    async def cmd_webmove(cls, player: 'Player', args: List[str]):
+        """Internal, for the 3D web client (/play): "webmove <from> <to>".
+
+        The 3D client owns the hero's position and walks straight on; it tells the server
+        which room it entered. The server moves the player only if they really are in
+        <from> and the exit to <to> is allowed (doors, posture, fighting, class rooms,
+        exhaustion, traps all apply exactly as for "north"), so the client can send moves
+        without waiting: if one is refused, every later one fails on <from> too. The
+        answer is a structured move_result event on the map socket, not text to parse."""
+        import re as _re
+        try:
+            frm, to = int(args[0]), int(args[1])
+        except (IndexError, ValueError):
+            await player.send("Usage: webmove <from vnum> <to vnum>")
+            return
+        wm = getattr(player.world, 'web_map', None)
+
+        async def result(ok, reason=''):
+            if wm:
+                await wm.notify_event(player, {
+                    'type': 'move_result', 'ok': ok, 'from': frm, 'to': to,
+                    'room': getattr(player.room, 'vnum', None), 'reason': reason})
+
+        if not player.room or player.room.vnum != frm:
+            await result(False, '')          # out of step: the client re-syncs to 'room'
+            return
+        direction = None
+        for d, ed in (player.room.exits or {}).items():
+            if not isinstance(ed, dict):
+                continue
+            tgt = ed.get('to_room') if 'to_room' in ed else getattr(ed.get('room'), 'vnum', None)
+            if tgt == to:
+                direction = d
+                break
+        if direction is None:
+            await result(False, "You can't go that way.")
+            return
+        # keep what the move prints, so a refusal can be reported in words
+        lines = []
+        had_own = 'send' in player.__dict__
+        own = player.__dict__.get('send')
+        real_send = player.send
+
+        async def capture(msg='', *a, **k):
+            lines.append(str(msg))
+            return await real_send(msg, *a, **k)
+
+        player.send = capture
+        player._web_quiet_move = True
+        try:
+            await cls.cmd_move(player, direction)
+        finally:
+            player._web_quiet_move = False
+            if had_own:
+                player.send = own
+            else:
+                del player.send
+        ok = bool(player.room) and player.room.vnum == to
+        reason = ''
+        if not ok:
+            text = _re.sub(r'\x1b\[[0-9;]*[A-Za-z]', '', '\n'.join(lines))
+            last = [ln.strip() for ln in text.splitlines() if ln.strip()]
+            reason = last[-1] if last else "You can't go that way."
+        await result(ok, reason)
+
     @classmethod
     async def cmd_north(cls, player: 'Player', args: List[str]):
         await cls.cmd_move(player, 'north')

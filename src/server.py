@@ -1192,9 +1192,11 @@ class Connection:
             await self.send_prompt()
             return
 
-        # Echo command back to player so they see what they typed
+        # Echo command back to player so they see what they typed (not the 3D client's
+        # internal moves: those are its walking, not something the player typed)
         c = self.config.COLORS
-        await self.send(f"{c['cyan']}> {line}{c['reset']}\r\n")
+        if not line.startswith('webmove '):
+            await self.send(f"{c['cyan']}> {line}{c['reset']}\r\n")
 
         # Handle ! to repeat last command
         if line.strip() == '!':
