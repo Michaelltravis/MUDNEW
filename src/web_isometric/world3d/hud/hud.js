@@ -187,7 +187,8 @@ export function createHud() {
   }
   MH.bus.on('terminal.output', ({ html }) => {
     if (!html || !MH.state.isLoggedIn) return;
-    const lines = String(html).split(/\r?\n/).filter(l => l.replace(/<[^>]+>/g, '').trim() && !PROMPT.test(l.replace(/<[^>]+>/g, '')));
+    const plain = l => l.replace(/<[^>]+>/g, '').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');
+    const lines = String(html).split(/\r?\n/).filter(l => plain(l).trim() && !PROMPT.test(plain(l)));
     if (lines.length) log(lines.join('\n'));
   });
   MH.bus.on('terminal.echo', cmd => log(`> ${cmd}`, 'cmd'));

@@ -12,8 +12,10 @@
     mudWs: isBehindProxy ? `${protocol}//${mudHost}/ws` : `${protocol}//${host}:4003/ws`,
     mapWs: isBehindProxy ? `${protocol}//${host}` : `${protocol}//${host}:4001`,
     art: isBehindProxy ? `${window.location.protocol}//${mudHost}/art/` : `${window.location.protocol}//${host}:4003/art/`,
+    // MH.mapMode is read per call: the 3D client sets 'near' after this file loads
     state: name => (isBehindProxy ? `/state?player=${encodeURIComponent(name)}`
-                                  : `${window.location.protocol}//${host}:4001/state?player=${encodeURIComponent(name)}`),
+                                  : `${window.location.protocol}//${host}:4001/state?player=${encodeURIComponent(name)}`)
+      + (MH.mapMode ? `&mode=${MH.mapMode}` : ''),
   };
 
   // --- tiny event bus ---

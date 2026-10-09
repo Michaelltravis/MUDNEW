@@ -21,7 +21,7 @@ export const cutout = {
     _v.copy(pos).setY(pos.y + 1.0).applyMatrix4(camera.matrixWorldInverse);
     uniforms.uCutDepth.value = -_v.z;
     // a constant hole size in world terms: shrink it as the camera pulls back
-    uniforms.uCutRadius.value = THREE.MathUtils.clamp(4.2 / Math.max(1, -_v.z), 0.08, 0.3);
+    uniforms.uCutRadius.value = THREE.MathUtils.clamp(5.2 / Math.max(1, -_v.z), 0.1, 0.38);
   },
   apply(material) {
     if (material.userData.cutout) return material;

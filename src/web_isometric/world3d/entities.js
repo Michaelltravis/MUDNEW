@@ -78,7 +78,9 @@ export class Entities {
 
   // payload.nearby: [{vnum, mobs, players, doors, items}]
   sync(payload, selfName) {
-    if (!this.zone || !payload) return;
+    // a payload without `nearby` (an older /state reply) says nothing about who is around:
+    // keep what we have instead of clearing the world
+    if (!this.zone || !payload || !Array.isArray(payload.nearby)) return;
     const want = new Map();
     for (const r of payload.nearby || []) {
       const room = this.zone.rooms.get(r.vnum);

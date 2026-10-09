@@ -53,17 +53,23 @@ export function createEngine(container, opts = {}) {
 
   // ---- camera rig: fixed yaw (north = screen up), steep pitch, smooth follow ----
   const camera = new THREE.PerspectiveCamera(36, 1, 0.5, 220);
+  // The pitch follows the zoom (owner: "see more of the character's face"): pulled back
+  // it looks down on the room like a map (58°); zoomed in it drops toward the hero's
+  // face (34°). The default sits in between.
   const rig = {
     target: new THREE.Vector3(),     // what we look at (the hero)
     focus: new THREE.Vector3(),      // smoothed target
-    pitch: THREE.MathUtils.degToRad(56),
-    dist: 24, minDist: 13, maxDist: 34, wantDist: 24,
+    pitch: THREE.MathUtils.degToRad(46),
+    lowPitch: 34, highPitch: 58,
+    dist: 19, minDist: 10, maxDist: 34, wantDist: 19,
   };
   function placeCamera(snap) {
     if (snap) rig.focus.copy(rig.target);
+    const k = THREE.MathUtils.clamp((rig.dist - rig.minDist) / (rig.maxDist - rig.minDist), 0, 1);
+    rig.pitch = THREE.MathUtils.degToRad(THREE.MathUtils.lerp(rig.lowPitch, rig.highPitch, Math.pow(k, 0.8)));
     const off = new THREE.Vector3(0, Math.sin(rig.pitch), Math.cos(rig.pitch)).multiplyScalar(rig.dist);
     camera.position.copy(rig.focus).add(off);
-    camera.lookAt(rig.focus.x, rig.focus.y + 0.8, rig.focus.z);
+    camera.lookAt(rig.focus.x, rig.focus.y + 1.1, rig.focus.z);
   }
   renderer.domElement.addEventListener('wheel', e => {
     e.preventDefault();

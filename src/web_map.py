@@ -315,7 +315,9 @@ class WebMapServer:
                 if player.room and hasattr(player, 'explored_rooms'):
                     if player.room.vnum not in player.explored_rooms:
                         player.explored_rooms.add(player.room.vnum)
-                payload = build_map_payload(player, mode='full')
+                # the 3D client asks for mode=near (its zone + the occupants of nearby rooms)
+                mode = (query.get('mode') or ['full'])[0]
+                payload = build_map_payload(player, mode=mode if mode in ('full', 'zone', 'near') else 'full')
                 logger.info(f"/state: returning {len(payload.get('rooms', []))} rooms for '{player_name}'")
                 await self._http_response(writer, 200, 'OK', json.dumps(payload), content_type='application/json')
             elif path.startswith('/lookat'):
