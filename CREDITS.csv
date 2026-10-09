@@ -13785,3 +13785,7 @@ filename,notes,authors,licenses,urls
 "weapon/magic/wand/male/slash.png","" ,"Matthew Krohn (makrohn)" ,"CC-BY-SA 3.0,GPL 3.0,OGA-BY 3.0" ,"https://opengameart.org/content/lpc-wands" 
 "weapon/magic/wand/female/slash.png","" ,"Matthew Krohn (makrohn)" ,"CC-BY-SA 3.0,GPL 3.0,OGA-BY 3.0" ,"https://opengameart.org/content/lpc-wands" 
 "weapon/magic/wand//female/slash.png","" ,"Matthew Krohn (makrohn)" ,"CC-BY-SA 3.0,GPL 3.0,OGA-BY 3.0" ,"https://opengameart.org/content/lpc-wands" 
+"src/web_isometric/art3d/chars/{knight,barbarian,mage,rogue,rogue_hooded}.glb","KayKit Character Pack: Adventurers 1.0, optimised (tools/art3d/build.mjs)","Kay Lousberg","CC0","https://kaylousberg.itch.io/kaykit-adventurers"
+"src/web_isometric/art3d/chars/skeleton_*.glb; chars/rig_anims.glb","KayKit Character Pack: Skeletons 1.0, optimised; rig_anims holds the shared animation set","Kay Lousberg","CC0","https://kaylousberg.itch.io/kaykit-skeletons"
+"src/web_isometric/art3d/kits/dungeon.glb","KayKit Dungeon Remastered 1.0, 37 pieces merged into one kit","Kay Lousberg","CC0","https://kaylousberg.itch.io/kaykit-dungeon-remastered"
+"src/web_isometric/art3d/kits/nature.glb","Stylized Nature MegaKit (standard), 26 models merged into one kit; bush leaves recoloured green","Quaternius","CC0","https://opengameart.org/content/stylized-nature-megakit"

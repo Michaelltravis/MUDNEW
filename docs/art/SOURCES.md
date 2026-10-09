@@ -42,3 +42,25 @@ sprites remain as fallbacks until every class and mob archetype is mapped (see `
   necromancer) until a sheet in the same style is commissioned. CC0 alternatives found were
   16px idle-only (PixeLike) or AI-generated / non-CC0 (Pixel Heroes, Tiny Questers).
   Recolours are distinct at a glance (see `class-lineup.png`); the gap is silhouette variety.
+
+# 3D client art (`/play`, docs/REBUILD_PLAN.md engine section)
+
+Style: stylised low-poly 3D. Every pack is **CC0 1.0**; each pack's licence file is copied to
+`src/web_isometric/art3d/licenses/`. `tools/art3d/fetch.sh` downloads the sources (not
+committed) and `tools/art3d/build.mjs` builds the optimised files in `src/web_isometric/art3d/`:
+characters without animations (~150 KB each), one shared animation file for the common
+41-joint rig (`chars/rig_anims.glb`, 68 clips), and kits (many props in one file, textures
+stored once, meshopt-compressed).
+
+| Pack | Author | Covers | Source |
+|---|---|---|---|
+| KayKit Character Pack: Adventurers 1.0 | Kay Lousberg | Knight, Barbarian, Mage, Rogue, Rogue (hooded), weapons/shields/hats; 75 animations | https://kaylousberg.itch.io/kaykit-adventurers (mirror: github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0) |
+| KayKit Character Pack: Skeletons 1.0 | Kay Lousberg | skeleton warrior, mage, rogue, minion; 95 animations (superset, same rig) | https://kaylousberg.itch.io/kaykit-skeletons (mirror: github.com/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0) |
+| KayKit Dungeon Remastered 1.0 | Kay Lousberg | walls, floors, pillars, torches, barrels, crates, chests, rubble, stairs (37 used of 200+) | https://kaylousberg.itch.io/kaykit-dungeon-remastered (mirror: github.com/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0) |
+| Stylized Nature MegaKit (standard) | Quaternius | trees, pines, dead trees, bushes, ferns, grass, flowers, rocks, pebbles (26 used) | https://opengameart.org/content/stylized-nature-megakit, https://quaternius.com |
+
+Build notes: the nature kit's COLOR_0 (wind masks for Quaternius' own shader) is dropped
+because glTF multiplies it into the colour; its bushes use the twisted tree's autumn-red leaf
+atlas, which the build remixes to green; normal maps are dropped and textures resized to 512.
+Candidates for later milestones (CC0): Quaternius Animated Monster Pack (OpenGameArt), KayKit
+Medieval Hexagon, Halloween Bits and Furniture Bits (GitHub mirrors).

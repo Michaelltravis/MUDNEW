@@ -83,3 +83,35 @@ far away) and kept in a bounded cache. Only a zone change (or up/down) fades.
 
 ## Phase 4 — feel
 - Hit-stop, knockback, impact sounds, death and respawn flow, then a playtest by the owner.
+
+## Engine rebuild — a 3D client (owner, 2026-10-09: "still feels bad, rethink the engine")
+Owner's verdict after Phase 2: stops at room edges, the screen jumps on crossing, walking feels
+poor, the game is choppy. Choice: **new 3D engine + new art**, all-in (no stop-gap patching of
+the Phaser client; it stays at `/platformer` until `/play` replaces it).
+
+Why patching could not fix it (research, 2026-10-09): an unconditional clamp
+(`scene-topdown.js:5413`) pins the hero inside the room so the seamless crossing almost never
+ran; every crossing rebuilds the world at a new origin and evicts neighbour paintings
+(`world-peek.js:179`); the server answers moves in text only and sends two full payloads of
+every explored room per step.
+
+Design: one continuous 3D world per zone; the client owns the hero's position and tells the
+server which room it entered (`webmove <from> <to>`, structured `move_result`); per-zone layout
+from the server (`/zonemap`); the DOM HUD (`ui.js`) is kept. Renderer: Three.js 0.185.1
+vendored in `src/web_isometric/vendor/three/` (ES modules + import map, no build step); art:
+CC0 low-poly (KayKit, Quaternius) — see `docs/art/SOURCES.md`.
+
+| milestone | what | status |
+|---|---|---|
+| M0 | look and engine spike: `/play` — four real room layouts (glade, brook, crypt, hall) stitched into one world, a knight on WASD/click with run/attack animations, skeletons, sun + shadows, torch lights, fog, bloom, see-through walls, F3 perf overlay | **shipped, awaiting the owner's look check** |
+| M1 | seamless world on real zones: `/zonemap`, terrain builders per theme, controller with A*, `webmove`, doors, passages, zone changes, login + HUD | next, after the look is approved |
+| M2 | living world: class heroes, mob models, NPCs, items, other players' positions | |
+| M3 | combat in 3D, then Phase 3 real-time combat | |
+| M4 | polish, switch-over, retire the Phaser client | |
+
+M0 notes: all URLs under `/v/<commit>/` are immutable (served gzip, `web_map.py`
+`static_3d`), so a deploy never needs a hard refresh. Kit models are baked into float
+geometry before instancing (the optimiser's quantised positions clamp at 1 m otherwise).
+Headless test here: holding S walks the knight from the glade into the crypt at constant speed
+across the room boundary (`z = 15`), no stop; ~110 draw calls, ~450k triangles with four rooms
+in view. Smoothness and FPS are for the owner's Mac (F3 → "Copy perf report").

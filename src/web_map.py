@@ -5,16 +5,87 @@ Serves a lightweight HTML/JS interface and a minimal WebSocket for live updates.
 
 import asyncio
 import base64
+import gzip
 import hashlib
 import json
 import logging
 import os
+import subprocess
+import time
 from typing import Optional
 from urllib.parse import parse_qs, urlparse
 
 from map_system import build_map_payload, build_combat_payload
 
 logger = logging.getLogger('Misthollow.WebMap')
+
+
+# ---- 3D client (/play) static files ----------------------------------------------
+# Everything the 3D client loads is served from here (same origin as the page, so no
+# proxy or CORS setup). URLs under /v/<version>/ are immutable: the version is the git
+# commit the server started from, so a deploy changes every URL and browsers and
+# Cloudflare never serve a stale module (no more Cmd+Shift+R after a deploy).
+_WEB_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'web_isometric')
+_STATIC_3D = {
+    'world3d': ('world3d', {'js', 'json', 'css'}),
+    'vendor': ('vendor', {'js'}),
+    'art3d': ('art3d', {'glb', 'png', 'webp', 'json'}),
+}
+_CT_3D = {'js': 'text/javascript', 'json': 'application/json', 'css': 'text/css',
+          'glb': 'model/gltf-binary', 'png': 'image/png', 'webp': 'image/webp'}
+_GZIP_3D = {'js', 'json', 'css', 'glb'}
+_static_cache = {}   # full path -> (mtime, raw bytes, gzipped bytes or None)
+_asset_version = None
+
+
+def asset_version():
+    global _asset_version
+    if _asset_version is None:
+        try:
+            _asset_version = subprocess.run(
+                ['git', 'rev-parse', '--short', 'HEAD'], cwd=_WEB_DIR, capture_output=True,
+                text=True, timeout=5).stdout.strip() or None
+        except Exception:
+            _asset_version = None
+        _asset_version = _asset_version or str(int(time.time()))
+    return _asset_version
+
+
+def static_3d(path):
+    """Resolve a /v/<ver>/..., /world3d/, /vendor/ or /art3d/ path to (file, ext, immutable),
+    or None when it is not an allowed file (unknown root, extension, or traversal)."""
+    rel = path.split('?', 1)[0]
+    immutable = False
+    if rel.startswith('/v/'):
+        parts = rel.split('/', 3)
+        if len(parts) < 4:
+            return None
+        rel, immutable = '/' + parts[3], True
+    top, _, sub = rel.lstrip('/').partition('/')
+    spec = _STATIC_3D.get(top)
+    if not spec or not sub:
+        return None
+    base = os.path.realpath(os.path.join(_WEB_DIR, spec[0]))
+    full = os.path.realpath(os.path.join(base, sub))
+    ext = sub.rsplit('.', 1)[-1].lower() if '.' in sub else ''
+    if not full.startswith(base + os.sep) or ext not in spec[1] or not os.path.isfile(full):
+        return None
+    return full, ext, immutable
+
+
+def static_bytes(full, ext, want_gzip):
+    mtime = os.path.getmtime(full)
+    hit = _static_cache.get(full)
+    if not hit or hit[0] != mtime:
+        with open(full, 'rb') as f:
+            raw = f.read()
+        gz = gzip.compress(raw, 6) if ext in _GZIP_3D else None
+        if gz is not None and len(gz) >= len(raw) * 0.95:
+            gz = None
+        hit = _static_cache[full] = (mtime, raw, gz)
+    if want_gzip and hit[2] is not None:
+        return hit[2], 'gzip'
+    return hit[1], None
 
 
 class WebMapClient:
@@ -977,6 +1048,37 @@ class WebMapServer:
                     return
                 except FileNotFoundError:
                     await self._http_response(writer, 404, 'Not Found', 'Art not found')
+            elif path.startswith(('/v/', '/world3d/', '/vendor/', '/art3d/')):
+                hit = static_3d(path)
+                if not hit:
+                    await self._http_response(writer, 404, 'Not Found', 'Not found')
+                    return
+                full, ext, immutable = hit
+                data, enc = static_bytes(full, ext, 'gzip' in headers.get('accept-encoding', ''))
+                head = [
+                    "HTTP/1.1 200 OK",
+                    f"Content-Type: {_CT_3D[ext]}",
+                    f"Content-Length: {len(data)}",
+                    "Cache-Control: " + ("public, max-age=31536000, immutable" if immutable else "no-cache"),
+                    "Vary: Accept-Encoding",
+                    "Access-Control-Allow-Origin: *",
+                    "Connection: close",
+                ]
+                if enc:
+                    head.append(f"Content-Encoding: {enc}")
+                writer.write(("\r\n".join(head) + "\r\n\r\n").encode())
+                if method != 'HEAD':
+                    writer.write(data)
+                await writer.drain()
+                return
+            elif path.split('?', 1)[0] in ('/play', '/play/'):
+                # the 3D client (docs/REBUILD_PLAN.md, engine section)
+                try:
+                    with open(os.path.join(_WEB_DIR, 'world3d', 'play.html'), 'r', encoding='utf-8') as f:
+                        page = f.read().replace('{{V}}', asset_version())
+                    await self._http_response(writer, 200, 'OK', page, content_type='text/html')
+                except FileNotFoundError:
+                    await self._http_response(writer, 404, 'Not Found', '3D client not found')
             elif path.startswith('/platformer/'):
                 # Serve platformer client assets (js/css/png/json/woff2, no traversal)
                 asset_dir = os.path.realpath(os.path.join(os.path.dirname(__file__), 'web_isometric', 'platformer'))
