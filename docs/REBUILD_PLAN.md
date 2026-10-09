@@ -41,6 +41,22 @@ far away) and kept in a bounded cache. Only a zone change (or up/down) fades.
 - Faster walk; click-to-move with pathing across rooms (the minimap auto-walk, in the world).
 - Done when: holding a direction through five rooms never stops the hero.
 
+### Phase 2 — status, step 1 (shipped)
+- Measured first: only 80% of in-zone exits land on the adjacent atlas cell and 7 of 59 zones lay
+  out cleanly (MUD loops don't close), so a literal one-map-per-zone would break one exit in five.
+  The world is therefore stitched AROUND THE PLAYER: every room is placed next to the one it
+  connects to as you go, so every exit you walk through is seamless.
+- Entering a room reuses the painting already made for the neighbour view (8 ms instead of
+  100–160 ms of repaint at every crossing).
+- Creatures seen in a neighbouring room stand on the slot they'll use once you walk in (they
+  used to jump).
+- Openings are 7 tiles on the long walls and 5 on the short ones (were 3), with clear lanes to
+  match; all 3012 rooms pass `tools/qc_platformer_rooms.js`.
+- Measured and ruled out: the server answers moves instantly (telnet and the websocket bridge);
+  the 9 s crossings seen in headless tests are the test machine's ~1 fps software renderer.
+- Next: play it on real hardware; if crossings still read as a switch, the remaining step is a
+  client-side optimistic crossing (switch at the boundary, confirm in the background).
+
 ## Phase 3 — real-time action combat
 - Server: replace round resolution for web players with per-action resolution — an attack is a
   request resolved within ~150 ms with its own swing time and cooldown; abilities keep their

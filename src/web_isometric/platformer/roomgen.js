@@ -257,10 +257,15 @@
     for (let y = 0; y < H; y++) { set(0, y, BLOCK); set(W - 1, y, BLOCK); }
     const midX = Math.floor(W / 2), midY = Math.floor(H / 2);
     const gaps = {};
-    if (has('north')) { gaps.north = { x0: midX - 1, x1: midX + 1 }; for (let x = midX - 1; x <= midX + 1; x++) set(x, 0, FLOOR); }
-    if (has('south')) { gaps.south = { x0: midX - 1, x1: midX + 1 }; for (let x = midX - 1; x <= midX + 1; x++) set(x, H - 1, FLOOR); }
-    if (has('west'))  { gaps.west  = { y0: midY - 1, y1: midY + 1 }; for (let y = midY - 1; y <= midY + 1; y++) set(0, y, FLOOR); }
-    if (has('east'))  { gaps.east  = { y0: midY - 1, y1: midY + 1 }; for (let y = midY - 1; y <= midY + 1; y++) set(W - 1, y, FLOOR); }
+    // REBUILD phase 2 ("movement between rooms is clunky"): openings are WIDE — 7 tiles
+    // on the long walls, 5 on the short ones — so leaving a room is walking on, not
+    // threading a 3-tile door in the wall middle. Both sides of a shared wall use the
+    // same centred span, so neighbours still line up.
+    const GX = 3, GY = 2;
+    if (has('north')) { gaps.north = { x0: midX - GX, x1: midX + GX }; for (let x = midX - GX; x <= midX + GX; x++) set(x, 0, FLOOR); }
+    if (has('south')) { gaps.south = { x0: midX - GX, x1: midX + GX }; for (let x = midX - GX; x <= midX + GX; x++) set(x, H - 1, FLOOR); }
+    if (has('west'))  { gaps.west  = { y0: midY - GY, y1: midY + GY }; for (let y = midY - GY; y <= midY + GY; y++) set(0, y, FLOOR); }
+    if (has('east'))  { gaps.east  = { y0: midY - GY, y1: midY + GY }; for (let y = midY - GY; y <= midY + GY; y++) set(W - 1, y, FLOOR); }
 
     // ---- Phase 3: biome-shaped rooms ------------------------------------
     // Every room used to be the same rectangle. Now the border grows into the
@@ -271,12 +276,12 @@
     const midX0 = Math.floor(W / 2), midY0 = Math.floor(H / 2);
     // lanes + gap mouths stay clear so holding a direction always exits
     const laneSafe = (x, y) =>
-      (((gaps.east || gaps.west) && Math.abs(y - midY0) <= 1)
-        || ((gaps.north || gaps.south) && Math.abs(x - midX0) <= 1)
-        || (gaps.north && y <= 2 && Math.abs(x - midX0) <= 2)
-        || (gaps.south && y >= H - 3 && Math.abs(x - midX0) <= 2)
-        || (gaps.west && x <= 2 && Math.abs(y - midY0) <= 2)
-        || (gaps.east && x >= W - 3 && Math.abs(y - midY0) <= 2));
+      (((gaps.east || gaps.west) && Math.abs(y - midY0) <= GY)
+        || ((gaps.north || gaps.south) && Math.abs(x - midX0) <= GX)
+        || (gaps.north && y <= 3 && Math.abs(x - midX0) <= GX + 1)
+        || (gaps.south && y >= H - 4 && Math.abs(x - midX0) <= GX + 1)
+        || (gaps.west && x <= 3 && Math.abs(y - midY0) <= GY + 1)
+        || (gaps.east && x >= W - 4 && Math.abs(y - midY0) <= GY + 1));
     const carve = (x, y, v) => {
       if (x < 1 || y < 1 || x >= W - 1 || y >= H - 1) return;
       if (laneSafe(x, y) || at(x, y) !== FLOOR) return;
@@ -336,14 +341,14 @@
       if (vertical) {
         let x = 4 + Math.floor(rng() * 3);
         for (let y = 1; y < H - 1; y++) {
-          if (Math.abs(y - midY0) <= 1) continue;   // the ford: always crossable
+          if (Math.abs(y - midY0) <= GY) continue;   // the ford: always crossable
           x += Math.floor(rng() * 3) - 1; x = Math.max(3, Math.min(8, x));
           carve(x, y, WATER); if (rng() < 0.6) carve(x + 1, y, WATER);
         }
       } else {
         let y = 3 + Math.floor(rng() * 2);
         for (let x = 1; x < W - 1; x++) {
-          if (Math.abs(x - midX0) <= 1) continue;   // the ford: always crossable
+          if (Math.abs(x - midX0) <= GX) continue;   // the ford: always crossable
           y += Math.floor(rng() * 3) - 1; y = Math.max(2, Math.min(5, y));
           carve(x, y, WATER); if (rng() < 0.6) carve(x, y + 1, WATER);
         }

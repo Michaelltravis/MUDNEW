@@ -92,13 +92,25 @@
   const CANOPY_KINDS = ['tree', 'pine', 'deadtree', 'hedge'];
 
   // ---- the painting --------------------------------------------------------
+  const SIGS = new Map();   // painting key -> the inputs it was painted from
   function paint(scene, layout, th) {
     const TD = MH.TD;
     if (!TD) return null;
     const { T, FLOOR, BLOCK, WATER } = TD;
     const W = layout.W, H = layout.H, grid = layout.grid;
     const key = `paint_${layout.vnum}`;
-    if (scene.textures.exists(key)) scene.textures.remove(key);
+    // REBUILD phase 2: a painting depends only on the room's own data, so one made
+    // for the neighbour view is the SAME painting you need when you walk in — reuse
+    // it instead of repainting (a crossing used to repaint the room it was already
+    // showing: 100-160 ms of stutter at every edge)
+    let gh = 0; for (let i = 0; i < grid.length; i++) gh = (gh * 31 + grid[i] + 1) | 0;
+    const sig = [layout.vnum, th, layout.zoneKey, !!layout.dark, !!layout.icy, !!layout.snowy, !!layout.mossy,
+      layout.name, Object.keys(layout.gaps || {}).filter(k => layout.gaps[k]).sort().join(''), gh].join('|');
+    if (scene.textures.exists(key)) {
+      if (SIGS.get(key) === sig) return key;
+      scene.textures.remove(key);
+    }
+    SIGS.set(key, sig);
     const cw = W * T * SS, ch = H * T * SS, cell = T * SS;
     const cv = document.createElement('canvas');
     cv.width = cw; cv.height = ch;

@@ -842,15 +842,17 @@
       const want = new Map();
       for (const r of rooms) {
         const o = offs[r.vnum]; if (!o || !o.layout) continue;
-        (r.mobs || []).forEach((m, i) => want.set(`far:${r.vnum}:m:${m.name}:${i}`, { kind: 'mob', data: m, idx: i, o }));
-        (r.players || []).forEach((p, i) => want.set(`far:${r.vnum}:p:${p.name}`, { kind: 'player', data: p, idx: i + 4, o }));
+        // slotKey = the key the LIVE room will use for this creature, so it stands on the
+        // same spawn slot seen from next door and after you walk in (it used to jump)
+        (r.mobs || []).forEach((m, i) => want.set(`far:${r.vnum}:m:${m.name}:${i}`, { kind: 'mob', data: m, idx: i, o, slotKey: `mob:${m.name}:${i}` }));
+        (r.players || []).forEach((p, i) => want.set(`far:${r.vnum}:p:${p.name}`, { kind: 'player', data: p, idx: i + 4, o, slotKey: `pl:${p.name}` }));
       }
       for (const [k, f] of this._far) if (!want.has(k)) { this._destroyFar(f); this._far.delete(k); }
       for (const [k, spec] of want) if (!this._far.has(k)) { const f = this._spawnFar(k, spec); if (f) this._far.set(k, f); }
     }
     _spawnFar(key, spec) {
       const slots = spec.o.layout.spawnSlots; if (!slots || !slots.length) return null;
-      const slot = slots[(MH.hashStr(key) + spec.idx) % slots.length];
+      const slot = slots[(MH.hashStr(spec.slotKey || key) + spec.idx) % slots.length];
       const x = spec.o.ox + slot.x, y = spec.o.oy + slot.y;
       const d = spec.data || {};
       const L = MH.lucifer;
