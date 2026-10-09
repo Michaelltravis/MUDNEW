@@ -278,3 +278,17 @@ button { font: inherit; color: inherit; }
 .ab-row em { font-style: normal; color: var(--ink-dim); font-size: 11px; text-align: right; }
 .ab-bar { height: 5px; border-radius: 3px; background: rgba(0,0,0,.5); overflow: hidden; }
 .ab-bar b { display: block; height: 100%; background: linear-gradient(90deg, #a8833d, var(--gold-hi)); }
+
+/* ---- floating combat text (fx.js) ---- */
+#fct { position: fixed; inset: 0; pointer-events: none; z-index: 6; overflow: hidden; }
+.fct { position: absolute; left: 0; top: 0; font: 800 18px var(--body); letter-spacing: .02em; white-space: nowrap; will-change: transform;
+  text-shadow: 0 2px 0 #000, 0 0 6px rgba(0,0,0,.9), 1px 1px 0 #000, -1px -1px 0 #000; }
+.fct.crit { font-weight: 900; }
+.fct.small { font-size: 13px; }
+/* cast bar under the hero and the out-of-range hint */
+#castbar { left: 50%; bottom: calc(150px * var(--ui)); transform: translateX(-50%); width: 240px; height: 14px; border-radius: 7px;
+  background: rgba(0,0,0,.6); border: 1px solid var(--edge); overflow: hidden; display: none; }
+#castbar b { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #6a4ad0, #c8a8ff); }
+#castbar span { position: absolute; inset: 0; text-align: center; font-size: 10px; line-height: 13px; text-shadow: 0 1px 2px #000; }
+.slot.far { box-shadow: inset 0 0 0 2px rgba(255,80,60,.75); }
+.slot.far .key { color: #ff8a7a; }

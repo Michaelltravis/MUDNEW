@@ -70,6 +70,9 @@ export function createEngine(container, opts = {}) {
     const off = new THREE.Vector3(0, Math.sin(rig.pitch), Math.cos(rig.pitch)).multiplyScalar(rig.dist);
     camera.position.copy(rig.focus).add(off);
     camera.lookAt(rig.focus.x, rig.focus.y + 1.1, rig.focus.z);
+    // impact shake (fx.js): a small offset for a few frames on heavy blows
+    const sh = rig.shake && rig.shake();
+    if (sh) camera.position.add(sh);
   }
   renderer.domElement.addEventListener('wheel', e => {
     e.preventDefault();

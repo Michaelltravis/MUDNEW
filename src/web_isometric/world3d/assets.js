@@ -181,11 +181,13 @@ export async function spawnCharacter(name, opts = {}) {
     }
   });
   if (opts.scale) root.scale.setScalar(opts.scale);
-  if (opts.tint) {
-    root.traverse(o => {
-      if (o.isMesh && o.material) { o.material = o.material.clone(); o.material.color.multiply(new THREE.Color(opts.tint)); }
-    });
-  }
+  // every actor owns its materials, so a hit flash or a fade touches only this body
+  root.traverse(o => {
+    if (o.isMesh && o.material) {
+      o.material = o.material.clone();
+      if (opts.tint) o.material.color.multiply(new THREE.Color(opts.tint));
+    }
+  });
   return new Actor(root, clips);
 }
 
@@ -224,7 +226,8 @@ export async function spawnMob(name, opts = {}) {
   root.traverse(o => {
     if (o.isMesh) {
       o.castShadow = true; o.receiveShadow = true; o.frustumCulled = false;
-      if (opts.tint) { o.material = o.material.clone(); o.material.color.multiply(new THREE.Color(opts.tint)); }
+      o.material = o.material.clone();
+      if (opts.tint) o.material.color.multiply(new THREE.Color(opts.tint));
     }
   });
   root.scale.setScalar(opts.height || 1);
