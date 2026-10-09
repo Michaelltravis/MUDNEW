@@ -54,6 +54,13 @@ class Misthollow:
         # Load the world
         self.world = World(self.config)
         await self.world.load()
+
+        # Combat v2: structured events for the 3D client and distance rules (combat_hooks.py)
+        try:
+            import combat_hooks
+            combat_hooks.install()
+        except Exception as e:
+            logger.error(f"combat hooks not installed: {e}")
         
         # Create the server
         self.server = MUDServer(self.world, self.config)
@@ -99,6 +106,7 @@ class Misthollow:
         # Main game tick loop
         tick_rate = 1.0 / self.config.TICKS_PER_SECOND
         combat_tick = 0
+        move_tick = 0
         regen_tick = 0
         minor_regen_tick = 0
         affect_tick = 0
@@ -150,8 +158,18 @@ class Misthollow:
                     await self.world.decay_tick()
                     decay_tick = 0
 
-                # Combat tick (every 4 seconds - slowed for readability)
-                if combat_tick >= self.config.TICKS_PER_SECOND * 4:
+                # Creatures in fights move (combat v2: melee closes in, archers keep away)
+                move_tick += 1
+                if move_tick >= 2:
+                    move_tick = 0
+                    try:
+                        from combat_range import move_tick as _combat_move
+                        _combat_move(self.world, 0.2)
+                    except Exception as e:
+                        logger.debug(f"combat move tick failed: {e}")
+
+                # Combat tick (every COMBAT_ROUND_SECONDS; creatures act a beat later)
+                if combat_tick >= int(self.config.TICKS_PER_SECOND * self.config.COMBAT_ROUND_SECONDS):
                     await self.world.combat_tick()
                     combat_tick = 0
 

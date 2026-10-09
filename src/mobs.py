@@ -1252,7 +1252,7 @@ class Mobile(Character):
                 self.poise = 0
                 self.max_poise = int(self.max_poise * 1.5) + 1
                 self.stunned_rounds = getattr(self, 'stunned_rounds', 0) + 1
-                self.staggered_until = _now + 4.5
+                self.staggered_until = _now + 1.5 * Config.COMBAT_ROUND_SECONDS
                 self.guard_until = 0          # a broken stance drops any guard
                 self.pending_intent = None    # ...and interrupts any wind-up
                 if hasattr(self, 'room') and self.room:

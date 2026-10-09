@@ -573,7 +573,7 @@ def _intent_public(entity):
             'kind': intent.get('kind', 'heavy'),
             'label': intent.get('label', 'Attack'),
             'interruptible': bool(intent.get('interruptible')),
-            'resolve_in': round(max(0.0, intent.get('declared_at', now) + 4.0 - now), 1),
+            'resolve_in': round(max(0.0, intent.get('declared_at', now) + Config.COMBAT_ROUND_SECONDS + 1.3 - now), 1),
         }
     ai_state = getattr(entity, 'ai_state', None)
     cast = ai_state.get('cast') if isinstance(ai_state, dict) else None

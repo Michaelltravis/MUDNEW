@@ -4729,7 +4729,7 @@ class CommandHandler:
             await player.send(f"{c['yellow']}You're too winded to brace!{c['reset']}")
             return
         player.move -= 10
-        player.brace_until = now + 4.5
+        player.brace_until = now + 1.5 * player.config.COMBAT_ROUND_SECONDS
         player.brace_cooldown_until = now + 12
         await player.send(f"{c['bright_cyan']}You plant your feet and BRACE for the incoming blow!{c['reset']}")
         if player.room:
@@ -4756,11 +4756,12 @@ class CommandHandler:
         elapsed = now - round_start
         # sweet spot: the final stretch of the ~4s round (the client paints it
         # gold on the round bar). A little slack past the boundary forgives lag.
-        if 2.6 <= elapsed <= 4.3:
+        R = player.config.COMBAT_ROUND_SECONDS
+        if 0.65 * R <= elapsed <= 1.075 * R:
             player.perfect_next = True
             await player.send(f"{c['bright_yellow']}You read the rhythm — your next strike will land PERFECTLY!{c['reset']}")
         else:
-            player.swing_lockout_until = round_start + 4.2
+            player.swing_lockout_until = round_start + 1.05 * R
             await player.send(f"{c['yellow']}Your timing is off — you swing wide and must steady yourself.{c['reset']}")
 
     @classmethod
@@ -4814,7 +4815,7 @@ class CommandHandler:
         if threat is None:
             await player.send(f"{c['yellow']}Nothing is winding up an attack you could sidestep.{c['reset']}")
             return
-        player.sidestep_until = now + 4.5
+        player.sidestep_until = now + 1.5 * player.config.COMBAT_ROUND_SECONDS
         player.sidestep_skip_attack = True
         player.sidestep_cooldown_until = now + 16
         await player.send(

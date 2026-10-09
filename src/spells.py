@@ -1954,7 +1954,15 @@ class SpellHandler:
         if target is None and spell['target'] not in ('self', 'special', 'object', 'door', 'group', 'room'):
             await caster.send("Cast the spell on whom?")
             return
-            
+
+        # Combat v2: every spell has a reach (combat_range.py). Out of it nothing is spent.
+        try:
+            from combat_range import spell_out_of_range
+            if target is not None and target is not caster and await spell_out_of_range(caster, target, spell_name, spell):
+                return
+        except Exception:
+            pass
+
         # Deduct mana
         caster.mana -= mana_cost
         

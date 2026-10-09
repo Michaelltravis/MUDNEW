@@ -91,7 +91,14 @@ export class CombatView {
     this.heroName = heroName;         // () => name
     this.onOutOfRange = onOutOfRange; // (event) => void
     this.telegraphs = new Map();      // mob id -> telegraph
+    this.impacts = new Map();         // "src>dst" -> {at, crit, n}: when this action's blow lands
     this._v = new THREE.Vector3();
+  }
+  pairKey(a, b) { return `${JSON.stringify(a || null)}>${JSON.stringify(b || null)}`; }
+  // the next wound from src to dst should appear when this action's blow lands
+  expect(e, delayMs) {
+    const k = this.pairKey(e.src, e.dst);
+    this.impacts.set(k, { at: performance.now() + delayMs, crit: e.res === 'crit' || e.crit, n: 0 });
   }
 
   // ---- who is who ----
@@ -129,12 +136,48 @@ export class CombatView {
   handle(list) {
     const seq = new Map();
     for (const e of list || []) {
+      if (e.k === 'move') { this.move(e); continue; }
+      if (e.k === 'dmg') { this.wound(e); continue; }
+      // deaths after the killing number has risen
+      if (e.k === 'death') { setTimeout(() => this.event(e), 650); continue; }
       const key = e.src ? JSON.stringify(e.src) : '_';
       const n = seq.get(key) || 0;
       seq.set(key, n + 1);
       const d = (e.delay_ms || 0) + (e.k === 'attack' ? n * 420 : n * 300);
       if (d > 0) setTimeout(() => this.event(e), d); else this.event(e);
     }
+  }
+
+  // a creature moving in a fight (server position, room metres)
+  move(e) {
+    const ent = e.src && e.src.m != null ? this.ents.list.get(`m${e.src.m}`) : null;
+    if (ent) this.ents.place(ent, { x: e.x, z: e.z });
+  }
+
+  // a wound: the number rises when the blow that caused it lands (or now, for wounds
+  // nothing announced: poison, fire, traps, a creature's special)
+  wound(e) {
+    const k = this.pairKey(e.src, e.dst);
+    const imp = this.impacts.get(k);
+    const now = performance.now();
+    let delay = 0, crit = false;
+    if (imp && now < imp.at + 1800) {
+      delay = Math.max(0, imp.at - now) + imp.n * 420;
+      crit = imp.crit && imp.n === 0;
+      imp.n++;
+    }
+    const show = () => {
+      const dst = this.resolve(e.dst);
+      if (!dst) return;
+      if (dst.ent && dst.ent.data && dst.ent.data.hp != null) dst.ent.data.hp = Math.max(0, dst.ent.data.hp - e.amt);
+      const p = this.chest(dst);
+      this.fx.text(p, crit ? `${e.amt}!` : `${e.amt}`, { color: dst.hero ? COLORS.dmgIn : crit ? COLORS.crit : COLORS.dmgOut, crit, size: dst.hero ? 17 : 19 });
+      if (!imp || imp.n > 1) { this.fx.flash(dst.root, dst.hero ? 0xff2a1a : 0xffe0c0, 0.12); if (e.school) this.fx.impact(p, e.school); }
+      if (crit || (dst.hero && e.amt >= 15)) this.fx.shake(crit ? 0.22 : 0.14, 0.2);
+      // a second or third blow in the same round gets its own swing
+      if (imp && imp.n > 1) { const src = this.resolve(e.src); if (src && !src.hero) this.play(src, '1H_Melee_Attack_Slice_Diagonal', 1.3); }
+    };
+    if (delay > 0) setTimeout(show, delay); else show();
   }
 
   event(e) {
@@ -167,8 +210,12 @@ export class CombatView {
     const land = () => this.land(e, src, dst, e.school || 'physical');
     if (ranged) {
       const r = typeof ranged === 'object' ? ranged : { kind: 'shot', school: 'physical' };
-      this.fx.projectile(this.chest(src), this.chest(dst), { kind: r.kind === 'shot' ? 'arrow' : 'orb', school: r.school, speed: r.kind === 'shot' ? 26 : 18, size: r.size || 0.2, delay: 0.25, onHit: () => this.land(e, src, dst, r.school) });
+      const speed = r.kind === 'shot' ? 26 : 18;
+      const flight = 250 + this.chest(src).distanceTo(this.chest(dst)) / speed * 1000;
+      this.expect(e, flight);
+      this.fx.projectile(this.chest(src), this.chest(dst), { kind: r.kind === 'shot' ? 'arrow' : 'orb', school: r.school, speed, size: r.size || 0.2, delay: 0.25, onHit: () => this.land(e, src, dst, r.school) });
     } else {
+      this.expect(e, 300);
       this.fx.slash(src.root.position, dst.root.position, { color: src.hero ? 0xfff0d0 : 0xffb0a0, delay: 0.18 });
       setTimeout(land, 300);
     }
@@ -185,8 +232,7 @@ export class CombatView {
       this.fx.flash(dst.root, heroHit ? 0xff2a1a : 0xffe0c0, 0.16);
       if (dst.actor && !dst.hero && !(dst.ent && dst.ent.dying)) dst.actor.once(Math.random() < 0.5 ? 'Hit_A' : 'Hit_B', 0.05, 1.2);
       if (dst.hero) this.getHero().ctl.swing(Math.random() < 0.5 ? 'Hit_A' : 'Hit_B');
-      if (e.amt != null) this.fx.text(p, crit ? `${e.amt}!` : `${e.amt}`, { color: heroHit ? COLORS.dmgIn : crit ? COLORS.crit : COLORS.dmgOut, crit, size: heroHit ? 17 : 19 });
-      if (crit || (heroHit && e.amt >= 15)) this.fx.shake(crit ? 0.22 : 0.14, 0.2);
+      // (the number itself comes with the wound event: the amount actually taken)
     } else {
       const word = { miss: 'Miss', dodge: 'Dodge', parry: 'Parry', block: 'Block', resist: 'Resist', immune: 'Immune' }[res] || res;
       this.fx.text(p, word, { color: COLORS[res] || COLORS.miss, size: 15 });
@@ -206,6 +252,10 @@ export class CombatView {
     if (src) this.play(src, v.anim || 'Spellcast_Shoot', 1.1);
     const from = src ? this.chest(src) : null;
     const to = dst ? this.chest(dst) : e.at ? new THREE.Vector3(e.at.x, 1, e.at.z) : null;
+    const flight = from && to ? from.distanceTo(to) / (v.kind === 'shot' ? 30 : v.heavy ? 14 : 20) * 1000 : 0;
+    const LAND = { melee: 320, dash: 330, shot: 300 + flight, volley: 700, bolt: 300 + flight + ((v.count || 1) - 1) * 120,
+      beam: 380, drain: 420, pillar: 450, nova: 380, cone: 420, cloud: 380, mark: 400 };
+    if (dst) this.expect({ ...e, src: e.src, dst: e.dst }, LAND[v.kind] || 300);
     const landAll = () => {
       if (dst) this.land({ ...e, heavy: v.heavy }, src, dst, school);
       for (const t of e.also || []) { const w = this.resolve(t.dst); if (w) this.land({ ...t, heavy: v.heavy }, src, w, school); }

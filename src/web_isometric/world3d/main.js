@@ -58,6 +58,11 @@ async function runGame() {
   let backdrop = await buildDemo(engine, kits, { interactive: false });
   $('#loading').classList.add('done');
 
+  // ranges and round timing, one source of truth on the server (combat_range.py)
+  let ranges = { melee: 2.5, auto: {}, abilities: {}, spellDefault: 14 };
+  fetch('/combatdata').then(r => r.json()).then(d => { ranges = d; hud.setRanges(d); }).catch(() => {});
+  const myClass = () => String(MH.state.player && MH.state.player.char_class || '').toLowerCase();
+  const reachOf = () => (ranges.auto[myClass()] || { range: ranges.melee || 2.5 }).range;
   const ents = new Entities(engine, $('#plates'));
   const fx = new FX(engine, $('#fct'));
   const combat = new CombatView({
@@ -306,17 +311,27 @@ async function runGame() {
   MH.bus.on('hud.attack', attack);
   // the server refused an action for distance: close in (or step back) and retry once
   let lastAction = null;
+  function approach(target, need, then) {
+    const p = hero.root.position, q = target.root.position;
+    const dx = p.x - q.x, dz = p.z - q.z, d = Math.hypot(dx, dz) || 1;
+    const stand = Math.max(1.2, need - 0.6);
+    ctl.walkTo(q.x + dx / d * stand, q.z + dz / d * stand, then);
+  }
   function outOfRange(e) {
-    const t = ents.targeted;
-    if (!t || !t.root || !lastAction || performance.now() - lastAction.at > 4000) {
-      hud.toast(e.need ? `Too far — get within ${e.need} m` : 'Out of range');
+    const ref = e.dst && e.dst.m != null ? ents.list.get(`m${e.dst.m}`) : ents.targeted;
+    const t = ref && ref.root ? ref : ents.targeted;
+    if (!t || !t.root) return hud.toast(e.need ? `Too far — get within ${e.need} m` : 'Out of range');
+    // the round's blow fell short: a melee hero closes in on its own (keys still win)
+    if (e.auto) {
+      if (!ctl.keys.size && !ctl.path) approach(t, e.need || reachOf());
       return;
     }
-    const need = Math.max(1.2, (e.need || 2.4) - 0.6);
-    const p = hero.root.position, q = t.root.position;
-    const dx = p.x - q.x, dz = p.z - q.z, d = Math.hypot(dx, dz) || 1;
-    const retry = lastAction; lastAction = null;
-    ctl.walkTo(q.x + dx / d * need, q.z + dz / d * need, () => MH.sendCommand(retry.cmd));
+    // an ability: walk into its reach and use it again
+    if (lastAction && performance.now() - lastAction.at < 4000) {
+      const retry = lastAction; lastAction = null;
+      hud.toast(`Closing to ${e.need} m…`);
+      approach(t, e.need || 2.5, () => MH.sendCommand(retry.cmd));
+    } else hud.toast(`Too far — get within ${e.need} m`);
   }
   MH.bus.on('hud.flee', () => MH.sendCommand('flee'));
   MH.bus.on('hud.ability', ab => {
@@ -356,6 +371,27 @@ async function runGame() {
       if (dist < maxDist && (!best || dist < best.dist)) best = { dir, dist };
     }
     return best;
+  }
+
+  // ---- in a fight: keep a target, close in for melee, show the distance ----
+  let chaseClock = 0;
+  function fightTick(dt) {
+    const p = hero.root.position;
+    let t = ents.targeted;
+    if (MH.state.inCombat && (!t || !t.root)) {
+      // whoever is fighting you becomes your target
+      const foe = [...ents.list.values()].filter(e => e.kind === 'mob' && e.root && e.data.fighting && e.vnum === (heroRoom && heroRoom.vnum))
+        .sort((a, b) => a.root.position.distanceTo(p) - b.root.position.distanceTo(p))[0];
+      if (foe) { ents.setTarget(foe.key); t = foe; }
+    }
+    const dist = t && t.root ? Math.hypot(t.root.position.x - p.x, t.root.position.z - p.z) : null;
+    hud.setDistance(dist, t && t.vnum === (heroRoom && heroRoom.vnum));
+    if ((chaseClock -= dt) > 0 || !MH.state.inCombat || !t || !t.root || t.kind !== 'mob') return;
+    chaseClock = 0.4;
+    const reach = reachOf();
+    const ranged = (ranges.auto[myClass()] || {}).ranged;
+    // melee heroes follow a foe that steps away; archers and casters hold their ground
+    if (!ranged && dist > reach + 0.3 && !ctl.keys.size && !ctl.path && t.vnum === heroRoom.vnum) approach(t, reach);
   }
 
   // ---- positions for the server's range rules (combat_range.py) ----
@@ -404,6 +440,7 @@ async function runGame() {
     }
     if (hop && performance.now() - hop.at > 6000) { hop = null; $('#vignette').style.background = ''; }
     ents.update(dt, t, p);
+    fightTick(dt);
     mm.update(p, ctl.yaw);
     sync.tick();
     reportPositions(dt);

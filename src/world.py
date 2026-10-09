@@ -1037,8 +1037,21 @@ class World:
                     except Exception as e:
                         logger.debug(f"notify_combat failed for {player.name}: {e}")
 
-        # Process NPC combat
+        # Creatures strike a beat after the heroes (combat v2): the exchange alternates on
+        # screen and in the log instead of every blow landing in the same instant.
+        try:
+            from combat_range import NPC_PHASE_DELAY
+            loop = asyncio.get_running_loop()
+            loop.call_later(NPC_PHASE_DELAY, lambda: asyncio.ensure_future(self._npc_combat_phase()))
+        except Exception as e:
+            logger.debug(f"npc phase scheduling failed, running inline: {e}")
+            await self._npc_combat_phase()
+
+    async def _npc_combat_phase(self):
+        """The creatures' half of a combat round (see combat_tick)."""
+        from combat import CombatHandler
         from mob_ai import mob_ai_tick
+        rooms = set()
         for npc in list(self.npcs):
             if npc.is_fighting:
                 # Check if target is still valid
@@ -1054,7 +1067,21 @@ class World:
                 # Re-check fighting state (AI may have caused flee/death)
                 if not npc.is_fighting or not npc.fighting:
                     continue
-                await CombatHandler.one_round(npc, npc.fighting)
+                try:
+                    await CombatHandler.one_round(npc, npc.fighting)
+                except Exception as e:
+                    logger.debug(f"npc round failed for {getattr(npc, 'name', '?')}: {e}")
+                if getattr(npc, 'room', None) is not None:
+                    rooms.add(npc.room)
+        # the heroes' vitals after the creatures struck, at once (not next round)
+        if getattr(self, 'web_map', None):
+            for room in rooms:
+                for ch in list(getattr(room, 'characters', []) or []):
+                    if hasattr(ch, 'account_name'):
+                        try:
+                            await self.web_map.notify_combat(ch)
+                        except Exception:
+                            pass
                 
     async def affect_tick(self):
         """Process DOT/HOT effects and decrement durations."""

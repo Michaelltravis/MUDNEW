@@ -146,6 +146,32 @@ export function createHud() {
   }
   setInterval(paintCooldowns, 200);
 
+  // ---- ranges: the target frame shows the distance; slots out of reach turn red ----
+  let ranges = null, lastDist = null;
+  function setRanges(d) { ranges = d; }
+  function abilityRange(s) {
+    if (!ranges) return null;
+    if (s.id === 'attack') { const a = ranges.auto[String(st.player && st.player.char_class || '').toLowerCase()]; return a ? a.range : ranges.melee; }
+    const ab = ranges.abilities[s.id];
+    if (ab) return /^(self|nova)/.test(ab.shape) ? null : ab.range;
+    return s.spell ? ranges.spellDefault : ranges.melee;
+  }
+  function setDistance(d, sameRoom) {
+    const sub = els.tf.querySelector('.tdist') || (() => { const x = document.createElement('div'); x.className = 'tdist'; els.tf.appendChild(x); return x; })();
+    if (d == null || els.tf.classList.contains('hidden')) { sub.textContent = ''; lastDist = null; return; }
+    const r = Math.round(d * 2) / 2;
+    if (r === lastDist) return;
+    lastDist = r;
+    const reach = abilityRange({ id: 'attack' });
+    sub.textContent = `${r.toFixed(r < 10 ? 1 : 0)} m${reach != null ? (d <= reach + 0.3 && sameRoom ? ' · in reach' : ` · reach ${reach} m`) : ''}`;
+    sub.className = 'tdist' + (reach != null && d <= reach + 0.3 && sameRoom ? ' ok' : '');
+    st.slots.forEach((s, i) => {
+      const el = els.slots.querySelector(`.slot[data-i="${i}"]`);
+      const rng = abilityRange(s);
+      if (el) el.classList.toggle('far', rng != null && (d > rng + 0.3 || !sameRoom));
+    });
+  }
+
   // ---- target ----
   function setTarget(t) {
     st.target = t;
@@ -259,5 +285,5 @@ export function createHud() {
     if (cmd && !e.ctrlKey && !e.metaKey && !e.altKey) { MH.sendCommand(cmd); e.preventDefault(); }
   });
 
-  return { showGame, setPlayer, setTarget, banner, toast, log, get player() { return st.player; } };
+  return { showGame, setPlayer, setTarget, setRanges, setDistance, banner, toast, log, get player() { return st.player; } };
 }

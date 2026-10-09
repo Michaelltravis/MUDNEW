@@ -385,6 +385,17 @@ class WebMapServer:
                             break
                 body = json.dumps(dict(result, found=True)) if result else json.dumps({'found': False})
                 await self._http_response(writer, 200, 'OK', body, content_type='application/json')
+            elif path.startswith('/combatdata'):
+                # combat v2 ranges for the 3D client (one source of truth: combat_range.py)
+                import combat_range as cr
+                body = json.dumps({
+                    'melee': cr.MELEE, 'pointBlank': cr.POINT_BLANK, 'round': cr.round_seconds(),
+                    'npcDelay': cr.NPC_PHASE_DELAY,
+                    'auto': {k: {'range': v[0], 'ranged': v[1]} for k, v in cr.AUTO_RANGE.items()},
+                    'abilities': {k: {'range': v[0], 'shape': v[1]} for k, v in cr.ABILITY_RANGE.items()},
+                    'spellDefault': cr.DEFAULT_SPELL[0],
+                })
+                await self._http_response(writer, 200, 'OK', body, content_type='application/json')
             elif path.startswith('/zonemap'):
                 # one zone as a continuous space for the 3D client (/play); static per run
                 from map_system import build_zonemap

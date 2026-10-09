@@ -14,6 +14,7 @@ Design (owner: "think about the classes and what ranges make sense"):
   shouts and novas hit everything around the user, area spells everything around a point.
 """
 import math
+import time
 
 MELEE = 2.5          # a sword's reach, edge to edge, generous for a top-down view
 POINT_BLANK = 3.0    # too close to draw a bow well
@@ -69,6 +70,7 @@ ROLE_RANGE = {
 }
 MOB_MELEE = 2.2
 MOB_SPEED = 3.4      # m/s closing in
+NPC_PHASE_DELAY = 1.3   # creatures strike this long after heroes in a round (world.combat_tick)
 ROOM_W, ROOM_H = 24.0, 15.0
 
 
@@ -157,3 +159,116 @@ def mob_seed(room, mobs):
                 set_pos(mob, float(m.get('x')), float(m.get('z')))
         except (TypeError, ValueError, AttributeError):
             continue
+
+
+def round_seconds():
+    try:
+        from config import Config
+        return float(getattr(Config, 'COMBAT_ROUND_SECONDS', 3.0))
+    except Exception:
+        return 3.0
+
+
+# ---- what school a spell belongs to (the 3D client picks its colours and shapes) ----
+_SCHOOL_WORDS = (
+    ('fire', 'fire'), ('flame', 'fire'), ('burn', 'fire'), ('meteor', 'fire'), ('pyro', 'fire'), ('inferno', 'fire'),
+    ('ice', 'frost'), ('frost', 'frost'), ('cold', 'frost'), ('freeze', 'frost'), ('chill', 'frost'), ('winter', 'frost'), ('blizzard', 'frost'),
+    ('lightning', 'lightning'), ('shock', 'lightning'), ('thunder', 'lightning'), ('storm', 'lightning'), ('spark', 'lightning'),
+    ('heal', 'holy'), ('cure', 'holy'), ('holy', 'holy'), ('smite', 'holy'), ('bless', 'holy'), ('divine', 'holy'),
+    ('sanctuary', 'holy'), ('light', 'holy'), ('judg', 'holy'), ('radiant', 'holy'), ('prayer', 'holy'),
+    ('soul', 'necrotic'), ('death', 'necrotic'), ('drain', 'necrotic'), ('corpse', 'necrotic'), ('undead', 'necrotic'), ('bone', 'necrotic'),
+    ('shadow', 'shadow'), ('dark', 'shadow'), ('void', 'shadow'), ('curse', 'shadow'), ('fear', 'shadow'), ('blind', 'shadow'),
+    ('poison', 'poison'), ('acid', 'poison'), ('venom', 'poison'), ('plague', 'poison'),
+    ('earth', 'nature'), ('quake', 'nature'), ('thorn', 'nature'), ('root', 'nature'), ('entangle', 'nature'), ('nature', 'nature'),
+    ('song', 'sound'), ('sonic', 'sound'), ('mock', 'sound'), ('discord', 'sound'), ('crescendo', 'sound'), ('fascinate', 'sound'),
+    ('missile', 'arcane'), ('arcane', 'arcane'), ('mana', 'arcane'), ('magic', 'arcane'),
+)
+_CLASS_SCHOOL = {'cleric': 'holy', 'paladin': 'holy', 'necromancer': 'necrotic', 'bard': 'sound', 'ranger': 'nature',
+                 'mage': 'arcane', 'warrior': 'physical', 'thief': 'shadow', 'assassin': 'shadow'}
+
+
+def spell_school(name, spell=None, caster=None):
+    el = (spell or {}).get('element') if isinstance(spell, dict) else None
+    if el:
+        return {'cold': 'frost', 'ice': 'frost'}.get(el, el)
+    n = key(name)
+    for word, school in _SCHOOL_WORDS:
+        if word in n:
+            return school
+    req = (spell or {}).get('class_required') if isinstance(spell, dict) else None
+    if isinstance(req, (list, tuple)) and req:
+        req = req[0]
+    cls = str(req or getattr(caster, 'char_class', '') or '').lower()
+    return _CLASS_SCHOOL.get(cls, 'arcane')
+
+
+async def spell_out_of_range(caster, target, spell_name, spell):
+    """True (and the caster is told why) when `target` is beyond the spell's reach. Called
+    before any mana is spent."""
+    if target is None or target is caster:
+        return False
+    rng, shape = ability_range(spell_name, True)
+    if shape == 'self' or shape.startswith('nova'):
+        return False
+    d = distance(caster, target)
+    if d is None or d <= rng + 0.4:
+        return False
+    try:
+        c = caster.config.COLORS
+        label = (spell or {}).get('name') or str(spell_name).replace('_', ' ')
+        await caster.send(f"{c['yellow']}{target.name} is too far for {label} ({d:.0f} m; it reaches {rng:g} m).{c['reset']}")
+        import combat_events as ev
+        ev.emit(caster.room, 'oor', src=caster, dst=target, ability=key(spell_name), need=rng, dist=round(d, 1))
+    except Exception:
+        pass
+    return True
+
+
+# ---- creatures in a fight move: melee closes in, archers and casters keep their distance ----
+def move_tick(world, dt):
+    import combat_events as ev
+    moved_rooms = {}
+    for npc in list(getattr(world, 'npcs', []) or []):
+        tgt = getattr(npc, 'fighting', None)
+        if tgt is None or getattr(npc, 'room', None) is None or getattr(tgt, 'room', None) is not npc.room:
+            continue
+        if time.time() < getattr(npc, 'staggered_until', 0) or getattr(npc, 'stunned_rounds', 0) > 0:
+            continue
+        mp, tp = pos_of(npc), pos_of(tgt)
+        if mp is None or tp is None:
+            continue
+        reach, prefer = mob_reach(npc)
+        dx, dz = tp[0] - mp[0], tp[1] - mp[1]
+        d = math.hypot(dx, dz)
+        if d < 1e-3:
+            continue
+        step = 0.0
+        if reach <= MELEE + 0.5:
+            if d > reach * 0.85:
+                step = min(MOB_SPEED * dt, d - reach * 0.75)
+        else:
+            if d < prefer * 0.55:
+                step = -min(MOB_SPEED * 0.8 * dt, prefer * 0.6 - d)      # back off to shoot
+            elif d > reach * 0.95:
+                step = min(MOB_SPEED * dt, d - reach * 0.85)
+        if abs(step) < 0.02:
+            continue
+        nx, nz = mp[0] + dx / d * step, mp[1] + dz / d * step
+        # keep a little room between creatures crowding the same hero
+        for other in npc.room.characters:
+            if other is npc or hasattr(other, 'account_name'):
+                continue
+            op = pos_of(other)
+            if op is None:
+                continue
+            ox, oz = nx - op[0], nz - op[1]
+            od = math.hypot(ox, oz)
+            if 0 < od < 1.1:
+                nx += ox / od * (1.1 - od) * 0.5
+                nz += oz / od * (1.1 - od) * 0.5
+        set_pos(npc, nx, nz)
+        p = pos_of(npc)
+        moved_rooms.setdefault(npc.room.vnum, (npc.room, []))[1].append((npc, p))
+    for vnum, (room, items) in moved_rooms.items():
+        for npc, p in items:
+            ev.emit(room, 'move', src=npc, x=round(p[0], 2), z=round(p[1], 2))

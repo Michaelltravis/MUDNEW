@@ -21,6 +21,20 @@ logger = logging.getLogger('Misthollow')
 
 _pending = {}        # room vnum -> (room, [events])
 _scheduled = False
+_hold = 0            # >0 while an action (a round, a skill) is still producing events
+
+
+class hold:
+    """`with hold():` keeps this moment's events together until the action finishes, so a
+    swing and its wounds leave in one message even though the round awaits in between."""
+    def __enter__(self):
+        global _hold
+        _hold += 1
+
+    def __exit__(self, *exc):
+        global _hold
+        _hold = max(0, _hold - 1)
+        return False
 
 
 def ref(ch):
@@ -34,6 +48,21 @@ def ref(ch):
         return {'m': _mob_uid(ch)}
     except Exception:
         return {'m': id(ch) & 0x7fffffff}
+
+
+def mark(room):
+    """Where the next event for `room` will go: lets a wrapper put an action ahead of the
+    wounds it caused (the swing before its damage numbers)."""
+    entry = _pending.get(getattr(room, 'vnum', None))
+    return len(entry[1]) if entry else 0
+
+
+def emit_at(room, index, k, src=None, dst=None, **fields):
+    """emit(), but inserted at `index` (from mark()) instead of appended."""
+    emit(room, k, src, dst, **fields)
+    entry = _pending.get(getattr(room, 'vnum', None))
+    if entry and index is not None and index < len(entry[1]) - 1:
+        entry[1].insert(index, entry[1].pop())
 
 
 def emit(room, k, src=None, dst=None, **fields):
@@ -67,6 +96,10 @@ def emit(room, k, src=None, dst=None, **fields):
 
 async def _flush():
     global _scheduled
+    for _ in range(150):               # an action is mid-way: wait for the rest of it (<=3 s)
+        if _hold <= 0:
+            break
+        await asyncio.sleep(0.02)
     _scheduled = False
     batch = list(_pending.items())
     _pending.clear()

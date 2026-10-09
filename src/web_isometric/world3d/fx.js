@@ -167,11 +167,17 @@ export class FX {
     root.traverse(o => { if (o.isMesh && o.material && o.material.emissive) mats.push(o.material); });
     const c = new THREE.Color(color);
     let t = time;
-    const base = mats.map(m => m.emissive.clone());
+    // remember each material's own glow once: overlapping flashes must not keep the red
+    for (const m of mats) if (!m.userData.baseEmissive) m.userData.baseEmissive = m.emissive.clone();
+    const token = {};
+    for (const m of mats) m.userData.flashToken = token;
     this.add({ update: dt => {
       t -= dt;
       const k = Math.max(0, t / time);
-      mats.forEach((m, i) => m.emissive.copy(base[i]).lerp(c, k * 0.9));
+      for (const m of mats) {
+        if (m.userData.flashToken !== token) continue;          // a newer flash owns it now
+        m.emissive.copy(m.userData.baseEmissive).lerp(c, k * 0.9);
+      }
       return t > 0;
     } });
   }

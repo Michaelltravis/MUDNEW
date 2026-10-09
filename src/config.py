@@ -52,7 +52,12 @@ class Config:
     PASSWORD_RESET_TTL_HOURS = 24
     
     # Combat Settings
-    PULSE_VIOLENCE = 2  # seconds between combat rounds
+    PULSE_VIOLENCE = 2  # (unused; see COMBAT_ROUND_SECONDS)
+    # Combat v2 (3D client): a round every 3 s (was 4 s "for readability" — the 3D client
+    # now makes a round readable with animation). Heroes strike at the start of a round,
+    # creatures NPC_PHASE_DELAY (combat_range.py) later, so blows alternate. Windows that
+    # used to be hard-coded for 4 s scale with this.
+    COMBAT_ROUND_SECONDS = 3.0
     PULSE_MOBILE = 10  # seconds between mob actions
 
     # Combat stance modifiers (offense vs defense tradeoff)
