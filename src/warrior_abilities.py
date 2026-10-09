@@ -294,11 +294,13 @@ async def apply_damage_to_target(player, target, damage: int, ability_name: str 
     
     dmg_word = CombatHandler.get_damage_word(damage)
     dmg_color = CombatHandler.get_damage_color(damage)
-    
+    # "Your bash nicks the zombie!", not "nick": the word list is in the first person
+    dmg_verb = CombatHandler.DAMAGE_FORMS.get(dmg_word, (dmg_word + 's', dmg_word))[0]
+
     if hasattr(player, 'send'):
-        await player.send(f"{c['bright_green']}Your {ability_name} {dmg_word} {target.name}! {dmg_color}[{damage}]{c['reset']}")
+        await player.send(f"{c['bright_green']}Your {ability_name} {dmg_verb} {target.name}! {dmg_color}[{damage}]{c['reset']}")
     if hasattr(target, 'send'):
-        await target.send(f"{c['bright_red']}{player.name}'s {ability_name} {dmg_word} you! {dmg_color}[{damage}]{c['reset']}")
+        await target.send(f"{c['bright_red']}{player.name}'s {ability_name} {dmg_verb} you! {dmg_color}[{damage}]{c['reset']}")
     if player.room:
         await player.room.send_to_room(
             f"{c['white']}{player.name}'s {ability_name} hits {target.name}. [{damage}]{c['reset']}",
