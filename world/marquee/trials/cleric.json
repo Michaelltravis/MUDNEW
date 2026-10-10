@@ -1,0 +1,106 @@
+{
+  "name": "The Silent Choir",
+  "intro": "The seraph's door closes behind you on silence \u2014 a silence so complete it has weight. You stand in a cathedral of ash, where a choir once sang a seraph down and something sang it back up again.",
+  "rooms": [
+    {
+      "key": "nave",
+      "name": "The Silent Choir - The Nave of Ash",
+      "sector": "inside",
+      "description": "Pews of grey ash fill the nave, and every one of them is occupied. North, the choir screen is shut, its carved angels' faces chiselled away.",
+      "exits": {
+        "north": {
+          "to": "organ",
+          "door": "choir screen"
+        }
+      }
+    },
+    {
+      "key": "organ",
+      "name": "The Silent Choir - The Broken Organ",
+      "sector": "inside",
+      "description": "The cathedral organ fills the transept, its pipes split and bleeding dust. Every so often it wheezes a note that makes your teeth ache. Stairs lead north to the choir loft.",
+      "exits": {
+        "south": {
+          "to": "nave",
+          "door": "choir screen"
+        },
+        "north": {
+          "to": "loft",
+          "door": "loft stair"
+        }
+      }
+    },
+    {
+      "key": "loft",
+      "name": "The Silent Choir - The Choir Loft",
+      "sector": "inside",
+      "description": "The choir loft is empty but for a hundred white robes, folded neatly on the benches, and the thing that silenced them.",
+      "exits": {
+        "south": {
+          "to": "organ",
+          "door": "loft stair"
+        }
+      }
+    }
+  ],
+  "entrance": "nave",
+  "waves": [
+    {
+      "room": "nave",
+      "mobs": [
+        [
+          9724,
+          2
+        ],
+        [
+          9725,
+          1
+        ]
+      ],
+      "text": "Ashen acolytes rise from the pews, their mouths sewn shut!"
+    },
+    {
+      "room": "organ",
+      "mobs": [
+        [
+          9724,
+          2
+        ],
+        [
+          9725,
+          1
+        ]
+      ],
+      "text": "The broken organ wheezes, and mourning wisps pour from its pipes!"
+    },
+    {
+      "room": "organ",
+      "mobs": [
+        [
+          9725,
+          3
+        ]
+      ],
+      "text": "The wisps come again, wailing the hymn backwards!"
+    }
+  ],
+  "gates": [
+    {
+      "after": 0,
+      "room": "nave",
+      "dir": "north",
+      "text": "The choir screen swings open on the transept."
+    },
+    {
+      "after": 2,
+      "room": "organ",
+      "dir": "north",
+      "text": "The loft stair is clear \u2014 and something above has stopped listening."
+    }
+  ],
+  "boss": {
+    "vnum": 9726,
+    "room": "loft",
+    "text": "Serathiel the Fallen turns from the empty choir. Where its face was there is only a mouth. 'They sang,' it says, 'and no one came. Now nothing sings.'"
+  }
+}

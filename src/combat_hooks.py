@@ -241,6 +241,12 @@ EXTRA_ABILITIES = {      # command: (aimed at, the classes that use it)
     'ritual': ('self', 'necromancer'), 'soulstone': ('self', 'necromancer'),
     'summon': ('self', 'mage'), 'shadowform': ('self', 'cleric'), 'perform': ('self', 'bard'),
 }
+# the marquee abilities' later moments, played as abilities of their own (marquee_abilities.BEATS)
+try:
+    from marquee_abilities import BEATS as _BEATS
+    EXTRA_ABILITIES.update(_BEATS)
+except Exception:
+    pass
 # the argument picks how these look (a song, an elemental, an aura): it goes in the event
 VARIANT_ABILITIES = frozenset({'perform', 'summon', 'raise', 'aura'})
 # moves nobody else should see you make
@@ -254,6 +260,20 @@ def _canonical(cmd):
     from commands import CommandHandler
     c = CommandHandler.ALIASES.get(cmd, cmd)
     return CommandHandler.COMMAND_ALIASES.get(c, c)
+
+
+def _joined(cmd, args):
+    """The command that really runs for multi-word input ("song of the ages", "unbroken
+    banner") — joined the way CommandHandler.execute joins it — and the args left over."""
+    from commands import CommandHandler
+    c = str(_canonical(cmd) or '').lower()
+    words = [str(a).lower() for a in (args or [])]
+    for n in (3, 2):
+        if len(words) >= n and getattr(CommandHandler, f"cmd_{'_'.join([c] + words[:n])}", None):
+            return '_'.join([c] + words[:n]), list(args[n:])
+    if words and not getattr(CommandHandler, f'cmd_{c}', None) and getattr(CommandHandler, f'cmd_{c}_{words[0]}', None):
+        return f'{c}_{words[0]}', list(args[1:])
+    return cmd, list(args or [])
 
 
 def _ability_of(cmd, args):
@@ -330,10 +350,12 @@ def _wrap_execute():
         name, rest = (None, args)
         try:
             if _is_player(player) and getattr(player, 'room', None) is not None and cmd:
-                name, rest = _ability_of(cmd, list(args or []))
+                # typed with spaces ("wings of dawn") it is the joined command that runs
+                jcmd, jargs = _joined(cmd, list(args or []))
+                name, rest = _ability_of(jcmd, jargs)
                 if not name:
                     # every other class ability: no reach to check, but the 3D client draws it
-                    name, rest = _class_ability(player, cmd), list(args or [])
+                    name, rest = _class_ability(player, jcmd), jargs
         except Exception:
             name = None
         if not name:
@@ -452,6 +474,10 @@ def _wrap_mob_ai():
         if intent and intent is not before and getattr(mob, 'room', None) is not None:
             intent['area'] = _area_for(mob, intent)
             ms = int((cr.round_seconds() + cr.NPC_PHASE_DELAY) * 1000)
+            if time.time() < getattr(mob, 'slowed_until', 0):
+                # slowed (marquee_abilities): the wind-up takes a round longer, and its mark says so
+                intent['declared_at'] = intent.get('declared_at', time.time()) + cr.round_seconds()
+                ms += int(cr.round_seconds() * 1000)
             ev.emit(mob.room, 'windup', src=mob, dst=getattr(mob, 'fighting', None), label=intent.get('label'),
                     kind=intent.get('kind'), ms=ms, area=intent['area'], school=_school_of_label(intent.get('label')),
                     interruptible=bool(intent.get('interruptible')) or None)

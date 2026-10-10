@@ -527,6 +527,10 @@ class CombatHandler:
             attacker._skip_autoattack = False
             return
 
+        # A slowed creature (marquee_abilities) swings only every other round or so
+        if not cls.is_player(attacker) and time.time() < getattr(attacker, 'slowed_until', 0) and random.random() < 0.5:
+            return
+
         # A sidestepping player spent the round entirely on evasion
         if getattr(attacker, 'sidestep_skip_attack', False):
             attacker.sidestep_skip_attack = False
@@ -1710,8 +1714,9 @@ class CombatHandler:
         # who the kill is for: the killer, or the master of a pet (read by the drops below)
         exp_recipient = killer.owner if getattr(killer, 'owner', None) and hasattr(killer.owner, 'gain_exp') else killer
 
-        # Ensure equipped items are lootable
-        if hasattr(victim, 'equipment') and hasattr(victim, 'inventory'):
+        # Ensure equipped items are lootable (a creature's: a fallen hero keeps what they wear;
+        # their corpse holds what they carried and their gold)
+        if hasattr(victim, 'equipment') and hasattr(victim, 'inventory') and not cls.is_player(victim):
             for item in list(victim.equipment.values()):
                 if item:
                     victim.inventory.append(item)

@@ -64,9 +64,9 @@ export const CASTS = ['sigil', 'gather', 'glyphs', 'motifs', 'flare', 'rings', '
 export const TRAVELS = ['slash', 'orb', 'orbs', 'glyph', 'motif', 'bolt', 'sky', 'chain', 'ray', 'skyray', 'tether', 'link', 'arrow',
   'arrows', 'rain', 'rainglyph', 'meteor', 'meteors', 'wave', 'cone', 'blade', 'blades', 'shards'];
 export const LANDS = ['hit', 'sparks', 'burst', 'motifs', 'fountain', 'nova', 'blast', 'pillar', 'sigil', 'crack', 'quake', 'growth',
-  'cloud', 'bubble', 'mark', 'swirl', 'geyser', 'shatter', 'freeze', 'halo', 'wings', 'smoke', 'rings', 'dome', 'heal'];
+  'cloud', 'bubble', 'mark', 'swirl', 'geyser', 'shatter', 'freeze', 'halo', 'wings', 'smoke', 'rings', 'dome', 'heal', 'implode'];
 export const AURAS = ['orbit', 'runes', 'blades', 'halo', 'wings', 'bubble', 'shroud', 'fade', 'glow', 'embers', 'notes', 'motes',
-  'frost', 'flames', 'leaves', 'stone', 'bark', 'mirror', 'ghost', 'sigil', 'rage', 'poison', 'bleed', 'banner'];
+  'frost', 'flames', 'leaves', 'stone', 'bark', 'mirror', 'ghost', 'sigil', 'rage', 'poison', 'bleed', 'banner', 'seraph', 'lich'];
 export const SCHOOLS = ['fire', 'frost', 'lightning', 'arcane', 'holy', 'shadow', 'necrotic', 'nature', 'poison', 'sound', 'physical', 'blood'];
 export const GROWTHS = ['vines', 'bones', 'ice', 'crystals', 'bars', 'thorns', 'stones', 'spikes', 'spears'];
 // slash:wide (a broad sweep), :up (rising), :x (two crossing), :rev (a backhand), :3 (three quick)

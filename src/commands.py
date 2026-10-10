@@ -265,6 +265,15 @@ class CommandHandler:
                 await cls.cmd_color(player, args[1:])
                 return
 
+        # Longer names first: "song of the ages", "wings of dawn" -> cmd_song_of_the_ages (a
+        # prefix match would otherwise pick a shorter command such as `songs`)
+        for n in (3, 2):
+            if len(args) >= n:
+                joined = '_'.join([cmd] + [str(a).lower() for a in args[:n]])
+                if getattr(cls, f'cmd_{joined}', None):
+                    cmd, args = joined, args[n:]
+                    break
+
         # Try combining cmd + first arg as underscore-separated command
         # e.g., "shadow step goblin" -> try cmd_shadow_step with args ["goblin"]
         if args and not getattr(cls, f'cmd_{cmd}', None):

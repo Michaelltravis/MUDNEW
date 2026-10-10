@@ -1,0 +1,106 @@
+{
+  "name": "The Phylactery Vault",
+  "intro": "The jar's green fire flares and pulls you in after it. You stand in a stair of bone beneath the world, and every step down is a step into a dead man's mind.",
+  "rooms": [
+    {
+      "key": "stair",
+      "name": "The Phylactery Vault - The Ossuary Stair",
+      "sector": "cave",
+      "description": "A spiral stair carved from a single enormous bone winds down into the dark. Below, a door of fused vertebrae blocks the way north.",
+      "exits": {
+        "north": {
+          "to": "hall",
+          "door": "bone door"
+        }
+      }
+    },
+    {
+      "key": "hall",
+      "name": "The Phylactery Vault - The Hall of Jars",
+      "sector": "dungeon",
+      "description": "Shelves of jars climb out of sight, each holding a flicker of green fire and a servant's name. North, a veil of grave-fire hangs across an archway.",
+      "exits": {
+        "south": {
+          "to": "stair",
+          "door": "bone door"
+        },
+        "north": {
+          "to": "throne",
+          "door": "throne veil"
+        }
+      }
+    },
+    {
+      "key": "throne",
+      "name": "The Phylactery Vault - The Throne of Xal'thar",
+      "sector": "inside",
+      "description": "A throne built of a thousand jars stands at the end of the hall. On it sits what is left of the first necromancer to cheat death.",
+      "exits": {
+        "south": {
+          "to": "hall",
+          "door": "throne veil"
+        }
+      }
+    }
+  ],
+  "entrance": "stair",
+  "waves": [
+    {
+      "room": "stair",
+      "mobs": [
+        [
+          9764,
+          2
+        ],
+        [
+          9765,
+          1
+        ]
+      ],
+      "text": "Phylactery wardens step out of the bone walls!"
+    },
+    {
+      "room": "hall",
+      "mobs": [
+        [
+          9764,
+          2
+        ],
+        [
+          9765,
+          1
+        ]
+      ],
+      "text": "The jars on the shelves crack, and their servants crawl out!"
+    },
+    {
+      "room": "hall",
+      "mobs": [
+        [
+          9765,
+          3
+        ]
+      ],
+      "text": "Bound servants pour from the shattered jars!"
+    }
+  ],
+  "gates": [
+    {
+      "after": 0,
+      "room": "stair",
+      "dir": "north",
+      "text": "The bone door grinds open on the hall of jars."
+    },
+    {
+      "after": 2,
+      "room": "hall",
+      "dir": "north",
+      "text": "The veil of grave-fire parts before the throne."
+    }
+  ],
+  "boss": {
+    "vnum": 9766,
+    "room": "throne",
+    "text": "Xal'thar the First Lich rises from his throne of jars. 'A thief,' he whispers, 'come to steal what I stole first. Kneel, and I will make you my jar.'"
+  }
+}

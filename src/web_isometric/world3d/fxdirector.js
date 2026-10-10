@@ -468,6 +468,7 @@ export class Director {
         break;
       case 'rings': fx.every(0.12, 3, () => fx.shockwave(who.root, { color: pal.mark, radius: 2.2, y: 1.1, thin: true, time: 0.4 })); break;
       case 'dome': fx.dome(ground, { color: pal.mark, radius: Math.max(2.5, R), time: 2.4 }); break;
+      case 'implode': fx.implode(ground, { color: pal.mark, radius: Math.max(4, R), time: t.big ? 1.1 : 0.9 }); break;
       case 'heal':
         fx.p.emit(ground.clone().setY(0.3), { count: t.big ? 30 : 18, color: 0x8dffa0, speed: 0.6, up: 2.4, life: 1.0, size: 0.24, drag: 1.2, jitter: 1 });
         fx.glyph(ground.clone().setY(0.4), { glyph: pal.glyph, count: t.big ? 8 : 5, color: pal.mark, speed: 0.4, up: 2, life: 1.0, size: 0.36, drag: 1 });
@@ -538,6 +539,8 @@ export class Director {
         break;
       case 'poison': steady(0.09, () => fx.glyph(around(0.35).setY(1 + Math.random() * 0.4), { glyph: 'drop', count: 1, color: 0x9aff4a, speed: 0.1, life: 0.7, size: 0.22, gravity: 6 })); break;
       case 'bleed': steady(0.1, () => fx.glyph(around(0.3).setY(1 + Math.random() * 0.5), { glyph: 'drop', count: 1, color: 0xd02a2a, speed: 0.1, life: 0.7, size: 0.22, gravity: 7 })); break;
+      case 'seraph': fx.seraph(root, { color: pal.accent || pal.mark, time: T }); break;
+      case 'lich': fx.lich(root, { color: 0x7aff9a, time: T }); break;
       case 'banner': {
         // planted beside the user, a step to the side so it never stands inside them
         const y = root.rotation.y, at = root.position.clone().add(V(Math.cos(y) * 0.9, 0, -Math.sin(y) * 0.9)).setY(0);

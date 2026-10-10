@@ -282,6 +282,1134 @@
     "thrall",
     "reaver"
    ]
+  },
+  "9710": {
+   "vnum": 9710,
+   "name": "rift-warden",
+   "keywords": [
+    "rift",
+    "warden",
+    "riftwarden"
+   ],
+   "short_desc": "a rift-warden",
+   "long_desc": "A rift-warden stands guard here, its armour stitched together from shards of other worlds.",
+   "description": "A tall figure in plate that does not fit together: a pauldron from one world, a gauntlet from another,\nall bound with threads of violet light. Where its face should be, a small black star turns slowly.",
+   "level": 47,
+   "max_hp": 1000,
+   "damage_dice": "2d8+8",
+   "exp": 9000,
+   "gold": 400,
+   "armor_class": 20,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9711": {
+   "vnum": 9711,
+   "name": "arcane wraith",
+   "keywords": [
+    "wraith",
+    "arcane"
+   ],
+   "short_desc": "an arcane wraith",
+   "long_desc": "An arcane wraith drifts here, its body veined with glowing star-glass.",
+   "description": "The ghost of an apprentice who read one page too far. Shards of star-glass are lodged in it like\nsplinters, and they glow brighter when it is angry.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 3000,
+   "gold": 0,
+   "armor_class": 30,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "no_sleep"
+   ]
+  },
+  "9712": {
+   "vnum": 9712,
+   "name": "Echo of the Archmage",
+   "keywords": [
+    "echo",
+    "archmage"
+   ],
+   "short_desc": "the Echo of the Archmage",
+   "long_desc": "The Echo of the Archmage paces here, muttering the last spell she ever cast.",
+   "description": "A woman made of lamplight and old ink, flickering like a bad candle. She was the mage who folded the\nworld shut; this is what was left behind when the fold closed.",
+   "level": 48,
+   "max_hp": 1000,
+   "damage_dice": "2d5+6",
+   "exp": 20000,
+   "gold": 1500,
+   "armor_class": 15,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "boss"
+   ],
+   "boss": true,
+   "boss_id": "archmage_echo",
+   "boss_loot_chance": 0,
+   "boss_config": {
+    "enrage_time": 300,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 10.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Echo splits in two \u2014 and both halves keep casting!",
+      "spawn_adds": {
+       "9711": 1
+      }
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Arcane Torrent",
+      "telegraph": "The Echo draws a long breath of violet light \u2014 a torrent is coming!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d10+10",
+      "dodge": true,
+      "vulnerable_after": 3
+     },
+     {
+      "name": "Mirror Storm",
+      "telegraph": "The air fills with spinning mirrors of force around the Echo!",
+      "cast_time": 3,
+      "cooldown": 26,
+      "damage_dice": "3d6+8",
+      "dodge": true,
+      "aoe": true
+     }
+    ]
+   }
+  },
+  "9713": {
+   "vnum": 9713,
+   "name": "void spawn",
+   "keywords": [
+    "spawn",
+    "void"
+   ],
+   "short_desc": "a void spawn",
+   "long_desc": "A void spawn claws at the edges of the world here, all teeth and absence.",
+   "description": "A thing that fell in from the space between stars: a mouth with a body attached as an afterthought.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 2500,
+   "gold": 0,
+   "armor_class": 30,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9714": {
+   "vnum": 9714,
+   "name": "star-wrought sentinel",
+   "keywords": [
+    "sentinel",
+    "star"
+   ],
+   "short_desc": "a star-wrought sentinel",
+   "long_desc": "A star-wrought sentinel grinds forward here, rings of brass turning in its chest.",
+   "description": "A construct of orrery brass and starlight, built to keep the dying star company and to keep everything\nelse away from it.",
+   "level": 47,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 2500,
+   "gold": 60,
+   "armor_class": 25,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9715": {
+   "vnum": 9715,
+   "name": "gravity mote",
+   "keywords": [
+    "mote",
+    "gravity"
+   ],
+   "short_desc": "a gravity mote",
+   "long_desc": "A gravity mote spins here, dragging dust and light into itself.",
+   "description": "A knot of collapsed space no bigger than a fist, and heavier than a house.",
+   "level": 46,
+   "max_hp": 1000,
+   "damage_dice": "2d4+3",
+   "exp": 2000,
+   "gold": 0,
+   "armor_class": 35,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9716": {
+   "vnum": 9716,
+   "name": "Vaelith the Star-Eater",
+   "keywords": [
+    "vaelith",
+    "star-eater",
+    "stareater"
+   ],
+   "short_desc": "Vaelith the Star-Eater",
+   "long_desc": "Vaelith the Star-Eater coils around the dying star here, drinking its light.",
+   "description": "A serpent of night with a woman's face, long enough to wrap a sun three times. Her scales are the\nblack between the stars, and her eyes are two stars she has not finished eating.",
+   "level": 50,
+   "max_hp": 1000,
+   "damage_dice": "2d5+6",
+   "exp": 40000,
+   "gold": 3000,
+   "armor_class": 10,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "boss"
+   ],
+   "boss": true,
+   "boss_id": "vaelith",
+   "boss_loot_chance": 0,
+   "boss_config": {
+    "enrage_time": 480,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 12.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Vaelith tightens her coils \u2014 the star shudders and spits gravity motes!",
+      "spawn_adds": {
+       "9715": 1
+      }
+     },
+     {
+      "threshold": 25,
+      "message": "Vaelith screams, and the star begins to collapse in earnest!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Event Horizon",
+      "telegraph": "Vaelith opens her jaws and the light around her bends inward \u2014 the horizon is closing!",
+      "cast_time": 3,
+      "cooldown": 22,
+      "damage_dice": "3d10+10",
+      "dodge": true,
+      "aoe": true,
+      "vulnerable_after": 3
+     },
+     {
+      "name": "Starfall",
+      "telegraph": "Vaelith lifts her head toward the star \u2014 a shard of it is about to fall on you!",
+      "cast_time": 2.5,
+      "cooldown": 20,
+      "damage_dice": "4d10+12",
+      "dodge": true,
+      "interruptible": true,
+      "on_success_message": "A shard of the dying star crashes down, shattering the floor!"
+     },
+     {
+      "name": "Collapse",
+      "cooldown": 60,
+      "summon": {
+       "9715": 1
+      }
+     }
+    ]
+   }
+  },
+  "9717": {
+   "vnum": 9717,
+   "name": "void mote",
+   "keywords": [
+    "mote",
+    "void"
+   ],
+   "short_desc": "a void mote",
+   "long_desc": "A void mote orbits its rift-warden here like a small dark moon.",
+   "description": "A pebble of nothing, tethered to the warden it serves.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+4",
+   "exp": 2000,
+   "gold": 20,
+   "armor_class": 35,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9720": {
+   "vnum": 9720,
+   "name": "drowned zealot",
+   "keywords": [
+    "zealot",
+    "drowned"
+   ],
+   "short_desc": "a drowned zealot",
+   "long_desc": "A drowned zealot raves here, water pouring from its mouth with every word.",
+   "description": "A priest of Nereus who would not stop praying when the sea came in, and has not stopped since. Its\nvestments are kelp and its rosary is barnacles.",
+   "level": 47,
+   "max_hp": 1000,
+   "damage_dice": "2d8+8",
+   "exp": 9000,
+   "gold": 400,
+   "armor_class": 20,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9721": {
+   "vnum": 9721,
+   "name": "gilded harpy",
+   "keywords": [
+    "harpy",
+    "gilded"
+   ],
+   "short_desc": "a gilded harpy",
+   "long_desc": "A gilded harpy preens here, a stolen golden feather in its claws.",
+   "description": "A harpy with gold leaf beaten into its feathers by some mad priest. It clutches a feather far brighter\nthan its own, and it will not let go.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 3000,
+   "gold": 0,
+   "armor_class": 30,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9722": {
+   "vnum": 9722,
+   "name": "Gilded Hierophant",
+   "keywords": [
+    "hierophant",
+    "gilded"
+   ],
+   "short_desc": "the Gilded Hierophant",
+   "long_desc": "The Gilded Hierophant stands here before a cage of golden bars, chanting.",
+   "description": "A priest-king in a mask of beaten gold, robed in cloth-of-gold gone green with age. Inside the cage\nbehind him something small and bright is singing.",
+   "level": 48,
+   "max_hp": 1000,
+   "damage_dice": "2d5+6",
+   "exp": 20000,
+   "gold": 1500,
+   "armor_class": 15,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "boss"
+   ],
+   "boss": true,
+   "boss_id": "gilded_hierophant",
+   "boss_loot_chance": 0,
+   "boss_config": {
+    "enrage_time": 300,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 10.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Hierophant rattles the cage and his harpies come screaming!",
+      "spawn_adds": {
+       "9721": 1
+      }
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Searing Censure",
+      "telegraph": "The Hierophant raises a golden censer that blazes white-hot!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d10+10",
+      "dodge": true,
+      "vulnerable_after": 3
+     },
+     {
+      "name": "Gilded Wrath",
+      "telegraph": "Gold dust swirls up around the Hierophant \u2014 it is about to ignite!",
+      "cast_time": 3,
+      "cooldown": 26,
+      "damage_dice": "3d6+8",
+      "dodge": true,
+      "aoe": true
+     }
+    ]
+   }
+  },
+  "9723": {
+   "vnum": 9723,
+   "name": "hollow chorister",
+   "keywords": [
+    "chorister",
+    "hollow"
+   ],
+   "short_desc": "a hollow chorister",
+   "long_desc": "A hollow chorister sways here, singing a hymn with no words and no breath.",
+   "description": "One of the lost choir, emptied out and filled with silence. Its open mouth makes no sound at all.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 2500,
+   "gold": 0,
+   "armor_class": 30,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9724": {
+   "vnum": 9724,
+   "name": "ashen acolyte",
+   "keywords": [
+    "acolyte",
+    "ashen"
+   ],
+   "short_desc": "an ashen acolyte",
+   "long_desc": "An ashen acolyte stands here, its mouth sewn shut with silver thread.",
+   "description": "A novice of the choir, burned to ash and set back on its feet. The silver thread through its lips\nglints when it moves.",
+   "level": 47,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 2500,
+   "gold": 60,
+   "armor_class": 25,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9725": {
+   "vnum": 9725,
+   "name": "mourning wisp",
+   "keywords": [
+    "wisp",
+    "mourning"
+   ],
+   "short_desc": "a mourning wisp",
+   "long_desc": "A mourning wisp flickers here, sobbing a hymn backwards.",
+   "description": "A last breath of the choir, caught and soured into something that hurts to hear.",
+   "level": 46,
+   "max_hp": 1000,
+   "damage_dice": "2d4+3",
+   "exp": 2000,
+   "gold": 0,
+   "armor_class": 35,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9726": {
+   "vnum": 9726,
+   "name": "Serathiel the Fallen",
+   "keywords": [
+    "serathiel",
+    "fallen"
+   ],
+   "short_desc": "Serathiel the Fallen",
+   "long_desc": "Serathiel the Fallen looms over the empty choir here, wings of black glass folded.",
+   "description": "A seraph that fell: six wings of black glass, a body of cooling light, and where its face was, only a\nmouth. It silenced the choir that called it, so that it would never have to answer again.",
+   "level": 50,
+   "max_hp": 1000,
+   "damage_dice": "2d5+6",
+   "exp": 40000,
+   "gold": 3000,
+   "armor_class": 10,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "boss"
+   ],
+   "boss": true,
+   "boss_id": "serathiel",
+   "boss_loot_chance": 0,
+   "boss_config": {
+    "enrage_time": 480,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 12.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Serathiel opens its mouth, and mourning wisps pour out!",
+      "spawn_adds": {
+       "9725": 1
+      }
+     },
+     {
+      "threshold": 25,
+      "message": "Serathiel shrieks \u2014 the black glass of its wings begins to crack!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Wrath of the Fallen",
+      "telegraph": "Serathiel spreads its six black wings \u2014 the light around it gathers to burst!",
+      "cast_time": 3,
+      "cooldown": 22,
+      "damage_dice": "3d10+10",
+      "dodge": true,
+      "aoe": true,
+      "vulnerable_after": 3
+     },
+     {
+      "name": "Severing Light",
+      "telegraph": "Serathiel turns its mouth toward you; a needle of black light gathers there!",
+      "cast_time": 2.5,
+      "cooldown": 20,
+      "damage_dice": "4d10+12",
+      "dodge": true,
+      "interruptible": true,
+      "on_success_message": "A needle of black light lances through the cathedral!"
+     },
+     {
+      "name": "Hymn of Ruin",
+      "cooldown": 60,
+      "summon": {
+       "9725": 1
+      }
+     }
+    ]
+   }
+  },
+  "9727": {
+   "vnum": 9727,
+   "name": "zealot penitent",
+   "keywords": [
+    "penitent",
+    "zealot"
+   ],
+   "short_desc": "a zealot's penitent",
+   "long_desc": "A penitent follows its zealot here, flagellating itself with a rope of kelp.",
+   "description": "A lesser drowned, bound to its zealot by guilt and seaweed.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+4",
+   "exp": 2000,
+   "gold": 20,
+   "armor_class": 35,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9728": {
+   "vnum": 9728,
+   "name": "drowned priestess",
+   "keywords": [
+    "priestess",
+    "drowned"
+   ],
+   "short_desc": "the drowned priestess",
+   "long_desc": "The drowned priestess of the lost choir kneels here, singing under her breath.",
+   "description": "A woman in the white of the choir, her hair floating as if she were still underwater. When she sings,\nthe water in the room answers.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "1d4+1",
+   "exp": 0,
+   "gold": 0,
+   "armor_class": 20,
+   "alignment": 900,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ],
+   "special": "flavor_npc",
+   "talk_responses": {
+    "hello": "The priestess's voice is the sound of water in a bell. 'Speak, if you came to listen.'",
+    "default": "The drowned priestess hums a few notes of a hymn you almost know."
+   }
+  },
+  "9750": {
+   "vnum": 9750,
+   "name": "eclipse knight",
+   "keywords": [
+    "knight",
+    "eclipse"
+   ],
+   "short_desc": "an eclipse knight",
+   "long_desc": "An eclipse knight stands vigil here, a black sun on its shield.",
+   "description": "A knight of the order who swore to the Eclipse instead. Its armour is black enamel over bone, and the\nsun on its shield is a hole that light falls into.",
+   "level": 47,
+   "max_hp": 1000,
+   "damage_dice": "2d8+8",
+   "exp": 9000,
+   "gold": 400,
+   "armor_class": 20,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9751": {
+   "vnum": 9751,
+   "name": "ember wisp",
+   "keywords": [
+    "wisp",
+    "ember"
+   ],
+   "short_desc": "an ember wisp",
+   "long_desc": "An ember wisp dances here, a spark of the first dawn at its heart.",
+   "description": "A drifting flame no bigger than a hand. Somewhere inside it burns a light older than the Ashlands.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 3000,
+   "gold": 0,
+   "armor_class": 30,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "no_sleep"
+   ]
+  },
+  "9752": {
+   "vnum": 9752,
+   "name": "Ashen Templar",
+   "keywords": [
+    "templar",
+    "ashen"
+   ],
+   "short_desc": "the Ashen Templar",
+   "long_desc": "The Ashen Templar strides here, snuffing every spark it finds.",
+   "description": "A templar of the Eclipse in armour of compressed ash, its sword a bar of cold black iron. Wherever it\nwalks, embers die.",
+   "level": 48,
+   "max_hp": 1000,
+   "damage_dice": "2d5+6",
+   "exp": 20000,
+   "gold": 1500,
+   "armor_class": 15,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "boss"
+   ],
+   "boss": true,
+   "boss_id": "ashen_templar",
+   "boss_loot_chance": 0,
+   "boss_config": {
+    "enrage_time": 300,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 10.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Templar plunges its blade into the ash \u2014 a wisp tears free!",
+      "spawn_adds": {
+       "9751": 1
+      }
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Ashen Brand",
+      "telegraph": "The Templar lifts its black blade and the embers around it gutter out!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d10+10",
+      "dodge": true,
+      "vulnerable_after": 3
+     },
+     {
+      "name": "Smoulder",
+      "telegraph": "Choking ash billows up around the Templar!",
+      "cast_time": 3,
+      "cooldown": 26,
+      "damage_dice": "3d6+8",
+      "dodge": true,
+      "aoe": true
+     }
+    ]
+   }
+  },
+  "9753": {
+   "vnum": 9753,
+   "name": "shade of the eclipse",
+   "keywords": [
+    "shade",
+    "eclipse"
+   ],
+   "short_desc": "a shade of the eclipse",
+   "long_desc": "A shade of the eclipse slides here across the ground, a shadow without anything to cast it.",
+   "description": "A shadow that came loose from the world on the day the sun went out, and has hated light ever since.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 2500,
+   "gold": 0,
+   "armor_class": 30,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9754": {
+   "vnum": 9754,
+   "name": "dawnless zealot",
+   "keywords": [
+    "zealot",
+    "dawnless"
+   ],
+   "short_desc": "a dawnless zealot",
+   "long_desc": "A dawnless zealot stands here, eyes sewn shut against the light.",
+   "description": "One of the Eclipse's faithful, who put out its own eyes so as never to see the dawn again.",
+   "level": 47,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 2500,
+   "gold": 60,
+   "armor_class": 25,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9755": {
+   "vnum": 9755,
+   "name": "eclipse shade",
+   "keywords": [
+    "shade",
+    "eclipse"
+   ],
+   "short_desc": "an eclipse shade",
+   "long_desc": "An eclipse shade pours down the chapel wall here like spilled ink.",
+   "description": "A lesser shadow of the Eclipse, all reaching hands.",
+   "level": 46,
+   "max_hp": 1000,
+   "damage_dice": "2d4+3",
+   "exp": 2000,
+   "gold": 0,
+   "armor_class": 35,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9756": {
+   "vnum": 9756,
+   "name": "Morvane the Eclipsed",
+   "keywords": [
+    "morvane",
+    "eclipsed"
+   ],
+   "short_desc": "Morvane the Eclipsed",
+   "long_desc": "Morvane the Eclipsed stands before the altar here, a black sun burning in his chest.",
+   "description": "Once the order's brightest knight; now its darkest. Morvane wears the order's armour still, but a black\nsun burns where his heart was, and the light bends away from him.",
+   "level": 50,
+   "max_hp": 1000,
+   "damage_dice": "2d5+6",
+   "exp": 40000,
+   "gold": 3000,
+   "armor_class": 10,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "boss"
+   ],
+   "boss": true,
+   "boss_id": "morvane",
+   "boss_loot_chance": 0,
+   "boss_config": {
+    "enrage_time": 480,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 12.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Morvane calls, and the dead of the chapel answer!",
+      "spawn_adds": {
+       "9755": 1
+      }
+     },
+     {
+      "threshold": 25,
+      "message": "Morvane roars \u2014 the black sun flares and the chapel goes dark!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Black Sun",
+      "telegraph": "The black sun in Morvane's chest swells \u2014 it is about to burst!",
+      "cast_time": 3,
+      "cooldown": 22,
+      "damage_dice": "3d10+10",
+      "dodge": true,
+      "aoe": true,
+      "vulnerable_after": 3
+     },
+     {
+      "name": "Eclipse Lance",
+      "telegraph": "Morvane levels a lance of black light at you!",
+      "cast_time": 2.5,
+      "cooldown": 20,
+      "damage_dice": "4d10+12",
+      "dodge": true,
+      "interruptible": true,
+      "on_success_message": "The eclipse lance tears through the chapel!"
+     },
+     {
+      "name": "Raise the Fallen",
+      "cooldown": 60,
+      "summon": {
+       "9755": 1
+      }
+     }
+    ]
+   }
+  },
+  "9757": {
+   "vnum": 9757,
+   "name": "eclipse squire",
+   "keywords": [
+    "squire",
+    "eclipse"
+   ],
+   "short_desc": "an eclipse squire",
+   "long_desc": "An eclipse squire hovers at its knight's side here, sword half drawn.",
+   "description": "A young squire who followed its master into the dark.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+4",
+   "exp": 2000,
+   "gold": 20,
+   "armor_class": 35,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9760": {
+   "vnum": 9760,
+   "name": "bone colossus",
+   "keywords": [
+    "colossus",
+    "bone"
+   ],
+   "short_desc": "a bone colossus",
+   "long_desc": "A bone colossus looms here, a library of ribs and pages.",
+   "description": "A giant built from the bones of a hundred scholars, its ribcage stuffed with the pages they wrote. It\nguards the words of the First Lich with everything it is made of.",
+   "level": 47,
+   "max_hp": 1000,
+   "damage_dice": "2d8+8",
+   "exp": 9000,
+   "gold": 400,
+   "armor_class": 20,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9761": {
+   "vnum": 9761,
+   "name": "wailing shade",
+   "keywords": [
+    "shade",
+    "wailing"
+   ],
+   "short_desc": "a wailing shade",
+   "long_desc": "A wailing shade drifts here, clutching a shard of green fire to its chest.",
+   "description": "A ghost that caught a splinter of a stolen soul and cannot let it go, and cannot stop screaming.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 3000,
+   "gold": 0,
+   "armor_class": 30,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "no_sleep"
+   ]
+  },
+  "9762": {
+   "vnum": 9762,
+   "name": "Soulbinder",
+   "keywords": [
+    "soulbinder",
+    "binder"
+   ],
+   "short_desc": "the Soulbinder",
+   "long_desc": "The Soulbinder stands here amid a web of chains, each one ending in a screaming light.",
+   "description": "A gaunt sorcerer of the Shadowspire who collects souls the way others collect coins. Chains of dark iron\nhang from its wrists, and every one of them ends in a soul.",
+   "level": 48,
+   "max_hp": 1000,
+   "damage_dice": "2d5+6",
+   "exp": 20000,
+   "gold": 1500,
+   "armor_class": 15,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "boss"
+   ],
+   "boss": true,
+   "boss_id": "soulbinder",
+   "boss_loot_chance": 0,
+   "boss_config": {
+    "enrage_time": 300,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 10.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Soulbinder looses a chain \u2014 a shade tears free of it!",
+      "spawn_adds": {
+       "9761": 1
+      }
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Soul Chains",
+      "telegraph": "The Soulbinder whirls a chain of screaming souls over its head!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d10+10",
+      "dodge": true,
+      "vulnerable_after": 3
+     },
+     {
+      "name": "Wail of the Bound",
+      "telegraph": "Every soul on the Soulbinder's chains draws breath to scream!",
+      "cast_time": 3,
+      "cooldown": 26,
+      "damage_dice": "3d6+8",
+      "dodge": true,
+      "aoe": true
+     }
+    ]
+   }
+  },
+  "9763": {
+   "vnum": 9763,
+   "name": "jealous dead",
+   "keywords": [
+    "dead",
+    "jealous",
+    "corpse"
+   ],
+   "short_desc": "one of the jealous dead",
+   "long_desc": "One of the jealous dead claws its way toward the jar here.",
+   "description": "A corpse of the Necropolis that heard a soul calling and wants it for itself.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 2500,
+   "gold": 0,
+   "armor_class": 30,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9764": {
+   "vnum": 9764,
+   "name": "phylactery warden",
+   "keywords": [
+    "warden",
+    "phylactery"
+   ],
+   "short_desc": "a phylactery warden",
+   "long_desc": "A phylactery warden stands here, a jar of green fire set into its chest.",
+   "description": "A servant of Xal'thar with a lesser jar where its heart was. It will not die while the jar is whole.",
+   "level": 47,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 2500,
+   "gold": 60,
+   "armor_class": 25,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9765": {
+   "vnum": 9765,
+   "name": "bound servant",
+   "keywords": [
+    "servant",
+    "bound"
+   ],
+   "short_desc": "a bound servant",
+   "long_desc": "A bound servant crawls here, its soul still glowing in a cracked jar on its back.",
+   "description": "One of the First Lich's servants, its soul kept in a jar it carries like a snail carries a shell.",
+   "level": 46,
+   "max_hp": 1000,
+   "damage_dice": "2d4+3",
+   "exp": 2000,
+   "gold": 0,
+   "armor_class": 35,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9766": {
+   "vnum": 9766,
+   "name": "Xal'thar the First Lich",
+   "keywords": [
+    "xalthar",
+    "xal'thar",
+    "lich"
+   ],
+   "short_desc": "Xal'thar the First Lich",
+   "long_desc": "Xal'thar the First Lich sits here on a throne of jars, grave-fire guttering in his skull.",
+   "description": "The first to put his soul in a jar and walk on without it. Xal'thar is little more than a crown, a robe\nand a skull now, but the grave-fire in his sockets has not dimmed in a thousand years.",
+   "level": 50,
+   "max_hp": 1000,
+   "damage_dice": "2d5+6",
+   "exp": 40000,
+   "gold": 3000,
+   "armor_class": 10,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "boss"
+   ],
+   "boss": true,
+   "boss_id": "xalthar",
+   "boss_loot_chance": 0,
+   "boss_config": {
+    "enrage_time": 480,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 12.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Xal'thar cracks a jar, and its servant crawls free!",
+      "spawn_adds": {
+       "9765": 1
+      }
+     },
+     {
+      "threshold": 25,
+      "message": "Xal'thar laughs \u2014 and every jar in the vault begins to crack!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Death's Embrace",
+      "telegraph": "Xal'thar spreads his arms and the grave-fire swells around him!",
+      "cast_time": 3,
+      "cooldown": 22,
+      "damage_dice": "3d10+10",
+      "dodge": true,
+      "aoe": true,
+      "vulnerable_after": 3
+     },
+     {
+      "name": "Soul Rend",
+      "telegraph": "Xal'thar reaches for your soul with a hand of green fire!",
+      "cast_time": 2.5,
+      "cooldown": 20,
+      "damage_dice": "4d10+12",
+      "dodge": true,
+      "interruptible": true,
+      "on_success_message": "Xal'thar's grave-fire tears through flesh and spirit alike!"
+     },
+     {
+      "name": "Raise Servants",
+      "cooldown": 60,
+      "summon": {
+       "9765": 1
+      }
+     }
+    ]
+   }
+  },
+  "9767": {
+   "vnum": 9767,
+   "name": "bone shard swarm",
+   "keywords": [
+    "swarm",
+    "shards",
+    "bone"
+   ],
+   "short_desc": "a swarm of bone shards",
+   "long_desc": "A swarm of bone shards whirls around its colossus here.",
+   "description": "Splinters of the colossus, loose and angry.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+4",
+   "exp": 2000,
+   "gold": 20,
+   "armor_class": 35,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
   }
  },
  "objects": {},

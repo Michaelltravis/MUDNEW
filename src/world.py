@@ -431,13 +431,18 @@ class Room:
             'obj_resets': self.obj_resets,
         }
         
+    # some zones (90, 100, 110, 130, 160) were written with `title` and `terrain`
+    TERRAIN_SECTORS = {'indoors': 'inside', 'underground': 'cave', 'undead': 'dungeon', 'planar': 'mountain',
+                       'water_surface': 'water_swim'}
+
     @classmethod
     def from_dict(cls, data: dict) -> 'Room':
         """Create a room from dictionary data."""
         room = cls(data['vnum'])
-        room.name = data.get('name', 'An Empty Room')
+        room.name = data.get('name') or data.get('title') or 'An Empty Room'
         room.description = data.get('description', '')
-        room.sector_type = data.get('sector_type', 'inside')
+        terrain = data.get('terrain')
+        room.sector_type = data.get('sector_type') or (cls.TERRAIN_SECTORS.get(terrain, terrain) if terrain else 'inside')
         room.flags = set(data.get('flags', []))
         
         # Process exits and convert flag-based door format to door objects

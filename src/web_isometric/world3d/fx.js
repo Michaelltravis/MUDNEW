@@ -976,6 +976,116 @@ export class FX {
   }
 
   // ---- telegraph: a danger zone on the floor that fills until the blow lands ----
+  // ---- a singularity collapsing: sparks fall in from all around, a black core swells with a
+  // burning rim, then it implodes in a flash and a ring ----
+  implode(p, { color = 0xb070ff, radius = 6, time = 0.9 } = {}) {
+    if (!this.take('meshes')) return null;
+    const at = posOf(p).clone();
+    at.y = Math.max(0, at.y || 0) + 2.1;        // above their heads, where everyone can see it
+    const core = new THREE.Mesh(geo('sphere'), new THREE.MeshBasicMaterial({ color: 0x040006, transparent: true, opacity: 0, depthWrite: false }));
+    const rim = new THREE.Mesh(geo('sphere'), new THREE.MeshBasicMaterial({ color: new THREE.Color(color).multiplyScalar(2.2), transparent: true, opacity: 0,
+      blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.BackSide }));
+    core.renderOrder = 6;
+    this.scene.add(core, rim);
+    this.decal(at.clone().setY(0), { sigil: 'runeCircle', radius: radius * 0.8, time: time + 0.4, color, spin: -2.6, grow: -0.5, opacity: 0.8 });
+    const d = new THREE.Vector3();
+    let t = 0, burst = false;
+    return this.add({ update: dt => {
+      t += dt;
+      const k = Math.min(1, t / time);
+      // the pull: sparks fall in from the edge toward the core
+      for (let i = Math.ceil(dt * 110); i > 0 && k < 0.9; i--) {
+        const a = Math.random() * Math.PI * 2, r = radius * (0.55 + Math.random() * 0.45);
+        _v.set(at.x + Math.cos(a) * r, 0.2 + Math.random() * 2.2, at.z + Math.sin(a) * r);
+        d.set(at.x - _v.x, at.y - _v.y, at.z - _v.z).multiplyScalar(1 / 0.5);
+        this.p.emit(_v, { count: 1, color, bright: 1.7, speed: 1, spread: 0.04, dir: d, drag: 0, life: 0.42, size: 0.17 });
+      }
+      // the core swells dark with its rim burning, then collapses to nothing
+      const s = k < 0.85 ? 0.3 + k * 1.4 : Math.max(0.01, 1 - (k - 0.85) / 0.15) * 1.5;
+      core.scale.setScalar(s);
+      rim.scale.setScalar(s * 1.2);
+      core.material.opacity = Math.min(0.94, k * 2.2);
+      rim.material.opacity = Math.min(0.85, k * 1.7);
+      core.position.copy(at);
+      rim.position.copy(at);
+      if (!burst && k >= 1) {
+        burst = true;
+        core.visible = rim.visible = false;
+        this.light(at, color, 10, 0.35);
+        this.shockwave(at.clone().setY(0), { color, radius: radius * 1.1, time: 0.5 });
+        this.shockwave(at.clone().setY(0), { school: 'arcane', radius: radius * 0.6, delay: 0.08 });
+        this.p.emit(at, { count: 70, color, bright: 2.2, speed: 7.5, life: 0.6, size: 0.3, drag: 2.6 });
+        this.glyph(at, { glyph: 'star', count: 12, color: 0xe8d8ff, speed: 6, life: 0.6, size: 0.4, drag: 2.5, spin: 6 });
+        this.screen('#b49aff', { time: 0.32, opacity: 0.22 });
+      }
+      return t < time + 0.05;
+    }, dispose: () => { this.scene.remove(core, rim); core.material.dispose(); rim.material.dispose(); this.give('meshes'); } });
+  }
+
+  // ---- a seraph above the caster: their own shape, larger, made of light, with great wings and
+  // a halo; feathers drift down from it while it stands ----
+  seraph(target, { color = 0xfff0c8, time = 15 } = {}) {
+    const root = target && target.isObject3D ? target : null;
+    if (!root) return null;
+    const anchor = new THREE.Object3D();
+    this.scene.add(anchor);
+    this.wings(anchor, { color, time, span: 2.7, y: 1.55, flap: 0.6 });
+    this.halo(anchor, { color: 0xffe08a, time, y: 3.0, radius: 0.46 });
+    let ghost = null, mat = null;
+    if (this.take('ghosts')) {
+      try { ghost = SkeletonUtils.clone(root); } catch (err) { ghost = null; this.give('ghosts'); }
+    }
+    if (ghost) {
+      mat = new THREE.MeshBasicMaterial({ color: new THREE.Color(color).multiplyScalar(1.5), transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+      ghost.traverse(o => { if (o.isMesh) { o.material = mat; o.castShadow = false; o.receiveShadow = false; } });
+      ghost.scale.copy(root.scale).multiplyScalar(1.45);
+      this.scene.add(ghost);
+    }
+    this.pillar(root.position.clone().setY(0), { color, radius: 1.1, height: 9, time: 0.9 });
+    let t = 0;
+    return this.add({ update: dt => {
+      t += dt;
+      const k = t / time, rp = root.position, yaw = root.rotation.y;
+      anchor.position.set(rp.x - Math.sin(yaw) * 0.7, rp.y + 1.8 + Math.sin(t * 1.6) * 0.12, rp.z - Math.cos(yaw) * 0.7);
+      anchor.rotation.y = yaw;
+      if (ghost) {
+        mat.opacity = (k < 0.08 ? k / 0.08 : k > 0.85 ? Math.max(0, (1 - k) / 0.15) : 1) * 0.5;
+        ghost.position.copy(anchor.position);
+        ghost.rotation.y = yaw;
+      }
+      if (Math.random() < dt * 5) {
+        this.glyph(_v.set(anchor.position.x + (Math.random() - 0.5) * 2.4, anchor.position.y + 1.4, anchor.position.z + (Math.random() - 0.5) * 2.4),
+          { glyph: 'feather', count: 1, color, speed: 0.15, life: 1.8, size: 0.32, gravity: 0.5, drag: 1.4, spin: 2 });
+      }
+      return t < time;
+    }, dispose: () => { this.scene.remove(anchor); if (ghost) { this.scene.remove(ghost); mat.dispose(); this.give('ghosts'); } } });
+  }
+
+  // ---- a lich: grave-green glow on the body, a crown of grave-fire, skulls circling the head,
+  // a ring of bones on the ground that follows ----
+  lich(root, { color = 0x7aff9a, time = 18 } = {}) {
+    if (!root) return null;
+    this.tint(root, color, { time, strength: 0.42, hold: Math.max(0.5, (time - 0.8) / time) });
+    this.orbit(root, { glyph: 'skull', color, count: 4, radius: 0.85, time, size: 0.36, height: 2.15, speed: 2.4 });
+    this.decal(root.position.clone().setY(0), { sigil: 'boneCircle', radius: 1.7, time, color, spin: 0.3, follow: root, opacity: 0.7 });
+    this.swirl(root, { color, glyph: 'wisp', time: 1.2, rise: 2.6, count: 4 });
+    let t = 0;
+    return this.add({ update: dt => {
+      t += dt;
+      const p = root.position;
+      // the crown of grave-fire above the head
+      for (let i = Math.ceil(dt * 26); i > 0; i--) {
+        const a = Math.random() * Math.PI * 2;
+        this.p.emit(_v.set(p.x + Math.cos(a) * 0.2, p.y + 2.0, p.z + Math.sin(a) * 0.2), { count: 1, color, bright: 1.8, speed: 0.15, up: 1.4, life: 0.45, size: 0.2, drag: 0.6 });
+      }
+      if (Math.random() < dt * 4) {
+        this.glyph(_v.set(p.x + (Math.random() - 0.5) * 1.3, p.y + 0.3 + Math.random() * 1.2, p.z + (Math.random() - 0.5) * 1.3),
+          { glyph: 'wisp', count: 1, color, speed: 0.1, up: 0.5, life: 1.2, size: 0.28, drag: 1 });
+      }
+      return t < time;
+    } });
+  }
+
   telegraph(center, { shape = 'circle', radius = 3, angle = Math.PI / 2, facing = 0, time = 1.5, color = 0xff3a28 } = {}) {
     const g = new THREE.Group();
     const thetaStart = shape === 'cone' ? facing - angle / 2 : 0, thetaLen = shape === 'cone' ? angle : Math.PI * 2;

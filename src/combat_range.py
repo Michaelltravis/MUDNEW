@@ -65,6 +65,10 @@ ABILITY_RANGE = {
     'heroic_leap': (15.0, 'dash'), 'shadowstrike': (12.0, 'dash'), 'death_from_above': (10.0, 'dash'),
     'volley': (16.0, 'blast:5'), 'serpent_sting': (16.0, 'ranged'), 'black_arrow': (18.0, 'ranged'),
     'wyvern_sting': (16.0, 'ranged'),
+    # the marquee abilities (marquee_abilities.py): an entry also lets them be typed with spaces
+    # ("unbroken banner") and still be drawn in 3D
+    'unbroken_banner': (0, 'self'), 'singularity': (16.0, 'blast:6'), 'seraphs_vigil': (0, 'self'),
+    'wings_of_dawn': (0, 'nova:6'), 'lich_ascension': (0, 'self'),
 }
 DEFAULT_SPELL = (14.0, 'ranged')
 DEFAULT_SKILL = (MELEE, 'melee')
@@ -251,10 +255,14 @@ def move_tick(world, dt):
         tgt = getattr(npc, 'fighting', None)
         if tgt is None or getattr(npc, 'room', None) is None or getattr(tgt, 'room', None) is not npc.room:
             continue
-        if time.time() < getattr(npc, 'staggered_until', 0) or getattr(npc, 'stunned_rounds', 0) > 0:
+        now = time.time()
+        if now < getattr(npc, 'staggered_until', 0) or getattr(npc, 'stunned_rounds', 0) > 0:
             continue
+        if now < getattr(npc, 'rooted_until', 0):
+            continue      # rooted (marquee_abilities): held where it stands
         if getattr(npc, 'pending_intent', None):
             continue      # winding up: it plants its feet, so the marked ground stays where it is
+        slow = 0.5 if now < getattr(npc, 'slowed_until', 0) else 1.0
         mp, tp = pos_of(npc), pos_of(tgt)
         if mp is None or tp is None:
             continue
@@ -266,12 +274,12 @@ def move_tick(world, dt):
         step = 0.0
         if reach <= MELEE + 0.5:
             if d > reach * 0.85:
-                step = min(MOB_SPEED * dt, d - reach * 0.75)
+                step = min(MOB_SPEED * slow * dt, d - reach * 0.75)
         else:
             if d < prefer * 0.55:
-                step = -min(MOB_SPEED * 0.8 * dt, prefer * 0.6 - d)      # back off to shoot
+                step = -min(MOB_SPEED * 0.8 * slow * dt, prefer * 0.6 - d)      # back off to shoot
             elif d > reach * 0.95:
-                step = min(MOB_SPEED * dt, d - reach * 0.85)
+                step = min(MOB_SPEED * slow * dt, d - reach * 0.85)
         if abs(step) < 0.02:
             continue
         nx, nz = mp[0] + dx / d * step, mp[1] + dz / d * step

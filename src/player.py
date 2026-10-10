@@ -1201,7 +1201,14 @@ class Player(Character):
             'disabled_channels': list(getattr(self, 'disabled_channels', set())),
             'friend_notify': getattr(self, 'friend_notify', True),
         }
-        
+        # stats are saved without the buffs on them: the buffs are saved too and loading
+        # applies them again (saved with them inside, a buff stuck for good after a relog)
+        for stat in AffectManager.VALID_STATS:
+            if isinstance(data.get(stat), (int, float)) and not isinstance(data.get(stat), bool):
+                bonus = AffectManager.stat_bonus(self, stat)
+                if bonus:
+                    data[stat] = data[stat] - bonus
+
         filepath = os.path.join(self.config.PLAYER_DIR, f"{self.name.lower()}.json")
         os.makedirs(os.path.dirname(filepath), exist_ok=True)
         
@@ -2772,6 +2779,8 @@ class Player(Character):
         """Handle player death."""
         import random
         c = self.config.COLORS
+        # a new death: CombatHandler.handle_death (which runs after this) handles each one once
+        self._death_processed = False
         
         # Stop fighting
         if self.fighting:

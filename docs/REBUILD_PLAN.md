@@ -544,3 +544,60 @@ quest end to end (this push), then the other eight classes on the same engine.
   server from the offer to the learned ability with the trial fought through, and two players
   embarking together (a war-chief with ×1.8 health). Admin: `marquee stage <n>` jumps a quest,
   `marquee forget` clears it and the ability.
+
+### Marquee quests: the mage, the cleric, the paladin and the necromancer
+Four more classes on the same engine (the last four — thief, ranger, bard, assassin — come next).
+- **The abilities** (`marquee_abilities.py`), each sized off a hero's round of damage
+  (`marquee_scale.dpr`) and how well it is known:
+  - **Singularity** (mage, 8 min): every foe is dragged to one point (in 3D they slide there),
+    held and crushed for two rounds, then it implodes and leaves them slowed.
+  - **Seraph's Vigil** (cleric, 10 min): a seraph of light hovers over the cleric for six rounds,
+    healing whoever is most wounded each round; while it stands each ally survives one killing
+    blow (at 1 HP).
+  - **Wings of Dawn** (paladin, 8 min): rise on wings of light and crash down — radiant damage
+    within 6 m, every ally healed a quarter of their health and shielded for 15%.
+  - **Lich Ascension** (necromancer, 10 min): six rounds as a lich — spells cost half, soul bolts
+    split to a second foe, a quarter of what you deal drains back, death turned away once (30%).
+  - Unbroken Banner's bonus is now "+25% damage to creatures" instead of a damroll affect.
+  - Bosses are never pulled, held, slowed or stunned — they stagger. None of them touches players
+    or pets, and none works in a duel or the arena.
+- **What it rests on**: lingering parts run on combat rounds (`EFFECTS`, stepped after every
+  `World.combat_tick`, only while the caster is online, alive and in the room); creatures can now
+  be held (`rooted_until`: they don't move) and slowed (`slowed_until`: half the steps, about half
+  the swings, a round longer to wind up); damage-taken and damage-dealt bonuses keyed by source
+  so they refresh instead of stacking; a death ward that turns a killing blow aside from any
+  creature, trap or hazard (never another player) without announcing a death or making a corpse.
+- **The quests** (`marquee_quests.py`, creatures 9710-19, 9720-29, 9750-59, 9760-69 in
+  `zone_097.json`, trials in `world/marquee/trials/`):
+  - *The Heart of the Void* (mage): the planar traveller in the Plane of Chaos; three
+    rift-wardens there; star-glass from arcane wraiths in the High Tower of Magic; the Echo of the
+    Archmage; attune the shards in the Pentagram Chamber; the trial *The Collapsing Star* and
+    Vaelith the Star-Eater.
+  - *The Lost Choir* (cleric): a drowned priestess in the Sunken Temple of Nereus; three drowned
+    zealots; seraph feathers from gilded harpies at the Great Pyramid; the Gilded Hierophant;
+    consecrate the Pyramid's apex; *The Silent Choir* and Serathiel the Fallen.
+  - *The Dawnless Chapel* (paladin): the restless ghost in the Necropolis; three eclipse knights;
+    dawn embers from ember wisps in the Ashlands; the Ashen Templar; a dawn vigil in the Mountain
+    Pass; *The Dawnless Chapel* and Morvane the Eclipsed.
+  - *The First Phylactery* (necromancer): the grave keeper in the Necropolis; three bone colossi;
+    soul shards from wailing shades in the Shadowspire; the Soulbinder; bind the soul in the
+    Phylactery Chamber; *The Phylactery Vault* and Xal'thar the First Lich.
+- **In 3D**: three new effects (`fx.js`) — `implode` (sparks falling in, a black core with a
+  burning rim swelling over the target, then a flash), `seraph` (a larger figure of the caster
+  made of light, with great wings and a halo, feathers drifting down), `lich` (grave-green glow,
+  a crown of grave-fire, skulls circling, a ring of bones underfoot); icons for them (an
+  imploding core, a winged seraph, a crowned skull; the banner now shows on its own icon).
+- **Fixed on the way**: 104 rooms in five zones (the Plane of Chaos, Silversong, the Haunted
+  Swamp, the Dwarven Mines, the Sunken Ruins) showed as "An Empty Room" — the loader now reads
+  their `title`/`terrain`; "song of the ages"-style names typed with spaces run the right command
+  (3- and 4-word joins) and typed abilities animate in 3D; marquee cooldowns show on the bar and in
+  the spellbook; a stat buff saved during a relog came back doubled and stuck (stats are now saved
+  without their buffs); hazards killed players twice (two death penalties); and only a
+  session's first death made a corpse — now every death leaves a corpse with your gold and what
+  you carry, and you keep what you wear (owner's call).
+- **Tests**: `tests/test_marquee_abilities.py` (the four abilities and the banner by the numbers,
+  the boss rule, root and slow, the ward's paths, effects ending on logout, refusal wording, the
+  stat save, the corpse rule, the room names); `tests/test_marquee.py` checks every quest's data and
+  plays each new quest through all seven stages offline, and live: each class's test character
+  takes its quest, enters and leaves its trial, learns and uses its ability (the mage fights its
+  trial through).

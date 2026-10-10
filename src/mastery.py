@@ -26,14 +26,16 @@ SELF_SKILLS = frozenset({'sneak', 'hide', 'track', 'scan', 'scribe', 'drink_the_
                          'magnum_opus', 'rigged_dice', 'poison', 'evasion', 'divine_intervention', 'pick_lock',
                          'warpath', 'titans_wrath', 'perfect_crime', 'camouflage_master', 'camouflage', 'shadow_dance',
                          'shadow_blades_master', 'cold_blood', 'shadow_blade', 'envenom', 'alpha_pack', 'bestial_wrath',
-                         'explosive_trap', 'unbroken_banner'})
+                         'explosive_trap', 'unbroken_banner', 'seraphs_vigil', 'lich_ascension'})
 # skills aimed at a friend (the targeted player, else yourself)
 ALLY_SKILLS = frozenset({'rescue', 'absolution'})
 # skills for your whole party (sent without a target)
 GROUP_SKILLS = frozenset({'rallying_cry', 'divine_word'})
 # the marquee abilities: earned through their class's quest (marquee.py), never by level;
 # the level is when the quest is offered
-QUEST_ABILITIES = {'unbroken_banner': 'The Unbroken Banner'}
+QUEST_ABILITIES = {'unbroken_banner': 'The Unbroken Banner', 'singularity': 'The Heart of the Void',
+                   'seraphs_vigil': 'The Lost Choir', 'wings_of_dawn': 'The Dawnless Chapel',
+                   'lich_ascension': 'The First Phylactery'}
 
 # the level each ability comes at, per class (spells with a level_required keep it)
 UNLOCK = {
@@ -47,14 +49,14 @@ UNLOCK = {
                  protection_from_evil=21, protection_from_good=21, ice_armor=22, enchant_weapon=23, mana_shield=24,
                  phase_step=25, stepwise=26, fire_shield=27, teleport=28, stoneskin=30, tower_echoes=32,
                  mirrorward=34, chain_lightning=36, quicken=38, meteor_swarm=40, resonance_burst=44,
-                 rimeheart=50, kindling_focus=56, meteor_storm=60),
+                 rimeheart=50, kindling_focus=56, meteor_storm=60, singularity=45),
     'cleric': dict(holy_smite=1, cure_light=1, bless=2, armor=3, create_food=4, create_water=4, turn_undead=5,
                    cure_serious=6, remove_poison=7, word_of_recall=8, divine_word=9, shield_of_faith=10,
                    dispel_evil=11, cure_critical=12, remove_curse=13, barkskin=14, protection_from_evil=15,
                    dodge=16, harm=17, pyre_of_faith=18, sanctuary=20, heal=22, righteous_fury=23, summon=24,
                    aegis=25, flamestrike=26, divine_shield=27, group_heal=28, holy_aura=29, earthquake=30,
                    travelling_grace=32, divine_protection=34, resurrect=36, shared_burden=38, cleansing_rite=44,
-                   font_of_the_vigil=50, serenity=56, divine_intervention=60),
+                   font_of_the_vigil=50, serenity=56, divine_intervention=60, seraphs_vigil=45),
     'thief': dict(backstab=1, sneak=1, hide=2, pick_lock=3, steal=4, trip=5, dodge=6, circle=8, pocket_sand=10,
                   detect_traps=11, low_blow=12, second_attack=14, evasion=16, caltrops=18, rigged_dice=20,
                   jackpot=24, nerve_strike=32, garrote=44, marked_for_death_thief=56, perfect_crime=60),
@@ -66,11 +68,12 @@ UNLOCK = {
                     turn_undead=7, absolution=8, parry=9, protection_from_evil=10, shield_of_faith=11,
                     cure_serious=13, second_attack=14, shield_block=15, halo_of_reckoning=16, dodge=18,
                     divine_shield=20, unfettered=32, hallowed_ground=38, dawnhammer=44, ascendant_hour=50,
-                    divine_shield_master=56, verdict_of_the_order=60),
+                    divine_shield_master=56, verdict_of_the_order=60, wings_of_dawn=45),
     'necromancer': dict(soul_bolt=1, chill_touch=1, armor=2, weaken=3, soul_siphon=4, mistgrasp=5, leechcraft=6,
                         bone_shield=7, poison=8, animate_dead=9, blindness=10, shield=11, fear=12, enervation=13,
                         mistrot=14, wraithfire=15, protection_from_good=16, soul_reap=18, energy_drain=20,
-                        sever_cord=24, corpse_shield=38, summon_gargoyle=50, soul_harvest=56, apocalypse_necro=60),
+                        sever_cord=24, corpse_shield=38, summon_gargoyle=50, soul_harvest=56, apocalypse_necro=60,
+                        lich_ascension=45),
     'bard': dict(mockery=1, cure_light=1, fascinate=2, armor=3, lore=4, sleep=5, bless=6, discordant_note=7,
                  sneak=8, detect_magic=9, crescendo=10, pick_lock=11, countersong=12, charm_person=13, dodge=14,
                  slow=15, heroism=16, fear=17, encore=18, invisibility=19, haste=22, mass_charm=28,
@@ -235,7 +238,7 @@ async def _push(player):
 _SMALL = {'of', 'the', 'a', 'an', 'to', 'in', 'on', 'and', 'from'}
 # ids that carry their class to stay unique, and names the words don't spell
 NAMES = {'marked_for_death_thief': 'Marked for Death', 'vendetta_assassin': 'Vendetta', 'titans_wrath': "Titan's Wrath",
-         'apocalypse_necro': 'Apocalypse', 'shadow_blades_master': 'Shadow Blades'}
+         'apocalypse_necro': 'Apocalypse', 'shadow_blades_master': 'Shadow Blades', 'seraphs_vigil': "Seraph's Vigil"}
 
 
 def name_of(ability):
@@ -346,6 +349,12 @@ def _entry(cls, ability, kind, level, talent=None, note=''):
                 from warrior_abilities import ABILITY_COOLDOWNS
                 if ability in ABILITY_COOLDOWNS:
                     e['cd'] = ABILITY_COOLDOWNS[ability]
+            except Exception:
+                pass
+        if ability in QUEST_ABILITIES:
+            try:
+                from marquee_abilities import COOLDOWNS
+                e['cd'] = COOLDOWNS.get(ability)
             except Exception:
                 pass
     return e

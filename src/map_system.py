@@ -632,6 +632,14 @@ def _cooldowns(player):
         # a cooldown when it slips past the 0.4s floor
         if 0.4 < rem < 86400:
             out[key] = round(rem, 1)
+    # the marquee abilities' long cooldowns (marquee_abilities.py), kept in one dict
+    for key, until in (getattr(player, 'marquee_cd', None) or {}).items():
+        try:
+            rem = float(until) - now
+        except (TypeError, ValueError):
+            continue
+        if 0.4 < rem < 86400:
+            out[key] = round(rem, 1)
     # abilities renamed for the 3D action bar keep their old timer names
     # (towerbolt runs on arcane_blast's cooldown): report them under both
     try:

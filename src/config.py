@@ -305,7 +305,7 @@ class Config:
             'move_dice': 4,
             'thac0_progression': 'slow',
             'save_progression': 'mage',
-            'skills': ['scribe', 'charge_release', 'drink_the_leyline', 'towerbolt', 'dodge'],
+            'skills': ['scribe', 'charge_release', 'drink_the_leyline', 'towerbolt', 'dodge', 'singularity'],
             'spells': ['magic_missile', 'burning_hands', 'chill_touch', 'fireball', 'lightning_bolt',
                       'sleep', 'color_spray', 'teleport', 'fly', 'invisibility', 'detect_magic',
                       'identify', 'enchant_weapon', 'meteor_swarm', 'chain_lightning',
@@ -328,7 +328,7 @@ class Config:
             'thac0_progression': 'medium',
             'save_progression': 'cleric',
             'skills': ['turn_undead', 'holy_smite', 'dodge', 'divine_word',
-                      'pyre_of_faith', 'divine_intervention'],
+                      'pyre_of_faith', 'divine_intervention', 'seraphs_vigil'],
             'spells': ['cure_light', 'cure_serious', 'cure_critical', 'heal', 'group_heal',
                       'bless', 'armor', 'sanctuary', 'remove_curse', 'remove_poison',
                       'create_food', 'create_water', 'summon', 'word_of_recall', 'resurrect',
@@ -397,7 +397,7 @@ class Config:
             'save_progression': 'warrior',
             'skills': ['censure', 'rescue', 'bash', 'turn_undead', 'second_attack',
                       'oath', 'order_verdict', 'absolution', 'halo_of_reckoning',
-                      'dodge', 'parry', 'shield_block'],   # censure first: it is the paladin's button 3
+                      'dodge', 'parry', 'shield_block', 'wings_of_dawn'],   # censure first: it is the paladin's button 3
             'spells': ['cure_light', 'cure_serious', 'bless', 'detect_evil', 'protection_from_evil',
                       'shield_of_faith', 'divine_shield',
                       # Level 31-60 spells
@@ -416,7 +416,7 @@ class Config:
             'move_dice': 4,
             'thac0_progression': 'slow',
             'save_progression': 'mage',
-            'skills': ['soul_bolt', 'soul_siphon', 'bone_shield', 'soul_reap'],
+            'skills': ['soul_bolt', 'soul_siphon', 'bone_shield', 'soul_reap', 'lich_ascension'],
             'spells': ['chill_touch', 'animate_dead', 'leechcraft', 'enervation',
                       'mistgrasp', 'sever_cord', 'energy_drain',
                       'poison', 'weaken', 'blindness', 'fear', 'armor', 'shield',

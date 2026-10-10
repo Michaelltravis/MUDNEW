@@ -158,6 +158,13 @@ class AffectManager:
             logger.debug(f"  Modified {stat_name}: {current_value} -> {new_value}")
 
     @staticmethod
+    def stat_bonus(character: 'Character', stat_name: str):
+        """How much the character's active stat affects add to one stat right now."""
+        return sum(a.value for a in (getattr(character, 'affects', None) or [])
+                   if a.type == AffectManager.TYPE_MODIFY_STAT and a.applies_to == stat_name
+                   and isinstance(a.value, (int, float)))
+
+    @staticmethod
     def _apply_flag(character: 'Character', affect: Affect):
         """Apply a flag to the character."""
         flag_name = affect.applies_to

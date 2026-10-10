@@ -84,6 +84,21 @@ def _alive(ch):
     return ch is not None and getattr(ch, 'hp', 0) > 0 and getattr(ch, 'position', '') != 'dead'
 
 
+def can_touch(hero, mob):
+    """May this hero harm this creature? Anyone may, unless it belongs to someone else's
+    marquee quest (then only those who embarked on it; with its owner away, whoever embarked
+    can still fight what is already out)."""
+    tag = getattr(mob, 'marquee_tag', None)
+    if not tag:
+        return True
+    owner = _online(tag.get('owner'))
+    m = getattr(owner, 'marquee', None) if owner else None
+    if _in_party(m, hero):
+        return True
+    run = RUNS.get(tag.get('owner'))
+    return m is None and run is not None and getattr(hero, 'name', None) in run.party
+
+
 async def _event(player, event):
     wm = getattr(WORLD, 'web_map', None)
     if wm is None or not getattr(player, 'connection', None):
@@ -1419,11 +1434,7 @@ def install(world):
             attacker = kwargs.get('attacker', args[0] if args else None)
             hero = _hero_of(attacker)
             if hero is not None:
-                owner = _online(tag.get('owner'))
-                m = getattr(owner, 'marquee', None) if owner else None
-                run = RUNS.get(tag.get('owner'))
-                # (the owner away: whoever embarked can still fight what is already out)
-                if not _in_party(m, hero) and not (m is None and run is not None and hero.name in run.party):
+                if not can_touch(hero, self):
                     if getattr(self, 'fighting', None) in (hero, attacker):
                         self.fighting = None
                     for ch in (hero, attacker):

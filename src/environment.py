@@ -140,7 +140,9 @@ async def spring_trap(room, victim, trap=None, forced=False):
             f"{c['green']}⚠ A vent hisses — {name} is engulfed in noxious gas! [{dmg}]{c['reset']}"
         )
         killed = await victim.take_damage(dmg, None)
-    if killed and hasattr(victim, 'die'):
+    # (take_damage has already died — a player's or a creature's: a second die() was a second
+    # death, and for a player a second death penalty)
+    if killed and hasattr(victim, 'die') and not hasattr(victim, 'account_name') and not getattr(victim, '_dying', False):
         try:
             await victim.die(None)
         except Exception:
@@ -286,7 +288,7 @@ async def check_mob_traps(player, room):
         await room.send_to_room(
             f"{c['bright_red']}⚠ SHUNK! {t['owner']}'s spike rig bites into {player.name}! [{dmg}]{c['reset']}"
         )
-        if await player.take_damage(dmg, None) and hasattr(player, 'die'):
+        if await player.take_damage(dmg, None) and hasattr(player, 'die') and not hasattr(player, 'account_name') and not getattr(player, '_dying', False):
             try:
                 await player.die(None)
             except Exception:
@@ -508,7 +510,7 @@ async def heavy_impact(room):
         try:
             if hasattr(ch, 'send'):
                 await ch.send(f"{c['bright_cyan']}You crash through into the freezing water! [{dmg}]{c['reset']}")
-            if await ch.take_damage(dmg, None) and hasattr(ch, 'die'):
+            if await ch.take_damage(dmg, None) and hasattr(ch, 'die') and not hasattr(ch, 'account_name') and not getattr(ch, '_dying', False):
                 await ch.die(None)
         except Exception:
             pass
@@ -538,7 +540,7 @@ async def tick(world):
             try:
                 if hasattr(ch, 'send'):
                     await ch.send(f"{c['green']}🌿 The thorns rake you as you fight! [{dmg}]{c['reset']}")
-                if await ch.take_damage(dmg, None) and hasattr(ch, 'die'):
+                if await ch.take_damage(dmg, None) and hasattr(ch, 'die') and not hasattr(ch, 'account_name') and not getattr(ch, '_dying', False):
                     await ch.die(None)
             except Exception:
                 pass
@@ -566,7 +568,7 @@ async def tick(world):
             try:
                 if hasattr(ch, 'send'):
                     await ch.send(f"{c['bright_red']}The burning room sears you! [{dmg}]{c['reset']}")
-                if await ch.take_damage(dmg, None) and hasattr(ch, 'die'):
+                if await ch.take_damage(dmg, None) and hasattr(ch, 'die') and not hasattr(ch, 'account_name') and not getattr(ch, '_dying', False):
                     await ch.die(None)
             except Exception:
                 pass

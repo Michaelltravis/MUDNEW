@@ -533,6 +533,22 @@ SKILL_PROSE = {
                       "opener.", "slip_the_veil <target>"),
     'poison': ("Apply a deadly poison to your blade so strikes inflict damage over "
                "time. Coat up before a fight.", "poison [weapon]"),
+    # --- the marquee abilities, each earned through its class's quest (marquee.py) ---
+    'unbroken_banner': ("Marquee. Plant a war banner: foes beside you reel and every foe turns "
+                        "on you; for five rounds you and your allies deal a quarter more, shake "
+                        "off stuns and fear and mend. Eight-minute cooldown.", "unbroken banner"),
+    'singularity': ("Marquee. Tear a hole in the world: every foe is dragged to one point "
+                    "and crushed there for two rounds, then it implodes and leaves them "
+                    "slowed. Bosses only stagger. Eight-minute cooldown.", "singularity [target]"),
+    'seraphs_vigil': ("Marquee. Call down a seraph for six rounds: each round it heals whoever "
+                      "beside you is most wounded, and while it stands each of you survives one "
+                      "killing blow. Ten-minute cooldown.", "seraphs vigil"),
+    'wings_of_dawn': ("Marquee. Rise on wings of light and crash down: radiant damage to every "
+                      "foe within six metres, a quarter of their health back to every ally "
+                      "beside you and a shield of light on each. Eight-minute cooldown.", "wings of dawn"),
+    'lich_ascension': ("Marquee. Six rounds as a lich: spells cost half, soul bolts split to a "
+                       "second foe, a quarter of what you deal drains back to you, and death is "
+                       "turned away once. Ten-minute cooldown.", "lich ascension"),
 }
 
 

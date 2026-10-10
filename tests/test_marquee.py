@@ -68,7 +68,8 @@ async def offline():
     import marquee_abilities as ma
     mage = fake_player(char_class='mage')
     await ma.unbroken_banner(mage, [])
-    check(any('Only a warrior' in s for s in mage.sent), 'another class is refused')
+    check(any('only a warrior can' in s and 'cannot' in s for s in mage.sent),
+          'another class is refused (in words that keep it from animating or counting as a use)')
     w = fake_player(marquee_cd={'unbroken_banner': __import__('time').time() + 200})
     await ma.unbroken_banner(w, [])
     check(any('not ready yet' in s for s in w.sent), 'a running cooldown is refused (and the cooldown is saved on the character)')
@@ -110,6 +111,101 @@ def said(p, text):
     return any(text in s for s in p.sent)
 
 
+async def drive(world, marquee, cls):
+    """Play one class's whole quest offline with a stand-in, each stage the way a player does it:
+    the offer, the talk, the kills, the gathering, the warden, the ritual, the trial, the return."""
+    import marquee_quests as mq
+    q = mq.QUESTS[cls]
+    name = f'Drv{cls[:5].capitalize()}'
+    p = _world_player(world, name, q['giver_room'], level=47, char_class=cls)
+    gm = next(ch for ch in world.rooms[q['giver_room']].characters if getattr(ch, 'vnum', None) == q['giver'])
+    await marquee.on_talk(p, gm)
+    offered = said(p, f"A marquee quest: {q['name']}")
+    await marquee.accept(p)
+    m = p.marquee
+    run = marquee.RUNS[name.lower()]
+    trouble = []
+    for idx, st in enumerate(q['stages']):
+        if m is None or m.get('stage') != idx:
+            trouble.append(f"stage {idx + 1} ({st['title']}) not reached")
+            break
+        k = st['kind']
+        if k == 'talk':
+            put(p, world.rooms[st['room']])
+            await marquee._step()
+            npc = next((ch for ch in p.room.characters if getattr(ch, 'vnum', None) == st['npc']), None)
+            if npc is None:
+                trouble.append(f"no {st['npc']} to speak with")
+                break
+            await marquee.on_talk(p, npc)
+        elif k == 'visit':
+            for v in st['visits']:
+                put(p, world.rooms[v['room']])
+                await marquee._step()
+        elif k == 'kill':
+            for i, sp in enumerate(st['spawns']):
+                put(p, world.rooms[sp['room']])
+                await marquee._step()
+                mob = next((x for x in run.mobs if x.marquee_tag.get('slot') == i), None)
+                if mob is None:
+                    trouble.append(f"nothing placed at {sp['room']}")
+                    break
+                mob.hp = 0
+                await marquee.fallen(mob, p)
+        elif k == 'collect':
+            put(p, world.rooms[st['rooms'][0]])
+            for _ in range(80):
+                if m.get('stage') != idx:
+                    break
+                await marquee._step()
+                run.respawn = {}
+                x = next((x for x in run.mobs if marquee._alive(x)), None)
+                if x is not None:
+                    x.hp = 0
+                    await marquee.fallen(x, p)
+        elif k == 'ritual':
+            put(p, world.rooms[st['room']])
+            await marquee.plant(p)
+            if run.ritual is None:
+                trouble.append(f"`marquee {st['verb']}` did not begin the ritual")
+                break
+            run.ritual['start'] -= st['seconds'] + 10
+            await marquee._step()
+            for x in list(run.mobs):
+                x.hp = 0
+            await marquee._step()
+        elif k == 'trial':
+            put(p, world.rooms[st['room']])
+            await marquee.enter_trial(p)
+            t = run.trial
+            if t is None:
+                trouble.append('the trial did not open')
+                break
+            for w in t.tpl['waves']:
+                put(p, t.rooms[w['room']])
+                await marquee._step()
+                for x in list(run.mobs):
+                    x.hp = 0
+                await marquee._step()
+            put(p, t.rooms[t.tpl['boss']['room']])
+            await marquee._step()
+            if t.boss is None:
+                trouble.append('no boss in the trial')
+                break
+            t.boss.hp = 0
+            await marquee._step()
+            await marquee.leave_trial(p)
+        elif k == 'return':
+            put(p, world.rooms[q['giver_room']])
+            await marquee.on_talk(p, gm)
+    learned = p.skills.get(q['ability']) == 50 and p.marquee is None
+    check(offered and learned and not trouble, f"{cls}: {q['name']} played through all {len(q['stages'])} stages teaches "
+                                               f"{q['ability']} ({trouble})")
+    world.players.pop(name.lower(), None)
+    if p.room is not None and p in p.room.characters:
+        p.room.characters.remove(p)
+
+
 async def engine():
     """The quest engine on the real world, with stand-in players: offer, accept, every stage of
     the warrior's quest, the party's size in every foe, credit for any member's kill, outsiders
@@ -132,19 +228,37 @@ async def engine():
     marquee.install(world)
     q = mq.QUESTS['warrior']
 
-    # the quest's data points at things that exist
-    for st in q['stages']:
-        for v in [st.get('room'), *[sp['room'] for sp in st.get('spawns', [])], *st.get('rooms', [])]:
-            check(v is None or v in world.rooms, f"{st['title']}: room {v} exists")
-        for v in [st.get('npc'), st.get('mob'), st.get('adds'), *[sp['vnum'] for sp in st.get('spawns', [])],
-                  *[w['vnum'] for w in st.get('waves', [])]]:
-            check(v is None or v in world.mob_prototypes, f"{st['title']}: creature {v} exists")
+    # every quest's data points at things that exist, and its trial hangs together
+    import mastery
+    import marquee_abilities as ma
+    for cls, qq in mq.QUESTS.items():
+        bad = []
+        for st in qq['stages']:
+            for v in [st.get('room'), *[sp['room'] for sp in st.get('spawns', [])], *st.get('rooms', []),
+                      *[r['room'] for r in st.get('visits', [])]]:
+                if v is not None and v not in world.rooms:
+                    bad.append(f"room {v} ({st['title']})")
+            for v in [st.get('npc'), st.get('mob'), st.get('adds'), *[sp['vnum'] for sp in st.get('spawns', [])],
+                      *[w['vnum'] for w in st.get('waves', [])]]:
+                if v is not None and v not in world.mob_prototypes:
+                    bad.append(f"creature {v} ({st['title']})")
+        trial = next((st['trial'] for st in qq['stages'] if st['kind'] == 'trial'), None)
+        tpl = marquee._template(trial)
+        keys = {r['key'] for r in tpl['rooms']}
+        if not (tpl['entrance'] in keys and all(w['room'] in keys for w in tpl['waves']) and tpl['boss']['room'] in keys
+                and all(ex['to'] in keys for r in tpl['rooms'] for ex in r['exits'].values())):
+            bad.append('trial rooms')
+        for vnum in {v for w in tpl['waves'] for v, _n in w['mobs']} | {tpl['boss']['vnum']}:
+            if vnum not in world.mob_prototypes:
+                bad.append(f'trial creature {vnum}')
+        if not (world.mob_prototypes.get(tpl['boss']['vnum']) or {}).get('boss_config'):
+            bad.append('the trial boss has no boss config')
+        giver = world.mob_prototypes.get(qq['giver']) or {}
+        if giver.get('special') != 'guildmaster' or qq['ability'] not in ma.ABILITIES or \
+                mastery.QUEST_ABILITIES.get(qq['ability']) != qq['name']:
+            bad.append('giver / ability / book')
+        check(not bad, f"{cls}: {qq['name']} points at real rooms and creatures, its trial hangs together ({bad})")
     tpl = marquee._template('warrior')
-    keys = {r['key'] for r in tpl['rooms']}
-    check(tpl['entrance'] in keys and all(w['room'] in keys for w in tpl['waves']) and tpl['boss']['room'] in keys
-          and all(ex['to'] in keys for r in tpl['rooms'] for ex in r['exits'].values()), 'the trial template hangs together')
-    check(tpl['boss']['vnum'] in world.mob_prototypes and world.mob_prototypes[tpl['boss']['vnum']].get('boss_config'),
-          'the trial boss has a boss config (phases, telegraphed abilities)')
 
     # too young: a hint; at 45: the offer
     gm = next(ch for ch in world.rooms[q['giver_room']].characters if getattr(ch, 'vnum', None) == q['giver'])
@@ -318,6 +432,10 @@ async def engine():
     check(cy.marquee_help is None and m3['n'] == 3 and 'Cy' not in m3['party'], 'a helper may leave; the quest stays as hard')
     await marquee.abandon(lea, confirm=True)
     check(lea.marquee is None and bo.marquee_help is None and not run3.mobs, 'abandoned: foes gone, helpers released')
+
+    # every other class's quest, played through
+    for cls in ('mage', 'cleric', 'paladin', 'necromancer'):
+        await drive(world, marquee, cls)
     logging.disable(logging.NOTSET)
 
 
@@ -325,25 +443,24 @@ async def engine():
 FOES = (('siegeman', 'siegeman'), ('siege hound', 'hound'), ('gorrund', 'gorrund'), ('drakeling', 'drakeling'))
 
 
-def foe_in(look):
+def foe_in(look, words=None):
     for line in look.splitlines():
         low = line.lower()
-        if low.startswith('the corpse') or ' is here' not in low and ' looms here' not in low and ' strains forward' not in low \
-                and ' crouches here' not in low:
+        if low.startswith('the corpse') or (' here' not in low and ' strains forward' not in low):
             continue
-        for key, word in FOES:
+        for key, word in (words or FOES):
             if key in low:
                 return word
     return None
 
 
-async def fight_here(tn, limit=240):
+async def fight_here(tn, limit=240, words=None):
     """Fight every quest foe standing here (by its room line), restoring when low."""
     t0 = time.time()
     log = ''
     while time.time() - t0 < limit:
         look = await tn.cmd('look', 0.8)
-        word = foe_in(look)
+        word = foe_in(look, words)
         if not word:
             return log
         out = await tn.cmd(f'kill {word}', 1.0)
@@ -467,12 +584,83 @@ async def live_group():
     b.w.close()
 
 
+# a test character of each class (on the gauntletb account) and how to start a fight for its ability
+CLASS_CHARS = {'mage': 'Probemage', 'cleric': 'Probecleric', 'paladin': 'Probepaladin', 'necromancer': 'Probenecro'}
+LEARNED = {'singularity': 'Singularity', 'seraphs_vigil': "Seraph's Vigil", 'wings_of_dawn': 'Wings of Dawn',
+           'lich_ascension': 'Lich Ascension'}
+USED = {'singularity': 'singularity opens', 'seraphs_vigil': 'SERAPH', 'wings_of_dawn': 'DAWN', 'lich_ascension': 'ASCEND'}
+
+
+async def live_classes(classes=('mage', 'cleric', 'paladin', 'necromancer'), fight='mage'):
+    """Each class's quest on the server with its test character: the offer and acceptance at its
+    guildmaster, a jump to the trial (entered and left), the return that teaches the marquee
+    ability, and the ability used on a foe; one class fights its trial through."""
+    import marquee_quests as mq
+    import test_multiplayer as tmu
+    for cls in classes:
+        q = mq.QUESTS[cls]
+        who = CLASS_CHARS[cls]
+        me = who.lower()
+        p = await tmu.Raw('gauntletb', who).open()
+        for line in ('wake', 'stand', f'set {me} level 50', f'set {me} maxhp 900', f'set {me} maxmana 900',
+                     f'set {me} damroll 150', f'set {me} hitroll 40', 'restore', 'marquee forget', f"goto {q['giver_room']}"):
+            await p.cmd(line, 0.6)
+        word = {3031: 'paladin', 3033: 'necromancer'}.get(q['giver'], 'guildmaster')
+        text = await p.cmd(f'talk {word}', 1.2)
+        check(f"A marquee quest: {q['name']}" in text, f"{cls}: the guildmaster offers {q['name']}")
+        text = await p.cmd('marquee accept', 1.2)
+        check('You set out alone' in text and f"{q['stages'][0]['title']} (1/7)" in text, f'{cls}: accepted, stage 1 of 7')
+        gate = q['stages'][5]['room']
+        await p.cmd('marquee stage 6', 0.8)
+        await p.cmd(f'goto {gate}', 1.2)
+        text = await p.cmd('trial enter', 2.0)
+        tpl = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'world', 'marquee', 'trials', f'{cls}.json')))
+        check(tpl['rooms'][0]['name'] in text, f"{cls}: inside the trial ({tpl['rooms'][0]['name']})")
+        if cls == fight:
+            for step, (way, into) in enumerate((('north', tpl['rooms'][1]['name']), ('north', tpl['rooms'][2]['name']), (None, None))):
+                await p.read(3.5)
+                log = await fight_here(p, words=TRIAL_FOES[cls])
+                if step == 1:
+                    await p.read(3.0)
+                    log += await fight_here(p, words=TRIAL_FOES[cls])
+                if way:
+                    await p.read(1.6)
+                    text = await p.cmd(way, 1.5)
+                    check(into in text, f'{cls}: the gate opened after the wave ({into})')
+            await p.read(1.6)
+            text = await p.cmd('marquee', 1.0)
+            check(f"{q['stages'][6]['title']} (7/7)" in text, f"{cls}: the trial's boss is down: the last stage")
+        text = await p.cmd('trial leave', 1.5)
+        check('fades' in text or 'thins' in text or 'stand at' in text, f'{cls}: out of the trial again')
+        await p.cmd('marquee stage 7', 0.8)
+        await p.cmd(f"goto {q['giver_room']}", 1.0)
+        text = await p.cmd(f'talk {word}', 2.0)
+        check(f"You learned {LEARNED[q['ability']]}" in text, f"{cls}: the guildmaster teaches {LEARNED[q['ability']]}")
+        # use it on a foe
+        await p.cmd('goto 3054', 0.8)
+        await p.cmd('mload 9704', 0.8)
+        await p.cmd('kill siegeman', 1.0)
+        text = await p.cmd(q['ability'].replace('_', ' '), 1.6)
+        check(USED[q['ability']] in text and 'Something went wrong' not in text,
+              f"{cls}: {LEARNED[q['ability']]} used in a fight ({' / '.join(l for l in text.splitlines() if l.strip())[:120]})")
+        text = await p.cmd(q['ability'].replace('_', ' '), 1.0)
+        check('not ready' in text, f'{cls}: and then it is on its cooldown')
+        for line in ('purge', 'restore', 'marquee forget', 'recall', 'save'):
+            await p.cmd(line, 0.6)
+        p.w.close()
+
+
+# the trial's foes by the words a room shows them with
+TRIAL_FOES = {'mage': (('sentinel', 'sentinel'), ('gravity mote', 'mote'), ('vaelith', 'vaelith'))}
+
+
 async def main():
     await offline()
     await engine()
     if '--offline' not in sys.argv:
         await live()
         await live_group()
+        await live_classes()
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
     sys.exit(1 if failures else 0)
 

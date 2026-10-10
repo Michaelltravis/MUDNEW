@@ -133,6 +133,29 @@ export const PICTO = {
     c.save(); c.translate(7, -12); c.scale(0.3, 0.3); DRAW.chevron(c); c.restore();
     c.globalCompositeOperation = 'source-over';
   },
+  implode(c) {
+    // eight chevrons pointing in at a hollow black core
+    for (let i = 0; i < 8; i++) { c.save(); c.rotate(i * TAU / 8); fillPath(c, [[-10, -47], [0, -31], [10, -47], [0, -41]]); c.restore(); }
+    disc(c, 0, 0, 21);
+    c.globalCompositeOperation = 'destination-out'; disc(c, 0, 0, 13); c.globalCompositeOperation = 'source-over';
+    disc(c, 0, 0, 5);
+  },
+  seraph(c) {
+    // a figure with a halo and great swept wings
+    for (const s of [-1, 1]) {
+      c.save(); c.scale(s, 1);
+      for (let i = 0; i < 4; i++) { c.save(); c.translate(6, -4); c.rotate(-0.95 - i * 0.3); c.beginPath(); c.ellipse(24 + i * 2, 0, 26 - i * 3, 5.5, 0, 0, TAU); c.fill(); c.restore(); }
+      c.restore();
+    }
+    disc(c, 0, -14, 9);
+    fillPath(c, [[-11, -2], [11, -2], [17, 44], [-17, 44]]);
+    c.strokeStyle = '#fff'; c.lineWidth = 4.5; c.beginPath(); c.ellipse(0, -31, 14, 5, 0, 0, TAU); c.stroke();
+  },
+  lich(c) {
+    // a skull wearing a crown
+    c.save(); c.translate(0, 12); c.scale(0.68, 0.68); DRAW.skull(c); c.restore();
+    fillPath(c, [[-26, -16], [-26, -40], [-14, -28], [-6, -46], [0, -30], [6, -46], [14, -28], [26, -40], [26, -16]]);
+  },
   hood(c) {
     c.beginPath(); c.moveTo(0, -44); c.bezierCurveTo(34, -40, 40, 6, 36, 44); c.lineTo(-36, 44); c.bezierCurveTo(-40, 6, -34, -40, 0, -44); c.fill();
     c.globalCompositeOperation = 'destination-out'; c.beginPath(); c.ellipse(0, -2, 18, 24, 0, 0, TAU); c.fill(); c.globalCompositeOperation = 'source-over';
@@ -205,6 +228,8 @@ export const PICTO = {
 // leaves on you; a weapon blow shows the class's weapon
 function pictoFor(r, cls) {
   const t = r.travel, l = r.land, a = r.aura;
+  // a marquee ability is its centrepiece: the banner, the seraph, the lich
+  if (a && ['banner', 'seraph', 'lich'].includes(a.kind)) return { picto: a.kind };
   const weapon = /^d/.test(r.clip) ? 'daggers' : /2$/.test(r.clip) && !/^bow|^aim/.test(r.clip) ? 'axe'
     : r.clip === 'kick' ? 'boot' : r.clip === 'punch' ? 'fist' : /^bow|^aim/.test(r.clip) ? 'bow' : 'sword';
   if (t) {
@@ -219,7 +244,7 @@ function pictoFor(r, cls) {
   if (l) {
     const map = { hit: weapon, sparks: weapon, nova: 'burst', blast: 'blast', pillar: 'pillar', crack: 'crack', quake: 'crack',
       bubble: 'shield', dome: 'shield', mark: 'crosshair', swirl: 'swirl', geyser: 'fountain', fountain: 'fountain', halo: 'halo',
-      wings: 'wings', smoke: 'smoke', rings: 'rings', heal: 'heal', cloud: 'smoke' };
+      wings: 'wings', smoke: 'smoke', rings: 'rings', heal: 'heal', cloud: 'smoke', implode: 'implode' };
     if (l.kind === 'growth') return { picto: { vines: 'vines', bones: 'spikes', ice: 'spikes', crystals: 'spikes', bars: 'cage', thorns: 'spikes', stones: 'rock', spikes: 'spikes', spears: 'spikes' }[l.arg] || 'spikes' };
     if (l.kind === 'burst' || l.kind === 'motifs') return { glyph: l.arg || (l.kind === 'burst' ? THEMES[cls].glyph : THEMES[cls].motif) };
     if (l.kind === 'freeze') return { glyph: 'snow' };
@@ -231,7 +256,7 @@ function pictoFor(r, cls) {
   }
   if (a) {
     const map = { banner: 'banner', fade: 'hood', shroud: 'hood', mirror: 'mirror', glow: 'fist', rage: 'fist', bubble: 'shield',
-      halo: 'halo', wings: 'wings', sigil: null, smoke: 'smoke' };
+      halo: 'halo', wings: 'wings', sigil: null, smoke: 'smoke', seraph: 'seraph', lich: 'lich' };
     const glyphs = { frost: 'snow', flames: 'flame', notes: 'notes', leaves: 'leaf', stone: null, bark: 'leaf', ghost: 'wisp', motes: 'star',
       poison: 'drop', bleed: 'drop', embers: 'flame', runes: 'rune', blades: 'dagger' };
     if (a.kind === 'orbit') return { glyph: a.arg || THEMES[cls].glyph, orbit: true };
@@ -279,7 +304,7 @@ export function abilityIcon(id, cls, { type = 'skill', passive = false, size = 9
   const cc = hex(theme.core), ac = hex(theme.accent);
   // the gem's colour: an element's own (fire, frost...) when it has one; else the class's two
   // tones — its main colour for blows and bolts, its second for wards, heals and help
-  const guard = r.flags.has('ally') || ['bubble', 'banner', 'halo', 'wings', 'sigil', 'glow', 'stone', 'bark', 'mirror', 'fade', 'shroud'].includes(r.aura && r.aura.kind)
+  const guard = r.flags.has('ally') || ['bubble', 'banner', 'seraph', 'halo', 'wings', 'sigil', 'glow', 'stone', 'bark', 'mirror', 'fade', 'shroud'].includes(r.aura && r.aura.kind)
     || ['heal', 'bubble', 'dome', 'halo', 'wings', 'pillar'].includes(r.land && r.land.kind);
   const sc = r.school && SCHOOL_RGB[r.school] ? SCHOOL_RGB[r.school] : guard ? ac : cc;
   const h = hash(`${cls}:${id}`);

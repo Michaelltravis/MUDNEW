@@ -534,6 +534,13 @@
     "type": "skill"
    },
    {
+    "id": "seraphs_vigil",
+    "level": 45,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
     "id": "cure_light",
     "level": 1,
     "school": "holy",
@@ -934,6 +941,13 @@
     "type": "skill"
    },
    {
+    "id": "singularity",
+    "level": 45,
+    "shape": "blast:6",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
     "id": "magic_missile",
     "level": 1,
     "school": "arcane",
@@ -1316,6 +1330,13 @@
     "level": 18,
     "shape": "blast:4",
     "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "lich_ascension",
+    "level": 45,
+    "shape": "self",
+    "target": "self",
     "type": "skill"
    },
    {
@@ -1704,6 +1725,13 @@
     "id": "shield_block",
     "level": 15,
     "passive": true,
+    "type": "skill"
+   },
+   {
+    "id": "wings_of_dawn",
+    "level": 45,
+    "shape": "nova:6",
+    "target": "area",
     "type": "skill"
    },
    {
@@ -2484,6 +2512,11 @@
    }
   ],
   "mage": [
+   {
+    "id": "singularity_implode",
+    "shape": "nova:8",
+    "target": "area"
+   },
    {
     "id": "summon",
     "shape": "self",

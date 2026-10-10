@@ -67,6 +67,8 @@ export const RECIPES = {
     aura: 'raise | sigil | - | - | sigil | t=6',
     layhands: 'interact*0.8 | gather | - | pillar+ | motes | ally',
     protect: 'blocking | sigil | link | - | bubble | ally',
+    // marquee: rise on wings of light and crash down like the dawn
+    wings_of_dawn: 'leapchop rise | flare | - | nova+ | wings | holy flash shake+ stop r=6',
   },
   cleric: {
     turn_undead: 'long | glyphs | wave | burst:cross | - | r=8',
@@ -119,6 +121,8 @@ export const RECIPES = {
     mind_flay: 'channel | - | tether | - | - | shadow',
     void_eruption: 'cheer | smoke | - | nova | - | shadow r=6',
     animate: 'summon | glyphs | - | geyser | - | necrotic',
+    // marquee: a seraph of light unfolds over the cleric and keeps its vigil
+    seraphs_vigil: 'summon hover | glyphs | - | pillar+ | seraph | holy flash t=18 r=10',
   },
   mage: {
     scribe: 'interact | glyphs | - | - | - | ',
@@ -169,6 +173,10 @@ export const RECIPES = {
     arcane_missiles: 'channel | - | orbs:5 | hit | - | ',
     mana_rift: 'long | flare | ray | sigil | - | ',
     summon: 'summon | sigil+ | - | geyser | - | ',
+    // marquee: a gravity well opens on the foe, runes circling it while it crushes...
+    singularity: 'long | gather+ | orb:big | dome | runes | arcane flash shake r=6 t=6',
+    // ...and two rounds later it implodes
+    singularity_implode: 'raise | spiral | - | implode+ | - | arcane flash shake+ r=6',
   },
   necromancer: {
     soul_bolt: 'shoot | - | glyph | burst | - | ',
@@ -217,6 +225,8 @@ export const RECIPES = {
     raise: 'summon | sigil+ | - | geyser | - | ',
     ritual: 'channel | sigil+ | - | nova | - | ',
     soulstone: 'use | spiral | - | burst | - | ',
+    // marquee: the necromancer rises crowned in grave-fire, a lich for six rounds
+    lich_ascension: 'summon rise | sigil+ | - | pillar+ | lich | necrotic flash t=18',
   },
   thief: {
     backstab: 'dstab blink | smoke | - | hit+ | - | shake stop',
