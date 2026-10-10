@@ -7,7 +7,7 @@ import { uiIcon } from './icons.js';
 import { THEMES } from '../abilityfx.js';
 
 const $ = s => document.querySelector(s);
-const NAME_KEY = 'misthollow_name', PW_KEY = 'misthollow_pw';   // shared with the 2D client
+const NAME_KEY = 'misthollow_name';   // shared with the 2D client; no password is kept (MH.auth)
 const ls = { get(k) { try { return localStorage.getItem(k); } catch (_) { return null; } },
   set(k, v) { try { localStorage.setItem(k, v); } catch (_) {} } };
 
@@ -48,10 +48,30 @@ export function setupLogin() {
   const name = $('#login-name'), pass = $('#login-pass'), status = $('#login-status');
   const create = $('#create');
   let creating = false, prime = '';
-  const saved = ls.get(NAME_KEY), savedPw = ls.get(PW_KEY);
+  const saved = ls.get(NAME_KEY);
   if (saved) name.value = saved;
-  if (savedPw) { try { pass.value = atob(savedPw); } catch (_) {} }
   const say = (msg, err) => { status.textContent = msg || ''; status.className = err ? 'error' : ''; };
+  // this browser signed in before: one click continues (the stored token, not a password)
+  const resumeBox = $('#login-resume'), form = $('#login-form');
+  const showForm = () => { resumeBox.classList.add('hidden'); form.classList.remove('hidden'); };
+  const rec = MH.auth.get();
+  if (rec) {
+    resumeBox.querySelector('b').textContent = rec.name;
+    resumeBox.classList.remove('hidden');
+    form.classList.add('hidden');
+  } else {
+    // a password an older version of this page kept: offered once, then forgotten
+    const old = MH.auth.takeOldPassword();
+    if (old) pass.value = old;
+  }
+  $('#resume-btn').addEventListener('click', () => {
+    const r = MH.auth.get();
+    if (!r) return showForm();
+    name.value = r.name;
+    MH.connect(r.name, '', false, r.token);
+  });
+  $('#switch-btn').addEventListener('click', () => { showForm(); name.value = ''; pass.value = ''; name.focus(); say(''); });
+  MH.bus.on('login.expired', who => { showForm(); if (who) name.value = who; pass.focus(); });
   // a line of lore, changing every few seconds while the title screen stands
   const lore = $('#login .lore-line');
   let li = Math.floor(Math.random() * LORE.length);
@@ -150,6 +170,5 @@ export function setupLogin() {
     $('#login').classList.add('hidden');
     if (stage) stage.stop();
     ls.set(NAME_KEY, MH.state.playerName);
-    ls.set(PW_KEY, btoa(MH.state.playerPassword));
   });
 }

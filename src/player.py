@@ -1010,12 +1010,19 @@ class Player(Character):
                 self.equipment[slot] = item
             
     def set_password(self, password: str):
-        """Set the player's password (hashed)."""
-        self.password_hash = hashlib.sha256(password.encode()).hexdigest()
+        """Set the player's password (salted PBKDF2, security.py). No password (a character
+        made from the account menu) leaves the hash empty: it opens through the account."""
+        import security
+        self.password_hash = security.hash_password(password) if password else ""
         
-    def check_password(self, password: str) -> bool:
-        """Check if the password matches."""
-        return self.password_hash == hashlib.sha256(password.encode()).hexdigest()
+    async def check_password(self, password: str) -> bool:
+        """Check if the password matches; an old-style hash is upgraded (saved with the
+        character)."""
+        import security
+        ok, rehash = await security.verify_async(self.password_hash, password)
+        if ok and rehash:
+            self.password_hash = await security.hash_async(password)
+        return ok
         
     async def send(self, message: str, newline: bool = True):
         """Send a message to the player."""

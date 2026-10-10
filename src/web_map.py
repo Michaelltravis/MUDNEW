@@ -10,6 +10,7 @@ import hashlib
 import hmac
 import json
 import logging
+import re
 import os
 import subprocess
 import time
@@ -19,6 +20,15 @@ from urllib.parse import parse_qs, urlparse
 from map_system import build_map_payload, build_combat_payload
 
 logger = logging.getLogger('Misthollow.WebMap')
+
+
+# a session token in a logged path (`?t=` / `&t=`, `token=`): the log is shown on the admin
+# dashboard and kept on disk, so it never holds one
+_TOKEN_IN_PATH = re.compile(r'([?&](?:t|token)=)[^&\s]+')
+
+
+def _redact(path: str) -> str:
+    return _TOKEN_IN_PATH.sub(r'\1…', path or '')
 
 
 # ---- 3D client (/play) static files ----------------------------------------------
@@ -366,7 +376,7 @@ class WebMapServer:
                 return
             method = parts[0]
             path = parts[1]
-            logger.info(f"HTTP request: method='{method}' path='{path}' raw='{request_line[:80]}'")
+            logger.info(f"HTTP request: method='{method}' path='{_redact(path)}'")
 
 
             headers = {}
@@ -386,7 +396,7 @@ class WebMapServer:
                 return
 
             if method not in ('GET', 'HEAD', 'OPTIONS'):
-                logger.warning(f"Unexpected HTTP method: '{method}' for path '{path}'")
+                logger.warning(f"Unexpected HTTP method: '{method}' for path '{_redact(path)}'")
                 await self._http_response(writer, 405, 'Method Not Allowed', 'Method Not Allowed')
                 return
             

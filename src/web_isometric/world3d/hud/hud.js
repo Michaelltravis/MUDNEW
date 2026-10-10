@@ -588,7 +588,7 @@ export function createHud() {
   els.input.addEventListener('keydown', e => {
     if (e.key === 'Enter') {
       const raw = els.input.value.trim(), v = raw && framed(raw);
-      if (v) { MH.sendCommand(v); st.history.unshift(raw); st.history.length = Math.min(st.history.length, 50); }
+      if (v) { MH.sendCommand(v); if (!MH.secretLine(raw)) { st.history.unshift(raw); st.history.length = Math.min(st.history.length, 50); } }
       st.hi = -1;
       els.input.value = '';
       els.input.blur();
@@ -626,6 +626,9 @@ export function createHud() {
   els.settings.querySelector('[data-act="perf"]').addEventListener('click', () => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'F3' })));
   els.settings.querySelector('[data-act="camreset"]').addEventListener('click', () => MH.bus.emit('hud.cameraReset'));
   els.settings.querySelector('[data-act="classic"]').addEventListener('click', () => window.open('/platformer', '_blank'));
+  els.settings.querySelector('[data-act="logout"]').addEventListener('click', () => {
+    if (!MH.logout()) toast('Finish the fight before you log out.');
+  });
   syncSettings();
 
   // ---- keys (when not typing) ----

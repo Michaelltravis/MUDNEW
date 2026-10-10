@@ -81,6 +81,9 @@ def html_escape(text: str) -> str:
             .replace('"', '&quot;'))
 
 
+RESUME_PATTERN = re.compile(r'\x1b\]RESUME:([A-Za-z0-9_\-]+)\x07')
+
+
 class TelnetBridge:
     """Bridge between WebSocket and telnet connection."""
     
@@ -102,11 +105,18 @@ class TelnetBridge:
     
     async def read_loop(self):
         """Read from MUD and send to WebSocket."""
+        carry = b''
         try:
             while True:
                 data = await self.reader.read(4096)
                 if not data:
                     break
+                data = carry + data
+                carry = b''
+                # a hidden signal cut in two by the read: keep its start for the next one
+                cut = data.rfind(b'\x1b]')
+                if cut != -1 and data.find(b'\x07', cut) == -1 and len(data) - cut < 256:
+                    data, carry = data[:cut], data[cut:]
                 
                 text = data.decode('utf-8', errors='replace')
                 
@@ -125,6 +135,12 @@ class TelnetBridge:
                     })
                     # Remove the control sequence from output
                     text = mapsync_pattern.sub('', text)
+
+                # RESUME: this browser's sign-in token (security.py), kept by the page in
+                # place of the password
+                for m in list(RESUME_PATTERN.finditer(text)):
+                    await self.ws.send_json({'type': 'resume', 'token': m.group(1)})
+                text = RESUME_PATTERN.sub('', text)
                 
                 # Only send output if there's remaining text
                 if text.strip():
@@ -206,10 +222,13 @@ class WebClient:
                 if msg.type == WSMsgType.TEXT:
                     try:
                         data = json.loads(msg.data)
-                        if data.get('type') == 'input':
-                            await bridge.write(data.get('data', ''))
                     except json.JSONDecodeError:
-                        # Plain text input
+                        data = None
+                    if isinstance(data, dict):
+                        if data.get('type') == 'input':
+                            await bridge.write(str(data.get('data', '')))
+                    else:
+                        # Plain text input (a bare number or word parses as JSON too)
                         await bridge.write(msg.data)
                 elif msg.type == WSMsgType.ERROR:
                     logger.error(f'WebSocket error: {ws.exception()}')

@@ -2329,15 +2329,17 @@ class CommandHandler:
             if not account:
                 await player.send(f"{c['red']}Account not found.{c['reset']}")
                 return
-            if not account.check_password(old_pw):
+            if not await account.check_password(old_pw):
                 await player.send(f"{c['red']}Incorrect current password.{c['reset']}")
                 return
-            if len(new_pw) < 4:
-                await player.send(f"{c['yellow']}New password must be at least 4 characters.{c['reset']}")
+            import security
+            why = security.weak(new_pw)
+            if why:
+                await player.send(f"{c['yellow']}{why}{c['reset']}")
                 return
-            account.set_password(new_pw)
+            await account.set_password(new_pw)
             account.save()
-            await player.send(f"{c['bright_green']}Password updated successfully.{c['reset']}")
+            await player.send(f"{c['bright_green']}Password updated successfully. Web browsers signed in to this account will ask for it again.{c['reset']}")
 
         elif cmd == 'email':
             # account email <address>
@@ -2369,6 +2371,10 @@ class CommandHandler:
             if not account.settings.get('email'):
                 await player.send(f"{c['yellow']}No email set. Use: account email <address>{c['reset']}")
                 return
+            import security
+            if not security.forgot_allowed(account.account_name):
+                await player.send(f"{c['yellow']}A reset email was sent recently. Try again in 15 minutes.{c['reset']}")
+                return
             token = AccountManager.generate_reset_token(account)
             sent = AccountManager.send_reset_email(account, token)
             if sent:
@@ -2386,7 +2392,12 @@ class CommandHandler:
                 return
             token = args[1]
             new_pw = args[2]
-            ok = AccountManager.reset_with_token(player.account_name, token, new_pw)
+            import security
+            why = security.weak(new_pw)
+            if why:
+                await player.send(f"{c['yellow']}{why}{c['reset']}")
+                return
+            ok = await AccountManager.reset_with_token(player.account_name, token, new_pw)
             if ok:
                 await player.send(f"{c['bright_green']}Password reset successfully.{c['reset']}")
             else:
@@ -2403,14 +2414,16 @@ class CommandHandler:
                 return
             target_account = args[1].lower()
             new_pw = args[2]
-            if len(new_pw) < 4:
-                await player.send(f"{c['yellow']}New password must be at least 4 characters.{c['reset']}")
+            import security
+            why = security.weak(new_pw)
+            if why:
+                await player.send(f"{c['yellow']}{why}{c['reset']}")
                 return
             account = Account.load(target_account)
             if not account:
                 await player.send(f"{c['red']}Account '{target_account}' not found.{c['reset']}")
                 return
-            account.set_password(new_pw)
+            await account.set_password(new_pw)
             account.save()
             await player.send(f"{c['bright_green']}Password for '{target_account}' reset.{c['reset']}")
         

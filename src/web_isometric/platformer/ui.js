@@ -4,8 +4,7 @@
 // plus parser events; every action funnels back through real MUD commands.
 (() => {
   const MH = window.MH = window.MH || {};
-  const NAME_KEY = 'misthollow_name';
-  const PW_KEY = 'misthollow_pw';
+  const NAME_KEY = 'misthollow_name';   // no password is kept: a sign-in token (MH.auth)
   const HOTBAR_KEY = 'misthollow_plat_hotbar_v3';
   const BAR_SIZE = 10;
   const DEFAULT_HOTBAR = ['attack', 'flee', '', '', '', '', '', 'inventory', 'score', 'quests'];
@@ -3793,11 +3792,26 @@
       setupDraggables();
 
       // login
-      const savedName = lsGet(NAME_KEY), savedPw = lsGet(PW_KEY);
+      const savedName = lsGet(NAME_KEY);
       if (savedName) els.loginName.value = savedName;
-      if (savedPw) { try { els.loginPass.value = atob(savedPw); } catch (_) {} }
+      // this browser signed in before: the stored token stands in for the password
+      const signedIn = MH.auth.get();
+      if (signedIn) {
+        els.loginName.value = signedIn.name;
+        els.loginPass.placeholder = 'password (signed in: just press Enter)';
+        els.loginStatus.textContent = `Welcome back, ${signedIn.name}.`;
+      } else {
+        const oldPw = MH.auth.takeOldPassword();   // an older page kept it: offered once
+        if (oldPw) els.loginPass.value = oldPw;
+      }
+      MH.bus.on('login.expired', () => { els.loginPass.placeholder = 'password'; els.loginPass.focus(); });
       const begin = create => {
         const name = els.loginName.value.trim(), pass = els.loginPass.value;
+        const rec = MH.auth.get();
+        if (!create && !pass && rec && rec.name.toLowerCase() === name.toLowerCase()) {
+          MH.connect(rec.name, '', false, rec.token);
+          return;
+        }
         if (!name || !pass) { els.loginStatus.textContent = 'Need both name and password.'; els.loginStatus.className = 'error'; return; }
         if (create && !/^[a-zA-Z]{3,12}$/.test(name)) {
           els.loginStatus.textContent = 'Name must be 3–12 letters (no spaces, numbers, or symbols).';
@@ -3958,7 +3972,6 @@
       MH.bus.on('login.success', () => {
         els.loginOverlay.classList.add('hidden');
         lsSet(NAME_KEY, MH.state.playerName);
-        lsSet(PW_KEY, btoa(MH.state.playerPassword));
         // bridge the gap before the first room paints with a themed loader
         const bl = document.getElementById('boot-loader');
         if (bl && !bl.dataset.done) {
@@ -4159,6 +4172,11 @@
         });
         const ctrlBtn = $('gfx-controls');
         if (ctrlBtn) ctrlBtn.addEventListener('click', () => { menu.classList.remove('show'); openControls(); });
+        const outBtn = $('gfx-logout');
+        if (outBtn) outBtn.addEventListener('click', () => {
+          menu.classList.remove('show');
+          if (!MH.logout()) flash('Finish the fight before you log out.');
+        });
         document.addEventListener('click', e => {
           if (menu.classList.contains('show') && !menu.contains(e.target) && e.target !== btn) menu.classList.remove('show');
         });

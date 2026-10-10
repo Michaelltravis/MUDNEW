@@ -127,6 +127,7 @@
   <div class="row">Camera <span class="seg"><button data-act="camreset" title="Right-drag turns and tilts the view">North up (Home)</button></span></div>
   <div class="row">Performance <span class="seg"><button data-act="perf">F3</button></span></div>
   <div class="row">Old 2D client <span class="seg"><button data-act="classic">Open</button></span></div>
+  <div class="row">Account <span class="seg"><button data-act="logout" title="This browser forgets your sign-in">Log out</button></span></div>
 </div>
 
 <div id="login">
@@ -150,10 +151,17 @@
     <div class="tagline">Where the mist remembers every name.</div>
   </div>
   <div class="card panel ornate">
-    <input id="login-name" placeholder="Name" autocomplete="username" maxlength="12">
-    <input id="login-pass" type="password" placeholder="Password" autocomplete="current-password">
-    <button class="btn" id="login-btn">Enter the Hollow</button>
-    <button class="btn alt" id="create-btn">Forge a new hero</button>
+    <div id="login-resume" class="hidden">
+      <div class="lr-who">Welcome back, <b></b></div>
+      <button class="btn" id="resume-btn">Continue</button>
+      <button class="btn alt" id="switch-btn">Use another name</button>
+    </div>
+    <div id="login-form">
+      <input id="login-name" placeholder="Name" autocomplete="username" maxlength="12">
+      <input id="login-pass" type="password" placeholder="Password" autocomplete="current-password">
+      <button class="btn" id="login-btn">Enter the Hollow</button>
+      <button class="btn alt" id="create-btn">Forge a new hero</button>
+    </div>
     <div id="login-status"></div>
   </div>
   <div class="lore-line"></div>

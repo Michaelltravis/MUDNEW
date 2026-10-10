@@ -648,3 +648,39 @@ Four more classes on the same engine (the last four — thief, ranger, bard, ass
   the shave and its exclusions, two songs shaving once, the execute and its boss rule);
   `test_marquee.py` plays all eight quests through offline and, live, each class's test character
   takes, enters, learns and uses (the ranger fights its trial through).
+
+### Security (owner's pick, first of four: "Security fixes, Sound and music for /play, Marquee balance pass, Real-time combat")
+- **A way into account characters, shut**: a character made from the account menu was saved
+  with the password "account_protected", and typing its name at the login prompt with that word
+  logged in — for an admin account's characters, as an immortal. Now a character that belongs to
+  an account, typed by name, asks for the *account's* password and goes straight in; its own
+  stored password is never a way in, new ones store none, and the old word never matches.
+- **Passwords** (`src/security.py`): salted PBKDF2-SHA256 (600 000 rounds, worked off the game
+  loop). Old unsalted hashes still work and are upgraded the next time their owner logs in. New
+  passwords need 8 characters (older, shorter ones keep working).
+- **Browsers keep a sign-in, not the password**: the three web clients used to store the
+  password (base64) in the browser. Now, after a password login, the page asks the server to
+  `remember` it; the server answers over a hidden signal (`RESUME`, turned into a message by the
+  bridge) with a random token and keeps only its hash (`lib/resume_tokens.json`, five browsers a
+  character, 30 days). `resume <name> <token>` at the name prompt logs in and swaps the token for
+  a fresh one. `/play` shows "Welcome back, <name> — Continue / Use another name"; `/platformer`
+  fills the name and Enter continues; `/2d` signs back in by itself. A password that an older
+  page kept is used once, then deleted. **Log out** (in Settings on `/play` and `/platformer`)
+  forgets that browser; changing or resetting a password forgets every browser of the account.
+- **Login limits** (in memory): three wrong passwords close the connection; five on one name in
+  ten minutes lock it for five (a stored sign-in still works, so nobody can lock an owner out of
+  their own browser). Reset mails: one an account per 15 minutes; reset tokens are stored hashed.
+- **The admin dashboard** (port 4002) answers on 127.0.0.1 only (`MISTHOLLOW_ADMIN_HOST`
+  overrides) and every API call needs the key in `lib/admin_key` (made on first start; the page
+  asks once). It refuses other host names (DNS rebinding), POSTs from other sites and non-JSON
+  POSTs; player names are put on the page as text (an XSS), its player list works again, and the
+  shutdown button that did nothing is gone.
+- **Leaks**: the map server no longer logs session tokens in request paths (the dashboard showed
+  that log); `account password/recover/reset` lines are echoed masked, not kept for `!` and not
+  seen by `snoop`; the web bridge no longer drops the connection when someone types a bare number
+  (it parsed as JSON); a hidden signal cut in two by the network is put back together.
+- **Tests**: `tests/test_security.py` — offline (hashing and its upgrade, tokens, limits, the
+  login prompts with a fake connection, masking, redaction) and live (the old way in refused,
+  the limits, `remember`/`resume`/`forget` over telnet and through the bridge, the dashboard's
+  refusals). Checked in a browser: `/play`, `/platformer` and `/2d` sign in, come back without a
+  password, and log out.

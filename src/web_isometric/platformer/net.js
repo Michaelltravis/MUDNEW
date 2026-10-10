@@ -91,11 +91,38 @@
     };
   })();
 
+  // --- sign-in tokens (security.py) ---
+  // After a password login the page asks the server to `remember` this browser; the server
+  // answers with a token (the RESUME signal) that stands in for the password next time and
+  // is swapped for a fresh one on every use. No password is kept in the browser.
+  const AUTH_KEY = 'misthollow_resume', OLD_PW_KEY = 'misthollow_pw';
+  MH.auth = {
+    get() {
+      try {
+        const v = JSON.parse(localStorage.getItem(AUTH_KEY) || 'null');
+        return v && v.name && v.token ? v : null;
+      } catch (_) { return null; }
+    },
+    set(name, token) { try { localStorage.setItem(AUTH_KEY, JSON.stringify({ name, token })); } catch (_) {} },
+    clear() { try { localStorage.removeItem(AUTH_KEY); } catch (_) {} },
+    // a password an older version of these pages kept: handed back once, then gone
+    takeOldPassword() {
+      let pw = null;
+      try {
+        const v = localStorage.getItem(OLD_PW_KEY);
+        if (v) pw = atob(v);
+        localStorage.removeItem(OLD_PW_KEY);
+      } catch (_) {}
+      return pw;
+    },
+  };
+
   // --- shared state ---
   MH.state = {
     playerName: '',
     mapToken: '',              // this session's secret for the map server (MAPSYNC)
     playerPassword: '',
+    resumeToken: '',           // signing in with a stored token instead of a password
     creatingAccount: false,
     isLoggedIn: false,
     loginSequenceStarted: false,
@@ -129,12 +156,17 @@
   };
 
   // --- command sending ---
+  // a line carrying a password: what to show for it ('' when it carries none)
+  MH.secretLine = function secretLine(command) {
+    const m = /^\s*account\s+(password|recover|reset)\b/i.exec(String(command || ''));
+    return m ? `account ${m[1].toLowerCase()} ****` : '';
+  };
   MH.sendCommand = function sendCommand(command, echo = true) {
     const trimmed = String(command || '').trim();
     const sock = MH.state.mudSocket;
     if (!trimmed || !sock || sock.readyState !== WebSocket.OPEN) return false;
     sock.send(trimmed);
-    if (echo) MH.bus.emit('terminal.echo', trimmed);
+    if (echo) MH.bus.emit('terminal.echo', MH.secretLine(trimmed) || trimmed);
     return true;
   };
 
@@ -145,6 +177,11 @@
     st.loginSequenceStarted = true;
     MH.bus.emit('login.status', st.creatingAccount ? 'Forging a new soul…' : 'Opening the gate…');
     await sleep(500);
+    if (st.resumeToken) {
+      st._loginNameSent = true;
+      MH.sendCommand(`resume ${st.playerName} ${st.resumeToken}`, false);
+      return;
+    }
     MH.sendCommand(st.playerName, false);
     st._loginNameSent = true;   // a name re-prompt after this means it was rejected
     if (!st.creatingAccount) {
@@ -167,6 +204,14 @@
   function answerLoginPrompts(text) {
     const st = MH.state;
     if (st.isLoggedIn) return;
+    // a stored sign-in the server no longer knows: forget it and ask for the password
+    if (st.resumeToken && /sign-in has expired/i.test(text)) {
+      st.resumeToken = '';
+      MH.auth.clear();
+      MH.bus.emit('login.expired', st.playerName);
+      MH.bus.emit('login.error', 'Your sign-in has expired — enter your password.');
+      return;
+    }
     const sendDelayed = (key, val) => {
       if (st._lastPromptKey === key) return;   // dedupe a prompt repeated across chunks
       st._lastPromptKey = key;
@@ -363,11 +408,17 @@
       for (const line of lines) MH.bus.emit('mud.line', { line, chunkLen: lines.length });
       answerLoginPrompts(text);
       inferLoginSuccess(text);
+    } else if (payload.type === 'resume') {
+      // this browser's sign-in token, fresh from the server
+      if (payload.token) { MH.state.resumeToken = payload.token; MH.auth.set(MH.state.playerName, payload.token); }
     } else if (payload.type === 'mapsync') {
       if (payload.player) MH.state.playerName = payload.player;
       if (payload.token != null) MH.state.mapToken = payload.token;
       if (!MH.state.isLoggedIn) {
         MH.state.isLoggedIn = true;
+        // signed in with the password: ask the server to remember this browser
+        if (MH.state.playerPassword && !MH.state.resumeToken) MH.sendCommand('remember', false);
+        MH.state.playerPassword = '';
         MH.bus.emit('login.success', MH.state.playerName);
       }
       ensureMapSocket();
@@ -376,10 +427,12 @@
     }
   }
 
-  MH.connect = function connect(name, password, createAccount) {
+  // log in with a password, or (token given) with this browser's stored sign-in
+  MH.connect = function connect(name, password, createAccount, token) {
     const st = MH.state;
     st.playerName = name;
-    st.playerPassword = password;
+    st.playerPassword = token ? '' : password;
+    st.resumeToken = token || '';
     st.creatingAccount = !!createAccount;
     st.loginSequenceStarted = false;
     st.isLoggedIn = false;
@@ -392,5 +445,18 @@
     st.mudSocket.addEventListener('message', e => handleMudMessage(e.data));
     st.mudSocket.addEventListener('close', () => MH.bus.emit('login.status', 'World socket closed.'));
     st.mudSocket.addEventListener('error', () => MH.bus.emit('login.error', 'Could not reach the gate. Is the server up?'));
+  };
+
+  // sign out: the server forgets this browser's token, the character leaves the world
+  MH.logout = function logout() {
+    const st = MH.state;
+    if (st.inCombat) return false;           // the caller says why (quit is refused mid-fight)
+    const rec = MH.auth.get();
+    if (rec && rec.token) MH.sendCommand(`forget ${rec.token}`, false);
+    MH.auth.clear();
+    st.resumeToken = '';
+    MH.sendCommand('quit', false);
+    setTimeout(() => location.reload(), 700);
+    return true;
   };
 })();

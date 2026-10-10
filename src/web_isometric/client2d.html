@@ -1388,7 +1388,8 @@
       const HOTBAR_KEY = 'misthollow_hotbar';
       const ALIASES_KEY = 'misthollow_aliases';
       const NAME_KEY = 'misthollow_name';
-      const PW_KEY = 'misthollow_pw';
+      const PW_KEY = 'misthollow_pw';          // older pages kept the password: read once, then removed
+      const AUTH_KEY = 'misthollow_resume';    // this browser's sign-in token (security.py), shared with /play
       const DEFAULT_HOTBAR = ['kill', 'backstab', 'look', 'score', 'inventory', 'north', 'south', 'east'];
       const DEFAULT_ALIASES = { k: 'kill', l: 'look', i: 'inventory', eq: 'equipment', sc: 'score', h: 'help' };
       const OUTPUT_LIMIT = 500;
@@ -1545,6 +1546,7 @@
         mapSocket: null,
         playerName: '',
         playerPassword: '',
+        resumeToken: '',
         creatingAccount: false,
         mudConnected: false,
         mapConnected: false,
@@ -2043,9 +2045,15 @@
       }
 
       function saveCredentials() {
-        if (!state.playerName || !state.playerPassword) return;
+        if (!state.playerName) return;
         safeLocalStorageSet(NAME_KEY, state.playerName);
-        safeLocalStorageSet(PW_KEY, btoa(state.playerPassword));
+      }
+
+      function storedSignIn() {
+        try {
+          const v = JSON.parse(safeLocalStorageGet(AUTH_KEY) || 'null');
+          return v && v.name && v.token ? v : null;
+        } catch (_) { return null; }
       }
 
       function inferLoginSuccess(text) {
@@ -2253,6 +2261,11 @@
         setLoginStatus(state.creatingAccount ? 'Forging a new soul…' : 'Opening the gate…');
         try {
           await sleep(500);
+          if (state.resumeToken) {
+            sendMudCommand(`resume ${state.playerName} ${state.resumeToken}`, false);
+            setLoginStatus('Welcome back…');
+            return;
+          }
           sendMudCommand(state.playerName, false);
           await sleep(500);
           if (state.creatingAccount) {
@@ -2528,11 +2541,31 @@
               updateCombatStateFromOutput(line);
             }
           }
+          if (state.resumeToken && !state.isLoggedIn && /sign-in has expired/i.test(text)) {
+            state.resumeToken = '';
+            safeLocalStorageRemove(AUTH_KEY);
+            els.loginOverlay.classList.remove('hidden');
+            els.loginPass.value = '';
+            setLoginStatus('Your sign-in has expired — enter your password.', true);
+            return;
+          }
           inferLoginSuccess(text);
+        } else if (payload.type === 'resume') {
+          // this browser's fresh sign-in token: kept in place of the password
+          if (payload.token) {
+            state.resumeToken = payload.token;
+            safeLocalStorageSet(AUTH_KEY, JSON.stringify({ name: state.playerName, token: payload.token }));
+          }
         } else if (payload.type === 'mapsync') {
           if (payload.player) {
             state.playerName = payload.player;
           }
+          // signed in with the password: ask the server to remember this browser
+          if (state.playerPassword && !state.resumeToken && !state.askedRemember) {
+            state.askedRemember = true;
+            sendMudCommand('remember', false);
+          }
+          state.playerPassword = '';
           appendOutput(`[world] map sync granted for ${state.playerName}`, 'system');
           ensureMapSocket();
           sendMapSubscribe();
@@ -2594,6 +2627,17 @@
       function beginLogin(createAccount = false) {
         const name = els.loginName.value.trim();
         const pass = els.loginPass.value;
+        const rec = storedSignIn();
+        state.resumeToken = '';
+        state.askedRemember = false;
+        if (!createAccount && !pass && rec && rec.name.toLowerCase() === name.toLowerCase()) {
+          state.playerName = rec.name;
+          state.playerPassword = '';
+          state.resumeToken = rec.token;
+          state.creatingAccount = false;
+          connectMud();
+          return;
+        }
 
         if (!name || !pass) {
           setLoginStatus('Need both name and password. Ancient magic has standards.', true);
@@ -2614,11 +2658,13 @@
       }
 
       function setupStoredCredentials() {
-        const savedName = safeLocalStorageGet(NAME_KEY);
+        const rec = storedSignIn();
         const savedPw = safeLocalStorageGet(PW_KEY);
-        if (!savedName || !savedPw) return;
+        safeLocalStorageRemove(PW_KEY);
         let decoded = '';
-        try { decoded = atob(savedPw); } catch (_) { decoded = ''; }
+        if (!rec && savedPw) { try { decoded = atob(savedPw); } catch (_) { decoded = ''; } }
+        const savedName = rec ? rec.name : safeLocalStorageGet(NAME_KEY);
+        if (!savedName || (!rec && !decoded)) return;
         els.loginName.value = savedName;
         els.loginPass.value = decoded;
         els.loginSubtitle.textContent = 'New? Type a name → say Y → set password';
@@ -2639,8 +2685,11 @@
       }
 
       function forgetStoredCredentials() {
+        const rec = storedSignIn();
+        if (rec && state.isLoggedIn) sendMudCommand(`forget ${rec.token}`, false);
         safeLocalStorageRemove(NAME_KEY);
         safeLocalStorageRemove(PW_KEY);
+        safeLocalStorageRemove(AUTH_KEY);
         els.loginName.value = '';
         els.loginPass.value = '';
         els.loginWelcome.classList.remove('active');
@@ -3508,7 +3557,11 @@
 
       els.sendBtn.addEventListener('click', () => submitCommand());
       els.reconnectBtn.addEventListener('click', () => {
-        if (!state.playerName || !state.playerPassword) {
+        const rec = storedSignIn();
+        if (rec && (!state.playerName || rec.name.toLowerCase() === state.playerName.toLowerCase())) {
+          state.playerName = rec.name;
+          state.resumeToken = rec.token;
+        } else if (!state.playerName || !state.playerPassword) {
           els.loginOverlay.classList.remove('hidden');
           setLoginStatus('Need credentials before I can reconnect. Shocking, I know.');
           return;
