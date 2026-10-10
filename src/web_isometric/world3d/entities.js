@@ -7,6 +7,7 @@ import * as THREE from 'three';
 import { spawnCharacter, spawnMob } from './assets.js';
 import { beastLook } from './bestiary.js';
 import { makeProc } from './proc.js';
+import { isHostile } from './targeting.js';
 
 const ANIMAL = /\b(rabbit|hare|fox|wolf|wolves|bear|deer|stag|elk|rat|rats|mouse|spider|snake|serpent|bat|bird|crow|raven|boar|cat|kitten|dog|hound|puppy|horse|pony|cow|bull|sheep|lamb|chicken|hen|rooster|frog|toad|lizard|beetle|ant|bee|wasp|scorpion|crab|fish|eel|squirrel|owl|hawk|eagle|goat|pig|hog|worm|slime|ooze|jelly|mosquito|fly|leech|badger|weasel|otter|duck|goose|swan|vulture|lion|tiger|panther|cougar|lynx|ape|monkey|gorilla|wyrm|drake|dragon|basilisk|griffon|unicorn|centipede|millipede|tick|moth|butterfly|cockroach)\b/;
 const UNDEAD = /\b(skeleton|zombie|ghoul|undead|lich|wight|bone|bones|corpse|ghost|spectre|specter|wraith|mummy|revenant|banshee|shade|phantom|vampire)\b/;
@@ -118,6 +119,7 @@ export class Entities {
       const e = this.list.get(key);
       if (!e) { this.create(key, w); continue; }
       e.data = w.data;
+      this.markHostile(e);
       if (e.vnum !== w.vnum) {
         const from = this.zone.rooms.get(e.vnum), to = this.zone.rooms.get(w.vnum);
         e.vnum = w.vnum;
@@ -154,7 +156,7 @@ export class Entities {
     const e = { key, kind: w.kind, data: w.data, vnum: w.vnum, root: null, actor: null, goal: null, alive: true };
     this.list.set(key, e);
     e.plate = document.createElement('div');
-    e.plate.className = 'plate ' + (w.kind === 'player' ? 'pl' : w.data.hostile ? 'hostile' : (w.data.shopkeeper || w.data.trainer) ? 'npc' : 'neutral');
+    e.plate.className = 'plate ' + (w.kind === 'player' ? 'pl' : isHostile(w) ? 'hostile' : (w.data.shopkeeper || w.data.trainer) ? 'npc' : 'neutral');
     e.plate.innerHTML = '<span class="nm"></span><i class="hp"><b></b></i>';
     e.plate.querySelector('.nm').textContent = w.data.name;
     this.plates.appendChild(e.plate);
@@ -169,7 +171,7 @@ export class Entities {
         e.fly = b.fly || 0;
         e.root.position.copy(at);
         e.root.rotation.y = (hashStr(key) % 628) / 100;
-        actor.play(w.data.hostile ? 'Idle_Combat' : 'Idle', 0, 0.85 + (hashStr(key) % 30) / 100);
+        actor.play(isHostile(w) ? 'Idle_Combat' : 'Idle', 0, 0.85 + (hashStr(key) % 30) / 100);
         this.engine.scene.add(e.root);
       };
       if (b.proc) ready(makeProc(b.proc, { height: b.h * grow, tint: b.tint, seed: hashStr(key) }));
@@ -177,7 +179,7 @@ export class Entities {
       return;
     }
     if (look.wisp) {
-      e.root = makeWisp(w.data.hostile);
+      e.root = makeWisp(isHostile(w));
       e.root.position.copy(at);
       this.engine.scene.add(e.root);
       return;
@@ -188,7 +190,7 @@ export class Entities {
       e.root = actor.root;
       e.root.position.copy(at);
       e.root.rotation.y = (hashStr(key) % 628) / 100;
-      actor.play(w.kind === 'mob' && w.data.hostile ? 'Idle_Combat' : 'Idle', 0, 0.85 + (hashStr(key) % 30) / 100);
+      actor.play(isHostile(w) ? 'Idle_Combat' : 'Idle', 0, 0.85 + (hashStr(key) % 30) / 100);
       this.engine.scene.add(e.root);
     }).catch(() => {});
   }
@@ -207,11 +209,21 @@ export class Entities {
     this.dying.push({ e, left: 2.2 });
   }
 
-  setTarget(key) {
+  // a creature that turns on you gets a hostile (red) nameplate
+  markHostile(e) {
+    if (!e || !e.plate || e.kind !== 'mob') return;
+    const h = isHostile(e);
+    e.plate.classList.toggle('hostile', h);
+    if (h) e.plate.classList.remove('neutral');
+  }
+
+  // byHand: the player chose it (a click, Tab): auto-targeting leaves it alone a moment
+  setTarget(key, { byHand = false } = {}) {
     const prev = this.target && this.list.get(this.target);
     if (prev && prev.plate) prev.plate.classList.remove('targeted');
     this.target = key;
     const e = key && this.list.get(key);
+    if (e && byHand) e.pickedAt = Date.now();
     if (e && e.plate) e.plate.classList.add('targeted');
     MH.bus.emit(e ? 'target.set' : 'target.clear', e ? { key, kind: e.kind, ...e.data, vnum: e.vnum } : null);
   }
@@ -234,8 +246,6 @@ export class Entities {
   }
 
   update(dt, t, hero) {
-    const cam = this.engine.camera, cv = this.engine.renderer.domElement;
-    const w = cv.clientWidth, h = cv.clientHeight;
     this.hero = hero;
     for (let i = this.dying.length - 1; i >= 0; i--) {
       const d = this.dying[i];
@@ -247,7 +257,7 @@ export class Entities {
       // walking to a new room's spot
       if (e.goal) {
         const p = e.root.position, dx = e.goal.x - p.x, dz = e.goal.z - p.z, d = Math.hypot(dx, dz);
-        if (d < 0.1) { e.goal = null; if (e.actor) e.actor.play(e.kind === 'mob' && e.data.hostile ? 'Idle_Combat' : 'Idle'); }
+        if (d < 0.1) { e.goal = null; if (e.actor) e.actor.play(isHostile(e) ? 'Idle_Combat' : 'Idle'); }
         else {
           const step = Math.min(d, 3.2 * dt);
           p.x += dx / d * step; p.z += dz / d * step;
@@ -258,7 +268,16 @@ export class Entities {
       if (e.actor) e.actor.update(dt);
       else if (e.root.userData.core) e.root.userData.core.position.y = 0.9 + Math.sin(t * 2.4 + (hashStr(e.key) % 7)) * 0.12;
       if (e.fly) e.root.position.y = e.fly + Math.sin(t * 2.1 + (hashStr(e.key) % 9)) * 0.12;
-      // nameplate
+    }
+  }
+
+  // nameplates, once the camera is placed for this frame (engine late tick)
+  layoutPlates(hero) {
+    if (!hero) return;
+    const cam = this.engine.camera, cv = this.engine.renderer.domElement;
+    const w = cv.clientWidth, h = cv.clientHeight;
+    for (const e of this.list.values()) {
+      if (!e.root) continue;
       const dist = e.root.position.distanceTo(hero);
       const show = dist < 26 || this.target === e.key;
       if (!show) { e.plate.style.display = 'none'; continue; }

@@ -240,11 +240,34 @@ def _ability_of(cmd, args):
     return None, args
 
 
+def _ref_word(player, arg):
+    """'#12' -> a keyword (or 'N.keyword') naming that creature in the player's room."""
+    if not (isinstance(arg, str) and arg.startswith('#') and arg[1:].isdigit()):
+        return arg
+    finder = getattr(player, 'find_target_in_room', None)
+    ch = finder(arg) if finder else None
+    room = getattr(player, 'room', None)
+    if ch is None or room is None:
+        return arg
+    words = [w for w in str(getattr(ch, 'name', '') or '').lower().replace(',', ' ').split() if w.isalpha()]
+    matches = getattr(player, 'matches_character', None)
+    for kw in words or ['mob']:
+        same = [c for c in room.characters if c is not player and (matches(c, kw) if matches else kw in str(getattr(c, 'name', '')).lower())]
+        if ch in same:
+            n = same.index(ch) + 1
+            return kw if n == 1 else f'{n}.{kw}'
+    return arg
+
+
 def _wrap_execute():
     from commands import CommandHandler
     orig = CommandHandler.execute.__func__
 
     async def execute(cls, player, cmd, args):
+        # "#12" (the 3D client's exact creature id) becomes the keyword every command's own
+        # target matching understands ("wolf", or "2.wolf" when another wolf comes first)
+        if args and any(isinstance(a, str) and a.startswith('#') and a[1:].isdigit() for a in args):
+            args = [_ref_word(player, a) for a in args]
         name, rest = (None, args)
         try:
             if _is_player(player) and getattr(player, 'room', None) is not None and cmd:

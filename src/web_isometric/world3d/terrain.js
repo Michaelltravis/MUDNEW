@@ -408,20 +408,20 @@ function makeDoor(span, horiz) {
   for (let i = 0; i < leaves; i++) {
     const hinge = new THREE.Group();
     const along = -span / 2 + (i === 0 ? 0 : span);
-    const leaf = new THREE.Mesh(DOOR_GEO, DOOR_MAT);
+    const leaf = new THREE.Mesh(DOOR_GEO, occluder(DOOR_MAT));          // see-through when in the way
     leaf.scale.set(w, 1, 1);
     leaf.position.x = i === 0 ? w / 2 : -w / 2;
     leaf.castShadow = leaf.receiveShadow = true;
     hinge.add(leaf);
     for (const y of [0.55, 1.85]) {
-      const band = new THREE.Mesh(BAND_GEO, IRON_MAT);
+      const band = new THREE.Mesh(BAND_GEO, occluder(IRON_MAT));
       band.scale.set(w * 0.96, 1, 1);
       band.position.set(leaf.position.x, y, 0);
       hinge.add(band);
       lockBits.push(band);
     }
     if (i === 0) {
-      const lock = new THREE.Mesh(LOCK_GEO, LOCK_MAT);
+      const lock = new THREE.Mesh(LOCK_GEO, occluder(LOCK_MAT));
       lock.position.set(leaves === 2 ? w - 0.12 : w - 0.28, 1.15, 0);
       hinge.add(lock);
       lockBits.push(lock);

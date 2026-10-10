@@ -262,3 +262,35 @@ skill's own server code.
   carrying both sides), `tests/test_webmove.py` (stairs direction), `node --test
   tests/web/*.test.mjs` (every stairs/portal room's landing, the gate, door prompts/menus) and
   `tests/web/probe_play3d.js stairs|doors` in a browser with the zone map delayed 3 s.
+
+### Camera, right-click and auto-target (owner: "let the camera pan around the player with a right click"; "right click should give other context menus"; "if something attacks the player ensure the target is automatically selected")
+- **Camera** (`world3d/orbit.js`, `input.js`, `engine.js`): right-drag turns the view around the
+  hero (0.0065 rad/px) and tilts it (up = a higher view, −12°…+10° on top of the zoom's pitch,
+  26°–66° overall); it stays where you leave it (owner's choice); Home, the minimap's compass
+  or Settings → Camera snap back to north up. WASD follow the camera (W = away from it). The
+  minimap stays north up with a wedge for where the camera looks and a compass needle. The
+  wheel zooms in proportion to the scroll (trackpads glide; a sideways scroll does nothing).
+  Overlays (nameplates, floating numbers, the see-through circle, prompts, the minimap) run
+  after the camera each frame, so nothing lags while turning; numbers fan along the screen's
+  left-right; doors and wall furniture turn see-through when they stand in the way.
+- **Right-click** (press and release without dragging; Ctrl+click on a Mac): a menu for what is
+  under the cursor (`hud/verbs.js`): a creature (Attack, its bar skills, Target, Consider,
+  Look), a shopkeeper/trainer/quest-giver (Talk, Shop, Train, Rent, Look...), another player
+  (Look, Whisper, Invite to group, Follow, Assist, Trade), a door (its actions), yourself
+  (Character, Inventory, Score, Rest/Sleep/Stand, Recall, or Flee in a fight), the ground
+  (Walk here).
+- **Exact targets**: the client names a creature by its id (`kill #12`); the server turns that
+  into the keyword each command understands (`wolf`, or `2.wolf` when another wolf comes first),
+  and spells accept numbered and exact targets too. The action bar sends skills by their id
+  (`holy_smite`, `order_verdict`, `execute_contract` used to reach the wrong commands) and
+  renamed abilities show their cooldowns.
+- **Auto-target** (`world3d/targeting.js`): the first blow, spell or wind-up aimed at you makes
+  the attacker your target, unless you are busy with a live foe or picked a hostile by hand a
+  moment ago; when your target dies, the creature that hit you last takes its place. Its
+  nameplate turns red. Server: map payloads say which creatures fight you; a second attacker no
+  longer steals your swings (CircleMUD's rule); an attacked player hears about the fight at
+  once; hunting creatures show their moves.
+- Verified here: `node --test tests/web/*.test.mjs` (orbit maths, W at any angle, click vs drag,
+  targeting rules, menus), `tests/test_combat_v2.py` (`kill #id` hits the second of two
+  spectres, the payload's `fighting`, cooldown names, the `#id` rewrite) and
+  `tests/web/probe_play3d.js camera|menu|autotarget`.

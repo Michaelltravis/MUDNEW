@@ -2051,6 +2051,14 @@ class Player(Character):
         if not target_name or not self.room:
             return None
 
+        # the 3D client names creatures exactly: "#12" is map_system's id for one live mob
+        if target_name.startswith('#') and target_name[1:].isdigit():
+            uid = int(target_name[1:])
+            for char in self.room.characters:
+                if char is not self and getattr(char, '_web_uid', None) == uid:
+                    return char
+            return None
+
         # Check labels first (case-insensitive)
         label_upper = target_name.upper()
         if label_upper in self.target_labels:

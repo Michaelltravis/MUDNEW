@@ -115,6 +115,8 @@ export class FX {
     this.texts = [];
     this.shakeT = 0; this.shakeMag = 0;
     engine.onTick(dt => this.update(dt));
+    // floating text is placed once the camera has moved for this frame (no lag while orbiting)
+    if (engine.onLateTick) engine.onLateTick(dt => this.updateTexts(dt)); else this._textsInTick = true;
     engine.rig.shake = () => this.shakeOffset();
   }
 
@@ -123,7 +125,7 @@ export class FX {
   update(dt) {
     this.p.update(dt);
     for (let i = this.items.length - 1; i >= 0; i--) if (!this.items[i].update(dt)) { this.items[i].dispose && this.items[i].dispose(); this.items.splice(i, 1); }
-    this.updateTexts(dt);
+    if (this._textsInTick) this.updateTexts(dt);
     if (this.shakeT > 0) this.shakeT -= dt;
   }
 
@@ -148,7 +150,10 @@ export class FX {
     let stack = 0;
     for (const o of this.texts) if (o.t < 0.45 && o.p0.distanceToSquared(pos) < 0.5) stack++;
     const fan = stack ? (stack % 2 ? 0.45 : -0.45) * Math.ceil(stack / 2) : 0;
-    const p = pos.clone().add(new THREE.Vector3(side + fan + (Math.random() - 0.5) * 0.3, stack * 0.3, (Math.random() - 0.5) * 0.3));
+    // fan out along the screen's left-right, whichever way the camera has been turned
+    const right = new THREE.Vector3(1, 0, 0).applyQuaternion(this.engine.camera.quaternion).setY(0).normalize();
+    const p = pos.clone().addScaledVector(right, side + fan + (Math.random() - 0.5) * 0.3)
+      .add(new THREE.Vector3(0, stack * 0.3, 0));
     this.texts.push({ d, p0: pos.clone(), p, t: 0, life, rise, crit });
   }
   updateTexts(dt) {

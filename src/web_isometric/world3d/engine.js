@@ -6,6 +6,7 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { orbitOffset, pitchFor, dragOrbit, nearestTurn } from './orbit.js';
 
 // ?q=low|med|high, default high (the Mac mini and any recent laptop handle it)
 export const QUALITY = {
@@ -51,32 +52,57 @@ export function createEngine(container, opts = {}) {
   sun.shadow.normalBias = 0.04;
   scene.add(hemi, sun, sun.target);
 
-  // ---- camera rig: fixed yaw (north = screen up), steep pitch, smooth follow ----
+  // ---- camera rig: orbits the hero (right-drag, orbit.js), smooth follow ----
   const camera = new THREE.PerspectiveCamera(36, 1, 0.5, 220);
   // The pitch follows the zoom (owner: "see more of the character's face"): pulled back
   // it looks down on the room like a map (58°); zoomed in it drops toward the hero's
-  // face (34°). The default sits in between.
+  // face (34°). The default sits in between. A right-drag turns the view around the hero
+  // (yaw; 0 = north up) and tilts it (added to the zoom's pitch); it stays where it is left
+  // until snapNorth() (Home, or the minimap's compass).
   const rig = {
     target: new THREE.Vector3(),     // what we look at (the hero)
     focus: new THREE.Vector3(),      // smoothed target
     pitch: THREE.MathUtils.degToRad(46),
     lowPitch: 34, highPitch: 58,
     dist: 19, minDist: 10, maxDist: 34, wantDist: 19,
+    yaw: 0, tilt: 0, snap: null,
   };
   function placeCamera(snap) {
     if (snap) rig.focus.copy(rig.target);
     const k = THREE.MathUtils.clamp((rig.dist - rig.minDist) / (rig.maxDist - rig.minDist), 0, 1);
-    rig.pitch = THREE.MathUtils.degToRad(THREE.MathUtils.lerp(rig.lowPitch, rig.highPitch, Math.pow(k, 0.8)));
-    const off = new THREE.Vector3(0, Math.sin(rig.pitch), Math.cos(rig.pitch)).multiplyScalar(rig.dist);
-    camera.position.copy(rig.focus).add(off);
+    rig.pitch = pitchFor(THREE.MathUtils.lerp(rig.lowPitch, rig.highPitch, Math.pow(k, 0.8)), rig.tilt);
+    const off = orbitOffset(rig.yaw, rig.pitch, rig.dist);
+    camera.position.set(rig.focus.x + off.x, rig.focus.y + off.y, rig.focus.z + off.z);
     camera.lookAt(rig.focus.x, rig.focus.y + 1.1, rig.focus.z);
     // impact shake (fx.js): a small offset for a few frames on heavy blows
     const sh = rig.shake && rig.shake();
     if (sh) camera.position.add(sh);
   }
+  // turn and tilt by a drag of (dx, dy) pixels
+  function orbit(dx, dy) {
+    rig.snap = null;
+    const o = dragOrbit(rig.yaw, rig.tilt, dx, dy);
+    rig.yaw = o.yaw; rig.tilt = o.tilt;
+  }
+  // ease back to north up and the zoom's own pitch (on the wall clock: a hit-stop can't slow it)
+  function snapNorth() {
+    rig.snap = { t0: performance.now(), yaw0: rig.yaw, tilt0: rig.tilt, yaw1: nearestTurn(rig.yaw) };
+  }
+  function easeSnap() {
+    const s = rig.snap;
+    if (!s) return;
+    const k = Math.min(1, (performance.now() - s.t0) / 350), e = 1 - Math.pow(1 - k, 3);
+    rig.yaw = s.yaw0 + (s.yaw1 - s.yaw0) * e;
+    rig.tilt = s.tilt0 * (1 - e);
+    if (k >= 1) { rig.yaw = 0; rig.tilt = 0; rig.snap = null; }
+  }
+  // zoom: proportional to the wheel (a trackpad glides, a notch steps ~15%); a sideways-only
+  // scroll (deltaY 0) does nothing
   renderer.domElement.addEventListener('wheel', e => {
     e.preventDefault();
-    rig.wantDist = THREE.MathUtils.clamp(rig.wantDist * (e.deltaY > 0 ? 1.1 : 1 / 1.1), rig.minDist, rig.maxDist);
+    if (!e.deltaY) return;
+    const px = THREE.MathUtils.clamp(e.deltaY * (e.deltaMode ? 33 : 1), -100, 100);
+    rig.wantDist = THREE.MathUtils.clamp(rig.wantDist * Math.exp(px * 0.0015), rig.minDist, rig.maxDist);
   }, { passive: false });
 
   // ---- post: bloom only on what is really bright (torches, sparks), then tone map ----
@@ -120,7 +146,9 @@ export function createEngine(container, opts = {}) {
   }
 
   // ---- loop ----
-  const ticks = [];
+  // ticks move the world; late ticks run once the camera is placed for this frame (screen
+  // overlays: nameplates, floating text, the see-through circle, prompts, the minimap)
+  const ticks = [], lateTicks = [];
   const clock = new THREE.Clock();
   let frames = 0, stopUntil = 0;
   function frame() {
@@ -131,7 +159,10 @@ export function createEngine(container, opts = {}) {
     for (const fn of ticks) fn(dt, t);
     rig.dist += (rig.wantDist - rig.dist) * (1 - Math.exp(-dt * 10));
     rig.focus.lerp(rig.target, 1 - Math.exp(-dt * 9));
+    easeSnap();
     placeCamera(false);
+    camera.updateMatrixWorld();
+    for (const fn of lateTicks) fn(dt, t);
     // the sun's shadow box follows the hero so shadows stay sharp everywhere
     sun.position.set(rig.focus.x - 14, 30, rig.focus.z + 10);
     sun.target.position.copy(rig.focus);
@@ -145,6 +176,8 @@ export function createEngine(container, opts = {}) {
   return {
     THREE, renderer, scene, camera, rig, sun, hemi, quality: q,
     onTick: fn => ticks.push(fn),
+    onLateTick: fn => lateTicks.push(fn),
+    orbit, snapNorth,
     hitStop: ms => { stopUntil = Math.max(stopUntil, performance.now() + ms); },
     setMood, placeCamera,
     get frames() { return frames; },

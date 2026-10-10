@@ -161,14 +161,14 @@ export function furnish(c, kind) {
     return !!m;
   };
 
-  // along the north wall (the one the camera faces) and the side walls
+  // along the north wall (the one the camera faces by default) and the side walls
   const wallPieces = WALL_PIECES[kind] || [];
   if (wallPieces.length) {
     for (let x = 2; x < W - 2; x += 3) {
       if (at(x, 1) !== FLOOR || at(x + 1, 1) !== FLOOR || lane(x, 1) || lane(x + 1, 1)) continue;
       const key = wallPieces[Math.floor(rng() * wallPieces.length)];
       const mounted = MOUNTED.test(key);
-      put(F, key, ox + x + 1, oz + 1.05 + (mounted ? 0 : 0.3), 0, 0.85);
+      put(F, key, ox + x + 1, oz + 1.05 + (mounted ? 0 : 0.3), 0, 0.85, { occ: true });   // see-through when in the way
       if (!mounted) { block(x, 1); block(x + 1, 1); }
     }
     for (const [x, yaw] of [[1, Math.PI / 2], [W - 2, -Math.PI / 2]]) {
@@ -176,7 +176,7 @@ export function furnish(c, kind) {
         if (at(x, y) !== FLOOR || lane(x, y) || rng() < 0.4) continue;
         const key = wallPieces[Math.floor(rng() * wallPieces.length)];
         if (MOUNTED.test(key) || key.startsWith('pictureframe')) continue;
-        put(F, key, ox + x + 0.5 + (x === 1 ? -0.2 : 0.2), oz + y + 0.5, yaw, 0.8);
+        put(F, key, ox + x + 0.5 + (x === 1 ? -0.2 : 0.2), oz + y + 0.5, yaw, 0.8, { occ: true });
         block(x, y);
       }
     }

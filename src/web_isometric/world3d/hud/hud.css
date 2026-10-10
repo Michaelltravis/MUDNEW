@@ -97,6 +97,12 @@ button { font: inherit; color: inherit; }
 #minimap .mm-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 6px; }
 #minimap .mm-zone { font: 600 13px var(--title); color: var(--gold-hi); max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 #minimap .mm-time { font-size: 11px; color: var(--ink-dim); }
+/* the compass: its needle turns with the camera; click (or Home) for north up */
+#minimap .mm-wrap { position: relative; }
+#minimap .mm-north { position: absolute; right: 5px; top: 5px; width: 24px; height: 24px; border-radius: 50%; padding: 0;
+  border: 1px solid var(--edge); background: rgba(10,9,14,.78); color: var(--gold-hi); cursor: pointer; display: grid; place-items: center; }
+#minimap .mm-north i { font: 800 11px var(--title); font-style: normal; display: block; transition: color .2s; }
+#minimap .mm-north.turned { box-shadow: 0 0 0 1px rgba(243,217,153,.55), 0 0 8px rgba(243,217,153,.35); }
 #minimap .mm-room { font-size: 11px; color: var(--ink-dim); margin-top: 5px; max-width: 196px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 /* ---- action bar with orbs (bottom-centre) ---- */

@@ -632,6 +632,15 @@ def _cooldowns(player):
         # a cooldown when it slips past the 0.4s floor
         if 0.4 < rem < 86400:
             out[key] = round(rem, 1)
+    # abilities renamed for the 3D action bar keep their old timer names
+    # (towerbolt runs on arcane_blast's cooldown): report them under both
+    try:
+        from commands import _SKILL_RENAMES
+        for new, old in _SKILL_RENAMES.items():
+            if old in out and new not in out:
+                out[new] = out[old]
+    except Exception:
+        pass
     return out
 
 
@@ -1205,6 +1214,11 @@ def _room_entities(room, vnum, player):
                 'pose': _mob_pose(entity),
                 'sex': (getattr(entity, 'sex', 'male') or 'male'),
                 'char_class': (getattr(entity, 'char_class', '') or ''),
+                # who it is fighting (the 3D client keeps your attacker targeted) and what it
+                # does (innkeeper, banker...: the right-click menu offers the right things)
+                'fighting': getattr(entity, 'fighting', None) is player,
+                'fighting_name': getattr(getattr(entity, 'fighting', None), 'name', '') or '',
+                'special': str(getattr(entity, 'special', '') or ''),
             }
             # Include HP if available
             hp = getattr(entity, 'hp', None)

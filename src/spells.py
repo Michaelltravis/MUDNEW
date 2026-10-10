@@ -2039,6 +2039,11 @@ class SpellHandler:
             # Defensive spells default to self
             if not target_name:
                 return caster
+            # numbered ("2.guard") and exact ("#12") targets, then any name that contains it
+            if hasattr(caster, 'find_target_in_room'):
+                found = caster.find_target_in_room(target_name)
+                if found is not None:
+                    return found
             # Or can target others
             for char in caster.room.characters:
                 if target_name.lower() in char.name.lower():
@@ -2059,6 +2064,12 @@ class SpellHandler:
             # Otherwise need explicit target
             if not target_name:
                 return None
+
+            # numbered ("2.wolf") and exact ("#12") targets, then any name that contains it
+            if hasattr(caster, 'find_target_in_room'):
+                found = caster.find_target_in_room(target_name)
+                if found is not None and found is not caster:
+                    return found
 
             for char in caster.room.characters:
                 if char != caster and target_name.lower() in char.name.lower():

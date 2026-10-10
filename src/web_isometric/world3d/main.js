@@ -17,6 +17,9 @@ import { doorPrompt, doorVerbs, doorAnchor, cap } from './doorlogic.js';
 import { createPrompt } from './hud/prompt.js';
 import { createCastbar } from './hud/castbar.js';
 import { createContextMenu } from './hud/contextmenu.js';
+import { attachWorldInput } from './input.js';
+import { isHostile, shouldRetarget, retargetOnDeath, refFor, abilityCommand } from './targeting.js';
+import { verbsFor } from './hud/verbs.js';
 import { attachPerf } from './perf.js';
 import { buildDemo } from './demo.js';
 
@@ -76,13 +79,14 @@ async function runGame() {
     heroName: () => MH.state.playerName,
     onOutOfRange: e => outOfRange(e),
     onWound: ent => { if (ents.targeted === ent) hud.setTarget({ kind: ent.kind, ...ent.data }); },
+    onAggro: id => aggro(id),
   });
   MH.bus.on('combat.events', p => { if (hero) combat.handle(p.events); });
   // creatures that take the stairs or a far passage leave and arrive in a puff of dust
   ents.onSnap = (from, to) => {
     for (const q of [from, to]) fx.p.emit(q.clone().setY(0.4), { count: 18, color: 0xd8d0c0, speed: 1.6, up: 0.6, life: 0.7, size: 0.4, grow: 0.5, drag: 1.5 });
   };
-  const mm = createMinimap($('#minimap'), room => travelTo(room));
+  const mm = createMinimap($('#minimap'), room => travelTo(room), () => engine.snapNorth());
   const prompt = createPrompt($('#prompt'));
   const castbar = createCastbar($('#castbar'));
   const ctxMenu = createContextMenu($('#ctx-menu'));
@@ -101,6 +105,7 @@ async function runGame() {
     if (!zone) { if (!starting) starting = start(payload).catch(err => { console.error(err); hud.toast('Could not load the world: ' + err.message); }).finally(() => { starting = null; }); return; }
     if (starting) return;
     ents.sync(payload, MH.state.playerName);
+    applyPendingAggro();
     mm.setExplored((payload.rooms || []).map(r => r.vnum));
     mm.setTime(payload.time);
     sync.onMap(payload);
@@ -366,9 +371,9 @@ async function runGame() {
   // ---- targeting and actions ----
   const canvas = engine.renderer.domElement;
   canvas.addEventListener('pointerdown', e => {
-    if (e.button !== 0 || !ctl) return;
+    if (e.button !== 0 || e.ctrlKey || !ctl) return;
     const hit = ents.pick(e.clientX, e.clientY);
-    if (hit) { ents.setTarget(hit.key); return; }
+    if (hit) { ents.setTarget(hit.key, { byHand: true }); return; }
     const g = ctl.groundAt(e.clientX, e.clientY);
     if (!g) return;
     travel = null;
@@ -379,9 +384,8 @@ async function runGame() {
   });
   canvas.addEventListener('dblclick', e => {
     const hit = ents.pick(e.clientX, e.clientY);
-    if (hit && hit.kind === 'mob') { ents.setTarget(hit.key); attack(); }
+    if (hit && hit.kind === 'mob') { ents.setTarget(hit.key, { byHand: true }); attack(); }
   });
-  canvas.addEventListener('contextmenu', e => e.preventDefault());
   MH.bus.on('hud.untarget', () => ents.setTarget(null));
   MH.bus.on('hud.cycleTarget', () => {
     if (!hero) return;
@@ -391,13 +395,12 @@ async function runGame() {
     const near = [...ents.list.values()].filter(e => e.kind === 'mob' && e.root && e.root.position.distanceTo(p) < 22);
     const foes = near.filter(e => !(e.data.shopkeeper || e.data.trainer || e.data.quest));
     const list = (foes.length ? foes : near)
-      .sort((a, b) => (!!b.data.fighting - !!a.data.fighting) || (!!b.data.hostile - !!a.data.hostile)
+      .sort((a, b) => (!!b.data.fighting - !!a.data.fighting) || (isHostile(b) - isHostile(a))
         || a.root.position.distanceTo(p) - b.root.position.distanceTo(p));
     if (!list.length) return hud.toast('Nothing nearby to target.');
     const i = list.findIndex(e => e.key === ents.target);
-    ents.setTarget(list[(i + 1) % list.length].key);
+    ents.setTarget(list[(i + 1) % list.length].key, { byHand: true });
   });
-  const keyword = t => MH.mobKeyword(t.data.name);
   // how far from its target an action reaches (combat_range.py via /combatdata);
   // null for actions centred on the hero (rally, fade, crescendo...)
   function rangeOf(id, spell) {
@@ -430,7 +433,7 @@ async function runGame() {
     inReach(t, reachOf(), () => {
       ctl.face(t.root.position.x, t.root.position.z);
       // (the opening blow comes back at once as an attack event, with the class's swing)
-      if (!MH.state.inCombat) { const cmd = `kill ${keyword(t)}`; lastAction = { cmd, at: performance.now() }; MH.sendCommand(cmd); }
+      if (!MH.state.inCombat) { const cmd = `kill ${refFor(t)}`; lastAction = { cmd, at: performance.now() }; MH.sendCommand(cmd); }
     });
   }
   MH.bus.on('hud.attack', attack);
@@ -461,22 +464,22 @@ async function runGame() {
     } else hud.toast(`Too far — get within ${e.need} m`);
   }
   MH.bus.on('hud.flee', () => MH.sendCommand('flee'));
+  MH.bus.on('hud.cameraReset', () => engine.snapNorth());
   MH.bus.on('hud.ability', ab => {
     const t = ents.targeted;
-    const name = ab.id.replace(/_/g, ' ');
-    const base = ab.spell ? `cast '${name}'` : name;
     // the hero starts the ability's own move on the key press; the server's event then
     // only adds what flies and lands (combat.js skips a second swing)
     const anim = (ABILITY_FX[ab.id] && ABILITY_FX[ab.id].anim) || (ab.spell ? 'Spellcast_Shoot' : '1H_Melee_Attack_Stab');
     if (ab.self || !t || t.kind !== 'mob') {
       if (!ab.self && !t) return hud.toast('No target — click a creature or press Tab.');
       ctl.swing(anim); ctl.localSwingAt = performance.now();
-      return MH.sendCommand(base);
+      return MH.sendCommand(abilityCommand(ab, null));
     }
     inReach(t, rangeOf(ab.id, ab.spell), () => {
       ctl.face(t.root.position.x, t.root.position.z);
       ctl.swing(anim); ctl.localSwingAt = performance.now();
-      const cmd = `${base} ${keyword(t)}`;
+      // the exact creature ('#12'): the server turns it into the keyword its commands know
+      const cmd = abilityCommand(ab, refFor(t));
       lastAction = { cmd, at: performance.now() };
       MH.sendCommand(cmd);
     });
@@ -574,16 +577,18 @@ async function runGame() {
     } else pushClock = 0;
     if (castbar.active && (ctl.keys.size || ctl.path)) { castbar.end(); MH.sendCommand('stopwork', false); }
   }
-  // right-click (press and release without dragging): a menu for the door under the cursor
-  let rdown = null;
-  canvas.addEventListener('pointerdown', e => { if (e.button === 2) rdown = { x: e.clientX, y: e.clientY, at: performance.now() }; });
-  canvas.addEventListener('pointerup', e => {
-    if (e.button !== 2 || !rdown || !hero || !heroRoom) return;
-    const moved = Math.hypot(e.clientX - rdown.x, e.clientY - rdown.y), held = performance.now() - rdown.at;
-    rdown = null;
-    if (moved > 5 || held > 700) return;
-    const g = ctl.groundAt(e.clientX, e.clientY);
-    if (!g) return;
+  // ---- right-click (press and release without dragging): a menu for what is under it ----
+  // (a right-drag turns the camera: input.js tells them apart)
+  attachWorldInput(engine, canvas, { onContext: openContext, typing: e => /INPUT|TEXTAREA/.test((e.target || {}).tagName || '') });
+  function pickAt(x, y) {
+    const ent = ents.pick(x, y);
+    if (ent) return { kind: ent.kind === 'player' ? 'player' : 'mob', ent };
+    const r = canvas.getBoundingClientRect();
+    const hp = hero.root.position.clone().setY(hero.root.position.y + 1.1).project(engine.camera);
+    const sx = r.left + (hp.x + 1) / 2 * r.width, sy = r.top + (1 - hp.y) / 2 * r.height;
+    if (Math.hypot(x - sx, y - sy) < 36) return { kind: 'self' };
+    const g = ctl.groundAt(x, y);
+    if (!g) return null;
     let best = null;
     for (const [dir, info] of Object.entries(heroRoom.doors)) {
       const at = doorAnchorWorld(heroRoom, dir);
@@ -591,16 +596,66 @@ async function runGame() {
       const dist = Math.hypot(g.x - at.x, g.z - at.z);
       if (dist < 2 && (!best || dist < best.dist)) best = { dir, info, dist };
     }
-    if (!best) return;
-    const items = doorVerbs(best.info).map(v => ({ label: v.label, run: v.action ? () => doDoor(best.dir, v.action) : null }));
-    ctxMenu.show(e.clientX, e.clientY, cap(best.info.label || 'door'), items);
-  });
+    return best ? { kind: 'door', door: best } : { kind: 'ground', point: g };
+  }
+  function openContext(x, y) {
+    if (!hero || !heroRoom) return;
+    const hit = pickAt(x, y);
+    if (!hit) return;
+    const p = MH.state.player || {};
+    const { title, items } = verbsFor(hit, { skills: hud.targetSkills(), posture: p.position, inCombat: MH.state.inCombat });
+    if (!items.length) return;
+    ctxMenu.show(x, y, title, items.map(it => ({ label: it.label, run: (it.cmd || it.act) ? () => runVerb(hit, it) : null })));
+  }
+  function runVerb(hit, it) {
+    if (it.cmd) return MH.sendCommand(it.cmd);
+    const a = it.act;
+    if (a === 'attack') { ents.setTarget(hit.ent.key, { byHand: true }); return attack(); }
+    if (a === 'target') return ents.setTarget(hit.ent.key, { byHand: true });
+    if (a.startsWith('ability:')) { ents.setTarget(hit.ent.key, { byHand: true }); return hud.useAbility(a.slice(8)); }
+    if (a.startsWith('door:')) return doDoor(hit.door.dir, a.slice(5));
+    if (a.startsWith('tell:')) return hud.prefill(`tell ${a.slice(5)} `);
+    if (a === 'inventory' || a === 'character') return hud.openPanel(a);
+    if (a === 'walk' && hit.point) { travel = null; return ctl.walkTo(hit.point.x, hit.point.z); }
+  }
+
+  // ---- auto-target: whatever attacks you becomes your target (targeting.js decides when) ----
+  const pendingAggro = new Map();      // creature id -> when it hit us before it was drawn
+  let aggroRefresh = 0;
+  function aggro(id) {
+    const now = Date.now();
+    const e = ents.list.get(`m${id}`);
+    if (!e) {
+      pendingAggro.set(id, now);
+      if (now - aggroRefresh > 1500 && MH.refreshState) { aggroRefresh = now; MH.refreshState(); }
+      return;
+    }
+    e.aggroAt = now;
+    ents.markHostile(e);
+    if (heroRoom && shouldRetarget(ents.targeted, e, heroRoom.vnum, now)) ents.setTarget(e.key);
+  }
+  function applyPendingAggro() {
+    const now = Date.now();
+    for (const [id, at] of pendingAggro) {
+      const e = ents.list.get(`m${id}`);
+      if (e) {
+        pendingAggro.delete(id);
+        e.aggroAt = at;
+        if (heroRoom && shouldRetarget(ents.targeted, e, heroRoom.vnum, now)) ents.setTarget(e.key);
+      } else if (now - at > 10000) pendingAggro.delete(id);
+    }
+  }
 
   // ---- in a fight: keep a target, close in for melee, show the distance ----
   let chaseClock = 0;
   function fightTick(dt) {
     const p = hero.root.position;
     let t = ents.targeted;
+    // your target died or vanished: the creature that hit you last takes its place
+    if (heroRoom && (!t || (t.data && t.data.maxHp && t.data.hp <= 0))) {
+      const next = retargetOnDeath(ents.list.values(), heroRoom.vnum);
+      if (next && next !== t) { ents.setTarget(next.key); t = next; }
+    }
     if (MH.state.inCombat && (!t || !t.root)) {
       // whoever is fighting you becomes your target
       const foe = [...ents.list.values()].filter(e => e.kind === 'mob' && e.root && e.data.fighting && e.vnum === (heroRoom && heroRoom.vnum))
@@ -655,7 +710,6 @@ async function runGame() {
     }
     const p = hero.root.position;
     engine.rig.target.set(p.x, 0, p.z);
-    cutout.update(engine.camera, p);
     zone.update(dt, t, p, ctl.vel);
     hero.update(dt);
     if (travel && (ctl.keys.size || MH.state.inCombat)) travel = null;
@@ -676,7 +730,6 @@ async function runGame() {
       } else if (ps && ps.blocked === 'door') pushingDoor(heroRoom, ps.dir, now);
       doorTick(dt, now);
     } else prompt.hide();
-    prompt.update(engine.camera, canvas);
     castbar.update();
     if (hop && !hop.loading && now - hop.at > HOP_TIMEOUT_MS) {
       // no answer: give up quietly, ask the server where we are
@@ -690,8 +743,16 @@ async function runGame() {
     }
     ents.update(dt, t, p);
     fightTick(dt);
-    mm.update(p, ctl.yaw);
     sync.tick();
     reportPositions(dt);
+  });
+  // overlays once the camera is placed for this frame (nothing lags while it turns)
+  engine.onLateTick(() => {
+    if (!hero) return;
+    const p = hero.root.position;
+    cutout.update(engine.camera, p);
+    ents.layoutPlates(p);
+    prompt.update(engine.camera, canvas);
+    mm.update(p, ctl.yaw, engine.rig.yaw);
   });
 }

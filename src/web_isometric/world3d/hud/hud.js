@@ -260,6 +260,7 @@ export function createHud() {
     ls.set('mh3d_ui', b.dataset.v); applyScale(); syncSettings();
   }));
   els.settings.querySelector('[data-act="perf"]').addEventListener('click', () => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'F3' })));
+  els.settings.querySelector('[data-act="camreset"]').addEventListener('click', () => MH.bus.emit('hud.cameraReset'));
   els.settings.querySelector('[data-act="classic"]').addEventListener('click', () => window.open('/platformer', '_blank'));
   syncSettings();
 
@@ -285,5 +286,13 @@ export function createHud() {
     if (cmd && !e.ctrlKey && !e.metaKey && !e.altKey) { MH.sendCommand(cmd); e.preventDefault(); }
   });
 
-  return { showGame, setPlayer, setTarget, setRanges, setDistance, banner, toast, log, get player() { return st.player; } };
+  // ---- for the right-click menu ----
+  // the bar's abilities that aim at someone (not heals on yourself, not shouts)
+  function targetSkills() { return st.slots.filter(s => s.id !== 'attack' && s.id !== 'flee' && !s.self).map(s => ({ id: s.id, label: s.label, spell: s.spell })); }
+  function useAbility(id) { use(st.slots.find(s => s.id === id)); }
+  function prefill(text) { els.input.value = text; els.input.focus(); }
+  function openPanel(name) { if (name === 'inventory') inventory.toggle(true); else if (name === 'character') character.toggle(true); }
+
+  return { showGame, setPlayer, setTarget, setRanges, setDistance, banner, toast, log, targetSkills, useAbility, prefill, openPanel,
+    get player() { return st.player; } };
 }

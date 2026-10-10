@@ -798,6 +798,7 @@ class Mobile(Character):
         await self.room.send_to_room(
             f"{c['yellow']}{self.name} stalks {direction}, hunting for prey.{c['reset']}"
         )
+        old_room = self.room
         self.room.characters.remove(self)
         
         # Enter new room
@@ -808,6 +809,12 @@ class Mobile(Character):
         await target_room.send_to_room(
             f"{c['bright_red']}{self.name} arrives from the {opposite}, eyes searching!{c['reset']}"
         )
+        # graphical clients see the hunter move (it used to stay drawn where it was)
+        try:
+            await self._notify_move(old_room, target_room, direction, opposite)
+        except Exception:
+            pass
+        return True
             
     async def combat_ai(self):
         """AI behavior during combat."""

@@ -1,5 +1,5 @@
 // Browser probe for /play against a local server (./run.sh), with the gauntlet admin account.
-//   NODE_PATH=/opt/node22/lib/node_modules node tests/web/probe_play3d.js stairs|doors [outdir]
+//   NODE_PATH=/opt/node22/lib/node_modules node tests/web/probe_play3d.js stairs|doors|camera|menu|autotarget [outdir]
 // CommonJS on purpose (the global Playwright only resolves through NODE_PATH with require).
 // WebGL may render at ~1 fps in a container, so the probe places the hero directly and waits
 // on frames instead of walking in real time.
@@ -8,6 +8,11 @@
 //           beside the destination's ▼ stairs, and a key held into them must not hop back.
 //   doors:  the oak door at 921 east: the prompt says what E does, E opens it (one webdoor),
 //           and a locked door without the key says which key it needs.
+//   camera: a right-drag turns the view (no menu), W follows the camera, drag up tilts, Home
+//           snaps back north.
+//   menu:   a right-click on a creature offers Attack/Consider (naming it exactly), on the
+//           hero "You".
+//   autotarget: a creature that hits you becomes your target; a foe you picked stays.
 const fs = require('fs');
 const path = require('path');
 const { chromium } = require('playwright');
@@ -130,6 +135,87 @@ async function waitFor(page, fn, arg, secs = 60) {
     // leave it as the zone keeps it
     await page.evaluate(() => { for (const c of ['oload 900', 'unlock east', 'open east', 'drop key', 'drop key', 'drop key', 'purge']) MH.sendCommand(c, false); });
     await sleep(2000);
+  }
+
+  if (MODE === 'camera') {
+    check(await goto(3001), 'in the Temple of Midgaard (3001)');
+    await sleep(1500);
+    const box = await page.evaluate(() => { const r = MH3D.engine.renderer.domElement.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; });
+    // right-drag 120 px to the right: the view turns right, and no menu opens
+    await page.mouse.move(box.x, box.y);
+    await page.mouse.down({ button: 'right' });
+    await page.mouse.move(box.x + 120, box.y, { steps: 8 });
+    await page.mouse.up({ button: 'right' });
+    await sleep(500);
+    const yaw = await page.evaluate(() => MH3D.engine.rig.yaw);
+    check(Math.abs(yaw - -0.78) < 0.06, `right-drag 120 px turned the view (yaw ${yaw.toFixed(3)})`);
+    check(await page.evaluate(() => document.getElementById('ctx-menu').classList.contains('hidden')), 'a drag opens no menu');
+    const w = await page.evaluate(() => { MH3D.ctl.keys.add('w'); const v = MH3D.ctl.wish(); MH3D.ctl.keys.delete('w'); return [v.x, v.y]; });
+    check(Math.abs(w[0] - Math.sin(-yaw)) < 0.02 && Math.abs(w[1] + Math.cos(yaw)) < 0.02, `W walks away from the turned camera (${w.map(n => n.toFixed(2))})`);
+    // drag up: a higher view (tilt), kept within limits
+    await page.mouse.move(box.x, box.y);
+    await page.mouse.down({ button: 'right' });
+    await page.mouse.move(box.x, box.y - 400, { steps: 8 });
+    await page.mouse.up({ button: 'right' });
+    const tilt = await page.evaluate(() => MH3D.engine.rig.tilt);
+    check(tilt > 9.9 && tilt <= 10, `dragging up tilts the view, to its limit (${tilt.toFixed(1)}°)`);
+    await page.screenshot({ path: path.join(OUT, 'camera-turned.png') });
+    await page.keyboard.press('Home');
+    await waitFor(page, () => !MH3D.engine.rig.snap, null, 30);
+    const back = await page.evaluate(() => [MH3D.engine.rig.yaw, MH3D.engine.rig.tilt]);
+    check(back[0] === 0 && back[1] === 0, `Home: north up again (${back})`);
+  }
+
+  if (MODE === 'menu' || MODE === 'autotarget') {
+    check(await goto(18620), 'in the crypt (18620)');
+    await page.evaluate(() => { for (const c of ['purge', 'mload 18610', 'mload 18610']) MH.sendCommand(c, false); });
+    await sleep(1500);
+    await page.evaluate(() => MH.state.mapSocket.send(JSON.stringify({ type: 'subscribe', player: MH.state.playerName, mode: 'near' })));
+    const two = await waitFor(page, () => [...MH3D.ents.list.values()].filter(e => e.kind === 'mob' && e.vnum === 18620 && e.root).length >= 2, null, 60);
+    check(two, 'two spectres drawn');
+    const ids = await page.evaluate(() => [...MH3D.ents.list.values()].filter(e => e.kind === 'mob' && e.vnum === 18620).map(e => e.data.id));
+    if (MODE === 'menu') {
+      await sleep(1500);
+      const at = await page.evaluate(id => {
+        const e = MH3D.ents.list.get(`m${id}`), cv = MH3D.engine.renderer.domElement, r = cv.getBoundingClientRect();
+        const v = e.root.position.clone().setY(e.root.position.y + 1.1).project(MH3D.engine.camera);
+        return { x: r.left + (v.x + 1) / 2 * r.width, y: r.top + (1 - v.y) / 2 * r.height };
+      }, ids[1]);
+      await page.mouse.click(at.x, at.y, { button: 'right' });
+      await sleep(400);
+      const items = await page.evaluate(() => [...document.querySelectorAll('#ctx-menu button')].map(b => b.textContent));
+      check(items.includes('Attack') && items.includes('Consider'), `right-click on a spectre: ${JSON.stringify(items)}`);
+      await page.screenshot({ path: path.join(OUT, 'menu-mob.png') });
+      await page.evaluate(() => { window.__sent.length = 0; });
+      await page.evaluate(() => [...document.querySelectorAll('#ctx-menu button')].find(b => b.textContent === 'Consider').click());
+      await sleep(300);
+      const sent = await page.evaluate(() => window.__sent.slice());
+      check(sent.includes(`consider #${ids[1]}`), `Consider names that exact spectre: ${JSON.stringify(sent)}`);
+      // the hero
+      const me = await page.evaluate(() => {
+        const cv = MH3D.engine.renderer.domElement, r = cv.getBoundingClientRect(), p = MH3D.hero.root.position;
+        const v = p.clone().setY(p.y + 1.1).project(MH3D.engine.camera);
+        return { x: r.left + (v.x + 1) / 2 * r.width, y: r.top + (1 - v.y) / 2 * r.height };
+      });
+      await page.mouse.click(me.x, me.y, { button: 'right' });
+      await sleep(400);
+      const title = await page.evaluate(() => (document.querySelector('#ctx-menu .ctx-title') || {}).textContent);
+      check(title === 'You', `right-click on yourself: "${title}"`);
+      await page.keyboard.press('Escape');
+    } else {
+      const name = await page.evaluate(() => MH.state.playerName);
+      await page.evaluate(() => MH3D.ents.setTarget(null));
+      await page.evaluate(({ id, name }) => MH.bus.emit('combat.events', { events: [{ k: 'attack', src: { m: id }, dst: { p: name }, res: 'hit' }] }), { id: ids[0], name });
+      await sleep(300);
+      check(await page.evaluate(id => MH3D.ents.target === `m${id}`, ids[0]), 'a creature that hits you becomes your target');
+      // you pick the other one by hand and it fights you: the first one's blows don't steal it
+      await page.evaluate(id => { const e = MH3D.ents.list.get(`m${id}`); e.data.fighting = true; MH3D.ents.setTarget(e.key, { byHand: true }); }, ids[1]);
+      await page.evaluate(({ id, name }) => MH.bus.emit('combat.events', { events: [{ k: 'attack', src: { m: id }, dst: { p: name }, res: 'hit' }] }), { id: ids[0], name });
+      await sleep(300);
+      check(await page.evaluate(id => MH3D.ents.target === `m${id}`, ids[1]), 'your chosen foe stays targeted');
+    }
+    await page.evaluate(() => MH.sendCommand('purge', false));
+    await sleep(800);
   }
 
   check(errors.length === 0, `no page errors${errors.length ? ': ' + errors.join(' / ') : ''}`);

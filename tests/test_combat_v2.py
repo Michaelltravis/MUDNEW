@@ -62,8 +62,41 @@ async def cast_parser():
             sys.modules.pop('spells', None)
 
 
+def offline_targets():
+    """Renamed abilities' cooldowns reach the bar; '#12' becomes a keyword every command knows."""
+    import time as _t
+    import map_system
+    import combat_hooks
+    p = types.SimpleNamespace(arcane_blast_cooldown_until=_t.time() + 5, vanish_cd=_t.time() + 9)
+    cds = map_system._cooldowns(p)
+    check(cds.get('towerbolt') and cds.get('fade'), f"renamed abilities keep their cooldowns on the bar ({sorted(cds)})")
+
+    class Ch:
+        def __init__(self, name, uid=None):
+            self.name, self._web_uid = name, uid
+    w1, w2, me = Ch('wolf', 7), Ch('wolf', 8), None
+    room = types.SimpleNamespace(characters=[w1, w2])
+
+    class Me:
+        def __init__(self):
+            self.room = room
+            self.target_labels = {}
+
+        def matches_character(self, c, kw):
+            return kw in c.name
+    me = Me()
+    room.characters.append(me)
+    import player as _player
+    me.find_target_in_room = types.MethodType(_player.Player.find_target_in_room, me)
+    check(me.find_target_in_room('#8') is w2, "'#8' finds that exact creature")
+    check(combat_hooks._ref_word(me, '#8') == '2.wolf' and combat_hooks._ref_word(me, '#7') == 'wolf',
+          "'#8' becomes '2.wolf' for commands that match by name")
+    check(combat_hooks._ref_word(me, '#99') == '#99' and combat_hooks._ref_word(me, 'wolf') == 'wolf', 'anything else is left alone')
+
+
 async def main():
     await cast_parser()
+    offline_targets()
     tw.ACCOUNT, tw.PASSWORD, tw.CHAR = 'gauntletb', 'gauntlet1', 'Gauntletb'
     tn = tw.Telnet()
     await tn.open()
@@ -153,6 +186,37 @@ async def main():
             await tn.cmd('restore', 0.3)
             await tn.cmd('purge', 0.6)
             await asyncio.sleep(3.5)        # let the fight end
+
+            # 2b. two spectres: "#id" picks exactly the second one, and the payload says who fights you
+            await tn.cmd('restore', 0.3)
+            await tn.cmd('purge', 0.6)
+            await asyncio.sleep(3.5)
+            first = await spawn()
+            second = await spawn()
+            if first and second and first['id'] != second['id']:
+                await place((10.0, 7.0), second['id'], (11.2, 7.0))
+                got.clear()
+                await tn.cmd(f"kill #{second['id']}", 1.0)
+                hits = [e for e in events('attack') if e.get('src') == {'p': tw.CHAR}]
+                check(bool(hits) and hits[0].get('dst') == {'m': second['id']}, f"'kill #{second['id']}' attacks that spectre, not the first one")
+                got.clear()
+                await ws.send_str(json.dumps({'type': 'subscribe', 'player': tw.CHAR, 'mode': 'near'}))
+                fighting = None
+                for _ in range(40):
+                    await asyncio.sleep(0.2)
+                    for d in got:
+                        for r in d.get('nearby') or []:
+                            for m in r.get('mobs') or []:
+                                if m['id'] == second['id']:
+                                    fighting = m.get('fighting')
+                    if fighting is not None:
+                        break
+                check(fighting is True, f"the near payload marks the spectre fighting you ({fighting})")
+            else:
+                check(False, 'two spectres appear with different ids')
+            await tn.cmd('restore', 0.3)
+            await tn.cmd('purge', 0.6)
+            await asyncio.sleep(3.5)
 
             # 3. a skill opens a fight
             mob = await spawn()

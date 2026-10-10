@@ -403,7 +403,12 @@ class CombatHandler:
                         await combatant.send(f"{c['yellow']}You quickly dismount from {mount_name} as combat begins!{c['reset']}")
 
         attacker.fighting = defender
-        defender.fighting = attacker
+        # a defender already fighting someone alive here keeps swinging at them (CircleMUD's
+        # set_fighting): a second attacker no longer steals your blows mid-fight
+        foe = getattr(defender, 'fighting', None)
+        if not (foe is not None and foe is not attacker and getattr(foe, 'hp', 0) > 0
+                and getattr(foe, 'room', None) is getattr(defender, 'room', None)):
+            defender.fighting = attacker
         attacker.position = 'fighting'
         defender.position = 'fighting'
         # Auto-target when entering combat
@@ -470,6 +475,16 @@ class CombatHandler:
         # First strike
         if first_strike:
             await cls.one_round(attacker, defender)
+
+        # a player who was just attacked hears about it at once (their 3D client targets
+        # the attacker with the first blow, not a round later)
+        if cls.is_player(defender):
+            try:
+                wm = getattr(getattr(defender, 'world', None), 'web_map', None)
+                if wm:
+                    await wm.notify_combat(defender)
+            except Exception:
+                pass
 
     @classmethod
     async def one_round(cls, attacker: 'Character', defender: 'Character'):

@@ -83,7 +83,7 @@ const RANGED_AUTO = { ranger: { kind: 'shot', school: 'physical' }, mage: { kind
 const COLORS = { dmgOut: '#ffe9a8', dmgIn: '#ff6a52', heal: '#7dff8f', miss: '#b8b8c4', crit: '#ffb02a', parry: '#8cc8ff', block: '#9ad0ff', dodge: '#d8e0ff', spell: '#e0b8ff' };
 
 export class CombatView {
-  constructor({ engine, fx, ents, getHero, heroName, onOutOfRange, onWound }) {
+  constructor({ engine, fx, ents, getHero, heroName, onOutOfRange, onWound, onAggro }) {
     this.engine = engine;
     this.fx = fx;
     this.ents = ents;
@@ -91,6 +91,7 @@ export class CombatView {
     this.heroName = heroName;         // () => name
     this.onOutOfRange = onOutOfRange; // (event) => void
     this.onWound = onWound;           // (entity) => void: its health changed
+    this.onAggro = onAggro;           // (mob id, event) => void: a creature went for the hero
     this.telegraphs = new Map();      // mob id -> telegraph
     this.impacts = new Map();         // "src>dst" -> {at, crit, n}: when this action's blow lands
     this._v = new THREE.Vector3();
@@ -134,8 +135,15 @@ export class CombatView {
   // ---- events ----
   // a round's events arrive together; one creature's second and third blows follow its
   // first a beat apart, so a flurry reads as a flurry instead of one blur
+  isHero(ref) { return !!(ref && ref.p && String(ref.p).toLowerCase() === String(this.heroName()).toLowerCase()); }
   handle(list) {
     const seq = new Map();
+    // whatever goes for the hero becomes the target at once (main.js decides when to switch)
+    if (this.onAggro) for (const e of list || []) {
+      if (!e.src || e.src.m == null) continue;
+      const atHero = this.isHero(e.dst) || (e.hits || []).some(h => this.isHero(h.dst)) || (e.also || []).some(h => this.isHero(h.dst));
+      if (atHero && ['attack', 'dmg', 'windup', 'spell', 'ability', 'resolve', 'debuff'].includes(e.k)) this.onAggro(e.src.m, e);
+    }
     for (const e of list || []) {
       if (e.k === 'move') { this.move(e); continue; }
       if (e.k === 'dmg') { this.wound(e); continue; }
@@ -197,7 +205,7 @@ export class CombatView {
       case 'cancel': return this.cancelWindup(e);
       case 'death': return this.death(e);
       case 'stun': return this.stun(e);
-      case 'oor': return this.onOutOfRange && this.onOutOfRange(e);
+      case 'oor': return this.isHero(e.src) && this.onOutOfRange && this.onOutOfRange(e);   // only our own
       case 'fizzle': return this.fizzle(e);
       default: return null;
     }

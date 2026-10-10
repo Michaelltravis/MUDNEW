@@ -1,9 +1,10 @@
-// Hero movement: WASD / arrows (north = up), click-to-move with pathfinding, travel along
-// a list of waypoints (minimap clicks), attack. Velocity eases toward the wanted speed, the
-// body is a circle that slides along walls, and the world is a flat plane, so all of this
-// is 2D (x, z). `blocked(x, z)` answers for the hero's current room (crossing into another
+// Hero movement: WASD / arrows (relative to the camera: W is away from it), click-to-move
+// with pathfinding, travel along a list of waypoints (minimap clicks), attack. Velocity
+// eases toward the wanted speed, the body is a circle that slides along walls, and the
+// world is a flat plane, so all of this is 2D (x, z). `blocked(x, z)` answers for the hero's current room (crossing into another
 // room is legal only through an open exit — the zone decides).
 import * as THREE from 'three';
+import { toWorld } from './orbit.js';
 
 const RADIUS = 0.36;
 const RUN = 5.2, WALK = 2.4;            // m/s
@@ -80,7 +81,8 @@ export class Controller {
     if (k.has('d') || k.has('arrowright')) x += 1;
     if (k.has('w') || k.has('arrowup')) z -= 1;
     if (k.has('s') || k.has('arrowdown')) z += 1;
-    if (x || z) { const l = Math.hypot(x, z); return new THREE.Vector2(x / l, z / l); }
+    // W is always away from the camera, whichever way it has been turned
+    if (x || z) { const l = Math.hypot(x, z); const w = toWorld(x / l, z / l, this.engine.rig.yaw || 0); return new THREE.Vector2(w.x, w.z); }
     while (this.path && this.path.length) {
       const g = this.path[0];
       const dx = g.x - this.pos.x, dz = g.z - this.pos.z, l = Math.hypot(dx, dz);
