@@ -165,8 +165,8 @@ HELP_TOPICS = {'auction': {'category': 'command',
             'description': 'Launch a devastating attack from hiding.\n'
                            '\n'
                            'TRAINING:\n'
-                           '- Use PRACTICE at your class trainer.\n'
-                           '- Max 85% skill cap.',
+                           '- Grows as you use it, up to 85%.\n'
+                           '- Your guild\'s trainer teaches the rest.',
             'syntax': 'ambush',
             'title': 'Ambush'},
  'animate': {'category': 'command',
@@ -487,8 +487,8 @@ HELP_TOPICS = {'auction': {'category': 'command',
                  'description': "Shout to buff party's strength and constitution.\n"
                                 '\n'
                                 'TRAINING:\n'
-                                '- Use PRACTICE at your class trainer.\n'
-                                '- Max 85% skill cap.',
+                                '- Grows as you use it, up to 85%.\n'
+                                '- Your guild\'s trainer teaches the rest.',
                  'syntax': 'battleshout',
                  'title': 'Battleshout'},
  'bestial_wrath': {'category': 'command',
@@ -1944,8 +1944,8 @@ HELP_TOPICS = {'auction': {'category': 'command',
                 'description': 'A class skill. Use it to gain tactical advantages in combat or utility.\n'
                                '\n'
                                'TRAINING:\n'
-                               '- Use PRACTICE at your class trainer.\n'
-                               '- Max 85% skill cap.',
+                               '- Grows as you use it, up to 85%.\n'
+                               '- Your guild\'s trainer teaches the rest.',
                 'syntax': 'intimidate',
                 'title': 'Intimidate'},
  'inventory': {'category': 'command', 'description': 'Show inventory.', 'syntax': 'inventory', 'title': 'Inventory'},
@@ -2074,8 +2074,8 @@ HELP_TOPICS = {'auction': {'category': 'command',
           'description': 'Review discovered lore.\n'
                          '\n'
                          'TRAINING:\n'
-                         '- Use PRACTICE at your class trainer.\n'
-                         '- Max 85% skill cap.',
+                         '- Grows as you use it, up to 85%.\n'
+                         '- Your guild\'s trainer teaches the rest.',
           'syntax': 'lore',
           'title': 'Lore'},
  'mage': {'category': 'class',
@@ -2338,7 +2338,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
                                 '- 14. Protection From Good\n'
                                 '\n'
                                 'TRAINING:\n'
-                                '- Use PRACTICE at your class trainer.',
+                                '- Grows as you use it, up to 85%; your guild\'s trainer teaches the rest.',
                  'title': 'Necromancer (Legacy)'},
  'necromancer': {'category': 'class',
                  'description': 'The Necromancer class.\n'
@@ -2514,8 +2514,15 @@ HELP_TOPICS = {'auction': {'category': 'command',
           'syntax': 'pour <from> <to> OR pour <from> out',
           'title': 'Pour'},
  'practice': {'category': 'command',
-              'description': 'Practice skills/spells - must be at a guild master for your class.',
-              'syntax': 'practice',
+              'description': 'Your abilities and how well you know them.\n\n'
+                             'You learn an ability by reaching its level (at 50%), and it grows as you use '
+                             'it, up to 85% (Mastered). Past that, your guild\'s trainer teaches it to 100%, '
+                             '5% at a time, for gold (or a practice session left over from before).\n\n'
+                             'practice            your abilities, and when the rest arrive\n'
+                             'practice <ability>  train it with your guild\'s trainer (from 85%)\n\n'
+                             'A spell known well fizzles less, and every ability hits (or heals) harder '
+                             'the better you know it.',
+              'syntax': 'practice [ability]',
               'title': 'Practice'},
  'predators_mark': {'category': 'command',
                     'description': 'Mark a target for increased damage and tracking.',
@@ -2798,8 +2805,8 @@ HELP_TOPICS = {'auction': {'category': 'command',
           'description': 'Scan for creatures in adjacent rooms.\n'
                          '\n'
                          'TRAINING:\n'
-                         '- Use PRACTICE at your class trainer.\n'
-                         '- Max 85% skill cap.',
+                         '- Grows as you use it, up to 85%.\n'
+                         '- Your guild\'s trainer teaches the rest.',
           'syntax': 'scan',
           'title': 'Scan'},
  'score': {'category': 'command', 'description': 'Show player stats.', 'syntax': 'score', 'title': 'Score'},
@@ -2808,8 +2815,8 @@ HELP_TOPICS = {'auction': {'category': 'command',
             'description': 'A class skill. Use it to gain tactical advantages in combat or utility.\n'
                            '\n'
                            'TRAINING:\n'
-                           '- Use PRACTICE at your class trainer.\n'
-                           '- Max 85% skill cap.',
+                           '- Grows as you use it, up to 85%.\n'
+                           '- Your guild\'s trainer teaches the rest.',
             'syntax': 'scribe',
             'title': 'Scribe'},
  'seal_of_command': {'category': 'command',
@@ -2829,8 +2836,8 @@ HELP_TOPICS = {'auction': {'category': 'command',
                    'description': 'A class skill. Use it to gain tactical advantages in combat or utility.\n'
                                   '\n'
                                   'TRAINING:\n'
-                                  '- Use PRACTICE at your class trainer.\n'
-                                  '- Max 85% skill cap.',
+                                  '- Grows as you use it, up to 85%.\n'
+                                  '- Your guild\'s trainer teaches the rest.',
                    'syntax': 'second_attack',
                    'title': 'Second Attack'},
  'sell': {'category': 'command',
@@ -3194,8 +3201,8 @@ HELP_TOPICS = {'auction': {'category': 'command',
           'description': 'Tame a wild creature. Usage: tame <creature>\n'
                          '\n'
                          'TRAINING:\n'
-                         '- Use PRACTICE at your class trainer.\n'
-                         '- Max 85% skill cap.',
+                         '- Grows as you use it, up to 85%.\n'
+                         '- Your guild\'s trainer teaches the rest.',
           'syntax': 'tame',
           'title': 'Tame'},
  'target': {'category': 'command', 'description': 'Set your combat target.', 'syntax': 'target', 'title': 'Target'},
@@ -3245,8 +3252,8 @@ HELP_TOPICS = {'auction': {'category': 'command',
                   'description': 'A class skill. Use it to gain tactical advantages in combat or utility.\n'
                                  '\n'
                                  'TRAINING:\n'
-                                 '- Use PRACTICE at your class trainer.\n'
-                                 '- Max 85% skill cap.',
+                                 '- Grows as you use it, up to 85%.\n'
+                                 '- Your guild\'s trainer teaches the rest.',
                   'syntax': 'third_attack',
                   'title': 'Third Attack'},
  'tick': {'category': 'command',

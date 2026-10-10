@@ -185,7 +185,8 @@ def _wrap_take_damage(klass):
     async def take_damage(self, amount, *args, **kwargs):
         attacker = kwargs.get('attacker', args[0] if args else None)
         dtype = kwargs.get('damage_type', args[1] if len(args) > 1 else 'physical')
-        scale = getattr(attacker, '_dmg_scale', 1) if attacker is not None else 1
+        # a point-blank bow (_dmg_scale) and how well the ability is known (mastery.py)
+        scale = (getattr(attacker, '_dmg_scale', 1) * getattr(attacker, '_ability_scale', 1)) if attacker is not None else 1
         if scale != 1:
             amount = max(1, int(amount * scale))
         room = getattr(self, 'room', None)

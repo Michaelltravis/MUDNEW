@@ -5781,7 +5781,9 @@ class CommandHandler:
                     bar = BAR_FULL * (prof // 10) + BAR_EMPTY * (10 - prof // 10)
                     await player.send(f"{c['cyan']}{V}   {c['bright_green']}{skill_name:<20} {c['white']}[{bar}] {prof:>3}%{c['cyan']}          {V}{c['reset']}")
                 else:
-                    await player.send(f"{c['cyan']}{V}   {c['white']}{skill_name:<20} {c['yellow']}[not learned]{c['cyan']}                 {V}{c['reset']}")
+                    import mastery
+                    soon = f"[level {mastery.unlock_level(player.char_class, skill)}]" if skill not in mastery.CHOICES else '[a choice]'
+                    await player.send(f"{c['cyan']}{V}   {c['white']}{skill_name:<20} {c['yellow']}{soon:<13}{c['cyan']}                 {V}{c['reset']}")
         else:
             await player.send(f"{c['cyan']}{V}   {c['white']}(none){c['cyan']}                                                  {V}{c['reset']}")
         
@@ -5797,7 +5799,9 @@ class CommandHandler:
                     bar = BAR_FULL * (prof // 10) + BAR_EMPTY * (10 - prof // 10)
                     await player.send(f"{c['cyan']}{V}   {c['bright_magenta']}{spell_name:<20} {c['white']}[{bar}] {prof:>3}%{c['cyan']}          {V}{c['reset']}")
                 else:
-                    await player.send(f"{c['cyan']}{V}   {c['white']}{spell_name:<20} {c['yellow']}[not learned]{c['cyan']}                 {V}{c['reset']}")
+                    import mastery
+                    soon = f"[level {mastery.unlock_level(player.char_class, spell)}]"
+                    await player.send(f"{c['cyan']}{V}   {c['white']}{spell_name:<20} {c['yellow']}{soon:<13}{c['cyan']}                 {V}{c['reset']}")
         else:
             await player.send(f"{c['cyan']}{V}   {c['white']}(none){c['cyan']}                                                  {V}{c['reset']}")
         
@@ -5827,7 +5831,7 @@ class CommandHandler:
                     await player.send(f"{c['cyan']}{V}   {c['white']}{skill_name:<20} {c['red']}[locked - need {talent_name}]{c['reset']}")
         
         await player.send(f"{c['cyan']}{LT}{H*W}{c['reset']}")
-        await player.send(f"{c['cyan']}{V} {c['white']}Find a trainer to practice and improve your abilities!{c['reset']}")
+        await player.send(f"{c['cyan']}{V} {c['white']}Abilities grow as you use them (to 85%); your guild's trainer teaches the rest.{c['reset']}")
         await player.send(f"{c['cyan']}{BL}{H*W}{c['reset']}")
 
     @classmethod
@@ -6125,145 +6129,108 @@ class CommandHandler:
         
     @classmethod
     async def cmd_practice(cls, player: 'Player', args: List[str]):
-        """Practice skills/spells - must be at a guild master for your class."""
+        """Your abilities, and training past mastery with your guild's trainer.
+
+        Abilities come with your level and grow as you use them, up to 85% (mastery.py). A
+        trainer of your class teaches the rest, 5% at a time, for gold, or for a practice
+        session left over from before."""
+        import mastery
         c = player.config.COLORS
+        klass = player.char_class.lower()
 
-        # Check for trainer/guildmaster in room that trains player's class
+        # a trainer here, and does it teach your class?
         trainer = None
-        any_trainer = False
+        other = None
         from mobs import Mobile
-        if player.room:
-            for char in player.room.characters:
-                if isinstance(char, Mobile) and char.special in ('trainer', 'guildmaster'):
-                    any_trainer = True
-                    # Check if this trainer teaches the player's class
-                    trains_class = getattr(char, 'trains_class', None)
-                    if trains_class:
-                        allowed = [t.strip().lower() for t in trains_class.split(',') if t.strip()]
-                        if player.char_class.lower() in allowed:
-                            trainer = char
-                            break
+        for char in (player.room.characters if player.room else []):
+            if isinstance(char, Mobile) and char.special in ('trainer', 'guildmaster'):
+                allowed = [t.strip().lower() for t in str(getattr(char, 'trains_class', '') or '').split(',') if t.strip()]
+                if klass in allowed:
+                    trainer = char
+                    break
+                other = other or char
 
-        # Get class data for validation
-        class_data = player.config.CLASSES.get(player.char_class.lower(), {})
-        class_skills = class_data.get('skills', [])
-        class_spells = class_data.get('spells', [])
+        roster = mastery.roster(klass)
 
-        async def show_practice_list(show_practices: bool):
-            if show_practices:
-                await player.send(f"{c['cyan']}You have {player.practices} practice sessions.{c['reset']}")
-            await player.send(f"{c['cyan']}Skills available to {player.char_class}s:{c['reset']}")
-            if class_skills:
-                for skill in class_skills:
-                    prof = player.skills.get(skill, 0)
-                    skill_name = skill.replace('_', ' ').title()
-                    if prof > 0:
-                        status = f"{prof}%" if prof < 85 else f"{c['bright_green']}MASTERED{c['reset']}"
-                    else:
-                        status = f"{c['yellow']}0%{c['reset']}"
-                    await player.send(f"  {skill_name}: {status}")
-            else:
-                await player.send(f"  (none)")
+        async def show_list():
+            await player.send(f"{c['cyan']}Your abilities grow as you use them, up to {mastery.BY_USE}%. "
+                              f"Your guild's trainer teaches the rest, {mastery.STEP}% at a time.{c['reset']}")
+            if player.practices > 0:
+                await player.send(f"{c['cyan']}You have {player.practices} practice session{'s' if player.practices != 1 else ''} "
+                                  f"left from before: each pays for one step instead of gold.{c['reset']}")
+            for ability, _kind in sorted(roster, key=lambda r: (mastery.unlock_level(klass, r[0]), r[0])):
+                pct = mastery.pct_of(player, ability)
+                if pct <= 0:
+                    status = f"{c['yellow']}comes at level {mastery.unlock_level(klass, ability)}{c['reset']}"
+                elif pct >= 100:
+                    status = f"{c['bright_yellow']}100% — perfected{c['reset']}"
+                elif pct >= mastery.BY_USE:
+                    status = (f"{c['bright_green']}{pct}% — mastered; {mastery.step_cost(pct):,} gold "
+                              f"for the next {mastery.STEP}%{c['reset']}")
+                else:
+                    status = f"{pct}%"
+                await player.send(f"  {mastery.name_of(ability):<24} {status}")
 
-            await player.send(f"{c['cyan']}Spells available to {player.char_class}s:{c['reset']}")
-            if class_spells:
-                for spell in class_spells:
-                    prof = player.spells.get(spell, 0)
-                    spell_name = spell.replace('_', ' ').title()
-                    if prof > 0:
-                        status = f"{prof}%" if prof < 85 else f"{c['bright_green']}MASTERED{c['reset']}"
-                    else:
-                        status = f"{c['yellow']}0%{c['reset']}"
-                    await player.send(f"  {spell_name}: {status}")
-            else:
-                await player.send(f"  (none)")
-
-        if not any_trainer:
-            await player.send(f"{c['red']}You must find a guild master or trainer to practice!{c['reset']}")
-            await player.send(f"{c['yellow']}Trainers can be found in the guilds around town.{c['reset']}")
-            # Show full list even when not at trainer
-            await show_practice_list(show_practices=False)
-            return
-        
         if not trainer:
-            await player.send(f"{c['red']}This trainer cannot teach {player.char_class}s.{c['reset']}")
-            await player.send(f"{c['yellow']}Find the {player.char_class}s' guildmaster to practice your skills.{c['reset']}")
-            await show_practice_list(show_practices=False)
+            if args or other:
+                guild = mastery.guild_of(player.world, klass)
+                if other is not None:
+                    where = f" Find them in {guild[1]}." if guild else ''
+                    await player.send(f"{c['yellow']}{other.short_desc if hasattr(other, 'short_desc') else other.name} says, "
+                                      f"'I don't teach {klass}s — your own guild's trainer does.{where}'{c['reset']}")
+                else:
+                    where = f" ({guild[2]}, in {guild[1]})" if guild else ''
+                    await player.send(f"{c['yellow']}You need your guild's trainer to train{where}.{c['reset']}")
+            await show_list()
             return
 
         if not args:
-            # Show what can be practiced (class-specific)
-            await show_practice_list(show_practices=True)
+            await show_list()
             return
-            
-        if player.practices <= 0:
-            await player.send("You have no practice sessions left!")
-            return
-            
-        # Abbreviation matching - find skills/spells that start with input
-        search_term = ' '.join(args).lower().replace(' ', '_')
-        search_term_nospace = ''.join(args).lower()
-        
-        # Combine all available abilities
-        all_abilities = [(s, 'skill') for s in class_skills] + [(s, 'spell') for s in class_spells]
-        
-        # Find matches - check prefix match with underscores and without
-        matches = []
-        for ability, atype in all_abilities:
-            ability_nospace = ability.replace('_', '')
-            # Exact match
-            if ability == search_term:
-                matches = [(ability, atype)]
-                break
-            # Prefix match (underscore version)
-            if ability.startswith(search_term):
-                matches.append((ability, atype))
-            # Prefix match (no underscore version) 
-            elif ability_nospace.startswith(search_term_nospace):
-                matches.append((ability, atype))
-        
-        # Handle results
-        if not matches:
-            await player.send(f"{c['red']}'{' '.join(args)}' is not available to {player.char_class}s.{c['reset']}")
-            await player.send(f"{c['yellow']}Type 'practice' to see what you can learn.{c['reset']}")
-            return
-        
-        if len(matches) > 1:
-            await player.send(f"{c['yellow']}Which ability did you mean?{c['reset']}")
-            for ability, atype in matches:
-                await player.send(f"  {ability.replace('_', ' ')} ({atype})")
-            return
-        
-        # Single match - practice it
-        target, ability_type = matches[0]
 
-        store = player.skills if ability_type == 'skill' else player.spells
-        current = store.get(target, 0)
-        pretty = target.replace('_', ' ')
-        if current >= 100:
-            await player.send(f"{c['bright_yellow']}You have achieved grandmastery of {pretty} — it cannot be honed further.{c['reset']}")
+        # which ability: exact id, else the only one starting with what was typed
+        typed = '_'.join(args).lower()
+        flat = typed.replace('_', '')
+        names = [a for a, _k in roster]
+        hits = [a for a in names if a == typed] or [a for a in names if a.startswith(typed) or a.replace('_', '').startswith(flat)]
+        if not hits:
+            await player.send(f"{c['red']}'{' '.join(args)}' isn't a {klass} ability.{c['reset']} Type 'practice' for the list.")
             return
-        # Past 85% (Master), the trainer can only take you to 100% (Grandmaster)
-        # for coin as well as effort — a deliberate late-game gold sink.
-        if current >= 85:
-            gm_cost = (current - 80) * 250  # 85->90 = 1250g, rising to 95->100 = 3750g
-            if player.gold < gm_cost:
-                await player.send(f"{c['red']}Grandmaster training in {pretty} costs {gm_cost} gold (you have {player.gold}).{c['reset']}")
-                return
-            player.gold -= gm_cost
+        if len(hits) > 1:
+            await player.send(f"{c['yellow']}Which one: {', '.join(mastery.name_of(a) for a in hits)}?{c['reset']}")
+            return
+        ability = hits[0]
+        name = mastery.name_of(ability)
+        pct = mastery.pct_of(player, ability)
+        if pct <= 0:
+            await player.send(f"{c['yellow']}{name} comes to you at level {mastery.unlock_level(klass, ability)}; "
+                              f"no one can teach it before then.{c['reset']}")
+            return
+        if pct >= 100:
+            await player.send(f"{c['bright_yellow']}You have perfected {name.lower()}; there is nothing left to teach.{c['reset']}")
+            return
+        if pct < mastery.BY_USE:
+            await player.send(f"{c['yellow']}{trainer.short_desc} says, 'Your {name.lower()} is at {pct}%. Use it — in "
+                              f"fights, on the road — and it will grow. Come back when you have mastered it "
+                              f"({mastery.BY_USE}%).'{c['reset']}")
+            return
+        if player.practices > 0:
             player.practices -= 1
-            store[target] = min(100, current + 5)
-            tier = 'GRANDMASTER' if store[target] >= 100 else 'Master'
-            await player.send(f"{c['bright_yellow']}You hone {pretty} to {store[target]}% ({tier}). {gm_cost} gold spent.{c['reset']}")
-            return
-        store[target] = min(85, current + 10)
-        player.practices -= 1
-        if current == 0:
-            await player.send(f"You learn {pretty}! ({store[target]}%)")
-        elif store[target] >= 85:
-            await player.send(f"{c['bright_green']}You master {pretty}! ({store[target]}%) — seek a grandmaster trainer to push beyond.{c['reset']}")
+            paid = 'a practice session'
         else:
-            await player.send(f"You practice {pretty}. ({store[target]}%)")
+            cost = mastery.step_cost(pct)
+            if player.gold < cost:
+                await player.send(f"{c['red']}Training {name.lower()} to {min(100, pct + mastery.STEP)}% costs {cost:,} gold "
+                                  f"(you have {player.gold:,}).{c['reset']}")
+                return
+            player.gold -= cost
+            paid = f"{cost:,} gold"
+        store = player.spells if ability in player.spells else player.skills
+        store[ability] = min(100, pct + mastery.STEP)
+        done = ' Perfected!' if store[ability] >= 100 else ''
+        await player.send(f"{c['bright_green']}{trainer.short_desc} drills you in {name.lower()}: "
+                          f"{pct}% → {store[ability]}% ({paid}).{done}{c['reset']}")
+        await mastery._push(player)
 
     @classmethod
     async def cmd_reforge(cls, player: 'Player', args: List[str]):
@@ -9605,10 +9572,21 @@ class CommandHandler:
 
         # Trainer NPCs
         elif npc.special == 'trainer':
-            if 'train' in message or 'teach' in message or 'practice' in message:
-                await player.send(f"{c['bright_cyan']}{npc.name} says, 'I can train you in the arts of thievery. Type PRACTICE to see what I offer.'{c['reset']}")
+            if 'train' in message or 'teach' in message or 'practice' in message or 'guild' in message:
+                import mastery
+                klass = str(getattr(player, 'char_class', '') or '').lower()
+                teaches = [t.strip().lower() for t in str(getattr(npc, 'trains_class', '') or '').split(',') if t.strip()]
+                if klass in teaches:
+                    await player.send(f"{c['bright_cyan']}{npc.name} says, 'Your abilities grow as you use them. Once you have "
+                                      f"mastered one ({mastery.BY_USE}%), I can take it further. Type PRACTICE to see where you stand.'{c['reset']}")
+                else:
+                    guild = mastery.guild_of(player.world, klass)
+                    where = f" Look for {guild[2]} in {guild[1]}." if guild else ''
+                    await player.send(f"{c['bright_cyan']}{npc.name} says, 'Every {klass} learns by doing: your abilities come "
+                                      f"with your level and grow each time you use them. Past mastery, your guild's trainer "
+                                      f"teaches the rest.{where}'{c['reset']}")
             elif 'hello' in message or 'hi' in message:
-                await player.send(f"{c['bright_cyan']}{npc.name} says, 'Welcome to the guild, shadow walker.'{c['reset']}")
+                await player.send(f"{c['bright_cyan']}{npc.name} says, 'Welcome. Ask me about training if you need it.'{c['reset']}")
 
         # Innkeeper NPCs
         elif npc.special == 'innkeeper':
@@ -17836,6 +17814,13 @@ class CommandHandler:
             
         target_name = args[0].lower()
         field = args[1].lower()
+        # set <target> skill <ability> <percent>: how well they know an ability (0 forgets it)
+        skill_name = None
+        if field == 'skill':
+            if len(args) < 4:
+                await player.send(f"{c['yellow']}Usage: set <target> skill <ability> <percent>{c['reset']}")
+                return
+            skill_name, args = args[2].lower(), [args[0], args[1], args[3]]
         try:
             value = int(args[2])
         except ValueError:
@@ -17853,6 +17838,20 @@ class CommandHandler:
                     
         if not target:
             await player.send(f"{c['red']}No target named '{args[0]}' found.{c['reset']}")
+            return
+
+        if skill_name:
+            if not hasattr(target, 'skills'):
+                await player.send(f"{c['red']}{target.name} has no abilities.{c['reset']}")
+                return
+            from spells import SPELLS
+            store = target.spells if (skill_name in target.spells or (skill_name in SPELLS and skill_name not in target.skills)) else target.skills
+            old = store.get(skill_name, 0)
+            if value <= 0:
+                store.pop(skill_name, None)
+            else:
+                store[skill_name] = min(100, value)
+            await player.send(f"{c['green']}{target.name}'s {skill_name.replace('_', ' ')}: {old}% -> {max(0, min(100, value))}%{c['reset']}")
             return
             
         # Map field names to attributes
@@ -17876,6 +17875,7 @@ class CommandHandler:
             'hitroll': 'hitroll',
             'damroll': 'damroll',
             'ac': 'armor_class',
+            'practices': 'practices',
         }
         
         if field not in field_map:

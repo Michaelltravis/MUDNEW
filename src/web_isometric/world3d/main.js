@@ -108,6 +108,7 @@ async function runGame() {
     applyPendingAggro();
     mm.setExplored((payload.rooms || []).map(r => r.vnum));
     mm.setTime(payload.time);
+    mm.setGuild(payload.player.guild);
     sync.onMap(payload);
   });
   MH.bus.on('combat.update', p => {
@@ -150,7 +151,7 @@ async function runGame() {
     mm.setExplored((payload.rooms || []).map(r => r.vnum));
     mm.setTime(payload.time);
     window.MH3D = { engine, zone: () => zone, hero, ctl, sync, ents, fx, combat, THREE,
-      heroRoom: () => heroRoom, hop: () => hop, gate,
+      heroRoom: () => heroRoom, hop: () => hop, gate, lastPayload: () => lastPayload,
       // for probes: walk onto a passage of this room on purpose (what clicking it does)
       walkToPassage: dir => { const sp = zone.passageWorld(heroRoom, dir); ctl.walkTo(sp.x, sp.z, null, { goal: { room: heroRoom.vnum, dir }, avoid: null }); } };
   }
@@ -476,6 +477,11 @@ async function runGame() {
     // the hero starts the ability's own move on the key press; the server's event then
     // only adds what flies and lands (combat.js skips a second swing)
     const anim = (ABILITY_FX[ab.id] && ABILITY_FX[ab.id].anim) || (ab.spell ? 'Spellcast_Shoot' : '1H_Melee_Attack_Stab');
+    // a heal or a blessing goes to the player you have targeted, else to yourself
+    if (ab.ally) {
+      ctl.swing(anim); ctl.localSwingAt = performance.now();
+      return MH.sendCommand(abilityCommand(ab, t && t.kind === 'player' ? refFor(t) : null));
+    }
     if (ab.self || !t || t.kind !== 'mob') {
       if (!ab.self && !t) return hud.toast('No target — click a creature or press Tab.');
       ctl.swing(anim); ctl.localSwingAt = performance.now();
@@ -622,7 +628,7 @@ async function runGame() {
     if (a.startsWith('door:')) return doDoor(hit.door.dir, a.slice(5));
     if (a.startsWith('tell:')) return hud.prefill(`tell ${a.slice(5)} `);
     if (a === 'inventory' || a === 'character') return hud.openPanel(a);
-    if (a === 'trainer') return hud.openTrainer(hit.ent.data && hit.ent.data.name);
+    if (a === 'trainer') return hud.openTrainer(hit.ent.data && (hit.ent.data.short || hit.ent.data.name));
     if (a === 'walk' && hit.point) { travel = null; return ctl.walkTo(hit.point.x, hit.point.z); }
   }
 

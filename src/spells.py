@@ -1957,11 +1957,15 @@ class SpellHandler:
             pass
 
         # Check proficiency for failure (after the target and reach checks: you can't
-        # fizzle a spell at someone you can't reach)
+        # fizzle a spell at someone you can't reach). A spell known at 50% fizzles one cast in
+        # eight, mastered (85%) one in 27 (mastery.py).
+        import mastery
         proficiency = caster.spells.get(spell_name, 50)
-        if random.randint(1, 100) > proficiency:
+        if random.random() * 100 < mastery.fizzle_chance(proficiency):
             caster.mana -= mana_cost // 2
             await caster.send(f"{c['yellow']}You lose your concentration and the spell fizzles.{c['reset']}")
+            if hasattr(caster, 'char_class'):
+                await mastery.improve(caster, spell_name, ok=False)
             try:
                 import combat_events
                 from combat_range import spell_school
@@ -1983,8 +1987,13 @@ class SpellHandler:
             else:
                 await caster.send(f"{c['cyan']}Soul fragment consumed! Mana cost: {mana_cost}/{original_cost} ({caster.soul_fragments} remaining){c['reset']}")
 
-        # Apply spell effect
-        await cls.apply_spell(caster, target, spell, spell_name)
+        # Apply spell effect, its damage and healing as strong as the spell is known
+        prev_scale = getattr(caster, '_ability_scale', 1)
+        caster._ability_scale = mastery.power(proficiency)
+        try:
+            await cls.apply_spell(caster, target, spell, spell_name)
+        finally:
+            caster._ability_scale = prev_scale
 
         # Talent procs: clearcast
         try:
@@ -2271,6 +2280,7 @@ class SpellHandler:
             else:
                 heal = cls.roll_dice(heal_str)
                 heal += spell.get('heal_per_level', 0) * caster.level
+                heal = max(1, int(heal * getattr(caster, '_ability_scale', 1)))   # how well it is known
 
             # Affix bonuses: heal_power and per-spell bonus (percentage)
             heal_bonus = caster.get_equipment_bonus('heal_power') + caster.get_equipment_bonus(spell_name) + getattr(caster, 'heal_power', 0)

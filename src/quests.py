@@ -2628,7 +2628,9 @@ class QuestManager:
         
         if quest.rewards.get('practices'):
             player.practices += quest.rewards['practices']
-            await player.send(f"{c['bright_cyan']}You receive {quest.rewards['practices']} practice sessions!{c['reset']}")
+            await player.send(f"{c['bright_cyan']}You receive {quest.rewards['practices']} practice session"
+                              f"{'s' if quest.rewards['practices'] != 1 else ''} — each pays your guild's trainer "
+                              f"for a step of training past mastery.{c['reset']}")
         
         if quest.rewards.get('title'):
             player.title = quest.rewards['title']

@@ -288,6 +288,7 @@
         else if (payload.type === 'combat_events') MH.bus.emit('combat.events', payload);
         else if (payload.type === 'door') MH.bus.emit('door.update', payload);
         else if (payload.type === 'door_result') MH.bus.emit('door.result', payload);
+        else if (payload.type === 'improve') MH.bus.emit('ability.improve', payload);
       } catch (err) {
         console.warn('map socket parse error', err);
       }

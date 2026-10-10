@@ -13,6 +13,7 @@ export function createMinimap(root, onPick, onNorth = null) {
   const ctx = cv.getContext('2d');
   const S = 2;   // the canvas is drawn at twice its CSS size (it is hidden at creation, so not measured)
   let zone = null, explored = new Set(), hero = { x: 0, z: 0, yaw: 0, cam: 0 }, room = null, dirty = true, last = 0;
+  let guild = null;            // {vnum, room, trainer}: where your class's trainer stands
   const north = root.querySelector('.mm-north');
   if (north) north.addEventListener('click', e => { e.stopPropagation(); if (onNorth) onNorth(); });
   const W = () => cv.width, H = () => cv.height;
@@ -54,6 +55,14 @@ export function createMinimap(root, onPick, onNorth = null) {
       }
     }
     ctx.globalAlpha = 1;
+    // your guild's trainer: a gold star
+    const gr = guild && zone.rooms.get(guild.vnum);
+    if (gr) {
+      const [x, y] = toScreen(gr.cx, gr.cy);
+      ctx.font = `${11 * S}px sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.lineWidth = 2.4 * S; ctx.strokeStyle = 'rgba(0,0,0,.75)'; ctx.fillStyle = '#ffd86a';
+      ctx.strokeText('★', x + cw / 2, y + ch / 2); ctx.fillText('★', x + cw / 2, y + ch / 2);
+    }
     if (room) {
       const [x, y] = toScreen(room.cx, room.cy);
       ctx.strokeStyle = '#f3d999'; ctx.lineWidth = 1.6 * S;
@@ -94,6 +103,12 @@ export function createMinimap(root, onPick, onNorth = null) {
       root.querySelector('.mm-zone').textContent = z ? z.name : '';
     },
     setExplored(list) { explored = new Set(list); dirty = true; },
+    setGuild(g) {
+      const v = g && g.vnum;
+      if (v === (guild && guild.vnum)) return;
+      guild = g || null; dirty = true;
+      cv.title = g ? `★ ${g.trainer} (${g.room}) trains you` : '';
+    },
     setRoom(r) { room = r; dirty = true; root.querySelector('.mm-room').textContent = r ? r.name : ''; },
     setTime(t) {
       if (!t) return;

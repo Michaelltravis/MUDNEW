@@ -4046,7 +4046,7 @@
           "quest": "I offer guidance to those new to adventuring. Type 'quest' to see what tasks await you.",
           "midgaard": "This city has stood for centuries as a beacon of civilization. The Temple behind me is sacred ground.",
           "combat": "Combat is a necessary skill. South of the square are training grounds where you can practice safely.",
-          "skills": "Each class has unique abilities. Visit your guildmaster to improve your skills through practice."
+          "skills": "Each class has unique abilities. New ones come as you gain levels, and each grows stronger every time you use it. Once you have mastered one, your guild's trainer can teach you the rest."
         }
       },
       "inventory": [
@@ -4104,7 +4104,7 @@
         ],
         "greet_message": "You there! Looking to train? The dummies won't hit back - much. Show me what you've got!",
         "topics": {
-          "train": "Attack the dummies to practice. Use 'kill dummy' to begin.",
+          "train": "Attack the dummies to practice: every swing and every skill you use makes you better at it. Use 'kill dummy' to begin. For training past mastery, ask your own guild's trainer.",
           "combat": "In combat, you attack automatically each round. Use skills and spells to gain advantage.",
           "flee": "If a fight goes bad, type 'flee' to escape. No shame in living to fight another day."
         }

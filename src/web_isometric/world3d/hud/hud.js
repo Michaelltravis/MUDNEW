@@ -249,8 +249,23 @@ export function createHud() {
     if (id === 'flee') { MH.bus.emit('hud.flee'); return; }
     const a = st.byId.get(id);
     if (a && !a.known) { toast(`${a.name} unlocks at level ${a.level}`); return; }
-    MH.bus.emit('hud.ability', { id, spell: a ? a.type === 'spell' : false, self: a ? a.target === 'self' : SELF.has(id) });
+    // aimed at a foe (the target), at a friend (a targeted player, else you), or at nothing
+    // (yourself, the room, an object you name): sent without a target
+    const aim = a ? a.target || 'enemy' : SELF.has(id) ? 'self' : 'enemy';
+    MH.bus.emit('hud.ability', { id, spell: a ? a.type === 'spell' : false, self: aim !== 'enemy' && aim !== 'ally', ally: aim === 'ally' });
   }
+  // the server says an ability grew (mastery.py): tick it now, before the next payload
+  MH.bus.on('ability.improve', ({ id, pct }) => {
+    const a = st.byId.get(id);
+    if (!a || !(pct > (a.pct || 0))) return;
+    const by = pct - (a.pct || 0);
+    a.pct = pct;
+    const p = st.player;
+    if (p) for (const k of ['skills', 'spells']) if (p[k] && id in p[k]) p[k][id] = pct;
+    tick(id, by);
+    spellbook.update(st.abilities, st.bar, p && p.level);
+    if (p) trainer.update({ ...p, abilities: st.abilities });
+  });
   function paintCooldowns() {
     const elapsed = (performance.now() - st.cdAt) / 1000;
     els.slots.querySelectorAll('.slot[data-id]').forEach(slot => {
@@ -406,7 +421,7 @@ export function createHud() {
   // ---- for the right-click menu ----
   // the bar's abilities that aim at someone (not heals on yourself, not shouts)
   function targetSkills() {
-    return st.bar.map(id => id && st.byId.get(id)).filter(a => a && a.known && a.target !== 'self')
+    return st.bar.map(id => id && st.byId.get(id)).filter(a => a && a.known && (a.target || 'enemy') === 'enemy')
       .map(a => ({ id: a.id, label: a.name, spell: a.type === 'spell' }));
   }
   function useAbility(id) { use(id); }

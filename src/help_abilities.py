@@ -553,7 +553,7 @@ def _gen_skill_entry(key, owners):
     if len(classes) == 1 and classes[0] in CLASS_RESOURCE:
         parts.append("RESOURCE: " + CLASS_RESOURCE[classes[0]])
     parts.append("")
-    parts.append("Practice this skill with a guildmaster to improve it.")
+    parts.append("It grows as you use it, up to 85%; your guild's trainer teaches the rest.")
     return {
         'category': 'skill',
         'title': name,

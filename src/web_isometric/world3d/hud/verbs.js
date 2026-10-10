@@ -24,7 +24,7 @@ export function verbsFor(hit, ctx = {}) {
     if (npc && !isHostile(hit.ent)) {
       items.push({ label: 'Talk', cmd: `talk ${kw}` });
       if (d.shopkeeper) items.push({ label: 'Shop', cmd: 'list' });
-      if (d.trainer) items.push({ label: 'Train', cmd: 'practice' });
+      if (d.trainer) items.push({ label: 'Master your abilities', act: 'trainer' });
       if (d.special === 'innkeeper' || d.special === 'receptionist') items.push({ label: 'Rent a room', cmd: 'rent' });
       if (d.special === 'banker') items.push({ label: 'Bank balance', cmd: 'balance' });
       items.push({ label: 'Look', cmd: `look ${kw}` }, { label: 'Target', act: 'target' }, { label: 'Attack', act: 'attack' });

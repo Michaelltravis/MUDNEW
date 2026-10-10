@@ -404,6 +404,15 @@ class WebMapServer:
                             break
                 body = json.dumps(dict(result, found=True)) if result else json.dumps({'found': False})
                 await self._http_response(writer, 200, 'OK', body, content_type='application/json')
+            elif path.startswith('/abilitybook'):
+                # a class's abilities for the 3D client's spellbook: what each is, costs, reaches
+                # and unlocks at (static; how well a player knows them comes in the map payload)
+                import mastery
+                q = parse_qs(urlparse(path).query)
+                klass = (q.get('cls') or [''])[0].lower()
+                body = json.dumps({'cls': klass, 'abilities': mastery.book(klass), 'byUse': mastery.BY_USE,
+                                   'learnAt': mastery.LEARN_AT, 'step': mastery.STEP})
+                await self._http_response(writer, 200, 'OK', body, content_type='application/json')
             elif path.startswith('/combatdata'):
                 # combat v2 ranges for the 3D client (one source of truth: combat_range.py)
                 import combat_range as cr

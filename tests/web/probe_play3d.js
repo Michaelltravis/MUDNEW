@@ -1,5 +1,5 @@
 // Browser probe for /play against a local server (./run.sh), with the gauntlet admin account.
-//   NODE_PATH=/opt/node22/lib/node_modules node tests/web/probe_play3d.js stairs|doors|camera|menu|autotarget|creatures|spellbook [outdir]
+//   NODE_PATH=/opt/node22/lib/node_modules node tests/web/probe_play3d.js stairs|doors|camera|menu|autotarget|creatures|spellbook|trainer [outdir]
 // CommonJS on purpose (the global Playwright only resolves through NODE_PATH with require).
 // WebGL may render at ~1 fps in a container, so the probe places the hero directly and waits
 // on frames instead of walking in real time.
@@ -16,6 +16,8 @@
 //   spellbook: K opens the spellbook; an ability dragged onto slot 2 lands there and the bar is
 //           saved (one `webbar`); key 2 uses it; dragging it off the bar removes it; a newly
 //           learned ability glows into a free slot.
+//   trainer: the minimap knows your guild; right-click your class's trainer → Master your
+//           abilities opens the trainer window; Train takes a mastered ability 85 → 90.
 //   creatures: a blob, a mimic, a statue, a chess rook, a stone golem, a goblin farmer, a brownie,
 //           a living book and the Sewer King each get the right body (looks.js, from the payload's
 //           short description and room line).
@@ -274,7 +276,58 @@ async function waitFor(page, fn, arg, secs = 60) {
     await page.evaluate(() => [...document.querySelectorAll('#ctx-menu button')].find(b => b.textContent === 'Take off the bar').click());
     await sleep(400);
     check(await page.evaluate(() => document.querySelector('#slots .slot[data-i="1"]').classList.contains('empty')), 'slot 2 is empty again');
+    // a newly learned ability is announced and glows into the free slot
+    const learnt = await page.evaluate(id => {
+      const p = JSON.parse(JSON.stringify(MH.state.player));
+      const before = JSON.parse(JSON.stringify(p));
+      delete before.skills[id];
+      MH.bus.emit('map', { ...window.MH3D.lastPayload(), player: before });
+      MH.bus.emit('map', { ...window.MH3D.lastPayload(), player: p });
+      const slot = document.querySelector(`#slots .slot[data-id="${id}"]`);
+      return { glow: !!slot && slot.classList.contains('glow'), key: slot && slot.dataset.i,
+        toast: [...document.querySelectorAll('#toasts div')].map(d => d.textContent).join(' | ') };
+    }, id);
+    check(learnt.glow && learnt.key === '1' && /You learned/.test(learnt.toast), `a new ability glows into the free slot: ${JSON.stringify(learnt)}`);
     await page.evaluate(() => MH.sendCommand('webbar', false));
+  }
+
+  if (MODE === 'trainer') {
+    check(await goto(3001), 'in the Temple of Midgaard (3001)');
+    const guild = await page.evaluate(() => MH.state.player && MH.state.player.guild);
+    check(guild && guild.vnum, `the payload names your guild's trainer (${guild && guild.trainer}, ${guild && guild.room})`);
+    await page.evaluate(n => MH.sendCommand(`set ${n} skill bash 85`, false), CFG.character.name.toLowerCase());
+    check(await goto(guild.vnum), `at the guild (${guild.vnum})`);
+    await sleep(2500);
+    const at = await page.evaluate(() => {
+      const e = [...MH3D.ents.list.values()].find(x => x.kind === 'mob' && x.data.trainer && x.root);
+      if (!e) return null;
+      const cv = MH3D.engine.renderer.domElement, r = cv.getBoundingClientRect();
+      const v = e.root.position.clone().setY(e.root.position.y + 1.1).project(MH3D.engine.camera);
+      return { x: r.left + (v.x + 1) / 2 * r.width, y: r.top + (1 - v.y) / 2 * r.height, name: e.data.name };
+    });
+    check(!!at, `the trainer stands here (${at && at.name})`);
+    if (at) {
+      await page.mouse.click(at.x, at.y, { button: 'right' });
+      await sleep(400);
+      const items = await page.evaluate(() => [...document.querySelectorAll('#ctx-menu button')].map(b => b.textContent));
+      check(items.includes('Master your abilities'), `right-click the trainer: ${JSON.stringify(items)}`);
+      await page.evaluate(() => [...document.querySelectorAll('#ctx-menu button')].find(b => b.textContent === 'Master your abilities').click());
+      const rows = await waitFor(page, () => document.querySelectorAll('#trainer:not(.hidden) .tr-row').length > 0, null, 20);
+      check(rows, 'the trainer window lists your abilities');
+      const bashRow = await page.evaluate(() => {
+        const b = document.querySelector('#trainer .tr-buy[data-id="bash"]');
+        return b ? { text: b.closest('.tr-row').textContent, enabled: !b.disabled } : null;
+      });
+      check(bashRow && bashRow.enabled && /85% → 90%/.test(bashRow.text), `bash can be trained: ${bashRow && bashRow.text.trim()}`);
+      await page.screenshot({ path: path.join(OUT, 'trainer.png') });
+      await page.evaluate(() => { window.__sent.length = 0; document.querySelector('#trainer .tr-buy[data-id="bash"]').click(); });
+      const done = await waitFor(page, () => [...document.querySelectorAll('#log div')].some(d => /bash: 85% → 90%/.test(d.textContent)), null, 20);
+      check(done, 'Train: "drills you in bash: 85% → 90%"');
+      const sent = await page.evaluate(() => window.__sent.slice());
+      check(sent.includes('practice bash'), `it sent "practice bash" (${JSON.stringify(sent)})`);
+    }
+    await page.evaluate(n => MH.sendCommand(`set ${n} skill bash 50`, false), CFG.character.name.toLowerCase());
+    await sleep(600);
   }
 
   if (MODE === 'creatures') {

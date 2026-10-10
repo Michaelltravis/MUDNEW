@@ -907,14 +907,12 @@ class Player(Character):
         # Starting resources
         player.gold = player.config.STARTING_GOLD
         player.exp = player.config.STARTING_EXPERIENCE
-        player.practices = 5
+        player.practices = 0          # abilities grow by use now (mastery.py)
         player.trains = 0
         
-        # Learn starting skills/spells
-        for skill in class_data['skills'][:3]:  # First 3 skills
-            player.skills[skill] = 50  # 50% proficiency
-        for spell in class_data['spells'][:2]:  # First 2 spells
-            player.spells[spell] = 50
+        # Learn the level-1 abilities, at 50%
+        import mastery
+        mastery.grant_now(player)
             
         # Give starting equipment
         player._give_starting_equipment()
@@ -2260,9 +2258,7 @@ class Player(Character):
         self.max_move += max(0, move_gain)
         self.move = self.max_move
         
-        # Gain practices
-        practice_gain = (self.wis - 10) // 2 + 2
-        self.practices += practice_gain
+        # (no practice sessions any more: abilities grow as they are used, mastery.py)
         
         c = self.config.COLORS
         
@@ -2314,7 +2310,6 @@ class Player(Character):
         await self.send(f"{c['bright_cyan']}║{c['reset']}  {c['bright_green']}Health:  {c['white']}+{hp_gain:<3}{c['reset']}  {c['green']}({self.max_hp} total){c['reset']}                           {c['bright_cyan']}║{c['reset']}")
         await self.send(f"{c['bright_cyan']}║{c['reset']}  {c['bright_cyan']}Mana:    {c['white']}+{mana_gain:<3}{c['reset']}  {c['cyan']}({self.max_mana} total){c['reset']}                           {c['bright_cyan']}║{c['reset']}")
         await self.send(f"{c['bright_cyan']}║{c['reset']}  {c['bright_yellow']}Move:    {c['white']}+{move_gain:<3}{c['reset']}  {c['yellow']}({self.max_move} total){c['reset']}                           {c['bright_cyan']}║{c['reset']}")
-        await self.send(f"{c['bright_cyan']}║{c['reset']}  {c['bright_magenta']}Practice:{c['white']} +{practice_gain:<3}{c['reset']} {c['magenta']}({self.practices} available){c['reset']}                      {c['bright_cyan']}║{c['reset']}")
         await self.send(f"{c['bright_cyan']}║{c['reset']}                                                              {c['bright_cyan']}║{c['reset']}")
         
         # Milestone message
@@ -2364,110 +2359,10 @@ class Player(Character):
             pass
         
     async def check_new_abilities(self):
-        """Check if player qualifies for new skills/spells with epic notifications."""
-        class_data = self.config.CLASSES[self.char_class]
-        c = self.config.COLORS
-        
-        # Ability descriptions for flavor
-        ABILITY_DESC = {
-            # Combat skills
-            'kick': 'A powerful kick that deals bonus damage',
-            'bash': 'Shield bash that can stun enemies',
-            'rescue': 'Pull an ally from combat danger',
-            'disarm': 'Knock the weapon from your foe\'s hands',
-            'parry': 'Deflect incoming attacks with your weapon',
-            'dodge': 'Nimbly avoid enemy strikes',
-            'second_attack': 'Strike twice in a single round',
-            'third_attack': 'Land three blows per round',
-            'dual_wield': 'Fight with a weapon in each hand',
-            'critical_strike': 'Chance for devastating critical hits',
-            'backstab': 'Strike from shadows for massive damage',
-            'sneak': 'Move unseen through the shadows',
-            'hide': 'Conceal yourself from enemies',
-            'pick_lock': 'Open locks without a key',
-            'steal': 'Pilfer items from unsuspecting targets',
-            'track': 'Follow the trail of your quarry',
-            'hunt': 'Relentlessly pursue fleeing enemies',
-            'berserk': 'Enter a rage, trading defense for offense',
-            'whirlwind': 'Strike all enemies around you',
-            'cleave': 'Powerful sweeping attack',
-            'shield_block': 'Block attacks with your shield',
-            'taunt': 'Draw enemy attention to yourself',
-            # Spells
-            'magic_missile': 'Unerring bolts of arcane force',
-            'fireball': 'Explosive ball of flame',
-            'lightning_bolt': 'A crackling bolt of electricity',
-            'cure_light': 'Mend minor wounds',
-            'cure_serious': 'Heal moderate injuries',
-            'cure_critical': 'Restore grievous wounds',
-            'heal': 'Powerful restorative magic',
-            'armor': 'Magical protection surrounds you',
-            'bless': 'Divine favor improves combat',
-            'sanctuary': 'Holy aura reduces damage taken',
-            'word_of_recall': 'Instantly return to safety',
-            'detect_invisible': 'See the unseen',
-            'invisibility': 'Become invisible to enemies',
-            'fly': 'Soar through the air',
-            'summon': 'Call an ally to your side',
-            'charm': 'Bend a creature to your will',
-            'sleep': 'Put enemies into slumber',
-            'poison': 'Coat your attacks with venom',
-            'animate_dead': 'Raise fallen foes as minions',
-            'energy_drain': 'Steal life force from enemies',
-        }
-        
-        # Skills unlocked at various levels
-        skill_levels = {
-            1: 0, 2: 1, 3: 1, 5: 2, 7: 2, 10: 3, 15: 4, 20: 5, 25: 6, 30: 7
-        }
-        
-        max_skills = skill_levels.get(self.level, 0)
-        available_skills = class_data['skills'][:max_skills + 3]
-        available_spells = class_data['spells'][:max_skills + 2]
-        
-        new_skills = []
-        new_spells = []
-        
-        for skill in available_skills:
-            if skill not in self.skills:
-                self.skills[skill] = 30
-                new_skills.append(skill)
-                
-        for spell in available_spells:
-            if spell not in self.spells:
-                self.spells[spell] = 30
-                new_spells.append(spell)
-        
-        # Display epic notification if we learned anything
-        if new_skills or new_spells:
-            await self.send("")
-            await self.send(f"{c['bright_cyan']}  +{'=' * 54}+{c['reset']}")
-            await self.send(f"{c['bright_cyan']}  |{c['bright_yellow']}     ★ NEW ABILITIES UNLOCKED! ★                      {c['bright_cyan']}|{c['reset']}")
-            await self.send(f"{c['bright_cyan']}  +{'-' * 54}+{c['reset']}")
-            
-            if new_skills:
-                await self.send(f"{c['bright_cyan']}  |{c['reset']}                                                      {c['bright_cyan']}|{c['reset']}")
-                await self.send(f"{c['bright_cyan']}  |{c['bright_green']}  SKILLS:{c['reset']}                                             {c['bright_cyan']}|{c['reset']}")
-                for skill in new_skills:
-                    skill_name = skill.replace('_', ' ').title()
-                    desc = ABILITY_DESC.get(skill, 'A powerful new technique')
-                    await self.send(f"{c['bright_cyan']}  |{c['reset']}    {c['white']}⚔ {skill_name:<20}{c['reset']}                       {c['bright_cyan']}|{c['reset']}")
-                    await self.send(f"{c['bright_cyan']}  |{c['reset']}      {c['cyan']}{desc[:46]:<46}{c['reset']}  {c['bright_cyan']}|{c['reset']}")
-            
-            if new_spells:
-                await self.send(f"{c['bright_cyan']}  |{c['reset']}                                                      {c['bright_cyan']}|{c['reset']}")
-                await self.send(f"{c['bright_cyan']}  |{c['bright_magenta']}  SPELLS:{c['reset']}                                             {c['bright_cyan']}|{c['reset']}")
-                for spell in new_spells:
-                    spell_name = spell.replace('_', ' ').title()
-                    desc = ABILITY_DESC.get(spell, 'A mystical new power')
-                    await self.send(f"{c['bright_cyan']}  |{c['reset']}    {c['white']}✦ {spell_name:<20}{c['reset']}                       {c['bright_cyan']}|{c['reset']}")
-                    await self.send(f"{c['bright_cyan']}  |{c['reset']}      {c['magenta']}{desc[:46]:<46}{c['reset']}  {c['bright_cyan']}|{c['reset']}")
-            
-            await self.send(f"{c['bright_cyan']}  |{c['reset']}                                                      {c['bright_cyan']}|{c['reset']}")
-            await self.send(f"{c['bright_cyan']}  +{'=' * 54}+{c['reset']}")
-            await self.send(f"{c['yellow']}  Use 'skills' or 'spells' to see all your abilities.{c['reset']}")
-            await self.send("")
-                
+        """Learn everything this level has reached, at 50%, announced (mastery.py)."""
+        import mastery
+        await mastery.grant(self)
+
     def get_damage_message(self, damage: int) -> str:
         """Get a message describing the damage amount."""
         if damage <= 0:

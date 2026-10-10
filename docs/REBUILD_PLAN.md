@@ -333,3 +333,37 @@ skill's own server code.
   `node tools/qc_bestiary.mjs` (the whole list, grouped by body), `/play?demo&gallery=beasts`
   (labelled samples) and `tests/web/probe_play3d.js creatures` (live: a blob, a mimic, a statue,
   a rook, a golem, a goblin farmer, a brownie, a living book and the Sewer King in the temple).
+
+### Skills: learn by doing, a spellbook and your own bar (owner's choices: "learn by doing"; "spellbook + your own bar")
+- **Learning** (`src/mastery.py`): every class ability unlocks at a level (`UNLOCK`, from each
+  roster's order, spells keeping their `level_required`, spread to 50; prestige spells 56–60).
+  Reaching it grants the ability at 50%, on a level-up, at creation and at login (characters made
+  before catch up: "Your training catches up with your level..."). Abilities above your level are
+  refused ("You don't know execute yet — it comes at level 14"); before, most button skills only
+  checked the class. Practice sessions are no longer handed out.
+- **Improving**: using an ability may improve it, up to 85% (Mastered): max(2, 20 − %/5)% on a
+  success (10% at 50%), half on a miss, +1–2 points; "Your kick improves! (63%)" and a "+N%"
+  on its bar slot. Passives (dodge, parry, shield block, evasion, extra attacks) improve when they
+  work, at a quarter of that. Crafting and gathering skills keep their own rules.
+- **Proficiency matters**: a spell fizzles (100 − %)/4 % of casts (50% → 12.5%, was 50%; 85% →
+  3.75%); ability damage and spell healing ×(0.85 + 0.3·%/100). Passives now work a share of
+  their proficiency (dodge and parry ×0.25, shield block ×0.3, evasion ×0.2, second attack and
+  dual wield ×0.6, third attack ×0.3): at 50% a dodge used to mean dodging half of all blows.
+  These are balance changes to tune after playing.
+- **Trainers**: past 85%, your guild's trainer teaches 5% at a time to 100%, for (% − 80) × 250
+  gold (1,250 at 85%) or a leftover practice session; below 85% they send you off to use it; a
+  trainer of another class (Sergeant Bron) says where your guild is. `practice` lists your
+  abilities and when the rest arrive; `skills` shows "[level 14]" for those to come. The minimap
+  marks your guild's trainer with a gold star. Immortals: `set <who> skill <ability> <percent>`.
+- **Spellbook (K)** and **your own bar**: the spellbook lists every ability of the class (and the
+  ones a talent can teach) from `/abilitybook` (fetched once per class): what it costs and
+  reaches, how well you know it, "Level 14" for the ones to come. Drag an ability onto one of 16
+  slots (1–8, Shift+1–8), between slots to swap, off the bar to remove it; right-click a slot for
+  Use / Take off the bar. The bar is kept with the character (`webbar`, saved in the player file,
+  sent back as `bar`). New abilities glow into a free slot without moving the others. Heals and
+  blessings go to the player you target, else to yourself. Right-click a trainer → Master your
+  abilities opens the trainer window.
+- Verified here: `tests/test_mastery.py` (offline rules and maths; live: `skills`, the level
+  refusal, a trainer step for 1,250 gold, Bron's directions, `/abilitybook`, the saved bar),
+  `node --test tests/web/*.test.mjs` (bar logic), `tests/web/probe_play3d.js spellbook|trainer`,
+  and the stairs/doors/combat suites unchanged.

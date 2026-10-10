@@ -665,7 +665,10 @@ class CombatHandler:
         # Avoidance checks
         if hasattr(defender, 'skills'):
             shield_bonus = defender.get_shield_evasion_bonus() if hasattr(defender, 'get_shield_evasion_bonus') else 0
-            dodge = defender.skills.get('dodge', 0) + shield_bonus
+            # passives work a fraction of their proficiency (dodge 50% -> 12%, mastered 85% -> 21%)
+            # and grow a little each time they work (mastery.py)
+            import mastery
+            dodge = int(defender.skills.get('dodge', 0) * 0.25) + shield_bonus
             # DB weighting: shield magic + armor weight + stance should influence dodge chance
             try:
                 base_db = 100 - defender.get_armor_class() if hasattr(defender, 'get_armor_class') else 0
@@ -683,6 +686,7 @@ class CombatHandler:
             except Exception:
                 pass
             if dodge and random.randint(1, 100) <= dodge:
+                await mastery.improve(defender, 'dodge', rate=0.25)
                 if hasattr(defender, 'send'):
                     await defender.send(f"{c['cyan']}You dodge {attacker.name}'s attack!{c['reset']}")
                 if hasattr(attacker, 'send'):
@@ -720,7 +724,7 @@ class CombatHandler:
                             await attacker.send(f"{c['red']}{defender.name} counters! [{counter_dmg}]{c['reset']}")
                         await attacker.take_damage(counter_dmg, defender)
                 return
-            parry = defender.skills.get('parry', 0)
+            parry = int(defender.skills.get('parry', 0) * 0.25)
             try:
                 # PB weighting: stance + parry/shield synergy should influence parry reliability
                 base_pb = int(getattr(defender, 'damage_reduction', 0))
@@ -729,6 +733,7 @@ class CombatHandler:
             except Exception:
                 pass
             if parry and defender.equipment.get('wield') and random.randint(1, 100) <= parry:
+                await mastery.improve(defender, 'parry', rate=0.25)
                 if hasattr(defender, 'send'):
                     await defender.send(f"{c['cyan']}You parry {attacker.name}'s attack!{c['reset']}")
                 if hasattr(attacker, 'send'):
@@ -740,8 +745,9 @@ class CombatHandler:
                         if hasattr(defender, 'send'):
                             await defender.send(f"{c['bright_yellow']}[Luck: {defender.luck_points}/10]{c['reset']}")
                 return
-            sblock = defender.skills.get('shield_block', 0)
+            sblock = int(defender.skills.get('shield_block', 0) * 0.3)
             if sblock and defender.equipment.get('shield') and random.randint(1, 100) <= sblock:
+                await mastery.improve(defender, 'shield_block', rate=0.25)
                 if hasattr(defender, 'send'):
                     await defender.send(f"{c['cyan']}You block the attack with your shield!{c['reset']}")
                 if hasattr(attacker, 'send'):
@@ -749,9 +755,8 @@ class CombatHandler:
                 return
             # Evasion (chance to avoid entirely)
             evasion = defender.skills.get('evasion', 0)
-            if evasion:
-                evasion += shield_bonus
-            if evasion and random.randint(1, 100) <= max(5, evasion // 2):
+            if evasion and random.randint(1, 100) <= max(5, int(evasion * 0.2) + shield_bonus):
+                await mastery.improve(defender, 'evasion', rate=0.25)
                 if hasattr(defender, 'send'):
                     await defender.send(f"{c['cyan']}You evade the attack!{c['reset']}")
                 if hasattr(attacker, 'send'):
@@ -1280,19 +1285,22 @@ class CombatHandler:
             except Exception:
                 pass
 
-        # Check for second attack
+        # Extra swings: a share of their proficiency (second attack 50% -> 30% of rounds), and
+        # they grow a little each time they come (mastery.py)
+        import mastery
         if hasattr(attacker, 'skills') and 'second_attack' in attacker.skills:
-            if random.randint(1, 100) <= attacker.skills['second_attack']:
+            if random.randint(1, 100) <= int(attacker.skills['second_attack'] * 0.6):
+                await mastery.improve(attacker, 'second_attack', rate=0.25)
                 await cls.bonus_attack(attacker, defender)
 
-        # Check for third attack
         if hasattr(attacker, 'skills') and 'third_attack' in attacker.skills:
-            if random.randint(1, 100) <= attacker.skills['third_attack'] // 2:
+            if random.randint(1, 100) <= int(attacker.skills['third_attack'] * 0.3):
+                await mastery.improve(attacker, 'third_attack', rate=0.25)
                 await cls.bonus_attack(attacker, defender)
 
-        # Dual wield off-hand attack
         if hasattr(attacker, 'skills') and 'dual_wield' in attacker.skills:
-            if attacker.equipment.get('dual_wield') and random.randint(1, 100) <= attacker.skills['dual_wield']:
+            if attacker.equipment.get('dual_wield') and random.randint(1, 100) <= int(attacker.skills['dual_wield'] * 0.6):
+                await mastery.improve(attacker, 'dual_wield', rate=0.25)
                 await cls.offhand_attack(attacker, defender)
 
         # Ritual duration and channeling check

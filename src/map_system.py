@@ -1168,6 +1168,16 @@ def _mob_uid(entity) -> int:
     return uid
 
 
+def _guild_block(player):
+    """{vnum, room, trainer} of the trainer who teaches the player's class (minimap star)."""
+    try:
+        import mastery
+        g = mastery.guild_of(player.world, getattr(player, 'char_class', ''))
+        return {'vnum': g[0], 'room': g[1], 'trainer': g[2]} if g else None
+    except Exception:
+        return None
+
+
 def _keys_for(player):
     """The vnums the player carries or wears, reused for a moment (a payload asks per room)."""
     import doors as door_rules
@@ -1579,6 +1589,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'talents': dict(getattr(player, 'talents', {})),
             'practices': getattr(player, 'practices', 0),
             'bar': getattr(player, 'web_bar', None),          # the 3D client's action bar, as arranged
+            'guild': _guild_block(player),                    # where the class's trainer stands
             'affects': AffectManager.save_affects(player),
         },
         'group': build_group_block(player),

@@ -535,6 +535,20 @@ class Connection:
             import logging
             logging.getLogger('Misthollow').error(f"Rent processing error: {e}")
 
+        # Learn by doing (mastery.py): a character made before it catches up on everything
+        # its level has reached
+        try:
+            import mastery
+            caught = mastery.grant_now(self.player)
+            if caught:
+                names = ', '.join(mastery.name_of(a) for a, _k in caught[:6]) + (', …' if len(caught) > 6 else '')
+                await self.send(f"{c['bright_yellow']}Your training catches up with your level: {len(caught)} new "
+                                f"abilit{'y' if len(caught) == 1 else 'ies'} ({names}). Abilities now grow as you use them; "
+                                f"type 'skills' (or press K in /play).{c['reset']}")
+        except Exception as e:
+            import logging
+            logging.getLogger('Misthollow').error(f"Ability catch-up error: {e}")
+
         if room:
             room.characters.append(self.player)
             
