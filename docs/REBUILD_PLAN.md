@@ -226,3 +226,39 @@ skill's own server code.
   bolts and numbers) is for the owner to judge on a real GPU.
 - Next, from the owner's test: tune numbers (round length, reach, wind-up time) and the look
   of each skill; then Phase 3 (per-action resolution) if rounds still feel slow.
+
+### Stairs and doors (owner, 2026-10-10: "the stairs and lock/unlock doors next")
+- **Stairs** (`world3d/passages.js`, `zone.js`, `main.js`): a hop stays in flight until the
+  arrival is applied, so a zone hop is sent once (the zone map download used to race the next
+  frame: a second move, "You can't go that way.", a double flash). You land 1.6 m beside the
+  stairs that lead back (up/down exits are named by direction of travel; the client used the
+  wrong side). A gate keeps the stairs you arrived beside quiet until you walk away, stand still
+  a moment or click them, plus a 1.2 s cooldown: holding a key into them no longer bounces you
+  back. Stairs fire only when you move onto them (or a click sends you there); paths and the
+  combat chase walk around them; they are blocked in a fight like doorways. `webmove` takes the
+  exit the client names (`webmove 3001 3005 down`: 86 room pairs have stairs and a doorway to
+  the same room). The step onto and off the stairs is animated under the fade; creatures and
+  followers changing level snap there in a puff of dust. ▼ Down is a stairwell now (a dark
+  opening, rim and steps), ▲ Up a staircase climbing away from where you arrive; labels say
+  where they lead; furniture keeps off them; the minimap shows ▲/▼ and minimap travel crosses
+  stairs (re-planned after each hop).
+- **Doors** (`src/doors.py`, door commands, `cmd_webdoor`, `world3d/doorlogic.js`, `hud/prompt.js`,
+  `hud/castbar.js`, `hud/contextmenu.js`): one module finds doors (`s` is south and `u` up — they
+  used to resolve to east and south; names work: `unlock wooden`, `open door wooden north`),
+  changes both sides together, stamps a revision and pushes a `door` event to every web client
+  in both zones. Keys count when carried or worn; a lock without a key is anyone's (the world's
+  rule); pickproof locks refuse picks. Payload doors carry `label` ("wooden door"),
+  `has_key`, `can_pick`, `key_name`. At load, "open and locked" (102 imported doors) becomes
+  unlocked and the two sides agree; doors return to their starting state with a zone reset
+  (not while a player stands by). In /play: a prompt floats over the nearest door ("E Open
+  the oak door", "E Unlock", "E Pick the lock", "Locked — needs a golden key", "E Close"); E
+  does it (`webdoor <room> <dir> <action>`, unlock-and-open in one press); walking into a
+  closed, unlocked door opens it; a right-click by a door gives the full menu (open, close,
+  lock, unlock, pick, knock, bash); lock-picking shows a cast bar and moving abandons it.
+  Doors appear on passage doorways too, trapdoors are hatches over stairs, locked doors show
+  iron bands and a padlock.
+- Verified here: `tests/test_doors.py` (offline: parsing, both sides, keys, picks, push,
+  `webdoor`, load, reset; live: the oak door at 921 with and without its golden key, the push
+  carrying both sides), `tests/test_webmove.py` (stairs direction), `node --test
+  tests/web/*.test.mjs` (every stairs/portal room's landing, the gate, door prompts/menus) and
+  `tests/web/probe_play3d.js stairs|doors` in a browser with the zone map delayed 3 s.

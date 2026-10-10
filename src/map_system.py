@@ -3,6 +3,7 @@ Map rendering and coordinate utilities for Misthollow.
 """
 
 import itertools
+import time
 from typing import Dict, Tuple, Set, List, Optional
 
 from config import Config
@@ -920,15 +921,19 @@ _ZONECELL_INDEX: Dict[int, Dict[int, list]] = {}
 CARDINALS = ('north', 'south', 'east', 'west')
 
 
-def _door_info(exit_data) -> Optional[dict]:
-    """A door on an exit, in either of the two formats the zone files use."""
+def _door_info(exit_data, init=None) -> Optional[dict]:
+    """A door on an exit, in either of the two formats the zone files use (`init`: the
+    zone's starting state from doors.normalize, so the cached zonemap never goes stale
+    differently per process; live state comes with map_data)."""
     if not isinstance(exit_data, dict):
         return None
     door = exit_data.get('door')
     if isinstance(door, dict):
-        return {'name': door.get('name', 'door'),
-                'closed': door.get('state') == 'closed' or bool(door.get('closed')),
-                'locked': bool(door.get('locked'))}
+        import doors as door_rules
+        st = init or {'state': door.get('state'), 'locked': door.get('locked')}
+        return {'name': door.get('name', 'door'), 'label': door_rules.label(door),
+                'closed': st.get('state') == 'closed' or bool(door.get('closed')),
+                'locked': bool(st.get('locked'))}
     flags = exit_data.get('flags') or []
     if 'door' in flags:
         name = (exit_data.get('keyword') or 'door').split()[0]
@@ -993,6 +998,8 @@ def build_zonemap(world, zone_num: int) -> Optional[dict]:
             entry = {'to': to, 'kind': 'zone' if tz != zone_num else 'passage'}
             if tz != zone_num:
                 entry['zone'] = tz
+                entry['toName'] = target.name
+                entry['zoneName'] = getattr(target.zone, 'name', '') or ''
                 links.add(tz)
             elif direction in CARDINALS and to in cells:
                 ox, oy, _ = DIR_OFFSETS[direction]
@@ -1000,7 +1007,7 @@ def build_zonemap(world, zone_num: int) -> Optional[dict]:
                 if (cells[to] == (cx + ox, cy + oy) and isinstance(back, dict)
                         and not back.get('hidden') and _get_exit_target_vnum(back) == v):
                     entry['kind'] = 'open'
-            door = _door_info(ed)
+            door = _door_info(ed, (getattr(world, 'door_init', None) or {}).get((v, direction)))
             if door:
                 entry['door'] = door
             exits[direction] = entry
@@ -1149,6 +1156,21 @@ def _mob_uid(entity) -> int:
     return uid
 
 
+def _keys_for(player):
+    """The vnums the player carries or wears, reused for a moment (a payload asks per room)."""
+    import doors as door_rules
+    now = time.monotonic()
+    cached = getattr(player, '_door_keys_cache', None)
+    if cached and now - cached[0] < 0.2:
+        return cached[1]
+    keys = door_rules.carried_keys(player)
+    try:
+        player._door_keys_cache = (now, keys)
+    except Exception:
+        pass
+    return keys
+
+
 def _room_entities(room, vnum, player):
     """Mobs, other players, doors and floor items of one room, as the map payload
     lists them (used for every explored room and for the 3D client's nearby rooms)."""
@@ -1206,18 +1228,15 @@ def _room_entities(room, vnum, player):
                     **_ally_combat(entity, player),
                 })
 
-    # Build door info for exits
+    # Build door info for exits (as this player sees them: can they open the lock?),
+    # leaving out doors on hidden exits they haven't found
     doors = {}
     if hasattr(room, 'exits'):
-        raw_exits = room.exits if isinstance(room.exits, dict) else {}
-        for direction, exit_data in raw_exits.items():
-            if isinstance(exit_data, dict) and 'door' in exit_data:
-                door = exit_data['door']
-                doors[direction] = {
-                    'name': door.get('name', 'door'),
-                    'state': door.get('state', 'open'),
-                    'locked': bool(door.get('locked', False)),
-                }
+        import doors as door_rules
+        keys = _keys_for(player)
+        for direction, exit_data in _iter_visible_exits(room, player):
+            if isinstance(exit_data, dict) and isinstance(exit_data.get('door'), dict):
+                doors[direction] = door_rules.view(exit_data['door'], keys, player)
 
     # Items on ground
     item_list = []
@@ -1404,17 +1423,11 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             if not exit_data:
                 continue
             door = None
-            if isinstance(exit_data, dict) and 'door' in exit_data:
-                d = exit_data['door']
-                import time as _t
-                door = {
-                    'name': d.get('name', 'door'),
-                    'state': d.get('state', 'open'),
-                    'locked': bool(d.get('locked', False)),
-                    'sealed': d.get('sealed_until', 0) > _t.time(),
-                    'barricaded': d.get('barricaded_until', 0) > _t.time(),
-                    'broken': bool(d.get('broken', False)),
-                }
+            if isinstance(exit_data, dict) and isinstance(exit_data.get('door'), dict):
+                import doors as door_rules
+                door = door_rules.view(exit_data['door'], _keys_for(player), player)
+                door.setdefault('sealed', False)
+                door.setdefault('barricaded', False)
             to_vnum = _get_exit_target_vnum(exit_data)
             if not to_vnum and not door:
                 continue   # nothing actually leads anywhere here

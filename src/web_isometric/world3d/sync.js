@@ -14,8 +14,9 @@ export class Sync {
 
   start(vnum) { this.confirmed = vnum; this.queue = []; }
 
-  walked(from, to) {
-    MH.sendCommand(`webmove ${from} ${to}`, false);
+  // `dir`: the exit taken (stairs and a doorway can lead to the same room)
+  walked(from, to, dir = null) {
+    MH.sendCommand(`webmove ${from} ${to}${dir ? ' ' + dir : ''}`, false);
     this.queue.push({ from, to, at: performance.now() });
   }
 

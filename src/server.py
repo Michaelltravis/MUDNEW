@@ -1195,7 +1195,8 @@ class Connection:
         # Echo command back to player so they see what they typed (not the 3D client's
         # internal moves: those are its walking, not something the player typed)
         c = self.config.COLORS
-        if not line.startswith('webmove '):
+        web_internal = line.startswith(('webmove ', 'webdoor '))
+        if not web_internal:
             await self.send(f"{c['cyan']}> {line}{c['reset']}\r\n")
 
         # Handle ! to repeat last command
@@ -1208,8 +1209,9 @@ class Connection:
                 await self.send_prompt()
                 return
 
-        # Store command for ! repeat
-        self.player.last_command = line
+        # Store command for ! repeat (not the 3D client's own walking and door work)
+        if not web_internal:
+            self.player.last_command = line
 
         # Parse command and arguments
         parts = line.split()

@@ -412,7 +412,8 @@ class CommandHandler:
         c = player.config.COLORS
         if 'door' in exit_data:
             door = exit_data['door']
-            door_name = door.get('name', 'door')
+            import doors
+            door_name = doors.label(door)
             is_closed = door.get('state') == 'closed' or door.get('closed', False)
             is_locked = door.get('locked', False)
             
@@ -969,32 +970,57 @@ class CommandHandler:
         try:
             frm, to = int(args[0]), int(args[1])
         except (IndexError, ValueError):
-            await player.send("Usage: webmove <from vnum> <to vnum>")
+            await player.send("Usage: webmove <from vnum> <to vnum> [direction]")
             return
+        hint = args[2].lower() if len(args) > 2 else None
         wm = getattr(player.world, 'web_map', None)
+        direction = None
 
         async def result(ok, reason=''):
             if wm:
                 await wm.notify_event(player, {
-                    'type': 'move_result', 'ok': ok, 'from': frm, 'to': to,
+                    'type': 'move_result', 'ok': ok, 'from': frm, 'to': to, 'dir': direction,
                     'room': getattr(player.room, 'vnum', None), 'reason': reason})
 
         if not player.room or player.room.vnum != frm:
             await result(False, '')          # out of step: the client re-syncs to 'room'
             return
-        direction = None
-        for d, ed in (player.room.exits or {}).items():
+
+        def leads_to(ed):
             if not isinstance(ed, dict):
-                continue
+                return False
             tgt = ed.get('to_room') if 'to_room' in ed else getattr(ed.get('room'), 'vnum', None)
-            if tgt == to:
-                direction = d
-                break
+            return tgt == to
+
+        # the exit the client took (stairs and a doorway can lead to the same room: 3001 has
+        # south and down to 3005), else the first exit that leads there
+        if hint and leads_to((player.room.exits or {}).get(hint)):
+            direction = hint
+        else:
+            direction = next((d for d, ed in (player.room.exits or {}).items() if leads_to(ed)), None)
         if direction is None:
             await result(False, "You can't go that way.")
             return
         # keep what the move prints, so a refusal can be reported in words
         lines = []
+        restore = cls._capture_output(player, lines)
+        player._web_quiet_move = True
+        try:
+            await cls.cmd_move(player, direction)
+        finally:
+            player._web_quiet_move = False
+            restore()
+        ok = bool(player.room) and player.room.vnum == to
+        reason = ''
+        if not ok:
+            text = _re.sub(r'\x1b\[[0-9;]*[A-Za-z]', '', '\n'.join(lines))
+            last = [ln.strip() for ln in text.splitlines() if ln.strip()]
+            reason = last[-1] if last else "You can't go that way."
+        await result(ok, reason)
+
+    @staticmethod
+    def _capture_output(player, lines):
+        """Record what `player` is sent (it is still delivered); returns the undo."""
         had_own = 'send' in player.__dict__
         own = player.__dict__.get('send')
         real_send = player.send
@@ -1004,22 +1030,104 @@ class CommandHandler:
             return await real_send(msg, *a, **k)
 
         player.send = capture
-        player._web_quiet_move = True
-        try:
-            await cls.cmd_move(player, direction)
-        finally:
-            player._web_quiet_move = False
+
+        def restore():
             if had_own:
                 player.send = own
             else:
-                del player.send
-        ok = bool(player.room) and player.room.vnum == to
-        reason = ''
-        if not ok:
-            text = _re.sub(r'\x1b\[[0-9;]*[A-Za-z]', '', '\n'.join(lines))
-            last = [ln.strip() for ln in text.splitlines() if ln.strip()]
-            reason = last[-1] if last else "You can't go that way."
-        await result(ok, reason)
+                player.__dict__.pop('send', None)
+        return restore
+
+    @classmethod
+    async def cmd_webdoor(cls, player: 'Player', args: List[str]):
+        """Internal, for the 3D web client (/play): "webdoor <vnum> <dir> <action>".
+
+        action: open | close | lock | unlock | unlockopen | pick | knock | bash. Runs the
+        ordinary door command on that exit (every rule applies: keys, locks, seals) and
+        answers a structured door_result event on the map socket:
+        {ok, action, vnum, dir, reason, door: {state, locked, broken, rev}, pending, secs}."""
+        import re as _re
+        import doors
+        try:
+            vnum, action = int(args[0]), args[2].lower()
+            d = doors.canon_dir(args[1]) or args[1].lower()
+        except (IndexError, ValueError):
+            await player.send("Usage: webdoor <vnum> <dir> <action>")
+            return
+        wm = getattr(player.world, 'web_map', None)
+        room = player.room
+        ex = (room.exits or {}).get(d) if room else None
+        door = ex.get('door') if ex else None
+
+        async def result(ok, reason='', **extra):
+            if not wm:
+                return
+            info = None
+            if isinstance(door, dict):
+                info = {'state': door.get('state', 'open'), 'locked': bool(door.get('locked')),
+                        'broken': bool(door.get('broken')), 'rev': door.get('rev', 0)}
+            await wm.notify_event(player, {
+                'type': 'door_result', 'ok': ok, 'action': action, 'vnum': vnum, 'dir': d,
+                'room': getattr(player.room, 'vnum', None), 'reason': reason, 'door': info, **extra})
+
+        if not room or room.vnum != vnum:
+            await result(False, '')          # out of step: the client re-syncs
+            return
+        if not isinstance(door, dict):
+            await result(False, "There's no door there.")
+            return
+        hp0 = door.get('hp')
+        lines = []
+        restore = cls._capture_output(player, lines)
+        try:
+            if action == 'open':
+                await cls.cmd_open(player, [d])
+            elif action == 'close':
+                await cls.cmd_close(player, [d])
+            elif action == 'lock':
+                await cls.cmd_lock(player, [d])
+            elif action == 'unlock':
+                await cls.cmd_unlock(player, [d])
+            elif action == 'unlockopen':
+                if door.get('locked'):
+                    await cls.cmd_unlock(player, [d])
+                if not door.get('locked') and door.get('state') == 'closed':
+                    await cls.cmd_open(player, [d])
+            elif action == 'pick':
+                await cls.cmd_pick(player, [d])
+            elif action == 'knock':
+                await cls.cmd_knock(player, [d])
+            elif action == 'bash':
+                await cls._bash_door(player, d)
+            else:
+                lines.append('Unknown door action.')
+        finally:
+            restore()
+        text = _re.sub(r'\x1b\[[0-9;]*[A-Za-z]', '', '\n'.join(lines))
+        said = [ln.strip() for ln in text.splitlines() if ln.strip()]
+        channel = getattr(player, '_door_channel', None) or {}
+        extra = {}
+        if action == 'open':
+            ok = door.get('state') == 'open'
+        elif action == 'close':
+            ok = door.get('state') == 'closed'
+        elif action == 'unlock':
+            ok = not door.get('locked')
+        elif action == 'unlockopen':
+            ok = not door.get('locked') and door.get('state') == 'open'
+        elif action in ('lock', 'pick'):
+            ok = bool(door.get('locked')) if action == 'lock' else False
+            if channel.get('kind') in ('pick', 'lockpick'):
+                ok = True
+                m = _re.search(r'\(~(\d+)s', text)
+                extra = {'pending': True, 'secs': int(m.group(1)) if m else 5}
+        elif action == 'knock':
+            ok = True
+        elif action == 'bash':
+            ok = bool(door.get('broken')) or (door.get('hp') is not None and door.get('hp') != hp0)
+        else:
+            ok = False
+        await result(ok, '' if ok else (said[-1] if said else "Nothing happens."), **extra)
 
     @classmethod
     async def cmd_north(cls, player: 'Player', args: List[str]):
@@ -1079,7 +1187,8 @@ class CommandHandler:
                 door_info = ""
                 if 'door' in exit_data:
                     door = exit_data['door']
-                    door_name = door.get('name', 'door')
+                    import doors
+                    door_name = doors.label(door)
                     state = door.get('state', 'open')
                     locked = door.get('locked', False)
                     if state == 'closed':
@@ -4831,14 +4940,46 @@ class CommandHandler:
 
     @classmethod
     def _door_at(cls, player, args):
-        """Resolve (direction, exit_data, door) from a direction argument."""
+        """Resolve (direction, exit_data, door) from a direction or a door's name."""
         if not args or not player.room:
             return None, None, None
-        d = cls.DIR_ALIAS.get(args[0].lower(), args[0].lower())
-        exit_data = player.room.exits.get(d)
-        if not exit_data or 'door' not in exit_data:
-            return d, None, None
-        return d, exit_data, exit_data['door']
+        import doors
+        d, exit_data, door, err = doors.resolve(player.room, args)
+        if err:
+            return d or cls.DIR_ALIAS.get(args[0].lower(), args[0].lower()), None, None
+        return d, exit_data, door
+
+    @classmethod
+    def _container_named(cls, player, words):
+        """A container carried or in the room whose name starts with every word typed
+        ('open chest', 'close bag'); None when a direction was typed."""
+        import doors
+        words = [w.lower() for w in words if w and w.lower() not in ('the', 'a', 'an')]
+        if not words or doors.has_direction(words):
+            return None
+        for item in list(player.inventory) + list(player.room.items if player.room else []):
+            if getattr(item, 'item_type', None) != 'container':
+                continue
+            vocab = str(getattr(item, 'name', '')).lower().split()
+            if all(any(v.startswith(w) for v in vocab) for w in words):
+                return item
+        return None
+
+    @classmethod
+    async def _door_named(cls, player, args, verb, prefer=None):
+        """(direction, exit_data, door) for a door command, or None after saying why not."""
+        import doors
+        c = player.config.COLORS
+        d, exit_data, door, err = doors.resolve(player.room, args, prefer)
+        if err == 'what':
+            await player.send(f"{verb.capitalize()} what?")
+        elif err == 'noexit':
+            await player.send(f"{c['red']}There's no exit {d}.{c['reset']}")
+        elif err == 'nodoor':
+            await player.send(f"{c['yellow']}There's no door {d}.{c['reset']}")
+        elif err == 'noname':
+            await player.send(f"{c['red']}You don't see a '{' '.join(args)}' to {verb} here.{c['reset']}")
+        return None if err else (d, exit_data, door)
 
     @classmethod
     def _door_max_hp(cls, door):
@@ -4857,22 +4998,12 @@ class CommandHandler:
     async def _break_door_open(cls, player_or_mob, room, d, exit_data, door, config):
         """Shared breakage: the door bursts open (broken) on BOTH sides."""
         c = config.COLORS
-        name = door.get('name', 'door')
-        door['state'] = 'open'
-        door['locked'] = False
-        door['broken'] = True
-        door.pop('sealed_until', None)
-        door.pop('barricaded_until', None)
-        door.pop('hp', None)
+        import doors
+        name = doors.label(door)
+        doors.apply(room, d, state='open', locked=False, broken=True,
+                    sealed_until=None, barricaded_until=None, hp=None)
         target_room = exit_data.get('room') if exit_data else None
         if target_room:
-            opp = config.DIRECTIONS.get(d, {}).get('opposite')
-            rev = target_room.exits.get(opp) if opp else None
-            if rev and 'door' in rev:
-                rev['door'].update({'state': 'open', 'locked': False, 'broken': True})
-                rev['door'].pop('sealed_until', None)
-                rev['door'].pop('barricaded_until', None)
-                rev['door'].pop('hp', None)
             await target_room.send_to_room(f"{c['yellow']}💥 The {name} bursts open in a shower of splinters!{c['reset']}")
         if room:
             await room.send_to_room(f"{c['bright_yellow']}💥 CRACK! The {name} hangs broken on its hinges!{c['reset']}")
@@ -4895,7 +5026,8 @@ class CommandHandler:
             door['hp'] = max_hp
         chip = player.str * 2 + player.skills.get('bash', 0) // 2 + random.randint(5, 20)
         door['hp'] -= chip
-        name = door.get('name', 'door')
+        import doors
+        name = doors.label(door)
         if door['hp'] <= 0:
             await player.send(f"{c['bright_yellow']}💥 CRACK! You smash the {name} open!{c['reset']}")
             await cls._break_door_open(player, player.room, d, exit_data, door, player.config)
@@ -11586,13 +11718,8 @@ class CommandHandler:
         c = player.config.COLORS
         target_name = ' '.join(args).lower()
 
-        # Check for container first
-        container = None
-        for item in player.inventory + player.room.items:
-            if target_name in item.name.lower():
-                if hasattr(item, 'item_type') and item.item_type == 'container':
-                    container = item
-                    break
+        # a container only when no direction was named ("open n" never opens a chest)
+        container = cls._container_named(player, args)
 
         if container:
             if not hasattr(container, 'is_closed'):
@@ -11616,54 +11743,26 @@ class CommandHandler:
             )
             return
 
-        # Check for door - handle "door north", "door n", "north", or door names like "trapdoor"
-        direction = None
-        door = None
-        exit_data = None
-
-        # Remove "door" from the target name if present
-        if target_name.startswith('door '):
-            target_name = target_name[5:].strip()
-
-        # First try to match by direction
-        for dir_name in player.config.DIRECTIONS.keys():
-            if target_name == dir_name or target_name in dir_name:
-                direction = dir_name
-                break
-
-        if direction and direction in player.room.exits and player.room.exits[direction]:
-            exit_data = player.room.exits[direction]
-            if 'door' in exit_data:
-                door = exit_data['door']
-
-        # If no door found by direction, try to find by door name
-        if not door:
-            for dir_name, ex_data in player.room.exits.items():
-                if ex_data and 'door' in ex_data:
-                    door_obj = ex_data['door']
-                    door_name = door_obj.get('name', 'door').lower()
-                    if target_name in door_name or door_name in target_name:
-                        door = door_obj
-                        exit_data = ex_data
-                        direction = dir_name
-                        break
-
-        if not door:
-            await player.send(f"{c['red']}You don't see a '{target_name}' to open here.{c['reset']}")
+        # The door: by direction ("open s", "open door north") or by name ("open trapdoor")
+        import doors
+        found = await cls._door_named(player, args, 'open', prefer=lambda dr: dr.get('state') == 'closed')
+        if not found:
             return
+        direction, exit_data, door = found
+        name = doors.label(door)
 
         if door.get('state') != 'closed':
-            await player.send(f"{c['yellow']}The door is already open.{c['reset']}")
+            await player.send(f"{c['yellow']}The {name} is already open.{c['reset']}")
             return
 
         # Check if locked
         if door.get('locked', False):
-            await player.send(f"{c['red']}The door is locked.{c['reset']}")
+            await player.send(f"{c['red']}The {name} is locked.{c['reset']}")
             return
 
         # Check if magically blocked
         if door.get('magically_blocked', False):
-            await player.send(f"{c['red']}The door is magically sealed!{c['reset']}")
+            await player.send(f"{c['red']}The {name} is magically sealed!{c['reset']}")
             return
 
         # Environmental door tactics: arcane seals and braced barricades hold
@@ -11675,19 +11774,12 @@ class CommandHandler:
             await player.send(f"{c['yellow']}The door is barricaded from the other side!{c['reset']}")
             return
 
-        door['state'] = 'open'
-        await player.send(f"{c['green']}You open the {door.get('name', 'door')} {direction}.{c['reset']}")
+        doors.apply(player.room, direction, state='open')      # both sides, pushed to web clients
+        await player.send(f"{c['green']}You open the {name} {direction}.{c['reset']}")
         await player.room.send_to_room(
-            f"{player.name} opens the {door.get('name', 'door')} {direction}.",
+            f"{player.name} opens the {name} {direction}.",
             exclude=[player]
         )
-
-        # Update the other side of the door
-        next_room = exit_data.get('room')
-        if next_room:
-            opposite_dir = player.config.DIRECTIONS[direction]['opposite']
-            if opposite_dir in next_room.exits and 'door' in next_room.exits[opposite_dir]:
-                next_room.exits[opposite_dir]['door']['state'] = 'open'
 
     @classmethod
     async def cmd_close(cls, player: 'Player', args: List[str]):
@@ -11699,13 +11791,8 @@ class CommandHandler:
         c = player.config.COLORS
         target_name = ' '.join(args).lower()
 
-        # Check for container first
-        container = None
-        for item in player.inventory + player.room.items:
-            if target_name in item.name.lower():
-                if hasattr(item, 'item_type') and item.item_type == 'container':
-                    container = item
-                    break
+        # a container only when no direction was named ("open n" never opens a chest)
+        container = cls._container_named(player, args)
 
         if container:
             if not hasattr(container, 'is_closed'):
@@ -11724,64 +11811,28 @@ class CommandHandler:
             )
             return
 
-        # Check for door - handle "door north", "door n", "north", or door names like "trapdoor"
-        direction = None
-        door = None
-        exit_data = None
-
-        # Remove "door" from the target name if present
-        if target_name.startswith('door '):
-            target_name = target_name[5:].strip()
-
-        # First try to match by direction
-        for dir_name in player.config.DIRECTIONS.keys():
-            if target_name == dir_name or target_name in dir_name:
-                direction = dir_name
-                break
-
-        if direction and direction in player.room.exits and player.room.exits[direction]:
-            exit_data = player.room.exits[direction]
-            if 'door' in exit_data:
-                door = exit_data['door']
-
-        # If no door found by direction, try to find by door name
-        if not door:
-            for dir_name, ex_data in player.room.exits.items():
-                if ex_data and 'door' in ex_data:
-                    door_obj = ex_data['door']
-                    door_name = door_obj.get('name', 'door').lower()
-                    if target_name in door_name or door_name in target_name:
-                        door = door_obj
-                        exit_data = ex_data
-                        direction = dir_name
-                        break
-
-        if not door:
-            await player.send(f"{c['red']}You don't see a '{target_name}' to close here.{c['reset']}")
+        import doors
+        found = await cls._door_named(player, args, 'close', prefer=lambda dr: dr.get('state') != 'closed')
+        if not found:
             return
+        direction, exit_data, door = found
+        name = doors.label(door)
 
         # Check if broken
         if door.get('broken', False):
-            await player.send(f"{c['red']}The door is broken and cannot be closed!{c['reset']}")
+            await player.send(f"{c['red']}The {name} is broken and cannot be closed!{c['reset']}")
             return
 
         if door.get('state') == 'closed':
-            await player.send(f"{c['yellow']}The door is already closed.{c['reset']}")
+            await player.send(f"{c['yellow']}The {name} is already closed.{c['reset']}")
             return
 
-        door['state'] = 'closed'
-        await player.send(f"{c['green']}You close the {door.get('name', 'door')} {direction}.{c['reset']}")
+        doors.apply(player.room, direction, state='closed')
+        await player.send(f"{c['green']}You close the {name} {direction}.{c['reset']}")
         await player.room.send_to_room(
-            f"{player.name} closes the {door.get('name', 'door')} {direction}.",
+            f"{player.name} closes the {name} {direction}.",
             exclude=[player]
         )
-
-        # Update the other side of the door
-        next_room = exit_data.get('room')
-        if next_room:
-            opposite_dir = player.config.DIRECTIONS[direction]['opposite']
-            if opposite_dir in next_room.exits and 'door' in next_room.exits[opposite_dir]:
-                next_room.exits[opposite_dir]['door']['state'] = 'closed'
 
     @classmethod
     async def cmd_lock(cls, player: 'Player', args: List[str]):
@@ -11793,13 +11844,8 @@ class CommandHandler:
         c = player.config.COLORS
         target_name = ' '.join(args).lower()
 
-        # Check for container first
-        container = None
-        for item in player.inventory + player.room.items:
-            if target_name in item.name.lower():
-                if hasattr(item, 'item_type') and item.item_type == 'container':
-                    container = item
-                    break
+        # a container only when no direction was named ("open n" never opens a chest)
+        container = cls._container_named(player, args)
 
         if container:
             if not hasattr(container, 'is_locked'):
@@ -11832,36 +11878,16 @@ class CommandHandler:
             await player.send(f"{c['green']}*Click* You lock {container.short_desc}.{c['reset']}")
             return
 
-        # Check for door - handle "door north", "door n", or just "north"
-        direction = None
-
-        # Remove "door" from the target name if present
-        if target_name.startswith('door '):
-            target_name = target_name[5:].strip()
-
-        for dir_name in player.config.DIRECTIONS.keys():
-            if target_name == dir_name or target_name in dir_name:
-                direction = dir_name
-                break
-
-        if not direction:
-            await player.send(f"{c['red']}You don't see '{target_name}' here.{c['reset']}")
+        # The door: by direction ("lock s") or by name ("lock wooden", "lock door north")
+        import doors
+        found = await cls._door_named(player, args, 'lock', prefer=lambda dr: not dr.get('locked'))
+        if not found:
             return
-
-        if direction not in player.room.exits or not player.room.exits[direction]:
-            await player.send(f"{c['red']}There's no exit {direction}.{c['reset']}")
-            return
-
-        exit_data = player.room.exits[direction]
-
-        if 'door' not in exit_data:
-            await player.send(f"{c['yellow']}There's no door {direction}.{c['reset']}")
-            return
-
-        door = exit_data['door']
+        direction, exit_data, door = found
+        name = doors.label(door)
 
         if door.get('locked', False):
-            await player.send(f"{c['yellow']}The door is already locked.{c['reset']}")
+            await player.send(f"{c['yellow']}The {name} is already locked.{c['reset']}")
             return
 
         # Check if closed
@@ -11869,14 +11895,9 @@ class CommandHandler:
             await player.send(f"{c['red']}You must close it first.{c['reset']}")
             return
 
-        # Check for key
-        key_vnum = door.get('key_vnum')
-        has_key = False
-        if key_vnum:
-            for item in player.inventory:
-                if hasattr(item, 'vnum') and item.vnum == key_vnum:
-                    has_key = True
-                    break
+        # Check for key (carried or worn; a lock without a key is anyone's to work)
+        key_vnum = doors.key_vnum(door)
+        has_key = doors.has_key(door, doors.carried_keys(player))
 
         if key_vnum and not has_key:
             # no key: a lockpicker can force the tumblers SHUT — but it takes
@@ -11904,12 +11925,8 @@ class CommandHandler:
                     await player.send(f"{c['red']}Your picks slip — the work is ruined!{c['reset']}")
                     return
                 if random.randint(1, 100) <= min(95, pick_skill + (player.dex - 10) * 2):
-                    _door['locked'] = True
-                    nr = _exit.get('room')
-                    if nr:
-                        od = player.config.DIRECTIONS[_dir]['opposite']
-                        if od in nr.exits and 'door' in nr.exits[od]:
-                            nr.exits[od]['door']['locked'] = True
+                    if ch['room'] is not None and ch['room'].exits.get(_dir, {}).get('door') is _door:
+                        doors.apply(ch['room'], _dir, locked=True)
                     await player.send(f"{c['bright_green']}*Click* The tumblers seat — locked without a key.{c['reset']}")
                     if hasattr(player, 'improve_skill'):
                         await player.improve_skill('pick_lock', difficulty=3)
@@ -11918,15 +11935,8 @@ class CommandHandler:
             _aio.create_task(_finish())
             return
 
-        door['locked'] = True
-        await player.send(f"{c['green']}*Click* You lock the {door.get('name', 'door')} {direction}.{c['reset']}")
-
-        # Update the other side of the door
-        next_room = exit_data.get('room')
-        if next_room:
-            opposite_dir = player.config.DIRECTIONS[direction]['opposite']
-            if opposite_dir in next_room.exits and 'door' in next_room.exits[opposite_dir]:
-                next_room.exits[opposite_dir]['door']['locked'] = True
+        doors.apply(player.room, direction, locked=True)
+        await player.send(f"{c['green']}*Click* You lock the {name} {direction}.{c['reset']}")
 
     @classmethod
     async def cmd_unlock(cls, player: 'Player', args: List[str]):
@@ -11938,13 +11948,8 @@ class CommandHandler:
         c = player.config.COLORS
         target_name = ' '.join(args).lower()
 
-        # Check for container first
-        container = None
-        for item in player.inventory + player.room.items:
-            if target_name in item.name.lower():
-                if hasattr(item, 'item_type') and item.item_type == 'container':
-                    container = item
-                    break
+        # a container only when no direction was named ("open n" never opens a chest)
+        container = cls._container_named(player, args)
 
         if container:
             if not hasattr(container, 'is_locked'):
@@ -11972,60 +11977,24 @@ class CommandHandler:
             await player.send(f"{c['green']}*Click* You unlock {container.short_desc}.{c['reset']}")
             return
 
-        # Check for door - handle "door north", "door n", or just "north"
-        direction = None
-
-        # Remove "door" from the target name if present
-        if target_name.startswith('door '):
-            target_name = target_name[5:].strip()
-
-        for dir_name in player.config.DIRECTIONS.keys():
-            if target_name == dir_name or target_name in dir_name:
-                direction = dir_name
-                break
-
-        if not direction:
-            await player.send(f"{c['red']}You don't see '{target_name}' here.{c['reset']}")
+        import doors
+        found = await cls._door_named(player, args, 'unlock', prefer=lambda dr: bool(dr.get('locked')))
+        if not found:
             return
-
-        if direction not in player.room.exits or not player.room.exits[direction]:
-            await player.send(f"{c['red']}There's no exit {direction}.{c['reset']}")
-            return
-
-        exit_data = player.room.exits[direction]
-
-        if 'door' not in exit_data:
-            await player.send(f"{c['yellow']}There's no door {direction}.{c['reset']}")
-            return
-
-        door = exit_data['door']
+        direction, exit_data, door = found
+        name = doors.label(door)
 
         if not door.get('locked', False):
-            await player.send(f"{c['yellow']}The door is already unlocked.{c['reset']}")
+            await player.send(f"{c['yellow']}The {name} is already unlocked.{c['reset']}")
             return
 
-        # Check for key
-        key_vnum = door.get('key_vnum')
-        has_key = False
-        if key_vnum:
-            for item in player.inventory:
-                if hasattr(item, 'vnum') and item.vnum == key_vnum:
-                    has_key = True
-                    break
-
-        if key_vnum and not has_key:
+        # Check for key (carried or worn; a lock without a key is anyone's to work)
+        if not doors.has_key(door, doors.carried_keys(player)):
             await player.send(f"{c['red']}You don't have the key.{c['reset']}")
             return
 
-        door['locked'] = False
-        await player.send(f"{c['green']}*Click* You unlock the {door.get('name', 'door')} {direction}.{c['reset']}")
-
-        # Update the other side of the door
-        next_room = exit_data.get('room')
-        if next_room:
-            opposite_dir = player.config.DIRECTIONS[direction]['opposite']
-            if opposite_dir in next_room.exits and 'door' in next_room.exits[opposite_dir]:
-                next_room.exits[opposite_dir]['door']['locked'] = False
+        doors.apply(player.room, direction, locked=False)
+        await player.send(f"{c['green']}*Click* You unlock the {name} {direction}.{c['reset']}")
 
     @classmethod
     async def cmd_pick(cls, player: 'Player', args: List[str]):
@@ -12044,6 +12013,19 @@ class CommandHandler:
         if getattr(player, '_door_channel', None):
             await player.send(f"{c['yellow']}You're already busy with a lock!{c['reset']}")
             return
+        # make sure there is a lock to work before crouching over it
+        if not cls._container_named(player, args):
+            import doors
+            found = await cls._door_named(player, args, 'pick', prefer=lambda dr: bool(dr.get('locked')))
+            if not found:
+                return
+            door = found[2]
+            if not door.get('locked', False):
+                await player.send(f"{c['yellow']}The {doors.label(door)} isn't locked.{c['reset']}")
+                return
+            if door.get('pickproof'):
+                await player.send(f"{c['yellow']}This lock is beyond any pick.{c['reset']}")
+                return
         duration = max(2, 9 - player.dex // 3 - pick_skill0 // 15)
         await player.send(f"{c['yellow']}You crouch over the lock, picks whispering... (~{duration}s){c['reset']}")
         import asyncio as _aio
@@ -12072,13 +12054,8 @@ class CommandHandler:
 
         target_name = ' '.join(args).lower()
 
-        # Check for container first
-        container = None
-        for item in player.inventory + player.room.items:
-            if target_name in item.name.lower():
-                if hasattr(item, 'item_type') and item.item_type == 'container':
-                    container = item
-                    break
+        # a container only when no direction was named ("open n" never opens a chest)
+        container = cls._container_named(player, args)
 
         if container:
             if not hasattr(container, 'is_locked') or not container.is_locked:
@@ -12101,36 +12078,19 @@ class CommandHandler:
                 await player.send(f"{c['yellow']}You fail to pick the lock.{c['reset']}")
             return
 
-        # Check for door - handle "door north", "door n", or just "north"
-        direction = None
-
-        # Remove "door" from the target name if present
-        if target_name.startswith('door '):
-            target_name = target_name[5:].strip()
-
-        for dir_name in player.config.DIRECTIONS.keys():
-            if target_name == dir_name or target_name in dir_name:
-                direction = dir_name
-                break
-
-        if not direction:
-            await player.send(f"{c['red']}You don't see '{target_name}' here.{c['reset']}")
+        import doors
+        found = await cls._door_named(player, args, 'pick', prefer=lambda dr: bool(dr.get('locked')))
+        if not found:
             return
-
-        if direction not in player.room.exits or not player.room.exits[direction]:
-            await player.send(f"{c['red']}There's no exit {direction}.{c['reset']}")
-            return
-
-        exit_data = player.room.exits[direction]
-
-        if 'door' not in exit_data:
-            await player.send(f"{c['yellow']}There's no door {direction}.{c['reset']}")
-            return
-
-        door = exit_data['door']
+        direction, exit_data, door = found
+        name = doors.label(door)
 
         if not door.get('locked', False):
-            await player.send(f"{c['yellow']}The door isn't locked.{c['reset']}")
+            await player.send(f"{c['yellow']}The {name} isn't locked.{c['reset']}")
+            return
+
+        if door.get('pickproof'):
+            await player.send(f"{c['yellow']}This lock is beyond any pick.{c['reset']}")
             return
 
         # Get pick difficulty
@@ -12139,10 +12099,10 @@ class CommandHandler:
         # Attempt to pick
         roll = random.randint(1, 100)
         if roll <= pick_skill and roll + pick_skill >= difficulty:
-            door['locked'] = False
-            await player.send(f"{c['bright_green']}*Click* You successfully pick the lock on the {door.get('name', 'door')}!{c['reset']}")
+            doors.apply(player.room, direction, locked=False)       # both sides
+            await player.send(f"{c['bright_green']}*Click* You successfully pick the lock on the {name}!{c['reset']}")
             await player.room.send_to_room(
-                f"{player.name} fiddles with the {door.get('name', 'door')} {direction}.",
+                f"{player.name} fiddles with the {name} {direction}.",
                 exclude=[player]
             )
         else:
@@ -14416,20 +14376,14 @@ class CommandHandler:
             await player.send(f"{c['yellow']}Knock on which door?{c['reset']}")
             return
         
-        direction = args[0].lower()
-        
-        if not player.room or direction not in player.room.exits:
-            await player.send(f"{c['red']}There's no exit in that direction.{c['reset']}")
+        import doors
+        if not player.room:
             return
-        
-        exit_data = player.room.exits[direction]
-        
-        if 'door' not in exit_data:
-            await player.send(f"{c['yellow']}There's no door there.{c['reset']}")
+        found = await cls._door_named(player, args, 'knock on')
+        if not found:
             return
-        
-        door = exit_data['door']
-        door_name = door.get('name', 'door')
+        direction, exit_data, door = found
+        door_name = doors.label(door)
         
         await player.send(f"{c['cyan']}You knock on the {door_name}.{c['reset']}")
         if player.room:

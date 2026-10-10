@@ -276,10 +276,19 @@ export function buildRoom(layout, ox, oz, kits, room) {
   return { group, torches, layout, ox, oz, doors, owned };
 }
 
-// ---- exits: doors in shared openings, glowing markers on passages, stairs ----
+// ---- exits: doors in their doorways, glowing markers on passages, stairs and trapdoors ----
+// Doors of shared openings are built by the room on the south/east side (one mesh per
+// doorway); a door on a passage (a doorway whose rooms don't sit side by side) stands in
+// this room's gap; a door on stairs is a trapdoor hatch over them. Every door mesh has
+// userData.setOpen(open) and userData.setLocked(locked) (zone.setDoor drives both).
 function exitFeatures(group, layout, ox, oz, room, kits, owned) {
   const doors = {};
   const zone = room.zoneRef;
+  const where = e => {
+    const t = zone && zone.rooms.get(e.to);
+    if (t) return t.name;
+    return e.kind === 'zone' ? (e.zoneName || e.toName || 'another region') : 'onward';
+  };
   for (const [dir, e] of Object.entries(room.data.exits)) {
     const g = layout.gaps[dir];
     if (CARD[dir] && g) {
@@ -289,13 +298,14 @@ function exitFeatures(group, layout, ox, oz, room, kits, owned) {
       // the boundary line of this side of the room
       const edge = dir === 'north' ? 0 : dir === 'south' ? ROOM_H : dir === 'west' ? 0 : ROOM_W;
       const [x, z] = horiz ? [ox + mid, oz + edge] : [ox + edge, oz + mid];
-      if (e.kind === 'open' && e.door && (dir === 'south' || dir === 'east')) {
+      const info = room.doors[dir];
+      if (e.door && (e.kind !== 'open' || dir === 'south' || dir === 'east')) {
         const d = makeDoor(span, horiz);
         d.position.set(x, 0, z);
-        d.userData.setOpen(!(room.doors[dir] && room.doors[dir].closed));
         group.add(d);
         doors[dir] = d;
-      } else if (e.kind !== 'open') {
+      }
+      if (e.kind !== 'open') {
         const zoneExit = e.kind === 'zone';
         const inward = horiz ? (dir === 'north' ? 0.35 : -0.35) : (dir === 'west' ? 0.35 : -0.35);
         const m = new THREE.Mesh(CURTAIN_GEO, zoneExit ? CURTAIN_GOLD : CURTAIN_BLUE);
@@ -303,25 +313,50 @@ function exitFeatures(group, layout, ox, oz, room, kits, owned) {
         m.position.set(horiz ? x : x + inward, 1.25, horiz ? z + inward : z);
         if (!horiz) m.rotation.y = Math.PI / 2;
         group.add(m);
-        const target = zone && zone.rooms.get(e.to);
-        const label = zoneExit ? 'To another region' : `↗ ${target ? target.name : 'Onward'}`;
+        const label = zoneExit ? `↗ ${where(e)}` : `↗ ${where(e)}`;
         const sp = labelSprite(label, zoneExit ? '#ffd88a' : '#cfe6ff', owned);
         sp.position.set(m.position.x, 2.9, m.position.z);
         group.add(sp);
+        // a closed door hides the glow behind it
+        if (doors[dir]) {
+          const setOpen = doors[dir].userData.setOpen;
+          doors[dir].userData.setOpen = open => { setOpen(open); m.visible = open; };
+        }
+      }
+      if (doors[dir] && info) {
+        doors[dir].userData.setOpen(!info.closed);
+        doors[dir].userData.setLocked(!!(info.closed && info.locked));
       }
     }
   }
   for (const [key, t] of [['up', layout.stairsUp], ['down', layout.stairsDown]]) {
     if (!t) continue;
-    const st = kits.dungeon.get('stairs');
-    if (st) for (const p of st.parts) {
-      const mesh = new THREE.Mesh(p.geometry, p.material);
-      mesh.applyMatrix4(trs(ox + t.x + 0.5, key === 'down' ? -0.9 : 0, oz + t.y + 0.5, key === 'up' ? Math.PI : 0, 0.42));
-      mesh.castShadow = mesh.receiveShadow = true;
-      group.add(mesh);
+    const cx = ox + t.x + 0.5, cz = oz + t.y + 0.5;
+    const e = room.data.exits[key];
+    if (key === 'up') {
+      // the KayKit staircase climbs toward its -z; turned so the bottom step faces west (into
+      // the room, where you arrive) and centred on the stairs tile
+      const st = kits.dungeon.get('stairs');
+      const sc = 0.4;
+      if (st) for (const p of st.parts) {
+        const mesh = new THREE.Mesh(p.geometry, p.material);
+        mesh.applyMatrix4(trs(cx + 2.0 * sc, 0, cz, -Math.PI / 2, sc));
+        mesh.castShadow = mesh.receiveShadow = true;
+        group.add(mesh);
+      }
+    } else {
+      group.add(stairwell(cx, cz));
     }
-    const sp = labelSprite(key === 'up' ? '▲ Up' : '▼ Down', '#e8e2c8', owned);
-    sp.position.set(ox + t.x + 0.5, 2.6, oz + t.y + 0.5);
+    if (e && e.door) {
+      const h = makeHatch(key, cx, cz);
+      group.add(h);
+      doors[key] = h;
+      const info = room.doors[key];
+      if (info) { h.userData.setOpen(!info.closed); h.userData.setLocked(!!(info.closed && info.locked)); }
+    }
+    const zoneExit = e && e.kind === 'zone';
+    const sp = labelSprite(`${key === 'up' ? '▲ Up' : '▼ Down'} · ${e ? where(e) : ''}`, zoneExit ? '#ffd88a' : '#e8e2c8', owned);
+    sp.position.set(cx, key === 'up' ? 2.9 : 2.2, cz);
     group.add(sp);
   }
   for (const pt of layout.portals || []) {
@@ -336,11 +371,40 @@ function exitFeatures(group, layout, ox, oz, room, kits, owned) {
   return doors;
 }
 
-// a plank door (double for wide openings) that swings open on its hinges
+// a way down: a dark opening in the floor with a stone rim and steps fading into the dark
+// (it descends westward, away from where you arrive)
+function stairwell(cx, cz) {
+  const g = new THREE.Group();
+  const W = 1.7, D = 2.0;
+  const hole = new THREE.Mesh(PLANE_GEO, WELL_MAT);
+  hole.scale.set(D, W, 1);
+  hole.rotation.x = -Math.PI / 2;
+  hole.position.set(cx, 0.012, cz);
+  hole.renderOrder = 2;
+  g.add(hole);
+  for (let i = 0; i < 4; i++) {
+    const step = new THREE.Mesh(STEP_GEO, STEP_MATS[i]);
+    step.scale.set(D / 4 * 0.92, 1, W * 0.9);
+    step.position.set(cx + D / 2 - (i + 0.5) * D / 4, 0.014 + 0.001 * i, cz);
+    step.renderOrder = 3;
+    g.add(step);
+  }
+  for (const [x, z, sx, sz] of [[cx, cz - W / 2 - 0.07, D + 0.28, 0.14], [cx, cz + W / 2 + 0.07, D + 0.28, 0.14], [cx - D / 2 - 0.07, cz, 0.14, W]]) {
+    const rim = new THREE.Mesh(RIM_GEO, RIM_MAT);
+    rim.scale.set(sx, 1, sz);
+    rim.position.set(x, 0.06, z);
+    rim.castShadow = rim.receiveShadow = true;
+    g.add(rim);
+  }
+  return g;
+}
+
+// a plank door (double for wide openings) that swings open on its hinges; locked, it shows
+// iron bands and a padlock
 function makeDoor(span, horiz) {
   const g = new THREE.Group();
   const leaves = span > 5.5 ? 2 : 1, w = span / leaves;
-  const parts = [];
+  const parts = [], lockBits = [];
   for (let i = 0; i < leaves; i++) {
     const hinge = new THREE.Group();
     const along = -span / 2 + (i === 0 ? 0 : span);
@@ -349,12 +413,63 @@ function makeDoor(span, horiz) {
     leaf.position.x = i === 0 ? w / 2 : -w / 2;
     leaf.castShadow = leaf.receiveShadow = true;
     hinge.add(leaf);
+    for (const y of [0.55, 1.85]) {
+      const band = new THREE.Mesh(BAND_GEO, IRON_MAT);
+      band.scale.set(w * 0.96, 1, 1);
+      band.position.set(leaf.position.x, y, 0);
+      hinge.add(band);
+      lockBits.push(band);
+    }
+    if (i === 0) {
+      const lock = new THREE.Mesh(LOCK_GEO, LOCK_MAT);
+      lock.position.set(leaves === 2 ? w - 0.12 : w - 0.28, 1.15, 0);
+      hinge.add(lock);
+      lockBits.push(lock);
+    }
     hinge.position.x = along;
     g.add(hinge);
     parts.push({ hinge, sign: i === 0 ? 1 : -1 });
   }
   if (!horiz) g.rotation.y = Math.PI / 2;
-  g.userData.setOpen = open => { for (const p of parts) p.hinge.rotation.y = open ? p.sign * -1.45 : 0; };
+  g.userData.open = true;
+  g.userData.setOpen = open => { g.userData.open = open; for (const p of parts) p.hinge.rotation.y = open ? p.sign * -1.45 : 0; };
+  g.userData.setLocked = locked => { for (const b of lockBits) b.visible = !!locked; };
+  g.userData.setLocked(false);
+  return g;
+}
+
+// a trapdoor over stairs: flat on the floor over the way down, or a lid at the top of the
+// way up; it swings up on a hinge along its west edge
+function makeHatch(key, cx, cz) {
+  const g = new THREE.Group();
+  const W = key === 'down' ? 1.8 : 1.5, D = key === 'down' ? 2.1 : 1.2;
+  const hinge = new THREE.Group();
+  const lid = new THREE.Mesh(HATCH_GEO, DOOR_MAT);
+  lid.scale.set(D, 1, W);
+  lid.position.x = D / 2;
+  lid.castShadow = lid.receiveShadow = true;
+  hinge.add(lid);
+  const lockBits = [];
+  for (const z of [-W * 0.3, W * 0.3]) {
+    const band = new THREE.Mesh(BAND_GEO, IRON_MAT);
+    band.scale.set(D * 0.96, 0.6, 0.8);
+    band.rotation.x = Math.PI / 2;
+    band.position.set(D / 2, 0.06, z);
+    hinge.add(band);
+    lockBits.push(band);
+  }
+  const lock = new THREE.Mesh(LOCK_GEO, LOCK_MAT);
+  lock.rotation.x = -Math.PI / 2;
+  lock.position.set(D - 0.2, 0.08, 0);
+  hinge.add(lock);
+  lockBits.push(lock);
+  // the up hatch sits at the top of the staircase (whose top is its east end)
+  hinge.position.set(key === 'down' ? cx - D / 2 : cx + 0.15, key === 'down' ? 0.03 : 2.05, cz);
+  g.add(hinge);
+  g.userData.open = true;
+  g.userData.setOpen = open => { g.userData.open = open; hinge.rotation.z = open ? 1.75 : 0; };
+  g.userData.setLocked = locked => { for (const b of lockBits) b.visible = !!locked; };
+  g.userData.setLocked(false);
   return g;
 }
 
@@ -400,6 +515,18 @@ const PORTAL_GEO = new THREE.RingGeometry(0.55, 0.85, 32);
 const PORTAL_MAT = new THREE.MeshBasicMaterial({ color: new THREE.Color(1.6, 0.9, 2.4), transparent: true, opacity: 0.85,
   blending: THREE.AdditiveBlending, depthWrite: false });
 const DOOR_GEO = new THREE.BoxGeometry(1, 2.4, 0.18).translate(0, 1.2, 0);
+const BAND_GEO = new THREE.BoxGeometry(1, 0.1, 0.24);
+const LOCK_GEO = new THREE.BoxGeometry(0.2, 0.26, 0.3);
+const HATCH_GEO = new THREE.BoxGeometry(1, 0.09, 1).translate(0, 0.045, 0);
+const PLANE_GEO = new THREE.PlaneGeometry(1, 1);
+const STEP_GEO = new THREE.PlaneGeometry(1, 1).rotateX(-Math.PI / 2);
+const RIM_GEO = new THREE.BoxGeometry(1, 0.12, 1);
+const IRON_MAT = new THREE.MeshStandardMaterial({ color: 0x2c2c30, roughness: 0.55, metalness: 0.7 });
+const LOCK_MAT = new THREE.MeshStandardMaterial({ color: 0xb08a3a, roughness: 0.35, metalness: 0.85, emissive: 0x2a1c04 });
+const WELL_MAT = new THREE.MeshBasicMaterial({ color: 0x050407, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 });
+const STEP_MATS = [0x4a4440, 0x2e2a28, 0x1a1817, 0x0e0d0d].map(c => new THREE.MeshStandardMaterial({ color: c, roughness: 0.95,
+  polygonOffset: true, polygonOffsetFactor: -3, polygonOffsetUnits: -3 }));
+const RIM_MAT = new THREE.MeshStandardMaterial({ color: 0x77736c, roughness: 0.9 });
 const DOOR_MAT = new THREE.MeshStandardMaterial({ color: 0x6b4426, roughness: 0.85 });
 const GROUND_MAT = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.95, metalness: 0 });
 const WATER_GEO = new THREE.PlaneGeometry(1, 1).rotateX(-Math.PI / 2);

@@ -122,7 +122,7 @@
       bus.emit('env.channel', { secs: Number(m[1]), label, line });
       return;
     }
-    if (/is interrupted — the pile|rite is broken|picks slip|abandon the work|wedge the last piece|last sigil flares|tumblers seat|tumblers refuse/i.test(line)) {
+    if (/is interrupted — the pile|rite is broken|picks slip|abandon the work|wedge the last piece|last sigil flares|tumblers seat|tumblers refuse|successfully pick the lock|fail to pick the lock|beyond any pick/i.test(line)) {
       bus.emit('env.channel.end', { line });
       // fall through: these also read well in the feed
     }

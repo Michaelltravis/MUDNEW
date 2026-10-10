@@ -19,6 +19,8 @@ export class Controller {
     this.yaw = 0;
     this.keys = new Set();
     this.path = null;                    // [{x, z}] waypoints
+    this.goal = null;                    // the passage a click path was sent to: {room, dir}
+    this.avoidDefault = null;            // (tx, tz) => true for tiles paths go around (stairs)
     this.lock = 0;                       // seconds of attack wind-down
     this.enabled = true;
     this.onArrive = null;
@@ -27,7 +29,7 @@ export class Controller {
       const k = e.key.toLowerCase();
       if (['w', 'a', 's', 'd', 'arrowup', 'arrowdown', 'arrowleft', 'arrowright', 'shift'].includes(k)) {
         this.keys.add(k);
-        if (k !== 'shift') this.path = null;
+        if (k !== 'shift') { this.path = null; this.goal = null; }
         e.preventDefault();
       }
     };
@@ -47,13 +49,25 @@ export class Controller {
     return ray.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0, 1, 0), 0), hit) ? hit : null;
   }
 
-  walkTo(x, z, onArrive) {
-    const path = findPath(this.pos.x, this.pos.z, x, z, (ax, az, bx, bz) => this.step(ax, az, bx, bz));
+  // walk there along a path; `avoid(tx, tz)` marks tiles to go around (stairs you did not
+  // click), `goal` names the passage the path is meant to take
+  walkTo(x, z, onArrive, { avoid = this.avoidDefault, goal = null } = {}) {
+    const gx = Math.floor(x), gz = Math.floor(z);
+    const step = (ax, az, bx, bz) => this.step(ax, az, bx, bz) && !(avoid && !(bx === gx && bz === gz) && avoid(bx, bz));
+    const path = findPath(this.pos.x, this.pos.z, x, z, step);
     this.path = path && path.length ? path : [{ x, z }];
     this.onArrive = onArrive || null;
+    this.goal = goal;
   }
-  follow(waypoints, onArrive) { this.path = waypoints.slice(); this.onArrive = onArrive || null; }
-  stop() { this.path = null; this.onArrive = null; }
+  follow(waypoints, onArrive, { goal = null } = {}) { this.path = waypoints.slice(); this.onArrive = onArrive || null; this.goal = goal; }
+  stop() { this.path = null; this.onArrive = null; this.goal = null; }
+  // stop dead (a hop, a teleport): no glide, no running in place
+  halt() {
+    this.stop();
+    this.vel.set(0, 0);
+    this.dashing = null;
+    this.actor.play('Idle', 0.15);
+  }
 
   // can the body move from tile (ax, az) to the next tile (bx, bz)? (for path search)
   step(ax, az, bx, bz) { return !this.blockedFrom(bx + 0.5, bz + 0.5, ax + 0.5, az + 0.5); }
@@ -75,6 +89,7 @@ export class Controller {
         this.path.shift();
         if (!this.path.length) {
           this.path = null;
+          this.goal = null;
           const cb = this.onArrive; this.onArrive = null;
           if (cb) cb();
           return new THREE.Vector2();

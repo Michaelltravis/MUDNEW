@@ -783,7 +783,8 @@ class Mobile(Character):
                     await self.room.send_to_room(
                         f"{c['bright_red']}{self.name} smashes through the {door_name}!{c['reset']}"
                     )
-                    door['state'] = 'open'
+                    import doors
+                    doors.apply(self.room, direction, state='open')     # both sides, pushed
                 else:
                     if self.room:
                         c = self.config.COLORS
@@ -1305,13 +1306,10 @@ class Mobile(Character):
             try:
                 from mob_ai import classify_mob
                 if exit_used and 'door' in exit_used and exit_used['door'].get('state') == 'open' \
-                        and 'coward' in classify_mob(self):
-                    exit_used['door']['state'] = 'closed'
-                    opp = self.config.DIRECTIONS.get(direction, {}).get('opposite')
-                    rev = target_room.exits.get(opp) if opp else None
-                    if rev and 'door' in rev:
-                        rev['door']['state'] = 'closed'
-                    name = exit_used['door'].get('name', 'door')
+                        and not exit_used['door'].get('broken') and 'coward' in classify_mob(self):
+                    import doors
+                    doors.apply(old_room, direction, state='closed')     # both sides, pushed
+                    name = doors.label(exit_used['door'])
                     await old_room.send_to_room(f"{c['yellow']}{self.name} SLAMS the {name} shut behind it!{c['reset']}")
             except Exception:
                 pass

@@ -295,3 +295,25 @@ button { font: inherit; color: inherit; }
 
 #target-frame .tdist { font-size: 11px; color: #ffb08a; margin-top: 4px; }
 #target-frame .tdist.ok { color: #9fe8a8; }
+
+/* the one-key prompt over a door or anything usable (hud/prompt.js) */
+.prompt { position: fixed; left: 0; top: 0; z-index: 20; pointer-events: none; display: flex; align-items: center; gap: 7px;
+  padding: 5px 12px 5px 6px; border-radius: 999px; background: rgba(12,10,16,.84); border: 1px solid var(--edge);
+  font: 600 calc(13px * var(--ui)) var(--body); color: #f1e6cc; white-space: nowrap; text-shadow: 0 1px 2px #000;
+  box-shadow: 0 4px 14px rgba(0,0,0,.45); will-change: transform; }
+.prompt kbd { min-width: 20px; height: 20px; padding: 0 5px; border-radius: 5px; display: inline-grid; place-items: center;
+  font: 800 12px var(--body); color: #1b1408; background: linear-gradient(#f3d999, #c9a14e); box-shadow: 0 2px 0 #6b5220; }
+.prompt.tone-locked { border-color: rgba(255,110,90,.55); color: #ffb3a6; padding-left: 12px; }
+.prompt.tone-key kbd { background: linear-gradient(#fff2b8, #e0b84e); }
+.prompt.tone-pick kbd { background: linear-gradient(#d8c8ff, #8a6ad8); color: #120a22; box-shadow: 0 2px 0 #3c2a6e; }
+.prompt.tone-dim { opacity: .8; }
+
+/* right-click menu (hud/contextmenu.js) */
+#ctx-menu { position: fixed; z-index: 52; min-width: 170px; padding: 4px; border-radius: 9px; background: rgba(14,12,18,.97);
+  border: 1px solid var(--edge); box-shadow: 0 8px 24px rgba(0,0,0,.5); }
+#ctx-menu .ctx-title { padding: 6px 10px 5px; font: 700 12px var(--title); color: var(--gold-hi); letter-spacing: .04em;
+  border-bottom: 1px solid var(--edge-dim); margin-bottom: 3px; }
+#ctx-menu button { display: block; width: 100%; text-align: left; padding: 6px 10px; border: 0; border-radius: 5px; background: none;
+  cursor: pointer; font-size: 13px; color: inherit; }
+#ctx-menu button:hover:not(:disabled) { background: rgba(216,180,106,.16); color: var(--gold-hi); }
+#ctx-menu button.muted { opacity: .55; cursor: default; }

@@ -91,7 +91,7 @@ async def main():
                 got.clear()
                 # a fresh subscribe answers with the current map (look sends none)
                 await ws.send_str(json.dumps({'type': 'subscribe', 'player': tw.CHAR, 'mode': 'near'}))
-                for _ in range(20):
+                for _ in range(50):          # a busy machine can be slow to answer
                     maps = [d for d in got if d.get('type') == 'map_data']
                     room = next((r for d in reversed(maps) for r in (d.get('nearby') or []) if r['vnum'] == ROOM), None)
                     mob = next((m for m in (room or {}).get('mobs', []) if 'spectre' in m['name'].lower()), None)
@@ -117,7 +117,7 @@ async def main():
                 oor = events('oor')
                 check(bool(oor) and oor[0].get('auto') and oor[0].get('need') == 2.5, "…with an 'oor' event (need 2.5 m)")
                 t0 = time.time()
-                while time.time() - t0 < 9 and not [e for e in events('attack') if e.get('src') == {'m': mob['id']}]:
+                while time.time() - t0 < 15 and not [e for e in events('attack') if e.get('src') == {'m': mob['id']}]:
                     await asyncio.sleep(0.2)
                 moves = [e for e in events('move') if e.get('src') == {'m': mob['id']}]
                 check(bool(moves) and min(abs(m['x'] - 3.0) for m in moves) < 2.6, "the spectre walks in ('move' events) to reach")

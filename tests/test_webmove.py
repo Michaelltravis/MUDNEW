@@ -148,6 +148,23 @@ async def main():
             else:
                 print('skip closed-door check (no unlocked door in this zone)')
 
+            # stairs and a doorway that lead to the same room: the client names the exit it took
+            # (3001 has south AND down to the Temple Square, 3005)
+            await tn.cmd('goto 3001', 1.0)
+            res, _, _ = await result_after('webmove 3001 3005 down')
+            check(res and res['ok'] and res.get('dir') == 'down', f"'webmove 3001 3005 down' takes the stairs: {res and res.get('dir')}")
+            await result_after('webmove 3005 3001 up')
+            res, _, _ = await result_after('webmove 3001 3005')
+            check(res and res['ok'] and res.get('dir') == 'south', f'no direction given: the first exit (south): {res and res.get("dir")}')
+            await result_after('webmove 3005 3001 north')
+            res, _, _ = await result_after('webmove 3001 3005 west')
+            check(res and res['ok'] and res.get('dir') == 'south', f'a direction that does not lead there is ignored: {res and res.get("dir")}')
+            await result_after('webmove 3005 3001')
+            # zone exits say where they lead
+            zone_exits = [ee for r in zm['rooms'] for ee in r['exits'].values() if ee['kind'] == 'zone']
+            check(bool(zone_exits) and all(ee.get('toName') and 'zoneName' in ee for ee in zone_exits),
+                  f'zone exits carry toName/zoneName ({len(zone_exits)})')
+
             await tn.cmd('goto 3001', 1.0)
             await tn.cmd('sleep', 0.6)
             res, _, _ = await result_after(f'webmove 3001 {e["to"]}')

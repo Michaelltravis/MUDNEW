@@ -1,0 +1,140 @@
+// Browser probe for /play against a local server (./run.sh), with the gauntlet admin account.
+//   NODE_PATH=/opt/node22/lib/node_modules node tests/web/probe_play3d.js stairs|doors [outdir]
+// CommonJS on purpose (the global Playwright only resolves through NODE_PATH with require).
+// WebGL may render at ~1 fps in a container, so the probe places the hero directly and waits
+// on frames instead of walking in real time.
+//   stairs: the zone map download is delayed 3 s (the race that sent every zone hop twice);
+//           taking the temple's ▲ stairs must send exactly one move, show no "can't go", land
+//           beside the destination's ▼ stairs, and a key held into them must not hop back.
+//   doors:  the oak door at 921 east: the prompt says what E does, E opens it (one webdoor),
+//           and a locked door without the key says which key it needs.
+const fs = require('fs');
+const path = require('path');
+const { chromium } = require('playwright');
+
+const MODE = process.argv[2] || 'stairs';
+const OUT = process.argv[3] || '/tmp';
+const CFG = JSON.parse(fs.readFileSync(path.join(__dirname, '../../tools/gauntlet/config.json'), 'utf8'));
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const results = [];
+const check = (ok, what) => { results.push([ok, what]); console.log(`${ok ? 'ok  ' : 'FAIL'} ${what}`); };
+
+async function waitFor(page, fn, arg, secs = 60) {
+  for (let i = 0; i < secs * 4; i++) {
+    if (await page.evaluate(fn, arg).catch(() => false)) return true;
+    await sleep(250);
+  }
+  return false;
+}
+
+(async () => {
+  const browser = await chromium.launch({ args: ['--use-gl=swiftshader', '--enable-webgl', '--ignore-gpu-blocklist', '--enable-unsafe-swiftshader'] });
+  const page = await (await browser.newContext({ viewport: { width: 960, height: 540 } })).newPage();
+  const errors = [];
+  page.on('pageerror', e => errors.push(String(e).slice(0, 300)));
+  if (MODE === 'stairs') {
+    await page.route('**/zonemap*', async route => { await sleep(3000); await route.continue(); });
+  }
+  await page.goto(`http://${CFG.mud.host}:${CFG.mud.mapPort}/play?q=low`, { waitUntil: 'load' });
+  await waitFor(page, () => document.getElementById('loading').classList.contains('done'));
+  await page.fill('#login-name', CFG.character.name);
+  await page.fill('#login-pass', CFG.character.password);
+  await page.click('#login-btn');
+  check(await waitFor(page, () => !!(window.MH3D && MH3D.hero), null, 120), 'logged in, hero in the world');
+  await page.evaluate(() => {
+    window.__sent = [];
+    const real = MH.sendCommand;
+    MH.sendCommand = (cmd, echo) => { window.__sent.push(String(cmd)); return real(cmd, echo); };
+    window.__toasts = [];
+    new MutationObserver(m => { for (const r of m) for (const n of r.addedNodes) window.__toasts.push(n.textContent); })
+      .observe(document.getElementById('toasts'), { childList: true });
+  });
+  const goto = async v => {
+    await page.evaluate(v => MH.sendCommand(`goto ${v}`, false), v);
+    return waitFor(page, v => MH3D.heroRoom() && MH3D.heroRoom().vnum === v && !MH3D.hop(), v, 90);
+  };
+
+  if (MODE === 'stairs') {
+    check(await goto(3001), 'in the Temple of Midgaard (3001)');
+    await sleep(1500);
+    // stand 1.3 m west of the ▲ stairs and walk onto them on purpose
+    const info = await page.evaluate(() => {
+      const z = MH3D.zone(), r = MH3D.heroRoom(), sp = z.passageWorld(r, 'up');
+      MH3D.hero.root.position.set(sp.x - 1.3, 0, sp.z);
+      window.__sent.length = 0; window.__toasts.length = 0;
+      MH3D.walkToPassage('up');
+      return { to: r.data.exits.up && r.data.exits.up.to, kind: r.data.exits.up && r.data.exits.up.kind };
+    });
+    check(!!info.to, `the temple has stairs up (to ${info.to}, ${info.kind})`);
+    // the bounce case: a key held through the hop, toward the stairs you arrive beside
+    await waitFor(page, () => !!MH3D.hop(), null, 60);
+    await page.evaluate(() => MH3D.ctl.keys.add('a'));
+    const landed = await waitFor(page, to => MH3D.heroRoom() && MH3D.heroRoom().vnum === to && !MH3D.hop(), info.to, 120);
+    check(landed, `took the stairs to ${info.to}`);
+    const dist = await page.evaluate(() => {
+      const z = MH3D.zone(), r = MH3D.heroRoom(), p = MH3D.hero.root.position;
+      const sp = r.data.exits.down ? z.passageWorld(r, 'down') : null;
+      return sp ? Math.hypot(p.x - sp.x, p.z - sp.z) : null;
+    });
+    check(dist != null && dist < 2.4, `landed beside the stairs back down (${dist && dist.toFixed(2)} m)`);
+    await sleep(8000);                                  // still holding the key toward them
+    await page.evaluate(() => MH3D.ctl.keys.delete('a'));
+    const moves = await page.evaluate(() => window.__sent.filter(c => c.startsWith('webmove')));
+    check(moves.length === 1 && / up$/.test(moves[0]), `exactly one move sent, no bounce back: ${JSON.stringify(moves)}`);
+    const toasts = await page.evaluate(() => window.__toasts.join(' | '));
+    check(!/can't go/i.test(toasts), `no "can't go that way" (${toasts || 'no toasts'})`);
+    await page.screenshot({ path: path.join(OUT, 'stairs-landed.png') });
+    // a deliberate return: stand still a moment, then walk onto them
+    await sleep(1500);
+    await page.evaluate(() => { window.__sent.length = 0; MH3D.walkToPassage('down'); });
+    const back = await waitFor(page, () => window.__sent.some(c => / down$/.test(c)), null, 60);
+    check(back, 'walking onto them on purpose takes them back down');
+  }
+
+  if (MODE === 'doors') {
+    check(await goto(921), 'at the oak door (921)');
+    await page.evaluate(() => { MH.sendCommand('open east', false); });
+    await sleep(800);
+    await page.evaluate(() => MH.sendCommand('close east', false));
+    await waitFor(page, () => MH3D.heroRoom().doors.east && MH3D.heroRoom().doors.east.closed, null, 20);
+    const at = await page.evaluate(() => {
+      const r = MH3D.heroRoom();
+      const p = MH3D.hero.root.position;
+      p.set(r.ox + 24 - 1.6, 0, r.oz + 7.5);
+      return [p.x, p.z];
+    });
+    await sleep(2500);
+    const text = await page.evaluate(() => !document.getElementById('prompt').classList.contains('hidden') && document.querySelector('#prompt span').textContent);
+    check(/open the oak door/i.test(text || ''), `prompt: "${text}"`);
+    await page.screenshot({ path: path.join(OUT, 'door-prompt.png') });
+    await page.evaluate(() => { window.__sent.length = 0; });
+    await page.keyboard.press('e');
+    const opened = await waitFor(page, () => MH3D.heroRoom().doors.east && !MH3D.heroRoom().doors.east.closed, null, 20);
+    const sent = await page.evaluate(() => window.__sent.filter(c => c.startsWith('webdoor')));
+    check(opened && sent.length === 1 && sent[0] === 'webdoor 921 east open', `E opened it with one webdoor: ${JSON.stringify(sent)}`);
+    const meshOpen = await page.evaluate(() => {
+      const r = MH3D.heroRoom();
+      const m = r.built && r.built.doors && r.built.doors.east;
+      return m ? m.userData.open : 'no mesh';
+    });
+    check(meshOpen === true, `the door mesh swung open (${meshOpen})`);
+    // lock it without the key: the prompt names the key
+    await page.evaluate(() => { for (const c of ['oload 900', 'close east', 'lock east', 'drop key', 'drop key', 'drop key', 'purge']) MH.sendCommand(c, false); });
+    await sleep(2500);
+    await page.evaluate(() => MH.refreshState && MH.refreshState());   // keys are per viewer: ask again
+    await waitFor(page, () => MH3D.heroRoom().doors.east && MH3D.heroRoom().doors.east.locked, null, 20);
+    await sleep(2500);
+    const locked = await page.evaluate(() => document.querySelector('#prompt span').textContent);
+    check(/needs a golden key/i.test(locked || ''), `locked prompt: "${locked}"`);
+    await page.screenshot({ path: path.join(OUT, 'door-locked.png') });
+    // leave it as the zone keeps it
+    await page.evaluate(() => { for (const c of ['oload 900', 'unlock east', 'open east', 'drop key', 'drop key', 'drop key', 'purge']) MH.sendCommand(c, false); });
+    await sleep(2000);
+  }
+
+  check(errors.length === 0, `no page errors${errors.length ? ': ' + errors.join(' / ') : ''}`);
+  await browser.close();
+  const bad = results.filter(r => !r[0]).length;
+  console.log(bad ? `${bad} FAILED` : 'ALL OK');
+  process.exit(bad ? 1 : 0);
+})();

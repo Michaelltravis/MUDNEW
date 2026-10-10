@@ -1,6 +1,6 @@
 // Minimap from the zone map: every room as a tile in its cell, the rooms you have explored
 // brighter, shared openings as bridges, passages as dots, the hero as an arrow. Click a
-// room to walk there (main.js plans the route through open exits).
+// room to walk there (main.js plans the route through open exits and stairs).
 const SECTOR = {
   inside: '#8a8a96', dungeon: '#6f6a78', cave: '#6a6052', city: '#c7ab7c', forest: '#4f8a46', field: '#86a85a',
   hills: '#7e9a5c', mountain: '#8a857a', desert: '#d6bd86', swamp: '#56664a', water_swim: '#3f7fb0',
@@ -34,10 +34,20 @@ export function createMinimap(root, onPick) {
         if (d === 'east' && e.kind === 'open') { ctx.fillRect(x + cw - pad - 1, y + ch / 2 - 2 * S, pad * 2 + 2, 4 * S); continue; }
         if (d === 'south' && e.kind === 'open') { ctx.fillRect(x + cw / 2 - 2 * S, y + ch - pad - 1, 4 * S, pad * 2 + 2); continue; }
         if (e.kind === 'open' || !seen) continue;
-        const px = d === 'east' ? x + cw - pad : d === 'west' ? x + pad : x + cw / 2;
-        const py = d === 'north' ? y + pad : d === 'south' ? y + ch - pad : y + ch / 2;
         ctx.fillStyle = e.kind === 'zone' ? '#ffd27a' : '#bfe0ff';
-        ctx.beginPath(); ctx.arc(px, py, 2.2 * S, 0, Math.PI * 2); ctx.fill();
+        if (d === 'up' || d === 'down') {
+          // stairs: ▲ on the right of the room, ▼ on the left (where they stand in the room)
+          const px = d === 'up' ? x + cw * 0.7 : x + cw * 0.3, py = y + ch / 2, s = 3.2 * S;
+          ctx.beginPath();
+          if (d === 'up') { ctx.moveTo(px, py - s); ctx.lineTo(px + s, py + s * 0.8); ctx.lineTo(px - s, py + s * 0.8); }
+          else { ctx.moveTo(px, py + s); ctx.lineTo(px + s, py - s * 0.8); ctx.lineTo(px - s, py - s * 0.8); }
+          ctx.closePath(); ctx.fill();
+          ctx.strokeStyle = 'rgba(0,0,0,.6)'; ctx.lineWidth = 0.8 * S; ctx.stroke();
+        } else {
+          const px = d === 'east' ? x + cw - pad : d === 'west' ? x + pad : x + cw / 2;
+          const py = d === 'north' ? y + pad : d === 'south' ? y + ch - pad : y + ch / 2;
+          ctx.beginPath(); ctx.arc(px, py, 2.2 * S, 0, Math.PI * 2); ctx.fill();
+        }
         ctx.fillStyle = SECTOR[r.data.sector] || SECTOR.default;
       }
     }

@@ -232,6 +232,25 @@ class WebMapServer:
         for client in dead:
             self.clients.discard(client)
 
+    async def send_zone_event(self, zones, event: dict):
+        """A small structured event to every web client whose player stands in one of the
+        `zones` (zone numbers): a door that opens or locks is seen by everyone nearby."""
+        data = json.dumps(event)
+        dead = []
+        for client in list(self.clients):
+            p = self.world.players.get((client.player_name or '').lower())
+            room = getattr(p, 'room', None) if p else None
+            zn = getattr(getattr(room, 'zone', None), 'number', None)
+            if zn is None or zn not in zones:
+                continue
+            try:
+                if not await self._ws_send(client.writer, data):
+                    dead.append(client)
+            except Exception:
+                dead.append(client)
+        for client in dead:
+            self.clients.discard(client)
+
     async def notify_combat(self, player):
         """Push a lightweight vitals/entity update during combat rounds, to the
         fighter AND to everyone else standing in the room (each sees the round

@@ -31,13 +31,16 @@ export function interiorKind(layout) {
 export const isGraveyard = layout =>
   /\b(graveyard|cemetery|graves?|burial|boneyard|churchyard|tombstones?|mausoleum)\b/.test(`${layout.name} ${layout.description}`.toLowerCase());
 
-// lanes from the room centre to each opening stay clear (roomgen keeps them too)
+// lanes from the room centre to each opening stay clear (roomgen keeps them too), and so do
+// the stairs, portals and the spots beside them where people arrive
 function laneTest(layout) {
   const { W, H, gaps } = layout;
   const mx = Math.floor(W / 2), my = Math.floor(H / 2);
+  const keep = [layout.stairsUp, layout.stairsDown, ...(layout.portals || [])].filter(Boolean);
   return (x, y) => ((gaps.north || gaps.south) && Math.abs(x - mx) <= 4)
     || ((gaps.east || gaps.west) && Math.abs(y - my) <= 3)
-    || Math.abs(x - mx) <= 1 && Math.abs(y - my) <= 1;
+    || Math.abs(x - mx) <= 1 && Math.abs(y - my) <= 1
+    || keep.some(t => Math.abs(x - t.x) <= 3 && Math.abs(y - t.y) <= 2);
 }
 
 // ---------------------------------------------------------------- streets

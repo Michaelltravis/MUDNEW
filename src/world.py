@@ -616,6 +616,12 @@ class World:
             
         # Link room exits
         self.link_exits()
+        # Tidy the imported door data (both sides agree) and remember the reset state
+        try:
+            import doors
+            doors.normalize(self)
+        except Exception as e:
+            logger.error(f"door normalize failed: {e}")
 
         # Canary check: if zone 30 loaded but looks like the tiny default-world
         # stub (the old bootstrap bug overwrote real zone files with it), the
@@ -818,7 +824,14 @@ class World:
                     obj = create_object(obj_vnum, self)
                     if obj:
                         room.items.append(obj)
-                        
+
+        # doors go back to how the zone starts (not where a player stands)
+        try:
+            import doors
+            doors.reset_zone(self, zone)
+        except Exception as e:
+            logger.debug(f"door reset failed in zone {getattr(zone, 'number', '?')}: {e}")
+
         zone.age = 0
         zone.last_reset_at = time.time()
         zone.next_reset_at = zone.last_reset_at + zone.reset_interval_seconds

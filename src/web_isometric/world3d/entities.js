@@ -118,8 +118,19 @@ export class Entities {
       const e = this.list.get(key);
       if (!e) { this.create(key, w); continue; }
       e.data = w.data;
-      if (e.vnum !== w.vnum) { e.vnum = w.vnum; e.goal = this.slot(w.vnum, key); }
-      else this.place(e, w.data);
+      if (e.vnum !== w.vnum) {
+        const from = this.zone.rooms.get(e.vnum), to = this.zone.rooms.get(w.vnum);
+        e.vnum = w.vnum;
+        e.goal = this.slot(w.vnum, key);
+        // up the stairs or through a far passage: snap there with a puff of dust instead of
+        // walking through walls and across the empty space between levels
+        const joined = from && to && this.zone.openDir(from, to);
+        if (e.root && e.goal && (!joined || e.root.position.distanceTo(e.goal) > 30)) {
+          if (this.onSnap) this.onSnap(e.root.position.clone(), e.goal.clone());
+          e.root.position.copy(e.goal).setY(e.root.position.y);
+          e.goal = null;
+        }
+      } else this.place(e, w.data);
     }
   }
 

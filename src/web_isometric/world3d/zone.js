@@ -5,6 +5,7 @@
 // every other exit is a marked passage that triggers a short hop.
 import * as THREE from 'three';
 import { buildRoom, ROOM_W, ROOM_H, isIndoor } from './terrain.js';
+import { passageSpot, arrivalSpot, wantsPassage } from './passages.js';
 
 const FLOOR = 0, BLOCK = 1, WATER = 4;
 const LIGHTS = 6;
@@ -67,7 +68,14 @@ export class Zone {
     return room.layout;
   }
 
-  // where the hero appears in a room when arriving by `dir` (the gap on that side)
+  // where the hero appears in a room entered on its `side`: a doorway, or beside the stairs
+  // or portal that lead back (passages.js: up/down exits are named by direction of travel)
+  side(room, side) {
+    const s = arrivalSpot(this.layoutOf(room), side || 'none', ROOM_W, ROOM_H);
+    return new THREE.Vector3(room.ox + s.x, 0, room.oz + s.z);
+  }
+
+  // the doorway gap on a compass side (for walking lanes through shared openings)
   entry(room, fromDir) {
     const L = this.layoutOf(room);
     const e = (fromDir && L.entries[fromDir]) || L.entries.none;
@@ -100,12 +108,32 @@ export class Zone {
   }
 
   // ---- passages: exits that are not a shared opening ----
-  // Returns {dir, exit} when the hero at p (moving with velocity v) is stepping into one.
-  passageAt(room, p, v) {
+  // the spots in a room you step onto to take a passage (room-local metres), for the gate
+  passageSpots(room) {
     const L = this.layoutOf(room);
-    const lx = p.x - room.ox, lz = p.z - room.oz;
+    const out = [];
     for (const [d, e] of Object.entries(room.data.exits)) {
       if (e.kind === 'open') continue;
+      const s = passageSpot(L, d, ROOM_W, ROOM_H);
+      if (s) out.push({ key: d, x: s.x, z: s.z });
+    }
+    return out;
+  }
+  passageWorld(room, dir) {
+    const s = passageSpot(this.layoutOf(room), dir, ROOM_W, ROOM_H);
+    return s ? new THREE.Vector3(room.ox + s.x, 0, room.oz + s.z) : this.centre(room);
+  }
+
+  // {dir, exit} when the hero means to take a passage now (passages.js decides what counts:
+  // keys moving onto the stairs, or a click path sent to them), {dir, exit, blocked} when they
+  // mean to but it can't open ('door': closed; 'combat': fighting), else null
+  passageAt(room, p, v, gate, { viaKeys = false, viaPath = false, goal = null, inCombat = false, now = performance.now() } = {}) {
+    const L = this.layoutOf(room);
+    const lx = p.x - room.ox, lz = p.z - room.oz;
+    const speed = Math.hypot(v.x, v.y);
+    for (const [d, e] of Object.entries(room.data.exits)) {
+      if (e.kind === 'open') continue;
+      let want = false;
       if (CARD[d]) {
         const g = L.gaps[d];
         if (!g) continue;
@@ -113,26 +141,37 @@ export class Zone {
         const out = v.x * dx + v.y * dz;              // pushing outward through the gap
         const inSpan = dx ? (lz >= g.y0 && lz <= g.y1 + 1) : (lx >= g.x0 && lx <= g.x1 + 1);
         const nearEdge = dx > 0 ? lx > ROOM_W - 1.25 : dx < 0 ? lx < 1.25 : dz > 0 ? lz > ROOM_H - 1.25 : lz < 1.25;
-        if (inSpan && nearEdge && out > 0.5) return { dir: d, exit: e };
+        want = inSpan && nearEdge && (viaPath ? goal === d : viaKeys && out > 0.5);
       } else {
-        // stairs and named portals are tiles inside the room
-        const t = d === 'up' ? L.stairsUp : d === 'down' ? L.stairsDown : (L.portals || []).find(q => q.name === d);
-        if (t && Math.hypot(lx - (t.x + 0.5), lz - (t.y + 0.5)) < 0.85) return { dir: d, exit: e };
+        const s = passageSpot(L, d, ROOM_W, ROOM_H);
+        if (!s) continue;
+        const dist = Math.hypot(lx - s.x, lz - s.z);
+        const toward = dist > 1e-3 && speed > 1e-3 ? ((s.x - lx) * v.x + (s.z - lz) * v.y) / (dist * speed) : 1;
+        want = wantsPassage({ d: dist, speed, toward, viaKeys, viaPath, goal: goal === d });
       }
+      if (!want || (gate && !gate.canFire(d, now))) continue;
+      if (this.doorClosed(room, d)) return { dir: d, exit: e, blocked: 'door' };
+      if (inCombat) return { dir: d, exit: e, blocked: 'combat' };
+      return { dir: d, exit: e };
     }
     return null;
   }
 
-  // the matching side of a passage in the destination room
-  arrival(room, fromRoom, dir) {
-    const back = REV[dir];
+  // stairs and portal tiles: paths walk around them unless they are the destination
+  avoidTile(room, tx, ty) {
     const L = this.layoutOf(room);
-    if (back && room.data.exits[back] && room.data.exits[back].to === fromRoom.vnum) {
-      if (CARD[back]) return this.entry(room, back);
-      const t = back === 'up' ? L.stairsUp : back === 'down' ? L.stairsDown : null;
-      if (t) return new THREE.Vector3(room.ox + t.x + 0.5 + (back === 'up' ? -1.4 : 1.4), 0, room.oz + t.y + 0.5);
-    }
-    return this.entry(room, null);
+    const on = t => t && t.x === tx && t.y === ty;
+    return on(L.stairsUp) || on(L.stairsDown) || (L.portals || []).some(on);
+  }
+
+  // the matching side of a passage in the destination room: the exit that leads back where we
+  // came from (the reverse of `dir` when it does), beside its stairs or in its doorway
+  arrival(room, fromVnum, dir) {
+    const ex = room.data.exits;
+    const back = REV[dir];
+    let side = back && ex[back] && ex[back].to === fromVnum ? back : null;
+    if (!side) side = Object.keys(ex).find(d => ex[d].to === fromVnum) || null;
+    return side ? this.side(room, side) : this.centre(room);
   }
 
   // ---- streaming ----
@@ -191,15 +230,25 @@ export class Zone {
     }
   }
 
-  // live door state from map_data ({state: 'open'|'closed', locked})
+  // live door state: map_data's per-viewer view ({state, locked, broken, label, has_key,
+  // can_pick, keyless, key_name, rev}) or a 'door' push ({state, locked, broken, label, rev});
+  // an older revision than the one we have is ignored
   setDoor(room, dir, info) {
     const d = room.doors[dir];
     if (!d || !info) return;
+    if (info.rev != null && d.rev != null && info.rev < d.rev) return;
+    if (info.rev != null) d.rev = info.rev;
     d.closed = info.state === 'closed';
     d.locked = !!info.locked;
+    d.broken = !!info.broken;
+    for (const k of ['label', 'has_key', 'can_pick', 'keyless', 'key_name', 'sealed', 'barricaded']) if (k in info) d[k] = info[k];
     const mesh = room.built && room.built.doors && room.built.doors[dir];
-    if (mesh) mesh.userData.setOpen(!d.closed);
+    if (mesh) {
+      mesh.userData.setOpen(!d.closed);
+      if (mesh.userData.setLocked) mesh.userData.setLocked(d.closed && d.locked);
+    }
   }
+  doorOf(room, dir) { return room.doors[dir] || null; }
 
   indoor(room) { return isIndoor(this.layoutOf(room).theme); }
 
@@ -209,15 +258,17 @@ export class Zone {
   }
 
   // ---- room graph path (for click-to-travel on the minimap) ----
-  // Rooms joined by open exits only: walking carries the hero there for real.
-  roomPath(from, to) {
+  // Rooms joined by open exits (and, with `passages`, by stairs and other passages in this
+  // zone), never through a closed door: walking carries the hero there for real.
+  roomPath(from, to, { passages = false } = {}) {
     const prev = new Map([[from.vnum, null]]);
     const q = [from];
     while (q.length) {
       const r = q.shift();
       if (r === to) break;
-      for (const e of Object.values(r.data.exits)) {
-        if (e.kind !== 'open' || prev.has(e.to)) continue;
+      for (const [d, e] of Object.entries(r.data.exits)) {
+        if (prev.has(e.to) || e.kind === 'zone' || (e.kind !== 'open' && !passages)) continue;
+        if (this.doorClosed(r, d)) continue;
         const n = this.rooms.get(e.to);
         if (!n) continue;
         prev.set(e.to, r);
@@ -228,5 +279,9 @@ export class Zone {
     const path = [];
     for (let r = to; r; r = prev.get(r.vnum)) path.unshift(r);
     return path;
+  }
+  // the exit of `a` that leads to `b` (open first)
+  linkDir(a, b) {
+    return this.openDir(a, b) || Object.keys(a.data.exits).find(d => a.data.exits[d].to === b.vnum) || null;
   }
 }

@@ -3100,34 +3100,24 @@ class SpellHandler:
                 await caster.send(f"{c['bright_red']}You drain {drain} experience from {target.name}!{c['reset']}")
 
         elif special == 'break_door':
-            # Break a locked door
-            # Need to get direction from target_name in original cast
-            direction = None
-            for dir_name in caster.config.DIRECTIONS.keys():
-                if target and dir_name in str(target).lower():
-                    direction = dir_name
-                    break
-
-            if not direction or direction not in caster.room.exits:
+            # Break a door (by direction or name: "cast 'break door' s", "... trapdoor")
+            import doors
+            direction, exit_data, door, err = doors.resolve(caster.room, str(target or '').split())
+            if err in ('what', 'noexit', 'noname') or not direction:
                 await caster.send(f"{c['red']}There's no door in that direction!{c['reset']}")
                 return
-
-            exit_data = caster.room.exits[direction]
-            if 'door' not in exit_data:
+            if err == 'nodoor':
                 await caster.send(f"{c['yellow']}There's no door {direction}.{c['reset']}")
                 return
 
-            door = exit_data['door']
-
             # Make a loud noise
             await caster.room.send_to_room(
-                f"{c['bright_red']}**CRASH** The {door.get('name', 'door')} explodes into splinters!{c['reset']}"
+                f"{c['bright_red']}**CRASH** The {doors.label(door)} explodes into splinters!{c['reset']}"
             )
 
-            # Break the door
-            door['broken'] = True
-            door['state'] = 'open'
-            door['locked'] = False
+            # Break the door (both sides)
+            doors.apply(caster.room, direction, state='open', locked=False, broken=True,
+                        sealed_until=None, barricaded_until=None, magically_blocked=None, hp=None)
 
             # Alert nearby mobs (aggressive behavior)
             for npc in caster.room.characters:
@@ -3137,34 +3127,26 @@ class SpellHandler:
                         await CombatHandler.start_combat(npc, caster)
 
         elif special == 'block_door':
-            # Magically block a door
-            direction = None
-            for dir_name in caster.config.DIRECTIONS.keys():
-                if target and dir_name in str(target).lower():
-                    direction = dir_name
-                    break
-
-            if not direction or direction not in caster.room.exits:
+            # Magically block a door (both sides, for a while: it used to never expire)
+            import doors
+            direction, exit_data, door, err = doors.resolve(caster.room, str(target or '').split())
+            if err in ('what', 'noexit', 'noname') or not direction:
                 await caster.send(f"{c['red']}There's no door in that direction!{c['reset']}")
                 return
-
-            exit_data = caster.room.exits[direction]
-            if 'door' not in exit_data:
+            if err == 'nodoor':
                 await caster.send(f"{c['yellow']}There's no door {direction}.{c['reset']}")
                 return
 
-            door = exit_data['door']
-
             # Check if already blocked
-            if door.get('magically_blocked', False):
-                await caster.send(f"{c['yellow']}The door is already magically sealed!{c['reset']}")
+            if door.get('magically_blocked', False) or door.get('sealed_until', 0) > time.time():
+                await caster.send(f"{c['yellow']}The {doors.label(door)} is already magically sealed!{c['reset']}")
                 return
 
             # Block the door
-            door['magically_blocked'] = True
-            door['block_expires'] = caster.world.game_time.hour + (spell['duration_ticks'] // 60) if hasattr(caster.world, 'game_time') else 0
+            doors.apply(caster.room, direction, mirror=('sealed_until',),
+                        sealed_until=time.time() + 120 + getattr(caster, 'level', 1) * 2)
 
-            await caster.send(f"{c['bright_blue']}Magical energy surrounds the {door.get('name', 'door')}, sealing it shut!{c['reset']}")
+            await caster.send(f"{c['bright_blue']}Magical energy surrounds the {doors.label(door)}, sealing it shut!{c['reset']}")
 
         elif special == 'identify':
             # Identify an item in inventory, equipped, or on the ground
