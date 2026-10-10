@@ -312,3 +312,18 @@ export function wingCanvas(size = 256) {
   }
   return cv;
 }
+
+// a war banner's cloth: a coloured field, a pale border, the class's sigil in the middle and a
+// swallow-tailed hem (transparent notch), for the banner effect
+export function bannerCanvas(field = '#a8321e', sigil = 'crest', size = 256) {
+  const cv = canvas(size, Math.round(size * 1.4));
+  if (!cv) return null;
+  const c = cv.getContext('2d'), w = cv.width, h = cv.height;
+  c.fillStyle = field;
+  c.beginPath(); c.moveTo(0, 0); c.lineTo(w, 0); c.lineTo(w, h); c.lineTo(w / 2, h * 0.84); c.lineTo(0, h); c.closePath(); c.fill();
+  c.strokeStyle = 'rgba(255,240,210,0.9)'; c.lineWidth = w * 0.035;
+  c.beginPath(); c.moveTo(w * 0.06, h * 0.03); c.lineTo(w * 0.94, h * 0.03); c.lineTo(w * 0.94, h * 0.93); c.lineTo(w / 2, h * 0.79); c.lineTo(w * 0.06, h * 0.93); c.closePath(); c.stroke();
+  const s = sigilCanvas(sigil, Math.round(w * 0.8));
+  if (s) c.drawImage(s, w * 0.1, h * 0.12);
+  return cv;
+}

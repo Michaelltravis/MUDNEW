@@ -66,7 +66,7 @@ export const TRAVELS = ['slash', 'orb', 'orbs', 'glyph', 'motif', 'bolt', 'sky',
 export const LANDS = ['hit', 'sparks', 'burst', 'motifs', 'fountain', 'nova', 'blast', 'pillar', 'sigil', 'crack', 'quake', 'growth',
   'cloud', 'bubble', 'mark', 'swirl', 'geyser', 'shatter', 'freeze', 'halo', 'wings', 'smoke', 'rings', 'dome', 'heal'];
 export const AURAS = ['orbit', 'runes', 'blades', 'halo', 'wings', 'bubble', 'shroud', 'fade', 'glow', 'embers', 'notes', 'motes',
-  'frost', 'flames', 'leaves', 'stone', 'bark', 'mirror', 'ghost', 'sigil', 'rage', 'poison', 'bleed'];
+  'frost', 'flames', 'leaves', 'stone', 'bark', 'mirror', 'ghost', 'sigil', 'rage', 'poison', 'bleed', 'banner'];
 export const SCHOOLS = ['fire', 'frost', 'lightning', 'arcane', 'holy', 'shadow', 'necrotic', 'nature', 'poison', 'sound', 'physical', 'blood'];
 export const GROWTHS = ['vines', 'bones', 'ice', 'crystals', 'bars', 'thorns', 'stones', 'spikes', 'spears'];
 // slash:wide (a broad sweep), :up (rising), :x (two crossing), :rev (a backhand), :3 (three quick)

@@ -26,18 +26,21 @@ SELF_SKILLS = frozenset({'sneak', 'hide', 'track', 'scan', 'scribe', 'drink_the_
                          'magnum_opus', 'rigged_dice', 'poison', 'evasion', 'divine_intervention', 'pick_lock',
                          'warpath', 'titans_wrath', 'perfect_crime', 'camouflage_master', 'camouflage', 'shadow_dance',
                          'shadow_blades_master', 'cold_blood', 'shadow_blade', 'envenom', 'alpha_pack', 'bestial_wrath',
-                         'explosive_trap'})
+                         'explosive_trap', 'unbroken_banner'})
 # skills aimed at a friend (the targeted player, else yourself)
 ALLY_SKILLS = frozenset({'rescue', 'absolution'})
 # skills for your whole party (sent without a target)
 GROUP_SKILLS = frozenset({'rallying_cry', 'divine_word'})
+# the marquee abilities: earned through their class's quest (marquee.py), never by level;
+# the level is when the quest is offered
+QUEST_ABILITIES = {'unbroken_banner': 'The Unbroken Banner'}
 
 # the level each ability comes at, per class (spells with a level_required keep it)
 UNLOCK = {
     'warrior': dict(strike=1, bash=1, kick=2, cleave=4, rally=6, parry=8, charge=10, second_attack=12,
                     execute=14, rescue=16, shield_block=18, dodge=20, third_attack=26,
                     rallying_cry=32, shattering_blow=38, commanding_shout=44, heroic_leap=50, warpath=56,
-                    titans_wrath=60),
+                    titans_wrath=60, unbroken_banner=45),
     'mage': dict(magic_missile=1, armor=1, burning_hands=3, detect_magic=4, chill_touch=5, sleep=7, shield=8,
                  charge_release=9, lightning_bolt=10, identify=11, color_spray=12, invisibility=13,
                  drink_the_leyline=14, fireball=15, dodge=16, fly=17, scribe=18, towerbolt=20,
@@ -140,7 +143,7 @@ def learnable(player):
     lvl = getattr(player, 'level', 1) or 1
     cls = getattr(player, 'char_class', '')
     return [(a, kind) for a, kind in roster(cls)
-            if unlock_level(cls, a) <= lvl and pct_of(player, a) <= 0]
+            if unlock_level(cls, a) <= lvl and pct_of(player, a) <= 0 and a not in QUEST_ABILITIES]
 
 
 def grant_now(player):
@@ -305,6 +308,9 @@ def _entry(cls, ability, kind, level, talent=None, note=''):
     e = {'id': ability, 'name': name_of(ability), 'type': kind, 'level': level, 'desc': describe(ability, note)}
     if talent:
         e['talent'] = talent
+    if ability in QUEST_ABILITIES:
+        e['quest'] = QUEST_ABILITIES[ability]
+        e['marquee'] = True
     if ability in PASSIVE or (ability == 'evasion' and cls == 'thief'):
         e['passive'] = True
         return e
@@ -459,7 +465,11 @@ def install():
             if in_roster and pct <= 0:
                 c = player.config.COLORS
                 lvl = unlock_level(player.char_class, ability)
-                when = f"it comes at level {lvl}" if lvl > (player.level or 1) else "type 'skills' to see what you know"
+                if ability in QUEST_ABILITIES:
+                    when = (f"it is earned through {QUEST_ABILITIES[ability]}, which your guild's trainer "
+                            f"offers from level {lvl}")
+                else:
+                    when = f"it comes at level {lvl}" if lvl > (player.level or 1) else "type 'skills' to see what you know"
                 await player.send(f"{c['yellow']}You don't know {name_of(ability).lower()} yet — {when}.{c['reset']}")
                 return
             # watch what the ability says (refused? missed?), passing everything through

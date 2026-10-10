@@ -89,6 +89,12 @@ async function runGame() {
   MH.bus.on('group.invite', e => hud.party.showInvite(e));
   MH.bus.on('loot.roll', r => hud.party.lootRoll(r));
   MH.bus.on('loot.result', r => hud.party.lootResult(r));
+  // the marquee quest: an offer, a group member's embarking, its stages, the reward
+  MH.bus.on('quest.offer', e => hud.quest.offer(e.quest));
+  MH.bus.on('quest.embark', e => hud.quest.showEmbark(e));
+  MH.bus.on('quest.stage', e => hud.quest.stage(e));
+  MH.bus.on('quest.done', e => hud.quest.done(e));
+  MH.bus.on('quest.mark', vnum => mm.setQuestMark(vnum == null ? null : vnum));
   MH.bus.on('hud.targetPlayer', name => {
     const e = ents.list.get(`p${name}`);
     if (e) ents.setTarget(e.key, { byHand: true });
@@ -130,6 +136,7 @@ async function runGame() {
     lastPayload = payload;
     if (payload.player) hud.setPlayer(payload.player);
     if ('group' in payload) hud.party.update(payload.group);
+    if (payload.player && 'quest' in payload.player) hud.quest.update(payload.player.quest);
     if (!payload.player || !payload.player.vnum) return;
     if (!zone) { if (!starting) starting = start(payload).catch(err => { console.error(err); hud.toast('Could not load the world: ' + err.message); }).finally(() => { starting = null; }); return; }
     if (starting) return;

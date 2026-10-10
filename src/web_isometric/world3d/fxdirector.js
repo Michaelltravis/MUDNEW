@@ -538,6 +538,12 @@ export class Director {
         break;
       case 'poison': steady(0.09, () => fx.glyph(around(0.35).setY(1 + Math.random() * 0.4), { glyph: 'drop', count: 1, color: 0x9aff4a, speed: 0.1, life: 0.7, size: 0.22, gravity: 6 })); break;
       case 'bleed': steady(0.1, () => fx.glyph(around(0.3).setY(1 + Math.random() * 0.5), { glyph: 'drop', count: 1, color: 0xd02a2a, speed: 0.1, life: 0.7, size: 0.22, gravity: 7 })); break;
+      case 'banner': {
+        // planted beside the user, a step to the side so it never stands inside them
+        const y = root.rotation.y, at = root.position.clone().add(V(Math.cos(y) * 0.9, 0, -Math.sin(y) * 0.9)).setY(0);
+        fx.banner(at, { color: new THREE.Color(pal.mark).multiplyScalar(0.8).getHex(), sigil: pal.sigil, glow: pal.mark, time: T });
+        break;
+      }
       default: break;
     }
   }

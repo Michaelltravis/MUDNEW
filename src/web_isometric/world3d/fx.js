@@ -9,7 +9,7 @@
 // queued, so a crowded fight costs what a quiet one does.
 import * as THREE from 'three';
 import * as SkeletonUtils from 'three/addons/utils/SkeletonUtils.js';
-import { glyphAtlas, glyphIndex, ATLAS_COLS, GLYPHS, sigilCanvas, wingCanvas } from './glyphs.js';
+import { glyphAtlas, glyphIndex, ATLAS_COLS, GLYPHS, sigilCanvas, wingCanvas, bannerCanvas } from './glyphs.js';
 
 const MAX = 3000;
 
@@ -916,6 +916,63 @@ export class FX {
       m.rotation.y += dt * 1.5;
       return k < 1;
     }, dispose: () => { this.scene.remove(m); mat.dispose(); this.give('meshes'); } });
+  }
+
+  // ---- a war banner planted in the ground: it slams down, its cloth waves, it stands for a
+  // while beside a glowing sigil, then sinks away ----
+  banner(p, { color = 0xc8401e, sigil = 'crest', time = 15, height = 3.2, glow = 0xffa040 } = {}) {
+    if (!this.take('meshes')) return null;
+    const key = `banner#${color}#${sigil}`;
+    if (!this.textures.has(key)) {
+      const cv = bannerCanvas(`#${new THREE.Color(color).getHexString()}`, sigil);
+      const tex = cv ? new THREE.CanvasTexture(cv) : null;
+      if (tex) tex.colorSpace = THREE.SRGBColorSpace;
+      this.textures.set(key, tex);
+    }
+    const grp = new THREE.Group();
+    const wood = new THREE.MeshStandardMaterial({ color: 0x8a6a42, roughness: 0.8, emissive: 0x1a1008 });
+    const steel = new THREE.MeshStandardMaterial({ color: 0xd8dce4, metalness: 0.8, roughness: 0.3, emissive: new THREE.Color(glow).multiplyScalar(0.25) });
+    const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.065, height, 8).translate(0, height / 2, 0), wood);
+    const tip = new THREE.Mesh(new THREE.ConeGeometry(0.1, 0.32, 6).translate(0, height + 0.16, 0), steel);
+    const bar = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 1.2, 6).rotateZ(Math.PI / 2).translate(0.6, height - 0.12, 0), wood);
+    const clothGeo = new THREE.PlaneGeometry(1.15, 1.6, 14, 4).translate(0.62, height - 0.95, 0);
+    const base = clothGeo.attributes.position.array.slice();
+    // the cloth glows faintly from within, so it reads in a dark crypt too
+    const cloth = new THREE.Mesh(clothGeo, new THREE.MeshStandardMaterial({ map: this.textures.get(key), emissive: 0xffffff, emissiveMap: this.textures.get(key), emissiveIntensity: 0.45,
+      side: THREE.DoubleSide, roughness: 0.9, transparent: true, alphaTest: 0.5 }));
+    for (const m of [pole, tip, bar, cloth]) { m.castShadow = true; grp.add(m); }
+    const at = posOf(p).clone().setY(0);
+    grp.position.copy(at);
+    // the cloth turned toward the view (a flag seen edge-on is a stick), a little askew
+    const cam = this.engine.camera.position;
+    grp.rotation.y = Math.atan2(cam.x - at.x, cam.z - at.z) + (Math.random() - 0.5) * 0.6;
+    this.scene.add(grp);
+    this.decal(at, { sigil, radius: 2.4, time, color: glow, spin: 0.25, opacity: 0.55 });
+    let t = 0, landed = false;
+    return this.add({ update: dt => {
+      t += dt;
+      // down hard from above, then standing; sinking at the end
+      grp.position.y = t < 0.18 ? (1 - t / 0.18) * 3 : t > time - 0.6 ? -height * Math.min(1, (t - (time - 0.6)) / 0.6) : 0;
+      if (!landed && t >= 0.18) {
+        landed = true;
+        this.shockwave(at, { color: glow, radius: 3.5, time: 0.5 });
+        this.p.emit(at.clone().setY(0.3), { count: 26, color: 0xb8a888, speed: 3, up: 1, life: 0.7, size: 0.45, grow: 0.5, drag: 2 });
+      }
+      // the cloth ripples from the pole outward
+      const a = clothGeo.attributes.position;
+      for (let i = 0; i < a.count; i++) {
+        const u = Math.max(0, base[i * 3] - 0.05) / 1.15;
+        a.setZ(i, base[i * 3 + 2] + Math.sin(t * 5 + u * 4.5 + base[i * 3 + 1]) * 0.14 * u);
+      }
+      a.needsUpdate = true;
+      if (Math.random() < dt * 8) this.p.emit(at.clone().setY(height + 0.2), { count: 1, color: glow, bright: 1.4, speed: 0.4, up: 0.6, life: 0.8, size: 0.16 });
+      return t < time;
+    }, dispose: () => {
+      this.scene.remove(grp);
+      for (const m of [pole, tip, bar, cloth]) { m.geometry.dispose(); }
+      wood.dispose(); steel.dispose(); cloth.material.dispose();
+      this.give('meshes');
+    } });
   }
 
   // ---- telegraph: a danger zone on the floor that fills until the blow lands ----

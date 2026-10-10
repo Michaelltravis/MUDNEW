@@ -14,6 +14,7 @@ export function createMinimap(root, onPick, onNorth = null) {
   const S = 2;   // the canvas is drawn at twice its CSS size (it is hidden at creation, so not measured)
   let zone = null, explored = new Set(), hero = { x: 0, z: 0, yaw: 0, cam: 0 }, room = null, dirty = true, last = 0;
   let guild = null;            // {vnum, room, trainer}: where your class's trainer stands
+  let questMark = null;        // the room your marquee quest sends you to (a gold diamond)
   const north = root.querySelector('.mm-north');
   if (north) north.addEventListener('click', e => { e.stopPropagation(); if (onNorth) onNorth(); });
   const W = () => cv.width, H = () => cv.height;
@@ -63,6 +64,14 @@ export function createMinimap(root, onPick, onNorth = null) {
       ctx.lineWidth = 2.4 * S; ctx.strokeStyle = 'rgba(0,0,0,.75)'; ctx.fillStyle = '#ffd86a';
       ctx.strokeText('★', x + cw / 2, y + ch / 2); ctx.fillText('★', x + cw / 2, y + ch / 2);
     }
+    // the marquee quest's next place: a gold diamond
+    const qr = questMark != null && zone.rooms.get(questMark);
+    if (qr) {
+      const [x, y] = toScreen(qr.cx, qr.cy);
+      ctx.font = `bold ${12 * S}px sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.lineWidth = 2.6 * S; ctx.strokeStyle = 'rgba(0,0,0,.8)'; ctx.fillStyle = '#ffb84a';
+      ctx.strokeText('◆', x + cw / 2, y + ch / 2); ctx.fillText('◆', x + cw / 2, y + ch / 2);
+    }
     if (room) {
       const [x, y] = toScreen(room.cx, room.cy);
       ctx.strokeStyle = '#f3d999'; ctx.lineWidth = 1.6 * S;
@@ -109,6 +118,7 @@ export function createMinimap(root, onPick, onNorth = null) {
       guild = g || null; dirty = true;
       cv.title = g ? `★ ${g.trainer} (${g.room}) trains you` : '';
     },
+    setQuestMark(vnum) { if (vnum === questMark) return; questMark = vnum; dirty = true; },
     setRoom(r) { room = r; dirty = true; root.querySelector('.mm-room').textContent = r ? r.name : ''; },
     setTime(t) {
       if (!t) return;

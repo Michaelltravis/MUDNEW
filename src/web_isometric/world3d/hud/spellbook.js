@@ -23,11 +23,11 @@ export function createSpellbook(root, { icon, onUse, onAdd, onDragStart, onDragE
     const pct = Math.max(0, Math.min(100, a.pct || 0));
     const can = usable(a);
     return `<div class="sb-card ${a.known ? '' : 'locked'}${a.passive ? ' passive' : ''}" data-id="${esc(a.id)}" ${can ? 'draggable="true"' : ''}
-        title="${!a.known ? `Unlocks at level ${a.level}` : can ? 'Drag onto your bar · double-click to use' : 'Passive: it works on its own'}">
+        title="${!a.known ? (a.quest ? `Earned through ${a.quest} (your guild's trainer, from level ${a.level})` : `Unlocks at level ${a.level}`) : can ? 'Drag onto your bar · double-click to use' : 'Passive: it works on its own'}">
       <div class="sb-ic">${icon(a.id)}</div>
       <div class="sb-main">
         <div class="sb-top"><span class="sb-name">${esc(a.name)}</span>
-          <span class="sb-rank">${a.known ? `${rankOf(pct)} · ${pct}%` : `Level ${a.level}`}</span></div>
+          <span class="sb-rank">${a.known ? `${rankOf(pct)} · ${pct}%` : a.quest ? `★ Quest · level ${a.level}` : `Level ${a.level}`}</span></div>
         ${a.known ? `<div class="sb-bar"><b style="width:${pct}%"></b><i style="left:${BY_USE}%"></i></div>` : ''}
         <div class="sb-cost">${esc(costLine(a))}</div>
         ${a.desc ? `<div class="sb-desc">${esc(a.desc)}</div>` : ''}

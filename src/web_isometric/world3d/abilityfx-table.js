@@ -32,6 +32,8 @@ export const RECIPES = {
     titans_wrath: 'spin2 rise | sigil+ | slash:wide | quake+ | glow | flash shake+ t=6',
     mortal_strike: 'stab2 | - | slash:x | burst:drop | bleed | blood',
     protect: 'blocking | - | link | - | bubble | ally',
+    // the marquee (the warrior's quest): the banner slams down and stands while the buff lasts
+    unbroken_banner: 'chop2*0.85 rise | charge | - | quake+ | banner | flash shake+ t=15 r=4',
   },
   paladin: {
     censure: 'diag | - | slash | burst | - | ',

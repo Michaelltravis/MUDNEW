@@ -61,6 +61,13 @@ class Misthollow:
             combat_hooks.install()
         except Exception as e:
             logger.error(f"combat hooks not installed: {e}")
+        # The marquee abilities (one per class, earned through a quest): their commands must
+        # exist before mastery.install() wraps every class ability
+        try:
+            import marquee_abilities
+            marquee_abilities.install()
+        except Exception as e:
+            logger.error(f"marquee abilities not installed: {e}")
         # Learn by doing: abilities unlock by level and grow with use (mastery.py)
         try:
             import mastery

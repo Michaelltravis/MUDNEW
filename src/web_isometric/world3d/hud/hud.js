@@ -8,6 +8,7 @@ import { createCharacter } from './character.js';
 import { createSpellbook } from './spellbook.js';
 import { createTrainer } from './trainer.js';
 import { createParty } from './party.js';
+import { createQuest } from './quest.js';
 import { SLOTS, cleanBar, defaultBar, placeNew, putOnBar, takeOffBar, diffAbilities, usable } from '../abilities.js';
 const $ = s => document.querySelector(s);
 const ls = { get(k) { try { return localStorage.getItem(k); } catch (_) { return null; } },
@@ -54,6 +55,11 @@ export function createHud() {
     onTarget: name => MH.bus.emit('hud.targetPlayer', name),
     onMenu: (name, x, y, leader) => MH.bus.emit('hud.partyMenu', { name, x, y, leader }),
     toast: msg => toast(msg),
+  });
+  // the marquee quest: the offer card, the embark popup, the tracker under the minimap
+  const quest = createQuest({
+    card: $('#quest-card'), embark: $('#quest-embark'), tracker: $('#quest-tracker'),
+    toast: msg => toast(msg), onMark: vnum => MH.bus.emit('quest.mark', vnum),
   });
 
   // ---- scale ----
@@ -479,5 +485,5 @@ export function createHud() {
   function whisper(name) { tellFrom = name; setMode('tell'); els.input.focus(); }
 
   return { showGame, setPlayer, setTarget, setRanges, setDistance, banner, toast, log, targetSkills, useAbility, prefill, openPanel, openTrainer,
-    spellbook, unslot, party, whisper, get player() { return st.player; }, get bar() { return st.bar.slice(); } };
+    spellbook, unslot, party, quest, whisper, get player() { return st.player; }, get bar() { return st.bar.slice(); } };
 }

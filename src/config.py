@@ -287,7 +287,9 @@ class Config:
                       'doctrine', 'swear', 'evolve',
                       'kick', 'rescue', 'second_attack', 'third_attack', 'parry', 'shield_block', 'dodge',
                       # level 31-60 (56 and 60 are reached through prestige)
-                      'rallying_cry', 'shattering_blow', 'commanding_shout', 'heroic_leap', 'warpath', 'titans_wrath'],
+                      'rallying_cry', 'shattering_blow', 'commanding_shout', 'heroic_leap', 'warpath', 'titans_wrath',
+                      # the marquee ability: earned through the warrior's quest (marquee.py)
+                      'unbroken_banner'],
             'spells': [],
             # Warriors also gain rage abilities: execute (15), rampage (20), warcry (10), ignorepain (8)
             # And can switch stances: battle, berserk, defensive, precision

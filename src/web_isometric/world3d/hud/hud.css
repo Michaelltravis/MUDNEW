@@ -419,3 +419,28 @@ button { font: inherit; color: inherit; }
 .lr-item.uncommon { color: #7fe07a; } .lr-item.rare { color: #6aa8ff; } .lr-item.epic { color: #c87aff; } .lr-item.legendary { color: #ffb02a; }
 .lr-bar { height: 3px; margin-top: 10px; border-radius: 2px; background: var(--gold); transform-origin: left; animation: lr-shrink var(--lr-ms) linear forwards; }
 @keyframes lr-shrink { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+
+/* the marquee quest (hud/quest.js): the offer card, the embark popup, the tracker */
+#quest-card { width: 360px; top: 16%; text-align: left; }
+#quest-embark { top: 28%; }
+.qc-kicker { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-dim); }
+.qc-title { font: 600 20px var(--title); color: var(--gold-hi); margin: 2px 0 8px; }
+.qc-text { font-size: 13px; line-height: 1.45; margin-bottom: 10px; font-style: italic; }
+.qc-reward { border: 1px solid var(--edge-dim); border-radius: 6px; padding: 6px 8px; margin-bottom: 8px; background: rgba(216,180,106,.08); }
+.qc-lab { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-dim); }
+.qc-reward b { color: var(--gold-hi); }
+.qc-desc { font-size: 12px; margin-top: 3px; }
+.qc-meta { font-size: 11px; color: var(--ink-dim); margin-bottom: 10px; }
+#quest-tracker { right: 14px; top: 300px; width: 236px; padding: 8px 10px; transform: scale(var(--ui)); transform-origin: top right; font-size: 12px; }
+.qt-head { display: flex; align-items: center; gap: 6px; }
+.qt-star { color: #ffd86a; }
+.qt-name { flex: 1; font: 600 13px var(--title); color: var(--gold-hi); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.qt-step { font-size: 11px; color: var(--ink-dim); }
+.qt-title { font-weight: 700; margin-top: 4px; }
+.qt-text { color: var(--ink-dim); margin-top: 2px; line-height: 1.35; }
+.qt-obj { margin: 5px 0 0 14px; padding: 0; }
+.qt-obj li { margin: 1px 0; }
+.qt-obj li span { color: var(--gold); margin-left: 4px; }
+.qt-obj li.done { color: var(--ink-dim); text-decoration: line-through; }
+.qt-trial { margin-top: 5px; color: #ffb86a; }
+.qt-foot { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; font-size: 11px; color: var(--ink-dim); }
