@@ -1104,6 +1104,7 @@ class Player(Character):
             'affects': AffectManager.save_affects(self),
             'companions': self._save_companions(),
             'custom_aliases': self.custom_aliases,
+            'web_bar': getattr(self, 'web_bar', None),   # the 3D client's action bar, as arranged
             'autoloot': self.autoloot,
             'autoloot_gold': self.autoloot_gold,
             'autogold': self.autogold,
@@ -1347,6 +1348,7 @@ class Player(Character):
 
             player.flags = set(data.get('flags', []))
             player.custom_aliases = data.get('custom_aliases', {})
+            player.web_bar = data.get('web_bar')
             player.autoloot = data.get('autoloot', False)
             player.autoloot_gold = data.get('autoloot_gold', True)
             player.autogold = data.get('autogold', True)

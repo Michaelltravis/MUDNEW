@@ -1039,6 +1039,29 @@ class CommandHandler:
         return restore
 
     @classmethod
+    async def cmd_webbar(cls, player: 'Player', args: List[str]):
+        """Internal, for the 3D web client (/play): "webbar <id|-> ..." keeps the action bar as
+        the player arranged it, with the character (16 slots: keys 1-8, then Shift+1-8; '-' is
+        an empty slot; only abilities the character knows are kept). No arguments forgets it,
+        and the client lays out the class's usual order again."""
+        if not args:
+            player.web_bar = None
+        else:
+            known = set(getattr(player, 'skills', None) or {}) | set(getattr(player, 'spells', None) or {})
+            bar, seen = [], set()
+            for word in args[:16]:
+                aid = word.strip().lower()
+                ok = aid in known and aid not in seen
+                bar.append(aid if ok else None)
+                if ok:
+                    seen.add(aid)
+            player.web_bar = bar + [None] * (16 - len(bar))
+        try:
+            await player.save()
+        except Exception:
+            pass
+
+    @classmethod
     async def cmd_webdoor(cls, player: 'Player', args: List[str]):
         """Internal, for the 3D web client (/play): "webdoor <vnum> <dir> <action>".
 

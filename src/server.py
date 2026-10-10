@@ -1195,7 +1195,7 @@ class Connection:
         # Echo command back to player so they see what they typed (not the 3D client's
         # internal moves: those are its walking, not something the player typed)
         c = self.config.COLORS
-        web_internal = line.startswith(('webmove ', 'webdoor '))
+        web_internal = line.startswith(('webmove ', 'webdoor ', 'webbar '))
         if not web_internal:
             await self.send(f"{c['cyan']}> {line}{c['reset']}\r\n")
 

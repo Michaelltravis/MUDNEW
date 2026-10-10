@@ -465,6 +465,12 @@ async function runGame() {
   }
   MH.bus.on('hud.flee', () => MH.sendCommand('flee'));
   MH.bus.on('hud.cameraReset', () => engine.snapNorth());
+  // right-click a slot on the bar
+  MH.bus.on('hud.slotMenu', ({ x, y, slot, id, name }) => ctxMenu.show(x, y, name || id, [
+    { label: 'Use', run: () => hud.useAbility(id) },
+    { label: 'Take off the bar', run: () => hud.unslot(slot) },
+    { label: 'Spellbook (K)', run: () => hud.spellbook.toggle(true) },
+  ]));
   MH.bus.on('hud.ability', ab => {
     const t = ents.targeted;
     // the hero starts the ability's own move on the key press; the server's event then
@@ -616,6 +622,7 @@ async function runGame() {
     if (a.startsWith('door:')) return doDoor(hit.door.dir, a.slice(5));
     if (a.startsWith('tell:')) return hud.prefill(`tell ${a.slice(5)} `);
     if (a === 'inventory' || a === 'character') return hud.openPanel(a);
+    if (a === 'trainer') return hud.openTrainer(hit.ent.data && hit.ent.data.name);
     if (a === 'walk' && hit.point) { travel = null; return ctl.walkTo(hit.point.x, hit.point.z); }
   }
 

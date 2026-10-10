@@ -5,6 +5,9 @@
 // which knows the target and plays the hero's animation.
 import { createInventory } from './inventory.js';
 import { createCharacter } from './character.js';
+import { createSpellbook } from './spellbook.js';
+import { createTrainer } from './trainer.js';
+import { SLOTS, cleanBar, defaultBar, placeNew, putOnBar, takeOffBar, diffAbilities, usable } from '../abilities.js';
 const $ = s => document.querySelector(s);
 const ls = { get(k) { try { return localStorage.getItem(k); } catch (_) { return null; } },
   set(k, v) { try { localStorage.setItem(k, v); } catch (_) {} } };
@@ -22,7 +25,7 @@ export const KIT = {
   bard: ['mockery', 'fascinate', 'crescendo', 'discordant_note', 'sleep'],
 };
 const SELF = new Set(['rally', 'cure_light', 'heal', 'bless', 'fade', 'absolution', 'halo_of_reckoning', 'animate_dead', 'crescendo']);
-const ICON = id => /heal|cure|bless|absolution|rally/.test(id) ? '✚' : /fire|flame|bolt|lightning|missile|smite|storm/.test(id) ? '✹'
+export const ICON = id => /heal|cure|bless|absolution|rally/.test(id) ? '✚' : /fire|flame|bolt|lightning|missile|smite|storm/.test(id) ? '✹'
   : /shot|loosing|quarry/.test(id) ? '➶' : /sleep|fascinate|mockery|note|crescendo/.test(id) ? '♪'
   : /soul|chill|dead|reap/.test(id) ? '☠' : /backstab|circle|vital|execute|expose|mark|feint|contract/.test(id) ? '🗡'
   : /bash|kick|trip|low_blow|charge|cleave|rescue|censure|verdict/.test(id) ? '⚒' : '✦';
@@ -33,9 +36,18 @@ export function createHud() {
     mm: $('#minimap'), ab: $('#actionbar'), chat: $('#chat'), log: $('#log'), input: $('#chat-input'),
     menu: $('#menu'), settings: $('#settings'), slots: $('#slots'),
   };
-  const st = { player: null, kitKey: '', slots: [], cooldowns: {}, cdAt: 0, target: null, history: [], hi: -1 };
+  const st = { player: null, abilities: null, byId: new Map(), bar: new Array(SLOTS).fill(null), custom: false, barEdited: 0,
+    barSig: '', glow: new Set(), cooldowns: {}, cdAt: 0, target: null, history: [], hi: -1 };
   const inventory = createInventory();
   const character = createCharacter();
+  const spellbook = createSpellbook($('#spellbook'), {
+    icon: id => ICON(id),
+    onUse: id => use(id),
+    onAdd: id => { const i = st.bar.indexOf(null); if (i < 0) toast('Your bar is full: drag the ability onto a slot'); else editBar(putOnBar(st.bar, id, i)); },
+    onDragStart: () => els.ab.classList.add('dragging'),
+    onDragEnd: () => els.ab.classList.remove('dragging'),
+  });
+  const trainer = createTrainer($('#trainer'), { icon: id => ICON(id), onTrain: id => MH.sendCommand(`practice ${id}`) });
 
   // ---- scale ----
   function applyScale() {
@@ -95,48 +107,154 @@ export function createHud() {
     character.update(p);
     st.cooldowns = p.cooldowns || {};
     st.cdAt = performance.now();
-    buildKit(p);
+    buildBar(p);
     paintCooldowns();
   }
 
-  // ---- action bar: easy to start (3 buttons at level 1), grows with level ----
-  function buildKit(p) {
+  // ---- action bar: Attack (F), your own 16 slots (1-8, Shift+1-8), Flee ----
+  // Abilities come from the payload (`abilities`, `bar`: see abilities.js). A character who
+  // never arranged the bar gets the class's usual order; once you drag something, the bar is
+  // yours and is kept with the character (`webbar`). New abilities glow into free slots.
+  const keyOf = i => i < 8 ? String(i + 1) : `⇧${i - 7}`;
+  // the class's ability book (what each ability is, costs and unlocks at) comes once per class
+  // from /abilitybook; the payload only carries how well you know each one (skills, spells)
+  const books = new Map();
+  function bookFor(cls) {
+    if (!books.has(cls)) {
+      books.set(cls, null);
+      fetch(`/abilitybook?cls=${encodeURIComponent(cls)}`).then(r => (r.ok ? r.json() : null)).catch(() => null).then(b => {
+        if (!b || !Array.isArray(b.abilities)) return;
+        books.set(cls, b.abilities);
+        if (st.player && String(st.player.char_class || '').toLowerCase() === cls) buildBar(st.player);
+      });
+    }
+    return books.get(cls);
+  }
+  function abilityList(p) {
     const cls = String(p.char_class || '').toLowerCase();
-    const order = KIT[cls] || [];
-    const learned = new Set([...Object.keys(p.skills || {}), ...Object.keys(p.spells || {})]);
-    const spells = new Set([...Object.keys(p.spells || {}), ...(p.class_spells || []).map(s => typeof s === 'string' ? s : s && s.name)]);
-    let avail = order.filter(a => learned.has(a));
-    if (!avail.length && order.length) avail = [order[0]];
-    const lv = p.level || 1;
-    const n = lv <= 5 ? 1 : lv <= 10 ? 3 : 8;
-    const kit = avail.slice(0, n);
-    const key = `${cls}|${kit.join(',')}`;
-    if (key === st.kitKey) return;
-    st.kitKey = key;
-    st.slots = [{ id: 'attack', key: 'F', icon: '⚔', label: 'Attack' }]
-      .concat(kit.map((id, i) => ({ id, key: String(i + 1), icon: ICON(id), label: id.replace(/_/g, ' '), spell: spells.has(id), self: SELF.has(id) })))
-      .concat([{ id: 'flee', key: '', icon: '🏃', label: 'Flee' }]);
-    els.slots.innerHTML = st.slots.map((s, i) =>
-      `<div class="slot" data-i="${i}" title="${s.label}${s.key ? ` (${s.key})` : ''}"><span class="key">${s.key}</span>`
-      + `<div><div class="ic">${s.icon}</div><div class="ab">${s.label}</div></div></div>`).join('');
-    els.slots.querySelectorAll('.slot').forEach(el => el.addEventListener('click', () => use(st.slots[+el.dataset.i])));
+    const learned = { ...(p.skills || {}), ...(p.spells || {}) };
+    const book = bookFor(cls);
+    if (book) return book.map(a => ({ ...a, pct: learned[a.id] || 0, known: (learned[a.id] || 0) > 0 }));
+    // until the book arrives: what the class kit and the learned lists say
+    const spells = new Set(Object.keys(p.spells || {}));
+    return (KIT[cls] || []).map((id, i) => ({ id, name: id.replace(/_/g, ' '), type: spells.has(id) ? 'spell' : 'skill',
+      pct: learned[id] || 0, known: !!learned[id], level: i + 1, target: SELF.has(id) ? 'self' : 'enemy' }));
+  }
+  function buildBar(p) {
+    const cls = String(p.char_class || '').toLowerCase();
+    const list = abilityList(p);
+    const prev = st.abilities && st.abilities.fromBook === !!books.get(cls) ? st.abilities : null, before = st.bar;
+    list.fromBook = !!books.get(cls);
+    st.abilities = list;
+    st.byId = new Map(list.map(a => [a.id, a]));
+    // a bar you just changed outlives payloads the server sent before it had your change
+    if (performance.now() - st.barEdited > 4000) {
+      st.custom = Array.isArray(p.bar) && p.bar.some(Boolean);
+      st.bar = st.custom ? cleanBar(p.bar, list) : defaultBar(list, KIT[cls] || []);
+    }
+    if (prev) {
+      const { learned, improved } = diffAbilities(prev, list);
+      if (learned.length) {
+        // into free slots, without moving what is already on your keys
+        const r = placeNew(st.custom ? st.bar : cleanBar(before, list), learned.filter(id => usable(st.byId.get(id))));
+        if (r.placed.length || !st.custom) editBar(r.bar, true);
+        for (const id of learned) {
+          const a = st.byId.get(id), i = st.bar.indexOf(id);
+          toast(`You learned ${a ? a.name : id}${a && a.passive ? ' (passive)' : i >= 0 ? ` — on your bar (${keyOf(i)})` : ' — open your spellbook (K)'}`);
+          st.glow.add(id);
+          setTimeout(() => { st.glow.delete(id); renderBar(); }, 9000);
+        }
+      }
+      for (const imp of improved) tick(imp.id, imp.to - imp.from);
+    }
+    renderBar();
+    spellbook.update(list, st.bar, p.level);
+    trainer.update({ ...p, abilities: list });
+  }
+  // send the bar to the server (kept with the character)
+  function editBar(bar, quiet) {
+    st.bar = bar;
+    st.custom = true;
+    st.barEdited = performance.now();
+    MH.sendCommand(`webbar ${bar.map(x => x || '-').join(' ')}`, false);
+    renderBar();
+    spellbook.update(st.abilities, st.bar, st.player && st.player.level);
+    if (!quiet) requestAnimationFrame(fitChat);
+  }
+  function slotHtml(i) {
+    const id = st.bar[i], a = id && st.byId.get(id), key = keyOf(i);
+    if (!a) return `<div class="slot empty" data-i="${i}" title="Drag an ability here from your spellbook (K)"><span class="key">${key}</span></div>`;
+    return `<div class="slot${st.glow.has(id) ? ' glow' : ''}" data-i="${i}" data-id="${a.id}" draggable="true" title="${a.name} (${key})">`
+      + `<span class="key">${key}</span><div><div class="ic">${ICON(a.id)}</div><div class="ab">${a.name}</div></div></div>`;
+  }
+  function renderBar() {
+    const sig = JSON.stringify([st.bar, [...st.glow], st.bar.map(id => id && st.byId.has(id))]);
+    if (sig === st.barSig) return;
+    st.barSig = sig;
+    const row = (from, to) => Array.from({ length: to - from }, (_, k) => slotHtml(from + k)).join('');
+    els.slots.innerHTML = `<div class="bar-row shift${st.bar.slice(8).some(Boolean) ? '' : ' unused'}">${row(8, 16)}</div>`
+      + '<div class="bar-row main"><div class="slot fixed" data-act="attack" title="Attack (F)"><span class="key">F</span><div><div class="ic">⚔</div><div class="ab">Attack</div></div></div>'
+      + `${row(0, 8)}<div class="slot fixed" data-act="flee" title="Flee"><span class="key"></span><div><div class="ic">🏃</div><div class="ab">Flee</div></div></div></div>`;
+    els.slots.querySelectorAll('.slot').forEach(el => {
+      const i = el.dataset.i != null ? +el.dataset.i : -1;
+      el.addEventListener('click', () => use(el.dataset.act || st.bar[i]));
+      if (i < 0) return;
+      el.addEventListener('contextmenu', e => {
+        e.preventDefault();
+        if (st.bar[i]) MH.bus.emit('hud.slotMenu', { x: e.clientX, y: e.clientY, slot: i, id: st.bar[i], name: (st.byId.get(st.bar[i]) || {}).name });
+      });
+      el.addEventListener('dragstart', e => {
+        e.dataTransfer.setData('text/x-ability', st.bar[i]);
+        e.dataTransfer.setData('text/x-slot', String(i));
+        e.dataTransfer.effectAllowed = 'move';
+        els.ab.classList.add('dragging');
+      });
+      // dropped nowhere: off the bar
+      el.addEventListener('dragend', e => {
+        els.ab.classList.remove('dragging');
+        if (e.dataTransfer.dropEffect === 'none' && st.bar[i]) {
+          const a = st.byId.get(st.bar[i]);
+          editBar(takeOffBar(st.bar, i));
+          toast(`${a ? a.name : 'That'} is off your bar (it stays in your spellbook, K)`);
+        }
+      });
+      el.addEventListener('dragover', e => { if (e.dataTransfer.types.includes('text/x-ability')) { e.preventDefault(); el.classList.add('over'); } });
+      el.addEventListener('dragleave', () => el.classList.remove('over'));
+      el.addEventListener('drop', e => {
+        e.preventDefault();
+        el.classList.remove('over');
+        els.ab.classList.remove('dragging');
+        const id = e.dataTransfer.getData('text/x-ability');
+        if (id && st.byId.has(id)) editBar(putOnBar(st.bar, id, i));
+      });
+    });
     requestAnimationFrame(fitChat);
   }
-  function use(s) {
-    if (!s) return;
-    const el = els.slots.querySelector(`.slot[data-i="${st.slots.indexOf(s)}"]`);
+  // "+2%": an ability on the bar grew
+  function tick(id, by) {
+    const el = els.slots.querySelector(`.slot[data-id="${id}"]`);
+    if (!el || !(by > 0)) return;
+    const t = document.createElement('div');
+    t.className = 'tick';
+    t.textContent = `+${by}%`;
+    el.appendChild(t);
+    setTimeout(() => t.remove(), 1600);
+  }
+  // use an ability by id (bar, spellbook, right-click menu) or the fixed Attack/Flee
+  function use(id) {
+    if (!id) return;
+    const el = els.slots.querySelector(id === 'attack' || id === 'flee' ? `.slot[data-act="${id}"]` : `.slot[data-id="${id}"]`);
     if (el) { el.classList.add('flash'); setTimeout(() => el.classList.remove('flash'), 180); }
-    if (s.id === 'attack') MH.bus.emit('hud.attack');
-    else if (s.id === 'flee') MH.bus.emit('hud.flee');
-    else MH.bus.emit('hud.ability', { id: s.id, spell: s.spell, self: s.self });
+    if (id === 'attack') { MH.bus.emit('hud.attack'); return; }
+    if (id === 'flee') { MH.bus.emit('hud.flee'); return; }
+    const a = st.byId.get(id);
+    if (a && !a.known) { toast(`${a.name} unlocks at level ${a.level}`); return; }
+    MH.bus.emit('hud.ability', { id, spell: a ? a.type === 'spell' : false, self: a ? a.target === 'self' : SELF.has(id) });
   }
   function paintCooldowns() {
-    const el = els.slots;
     const elapsed = (performance.now() - st.cdAt) / 1000;
-    st.slots.forEach((s, i) => {
-      const left = (st.cooldowns[s.id] || 0) - elapsed;
-      const slot = el.querySelector(`.slot[data-i="${i}"]`);
-      if (!slot) return;
+    els.slots.querySelectorAll('.slot[data-id]').forEach(slot => {
+      const left = (st.cooldowns[slot.dataset.id] || 0) - elapsed;
       let cd = slot.querySelector('.cd');
       if (left > 0.05) {
         if (!cd) { cd = document.createElement('div'); cd.className = 'cd'; slot.appendChild(cd); }
@@ -149,12 +267,13 @@ export function createHud() {
   // ---- ranges: the target frame shows the distance; slots out of reach turn red ----
   let ranges = null, lastDist = null;
   function setRanges(d) { ranges = d; }
-  function abilityRange(s) {
+  function abilityRange(id) {
     if (!ranges) return null;
-    if (s.id === 'attack') { const a = ranges.auto[String(st.player && st.player.char_class || '').toLowerCase()]; return a ? a.range : ranges.melee; }
-    const ab = ranges.abilities[s.id];
+    if (id === 'attack') { const a = ranges.auto[String(st.player && st.player.char_class || '').toLowerCase()]; return a ? a.range : ranges.melee; }
+    const ab = ranges.abilities[id], info = st.byId.get(id);
     if (ab) return /^(self|nova)/.test(ab.shape) ? null : ab.range;
-    return s.spell ? ranges.spellDefault : ranges.melee;
+    if (info && info.target === 'self') return null;
+    return info && info.type === 'spell' ? ranges.spellDefault : ranges.melee;
   }
   function setDistance(d, sameRoom) {
     const sub = els.tf.querySelector('.tdist') || (() => { const x = document.createElement('div'); x.className = 'tdist'; els.tf.appendChild(x); return x; })();
@@ -162,13 +281,12 @@ export function createHud() {
     const r = Math.round(d * 2) / 2;
     if (r === lastDist) return;
     lastDist = r;
-    const reach = abilityRange({ id: 'attack' });
+    const reach = abilityRange('attack');
     sub.textContent = `${r.toFixed(r < 10 ? 1 : 0)} m${reach != null ? (d <= reach + 0.3 && sameRoom ? ' · in reach' : ` · reach ${reach} m`) : ''}`;
     sub.className = 'tdist' + (reach != null && d <= reach + 0.3 && sameRoom ? ' ok' : '');
-    st.slots.forEach((s, i) => {
-      const el = els.slots.querySelector(`.slot[data-i="${i}"]`);
-      const rng = abilityRange(s);
-      if (el) el.classList.toggle('far', rng != null && (d > rng + 0.3 || !sameRoom));
+    els.slots.querySelectorAll('.slot[data-id], .slot[data-act="attack"]').forEach(el => {
+      const rng = abilityRange(el.dataset.id || 'attack');
+      el.classList.toggle('far', rng != null && (d > rng + 0.3 || !sameRoom));
     });
   }
 
@@ -244,9 +362,7 @@ export function createHud() {
   els.menu.querySelector('[data-act="settings"]').addEventListener('click', () => els.settings.classList.toggle('hidden'));
   els.menu.querySelector('[data-act="inventory"]').addEventListener('click', () => inventory.toggle());
   els.menu.querySelector('[data-act="character"]').addEventListener('click', () => character.toggle());
-  els.menu.querySelector('[data-act="abilities"]').addEventListener('click', () => {
-    character.toggle(true); document.querySelector('#character .ch-tabs [data-tab="abilities"]').click();
-  });
+  els.menu.querySelector('[data-act="abilities"]').addEventListener('click', () => spellbook.toggle());
   const syncSettings = () => {
     const q = ls.get('mh3d_quality') || 'high', u = ls.get('mh3d_ui') || 'auto';
     els.settings.querySelectorAll('[data-set="quality"] button').forEach(b => b.classList.toggle('on', b.dataset.v === q));
@@ -270,17 +386,18 @@ export function createHud() {
     if (!MH.state.isLoggedIn) return;
     const k = e.key;
     if (k === 'Enter') { els.input.focus(); e.preventDefault(); return; }
-    if (k === 'f' || k === 'F' || k === ' ') { use(st.slots[0]); e.preventDefault(); return; }
-    if (/^[1-8]$/.test(k)) { use(st.slots.find(s => s.key === k)); e.preventDefault(); return; }
+    if (k === 'f' || k === 'F' || k === ' ') { use('attack'); e.preventDefault(); return; }
+    const digit = /^Digit([1-8])$/.exec(e.code || '');
+    if (digit && !e.ctrlKey && !e.metaKey && !e.altKey) { use(st.bar[+digit[1] - 1 + (e.shiftKey ? 8 : 0)]); e.preventDefault(); return; }
     if (k === 'Escape') {
-      if (inventory.open || character.open) { inventory.toggle(false); character.toggle(false); return; }
+      if (inventory.open || character.open || spellbook.open || trainer.open) {
+        inventory.toggle(false); character.toggle(false); spellbook.toggle(false); trainer.toggle(false); return;
+      }
       MH.bus.emit('hud.untarget'); els.settings.classList.add('hidden'); return;
     }
     if ((k === 'i' || k === 'I') && !e.ctrlKey && !e.metaKey) { inventory.toggle(); e.preventDefault(); return; }
     if ((k === 'c' || k === 'C') && !e.ctrlKey && !e.metaKey) { character.toggle(); e.preventDefault(); return; }
-    if ((k === 'k' || k === 'K') && !e.ctrlKey && !e.metaKey) {
-      character.toggle(true); document.querySelector('#character .ch-tabs [data-tab="abilities"]').click(); e.preventDefault(); return;
-    }
+    if ((k === 'k' || k === 'K') && !e.ctrlKey && !e.metaKey) { spellbook.toggle(); e.preventDefault(); return; }
     if (k === 'Tab') { MH.bus.emit('hud.cycleTarget'); e.preventDefault(); return; }
     const cmd = { l: 'quests' }[k.toLowerCase()];
     if (cmd && !e.ctrlKey && !e.metaKey && !e.altKey) { MH.sendCommand(cmd); e.preventDefault(); }
@@ -288,11 +405,16 @@ export function createHud() {
 
   // ---- for the right-click menu ----
   // the bar's abilities that aim at someone (not heals on yourself, not shouts)
-  function targetSkills() { return st.slots.filter(s => s.id !== 'attack' && s.id !== 'flee' && !s.self).map(s => ({ id: s.id, label: s.label, spell: s.spell })); }
-  function useAbility(id) { use(st.slots.find(s => s.id === id)); }
+  function targetSkills() {
+    return st.bar.map(id => id && st.byId.get(id)).filter(a => a && a.known && a.target !== 'self')
+      .map(a => ({ id: a.id, label: a.name, spell: a.type === 'spell' }));
+  }
+  function useAbility(id) { use(id); }
+  function unslot(i) { if (st.bar[i]) editBar(takeOffBar(st.bar, i)); }
   function prefill(text) { els.input.value = text; els.input.focus(); }
   function openPanel(name) { if (name === 'inventory') inventory.toggle(true); else if (name === 'character') character.toggle(true); }
+  function openTrainer(name) { trainer.toggle(true, name || ''); if (MH.refreshState) MH.refreshState(); }
 
-  return { showGame, setPlayer, setTarget, setRanges, setDistance, banner, toast, log, targetSkills, useAbility, prefill, openPanel,
-    get player() { return st.player; } };
+  return { showGame, setPlayer, setTarget, setRanges, setDistance, banner, toast, log, targetSkills, useAbility, prefill, openPanel, openTrainer,
+    spellbook, unslot, get player() { return st.player; }, get bar() { return st.bar.slice(); } };
 }

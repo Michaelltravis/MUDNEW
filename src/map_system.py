@@ -1577,6 +1577,8 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'skills': dict(getattr(player, 'skills', {})),
             'spells': dict(getattr(player, 'spells', {})),   # learned spells (the roster is class_spells)
             'talents': dict(getattr(player, 'talents', {})),
+            'practices': getattr(player, 'practices', 0),
+            'bar': getattr(player, 'web_bar', None),          # the 3D client's action bar, as arranged
             'affects': AffectManager.save_affects(player),
         },
         'group': build_group_block(player),

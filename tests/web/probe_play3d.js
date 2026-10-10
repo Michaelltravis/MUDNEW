@@ -1,5 +1,5 @@
 // Browser probe for /play against a local server (./run.sh), with the gauntlet admin account.
-//   NODE_PATH=/opt/node22/lib/node_modules node tests/web/probe_play3d.js stairs|doors|camera|menu|autotarget|creatures [outdir]
+//   NODE_PATH=/opt/node22/lib/node_modules node tests/web/probe_play3d.js stairs|doors|camera|menu|autotarget|creatures|spellbook [outdir]
 // CommonJS on purpose (the global Playwright only resolves through NODE_PATH with require).
 // WebGL may render at ~1 fps in a container, so the probe places the hero directly and waits
 // on frames instead of walking in real time.
@@ -13,6 +13,9 @@
 //   menu:   a right-click on a creature offers Attack/Consider (naming it exactly), on the
 //           hero "You".
 //   autotarget: a creature that hits you becomes your target; a foe you picked stays.
+//   spellbook: K opens the spellbook; an ability dragged onto slot 2 lands there and the bar is
+//           saved (one `webbar`); key 2 uses it; dragging it off the bar removes it; a newly
+//           learned ability glows into a free slot.
 //   creatures: a blob, a mimic, a statue, a chess rook, a stone golem, a goblin farmer, a brownie,
 //           a living book and the Sewer King each get the right body (looks.js, from the payload's
 //           short description and room line).
@@ -219,6 +222,59 @@ async function waitFor(page, fn, arg, secs = 60) {
     }
     await page.evaluate(() => MH.sendCommand('purge', false));
     await sleep(800);
+  }
+
+  if (MODE === 'spellbook') {
+    check(await goto(3001), 'in the Temple of Midgaard (3001)');
+    await page.evaluate(() => MH.sendCommand('webbar', false));          // no arguments: forget the arranged bar
+    await sleep(1500);
+    await page.evaluate(() => MH.refreshState && MH.refreshState());
+    await sleep(1500);
+    await page.keyboard.press('k');
+    const cards = await waitFor(page, () => document.querySelectorAll('#spellbook:not(.hidden) .sb-card').length > 0, null, 20);
+    check(cards, 'K opens the spellbook with ability cards');
+    const info = await page.evaluate(() => {
+      const all = [...document.querySelectorAll('#spellbook .sb-card')];
+      const known = all.filter(c => c.getAttribute('draggable') === 'true');
+      return { all: all.length, known: known.length, locked: all.filter(c => c.classList.contains('locked')).length,
+        ids: known.map(c => c.dataset.id), text: (all[0] || {}).textContent };
+    });
+    check(info.known > 0, `known abilities can be dragged (${info.known} of ${info.all}; ${info.locked} still to come)`);
+    await page.screenshot({ path: path.join(OUT, 'spellbook.png') });
+    // drag the last known ability onto slot 2
+    const id = info.ids[info.ids.length - 1];
+    await page.evaluate(() => { window.__sent.length = 0; });
+    await page.dragAndDrop(`#spellbook .sb-card[data-id="${id}"]`, '#slots .bar-row.main .slot[data-i="1"]');
+    await sleep(600);
+    const placed = await page.evaluate(() => (document.querySelector('#slots .slot[data-i="1"]') || {}).dataset);
+    check(placed && placed.id === id, `dragged ${id} onto slot 2 (${placed && placed.id})`);
+    const sent = await page.evaluate(() => window.__sent.filter(c => c.startsWith('webbar')));
+    check(sent.length === 1 && sent[0].split(' ')[2] === id, `the bar was saved once: ${JSON.stringify(sent)}`);
+    // the server keeps it: a fresh payload still has it there
+    await sleep(4500);
+    await page.evaluate(() => MH.refreshState && MH.refreshState());
+    await sleep(2000);
+    const kept = await page.evaluate(() => (document.querySelector('#slots .slot[data-i="1"]') || {}).dataset);
+    check(kept && kept.id === id, `the server kept it in slot 2 (${kept && kept.id})`);
+    // key 2 uses it
+    const used = await page.evaluate(() => new Promise(res => {
+      const off = MH.bus.on('hud.ability', ab => res(ab.id));
+      window.dispatchEvent(new KeyboardEvent('keydown', { key: '2', code: 'Digit2' }));
+      setTimeout(() => res(null), 800);
+    }));
+    check(used === id, `key 2 uses it (${used})`);
+    await page.keyboard.press('k');
+    await page.screenshot({ path: path.join(OUT, 'bar.png') });
+    // right-click the slot: Take off the bar
+    const box = await page.evaluate(() => { const r = document.querySelector('#slots .slot[data-i="1"]').getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; });
+    await page.mouse.click(box.x, box.y, { button: 'right' });
+    await sleep(300);
+    const items = await page.evaluate(() => [...document.querySelectorAll('#ctx-menu button')].map(b => b.textContent));
+    check(items.includes('Take off the bar'), `right-click a slot: ${JSON.stringify(items)}`);
+    await page.evaluate(() => [...document.querySelectorAll('#ctx-menu button')].find(b => b.textContent === 'Take off the bar').click());
+    await sleep(400);
+    check(await page.evaluate(() => document.querySelector('#slots .slot[data-i="1"]').classList.contains('empty')), 'slot 2 is empty again');
+    await page.evaluate(() => MH.sendCommand('webbar', false));
   }
 
   if (MODE === 'creatures') {

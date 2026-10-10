@@ -68,7 +68,7 @@
   <button data-act="character" data-tip="Character (C)">🛡</button>
   <button data-act="inventory" data-tip="Inventory (I)">🎒</button>
   <button data-cmd="equipment" data-tip="Equipment">⚔</button>
-  <button data-act="abilities" data-tip="Skills &amp; spells (K)">✦</button>
+  <button data-act="abilities" data-tip="Spellbook (K)">✦</button>
   <button data-cmd="quests" data-tip="Quests (L)">📜</button>
   <button data-act="settings" data-tip="Settings">⚙</button>
 </div>
@@ -83,6 +83,14 @@
 <div id="character" class="hud panel hidden">
   <div class="win-head"><span>Character</span><span class="ch-tabs"><button data-tab="overview" class="on">Overview</button><button data-tab="abilities">Skills &amp; spells</button></span><button class="ch-close win-x" title="Close (C)">✕</button></div>
   <div class="ch-wrap"><div class="ch-portrait"><canvas width="440" height="520"></canvas></div><div class="ch-body"></div></div>
+</div>
+<div id="spellbook" class="hud panel hidden">
+  <div class="win-head"><span>Spellbook</span><span class="sb-tabs ch-tabs"><button data-tab="all" class="on">All</button><button data-tab="skill">Skills</button><button data-tab="spell">Spells</button></span><button class="sb-close win-x" title="Close (K)">✕</button></div>
+  <div class="sb-body"></div>
+</div>
+<div id="trainer" class="hud panel hidden">
+  <div class="win-head"><span class="tr-who">Training</span><button class="tr-close win-x" title="Close">✕</button></div>
+  <div class="tr-body sb-body"></div>
 </div>
 <div id="item-tip" class="hidden"></div>
 <div id="item-menu" class="hidden"></div>
