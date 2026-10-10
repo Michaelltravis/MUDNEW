@@ -1102,6 +1102,13 @@ class WebMapServer:
                     from quests import QuestManager, QUEST_DEFINITIONS
                     from datetime import datetime
                     active = []
+                    try:
+                        import marquee
+                        mq_entry = marquee.journal_entry(player)
+                        if mq_entry:
+                            active.append(mq_entry)
+                    except Exception as e:
+                        logger.debug(f"/quests marquee: {e}")
                     for q in getattr(player, 'active_quests', []) or []:
                         objs = [{
                             'description': o.description,

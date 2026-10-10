@@ -496,6 +496,9 @@ class Connection:
         
         # Move to starting room before adding to world
         room = self.world.get_room(self.player.room_vnum or self.config.STARTING_ROOM)
+        if room is None:
+            # the room is gone (a private trial closed while you were away): back to safety
+            room = self.world.get_room(getattr(self.player, 'recall_point', None) or 0) or self.world.get_room(self.config.STARTING_ROOM)
         if room:
             self.player.room = room
 

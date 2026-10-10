@@ -517,6 +517,11 @@ class Player(Character):
 
         # Recall system
         self.recall_point = 3001  # Default recall point (Temple of Midgaard)
+        # the marquee quest (marquee.py): the quest you run or help with, and the marquee
+        # abilities' long cooldowns (marquee_abilities.py), kept across logins
+        self.marquee = None
+        self.marquee_help = None
+        self.marquee_cd = {}
         self.autorecall_hp = None  # HP threshold for automatic recall
         self.autorecall_is_percent = False  # Whether autorecall_hp is a percentage
 
@@ -1082,7 +1087,8 @@ class Player(Character):
             'damroll': self.damroll,
             'practices': self.practices,
             'trains': self.trains,
-            'room_vnum': self.room.vnum if self.room else self.config.STARTING_ROOM,
+            # a private trial's rooms vanish with it: such a room names the way back (instance_exit)
+            'room_vnum': (getattr(self.room, 'instance_exit', None) or self.room.vnum) if self.room else self.config.STARTING_ROOM,
             'skills': self.skills,
             'spells': self.spells,
             'talents': getattr(self, 'talents', {}),
@@ -1116,6 +1122,9 @@ class Player(Character):
             'show_room_vnums': self.show_room_vnums,
             'autoexit': self.autoexit,
             'recall_point': self.recall_point,
+            'marquee': self.marquee,
+            'marquee_help': self.marquee_help,
+            'marquee_cd': self.marquee_cd,
             'autorecall_hp': self.autorecall_hp,
             'autorecall_is_percent': self.autorecall_is_percent,
             'hunger': self.hunger,
@@ -1360,6 +1369,9 @@ class Player(Character):
             player.wimpy = data.get('wimpy', 0)
             player.autoexit = data.get('autoexit', True)
             player.recall_point = data.get('recall_point', 3001)
+            player.marquee = data.get('marquee')
+            player.marquee_help = data.get('marquee_help')
+            player.marquee_cd = data.get('marquee_cd') or {}
             player.autorecall_hp = data.get('autorecall_hp', None)
             player.autorecall_is_percent = data.get('autorecall_is_percent', False)
             player.hunger = data.get('hunger', 168)

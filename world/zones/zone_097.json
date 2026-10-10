@@ -1,0 +1,289 @@
+{
+ "number": 97,
+ "name": "Marquee quest creatures",
+ "lifespan": 9999,
+ "reset_mode": 0,
+ "top": 9799,
+ "rooms": {},
+ "mobs": {
+  "9700": {
+   "vnum": 9700,
+   "name": "Banner-Reaver war-chief",
+   "short_desc": "a Banner-Reaver war-chief",
+   "long_desc": "A Banner-Reaver war-chief stands here, a scorched strip of a great banner knotted at his belt.",
+   "description": "A slab of a man in blackened mail, his helm crested with the torn pennants of the knights he has killed.\nA strip of heavy cloth, gold thread on crimson, is knotted at his belt like a trophy.",
+   "level": 47,
+   "max_hp": 1000,
+   "damage_dice": "2d8+8",
+   "exp": 9000,
+   "gold": 400,
+   "armor_class": 20,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ],
+   "keywords": [
+    "warchief",
+    "reaver",
+    "chief",
+    "banner"
+   ]
+  },
+  "9701": {
+   "vnum": 9701,
+   "name": "ember shade",
+   "short_desc": "an ember shade",
+   "long_desc": "An ember shade drifts here, a core of living fire beating in its chest of ash.",
+   "description": "A shape of grey ash and smoke that only remembers being a person. Where its heart should be, a\ncore of ember glows and dims, glows and dims.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 3000,
+   "gold": 0,
+   "armor_class": 30,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "no_sleep"
+   ],
+   "keywords": [
+    "shade",
+    "ember"
+   ]
+  },
+  "9702": {
+   "vnum": 9702,
+   "name": "Cinder Smith",
+   "short_desc": "the Cinder Smith",
+   "long_desc": "The Cinder Smith hammers at a forge of white-hot slag, sparks crawling over his scorched leather apron.",
+   "description": "Half man, half clinker, the Cinder Smith works the oldest forge in the Ashlands. Cracks of orange light\nrun through his skin wherever it bends, and his hammer is as long as you are tall.",
+   "level": 48,
+   "max_hp": 1000,
+   "damage_dice": "2d5+6",
+   "exp": 20000,
+   "gold": 1500,
+   "armor_class": 15,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "boss"
+   ],
+   "boss": true,
+   "boss_id": "cinder_smith",
+   "boss_title": "the Forge-Breaker",
+   "boss_loot_chance": 0,
+   "boss_config": {
+    "enrage_time": 300,
+    "enrage_multiplier": 1.4,
+    "ability_interval": 10.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Cinder Smith plunges his arm into the forge \u2014 his hammer comes out glowing white!",
+      "spawn_adds": {
+       "9701": 1
+      }
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Hammerfall",
+      "telegraph": "The Cinder Smith raises his hammer high over his head \u2014 the air shimmers with heat!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d10+10",
+      "dodge": true,
+      "vulnerable_after": 3
+     },
+     {
+      "name": "Slag Wave",
+      "telegraph": "The Cinder Smith kicks over the forge \u2014 a wave of molten slag rolls outward!",
+      "cast_time": 3,
+      "cooldown": 26,
+      "damage_dice": "3d6+8",
+      "dodge": true,
+      "aoe": true
+     }
+    ]
+   },
+   "keywords": [
+    "smith",
+    "cinder"
+   ]
+  },
+  "9703": {
+   "vnum": 9703,
+   "name": "ashen drakeling",
+   "short_desc": "an ashen drakeling",
+   "long_desc": "An ashen drakeling crouches here, wings of cinder half spread, smoke curling from its jaws.",
+   "description": "A young drake the colour of old ash, no larger than a pony, with eyes like coals.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 2500,
+   "gold": 0,
+   "armor_class": 30,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ],
+   "keywords": [
+    "drakeling",
+    "drake"
+   ]
+  },
+  "9704": {
+   "vnum": 9704,
+   "name": "Reaver siegeman",
+   "short_desc": "a siegeman of the Banner-Reavers",
+   "long_desc": "A Banner-Reaver siegeman is here, ladder-hook in one hand and axe in the other.",
+   "description": "One of the besiegers of the Last Bastion, soot-blackened and grinning, a long iron ladder-hook\nslung over his shoulder.",
+   "level": 47,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 2500,
+   "gold": 60,
+   "armor_class": 25,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ],
+   "keywords": [
+    "siegeman",
+    "reaver"
+   ]
+  },
+  "9705": {
+   "vnum": 9705,
+   "name": "siege hound",
+   "short_desc": "a siege hound",
+   "long_desc": "A siege hound strains forward here, its spiked collar dragging a broken chain.",
+   "description": "A huge, scarred war-hound in a collar of iron spikes, bred to run down men in the smoke of a siege.",
+   "level": 46,
+   "max_hp": 1000,
+   "damage_dice": "2d4+3",
+   "exp": 2000,
+   "gold": 0,
+   "armor_class": 35,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ],
+   "keywords": [
+    "hound"
+   ]
+  },
+  "9706": {
+   "vnum": 9706,
+   "name": "Gorrund the Siegebreaker",
+   "short_desc": "Gorrund the Siegebreaker",
+   "long_desc": "Gorrund the Siegebreaker looms here, a ram-headed maul resting on one shoulder.",
+   "description": "The warlord who broke the Last Bastion. Gorrund is a head taller than any man, armoured in plates\nhammered from the gates of the cities he has taken, and his maul is the head of a battering ram.",
+   "level": 50,
+   "max_hp": 1000,
+   "damage_dice": "2d5+6",
+   "exp": 40000,
+   "gold": 3000,
+   "armor_class": 10,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "boss"
+   ],
+   "boss": true,
+   "boss_id": "gorrund",
+   "boss_title": "Siegebreaker-Breaker",
+   "boss_loot_chance": 0,
+   "boss_config": {
+    "enrage_time": 480,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 12.0,
+    "phases": [
+     {
+      "threshold": 60,
+      "message": "Gorrund bellows for his hounds!",
+      "spawn_adds": {
+       "9705": 1
+      }
+     },
+     {
+      "threshold": 25,
+      "message": "Gorrund roars \u2014 the walls of the keep shake and dust rains from the rafters!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Rampart Crush",
+      "telegraph": "Gorrund heaves his maul overhead \u2014 he is about to bring the floor down around him!",
+      "cast_time": 3,
+      "cooldown": 22,
+      "damage_dice": "3d10+10",
+      "dodge": true,
+      "aoe": true,
+      "vulnerable_after": 3
+     },
+     {
+      "name": "Siege Charge",
+      "telegraph": "Gorrund lowers his head and paws the ground like a bull \u2014 he is going to charge!",
+      "cast_time": 2.5,
+      "cooldown": 20,
+      "damage_dice": "4d10+12",
+      "dodge": true,
+      "interruptible": true,
+      "on_success_message": "Gorrund thunders through, scattering everything in his path!"
+     },
+     {
+      "name": "Call the Hounds",
+      "cooldown": 60,
+      "summon": {
+       "9705": 1
+      }
+     }
+    ]
+   },
+   "keywords": [
+    "gorrund",
+    "siegebreaker"
+   ]
+  },
+  "9707": {
+   "vnum": 9707,
+   "name": "Banner-Reaver thrall",
+   "short_desc": "a Banner-Reaver thrall",
+   "long_desc": "A Banner-Reaver thrall hovers at its war-chief's back, chained to him at the wrist.",
+   "description": "A captive turned fighter, chained to the war-chief he serves and ready to die for him.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+4",
+   "exp": 2000,
+   "gold": 20,
+   "armor_class": 35,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ],
+   "keywords": [
+    "thrall",
+    "reaver"
+   ]
+  }
+ },
+ "objects": {},
+ "resets": []
+}

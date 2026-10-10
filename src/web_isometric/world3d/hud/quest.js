@@ -49,16 +49,23 @@ export function createQuest({ card, embark, tracker, toast, onMark }) {
     const nsig = JSON.stringify(b);
     if (nsig === sig) return;
     sig = nsig;
-    const objs = (b.objectives || []).map(o => `<li class="${o.done ? 'done' : ''}">${esc(o.text)}${o.need > 1 ? ` <span>${o.have || 0}/${o.need}</span>` : ''}</li>`).join('');
-    const trial = b.trial && b.trial.state ? `<div class="qt-trial">${b.trial.state === 'ready' ? 'The trial awaits — <b>enter trial</b>' : b.trial.state === 'inside' ? `Wave ${b.trial.wave || 1} of ${b.trial.of || 3}${b.trial.boss ? ' · the boss' : ''}` : esc(b.trial.state)}</div>` : '';
+    const objs = (b.objectives || []).map(o => `<li class="${o.done ? 'done' : ''}">${esc(o.text)}${o.need > 1 ? ` <span>${o.have || 0}/${o.need}</span>
+      <i class="qt-bar"><i style="width:${Math.min(100, Math.round(100 * (o.have || 0) / o.need))}%"></i></i>` : ''}</li>`).join('');
+    const trial = b.trial && b.trial.state ? `<div class="qt-trial">${b.trial.state === 'ready' ? 'The way into the trial is open here'
+      : b.trial.state === 'inside' ? (b.trial.boss ? 'The last foe waits' : `Wave ${b.trial.wave || 1} of ${b.trial.of || 3}`) : esc(b.trial.state)}</div>` : '';
+    // holding the ritual: a draining bar for the seconds left
+    const hold = b.ritual ? `<div class="qt-hold"><span>Hold!</span><i class="qt-bar"><i style="animation-duration:${b.ritual.left}s;width:${Math.round(100 * b.ritual.left / b.ritual.seconds)}%"></i></i></div>` : '';
+    const act = b.action ? `<button class="btn qt-act" data-cmd="${esc(b.action.cmd)}">${esc(b.action.label)}</button>` : '';
     tracker.innerHTML = `<div class="qt-head"><span class="qt-star">★</span><span class="qt-name">${esc(b.name)}</span>
         <span class="qt-step">${b.stage || 0}/${b.of || 0}</span></div>
       <div class="qt-title">${esc(b.title || '')}</div>
       ${b.text ? `<div class="qt-text">${esc(b.text)}</div>` : ''}
-      ${objs ? `<ul class="qt-obj">${objs}</ul>` : ''}${trial}
+      ${objs ? `<ul class="qt-obj">${objs}</ul>` : ''}${trial}${hold}${act}
       <div class="qt-foot">${b.where && b.where.name ? `<span title="Marked on your minimap">◆ ${esc(b.where.name)}</span>` : ''}
         ${b.party && b.party.length > 1 ? `<span title="It was made harder for each who embarked">⚔ ${b.party.length} embarked</span>` : '<span>alone</span>'}
         ${b.role === 'helper' ? `<span>helping ${esc(b.owner)}</span>` : ''}</div>`;
+    const btn = tracker.querySelector('.qt-act');
+    if (btn) btn.addEventListener('click', () => { MH.sendCommand(btn.dataset.cmd); btn.disabled = true; });
   }
 
   return {
@@ -68,7 +75,10 @@ export function createQuest({ card, embark, tracker, toast, onMark }) {
     stage(e) {
       if (e && e.title) toast(`${e.done ? '✔ ' : '★ '}${e.title}${e.text ? ` — ${e.text}` : ''}`);
     },
-    done(e) { if (e && e.reward) toast(`★ ${e.quest || 'Quest'} complete — you learned ${e.reward}!`); },
+    done(e) {
+      if (e && e.reward) toast(`★ ${e.quest || 'Quest'} complete — you learned ${e.reward}!`);
+      else if (e && e.helper) toast(`★ ${e.quest || 'The trial'} — you stood with ${e.owner || 'them'} to the end`);
+    },
     get active() { return block; },
   };
 }

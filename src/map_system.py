@@ -954,6 +954,14 @@ def _door_info(exit_data, init=None) -> Optional[dict]:
     return None
 
 
+def _marquee_block(player):
+    try:
+        import marquee
+        return marquee.quest_block(player)
+    except Exception:
+        return None
+
+
 def build_zonemap(world, zone_num: int) -> Optional[dict]:
     """One zone laid out as a single continuous space for the 3D client (/play).
 
@@ -1595,6 +1603,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'bar': getattr(player, 'web_bar', None),          # the 3D client's action bar, as arranged
             'guild': _guild_block(player),                    # where the class's trainer stands
             'affects': AffectManager.save_affects(player),
+            'quest': _marquee_block(player),                  # the marquee quest's tracker (marquee.py)
         },
         'group': build_group_block(player),
     }

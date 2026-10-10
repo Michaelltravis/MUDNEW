@@ -1707,6 +1707,9 @@ class CombatHandler:
             victim.duel_wager_amount = 0
             return
 
+        # who the kill is for: the killer, or the master of a pet (read by the drops below)
+        exp_recipient = killer.owner if getattr(killer, 'owner', None) and hasattr(killer.owner, 'gain_exp') else killer
+
         # Ensure equipped items are lootable
         if hasattr(victim, 'equipment') and hasattr(victim, 'inventory'):
             for item in list(victim.equipment.values()):

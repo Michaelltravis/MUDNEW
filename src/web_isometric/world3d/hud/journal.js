@@ -50,15 +50,22 @@ export function createJournal(root, { toast }) {
       <div class="jr-lab">objectives</div>
       <ul class="jr-objs">${(q.objectives || []).map(o => `<li class="${o.completed ? 'done' : ''}"><i></i><span>${esc(o.description)}</span>${o.required > 1 ? `<b>${o.current || 0}/${o.required}</b>` : ''}</li>`).join('')}</ul>
       ${q.remaining_min != null ? `<div class="jr-time">${q.remaining_min} min left</div>` : ''}
-      <div class="jr-lab">reward</div><div class="jr-rew">${rewards(q.rewards) || '<span class="jr-none">The thanks of the hollow</span>'}</div>
+      ${q.marquee ? `<div class="jr-lab">${q.role === 'helper' ? `you help ${esc(q.owner)}` : 'it teaches'}</div>
+        <div class="jr-rew">${q.teaches ? `<span class="jr-teach">★ ${esc(q.teaches)}</span>` : '<span class="jr-none">Experience and gold when the trial falls</span>'}</div>
+        <div class="jr-time">Stage ${q.stage} of ${q.of}</div>`
+      : `<div class="jr-lab">reward</div><div class="jr-rew">${rewards(q.rewards) || '<span class="jr-none">The thanks of the hollow</span>'}</div>`}
       <div class="jr-acts">${q.complete ? `<button class="btn jr-done" data-id="${esc(q.id)}">Complete the quest</button>` : ''}
-        <button class="btn alt jr-drop" data-id="${esc(q.id)}">Abandon</button></div>`
+        <button class="btn alt jr-drop" data-id="${esc(q.id)}" data-marquee="${q.marquee ? q.role : ''}">${q.marquee && q.role === 'helper' ? 'Stop helping' : 'Abandon'}</button></div>`
       : `<div class="jr-empty"><div class="jr-title">The journal is open</div><div class="jr-desc">Its pages wait for your story. Talk to those marked with a <b>!</b> above their heads — and keep your lantern lit.</div></div>`;
     const done = page.querySelector('.jr-done');
     if (done) done.addEventListener('click', () => { MH.sendCommand(`quest complete ${done.dataset.id}`); setTimeout(load, 700); });
     const drop = page.querySelector('.jr-drop');
     if (drop) drop.addEventListener('click', () => {
-      if (drop.dataset.armed) { MH.sendCommand(`quest abandon ${drop.dataset.id}`); toast('Quest abandoned'); setTimeout(load, 700); }
+      if (drop.dataset.armed) {
+        const mq = drop.dataset.marquee;
+        MH.sendCommand(mq === 'helper' ? 'marquee leave' : mq ? 'marquee abandon confirm' : `quest abandon ${drop.dataset.id}`);
+        toast(mq === 'helper' ? 'You stop helping' : 'Quest abandoned'); setTimeout(load, 700);
+      }
       else { drop.dataset.armed = '1'; drop.textContent = 'Click again to abandon'; }
     });
   }

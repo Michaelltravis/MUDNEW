@@ -14,15 +14,17 @@ or the party's average if higher; 45-60).
 
 Base numbers are sized against a level-L hero's damage per round (DPR, from the class damage
 curves at mastery-level gear) so a lone level-45 warrior spends about 66 s on an elite, two
-minutes on the stage's warden and four on the trial's boss; with travel, talk and the gathering
-in between the whole quest runs about two hours alone.
+minutes on the stage's warden and three on the trial's boss; with travel, talk and the gathering
+in between the whole quest runs about two hours alone. What the foes deal back (world/zones/
+zone_097.json) is sized so a lone level-45 hero takes about half their health from an elite and
+one to two times it from a boss, most of that from blows they can see coming and step out of.
 """
 import math
 
 ROUND = 3.0          # seconds per combat round (combat_range.round_seconds)
 
 # rounds a lone hero needs for each kind of foe
-ROUNDS = {'elite': 22, 'minion': 6, 'warden': 40, 'wave': 6, 'boss': 70}
+ROUNDS = {'elite': 22, 'minion': 6, 'warden': 40, 'wave': 6, 'boss': 60, 'add': 3}
 # how much each class's damage differs from the average (a caster bursts, a cleric heals)
 CLASS_K = {'warrior': 1.0, 'paladin': 0.92, 'cleric': 0.8, 'mage': 1.1, 'necromancer': 1.0, 'thief': 1.05,
            'assassin': 1.12, 'ranger': 1.05, 'bard': 0.85}

@@ -486,3 +486,61 @@ skill's own server code.
 - Verified here: the probe suite (spellbook, trainer, menu, autotarget, abilityfx, camera, doors,
   stairs, creatures) with the new markup; screenshots of the title screen, the HUD exploring and
   in a fight, the cues, the windows.
+
+### Marquee class quests — the warrior's first (owner: "Each class should have a final marquee spell/skill/ability. This should be a quest for each character. It should be achievable solo or with a group. If done solo the difficulty should take a couple hours of play time. If in a group the difficulty should scale based on how many embark on the quest when the player accepts")
+Owner's choices: all-new abilities (the level-60 prestige capstones stay), offered at level 45,
+the endgame world plus a private trial. Shipped in two parts: the systems with the warrior's
+quest end to end (this push), then the other eight classes on the same engine.
+- **The ability: Unbroken Banner** (`marquee_abilities.py`): the warrior plants a war banner;
+  foes within 4 m reel (bosses stagger), every foe turns on the warrior, and for five rounds the
+  warrior and the allies beside them strike harder, shake off stuns and fear and mend. Its
+  damage and healing follow how well it is known (it is learned at 50% and grows with use like
+  any ability); its 8-minute cooldown is kept on the character. It is in the warrior's book
+  from level 45, marked "earned through The Unbroken Banner"; reaching a level never teaches it.
+- **The quest** (`marquee_quests.py`; the engine is `marquee.py`): `talk guildmaster` in the
+  warriors' yard from level 45 offers it (a card in the 3D client, Accept / Not now; `marquee
+  accept` in text). Seven stages, about two hours alone:
+  1. *The Fallen Standard* — find the dying crusader on Castle Apocalypse's West Wall Path.
+  2. *The Banner-Reavers* — three war-chiefs carry the banner's pieces: the Hall of War, the
+     Inner Gate, the Castle Courtyard.
+  3. *Embers for the Cloth* — ember shades in the Ashlands (Steam Vent Valley, the Magma
+     Flows, the Scorched Wasteland); about half give an ember core; five are needed.
+  4. *The Cinder Smith* — a boss on the Burning Bridge (Hammerfall, Slag Wave, adds at half health).
+  5. *The Dragon's Gate* — plant the banner (`marquee plant`, or the tracker's button) and
+     hold it for 30 seconds against three flights of drakelings; leaving breaks it.
+  6. *The Last Bastion* — `trial enter` (or the button) at the gate: a private copy of the
+     besieged bastion for the party. Three waves behind locked gates (the Outer Wall, the
+     Breach twice), then Gorrund the Siegebreaker in the keep (Rampart Crush around him, Siege
+     Charge at one hero, hounds on call, enraged after 8 minutes). `trial leave` steps out; left
+     empty for ten minutes it closes and starts over. Logging out inside comes back at the gate.
+  7. *The Last Lesson* — back to the guildmaster, who teaches Unbroken Banner.
+- **Alone or together**: accepting asks the group members beside you to embark (a popup with
+  Join / Decline, 30 seconds; `marquee join|decline`, `marquee go` to set out at once). Who
+  joined is the party for good (`marquee_scale.py`): every foe of the quest has ×(1 + 0.8(n−1))
+  health and ×(1 + 0.1(n−1)) damage, waves bring one more foe for every two extra heroes, the
+  bosses act sooner; the quest's level is the owner's or the party's average if higher. Leaving
+  later changes nothing. Any member's kill counts. Helpers are paid (experience, gold) when the
+  trial falls; the owner learns the ability.
+- **The quest's own foes** (`world/zones/zone_097.json`, vnums 9700–9707): placed when a party
+  member comes near, made for the party, attacking after a breath; someone outside the party
+  cannot hurt them ("belongs to Gauntlet's quest"); they go home if the party is away ten
+  minutes and come back when it returns. Sized so an elite costs a lone level-45 hero about half
+  their health and a boss one to two times it, most of it from blows that are telegraphed (the
+  3D client marks the ground; stepping out of it now really spares you).
+- **On screen**: the tracker under the minimap (stage, objectives with progress bars, ◆ where
+  to go — also on the minimap and the big map — the party, and a button for the next action:
+  Speak with…, Plant the banner, Enter the trial, Leave the trial), a draining bar while
+  holding the gate, the stage's chapter line, the journal (L) lists it first with what it
+  teaches, and `marquee` in text says the same. A `!` over the guildmaster when it is offered,
+  a `?` over whoever the quest wants you to speak with.
+- **Fixed on the way**: a boss's wind-up now sends the 3D client its marked ground and its
+  outcome (`windup` / `resolve` / `cancel` with who stepped clear); bosses' summons, heals and
+  wards no longer also hit for level × 2 damage; the kill's beneficiary was read before it was
+  set in `handle_death` (legendary drops and on-kill effects); a login whose saved room is gone
+  lands at the recall point; rooms can be `lit` (never dark at night).
+- **Tests**: `tests/test_marquee.py` — offline: the scaling, the quest data pointing at real
+  rooms and creatures, and the whole quest driven on the real world with stand-in players (each
+  stage, a party of three, outsiders, the trial opened, won and closed); live: the quest on the
+  server from the offer to the learned ability with the trial fought through, and two players
+  embarking together (a war-chief with ×1.8 health). Admin: `marquee stage <n>` jumps a quest,
+  `marquee forget` clears it and the ability.

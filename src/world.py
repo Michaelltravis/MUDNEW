@@ -53,6 +53,8 @@ class Room:
         """Determine if the room is currently dark based on time/flags."""
         if 'dark' in self.flags:
             return True
+        if 'lit' in self.flags:     # lit day and night (a quest's private trial)
+            return False
 
         if not game_time:
             return False

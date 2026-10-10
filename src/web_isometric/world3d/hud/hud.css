@@ -566,6 +566,14 @@ html.fallen #vignette { background: radial-gradient(ellipse at 50% 46%, rgba(30,
 .qt-obj li span { color: var(--gold); margin-left: 4px; }
 .qt-obj li.done { color: var(--ink-dim); text-decoration: line-through; }
 .qt-trial { margin-top: 6px; color: #ffb86a; }
+.qt-bar { display: block; height: 4px; margin: 3px 0 1px; border-radius: 2px; background: rgba(255,255,255,.08); overflow: hidden; }
+.qt-bar > i { display: block; height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--gold), var(--gold-hi)); transition: width .4s; }
+.qt-hold { display: flex; align-items: center; gap: 8px; margin-top: 6px; font: 700 12px var(--label); color: #ffb86a; letter-spacing: .08em; }
+.qt-hold .qt-bar { flex: 1; height: 6px; }
+.qt-hold .qt-bar > i { background: linear-gradient(90deg, #ff7a3a, #ffd86a); animation: qt-drain linear forwards; }
+@keyframes qt-drain { to { width: 0%; } }
+.qt-act { display: block; width: 100%; margin-top: 8px; }
+.jr-teach { font: 700 15px var(--title); color: var(--gold-hi); }
 .qt-foot { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 7px; font: 500 12px var(--label); color: var(--ink-dim); }
 
 /* ---- combat calls over the hero (combatcues.js): STEP OUT, STRIKE NOW ---- */

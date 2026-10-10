@@ -74,6 +74,12 @@ class Misthollow:
             mastery.install()
         except Exception as e:
             logger.error(f"mastery rules not installed: {e}")
+        # The marquee quests: one per class, offered by its guildmaster from level 45 (marquee.py)
+        try:
+            import marquee
+            marquee.install(self.world)
+        except Exception as e:
+            logger.error(f"marquee quests not installed: {e}")
         
         # Create the server
         self.server = MUDServer(self.world, self.config)
