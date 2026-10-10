@@ -12,6 +12,8 @@ import { Entities, classModel } from './entities.js';
 import { cutout } from './cutout.js';
 import { FX } from './fx.js';
 import { CombatView } from './combat.js';
+import { CombatCues } from './combatcues.js';
+import { createBubbles } from './hud/bubbles.js';
 import { PassageGate, HOP_TIMEOUT_MS } from './passages.js';
 import { doorPrompt, doorVerbs, doorAnchor, cap } from './doorlogic.js';
 import { createPrompt } from './hud/prompt.js';
@@ -38,10 +40,11 @@ async function runDemo() {
   if (params.get('gallery')) {
     const { showGallery, showMobGallery } = await import('./gallery.js');
     const g = params.get('gallery');
-    const { showBeastGallery, showAbilityGallery } = await import('./gallery.js');
+    const { showBeastGallery, showAbilityGallery, showIconGallery } = await import('./gallery.js');
     const extra = ['town', 'furniture', 'graveyard'].includes(g) ? await loadKit(g) : null;
     const at = g === 'mobs' ? await showMobGallery(engine) : g === 'beasts' ? await showBeastGallery(engine, kits)
       : g === 'abilities' ? await showAbilityGallery(engine)
+      : g === 'icons' ? (await showIconGallery()) || new THREE.Vector3()
       : showGallery(engine, extra || (g === 'nature' ? kits.nature : kits.dungeon), Number(params.get('scale')) || 1);
     engine.rig.target.copy(at); engine.placeCamera(true);
     window.MH3D = { engine, THREE, gallery: window.MH3D_gallery };
@@ -82,7 +85,45 @@ async function runGame() {
     onWound: ent => { if (ents.targeted === ent) hud.setTarget({ kind: ent.kind, ...ent.data }); },
     onAggro: id => aggro(id),
   });
-  MH.bus.on('combat.events', p => { if (hero) combat.handle(p.events); });
+  // fights made easy to read: a ring under your target, your reach while you hover an
+  // ability, STEP OUT under a marked blow, STRIKE NOW at a staggered foe
+  const cues = new CombatCues({ engine, ents, getHero: () => hero && { actor: hero, ctl }, callout: $('#callout'),
+    rangeOf: id => { const r = rangeOf(id, (hud.player && (hud.player.spells || {})[id] != null)); return r || null; },
+    onStrike: () => hud.suggestStrike() });
+  combat.onTelegraph = (k, d) => cues.telegraph(k, d);
+  combat.onTelegraphEnd = k => cues.telegraphEnd(k);
+  combat.onOpening = src => cues.opening(src);
+  MH.bus.on('hud.abilityHover', a => cues.hoverAbility(a && a.id));
+  // speech over the speaker's head: "Sage Aldric says, '...'" (NPCs, other players, you)
+  const bubbles = createBubbles($('#plates'), engine);
+  engine.onLateTick(() => { if (hero) bubbles.update(); });
+  MH.bus.on('terminal.output', ({ html, text }) => {
+    if (!hero || !MH.state.isLoggedIn) return;
+    const plain = String(text || html || '').replace(/<[^>]+>/g, '').replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&amp;/g, '&');
+    for (const line of plain.split(/\r?\n/)) {
+      const m = /^\s*(.+?) (?:says?|exclaims?|asks?|whispers?|sings?)(?: to you)?,? ['"\u2018\u201c](.+?)['"\u2019\u201d]\s*$/.exec(line);
+      if (!m) continue;
+      const who = m[1].trim().toLowerCase(), words = m[2].trim();
+      if (who === 'you') { bubbles.say(hero.root, words, { npc: false }); continue; }
+      const e = [...ents.list.values()].find(x => x.root && x.data && String(x.data.name || '').toLowerCase() === who)
+        || [...ents.list.values()].find(x => x.root && x.data && who.includes(String(x.data.name || '~').toLowerCase()));
+      if (e) bubbles.say(e.root, words, { npc: e.kind !== 'player', lift: (e.plateY || 2.2) + 0.55 });
+    }
+  });
+  engine.onTick((dt, t) => { if (hero) cues.update(dt, t); });
+  MH.bus.on('combat.events', p => {
+    if (hero) combat.handle(p.events, p.room);
+    for (const e of p.events || []) if (e.k === 'death' && e.dst && e.dst.p && combat.isHero(e.dst)) hud.fallen();
+    // the target's wind-up shows on the target frame as a cast bar
+    const t = ents.targeted;
+    if (!t || t.kind !== 'mob') return;
+    for (const e of p.events || []) {
+      if (!e.src || e.src.m !== t.data.id) continue;
+      if (e.k === 'windup') hud.targetCast({ label: e.label, ms: e.ms });
+      else if (e.k === 'resolve') hud.targetCast({ end: 'landed' });
+      else if (e.k === 'cancel' && e.reason !== 'death') hud.targetCast({ end: 'broken' });
+    }
+  });
   // your group: frames, the invite popup, loot rolls; click a member to target them (heals and
   // blessings go to your target), right-click for more
   MH.bus.on('group.update', e => hud.party.update(e && e.group));
@@ -95,6 +136,15 @@ async function runGame() {
   MH.bus.on('quest.stage', e => hud.quest.stage(e));
   MH.bus.on('quest.done', e => hud.quest.done(e));
   MH.bus.on('quest.mark', vnum => mm.setQuestMark(vnum == null ? null : vnum));
+  // a level gained: a column of light on the hero, stars thrown up around them
+  MH.bus.on('hud.levelup', () => {
+    if (!hero) return;
+    const p = hero.root.position;
+    fx.pillar(p, { school: 'holy', radius: 1.3, height: 10, time: 1.6 });
+    fx.shockwave(p, { color: 0xffd86a, radius: 6, time: 0.9 });
+    fx.glyph(p.clone().setY(1), { glyph: 'star', count: 34, color: 0xffe8a0, speed: 4, up: 3, life: 1.5, size: 0.5, gravity: 2, spin: 4 });
+    fx.light(p.clone().setY(2), 0xffe0a0, 8, 1.2);
+  });
   MH.bus.on('hud.targetPlayer', name => {
     const e = ents.list.get(`p${name}`);
     if (e) ents.setTarget(e.key, { byHand: true });
@@ -120,7 +170,25 @@ async function runGame() {
   ents.onSnap = (from, to) => {
     for (const q of [from, to]) fx.p.emit(q.clone().setY(0.4), { count: 18, color: 0xd8d0c0, speed: 1.6, up: 0.6, life: 0.7, size: 0.4, grow: 0.5, drag: 1.5 });
   };
-  const mm = createMinimap($('#minimap'), room => travelTo(room), () => engine.snapNorth());
+  const mmSmall = createMinimap($('#minimap'), room => travelTo(room), () => engine.snapNorth());
+  // the big map (M): the same drawing, larger — the whole zone at a glance, click to walk there
+  const bigEl = $('#bigmap');
+  const mmBig = createMinimap(bigEl, room => { bigEl.classList.add('hidden'); travelTo(room); }, null, { cell: 1.7 });
+  bigEl.querySelector('.bm-close').addEventListener('click', () => bigEl.classList.add('hidden'));
+  MH.bus.on('hud.map', on => {
+    const show = on === undefined || on === null ? bigEl.classList.contains('hidden') : !!on;
+    bigEl.classList.toggle('hidden', !show);
+    if (show) mmBig.redraw();
+  });
+  const mm = {
+    setZone: z => { mmSmall.setZone(z); mmBig.setZone(z); },
+    setExplored: l => { mmSmall.setExplored(l); mmBig.setExplored(l); },
+    setGuild: g => { mmSmall.setGuild(g); mmBig.setGuild(g); },
+    setQuestMark: v => { mmSmall.setQuestMark(v); mmBig.setQuestMark(v); },
+    setRoom: r => { mmSmall.setRoom(r); mmBig.setRoom(r); },
+    setTime: t => { mmSmall.setTime(t); mmBig.setTime(t); },
+    update: (p, yaw, cam) => { mmSmall.update(p, yaw, cam); if (!bigEl.classList.contains('hidden')) mmBig.update(p, yaw, cam); },
+  };
   const prompt = createPrompt($('#prompt'));
   const castbar = createCastbar($('#castbar'));
   const ctxMenu = createContextMenu($('#ctx-menu'));
@@ -134,7 +202,7 @@ async function runGame() {
   // ---- server events ----
   MH.bus.on('map', payload => {
     lastPayload = payload;
-    if (payload.player) hud.setPlayer(payload.player);
+    if (payload.player) { hud.setPlayer(payload.player); ents.heroLevel = payload.player.level || 1; }
     if ('group' in payload) hud.party.update(payload.group);
     if (payload.player && 'quest' in payload.player) hud.quest.update(payload.player.quest);
     if (!payload.player || !payload.player.vnum) return;
@@ -164,6 +232,7 @@ async function runGame() {
     const v = payload.player.vnum;
     const zm = await fetchZonemap(`vnum=${v}`);
     if (backdrop) { backdrop.dispose(); backdrop = null; }
+    engine.rig.yaw = 0;          // the title screen's drift ends: play starts north up
     enterZone(zm);
     const room = zone.rooms.get(v);
     const look = classModel(payload.player.char_class);
@@ -187,7 +256,7 @@ async function runGame() {
     ents.sync(payload, MH.state.playerName);
     mm.setExplored((payload.rooms || []).map(r => r.vnum));
     mm.setTime(payload.time);
-    window.MH3D = { engine, zone: () => zone, hero, ctl, sync, ents, fx, combat, THREE,
+    window.MH3D = { engine, zone: () => zone, hero, ctl, sync, ents, fx, combat, hud, cues, THREE,
       heroRoom: () => heroRoom, hop: () => hop, gate, lastPayload: () => lastPayload,
       // for probes: walk onto a passage of this room on purpose (what clicking it does)
       walkToPassage: dir => { const sp = zone.passageWorld(heroRoom, dir); ctl.walkTo(sp.x, sp.z, null, { goal: { room: heroRoom.vnum, dir }, avoid: null }); } };
@@ -745,7 +814,8 @@ async function runGame() {
 
   // ---- the frame ----
   engine.onTick((dt, t) => {
-    if (!hero) { if (backdrop) backdrop.update(dt, t); return; }
+    // behind the title screen the view drifts slowly over the hollow
+    if (!hero) { if (backdrop) { backdrop.update(dt, t); engine.rig.yaw = Math.sin(t * 0.045) * 0.5; } return; }
     const now = performance.now();
     if (climb) {
       // stepping onto stairs before a hop, or off them after one

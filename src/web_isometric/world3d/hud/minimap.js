@@ -8,7 +8,9 @@ const SECTOR = {
 };
 const CW = 22, CH = 14;      // css px per cell (keeps the 24:15 room shape)
 
-export function createMinimap(root, onPick, onNorth = null) {
+// `cell` scales the rooms (the big map, M, draws them larger)
+export function createMinimap(root, onPick, onNorth = null, { cell = 1 } = {}) {
+  const CWc = CW * cell, CHc = CH * cell;
   const cv = root.querySelector('canvas');
   const ctx = cv.getContext('2d');
   const S = 2;   // the canvas is drawn at twice its CSS size (it is hidden at creation, so not measured)
@@ -20,12 +22,12 @@ export function createMinimap(root, onPick, onNorth = null) {
   const W = () => cv.width, H = () => cv.height;
 
   function toScreen(cx, cy) {
-    return [(cx - hero.x / 24) * CW * S + W() / 2, (cy - hero.z / 15) * CH * S + H() / 2];
+    return [(cx - hero.x / 24) * CWc * S + W() / 2, (cy - hero.z / 15) * CHc * S + H() / 2];
   }
   function draw() {
     ctx.clearRect(0, 0, W(), H());
     if (!zone) return;
-    const cw = CW * S, ch = CH * S, pad = 2.2 * S;
+    const cw = CWc * S, ch = CHc * S, pad = 2.2 * S;
     for (const r of zone.rooms.values()) {
       const [x, y] = toScreen(r.cx, r.cy);
       if (x < -cw || y < -ch || x > W() + cw || y > H() + ch) continue;
@@ -100,8 +102,8 @@ export function createMinimap(root, onPick, onNorth = null) {
     if (!zone) return;
     const r = cv.getBoundingClientRect();
     const sx = (e.clientX - r.left) * S, sy = (e.clientY - r.top) * S;
-    const cx = Math.floor((sx - W() / 2) / (CW * S) + hero.x / 24);
-    const cy = Math.floor((sy - H() / 2) / (CH * S) + hero.z / 15);
+    const cx = Math.floor((sx - W() / 2) / (CWc * S) + hero.x / 24);
+    const cy = Math.floor((sy - H() / 2) / (CHc * S) + hero.z / 15);
     const target = zone.cells.get(`${cx},${cy}`);
     if (target) onPick(target);
   });
@@ -119,6 +121,7 @@ export function createMinimap(root, onPick, onNorth = null) {
       cv.title = g ? `★ ${g.trainer} (${g.room}) trains you` : '';
     },
     setQuestMark(vnum) { if (vnum === questMark) return; questMark = vnum; dirty = true; },
+    redraw() { dirty = true; last = 0; },
     setRoom(r) { room = r; dirty = true; root.querySelector('.mm-room').textContent = r ? r.name : ''; },
     setTime(t) {
       if (!t) return;

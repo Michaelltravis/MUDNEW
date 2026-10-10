@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Misthollow</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/v/{{V}}/fonts/Cinzel.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/v/{{V}}/fonts/AlegreyaSans-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/v/{{V}}/world3d/hud/theme.css">
 <link rel="stylesheet" href="/v/{{V}}/world3d/hud/hud.css">
 <script type="importmap">
 { "imports": {
@@ -22,36 +22,41 @@
 <div id="fct"></div>
 <div id="castbar" class="hud"><b></b><span></span></div>
 <div id="prompt" class="prompt hidden"><kbd>E</kbd><span></span></div>
+<div id="callout" class="callout"><div class="co-t"></div><div class="co-s"></div></div>
 
-<div id="player-frame" class="hud panel hidden">
-  <div class="portrait"><span class="ini">?</span><span class="lvl">1</span></div>
+<div id="player-frame" class="hud panel ornate hidden">
+  <div class="portrait"><img class="face" alt=""><span class="ini">?</span><span class="lvl" title="Level">1</span></div>
   <div class="who">
-    <div class="name"></div>
-    <div class="cls"></div>
-    <div class="bar hp"><b></b></div>
-    <div class="bar mp"><b></b></div>
+    <div class="pf-top"><span class="name"></span><span class="cls"></span></div>
+    <div class="vbar hp"><i></i><b></b><span></span></div>
+    <div class="vbar mp"><b></b><span></span></div>
     <div id="buffs"></div>
   </div>
 </div>
 
 <div id="party" class="hud hidden"></div>
-<div id="group-invite" class="hud panel popup hidden"></div>
-<div id="loot-roll" class="hud panel popup hidden"></div>
-<div id="quest-card" class="hud panel popup hidden"></div>
-<div id="quest-embark" class="hud panel popup hidden"></div>
-<div id="quest-tracker" class="hud panel hidden"></div>
+<div id="group-invite" class="hud panel ornate popup hidden"></div>
+<div id="loot-roll" class="hud panel ornate popup hidden"></div>
+<div id="quest-card" class="hud panel ornate popup hidden"></div>
+<div id="quest-embark" class="hud panel ornate popup hidden"></div>
+<div id="quest-tracker" class="hud panel ornate small hidden"></div>
 
-<div id="target-frame" class="hud panel hidden">
+<div id="target-frame" class="hud panel ornate hidden">
   <button class="tclose" title="Clear target (Esc)">✕</button>
-  <div class="tname"></div>
-  <div class="tsub"></div>
-  <div class="bar"><b></b></div>
+  <div class="portrait"><img class="face" alt=""><span class="lvl"></span></div>
+  <div class="tmain">
+    <div class="tname"></div>
+    <div class="tsub"></div>
+    <div class="vbar hp"><i></i><b></b><span></span></div>
+    <div class="tcast hidden"><b></b><span></span><em></em></div>
+    <div class="tdist"></div>
+  </div>
 </div>
 
 <div id="banner" class="hud"><div class="zone"></div><div class="room"></div></div>
 <div id="toasts" class="hud"></div>
 
-<div id="minimap" class="hud panel hidden">
+<div id="minimap" class="hud panel ornate hidden">
   <div class="mm-head"><span class="mm-zone"></span><span class="mm-time"></span></div>
   <div class="mm-wrap"><canvas width="392" height="352"></canvas><button class="mm-north" title="North up (Home)"><i>N</i></button></div>
   <div class="mm-room"></div>
@@ -59,45 +64,55 @@
 
 <div id="actionbar" class="hud hidden">
   <div class="orb hp"><div class="fill"></div><div class="gloss"></div><div class="val"></div><div class="lab">Health</div></div>
-  <div id="bar-mid" class="panel">
+  <div id="bar-mid" class="panel ornate small">
     <div id="xpbar" title="Experience"><b></b></div>
     <div id="slots"></div>
   </div>
   <div class="orb mp"><div class="fill"></div><div class="gloss"></div><div class="val"></div><div class="lab">Mana</div></div>
 </div>
 
-<div id="chat" class="hud panel hidden">
+<div id="chat" class="hud panel ornate small hidden">
   <div class="chat-tabs"><button data-tab="all" class="on">All</button><button data-tab="group">Group</button><button data-tab="say">Say</button><button data-tab="tell">Tells</button></div>
   <div id="log" data-tab="all"></div>
   <div class="chat-row"><button id="chat-mode" title="What Enter does with plain text: a command, or say / group / tell it">Cmd</button>
   <input id="chat-input" placeholder="Press Enter to talk or type a command…" autocomplete="off" spellcheck="false"></div>
 </div>
 
-<div id="menu" class="hud panel hidden">
-  <button data-act="character" data-tip="Character (C)">🛡</button>
-  <button data-act="inventory" data-tip="Inventory (I)">🎒</button>
-  <button data-cmd="equipment" data-tip="Equipment">⚔</button>
-  <button data-act="abilities" data-tip="Spellbook (K)">✦</button>
-  <button data-cmd="quests" data-tip="Quests (L)">📜</button>
-  <button data-act="settings" data-tip="Settings">⚙</button>
+<div id="menu" class="hud panel ornate small hidden">
+  <button data-act="character" data-icon="helm" data-tip="Character" data-key="C"></button>
+  <button data-act="inventory" data-icon="satchel" data-tip="Inventory" data-key="I"></button>
+  <button data-act="abilities" data-icon="book" data-tip="Spellbook" data-key="K"></button>
+  <button data-act="journal" data-icon="scroll" data-tip="Quest journal" data-key="L"></button>
+  <button data-act="map" data-icon="map" data-tip="Map" data-key="M"></button>
+  <button data-act="settings" data-icon="gear" data-tip="Settings" data-key="O"></button>
 </div>
+<div id="journal" class="hud panel ornate hidden">
+  <div class="win-head"><span>Quest journal</span><button class="jr-close win-x" title="Close (L)">✕</button></div>
+  <div class="jr-book"><div class="jr-list"></div><div class="jr-page"></div></div>
+</div>
+<div id="bigmap" class="hud panel ornate hidden">
+  <div class="win-head"><span class="mm-zone">Map</span><span class="mm-time"></span><button class="bm-close win-x" title="Close (M)">✕</button></div>
+  <div class="mm-wrap"><canvas width="1760" height="1080"></canvas></div>
+  <div class="bm-foot"><span class="mm-room"></span><span class="bm-legend"><b>★</b> your guild · <b>◆</b> your quest · <b>▲▼</b> stairs · click a room to walk there</span></div>
+</div>
+<div id="tipcard" class="tipcard hidden"></div>
 
-<div id="inventory" class="hud panel hidden">
+<div id="inventory" class="hud panel ornate hidden">
   <div class="win-head"><span>Inventory</span><button class="inv-close win-x" title="Close (I)">✕</button></div>
   <div class="inv-body">
     <div class="inv-doll"></div>
     <div class="inv-right"><div class="inv-bag"></div><div class="inv-foot"><span class="inv-gold"></span><span class="inv-count"></span></div></div>
   </div>
 </div>
-<div id="character" class="hud panel hidden">
+<div id="character" class="hud panel ornate hidden">
   <div class="win-head"><span>Character</span><span class="ch-tabs"><button data-tab="overview" class="on">Overview</button><button data-tab="abilities">Skills &amp; spells</button></span><button class="ch-close win-x" title="Close (C)">✕</button></div>
   <div class="ch-wrap"><div class="ch-portrait"><canvas width="440" height="520"></canvas></div><div class="ch-body"></div></div>
 </div>
-<div id="spellbook" class="hud panel hidden">
+<div id="spellbook" class="hud panel ornate hidden">
   <div class="win-head"><span>Spellbook</span><span class="sb-tabs ch-tabs"><button data-tab="all" class="on">All</button><button data-tab="skill">Skills</button><button data-tab="spell">Spells</button></span><button class="sb-close win-x" title="Close (K)">✕</button></div>
   <div class="sb-body"></div>
 </div>
-<div id="trainer" class="hud panel hidden">
+<div id="trainer" class="hud panel ornate hidden">
   <div class="win-head"><span class="tr-who">Training</span><button class="tr-close win-x" title="Close">✕</button></div>
   <div class="tr-body sb-body"></div>
 </div>
@@ -105,7 +120,7 @@
 <div id="item-menu" class="hidden"></div>
 <div id="ctx-menu" class="hidden"></div>
 
-<div id="settings" class="hud panel hidden">
+<div id="settings" class="hud panel ornate hidden">
   <h4>Settings</h4>
   <div class="row">Graphics <span class="seg" data-set="quality"><button data-v="low">Low</button><button data-v="med">Med</button><button data-v="high">High</button></span></div>
   <div class="row">HUD size <span class="seg" data-set="ui"><button data-v="auto">Auto</button><button data-v="0.85">S</button><button data-v="1">M</button><button data-v="1.15">L</button></span></div>
@@ -115,19 +130,37 @@
 </div>
 
 <div id="login">
-  <div class="card panel">
-    <h1>MISTHOLLOW</h1>
-    <div class="sub">A MUD, reforged</div>
+  <div class="mist m1"></div><div class="mist m2"></div><div class="mist m3"></div>
+  <div class="title-block">
+    <svg class="crest" viewBox="0 0 120 120" aria-hidden="true">
+      <defs><linearGradient id="crest-gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3cc"/><stop offset=".5" stop-color="#e8c47a"/><stop offset="1" stop-color="#9a7434"/></linearGradient>
+        <radialGradient id="crest-flame" cx=".5" cy=".6" r=".5"><stop offset="0" stop-color="#fff8e0"/><stop offset=".45" stop-color="#ffc56a"/><stop offset="1" stop-color="#ff8a2a" stop-opacity="0"/></radialGradient></defs>
+      <circle cx="60" cy="60" r="55" fill="none" stroke="url(#crest-gold)" stroke-width="2.2"/>
+      <circle cx="60" cy="60" r="47" fill="none" stroke="url(#crest-gold)" stroke-width="1" opacity=".6" stroke-dasharray="2 5"/>
+      <g fill="url(#crest-gold)"><path d="M60 3l4 6-4 6-4-6z"/><path d="M60 105l4 6-4 6-4-6z"/><path d="M3 60l6-4 6 4-6 4z"/><path d="M105 60l6-4 6 4-6 4z"/></g>
+      <g class="crest-lantern" fill="none" stroke="url(#crest-gold)" stroke-width="2.4" stroke-linejoin="round">
+        <path d="M52 28h16M55 28v-5a5 5 0 0 1 10 0v5"/>
+        <path d="M46 34h28l-4 6v30l4 6H46l4-6V40z"/>
+        <path d="M50 40h20M50 70h20M60 40v30" stroke-width="1.2" opacity=".7"/>
+        <path d="M44 82h32M48 88h24" />
+      </g>
+      <ellipse class="crest-flame" cx="60" cy="56" rx="7" ry="11" fill="url(#crest-flame)"/>
+    </svg>
+    <h1>Misthollow</h1>
+    <div class="tagline">Where the mist remembers every name.</div>
+  </div>
+  <div class="card panel ornate">
     <input id="login-name" placeholder="Name" autocomplete="username" maxlength="12">
     <input id="login-pass" type="password" placeholder="Password" autocomplete="current-password">
-    <button class="btn" id="login-btn">Enter the realm</button>
+    <button class="btn" id="login-btn">Enter the Hollow</button>
     <button class="btn alt" id="create-btn">Forge a new hero</button>
     <div id="login-status"></div>
   </div>
+  <div class="lore-line"></div>
 </div>
 
 <div id="create" class="hidden">
-  <div class="card panel">
+  <div class="card panel ornate">
     <div class="step"></div>
     <h2></h2>
     <div class="hint"></div>
@@ -136,7 +169,8 @@
 </div>
 
 <div id="perf"></div>
-<div id="loading">MISTHOLLOW</div>
+<div id="loading"><div class="ld-ring"></div><div class="ld-name">Misthollow</div><div class="ld-sub">The mist gathers…</div></div>
+<div id="moment" class="hidden"><div class="mo-rays"></div><div class="mo-kicker"></div><div class="mo-title"></div><div class="mo-sub"></div></div>
 
 <script src="/platformer/net.js?v={{V}}"></script>
 <script src="/platformer/parser.js?v={{V}}"></script>

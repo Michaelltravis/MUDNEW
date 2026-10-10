@@ -9,7 +9,13 @@ import { createSpellbook } from './spellbook.js';
 import { createTrainer } from './trainer.js';
 import { createParty } from './party.js';
 import { createQuest } from './quest.js';
-import { SLOTS, cleanBar, defaultBar, placeNew, putOnBar, takeOffBar, diffAbilities, usable } from '../abilities.js';
+import { createJournal } from './journal.js';
+import { abilityIcon, uiIcon } from './icons.js';
+import { classPortrait, creaturePortrait } from './portrait.js';
+import { SLOTS, cleanBar, defaultBar, placeNew, putOnBar, takeOffBar, diffAbilities, usable, costLine, rankOf } from '../abilities.js';
+import { conOf } from '../targeting.js';
+import { recipeFor } from '../abilityfx.js';
+import { RECIPES } from '../abilityfx-table.js';
 const $ = s => document.querySelector(s);
 const ls = { get(k) { try { return localStorage.getItem(k); } catch (_) { return null; } },
   set(k, v) { try { localStorage.setItem(k, v); } catch (_) {} } };
@@ -27,10 +33,11 @@ export const KIT = {
   bard: ['mockery', 'fascinate', 'crescendo', 'discordant_note', 'sleep'],
 };
 const SELF = new Set(['rally', 'cure_light', 'heal', 'bless', 'fade', 'absolution', 'halo_of_reckoning', 'animate_dead', 'crescendo']);
-export const ICON = id => /heal|cure|bless|absolution|rally/.test(id) ? '✚' : /fire|flame|bolt|lightning|missile|smite|storm/.test(id) ? '✹'
-  : /shot|loosing|quarry/.test(id) ? '➶' : /sleep|fascinate|mockery|note|crescendo/.test(id) ? '♪'
-  : /soul|chill|dead|reap/.test(id) ? '☠' : /backstab|circle|vital|execute|expose|mark|feint|contract/.test(id) ? '🗡'
-  : /bash|kick|trip|low_blow|charge|cleave|rescue|censure|verdict/.test(id) ? '⚒' : '✦';
+// an ability's painted icon (hud/icons.js) as an <img>, in the hero's class's colours
+let iconClass = '';
+const iconTypes = new Map();
+export const ICON = id => `<img class="ic" alt="" draggable="false" src="${abilityIcon(id, iconClass, { type: iconTypes.get(id) || 'skill' })}">`;
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 export function createHud() {
   const els = {
@@ -62,6 +69,8 @@ export function createHud() {
     toast: msg => toast(msg), onMark: vnum => MH.bus.emit('quest.mark', vnum),
   });
 
+  const journal = createJournal($('#journal'), { toast: msg => toast(msg) });
+
   // ---- scale ----
   function applyScale() {
     const pref = ls.get('mh3d_ui') || 'auto';
@@ -88,34 +97,73 @@ export function createHud() {
 
   // ---- player ----
   const pct = (a, b) => `${Math.max(0, Math.min(100, (b ? a / b : 0) * 100))}%`;
+  // a vitals bar: the fill, a pale ghost that drains behind it after a wound, the numbers
+  function vbar(el, cur, max, label = '') {
+    const w = pct(cur, max);
+    el.querySelector('b').style.width = w;
+    const ghost = el.querySelector('i');
+    if (ghost) ghost.style.width = w;
+    el.querySelector('span').textContent = max ? `${label}${Number(cur || 0).toLocaleString()} / ${Number(max).toLocaleString()}` : '';
+    el.classList.toggle('low', !!max && cur / max <= 0.3);
+  }
+  let portraitFor = '', lastLevel = 0;
+  // a moment: a title over light rays (a level gained, a fall)
+  let momentTimer = 0;
+  function moment({ kicker = '', title = '', sub = '', tone = '' }) {
+    const m = $('#moment');
+    m.querySelector('.mo-kicker').textContent = kicker;
+    m.querySelector('.mo-title').textContent = title;
+    m.querySelector('.mo-sub').textContent = sub;
+    m.className = tone;
+    void m.offsetWidth;
+    m.classList.add('in');
+    clearTimeout(momentTimer);
+    momentTimer = setTimeout(() => m.classList.add('hidden'), 4300);
+  }
+  function fallen() {
+    document.documentElement.classList.add('fallen');
+    moment({ kicker: 'the mist takes you', title: 'You have fallen', sub: 'You wake where your journey last found shelter…', tone: 'fall' });
+    setTimeout(() => document.documentElement.classList.remove('fallen'), 4200);
+  }
   function setPlayer(p) {
     if (!p) return;
     st.player = p;
+    // a level gained: the moment, and the world answers with light (main.js)
+    if (lastLevel && p.level > lastLevel) {
+      moment({ kicker: `${String(p.char_class || '').toLowerCase()} · level ${p.level}`, title: 'Level Up!', sub: 'Your strength grows. New paths open before you.' });
+      MH.bus.emit('hud.levelup', p.level);
+    }
+    lastLevel = p.level || lastLevel;
+    const cls = String(p.char_class || '').toLowerCase();
+    if (cls && cls !== iconClass) { iconClass = cls; st.barSig = ''; }
     els.pf.querySelector('.name').textContent = p.name || '';
     els.pf.querySelector('.cls').textContent = `${(p.race || '').replace(/_/g, ' ')} ${p.char_class || ''}`.trim();
     els.pf.querySelector('.ini').textContent = (p.name || '?')[0].toUpperCase();
     els.pf.querySelector('.lvl').textContent = p.level || 1;
-    els.pf.querySelector('.bar.hp b').style.width = pct(p.hp, p.max_hp);
+    els.pf.dataset.cls = cls;
+    if (cls && portraitFor !== cls) {
+      portraitFor = cls;
+      classPortrait(cls).then(url => { if (url && portraitFor === cls) { const img = els.pf.querySelector('.face'); img.src = url; img.classList.add('on'); } });
+    }
+    vbar(els.pf.querySelector('.vbar.hp'), p.hp, p.max_hp);
     const res = p.resource && p.resource.max ? { cur: p.resource.value, max: p.resource.max, name: p.resource.name }
       : { cur: p.mana, max: p.max_mana, name: 'Mana' };
-    els.pf.querySelector('.bar.mp b').style.width = pct(res.cur, res.max);
+    vbar(els.pf.querySelector('.vbar.mp'), res.cur, res.max);
+    els.pf.querySelector('.vbar.mp').dataset.res = String(res.name || 'mana').toLowerCase();
+    document.documentElement.classList.toggle('hp-low', !!p.max_hp && p.hp / p.max_hp <= 0.3 && p.hp > 0);
     const hpOrb = els.ab.querySelector('.orb.hp'), mpOrb = els.ab.querySelector('.orb.mp');
     hpOrb.querySelector('.fill').style.height = pct(p.hp, p.max_hp);
     hpOrb.querySelector('.val').textContent = `${p.hp}/${p.max_hp}`;
     mpOrb.querySelector('.fill').style.height = pct(res.cur, res.max);
     mpOrb.querySelector('.val').textContent = `${res.cur}/${res.max}`;
     mpOrb.querySelector('.lab').textContent = res.name;
+    mpOrb.dataset.res = String(res.name || 'mana').toLowerCase();
     const floor = p.exp_floor || 0, next = p.exp_to_level || 0;
     const capped = !next || next - floor > 1e9;
     $('#xpbar b').style.width = capped ? '100%' : next > floor ? pct((p.exp || 0) - floor, next - floor) : '0%';
     $('#xpbar').title = capped ? 'Max level' : `Experience: ${p.exp || 0} / ${next}`;
-    // buffs and debuffs
-    const aff = Array.isArray(p.affects) ? p.affects : [];
-    $('#buffs').innerHTML = aff.slice(0, 8).map(a => {
-      const n = String(a.name || a.type || a.spell || '').replace(/_/g, ' ');
-      const bad = /poison|curse|blind|slow|weak|stun|bleed|burn|fear|snare|root/.test(n);
-      return n ? `<i class="${bad ? 'bad' : ''}">${n}</i>` : '';
-    }).join('');
+    // buffs and debuffs: an icon each, a ring that empties as it wears off
+    renderBuffs(Array.isArray(p.affects) ? p.affects : []);
     inventory.update(p);
     character.update(p);
     st.cooldowns = p.cooldowns || {};
@@ -123,6 +171,56 @@ export function createHud() {
     buildBar(p);
     paintCooldowns();
   }
+
+  // ---- buffs ----
+  const TICK_S = 6;          // an affect tick (config.AFFECT_TICK_SECONDS)
+  const BAD = /poison|curse|blind|slow|weak|stun|bleed|burn|fear|snare|root|shatter|mark|expose|sunder|disease|plague|silence|entangle|sleep/;
+  let buffSig = '';
+  function renderBuffs(aff) {
+    const list = aff.filter(a => a && (a.name || a.spell)).slice(0, 12);
+    const nsig = JSON.stringify(list.map(a => [a.name, a.remaining, a.duration]));
+    if (nsig === buffSig) return;
+    buffSig = nsig;
+    $('#buffs').innerHTML = list.map(a => {
+      const id = String(a.name || a.spell).toLowerCase();
+      const base = id.replace(/_(invuln|damage|speed|mend|crit|stealth|haste|stun|regen|bonus)$/, '');
+      const bad = BAD.test(id);
+      const left = a.remaining != null ? a.remaining : a.duration;
+      const frac = a.duration ? Math.max(0, Math.min(1, (left || 0) / a.duration)) : 1;
+      const secs = left != null ? Math.max(0, Math.round(left * TICK_S)) : null;
+      const label = base.replace(/_/g, ' ');
+      return `<div class="buff${bad ? ' bad' : ''}" style="--left:${frac}" data-tip-title="${esc(label)}" data-tip-sub="${bad ? 'Harmful' : 'Helpful'}${secs != null ? ` · about ${secs >= 60 ? `${Math.round(secs / 60)} min` : `${secs} s`} left` : ''}">
+        <img alt="" src="${abilityIcon(base, iconClass, { type: 'spell' })}"><span>${secs != null && secs < 60 ? secs : ''}</span></div>`;
+    }).join('');
+  }
+
+  // ---- the tooltip card: abilities, buffs, menu buttons ----
+  const tip = $('#tipcard');
+  function showTip(html, x, y) {
+    tip.innerHTML = html;
+    tip.classList.remove('hidden');
+    const r = tip.getBoundingClientRect();
+    const left = Math.min(window.innerWidth - r.width - 8, Math.max(8, x - r.width / 2));
+    const top = y - r.height - 14 < 8 ? y + 22 : y - r.height - 14;
+    tip.style.left = `${left}px`; tip.style.top = `${top}px`;
+  }
+  function hideTip() { tip.classList.add('hidden'); }
+  function abilityTip(a, key) {
+    const book = a.pct > 0 ? `<div class="tc-bar"><b style="width:${Math.min(100, a.pct)}%"></b></div>` : '';
+    const rank = a.known ? `${rankOf(a.pct)} · ${a.pct}%` : a.quest ? `Earned through ${a.quest}` : `Unlocks at level ${a.level}`;
+    return `<div class="tc-head"><img class="tc-ic" src="${abilityIcon(a.id, iconClass, { type: a.type })}">
+        <div><div class="tc-name">${esc(a.name)}</div><div class="tc-sub">${a.type === 'spell' ? 'Spell' : 'Skill'}${a.marquee ? ' · ★ marquee' : ''} · ${esc(rank)}</div></div></div>
+      ${book}<div class="tc-desc">${esc(a.desc || '')}</div>
+      <div class="tc-meta">${esc(costLine(a))}${key ? ` · key <b>${esc(key)}</b>` : ''}</div>`;
+  }
+  // anything with data-tip-title shows a small card
+  document.addEventListener('mouseover', e => {
+    const el = e.target.closest && e.target.closest('[data-tip-title]');
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    showTip(`<div class="tc-name">${esc(el.dataset.tipTitle)}</div>${el.dataset.tipSub ? `<div class="tc-sub">${esc(el.dataset.tipSub)}</div>` : ''}`, r.left + r.width / 2, r.top);
+  });
+  document.addEventListener('mouseout', e => { if (e.target.closest && e.target.closest('[data-tip-title], .slot')) hideTip(); });
 
   // ---- action bar: Attack (F), your own 16 slots (1-8, Shift+1-8), Flee ----
   // Abilities come from the payload (`abilities`, `bar`: see abilities.js). A character who
@@ -160,6 +258,7 @@ export function createHud() {
     list.fromBook = !!books.get(cls);
     st.abilities = list;
     st.byId = new Map(list.map(a => [a.id, a]));
+    for (const a of list) iconTypes.set(a.id, a.type || 'skill');
     // a bar you just changed outlives payloads the server sent before it had your change
     if (performance.now() - st.barEdited > 4000) {
       st.custom = Array.isArray(p.bar) && p.bar.some(Boolean);
@@ -196,9 +295,9 @@ export function createHud() {
   }
   function slotHtml(i) {
     const id = st.bar[i], a = id && st.byId.get(id), key = keyOf(i);
-    if (!a) return `<div class="slot empty" data-i="${i}" title="Drag an ability here from your spellbook (K)"><span class="key">${key}</span></div>`;
-    return `<div class="slot${st.glow.has(id) ? ' glow' : ''}" data-i="${i}" data-id="${a.id}" draggable="true" title="${a.name} (${key})">`
-      + `<span class="key">${key}</span><div><div class="ic">${ICON(a.id)}</div><div class="ab">${a.name}</div></div></div>`;
+    if (!a) return `<div class="slot empty" data-i="${i}" data-tip-title="An empty slot" data-tip-sub="Drag an ability here from your spellbook (K)"><span class="key">${key}</span></div>`;
+    return `<div class="slot${st.glow.has(id) ? ' glow' : ''}${a.marquee ? ' marquee' : ''}" data-i="${i}" data-id="${a.id}" draggable="true">`
+      + `${ICON(a.id)}<span class="key">${key}</span><div class="cd"><i></i><span></span></div></div>`;
   }
   function renderBar() {
     const sig = JSON.stringify([st.bar, [...st.glow], st.bar.map(id => id && st.byId.has(id))]);
@@ -206,11 +305,21 @@ export function createHud() {
     st.barSig = sig;
     const row = (from, to) => Array.from({ length: to - from }, (_, k) => slotHtml(from + k)).join('');
     els.slots.innerHTML = `<div class="bar-row shift${st.bar.slice(8).some(Boolean) ? '' : ' unused'}">${row(8, 16)}</div>`
-      + '<div class="bar-row main"><div class="slot fixed" data-act="attack" title="Attack (F)"><span class="key">F</span><div><div class="ic">⚔</div><div class="ab">Attack</div></div></div>'
-      + `${row(0, 8)}<div class="slot fixed" data-act="flee" title="Flee"><span class="key"></span><div><div class="ic">🏃</div><div class="ab">Flee</div></div></div></div>`;
+      + `<div class="bar-row main"><div class="slot fixed attack" data-act="attack" data-tip-title="Attack" data-tip-sub="Swing at your target — or press F (or Space)"><img class="ic" alt="" src="${uiIcon('sword', { size: 96 })}"><span class="key">F</span></div>`
+      + `${row(0, 8)}<div class="slot fixed flee" data-act="flee" data-tip-title="Flee" data-tip-sub="Break off the fight and run"><img class="ic" alt="" src="${uiIcon('flee', { size: 96, color: '#d8e6f0', glow: 'rgba(160,200,240,.6)' })}"></div></div>`;
     els.slots.querySelectorAll('.slot').forEach(el => {
       const i = el.dataset.i != null ? +el.dataset.i : -1;
       el.addEventListener('click', () => use(el.dataset.act || st.bar[i]));
+      if (el.dataset.id) {
+        el.addEventListener('mouseenter', () => {
+          const a = st.byId.get(el.dataset.id);
+          if (!a) return;
+          const r = el.getBoundingClientRect();
+          showTip(abilityTip(a, keyOf(i)), r.left + r.width / 2, r.top);
+          MH.bus.emit('hud.abilityHover', { id: a.id });
+        });
+        el.addEventListener('mouseleave', () => { hideTip(); MH.bus.emit('hud.abilityHover', null); });
+      }
       if (i < 0) return;
       el.addEventListener('contextmenu', e => {
         e.preventDefault();
@@ -267,6 +376,21 @@ export function createHud() {
     const aim = a ? a.target || 'enemy' : SELF.has(id) ? 'self' : 'enemy';
     MH.bus.emit('hud.ability', { id, spell: a ? a.type === 'spell' : false, self: aim !== 'enemy' && aim !== 'ally', ally: aim === 'ally' });
   }
+  // a staggered foe: the bar's heaviest ready attacks glow for a moment (combatcues.js)
+  function suggestStrike() {
+    const now = (performance.now() - st.cdAt) / 1000;
+    const weight = id => {
+      const r = recipeFor(RECIPES, id, iconClass, {});
+      return (r.flags.has('heavy') ? 2 : 0) + (r.flags.has('shake+') ? 2 : r.flags.has('shake') ? 1 : 0) + (r.flags.has('stop') ? 1 : 0) + (r.land && r.land.big ? 1 : 0);
+    };
+    const ready = st.bar.filter(Boolean).map(id => st.byId.get(id))
+      .filter(a => a && a.known && !a.passive && (a.target || 'enemy') === 'enemy' && (st.cooldowns[a.id] || 0) - now <= 0.05)
+      .sort((x, y) => weight(y.id) - weight(x.id));
+    for (const a of ready.slice(0, 2)) {
+      const el = els.slots.querySelector(`.slot[data-id="${a.id}"]`);
+      if (el) { el.classList.add('suggest'); setTimeout(() => el.classList.remove('suggest'), 2400); }
+    }
+  }
   // the server says an ability grew (mastery.py): tick it now, before the next payload
   MH.bus.on('ability.improve', ({ id, pct }) => {
     const a = st.byId.get(id);
@@ -279,18 +403,33 @@ export function createHud() {
     spellbook.update(st.abilities, st.bar, p && p.level);
     if (p) trainer.update({ ...p, abilities: st.abilities });
   });
+  const cdTotal = new Map();             // how long each running cooldown was when it started
   function paintCooldowns() {
     const elapsed = (performance.now() - st.cdAt) / 1000;
+    const p = st.player;
     els.slots.querySelectorAll('.slot[data-id]').forEach(slot => {
-      const left = (st.cooldowns[slot.dataset.id] || 0) - elapsed;
-      let cd = slot.querySelector('.cd');
+      const id = slot.dataset.id;
+      const left = (st.cooldowns[id] || 0) - elapsed;
+      const cd = slot.querySelector('.cd');
+      if (!cd) return;
       if (left > 0.05) {
-        if (!cd) { cd = document.createElement('div'); cd.className = 'cd'; slot.appendChild(cd); }
-        cd.textContent = left >= 10 ? Math.ceil(left) : left.toFixed(1);
-      } else if (cd) cd.remove();
+        if (!cdTotal.has(id) || cdTotal.get(id) < left) cdTotal.set(id, Math.max(left, (st.byId.get(id) || {}).cd || left));
+        slot.classList.add('cooling');
+        cd.style.setProperty('--cd', Math.min(1, left / (cdTotal.get(id) || left)));
+        cd.querySelector('span').textContent = left >= 10 ? Math.ceil(left) : left.toFixed(1);
+      } else if (slot.classList.contains('cooling')) {
+        slot.classList.remove('cooling');
+        cdTotal.delete(id);
+        slot.classList.add('ready');
+        setTimeout(() => slot.classList.remove('ready'), 700);
+      }
+      // a spell you haven't the mana for
+      const a = st.byId.get(id);
+      const short = !!(a && a.type === 'spell' && a.cost && p && !(p.resource && p.resource.max) && (p.mana || 0) < a.cost);
+      slot.classList.toggle('nores', short);
     });
   }
-  setInterval(paintCooldowns, 200);
+  setInterval(paintCooldowns, 100);
 
   // ---- ranges: the target frame shows the distance; slots out of reach turn red ----
   let ranges = null, lastDist = null;
@@ -310,7 +449,9 @@ export function createHud() {
     if (r === lastDist) return;
     lastDist = r;
     const reach = abilityRange('attack');
-    sub.textContent = `${r.toFixed(r < 10 ? 1 : 0)} m${reach != null ? (d <= reach + 0.3 && sameRoom ? ' · in reach' : ` · reach ${reach} m`) : ''}`;
+    const near = reach != null && d <= reach + 0.3 && sameRoom;
+    const hostile = st.target && st.target.hostile;
+    sub.textContent = `${r.toFixed(r < 10 ? 1 : 0)} m${reach != null ? (near ? (hostile && !MH.state.inCombat ? ' · in reach — press F to attack' : ' · in reach') : ` · reach ${reach} m`) : ''}`;
     sub.className = 'tdist' + (reach != null && d <= reach + 0.3 && sameRoom ? ' ok' : '');
     els.slots.querySelectorAll('.slot[data-id], .slot[data-act="attack"]').forEach(el => {
       const rng = abilityRange(el.dataset.id || 'attack');
@@ -319,20 +460,53 @@ export function createHud() {
   }
 
   // ---- target ----
+  let targetKey = '';
   function setTarget(t) {
     st.target = t;
     els.tf.classList.toggle('hidden', !t);
-    if (!t) return;
-    els.tf.className = 'hud panel ' + (t.kind === 'player' ? 'ally' : t.hostile ? 'hostile' : (t.shopkeeper || t.trainer) ? 'npc' : 'neutral');
-    els.tf.querySelector('.tname').textContent = t.name;
+    if (!t) { targetKey = ''; targetCast(null); return; }
     const me = st.player ? st.player.level || 1 : 1;
-    const diff = (t.level || 1) - me;
-    const con = t.kind === 'player' ? 'Player' : diff >= 5 ? 'Deadly' : diff >= 3 ? 'Hard' : diff >= -2 ? 'Even match' : diff >= -5 ? 'Easy' : 'Trivial';
+    const con = t.kind === 'player' ? { key: 'ally', label: 'Player' } : conOf(t.level || 1, me);
+    const kind = t.kind === 'player' ? 'ally' : t.hostile ? 'hostile' : (t.shopkeeper || t.trainer) ? 'npc' : 'neutral';
+    els.tf.className = `hud panel ornate ${kind} con-${con.key}${t.boss ? ' boss' : ''}`;
+    els.tf.querySelector('.tname').textContent = t.name;
+    els.tf.querySelector('.lvl').textContent = t.kind === 'player' ? (t.level || '') : (t.level || '?');
     const role = t.shopkeeper ? ' · shopkeeper' : t.trainer ? ' · trainer' : t.boss ? ' · boss' : '';
-    els.tf.querySelector('.tsub').textContent = `Level ${t.level || '?'} · ${con}${role}`;
-    els.tf.querySelector('.bar b').style.width = t.maxHp ? pct(t.hp, t.maxHp) : '100%';
+    els.tf.querySelector('.tsub').textContent = `${t.kind === 'player' ? `Level ${t.level || '?'} ${t.char_class || ''}` : `Level ${t.level || '?'} · ${con.label}`}${role}`;
+    vbar(els.tf.querySelector('.vbar.hp'), t.maxHp ? t.hp : 1, t.maxHp || 1);
+    if (!t.maxHp) els.tf.querySelector('.vbar.hp span').textContent = '';
+    // its portrait, once per target
+    const key = t.kind === 'player' ? `p:${t.name}` : `m:${t.id}`;
+    if (key !== targetKey) {
+      targetKey = key;
+      const img = els.tf.querySelector('.face');
+      img.classList.remove('on');
+      targetCast(null);
+      const shot = t.kind === 'player' ? classPortrait(t.char_class) : creaturePortrait(t);
+      shot.then(url => { if (url && targetKey === key) { img.src = url; img.classList.add('on'); } });
+    }
   }
   els.tf.querySelector('.tclose').addEventListener('click', () => MH.bus.emit('hud.untarget'));
+  // the target gathers itself for a big blow: its wind-up as a cast bar ("Crushing Blow")
+  let castTimer = 0;
+  function targetCast(c) {
+    const el = els.tf.querySelector('.tcast');
+    clearTimeout(castTimer);
+    if (!c) { el.classList.add('hidden'); return; }
+    if (c.end) {
+      el.classList.add(c.end === 'broken' ? 'broken' : 'landed');
+      el.querySelector('em').textContent = c.end === 'broken' ? 'Interrupted!' : '';
+      castTimer = setTimeout(() => el.classList.add('hidden'), 650);
+      return;
+    }
+    el.className = 'tcast';
+    el.querySelector('span').textContent = c.label || 'Winding up';
+    el.querySelector('em').textContent = '';
+    const b = el.querySelector('b');
+    b.style.transition = 'none'; b.style.width = '0%';
+    requestAnimationFrame(() => requestAnimationFrame(() => { b.style.transition = `width ${Math.max(0.3, (c.ms || 1500) / 1000)}s linear`; b.style.width = '100%'; }));
+    castTimer = setTimeout(() => el.classList.add('hidden'), (c.ms || 1500) + 1200);
+  }
 
   // ---- banner + toasts ----
   let bannerTimer = 0;
@@ -346,6 +520,7 @@ export function createHud() {
   function toast(msg) {
     if (!msg) return;
     const d = document.createElement('div');
+    d.className = 'toast';
     d.textContent = msg;
     els.toasts.appendChild(d);
     while (els.toasts.children.length > 3) els.toasts.firstChild.remove();
@@ -425,11 +600,17 @@ export function createHud() {
   });
 
   // ---- menu + settings ----
+  els.menu.querySelectorAll('button[data-icon]').forEach(b => {
+    b.innerHTML = `<img alt="" src="${uiIcon(b.dataset.icon, { size: 72 })}"><kbd>${esc(b.dataset.key || '')}</kbd>`;
+    b.dataset.tipTitle = b.dataset.tip; b.dataset.tipSub = b.dataset.key ? `Key: ${b.dataset.key}` : '';
+  });
   els.menu.querySelectorAll('button[data-cmd]').forEach(b => b.addEventListener('click', () => MH.sendCommand(b.dataset.cmd)));
   els.menu.querySelector('[data-act="settings"]').addEventListener('click', () => els.settings.classList.toggle('hidden'));
   els.menu.querySelector('[data-act="inventory"]').addEventListener('click', () => inventory.toggle());
   els.menu.querySelector('[data-act="character"]').addEventListener('click', () => character.toggle());
   els.menu.querySelector('[data-act="abilities"]').addEventListener('click', () => spellbook.toggle());
+  els.menu.querySelector('[data-act="journal"]').addEventListener('click', () => journal.toggle());
+  els.menu.querySelector('[data-act="map"]').addEventListener('click', () => MH.bus.emit('hud.map'));
   const syncSettings = () => {
     const q = ls.get('mh3d_quality') || 'high', u = ls.get('mh3d_ui') || 'auto';
     els.settings.querySelectorAll('[data-set="quality"] button').forEach(b => b.classList.toggle('on', b.dataset.v === q));
@@ -457,8 +638,10 @@ export function createHud() {
     const digit = /^Digit([1-8])$/.exec(e.code || '');
     if (digit && !e.ctrlKey && !e.metaKey && !e.altKey) { use(st.bar[+digit[1] - 1 + (e.shiftKey ? 8 : 0)]); e.preventDefault(); return; }
     if (k === 'Escape') {
-      if (inventory.open || character.open || spellbook.open || trainer.open) {
-        inventory.toggle(false); character.toggle(false); spellbook.toggle(false); trainer.toggle(false); return;
+      const mapOpen = !$('#bigmap').classList.contains('hidden');
+      if (inventory.open || character.open || spellbook.open || trainer.open || journal.open || mapOpen) {
+        inventory.toggle(false); character.toggle(false); spellbook.toggle(false); trainer.toggle(false); journal.toggle(false);
+        MH.bus.emit('hud.map', false); return;
       }
       MH.bus.emit('hud.untarget'); els.settings.classList.add('hidden'); return;
     }
@@ -466,8 +649,10 @@ export function createHud() {
     if ((k === 'c' || k === 'C') && !e.ctrlKey && !e.metaKey) { character.toggle(); e.preventDefault(); return; }
     if ((k === 'k' || k === 'K') && !e.ctrlKey && !e.metaKey) { spellbook.toggle(); e.preventDefault(); return; }
     if (k === 'Tab') { MH.bus.emit('hud.cycleTarget'); e.preventDefault(); return; }
-    const cmd = { l: 'quests' }[k.toLowerCase()];
-    if (cmd && !e.ctrlKey && !e.metaKey && !e.altKey) { MH.sendCommand(cmd); e.preventDefault(); }
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (k === 'l' || k === 'L') { journal.toggle(); e.preventDefault(); return; }
+    if (k === 'm' || k === 'M') { MH.bus.emit('hud.map'); e.preventDefault(); return; }
+    if (k === 'o' || k === 'O') { els.settings.classList.toggle('hidden'); e.preventDefault(); }
   });
 
   // ---- for the right-click menu ----
@@ -484,6 +669,6 @@ export function createHud() {
   // whisper someone: the chat input set to tell them
   function whisper(name) { tellFrom = name; setMode('tell'); els.input.focus(); }
 
-  return { showGame, setPlayer, setTarget, setRanges, setDistance, banner, toast, log, targetSkills, useAbility, prefill, openPanel, openTrainer,
+  return { showGame, setPlayer, setTarget, targetCast, moment, fallen, suggestStrike, setRanges, setDistance, banner, toast, log, targetSkills, useAbility, prefill, openPanel, openTrainer,
     spellbook, unslot, party, quest, whisper, get player() { return st.player; }, get bar() { return st.bar.slice(); } };
 }

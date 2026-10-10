@@ -3,6 +3,8 @@
 // race, class and stat-roll prompts, answered from these screens. The class step shows the
 // class's 3D model turning on a small stage.
 import { makeStage } from './stage.js';
+import { uiIcon } from './icons.js';
+import { THEMES } from '../abilityfx.js';
 
 const $ = s => document.querySelector(s);
 const NAME_KEY = 'misthollow_name', PW_KEY = 'misthollow_pw';   // shared with the 2D client
@@ -30,6 +32,17 @@ const CLASSES = [
   ['assassin', 'Burst', 'Deadly killer who eliminates targets with precision.', 'DEX'],
 ];
 const FIRST = new Set(['warrior', 'cleric', 'ranger']);
+// what the hollow's folk say, turning slowly under the login
+const LORE = [
+  'Lanterns burn blue where the dead have walked.',
+  'The hollow was a lake once. On still nights, it remembers.',
+  'Midgaard\u2019s temple bells ring at dusk to call the lost home.',
+  'Every blade remembers its first battle, say the guildmasters.',
+  'Beyond the Ashlands, the dragons count the years in embers.',
+  'Not every voice in the mist belongs to the living.',
+  'A hero is only a traveller who did not turn back.',
+  'Keep your lantern lit, and your name close.',
+];
 
 export function setupLogin() {
   const name = $('#login-name'), pass = $('#login-pass'), status = $('#login-status');
@@ -39,6 +52,17 @@ export function setupLogin() {
   if (saved) name.value = saved;
   if (savedPw) { try { pass.value = atob(savedPw); } catch (_) {} }
   const say = (msg, err) => { status.textContent = msg || ''; status.className = err ? 'error' : ''; };
+  // a line of lore, changing every few seconds while the title screen stands
+  const lore = $('#login .lore-line');
+  let li = Math.floor(Math.random() * LORE.length);
+  if (lore) {
+    lore.textContent = LORE[li];
+    const turn = setInterval(() => {
+      if ($('#login').classList.contains('hidden')) { clearInterval(turn); return; }
+      lore.style.opacity = 0;
+      setTimeout(() => { li = (li + 1) % LORE.length; lore.textContent = LORE[li]; lore.style.opacity = 1; }, 1200);
+    }, 8000);
+  }
 
   function begin(isNew) {
     const n = name.value.trim(), p = pass.value;
@@ -71,7 +95,7 @@ export function setupLogin() {
   function classes() {
     wizard('STEP 2 OF 3', 'CHOOSE YOUR CALLING', 'Pick a class to see it up close. Three are marked as good first picks.',
       `<div class="split"><div class="grid">${CLASSES.map(([id, role]) =>
-        `<div class="pick" data-v="${id}"><b>${id}</b><small>${role}</small>${FIRST.has(id) ? '<div class="first">★ first pick</div>' : ''}</div>`).join('')}</div>`
+        `<div class="pick cls" data-v="${id}" style="--cc:#${(THEMES[id] || THEMES.creature).core.toString(16).padStart(6, '0')}"><img class="pk-ic" alt="" src="${uiIcon((THEMES[id] || THEMES.creature).glyph, { size: 72, color: '#' + (THEMES[id] || THEMES.creature).core.toString(16).padStart(6, '0'), glow: 'rgba(0,0,0,.6)' })}"><b>${id}</b><small>${role}</small>${FIRST.has(id) ? '<div class="first">★ first pick</div>' : ''}</div>`).join('')}</div>`
       + `<div class="focus"><canvas width="520" height="600"></canvas><div class="fn"></div><p class="fd"></p><p class="fs"></p>`
       + `<button class="btn" id="choose-class" disabled>Choose</button></div></div>`);
     stage = stage || makeStage();

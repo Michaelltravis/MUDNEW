@@ -444,3 +444,45 @@ skill's own server code.
   `/play?demo&gallery=abilities&cls=<class>[&only=…][&speed=0.5][&manual]` plays a class's
   whole book on training dummies, labelled; `probe_play3d.js abilityfx` uses a character's own
   abilities on a spectre in the real game. All 302 played in the gallery without an error.
+
+### The look of Misthollow (owner: "ensure the UI is amazing… make it easy for players to fight mobs… immersive… menus visually stunning and easy to read… everything needs a theme")
+- **A theme: lanterns in the mist.** The hollow is a fog-bound valley; the HUD is a traveller's
+  kit carried through it (`hud/theme.css`): panels of dark mistglass bound in brass filigree
+  (gilded corner pieces, a grain in the glass), window heads engraved between gilded rules,
+  lacquered brass buttons, bookmark tabs, keycaps, tooltip cards on dark vellum. Fonts are part
+  of the repo (`src/web_isometric/fonts`, SIL OFL): Cinzel for titles, Cinzel Decorative for the
+  name, Alegreya for lore and descriptions, Alegreya Sans for everything you read at a glance.
+- **Every ability has a painted icon** (`hud/icons.js`, drawn in code from the ability's own
+  recipe): a gem in its element's colour or its class's two tones (blows in the main colour,
+  wards and help in the second), the class's sigil faint behind, a pictogram of what it does
+  (the weapon, what it throws, how it lands, what it leaves on you), a badge for how the body
+  moves, a frame in the class's metal. `/play?demo&gallery=icons` shows all 315.
+- **Frames with faces** (`hud/portrait.js`: one small offscreen renderer photographs a bust):
+  your own frame (your class model's portrait, a wax-seal level, health and resource bars with
+  numbers and a pale ghost that drains behind a wound, buffs as icons whose ring empties as they
+  wear off), the target's (its portrait, name in the colour of how dangerous it is — trivial,
+  easy, even, hard, deadly — level, health, distance, and its wind-up as a cast bar: "Crushing
+  Blow", "Interrupted!").
+- **The action bar**: painted icons, cooldowns as a sweep with the seconds, a glint when ready,
+  red when out of reach, blue when you lack the mana, rich tooltip cards (rank, progress,
+  description, cost, cooldown, reach, key); lantern orbs for health and the class's resource;
+  a menu of brass-rimmed buttons (C I K L M O).
+- **Easier fights** (`combatcues.js`): a ring under your target (red for a foe), your reach drawn
+  around you while you hover an ability (green when the target is inside it), STEP OUT over
+  your head with an arrow to the safe side when a foe's marked blow is about to land where you
+  stand, STRIKE NOW when a foe is staggered (the bar's heaviest ready attacks glow), "press F to
+  attack" when a foe is in reach, nameplates with level badges in danger colours and gold
+  chevrons around your target, bosses crowned. (Fixed on the way: a creature's marked ground was
+  drawn at room-local coordinates, i.e. in the wrong place outside the zone's first room.)
+- **Immersion**: a title screen (drifting mist over the hollow, the lantern crest, MISTHOLLOW
+  engraved in gold, "Where the mist remembers every name.", a line of the hollow's lore turning
+  below), a loading ring, chapter cards when you enter a zone, the mist reddening and closing in
+  when your health runs low, a "Level Up!" moment with a column of light, "You have fallen" when
+  you die, speech over the heads of those who talk, passage signs in the same style, character
+  creation with each class's emblem.
+- **New windows**: a quest journal (L) — your quests, the chosen one's story, objectives and
+  reward, Complete/Abandon, the quests offered by whoever stands beside you with Accept; a big
+  map of the zone (M) — explored rooms, your guild, your quest, click a room to walk there.
+- Verified here: the probe suite (spellbook, trainer, menu, autotarget, abilityfx, camera, doors,
+  stairs, creatures) with the new markup; screenshots of the title screen, the HUD exploring and
+  in a fight, the cues, the windows.

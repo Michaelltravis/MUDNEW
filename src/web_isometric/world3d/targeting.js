@@ -54,3 +54,10 @@ export function abilityCommand(ab, ref) {
   const base = ab.spell ? `cast '${ab.id.replace(/_/g, ' ')}'` : ab.id;
   return ref ? `${base} ${ref}` : base;
 }
+
+// how dangerous a creature is to you, by the levels between you (the target frame, nameplates)
+export function conOf(level, mine) {
+  const d = (Number(level) || 1) - (Number(mine) || 1);
+  return d >= 5 ? { key: 'deadly', label: 'Deadly' } : d >= 3 ? { key: 'hard', label: 'Hard' }
+    : d >= -2 ? { key: 'even', label: 'Even match' } : d >= -5 ? { key: 'easy', label: 'Easy' } : { key: 'trivial', label: 'Trivial' };
+}

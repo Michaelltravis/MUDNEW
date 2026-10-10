@@ -6,7 +6,7 @@ import * as THREE from 'three';
 import { spawnCharacter, spawnMob } from './assets.js';
 import { creatureLook, hashStr } from './looks.js';
 import { makeProc, makeProp } from './proc.js';
-import { isHostile } from './targeting.js';
+import { isHostile, conOf } from './targeting.js';
 
 export const CLASS_MODEL = {
   warrior: ['barbarian'], paladin: ['knight'], cleric: ['knight', 0xfff0d0], mage: ['mage'],
@@ -155,8 +155,10 @@ export class Entities {
     this.list.set(key, e);
     e.plate = document.createElement('div');
     e.plate.className = 'plate ' + (w.kind === 'player' ? 'pl' : isHostile(w) ? 'hostile' : (w.data.shopkeeper || w.data.trainer) ? 'npc' : 'neutral');
-    e.plate.innerHTML = '<span class="nm"></span><i class="hp"><b></b></i>';
+    e.plate.innerHTML = '<span class="row"><span class="lv"></span><span class="nm"></span></span><i class="hp"><b></b></i>';
     e.plate.querySelector('.nm').textContent = w.data.name;
+    if (w.kind === 'mob' && w.data.level) e.plate.querySelector('.lv').textContent = w.data.level;
+    if (w.data.boss) e.plate.classList.add('boss');
     this.plates.appendChild(e.plate);
     const look = w.kind === 'player' ? classModel(w.data.char_class) : creatureLook(w.data);
     e.look = look;
@@ -266,6 +268,11 @@ export class Entities {
       e.plate.style.transform = `translate(${((this._v.x + 1) / 2 * w).toFixed(1)}px, ${((1 - this._v.y) / 2 * h).toFixed(1)}px) translate(-50%, -100%)`;
       const hp = e.data.maxHp ? e.data.hp / e.data.maxHp : 1;
       e.plate.classList.toggle('hurt', hp < 0.999);
+      // a creature's level badge in the colour of how dangerous it is to you
+      if (e.kind === 'mob' && this.heroLevel && e._conFor !== this.heroLevel) {
+        e._conFor = this.heroLevel;
+        e.plate.dataset.con = conOf(e.data.level || 1, this.heroLevel).key;
+      }
       e.plate.querySelector('.hp b').style.width = `${Math.max(0, Math.min(1, hp)) * 100}%`;
       e.plate.style.opacity = this.target === e.key ? 1 : Math.max(0.25, Math.min(1, (28 - dist) / 8));
     }

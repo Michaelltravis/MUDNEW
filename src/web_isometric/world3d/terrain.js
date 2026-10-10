@@ -473,22 +473,31 @@ function makeHatch(key, cx, cz) {
   return g;
 }
 
+// a passage's name over it, in the HUD's style: engraved capitals on dark glass, a gilded
+// hairline, a diamond at each end (drawn at twice the size for crisp edges)
 function labelSprite(text, color, owned) {
   const c = document.createElement('canvas');
   const ctx = c.getContext('2d');
-  ctx.font = '600 30px Georgia, serif';
-  const w = Math.ceil(ctx.measureText(text).width) + 28;
-  c.width = w; c.height = 46;
-  ctx.font = '600 30px Georgia, serif';
-  ctx.fillStyle = 'rgba(8,8,12,0.55)';
-  ctx.beginPath(); ctx.roundRect(0, 0, w, 46, 10); ctx.fill();
-  ctx.fillStyle = color; ctx.textBaseline = 'middle';
-  ctx.fillText(text, 14, 24);
+  const K = 2, H = 46 * K, font = `600 ${27 * K}px Cinzel, Georgia, serif`;
+  ctx.font = font;
+  const w = Math.ceil(ctx.measureText(text).width) + 64 * K;
+  c.width = w; c.height = H;
+  const g = ctx.createLinearGradient(0, 0, 0, H);
+  g.addColorStop(0, 'rgba(22,28,40,0.82)'); g.addColorStop(1, 'rgba(8,10,16,0.82)');
+  ctx.fillStyle = g;
+  ctx.beginPath(); ctx.roundRect(K, K, w - 2 * K, H - 2 * K, 12 * K); ctx.fill();
+  ctx.strokeStyle = 'rgba(216,180,106,0.75)'; ctx.lineWidth = 1.5 * K;
+  ctx.beginPath(); ctx.roundRect(K * 2, K * 2, w - 4 * K, H - 4 * K, 11 * K); ctx.stroke();
+  ctx.fillStyle = '#f6dfa2';
+  for (const x of [15 * K, w - 15 * K]) { ctx.beginPath(); ctx.moveTo(x, H / 2 - 5 * K); ctx.lineTo(x + 5 * K, H / 2); ctx.lineTo(x, H / 2 + 5 * K); ctx.lineTo(x - 5 * K, H / 2); ctx.closePath(); ctx.fill(); }
+  ctx.font = font; ctx.fillStyle = color; ctx.textBaseline = 'middle'; ctx.textAlign = 'center';
+  ctx.shadowColor = 'rgba(0,0,0,0.9)'; ctx.shadowBlur = 4 * K;
+  ctx.fillText(text, w / 2, H / 2 + K);
   const tex = new THREE.CanvasTexture(c);
   tex.colorSpace = THREE.SRGBColorSpace;
   owned.push(tex);
   const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, depthWrite: false, transparent: true }));
-  sp.scale.set(w / 46 * 0.62, 0.62, 1);
+  sp.scale.set(w / H * 0.62, 0.62, 1);
   sp.renderOrder = 5;
   return sp;
 }

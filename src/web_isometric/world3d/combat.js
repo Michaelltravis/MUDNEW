@@ -87,8 +87,15 @@ export class CombatView {
   // a round's events arrive together; one creature's second and third blows follow its
   // first a beat apart, so a flurry reads as a flurry instead of one blur
   isHero(ref) { return !!(ref && ref.p && String(ref.p).toLowerCase() === String(this.heroName()).toLowerCase()); }
-  handle(list) {
+  // the server measures a wind-up's ground in the room's own metres (0..24, 0..15): place it
+  // in the world by the room's offset
+  toWorld(x, z) {
+    const room = this.roomVnum != null && this.ents.zone ? this.ents.zone.rooms.get(this.roomVnum) : null;
+    return new THREE.Vector3((room ? room.ox : 0) + x, 0, (room ? room.oz : 0) + z);
+  }
+  handle(list, roomVnum = null) {
     list = list || [];
+    this.roomVnum = roomVnum;
     const seq = new Map();
     // whatever goes for the hero becomes the target at once (main.js decides when to switch)
     if (this.onAggro) for (const e of list) {
@@ -331,7 +338,7 @@ export class CombatView {
     const a = e.area || {};
     const secs = Math.max(0.4, (e.ms || 1500) / 1000);
     const target = this.resolve(e.dst);
-    const center = a.x != null ? new THREE.Vector3(a.x, 0, a.z)
+    const center = a.x != null ? this.toWorld(a.x, a.z)
       : a.shape === 'cone' || !a.shape ? src.root.position.clone() : (target ? target.root.position.clone() : src.root.position.clone());
     let facing = 0;
     if (target) { const d = target.root.position.clone().sub(src.root.position); facing = Math.atan2(-d.z, d.x); }
@@ -342,15 +349,19 @@ export class CombatView {
     this.telegraphs.set(key, t);
     if (src.actor) src.actor.once(src.mob ? 'Block' : 'Spellcast_Long', 0.1, 0.8);
     this.fx.text(this.chest(src).setY(src.root.position.y + 2.6), e.label || 'Winding up!', { color: '#ff8a5a', size: 14, rise: 0.5, life: Math.min(1.6, secs) });
+    // the cues (combatcues.js): step out if you stand where it will land
+    if (this.onTelegraph) this.onTelegraph(key, { center: a.x != null ? center : null, follow: t.follow || null, shape: a.shape || 'circle',
+      r: a.r || 2.6, angle: a.angle || Math.PI / 2, facing, until: performance.now() + secs * 1000 + 300, label: e.label, src });
   }
   resolveWindup(e) {
     const key = e.src && e.src.m != null ? `m${e.src.m}` : 'x';
     const t = this.telegraphs.get(key);
     if (t) { t.cancel(); this.telegraphs.delete(key); }
+    if (this.onTelegraphEnd) this.onTelegraphEnd(key, 'landed');
     const src = this.resolve(e.src);
     const a = e.area || {};
     // the blow lands on the ground it marked (a heavy blow or a spell where you stood)
-    const at = a.x != null ? new THREE.Vector3(a.x, 0, a.z) : src ? src.root.position.clone() : null;
+    const at = a.x != null ? this.toWorld(a.x, a.z) : src ? src.root.position.clone() : null;
     if (src) {
       const tgt = at && a.x != null ? { root: { position: at } } : null;
       if (tgt) this.face(src, tgt);
@@ -369,8 +380,11 @@ export class CombatView {
     const key = e.src && e.src.m != null ? `m${e.src.m}` : 'x';
     const t = this.telegraphs.get(key);
     if (t) { t.fade(); this.telegraphs.delete(key); }
+    if (this.onTelegraphEnd) this.onTelegraphEnd(key, e.reason);
     const src = this.resolve(e.src);
     if (!src || e.reason === 'death' || e.reason === 'end') return;
+    // a foe knocked off its stride is open: the cues call for the strike
+    if (e.reason === 'stagger' && this.onOpening) this.onOpening(src);
     const p = this.chest(src);
     this.fx.sparks(p, 0xffe066, 16);
     const word = { stagger: 'Staggered!', snare: 'Snared!' }[e.reason] || 'Interrupted!';

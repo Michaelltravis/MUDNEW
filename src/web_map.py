@@ -31,9 +31,10 @@ _STATIC_3D = {
     'world3d': ('world3d', {'js', 'json', 'css'}),
     'vendor': ('vendor', {'js'}),
     'art3d': ('art3d', {'glb', 'png', 'webp', 'json'}),
+    'fonts': ('fonts', {'woff2'}),
 }
 _CT_3D = {'js': 'text/javascript', 'json': 'application/json', 'css': 'text/css',
-          'glb': 'model/gltf-binary', 'png': 'image/png', 'webp': 'image/webp'}
+          'glb': 'model/gltf-binary', 'png': 'image/png', 'webp': 'image/webp', 'woff2': 'font/woff2'}
 _GZIP_3D = {'js', 'json', 'css', 'glb'}
 _static_cache = {}   # full path -> (mtime, raw bytes, gzipped bytes or None)
 _zonemap_bytes = {}  # zone -> (json bytes, gzipped)
@@ -54,7 +55,7 @@ def asset_version():
 
 
 def static_3d(path):
-    """Resolve a /v/<ver>/..., /world3d/, /vendor/ or /art3d/ path to (file, ext, immutable),
+    """Resolve a /v/<ver>/..., /world3d/, /vendor/, /art3d/ or /fonts/ path to (file, ext, immutable),
     or None when it is not an allowed file (unknown root, extension, or traversal)."""
     rel = path.split('?', 1)[0]
     immutable = False
@@ -1203,7 +1204,7 @@ class WebMapServer:
                     return
                 except FileNotFoundError:
                     await self._http_response(writer, 404, 'Not Found', 'Art not found')
-            elif path.startswith(('/v/', '/world3d/', '/vendor/', '/art3d/')):
+            elif path.startswith(('/v/', '/world3d/', '/vendor/', '/art3d/', '/fonts/')):
                 hit = static_3d(path)
                 if not hit:
                     await self._http_response(writer, 404, 'Not Found', 'Not found')

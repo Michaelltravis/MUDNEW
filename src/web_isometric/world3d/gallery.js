@@ -181,3 +181,34 @@ export async function showAbilityGallery(engine) {
   console.log(`ability gallery: ${cls}, ${ids.length} abilities`);
   return new THREE.Vector3(3.5, 0, 0.5);
 }
+
+// /play?demo&gallery=icons[&cls=mage] — every class's ability icons (hud/icons.js), labelled,
+// and the menu's own icons: a development page for the painted icon set.
+export async function showIconGallery() {
+  const q = new URLSearchParams(location.search);
+  const only = (q.get('cls') || '').toLowerCase();
+  const [{ abilityIcon, uiIcon, PICTO }, { RECIPES }] = await Promise.all([import('./hud/icons.js'), import('./abilityfx-table.js')]);
+  let book = {};
+  const classes = Object.keys(RECIPES).filter(c => !only || c === only);
+  await Promise.all(classes.map(async c => {
+    try { book[c] = (await (await fetch(`/abilitybook?cls=${c}`)).json()).abilities || []; } catch (_) { book[c] = []; }
+  }));
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'position:fixed;inset:0;overflow:auto;z-index:70;padding:18px 22px;background:radial-gradient(ellipse at 50% 0%,#1a2130,#07090e);font:13px var(--body);color:var(--ink)';
+  const sec = (title, items) => `<div style="margin:0 0 18px"><div style="font:600 18px var(--title);letter-spacing:.12em;color:var(--gold-hi);text-transform:uppercase;margin:6px 0 10px">${title}</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:10px">${items.join('')}</div></div>`;
+  const cell = (src, label) => `<div style="text-align:center"><img src="${src}" width="56" height="56" style="display:block;margin:0 auto 4px;border-radius:9px;box-shadow:0 0 0 1px #000,0 4px 10px #0008"><div style="font-size:11px;line-height:1.15;color:var(--ink-dim)">${label}</div></div>`;
+  let html = '';
+  for (const c of classes) {
+    const ids = Object.keys(RECIPES[c]);
+    html += sec(c, ids.map(id => {
+      const b = (book[c] || []).find(a => a.id === id) || {};
+      return cell(abilityIcon(id, c, { type: b.type || 'skill', passive: !!b.passive }), b.name || id.replace(/_/g, ' '));
+    }));
+  }
+  if (!only) html += sec('the menu', ['helm', 'satchel', 'armor', 'book', 'scroll', 'map', 'gear', 'people', 'flee', 'sword', 'shield', 'banner'].map(n => cell(uiIcon(n, { size: 64 }), n)));
+  wrap.innerHTML = html;
+  document.body.appendChild(wrap);
+  window.MH3D_icons = { count: wrap.querySelectorAll('img').length, picto: Object.keys(PICTO).length };
+  return null;
+}
