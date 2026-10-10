@@ -68,7 +68,8 @@ ABILITY_RANGE = {
     # the marquee abilities (marquee_abilities.py): an entry also lets them be typed with spaces
     # ("unbroken banner") and still be drawn in 3D
     'unbroken_banner': (0, 'self'), 'singularity': (16.0, 'blast:6'), 'seraphs_vigil': (0, 'self'),
-    'wings_of_dawn': (0, 'nova:6'), 'lich_ascension': (0, 'self'),
+    'wings_of_dawn': (0, 'nova:6'), 'lich_ascension': (0, 'self'), 'heist': (0, 'self'),
+    'heartseeker': (20.0, 'ranged'), 'song_of_the_ages': (0, 'self'), 'thousand_shadows': (0, 'self'),
 }
 DEFAULT_SPELL = (14.0, 'ranged')
 DEFAULT_SKILL = (MELEE, 'melee')

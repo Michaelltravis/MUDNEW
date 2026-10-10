@@ -1410,6 +1410,1033 @@
     "no_charm",
     "no_summon"
    ]
+  },
+  "9731": {
+   "vnum": 9731,
+   "name": "tomb warden",
+   "keywords": [
+    "warden",
+    "tomb"
+   ],
+   "short_desc": "a tomb warden",
+   "long_desc": "A tomb warden stands its endless watch here, a ring of bronze keys at its belt.",
+   "description": "A mummified guard of the Pyramid, wrapped in linen gone black with age. A ring of bronze keys hangs at\nits hip, and it still remembers which door each one opens.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 3000,
+   "gold": 120,
+   "armor_class": 30,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9732": {
+   "vnum": 9732,
+   "name": "Keeper of Keys",
+   "keywords": [
+    "keeper",
+    "keys"
+   ],
+   "short_desc": "the Keeper of Keys",
+   "long_desc": "The Keeper of Keys sits here on a throne of locked chests, jingling softly.",
+   "description": "A jackal-headed guardian draped in a mantle of a thousand keys. Every vault in the Pyramid answers to it,\nand it has never once been robbed.",
+   "level": 48,
+   "max_hp": 1000,
+   "damage_dice": "2d5+6",
+   "exp": 20000,
+   "gold": 2500,
+   "armor_class": 15,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "boss"
+   ],
+   "boss": true,
+   "boss_id": "keeper_of_keys",
+   "boss_loot_chance": 0,
+   "boss_config": {
+    "enrage_time": 300,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 10.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Keeper rattles its mantle \u2014 a tomb warden lurches out of the dark!",
+      "spawn_adds": {
+       "9731": 1
+      }
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Key-Lash",
+      "telegraph": "The Keeper swings its mantle of keys back like a flail!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d10+10",
+      "dodge": true,
+      "vulnerable_after": 3
+     },
+     {
+      "name": "Lockdown",
+      "telegraph": "Bronze bars grind up out of the floor around the Keeper!",
+      "cast_time": 3,
+      "cooldown": 26,
+      "damage_dice": "3d6+8",
+      "dodge": true,
+      "aoe": true
+     }
+    ]
+   }
+  },
+  "9733": {
+   "vnum": 9733,
+   "name": "vault sentinel",
+   "keywords": [
+    "sentinel",
+    "vault"
+   ],
+   "short_desc": "a vault sentinel",
+   "long_desc": "A vault sentinel clanks forward here, its chest a strongbox with teeth.",
+   "description": "A guardian of brass and coral built by the priests of Nereus to keep their treasure \u2014 and the thieves who\ncame for it.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 2500,
+   "gold": 40,
+   "armor_class": 30,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9734": {
+   "vnum": 9734,
+   "name": "gilded guard",
+   "keywords": [
+    "guard",
+    "gilded"
+   ],
+   "short_desc": "a gilded guard",
+   "long_desc": "A gilded guard stands here, polishing a halberd that is worth more than you are.",
+   "description": "A guard of the Vault of Ages in armour of beaten gold, paid in coin he will never be allowed to spend.",
+   "level": 47,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 2500,
+   "gold": 120,
+   "armor_class": 25,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9735": {
+   "vnum": 9735,
+   "name": "ledger wisp",
+   "keywords": [
+    "wisp",
+    "ledger"
+   ],
+   "short_desc": "a ledger wisp",
+   "long_desc": "A ledger wisp flutters here, a page of accounts burning with cold fire.",
+   "description": "A page torn from the Auditor's ledger, still adding up debts that will never be paid.",
+   "level": 46,
+   "max_hp": 1000,
+   "damage_dice": "2d4+3",
+   "exp": 2000,
+   "gold": 0,
+   "armor_class": 35,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9736": {
+   "vnum": 9736,
+   "name": "Auditor Mordessa",
+   "keywords": [
+    "mordessa",
+    "auditor"
+   ],
+   "short_desc": "Auditor Mordessa",
+   "long_desc": "Auditor Mordessa sits here behind a desk piled with ledgers, quill scratching.",
+   "description": "The keeper of the Vault of Ages: a gaunt woman in ink-black robes whose eyes are two gold coins. Every\ntheft that was ever planned against her vault is written in her ledger \u2014 and every thief's fate.",
+   "level": 50,
+   "max_hp": 1000,
+   "damage_dice": "2d5+6",
+   "exp": 40000,
+   "gold": 6000,
+   "armor_class": 10,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "boss"
+   ],
+   "boss": true,
+   "boss_id": "mordessa",
+   "boss_loot_chance": 0,
+   "boss_config": {
+    "enrage_time": 480,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 12.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Mordessa tears a page from her ledger \u2014 it bursts into a wisp of cold fire!",
+      "spawn_adds": {
+       "9735": 1
+      }
+     },
+     {
+      "threshold": 25,
+      "message": "Mordessa screams for the guard \u2014 the vault doors begin to grind shut!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Final Accounting",
+      "telegraph": "Mordessa slams her ledger shut \u2014 the vault itself is about to collect!",
+      "cast_time": 3,
+      "cooldown": 22,
+      "damage_dice": "3d10+10",
+      "dodge": true,
+      "aoe": true,
+      "vulnerable_after": 3
+     },
+     {
+      "name": "Debt Called In",
+      "telegraph": "Mordessa points her quill at you and reads out what you owe!",
+      "cast_time": 2.5,
+      "cooldown": 20,
+      "damage_dice": "4d10+12",
+      "dodge": true,
+      "interruptible": true,
+      "on_success_message": "Your debt is called in \u2014 in blood!"
+     },
+     {
+      "name": "Call the Guard",
+      "cooldown": 60,
+      "summon": {
+       "9734": 1
+      }
+     }
+    ]
+   }
+  },
+  "9740": {
+   "vnum": 9740,
+   "name": "dire alpha",
+   "keywords": [
+    "alpha",
+    "dire",
+    "wolf"
+   ],
+   "short_desc": "a dire alpha",
+   "long_desc": "A dire alpha stands over its kill here, hackles raised, eyes the colour of old ice.",
+   "description": "The leader of a pack that has hunted the Northern Forest since before the trappers came: a wolf the size\nof a horse, scarred, grey at the muzzle, and smarter than any hunter that has tried for it.",
+   "level": 47,
+   "max_hp": 1000,
+   "damage_dice": "2d8+8",
+   "exp": 9000,
+   "gold": 0,
+   "armor_class": 20,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9741": {
+   "vnum": 9741,
+   "name": "cliff roc",
+   "keywords": [
+    "roc",
+    "cliff"
+   ],
+   "short_desc": "a cliff roc",
+   "long_desc": "A cliff roc perches here, storm-grey feathers ruffling in the sea wind.",
+   "description": "A great raptor of the coastal cliffs whose long flight feathers carry the charge of every storm it has\nflown through.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 3000,
+   "gold": 0,
+   "armor_class": 30,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9742": {
+   "vnum": 9742,
+   "name": "Roc Matriarch",
+   "keywords": [
+    "matriarch",
+    "roc"
+   ],
+   "short_desc": "the Roc Matriarch",
+   "long_desc": "The Roc Matriarch looms over her nest here, wings mantled against the wind.",
+   "description": "The oldest of the cliff rocs, her wingspan wider than a ship is long, lightning crackling in her plumage.\nNo arrow has ever brought her down.",
+   "level": 48,
+   "max_hp": 1000,
+   "damage_dice": "2d5+6",
+   "exp": 20000,
+   "gold": 1500,
+   "armor_class": 15,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "boss"
+   ],
+   "boss": true,
+   "boss_id": "roc_matriarch",
+   "boss_loot_chance": 0,
+   "boss_config": {
+    "enrage_time": 300,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 10.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Matriarch screams, and a cliff roc dives to her side!",
+      "spawn_adds": {
+       "9741": 1
+      }
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Talon Dive",
+      "telegraph": "The Matriarch rises high on the wind \u2014 she is about to dive on you!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d10+10",
+      "dodge": true,
+      "vulnerable_after": 3
+     },
+     {
+      "name": "Stormwing",
+      "telegraph": "The Matriarch spreads her wings and the air crackles with lightning!",
+      "cast_time": 3,
+      "cooldown": 26,
+      "damage_dice": "3d6+8",
+      "dodge": true,
+      "aoe": true
+     }
+    ]
+   }
+  },
+  "9743": {
+   "vnum": 9743,
+   "name": "wyvern broodling",
+   "keywords": [
+    "broodling",
+    "wyvern"
+   ],
+   "short_desc": "a wyvern broodling",
+   "long_desc": "A wyvern broodling hisses here, its tail-sting dripping.",
+   "description": "A young wyvern of Gloomfang's brood, all hunger and venom.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 2500,
+   "gold": 0,
+   "armor_class": 30,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9744": {
+   "vnum": 9744,
+   "name": "thorn-stalker",
+   "keywords": [
+    "stalker",
+    "thorn"
+   ],
+   "short_desc": "a thorn-stalker",
+   "long_desc": "A thorn-stalker crouches in the bramble here, its hide grown through with thorns.",
+   "description": "A great cat that has lived so long in the briars that the briars have started living in it.",
+   "level": 47,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 2500,
+   "gold": 0,
+   "armor_class": 25,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9745": {
+   "vnum": 9745,
+   "name": "wyvern hatchling",
+   "keywords": [
+    "hatchling",
+    "wyvern"
+   ],
+   "short_desc": "a wyvern hatchling",
+   "long_desc": "A wyvern hatchling flaps clumsily here, shrieking for its mother.",
+   "description": "A wyvern fresh from the egg, already venomous, already hungry.",
+   "level": 46,
+   "max_hp": 1000,
+   "damage_dice": "2d4+3",
+   "exp": 2000,
+   "gold": 0,
+   "armor_class": 35,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9746": {
+   "vnum": 9746,
+   "name": "Gloomfang, the Last Wyvern",
+   "keywords": [
+    "gloomfang",
+    "wyvern"
+   ],
+   "short_desc": "Gloomfang, the Last Wyvern",
+   "long_desc": "Gloomfang, the Last Wyvern, coils on her nest of bones here, watching you with one huge eye.",
+   "description": "The last of the great wyverns: forty feet of storm-black scale and venom, her wings tattered from a\nthousand hunters' arrows. Every hunter of the guild has a tale of her. None has a trophy.",
+   "level": 50,
+   "max_hp": 1000,
+   "damage_dice": "2d5+6",
+   "exp": 40000,
+   "gold": 3000,
+   "armor_class": 10,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "boss"
+   ],
+   "boss": true,
+   "boss_id": "gloomfang",
+   "boss_loot_chance": 0,
+   "boss_config": {
+    "enrage_time": 480,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 12.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Gloomfang shrieks, and a hatchling bursts from an egg on the nest!",
+      "spawn_adds": {
+       "9745": 1
+      }
+     },
+     {
+      "threshold": 25,
+      "message": "Gloomfang roars and takes to the air, wings blotting out the sky!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Tail Sweep",
+      "telegraph": "Gloomfang coils her great tail \u2014 it is about to sweep the whole nest!",
+      "cast_time": 3,
+      "cooldown": 22,
+      "damage_dice": "3d10+10",
+      "dodge": true,
+      "aoe": true,
+      "vulnerable_after": 3
+     },
+     {
+      "name": "Venom Dive",
+      "telegraph": "Gloomfang rears back, venom dripping from her sting \u2014 she is going to strike!",
+      "cast_time": 2.5,
+      "cooldown": 20,
+      "damage_dice": "4d10+12",
+      "dodge": true,
+      "interruptible": true,
+      "on_success_message": "Gloomfang's sting strikes home!"
+     },
+     {
+      "name": "Brood Call",
+      "cooldown": 60,
+      "summon": {
+       "9745": 1
+      }
+     }
+    ]
+   }
+  },
+  "9747": {
+   "vnum": 9747,
+   "name": "dire wolf",
+   "keywords": [
+    "wolf",
+    "dire"
+   ],
+   "short_desc": "a dire wolf",
+   "long_desc": "A dire wolf circles its alpha here, teeth bared.",
+   "description": "One of the alpha's pack: big, grey and very hungry.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+4",
+   "exp": 2000,
+   "gold": 0,
+   "armor_class": 35,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9771": {
+   "vnum": 9771,
+   "name": "chime automaton",
+   "keywords": [
+    "automaton",
+    "chime"
+   ],
+   "short_desc": "a chime automaton",
+   "long_desc": "A chime automaton ticks here, bells ringing in its hollow chest.",
+   "description": "A clockwork musician of the Foundry, built to play one song forever. The gears in its chest still hum the\nopening bars of something old.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 3000,
+   "gold": 0,
+   "armor_class": 30,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9772": {
+   "vnum": 9772,
+   "name": "Carillon Engine",
+   "keywords": [
+    "carillon",
+    "engine"
+   ],
+   "short_desc": "the Carillon Engine",
+   "long_desc": "The Carillon Engine towers here, a cathedral of bells on brass legs.",
+   "description": "A walking bell-tower of the Clockwork Foundry, its hundred bells tuned to a song nobody has heard in a\nthousand years \u2014 and the gears that remember it.",
+   "level": 48,
+   "max_hp": 1000,
+   "damage_dice": "2d5+6",
+   "exp": 20000,
+   "gold": 1500,
+   "armor_class": 15,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "boss"
+   ],
+   "boss": true,
+   "boss_id": "carillon_engine",
+   "boss_loot_chance": 0,
+   "boss_config": {
+    "enrage_time": 300,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 10.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Engine rings out of tune \u2014 a chime automaton clatters to life!",
+      "spawn_adds": {
+       "9771": 1
+      }
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Great Bell",
+      "telegraph": "The Carillon Engine swings its greatest bell back on its chains!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d10+10",
+      "dodge": true,
+      "vulnerable_after": 3
+     },
+     {
+      "name": "Discord Peal",
+      "telegraph": "Every bell on the Engine shudders at once \u2014 a deafening peal is coming!",
+      "cast_time": 3,
+      "cooldown": 26,
+      "damage_dice": "3d6+8",
+      "dodge": true,
+      "aoe": true
+     }
+    ]
+   }
+  },
+  "9773": {
+   "vnum": 9773,
+   "name": "chaos discord",
+   "keywords": [
+    "discord",
+    "chaos"
+   ],
+   "short_desc": "a chaos discord",
+   "long_desc": "A chaos discord shrieks here, a knot of noise that hurts to look at.",
+   "description": "A thing of pure wrong notes, born where the elements clash and drawn to any song it can ruin.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 2500,
+   "gold": 0,
+   "armor_class": 30,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9774": {
+   "vnum": 9774,
+   "name": "hollow courtier",
+   "keywords": [
+    "courtier",
+    "hollow"
+   ],
+   "short_desc": "a hollow courtier",
+   "long_desc": "A hollow courtier bows here, its mouth a smooth blank.",
+   "description": "A courtier of the Unsung King, its face wiped clean of mouth and voice when the song was forgotten.",
+   "level": 47,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 2500,
+   "gold": 60,
+   "armor_class": 25,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9775": {
+   "vnum": 9775,
+   "name": "silent echo",
+   "keywords": [
+    "echo",
+    "silent"
+   ],
+   "short_desc": "a silent echo",
+   "long_desc": "A silent echo shivers here, the shape of a sound with none left in it.",
+   "description": "What is left of a verse when nobody sings it any more.",
+   "level": 46,
+   "max_hp": 1000,
+   "damage_dice": "2d4+3",
+   "exp": 2000,
+   "gold": 0,
+   "armor_class": 35,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9776": {
+   "vnum": 9776,
+   "name": "Mute King",
+   "keywords": [
+    "king",
+    "mute"
+   ],
+   "short_desc": "the Mute King",
+   "long_desc": "The Mute King sits here on a throne of silent bells, crowned in stopped clocks.",
+   "description": "The last of the Unsung Kings, whose name the song was written to remember. When the world forgot the song\nit forgot him too, and he has hated every singer since.",
+   "level": 50,
+   "max_hp": 1000,
+   "damage_dice": "2d5+6",
+   "exp": 40000,
+   "gold": 3000,
+   "armor_class": 10,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "boss"
+   ],
+   "boss": true,
+   "boss_id": "mute_king",
+   "boss_loot_chance": 0,
+   "boss_config": {
+    "enrage_time": 480,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 12.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Mute King lifts a hand and an echo answers the silence!",
+      "spawn_adds": {
+       "9775": 1
+      }
+     },
+     {
+      "threshold": 25,
+      "message": "The Mute King rises \u2014 and for the first time in a thousand years, he screams!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Silence",
+      "telegraph": "The Mute King spreads his hands and all sound drains from the hall!",
+      "cast_time": 3,
+      "cooldown": 22,
+      "damage_dice": "3d10+10",
+      "dodge": true,
+      "aoe": true,
+      "vulnerable_after": 3
+     },
+     {
+      "name": "Discord",
+      "telegraph": "The Mute King points at you \u2014 the wrongest note there is gathers in his fist!",
+      "cast_time": 2.5,
+      "cooldown": 20,
+      "damage_dice": "4d10+12",
+      "dodge": true,
+      "interruptible": true,
+      "on_success_message": "The wrong note tears through you!"
+     },
+     {
+      "name": "Summon Echoes",
+      "cooldown": 60,
+      "summon": {
+       "9775": 1
+      }
+     }
+    ]
+   }
+  },
+  "9780": {
+   "vnum": 9780,
+   "name": "mirror-blade",
+   "keywords": [
+    "mirror-blade",
+    "mirrorblade",
+    "blade",
+    "mark"
+   ],
+   "short_desc": "a mirror-blade",
+   "long_desc": "A mirror-blade watches you here in a coat of silvered glass \u2014 one of the three names on your contract.",
+   "description": "A killer of the Shadowspire whose coat is sewn with shards of mirror, so that anyone who looks at them sees\nonly themselves. There is a price on this head, and the price is yours.",
+   "level": 47,
+   "max_hp": 1000,
+   "damage_dice": "2d8+8",
+   "exp": 9000,
+   "gold": 400,
+   "armor_class": 20,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9781": {
+   "vnum": 9781,
+   "name": "cutthroat",
+   "keywords": [
+    "cutthroat"
+   ],
+   "short_desc": "a cutthroat",
+   "long_desc": "A cutthroat lounges here, a pouch of black lotus at their belt.",
+   "description": "A smuggler of the Sunken Coast, dealing in the black lotus that the Poisoner buys by the bale.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 3000,
+   "gold": 80,
+   "armor_class": 30,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9782": {
+   "vnum": 9782,
+   "name": "Poisoner",
+   "keywords": [
+    "poisoner"
+   ],
+   "short_desc": "the Poisoner",
+   "long_desc": "The Poisoner stirs a bubbling cauldron here, humming.",
+   "description": "A small, soft-spoken man in an apron stained every colour there is. He has killed more people than plague,\nand he has never once had to touch them.",
+   "level": 48,
+   "max_hp": 1000,
+   "damage_dice": "2d5+6",
+   "exp": 20000,
+   "gold": 1500,
+   "armor_class": 15,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "boss"
+   ],
+   "boss": true,
+   "boss_id": "poisoner",
+   "boss_loot_chance": 0,
+   "boss_config": {
+    "enrage_time": 300,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 10.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Poisoner whistles, and a cutthroat steps out of the shadows!",
+      "spawn_adds": {
+       "9781": 1
+      }
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Venom Flask",
+      "telegraph": "The Poisoner draws back his arm, a flask of green venom in his fist!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d10+10",
+      "dodge": true,
+      "vulnerable_after": 3
+     },
+     {
+      "name": "Miasma",
+      "telegraph": "The Poisoner kicks his cauldron over \u2014 a cloud of poison rolls out!",
+      "cast_time": 3,
+      "cooldown": 26,
+      "damage_dice": "3d6+8",
+      "dodge": true,
+      "aoe": true
+     }
+    ]
+   }
+  },
+  "9783": {
+   "vnum": 9783,
+   "name": "mark's bodyguard",
+   "keywords": [
+    "bodyguard",
+    "guard"
+   ],
+   "short_desc": "a mark's bodyguard",
+   "long_desc": "A mark's bodyguard stalks here, searching every shadow.",
+   "description": "A sworn guard of the marks you killed, come looking for whoever did it.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 2500,
+   "gold": 40,
+   "armor_class": 30,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9784": {
+   "vnum": 9784,
+   "name": "glass sentinel",
+   "keywords": [
+    "sentinel",
+    "glass"
+   ],
+   "short_desc": "a glass sentinel",
+   "long_desc": "A glass sentinel stands here, reflecting everything and showing nothing.",
+   "description": "A guardian of mirrored glass in the shape of a knight. You can see yourself in it, a dozen times over.",
+   "level": 47,
+   "max_hp": 1000,
+   "damage_dice": "2d6+6",
+   "exp": 2500,
+   "gold": 60,
+   "armor_class": 25,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9785": {
+   "vnum": 9785,
+   "name": "reflection",
+   "keywords": [
+    "reflection"
+   ],
+   "short_desc": "a reflection",
+   "long_desc": "A reflection of you steps out of a mirror here and smiles.",
+   "description": "You, but wrong: the face is a little too smooth, the smile a little too wide.",
+   "level": 46,
+   "max_hp": 1000,
+   "damage_dice": "2d4+3",
+   "exp": 2000,
+   "gold": 0,
+   "armor_class": 35,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9786": {
+   "vnum": 9786,
+   "name": "Faceless One",
+   "keywords": [
+    "faceless"
+   ],
+   "short_desc": "the Faceless One",
+   "long_desc": "The Faceless One stands here among the mirrors, wearing a face it took from someone else.",
+   "description": "The guild's oldest contract: the assassin who killed so many that it forgot its own face, and has been\nwearing other people's ever since. Tonight it is wearing yours.",
+   "level": 50,
+   "max_hp": 1000,
+   "damage_dice": "2d5+6",
+   "exp": 40000,
+   "gold": 3000,
+   "armor_class": 10,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "boss"
+   ],
+   "boss": true,
+   "boss_id": "faceless_one",
+   "boss_loot_chance": 0,
+   "boss_config": {
+    "enrage_time": 480,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 12.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Faceless One steps into a mirror \u2014 and a reflection steps out!",
+      "spawn_adds": {
+       "9785": 1
+      }
+     },
+     {
+      "threshold": 25,
+      "message": "The Faceless One takes off its stolen face \u2014 there is nothing underneath!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Shatter",
+      "telegraph": "Every mirror in the hall cracks at once \u2014 the shards are about to fly!",
+      "cast_time": 3,
+      "cooldown": 22,
+      "damage_dice": "3d10+10",
+      "dodge": true,
+      "aoe": true,
+      "vulnerable_after": 3
+     },
+     {
+      "name": "Mirror Blade",
+      "telegraph": "The Faceless One draws a blade of mirrored glass and fixes your face in it!",
+      "cast_time": 2.5,
+      "cooldown": 20,
+      "damage_dice": "4d10+12",
+      "dodge": true,
+      "interruptible": true,
+      "on_success_message": "The mirror blade finds you through your own reflection!"
+     },
+     {
+      "name": "Reflections",
+      "cooldown": 60,
+      "summon": {
+       "9785": 1
+      }
+     }
+    ]
+   }
+  },
+  "9787": {
+   "vnum": 9787,
+   "name": "sworn blade",
+   "keywords": [
+    "blade",
+    "sworn"
+   ],
+   "short_desc": "a sworn blade",
+   "long_desc": "A sworn blade guards its master here, steel already drawn.",
+   "description": "A bodyguard bound by oath to the mark it protects.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "2d6+4",
+   "exp": 2000,
+   "gold": 20,
+   "armor_class": 35,
+   "alignment": -600,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ]
+  },
+  "9788": {
+   "vnum": 9788,
+   "name": "veiled informant",
+   "keywords": [
+    "informant",
+    "veiled"
+   ],
+   "short_desc": "a veiled informant",
+   "long_desc": "A veiled informant waits here in the shadow of a pillar.",
+   "description": "A figure in grey veils whose voice changes every time it speaks. It sells names to the guild.",
+   "level": 45,
+   "max_hp": 1000,
+   "damage_dice": "1d4+1",
+   "exp": 0,
+   "gold": 0,
+   "armor_class": 20,
+   "alignment": 0,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon"
+   ],
+   "special": "flavor_npc",
+   "talk_responses": {
+    "hello": "The informant's voice is a woman's, then an old man's. 'You came for the names. Good.'",
+    "default": "The veiled informant says nothing at all, very carefully."
+   }
   }
  },
  "objects": {},

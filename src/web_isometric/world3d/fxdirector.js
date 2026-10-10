@@ -73,11 +73,13 @@ export class Director {
       if (near) this.cast(r, src, aimed ? dst : null, pal, tl);
     }
     const hits = (ctx.hits || []).filter(h => h && h.root && (!dst || h.root !== dst.root) && (!src || h.root !== src.root));
+    // from foe to foe: after the first blink, a hop behind each of the others it reached
+    if (r.motion === 'blinks' && src && hits.length) hits.forEach((h, i) => fx.after(0.3 + i * 0.2, () => this.hop(r, src, h)));
     const at = aimed ? dst : src || dst;
     const landAt = Math.max(0.05, tl.land - skip);
     fx.after(Math.max(0, tl.release - skip), () => this.travel(r, src, aimed ? dst : null, hits, pal, from, to, tl, ev));
     fx.after(landAt, () => {
-      this.land(r, at, hits, pal, ev, aimed);
+      this.land(r, at, hits, pal, ev, aimed, src);
       this.screen(r, pal);
       if (ctx.onLand) ctx.onLand();
     });
@@ -158,7 +160,7 @@ export class Director {
         fx.every(0.05, 9, () => fx.p.emit(root.position.clone().setY(root.position.y + 1), { count: 3, color: theme.core, speed: 0.4, life: 0.4, size: 0.25, drag: 2 }));
         break;
       }
-      case 'blink': {
+      case 'blink': case 'blinks': {
         // gone in a puff, there behind the target (or a few steps ahead)
         let to;
         if (tp) {
@@ -192,6 +194,21 @@ export class Director {
       case 'lunge': slide(tp ? before(1.1) : p0.clone().addScaledVector(fwd, 0.8), 0.16); break;
       default: break;
     }
+  }
+
+  // one more blink: gone in smoke, behind this one, a slash and a glint of coin
+  hop(r, who, foe) {
+    const fx = this.fx, root = who.root, ctl = who.hero ? this.getHero().ctl : null;
+    if (!root || !foe || !foe.root) return;
+    const theme = THEMES[r.cls] || THEMES.creature;
+    const tp = foe.root.position.clone().setY(0), ty = foe.root.rotation.y;
+    const to = tp.clone().add(V(-Math.sin(ty) * 1.1, 0, -Math.cos(ty) * 1.1));
+    fx.afterimage(root, { color: theme.core, time: 0.4, opacity: 0.55 });
+    fx.p.emit(root.position.clone().setY(0.9), { count: 14, color: 0x3a3044, speed: 1.4, up: 0.4, life: 0.5, size: 0.5, grow: 0.5, drag: 1.8 });
+    if (ctl) { ctl.blink(to.x, to.z); ctl.face(tp.x, tp.z); }
+    else { root.position.set(to.x, 0, to.z); root.rotation.y = Math.atan2(tp.x - to.x, tp.z - to.z); }
+    fx.slash(to, tp, { color: this.palette(r).slash, tilt: Math.random() - 0.5, flip: Math.random() < 0.5 });
+    fx.glyph(this.chest(foe), { glyph: 'coin', count: 5, color: 0xffd86a, speed: 2.5, up: 2, gravity: 8, life: 0.7, size: 0.32, spin: 6 });
   }
 
   // the hands, a little in front of the chest
@@ -323,6 +340,15 @@ export class Director {
       case 'link':
         if (dst && src) fx.tether(src.root, dst.root, { color: pal.mark, time: 0.5, rate: 90, lift: 0.3, size: 0.16 });
         break;
+      case 'pierce': {
+        // one arrow through everything on its line, and on out of the room
+        const far = to.clone().addScaledVector(dir, 9);
+        fx.projectile(from, far, { kind: 'arrow', speed, arc: 0,
+          trail: p => { fx.p.emit(p, { count: 2, color: pal.mark, bright: 1.7, speed: 0.1, life: 0.45, size: 0.2 }); } });
+        fx.ray(from, far, { color: pal.mark, width: 0.07, time: 0.6, delay: tl.travel * 0.4 });
+        for (const h of hits) fx.after(tl.travel * 0.8, () => fx.impact(this.chest(h), pal.school, true));
+        break;
+      }
       case 'arrow':
         fx.projectile(from, to, { kind: 'arrow', speed, arc: 0.3, trail: p => { if (Math.random() < 0.6) fx.p.emit(p, { count: 1, color: pal.mark, speed: 0.1, life: 0.3, size: 0.14 }); trail(p); } });
         break;
@@ -377,7 +403,7 @@ export class Director {
   }
 
   // ---- where it arrives ----
-  land(r, who, hits, pal, ev = {}, aimed = true) {
+  land(r, who, hits, pal, ev = {}, aimed = true, src = null) {
     const t = r.land;
     const fx = this.fx;
     if (!who || !who.root) return;
@@ -469,6 +495,19 @@ export class Director {
       case 'rings': fx.every(0.12, 3, () => fx.shockwave(who.root, { color: pal.mark, radius: 2.2, y: 1.1, thin: true, time: 0.4 })); break;
       case 'dome': fx.dome(ground, { color: pal.mark, radius: Math.max(2.5, R), time: 2.4 }); break;
       case 'implode': fx.implode(ground, { color: pal.mark, radius: Math.max(4, R), time: t.big ? 1.1 : 0.9 }); break;
+      case 'clones': {
+        // shadow copies of the striker step out of the dark around it and cut in
+        const n = t.big ? 4 : 3, base = Math.random() * Math.PI * 2, tp = who.root.position;
+        for (let i = 0; i < n; i++) {
+          const a = base + i * Math.PI * 2 / n, at = V(tp.x + Math.sin(a) * 1.35, 0, tp.z + Math.cos(a) * 1.35);
+          fx.after(i * 0.07, () => {
+            if (src && src.root) fx.afterimage(src.root, { color: pal.mark, time: 0.55, opacity: 0.7, at, yaw: Math.atan2(tp.x - at.x, tp.z - at.z) });
+            fx.slash(at, tp, { color: pal.slash, tilt: (i - 1) * 0.5, flip: i % 2 === 1 });
+          });
+        }
+        fx.after(n * 0.07, () => fx.impact(p, pal.school, true));
+        break;
+      }
       case 'heal':
         fx.p.emit(ground.clone().setY(0.3), { count: t.big ? 30 : 18, color: 0x8dffa0, speed: 0.6, up: 2.4, life: 1.0, size: 0.24, drag: 1.2, jitter: 1 });
         fx.glyph(ground.clone().setY(0.4), { glyph: pal.glyph, count: t.big ? 8 : 5, color: pal.mark, speed: 0.4, up: 2, life: 1.0, size: 0.36, drag: 1 });

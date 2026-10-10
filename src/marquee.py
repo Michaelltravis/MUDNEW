@@ -375,6 +375,8 @@ def _hint(m, st):
         return f"Speak with {_npc_name(st['npc'])} — {_where_name(_room(st['room']))}."
     if k == 'kill':
         return '  '.join(f"• {sp['label']}" for sp in st['spawns'])
+    if k == 'visit':
+        return '  '.join(f"• {v['label']}" for v in st['visits'])
     if k == 'collect':
         return f"{st.get('objective', 'Gather')} — {_need(m, st)} {st['item']}s, about one from every two kills."
     if k == 'ritual':
@@ -753,6 +755,32 @@ async def _kill_tick(run, m, st, party, now):
         await room.send_to_room(f"{_c(party[0])['bright_red']}{line}{_c(party[0])['reset']}")
 
 
+async def _visit_tick(run, m, st, party, now):
+    """A trail to follow, a building to case, verses to hear: each place counts when a member of
+    the party reaches it (in order, when the stage says so)."""
+    visits = st['visits']
+    seen = m.setdefault('progress', {}).setdefault('seen', [False] * len(visits))
+    for i, v in enumerate(visits):
+        if i < len(seen) and seen[i]:
+            continue
+        room = _room(v['room'])
+        here = [p for p in party if p.room is room]
+        if here:
+            seen[i] = True
+            await _tell(m, 'bright_cyan', v['text'])
+            for p in _party(m):
+                await _event(p, {'type': 'quest_stage', 'title': st['title'], 'text': v['label'], 'done': True})
+            if all(seen):
+                owner = _online(run.owner)
+                if owner is not None:
+                    await _advance(run, owner, m)
+            else:
+                await _push_party(m)
+            return
+        if st.get('ordered', True):
+            return                  # the next place first
+
+
 async def _collect_tick(run, m, st, party, now):
     for v in st['rooms']:
         room = _room(v)
@@ -1122,6 +1150,8 @@ async def _step():
             await _talk_tick(run, m, st, party, now)
         elif kind == 'kill':
             await _kill_tick(run, m, st, party, now)
+        elif kind == 'visit':
+            await _visit_tick(run, m, st, party, now)
         elif kind == 'collect':
             await _collect_tick(run, m, st, party, now)
         elif kind == 'ritual':
@@ -1155,6 +1185,9 @@ def _objectives(m, st, run, player=None):
     if k == 'kill':
         dead = pr.get('dead') or [False] * len(st['spawns'])
         return [{'text': sp['label'], 'done': bool(dead[i]) if i < len(dead) else False} for i, sp in enumerate(st['spawns'])]
+    if k == 'visit':
+        seen = pr.get('seen') or [False] * len(st['visits'])
+        return [{'text': v['label'], 'done': bool(seen[i]) if i < len(seen) else False} for i, v in enumerate(st['visits'])]
     if k == 'collect':
         need = _need(m, st)
         return [{'text': f"{st.get('objective', 'Gather')} ({st['item']}s)", 'have': min(pr.get('got', 0), need), 'need': need,
@@ -1188,6 +1221,12 @@ def _where(m, st, run, player):
         for i, sp in enumerate(st['spawns']):
             if not (i < len(dead) and dead[i]):
                 vnum = sp['room']
+                break
+    elif k == 'visit':
+        seen = (m.get('progress') or {}).get('seen') or []
+        for i, v in enumerate(st['visits']):
+            if not (i < len(seen) and seen[i]):
+                vnum = v['room']
                 break
     elif k == 'collect':
         here = getattr(getattr(player, 'room', None), 'vnum', None)

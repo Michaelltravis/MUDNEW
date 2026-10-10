@@ -151,6 +151,23 @@ export const PICTO = {
     fillPath(c, [[-11, -2], [11, -2], [17, 44], [-17, 44]]);
     c.strokeStyle = '#fff'; c.lineWidth = 4.5; c.beginPath(); c.ellipse(0, -31, 14, 5, 0, 0, TAU); c.stroke();
   },
+  pierce(c) {
+    // an arrow straight through two rings
+    c.strokeStyle = '#fff'; c.lineWidth = 6;
+    for (const x of [-12, 16]) { c.beginPath(); c.ellipse(x, 0, 9, 22, 0, 0, TAU); c.stroke(); }
+    c.fillRect(-46, -3, 84, 6);
+    fillPath(c, [[38, -12], [50, 0], [38, 12]]);
+    fillPath(c, [[-46, -3], [-54, -12], [-40, -3]]); fillPath(c, [[-46, 3], [-54, 12], [-40, 3]]);
+  },
+  clones(c) {
+    // three hooded shapes, one in front
+    for (const [x, y, s, a] of [[-24, -4, 0.62, 0.55], [24, -4, 0.62, 0.55], [0, 6, 0.8, 1]]) {
+      c.save(); c.translate(x, y); c.scale(s, s); c.globalAlpha = a;
+      c.beginPath(); c.moveTo(0, -46); c.bezierCurveTo(30, -42, 36, 6, 32, 46); c.lineTo(-32, 46); c.bezierCurveTo(-36, 6, -30, -42, 0, -46); c.fill();
+      c.restore();
+    }
+    c.globalAlpha = 1;
+  },
   lich(c) {
     // a skull wearing a crown
     c.save(); c.translate(0, 12); c.scale(0.68, 0.68); DRAW.skull(c); c.restore();
@@ -235,7 +252,7 @@ function pictoFor(r, cls) {
   if (t) {
     const map = { slash: weapon, orb: 'orb', orbs: 'orbs', bolt: 'bolt', sky: 'bolt', chain: 'chain', ray: 'beam', skyray: 'beam',
       tether: 'tether', link: 'tether', arrow: 'bow', arrows: 'arrows', rain: 'rain', rainglyph: 'rain', meteor: 'meteor', meteors: 'meteor',
-      wave: 'wave', cone: 'fan', blade: 'dagger', blades: 'daggers', shards: 'shard' };
+      wave: 'wave', cone: 'fan', blade: 'dagger', blades: 'daggers', shards: 'shard', pierce: 'pierce' };
     if (t.kind === 'glyph' || t.kind === 'motif') return { glyph: t.arg || (t.kind === 'glyph' ? THEMES[cls].glyph : THEMES[cls].motif) };
     const p = map[t.kind];
     if (p === 'bolt' || p === 'dagger' || p === 'shard') return { glyph: p };
@@ -244,7 +261,7 @@ function pictoFor(r, cls) {
   if (l) {
     const map = { hit: weapon, sparks: weapon, nova: 'burst', blast: 'blast', pillar: 'pillar', crack: 'crack', quake: 'crack',
       bubble: 'shield', dome: 'shield', mark: 'crosshair', swirl: 'swirl', geyser: 'fountain', fountain: 'fountain', halo: 'halo',
-      wings: 'wings', smoke: 'smoke', rings: 'rings', heal: 'heal', cloud: 'smoke', implode: 'implode' };
+      wings: 'wings', smoke: 'smoke', rings: 'rings', heal: 'heal', cloud: 'smoke', implode: 'implode', clones: 'clones' };
     if (l.kind === 'growth') return { picto: { vines: 'vines', bones: 'spikes', ice: 'spikes', crystals: 'spikes', bars: 'cage', thorns: 'spikes', stones: 'rock', spikes: 'spikes', spears: 'spikes' }[l.arg] || 'spikes' };
     if (l.kind === 'burst' || l.kind === 'motifs') return { glyph: l.arg || (l.kind === 'burst' ? THEMES[cls].glyph : THEMES[cls].motif) };
     if (l.kind === 'freeze') return { glyph: 'snow' };
@@ -282,6 +299,7 @@ function motionBadge(c, motion, S) {
     case 'leap': c.arc(0, k * 0.4, k, Math.PI * 1.05, Math.PI * 1.95); c.stroke(); fillPath(c, [[k, k * 0.2], [k * 0.5, -k * 0.1], [k * 1.2, -k * 0.35]]); break;
     case 'dash': case 'lunge': for (const y of [-0.5, 0, 0.5]) line(c, S * 0.022, [[-k, y * k], [k * 0.6, y * k]]); fillPath(c, [[k * 1.1, 0], [k * 0.5, -k * 0.5], [k * 0.5, k * 0.5]]); break;
     case 'blink': c.setLineDash([S * 0.03, S * 0.025]); c.arc(0, 0, k, 0, TAU); c.stroke(); c.setLineDash([]); disc(c, 0, 0, k * 0.35); break;
+    case 'blinks': c.setLineDash([S * 0.025, S * 0.02]); c.arc(-k * 0.45, 0, k * 0.7, 0, TAU); c.stroke(); c.beginPath(); c.arc(k * 0.55, 0, k * 0.7, 0, TAU); c.stroke(); c.setLineDash([]); disc(c, k * 0.55, 0, k * 0.28); break;
     case 'spin': case 'spin2': c.arc(0, 0, k, 0.3, Math.PI * 1.7); c.stroke(); fillPath(c, [[k * 0.95, -k * 0.55], [k * 1.35, -k * 0.05], [k * 0.45, -k * 0.05]]); break;
     case 'rise': case 'hover': case 'hop': line(c, S * 0.025, [[0, k], [0, -k * 0.6]]); fillPath(c, [[0, -k * 1.1], [-k * 0.6, -k * 0.3], [k * 0.6, -k * 0.3]]); break;
     case 'backstep': line(c, S * 0.025, [[k, 0], [-k * 0.6, 0]]); fillPath(c, [[-k * 1.1, 0], [-k * 0.3, -k * 0.6], [-k * 0.3, k * 0.6]]); break;

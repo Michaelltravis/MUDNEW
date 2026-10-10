@@ -18,6 +18,14 @@ round); their long cooldowns are kept on the character (`marquee_cd`, saved).
             and every ally healed and shielded.
   Necromancer — Lich Ascension: six rounds as a lich: spells cost half, soul bolts split to a
             second foe, what you deal drains back to you, and death is turned away once.
+  Thief — The Heist of Ages: gone in smoke and behind every foe at once: each is struck and
+            relieved of half its gold, and the next three swings land as criticals.
+  Ranger — Heartseeker: a breath to draw, then one arrow through every foe on its line; they
+            take more for four rounds and are held where they stand.
+  Bard — Song of the Ages: five rounds in which allies' abilities come back twice as fast and
+            they deal and heal a fifth more, while foes slow; the last note stuns them.
+  Assassin — Thousand Shadows: for three rounds shadows strike every foe; the last of them
+            finishes the weakest (bosses take a heavier blow instead).
 
 What lasts beyond the command runs on combat rounds (`EFFECTS`, stepped by `on_round` after
 every World.combat_tick), only while its caster is online, in the room it began in and alive.
@@ -36,13 +44,16 @@ logger = logging.getLogger('Misthollow')
 
 # seconds
 COOLDOWNS = {'unbroken_banner': 480, 'singularity': 480, 'seraphs_vigil': 600, 'wings_of_dawn': 480,
-             'lich_ascension': 600}
+             'lich_ascension': 600, 'heist': 480, 'heartseeker': 360, 'song_of_the_ages': 480, 'thousand_shadows': 480}
 NAMES = {'unbroken_banner': 'Unbroken Banner', 'singularity': 'Singularity', 'seraphs_vigil': "Seraph's Vigil",
-         'wings_of_dawn': 'Wings of Dawn', 'lich_ascension': 'Lich Ascension'}
+         'wings_of_dawn': 'Wings of Dawn', 'lich_ascension': 'Lich Ascension', 'heist': 'The Heist of Ages',
+         'heartseeker': 'Heartseeker', 'song_of_the_ages': 'Song of the Ages', 'thousand_shadows': 'Thousand Shadows'}
 CLASS_OF = {'unbroken_banner': 'warrior', 'singularity': 'mage', 'seraphs_vigil': 'cleric',
-            'wings_of_dawn': 'paladin', 'lich_ascension': 'necromancer'}
+            'wings_of_dawn': 'paladin', 'lich_ascension': 'necromancer', 'heist': 'thief', 'heartseeker': 'ranger',
+            'song_of_the_ages': 'bard', 'thousand_shadows': 'assassin'}
 # the follow-up moments the 3D client plays as abilities of their own (combat_hooks.EXTRA_ABILITIES)
-BEATS = {'singularity_implode': ('area', 'mage')}
+BEATS = {'singularity_implode': ('area', 'mage'), 'heartseeker_release': ('enemy', 'ranger'),
+         'thousand_shadows_strike': ('enemy', 'assassin')}
 
 
 def _c(player):
@@ -482,8 +493,228 @@ async def _lich_end(e, broken):
         await p.send(f"{c['green']}The grave-fire gutters out; your flesh returns, and you are mortal again.{c['reset']}")
 
 
+# ---------------------------------------------------------------- The Heist of Ages (thief)
+async def heist(player, args):
+    """Vanish in smoke and strike every foe from behind at once, lifting half the gold each carries; your next three swings land as criticals."""
+    if not await _ready(player, 'heist', foes=True):
+        return
+    c = _c(player)
+    foes = _foes(player)                   # who was there before anything moved
+    power = _power(player)
+    dpr = ms.dpr(getattr(player, 'level', 45) or 45)
+    start_cooldown(player, 'heist')
+    await player.send(f"{c['bright_yellow']}You are gone in a breath of smoke — and then you are behind every one of them.{c['reset']}")
+    await player.room.send_to_room(f"{c['yellow']}{player.name} vanishes in smoke and reappears behind every foe at once!{c['reset']}", exclude=[player])
+    lifted = 0
+    for f in foes:
+        purse = int(getattr(f, 'gold', 0) or 0) // 2       # lifted before the blow: a body's gold goes to its corpse
+        if purse > 0:
+            f.gold -= purse
+            player.gold = (getattr(player, 'gold', 0) or 0) + purse
+            lifted += purse
+        await _deal(player, f, 3.0 * dpr * power, 'physical')
+    player.rigged_dice_hits = max(getattr(player, 'rigged_dice_hits', 0) or 0, 3)
+    if lifted:
+        await player.send(f"{c['bright_yellow']}You come away {lifted} gold richer.{c['reset']}")
+    await player.send(f"{c['yellow']}Your next three swings will find every weakness.{c['reset']}")
+
+
+# ---------------------------------------------------------------- Heartseeker (ranger)
+async def heartseeker(player, args):
+    """Draw the Heartseeker for a breath, then loose one arrow through every foe on its line: a deep wound, marked to take more for four rounds, and held where they stand."""
+    if not await _ready(player, 'heartseeker', foes=True):
+        return
+    c = _c(player)
+    foes = _foes(player)
+    target = player.fighting if getattr(player, 'fighting', None) in foes else foes[0]
+    start_cooldown(player, 'heartseeker')
+    await player.send(f"{c['bright_green']}You draw the Heartseeker to your ear. Everything goes still.{c['reset']}")
+    await player.room.send_to_room(f"{c['green']}{player.name} draws a long black arrow and the air itself holds its breath.{c['reset']}", exclude=[player])
+    e = Effect(player, 'heartseeker', 1, step=_heartseeker_loose)
+    e.data['target'] = target
+    _begin(e)
+
+
+def _on_line(src, tgt, foes, width=1.5, length=20.0):
+    """Foes within `width` of the line from the shooter through the target and on beyond it,
+    nearest first (positions in room metres)."""
+    dx, dz = tgt[0] - src[0], tgt[1] - src[1]
+    d = math.hypot(dx, dz) or 1.0
+    ux, uz = dx / d, dz / d
+    out = []
+    for f in foes:
+        p = cr.pos_of(f)
+        if p is None:
+            continue
+        along = (p[0] - src[0]) * ux + (p[1] - src[1]) * uz
+        across = abs((p[0] - src[0]) * uz - (p[1] - src[1]) * ux)
+        if 0 <= along <= length and across <= width:
+            out.append((along, f))
+    return [f for _a, f in sorted(out, key=lambda t: t[0])]
+
+
+async def _heartseeker_loose(e, i):
+    caster, room = e.caster, e.room
+    c = _c(caster)
+    foes = _foes(caster)
+    target = e.data['target'] if e.data['target'] in foes else (foes[0] if foes else None)
+    if target is None:
+        await caster.send(f"{c['green']}Your quarry is gone; you ease the Heartseeker back to the string.{c['reset']}")
+        return
+    sp, tp = cr.pos_of(caster), cr.pos_of(target)
+    if sp is not None and tp is not None:
+        line = _on_line(sp, tp, foes)
+        if target not in line:
+            line.insert(0, target)
+    else:
+        line = [target] + [f for f in foes if f is not target][:2]
+    ev.emit(room, 'ability', src=caster, dst=target, ability='heartseeker_release', shape='ranged')
+    await room.send_to_room(f"{c['bright_green']}{caster.name} looses the Heartseeker — it goes through "
+                            f"{len(line)} {'foe' if len(line) == 1 else 'foes'} and keeps going!{c['reset']}")
+    until = time.time() + _rounds(4)
+    for f in line:
+        await _deal(caster, f, (6.0 if f is target else 4.0) * e.dpr * e.power, 'physical')
+        if getattr(f, 'hp', 0) > 0:
+            marks = getattr(f, '_mq_marks', None)
+            if not isinstance(marks, dict):
+                marks = f._mq_marks = {}
+            marks['heartseeker'] = (until, 0.20)
+            ev.emit(room, 'debuff', src=caster, dst=f, name='Heart-marked')
+            _control(caster, f, 'root', 2)
+
+
+# ---------------------------------------------------------------- Song of the Ages (bard)
+# timers that are not an ability's (a move, a reaction, a journey): the song leaves them be
+_NOT_ABILITY_TIMERS = frozenset({'travel', 'flee', 'escape', 'disengage', 'auto_flee', 'brace', 'sidestep', 'interrupt',
+                                 'home', '_home', 'recall', 'respawn'})
+
+
+def _shave(ally):
+    """Take one more round off each of the ally's own ability timers still running (at most once
+    a round, however many songs are sung)."""
+    now = time.time()
+    r = cr.round_seconds()
+    if now - (getattr(ally, '_mq_shaved_at', 0) or 0) < r * 0.8:
+        return 0
+    ally._mq_shaved_at = now
+    known = set(getattr(ally, 'skills', None) or {}) | set(getattr(ally, 'spells', None) or {})
+    try:
+        from commands import _SKILL_RENAMES
+        known |= {old for new, old in _SKILL_RENAMES.items() if new in known}
+    except Exception:
+        pass
+    n = 0
+    for attr in list(vars(ally)):
+        key = next((attr[:-len(s)] for s in ('_cooldown_until', '_cooldown', '_cd') if attr.endswith(s)), None)
+        if not key or key in _NOT_ABILITY_TIMERS or key not in known:
+            continue
+        v = getattr(ally, attr, 0)
+        if isinstance(v, bool) or not isinstance(v, (int, float)):
+            continue
+        if now + 0.4 < v < now + 86400:
+            setattr(ally, attr, max(now, v - r))
+            n += 1
+    return n
+
+
+async def song_of_the_ages(player, args):
+    """Sing the Song of the Ages for five rounds: your allies' abilities come back twice as fast and they deal and heal a fifth more, while your foes slow; the last note stuns them."""
+    if not await _ready(player, 'song_of_the_ages'):
+        return
+    c = _c(player)
+    start_cooldown(player, 'song_of_the_ages')
+    await player.send(f"{c['bright_magenta']}You begin the Song of the Ages, and the world remembers every word.{c['reset']}")
+    await player.room.send_to_room(f"{c['bright_magenta']}{player.name} sings the Song of the Ages — an old, old music fills the air!{c['reset']}", exclude=[player])
+    e = Effect(player, 'song_of_the_ages', 5, step=_song_step, end=_song_end)
+    e.data['until'] = time.time() + _rounds(5)
+    e.data['blessed'] = set()
+    await _song_round(e)
+    _begin(e)
+
+
+def _song_bless(e, ally):
+    from affects import AffectManager
+    out = getattr(ally, '_mq_out', None)
+    if not isinstance(out, dict):
+        out = ally._mq_out = {}
+    out['song'] = (e.data['until'], 0.2 * e.power)
+    for old in [a for a in getattr(ally, 'affects', []) if a.name == 'song_of_the_ages']:
+        AffectManager.remove_affect(ally, old)
+    AffectManager.apply_affect(ally, {'name': 'song_of_the_ages', 'type': AffectManager.TYPE_MODIFY_STAT,
+                                      'applies_to': 'heal_power', 'value': int(20 * e.power), 'duration': 3,
+                                      'caster_level': getattr(e.caster, 'level', 45)})
+    e.data['blessed'].add(ally.name)
+    ev.emit(ally.room, 'buff', src=e.caster, dst=ally, name='Song of the Ages')
+
+
+async def _song_round(e):
+    for ally in _allies(e.caster):
+        if ally.name not in e.data['blessed']:
+            _song_bless(e, ally)
+        _shave(ally)
+    for f in _foes(e.caster):
+        _control(e.caster, f, 'slow', 2)
+
+
+async def _song_step(e, i):
+    await _song_round(e)
+
+
+async def _song_end(e, broken):
+    if broken:
+        return
+    c = _c(e.caster)
+    await e.room.send_to_room(f"{c['bright_magenta']}The last note of the Song of the Ages rings out — and everything against "
+                              f"{e.caster.name} reels!{c['reset']}")
+    for f in _foes(e.caster):
+        _control(e.caster, f, 'stun', 1)
+
+
+# ---------------------------------------------------------------- Thousand Shadows (assassin)
+async def thousand_shadows(player, args):
+    """Split into a thousand shadows: for three rounds they strike every foe around you, and the last of them finishes the weakest."""
+    if not await _ready(player, 'thousand_shadows', foes=True):
+        return
+    c = _c(player)
+    start_cooldown(player, 'thousand_shadows')
+    await player.send(f"{c['bright_red']}Your shadow tears loose — and then there are a thousand of them.{c['reset']}")
+    await player.room.send_to_room(f"{c['red']}{player.name}'s shadow splits into a thousand blades of darkness!{c['reset']}", exclude=[player])
+    _begin(Effect(player, 'thousand_shadows', 3, step=_shadows_step, end=_shadows_end))
+
+
+async def _shadows_step(e, i):
+    c = _c(e.caster)
+    foes = _foes(e.caster)
+    if foes:
+        await e.room.send_to_room(f"{c['red']}Shadows strike from every side!{c['reset']}")
+    for f in foes:
+        ev.emit(e.room, 'ability', src=e.caster, dst=f, ability='thousand_shadows_strike', shape='melee')
+        await _deal(e.caster, f, 1.2 * e.dpr * e.power, 'shadow')
+
+
+async def _shadows_end(e, broken):
+    if broken:
+        return
+    foes = [f for f in _foes(e.caster) if getattr(f, 'hp', 0) > 0]
+    if not foes:
+        return
+    c = _c(e.caster)
+    weakest = min(foes, key=lambda f: f.hp / max(1, getattr(f, 'max_hp', 1)))
+    boss = _is_boss(weakest)
+    if not boss and weakest.hp < 0.30 * getattr(weakest, 'max_hp', 1):
+        amount = min(weakest.hp + 1, 8.0 * e.dpr * e.power)     # an execution — but the huge only take a deep wound
+        line = f"The shadows close on {weakest.name} as one."
+    else:
+        amount = 2.0 * e.dpr * e.power * (1.3 if boss else 1.0)
+        line = f"The last of the shadows drives home into {weakest.name}!"
+    ev.emit(e.room, 'ability', src=e.caster, dst=weakest, ability='thousand_shadows_strike', shape='melee')
+    await e.room.send_to_room(f"{c['bright_red']}{line}{c['reset']}")
+    await _deal(e.caster, weakest, amount, 'shadow')
+
+
 ABILITIES = {'unbroken_banner': unbroken_banner, 'singularity': singularity, 'seraphs_vigil': seraphs_vigil,
-             'wings_of_dawn': wings_of_dawn, 'lich_ascension': lich_ascension}
+             'wings_of_dawn': wings_of_dawn, 'lich_ascension': lich_ascension, 'heist': heist, 'heartseeker': heartseeker,
+             'song_of_the_ages': song_of_the_ages, 'thousand_shadows': thousand_shadows}
 
 
 # ---------------------------------------------------------------- hooks

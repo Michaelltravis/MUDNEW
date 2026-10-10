@@ -434,7 +434,7 @@ async def engine():
     check(lea.marquee is None and bo.marquee_help is None and not run3.mobs, 'abandoned: foes gone, helpers released')
 
     # every other class's quest, played through
-    for cls in ('mage', 'cleric', 'paladin', 'necromancer'):
+    for cls in ('mage', 'cleric', 'paladin', 'necromancer', 'thief', 'ranger', 'bard', 'assassin'):
         await drive(world, marquee, cls)
     logging.disable(logging.NOTSET)
 
@@ -537,7 +537,7 @@ async def live():
     check('UNBROKEN' in text, 'and it works')
     text = await tn.cmd('unbroken banner', 1.0)
     check('not ready yet' in text, 'with its long cooldown')
-    for line in ('marquee forget', 'recall', 'save'):
+    for line in ('marquee forget', 'recall', 'save', 'quit'):
         await tn.cmd(line, 0.6)
     tn.w.close()
 
@@ -577,7 +577,7 @@ async def live_group():
     check('gives up the quest' in text, 'giving it up tells the helper')
     text = await b.cmd('marquee', 0.8)
     check('no marquee quest' in text, 'and releases them')
-    for line in ('group leave', 'recall', 'save'):
+    for line in ('group leave', 'recall', 'save', 'quit'):
         await b.cmd(line, 0.5)
         await g.cmd(line, 0.5)
     g.w.close()
@@ -585,10 +585,18 @@ async def live_group():
 
 
 # a test character of each class (on the gauntletb account) and how to start a fight for its ability
-CLASS_CHARS = {'mage': 'Probemage', 'cleric': 'Probecleric', 'paladin': 'Probepaladin', 'necromancer': 'Probenecro'}
+CLASS_CHARS = {'mage': ('gauntletb', 'Probemage'), 'cleric': ('gauntletb', 'Probecleric'),
+               'paladin': ('gauntletb', 'Probepaladin'), 'necromancer': ('gauntletb', 'Probenecro'),
+               'thief': ('gauntletb', 'Probethief'), 'ranger': ('gauntletb', 'Proberanger'),
+               'bard': ('gauntletb', 'Probebard'), 'assassin': ('gauntlet', 'Probeassn')}
 LEARNED = {'singularity': 'Singularity', 'seraphs_vigil': "Seraph's Vigil", 'wings_of_dawn': 'Wings of Dawn',
-           'lich_ascension': 'Lich Ascension'}
-USED = {'singularity': 'singularity opens', 'seraphs_vigil': 'SERAPH', 'wings_of_dawn': 'DAWN', 'lich_ascension': 'ASCEND'}
+           'lich_ascension': 'Lich Ascension', 'heist': 'The Heist of Ages', 'heartseeker': 'Heartseeker',
+           'song_of_the_ages': 'Song of the Ages', 'thousand_shadows': 'Thousand Shadows'}
+USED = {'singularity': 'singularity opens', 'seraphs_vigil': 'SERAPH', 'wings_of_dawn': 'DAWN', 'lich_ascension': 'ASCEND',
+        'heist': 'behind every one of them', 'heartseeker': 'draw the Heartseeker', 'song_of_the_ages': 'Song of the Ages',
+        'thousand_shadows': 'thousand of them'}
+# the word that finds each guildmaster with `talk`
+GM_WORD = {3031: 'paladin', 3033: 'necromancer', 3030: 'ranger', 3032: 'bard'}
 
 
 async def live_classes(classes=('mage', 'cleric', 'paladin', 'necromancer'), fight='mage'):
@@ -599,19 +607,21 @@ async def live_classes(classes=('mage', 'cleric', 'paladin', 'necromancer'), fig
     import test_multiplayer as tmu
     for cls in classes:
         q = mq.QUESTS[cls]
-        who = CLASS_CHARS[cls]
+        account, who = CLASS_CHARS[cls]
         me = who.lower()
-        p = await tmu.Raw('gauntletb', who).open()
+        p = await tmu.Raw(account, who).open()
         for line in ('wake', 'stand', f'set {me} level 50', f'set {me} maxhp 900', f'set {me} maxmana 900',
                      f'set {me} damroll 150', f'set {me} hitroll 40', 'restore', 'marquee forget', f"goto {q['giver_room']}"):
             await p.cmd(line, 0.6)
-        word = {3031: 'paladin', 3033: 'necromancer'}.get(q['giver'], 'guildmaster')
+        word = GM_WORD.get(q['giver'], 'guildmaster')
+        n = len(q['stages'])
+        trial_at = next(i for i, st in enumerate(q['stages']) if st['kind'] == 'trial')
         text = await p.cmd(f'talk {word}', 1.2)
         check(f"A marquee quest: {q['name']}" in text, f"{cls}: the guildmaster offers {q['name']}")
         text = await p.cmd('marquee accept', 1.2)
-        check('You set out alone' in text and f"{q['stages'][0]['title']} (1/7)" in text, f'{cls}: accepted, stage 1 of 7')
-        gate = q['stages'][5]['room']
-        await p.cmd('marquee stage 6', 0.8)
+        check('You set out alone' in text and f"{q['stages'][0]['title']} (1/{n})" in text, f'{cls}: accepted, stage 1 of {n}')
+        gate = q['stages'][trial_at]['room']
+        await p.cmd(f'marquee stage {trial_at + 1}', 0.8)
         await p.cmd(f'goto {gate}', 1.2)
         text = await p.cmd('trial enter', 2.0)
         tpl = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'world', 'marquee', 'trials', f'{cls}.json')))
@@ -629,10 +639,10 @@ async def live_classes(classes=('mage', 'cleric', 'paladin', 'necromancer'), fig
                     check(into in text, f'{cls}: the gate opened after the wave ({into})')
             await p.read(1.6)
             text = await p.cmd('marquee', 1.0)
-            check(f"{q['stages'][6]['title']} (7/7)" in text, f"{cls}: the trial's boss is down: the last stage")
+            check(f"{q['stages'][-1]['title']} ({n}/{n})" in text, f"{cls}: the trial's boss is down: the last stage")
         text = await p.cmd('trial leave', 1.5)
         check('fades' in text or 'thins' in text or 'stand at' in text, f'{cls}: out of the trial again')
-        await p.cmd('marquee stage 7', 0.8)
+        await p.cmd(f'marquee stage {n}', 0.8)
         await p.cmd(f"goto {q['giver_room']}", 1.0)
         text = await p.cmd(f'talk {word}', 2.0)
         check(f"You learned {LEARNED[q['ability']]}" in text, f"{cls}: the guildmaster teaches {LEARNED[q['ability']]}")
@@ -645,13 +655,14 @@ async def live_classes(classes=('mage', 'cleric', 'paladin', 'necromancer'), fig
               f"{cls}: {LEARNED[q['ability']]} used in a fight ({' / '.join(l for l in text.splitlines() if l.strip())[:120]})")
         text = await p.cmd(q['ability'].replace('_', ' '), 1.0)
         check('not ready' in text, f'{cls}: and then it is on its cooldown')
-        for line in ('purge', 'restore', 'marquee forget', 'recall', 'save'):
+        for line in ('purge', 'restore', 'marquee forget', 'recall', 'save', 'quit'):
             await p.cmd(line, 0.6)
-        p.w.close()
+        p.w.close()   # (logged out, not left linkdead: the next test logs into the same account)
 
 
 # the trial's foes by the words a room shows them with
-TRIAL_FOES = {'mage': (('sentinel', 'sentinel'), ('gravity mote', 'mote'), ('vaelith', 'vaelith'))}
+TRIAL_FOES = {'mage': (('sentinel', 'sentinel'), ('gravity mote', 'mote'), ('vaelith', 'vaelith')),
+              'ranger': (('thorn-stalker', 'stalker'), ('hatchling', 'hatchling'), ('gloomfang', 'gloomfang'))}
 
 
 async def main():
@@ -661,6 +672,7 @@ async def main():
         await live()
         await live_group()
         await live_classes()
+        await live_classes(('thief', 'ranger', 'bard', 'assassin'), fight='ranger')
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
     sys.exit(1 if failures else 0)
 

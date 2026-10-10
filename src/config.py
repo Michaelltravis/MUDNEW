@@ -356,7 +356,7 @@ class Config:
                       'second_attack', 'dodge', 'evasion', 'pocket_sand', 'low_blow',
                       'rigged_dice', 'jackpot', 'circle', 'trip', 'caltrops',
                       # level 31-60 (56 and 60 are reached through prestige)
-                      'nerve_strike', 'garrote', 'marked_for_death_thief', 'perfect_crime'],
+                      'nerve_strike', 'garrote', 'marked_for_death_thief', 'perfect_crime', 'heist'],
             'spells': [],
             # Thieves use combo points: backstab/attacks build points, finishers spend them
             # Finishers: eviscerate (1+), kidney_shot (4+), slice_dice (3+)
@@ -379,7 +379,7 @@ class Config:
                       'wildbond_strike', 'loosing_storm', 'quarry_mark', 'tame',
                       'snare',
                       # level 31-60 (56 and 60 are reached through prestige)
-                      'volley', 'camouflage_master', 'serpent_sting', 'alpha_pack'],
+                      'volley', 'camouflage_master', 'serpent_sting', 'alpha_pack', 'heartseeker'],
             'spells': ['cure_light', 'detect_magic', 'faerie_fire', 'call_lightning',
                       'barkskin', 'entangle', 'briskness'],
             # Rangers can tame animal companions: wolf, bear, hawk, cat, boar
@@ -439,7 +439,7 @@ class Config:
             # progression-01: a level-1 bard with sneak, pick_lock and lore died ten
             # times on the newcomer ladder; mockery and fascinate are its fight
             'skills': ['mockery', 'fascinate', 'sneak', 'pick_lock', 'lore', 'countersong', 'dodge',
-                      'crescendo', 'encore', 'magnum_opus', 'discordant_note'],
+                      'crescendo', 'encore', 'magnum_opus', 'discordant_note', 'song_of_the_ages'],
             'spells': ['charm_person', 'sleep', 'invisibility', 'haste', 'slow',
                       'cure_light', 'detect_magic', 'heroism', 'fear', 'mass_charm',
                       'bless', 'armor',
@@ -463,7 +463,8 @@ class Config:
                       'feint', 'evasion', 'fade', 'slip_the_veil',
                       'sneak', 'hide', 'dual_wield', 'second_attack', 'dodge', 'poison',
                       # level 31-60 (56 and 60 are reached through prestige)
-                      'shadowstrike', 'fan_of_knives', 'rupture', 'shadow_blades_master', 'vendetta_assassin', 'death_mark'],
+                      'shadowstrike', 'fan_of_knives', 'rupture', 'shadow_blades_master', 'vendetta_assassin', 'death_mark',
+                      'thousand_shadows'],
             'spells': [],
             # Level 31-60: shadowstrike (32), fan_of_knives (38), rupture (44),
             #              shadow_blades_master (50), vendetta_assassin (56), death_mark (60)

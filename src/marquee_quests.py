@@ -7,6 +7,8 @@ its foes harder by how many joined (marquee_scale.py).
 
 Stage kinds:
   talk     speak with `npc` (in `room`; the engine places a copy there if none stands there)
+  visit    reach places: `visits` [{room, label, text}] (in order unless `ordered` is False) — a
+           trail to follow, a building to case, verses to hear
   kill     slay the quest's own foes: `spawns` [{vnum, room, kind, label}], each placed when the
            party comes near; `adds` (a vnum) joins each one, one more for every two heroes
   collect  slay `mob` (kept at `per_room` in each of `rooms` while the party is there) until
@@ -360,6 +362,297 @@ QUESTS = {
              'say': ("The guildmaster holds the jar up to the light and watches the green fire move. 'You could have kept "
                      "it,' they say. 'Most would. That is why I teach you, and not them.' They press a cold hand to your "
                      "chest. 'Now. Feel where the jar would go.'")},
+        ],
+    },
+    'thief': {
+        'id': 'marquee_thief',
+        'name': 'The Last Score',
+        'ability': 'heist',
+        'giver': 3022,                      # the thieves' guildmaster (the assassins' too: the class decides)
+        'giver_room': 3029,
+        'giver_name': "the thieves' guildmaster",
+        'offer': ("The guildmaster counts coins without looking at them. 'Every thief has a last score. Mine was the Vault "
+                  "of Ages — and I never got past the door. There's a fence in Thalos who knows the way in. Case the place, "
+                  "get the keys, crack the vault the old priests of Nereus built to hide its door. Bring me back so much as "
+                  "a coin from the Vault of Ages, and I'll teach you the trick I was saving for it.'"),
+        'teaches': ("The Heist of Ages — gone in smoke and behind every foe at once: each is struck and relieved of half "
+                    "its gold, and your next three swings land as criticals."),
+        'stages': [
+            {'kind': 'talk', 'title': 'The Fence', 'npc': 5298, 'room': 5201,
+             'text': ("A street vendor in Thalos fences for the guild and knows the way into the Vault of Ages. Thalos "
+                      "lies west across the Great Eastern Desert."),
+             'objective': 'Speak with the street vendor',
+             'say': ("The vendor's grin doesn't reach his eyes. 'The Vault? Plenty have tried. Case the city first — the "
+                     "City Hall, the Guild House, the old north-west watchtower. That's where the Auditor's people meet. "
+                     "Then you'll want keys, and the only keys that fit are buried in the Great Pyramid.'")},
+            {'kind': 'visit', 'title': 'Casing the Job', 'ordered': True,
+             'text': "Case Thalos for the Auditor's people: the City Hall, the Guild House, the north-west watchtower.",
+             'visits': [
+                 {'room': 5232, 'label': 'Case the City Hall',
+                  'text': ("Behind the City Hall's counting room you find a ledger page with the Vault's seal — and a list "
+                           "of names. One of them is the Keeper of Keys.")},
+                 {'room': 5219, 'label': 'Case the Guild House',
+                  'text': ("In the Guild House two of the Auditor's men argue over a map of the Pyramid's lower tombs. You "
+                           "memorise it.")},
+                 {'room': 5246, 'label': 'Case the north-west watchtower',
+                  'text': ("From the top of the watchtower you see it: a glint of gold far out over the sea, where the "
+                           "Temple of Nereus sank. The Vault's door is under the water.")},
+             ],
+             'done': "You know the shape of the job now. All you need are the keys."},
+            {'kind': 'collect', 'title': 'The Tomb Keys', 'mob': 9731, 'rooms': [5330, 5345, 5323],
+             'per_room': 2, 'need': 5, 'chance': 55, 'item': 'bronze key',
+             'text': ("The tomb wardens of the Great Pyramid carry the bronze keys the Vault was locked with — in the "
+                      "Ancient Hall, the Tomb of the Pharoahs and the Vault of the Lamp. Bring a light."),
+             'objective': 'Take the bronze keys',
+             'done': "Five bronze keys, each stamped with the Auditor's seal. One lock left: the Keeper's."},
+            {'kind': 'kill', 'title': 'The Keeper of Keys',
+             'text': ("The Keeper of Keys holds the master key in the Tomb of Ramses, and it has never once been robbed. "
+                      "Bring a light."),
+             'spawns': [{'vnum': 9732, 'room': 5332, 'kind': 'warden', 'label': 'Rob the Keeper of Keys'}],
+             'done': "The Keeper falls in a jangle of bronze. The master key is warm in your hand."},
+            {'kind': 'ritual', 'title': 'Cracking the Vault', 'room': 24020, 'verb': 'crack', 'seconds': 30,
+             'waves': [{'at': 0, 'vnum': 9733, 'count': 2, 'text': 'Vault sentinels clank out of the walls!'},
+                       {'at': 10, 'vnum': 9733, 'count': 2, 'text': 'More sentinels wake as the tumblers turn!'},
+                       {'at': 20, 'vnum': 9733, 'count': 3, 'text': 'Every guardian of Nereus comes for the thief at its door!'}],
+             'text': ("Crack the treasure vault of the Sunken Temple, where the door to the Vault of Ages is hidden — and "
+                      "keep your nerve while its sentinels come for you."),
+             'objective': 'Crack the vault and keep your nerve',
+             'action': 'Crack the vault',
+             'start': ("You set the master key in a lock older than the city and begin, very carefully, to turn it. "
+                       "Somewhere in the walls, something old wakes up."),
+             'done': "The last tumbler falls. The vault swings open — on a stair going down into lamplight."},
+            {'kind': 'trial', 'title': 'The Vault of Ages', 'room': 24020, 'trial': 'thief',
+             'text': "The stair leads down into the Vault of Ages itself — and the Auditor who keeps it.",
+             'objective': 'Enter the Vault of Ages and settle with the Auditor',
+             'action': 'Enter the trial',
+             'done': "Mordessa's ledger falls shut for good. The Vault of Ages is yours — for as long as you can carry it."},
+            {'kind': 'return', 'title': 'The Last Lesson',
+             'text': "Bring a coin from the Vault of Ages home to the thieves' guildmaster.",
+             'objective': "Return to the thieves' guildmaster",
+             'say': ("The guildmaster turns the gold coin over and over, and then bites it. 'Real,' they say, and laugh "
+                     "until they have to sit down. 'All right. Here is the trick. You don't take the money from them — you "
+                     "take them from the money.'")},
+        ],
+    },
+    'ranger': {
+        'id': 'marquee_ranger',
+        'name': 'The Last Wyvern',
+        'ability': 'heartseeker',
+        'giver': 3030,                      # the rangers' guildmaster
+        'giver_room': 3041,
+        'giver_name': "the rangers' guildmaster",
+        'offer': ("The guildmaster unrolls a hide marked with a hundred tally-scratches and a single drawing: a black wyvern "
+                  "with a torn wing. 'Gloomfang. The last of them. Every ranger who ever wore this badge has tracked her, "
+                  "and every one came back without her. The old trapper in the Northern Forest has seen her sign again. "
+                  "Find the trail. Make the arrow. Bring her down — and I'll show you how to put an arrow through a heart "
+                  "that has stopped a hundred others.'"),
+        'teaches': ("Heartseeker — a breath to draw, then one arrow through every foe on its line: a deep wound, marked to "
+                    "take more, and held where they stand."),
+        'stages': [
+            {'kind': 'talk', 'title': 'The Old Trapper', 'npc': 18098, 'room': 18003,
+             'text': "The grizzled trapper of the Great Northern Forest has seen Gloomfang's sign again.",
+             'objective': 'Speak with the grizzled trapper',
+             'say': ("The trapper spits into the snow. 'She's back. Tracks by the moonlit clearing, the standing stones, the "
+                     "wolf den, out past the forest's end. Follow them — and watch the alphas. They've been feeding on what "
+                     "she leaves.'")},
+            {'kind': 'visit', 'title': 'The Trail', 'ordered': True,
+             'text': "Follow Gloomfang's trail through the Great Northern Forest.",
+             'visits': [
+                 {'room': 18016, 'label': 'Find the tracks in the moonlit clearing',
+                  'text': ("In the moonlit clearing: a print in the frost as long as your arm, three-toed, the snow around "
+                           "it burned black by venom.")},
+                 {'room': 18009, 'label': 'Read the sign at the standing stones',
+                  'text': "At the standing stones a scale as big as a shield lies in the grass, still warm. She was here today."},
+                 {'room': 18024, 'label': 'Follow the trail past the wolf den',
+                  'text': "The wolf den is empty but for bones — wyvern-chewed bones. The trail turns north."},
+                 {'room': 18025, 'label': "Track her to the forest's end",
+                  'text': ("At the forest's end the trail goes up into the sky. She flies for the coast — and the alphas "
+                           "follow her leavings.")},
+             ],
+             'done': "You have her trail. The alphas that feed on it stand in your way."},
+            {'kind': 'kill', 'title': 'The Dire Alphas',
+             'text': "Three dire alphas have grown fat on Gloomfang's leavings and will not give up the hunt.",
+             'spawns': [
+                 {'vnum': 9740, 'room': 18017, 'kind': 'elite', 'label': 'Bring down the alpha in Bear Territory'},
+                 {'vnum': 9740, 'room': 18022, 'kind': 'elite', 'label': 'Bring down the alpha at the Bandit Camp'},
+                 {'vnum': 9740, 'room': 18012, 'kind': 'elite', 'label': "Bring down the alpha at the Bandit's Ambush Point"},
+             ],
+             'adds': 9747,
+             'done': "The alphas are down. The forest is quieter — and the trail leads to the sea cliffs."},
+            {'kind': 'collect', 'title': 'Storm-Feathers', 'mob': 9741, 'rooms': [6800, 6803, 6804],
+             'per_room': 2, 'need': 5, 'chance': 55, 'item': 'storm feather',
+             'text': ("An arrow for a wyvern needs fletching that has flown through storms: the cliff rocs of the Sunken "
+                      "Coast carry it — on the Coastal Bluffs, the Coastal Path and Driftwood Beach."),
+             'objective': 'Take the storm feathers',
+             'done': "The storm feathers crackle when you bind them to the shaft. Now for a head that will bite."},
+            {'kind': 'kill', 'title': 'The Roc Matriarch',
+             'text': ("The Roc Matriarch on the Rocky Shoreline has torn the head off every arrow ever loosed at her. Her "
+                      "talon is the only point that will take Gloomfang's heart."),
+             'spawns': [{'vnum': 9742, 'room': 6801, 'kind': 'warden', 'label': 'Bring down the Roc Matriarch'}],
+             'done': "The Matriarch falls into the surf. Her talon makes a head for the arrow: the Heartseeker is finished."},
+            {'kind': 'ritual', 'title': 'The Blind', 'room': 8000, 'verb': 'stalk', 'seconds': 30,
+             'waves': [{'at': 0, 'vnum': 9743, 'count': 2, 'text': 'Wyvern broodlings drop out of the sky, hunting!'},
+                       {'at': 10, 'vnum': 9743, 'count': 2, 'text': 'More broodlings have caught your scent!'},
+                       {'at': 20, 'vnum': 9743, 'count': 3, 'text': "The whole brood comes screaming down on the blind!"}],
+             'text': ("Wait in a blind at the Edge of Chaos in the Dragon's Domain, where Gloomfang's brood hunts, until she "
+                      "shows herself — and hold your nerve while her broodlings find you."),
+             'objective': 'Wait in the blind at the Edge of Chaos',
+             'action': 'Wait in the blind',
+             'start': ("You settle into the rocks, arrow on the string, and go still. The wind shifts. Something with "
+                       "wings is coming."),
+             'done': ("The last broodling falls, and far off a great shape lifts from the peaks and turns toward the old "
+                      "hunting grounds. You follow.")},
+            {'kind': 'trial', 'title': 'The Hunting Grounds', 'room': 8000, 'trial': 'ranger',
+             'text': "Follow Gloomfang into the old hunting grounds, where the first rangers hunted her kind, and end the hunt.",
+             'objective': 'Enter the hunting grounds and bring down the last wyvern',
+             'action': 'Enter the trial',
+             'done': "Gloomfang crashes down with the Heartseeker through her heart. The last wyvern is gone."},
+            {'kind': 'return', 'title': 'The Last Lesson',
+             'text': "Bring the Heartseeker home to the rangers' guildmaster.",
+             'objective': "Return to the rangers' guildmaster",
+             'say': ("The guildmaster takes the black arrow and lays it on the hide beside the drawing of the wyvern. For a "
+                     "long moment they say nothing at all. Then: 'Now you'll learn to loose it so it never stops.'")},
+        ],
+    },
+    'bard': {
+        'id': 'marquee_bard',
+        'name': 'The Unsung Verse',
+        'ability': 'song_of_the_ages',
+        'giver': 3032,                      # the bards' guildmaster
+        'giver_room': 3007,
+        'giver_name': "the bards' guildmaster",
+        'offer': ("The guildmaster sets down a lute with a string missing. 'There was a song once that kept a kingdom "
+                  "alive — the Song of the Ages. Nobody sings it any more, and the kingdom is gone, and its king sits in the "
+                  "silence it left. Four verses survive, scattered across the world; the elven bard of Silversong knows "
+                  "where. Find them, find something that can hold them, and sing it where the world can hear. Then I'll "
+                  "teach you to sing it so the world listens.'"),
+        'teaches': ("Song of the Ages — five rounds in which your allies' abilities come back twice as fast and they deal "
+                    "and heal a fifth more, while your foes slow; the last note stuns them."),
+        'stages': [
+            {'kind': 'talk', 'title': 'The Elven Bard', 'npc': 11098, 'room': 11005,
+             'text': ("The elven bard of Silversong remembers where the four lost verses went. Silversong lies north of the "
+                      "Edge of the Forest."),
+             'objective': 'Speak with the elven bard',
+             'say': ("The elven bard's fingers stop on the harp. 'The Song of the Ages? Four verses survive, and none of them "
+                     "where it should be — one in a tavern in Thalos, one in a cliff tavern by the sea, one with the refugees "
+                     "in the Plane of Chaos, and the last here, in our Ancient Grove. Go and hear them. Then find something "
+                     "that can remember all four at once.'")},
+            {'kind': 'visit', 'title': 'The Four Lost Verses', 'ordered': False,
+             'text': "Hear the four lost verses of the Song of the Ages, wherever they ended up.",
+             'visits': [
+                 {'room': 5230, 'label': 'Hear the verse in the Tavern of the Sun (Thalos)',
+                  'text': "In the Tavern of the Sun an old drunk sings you the first verse, and weeps, and does not know why."},
+                 {'room': 6811, 'label': 'Hear the verse in the Cliff Tavern (Sunken Coast)',
+                  'text': "In the Cliff Tavern the second verse is carved into a beam, in a hand older than the building."},
+                 {'room': 16021, 'label': 'Hear the verse in the Refugee Sanctuary (Plane of Chaos)',
+                  'text': ("In the Refugee Sanctuary a child hums the third verse while the planes shift outside. Her mother "
+                           "says she was born knowing it.")},
+                 {'room': 11004, 'label': 'Hear the verse in the Ancient Grove (Silversong)',
+                  'text': "In the Ancient Grove the last verse is in the wind through the leaves. You have to stand very still to hear it."},
+             ],
+             'done': "You have all four verses — but they will not stay in your head together. You need something to hold them."},
+            {'kind': 'collect', 'title': 'Resonant Gears', 'mob': 9771, 'rooms': [24806, 24814, 24816],
+             'per_room': 2, 'need': 5, 'chance': 55, 'item': 'resonant gear',
+             'text': ("The chime automatons of the Clockwork Foundry, north of the Ashlands, were built around gears that "
+                      "remember music — in Lever Room Alpha, the Power Core Observation room and the Pneumatic Shortcut."),
+             'objective': 'Take the resonant gears',
+             'done': "The gears tick together in your pack, humming all four verses at once. They want a bell."},
+            {'kind': 'kill', 'title': 'The Carillon Engine',
+             'text': ("The Carillon Engine in the Foundry's Prototype Laboratory holds the one bell that can ring all four "
+                      "verses as one."),
+             'spawns': [{'vnum': 9772, 'room': 24825, 'kind': 'warden', 'label': 'Silence the Carillon Engine'}],
+             'done': "The Engine falls silent. Its great bell, cut free, rings all four verses at once."},
+            {'kind': 'ritual', 'title': 'The Elemental Nexus', 'room': 16010, 'verb': 'play', 'seconds': 30,
+             'waves': [{'at': 0, 'vnum': 9773, 'count': 2, 'text': 'Knots of discord tear out of the clashing elements!'},
+                       {'at': 10, 'vnum': 9773, 'count': 2, 'text': 'More discord comes, howling the wrong notes!'},
+                       {'at': 20, 'vnum': 9773, 'count': 3, 'text': 'All the chaos of the planes tries to drown the Song out!'}],
+             'text': ("Play the Song of the Ages at the Elemental Nexus in the Plane of Chaos, where the four elements meet, "
+                      "and keep playing while the discord of chaos tries to drown you out."),
+             'objective': 'Play the Song at the Elemental Nexus',
+             'action': 'Play the Song',
+             'start': ("You strike the bell and begin the Song of the Ages. The four elements fall still to listen — and "
+                       "everything in the chaos that hates music turns toward you."),
+             'done': "The Song holds. As its last note fades, a door opens in the silence it leaves behind."},
+            {'kind': 'trial', 'title': 'The Hall of Unsung Kings', 'room': 16010, 'trial': 'bard',
+             'text': ("Through the door is the hall where the Song was last sung, and the king who has waited a thousand "
+                      "years in its silence."),
+             'objective': 'Enter the hall and sing for the Mute King',
+             'action': 'Enter the trial',
+             'done': "The Mute King falls, and with his last breath — for the first time in a thousand years — he sings."},
+            {'kind': 'return', 'title': 'The Last Lesson',
+             'text': "Bring the Song of the Ages home to the bards' guildmaster.",
+             'objective': "Return to the bards' guildmaster",
+             'say': ("The guildmaster listens to all four verses with their eyes closed. When you finish they restring the "
+                     "lute and hand it to you. 'Again,' they say. 'All of it. And this time sing it like the world is "
+                     "listening — because it will be.'")},
+        ],
+    },
+    'assassin': {
+        'id': 'marquee_assassin',
+        'name': 'The Contract of Mirrors',
+        'ability': 'thousand_shadows',
+        'giver': 3022,                      # the thieves' guildmaster, who also keeps the assassins' contracts
+        'giver_room': 3029,
+        'giver_name': "the thieves' guildmaster",
+        'offer': ("The guildmaster slides a folded paper across the table without looking at you. Three names on it, and a "
+                  "fourth — crossed out, written again, crossed out again. 'The guild's oldest contract. The first three "
+                  "are its guard. The fourth is the reason the guild was founded. A veiled informant in the Shadowspire "
+                  "sells the rest. Finish it, and I'll teach you what the last one who tried learned too late.'"),
+        'teaches': ("Thousand Shadows — for three rounds your shadows strike every foe around you, and the last of them "
+                    "finishes the weakest."),
+        'stages': [
+            {'kind': 'talk', 'title': 'The Informant', 'npc': 9788, 'room': 24502,
+             'text': ("A veiled informant sells names in the Shadowspire Citadel, north of the eastern road past the "
+                      "Sunken Coast."),
+             'objective': 'Speak with the veiled informant',
+             'say': ("The informant's voice is a woman's, then an old man's. 'Three mirror-blades guard the fourth name — "
+                     "in the Mirror Chamber, the Hall of Eclipsed Light, the Throne of Reflections. Kill them, and the fourth "
+                     "will come looking for you. But you will need a poison it has never tasted: black lotus, from the "
+                     "Sunken Coast.'")},
+            {'kind': 'kill', 'title': 'The Three Names',
+             'text': "Three mirror-blades, the guard of the guild's oldest contract, wait in the Shadowspire's halls of glass.",
+             'spawns': [
+                 {'vnum': 9780, 'room': 24505, 'kind': 'elite', 'label': 'Strike the first name, in the Mirror Chamber'},
+                 {'vnum': 9780, 'room': 24510, 'kind': 'elite', 'label': 'Strike the second name, in the Hall of Eclipsed Light'},
+                 {'vnum': 9780, 'room': 24518, 'kind': 'elite', 'label': 'Strike the third name, on the Throne of Reflections'},
+             ],
+             'adds': 9787,
+             'done': "Three names crossed out. Somewhere, the fourth knows."},
+            {'kind': 'collect', 'title': 'Black Lotus', 'mob': 9781, 'rooms': [6802, 6805, 6806],
+             'per_room': 2, 'need': 5, 'chance': 55, 'item': 'black lotus',
+             'text': ("Cutthroats of the Sunken Coast smuggle black lotus for the Poisoner — on the Smuggler's Dock, the "
+                      "Outer Pier and in the Tidal Cave (bring a light)."),
+             'objective': 'Take the black lotus',
+             'done': "The black lotus smells of nothing at all. The Poisoner will want it back."},
+            {'kind': 'kill', 'title': 'The Poisoner',
+             'text': ("The Poisoner brews in the dark grotto of the Tidal Cave, and only he knows how to make black lotus "
+                      "kill a thing that has no face."),
+             'spawns': [{'vnum': 9782, 'room': 6807, 'kind': 'warden', 'label': 'Kill the Poisoner'}],
+             'done': "The Poisoner dies in his own miasma. His last brew, finished, is yours: a poison for the faceless."},
+            {'kind': 'ritual', 'title': 'The Ambush', 'room': 24519, 'verb': 'wait', 'seconds': 30,
+             'waves': [{'at': 0, 'vnum': 9783, 'count': 2, 'text': "The marks' bodyguards come into the Sanctum, searching!"},
+                       {'at': 10, 'vnum': 9783, 'count': 2, 'text': 'More bodyguards come, sweeping every shadow!'},
+                       {'at': 20, 'vnum': 9783, 'count': 3, 'text': 'They know you are here — every last one of them comes!'}],
+             'text': ("Wait in the Sanctum of Light in the Shadowspire, where the light dies, for the fourth name to come "
+                      "to you — and hold your ground while its bodyguards hunt for you."),
+             'objective': 'Wait in ambush in the Sanctum of Light',
+             'action': 'Wait in ambush',
+             'start': ("You coat your blades, step into the one shadow in the Sanctum of Light, and wait. Footsteps — many "
+                       "footsteps — begin to search the halls."),
+             'done': ("The last bodyguard falls. In the mirror on the far wall, someone who is not you is wearing your face. "
+                      "It beckons.")},
+            {'kind': 'trial', 'title': 'The Hall of a Thousand Mirrors', 'room': 24519, 'trial': 'assassin',
+             'text': ("Step through the mirror into the hall of a thousand mirrors, where the guild's oldest contract has "
+                      "waited for you."),
+             'objective': 'Step through the mirror and fulfil the contract',
+             'action': 'Enter the trial',
+             'done': "The Faceless One shatters like glass. The contract is fulfilled."},
+            {'kind': 'return', 'title': 'The Last Lesson',
+             'text': "Bring the fulfilled contract home to the thieves' guildmaster.",
+             'objective': "Return to the thieves' guildmaster",
+             'say': ("The guildmaster reads the paper with the fourth name crossed out for the last time, then holds it to "
+                     "the candle. 'The last one who tried learned too late that there are always more of you than there "
+                     "are of them,' they say, watching it burn. 'Let me show you how to be a thousand.'")},
         ],
     },
 }

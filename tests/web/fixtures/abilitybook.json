@@ -146,6 +146,13 @@
     "type": "skill"
    },
    {
+    "id": "thousand_shadows",
+    "level": 45,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
     "id": "cold_blood",
     "level": null,
     "shape": "self",
@@ -262,6 +269,13 @@
     "level": 7,
     "shape": "cone:7",
     "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "song_of_the_ages",
+    "level": 45,
+    "shape": "self",
+    "target": "self",
     "type": "skill"
    },
    {
@@ -2028,6 +2042,13 @@
     "type": "skill"
    },
    {
+    "id": "heartseeker",
+    "level": 45,
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
     "id": "cure_light",
     "level": 3,
     "school": "holy",
@@ -2271,6 +2292,13 @@
     "type": "skill"
    },
    {
+    "id": "heist",
+    "level": 45,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
     "id": "shadow_step",
     "level": null,
     "shape": "melee",
@@ -2497,6 +2525,13 @@
   "Walking_D_Skeletons"
  ],
  "extras": {
+  "assassin": [
+   {
+    "id": "thousand_shadows_strike",
+    "shape": "melee",
+    "target": "enemy"
+   }
+  ],
   "bard": [
    {
     "id": "perform",
@@ -2565,6 +2600,13 @@
     "id": "protect",
     "shape": "ranged",
     "target": "ally"
+   }
+  ],
+  "ranger": [
+   {
+    "id": "heartseeker_release",
+    "shape": "melee",
+    "target": "enemy"
    }
   ],
   "thief": [

@@ -252,6 +252,96 @@ async def main():
     check(abs((hp0 - dummy.hp) - plain * 1.25) <= 3, f'+25% to creatures under the banner ({plain} -> {hp0 - dummy.hp})')
     clear()
 
+    # ---------------- The Heist of Ages: every foe struck from behind, half its gold lifted, three sure criticals
+    thief = hero('Tess', 'thief')
+    thief.skills['heist'] = 50
+    thief.gold = 0
+    f1, f2 = foe(9704, 13, 7, thief), foe(9704, 14, 9, thief)
+    f2.fighting = thief
+    f1.gold, f2.gold = 400, 101
+    await CommandHandler.execute(thief, 'heist', [])
+    struck = [20000 - f.hp for f in (f1, f2)]
+    check(all(2.2 * dpr < d < 4.2 * dpr for d in struck), f'every foe struck from behind ({struck} vs {3 * dpr:.0f})')
+    check(f1.gold == 200 and f2.gold == 51 and thief.gold == 250, f'half of each purse lifted, no gold made ({f1.gold}, {f2.gold}, {thief.gold})')
+    check(thief.rigged_dice_hits >= 3, 'the next three swings are certain criticals')
+    clear()
+    alone = hero('Tam', 'thief')
+    alone.skills['heist'] = 50
+    await CommandHandler.execute(alone, 'heist', [])
+    check(alone.connection.said('must be fighting') and not alone.marquee_cd, 'with no foe it cannot answer (and costs nothing)')
+
+    # ---------------- Heartseeker: a breath to draw, then one arrow through the line; marked and held
+    ranger = hero('Rook', 'ranger')
+    ranger.skills['heartseeker'] = 50
+    cr.set_pos(ranger, 2, 7)
+    mark_t, behind, aside = foe(9704, 8, 7, ranger), foe(9704, 14, 7.6, ranger), foe(9704, 8, 12.5, ranger)
+    big = foe(9706, 18, 7.2, ranger)
+    ranger.fighting = mark_t
+    await CommandHandler.execute(ranger, 'heartseeker', [])
+    check(mark_t.hp == 20000, 'the arrow is drawn, not yet loosed')
+    await ma.on_round(world)
+    d_t, d_b, d_a = 20000 - mark_t.hp, 20000 - behind.hp, 20000 - aside.hp
+    check(5.0 * dpr < d_t < 7.5 * dpr and 3.2 * dpr < d_b < 5.0 * dpr and d_a == 0,
+          f'it goes through the target ({d_t}) and the foe behind it ({d_b}), not the one aside ({d_a})')
+    check(time.time() < mark_t.rooted_until and time.time() < big.staggered_until and not getattr(big, 'rooted_until', 0),
+          'they are held; the boss on the line only staggers')
+    hp0 = behind.hp
+    await behind.take_damage(100, ranger)
+    check(hp0 - behind.hp == 120, f'marked: a fifth more from every blow ({hp0 - behind.hp})')
+    clear()
+
+    # ---------------- Song of the Ages: abilities come back twice as fast, +20%, foes slowed, a stunning last note
+    bard, friend, bard2 = hero('Bel', 'bard'), hero('Finn', 'warrior'), hero('Bo', 'bard')
+    for b in (bard, bard2):
+        b.skills['song_of_the_ages'] = 50
+    g2 = Group(bard)
+    for m_ in (friend, bard2):
+        g2.add_member(m_)
+    bard.group = friend.group = bard2.group = g2
+    now = time.time()
+    friend.skills['bash'] = 50
+    friend.bash_cd = now + 10
+    friend.travel_cooldown_until = now + 100
+    friend.last_hunger_hour = 5
+    friend.marquee_cd = {'unbroken_banner': now + 300}
+    brute = foe(9704, 13, 7, bard)
+    await CommandHandler.execute(bard, 'song', ['of', 'the', 'ages'])
+    check(9.0 > friend.bash_cd - now > 6.0, f'typed "song of the ages": an ability timer loses an extra round ({friend.bash_cd - now:.1f}s left)')
+    check(abs(friend.travel_cooldown_until - now - 100) < 0.5 and friend.last_hunger_hour == 5
+          and abs(friend.marquee_cd['unbroken_banner'] - now - 300) < 0.5, 'travel, hunger and the marquee cooldown are left alone')
+    before = friend.bash_cd
+    await CommandHandler.execute(bard2, 'song_of_the_ages', [])
+    check(abs(friend.bash_cd - before) < 0.01, 'two songs shave only once a round')
+    check('song' in friend._mq_out and friend.heal_power >= 20, '+20% damage and healing for the allies')
+    check(time.time() < brute.slowed_until, 'foes slowed')
+    for _ in range(5):
+        await ma.on_round(world)
+    check(brute.stunned_rounds >= 1, 'the last note stuns them')
+    bard.group = friend.group = bard2.group = None
+    clear()
+
+    # ---------------- Thousand Shadows: three rounds of strikes on every foe, then the weakest finished
+    sin = hero('Sable', 'assassin')
+    sin.skills['thousand_shadows'] = 50
+    weak, tough = foe(9704, 13, 7, sin), foe(9704, 14, 9, sin)
+    tough.fighting = sin
+    weak.max_hp, weak.hp = 2000, 700
+    await CommandHandler.execute(sin, 'thousand', ['shadows'])
+    for _ in range(3):
+        await ma.on_round(world)
+    struck = 20000 - tough.hp
+    check(3.0 * dpr < struck < 4.3 * dpr, f'shadows struck every foe three times ({struck} vs {3.6 * dpr:.0f})')
+    check(weak.hp <= 0, 'and the last of them finished the weakest, under 30%')
+    clear()
+    sin.marquee_cd = {}
+    lord = foe(9706, 13, 7, sin)
+    await CommandHandler.execute(sin, 'thousand_shadows', [])
+    for _ in range(3):
+        await ma.on_round(world)
+    took = 20000 - lord.hp
+    check(abs(took - (3.6 + 2.6) * dpr) < 0.25 * dpr and lord.hp > 0, f'a boss is never executed: a heavier last blow instead ({took})')
+    clear()
+
     # ---------------- refusals say "cannot" (no animation, no mastery gain)
     duelist = hero('Dee', 'mage')
     duelist.skills['singularity'] = 50

@@ -601,3 +601,50 @@ Four more classes on the same engine (the last four — thief, ranger, bard, ass
   plays each new quest through all seven stages offline, and live: each class's test character
   takes its quest, enters and leaves its trial, learns and uses its ability (the mage fights its
   trial through).
+
+### Marquee quests: the thief, the ranger, the bard and the assassin — every class has one
+- **The abilities**:
+  - **The Heist of Ages** (thief, `heist`, 8 min; the owner chose the name because "Grand Heist"
+    is already a thief talent): gone in smoke and behind every foe at once — each struck (3×DPR)
+    and relieved of half the gold it carries (gold is only ever moved, never made), then the
+    next three swings are certain criticals. In 3D the thief blinks from foe to foe.
+  - **Heartseeker** (ranger, 6 min): a round's draw (the bow drawn in 3D, the quarry marked),
+    then one arrow through every foe on its line (6×DPR the first, 4×DPR the rest; without
+    positions the target and up to two others) — marked to take 20% more for four rounds and
+    held two (a boss on the line only staggers). In 3D the arrow streaks through and out.
+  - **Song of the Ages** (bard, 8 min): five rounds in which the allies beside the bard get one
+    extra round off each of their own ability timers a round (never travel, flight, reactions,
+    hunger or the marquee cooldowns; two songs don't stack), deal 20% more to creatures and heal
+    20% more, while foes slow; the last note stuns them (bosses stagger).
+  - **Thousand Shadows** (assassin, 8 min): for three rounds shadows strike every foe (1.2×DPR);
+    the last of them finishes the weakest under 30% (capped at 8×DPR, so the huge only take a
+    deep wound; a boss takes a 30% heavier last blow instead). In 3D shadow copies step out of
+    the dark around each foe and cut in.
+- **A new kind of stage, `visit`**: places to reach, in order or any order — the thief cases
+  Thalos (City Hall, the Guild House, the north-west watchtower), the ranger follows Gloomfang's
+  trail through the Great Northern Forest, the bard hears the four lost verses (a tavern in
+  Thalos, the Cliff Tavern, the Refugee Sanctuary in the Plane of Chaos, Silversong's Ancient
+  Grove). Each place tells its part of the story and the tracker marks the next one.
+- **The quests** (creatures 9731-36, 9740-47, 9771-76, 9780-88; trials `thief`, `ranger`, `bard`,
+  `assassin`):
+  - *The Last Score* (thief): the fence in Thalos; case the job; tomb keys from the Great
+    Pyramid's tomb wardens; rob the Keeper of Keys; crack the treasure vault of the Sunken Temple;
+    *The Vault of Ages* and Auditor Mordessa.
+  - *The Last Wyvern* (ranger, eight stages): the old trapper; the trail; three dire alphas;
+    storm feathers from the cliff rocs of the Sunken Coast; the Roc Matriarch; wait in a blind at
+    the Edge of Chaos; *The Hunting Grounds* and Gloomfang, the Last Wyvern.
+  - *The Unsung Verse* (bard): the elven bard of Silversong; the four lost verses; resonant gears
+    from the Clockwork Foundry's chime automatons; the Carillon Engine; play the Song at the
+    Elemental Nexus; *The Hall of Unsung Kings* and the Mute King.
+  - *The Contract of Mirrors* (assassin, from the same guildmaster as the thief — the class
+    decides): a veiled informant in the Shadowspire; the three mirror-blades; black lotus from the
+    Sunken Coast's cutthroats; the Poisoner; an ambush in the Sanctum of Light; *The Hall of a
+    Thousand Mirrors* and the Faceless One.
+- **In 3D**: `pierce` (an arrow and a streak of light through the line and on out), `blinks`
+  (a hop behind each foe it reached, with a slash and a glint of coin), `clones` (shadow copies of
+  the striker around the foe, cutting in); icons for them (an arrow through two rings, three
+  hooded shapes, a double blink badge).
+- **Tests**: `test_marquee_abilities.py` covers the four (gold conserved, the line pick, the mark,
+  the shave and its exclusions, two songs shaving once, the execute and its boss rule);
+  `test_marquee.py` plays all eight quests through offline and, live, each class's test character
+  takes, enters, learns and uses (the ranger fights its trial through).

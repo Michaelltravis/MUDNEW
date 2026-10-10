@@ -59,12 +59,13 @@ export const RELEASE = {
   sit: 0.5, awaken: 0.6, idle2h: 0.3,
 };
 
-export const MOTIONS = ['leap', 'dash', 'spin', 'spin2', 'hover', 'rise', 'backstep', 'blink', 'hop', 'lunge', 'sidestep'];
+export const MOTIONS = ['leap', 'dash', 'spin', 'spin2', 'hover', 'rise', 'backstep', 'blink', 'hop', 'lunge', 'sidestep', 'blinks'];
 export const CASTS = ['sigil', 'gather', 'glyphs', 'motifs', 'flare', 'rings', 'smoke', 'embers', 'aim', 'charge', 'spiral', 'orbit', 'dust'];
 export const TRAVELS = ['slash', 'orb', 'orbs', 'glyph', 'motif', 'bolt', 'sky', 'chain', 'ray', 'skyray', 'tether', 'link', 'arrow',
-  'arrows', 'rain', 'rainglyph', 'meteor', 'meteors', 'wave', 'cone', 'blade', 'blades', 'shards'];
+  'arrows', 'rain', 'rainglyph', 'meteor', 'meteors', 'wave', 'cone', 'blade', 'blades', 'shards', 'pierce'];
 export const LANDS = ['hit', 'sparks', 'burst', 'motifs', 'fountain', 'nova', 'blast', 'pillar', 'sigil', 'crack', 'quake', 'growth',
-  'cloud', 'bubble', 'mark', 'swirl', 'geyser', 'shatter', 'freeze', 'halo', 'wings', 'smoke', 'rings', 'dome', 'heal', 'implode'];
+  'cloud', 'bubble', 'mark', 'swirl', 'geyser', 'shatter', 'freeze', 'halo', 'wings', 'smoke', 'rings', 'dome', 'heal', 'implode',
+  'clones'];
 export const AURAS = ['orbit', 'runes', 'blades', 'halo', 'wings', 'bubble', 'shroud', 'fade', 'glow', 'embers', 'notes', 'motes',
   'frost', 'flames', 'leaves', 'stone', 'bark', 'mirror', 'ghost', 'sigil', 'rage', 'poison', 'bleed', 'banner', 'seraph', 'lich'];
 export const SCHOOLS = ['fire', 'frost', 'lightning', 'arcane', 'holy', 'shadow', 'necrotic', 'nature', 'poison', 'sound', 'physical', 'blood'];
@@ -78,7 +79,7 @@ export const GLYPH_NAMES = ['dot', 'star', 'note', 'notes', 'skull', 'bone', 'cr
 
 // how long things take on their way (seconds), by travel kind; per metre for the flying ones
 const FLIGHT = { orb: 1 / 20, orbs: 1 / 18, glyph: 1 / 16, motif: 1 / 16, arrow: 1 / 30, arrows: 1 / 28, blade: 1 / 24, blades: 1 / 22,
-  shards: 1 / 26, wave: 1 / 14, link: 1 / 30 };
+  shards: 1 / 26, wave: 1 / 14, link: 1 / 30, pierce: 1 / 45 };
 const FIXED = { slash: 0.1, bolt: 0.06, sky: 0.12, chain: 0.12, ray: 0.08, skyray: 0.2, tether: 0.3, rain: 0.62, rainglyph: 0.62,
   meteor: 0.78, meteors: 0.95, cone: 0.24 };
 
@@ -150,7 +151,7 @@ export function timeline(r, dist = 6) {
   if (r.motion === 'leap') release = Math.max(release, 0.5);
   else if (r.motion === 'rise') release = Math.max(release, 0.7);
   else if (r.motion === 'dash') release = Math.max(release, 0.3);
-  else if (r.motion === 'blink') release = Math.max(release, 0.22);
+  else if (r.motion === 'blink' || r.motion === 'blinks') release = Math.max(release, 0.22);
   const t = r.travel;
   const travel = !t ? 0 : FIXED[t.kind] != null ? FIXED[t.kind] : (FLIGHT[t.kind] || 1 / 20) * dist * (t.arg === 'big' ? 1.35 : 1);
   const land = release + travel;

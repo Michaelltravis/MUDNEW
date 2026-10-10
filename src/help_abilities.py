@@ -549,6 +549,18 @@ SKILL_PROSE = {
     'lich_ascension': ("Marquee. Six rounds as a lich: spells cost half, soul bolts split to a "
                        "second foe, a quarter of what you deal drains back to you, and death is "
                        "turned away once. Ten-minute cooldown.", "lich ascension"),
+    'heist': ("Marquee. The Heist of Ages: gone in smoke and behind every foe at once — each is "
+              "struck from behind and relieved of half the gold it carries, and your next three "
+              "swings land as criticals. Eight-minute cooldown.", "heist"),
+    'heartseeker': ("Marquee. Draw for a breath, then loose one arrow through every foe on its "
+                    "line: a deep wound, a mark that makes them take a fifth more for four rounds, "
+                    "and two rounds held where they stand. Six-minute cooldown.", "heartseeker [target]"),
+    'song_of_the_ages': ("Marquee. Five rounds of the Song of the Ages: your allies' abilities come "
+                         "back twice as fast and they deal and heal a fifth more; your foes slow, and "
+                         "the last note stuns them. Eight-minute cooldown.", "song of the ages"),
+    'thousand_shadows': ("Marquee. Your shadow splits into a thousand: for three rounds they strike "
+                         "every foe around you, and the last of them finishes the weakest (a boss "
+                         "takes a heavier blow instead). Eight-minute cooldown.", "thousand shadows"),
 }
 
 

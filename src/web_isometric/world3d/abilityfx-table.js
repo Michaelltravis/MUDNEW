@@ -252,6 +252,8 @@ export const RECIPES = {
     fade: 'dodgeB backstep | smoke | - | - | fade | ',
     kidneyshot: 'dstab lunge | - | slash:up | hit | - | ',
     slicedice: 'dslice spin | - | slash:wide | - | glow | ',
+    // marquee: gone in smoke and behind every foe in turn, a fountain of stolen coin
+    heist: 'dslice blinks | smoke | - | fountain:coin+ | fade | flash shake t=2',
   },
   assassin: {
     backstab: 'dstab blink | aim | - | burst | - | blood shake stop',
@@ -277,6 +279,10 @@ export const RECIPES = {
     wound_poison: 'throw | - | blade | cloud | - | poison',
     envenom: 'interact | - | - | - | poison | ',
     shadow_blade: 'raise | smoke | - | - | glow | ',
+    // marquee: the assassin's shadow splits into a thousand...
+    thousand_shadows: 'dslice spin2 | smoke | - | burst:dagger+ | mirror | shadow flash shake t=9',
+    // ...and each round they step out of the dark around every foe and cut in
+    thousand_shadows_strike: 'dstab | - | - | clones | - | shadow',
   },
   ranger: {
     truesight_shot: 'aim>bow | - | arrow | hit | - | ',
@@ -306,6 +312,10 @@ export const RECIPES = {
     black_arrow: 'aim>bow | smoke | arrow | burst | - | shadow g=skull',
     camouflage: 'sit | glyphs | - | - | fade | ',
     wyvern_sting: 'bow | - | arrow | mark | - | poison',
+    // marquee: the Heartseeker drawn — the quarry marked while the world holds its breath...
+    heartseeker: 'aim2 | aim+ | - | mark | glow | t=3',
+    // ...then loosed through everything on its line
+    heartseeker_release: 'bow2 | - | pierce | shatter+ | bleed | blood flash shake+ stop',
   },
   bard: {
     mockery: 'taunt | - | glyph | burst | - | ',
@@ -346,5 +356,7 @@ export const RECIPES = {
     grand_illusion: 'cheer spin | sigil | - | - | mirror | ',
     discordant_chord: 'shoot | rings | wave | - | - | ',
     perform: 'channel | sigil | - | - | notes | ',
+    // marquee: the Song of the Ages, rising in rings of music over the whole company
+    song_of_the_ages: 'channel hover | sigil+ | - | rings | notes | t=15 r=12',
   },
 };

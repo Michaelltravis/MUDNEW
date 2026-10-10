@@ -26,7 +26,8 @@ SELF_SKILLS = frozenset({'sneak', 'hide', 'track', 'scan', 'scribe', 'drink_the_
                          'magnum_opus', 'rigged_dice', 'poison', 'evasion', 'divine_intervention', 'pick_lock',
                          'warpath', 'titans_wrath', 'perfect_crime', 'camouflage_master', 'camouflage', 'shadow_dance',
                          'shadow_blades_master', 'cold_blood', 'shadow_blade', 'envenom', 'alpha_pack', 'bestial_wrath',
-                         'explosive_trap', 'unbroken_banner', 'seraphs_vigil', 'lich_ascension'})
+                         'explosive_trap', 'unbroken_banner', 'seraphs_vigil', 'lich_ascension', 'heist',
+                         'song_of_the_ages', 'thousand_shadows'})
 # skills aimed at a friend (the targeted player, else yourself)
 ALLY_SKILLS = frozenset({'rescue', 'absolution'})
 # skills for your whole party (sent without a target)
@@ -35,7 +36,9 @@ GROUP_SKILLS = frozenset({'rallying_cry', 'divine_word'})
 # the level is when the quest is offered
 QUEST_ABILITIES = {'unbroken_banner': 'The Unbroken Banner', 'singularity': 'The Heart of the Void',
                    'seraphs_vigil': 'The Lost Choir', 'wings_of_dawn': 'The Dawnless Chapel',
-                   'lich_ascension': 'The First Phylactery'}
+                   'lich_ascension': 'The First Phylactery', 'heist': 'The Last Score',
+                   'heartseeker': 'The Last Wyvern', 'song_of_the_ages': 'The Unsung Verse',
+                   'thousand_shadows': 'The Contract of Mirrors'}
 
 # the level each ability comes at, per class (spells with a level_required keep it)
 UNLOCK = {
@@ -59,11 +62,11 @@ UNLOCK = {
                    font_of_the_vigil=50, serenity=56, divine_intervention=60, seraphs_vigil=45),
     'thief': dict(backstab=1, sneak=1, hide=2, pick_lock=3, steal=4, trip=5, dodge=6, circle=8, pocket_sand=10,
                   detect_traps=11, low_blow=12, second_attack=14, evasion=16, caltrops=18, rigged_dice=20,
-                  jackpot=24, nerve_strike=32, garrote=44, marked_for_death_thief=56, perfect_crime=60),
+                  jackpot=24, nerve_strike=32, garrote=44, marked_for_death_thief=56, perfect_crime=60, heist=45),
     'ranger': dict(truesight_shot=1, track=1, scan=2, cure_light=3, sneak=4, quarry_mark=5, hide=6, faerie_fire=7,
                    tame=8, wildbond_strike=9, dodge=10, snare=11, entangle=12, second_attack=13, detect_magic=14,
                    barkskin=15, loosing_storm=16, dual_wield=18, briskness=20, call_lightning=22,
-                   volley=32, camouflage_master=38, serpent_sting=44, alpha_pack=60),
+                   volley=32, camouflage_master=38, serpent_sting=44, alpha_pack=60, heartseeker=45),
     'paladin': dict(censure=1, cure_light=1, bash=2, bless=3, order_verdict=4, rescue=5, detect_evil=6,
                     turn_undead=7, absolution=8, parry=9, protection_from_evil=10, shield_of_faith=11,
                     cure_serious=13, second_attack=14, shield_block=15, halo_of_reckoning=16, dodge=18,
@@ -78,11 +81,11 @@ UNLOCK = {
                  sneak=8, detect_magic=9, crescendo=10, pick_lock=11, countersong=12, charm_person=13, dodge=14,
                  slow=15, heroism=16, fear=17, encore=18, invisibility=19, haste=22, mass_charm=28,
                  refrain_of_hope=32, chord_of_disruption=38, epic_tale=44, siren_song=50, requiem=56,
-                 magnum_opus=60),
+                 magnum_opus=60, song_of_the_ages=45),
     'assassin': dict(backstab=1, mark=1, sneak=2, hide=3, expose=4, vital=5, dodge=6, feint=8, poison=9, fade=10,
                      second_attack=12, execute_contract=14, evasion=16, dual_wield=18, slip_the_veil=20,
                      shadowstrike=32, fan_of_knives=38, rupture=44, shadow_blades_master=50,
-                     vendetta_assassin=56, death_mark=60),
+                     vendetta_assassin=56, death_mark=60, thousand_shadows=45),
 }
 
 # a line for abilities the help prose doesn't describe
@@ -238,7 +241,8 @@ async def _push(player):
 _SMALL = {'of', 'the', 'a', 'an', 'to', 'in', 'on', 'and', 'from'}
 # ids that carry their class to stay unique, and names the words don't spell
 NAMES = {'marked_for_death_thief': 'Marked for Death', 'vendetta_assassin': 'Vendetta', 'titans_wrath': "Titan's Wrath",
-         'apocalypse_necro': 'Apocalypse', 'shadow_blades_master': 'Shadow Blades', 'seraphs_vigil': "Seraph's Vigil"}
+         'apocalypse_necro': 'Apocalypse', 'shadow_blades_master': 'Shadow Blades', 'seraphs_vigil': "Seraph's Vigil",
+         'heist': 'The Heist of Ages'}
 
 
 def name_of(ability):

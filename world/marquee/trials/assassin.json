@@ -1,0 +1,106 @@
+{
+  "name": "The Hall of a Thousand Mirrors",
+  "intro": "You step out of the shadows of the Sanctum of Light and into a hall of mirrors. A thousand of you step in alongside you. Somewhere in here, one of them is not you.",
+  "rooms": [
+    {
+      "key": "gallery",
+      "name": "The Hall of a Thousand Mirrors - The Gallery of Glass",
+      "sector": "inside",
+      "description": "Mirrors on every wall, the floor and the ceiling, and in every one of them you, from every side at once. North, a mirror stands where a door should be.",
+      "exits": {
+        "north": {
+          "to": "maze",
+          "door": "mirror door"
+        }
+      }
+    },
+    {
+      "key": "maze",
+      "name": "The Hall of a Thousand Mirrors - The Mirror Maze",
+      "sector": "inside",
+      "description": "A maze of standing mirrors that turn as you pass, so that every way looks like every other. North, a darker mirror waits.",
+      "exits": {
+        "south": {
+          "to": "gallery",
+          "door": "mirror door"
+        },
+        "north": {
+          "to": "throne",
+          "door": "dark mirror"
+        }
+      }
+    },
+    {
+      "key": "throne",
+      "name": "The Hall of a Thousand Mirrors - The Faceless Throne",
+      "sector": "inside",
+      "description": "A throne in a ring of broken mirrors. The one sitting on it is wearing your face, and wearing it better than you do.",
+      "exits": {
+        "south": {
+          "to": "maze",
+          "door": "dark mirror"
+        }
+      }
+    }
+  ],
+  "entrance": "gallery",
+  "waves": [
+    {
+      "room": "gallery",
+      "mobs": [
+        [
+          9784,
+          2
+        ],
+        [
+          9785,
+          1
+        ]
+      ],
+      "text": "Glass sentinels step out of the mirrors!"
+    },
+    {
+      "room": "maze",
+      "mobs": [
+        [
+          9784,
+          2
+        ],
+        [
+          9785,
+          1
+        ]
+      ],
+      "text": "The maze turns, and sentinels are waiting behind it!"
+    },
+    {
+      "room": "maze",
+      "mobs": [
+        [
+          9785,
+          3
+        ]
+      ],
+      "text": "Your reflections step out of the mirrors all around you!"
+    }
+  ],
+  "gates": [
+    {
+      "after": 0,
+      "room": "gallery",
+      "dir": "north",
+      "text": "The mirror door ripples like water \u2014 you can pass."
+    },
+    {
+      "after": 2,
+      "room": "maze",
+      "dir": "north",
+      "text": "The dark mirror clears, and something on the other side smiles with your mouth."
+    }
+  ],
+  "boss": {
+    "vnum": 9786,
+    "room": "throne",
+    "text": "The Faceless One rises, wearing your face. 'The guild sent me too, once,' it says, in your voice. 'Look what I became.'"
+  }
+}
