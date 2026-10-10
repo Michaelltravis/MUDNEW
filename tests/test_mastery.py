@@ -109,6 +109,14 @@ async def offline():
           "a renamed command's event names the book's ability (aimed_shot -> truesight_shot); `look` has none")
     check(combat_hooks.event_shape('warpath', 'warrior') == 'self' and combat_hooks.event_shape('eviscerate', 'thief') == 'melee'
           and combat_hooks.aim_of('layhands', 'paladin') == 'ally', 'shapes from the book (warpath: self) and the extras (eviscerate, lay hands)')
+    # the level 31-60 abilities joined the books: none may name an affect type that doesn't
+    # exist (AffectManager.TYPE_STAT crashed Rallying Cry, Warpath, Titan's Wrath...)
+    import re
+    from affects import AffectManager
+    src = open(os.path.join(ROOT, 'src', 'commands.py')).read()
+    kinds = set(re.findall(r"'type':\s*AffectManager\.(\w+)", src))
+    missing = sorted(k for k in kinds if not hasattr(AffectManager, k))
+    check(not missing, f"every affect type the commands use exists ({missing or sorted(kinds)})")
     sys.path.insert(0, os.path.join(ROOT, 'tools'))
     import dump_abilitybook
     current = os.path.exists(dump_abilitybook.OUT) and open(dump_abilitybook.OUT).read() == dump_abilitybook.text()

@@ -56,6 +56,7 @@ class AffectManager:
 
     # Affect type constants
     TYPE_MODIFY_STAT = 'modify_stat'
+    TYPE_STAT = TYPE_MODIFY_STAT      # the name the level 31-60 abilities use
     TYPE_FLAG = 'flag'
     TYPE_DOT = 'dot'  # Damage over time
     TYPE_HOT = 'hot'  # Healing over time

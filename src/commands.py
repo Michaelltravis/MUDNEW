@@ -19752,7 +19752,7 @@ class CommandHandler:
         AffectManager.apply_affect(target, {
             'name': 'armor_shattered',
             'type': AffectManager.TYPE_STAT,
-            'applies_to': 'ac',
+            'applies_to': 'armor_class',
             'value': 30,  # Worse AC (higher number = worse)
             'duration': 10,
             'caster_level': player.level
