@@ -11,7 +11,10 @@ points are wrapped once at startup (install()):
                             a ranger shooting point-blank does reduced damage
   CombatHandler.handle_death, Player.die   'death'
   CommandHandler.execute    class abilities: range check first (nothing is spent when out
-                            of reach), then an 'ability' event ahead of the wounds it caused
+                            of reach), then an 'ability' event ahead of the wounds it caused;
+                            every other class ability (and the extras below) gets its event
+                            too, so each has its own look in 3D (sneaking and hiding are
+                            shown only to the one doing it)
   mob_ai                    wind-ups get a ground area and a 'windup' event; when they land,
                             anyone who has stepped out of the area is spared ('resolve')
 
@@ -227,11 +230,35 @@ def _wrap_deaths():
 
 
 # ------------------------------------------------------------------ class abilities
-def _ability_of(cmd, args):
-    """(ability key, remaining args) when a command is a ranged-checked class ability."""
+# class abilities that are in no class's book (combo finishers, lay on hands, raising the
+# dead...) and how they are aimed, so the 3D client animates them too
+EXTRA_ABILITIES = {      # command: (aimed at, the classes that use it)
+    'mortal_strike': ('enemy', 'warrior'), 'protect': ('ally', 'warrior paladin'),
+    'eviscerate': ('enemy', 'thief'), 'kidneyshot': ('enemy', 'thief'), 'slicedice': ('self', 'thief'),
+    'fade': ('self', 'thief'),       # (vanish) the assassin's fade, which thieves use too
+    'layhands': ('ally', 'paladin'), 'aura': ('self', 'paladin'),
+    'raise': ('self', 'necromancer'), 'animate': ('self', 'necromancer cleric'), 'imbue': ('self', 'necromancer'),
+    'ritual': ('self', 'necromancer'), 'soulstone': ('self', 'necromancer'),
+    'summon': ('self', 'mage'), 'shadowform': ('self', 'cleric'), 'perform': ('self', 'bard'),
+}
+# the argument picks how these look (a song, an elemental, an aura): it goes in the event
+VARIANT_ABILITIES = frozenset({'perform', 'summon', 'raise', 'aura'})
+# moves nobody else should see you make
+PRIVATE_ABILITIES = frozenset({'sneak', 'hide', 'camouflage', 'camouflage_master'})
+_SHAPE_OF_AIM = {'self': 'self', 'area': 'nova:8', 'group': 'nova:12', 'ally': 'ranged', 'object': 'self',
+                 'special': 'self', 'enemy': 'melee'}
+_BY_METHOD = None
+
+
+def _canonical(cmd):
     from commands import CommandHandler
     c = CommandHandler.ALIASES.get(cmd, cmd)
-    c = CommandHandler.COMMAND_ALIASES.get(c, c)
+    return CommandHandler.COMMAND_ALIASES.get(c, c)
+
+
+def _ability_of(cmd, args):
+    """(ability key, remaining args) when a command is a ranged-checked class ability."""
+    c = _canonical(cmd)
     if args:
         combo = f"{c}_{args[0]}".lower()
         if combo in cr.ABILITY_RANGE:
@@ -239,6 +266,37 @@ def _ability_of(cmd, args):
     if c and c.lower() in cr.ABILITY_RANGE and c.lower() not in ('heal', 'bless', 'sleep'):
         return c.lower(), args
     return None, args
+
+
+def _class_ability(player, cmd):
+    """The book id of any other class ability a command performs (renamed ones too:
+    `aimed_shot` is the truesight shot), an extra (eviscerate, lay on hands), else None."""
+    global _BY_METHOD
+    import mastery
+    if _BY_METHOD is None:
+        _BY_METHOD = mastery._methods()
+    c = str(_canonical(cmd) or '').lower()
+    cands = _BY_METHOD.get(f'cmd_{c}')
+    if cands:
+        mine, _owned = mastery._mine(player, cands)
+        return mine or (c if c in cands else sorted(cands)[0])
+    return c if c in EXTRA_ABILITIES else None
+
+
+def aim_of(ability, cls=None):
+    """enemy | ally | self | area | group: what an ability is aimed at (its book entry)."""
+    import mastery
+    entry = next((e for e in mastery.book(cls) if e['id'] == ability), None) if cls else None
+    if entry is None and ability in EXTRA_ABILITIES:
+        return EXTRA_ABILITIES[ability][0]
+    return (entry or {}).get('target', 'enemy')
+
+
+def event_shape(ability, cls=None):
+    """How an ability is aimed, for its event: its range entry, else what its book says."""
+    if ability in cr.ABILITY_RANGE:
+        return cr.ABILITY_RANGE[ability][1]
+    return _SHAPE_OF_AIM.get(aim_of(ability, cls), 'melee')
 
 
 def _ref_word(player, arg):
@@ -273,21 +331,28 @@ def _wrap_execute():
         try:
             if _is_player(player) and getattr(player, 'room', None) is not None and cmd:
                 name, rest = _ability_of(cmd, list(args or []))
+                if not name:
+                    # every other class ability: no reach to check, but the 3D client draws it
+                    name, rest = _class_ability(player, cmd), list(args or [])
         except Exception:
             name = None
         if not name:
             return await orig(cls, player, cmd, args)
-        rng, shape = cr.ability_range(name)
+        klass = str(getattr(player, 'char_class', '') or '').lower()
+        rng, shape = cr.ABILITY_RANGE.get(name) or (None, event_shape(name, klass))
         target = None
         if rest:
             try:
                 target = player.find_target_in_room(rest[0])
             except Exception:
                 target = None
+        ally = aim_of(name, klass) == 'ally'
         if target is None:
-            target = getattr(player, 'fighting', None)
+            # a heal or a guard with nobody named is for yourself; anything else for your foe
+            target = player if ally else getattr(player, 'fighting', None)
         room = player.room
-        d = cr.distance(player, target) if target is not None and shape not in ('self',) and not shape.startswith('nova') else None
+        d = (cr.distance(player, target) if rng is not None and target is not None and shape not in ('self',)
+             and not shape.startswith('nova') else None)
         if d is not None and d > rng + 0.4:
             c = player.config.COLORS
             label = name.replace('_', ' ')
@@ -329,15 +394,19 @@ def _wrap_execute():
                                    'too exhausted', 'you need', "can't", 'cannot', 'who?', 'not here', 'nobody')):
             return   # refused by the ability itself: no animation
         tgt = target if target is not None else getattr(player, 'fighting', None)
-        res = _outcome(text)
+        res = _outcome(text) if not ally else None
         if shape == 'dash' and tgt is not None and cr.pos_of(tgt) is not None:
             tx, tz = cr.pos_of(tgt)
             px, pz = cr.pos_of(player) or (tx, tz)
             dx, dz = px - tx, pz - tz
             dd = max(0.01, (dx * dx + dz * dz) ** 0.5)
             cr.set_pos(player, tx + dx / dd * 1.4, tz + dz / dd * 1.4)
+        variant = str(rest[0]).lower()[:24] if name in VARIANT_ABILITIES and rest else None
+        if name in PRIVATE_ABILITIES:
+            ev.emit_private(player, 'ability', src=player, ability=name, shape=shape)
+            return
         ev.emit_at(room, mark, 'ability', src=player, dst=tgt if shape not in ('self',) else None,
-                   ability=name, res=res, shape=shape)
+                   ability=name, res=res, shape=shape, variant=variant)
 
     CommandHandler.execute = classmethod(execute)
 

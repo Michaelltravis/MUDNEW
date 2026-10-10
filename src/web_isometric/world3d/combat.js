@@ -3,68 +3,14 @@
 // each line you read has its animation: the attacker winds up and swings (or draws, or
 // casts), the blow or bolt travels, the target flinches, blocks or sidesteps, a number
 // rises. Ranges and positions come with the events (combat v2: distance matters).
+//
+// Skills and spells look the way their class does (abilityfx.js recipes, played by
+// fxdirector.js); numbers rise when the blow or the bolt that caused them arrives. Timing runs
+// on the effects' frame clock (fx.after), so a hit-stop slows the whole sequence alike.
 import * as THREE from 'three';
-
-// how each ability looks: the user's animation, what flies, how it lands
-// kind: melee | shot | bolt | beam | pillar | nova | heal | buff | summon | cone
-export const ABILITY_FX = {
-  // warrior
-  bash: { anim: 'Block_Attack', kind: 'melee', school: 'physical', heavy: true, stun: true },
-  cleave: { anim: '2H_Melee_Attack_Spin', kind: 'melee', school: 'physical', wide: true },
-  kick: { anim: 'Unarmed_Melee_Attack_Kick', kind: 'melee', school: 'physical' },
-  execute: { anim: '2H_Melee_Attack_Chop', kind: 'melee', school: 'blood', heavy: true },
-  rally: { anim: 'Cheer', kind: 'nova', school: 'holy', radius: 8 },
-  rescue: { anim: 'Block', kind: 'buff', school: 'physical' },
-  charge: { anim: '1H_Melee_Attack_Jump_Chop', kind: 'dash', school: 'physical', heavy: true },
-  // paladin
-  censure: { anim: '1H_Melee_Attack_Slice_Diagonal', kind: 'melee', school: 'holy' },
-  order_verdict: { anim: '1H_Melee_Attack_Chop', kind: 'melee', school: 'holy', heavy: true },
-  holy_smite: { anim: 'Spellcast_Raise', kind: 'pillar', school: 'holy' },
-  absolution: { anim: 'Spellcast_Long', kind: 'heal', school: 'holy' },
-  halo_of_reckoning: { anim: 'Spellcast_Raise', kind: 'nova', school: 'holy', radius: 5 },
-  turn_undead: { anim: 'Spellcast_Long', kind: 'cone', school: 'holy', radius: 8 },
-  // ranger
-  truesight_shot: { anim: '1H_Ranged_Shoot', kind: 'shot', school: 'physical' },
-  wildbond_strike: { anim: '1H_Melee_Attack_Slice_Horizontal', kind: 'melee', school: 'nature' },
-  loosing_storm: { anim: '1H_Ranged_Shoot', kind: 'volley', school: 'physical', radius: 3.5 },
-  quarry_mark: { anim: '1H_Ranged_Aiming', kind: 'mark', school: 'nature' },
-  call_lightning: { anim: 'Spellcast_Raise', kind: 'beam', school: 'lightning', sky: true },
-  // thief / assassin
-  backstab: { anim: 'Dualwield_Melee_Attack_Stab', kind: 'melee', school: 'blood', heavy: true },
-  circle: { anim: 'Dualwield_Melee_Attack_Slice', kind: 'melee', school: 'blood' },
-  trip: { anim: 'Unarmed_Melee_Attack_Kick', kind: 'melee', school: 'physical', stun: true },
-  low_blow: { anim: 'Unarmed_Melee_Attack_Punch_A', kind: 'melee', school: 'physical', stun: true },
-  pocket_sand: { anim: 'Throw', kind: 'cloud', school: 'physical' },
-  jackpot: { anim: 'Dualwield_Melee_Attack_Chop', kind: 'melee', school: 'holy', heavy: true },
-  mark: { anim: 'Throw', kind: 'mark', school: 'shadow' },
-  expose: { anim: 'Dualwield_Melee_Attack_Slice', kind: 'melee', school: 'shadow' },
-  vital: { anim: 'Dualwield_Melee_Attack_Stab', kind: 'melee', school: 'blood', heavy: true },
-  feint: { anim: 'Dodge_Left', kind: 'melee', school: 'shadow' },
-  execute_contract: { anim: 'Dualwield_Melee_Attack_Chop', kind: 'melee', school: 'shadow', heavy: true },
-  fade: { anim: 'Dodge_Backward', kind: 'buff', school: 'shadow' },
-  // mage
-  magic_missile: { anim: 'Spellcast_Shoot', kind: 'bolt', school: 'arcane', count: 3 },
-  fireball: { anim: 'Spellcast_Shoot', kind: 'bolt', school: 'fire', heavy: true, radius: 3, size: 0.38 },
-  lightning_bolt: { anim: 'Spellcast_Shoot', kind: 'beam', school: 'lightning' },
-  chill_touch: { anim: '1H_Melee_Attack_Stab', kind: 'melee', school: 'frost' },
-  sleep: { anim: 'Spellcasting', kind: 'cloud', school: 'arcane' },
-  towerbolt: { anim: 'Spellcast_Long', kind: 'bolt', school: 'arcane', heavy: true, size: 0.45 },
-  // necromancer
-  soul_bolt: { anim: 'Spellcast_Shoot', kind: 'bolt', school: 'necrotic' },
-  soul_siphon: { anim: 'Spellcasting', kind: 'drain', school: 'necrotic' },
-  animate_dead: { anim: 'Spellcast_Summon', kind: 'summon', school: 'necrotic' },
-  soul_reap: { anim: 'Spellcast_Raise', kind: 'nova', school: 'shadow', radius: 4, atTarget: true },
-  // cleric
-  cure_light: { anim: 'Spellcast_Raise', kind: 'heal', school: 'holy' },
-  heal: { anim: 'Spellcast_Long', kind: 'heal', school: 'holy', heavy: true },
-  bless: { anim: 'Spellcast_Raise', kind: 'buff', school: 'holy' },
-  flamestrike: { anim: 'Spellcast_Raise', kind: 'pillar', school: 'fire', heavy: true, radius: 3 },
-  // bard
-  mockery: { anim: 'Taunt', kind: 'bolt', school: 'sound' },
-  fascinate: { anim: 'Spellcasting', kind: 'cloud', school: 'sound' },
-  crescendo: { anim: 'Cheer', kind: 'nova', school: 'sound', radius: 6 },
-  discordant_note: { anim: 'Spellcast_Shoot', kind: 'cone', school: 'sound', radius: 7 },
-};
+import { recipeFor, timeline, THEMES } from './abilityfx.js';
+import { RECIPES } from './abilityfx-table.js';
+import { Director } from './fxdirector.js';
 
 // the hero's ordinary swing, by class (the class model carries that weapon)
 const SWING = {
@@ -81,6 +27,8 @@ const SWING = {
 const RANGED_AUTO = { ranger: { kind: 'shot', school: 'physical' }, mage: { kind: 'bolt', school: 'arcane', size: 0.16 }, necromancer: { kind: 'bolt', school: 'necrotic', size: 0.16 } };
 
 const COLORS = { dmgOut: '#ffe9a8', dmgIn: '#ff6a52', heal: '#7dff8f', miss: '#b8b8c4', crit: '#ffb02a', parry: '#8cc8ff', block: '#9ad0ff', dodge: '#d8e0ff', spell: '#e0b8ff' };
+const keyOf = ref => JSON.stringify(ref || null);
+const abilityId = e => String(e.ability || e.spell || '').toLowerCase().replace(/[\s']+/g, '_');
 
 export class CombatView {
   constructor({ engine, fx, ents, getHero, heroName, onOutOfRange, onWound, onAggro }) {
@@ -94,14 +42,17 @@ export class CombatView {
     this.onAggro = onAggro;           // (mob id, event) => void: a creature went for the hero
     this.telegraphs = new Map();      // mob id -> telegraph
     this.impacts = new Map();         // "src>dst" -> {at, crit, n}: when this action's blow lands
+    this.director = new Director({ fx, engine, getHero, chest: w => this.chest(w) });
     this._v = new THREE.Vector3();
   }
-  pairKey(a, b) { return `${JSON.stringify(a || null)}>${JSON.stringify(b || null)}`; }
-  // the next wound from src to dst should appear when this action's blow lands
+  pairKey(a, b) { return `${keyOf(a)}>${keyOf(b)}`; }
+  // the next wound (or heal) from src to dst should appear when this action's blow lands
   expect(e, delayMs) {
     const k = this.pairKey(e.src, e.dst);
     this.impacts.set(k, { at: performance.now() + delayMs, crit: e.res === 'crit' || e.crit, n: 0 });
   }
+  // what the hero is about to do: the recipe (main.js plays its start on the key press)
+  recipe(id, cls, ev = {}) { return recipeFor(RECIPES, id, cls, ev); }
 
   // ---- who is who ----
   resolve(ref) {
@@ -137,25 +88,58 @@ export class CombatView {
   // first a beat apart, so a flurry reads as a flurry instead of one blur
   isHero(ref) { return !!(ref && ref.p && String(ref.p).toLowerCase() === String(this.heroName()).toLowerCase()); }
   handle(list) {
+    list = list || [];
     const seq = new Map();
     // whatever goes for the hero becomes the target at once (main.js decides when to switch)
-    if (this.onAggro) for (const e of list || []) {
+    if (this.onAggro) for (const e of list) {
       if (!e.src || e.src.m == null) continue;
       const atHero = this.isHero(e.dst) || (e.hits || []).some(h => this.isHero(h.dst)) || (e.also || []).some(h => this.isHero(h.dst));
       if (atHero && ['attack', 'dmg', 'windup', 'spell', 'ability', 'resolve', 'debuff'].includes(e.k)) this.onAggro(e.src.m, e);
     }
-    for (const e of list || []) {
+    // a skill's or a spell's wounds and heals follow it in the batch: each rises when the
+    // ability reaches its target (an area's too), so they are found and timed first
+    const reached = new Map();
+    list.forEach((e, i) => {
+      if (e.k !== 'ability' && e.k !== 'spell') return;
+      const who = keyOf(e.src), hits = [];
+      for (let j = i + 1; j < list.length; j++) {
+        const f = list[j];
+        if (keyOf(f.src) !== who) continue;
+        if (f.k === 'dmg' || f.k === 'heal') { if (f.dst && !hits.some(h => keyOf(h) === keyOf(f.dst))) hits.push(f.dst); continue; }
+        if (['ability', 'spell', 'attack'].includes(f.k)) break;
+      }
+      reached.set(e, hits);
+    });
+    for (const e of list) {
       if (e.k === 'move') { this.move(e); continue; }
       if (e.k === 'dmg') { this.wound(e); continue; }
+      if (e.k === 'heal') { this.heal(e); continue; }
       // deaths after the killing number has risen; stars once the stunning blow has landed
-      if (e.k === 'death') { setTimeout(() => this.event(e), 650); continue; }
-      if (e.k === 'stun') { setTimeout(() => this.event(e), 360); continue; }
-      const key = e.src ? JSON.stringify(e.src) : '_';
+      if (e.k === 'death') { this.fx.after(0.65, () => this.event(e)); continue; }
+      if (e.k === 'stun') { this.fx.after(0.36, () => this.event(e)); continue; }
+      const key = e.src ? keyOf(e.src) : '_';
       const n = seq.get(key) || 0;
       seq.set(key, n + 1);
       const d = (e.delay_ms || 0) + (e.k === 'attack' ? n * 420 : n * 300);
-      if (d > 0) setTimeout(() => this.event(e), d); else this.event(e);
+      if (reached.has(e)) {
+        const at = d + this.landsIn(e) * 1000;
+        for (const dst of new Set([keyOf(e.dst), ...reached.get(e).map(keyOf)])) if (dst !== 'null') this.expect({ src: e.src, dst: JSON.parse(dst), res: e.res }, at);
+        e._hits = reached.get(e);
+      }
+      if (d > 0) this.fx.after(d / 1000, () => this.event(e)); else this.event(e);
     }
+  }
+  // how long an ability or spell takes to reach its target (its recipe's timeline)
+  landsIn(e) {
+    const src = this.resolve(e.src), dst = this.resolve(e.dst);
+    const r = this.recipe(abilityId(e), src && !src.mob ? src.cls : null, e);
+    const around = String(e.shape || '') === 'self' || String(e.shape || '').startsWith('nova');
+    const dist = src && dst && src.root !== dst.root && (!around || r.travel) ? this.chest(src).distanceTo(this.chest(dst)) : 0;
+    let t = timeline(r, dist).land;
+    // the hero's own: the key press already started it
+    const pre = this.director.pre;
+    if (src && src.hero && pre && pre.id === r.id) t = Math.max(0.05, t - (performance.now() - pre.at) / 1000);
+    return t;
   }
 
   // a creature moving in a fight (server position, room metres)
@@ -187,11 +171,12 @@ export class CombatView {
       this.fx.text(p, crit ? `${e.amt}!` : `${e.amt}`, { color: dst.hero ? COLORS.dmgIn : crit ? COLORS.crit : COLORS.dmgOut, crit, size: dst.hero ? 17 : 19 });
       if (!imp || imp.n > 1) { this.fx.flash(dst.root, dst.hero ? 0xff2a1a : 0xffe0c0, 0.12); if (e.school) this.fx.impact(p, e.school); }
       if (crit || (dst.hero && e.amt >= 15)) this.fx.shake(crit ? 0.22 : 0.14, 0.2);
+      if (crit) { const src = this.resolve(e.src); if (src && !src.mob) this.director.react('crit', { ...dst, cls: src.cls }); }
       if ((crit || killing) && this.engine.hitStop) this.engine.hitStop(killing ? 90 : 70);
       // a second or third blow in the same round gets its own swing
       if (imp && imp.n > 1) { const src = this.resolve(e.src); if (src && !src.hero) this.play(src, '1H_Melee_Attack_Slice_Diagonal', 1.3); }
     };
-    if (delay > 0) setTimeout(show, delay); else show();
+    this.fx.after(delay / 1000, show);
   }
 
   event(e) {
@@ -224,7 +209,6 @@ export class CombatView {
     else anim = ['1H_Melee_Attack_Chop', '1H_Melee_Attack_Slice_Diagonal', '1H_Melee_Attack_Stab'][Math.floor(Math.random() * 3)];
     this.play(src, anim, 1.15);
     if (!dst) return;
-    const land = () => this.land(e, src, dst, e.school || 'physical');
     if (ranged) {
       const r = typeof ranged === 'object' ? ranged
         : e.style === 'bolt' ? { kind: 'bolt', school: e.school || 'arcane', size: 0.2 } : { kind: 'shot', school: 'physical' };
@@ -234,12 +218,15 @@ export class CombatView {
       this.fx.projectile(this.chest(src), this.chest(dst), { kind: r.kind === 'shot' ? 'arrow' : 'orb', school: r.school, speed, size: r.size || 0.2, delay: 0.25, onHit: () => this.land(e, src, dst, r.school) });
     } else {
       this.expect(e, 300);
-      this.fx.slash(src.root.position, dst.root.position, { color: src.hero ? 0xfff0d0 : 0xffb0a0, delay: 0.18 });
-      setTimeout(land, 300);
+      // a hero's or another player's blow trails their class's colour
+      const theme = !src.mob && THEMES[cls];
+      this.fx.slash(src.root.position, dst.root.position, { color: theme ? theme.slash : src.hero ? 0xfff0d0 : 0xffb0a0, delay: 0.18 });
+      this.fx.after(0.3, () => this.land(e, src, dst, e.school || 'physical'));
     }
   }
 
-  // where a blow arrives: the number, the flinch, the spark
+  // where a blow arrives: the flinch, the spark (the number comes with its wound event:
+  // the amount actually taken); a defence in the defender's class colours
   land(e, src, dst, school) {
     const p = this.chest(dst);
     const heroHit = dst.hero;
@@ -250,120 +237,37 @@ export class CombatView {
       this.fx.flash(dst.root, heroHit ? 0xff2a1a : 0xffe0c0, 0.16);
       if (dst.actor && !dst.hero && !(dst.ent && dst.ent.dying)) dst.actor.once(Math.random() < 0.5 ? 'Hit_A' : 'Hit_B', 0.05, 1.2);
       if (dst.hero) this.getHero().ctl.swing(Math.random() < 0.5 ? 'Hit_A' : 'Hit_B', true);
-      // (the number itself comes with the wound event: the amount actually taken)
     } else {
       const word = { miss: 'Miss', dodge: 'Dodge', parry: 'Parry', block: 'Block', resist: 'Resist', immune: 'Immune' }[res] || res;
       this.fx.text(p, word, { color: COLORS[res] || COLORS.miss, size: 15 });
       if (res === 'parry' || res === 'block') { this.fx.sparks(p, 0xbfe0ff, 10); if (dst.actor && !dst.hero) dst.actor.once('Block_Hit', 0.05, 1.3); }
       if (res === 'dodge' && dst.actor && !dst.hero) dst.actor.once(Math.random() < 0.5 ? 'Dodge_Left' : 'Dodge_Right', 0.05, 1.4);
       if (res === 'dodge' && dst.hero) this.getHero().ctl.swing(Math.random() < 0.5 ? 'Dodge_Left' : 'Dodge_Right', true);
+      if (['dodge', 'parry', 'block'].includes(res) && !dst.mob) this.director.react(res, dst);
     }
   }
 
-  // a skill or spell: the user's animation, then what flies and how it lands
+  // a skill or spell: its recipe (the user's clip and motion, what gathers, flies, lands and
+  // lingers), then the target's flinch when it arrives
   ability(e) {
-    const src = this.resolve(e.src), dst = this.resolve(e.dst);
-    const name = String(e.ability || e.spell || '').toLowerCase().replace(/[\s']+/g, '_');
-    const v = ABILITY_FX[name] || this.guess(name, e);
-    const school = e.school || v.school || 'arcane';
-    if (src && dst && src !== dst) this.face(src, dst);
-    if (src) this.play(src, v.anim || 'Spellcast_Shoot', 1.1);
-    const from = src ? this.chest(src) : null;
-    const to = dst ? this.chest(dst) : e.at ? new THREE.Vector3(e.at.x, 1, e.at.z) : null;
-    const flight = from && to ? from.distanceTo(to) / (v.kind === 'shot' ? 30 : v.heavy ? 14 : 20) * 1000 : 0;
-    const LAND = { melee: 320, dash: 330, shot: 300 + flight, volley: 700, bolt: 300 + flight + ((v.count || 1) - 1) * 120,
-      beam: 380, drain: 420, pillar: 450, nova: 380, cone: 420, cloud: 380, mark: 400 };
-    if (dst) this.expect({ ...e, src: e.src, dst: e.dst }, LAND[v.kind] || 300);
-    // a skill or spell lands unless the server says otherwise (parried, resisted...); the
-    // number comes with its wound event
-    const landAll = () => {
-      if (dst && dst !== src) this.land({ ...e, res: e.res || 'hit', heavy: v.heavy }, src, dst, school);
-      for (const t of e.also || []) { const w = this.resolve(t.dst); if (w) this.land({ ...t, res: t.res || 'hit', heavy: v.heavy }, src, w, school); }
-      // (stuns come from the server as their own events, with their real length)
-    };
-    switch (v.kind) {
-      case 'melee':
-        if (src && dst) this.fx.slash(src.root.position, dst.root.position, { color: new THREE.Color().set(this.colorOf(school)).getHex(), wide: v.wide, delay: 0.15 });
-        setTimeout(landAll, 320);
-        if (v.wide && src) this.fx.shockwave(src.root.position, { school, radius: 3, delay: 0.2 });
-        break;
-      case 'dash':
-        if (src && dst) {
-          const start = src.root.position.clone();
-          const end = dst.root.position.clone().sub(start).setY(0);
-          const len = end.length();
-          end.setLength(Math.max(0, len - 1.4)).add(start);
-          if (src.hero) this.getHero().ctl.dash(end.x, end.z, 0.28);
-          for (let i = 0; i < 6; i++) setTimeout(() => this.fx.p.emit(src.root.position.clone().setY(0.3), { count: 5, color: 0xd8c8a0, speed: 1.5, life: 0.5, size: 0.4, drag: 2 }), i * 45);
-        }
-        setTimeout(() => { if (dst) this.fx.shockwave(dst.root.position, { school, radius: 2.5 }); landAll(); }, 330);
-        break;
-      case 'shot':
-        if (from && to) this.fx.projectile(from, to, { kind: 'arrow', speed: 30, delay: 0.3, onHit: landAll });
-        else landAll();
-        break;
-      case 'volley':
-        if (from && to) for (let i = 0; i < 7; i++) {
-          const off = new THREE.Vector3((Math.random() - 0.5) * 2 * (v.radius || 3), 0, (Math.random() - 0.5) * 2 * (v.radius || 3));
-          this.fx.projectile(from, to.clone().add(off).setY(0.2), { kind: 'arrow', speed: 24, arc: 2.2, delay: 0.25 + i * 0.06, onHit: p => this.fx.impact(p, 'physical') });
-        }
-        setTimeout(landAll, 700);
-        break;
-      case 'bolt': {
-        const n = v.count || 1;
-        if (from && to) for (let i = 0; i < n; i++) {
-          this.fx.projectile(from, to, { school, size: v.size || 0.24, speed: v.heavy ? 14 : 20, arc: n > 1 ? 1.5 + i : 0.4, delay: 0.3 + i * 0.12,
-            onHit: p => { if (i === n - 1) { landAll(); if (v.radius) this.fx.shockwave(p, { school, radius: v.radius }); } else this.fx.impact(p, school); } });
-        } else landAll();
-        break;
-      }
-      case 'beam':
-        if (v.sky && to) { const top = to.clone().setY(9); this.fx.beam(top, to, { school, delay: 0.35 }); }
-        else if (from && to) this.fx.beam(from, to, { school, delay: 0.3 });
-        setTimeout(landAll, 380);
-        break;
-      case 'drain':
-        if (from && to) { this.fx.beam(to, from, { school, delay: 0.25, time: 0.6 }); }
-        setTimeout(landAll, 420);
-        break;
-      case 'pillar':
-        if (to) this.fx.pillar(to, { school, delay: 0.35, radius: v.radius ? 1.4 : 0.9 });
-        setTimeout(() => { landAll(); if (v.radius && to) this.fx.shockwave(to, { school, radius: v.radius }); }, 450);
-        break;
-      case 'nova': {
-        const c = v.atTarget && dst ? dst.root.position : src ? src.root.position : to;
-        if (c) setTimeout(() => this.fx.shockwave(c, { school, radius: v.radius || 4 }), 280);
-        if (c) setTimeout(() => this.fx.p.emit(c.clone().setY(0.6), { count: 40, color: this.colorOf(school), speed: 6, life: 0.5, size: 0.3, drag: 3 }), 300);
-        setTimeout(landAll, 380);
-        break;
-      }
-      case 'cone':
-        if (src && to) {
-          const dir = to.clone().sub(src.root.position).setY(0).normalize();
-          for (let i = 0; i < 24; i++) setTimeout(() => this.fx.p.emit(this.chest(src), { count: 3, color: this.colorOf(school), speed: 8, life: 0.45, size: 0.3, dir: dir.clone().multiplyScalar(6), spread: 2, drag: 1.5 }), 250 + i * 10);
-        }
-        setTimeout(landAll, 420);
-        break;
-      case 'cloud':
-        if (to) setTimeout(() => this.fx.p.emit(to, { count: 30, color: this.colorOf(school), speed: 1.2, up: 0.4, life: 1.1, size: 0.6, grow: 0.6, drag: 1 }), 300);
-        setTimeout(landAll, 380);
-        break;
-      case 'mark':
-        if (from && to) this.fx.projectile(from, to, { school, size: 0.12, speed: 26, delay: 0.25 });
-        setTimeout(() => { if (dst) this.fx.swirl(dst.root, { school, time: 0.8, rise: 2.4, count: 2 }); landAll(); }, 400);
-        break;
-      case 'heal':
-        return this.heal({ ...e, src: e.src, dst: e.dst || e.src, school });
-      case 'buff':
-        if (dst || src) this.fx.swirl((dst || src).root, { school, time: 0.9 });
-        setTimeout(landAll, 300);
-        break;
-      case 'summon':
-        if (src) { const p = src.root.position.clone().add(new THREE.Vector3(1.2, 0, 0.6)); this.fx.pillar(p, { school, radius: 0.7, delay: 0.4 }); }
-        break;
-      default:
-        setTimeout(landAll, 300);
+    const src = this.resolve(e.src);
+    let dst = this.resolve(e.dst);
+    const r = this.recipe(abilityId(e), src && !src.mob ? src.cls : null, e);
+    // something thrown at nobody in particular goes to the hero's target
+    if (!dst && src && src.hero && r.travel && this.ents.targeted && this.ents.targeted.root) {
+      const t = this.ents.targeted;
+      dst = { actor: t.actor, root: t.root, ent: t, mob: t.kind === 'mob', cls: t.data && t.data.char_class };
     }
+    const hits = (e._hits || []).map(h => this.resolve(h)).filter(Boolean);
+    const school = r.school || e.school || (THEMES[r.cls] || THEMES.creature).school;
+    // a skill or spell lands unless the server says otherwise (parried, resisted...); the
+    // number comes with its wound event; an ally's blessing never makes them flinch
+    const friendly = r.flags.has('ally') || (dst && !dst.mob && src && !src.mob && !e.res);
+    const landAll = () => {
+      if (dst && src && dst.root !== src.root && !friendly) this.land({ ...e, res: e.res || 'hit', heavy: r.flags.has('heavy') }, src, dst, school);
+      for (const t of e.also || []) { const w = this.resolve(t.dst); if (w) this.land({ ...t, res: t.res || 'hit', heavy: r.flags.has('heavy') }, src, w, school); }
+    };
+    this.director.play(r, { src, dst, hits, e, onLand: landAll });
   }
 
   // a spell that came apart in the caster's hands: a puff of grey smoke, a few sparks
@@ -372,32 +276,31 @@ export class CombatView {
     if (!src) return;
     if (!src.hero) this.play(src, 'Spellcast_Shoot', 1.1);
     const p = this.chest(src).add(new THREE.Vector3(0, 0.25, 0));
-    setTimeout(() => {
+    this.fx.after(0.32, () => {
       this.fx.p.emit(p, { count: 18, color: 0x8a8a96, speed: 1.1, up: 0.9, life: 0.9, size: 0.38, grow: 0.5, drag: 1.6 });
       this.fx.sparks(p, this.colorOf(e.school || 'arcane'), 6);
       this.fx.text(p.clone().setY(p.y + 0.5), 'Fizzled', { color: '#b8b0c8', size: 14, rise: 0.6 });
-    }, 320);
-  }
-
-  guess(name, e) {
-    const s = e.school || '';
-    if (/heal|cure|mend|restore|renew/.test(name)) return { anim: 'Spellcast_Raise', kind: 'heal', school: 'holy' };
-    if (/bless|armor|shield|ward|aura|haste|strength|stoneskin|sanctuary/.test(name)) return { anim: 'Spellcast_Raise', kind: 'buff', school: s || 'holy' };
-    if (/fire|flame|burn/.test(name)) return { anim: 'Spellcast_Shoot', kind: 'bolt', school: 'fire' };
-    if (/frost|ice|chill|cold/.test(name)) return { anim: 'Spellcast_Shoot', kind: 'bolt', school: 'frost' };
-    if (/lightning|shock|thunder/.test(name)) return { anim: 'Spellcast_Shoot', kind: 'beam', school: 'lightning' };
-    if (/shoot|shot|arrow|volley/.test(name)) return { anim: '1H_Ranged_Shoot', kind: 'shot', school: 'physical' };
-    if (e.k === 'spell') return { anim: 'Spellcast_Shoot', kind: 'bolt', school: s || 'arcane' };
-    return { anim: '1H_Melee_Attack_Chop', kind: 'melee', school: s || 'physical' };
+    });
   }
   colorOf(school) { return ({ fire: 0xff7a2a, frost: 0x9fd8ff, lightning: 0xbfd8ff, arcane: 0xc87aff, holy: 0xffe8a0, shadow: 0x8a4ad0, necrotic: 0x7aff8a, nature: 0x9aff6a, poison: 0xb8ff5a, sound: 0xffb8ff, blood: 0xd02a2a })[school] || 0xffffff; }
 
+  // a heal: the number rises when the spell that caused it arrives; a heal nothing announced
+  // (a potion, regeneration, a drain) gets a soft glow of its own
   heal(e) {
-    const dst = this.resolve(e.dst) || this.resolve(e.src);
-    if (!dst) return;
-    this.fx.swirl(dst.root, { school: e.school || 'holy', time: 0.9 });
-    setTimeout(() => this.fx.pillar(dst.root.position, { school: e.school || 'holy', radius: 0.7, time: 0.6 }), 150);
-    if (e.amt) setTimeout(() => this.fx.text(this.chest(dst), `+${e.amt}`, { color: COLORS.heal, size: 18 }), 300);
+    const k = this.pairKey(e.src, e.dst);
+    const imp = this.impacts.get(k);
+    const now = performance.now();
+    const announced = imp && now < imp.at + 1800;
+    const delay = announced ? Math.max(0, imp.at - now) : 0;
+    this.fx.after(delay / 1000, () => {
+      const dst = this.resolve(e.dst) || this.resolve(e.src);
+      if (!dst) return;
+      if (!announced) {
+        this.fx.swirl(dst.root, { school: e.school || 'holy', time: 0.8, count: 2 });
+        this.fx.p.emit(this.chest(dst), { count: 10, color: 0x8dffa0, speed: 0.6, up: 1.4, life: 0.8, size: 0.2, drag: 1.2 });
+      }
+      if (e.amt) this.fx.text(this.chest(dst), `+${e.amt}`, { color: COLORS.heal, size: 18 });
+    });
   }
   buff(e) {
     const dst = this.resolve(e.dst);
@@ -414,7 +317,7 @@ export class CombatView {
       t += dt;
       if (Math.floor(t * 20) % 2 === 0) for (let i = 0; i < 3; i++) {
         const a = t * 6 + i * 2.1;
-        this.fx.p.emit(top().add(new THREE.Vector3(Math.cos(a) * 0.45, 0, Math.sin(a) * 0.45)), { count: 1, color: 0xffe066, speed: 0, life: 0.18, size: 0.22 });
+        this.fx.glyph(top().add(new THREE.Vector3(Math.cos(a) * 0.45, 0, Math.sin(a) * 0.45)), { glyph: 'star', count: 1, color: 0xffe066, speed: 0, life: 0.18, size: 0.3 });
       }
       return t < (e.secs || 1.6);
     } });
@@ -456,7 +359,7 @@ export class CombatView {
     if (at) {
       const school = e.school || 'physical';
       if (e.kind === 'cast' && src) this.fx.projectile(this.chest(src), at.clone().setY(0.4), { school, size: 0.3, speed: 18, delay: 0.2, onHit: p => this.fx.impact(p, school, true) });
-      setTimeout(() => { this.fx.shockwave(at, { school, radius: a.r || 3 }); this.fx.shake(0.18, 0.25); }, e.kind === 'cast' ? 450 : 250);
+      this.fx.after(e.kind === 'cast' ? 0.45 : 0.25, () => { this.fx.shockwave(at, { school, radius: a.r || 3 }); this.fx.shake(0.18, 0.25); });
     }
     for (const h of e.hits || []) { const d = this.resolve(h.dst); if (d) this.land(h, src, d, e.school || 'physical'); }
     if (e.dodged) for (const ref of e.dodged) { const d = this.resolve(ref); if (d) this.fx.text(this.chest(d), 'Evaded!', { color: '#a8ffd0', size: 16 }); }

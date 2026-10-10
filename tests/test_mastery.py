@@ -102,6 +102,18 @@ async def offline():
     check(any('truesight_shot' in v for k, v in m.items() if k in ('cmd_truesight_shot', 'cmd_aimed_shot')),
           'renamed abilities are found under both names (truesight shot = aimed shot)')
 
+    # every class ability has its 3D event (push 6), and the 3D client's tests see today's books
+    import combat_hooks
+    who = fake_player(char_class='ranger', skills={'truesight_shot': 50})
+    check(combat_hooks._class_ability(who, 'aimed_shot') == 'truesight_shot' and combat_hooks._class_ability(who, 'look') is None,
+          "a renamed command's event names the book's ability (aimed_shot -> truesight_shot); `look` has none")
+    check(combat_hooks.event_shape('warpath', 'warrior') == 'self' and combat_hooks.event_shape('eviscerate', 'thief') == 'melee'
+          and combat_hooks.aim_of('layhands', 'paladin') == 'ally', 'shapes from the book (warpath: self) and the extras (eviscerate, lay hands)')
+    sys.path.insert(0, os.path.join(ROOT, 'tools'))
+    import dump_abilitybook
+    current = os.path.exists(dump_abilitybook.OUT) and open(dump_abilitybook.OUT).read() == dump_abilitybook.text()
+    check(current, 'tests/web/fixtures/abilitybook.json is current (else: python3 tools/dump_abilitybook.py)')
+
 
 def trainer_room(trainer_vnum):
     for f in glob.glob(os.path.join(ROOT, 'world/zones/*.json')):

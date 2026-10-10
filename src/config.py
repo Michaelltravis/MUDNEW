@@ -285,7 +285,9 @@ class Config:
             'save_progression': 'warrior',
             'skills': ['strike', 'bash', 'cleave', 'charge', 'rally', 'execute',
                       'doctrine', 'swear', 'evolve',
-                      'kick', 'rescue', 'second_attack', 'third_attack', 'parry', 'shield_block', 'dodge'],
+                      'kick', 'rescue', 'second_attack', 'third_attack', 'parry', 'shield_block', 'dodge',
+                      # level 31-60 (56 and 60 are reached through prestige)
+                      'rallying_cry', 'shattering_blow', 'commanding_shout', 'heroic_leap', 'warpath', 'titans_wrath'],
             'spells': [],
             # Warriors also gain rage abilities: execute (15), rampage (20), warcry (10), ignorepain (8)
             # And can switch stances: battle, berserk, defensive, precision
@@ -350,7 +352,9 @@ class Config:
             'save_progression': 'thief',
             'skills': ['backstab', 'sneak', 'hide', 'steal', 'pick_lock', 'detect_traps',
                       'second_attack', 'dodge', 'evasion', 'pocket_sand', 'low_blow',
-                      'rigged_dice', 'jackpot', 'circle', 'trip', 'caltrops'],
+                      'rigged_dice', 'jackpot', 'circle', 'trip', 'caltrops',
+                      # level 31-60 (56 and 60 are reached through prestige)
+                      'nerve_strike', 'garrote', 'marked_for_death_thief', 'perfect_crime'],
             'spells': [],
             # Thieves use combo points: backstab/attacks build points, finishers spend them
             # Finishers: eviscerate (1+), kidney_shot (4+), slice_dice (3+)
@@ -371,7 +375,9 @@ class Config:
             # sneak and hide — no way to fight but the sword)
             'skills': ['truesight_shot', 'track', 'sneak', 'hide', 'second_attack', 'dual_wield', 'dodge', 'scan',
                       'wildbond_strike', 'loosing_storm', 'quarry_mark', 'tame',
-                      'snare'],
+                      'snare',
+                      # level 31-60 (56 and 60 are reached through prestige)
+                      'volley', 'camouflage_master', 'serpent_sting', 'alpha_pack'],
             'spells': ['cure_light', 'detect_magic', 'faerie_fire', 'call_lightning',
                       'barkskin', 'entangle', 'briskness'],
             # Rangers can tame animal companions: wolf, bear, hawk, cat, boar
@@ -453,7 +459,9 @@ class Config:
             'save_progression': 'thief',
             'skills': ['backstab', 'mark', 'expose', 'vital', 'execute_contract',
                       'feint', 'evasion', 'fade', 'slip_the_veil',
-                      'sneak', 'hide', 'dual_wield', 'second_attack', 'dodge', 'poison'],
+                      'sneak', 'hide', 'dual_wield', 'second_attack', 'dodge', 'poison',
+                      # level 31-60 (56 and 60 are reached through prestige)
+                      'shadowstrike', 'fan_of_knives', 'rupture', 'shadow_blades_master', 'vendetta_assassin', 'death_mark'],
             'spells': [],
             # Level 31-60: shadowstrike (32), fan_of_knives (38), rupture (44),
             #              shadow_blades_master (50), vendetta_assassin (56), death_mark (60)

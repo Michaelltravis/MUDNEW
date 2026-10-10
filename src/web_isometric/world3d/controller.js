@@ -111,22 +111,54 @@ export class Controller {
       && !b(x + d, z + d) && !b(x - d, z + d) && !b(x + d, z - d) && !b(x - d, z - d);
   }
 
-  // a short rush to a point (charge, lunges): eased, stops at the last open spot
-  dash(x, z, time = 0.25) {
-    this.dashing = { fx: this.pos.x, fz: this.pos.z, tx: x, tz: z, t: 0, time };
+  // a short rush to a point (charge, lunges): eased, stops at the last open spot; `height`
+  // makes it a leap, `face: false` keeps the way the hero looks (a step back, a sidestep)
+  dash(x, z, time = 0.25, { height = 0, face = true } = {}) {
+    this.dashing = { fx: this.pos.x, fz: this.pos.z, tx: x, tz: z, t: 0, time, height };
     this.path = null;
-    this.yaw = Math.atan2(x - this.pos.x, z - this.pos.z);
+    if (face) this.yaw = Math.atan2(x - this.pos.x, z - this.pos.z);
+  }
+  // laid over whatever the body is doing (abilities, fxdirector.js): a turn on the spot, a
+  // rise off the ground (`slam`: up slowly, down hard), a blink to a nearby open spot
+  spin(turns = 1, time = 0.5) { this.spinning = { turns, time, t: 0 }; }
+  lift(height = 0.6, time = 1, slam = false) { this.lifting = { height, time, t: 0, slam }; }
+  blink(x, z) {
+    if (this.free(x, z)) { this.pos.x = x; this.pos.z = z; }
+    this.vel.set(0, 0); this.path = null; this.dashing = null;
+  }
+  // the turn and height of the moment
+  overlay(dt) {
+    let turn = 0, y = 0;
+    if (this.spinning) {
+      const s = this.spinning;
+      s.t += dt;
+      const k = Math.min(1, s.t / s.time);
+      turn = (1 - Math.pow(1 - k, 2)) * s.turns * Math.PI * 2;
+      if (k >= 1) this.spinning = null;
+    }
+    if (this.lifting) {
+      const l = this.lifting;
+      l.t += dt;
+      const k = Math.min(1, l.t / l.time);
+      y = l.height * (l.slam ? (k < 0.75 ? Math.sin(k / 0.75 * Math.PI / 2) : Math.max(0, 1 - (k - 0.75) / 0.25))
+        : k < 0.25 ? Math.sin(k / 0.25 * Math.PI / 2) : k > 0.8 ? Math.max(0, (1 - k) / 0.2) : 1);
+      if (k >= 1) this.lifting = null;
+    }
+    const d = this.dashing;
+    if (d && d.height) y += d.height * 4 * d.t * (1 - d.t);
+    this.actor.root.rotation.y = this.yaw + turn;
+    this.pos.y = y;
   }
 
   update(dt) {
     if (this.dashing) {
       const d = this.dashing;
       d.t = Math.min(1, d.t + dt / d.time);
-      const k = 1 - Math.pow(1 - d.t, 3);
+      const k = d.height ? d.t : 1 - Math.pow(1 - d.t, 3);
       const nx = d.fx + (d.tx - d.fx) * k, nz = d.fz + (d.tz - d.fz) * k;
-      if (this.free(nx, nz)) { this.pos.x = nx; this.pos.z = nz; } else d.t = 1;
-      this.actor.root.rotation.y = this.yaw;
-      if (d.t >= 1) this.dashing = null;
+      if (this.free(nx, nz)) { this.pos.x = nx; this.pos.z = nz; } else if (!d.height) d.t = 1;
+      this.overlay(dt);
+      if (d.t >= 1) { this.dashing = null; this.pos.y = 0; }
       this.vel.set(0, 0);
       return 0;
     }
@@ -157,7 +189,7 @@ export class Controller {
       d = Math.atan2(Math.sin(d), Math.cos(d));
       this.yaw += d * Math.min(1, dt * 14);
     }
-    this.actor.root.rotation.y = this.yaw;
+    this.overlay(dt);
     if (this.lock === 0) {
       if (speed > 3.2) this.actor.play('Running_A', 0.15, speed / RUN * 1.05);
       else if (speed > 0.25) this.actor.play('Walking_A', 0.15, Math.max(0.6, speed / WALK));
@@ -168,10 +200,11 @@ export class Controller {
 
   // soft: drawn from a server event (a round's blow, being hit) — skipped while you run,
   // cancelled when you start moving; a key press (soft = false) commits you for a moment
-  swing(anim = '1H_Melee_Attack_Chop', soft = false) {
-    if (this.lock > 0 && !this.soft) return;      // nothing cuts into a committed move
+  // `force`: an ability's second clip (aim, then loose) follows its first
+  swing(anim = '1H_Melee_Attack_Chop', soft = false, { speed = 1.25, force = false } = {}) {
+    if (this.lock > 0 && !this.soft && !force) return;      // nothing cuts into a committed move
     if (soft && (this.keys.size || this.path || this.dashing || this.vel.lengthSq() > 1)) return;
-    const d = this.actor.once(anim, 0.06, 1.25);
+    const d = this.actor.once(anim, 0.06, speed);
     this.lock = Math.min(0.55, d * 0.7);
     this.soft = soft;
   }

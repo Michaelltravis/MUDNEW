@@ -60,6 +60,11 @@ ABILITY_RANGE = {
     # bard
     'mockery': (14.0, 'ranged'), 'fascinate': (12.0, 'ranged'), 'crescendo': (0, 'nova:6'),
     'discordant_note': (7.0, 'cone:7'),
+    # shots and leaps from the level 31-60 abilities and the talents (a bow skill used to
+    # walk the hero up to melee range before loosing)
+    'heroic_leap': (15.0, 'dash'), 'shadowstrike': (12.0, 'dash'), 'death_from_above': (10.0, 'dash'),
+    'volley': (16.0, 'blast:5'), 'serpent_sting': (16.0, 'ranged'), 'black_arrow': (18.0, 'ranged'),
+    'wyvern_sting': (16.0, 'ranged'),
 }
 DEFAULT_SPELL = (14.0, 'ranged')
 DEFAULT_SKILL = (MELEE, 'melee')

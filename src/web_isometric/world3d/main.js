@@ -11,7 +11,7 @@ import { Sync } from './sync.js';
 import { Entities, classModel } from './entities.js';
 import { cutout } from './cutout.js';
 import { FX } from './fx.js';
-import { CombatView, ABILITY_FX } from './combat.js';
+import { CombatView } from './combat.js';
 import { PassageGate, HOP_TIMEOUT_MS } from './passages.js';
 import { doorPrompt, doorVerbs, doorAnchor, cap } from './doorlogic.js';
 import { createPrompt } from './hud/prompt.js';
@@ -38,12 +38,13 @@ async function runDemo() {
   if (params.get('gallery')) {
     const { showGallery, showMobGallery } = await import('./gallery.js');
     const g = params.get('gallery');
-    const { showBeastGallery } = await import('./gallery.js');
+    const { showBeastGallery, showAbilityGallery } = await import('./gallery.js');
     const extra = ['town', 'furniture', 'graveyard'].includes(g) ? await loadKit(g) : null;
     const at = g === 'mobs' ? await showMobGallery(engine) : g === 'beasts' ? await showBeastGallery(engine, kits)
+      : g === 'abilities' ? await showAbilityGallery(engine)
       : showGallery(engine, extra || (g === 'nature' ? kits.nature : kits.dungeon), Number(params.get('scale')) || 1);
     engine.rig.target.copy(at); engine.placeCamera(true);
-    window.MH3D = { engine, THREE };
+    window.MH3D = { engine, THREE, gallery: window.MH3D_gallery };
   } else {
     const banner = $('#banner');
     const demo = await buildDemo(engine, kits, {
@@ -503,22 +504,24 @@ async function runGame() {
   ]));
   MH.bus.on('hud.ability', ab => {
     const t = ents.targeted;
-    // the hero starts the ability's own move on the key press; the server's event then
-    // only adds what flies and lands (combat.js skips a second swing)
-    const anim = (ABILITY_FX[ab.id] && ABILITY_FX[ab.id].anim) || (ab.spell ? 'Spellcast_Shoot' : '1H_Melee_Attack_Stab');
+    // the hero starts the ability's own move on the key press (its recipe, abilityfx.js: the
+    // clip, a leap or a blink, what gathers in the hands); the server's event then only adds
+    // what flies and lands (fxdirector.js picks up where the key press left off)
+    const r = combat.recipe(ab.id, myClass(), { k: ab.spell ? 'spell' : 'ability' });
+    const begin = target => combat.director.prelude(r, { target: target && target.root ? target : null });
     // a heal or a blessing goes to the player you have targeted, else to yourself
     if (ab.ally) {
-      ctl.swing(anim); ctl.localSwingAt = performance.now();
+      begin(t && t.kind === 'player' ? t : null);
       return MH.sendCommand(abilityCommand(ab, t && t.kind === 'player' ? refFor(t) : null));
     }
     if (ab.self || !t || t.kind !== 'mob') {
       if (!ab.self && !t) return hud.toast('No target — click a creature or press Tab.');
-      ctl.swing(anim); ctl.localSwingAt = performance.now();
+      // a self ability that throws something (a release of charges) throws it at your target
+      begin(r.travel && t && t.kind === 'mob' ? t : null);
       return MH.sendCommand(abilityCommand(ab, null));
     }
     inReach(t, rangeOf(ab.id, ab.spell), () => {
-      ctl.face(t.root.position.x, t.root.position.z);
-      ctl.swing(anim); ctl.localSwingAt = performance.now();
+      begin(t);
       // the exact creature ('#12'): the server turns it into the keyword its commands know
       const cmd = abilityCommand(ab, refFor(t));
       lastAction = { cmd, at: performance.now() };

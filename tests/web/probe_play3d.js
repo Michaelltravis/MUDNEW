@@ -1,5 +1,5 @@
 // Browser probe for /play against a local server (./run.sh), with the gauntlet admin account.
-//   NODE_PATH=/opt/node22/lib/node_modules node tests/web/probe_play3d.js stairs|doors|camera|menu|autotarget|creatures|spellbook|trainer|party [outdir]
+//   NODE_PATH=/opt/node22/lib/node_modules node tests/web/probe_play3d.js stairs|doors|camera|menu|autotarget|creatures|spellbook|trainer|party|abilityfx [outdir]
 // CommonJS on purpose (the global Playwright only resolves through NODE_PATH with require).
 // WebGL may render at ~1 fps in a container, so the probe places the hero directly and waits
 // on frames instead of walking in real time.
@@ -23,6 +23,9 @@
 //   creatures: a blob, a mimic, a statue, a chess rook, a stone golem, a goblin farmer, a brownie,
 //           a living book and the Sewer King each get the right body (looks.js, from the payload's
 //           short description and room line).
+//   abilityfx: in the crypt with a spectre, a few of the character's own abilities each start
+//           their own recipe on the key press (abilityfx.js) and the server's event plays the
+//           rest (what flies, lands, lingers), with no page errors.
 const fs = require('fs');
 const path = require('path');
 const { chromium } = require('playwright');
@@ -404,6 +407,59 @@ async function waitFor(page, fn, arg, secs = 60) {
     });
     await sleep(4000);
     await page.screenshot({ path: path.join(OUT, 'creatures.png') });
+    await page.evaluate(() => MH.sendCommand('purge', false));
+    await sleep(800);
+  }
+
+  if (MODE === 'abilityfx') {
+    check(await goto(18620), 'in the crypt (18620)');
+    const spectre = () => [...MH3D.ents.list.values()].find(e => e.kind === 'mob' && e.vnum === 18620 && e.root && e.alive && !(e.data.maxHp && e.data.hp <= 0));
+    const fresh = async () => {
+      const alive = src => !!eval(`(${src})`)();
+      if (await page.evaluate(alive, String(spectre))) return true;
+      await page.evaluate(() => { MH.sendCommand('mload 18610', false); });
+      await sleep(1200);
+      await page.evaluate(() => MH.state.mapSocket.send(JSON.stringify({ type: 'subscribe', player: MH.state.playerName, token: MH.state.mapToken, mode: 'near' })));
+      return waitFor(page, alive, String(spectre), 60);
+    };
+    await page.evaluate(() => { for (const c of ['purge', 'restore']) MH.sendCommand(c, false); });
+    await sleep(800);
+    check(await fresh(), 'a spectre to practise on');
+    // record what the effects director is asked to do: the key press, then the server's event
+    const info = await page.evaluate(async () => {
+      window.__fx = [];
+      const d = MH3D.combat.director, pre = d.prelude.bind(d), play = d.play.bind(d);
+      d.prelude = (r, o) => { window.__fx.push(['pre', r.id, r.known]); return pre(r, o); };
+      d.play = (r, c) => { window.__fx.push(['play', r.id, r.known, !!(c.src && c.src.hero)]); return play(r, c); };
+      // what the character knows: the class's book and the payload's proficiencies
+      const p = MH.state.player || {}, cls = String(p.char_class || '').toLowerCase();
+      const book = (await (await fetch(`/abilitybook?cls=${cls}`)).json()).abilities || [];
+      const pct = id => Math.max((p.skills || {})[id] || 0, (p.spells || {})[id] || 0);
+      const abs = book.filter(a => !a.passive && pct(a.id) > 0);
+      return { cls, known: abs.map(a => ({ id: a.id, type: a.type, target: a.target || 'enemy' })) };
+    });
+    const pick = [...info.known.filter(a => a.target === 'enemy').slice(0, 3), ...info.known.filter(a => a.target === 'self').slice(0, 1)];
+    check(pick.length >= 2, `${info.cls}: trying ${pick.map(a => a.id).join(', ')}`);
+    let played = 0;
+    for (const a of pick) {
+      await fresh();
+      await page.evaluate(spectre => {
+        const m = eval(`(${spectre})`)();
+        if (m) { MH3D.ents.setTarget(m.key, { byHand: true }); MH3D.hero.root.position.copy(m.root.position).add(new MH3D.THREE.Vector3(-1.8, 0, 0)); }
+        MH.sendCommand('restore', false);
+        window.__fx.length = 0;
+      }, String(spectre));
+      await sleep(600);
+      await page.evaluate(a => MH.bus.emit('hud.ability', { id: a.id, spell: a.type === 'spell', self: a.target !== 'enemy' && a.target !== 'ally', ally: a.target === 'ally' }), a);
+      const started = await waitFor(page, id => window.__fx.some(f => f[0] === 'pre' && f[1] === id && f[2]), a.id, 6);
+      const landed = await waitFor(page, id => window.__fx.some(f => f[0] === 'play' && f[1] === id && f[3]), a.id, 8);
+      await sleep(450);
+      await page.screenshot({ path: path.join(OUT, `abilityfx-${a.id}.png`) });
+      if (started && landed) played++;
+      console.log(`     ${a.id}: key press ${started ? 'played its own recipe' : 'NOT played'}, server event ${landed ? 'played' : 'did not come (refused, cooldown?)'}`);
+      await sleep(2200);
+    }
+    check(played >= 2, `${played} of ${pick.length} abilities played their own look from the key press and the server's event`);
     await page.evaluate(() => MH.sendCommand('purge', false));
     await sleep(800);
   }

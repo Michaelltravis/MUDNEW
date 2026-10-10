@@ -150,12 +150,13 @@ export function createEngine(container, opts = {}) {
   // overlays: nameplates, floating text, the see-through circle, prompts, the minimap)
   const ticks = [], lateTicks = [];
   const clock = new THREE.Clock();
-  let frames = 0, stopUntil = 0;
-  function frame() {
+  let frames = 0, stopUntil = 0, elapsed = 0;
+  // `fixed`: a step of exactly that long (engine.step: screenshots of effects mid-flight)
+  function frame(fixed) {
     // hit-stop: a big blow freezes the world for a few frames (time crawls, it never stops)
-    const raw = Math.min(clock.getDelta(), 0.05);
+    const raw = fixed != null ? fixed : Math.min(clock.getDelta(), 0.05) * api.timeScale;
     const dt = performance.now() < stopUntil ? raw * 0.06 : raw;
-    const t = clock.elapsedTime;
+    const t = (elapsed += dt);
     for (const fn of ticks) fn(dt, t);
     rig.dist += (rig.wantDist - rig.dist) * (1 - Math.exp(-dt * 10));
     rig.focus.lerp(rig.target, 1 - Math.exp(-dt * 9));
@@ -171,15 +172,21 @@ export function createEngine(container, opts = {}) {
     if (composer) composer.render(dt); else renderer.render(scene, camera);
     frames++;
   }
-  renderer.setAnimationLoop(frame);
+  renderer.setAnimationLoop(() => frame());
 
-  return {
+  const api = {
     THREE, renderer, scene, camera, rig, sun, hemi, quality: q,
+    timeScale: 1,                      // slow motion for the effects gallery
     onTick: fn => ticks.push(fn),
     onLateTick: fn => lateTicks.push(fn),
     orbit, snapNorth,
     hitStop: ms => { stopUntil = Math.max(stopUntil, performance.now() + ms); },
     setMood, placeCamera,
+    // stop the loop and advance by hand, `n` frames of `dt` each (a slow machine still shows
+    // every moment of an effect); setManual(false) starts the loop again
+    setManual(on) { renderer.setAnimationLoop(on ? null : () => frame()); clock.getDelta(); },
+    step(dt = 1 / 30, n = 1) { for (let i = 0; i < n; i++) frame(dt); },
     get frames() { return frames; },
   };
+  return api;
 }

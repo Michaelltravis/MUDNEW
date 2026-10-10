@@ -402,3 +402,45 @@ skill's own server code.
   relay, invite/accept/kick/quit events, loot-roll custody, round-robin), the existing suites with
   the token, and `tests/web/probe_play3d.js party` (two browsers: each sees the other walk, invite
   → popup → Join → party frames with the leader's crown on both).
+
+### Every ability looks like its class (owner: "ensure animations for skills, spells, and abilities are unique and themed for every class")
+- **Every ability has an event now.** Only the ~50 abilities with a range entry used to reach the
+  3D client; the rest showed nothing. Every class ability (renamed commands too: `aimed_shot` is
+  the truesight shot) and the extras outside the books (combo finishers, lay on hands, raising
+  the dead, songs, summoned elementals) now send an `ability` event, aimed by what its book says
+  (`combat_hooks._class_ability`, `event_shape`, `EXTRA_ABILITIES`); a heal with nobody named is
+  for yourself; sneaking and hiding are shown only to the one doing it (`emit_private`). The
+  warrior, thief, ranger and assassin level 31–60 abilities joined their class books, so they
+  show in the spellbook and grow with use; self buffs such as Warpath no longer need a target,
+  and bow skills (serpent sting, volley...) no longer walk you up to melee range first.
+- **A recipe for every ability** (`world3d/abilityfx-table.js`, 302 lines: 285 book abilities
+  and 17 extras): `'body | cast | travel | land | aura | flags'` — the clip and a body motion
+  (leap, dash, blink behind the target, spin, hover, rise and slam, backstep, sidestep), what
+  gathers while it winds up, what flies, how it lands and what lingers. Each class has its
+  theme (`abilityfx.js THEMES`): warrior steel and ember (war crest, sparks, cracked ground),
+  paladin gold and azure (sun wheel, pillars, wings, halos), cleric pearl and rose (rose window,
+  feathers, petals), mage violet and cyan (rune circles, orbs, the elements), necromancer bile
+  and bone (skull circles, flying skulls, drains, bones out of the ground), thief coin and smoke
+  (coin rings and fountains, dice, smoke), assassin crimson and nightshade (crosshair, blinks,
+  afterimages), ranger leaf and amber (leaf wreaths, arrow rain, paw prints, vines), bard magenta
+  and teal (the musical staff, notes, rings of sound). Creatures' spells look like their school.
+  Passive defences carry the class too (an assassin's dodge leaves an afterimage, a paladin's
+  block a flash of gold); auto-attack arcs are the class's colour.
+- **New effects** (`fx.js`, pictures drawn in code in `glyphs.js`): glyph particles (notes,
+  skulls, coins, leaves, runes, feathers, daggers...), ground sigils and cracks, chains, rays,
+  tethers, arrow and glyph rains, meteors, ground waves, cones, geysers, growths (vines, bones,
+  ice, stones, bars, thorns), shields and domes, wings, halos, orbiting glyphs, afterimages,
+  glows, stealth fades, screen flashes. Everything runs on the frame clock (`fx.after/every`, so
+  a hit-stop slows a whole sequence alike), each quality tier has a budget, effects far from
+  the view draw only their core, and particle sizes follow the screen's resolution.
+- **Timing.** The key press starts the hero's clip, motion and cast at once
+  (`fxdirector.prelude`); the server's event then plays what flies and lands from where the key
+  press left off. Each ability's wounds and heals in the same batch rise when it reaches them
+  (areas included), not when the event arrives.
+- **Checks.** `tools/dump_abilitybook.py` writes every class's book to
+  `tests/web/fixtures/abilitybook.json` (`test_mastery --offline` fails when it is stale);
+  `tests/web/abilityfx.test.mjs`: every ability has its own line, no two in a class share a
+  shape, a spell several classes know looks different in each, only real clips and effects;
+  `/play?demo&gallery=abilities&cls=<class>[&only=…][&speed=0.5][&manual]` plays a class's
+  whole book on training dummies, labelled; `probe_play3d.js abilityfx` uses a character's own
+  abilities on a spectre in the real game. All 302 played in the gallery without an error.

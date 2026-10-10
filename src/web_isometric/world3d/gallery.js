@@ -107,3 +107,77 @@ export async function showBeastGallery(engine, kits) {
   engine.setMood('day', true);
   return new THREE.Vector3((cols - 1) * step / 2, 0, (rows - 1) * step * 0.6);
 }
+
+// /play?demo&gallery=abilities&cls=mage[&only=fireball,frost][&speed=0.5][&manual] — a class's
+// whole book played in turn by its hero on training dummies, labelled with each recipe line
+// (abilityfx-table.js). ← → step, space pauses. `manual` stops the clock for screenshots
+// (MH3D.gallery.play(i), then engine.step()): tests/web/probe_play3d.js abilityfx.
+export async function showAbilityGallery(engine) {
+  const q = new URLSearchParams(location.search);
+  const cls = (q.get('cls') || 'mage').toLowerCase();
+  const only = q.get('only');
+  const [{ FX }, { Director }, { RECIPES }, { recipeFor, timeline }, { spawnCharacter }, { classModel }] = await Promise.all([
+    import('./fx.js'), import('./fxdirector.js'), import('./abilityfx-table.js'), import('./abilityfx.js'), import('./assets.js'), import('./entities.js')]);
+  engine.timeScale = Number(q.get('speed')) || 1;
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(40, 30), new THREE.MeshStandardMaterial({ color: 0x4a4740, roughness: 1 }));
+  floor.rotation.x = -Math.PI / 2; floor.position.set(3.5, 0, 0); floor.receiveShadow = true;
+  engine.scene.add(floor);
+  const fx = new FX(engine, document.querySelector('#fct'));
+  const body = async (model, opts, x, z, yaw) => {
+    const a = await spawnCharacter(model, opts);
+    a.root.position.set(x, 0, z); a.root.rotation.y = yaw;
+    a.play('Idle', 0);
+    engine.scene.add(a.root);
+    return a;
+  };
+  const look = classModel(cls);
+  const hero = await body(look.model, { tint: look.tint }, 0, 0, Math.PI / 2);
+  const dummy = await body('knight', { flat: true, tint: 0x8a7a64 }, 7, 0, -Math.PI / 2);
+  const left = await body('knight', { flat: true, tint: 0x7a6e5c }, 8.6, -2.4, -Math.PI / 2);
+  const right = await body('knight', { flat: true, tint: 0x7a6e5c }, 8.6, 2.4, -Math.PI / 2);
+  const ally = await body('knight', { tint: 0xd0e0ff }, -1.6, 2.6, Math.PI / 2);
+  const actors = [hero, dummy, left, right, ally];
+  const who = (a, mob = true) => ({ actor: a, root: a.root, mob, cls: a === hero ? cls : null });
+  const director = new Director({ fx, engine, getHero: () => null, chest: w => w.root.position.clone().setY(w.root.position.y + 1.15) });
+  let book = [];
+  try { book = (await (await fetch(`/abilitybook?cls=${cls}`)).json()).abilities || []; } catch (_) { book = []; }
+  const aimOf = id => { const b = book.find(a => a.id === id); return b ? b.target || 'enemy' : (RECIPES[cls][id].includes('ally') ? 'ally' : 'enemy'); };
+  const nameOf = id => (book.find(a => a.id === id) || {}).name || id.replace(/_/g, ' ');
+  const ids = Object.keys(RECIPES[cls] || {}).filter(id => !only || only.split(',').some(o => id.includes(o)))
+    .filter(id => !(book.find(a => a.id === id) || {}).passive);
+  const label = document.createElement('div');
+  label.style.cssText = 'position:fixed;left:50%;top:14px;transform:translateX(-50%);font:600 18px Georgia,serif;color:#fff;background:#000b;padding:6px 14px;border-radius:6px;z-index:60;text-align:center;white-space:nowrap';
+  document.body.appendChild(label);
+  let i = -1, wait = 0, paused = false;
+  function play(n) {
+    i = ((n % ids.length) + ids.length) % ids.length;
+    const id = ids[i], aim = aimOf(id);
+    const r = recipeFor(RECIPES, id, cls, {});
+    hero.root.position.set(0, 0, 0); hero.root.rotation.y = Math.PI / 2;
+    const dst = aim === 'enemy' ? who(dummy) : aim === 'ally' ? who(ally, false) : null;
+    const shape = aim === 'self' || aim === 'object' || aim === 'special' ? 'self' : aim === 'area' || aim === 'group' ? `nova:${r.radius || 6}` : 'ranged';
+    const hits = aim === 'enemy' || aim === 'area' ? [who(left), who(right)] : [];
+    director.play(r, { src: who(hero, false), dst, hits, e: { shape }, onLand: () => {
+      for (const d of aim === 'enemy' ? [dummy, ...(r.land && ['nova', 'quake', 'blast'].includes(r.land.kind) ? [left, right] : [])] : aim === 'area' ? [left, right, dummy] : []) d.once('Hit_A', 0.05, 1.2);
+    } });
+    label.innerHTML = `<b>${i + 1}/${ids.length} · ${nameOf(id)}</b> <span style="font:12px monospace;color:#cde">${cls} · ${aim}<br>${RECIPES[cls][id]}</span>`;
+    wait = Math.max(2.4, timeline(r, 7).end + 1.4);
+    return { id, aim, land: timeline(r, aim === 'enemy' ? 7 : 0).land };
+  }
+  addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') play(i + 1);
+    else if (e.key === 'ArrowLeft') play(i - 1);
+    else if (e.key === ' ') paused = !paused;
+  });
+  const manual = q.has('manual');
+  engine.onTick(dt => {
+    actors.forEach(a => a.update(dt));
+    if (manual || paused) return;
+    if ((wait -= dt) <= 0) play(i + 1);
+  });
+  if (manual) engine.setManual(true);
+  engine.setMood('night', true);
+  window.MH3D_gallery = { cls, ids, play, fx, director };
+  console.log(`ability gallery: ${cls}, ${ids.length} abilities`);
+  return new THREE.Vector3(3.5, 0, 0.5);
+}

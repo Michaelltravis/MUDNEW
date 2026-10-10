@@ -23,14 +23,21 @@ CHOICES = frozenset({'doctrine', 'swear', 'evolve', 'oath'})
 # skills used on yourself or the room, not aimed at a foe (the bar sends them without a target)
 SELF_SKILLS = frozenset({'sneak', 'hide', 'track', 'scan', 'scribe', 'drink_the_leyline', 'charge_release', 'detect_traps',
                          'lore', 'caltrops', 'snare', 'bone_shield', 'fade', 'slip_the_veil', 'countersong', 'encore',
-                         'magnum_opus', 'rigged_dice', 'poison', 'evasion', 'divine_intervention', 'pick_lock'})
+                         'magnum_opus', 'rigged_dice', 'poison', 'evasion', 'divine_intervention', 'pick_lock',
+                         'warpath', 'titans_wrath', 'perfect_crime', 'camouflage_master', 'camouflage', 'shadow_dance',
+                         'shadow_blades_master', 'cold_blood', 'shadow_blade', 'envenom', 'alpha_pack', 'bestial_wrath',
+                         'explosive_trap'})
 # skills aimed at a friend (the targeted player, else yourself)
 ALLY_SKILLS = frozenset({'rescue', 'absolution'})
+# skills for your whole party (sent without a target)
+GROUP_SKILLS = frozenset({'rallying_cry', 'divine_word'})
 
 # the level each ability comes at, per class (spells with a level_required keep it)
 UNLOCK = {
     'warrior': dict(strike=1, bash=1, kick=2, cleave=4, rally=6, parry=8, charge=10, second_attack=12,
-                    execute=14, rescue=16, shield_block=18, dodge=20, third_attack=26),
+                    execute=14, rescue=16, shield_block=18, dodge=20, third_attack=26,
+                    rallying_cry=32, shattering_blow=38, commanding_shout=44, heroic_leap=50, warpath=56,
+                    titans_wrath=60),
     'mage': dict(magic_missile=1, armor=1, burning_hands=3, detect_magic=4, chill_touch=5, sleep=7, shield=8,
                  charge_release=9, lightning_bolt=10, identify=11, color_spray=12, invisibility=13,
                  drink_the_leyline=14, fireball=15, dodge=16, fly=17, scribe=18, towerbolt=20,
@@ -47,10 +54,11 @@ UNLOCK = {
                    font_of_the_vigil=50, serenity=56, divine_intervention=60),
     'thief': dict(backstab=1, sneak=1, hide=2, pick_lock=3, steal=4, trip=5, dodge=6, circle=8, pocket_sand=10,
                   detect_traps=11, low_blow=12, second_attack=14, evasion=16, caltrops=18, rigged_dice=20,
-                  jackpot=24),
+                  jackpot=24, nerve_strike=32, garrote=44, marked_for_death_thief=56, perfect_crime=60),
     'ranger': dict(truesight_shot=1, track=1, scan=2, cure_light=3, sneak=4, quarry_mark=5, hide=6, faerie_fire=7,
                    tame=8, wildbond_strike=9, dodge=10, snare=11, entangle=12, second_attack=13, detect_magic=14,
-                   barkskin=15, loosing_storm=16, dual_wield=18, briskness=20, call_lightning=22),
+                   barkskin=15, loosing_storm=16, dual_wield=18, briskness=20, call_lightning=22,
+                   volley=32, camouflage_master=38, serpent_sting=44, alpha_pack=60),
     'paladin': dict(censure=1, cure_light=1, bash=2, bless=3, order_verdict=4, rescue=5, detect_evil=6,
                     turn_undead=7, absolution=8, parry=9, protection_from_evil=10, shield_of_faith=11,
                     cure_serious=13, second_attack=14, shield_block=15, halo_of_reckoning=16, dodge=18,
@@ -66,7 +74,9 @@ UNLOCK = {
                  refrain_of_hope=32, chord_of_disruption=38, epic_tale=44, siren_song=50, requiem=56,
                  magnum_opus=60),
     'assassin': dict(backstab=1, mark=1, sneak=2, hide=3, expose=4, vital=5, dodge=6, feint=8, poison=9, fade=10,
-                     second_attack=12, execute_contract=14, evasion=16, dual_wield=18, slip_the_veil=20),
+                     second_attack=12, execute_contract=14, evasion=16, dual_wield=18, slip_the_veil=20,
+                     shadowstrike=32, fan_of_knives=38, rupture=44, shadow_blades_master=50,
+                     vendetta_assassin=56, death_mark=60),
 }
 
 # a line for abilities the help prose doesn't describe
@@ -220,9 +230,14 @@ async def _push(player):
 
 # ------------------------------------------------------------------ names and descriptions
 _SMALL = {'of', 'the', 'a', 'an', 'to', 'in', 'on', 'and', 'from'}
+# ids that carry their class to stay unique, and names the words don't spell
+NAMES = {'marked_for_death_thief': 'Marked for Death', 'vendetta_assassin': 'Vendetta', 'titans_wrath': "Titan's Wrath",
+         'apocalypse_necro': 'Apocalypse', 'shadow_blades_master': 'Shadow Blades'}
 
 
 def name_of(ability):
+    if ability in NAMES:
+        return NAMES[ability]
     try:
         from spells import SPELLS
         n = (SPELLS.get(ability) or {}).get('name')
@@ -267,6 +282,15 @@ def describe(ability, fallback=''):
                 text = '; '.join(parts) if isinstance(parts, (list, tuple)) else str(parts)
     except Exception:
         text = ''
+    if not text:
+        try:
+            from commands import CommandHandler
+            doc = (getattr(CommandHandler, f'cmd_{ability}', None).__doc__ or '').strip().split('\n')[0]
+            doc = re.sub(r'^CAPSTONE:\s*', '', doc)
+            if doc and not doc.lower().startswith(('internal', 'usage')):
+                text = doc[0].upper() + doc[1:].rstrip('.') + '.'
+        except Exception:
+            pass
     text = text or SHORT_DESC.get(ability, '') or fallback
     # the renamed abilities' prose remembers their old names: "(was Arcane Blast)"
     return re.sub(r'\s*\(was [^)]*\)', '', text).strip()
@@ -297,6 +321,8 @@ def _entry(cls, ability, kind, level, talent=None, note=''):
         rng, shape = cr.ABILITY_RANGE.get(ability, (None, None))
         if ability in SELF_SKILLS or shape == 'self':
             e['target'] = 'self'
+        elif ability in GROUP_SKILLS:
+            e['target'] = 'group'
         elif ability in ALLY_SKILLS:
             e['target'] = 'ally'
             e['range'] = rng or None

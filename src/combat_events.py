@@ -65,11 +65,7 @@ def emit_at(room, index, k, src=None, dst=None, **fields):
         entry[1].insert(index, entry[1].pop())
 
 
-def emit(room, k, src=None, dst=None, **fields):
-    """Queue one event for the web clients in `room` (sent at the end of this tick)."""
-    global _scheduled
-    if room is None:
-        return
+def _event(k, src, dst, fields):
     ev = {'k': k}
     if src is not None:
         ev['src'] = ref(src)
@@ -78,6 +74,28 @@ def emit(room, k, src=None, dst=None, **fields):
     for key, value in fields.items():
         if value is not None:
             ev[key] = value
+    return ev
+
+
+def emit_private(ch, k, src=None, dst=None, **fields):
+    """An event only `ch`'s own web clients see (sneaking, hiding: nobody else should know)."""
+    room = getattr(ch, 'room', None)
+    wm = getattr(getattr(ch, 'world', None), 'web_map', None)
+    if room is None or wm is None:
+        return
+    msg = {'type': 'combat_events', 'room': getattr(room, 'vnum', None), 'events': [_event(k, src, dst, fields)]}
+    try:
+        asyncio.get_running_loop().create_task(wm.notify_event(ch, msg))
+    except RuntimeError:
+        pass
+
+
+def emit(room, k, src=None, dst=None, **fields):
+    """Queue one event for the web clients in `room` (sent at the end of this tick)."""
+    global _scheduled
+    if room is None:
+        return
+    ev = _event(k, src, dst, fields)
     vnum = getattr(room, 'vnum', None)
     if vnum is None:
         return

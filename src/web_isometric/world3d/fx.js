@@ -1,50 +1,94 @@
-// Combat visuals: one pooled particle system (a single draw call), projectiles, beams,
-// slash arcs, light pillars, ground telegraphs, floating combat text, hit flashes and
-// camera shake. Everything is fire-and-forget: fx.update(dt) advances it all.
+// Combat visuals: pooled particles (soft dots, and glyphs: notes, skulls, coins, leaves...),
+// projectiles, beams, chains, rays, tethers, slash arcs, light pillars, ground sigils and
+// cracks, meteors and rains, growths (vines, ice, bones, bars), shields, wings, halos,
+// afterimages, ground telegraphs, floating combat text, hit flashes, camera shake and screen
+// flashes. Everything is fire-and-forget: fx.update(dt) advances it all, on the frame clock
+// (fx.after / fx.every), so a hit-stop slows an effect's whole sequence together.
+//
+// Each quality tier has a budget (BUDGET): an effect that would go over it is skipped, never
+// queued, so a crowded fight costs what a quiet one does.
 import * as THREE from 'three';
+import * as SkeletonUtils from 'three/addons/utils/SkeletonUtils.js';
+import { glyphAtlas, glyphIndex, ATLAS_COLS, GLYPHS, sigilCanvas, wingCanvas } from './glyphs.js';
 
 const MAX = 3000;
 
+// what one quality tier may have alive at once
+export const BUDGET = {
+  high: { glyphs: 700, decals: 10, growths: 8, ghosts: 6, bubbles: 4, lights: 4, meshes: 24 },
+  med: { glyphs: 500, decals: 8, growths: 6, ghosts: 3, bubbles: 3, lights: 3, meshes: 16 },
+  low: { glyphs: 300, decals: 4, growths: 3, ghosts: 0, bubbles: 2, lights: 0, meshes: 10 },
+};
+
 // ---- particles: additive soft dots, CPU-simulated, one THREE.Points ----
 class Particles {
-  constructor(scene) {
-    this.pos = new Float32Array(MAX * 3);
-    this.col = new Float32Array(MAX * 3);
-    this.size = new Float32Array(MAX);
-    this.alpha = new Float32Array(MAX);
-    this.vel = new Float32Array(MAX * 3);
-    this.life = new Float32Array(MAX);
-    this.max = new Float32Array(MAX);
-    this.grav = new Float32Array(MAX);
-    this.drag = new Float32Array(MAX);
-    this.grow = new Float32Array(MAX);
+  constructor(scene, max = MAX, glyphTex = null) {
+    this.cap = max;
+    this.glyphs = !!glyphTex;
+    this.pos = new Float32Array(max * 3);
+    this.col = new Float32Array(max * 3);
+    this.size = new Float32Array(max);
+    this.alpha = new Float32Array(max);
+    this.vel = new Float32Array(max * 3);
+    this.life = new Float32Array(max);
+    this.max = new Float32Array(max);
+    this.grav = new Float32Array(max);
+    this.drag = new Float32Array(max);
+    this.grow = new Float32Array(max);
     this.n = 0;
     const g = new THREE.BufferGeometry();
     g.setAttribute('position', new THREE.BufferAttribute(this.pos, 3).setUsage(THREE.DynamicDrawUsage));
     g.setAttribute('color', new THREE.BufferAttribute(this.col, 3).setUsage(THREE.DynamicDrawUsage));
     g.setAttribute('size', new THREE.BufferAttribute(this.size, 1).setUsage(THREE.DynamicDrawUsage));
     g.setAttribute('alpha', new THREE.BufferAttribute(this.alpha, 1).setUsage(THREE.DynamicDrawUsage));
+    let m;
+    if (glyphTex) {
+      // glyphs: which picture (atlas cell), turned and spinning
+      this.glyph = new Float32Array(max);
+      this.rot = new Float32Array(max);
+      this.spin = new Float32Array(max);
+      g.setAttribute('glyph', new THREE.BufferAttribute(this.glyph, 1).setUsage(THREE.DynamicDrawUsage));
+      g.setAttribute('rot', new THREE.BufferAttribute(this.rot, 1).setUsage(THREE.DynamicDrawUsage));
+      const rows = Math.ceil(GLYPHS.length / ATLAS_COLS);
+      m = new THREE.ShaderMaterial({
+        transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+        uniforms: { uScale: { value: 300 }, uAtlas: { value: glyphTex }, uGrid: { value: new THREE.Vector2(ATLAS_COLS, rows) } },
+        vertexShader: `attribute float size; attribute float alpha; attribute float glyph; attribute float rot; attribute vec3 color;
+          varying vec3 vC; varying float vA; varying float vG; varying float vR; uniform float uScale;
+          void main() { vC = color; vA = alpha; vG = glyph; vR = rot; vec4 mv = modelViewMatrix * vec4(position, 1.0);
+            gl_PointSize = size * uScale / -mv.z; gl_Position = projectionMatrix * mv; }`,
+        fragmentShader: `uniform sampler2D uAtlas; uniform vec2 uGrid; varying vec3 vC; varying float vA; varying float vG; varying float vR;
+          void main() { vec2 c = gl_PointCoord - 0.5; float s = sin(vR), k = cos(vR);
+            c = vec2(k * c.x - s * c.y, s * c.x + k * c.y) + 0.5;
+            vec2 cell = vec2(mod(vG, uGrid.x), floor(vG / uGrid.x));
+            float a = texture2D(uAtlas, (cell + clamp(c, 0.0, 1.0)) / uGrid).a * vA;
+            if (a < 0.01) discard;
+            gl_FragColor = vec4(vC * a, a); }`,
+      });
+    } else {
+      m = new THREE.ShaderMaterial({
+        transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+        uniforms: { uScale: { value: 300 } },
+        vertexShader: `attribute float size; attribute float alpha; attribute vec3 color; varying vec3 vC; varying float vA;
+          uniform float uScale;
+          void main() { vC = color; vA = alpha; vec4 mv = modelViewMatrix * vec4(position, 1.0);
+            gl_PointSize = size * uScale / -mv.z; gl_Position = projectionMatrix * mv; }`,
+        fragmentShader: `varying vec3 vC; varying float vA;
+          void main() { vec2 d = gl_PointCoord - 0.5; float r = length(d); if (r > 0.5) discard;
+            float a = smoothstep(0.5, 0.0, r); gl_FragColor = vec4(vC * a * vA, a * vA); }`,
+      });
+    }
     g.setDrawRange(0, 0);
-    const m = new THREE.ShaderMaterial({
-      transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
-      uniforms: { uScale: { value: 300 } },
-      vertexShader: `attribute float size; attribute float alpha; attribute vec3 color; varying vec3 vC; varying float vA;
-        uniform float uScale;
-        void main() { vC = color; vA = alpha; vec4 mv = modelViewMatrix * vec4(position, 1.0);
-          gl_PointSize = size * uScale / -mv.z; gl_Position = projectionMatrix * mv; }`,
-      fragmentShader: `varying vec3 vC; varying float vA;
-        void main() { vec2 d = gl_PointCoord - 0.5; float r = length(d); if (r > 0.5) discard;
-          float a = smoothstep(0.5, 0.0, r); gl_FragColor = vec4(vC * a * vA, a * vA); }`,
-    });
     this.points = new THREE.Points(g, m);
     this.points.frustumCulled = false;
     this.points.renderOrder = 10;
     scene.add(this.points);
     this.geo = g;
   }
-  emit(p, { count = 10, color = 0xffffff, speed = 2, up = 0, life = 0.6, size = 0.25, gravity = 0, spread = 1, drag = 1.5, grow = 0, jitter = 0, dir = null } = {}) {
-    const c = new THREE.Color(color);
-    for (let k = 0; k < count && this.n < MAX; k++) {
+  emit(p, { count = 10, color = 0xffffff, bright = 1, speed = 2, up = 0, life = 0.6, size = 0.25, gravity = 0, spread = 1, drag = 1.5, grow = 0, jitter = 0, dir = null, glyph = 'dot', spin = 0, rot = null } = {}) {
+    const c = color instanceof THREE.Color ? color : _c.set(color);
+    const gi = this.glyphs ? (typeof glyph === 'number' ? glyph : glyphIndex(glyph)) : 0;
+    for (let k = 0; k < count && this.n < this.cap; k++) {
       const i = this.n++;
       this.pos[i * 3] = p.x + (Math.random() - 0.5) * jitter;
       this.pos[i * 3 + 1] = p.y + (Math.random() - 0.5) * jitter;
@@ -55,11 +99,16 @@ class Particles {
       if (dir) { vx += dir.x; vy += dir.y; vz += dir.z; }
       const s = speed * (0.5 + Math.random() * 0.7);
       this.vel[i * 3] = vx * s; this.vel[i * 3 + 1] = vy * s + up; this.vel[i * 3 + 2] = vz * s;
-      this.col[i * 3] = c.r; this.col[i * 3 + 1] = c.g; this.col[i * 3 + 2] = c.b;
+      this.col[i * 3] = c.r * bright; this.col[i * 3 + 1] = c.g * bright; this.col[i * 3 + 2] = c.b * bright;
       this.size[i] = size * (0.6 + Math.random() * 0.8);
       this.life[i] = this.max[i] = life * (0.6 + Math.random() * 0.6);
       this.alpha[i] = 1;
       this.grav[i] = gravity; this.drag[i] = drag; this.grow[i] = grow;
+      if (this.glyphs) {
+        this.glyph[i] = gi;
+        this.rot[i] = rot == null ? (Math.random() - 0.5) * 0.8 : rot;
+        this.spin[i] = spin * (Math.random() < 0.5 ? -1 : 1) * (0.6 + Math.random() * 0.8);
+      }
     }
   }
   update(dt) {
@@ -72,10 +121,12 @@ class Particles {
       this.pos[i * 3] += this.vel[i * 3] * dt; this.pos[i * 3 + 1] += this.vel[i * 3 + 1] * dt; this.pos[i * 3 + 2] += this.vel[i * 3 + 2] * dt;
       const k = this.life[i] / this.max[i];
       this.alpha[i] = Math.min(1, k * 2.2);
-      this.size[i] += this.grow[i] * dt;
+      this.size[i] = Math.max(0, this.size[i] + this.grow[i] * dt);
+      if (this.glyphs) this.rot[i] += this.spin[i] * dt;
       i++;
     }
-    for (const a of ['position', 'color', 'size', 'alpha']) this.geo.attributes[a].needsUpdate = true;
+    const attrs = this.glyphs ? ['position', 'color', 'size', 'alpha', 'glyph', 'rot'] : ['position', 'color', 'size', 'alpha'];
+    for (const a of attrs) this.geo.attributes[a].needsUpdate = true;
     this.geo.setDrawRange(0, this.n);
   }
   kill(i) {
@@ -84,6 +135,7 @@ class Particles {
     for (let k = 0; k < 3; k++) { this.pos[i * 3 + k] = this.pos[j * 3 + k]; this.vel[i * 3 + k] = this.vel[j * 3 + k]; this.col[i * 3 + k] = this.col[j * 3 + k]; }
     this.size[i] = this.size[j]; this.alpha[i] = this.alpha[j]; this.life[i] = this.life[j]; this.max[i] = this.max[j];
     this.grav[i] = this.grav[j]; this.drag[i] = this.drag[j]; this.grow[i] = this.grow[j];
+    if (this.glyphs) { this.glyph[i] = this.glyph[j]; this.rot[i] = this.rot[j]; this.spin[i] = this.spin[j]; }
   }
 }
 
@@ -103,13 +155,65 @@ export const SCHOOL = {
   blood: { core: new THREE.Color(2.8, 0.3, 0.3), spark: 0xd02a2a, smoke: 0x5a0a0a },
 };
 
-const _v = new THREE.Vector3(), _w = new THREE.Vector3();
+const _v = new THREE.Vector3(), _w = new THREE.Vector3(), _u = new THREE.Vector3(), _c = new THREE.Color();
+const UP = new THREE.Vector3(0, 1, 0);
+const posOf = t => (t && t.position ? t.position : t);
+// shared geometries (never disposed): a flat square for decals, a beam along +Z, shells
+const GEO = {};
+function geo(name) {
+  if (GEO[name]) return GEO[name];
+  switch (name) {
+    case 'plane': return (GEO[name] = new THREE.PlaneGeometry(2, 2).rotateX(-Math.PI / 2));
+    case 'beam': return (GEO[name] = new THREE.CylinderGeometry(1, 1, 1, 10, 1, true).rotateX(Math.PI / 2).translate(0, 0, 0.5));
+    case 'sphere': return (GEO[name] = new THREE.SphereGeometry(1, 28, 18));
+    case 'dome': return (GEO[name] = new THREE.SphereGeometry(1, 36, 12, 0, Math.PI * 2, 0, Math.PI / 2));
+    case 'halo': return (GEO[name] = new THREE.TorusGeometry(1, 0.11, 8, 40).rotateX(Math.PI / 2));
+    case 'wing': return (GEO[name] = new THREE.PlaneGeometry(1, 1).translate(-0.5, 0.5, 0));
+    case 'ring': return (GEO[name] = new THREE.RingGeometry(0.85, 1, 48));
+    case 'thinring': return (GEO[name] = new THREE.RingGeometry(0.94, 1, 48));
+    case 'spike': return (GEO[name] = new THREE.ConeGeometry(0.17, 1, 6).translate(0, 0.5, 0));
+    case 'thorn': return (GEO[name] = new THREE.ConeGeometry(0.09, 1, 5).translate(0, 0.5, 0));
+    case 'crystal': return (GEO[name] = new THREE.OctahedronGeometry(0.5, 0).scale(0.45, 1, 0.45).translate(0, 0.5, 0));
+    case 'bar': return (GEO[name] = new THREE.CylinderGeometry(0.05, 0.05, 1, 6).translate(0, 0.5, 0));
+    case 'stone': return (GEO[name] = new THREE.DodecahedronGeometry(0.42, 0).translate(0, 0.2, 0));
+    case 'vine': {
+      const pts = [];
+      for (let i = 0; i <= 12; i++) { const k = i / 12; pts.push(new THREE.Vector3(Math.sin(k * 7) * 0.22 * (1 - k * 0.5), k, Math.cos(k * 7) * 0.22 * (1 - k * 0.5))); }
+      return (GEO[name] = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 24, 0.05, 5, false));
+    }
+    case 'blade': return (GEO[name] = new THREE.ConeGeometry(0.07, 0.6, 4).rotateX(Math.PI / 2));
+    case 'shard': return (GEO[name] = new THREE.OctahedronGeometry(0.16, 0).scale(0.6, 0.6, 2.2));
+    default: return null;
+  }
+}
+// a soft shell that glows at its rim (shields, domes)
+function shellMaterial(color, opacity) {
+  return new THREE.ShaderMaterial({
+    transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide,
+    uniforms: { uColor: { value: new THREE.Color(color) }, uOpacity: { value: opacity } },
+    vertexShader: `varying vec3 vN; varying vec3 vV; void main() { vec4 mv = modelViewMatrix * vec4(position, 1.0);
+      vN = normalize(normalMatrix * normal); vV = normalize(-mv.xyz); gl_Position = projectionMatrix * mv; }`,
+    fragmentShader: `uniform vec3 uColor; uniform float uOpacity; varying vec3 vN; varying vec3 vV;
+      void main() { float f = pow(1.0 - abs(dot(normalize(vN), normalize(vV))), 2.4);
+        gl_FragColor = vec4(uColor * (0.12 + f * 1.4), (0.06 + f) * uOpacity); }`,
+  });
+}
 
 export class FX {
   constructor(engine, overlay) {
     this.engine = engine;
     this.scene = engine.scene;
+    this.tier = (engine.quality && engine.quality.name) || 'high';
+    this.budget = BUDGET[this.tier] || BUDGET.high;
+    this.live = {};
     this.p = new Particles(engine.scene);
+    const atlas = typeof document !== 'undefined' ? glyphAtlas() : null;
+    if (atlas) {
+      const tex = new THREE.CanvasTexture(atlas);
+      tex.flipY = false;
+      this.g = new Particles(engine.scene, this.budget.glyphs, tex);
+    }
+    this.textures = new Map();
     this.items = [];                   // live effects: {update(dt) -> keep?}
     this.overlay = overlay;            // DOM layer for floating text
     this.texts = [];
@@ -122,11 +226,61 @@ export class FX {
 
   add(item) { this.items.push(item); return item; }
 
+  // particles keep their size on any screen: scaled by the drawing buffer's height (a sharp
+  // display draws them with as many more pixels as it has); glyphs are pictures, so larger
+  scaleToScreen() {
+    const h = this.engine.renderer.domElement.height || 720;
+    if (h === this._h) return;
+    this._h = h;
+    const s = 300 * h / 720;
+    this.p.points.material.uniforms.uScale.value = s;
+    if (this.g) this.g.points.material.uniforms.uScale.value = s * 3.6;
+  }
+
   update(dt) {
+    this.scaleToScreen();
     this.p.update(dt);
-    for (let i = this.items.length - 1; i >= 0; i--) if (!this.items[i].update(dt)) { this.items[i].dispose && this.items[i].dispose(); this.items.splice(i, 1); }
+    if (this.g) this.g.update(dt);
+    for (let i = this.items.length - 1; i >= 0; i--) {
+      let keep = false;
+      try { keep = this.items[i].update(dt); } catch (err) { console.warn('fx', err); }
+      if (!keep) { const it = this.items[i]; this.items.splice(i, 1); try { if (it.dispose) it.dispose(); } catch (err) { console.warn('fx', err); } }
+    }
     if (this._textsInTick) this.updateTexts(dt);
     if (this.shakeT > 0) this.shakeT -= dt;
+  }
+
+  // ---- budgets: ask before adding something costly; give back when it is gone ----
+  take(kind) {
+    const cap = this.budget[kind];
+    if (cap == null) return true;
+    if ((this.live[kind] || 0) >= cap) return false;
+    this.live[kind] = (this.live[kind] || 0) + 1;
+    return true;
+  }
+  give(kind) { this.live[kind] = Math.max(0, (this.live[kind] || 0) - 1); }
+  // far from the view, only an effect's core is drawn
+  near(p, dist = 28) { const f = this.engine.rig && this.engine.rig.focus; return !f || !p || Math.hypot(p.x - f.x, p.z - f.z) < dist; }
+
+  // ---- the frame clock: sequences follow frame time (a hit-stop slows them all alike) ----
+  after(secs, fn) {
+    if (!(secs > 0)) { try { fn(); } catch (err) { console.warn('fx', err); } return null; }
+    let t = secs;
+    return this.add({ update: dt => { t -= dt; if (t > 0) return true; fn(); return false; } });
+  }
+  every(secs, count, fn, start = 0) {
+    let t = start, n = 0;
+    return this.add({ update: dt => {
+      t -= dt;
+      while (t <= 0 && n < count) { fn(n++); t += secs; }
+      return n < count;
+    } });
+  }
+
+  // ---- glyph particles: notes, skulls, coins, leaves... (dots when glyphs are unavailable) ----
+  glyph(p, opts = {}) {
+    if (this.g) this.g.emit(p, { size: 0.42, bright: 1.6, ...opts });
+    else this.p.emit(p, { ...opts, glyph: undefined });
   }
 
   // ---- screen feedback ----
@@ -135,6 +289,15 @@ export class FX {
     if (this.shakeT <= 0) return null;
     const m = this.shakeMag * Math.min(1, this.shakeT / 0.12);
     return _w.set((Math.random() - 0.5) * m, (Math.random() - 0.5) * m, (Math.random() - 0.5) * m);
+  }
+  // the whole view washes with a colour for a moment (the biggest abilities)
+  screen(color = '#ffffff', { time = 0.45, opacity = 0.32 } = {}) {
+    if (typeof document === 'undefined' || !this.overlay) return;
+    const d = document.createElement('div');
+    d.style.cssText = `position:fixed;inset:0;pointer-events:none;z-index:4;background:${color};opacity:${opacity};transition:opacity ${time}s ease-out`;
+    (this.overlay.parentElement || document.body).appendChild(d);
+    requestAnimationFrame(() => requestAnimationFrame(() => { d.style.opacity = '0'; }));
+    setTimeout(() => d.remove(), time * 1000 + 120);
   }
 
   // ---- floating combat text ----
@@ -171,26 +334,70 @@ export class FX {
     }
   }
 
-  // ---- hit flash: the body glows for a moment (materials are per actor) ----
-  flash(root, color = 0xff3a2a, time = 0.18) {
+  // ---- bodies: a hit flash, a longer glow, fading out of sight (materials are per actor) ----
+  flash(root, color = 0xff3a2a, time = 0.18) { this.tint(root, color, { time, strength: 0.9, hold: 0 }); }
+  tint(root, color, { time = 1.2, strength = 0.55, hold = 0.7, pulse = 0 } = {}) {
     if (!root) return;
     const mats = [];
     root.traverse(o => { if (o.isMesh && o.material && o.material.emissive) mats.push(o.material); });
     const c = new THREE.Color(color);
-    let t = time;
-    // remember each material's own glow once: overlapping flashes must not keep the red
+    let t = 0;
+    // remember each material's own glow once: overlapping flashes must not keep the colour
     for (const m of mats) if (!m.userData.baseEmissive) m.userData.baseEmissive = m.emissive.clone();
     const token = {};
     for (const m of mats) m.userData.flashToken = token;
     this.add({ update: dt => {
-      t -= dt;
-      const k = Math.max(0, t / time);
+      t += dt;
+      const fadeFrom = time * hold;
+      let k = t < fadeFrom ? 1 : Math.max(0, 1 - (t - fadeFrom) / Math.max(0.01, time - fadeFrom));
+      if (pulse) k *= 0.65 + 0.35 * Math.sin(t * pulse * Math.PI * 2);
       for (const m of mats) {
         if (m.userData.flashToken !== token) continue;          // a newer flash owns it now
-        m.emissive.copy(m.userData.baseEmissive).lerp(c, k * 0.9);
+        m.emissive.copy(m.userData.baseEmissive).lerp(c, k * strength);
       }
-      return t > 0;
+      return t < time;
     } });
+  }
+  // see-through for a while (stealth, a blink), then solid again
+  fade(root, { time = 2.4, opacity = 0.28, inT = 0.25, outT = 0.35 } = {}) {
+    if (!root) return;
+    const mats = [];
+    root.traverse(o => { if (o.isMesh && o.material) mats.push(o.material); });
+    const token = {};
+    for (const m of mats) {
+      if (m.userData.baseTransparent == null) { m.userData.baseTransparent = m.transparent; m.userData.baseOpacity = m.opacity; }
+      m.userData.fadeToken = token;
+      m.transparent = true; m.needsUpdate = true;
+    }
+    let t = 0;
+    this.add({ update: dt => {
+      t += dt;
+      const k = t < inT ? t / inT : t > time - outT ? Math.max(0, (time - t) / outT) : 1;
+      for (const m of mats) if (m.userData.fadeToken === token) m.opacity = m.userData.baseOpacity * (1 - (1 - opacity) * k);
+      return t < time;
+    }, dispose: () => {
+      for (const m of mats) {
+        if (m.userData.fadeToken !== token) continue;
+        m.opacity = m.userData.baseOpacity; m.transparent = m.userData.baseTransparent; m.needsUpdate = true;
+      }
+    } });
+  }
+  // a frozen copy of a body in its pose of the moment, fading where it stood (dashes, dodges,
+  // shadow clones); `at` moves it, `color` tints it
+  afterimage(root, { color = 0x8a4ad0, time = 0.55, opacity = 0.55, at = null, yaw = null } = {}) {
+    if (!root || !this.take('ghosts')) return;
+    let ghost;
+    try { ghost = SkeletonUtils.clone(root); } catch (err) { this.give('ghosts'); return; }
+    const mat = new THREE.MeshBasicMaterial({ color, transparent: true, opacity, blending: THREE.AdditiveBlending, depthWrite: false });
+    ghost.traverse(o => { if (o.isMesh) { o.material = mat; o.castShadow = false; o.receiveShadow = false; } });
+    ghost.position.copy(at || root.position);
+    ghost.rotation.copy(root.rotation);
+    if (yaw != null) ghost.rotation.y = yaw;
+    ghost.scale.copy(root.scale);
+    this.scene.add(ghost);
+    let t = 0;
+    this.add({ update: dt => { t += dt; mat.opacity = opacity * Math.max(0, 1 - t / time); return t < time; },
+      dispose: () => { this.scene.remove(ghost); mat.dispose(); this.give('ghosts'); } });
   }
 
   // ---- bursts ----
@@ -204,103 +411,268 @@ export class FX {
 
   // a short-lived point light (pooled small: at most a few at once)
   light(p, color, intensity = 5, time = 0.25) {
-    if ((this._lights = (this._lights || 0)) >= 4) return;
+    if (!this.take('lights')) return;
     const l = new THREE.PointLight(color instanceof THREE.Color ? color : new THREE.Color(color), intensity, 6, 1.6);
     l.position.copy(p);
     this.scene.add(l);
-    this._lights++;
     let t = time;
     this.add({ update: dt => { t -= dt; l.intensity = intensity * Math.max(0, t / time); return t > 0; },
-      dispose: () => { this.scene.remove(l); l.dispose(); this._lights--; } });
+      dispose: () => { this.scene.remove(l); l.dispose(); this.give('lights'); } });
   }
 
   // ---- melee: a bright arc swept in front of the attacker ----
-  slash(from, to, { color = 0xffffff, wide = false, delay = 0 } = {}) {
+  // tilt turns the arc (0 flat, 1 upright: a rising or falling blow)
+  slash(from, to, { color = 0xffffff, wide = false, delay = 0, tilt = 0, flip = false, reach = 1, time = 0.22 } = {}) {
     const dir = _v.copy(to).sub(from).setY(0).normalize();
-    const geo = new THREE.RingGeometry(wide ? 1.0 : 0.7, wide ? 2.1 : 1.35, 24, 1, -Math.PI * (wide ? 0.85 : 0.45), Math.PI * (wide ? 1.7 : 0.9));
+    const g = new THREE.RingGeometry((wide ? 1.0 : 0.7) * reach, (wide ? 2.1 : 1.35) * reach, 24, 1, -Math.PI * (wide ? 0.85 : 0.45), Math.PI * (wide ? 1.7 : 0.9));
     const mat = new THREE.MeshBasicMaterial({ color: new THREE.Color(color).multiplyScalar(2.2), transparent: true, opacity: 0,
       side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false });
-    const m = new THREE.Mesh(geo, mat);
+    const m = new THREE.Mesh(g, mat);
+    const holder = new THREE.Group();
+    holder.add(m);
     m.rotation.x = -Math.PI / 2;
-    m.rotation.z = Math.atan2(dir.x, dir.z) - Math.PI / 2;
-    m.position.copy(from).setY(1.05).addScaledVector(dir, wide ? 0.2 : 0.55);
+    holder.position.copy(from).setY(1.05).addScaledVector(dir, wide ? 0.2 : 0.55);
+    holder.rotation.y = Math.atan2(dir.x, dir.z);
+    holder.rotation.z = tilt * Math.PI / 2 * (flip ? -1 : 1);
+    m.rotation.z = -Math.PI / 2;
     let t = -delay;
-    this.scene.add(m);
+    this.scene.add(holder);
     return this.add({ update: dt => {
       t += dt;
       if (t < 0) return true;
-      const k = t / 0.22;
+      const k = t / time;
       mat.opacity = k < 0.3 ? k / 0.3 : Math.max(0, 1 - (k - 0.3) / 0.7);
-      m.rotation.z += dt * 9 * (wide ? 1.4 : 1);
+      m.rotation.z += dt * 9 * (wide ? 1.4 : 1) * (flip ? -1 : 1);
       return k < 1;
-    }, dispose: () => { this.scene.remove(m); geo.dispose(); mat.dispose(); } });
+    }, dispose: () => { this.scene.remove(holder); g.dispose(); mat.dispose(); } });
   }
 
-  // ---- projectiles: a glowing head with a trail, flies from -> to, then onHit ----
-  projectile(from, to, { school = 'arcane', speed = 16, size = 0.22, arc = 0.4, kind = 'orb', onHit = null, delay = 0 } = {}) {
+  // ---- projectiles: a head with a trail, flies from -> to, then onHit ----
+  // kind: orb | arrow | shard | blade | glyph (a big glyph: `glyph`); trail(pos) runs each frame
+  projectile(from, to, { school = 'arcane', color = null, speed = 16, size = 0.22, arc = 0.4, kind = 'orb', glyph = 'star', onHit = null, delay = 0, trail = null, spin = 0 } = {}) {
     const s = SCHOOL[school] || SCHOOL.arcane;
-    const head = kind === 'arrow' ? arrowMesh() : new THREE.Mesh(new THREE.SphereGeometry(size, 12, 8), new THREE.MeshBasicMaterial({ color: s.core }));
+    const tint = color != null ? new THREE.Color(color) : null;
+    let head = null;
+    if (kind === 'arrow') head = arrowMesh();
+    else if (kind === 'blade' || kind === 'shard') {
+      head = new THREE.Mesh(geo(kind), new THREE.MeshBasicMaterial({ color: tint ? tint.clone().multiplyScalar(kind === 'shard' ? 1.8 : 1.2) : s.core }));
+    } else if (kind === 'orb') head = new THREE.Mesh(new THREE.SphereGeometry(size, 12, 8), new THREE.MeshBasicMaterial({ color: tint ? tint.clone().multiplyScalar(2.4) : s.core }));
     const start = from.clone(), end = to.clone();
     const dist = start.distanceTo(end);
     const dur = Math.max(0.12, dist / speed);
     let t = -delay;
-    head.visible = false;
-    this.scene.add(head);
+    if (head) { head.visible = false; this.scene.add(head); }
     const self = this;
+    const pos = new THREE.Vector3();
     return this.add({ update(dt) {
       t += dt;
       if (t < 0) return true;
-      head.visible = true;
       const k = Math.min(1, t / dur);
-      head.position.lerpVectors(start, end, k);
-      head.position.y += Math.sin(k * Math.PI) * arc * dist * 0.08;
-      if (kind === 'arrow') { _v.copy(end).sub(start).normalize(); head.lookAt(head.position.clone().add(_v)); }
-      else self.p.emit(head.position, { count: 2, color: s.spark, speed: 0.4, life: 0.35, size: size * 1.4, drag: 3 });
+      pos.lerpVectors(start, end, k);
+      pos.y += Math.sin(k * Math.PI) * arc * dist * 0.08;
+      if (head) {
+        head.visible = true;
+        head.position.copy(pos);
+        if (kind === 'arrow' || kind === 'shard' || kind === 'blade') {
+          _v.copy(end).sub(start).normalize();
+          head.lookAt(_u.copy(head.position).add(_v));
+          if (spin || kind === 'blade') head.rotateZ(t * (spin || 18));
+        }
+      }
+      if (kind === 'glyph') self.glyph(pos, { glyph, count: 1, color: tint || s.spark, speed: 0, life: 0.06, size: size * 3.2, rot: spin ? t * spin : 0 });
+      if (trail) trail(pos, k);
+      else if (kind === 'orb') self.p.emit(pos, { count: 2, color: tint || s.spark, speed: 0.4, life: 0.35, size: size * 1.4, drag: 3 });
       if (k >= 1) { if (onHit) onHit(end); return false; }
       return true;
-    }, dispose() { self.scene.remove(head); } });
+    }, dispose() { if (head) { self.scene.remove(head); if (kind === 'orb') head.geometry.dispose(); if (head.material) head.material.dispose && head.material.dispose(); } } });
   }
 
   // ---- lightning: a jagged beam that flickers ----
-  beam(from, to, { school = 'lightning', time = 0.28, delay = 0 } = {}) {
+  beam(from, to, { school = 'lightning', color = null, time = 0.28, delay = 0, jag = 0.35 } = {}) {
     const s = SCHOOL[school] || SCHOOL.lightning;
     const pts = [];
     const segs = 10;
     for (let i = 0; i <= segs; i++) pts.push(new THREE.Vector3());
-    const geo = new THREE.BufferGeometry().setFromPoints(pts);
-    const mat = new THREE.LineBasicMaterial({ color: s.core, transparent: true });
-    const line = new THREE.Line(geo, mat);
+    const g = new THREE.BufferGeometry().setFromPoints(pts);
+    const mat = new THREE.LineBasicMaterial({ color: color != null ? new THREE.Color(color).multiplyScalar(2.4) : s.core, transparent: true });
+    const line = new THREE.Line(g, mat);
     line.frustumCulled = false;
-    let t = -delay, jag = 0;
+    let t = -delay, flick = 0;
     const self = this;
     this.scene.add(line);
+    const a = posOf(from), b = posOf(to);
     return this.add({ update(dt) {
       t += dt;
       if (t < 0) { line.visible = false; return true; }
       line.visible = true;
-      if ((jag -= dt) <= 0) {
-        jag = 0.04;
-        const a = geo.attributes.position;
+      if ((flick -= dt) <= 0) {
+        flick = 0.04;
+        const at = g.attributes.position;
         for (let i = 0; i <= segs; i++) {
-          _v.lerpVectors(from, to, i / segs);
-          const off = i === 0 || i === segs ? 0 : 0.35;
-          a.setXYZ(i, _v.x + (Math.random() - 0.5) * off, _v.y + (Math.random() - 0.5) * off, _v.z + (Math.random() - 0.5) * off);
+          _v.lerpVectors(a, b, i / segs);
+          const off = i === 0 || i === segs ? 0 : jag;
+          at.setXYZ(i, _v.x + (Math.random() - 0.5) * off, _v.y + (Math.random() - 0.5) * off, _v.z + (Math.random() - 0.5) * off);
         }
-        a.needsUpdate = true;
+        at.needsUpdate = true;
       }
       mat.opacity = Math.max(0, 1 - t / time);
       return t < time;
-    }, dispose() { self.scene.remove(line); geo.dispose(); mat.dispose(); } });
+    }, dispose() { self.scene.remove(line); g.dispose(); mat.dispose(); } });
+  }
+  // a bolt that leaps from one body to the next, a spark where it touches
+  chain(points, { school = 'lightning', color = null, step = 0.09, delay = 0, time = 0.3 } = {}) {
+    for (let i = 0; i < points.length - 1; i++) {
+      this.beam(points[i], points[i + 1], { school, color, delay: delay + i * step, time });
+      this.after(delay + (i + 1) * step, () => this.impact(points[i + 1], school));
+    }
+  }
+  // a straight, solid ray (a holy lance, an arcane beam): a glowing core in a softer sheath
+  ray(from, to, { color = 0xffe8a0, width = 0.24, time = 0.45, delay = 0 } = {}) {
+    const len = from.distanceTo(to);
+    if (len < 0.05) return null;
+    const outer = new THREE.MeshBasicMaterial({ color: new THREE.Color(color).multiplyScalar(1.6), transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+    const inner = new THREE.MeshBasicMaterial({ color: new THREE.Color(color).lerp(new THREE.Color(0xffffff), 0.6).multiplyScalar(2.6), transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+    const a = new THREE.Mesh(geo('beam'), outer), b = new THREE.Mesh(geo('beam'), inner);
+    const grp = new THREE.Group();
+    grp.add(a, b);
+    grp.position.copy(from);
+    grp.lookAt(to);
+    a.scale.set(width, width, len); b.scale.set(width * 0.4, width * 0.4, len);
+    this.scene.add(grp);
+    let t = -delay;
+    return this.add({ update: dt => {
+      t += dt;
+      if (t < 0) return true;
+      const k = t / time;
+      const o = k < 0.15 ? k / 0.15 : Math.max(0, 1 - (k - 0.15) / 0.85);
+      outer.opacity = o * 0.55; inner.opacity = o;
+      const w = width * (1 + Math.sin(t * 60) * 0.15) * (1 - k * 0.5);
+      a.scale.set(w, w, len); b.scale.set(w * 0.4, w * 0.4, len);
+      return k < 1;
+    }, dispose: () => { this.scene.remove(grp); outer.dispose(); inner.dispose(); } });
+  }
+  // a stream between two bodies (a drain pulls toward `to`; a link flows both ways)
+  tether(fromT, toT, { color = 0x7aff8a, time = 0.9, delay = 0, glyph = null, rate = 60, lift = 0.9, size = 0.3 } = {}) {
+    let t = -delay, acc = 0;
+    const a = new THREE.Vector3(), b = new THREE.Vector3(), mid = new THREE.Vector3();
+    const curve = (k, out) => {
+      // a gentle arc between the two chests
+      const u = 1 - k;
+      return out.set(u * u * a.x + 2 * u * k * mid.x + k * k * b.x, u * u * a.y + 2 * u * k * mid.y + k * k * b.y, u * u * a.z + 2 * u * k * mid.z + k * k * b.z);
+    };
+    return this.add({ update: dt => {
+      t += dt;
+      if (t < 0) return true;
+      a.copy(posOf(fromT)); b.copy(posOf(toT));
+      if (fromT.isObject3D) a.y += 1.1;
+      if (toT.isObject3D) b.y += 1.1;
+      mid.lerpVectors(a, b, 0.5).y += lift;
+      acc += dt * rate;
+      while (acc >= 1) {
+        acc -= 1;
+        const k = Math.random();
+        curve(k, _v);
+        curve(Math.min(1, k + 0.08), _u);
+        const dir = _u.sub(_v).normalize().multiplyScalar(4);
+        if (glyph && Math.random() < 0.35) this.glyph(_v, { glyph, count: 1, color, speed: 0.2, dir, life: 0.25, size: size * 1.8, drag: 0 });
+        else this.p.emit(_v, { count: 1, color, speed: 0.2, dir, life: 0.22, size, drag: 0 });
+      }
+      return t < time;
+    } });
+  }
+
+  // ---- from the sky ----
+  // many small things falling on an area: arrows, shards, holy motes, notes
+  rain(center, { count = 10, radius = 3, kind = 'arrow', school = 'physical', color = null, glyph = 'star', time = 0.6, height = 10, slant = 2.5, size = 0.18, delay = 0, onEach = null } = {}) {
+    for (let i = 0; i < count; i++) {
+      const a = Math.random() * Math.PI * 2, r = Math.sqrt(Math.random()) * radius;
+      const at = new THREE.Vector3(center.x + Math.cos(a) * r, 0.15, center.z + Math.sin(a) * r);
+      const from = at.clone().add(new THREE.Vector3(-slant, height, -slant * 0.6));
+      this.projectile(from, at, { kind, school, color, glyph, size, speed: 24, arc: 0, delay: delay + (i / count) * time,
+        onHit: p => { this.p.emit(p, { count: 6, color: color != null ? color : (SCHOOL[school] || SCHOOL.physical).spark, speed: 2.2, up: 1, life: 0.35, size: 0.16, gravity: 6, drag: 2 }); if (onEach) onEach(p); } });
+    }
+  }
+  // one great body falling (a meteor, a hammer of light), trailing fire and smoke
+  meteor(to, { school = 'fire', color = null, size = 0.55, height = 15, delay = 0, onHit = null, glyph = null } = {}) {
+    const s = SCHOOL[school] || SCHOOL.fire;
+    const from = to.clone().add(new THREE.Vector3(-4.5, height, -3));
+    const tint = color != null ? color : s.spark;
+    return this.projectile(from, to.clone().setY(0.3), { kind: glyph ? 'glyph' : 'orb', glyph, school, color, size, speed: 20, arc: 0, delay,
+      trail: p => {
+        this.p.emit(p, { count: 4, color: tint, speed: 0.8, life: 0.45, size: size * 1.6, drag: 2, jitter: size });
+        this.p.emit(p, { count: 1, color: s.smoke, speed: 0.4, up: 0.4, life: 0.9, size: size * 2, grow: 0.8, drag: 1 });
+        if (glyph) return;
+      }, onHit });
+  }
+
+  // ---- along the ground ----
+  // a front that sweeps away from `from` along dir (a shock line, a wave of sound or light)
+  wave(from, dir, { length = 6, width = 2.6, time = 0.45, color = 0xffffff, glyph = null, delay = 0, y = 0.4, rate = 22 } = {}) {
+    const d = dir.clone().setY(0).normalize();
+    const side = new THREE.Vector3(-d.z, 0, d.x);
+    let t = -delay, acc = 0;
+    return this.add({ update: dt => {
+      t += dt;
+      if (t < 0) return true;
+      const k = Math.min(1, t / time);
+      acc += dt * rate * 10;
+      const front = _v.copy(from).setY(y).addScaledVector(d, k * length);
+      while (acc >= 1) {
+        acc -= 1;
+        const w = (Math.random() - 0.5) * width * (0.4 + k * 0.6);
+        _u.copy(front).addScaledVector(side, w);
+        if (glyph && Math.random() < 0.3) this.glyph(_u, { glyph, count: 1, color, speed: 0.6, up: 1.4, life: 0.4, size: 0.4 });
+        else this.p.emit(_u, { count: 1, color, speed: 0.8, up: 1.2, life: 0.35, size: 0.26, drag: 2 });
+      }
+      return k < 1;
+    } });
+  }
+  // a spray from the chest in a cone (breath, sand, notes, a hail of bolts)
+  cone(from, dir, { radius = 7, angle = 0.9, color = 0xffffff, glyph = null, time = 0.3, delay = 0, rate = 120, size = 0.3 } = {}) {
+    const d = dir.clone().normalize();
+    let t = -delay, acc = 0;
+    const speed = radius / 0.45;
+    return this.add({ update: dt => {
+      t += dt;
+      if (t < 0) return true;
+      acc += dt * rate;
+      while (acc >= 1) {
+        acc -= 1;
+        const yaw = (Math.random() - 0.5) * angle;
+        _v.copy(d).applyAxisAngle(UP, yaw).multiplyScalar(speed);
+        _v.y += (Math.random() - 0.3) * 1.5;
+        if (glyph && Math.random() < 0.35) this.glyph(from, { glyph, count: 1, color, speed: 0.1, dir: _v, life: 0.45, size: size * 1.4, drag: 0.5, spin: 4 });
+        else this.p.emit(from, { count: 1, color, speed: 0.3, dir: _v, life: 0.45, size, drag: 0.6 });
+      }
+      return t < time;
+    } });
+  }
+  // a column bursting up out of the ground
+  geyser(p, { color = 0xffffff, glyph = null, height = 3.2, time = 0.5, radius = 0.45, delay = 0 } = {}) {
+    let t = -delay, acc = 0;
+    return this.add({ update: dt => {
+      t += dt;
+      if (t < 0) return true;
+      acc += dt * 90;
+      while (acc >= 1) {
+        acc -= 1;
+        const a = Math.random() * Math.PI * 2, r = Math.random() * radius;
+        _v.set(p.x + Math.cos(a) * r, 0.1, p.z + Math.sin(a) * r);
+        if (glyph && Math.random() < 0.3) this.glyph(_v, { glyph, count: 1, color, speed: 0.3, up: height * 2.2, life: 0.5, size: 0.4, gravity: 3, spin: 3 });
+        else this.p.emit(_v, { count: 1, color, speed: 0.3, up: height * 2.4, life: 0.45, size: 0.28, gravity: 4, drag: 0.6 });
+      }
+      return t < time;
+    } });
   }
 
   // ---- a column of light from the sky (holy smite, heals, judgement) ----
-  pillar(p, { school = 'holy', radius = 0.9, height = 7, time = 0.7, delay = 0 } = {}) {
+  pillar(p, { school = 'holy', color = null, radius = 0.9, height = 7, time = 0.7, delay = 0 } = {}) {
     const s = SCHOOL[school] || SCHOOL.holy;
-    const geo = new THREE.CylinderGeometry(radius, radius * 1.15, height, 20, 1, true).translate(0, height / 2, 0);
-    const mat = new THREE.MeshBasicMaterial({ color: s.core, transparent: true, opacity: 0, side: THREE.DoubleSide,
+    const g = new THREE.CylinderGeometry(radius, radius * 1.15, height, 20, 1, true).translate(0, height / 2, 0);
+    const mat = new THREE.MeshBasicMaterial({ color: color != null ? new THREE.Color(color).multiplyScalar(1.2) : s.core.clone().multiplyScalar(0.6), transparent: true, opacity: 0, side: THREE.DoubleSide,
       blending: THREE.AdditiveBlending, depthWrite: false });
-    const m = new THREE.Mesh(geo, mat);
-    m.position.copy(p).setY(0);
+    const m = new THREE.Mesh(g, mat);
+    m.position.copy(posOf(p)).setY(0);
     let t = -delay, burst = false;
     const self = this;
     this.scene.add(m);
@@ -308,41 +680,62 @@ export class FX {
       t += dt;
       if (t < 0) return true;
       const k = t / time;
-      mat.opacity = (k < 0.2 ? k / 0.2 : Math.max(0, 1 - (k - 0.2) / 0.8)) * 0.55;
+      mat.opacity = (k < 0.2 ? k / 0.2 : Math.max(0, 1 - (k - 0.2) / 0.8)) * 0.42;
       m.scale.set(1 - k * 0.4, 1, 1 - k * 0.4);
-      if (!burst) { burst = true; self.p.emit(_v.copy(p).setY(0.3), { count: 26, color: s.spark, speed: 3, up: 1.5, life: 0.7, size: 0.26, drag: 2 }); }
+      if (!burst) { burst = true; self.p.emit(_v.copy(m.position).setY(0.3), { count: 26, color: color != null ? color : s.spark, speed: 3, up: 1.5, life: 0.7, size: 0.26, drag: 2 }); }
       return k < 1;
-    }, dispose() { self.scene.remove(m); geo.dispose(); mat.dispose(); } });
+    }, dispose() { self.scene.remove(m); g.dispose(); mat.dispose(); } });
   }
 
-  // ---- swirl around a body: heals, buffs, auras, summons ----
-  swirl(target, { school = 'holy', time = 1.0, rise = 2.2, count = 3 } = {}) {
+  // ---- swirl around a body: heals, buffs, auras, summons (glyphs when `glyph` is set) ----
+  swirl(target, { school = 'holy', color = null, glyph = null, time = 1.0, rise = 2.2, count = 3, radius = 0.7 } = {}) {
     const s = SCHOOL[school] || SCHOOL.holy;
+    const tint = color != null ? color : s.spark;
     let t = 0, acc = 0;
     const self = this;
     return this.add({ update(dt) {
       t += dt; acc += dt;
-      const p = target.position || target;
+      const p = posOf(target);
       while (acc > 0.03) {
         acc -= 0.03;
         for (let i = 0; i < count; i++) {
           const a = t * 9 + i * (Math.PI * 2 / count);
-          _v.set(p.x + Math.cos(a) * 0.7, (t / time) * rise, p.z + Math.sin(a) * 0.7);
-          self.p.emit(_v, { count: 1, color: s.spark, speed: 0.2, up: 0.6, life: 0.6, size: 0.2, drag: 2 });
+          _v.set(p.x + Math.cos(a) * radius, (p.y || 0) + (t / time) * rise, p.z + Math.sin(a) * radius);
+          if (glyph) self.glyph(_v, { glyph, count: 1, color: tint, speed: 0.1, up: 0.4, life: 0.5, size: 0.34 });
+          else self.p.emit(_v, { count: 1, color: tint, speed: 0.2, up: 0.6, life: 0.6, size: 0.2, drag: 2 });
+        }
+      }
+      return t < time;
+    } });
+  }
+  // things circling a body for a while (runes, blades, notes, motes)
+  orbit(target, { glyph = 'star', color = 0xffffff, count = 3, radius = 0.9, time = 2, size = 0.36, height = 1.1, speed = 4, rise = 0, delay = 0 } = {}) {
+    let t = -delay, acc = 0;
+    return this.add({ update: dt => {
+      t += dt;
+      if (t < 0) return true;
+      acc += dt;
+      const p = posOf(target);
+      while (acc > 0.025) {
+        acc -= 0.025;
+        for (let i = 0; i < count; i++) {
+          const a = t * speed + i * (Math.PI * 2 / count);
+          _v.set(p.x + Math.cos(a) * radius, (p.y || 0) + height + rise * (t / time) + Math.sin(t * 3 + i) * 0.12, p.z + Math.sin(a) * radius);
+          this.glyph(_v, { glyph, count: 1, color, speed: 0, life: 0.14, size, rot: -a });
         }
       }
       return t < time;
     } });
   }
 
-  // ---- ground ring that expands (AoE, shouts, stomps) ----
-  shockwave(p, { school = 'physical', radius = 4, time = 0.45, delay = 0 } = {}) {
+  // ---- ground ring that expands (AoE, shouts, stomps); y lifts it (sound rings) ----
+  shockwave(p, { school = 'physical', color = null, radius = 4, time = 0.45, delay = 0, y = 0.08, thin = false } = {}) {
     const s = SCHOOL[school] || SCHOOL.physical;
-    const geo = new THREE.RingGeometry(0.85, 1, 48);
-    const mat = new THREE.MeshBasicMaterial({ color: s.core, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide });
-    const m = new THREE.Mesh(geo, mat);
+    const mat = new THREE.MeshBasicMaterial({ color: color != null ? new THREE.Color(color).multiplyScalar(2) : s.core, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide });
+    const m = new THREE.Mesh(geo(thin ? 'thinring' : 'ring'), mat);
     m.rotation.x = -Math.PI / 2;
-    m.position.copy(p).setY(0.08);
+    const at = posOf(p);
+    m.position.copy(at).setY(y);
     let t = -delay;
     const self = this;
     this.scene.add(m);
@@ -351,9 +744,178 @@ export class FX {
       if (t < 0) return true;
       const k = t / time;
       m.scale.setScalar(0.3 + k * radius);
+      if (p.isObject3D) m.position.set(at.x, y, at.z);
       mat.opacity = Math.max(0, 1 - k) * 0.9;
       return k < 1;
-    }, dispose() { self.scene.remove(m); geo.dispose(); mat.dispose(); } });
+    }, dispose() { self.scene.remove(m); mat.dispose(); } });
+  }
+
+  // ---- ground sigils and marks: a decal drawn in glyphs.js, tinted, turning slowly ----
+  sigilTexture(name, variant = 0) {
+    const key = `${name}#${variant}`;
+    if (!this.textures.has(key)) {
+      const cv = sigilCanvas(name, name === 'scorch' ? 128 : 256, variant + 1);
+      const tex = cv ? new THREE.CanvasTexture(cv) : null;
+      if (tex) tex.colorSpace = THREE.SRGBColorSpace;
+      this.textures.set(key, tex);
+    }
+    return this.textures.get(key);
+  }
+  decal(p, { sigil = 'ring', radius = 2, time = 1.2, color = 0xffffff, bright = 1.6, spin = 0.5, delay = 0, follow = null, dark = false, opacity = 0.9, grow = 0.25, y = 0.05 } = {}) {
+    if (!this.take('decals')) return null;
+    const tex = this.sigilTexture(sigil, sigil === 'crack' ? Math.floor(Math.random() * 3) : 0);
+    const mat = new THREE.MeshBasicMaterial({ map: tex, color: dark ? new THREE.Color(0x000000) : new THREE.Color(color).multiplyScalar(bright),
+      transparent: true, opacity: 0, depthWrite: false, blending: dark ? THREE.NormalBlending : THREE.AdditiveBlending,
+      polygonOffset: true, polygonOffsetFactor: -2 });
+    const m = new THREE.Mesh(geo('plane'), mat);
+    m.renderOrder = 2;
+    m.position.copy(posOf(p)).setY(y);
+    m.rotation.y = Math.random() * Math.PI * 2;
+    this.scene.add(m);
+    let t = -delay;
+    return this.add({ update: dt => {
+      t += dt;
+      if (t < 0) return true;
+      const k = t / time;
+      const o = k < 0.15 ? k / 0.15 : k > 0.7 ? Math.max(0, (1 - k) / 0.3) : 1;
+      mat.opacity = o * opacity;
+      m.scale.setScalar(radius * (1 - grow + grow * Math.min(1, k * 4)));
+      m.rotation.y += spin * dt;
+      if (follow) m.position.copy(posOf(follow)).setY(y);
+      return k < 1;
+    }, dispose: () => { this.scene.remove(m); mat.dispose(); this.give('decals'); } });
+  }
+
+  // ---- growths: spikes, ice, crystals, bones, bars, thorns, vines, stones out of the ground ----
+  growth(p, { kind = 'spike', count = 8, radius = 1.4, time = 1.4, height = 1.3, color = 0x88cc66, glow = 0.35, delay = 0, ring = true, tilt = 0.35, follow = null } = {}) {
+    if (!this.take('growths')) return null;
+    const shape = { ice: 'crystal', crystals: 'crystal', bones: 'spike', thorns: 'thorn', bars: 'bar', vines: 'vine', stones: 'stone', spikes: 'spike', spears: 'bar' }[kind] || 'spike';
+    const glassy = kind === 'ice' || kind === 'crystals';
+    const mat = new THREE.MeshStandardMaterial({ color, emissive: new THREE.Color(color).multiplyScalar(glow), roughness: glassy ? 0.15 : 0.7,
+      metalness: kind === 'bars' ? 0.7 : 0.05, transparent: true, opacity: glassy ? 0.85 : 1 });
+    const mesh = new THREE.InstancedMesh(geo(shape), mat, count);
+    mesh.frustumCulled = false;
+    const base = posOf(p).clone().setY(0);
+    const parts = [];
+    for (let i = 0; i < count; i++) {
+      const a = ring ? (i / count) * Math.PI * 2 + Math.random() * 0.3 : Math.random() * Math.PI * 2;
+      const r = ring ? radius * (0.85 + Math.random() * 0.3) : Math.sqrt(Math.random()) * radius;
+      parts.push({ x: Math.cos(a) * r, z: Math.sin(a) * r, a, h: height * (0.65 + Math.random() * 0.55), lean: tilt * (0.6 + Math.random() * 0.8), w: 0.8 + Math.random() * 0.5, spin: Math.random() * 6 });
+    }
+    const m4 = new THREE.Matrix4(), q = new THREE.Quaternion(), e = new THREE.Euler(), sc = new THREE.Vector3(), tr = new THREE.Vector3();
+    this.scene.add(mesh);
+    let t = -delay;
+    const place = s => {
+      const at = follow ? posOf(follow) : base;
+      for (let i = 0; i < count; i++) {
+        const pt = parts[i];
+        // lean away from the centre (a cage's bars stand straight)
+        e.set(kind === 'bars' ? 0 : Math.sin(pt.a) * pt.lean, pt.spin, kind === 'bars' ? 0 : -Math.cos(pt.a) * pt.lean, 'XYZ');
+        q.setFromEuler(e);
+        const k = Math.max(0.001, s);
+        sc.set(pt.w, kind === 'stones' ? pt.w * k : pt.h * k, pt.w);
+        tr.set(at.x + pt.x, kind === 'stones' ? -0.4 + 0.4 * k : 0, at.z + pt.z);
+        m4.compose(tr, q, sc);
+        mesh.setMatrixAt(i, m4);
+      }
+      mesh.instanceMatrix.needsUpdate = true;
+    };
+    place(0);
+    return this.add({ update: dt => {
+      t += dt;
+      if (t < 0) return true;
+      const k = t / time;
+      // up fast with a little overshoot, stand, then sink away
+      const s = k < 0.15 ? Math.sin(k / 0.15 * Math.PI * 0.5) * 1.08 : k > 0.78 ? Math.max(0, (1 - k) / 0.22) : 1;
+      place(s);
+      return k < 1;
+    }, dispose: () => { this.scene.remove(mesh); mesh.dispose(); mat.dispose(); this.give('growths'); } });
+  }
+
+  // ---- shells: a shield around a body, a dome over the ground ----
+  bubble(target, { color = 0x9ad0ff, radius = 1.15, time = 2, delay = 0, y = 1.0, opacity = 0.9 } = {}) {
+    if (!this.take('bubbles')) return null;
+    const mat = shellMaterial(color, 0);
+    const m = new THREE.Mesh(geo('sphere'), mat);
+    this.scene.add(m);
+    let t = -delay;
+    return this.add({ update: dt => {
+      t += dt;
+      if (t < 0) { m.visible = false; return true; }
+      m.visible = true;
+      const k = t / time;
+      const o = k < 0.12 ? k / 0.12 : k > 0.8 ? Math.max(0, (1 - k) / 0.2) : 1;
+      mat.uniforms.uOpacity.value = o * opacity;
+      const p = posOf(target);
+      m.position.set(p.x, (p.y || 0) + y, p.z);
+      m.scale.setScalar(radius * (k < 0.12 ? 0.7 + 0.3 * (k / 0.12) : 1 + Math.sin(t * 5) * 0.02));
+      return k < 1;
+    }, dispose: () => { this.scene.remove(m); mat.dispose(); this.give('bubbles'); } });
+  }
+  dome(p, { color = 0xffe8a0, radius = 4, time = 2.4, delay = 0, opacity = 0.7 } = {}) {
+    if (!this.take('bubbles')) return null;
+    const mat = shellMaterial(color, 0);
+    const m = new THREE.Mesh(geo('dome'), mat);
+    m.position.copy(posOf(p)).setY(0);
+    this.scene.add(m);
+    let t = -delay;
+    return this.add({ update: dt => {
+      t += dt;
+      if (t < 0) { m.visible = false; return true; }
+      m.visible = true;
+      const k = t / time;
+      mat.uniforms.uOpacity.value = (k < 0.15 ? k / 0.15 : k > 0.75 ? Math.max(0, (1 - k) / 0.25) : 1) * opacity;
+      m.scale.set(radius, radius * 0.8 * Math.min(1, k * 5), radius);
+      return k < 1;
+    }, dispose: () => { this.scene.remove(m); mat.dispose(); this.give('bubbles'); } });
+  }
+
+  // ---- on a body: wings of light, a halo ----
+  wings(target, { color = 0xffe8a0, time = 1.8, span = 1.7, y = 1.2, flap = 1.4, delay = 0 } = {}) {
+    if (!this.take('meshes')) return null;
+    if (!this.textures.has('wing')) { const cv = wingCanvas(256); this.textures.set('wing', cv ? new THREE.CanvasTexture(cv) : null); }
+    const mat = new THREE.MeshBasicMaterial({ map: this.textures.get('wing'), color: new THREE.Color(color).multiplyScalar(1.8), transparent: true, opacity: 0,
+      blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide });
+    const grp = new THREE.Group();
+    const left = new THREE.Mesh(geo('wing'), mat), right = new THREE.Mesh(geo('wing'), mat);
+    right.scale.x = -1;
+    left.scale.setScalar(span); right.scale.set(-span, span, span);
+    grp.add(left, right);
+    this.scene.add(grp);
+    let t = -delay;
+    const root = target.isObject3D ? target : null;
+    return this.add({ update: dt => {
+      t += dt;
+      if (t < 0) { grp.visible = false; return true; }
+      grp.visible = true;
+      const k = t / time;
+      mat.opacity = (k < 0.15 ? k / 0.15 : k > 0.7 ? Math.max(0, (1 - k) / 0.3) : 1) * 0.85;
+      const p = posOf(target);
+      grp.position.set(p.x, (p.y || 0) + y + k * 0.25, p.z);
+      if (root) { grp.rotation.y = root.rotation.y; grp.position.addScaledVector(_v.set(Math.sin(root.rotation.y), 0, Math.cos(root.rotation.y)), -0.22); }
+      const beat = 0.35 + Math.sin(t * flap * Math.PI * 2) * 0.35;
+      left.rotation.y = -beat; right.rotation.y = beat;
+      return k < 1;
+    }, dispose: () => { this.scene.remove(grp); mat.dispose(); this.give('meshes'); } });
+  }
+  halo(target, { color = 0xffe08a, time = 2, y = 2.3, radius = 0.32, delay = 0 } = {}) {
+    if (!this.take('meshes')) return null;
+    const mat = new THREE.MeshBasicMaterial({ color: new THREE.Color(color).multiplyScalar(2.4), transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+    const m = new THREE.Mesh(geo('halo'), mat);
+    m.scale.setScalar(radius);
+    this.scene.add(m);
+    let t = -delay;
+    return this.add({ update: dt => {
+      t += dt;
+      if (t < 0) { m.visible = false; return true; }
+      m.visible = true;
+      const k = t / time;
+      mat.opacity = k < 0.15 ? k / 0.15 : k > 0.75 ? Math.max(0, (1 - k) / 0.25) : 1;
+      const p = posOf(target);
+      m.position.set(p.x, (p.y || 0) + y + Math.sin(t * 3) * 0.04, p.z);
+      m.rotation.y += dt * 1.5;
+      return k < 1;
+    }, dispose: () => { this.scene.remove(m); mat.dispose(); this.give('meshes'); } });
   }
 
   // ---- telegraph: a danger zone on the floor that fills until the blow lands ----
@@ -395,14 +957,15 @@ export class FX {
   }
 }
 
+// arrows share their parts (a volley or an arrow rain makes dozens)
+let ARROW = null;
 function arrowMesh() {
+  if (!ARROW) ARROW = {
+    shaft: new THREE.CylinderGeometry(0.025, 0.025, 0.9, 5).rotateX(Math.PI / 2), wood: new THREE.MeshStandardMaterial({ color: 0x8a6a42 }),
+    tip: new THREE.ConeGeometry(0.05, 0.16, 6).rotateX(Math.PI / 2).translate(0, 0, 0.5), steel: new THREE.MeshStandardMaterial({ color: 0xc8ccd4, metalness: 0.6, roughness: 0.3 }),
+    fl: new THREE.BoxGeometry(0.12, 0.01, 0.16).translate(0, 0, -0.4), feather: new THREE.MeshStandardMaterial({ color: 0xe8e0d0 }),
+  };
   const g = new THREE.Group();
-  const shaft = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.025, 0.9, 5), new THREE.MeshStandardMaterial({ color: 0x8a6a42 }));
-  shaft.rotation.x = Math.PI / 2;
-  const tip = new THREE.Mesh(new THREE.ConeGeometry(0.05, 0.16, 6), new THREE.MeshStandardMaterial({ color: 0xc8ccd4, metalness: 0.6, roughness: 0.3 }));
-  tip.rotation.x = Math.PI / 2; tip.position.z = 0.5;
-  const fl = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.01, 0.16), new THREE.MeshStandardMaterial({ color: 0xe8e0d0 }));
-  fl.position.z = -0.4;
-  g.add(shaft, tip, fl);
+  g.add(new THREE.Mesh(ARROW.shaft, ARROW.wood), new THREE.Mesh(ARROW.tip, ARROW.steel), new THREE.Mesh(ARROW.fl, ARROW.feather));
   return g;
 }
