@@ -40,7 +40,7 @@ async function runDemo() {
     const g = params.get('gallery');
     const { showBeastGallery } = await import('./gallery.js');
     const extra = ['town', 'furniture', 'graveyard'].includes(g) ? await loadKit(g) : null;
-    const at = g === 'mobs' ? await showMobGallery(engine) : g === 'beasts' ? await showBeastGallery(engine)
+    const at = g === 'mobs' ? await showMobGallery(engine) : g === 'beasts' ? await showBeastGallery(engine, kits)
       : showGallery(engine, extra || (g === 'nature' ? kits.nature : kits.dungeon), Number(params.get('scale')) || 1);
     engine.rig.target.copy(at); engine.placeCamera(true);
     window.MH3D = { engine, THREE };
@@ -71,7 +71,7 @@ async function runGame() {
   fetch('/combatdata').then(r => r.json()).then(d => { ranges = d; hud.setRanges(d); }).catch(() => {});
   const myClass = () => String(MH.state.player && MH.state.player.char_class || '').toLowerCase();
   const reachOf = () => (ranges.auto[myClass()] || { range: ranges.melee || 2.5 }).range;
-  const ents = new Entities(engine, $('#plates'));
+  const ents = new Entities(engine, $('#plates'), kits);
   const fx = new FX(engine, $('#fct'));
   const combat = new CombatView({
     engine, fx, ents,

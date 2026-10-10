@@ -294,3 +294,42 @@ skill's own server code.
   targeting rules, menus), `tests/test_combat_v2.py` (`kill #id` hits the second of two
   spectres, the payload's `fighting`, cooldown names, the `#id` rewrite) and
   `tests/web/probe_play3d.js camera|menu|autotarget`.
+
+### Creature models (owner: "some of the npcs have weird character models. Like a blob looks like a humanoid")
+- **Why it went wrong**: the client matched the keyword list (`name`: "green") instead of what a
+  creature is (`short`: "the green gelatinous blob"), and anything it couldn't place became a
+  person or a glowing wisp. 78% of the world's 876 creatures were drawn as people.
+- **How a body is chosen** (`world3d/looks.js`, pure, run over every creature by
+  `tools/qc_bestiary.mjs`): the server now sends `short`, the start of the room line (`long`)
+  and the type number (`pv`). What the short description ends with decides: a two-word creature
+  ("the fire elemental", "the giant lizard"); a trade or role word makes a person ("the goat
+  herder", "the vampire hunter") unless a race stands beside it ("a goblin mushroom farmer",
+  "King of the Goblins") or a creature rules ("the Spider Queen"); otherwise the creature it names
+  ("the giant hornet" is a hornet, not a giant); then the undead; then any creature word; then a
+  person dressed for the job. A person whose room line says otherwise takes that ("the Sewer King":
+  "A massive rat-man standing here."; "the Ancient Guardian": "A towering stone golem...").
+- **Sizes and colours**: adjectives in front size the body (small creatures grow more and big
+  ones less, so a giant rat is dog-sized and a massive minotaur still fits through a door; a baby
+  dragon is not a full dragon) and colour it ("the red dragon", "a black bear", "a frost wolf");
+  undead beasts are rotten or bare bone; rulers ("the queen wasp", "the alpha wolf") are bigger.
+- **New bodies**: kit props come to life (`proc.js` `makeProp`: a mimic is a chest, a living
+  book and a dancing sword fly, a magic carpet floats); a four-legged lizard for crocodiles,
+  lizards and basilisks; golems, statues, animated armour and chess pieces are one colour all over
+  (stone, bronze, iron, black or white — `flat`) and statues stand still until they fight;
+  elementals, djinn and efreet are tinted spirits; pixies and sprites are tiny and hover; hags
+  wear witch hats; lizard folk, merfolk, orcs, drow and sahuagin keep their trade's gear with their
+  own skin.
+- **People by trade**: guards and knights carry sword and shield, casters a staff or spellbook,
+  innkeepers a mug, smiths an axe, thieves knives, rangers a crossbow; shopkeepers, townsfolk and
+  children carry nothing (no more baker with a two-handed axe); guildmasters dress for their guild.
+  The skeleton models follow what the dead were (a skeletal warrior, a lich, an ossuary archer).
+  A creature type always looks the same (hashed by type, not by its id).
+- **Data**: seven creatures shared their numbers with others (3100–3102, 3120–3122, 3200), so one
+  of each pair never appeared; they were renumbered (3011–3016, 3203) with their resets, and the
+  Pet Shop, the sewers and Stable Road get their dog, bear, wolf, Sewer King, assassin, Ancient
+  Guardian and stable master back.
+- Verified here: `node --test tests/web/*.test.mjs` (cases, and every creature in the world gets a
+  model, weapon and prop that exist in the art, with no creature word drawn as a person),
+  `node tools/qc_bestiary.mjs` (the whole list, grouped by body), `/play?demo&gallery=beasts`
+  (labelled samples) and `tests/web/probe_play3d.js creatures` (live: a blob, a mimic, a statue,
+  a rook, a golem, a goblin farmer, a brownie, a living book and the Sewer King in the temple).

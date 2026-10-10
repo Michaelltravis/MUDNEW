@@ -1,16 +1,12 @@
 // Monsters, NPCs and other players around the hero, from the near-mode map payload
 // (`nearby` rooms, every mob with a stable id). Each stands on one of its room's spawn
 // slots; when the server moves it to another room it walks there instead of popping.
-// M1 uses the KayKit cast for people and undead and soft wisps for beasts; M2 maps every
-// archetype to its own model.
+// Which body each creature gets is decided in looks.js.
 import * as THREE from 'three';
 import { spawnCharacter, spawnMob } from './assets.js';
-import { beastLook } from './bestiary.js';
-import { makeProc } from './proc.js';
+import { creatureLook, hashStr } from './looks.js';
+import { makeProc, makeProp } from './proc.js';
 import { isHostile } from './targeting.js';
-
-const ANIMAL = /\b(rabbit|hare|fox|wolf|wolves|bear|deer|stag|elk|rat|rats|mouse|spider|snake|serpent|bat|bird|crow|raven|boar|cat|kitten|dog|hound|puppy|horse|pony|cow|bull|sheep|lamb|chicken|hen|rooster|frog|toad|lizard|beetle|ant|bee|wasp|scorpion|crab|fish|eel|squirrel|owl|hawk|eagle|goat|pig|hog|worm|slime|ooze|jelly|mosquito|fly|leech|badger|weasel|otter|duck|goose|swan|vulture|lion|tiger|panther|cougar|lynx|ape|monkey|gorilla|wyrm|drake|dragon|basilisk|griffon|unicorn|centipede|millipede|tick|moth|butterfly|cockroach)\b/;
-const UNDEAD = /\b(skeleton|zombie|ghoul|undead|lich|wight|bone|bones|corpse|ghost|spectre|specter|wraith|mummy|revenant|banshee|shade|phantom|vampire)\b/;
 
 export const CLASS_MODEL = {
   warrior: ['barbarian'], paladin: ['knight'], cleric: ['knight', 0xfff0d0], mage: ['mage'],
@@ -22,6 +18,18 @@ export function classModel(cls) {
   return { model, tint };
 }
 
+// the body for a look (looks.js): a creature model, a procedural body, a kit prop or a person
+export function spawnLook(look, { kits = null, seed = 0 } = {}) {
+  const b = look.beast;
+  if (!b) return spawnCharacter(look.model, { tint: look.tint, scale: look.scale, loadout: look.loadout, flat: look.flat });
+  if (b.proc) return Promise.resolve(makeProc(b.proc, { height: b.h, tint: b.tint, seed }));
+  if (b.prop) {
+    const model = kits && kits[b.prop[0]] && kits[b.prop[0]].get(b.prop[1]);
+    return Promise.resolve(model ? makeProp(model, { size: b.h, tint: b.tint }) : makeProc('slime', { height: 0.8, seed }));
+  }
+  return spawnMob(b.mob, { height: b.h, tint: b.tint });
+}
+
 // how high above its feet a creature's nameplate floats
 function plateHeight(e) {
   const box = new THREE.Box3().setFromObject(e.root);
@@ -29,45 +37,11 @@ function plateHeight(e) {
   return Math.max(0.9, Math.min(4, isFinite(top) ? top + 0.35 : 2.75));
 }
 
-function hashStr(s) { let h = 2166136261; for (const ch of String(s)) h = Math.imul(h ^ ch.charCodeAt(0), 16777619); return h >>> 0; }
-
-function mobLook(m) {
-  const n = String(m.name || '').toLowerCase();
-  const h = hashStr(m.id || n);
-  const pick = list => list[h % list.length];
-  const beast = beastLook(n);
-  if (beast) return { beast };
-  if (UNDEAD.test(n)) return { model: pick(['skeleton_warrior', 'skeleton_minion', 'skeleton_rogue', 'skeleton_mage']) };
-  if (m.shopkeeper) return { model: 'barbarian', tint: 0xf0dcc0 };
-  if (m.trainer) return { model: 'knight', tint: 0xf8f0e0 };
-  if (/\b(guard|soldier|knight|captain|watch|sentry|warden|cityguard)\b/.test(n)) return { model: 'knight', tint: 0xc8d0e0 };
-  if (/\b(mage|wizard|witch|priest|priestess|sage|cleric|monk|acolyte|shaman|druid|sorcer\w*|necromancer|apprentice)\b/.test(n)) return { model: 'mage', tint: pick([0xffffff, 0xd8c8f0, 0xc8e0d0]) };
-  if (ANIMAL.test(n)) return { wisp: true };
-  if (/\b(orc|orcs|half-orc|hobgoblin|bugbear|gnoll|kobold|bandit|brigand|thug|ruffian|raider|cultist)\b/.test(n))
-    return { model: pick(['barbarian', 'rogue_hooded', 'rogue']), tint: pick([0x8fb07a, 0x9a8a7a, 0x8a7a9a]) };
-  if (m.hostile) return { model: pick(['barbarian', 'rogue', 'rogue_hooded']), tint: pick([0x9ab88a, 0xb89a8a, 0x8a8aa8]) };
-  return { model: pick(['rogue_hooded', 'rogue', 'barbarian', 'knight', 'mage']), tint: pick([0xe8e0d0, 0xd0c8b8, 0xc8d0d8, 0xe0d0c0]) };
-}
-
-const WISP_GEO = new THREE.SphereGeometry(0.28, 16, 12);
-function makeWisp(hostile) {
-  const g = new THREE.Group();
-  const core = new THREE.Mesh(WISP_GEO, new THREE.MeshBasicMaterial({
-    color: hostile ? new THREE.Color(2.2, 0.7, 0.4) : new THREE.Color(0.9, 1.8, 1.0) }));
-  core.position.y = 0.9;
-  g.add(core);
-  const halo = new THREE.Mesh(WISP_GEO, new THREE.MeshBasicMaterial({
-    color: hostile ? 0xff6a3a : 0x8affa8, transparent: true, opacity: 0.25, blending: THREE.AdditiveBlending, depthWrite: false }));
-  halo.scale.setScalar(1.9);
-  core.add(halo);
-  g.userData.core = core;
-  return g;
-}
-
 export class Entities {
-  constructor(engine, plates) {
+  constructor(engine, plates, kits = null) {
     this.engine = engine;
     this.plates = plates;          // DOM container for nameplates
+    this.kits = kits;              // static models, for creatures that are props (a mimic)
     this.zone = null;
     this.list = new Map();         // key -> entity
     this.target = null;            // key of the selected entity
@@ -160,37 +134,17 @@ export class Entities {
     e.plate.innerHTML = '<span class="nm"></span><i class="hp"><b></b></i>';
     e.plate.querySelector('.nm').textContent = w.data.name;
     this.plates.appendChild(e.plate);
-    const look = w.kind === 'player' ? classModel(w.data.char_class) : mobLook(w.data);
-    const grow = w.data.boss ? 1.35 : 1;
-    if (look.beast) {
-      const b = look.beast;
-      const ready = actor => {
-        if (!e.alive) return;
-        e.actor = actor;
-        e.root = actor.root;
-        e.fly = b.fly || 0;
-        e.root.position.copy(at);
-        e.root.rotation.y = (hashStr(key) % 628) / 100;
-        actor.play(isHostile(w) ? 'Idle_Combat' : 'Idle', 0, 0.85 + (hashStr(key) % 30) / 100);
-        this.engine.scene.add(e.root);
-      };
-      if (b.proc) ready(makeProc(b.proc, { height: b.h * grow, tint: b.tint, seed: hashStr(key) }));
-      else spawnMob(b.mob, { height: b.h * grow, tint: b.tint }).then(ready).catch(() => {});
-      return;
-    }
-    if (look.wisp) {
-      e.root = makeWisp(isHostile(w));
-      e.root.position.copy(at);
-      this.engine.scene.add(e.root);
-      return;
-    }
-    spawnCharacter(look.model, { tint: look.tint, scale: grow !== 1 ? grow : undefined }).then(actor => {
+    const look = w.kind === 'player' ? classModel(w.data.char_class) : creatureLook(w.data);
+    e.look = look;
+    e.fly = (look.beast ? look.beast.fly : look.fly) || 0;
+    e.still = !!look.still;        // a statue: no breathing while it stands guard
+    spawnLook(look, { kits: this.kits, seed: hashStr(key) }).then(actor => {
       if (!e.alive) return;
       e.actor = actor;
       e.root = actor.root;
       e.root.position.copy(at);
       e.root.rotation.y = (hashStr(key) % 628) / 100;
-      actor.play(isHostile(w) ? 'Idle_Combat' : 'Idle', 0, 0.85 + (hashStr(key) % 30) / 100);
+      actor.play(isHostile(w) ? 'Idle_Combat' : 'Idle', 0, e.still ? 0 : 0.85 + (hashStr(key) % 30) / 100);
       this.engine.scene.add(e.root);
     }).catch(() => {});
   }
@@ -257,7 +211,7 @@ export class Entities {
       // walking to a new room's spot
       if (e.goal) {
         const p = e.root.position, dx = e.goal.x - p.x, dz = e.goal.z - p.z, d = Math.hypot(dx, dz);
-        if (d < 0.1) { e.goal = null; if (e.actor) e.actor.play(isHostile(e) ? 'Idle_Combat' : 'Idle'); }
+        if (d < 0.1) { e.goal = null; if (e.actor) e.actor.play(isHostile(e) ? 'Idle_Combat' : 'Idle', 0.18, e.still ? 0 : 1); }
         else {
           const step = Math.min(d, 3.2 * dt);
           p.x += dx / d * step; p.z += dz / d * step;
@@ -266,7 +220,6 @@ export class Entities {
         }
       }
       if (e.actor) e.actor.update(dt);
-      else if (e.root.userData.core) e.root.userData.core.position.y = 0.9 + Math.sin(t * 2.4 + (hashStr(e.key) % 7)) * 0.12;
       if (e.fly) e.root.position.y = e.fly + Math.sin(t * 2.1 + (hashStr(e.key) % 9)) * 0.12;
     }
   }

@@ -21,7 +21,7 @@
       },
       "mob_resets": [
         {
-          "vnum": 3200,
+          "vnum": 3203,
           "max": 1
         }
       ]
@@ -78,8 +78,8 @@
     }
   },
   "mobs": {
-    "3200": {
-      "vnum": 3200,
+    "3203": {
+      "vnum": 3203,
       "name": "the stable master",
       "short_desc": "Brynn the Stable Master",
       "long_desc": "Brynn the Stable Master stands here, sizing up potential riders.",
@@ -115,7 +115,7 @@
   "resets": [
     {
       "type": "mob",
-      "vnum": 3200,
+      "vnum": 3203,
       "room": 3201,
       "max": 1
     }

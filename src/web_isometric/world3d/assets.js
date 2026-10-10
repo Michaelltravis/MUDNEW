@@ -191,11 +191,13 @@ export async function spawnCharacter(name, opts = {}) {
     }
   });
   if (opts.scale) root.scale.setScalar(opts.scale);
-  // every actor owns its materials, so a hit flash or a fade touches only this body
+  // every actor owns its materials, so a hit flash or a fade touches only this body; a flat
+  // one (a statue, a golem) is one colour all over instead of a tinted costume
   root.traverse(o => {
     if (o.isMesh && o.material) {
       o.material = o.material.clone();
-      if (opts.tint) o.material.color.multiply(new THREE.Color(opts.tint));
+      if (opts.flat) { o.material.map = null; o.material.color.set(opts.tint != null ? opts.tint : 0x9a9590); o.material.needsUpdate = true; }
+      else if (opts.tint) o.material.color.multiply(new THREE.Color(opts.tint));
     }
   });
   return new Actor(root, clips);

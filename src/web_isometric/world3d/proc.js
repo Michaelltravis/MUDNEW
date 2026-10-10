@@ -1,6 +1,6 @@
 // Procedural low-poly creatures for staples no free model pack covers: rat, spider, snake,
-// rabbit, slime. Built from primitives with flat shading (to sit with the low-poly art) and
-// animated in code. Same interface as assets.Actor (play / once / update), so entities.js
+// lizard, rabbit, slime — plus kit props that come to life (makeProp). Built from primitives with flat
+// shading (to sit with the low-poly art) and animated in code. Same interface as assets.Actor (play / once / update), so entities.js
 // treats them like any other body. Built 1 m tall at scale 1; `height` scales them.
 import * as THREE from 'three';
 
@@ -152,6 +152,40 @@ function snake(color) {
   });
 }
 
+// crocodiles, lizards, basilisks: a long low body, a snout, four splayed legs, a sweeping tail
+function lizard(color) {
+  const root = new THREE.Group(), body = new THREE.Group();
+  root.add(body);
+  const skin = flat(color), dark = flat(new THREE.Color(color).multiplyScalar(0.7));
+  const belly = flat(new THREE.Color(color).lerp(new THREE.Color(0xe8d8a0), 0.45));
+  body.add(mesh(sphere(0.5, 10, 7), skin, 0, 0.3, 0, 0.55, 0.32, 1.25));
+  body.add(mesh(sphere(0.4, 8, 6), belly, 0, 0.22, 0, 0.5, 0.2, 1.1));
+  for (let i = 0; i < 4; i++) body.add(mesh(new THREE.ConeGeometry(0.05, 0.1, 4), dark, 0, 0.45, 0.35 - i * 0.22));
+  const head = new THREE.Group(); head.position.set(0, 0.32, 0.62); body.add(head);
+  head.add(mesh(sphere(0.2, 8, 6), skin, 0, 0, 0.05, 1, 0.7, 1.2));
+  head.add(mesh(new THREE.BoxGeometry(0.22, 0.08, 0.42), skin, 0, -0.04, 0.3));
+  for (const s of [-1, 1]) head.add(mesh(sphere(0.045), EYE, s * 0.1, 0.1, 0.12));
+  const legGeo = new THREE.CylinderGeometry(0.06, 0.05, 0.28, 6);
+  const legs = [];
+  for (const [x, z] of [[-1, 0.35], [1, 0.35], [-1, -0.35], [1, -0.35]]) {
+    const hip = new THREE.Group(); hip.position.set(x * 0.24, 0.24, z); body.add(hip);
+    const leg = mesh(legGeo, dark, x * 0.1, -0.1, 0); leg.rotation.z = x * 0.9; hip.add(leg);
+    hip.add(mesh(sphere(0.07, 6, 4), dark, x * 0.2, -0.2, 0.04, 1.2, 0.5, 1.4));
+    legs.push({ hip, phase: x * z > 0 ? 0 : Math.PI });
+  }
+  const tail = [];
+  for (let i = 0; i < 7; i++) { const s = mesh(sphere(Math.max(0.03, 0.14 - i * 0.017), 7, 5), skin, 0, 0.25 - i * 0.02, -0.6 - i * 0.17); body.add(s); tail.push(s); }
+  return new ProcActor(root, body, (t, st, k) => {
+    const walk = st === 'walk', sp = walk ? 12 : 1.6;
+    legs.forEach(l => { l.hip.rotation.x = (walk ? 0.5 : 0.03) * Math.sin(t * sp + l.phase); });
+    body.rotation.y = walk ? Math.sin(t * sp) * 0.08 : 0;
+    tail.forEach((s, i) => { s.position.x = Math.sin(t * (walk ? sp : 1.2) - i * 0.5) * (walk ? 0.05 : 0.02) * (i + 1); });
+    const bite = st === 'attack' ? Math.sin(k * Math.PI) : 0;
+    head.rotation.x = -bite * 0.35;
+    head.position.z = 0.62 + bite * 0.12;
+  });
+}
+
 function rabbit(color) {
   const root = new THREE.Group(), body = new THREE.Group();
   root.add(body);
@@ -196,11 +230,37 @@ function slime(color) {
   });
 }
 
-const BUILDERS = { rat, spider, snake, rabbit, slime };
+const BUILDERS = { rat, spider, snake, lizard, rabbit, slime };
 const COLORS = {
   rat: [0x6f6158, 0x8a7a6a, 0x504844], spider: [0x2e2a36, 0x3a2e24, 0x4a3a52], snake: [0x4e7a3c, 0x6a5a2c, 0x3a6a6a],
+  lizard: [0x5a7a3a, 0x7a6a3a, 0x4a6a5a],
   rabbit: [0xb59a7c, 0x9a8670, 0xd8ccc0], slime: [0x5fcf6a, 0x6aa8e8, 0xd06ad0],
 };
+
+// A kit model come to life (a mimic is a chest, a living book, a dancing sword): it hops along,
+// lunges to bite, shudders when hit and tips over when it dies. `size` is its longest side in
+// metres; it owns its materials, so a hit flash touches only this one.
+export function makeProp(model, { size = 1, tint = null } = {}) {
+  const root = new THREE.Group(), body = new THREE.Group(), inner = new THREE.Group();
+  root.add(body);
+  body.add(inner);
+  const dim = model.box.getSize(new THREE.Vector3());
+  const k = size / Math.max(dim.x, dim.y, dim.z, 0.01);
+  inner.scale.setScalar(k);
+  inner.position.set(-(model.box.min.x + model.box.max.x) / 2 * k, -model.box.min.y * k, -(model.box.min.z + model.box.max.z) / 2 * k);
+  const own = m => { const c = m.clone(); if (tint != null && c.color) c.color.multiply(new THREE.Color(tint)); return c; };
+  for (const p of model.parts) {
+    const mesh = new THREE.Mesh(p.geometry, Array.isArray(p.material) ? p.material.map(own) : own(p.material));
+    mesh.castShadow = true;
+    inner.add(mesh);
+  }
+  return new ProcActor(root, body, (t, st, a) => {
+    const hop = st === 'walk' ? Math.abs(Math.sin(t * 9)) : 0;
+    const lunge = st === 'attack' ? Math.sin(a * Math.PI) : 0;
+    body.position.set(0, hop * 0.2 * size + Math.sin(t * 2) * 0.01 * size, lunge * 0.3 * size);
+    body.rotation.set(-lunge * 0.35, 0, st === 'hit' ? Math.sin(a * Math.PI * 3) * 0.12 : Math.sin(t * 1.7) * 0.02);
+  });
+}
 
 export function makeProc(kind, { height = 1, tint = null, seed = 0 } = {}) {
   const list = COLORS[kind] || [0x888888];

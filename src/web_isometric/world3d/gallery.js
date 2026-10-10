@@ -1,9 +1,9 @@
 // /play?gallery=dungeon|nature — every model of a kit in a row, for checking art and
 // scale with the game camera. A development page, not part of the game.
 import * as THREE from 'three';
-import { trs, spawnMob, mobIndexReady, spawnCharacter } from './assets.js';
-import { BESTIARY } from './bestiary.js';
-import { makeProc } from './proc.js';
+import { trs, spawnMob, mobIndexReady } from './assets.js';
+import { creatureLook } from './looks.js';
+import { spawnLook } from './entities.js';
 
 export function showGallery(engine, kit, scale = 1) {
   const only = new URLSearchParams(location.search).get('only');
@@ -59,31 +59,51 @@ export async function showMobGallery(engine) {
   return new THREE.Vector3(cols * step / 2, 0, step * 1.5);
 }
 
-// creatures at their in-game sizes beside a knight, by the names the MUD uses
-export async function showBeastGallery(engine) {
-  const names = ['knight', 'rat', 'spider', 'snake', 'rabbit', 'slime', 'wolf', 'fox', 'bear', 'deer', 'bat', 'dog', 'cat',
-    'boar', 'raven', 'crab', 'beetle', 'dragon', 'demon', 'imp', 'ghost', 'ogre', 'yeti', 'treant', 'mushroom', 'beholder'];
-  const floor = new THREE.Mesh(new THREE.PlaneGeometry(60, 20), new THREE.MeshStandardMaterial({ color: 0x6f7a5a, roughness: 1 }));
-  floor.rotation.x = -Math.PI / 2; floor.position.set(14, 0, 4); floor.receiveShadow = true;
+// creatures at their in-game sizes beside a knight, from descriptions the MUD uses (each
+// through looks.js, exactly as the game picks them), labelled
+const SAMPLES = ['the green gelatinous blob', 'the giant hornet', 'the goat herder', 'a goblin mushroom farmer', 'the Spider Queen',
+  'the mimic', 'the Book Monster', 'the dancing sword', 'the magic carpet', 'the broom', 'the stone golem', 'the statue of Indra',
+  'a fire elemental', 'the djinn', 'A tiny pixie', 'the sea hag', 'the merman', 'a lizard man', 'the baker', 'the cityguard',
+  "the mages' guildmaster", 'an orc shaman', 'a skeletal warrior', 'a rotting zombie', 'an ancient lich', 'a vampire spawn',
+  'the Black Rook', 'the White Bishop', 'a possessed suit of armor', 'the red dragon', 'the baby dragon', 'a black bear',
+  'the large, grey wolf', 'the giant earth beetle', 'a sewer crocodile', 'the dragon turtle', 'a hell hound', 'the ancient tree',
+  'the myconoid', 'a ghostly mermaid', { short: 'the Sewer King', long: 'A massive rat-man standing here.', boss: true }];
+
+export async function showBeastGallery(engine, kits) {
+  const only = new URLSearchParams(location.search).get('only');
+  const list = [{ short: 'the knight (hero)' }, ...SAMPLES.map(s => typeof s === 'string' ? { short: s } : s)]
+    .filter(m => !only || only.split(',').some(o => m.short.toLowerCase().includes(o)));
+  const cols = 10, step = 3.2, rows = Math.ceil(list.length / cols);
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(cols * step + 6, rows * step * 1.4 + 6), new THREE.MeshStandardMaterial({ color: 0x6f7a5a, roughness: 1 }));
+  floor.rotation.x = -Math.PI / 2; floor.position.set((cols - 1) * step / 2, 0, (rows - 1) * step * 0.7); floor.receiveShadow = true;
   engine.scene.add(floor);
-  const actors = [];
-  for (let i = 0; i < names.length; i++) {
-    const n = names[i], x = (i % 13) * 2.3, z = Math.floor(i / 13) * 4.5;
-    let a;
-    if (n === 'knight') a = await spawnCharacter('knight');
-    else {
-      const look = (BESTIARY.find(([re]) => re.test(n)) || [])[1];
-      if (!look) continue;
-      a = look.proc ? makeProc(look.proc, { height: look.h, tint: look.tint }) : await spawnMob(look.mob, { height: look.h, tint: look.tint });
-      if (look.fly) a.root.position.y = look.fly;
-    }
-    a.root.position.x = x; a.root.position.z = z;
-    a.play('Idle', 0);
+  const actors = [], labels = [];
+  for (let i = 0; i < list.length; i++) {
+    const m = list[i], x = (i % cols) * step, z = Math.floor(i / cols) * step * 1.4;
+    const look = i === 0 ? { model: 'knight' } : creatureLook({ ...m, pv: i });
+    const a = await spawnLook(look, { kits, seed: i });
+    const fly = look.beast ? look.beast.fly : look.fly;
+    a.root.position.set(x, fly || 0, z);
+    a.play('Idle', 0, look.still ? 0 : 1);
     engine.scene.add(a.root);
     actors.push(a);
+    const el = document.createElement('div');
+    el.textContent = m.short;
+    el.style.cssText = 'position:fixed;left:0;top:0;font:11px sans-serif;color:#fff;background:#0008;padding:1px 4px;border-radius:3px;pointer-events:none;white-space:nowrap;z-index:50';
+    document.body.appendChild(el);
+    labels.push({ el, at: new THREE.Vector3(x, -0.2, z + 0.9) });
   }
-  engine.onTick(dt => actors.forEach(a => a.update(dt)));
-  console.log('beast gallery:', names.join(', '));
+  const v = new THREE.Vector3();
+  engine.onTick(dt => {
+    actors.forEach(a => a.update(dt));
+    const cv = engine.renderer.domElement.getBoundingClientRect();
+    for (const l of labels) {
+      v.copy(l.at).project(engine.camera);
+      l.el.style.display = v.z > 1 ? 'none' : '';
+      l.el.style.transform = `translate(${(cv.left + (v.x + 1) / 2 * cv.width).toFixed(0)}px, ${(cv.top + (1 - v.y) / 2 * cv.height).toFixed(0)}px) translate(-50%, 0)`;
+    }
+  });
+  console.log('beast gallery:', list.map(m => m.short).join(', '));
   engine.setMood('day', true);
-  return new THREE.Vector3(6, 0, 1.5);
+  return new THREE.Vector3((cols - 1) * step / 2, 0, (rows - 1) * step * 0.6);
 }

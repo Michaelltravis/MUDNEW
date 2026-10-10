@@ -119,7 +119,9 @@ async def main():
                 out = [dict(e, _t=d['_t']) for d in got if d.get('type') == 'combat_events' for e in d['events']]
                 return [e for e in out if kind is None or e['k'] == kind]
 
-            async def spawn():
+            async def spawn(skip=()):
+                """Load a spectre and return the payload entry of one that isn't in `skip` (the room
+                lists the newest last, so "the first spectre" would be the old one)."""
                 await tn.cmd(f'mload {SPECTRE}', 0.6)
                 got.clear()
                 # a fresh subscribe answers with the current map (look sends none)
@@ -127,7 +129,7 @@ async def main():
                 for _ in range(50):          # a busy machine can be slow to answer
                     maps = [d for d in got if d.get('type') == 'map_data']
                     room = next((r for d in reversed(maps) for r in (d.get('nearby') or []) if r['vnum'] == ROOM), None)
-                    mob = next((m for m in (room or {}).get('mobs', []) if 'spectre' in m['name'].lower()), None)
+                    mob = next((m for m in (room or {}).get('mobs', []) if 'spectre' in m['name'].lower() and m['id'] not in skip), None)
                     if mob:
                         return mob
                     await asyncio.sleep(0.2)
@@ -175,7 +177,9 @@ async def main():
                     end = None
                     while time.time() - t1 < 7 and end is None:
                         await asyncio.sleep(0.2)
-                        end = next((e for e in events() if e['k'] in ('resolve', 'cancel') and e.get('src') == wu['src']), None)
+                        # this wind-up's end, not the end of one marked before it
+                        end = next((e for e in events() if e['k'] in ('resolve', 'cancel') and e.get('src') == wu['src']
+                                    and e['_t'] >= wu['_t']), None)
                     check(end is not None and (end['k'] == 'cancel' or {'p': tw.CHAR} in (end.get('dodged') or [])),
                           f"a {wu.get('kind')} wind-up stepped out of resolves dodged (or is broken): {end and end['k']}")
                     if end is not None and end['k'] == 'resolve':
@@ -192,7 +196,7 @@ async def main():
             await tn.cmd('purge', 0.6)
             await asyncio.sleep(3.5)
             first = await spawn()
-            second = await spawn()
+            second = await spawn(skip={first['id']} if first else ())
             if first and second and first['id'] != second['id']:
                 await place((10.0, 7.0), second['id'], (11.2, 7.0))
                 got.clear()

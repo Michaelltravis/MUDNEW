@@ -1,5 +1,5 @@
 // Browser probe for /play against a local server (./run.sh), with the gauntlet admin account.
-//   NODE_PATH=/opt/node22/lib/node_modules node tests/web/probe_play3d.js stairs|doors|camera|menu|autotarget [outdir]
+//   NODE_PATH=/opt/node22/lib/node_modules node tests/web/probe_play3d.js stairs|doors|camera|menu|autotarget|creatures [outdir]
 // CommonJS on purpose (the global Playwright only resolves through NODE_PATH with require).
 // WebGL may render at ~1 fps in a container, so the probe places the hero directly and waits
 // on frames instead of walking in real time.
@@ -13,6 +13,9 @@
 //   menu:   a right-click on a creature offers Attack/Consider (naming it exactly), on the
 //           hero "You".
 //   autotarget: a creature that hits you becomes your target; a foe you picked stays.
+//   creatures: a blob, a mimic, a statue, a chess rook, a stone golem, a goblin farmer, a brownie,
+//           a living book and the Sewer King each get the right body (looks.js, from the payload's
+//           short description and room line).
 const fs = require('fs');
 const path = require('path');
 const { chromium } = require('playwright');
@@ -214,6 +217,37 @@ async function waitFor(page, fn, arg, secs = 60) {
       await sleep(300);
       check(await page.evaluate(id => MH3D.ents.target === `m${id}`, ids[1]), 'your chosen foe stays targeted');
     }
+    await page.evaluate(() => MH.sendCommand('purge', false));
+    await sleep(800);
+  }
+
+  if (MODE === 'creatures') {
+    check(await goto(3001), 'in the Temple of Midgaard (3001)');
+    const want = { 3068: 'slime', 5202: 'chest', 5423: 'knight still', 3602: 'knight', 3016: 'knight', 23506: 'greendemon', 6115: 'mage', 6402: 'book_single', 3014: 'rat' };
+    await page.evaluate(vs => { for (const c of ['purge', ...vs.map(v => `mload ${v}`)]) MH.sendCommand(c, false); }, Object.keys(want));
+    await sleep(1500);
+    await page.evaluate(() => MH.state.mapSocket.send(JSON.stringify({ type: 'subscribe', player: MH.state.playerName, mode: 'near' })));
+    const n = Object.keys(want).length;
+    check(await waitFor(page, n => [...MH3D.ents.list.values()].filter(e => e.kind === 'mob' && e.vnum === 3001 && e.root).length >= n, n, 90), `all ${n} drawn`);
+    const got = await page.evaluate(() => [...MH3D.ents.list.values()].filter(e => e.kind === 'mob' && e.vnum === 3001).map(e => {
+      const l = e.look || {}, b = l.beast;
+      return { pv: e.data.pv, short: e.data.short, long: e.data.long, body: b ? (b.mob || b.proc || b.prop[1]) : l.model + (l.still ? ' still' : ''), fly: e.fly, y: +e.root.position.y.toFixed(2) };
+    }));
+    for (const [pv, body] of Object.entries(want)) {
+      const g = got.find(x => String(x.pv) === pv);
+      check(g && g.body === body, `${pv} ${g ? g.short : '?'}: ${g ? g.body : 'missing'} (want ${body})`);
+    }
+    const book = got.find(x => x.pv === 6402);
+    check(book && book.fly > 0 && book.y > 0.5, `the living book flies (${book && book.y} m)`);
+    check(got.some(x => x.pv === 3014 && /rat-man/.test(x.long || '')), 'the payload carries the room line');
+    // stand back from them for a picture
+    await page.evaluate(() => {
+      const ms = [...MH3D.ents.list.values()].filter(e => e.kind === 'mob' && e.vnum === 3001 && e.root);
+      const c = ms.reduce((a, e) => a.add(e.root.position), new MH3D.THREE.Vector3()).multiplyScalar(1 / ms.length);
+      MH3D.hero.root.position.set(c.x, 0, c.z + 7);
+    });
+    await sleep(4000);
+    await page.screenshot({ path: path.join(OUT, 'creatures.png') });
     await page.evaluate(() => MH.sendCommand('purge', false));
     await sleep(800);
   }

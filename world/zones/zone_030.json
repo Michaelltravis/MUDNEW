@@ -1177,15 +1177,15 @@
           "max": 1
         },
         {
-          "vnum": 3100,
+          "vnum": 3011,
           "max": 1
         },
         {
-          "vnum": 3101,
+          "vnum": 3012,
           "max": 1
         },
         {
-          "vnum": 3102,
+          "vnum": 3013,
           "max": 1
         }
       ]
@@ -2051,7 +2051,7 @@
       },
       "mob_resets": [
         {
-          "vnum": 3120,
+          "vnum": 3014,
           "max": 1
         }
       ],
@@ -2084,7 +2084,7 @@
       },
       "mob_resets": [
         {
-          "vnum": 3121,
+          "vnum": 3015,
           "max": 1
         }
       ]
@@ -2105,7 +2105,7 @@
       },
       "mob_resets": [
         {
-          "vnum": 3122,
+          "vnum": 3016,
           "max": 1
         }
       ],
@@ -3678,8 +3678,8 @@
         3128
       ]
     },
-    "3120": {
-      "vnum": 3120,
+    "3014": {
+      "vnum": 3014,
       "name": "sewer king",
       "short_desc": "the Sewer King",
       "long_desc": "A massive rat-man standing here.",
@@ -3718,8 +3718,8 @@
         3215
       ]
     },
-    "3121": {
-      "vnum": 3121,
+    "3015": {
+      "vnum": 3015,
       "name": "shadow assassin",
       "short_desc": "a shadow assassin",
       "long_desc": "A figure cloaked in living darkness watches from the shadows.",
@@ -3757,8 +3757,8 @@
         3045
       ]
     },
-    "3122": {
-      "vnum": 3122,
+    "3016": {
+      "vnum": 3016,
       "name": "ancient guardian",
       "short_desc": "the Ancient Guardian",
       "long_desc": "A towering stone golem stands watch, runes glowing on its body.",
@@ -4207,8 +4207,8 @@
         3076
       ]
     },
-    "3100": {
-      "vnum": 3100,
+    "3011": {
+      "vnum": 3011,
       "name": "trained war dog",
       "short_desc": "a trained war dog",
       "long_desc": "A large trained war dog stands guard here, muscles rippling.",
@@ -4226,8 +4226,8 @@
         3051
       ]
     },
-    "3101": {
-      "vnum": 3101,
+    "3012": {
+      "vnum": 3012,
       "name": "black bear",
       "short_desc": "a young black bear",
       "long_desc": "A young black bear lumbers here, sniffing curiously.",
@@ -4247,8 +4247,8 @@
         3043
       ]
     },
-    "3102": {
-      "vnum": 3102,
+    "3013": {
+      "vnum": 3013,
       "name": "dire wolf",
       "short_desc": "a massive dire wolf",
       "long_desc": "A massive dire wolf stands here, its silver fur bristling.",
