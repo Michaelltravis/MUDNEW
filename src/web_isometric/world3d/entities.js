@@ -75,6 +75,37 @@ export class Entities {
     if (!e.root || e.root.position.distanceTo(goal) > 0.15) e.goal = goal;
   }
 
+  // a creature or player changed rooms: walk there if the rooms open onto each other, else
+  // snap there (stairs, a far passage, recall, a portal) with a puff of dust
+  moveTo(e, vnum) {
+    const from = this.zone.rooms.get(e.vnum), to = this.zone.rooms.get(vnum);
+    e.vnum = vnum;
+    e.goal = this.slot(vnum, e.key);
+    const joined = from && to && this.zone.openDir(from, to);
+    if (e.root && e.goal && (!joined || e.root.position.distanceTo(e.goal) > 30)) {
+      if (this.onSnap) this.onSnap(e.root.position.clone(), e.goal.clone());
+      e.root.position.copy(e.goal).setY(e.root.position.y);
+      e.goal = null;
+    }
+  }
+
+  // another web player's position, relayed by the server: their hero follows it
+  presence({ name, vnum, x, z }) {
+    const e = name && this.list.get(`p${name}`);
+    if (!e || !this.zone || !this.zone.rooms.get(vnum)) return;   // not drawn yet: the next payload brings them
+    if (e.vnum !== vnum) this.moveTo(e, vnum);
+    e.data.x = x; e.data.z = z;
+    this.place(e, e.data);
+  }
+
+  // another player changed rooms some other way (recall, a portal, following a leader)
+  playerMoved({ name, to }) {
+    const e = this.list.get(`p${name}`);
+    if (!e || !this.zone) return;
+    if (!this.zone.rooms.get(to)) { this.remove(e, true); return; }   // out of this zone: gone from view
+    if (e.vnum !== to) this.moveTo(e, to);
+  }
+
   // payload.nearby: [{vnum, mobs, players, doors, items}]
   sync(payload, selfName) {
     // a payload without `nearby` (an older /state reply) says nothing about who is around:
@@ -95,17 +126,8 @@ export class Entities {
       e.data = w.data;
       this.markHostile(e);
       if (e.vnum !== w.vnum) {
-        const from = this.zone.rooms.get(e.vnum), to = this.zone.rooms.get(w.vnum);
-        e.vnum = w.vnum;
-        e.goal = this.slot(w.vnum, key);
-        // up the stairs or through a far passage: snap there with a puff of dust instead of
-        // walking through walls and across the empty space between levels
-        const joined = from && to && this.zone.openDir(from, to);
-        if (e.root && e.goal && (!joined || e.root.position.distanceTo(e.goal) > 30)) {
-          if (this.onSnap) this.onSnap(e.root.position.clone(), e.goal.clone());
-          e.root.position.copy(e.goal).setY(e.root.position.y);
-          e.goal = null;
-        }
+        this.moveTo(e, w.vnum);
+        if (w.data.x != null) this.place(e, w.data);
       } else this.place(e, w.data);
     }
   }
@@ -125,7 +147,9 @@ export class Entities {
   }
 
   create(key, w) {
-    const at = this.slot(w.vnum, key);
+    // where the server says it stands (a web player, a creature in a fight), else a spawn slot
+    const room = this.zone && this.zone.rooms.get(w.vnum);
+    const at = room && w.data.x != null && w.data.z != null ? new THREE.Vector3(room.ox + w.data.x, 0, room.oz + w.data.z) : this.slot(w.vnum, key);
     if (!at) return;
     const e = { key, kind: w.kind, data: w.data, vnum: w.vnum, root: null, actor: null, goal: null, alive: true };
     this.list.set(key, e);
@@ -208,15 +232,17 @@ export class Entities {
     }
     for (const e of this.list.values()) {
       if (!e.root) continue;
-      // walking to a new room's spot
+      // walking to a new room's spot (other players keep up with where they really are:
+      // the further behind, the faster they run)
       if (e.goal) {
         const p = e.root.position, dx = e.goal.x - p.x, dz = e.goal.z - p.z, d = Math.hypot(dx, dz);
         if (d < 0.1) { e.goal = null; if (e.actor) e.actor.play(isHostile(e) ? 'Idle_Combat' : 'Idle', 0.18, e.still ? 0 : 1); }
         else {
-          const step = Math.min(d, 3.2 * dt);
+          const speed = e.kind === 'player' ? Math.min(9, Math.max(3.2, d * 4)) : 3.2;
+          const step = Math.min(d, speed * dt);
           p.x += dx / d * step; p.z += dz / d * step;
           e.root.rotation.y = Math.atan2(dx, dz);
-          if (e.actor) e.actor.play('Walking_A', 0.15, 1.1);
+          if (e.actor) e.actor.play(speed > 4.5 ? 'Running_A' : 'Walking_A', 0.15, 1.1);
         }
       }
       if (e.actor) e.actor.update(dt);

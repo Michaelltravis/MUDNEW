@@ -110,8 +110,9 @@ class TelnetBridge:
                 
                 text = data.decode('utf-8', errors='replace')
                 
-                # Check for MAPSYNC control sequence: \x1b]MAPSYNC:playername\x07
-                mapsync_pattern = re.compile(r'\x1b\]MAPSYNC:([^\x07]+)\x07')
+                # Check for MAPSYNC control sequence: \x1b]MAPSYNC:playername:token\x07 (the
+                # token is this session's secret for the map server)
+                mapsync_pattern = re.compile(r'\x1b\]MAPSYNC:([^\x07:]+)(?::([^\x07]+))?\x07')
                 mapsync_match = mapsync_pattern.search(text)
                 
                 if mapsync_match:
@@ -119,7 +120,8 @@ class TelnetBridge:
                     # Send mapsync message
                     await self.ws.send_json({
                         'type': 'mapsync',
-                        'player': player_name
+                        'player': player_name,
+                        'token': mapsync_match.group(2) or '',
                     })
                     # Remove the control sequence from output
                     text = mapsync_pattern.sub('', text)
@@ -1227,7 +1229,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
                     appendOutput(msg.data);
                 } else if (msg.type === 'mapsync') {
                     playerName = msg.player;
-                    const newMapUrl = `${mapUrl}/?player=${encodeURIComponent(playerName)}`;
+                    const newMapUrl = `${mapUrl}/?player=${encodeURIComponent(playerName)}&t=${encodeURIComponent(msg.token || '')}`;
                     if (mapFrame.src !== newMapUrl) {
                         mapFrame.src = newMapUrl;
                     }

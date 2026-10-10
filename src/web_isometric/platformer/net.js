@@ -18,6 +18,17 @@
       + (MH.mapMode ? `&mode=${MH.mapMode}` : ''),
   };
 
+  // every per-player request to the map server carries this session's token (handed over in
+  // MAPSYNC by the player's own game connection): the server answers nothing to a name alone
+  const realFetch = window.fetch.bind(window);
+  window.fetch = (input, init) => {
+    const tok = MH.state && MH.state.mapToken;
+    if (tok && typeof input === 'string' && /[?&]player=/.test(input) && !/[?&]t=/.test(input)) {
+      input += `&t=${encodeURIComponent(tok)}`;
+    }
+    return realFetch(input, init);
+  };
+
   // --- tiny event bus ---
   const listeners = {};
   MH.bus = {
@@ -83,6 +94,7 @@
   // --- shared state ---
   MH.state = {
     playerName: '',
+    mapToken: '',              // this session's secret for the map server (MAPSYNC)
     playerPassword: '',
     creatingAccount: false,
     isLoggedIn: false,
@@ -226,7 +238,7 @@
   function sendMapSubscribe() {
     const st = MH.state;
     if (!st.playerName || !st.mapSocket || st.mapSocket.readyState !== WebSocket.OPEN) return;
-    st.mapSocket.send(JSON.stringify({ type: 'subscribe', player: st.playerName, mode: MH.mapMode || 'full' }));
+    st.mapSocket.send(JSON.stringify({ type: 'subscribe', player: st.playerName, token: st.mapToken || '', mode: MH.mapMode || 'full' }));
   }
   function startResubscribe() {
     stopResubscribe();
@@ -280,7 +292,7 @@
         if (payload.type === 'map_data') handleMapData(payload);
         else if (payload.type === 'combat_update') handleCombatUpdate(payload);
         else if (payload.type === 'mob_move') MH.bus.emit('mob.move', payload);
-        else if (payload.type === 'player_move') { MH.bus.emit('player.move', payload); if (payload.name && payload.name !== MH.state.playerName) MH.bus.emit('ambient.echo', `${payload.name} ${payload.action === 'leave' ? 'leaves' : 'arrives'}.`); }
+        else if (payload.type === 'player_move') { MH.bus.emit('player.move', payload); if (payload.name && payload.name !== MH.state.playerName && payload.action !== 'move') MH.bus.emit('ambient.echo', `${payload.name} ${payload.action === 'leave' ? 'leaves' : 'arrives'}.`); }
         else if (payload.type === 'ambient') MH.bus.emit('ambient.echo', payload.text || '');
         else if (payload.type === 'loot_roll') MH.bus.emit('loot.roll', payload);
         else if (payload.type === 'loot_result') MH.bus.emit('loot.result', payload);
@@ -289,6 +301,13 @@
         else if (payload.type === 'door') MH.bus.emit('door.update', payload);
         else if (payload.type === 'door_result') MH.bus.emit('door.result', payload);
         else if (payload.type === 'improve') MH.bus.emit('ability.improve', payload);
+        // other players: where they stand, and group changes (party frames, invites)
+        else if (payload.type === 'presence') MH.bus.emit('player.presence', payload);
+        else if (payload.type === 'group') MH.bus.emit('group.update', payload);
+        else if (payload.type === 'group_invite') MH.bus.emit('group.invite', payload);
+        // the server wants this session's token (subscribe) / another login took the character
+        else if (payload.type === 'auth' && !payload.ok) MH.bus.emit('session.denied', payload);
+        else if (payload.type === 'revoked') MH.bus.emit('session.revoked', payload);
       } catch (err) {
         console.warn('map socket parse error', err);
       }
@@ -344,6 +363,7 @@
       inferLoginSuccess(text);
     } else if (payload.type === 'mapsync') {
       if (payload.player) MH.state.playerName = payload.player;
+      if (payload.token != null) MH.state.mapToken = payload.token;
       if (!MH.state.isLoggedIn) {
         MH.state.isLoggedIn = true;
         MH.bus.emit('login.success', MH.state.playerName);

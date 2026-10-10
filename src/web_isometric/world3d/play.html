@@ -34,6 +34,10 @@
   </div>
 </div>
 
+<div id="party" class="hud hidden"></div>
+<div id="group-invite" class="hud panel popup hidden"></div>
+<div id="loot-roll" class="hud panel popup hidden"></div>
+
 <div id="target-frame" class="hud panel hidden">
   <button class="tclose" title="Clear target (Esc)">✕</button>
   <div class="tname"></div>
@@ -60,8 +64,10 @@
 </div>
 
 <div id="chat" class="hud panel hidden">
-  <div id="log"></div>
-  <input id="chat-input" placeholder="Press Enter to talk or type a command…" autocomplete="off" spellcheck="false">
+  <div class="chat-tabs"><button data-tab="all" class="on">All</button><button data-tab="group">Group</button><button data-tab="say">Say</button><button data-tab="tell">Tells</button></div>
+  <div id="log" data-tab="all"></div>
+  <div class="chat-row"><button id="chat-mode" title="What Enter does with plain text: a command, or say / group / tell it">Cmd</button>
+  <input id="chat-input" placeholder="Press Enter to talk or type a command…" autocomplete="off" spellcheck="false"></div>
 </div>
 
 <div id="menu" class="hud panel hidden">

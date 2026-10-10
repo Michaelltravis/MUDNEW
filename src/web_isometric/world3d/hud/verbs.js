@@ -39,15 +39,18 @@ export function verbsFor(hit, ctx = {}) {
   if (hit.kind === 'player') {
     const d = hit.ent.data || {};
     const name = String(d.name || '').split(/\s+/)[0];
+    // inviting, following and trading need them in your room (the server's rule)
+    const near = ctx.room == null || hit.ent.vnum === ctx.room;
+    const far = label => ({ label: `${label} (walk closer)` });
     return {
-      title: `${name}${d.level ? ` · level ${d.level}` : ''}${d.char_class ? ` ${d.char_class}` : ''}`,
+      title: `${name}${d.level ? ` · level ${d.level}` : ''}${d.char_class ? ` ${d.char_class}` : ''}${d.groupmate ? ' · your group' : ''}`,
       items: [
         { label: 'Look', cmd: `look ${name}` },
         { label: 'Whisper…', act: `tell:${name}` },
-        { label: 'Invite to group', cmd: `group ${name}` },
-        { label: 'Follow', cmd: `follow ${name}` },
+        d.groupmate ? { label: 'In your group' } : near ? { label: 'Invite to group', cmd: `group invite ${name}` } : far('Invite to group'),
+        near ? { label: 'Follow', cmd: `follow ${name}` } : far('Follow'),
         { label: 'Assist', cmd: `assist ${name}` },
-        { label: 'Trade', cmd: `trade ${name}` },
+        near ? { label: 'Trade', cmd: `trade ${name}` } : far('Trade'),
         { label: 'Target', act: 'target' },
       ],
     };
@@ -68,6 +71,7 @@ export function verbsFor(hit, ctx = {}) {
       if (p !== 'sleeping') items.push({ label: 'Sleep', cmd: 'sleep' });
       items.push({ label: 'Recall to town', cmd: 'recall' });
     } else items.push({ label: 'Flee', cmd: 'flee' });
+    if (ctx.inGroup) items.push({ label: 'Leave group', cmd: 'group leave' });
     return { title: 'You', items };
   }
   return { title: '', items: [{ label: 'Walk here', act: 'walk' }] };

@@ -7,6 +7,7 @@ import { createInventory } from './inventory.js';
 import { createCharacter } from './character.js';
 import { createSpellbook } from './spellbook.js';
 import { createTrainer } from './trainer.js';
+import { createParty } from './party.js';
 import { SLOTS, cleanBar, defaultBar, placeNew, putOnBar, takeOffBar, diffAbilities, usable } from '../abilities.js';
 const $ = s => document.querySelector(s);
 const ls = { get(k) { try { return localStorage.getItem(k); } catch (_) { return null; } },
@@ -48,6 +49,12 @@ export function createHud() {
     onDragEnd: () => els.ab.classList.remove('dragging'),
   });
   const trainer = createTrainer($('#trainer'), { icon: id => ICON(id), onTrain: id => MH.sendCommand(`practice ${id}`) });
+  const party = createParty({
+    frames: $('#party'), invite: $('#group-invite'), loot: $('#loot-roll'),
+    onTarget: name => MH.bus.emit('hud.targetPlayer', name),
+    onMenu: (name, x, y, leader) => MH.bus.emit('hud.partyMenu', { name, x, y, leader }),
+    toast: msg => toast(msg),
+  });
 
   // ---- scale ----
   function applyScale() {
@@ -343,10 +350,26 @@ export function createHud() {
   const PROMPT = /^\s*<?\s*\d+\/\d+\s*hp\b[^\n]*>\s*$/i;
   let stick = true;
   els.log.addEventListener('scroll', () => { stick = els.log.scrollTop + els.log.clientHeight >= els.log.scrollHeight - 30; });
+  // what kind of line it is, for the chat tabs (All / Group / Say / Tells)
+  let tellFrom = '';
+  function lineKind(text) {
+    if (/^You tell the group,|^\w+ tells the group,/.test(text)) return 'group';
+    const t = text.match(/^(\w+) tells you,/);
+    if (t) { tellFrom = t[1]; return 'tell'; }
+    if (/^You tell \w+,/.test(text)) return 'tell';
+    if (/^You say,|^\w+ says,|^You say '|^\w+ says '/.test(text)) return 'say';
+    return '';
+  }
   function log(html, cls) {
     const atBottom = stick;
     const d = document.createElement('div');
     if (cls) { d.className = cls; d.textContent = html; } else d.innerHTML = html;
+    const kind = lineKind(d.textContent.trim());
+    if (kind) {
+      d.classList.add(`l-${kind}`);
+      const tab = document.querySelector(`#chat .chat-tabs [data-tab="${kind}"]`);
+      if (tab && els.log.dataset.tab !== kind) tab.classList.add('new');
+    }
     els.log.appendChild(d);
     while (els.log.childElementCount > 400) els.log.firstChild.remove();
     if (atBottom) els.log.scrollTop = els.log.scrollHeight;
@@ -358,10 +381,33 @@ export function createHud() {
     if (lines.length) log(lines.join('\n'));
   });
   MH.bus.on('terminal.echo', cmd => log(`> ${cmd}`, 'cmd'));
+  // tabs filter the log; the mode chip decides what Enter does with plain text
+  document.querySelectorAll('#chat .chat-tabs button').forEach(b => b.addEventListener('click', () => {
+    els.log.dataset.tab = b.dataset.tab;
+    document.querySelectorAll('#chat .chat-tabs button').forEach(x => x.classList.toggle('on', x === b));
+    b.classList.remove('new');
+    els.log.scrollTop = els.log.scrollHeight;
+  }));
+  const MODES = ['cmd', 'say', 'group', 'tell'];
+  let mode = 'cmd';
+  const modeBtn = $('#chat-mode');
+  function setMode(m) {
+    mode = m;
+    modeBtn.textContent = { cmd: 'Cmd', say: 'Say', group: 'Group', tell: tellFrom ? `→ ${tellFrom}` : 'Tell' }[m];
+    els.input.placeholder = m === 'cmd' ? 'Press Enter to talk or type a command…' : m === 'tell' && !tellFrom ? 'Tell whom? Start with their name…'
+      : `${m === 'say' ? 'Say' : m === 'group' ? 'Tell the group' : `Tell ${tellFrom}`} — or start with / for a command`;
+  }
+  modeBtn.addEventListener('click', () => setMode(MODES[(MODES.indexOf(mode) + 1) % MODES.length]));
+  function framed(v) {
+    if (mode === 'cmd' || v.startsWith('/')) return v.replace(/^\//, '');
+    if (mode === 'say') return `say ${v}`;
+    if (mode === 'group') return `gtell ${v}`;
+    return tellFrom ? `tell ${tellFrom} ${v}` : `tell ${v}`;
+  }
   els.input.addEventListener('keydown', e => {
     if (e.key === 'Enter') {
-      const v = els.input.value.trim();
-      if (v) { MH.sendCommand(v); st.history.unshift(v); st.history.length = Math.min(st.history.length, 50); }
+      const raw = els.input.value.trim(), v = raw && framed(raw);
+      if (v) { MH.sendCommand(v); st.history.unshift(raw); st.history.length = Math.min(st.history.length, 50); }
       st.hi = -1;
       els.input.value = '';
       els.input.blur();
@@ -429,7 +475,9 @@ export function createHud() {
   function prefill(text) { els.input.value = text; els.input.focus(); }
   function openPanel(name) { if (name === 'inventory') inventory.toggle(true); else if (name === 'character') character.toggle(true); }
   function openTrainer(name) { trainer.toggle(true, name || ''); if (MH.refreshState) MH.refreshState(); }
+  // whisper someone: the chat input set to tell them
+  function whisper(name) { tellFrom = name; setMode('tell'); els.input.focus(); }
 
   return { showGame, setPlayer, setTarget, setRanges, setDistance, banner, toast, log, targetSkills, useAbility, prefill, openPanel, openTrainer,
-    spellbook, unslot, get player() { return st.player; }, get bar() { return st.bar.slice(); } };
+    spellbook, unslot, party, whisper, get player() { return st.player; }, get bar() { return st.bar.slice(); } };
 }

@@ -965,7 +965,8 @@ class World:
                         self.npcs.remove(companion)
                     logger.info(f"Removed companion: {companion.name} for {player.name}")
 
-        if player.name.lower() in self.players:
+        # only this very character: a newer session of the same name stays in the world
+        if self.players.get(player.name.lower()) is player:
             del self.players[player.name.lower()]
 
         left_room = player.room

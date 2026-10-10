@@ -153,6 +153,19 @@ button { font: inherit; color: inherit; }
   white-space: pre-wrap; word-break: break-word; scrollbar-width: thin; }
 #log .cmd { color: var(--gold); }
 #log .sys { color: var(--ink-dim); font-style: italic; }
+/* chat tabs and the input's mode chip */
+.chat-tabs { display: flex; gap: 2px; padding: 5px 8px 0; }
+.chat-tabs button { font: 600 10.5px var(--body); padding: 2px 8px; border-radius: 5px 5px 0 0; border: 1px solid var(--edge-dim);
+  border-bottom: 0; background: rgba(255,255,255,.03); color: var(--ink-dim); cursor: pointer; }
+.chat-tabs button.on { color: var(--gold-hi); background: rgba(216,180,106,.12); }
+.chat-tabs button.new::after { content: ' •'; color: var(--gold-hi); }
+#log[data-tab="group"] > div:not(.l-group), #log[data-tab="say"] > div:not(.l-say),
+#log[data-tab="tell"] > div:not(.l-tell) { display: none; }
+#log .l-group { color: #8fe0ff; } #log .l-tell { color: #e8a8ff; }
+.chat-row { display: flex; gap: 6px; margin: 0 8px 8px; }
+#chat-mode { flex: none; min-width: 48px; font: 700 10.5px var(--body); border-radius: 6px; border: 1px solid var(--edge);
+  background: rgba(216,180,106,.1); color: var(--gold-hi); cursor: pointer; }
+.chat-row #chat-input { margin: 0; flex: 1; }
 #chat-input { margin: 0 8px 8px; padding: 6px 9px; border-radius: 6px; border: 1px solid var(--edge-dim);
   background: rgba(0,0,0,.45); color: var(--ink); font: calc(12.5px * var(--ui)) var(--body); outline: none; }
 #chat-input:focus { border-color: var(--gold); }
@@ -373,3 +386,36 @@ button { font: inherit; color: inherit; }
 .tr-buy { padding: 5px 12px; border-radius: 6px; border: 1px solid var(--gold); background: rgba(216,180,106,.16); color: var(--gold-hi); cursor: pointer; font-weight: 600; }
 .tr-buy:hover { background: rgba(216,180,106,.3); }
 .tr-buy[disabled] { opacity: .45; cursor: default; border-color: var(--edge-dim); }
+
+/* ---- party frames (under your own), the group invite and loot rolls ---- */
+#party { left: 14px; top: calc(14px + 96px * var(--ui)); display: flex; flex-direction: column; gap: 5px;
+  transform: scale(var(--ui)); transform-origin: top left; }
+.pt { width: 178px; padding: 5px 8px 6px; border-radius: 8px; background: var(--glass); border: 1px solid var(--edge-dim); cursor: pointer;
+  box-shadow: 0 3px 12px rgba(0,0,0,.4); }
+.pt:hover { border-color: var(--edge); }
+.pt.away { opacity: .7; }
+.pt.dead { opacity: .45; filter: grayscale(.8); }
+.pt.low { box-shadow: 0 0 0 1px rgba(255,90,70,.7), 0 0 12px rgba(255,60,40,.45); }
+.pt-top { display: flex; align-items: baseline; gap: 5px; font-size: 12px; }
+.pt-ic { width: 14px; text-align: center; color: var(--gold); }
+.pt-nm { flex: 1; font-weight: 700; color: var(--ally); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pt-nm .crown { font-style: normal; color: #ffd86a; margin-right: 3px; }
+.pt-lv { font-size: 10px; color: var(--ink-dim); }
+.pt-bar { height: 5px; border-radius: 3px; background: rgba(0,0,0,.55); margin-top: 3px; overflow: hidden; }
+.pt-bar b { display: block; height: 100%; transition: width .3s; }
+.pt-bar.hp b { background: linear-gradient(90deg, var(--hp), var(--hp-hi)); }
+.pt-bar.mp b { background: linear-gradient(90deg, var(--mana), var(--mana-hi)); }
+.pt-away { font-size: 10px; color: var(--ink-dim); margin-top: 2px; min-height: 0; }
+.pt-away:empty { display: none; }
+.popup { left: 50%; top: 22%; transform: translateX(-50%) scale(var(--ui)); transform-origin: top center; width: 300px; padding: 12px 14px 10px; z-index: 20; text-align: center; }
+#loot-roll { top: 34%; }
+.iv-t { font: 600 14px var(--title); color: var(--gold-hi); letter-spacing: .05em; margin-bottom: 6px; }
+.iv-who { font-size: 13px; margin-bottom: 10px; }
+.iv-b { display: flex; gap: 8px; justify-content: center; }
+.iv-b button { padding: 6px 16px; border-radius: 6px; border: 1px solid var(--gold); background: rgba(216,180,106,.16); color: var(--gold-hi); font-weight: 700; cursor: pointer; }
+.iv-b button:hover { background: rgba(216,180,106,.3); }
+.iv-b .decline, .iv-b [data-v="pass"] { border-color: var(--edge-dim); background: rgba(255,255,255,.05); color: var(--ink-dim); }
+.lr-item { font: 600 15px var(--title); margin: 4px 0 10px; }
+.lr-item.uncommon { color: #7fe07a; } .lr-item.rare { color: #6aa8ff; } .lr-item.epic { color: #c87aff; } .lr-item.legendary { color: #ffb02a; }
+.lr-bar { height: 3px; margin-top: 10px; border-radius: 2px; background: var(--gold); transform-origin: left; animation: lr-shrink var(--lr-ms) linear forwards; }
+@keyframes lr-shrink { from { transform: scaleX(1); } to { transform: scaleX(0); } }

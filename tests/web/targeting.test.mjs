@@ -56,9 +56,14 @@ test('right-click menus: creature, shopkeeper, player, door, yourself, the groun
   const shop = verbsFor({ kind: 'mob', ent: mob(13, { data: { name: 'the baker', shopkeeper: true } }) });
   assert.deepEqual(labels(shop).slice(0, 2), ['Talk', 'Shop']);
   assert.equal(shop.items[0].cmd, 'talk baker');
-  const pl = verbsFor({ kind: 'player', ent: { kind: 'player', data: { name: 'Bob', level: 7 } } });
+  const pl = verbsFor({ kind: 'player', ent: { kind: 'player', vnum: 10, data: { name: 'Bob', level: 7 } } }, { room: 10 });
   assert.ok(labels(pl).includes('Invite to group'));
-  assert.equal(pl.items.find(i => i.label === 'Invite to group').cmd, 'group Bob');
+  assert.equal(pl.items.find(i => i.label === 'Invite to group').cmd, 'group invite Bob');
+  const far = verbsFor({ kind: 'player', ent: { kind: 'player', vnum: 11, data: { name: 'Bob' } } }, { room: 10 });
+  assert.ok(!far.items.find(i => /^Invite/.test(i.label)).cmd, 'in another room: greyed, walk closer');
+  const mate = verbsFor({ kind: 'player', ent: { kind: 'player', vnum: 10, data: { name: 'Bob', groupmate: true } } }, { room: 10 });
+  assert.ok(labels(mate).includes('In your group'));
+  assert.ok(labels(verbsFor({ kind: 'self' }, { inGroup: true })).includes('Leave group'));
   const door = verbsFor({ kind: 'door', door: { dir: 'east', info: { label: 'oak door', closed: true, locked: true, has_key: true } } });
   assert.equal(door.title, 'Oak door');
   assert.equal(door.items[0].act, 'door:unlockopen');

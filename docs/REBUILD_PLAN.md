@@ -367,3 +367,38 @@ skill's own server code.
   refusal, a trainer step for 1,250 gold, Bron's directions, `/abilitybook`, the saved bar),
   `node --test tests/web/*.test.mjs` (bar logic), `tests/web/probe_play3d.js spellbook|trainer`,
   and the stairs/doors/combat suites unchanged.
+
+### Other players and groups (owner: "can multiple players join the game? Can I see other players and group with them?")
+- **Sessions are secret now.** Before, the map server trusted a name: anyone could subscribe to
+  another player's live updates, read their state and mail, or move them; a `say` containing a
+  hidden MAPSYNC sequence switched every listener's client to another identity. Now every login
+  gets a token (`server._issue_web_token`), sent only down that player's own connection inside
+  MAPSYNC; the map socket's `subscribe` and the 15 per-player endpoints answer only to it
+  (`web_map._player_by_token`, `_authed`); `net.js` adds it to every `?player=` request; control
+  characters are stripped from everything typed; the client's parser ignores game words inside
+  someone's speech. WebSocket frames over 1 MB are refused.
+- **One copy of a character.** Logging in again takes the character over in memory: the old
+  session is told and closed without saving a stale copy, its web clients are revoked (they go
+  back to the login screen), the world keeps one body. Leaving removes only that very object;
+  a command that crashes no longer drops the connection; `goto` is for immortals.
+- **Seeing each other.** Payloads carry other players' positions; each web player's position is
+  relayed (≤ 5 a second) to the 3D clients that can see them, and room changes of any kind
+  (walking, recall, portals, following) reach everyone in view (`web_map.relay_presence`,
+  `note_room`). Other heroes run to keep up instead of sliding. Followers are no longer dragged
+  out of fights, their explored rooms and maps update, and a sneaking leader's followers get
+  their view too.
+- **Groups.** Invites arrive as a popup (Join / Decline, 60 s), `group invite <name>` works,
+  party frames sit under your own (health, mana, leader's crown, where an absent member is;
+  click to target them — heals go to your target — right-click for Whisper, Follow, Make leader,
+  Remove, Leave), every change is pushed to the members at once, members leave the group when
+  they quit, kicking someone from a group of two no longer drops the leader, the last member is
+  told when a group disbands, round-robin hands out loot in turn among those present, gold is
+  split among the members present, and autoloot leaves worthwhile drops for the need/greed roll.
+  A loot roll now holds its item while it runs (it used to be duplicable by looting the corpse).
+- **Chat.** Tabs (All / Group / Say / Tells) and a mode chip on the input (Cmd → Say → Group →
+  Tell), `reply` answers the last tell; right-click a player: invite/follow/trade say "walk
+  closer" when they're in another room.
+- Verified here: `tests/test_multiplayer.py` (tokens, takeover, control characters, presence
+  relay, invite/accept/kick/quit events, loot-roll custody, round-robin), the existing suites with
+  the token, and `tests/web/probe_play3d.js party` (two browsers: each sees the other walk, invite
+  → popup → Join → party frames with the leader's crown on both).

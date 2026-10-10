@@ -7,6 +7,7 @@ import asyncio
 import base64
 import gzip
 import hashlib
+import hmac
 import json
 import logging
 import os
@@ -94,6 +95,7 @@ class WebMapClient:
         self.reader = reader
         self.writer = writer
         self.player_name: Optional[str] = None
+        self.token: Optional[str] = None     # the session secret it subscribed with
         self.mode: str = 'full'
 
 
@@ -157,7 +159,66 @@ class WebMapServer:
                 pass
         self.clients.clear()
 
+    # ---- other players, as the 3D clients around them see them ----
+    def _viewers(self, vnums, skip_name=None, radius=3):
+        """3D ('near') clients whose hero stands within `radius` cells of any of these rooms."""
+        from map_system import zone_cell
+        cells = [zone_cell(self.world, v) for v in vnums if v is not None]
+        cells = [c for c in cells if c]
+        out = []
+        for client in list(self.clients):
+            if client.mode != 'near' or not client.player_name:
+                continue
+            if skip_name and client.player_name.lower() == skip_name.lower():
+                continue
+            other = self.world.players.get(client.player_name.lower())
+            room = getattr(other, 'room', None)
+            oc = zone_cell(self.world, room.vnum) if room is not None else None
+            if oc and any(c[0] == oc[0] and abs(c[1] - oc[1]) <= radius and abs(c[2] - oc[2]) <= radius for c in cells):
+                out.append(client)
+        return out
+
+    async def _send_all(self, clients, event):
+        data = json.dumps(event)
+        for client in clients:
+            try:
+                if not await self._ws_send(client.writer, data):
+                    self.clients.discard(client)
+            except Exception:
+                self.clients.discard(client)
+
+    async def relay_presence(self, player):
+        """A web player's position, to the 3D clients that can see them (at most 5 a second)."""
+        now = time.monotonic()
+        if now - getattr(player, '_presence_at', 0) < 0.2:
+            return
+        player._presence_at = now
+        pos = getattr(player, 'web_pos', None)
+        if not pos:
+            return
+        await self._send_all(self._viewers([pos[0]], skip_name=player.name),
+                             {'type': 'presence', 'name': player.name, 'vnum': pos[0], 'x': round(pos[1], 2), 'z': round(pos[2], 2)})
+
+    async def note_room(self, player):
+        """Tell the 3D clients around a player that the player changed rooms (any way: a walk,
+        recall, a portal, following the leader...). Called whenever the player's own view is
+        refreshed, so every kind of move is covered."""
+        room = getattr(player, 'room', None)
+        vnum = getattr(room, 'vnum', None)
+        last = getattr(player, '_web_last_vnum', None)
+        if vnum is None or vnum == last:
+            return
+        player._web_last_vnum = vnum
+        if last is None:
+            return
+        await self._send_all(self._viewers([last, vnum], skip_name=player.name),
+                             {'type': 'player_move', 'name': player.name, 'from': last, 'to': vnum, 'action': 'move'})
+
     async def notify_player(self, player):
+        try:
+            await self.note_room(player)
+        except Exception as e:
+            logger.debug(f"note_room failed: {e}")
         matching_clients = 0
         dead_clients = []
         client_names = [c.player_name for c in self.clients if c.player_name]
@@ -345,9 +406,9 @@ class WebMapServer:
                 if not player_name:
                     await self._http_response(writer, 400, 'Bad Request', 'Missing player parameter')
                     return
-                player = self.world.players.get(player_name.lower())
+                player = self._authed(query)
                 if not player:
-                    logger.warning(f"/state: Player '{player_name}' not found (online: {list(self.world.players.keys())})")
+                    logger.warning(f"/state: no player '{player_name}' with that session token")
                     await self._http_response(writer, 404, 'Not Found', 'Player not found')
                     return
                 # Ensure current room is in explored_rooms
@@ -367,7 +428,7 @@ class WebMapServer:
                 query = parse_qs(parsed.query)
                 player_name = (query.get('player') or [''])[0]
                 target = ((query.get('target') or [''])[0]).strip().lower()
-                player = self.world.players.get(player_name.lower()) if player_name else None
+                player = self._authed(query)
                 if not player or not target or not player.room:
                     await self._http_response(writer, 200, 'OK', json.dumps({'found': False}), content_type='application/json')
                     return
@@ -464,7 +525,7 @@ class WebMapServer:
                 query = parse_qs(parsed.query)
                 player_name = (query.get('player') or [''])[0]
                 kw = ((query.get('keeper') or [''])[0]).strip().lower()
-                player = self.world.players.get(player_name.lower()) if player_name else None
+                player = self._authed(query)
                 from shops import ShopManager
                 keeper = None
                 if player and player.room:
@@ -496,7 +557,7 @@ class WebMapServer:
                 parsed = urlparse(path)
                 query = parse_qs(parsed.query)
                 player_name = (query.get('player') or [''])[0]
-                player = self.world.players.get(player_name.lower()) if player_name else None
+                player = self._authed(query)
                 if not player:
                     body = json.dumps({'found': False})
                 else:
@@ -519,7 +580,7 @@ class WebMapServer:
                 query = parse_qs(parsed.query)
                 player_name = (query.get('player') or [''])[0]
                 target = ((query.get('target') or [''])[0]).strip().lower()
-                player = self.world.players.get(player_name.lower()) if player_name else None
+                player = self._authed(query)
                 if not player or not target or not player.room:
                     await self._http_response(writer, 200, 'OK', json.dumps({'found': False}), content_type='application/json')
                     return
@@ -571,7 +632,7 @@ class WebMapServer:
                 parsed = urlparse(path)
                 query = parse_qs(parsed.query)
                 player_name = (query.get('player') or [''])[0]
-                player = self.world.players.get(player_name.lower()) if player_name else None
+                player = self._authed(query)
                 if not player:
                     await self._http_response(writer, 404, 'Not Found', 'Player not found')
                     return
@@ -607,7 +668,7 @@ class WebMapServer:
                 parsed = urlparse(path)
                 query = parse_qs(parsed.query)
                 player_name = (query.get('player') or [''])[0]
-                player = self.world.players.get(player_name.lower()) if player_name else None
+                player = self._authed(query)
                 if not player:
                     await self._http_response(writer, 404, 'Not Found', 'Player not found')
                     return
@@ -720,7 +781,7 @@ class WebMapServer:
                 parsed = urlparse(path)
                 query = parse_qs(parsed.query)
                 player_name = (query.get('player') or [''])[0]
-                player = self.world.players.get(player_name.lower()) if player_name else None
+                player = self._authed(query)
                 if not player:
                     await self._http_response(writer, 404, 'Not Found', 'Player not found')
                     return
@@ -786,7 +847,7 @@ class WebMapServer:
                 parsed = urlparse(path)
                 query = parse_qs(parsed.query)
                 player_name = (query.get('player') or [''])[0]
-                player = self.world.players.get(player_name.lower()) if player_name else None
+                player = self._authed(query)
                 if not player:
                     await self._http_response(writer, 404, 'Not Found', 'Player not found')
                     return
@@ -821,7 +882,7 @@ class WebMapServer:
                 parsed = urlparse(path)
                 query = parse_qs(parsed.query)
                 player_name = (query.get('player') or [''])[0]
-                player = self.world.players.get(player_name.lower()) if player_name else None
+                player = self._authed(query)
                 if not player:
                     await self._http_response(writer, 404, 'Not Found', 'Player not found')
                     return
@@ -848,7 +909,7 @@ class WebMapServer:
                 parsed = urlparse(path)
                 query = parse_qs(parsed.query)
                 player_name = (query.get('player') or [''])[0]
-                player = self.world.players.get(player_name.lower()) if player_name else None
+                player = self._authed(query)
                 if not player:
                     await self._http_response(writer, 404, 'Not Found', 'Player not found')
                     return
@@ -911,7 +972,7 @@ class WebMapServer:
                 parsed = urlparse(path)
                 query = parse_qs(parsed.query)
                 player_name = (query.get('player') or [''])[0]
-                player = self.world.players.get(player_name.lower()) if player_name else None
+                player = self._authed(query)
                 if not player:
                     await self._http_response(writer, 404, 'Not Found', 'Player not found')
                     return
@@ -989,7 +1050,7 @@ class WebMapServer:
                 parsed = urlparse(path)
                 query = parse_qs(parsed.query)
                 player_name = (query.get('player') or [''])[0]
-                player = self.world.players.get(player_name.lower()) if player_name else None
+                player = self._authed(query)
                 if not player:
                     await self._http_response(writer, 404, 'Not Found', 'Player not found')
                     return
@@ -1032,7 +1093,7 @@ class WebMapServer:
                 parsed = urlparse(path)
                 query = parse_qs(parsed.query)
                 player_name = (query.get('player') or [''])[0]
-                player = self.world.players.get(player_name.lower()) if player_name else None
+                player = self._authed(query)
                 if not player:
                     await self._http_response(writer, 404, 'Not Found', 'Player not found')
                     return
@@ -1095,7 +1156,7 @@ class WebMapServer:
                 parsed = urlparse(path)
                 query = parse_qs(parsed.query)
                 player_name = (query.get('player') or [''])[0]
-                player = self.world.players.get(player_name.lower()) if player_name else None
+                player = self._authed(query)
                 if not player:
                     await self._http_response(writer, 404, 'Not Found', 'Player not found')
                     return
@@ -1289,18 +1350,21 @@ class WebMapServer:
                         if payload.get('type') == 'pos':
                             try:
                                 set_pos(player, float(payload.get('x')), float(payload.get('z')))
+                                await self.relay_presence(player)
                             except (TypeError, ValueError):
                                 pass
                         else:
                             mob_seed(player.room, payload.get('mobs') or [])
                     continue
                 if payload.get('type') == 'subscribe':
-                    client.player_name = payload.get('player')
+                    # only with the secret the player's own connection received (MAPSYNC)
+                    player = self._player_by_token(payload.get('player'), payload.get('token'))
                     client.mode = payload.get('mode', 'full')
-                    logger.info(f"WebSocket subscribe: player='{client.player_name}' mode='{client.mode}'")
-                    player = None
-                    if client.player_name:
-                        player = self.world.players.get(client.player_name.lower())
+                    client.player_name = player.name if player else None
+                    client.token = payload.get('token') if player else None
+                    logger.info(f"WebSocket subscribe: player='{payload.get('player')}' mode='{client.mode}' ok={bool(player)}")
+                    if not player:
+                        await self._ws_send(writer, json.dumps({'type': 'auth', 'ok': False}))
                     if player:
                         # Ensure current room is in explored_rooms for initial map
                         if player.room and hasattr(player, 'explored_rooms'):
@@ -1310,14 +1374,36 @@ class WebMapServer:
                         map_payload = build_map_payload(player, mode=client.mode)
                         logger.info(f"Sending initial map: {len(map_payload.get('rooms', []))} rooms")
                         await self._ws_send(writer, json.dumps(map_payload))
-                    else:
-                        logger.warning(f"Player '{client.player_name}' not found in world.players (online: {list(self.world.players.keys())})")
         finally:
             self.clients.discard(client)
             try:
                 writer.close()
             except Exception:
                 pass
+
+    def _player_by_token(self, name, token):
+        """The online player of that name, if the token is that player's current session
+        secret (only their own connection received it, in MAPSYNC); else None."""
+        p = self.world.players.get(str(name or '').lower()) if name else None
+        secret = str(getattr(p, 'web_token', '') or '') if p else ''
+        if p and token and secret and hmac.compare_digest(secret, str(token)):
+            return p
+        return None
+
+    def _authed(self, query):
+        """The player a request names (?player=), if it carries their session token (&t=)."""
+        return self._player_by_token((query.get('player') or [''])[0], (query.get('t') or [''])[0])
+
+    async def revoke(self, name, keep_token):
+        """A new session for this character: clients holding an older token stop receiving."""
+        for client in list(self.clients):
+            if (client.player_name or '').lower() == str(name).lower() and client.token != keep_token:
+                client.player_name = None
+                client.token = None
+                try:
+                    await self._ws_send(client.writer, json.dumps({'type': 'revoked'}))
+                except Exception:
+                    pass
 
     async def _ws_read(self, reader):
         """Read a WebSocket frame. Returns message text, empty string for control frames, or None on close/error."""
@@ -1342,6 +1428,9 @@ class WebMapServer:
                 length = int.from_bytes(await reader.readexactly(2), 'big')
             elif length == 127:
                 length = int.from_bytes(await reader.readexactly(8), 'big')
+            if length > 1 << 20:
+                logger.warning(f"WebSocket frame of {length} bytes refused")
+                return None                     # no client of ours sends a megabyte
             
             mask = b''
             if masked:
@@ -2288,6 +2377,7 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
 
   const urlParams = new URLSearchParams(window.location.search);
   const player = urlParams.get('player') || '';
+  const token = urlParams.get('t') || '';
   const debugEnabled = urlParams.get('debug') === '1';
   if (debugPanel && debugEnabled) debugPanel.classList.remove('hidden');
   if (!player) playerWarning.classList.remove('hidden');
@@ -2337,7 +2427,7 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
     if (pollTimer || !player) return;
     setWsStatus('polling', 'polling');
     const fetchState = () => {
-      fetch('/state?player=' + encodeURIComponent(player))
+      fetch('/state?player=' + encodeURIComponent(player) + '&t=' + encodeURIComponent(token))
         .then(r => { setDebug(debugPoll, 'HTTP ' + r.status); return r.ok ? r.json() : null; })
         .then(data => { if (data) applyState(data); })
         .catch(() => setDebugError('poll error'));
@@ -2360,7 +2450,7 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
       wsConnected = true; reconnectAttempts = 0;
       clearTimeout(fallbackTimer); stopPolling();
       setWsStatus('connected', 'connected');
-      if (player) ws.send(JSON.stringify({ type: 'subscribe', player, mode: 'full' }));
+      if (player) ws.send(JSON.stringify({ type: 'subscribe', player, token, mode: 'full' }));
     });
     ws.addEventListener('close', () => {
       wsConnected = false;

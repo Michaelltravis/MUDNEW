@@ -2102,6 +2102,29 @@ class CombatHandler:
         # Handle gold and autoloot
         gold_looted = False
         items_looted = []
+        # a group here shares what falls: the gold split among the members present, the items by
+        # the group's loot mode (round-robin hands them out in turn; a roll leaves the worthwhile
+        # ones in the corpse for need/greed; free-for-all is the killer's autoloot as alone)
+        party = []
+        if hasattr(killer, 'connection') and not hasattr(victim, 'connection'):
+            try:
+                from groups import present_members
+                party = present_members(killer)
+            except Exception:
+                party = []
+        if party and getattr(victim, 'gold', 0) > 0:
+            await killer.group.split_gold(victim.gold, among=party)
+            victim.gold = 0
+            gold_looted = True
+        if party and killer.group.loot_mode == 'roundrobin' and getattr(victim, 'inventory', None):
+            for item in list(victim.inventory):
+                looter = killer.group.next_looter(party)
+                victim.inventory.remove(item)
+                looter.inventory.append(item)
+                items_looted.append(item)
+                for m in party:
+                    if hasattr(m, 'send'):
+                        await m.send(f"{c['bright_cyan']}{'You receive' if m is looter else looter.name + ' receives'} {item.short_desc} (round-robin).{c['reset']}")
 
         # Check for autoloot_gold setting
         if hasattr(victim, 'gold') and victim.gold > 0:
@@ -2123,7 +2146,11 @@ class CombatHandler:
         # Check for autoloot items
         if hasattr(killer, 'autoloot') and killer.autoloot and hasattr(victim, 'inventory'):
             if hasattr(killer, 'inventory'):
+                from groups import _worth_rolling
                 for item in list(victim.inventory):
+                    if party and killer.group.loot_mode == 'roll' and _worth_rolling(item):
+                        continue                    # left in the corpse for the group's roll
+                    victim.inventory.remove(item)
                     killer.inventory.append(item)
                     items_looted.append(item)
                     try:
@@ -2133,7 +2160,6 @@ class CombatHandler:
                         pass
                     if hasattr(killer, 'send'):
                         await killer.send(f"{c['bright_cyan']}You get {item.short_desc} from the corpse.{c['reset']}")
-                victim.inventory.clear()
 
         # NG+ exclusive loot chance
         if hasattr(killer, 'connection') and getattr(killer, 'ng_plus_cycle', 0) > 0:
@@ -2172,12 +2198,9 @@ class CombatHandler:
             else:
                 corpse.gold = 0
 
-            # Add remaining items to corpse if not autolooted
-            if not items_looted:
-                corpse.contents = list(victim.inventory)
-                victim.inventory.clear()
-            else:
-                corpse.contents = []
+            # whatever nobody took goes into the corpse
+            corpse.contents = list(victim.inventory)
+            victim.inventory.clear()
 
             # Player corpses last longer (10 min), mob corpses 5 min
             if hasattr(victim, 'connection'):

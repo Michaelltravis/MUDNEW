@@ -66,6 +66,10 @@ def _wrap_text(text: str, width: int = 80) -> str:
 
 from config import Config
 
+# control characters never come from a player's keyboard: stripped from every line, so a
+# `say` can't carry an escape sequence (a forged MAPSYNC) to other players' clients
+_CONTROL_CHARS = re.compile(r'[\x00-\x08\x0b-\x1f\x7f]')
+
 logger = logging.getLogger('Misthollow.Server')
 
 class Connection:
@@ -475,6 +479,13 @@ class Connection:
         
     async def enter_game(self):
         """Enter the game world."""
+        # Already playing (another window, or a connection that dropped and hasn't timed
+        # out): this connection takes the character over. Nothing is loaded twice, and the
+        # old session neither saves a stale copy nor removes the live one from the world.
+        existing = self.world.players.get(self.player.name.lower()) if self.player else None
+        if existing is not None and existing is not self.player:
+            await self._take_over(existing)
+            return
         self.state = self.STATE_PLAYING
         self.player.connection = self
         
@@ -606,8 +617,9 @@ class Connection:
             if hasattr(self.world, 'web_map') and self.world.web_map:
                 await self.world.web_map.notify_player(self.player)
             
-            # Send map sync signal for web client (hidden control message)
-            await self.send(f"\x1b]MAPSYNC:{self.player.name}\x07")
+            # Send map sync signal for web client (hidden control message), with this
+            # session's secret for the map server
+            await self._issue_web_token()
             
             # Start tutorial for new players (level 1, no quests completed)
             if self.player.level == 1 and not getattr(self.player, 'quests_completed', []):
@@ -1275,8 +1287,49 @@ class Connection:
         
         await self.send_prompt()
         
+    async def _issue_web_token(self):
+        """A fresh secret for this session's graphical clients. The map socket and the map
+        server's per-player endpoints answer only to it; it rides the MAPSYNC signal, which
+        only this connection receives. Clients holding an older one are cut off."""
+        import secrets
+        token = secrets.token_urlsafe(18)
+        self.player.web_token = token
+        wm = getattr(self.world, 'web_map', None)
+        if wm and hasattr(wm, 'revoke'):
+            try:
+                await wm.revoke(self.player.name, token)
+            except Exception:
+                pass
+        await self.send(f"\x1b]MAPSYNC:{self.player.name}:{token}\x07")
+
+    async def _take_over(self, existing):
+        """Attach this connection to a character already in the world, closing the old one."""
+        c = self.config.COLORS
+        old = getattr(existing, 'connection', None)
+        if old is not None and old is not self:
+            try:
+                await old.send(f"\r\n{c['bright_yellow']}{existing.name} has just logged in somewhere else, "
+                               f"so this session is closing.{c['reset']}\r\n")
+            except Exception:
+                pass
+            old.player = None              # its disconnect must not save or remove the character
+            try:
+                old.writer.close()
+            except Exception:
+                pass
+        self.player = existing
+        existing.connection = self
+        self.state = self.STATE_PLAYING
+        logger.info(f"{existing.name} taken over by a new connection from {self.address}")
+        await self.send(f"{c['bright_cyan']}You take over {existing.name}, who was already in the world.{c['reset']}")
+        await existing.do_look([])
+        await self._issue_web_token()
+
     async def disconnect(self):
         """Handle disconnection gracefully — stop combat, save state, clean up."""
+        if getattr(self, '_disconnected', False):
+            return                         # quit already did this; the input loop's finally comes again
+        self._disconnected = True
         logger.info(f"Connection closed: {self.address}")
         
         if self.player:
@@ -1300,6 +1353,13 @@ class Connection:
                 self.player.last_logout = now
             except Exception as e:
                 logger.error(f"Error updating player state on disconnect: {e}")
+
+            # Leave the group (no ghost members sharing gold, loot and experience)
+            try:
+                from groups import GroupManager
+                await GroupManager.disconnect(self.player)
+            except Exception as e:
+                logger.error(f"Error leaving the group on disconnect: {e}")
 
             # Save player state
             try:
@@ -1409,7 +1469,7 @@ class MUDServer:
                     data = await asyncio.wait_for(reader.readline(), timeout=1800.0)
                     if not data:
                         break
-                    line = data.decode('utf-8', errors='ignore').strip()
+                    line = _CONTROL_CHARS.sub('', data.decode('utf-8', errors='ignore')).strip()
                     await conn.handle_input(line)
                 except asyncio.TimeoutError:
                     # Force-rent at 2x cost on idle timeout

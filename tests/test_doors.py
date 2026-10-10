@@ -232,7 +232,7 @@ async def live():
         await tn.cmd(line, 0.5)
     async with aiohttp.ClientSession() as http:
         async with http.ws_connect(f'ws://{tw.HOST}:{tw.MAP}/') as ws:
-            await ws.send_str(json.dumps({'type': 'subscribe', 'player': tw.CHAR, 'mode': 'near'}))
+            await ws.send_str(tw.subscribe(tw.CHAR))
             got = []
 
             async def pump():
@@ -243,7 +243,7 @@ async def live():
 
             async def door_view():
                 got.clear()
-                await ws.send_str(json.dumps({'type': 'subscribe', 'player': tw.CHAR, 'mode': 'near'}))
+                await ws.send_str(tw.subscribe(tw.CHAR))
                 for _ in range(25):
                     await asyncio.sleep(0.2)
                     for d in got:

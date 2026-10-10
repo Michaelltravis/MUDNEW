@@ -21,6 +21,7 @@ ANSI = re.compile(r'\x1b\[[0-9;]*[A-Za-z]|\x1b\][^\x07]*\x07')
 CARD = {'north': (0, -1), 'south': (0, 1), 'east': (1, 0), 'west': (-1, 0)}
 REV = {'north': 'south', 'south': 'north', 'east': 'west', 'west': 'east'}
 failures = []
+TOKEN = ''   # the session secret from MAPSYNC: the map server answers only to it
 
 
 def check(cond, what):
@@ -59,6 +60,11 @@ def zonemap_invariants():
     check(bad == 0, f'/zonemap invariants hold for all {len(zones)} zones')
 
 
+def subscribe(player=None, mode='near'):
+    """The map socket's subscribe message, with this session's token."""
+    return json.dumps({'type': 'subscribe', 'player': player or CHAR, 'token': TOKEN, 'mode': mode})
+
+
 class Telnet:
     async def open(self):
         self.r, self.w = await asyncio.open_connection(HOST, TELNET)
@@ -81,6 +87,10 @@ class Telnet:
             if not data:
                 break
             out += data.decode(errors='ignore')
+        global TOKEN
+        found = re.findall(r'\x1b\]MAPSYNC:[^\x07:]+:([^\x07]+)\x07', out)
+        if found:
+            TOKEN = found[-1]
         return ANSI.sub('', out)
 
     async def cmd(self, line, secs=0.8):
@@ -97,7 +107,7 @@ async def main():
     await tn.cmd('stand', 0.4)
     async with aiohttp.ClientSession() as http:
         async with http.ws_connect(f'ws://{HOST}:{MAP}/') as ws:
-            await ws.send_str(json.dumps({'type': 'subscribe', 'player': CHAR, 'mode': 'near'}))
+            await ws.send_str(subscribe(CHAR))
             events = []
 
             async def pump():

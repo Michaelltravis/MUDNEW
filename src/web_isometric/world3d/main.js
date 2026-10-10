@@ -82,6 +82,33 @@ async function runGame() {
     onAggro: id => aggro(id),
   });
   MH.bus.on('combat.events', p => { if (hero) combat.handle(p.events); });
+  // your group: frames, the invite popup, loot rolls; click a member to target them (heals and
+  // blessings go to your target), right-click for more
+  MH.bus.on('group.update', e => hud.party.update(e && e.group));
+  MH.bus.on('group.invite', e => hud.party.showInvite(e));
+  MH.bus.on('loot.roll', r => hud.party.lootRoll(r));
+  MH.bus.on('loot.result', r => hud.party.lootResult(r));
+  MH.bus.on('hud.targetPlayer', name => {
+    const e = ents.list.get(`p${name}`);
+    if (e) ents.setTarget(e.key, { byHand: true });
+    else hud.toast(`${name} isn't in sight`);
+  });
+  MH.bus.on('hud.partyMenu', ({ name, x, y, leader }) => ctxMenu.show(x, y, name, [
+    { label: 'Target', run: () => MH.bus.emit('hud.targetPlayer', name) },
+    { label: 'Whisper…', run: () => hud.whisper(name) },
+    { label: 'Follow', run: () => MH.sendCommand(`follow ${name}`) },
+    ...(leader ? [{ label: 'Make leader', run: () => MH.sendCommand(`group leader ${name}`) },
+      { label: 'Remove from group', run: () => MH.sendCommand(`group kick ${name}`) }] : []),
+    { label: 'Leave group', run: () => MH.sendCommand('group leave') },
+  ]));
+  // other players: where they walk (relayed ~5x a second) and when they change rooms
+  MH.bus.on('player.presence', p => ents.presence(p));
+  MH.bus.on('player.move', p => { if (p && p.name && p.name !== MH.state.playerName) ents.playerMoved(p); });
+  // another login took this character over: say so, then back to the login screen
+  MH.bus.on('session.revoked', () => {
+    hud.toast('This character was just logged in somewhere else.');
+    setTimeout(() => location.reload(), 2600);
+  });
   // creatures that take the stairs or a far passage leave and arrive in a puff of dust
   ents.onSnap = (from, to) => {
     for (const q of [from, to]) fx.p.emit(q.clone().setY(0.4), { count: 18, color: 0xd8d0c0, speed: 1.6, up: 0.6, life: 0.7, size: 0.4, grow: 0.5, drag: 1.5 });
@@ -101,6 +128,7 @@ async function runGame() {
   MH.bus.on('map', payload => {
     lastPayload = payload;
     if (payload.player) hud.setPlayer(payload.player);
+    if ('group' in payload) hud.party.update(payload.group);
     if (!payload.player || !payload.player.vnum) return;
     if (!zone) { if (!starting) starting = start(payload).catch(err => { console.error(err); hud.toast('Could not load the world: ' + err.message); }).finally(() => { starting = null; }); return; }
     if (starting) return;
@@ -112,6 +140,7 @@ async function runGame() {
     sync.onMap(payload);
   });
   MH.bus.on('combat.update', p => {
+    if (p && 'group' in p) hud.party.update(p.group);
     if (MH.state.player) hud.setPlayer(MH.state.player);
     ents.combat(p);
     const t = ents.targeted;
@@ -615,7 +644,8 @@ async function runGame() {
     const hit = pickAt(x, y);
     if (!hit) return;
     const p = MH.state.player || {};
-    const { title, items } = verbsFor(hit, { skills: hud.targetSkills(), posture: p.position, inCombat: MH.state.inCombat });
+    const { title, items } = verbsFor(hit, { skills: hud.targetSkills(), posture: p.position, inCombat: MH.state.inCombat,
+      room: heroRoom && heroRoom.vnum, inGroup: hud.party.inGroup });
     if (!items.length) return;
     ctxMenu.show(x, y, title, items.map(it => ({ label: it.label, run: (it.cmd || it.act) ? () => runVerb(hit, it) : null })));
   }
@@ -626,7 +656,7 @@ async function runGame() {
     if (a === 'target') return ents.setTarget(hit.ent.key, { byHand: true });
     if (a.startsWith('ability:')) { ents.setTarget(hit.ent.key, { byHand: true }); return hud.useAbility(a.slice(8)); }
     if (a.startsWith('door:')) return doDoor(hit.door.dir, a.slice(5));
-    if (a.startsWith('tell:')) return hud.prefill(`tell ${a.slice(5)} `);
+    if (a.startsWith('tell:')) return hud.whisper(a.slice(5));
     if (a === 'inventory' || a === 'character') return hud.openPanel(a);
     if (a === 'trainer') return hud.openTrainer(hit.ent.data && (hit.ent.data.short || hit.ent.data.name));
     if (a === 'walk' && hit.point) { travel = null; return ctl.walkTo(hit.point.x, hit.point.z); }
@@ -692,7 +722,7 @@ async function runGame() {
   function reportPositions(dt) {
     const sock = MH.state.mapSocket;
     if ((posClock -= dt) > 0 || !heroRoom || !sock || sock.readyState !== 1) return;
-    posClock = MH.state.inCombat ? 0.2 : 0.5;
+    posClock = 0.2;                 // (sent only when it changes; other players see you move from it)
     const p = hero.root.position;
     const x = +(p.x - heroRoom.ox).toFixed(2), z = +(p.z - heroRoom.oz).toFixed(2);
     const key = `${heroRoom.vnum}:${x}:${z}`;

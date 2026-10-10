@@ -104,7 +104,7 @@ async def main():
         await tn.cmd(line, 0.6)
     async with aiohttp.ClientSession() as http:
         async with http.ws_connect(f'ws://{tw.HOST}:{tw.MAP}/') as ws:
-            await ws.send_str(json.dumps({'type': 'subscribe', 'player': tw.CHAR, 'mode': 'near'}))
+            await ws.send_str(tw.subscribe(tw.CHAR))
             got = []
 
             async def pump():
@@ -125,7 +125,7 @@ async def main():
                 await tn.cmd(f'mload {SPECTRE}', 0.6)
                 got.clear()
                 # a fresh subscribe answers with the current map (look sends none)
-                await ws.send_str(json.dumps({'type': 'subscribe', 'player': tw.CHAR, 'mode': 'near'}))
+                await ws.send_str(tw.subscribe(tw.CHAR))
                 for _ in range(50):          # a busy machine can be slow to answer
                     maps = [d for d in got if d.get('type') == 'map_data']
                     room = next((r for d in reversed(maps) for r in (d.get('nearby') or []) if r['vnum'] == ROOM), None)
@@ -204,7 +204,7 @@ async def main():
                 hits = [e for e in events('attack') if e.get('src') == {'p': tw.CHAR}]
                 check(bool(hits) and hits[0].get('dst') == {'m': second['id']}, f"'kill #{second['id']}' attacks that spectre, not the first one")
                 got.clear()
-                await ws.send_str(json.dumps({'type': 'subscribe', 'player': tw.CHAR, 'mode': 'near'}))
+                await ws.send_str(tw.subscribe(tw.CHAR))
                 fighting = None
                 for _ in range(40):
                     await asyncio.sleep(0.2)

@@ -1,5 +1,5 @@
 // Browser probe for /play against a local server (./run.sh), with the gauntlet admin account.
-//   NODE_PATH=/opt/node22/lib/node_modules node tests/web/probe_play3d.js stairs|doors|camera|menu|autotarget|creatures|spellbook|trainer [outdir]
+//   NODE_PATH=/opt/node22/lib/node_modules node tests/web/probe_play3d.js stairs|doors|camera|menu|autotarget|creatures|spellbook|trainer|party [outdir]
 // CommonJS on purpose (the global Playwright only resolves through NODE_PATH with require).
 // WebGL may render at ~1 fps in a container, so the probe places the hero directly and waits
 // on frames instead of walking in real time.
@@ -18,6 +18,8 @@
 //           learned ability glows into a free slot.
 //   trainer: the minimap knows your guild; right-click your class's trainer → Master your
 //           abilities opens the trainer window; Train takes a mastered ability 85 → 90.
+//   party: two browsers (Gauntlet, Gauntletb) in the temple each draw the other; one walks and
+//           the other sees it; invite -> the popup -> Join -> party frames on both.
 //   creatures: a blob, a mimic, a statue, a chess rook, a stone golem, a goblin farmer, a brownie,
 //           a living book and the Sewer King each get the right body (looks.js, from the payload's
 //           short description and room line).
@@ -178,7 +180,7 @@ async function waitFor(page, fn, arg, secs = 60) {
     check(await goto(18620), 'in the crypt (18620)');
     await page.evaluate(() => { for (const c of ['purge', 'mload 18610', 'mload 18610']) MH.sendCommand(c, false); });
     await sleep(1500);
-    await page.evaluate(() => MH.state.mapSocket.send(JSON.stringify({ type: 'subscribe', player: MH.state.playerName, mode: 'near' })));
+    await page.evaluate(() => MH.state.mapSocket.send(JSON.stringify({ type: 'subscribe', player: MH.state.playerName, token: MH.state.mapToken, mode: 'near' })));
     const two = await waitFor(page, () => [...MH3D.ents.list.values()].filter(e => e.kind === 'mob' && e.vnum === 18620 && e.root).length >= 2, null, 60);
     check(two, 'two spectres drawn');
     const ids = await page.evaluate(() => [...MH3D.ents.list.values()].filter(e => e.kind === 'mob' && e.vnum === 18620).map(e => e.data.id));
@@ -330,12 +332,57 @@ async function waitFor(page, fn, arg, secs = 60) {
     await sleep(600);
   }
 
+  if (MODE === 'party') {
+    // a second player in a second browser
+    const page2 = await (await browser.newContext({ viewport: { width: 960, height: 540 } })).newPage();
+    page2.on('pageerror', e => errors.push('B: ' + String(e).slice(0, 300)));
+    await page2.goto(`http://${CFG.mud.host}:${CFG.mud.mapPort}/play?q=low`, { waitUntil: 'load' });
+    await waitFor(page2, () => document.getElementById('loading').classList.contains('done'));
+    await page2.fill('#login-name', 'Gauntletb');
+    await page2.fill('#login-pass', 'gauntlet1');
+    await page2.click('#login-btn');
+    check(await waitFor(page2, () => !!(window.MH3D && MH3D.hero), null, 120), 'second player logged in');
+    for (const pg of [page, page2]) {
+      await pg.evaluate(() => { MH.sendCommand('group leave', false); MH.sendCommand('goto 3001', false); });
+    }
+    const seesB = await waitFor(page, () => { const e = MH3D.ents.list.get('pGauntletb'); return !!(e && e.root); }, null, 60);
+    const seesA = await waitFor(page2, () => { const e = MH3D.ents.list.get('pGauntlet'); return !!(e && e.root); }, null, 60);
+    check(seesB && seesA, `each draws the other (${seesB}, ${seesA})`);
+    // B walks: A's picture of B follows
+    const dest = await page2.evaluate(() => {
+      const r = MH3D.heroRoom(); const p = MH3D.hero.root.position;
+      p.set(r.ox + 5, 0, r.oz + 4);
+      return { x: r.ox + 5, z: r.oz + 4 };
+    });
+    const followed = await waitFor(page, d => {
+      const e = MH3D.ents.list.get('pGauntletb');
+      return e && e.root && Math.hypot(e.root.position.x - d.x, e.root.position.z - d.z) < 0.8;
+    }, dest, 30);
+    check(followed, 'when Gauntletb walks, Gauntlet sees it');
+    // invite, accept from the popup, party frames on both
+    await page.evaluate(() => MH.sendCommand('group invite gauntletb', false));
+    const popup = await waitFor(page2, () => !document.getElementById('group-invite').classList.contains('hidden'), null, 20);
+    check(popup, 'the invite pops up for Gauntletb');
+    await page2.screenshot({ path: path.join(OUT, 'party-invite.png') });
+    if (popup) await page2.click('#group-invite .join');
+    const framesA = await waitFor(page, () => [...document.querySelectorAll('#party .pt')].some(f => f.dataset.name === 'Gauntletb'), null, 20);
+    const framesB = await waitFor(page2, () => [...document.querySelectorAll('#party .pt')].some(f => f.dataset.name === 'Gauntlet'), null, 20);
+    check(framesA && framesB, `party frames on both (${framesA}, ${framesB})`);
+    const crown = await page2.evaluate(() => !!document.querySelector('#party .pt[data-name="Gauntlet"] .crown'));
+    check(crown, "Gauntletb's frame for Gauntlet wears the leader's crown");
+    await page.screenshot({ path: path.join(OUT, 'party-frames.png') });
+    await page2.evaluate(() => MH.sendCommand('group leave', false));
+    const cleared = await waitFor(page, () => document.getElementById('party').classList.contains('hidden'), null, 20);
+    check(cleared, "when Gauntletb leaves, Gauntlet's frames clear");
+    await page2.close();
+  }
+
   if (MODE === 'creatures') {
     check(await goto(3001), 'in the Temple of Midgaard (3001)');
     const want = { 3068: 'slime', 5202: 'chest', 5423: 'knight still', 3602: 'knight', 3016: 'knight', 23506: 'greendemon', 6115: 'mage', 6402: 'book_single', 3014: 'rat' };
     await page.evaluate(vs => { for (const c of ['purge', ...vs.map(v => `mload ${v}`)]) MH.sendCommand(c, false); }, Object.keys(want));
     await sleep(1500);
-    await page.evaluate(() => MH.state.mapSocket.send(JSON.stringify({ type: 'subscribe', player: MH.state.playerName, mode: 'near' })));
+    await page.evaluate(() => MH.state.mapSocket.send(JSON.stringify({ type: 'subscribe', player: MH.state.playerName, token: MH.state.mapToken, mode: 'near' })));
     const n = Object.keys(want).length;
     check(await waitFor(page, n => [...MH3D.ents.list.values()].filter(e => e.kind === 'mob' && e.vnum === 3001 && e.root).length >= n, n, 90), `all ${n} drawn`);
     const got = await page.evaluate(() => [...MH3D.ents.list.values()].filter(e => e.kind === 'mob' && e.vnum === 3001).map(e => {

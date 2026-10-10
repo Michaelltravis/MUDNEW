@@ -321,7 +321,16 @@ class CommandHandler:
                     await player.send(f"{c['cyan']}[{matches[0][0]}]{c['reset']}")
 
         if method:
-            await method(player, args)
+            try:
+                await method(player, args)
+            except Exception:
+                # a bug in one command must not drop the player's connection
+                logger.exception(f"command {cmd!r} {args!r} failed for {getattr(player, 'name', '?')}")
+                try:
+                    c = player.config.COLORS
+                    await player.send(f"{c['red']}Something went wrong with that command; it has been logged.{c['reset']}")
+                except Exception:
+                    pass
         else:
             # Check if it's a direction
             if cmd in Config.DIRECTIONS:
@@ -773,11 +782,16 @@ class CommandHandler:
             )
             await player.send(f"{c['magenta']}Your pets follow you.{c['reset']}")
 
-        # Move players who are following this player
+        # Move players who are following this player (not one in a fight, asleep or sitting:
+        # following never pulls anyone out of a fight)
         followers_moved = []
         for char in list(old_room.characters):
             if hasattr(char, 'following') and char.following == player:
                 if hasattr(char, 'connection'):  # Is a player
+                    if getattr(char, 'fighting', None) or getattr(char, 'position', 'standing') not in ('standing', 'fighting'):
+                        if getattr(char, 'fighting', None):
+                            await char.send(f"{c['yellow']}You can't follow {player.name} while you're fighting!{c['reset']}")
+                        continue
                     # Check if follower can move
                     if char.move >= 1:
                         # Move follower
@@ -787,21 +801,24 @@ class CommandHandler:
                         if char not in target_room.characters:
                             target_room.characters.append(char)
                         char.move = max(0, char.move - 1)
+                        if hasattr(char, 'explored_rooms'):
+                            char.explored_rooms.add(target_room.vnum)
                         followers_moved.append(char)
         
-        # Announce followers arriving
-        if followers_moved and not sneak_success:
-            for follower in followers_moved:
+        # Announce followers arriving (quietly behind a sneaking leader), and show each of them
+        # where they are now (their map too)
+        for follower in followers_moved:
+            if not sneak_success:
                 await target_room.send_to_room(
                     f"{follower.name} follows {player.name} in.",
                     exclude=[player, follower]
                 )
-                await follower.send(f"{c['cyan']}You follow {player.name} {direction}.{c['reset']}")
-                # Show room to follower
-                await follower.do_look([])
-                # Update web map for follower
-                if hasattr(player.world, 'web_map') and player.world.web_map:
-                    await player.world.web_map.notify_player(follower)
+            await follower.send(f"{c['cyan']}You follow {player.name} {direction}.{c['reset']}")
+            # Show room to follower
+            await follower.do_look([])
+            # Update web map for follower
+            if hasattr(player.world, 'web_map') and player.world.web_map:
+                await player.world.web_map.notify_player(follower)
 
         # Atmospheric transition message when moving between different area types
         try:
@@ -9819,6 +9836,19 @@ class CommandHandler:
         if not getattr(player, 'norepeat', False):
             await player.send(f"{c['bright_cyan']}You tell {target.name}, '{message}'{c['reset']}")
         await target.send(f"\r\n{c['bright_cyan']}{player.name} tells you, '{message}'{c['reset']}")
+        target.last_tell_from = player.name          # for `reply`
+
+    @classmethod
+    async def cmd_reply(cls, player: 'Player', args: List[str]):
+        """Answer the last player who told you something. Usage: reply <message>"""
+        who = getattr(player, 'last_tell_from', None)
+        if not who:
+            await player.send("No one has told you anything to reply to.")
+            return
+        if not args:
+            await player.send(f"Reply what to {who}?")
+            return
+        await cls.cmd_tell(player, [who] + list(args))
     
     # ==================== POSITIONS ====================
     
@@ -12687,6 +12717,14 @@ class CommandHandler:
             await GroupManager.show_group(player)
             return
 
+        # --- invite <player> (the same as "group <player>") ---
+        if action == 'invite':
+            if len(args) < 2:
+                await player.send(f"{c['yellow']}Invite whom? group invite <name>{c['reset']}")
+                return
+            args = args[1:]
+            action = args[0].lower()
+
         # --- leave ---
         if action == 'leave':
             await GroupManager.leave_group(player)
@@ -12700,11 +12738,15 @@ class CommandHandler:
             if player.group.leader != player:
                 await player.send(f"{c['red']}Only the group leader can disband the group.{c['reset']}")
                 return
-            for member in player.group.members:
+            from groups import _event
+            members = list(player.group.members)
+            for member in members:
                 if member != player:
                     await member.send(f"{c['yellow']}{player.name} has disbanded the group.{c['reset']}")
             player.group.disband()
             await player.send(f"{c['yellow']}You disband the group.{c['reset']}")
+            for member in members:
+                await _event(member, {'type': 'group', 'group': None})
             return
 
         # --- leader <player> (transfer leadership) ---
@@ -12727,6 +12769,8 @@ class CommandHandler:
             player.group.set_leader(target)
             for member in player.group.members:
                 await member.send(f"{c['bright_green']}{target.name} is now the group leader.{c['reset']}")
+            from groups import broadcast
+            await broadcast(player.group)
             return
 
         # --- loot <mode> ---
@@ -12755,7 +12799,10 @@ class CommandHandler:
                 for member in player.group.members:
                     await member.send(f"{c['bright_green']}Loot mode set to Round-Robin.{c['reset']}")
             else:
-                await player.send(f"{c['red']}Unknown loot mode. Use 'freeforall' or 'roundrobin'.{c['reset']}")
+                await player.send(f"{c['red']}Unknown loot mode. Use 'roll', 'freeforall' or 'roundrobin'.{c['reset']}")
+                return
+            from groups import broadcast
+            await broadcast(player.group)
             return
 
         # --- follow (toggle auto-follow) ---
@@ -12771,6 +12818,8 @@ class CommandHandler:
                 if member != group.leader:
                     member.following = group.leader if group.auto_follow else None
                 await member.send(f"{c['cyan']}Group auto-follow is now {state}.{c['reset']}")
+            from groups import broadcast
+            await broadcast(group)
             return
 
         # --- kick <player> ---
@@ -12790,12 +12839,7 @@ class CommandHandler:
             if not target:
                 await player.send(f"{c['red']}'{target_name}' is not in your group.{c['reset']}")
                 return
-            player.group.remove_member(target)
-            await player.send(f"{c['yellow']}You kick {target.name} from the group.{c['reset']}")
-            await target.send(f"{c['yellow']}{player.name} kicks you from the group.{c['reset']}")
-            for member in player.group.members:
-                if member != player:
-                    await member.send(f"{c['yellow']}{target.name} has been kicked from the group.{c['reset']}")
+            await GroupManager.kick(player, target)
             return
             
         # --- group all (legacy: group all followers) ---
@@ -12867,14 +12911,8 @@ class CommandHandler:
         if not target:
             await player.send(f"{c['red']}'{target_name}' is not in your group.{c['reset']}")
             return
-        
-        player.group.remove_member(target)
-        target.group = None
-        await player.send(f"{c['yellow']}You remove {target.name} from the group.{c['reset']}")
-        await target.send(f"{c['yellow']}{player.name} removes you from the group.{c['reset']}")
-        for member in player.group.members:
-            if member != player:
-                await member.send(f"{c['yellow']}{target.name} has left the group.{c['reset']}")
+
+        await GroupManager.kick(player, target)
 
     @classmethod
     async def cmd_follow(cls, player: 'Player', args: List[str]):
@@ -16454,6 +16492,10 @@ class CommandHandler:
             goto <zone>     - Go to zone entrance (e.g. goto 30)
         """
         c = player.config.COLORS
+
+        if not getattr(player, 'is_immortal', False):
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
 
         if not args:
             await player.send(f"{c['yellow']}Usage: goto <room_vnum> or goto <zone_number>{c['reset']}")

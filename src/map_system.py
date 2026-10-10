@@ -843,6 +843,7 @@ def build_combat_payload(player) -> dict:
                         'char_class': getattr(entity, 'char_class', ''),
                         'hp': getattr(entity, 'hp', 0),
                         'maxHp': getattr(entity, 'max_hp', 1),
+                        **_pos_fields(entity),
                         **_ally_combat(entity, player),
                     })
                 continue
@@ -1256,6 +1257,9 @@ def _room_entities(room, vnum, player):
                     'char_class': getattr(entity, 'char_class', ''),
                     'hp': getattr(entity, 'hp', 0),
                     'maxHp': getattr(entity, 'max_hp', 1),
+                    # where they stand (3D clients), and whether they are in your group
+                    **_pos_fields(entity),
+                    'groupmate': bool(getattr(player, 'group', None)) and getattr(entity, 'group', None) is getattr(player, 'group', None),
                     **_ally_combat(entity, player),
                 })
 

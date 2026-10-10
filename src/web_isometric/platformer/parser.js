@@ -21,10 +21,12 @@
   const TAKEN = /(?:hits?|slashes|pierces|smites|blasts|attacks|pounds|crushes|whips|claws|stings|bites|kicks|bashes|cleaves|backstabs) you\b/i;
   const MISSED_ME = /(?:misses) you\b/i;
   const MOB_DEATH = /^(.+?) is dead!|^You receive .* experience/i;
-  const PLAYER_DEATH = /you are dead|you have been slain/i;
-  const LEVEL_UP = /you gain a level|you have gained a level|you are now level/i;
+  // what the game says to you starts the line; the same words inside someone's speech or emote
+  // ("Bob says, 'you are dead'") must not kill or stand anyone up
+  const PLAYER_DEATH = /^(?:you are dead|you have been slain)/i;
+  const LEVEL_UP = /^(?:you gain a level|you have gained a level|you are now level)/i;
   const MOVE_BLOCKED = /alas, you cannot go that way|the .* (?:is|seems to be) closed|seems to be locked|it'?s locked|you are too exhausted|no exit in that direction|you can'?t go that way|^only .+ may enter\.?$/i;
-  const POSTURE_BLOCK = /you need to stand up first|you can'?t do that while (?:resting|sitting|sleeping)|you are asleep/i;
+  const POSTURE_BLOCK = /^(?:you need to stand up first|you can'?t do that while (?:resting|sitting|sleeping)|you are asleep)/i;
   const DOOR_OPENED = /^(?:You open|.* opens) (?:the )?(.+?)\.?$/i;
   const FLEE = /^You flee(?: (\w+))?|panic and (?:try to )?flee/i;
   const CHAT = /^(You say|You tell|You shout|You gossip|You chat|\w+ says?|\w+ tells you|\w+ tells the group|\w+ shouts?|\w+ gossips?|\[\w+\])/i;
@@ -60,6 +62,8 @@
     if (!line.trim()) return;
     const bus = MH.bus;
     let m;
+    // speech first: nothing a player says may drive the client
+    if (CHAT.test(line)) { bus.emit('chat', { line }); return; }
 
     if (PLAYER_DEATH.test(line)) { MH.setCombat(false); bus.emit('player.death', { line }); return; }
     if ((m = line.match(EXP_GAIN))) { bus.emit('player.exp', { amount: Number(m[1]), line }); /* fall through to MOB_DEATH below */ }

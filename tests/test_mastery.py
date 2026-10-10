@@ -151,7 +151,7 @@ async def live():
     await tn.cmd('webbar bash kick - strike', 0.6)
     async with aiohttp.ClientSession() as http:
         async with http.ws_connect(f'ws://{tw.HOST}:{tw.MAP}/') as ws:
-            await ws.send_str(json.dumps({'type': 'subscribe', 'player': tw.CHAR, 'mode': 'near'}))
+            await ws.send_str(tw.subscribe(tw.CHAR))
             bar = None
             for _ in range(40):
                 msg = await asyncio.wait_for(ws.receive(), timeout=10)
