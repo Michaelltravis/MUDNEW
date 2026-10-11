@@ -11,6 +11,7 @@ import * as THREE from 'three';
 import { recipeFor, timeline, THEMES } from './abilityfx.js';
 import { RECIPES } from './abilityfx-table.js';
 import { Director } from './fxdirector.js';
+import { LANDS } from './soundtable.js';
 
 // the hero's ordinary swing, by class (the class model carries that weapon)
 const SWING = {
@@ -43,8 +44,12 @@ export class CombatView {
     this.telegraphs = new Map();      // mob id -> telegraph
     this.impacts = new Map();         // "src>dst" -> {at, crit, n}: when this action's blow lands
     this.director = new Director({ fx, engine, getHero, chest: w => this.chest(w) });
+    this.director.onSound = (name, at, opts) => this.sfx(name, at, opts);
+    this.onSound = null;              // (sound name, world position, {school, tier}) => void (audio.js)
     this._v = new THREE.Vector3();
   }
+  // a sound where something happens (soundtable.js names)
+  sfx(name, at, opts) { if (this.onSound && name) this.onSound(name, at && at.root ? at.root.position : at, opts); }
   pairKey(a, b) { return `${keyOf(a)}>${keyOf(b)}`; }
   // the next wound (or heal) from src to dst should appear when this action's blow lands
   expect(e, delayMs) {
@@ -215,6 +220,8 @@ export class CombatView {
     if (src.hero || !src.mob) { const list = SWING[cls] || SWING.paladin; anim = list[Math.floor(Math.random() * list.length)]; }
     else anim = ['1H_Melee_Attack_Chop', '1H_Melee_Attack_Slice_Diagonal', '1H_Melee_Attack_Stab'][Math.floor(Math.random() * 3)];
     this.play(src, anim, 1.15);
+    const rkind = ranged && (typeof ranged === 'object' ? ranged.kind : e.style === 'bolt' ? 'bolt' : 'shot');
+    this.sfx(!ranged ? 'swing' : rkind === 'shot' ? 'shot' : 'bolt', src);
     if (!dst) return;
     if (ranged) {
       const r = typeof ranged === 'object' ? ranged
@@ -238,6 +245,9 @@ export class CombatView {
     const p = this.chest(dst);
     const heroHit = dst.hero;
     const res = e.res || (e.amt > 0 ? 'hit' : 'miss');
+    // what it sounds like: a wound on the hero, a blade or a fist, a ring of steel
+    const blade = src && !src.mob && ['warrior', 'paladin', 'thief', 'assassin', 'bard'].includes(String(src.cls || '').toLowerCase());
+    this.sfx(res === 'hit' ? (heroHit ? 'hurt' : blade ? 'hit_blade' : 'hit') : LANDS[res] || 'miss', dst, { school });
     if (res === 'hit' || res === 'crit') {
       const crit = e.crit || res === 'crit';
       this.fx.impact(p, school, crit || e.heavy);
@@ -284,6 +294,7 @@ export class CombatView {
     if (!src.hero) this.play(src, 'Spellcast_Shoot', 1.1);
     const p = this.chest(src).add(new THREE.Vector3(0, 0.25, 0));
     this.fx.after(0.32, () => {
+      this.sfx('fizzle', src);
       this.fx.p.emit(p, { count: 18, color: 0x8a8a96, speed: 1.1, up: 0.9, life: 0.9, size: 0.38, grow: 0.5, drag: 1.6 });
       this.fx.sparks(p, this.colorOf(e.school || 'arcane'), 6);
       this.fx.text(p.clone().setY(p.y + 0.5), 'Fizzled', { color: '#b8b0c8', size: 14, rise: 0.6 });
@@ -302,6 +313,7 @@ export class CombatView {
     this.fx.after(delay / 1000, () => {
       const dst = this.resolve(e.dst) || this.resolve(e.src);
       if (!dst) return;
+      this.sfx('heal', dst);
       if (!announced) {
         this.fx.swirl(dst.root, { school: e.school || 'holy', time: 0.8, count: 2 });
         this.fx.p.emit(this.chest(dst), { count: 10, color: 0x8dffa0, speed: 0.6, up: 1.4, life: 0.8, size: 0.2, drag: 1.2 });
@@ -312,12 +324,14 @@ export class CombatView {
   buff(e) {
     const dst = this.resolve(e.dst);
     if (!dst) return;
+    this.sfx(e.k, dst);
     this.fx.swirl(dst.root, { school: e.school || (e.k === 'debuff' ? 'shadow' : 'holy'), time: 0.8, count: 2 });
     if (e.name) this.fx.text(this.chest(dst).setY(dst.root.position.y + 2.4), e.name, { color: e.k === 'debuff' ? '#d8a8ff' : '#fff0b0', size: 13, rise: 0.8 });
   }
   stun(e) {
     const dst = this.resolve(e.dst);
     if (!dst) return;
+    this.sfx('stun', dst);
     let t = 0;
     const top = () => dst.root.position.clone().setY(dst.root.position.y + (dst.ent && dst.ent.plateY ? dst.ent.plateY : 2.4) - 0.2);
     this.fx.add({ update: dt => {
@@ -343,6 +357,7 @@ export class CombatView {
     let facing = 0;
     if (target) { const d = target.root.position.clone().sub(src.root.position); facing = Math.atan2(-d.z, d.x); }
     const t = this.fx.telegraph(center, { shape: a.shape || 'circle', radius: a.r || 2.6, angle: a.angle || Math.PI / 2, facing, time: secs });
+    this.sfx('windup', src);
     if (!a.x && (a.shape === 'circle' || !a.shape)) t.follow = src.root;
     const key = e.src && e.src.m != null ? `m${e.src.m}` : 'x';
     if (this.telegraphs.get(key)) this.telegraphs.get(key).cancel();
@@ -369,6 +384,7 @@ export class CombatView {
     }
     if (at) {
       const school = e.school || 'physical';
+      this.fx.after(e.kind === 'cast' ? 0.45 : 0.25, () => this.sfx('resolve', at, { school }));
       if (e.kind === 'cast' && src) this.fx.projectile(this.chest(src), at.clone().setY(0.4), { school, size: 0.3, speed: 18, delay: 0.2, onHit: p => this.fx.impact(p, school, true) });
       this.fx.after(e.kind === 'cast' ? 0.45 : 0.25, () => { this.fx.shockwave(at, { school, radius: a.r || 3 }); this.fx.shake(0.18, 0.25); });
     }
@@ -387,6 +403,7 @@ export class CombatView {
     if (e.reason === 'stagger' && this.onOpening) this.onOpening(src);
     const p = this.chest(src);
     this.fx.sparks(p, 0xffe066, 16);
+    this.sfx('cancel', src);
     const word = { stagger: 'Staggered!', snare: 'Snared!' }[e.reason] || 'Interrupted!';
     this.fx.text(p.clone().setY(src.root.position.y + 2.6), word, { color: '#ffe066', size: 15, rise: 0.6 });
     if (src.actor && !(src.ent && src.ent.dying)) src.actor.once(Math.random() < 0.5 ? 'Hit_A' : 'Hit_B', 0.05, 1.0);
@@ -394,6 +411,7 @@ export class CombatView {
   death(e) {
     const dst = this.resolve(e.dst);
     if (!dst) return;
+    this.sfx(dst.hero ? 'hero_death' : 'death', dst);
     this.fx.p.emit(this.chest(dst), { count: 30, color: 0xd8d0c0, speed: 2.4, up: 0.8, life: 0.9, size: 0.45, grow: 0.6, drag: 1.4 });
   }
 }

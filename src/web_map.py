@@ -38,13 +38,29 @@ def _redact(path: str) -> str:
 # Cloudflare never serve a stale module (no more Cmd+Shift+R after a deploy).
 _WEB_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'web_isometric')
 _STATIC_3D = {
-    'world3d': ('world3d', {'js', 'json', 'css'}),
+    'world3d': ('world3d', {'js', 'json', 'css', 'mp3', 'ogg', 'm4a', 'wav'}),
     'vendor': ('vendor', {'js'}),
     'art3d': ('art3d', {'glb', 'png', 'webp', 'json'}),
     'fonts': ('fonts', {'woff2'}),
 }
 _CT_3D = {'js': 'text/javascript', 'json': 'application/json', 'css': 'text/css',
-          'glb': 'model/gltf-binary', 'png': 'image/png', 'webp': 'image/webp', 'woff2': 'font/woff2'}
+          'glb': 'model/gltf-binary', 'png': 'image/png', 'webp': 'image/webp', 'woff2': 'font/woff2',
+          'mp3': 'audio/mpeg', 'ogg': 'audio/ogg', 'm4a': 'audio/mp4', 'wav': 'audio/wav'}
+_AUDIO_3D = {'mp3', 'ogg', 'm4a', 'wav'}   # served in parts on request (Range): music streams
+
+
+def byte_range(header, size):
+    """(start, end) for a single 'bytes=a-b' / 'bytes=a-' / 'bytes=-n' Range header, None when
+    there is none or it can't be met."""
+    m = re.fullmatch(r'\s*bytes=(\d*)-(\d*)\s*', header or '')
+    if not m or (not m.group(1) and not m.group(2)):
+        return None
+    if m.group(1):
+        start = int(m.group(1))
+        end = min(int(m.group(2)), size - 1) if m.group(2) else size - 1
+    else:
+        start, end = max(0, size - int(m.group(2))), size - 1
+    return (start, end) if 0 <= start <= end < size else None
 _GZIP_3D = {'js', 'json', 'css', 'glb'}
 _static_cache = {}   # full path -> (mtime, raw bytes, gzipped bytes or None)
 _zonemap_bytes = {}  # zone -> (json bytes, gzipped)
@@ -1228,10 +1244,24 @@ class WebMapServer:
                     return
                 full, ext, immutable = hit
                 data, enc = static_bytes(full, ext, 'gzip' in headers.get('accept-encoding', ''))
+                status, extra = "HTTP/1.1 200 OK", []
+                if ext in _AUDIO_3D:
+                    extra.append("Accept-Ranges: bytes")
+                    rng = byte_range(headers.get('range'), len(data)) if 'range' in headers else None
+                    if 'range' in headers and rng is None:
+                        writer.write((f"HTTP/1.1 416 Range Not Satisfiable\r\nContent-Range: bytes */{len(data)}\r\n"
+                                      "Content-Length: 0\r\nConnection: close\r\n\r\n").encode())
+                        await writer.drain()
+                        return
+                    if rng:
+                        status = "HTTP/1.1 206 Partial Content"
+                        extra.append(f"Content-Range: bytes {rng[0]}-{rng[1]}/{len(data)}")
+                        data = data[rng[0]:rng[1] + 1]
                 head = [
-                    "HTTP/1.1 200 OK",
+                    status,
                     f"Content-Type: {_CT_3D[ext]}",
                     f"Content-Length: {len(data)}",
+                ] + extra + [
                     "Cache-Control: " + ("public, max-age=31536000, immutable" if immutable else "no-cache"),
                     "Vary: Accept-Encoding",
                     "Access-Control-Allow-Origin: *",

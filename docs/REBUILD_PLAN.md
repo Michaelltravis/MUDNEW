@@ -684,3 +684,40 @@ Four more classes on the same engine (the last four — thief, ranger, bard, ass
   the limits, `remember`/`resume`/`forget` over telnet and through the bridge, the dashboard's
   refusals). Checked in a browser: `/play`, `/platformer` and `/2d` sign in, come back without a
   password, and log out.
+
+### Sound and music for /play (owner's pick, second of four)
+- **The engine** (`world3d/audio.js`): one AudioContext, started by the first click or key (as
+  browsers require), with buses for music, effects, ambience and the interface under a master
+  volume and a soft limiter; at most 10/16/24 sounds at once by graphics quality, each sound with
+  its own minimum gap; sounds in the world are placed left or right of the camera and fade with
+  distance from where it looks. Every recorded effect is fetched and decoded right after the
+  first click (0.7 MB); one asked for before it has loaded plays as soon as it has, if that is
+  within 0.4 s. The tab going to the background suspends it.
+- **What sounds when** is a pure-data table (`world3d/soundtable.js`): every combat event and
+  blow (swing, bow, bolt, hit by fist or blade, critical, hurt, miss, dodge, parry, block,
+  resist, heal, buff, debuff, stun, a creature's death and the hero's, a wind-up's rising
+  warning, its slam, a broken wind-up, a fizzle); skills and spells by phase and school (a charge
+  while it gathers, a whoosh as it flies, the school's sting where it lands — the 2D client's
+  stings, ported — with a recorded impact for frost, holy, fire, nature, physical); footsteps by
+  what is underfoot (grass, stone, wood, carpet, snow, dirt, a splash in water) and stride;
+  doors only when one really opens, closes or locks; hops and teleports; windows (a bag, a book,
+  cloth), buttons, toasts, coins when gold changes hands, level-up and quest fanfares.
+- **Ambience**: the 2D client's 25 synthesized room tones (wind, birds, drips, clanks, hums), by
+  the zone's look.
+- **Music**: six CC0 loops — town, wilds, inn (taverns), dungeon, dark (necropolis, swamps,
+  shadow, fire), battle — crossfading between zones and looping without a gap (two decks); the
+  battle track comes in 2.5 s into a fight and leaves 6 s after it (a one-blow scuffle doesn't
+  swap the music). Streamed (`<audio>`), so the map server now answers Range requests (206) for
+  audio files.
+- **Settings**: Sound on/off and sliders for master, music, effects, ambience and interface
+  (kept per browser; the 2D client's "ambience off" carries over until set here).
+- **Sources** (all CC0, `world3d/audio/CREDITS.md`): Kenney's Impact Sounds, RPG Audio,
+  Interface Sounds and UI Audio (127 effects); music by cynicmusic (Town Theme RPG, Battle Theme
+  A), pauliuw (The Field of Dreams), RandomMind (The Old Tower Inn) and HaelDB (Cave Theme,
+  Creepy Forest). 7.3 MB in all. Rebuilt with `tools/audio/fetch.sh && python3
+  tools/audio/build.py` (ffmpeg from PATH or `pip install imageio-ffmpeg`).
+- **Checks**: `tests/web/sounds.test.mjs` (every sound playable, every file built, every combat
+  event and result covered, every name the game plays exists, every zone look has music, a room
+  tone and footsteps, every synth runs); `/play?demo&gallery=sounds` plays every sound, sting,
+  bed and track; in a browser, the sounds play in a fight, while walking and opening windows, the
+  battle music crossfades in and out, and the probe suite still reports no page errors.

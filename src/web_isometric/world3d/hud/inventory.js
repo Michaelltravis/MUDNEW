@@ -2,6 +2,8 @@
 // tooltips (stats, damage, armour, effects) and actions that go out as the MUD's own
 // commands (wear, wield, remove, quaff, eat, drink, recite, drop, examine). Item art comes
 // from the 2D client's icon painter (platformer/items.js, no Phaser needed).
+import { sound } from '../audio.js';
+
 const $ = s => document.querySelector(s);
 
 const SLOTS = [
@@ -75,6 +77,7 @@ export function createInventory() {
   };
   const run = (verb, item, list) => {
     MH.sendCommand(`${verb} ${keywordFor(item, list)}`);
+    sound.play({ wear: 'equip', wield: 'draw', hold: 'equip', remove: 'cloth', drop: 'ui_drop', sell: 'coins' }[verb] || 'ui_click');
     // wearing and dropping do not move you, so no map push follows: ask for one
     setTimeout(() => MH.refreshState && MH.refreshState(), 450);
   };

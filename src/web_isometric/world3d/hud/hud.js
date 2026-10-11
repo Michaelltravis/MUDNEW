@@ -16,6 +16,7 @@ import { SLOTS, cleanBar, defaultBar, placeNew, putOnBar, takeOffBar, diffAbilit
 import { conOf } from '../targeting.js';
 import { recipeFor } from '../abilityfx.js';
 import { RECIPES } from '../abilityfx-table.js';
+import { sound } from '../audio.js';
 const $ = s => document.querySelector(s);
 const ls = { get(k) { try { return localStorage.getItem(k); } catch (_) { return null; } },
   set(k, v) { try { localStorage.setItem(k, v); } catch (_) {} } };
@@ -519,6 +520,7 @@ export function createHud() {
   }
   function toast(msg) {
     if (!msg) return;
+    sound.play('toast');
     const d = document.createElement('div');
     d.className = 'toast';
     d.textContent = msg;
@@ -626,10 +628,48 @@ export function createHud() {
   els.settings.querySelector('[data-act="perf"]').addEventListener('click', () => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'F3' })));
   els.settings.querySelector('[data-act="camreset"]').addEventListener('click', () => MH.bus.emit('hud.cameraReset'));
   els.settings.querySelector('[data-act="classic"]').addEventListener('click', () => window.open('/platformer', '_blank'));
+  // sound: a master switch and a slider per bus (audio.js keeps them in localStorage)
+  const muteBtn = els.settings.querySelector('[data-act="mute"]');
+  const syncSound = () => {
+    muteBtn.textContent = sound.muted ? 'Off' : 'On';
+    muteBtn.classList.toggle('on', !sound.muted);
+    els.settings.querySelectorAll('[data-vol]').forEach(r => { r.value = Math.round(sound.vol[r.dataset.vol] * 100); });
+  };
+  muteBtn.addEventListener('click', () => { sound.setMuted(!sound.muted); syncSound(); sound.play('ui_toggle'); });
+  els.settings.querySelectorAll('[data-vol]').forEach(r => {
+    r.addEventListener('input', () => sound.setVolume(r.dataset.vol, r.value / 100));
+    // let go of a slider: hear what it sets
+    r.addEventListener('change', () => sound.play({ sfx: 'hit', master: 'ui_confirm' }[r.dataset.vol] || 'ui_click'));
+    r.addEventListener('keydown', e => e.stopPropagation());
+  });
+  syncSound();
   els.settings.querySelector('[data-act="logout"]').addEventListener('click', () => {
     if (!MH.logout()) toast('Finish the fight before you log out.');
   });
   syncSettings();
+
+  // ---- sounds for windows and buttons (audio.js) ----
+  // a window sounds as it opens and closes, however it was opened (a key, a button, a link)
+  const WINDOW_SOUNDS = { inventory: ['bag_open', 'ui_close'], character: ['cloth', 'ui_close'], spellbook: ['book_open', 'book_close'],
+    journal: ['book_open', 'book_close'], trainer: ['book_flip', 'ui_close'], settings: ['ui_open', 'ui_close'], bigmap: ['ui_open', 'ui_close'] };
+  for (const [id, [on, off]] of Object.entries(WINDOW_SOUNDS)) {
+    const el = document.getElementById(id);
+    if (!el) continue;
+    let was = !el.classList.contains('hidden');
+    new MutationObserver(() => {
+      const now = !el.classList.contains('hidden');
+      if (now !== was) { was = now; sound.play(now ? on : off); }
+    }).observe(el, { attributes: true, attributeFilter: ['class'] });
+  }
+  // a click on a window's buttons (not the action bar: abilities make their own sounds)
+  document.addEventListener('click', e => {
+    const b = e.target && e.target.closest && e.target.closest('.panel button, #create .pick, #login .btn');
+    if (b && !b.closest('#actionbar') && !b.matches('[data-act="mute"]')) sound.play('ui_click');
+  }, true);
+  // gold changes hands: coins
+  MH.bus.on('terminal.output', ({ text }) => {
+    if (MH.state.isLoggedIn && /\b(?:you (?:get|receive|take|loot|sell|buy)|there (?:was|were))\b[^\n]*\b(?:gold|coins?)\b/i.test(text || '')) sound.play('coins');
+  });
 
   // ---- keys (when not typing) ----
   window.addEventListener('keydown', e => {

@@ -277,6 +277,8 @@ button { font: inherit; color: inherit; }
 #settings .seg { display: flex; gap: 3px; }
 #settings .seg button { padding: 3px 9px; border-radius: 5px; border: 1px solid var(--edge-dim); background: rgba(255,255,255,.04); cursor: pointer; font: 700 11.5px var(--label); color: var(--ink-dim); }
 #settings .seg button:hover { color: var(--ink); border-color: var(--edge); }
+#settings .row.vol { margin: 4px 14px; }
+#settings .row.vol input[type=range] { width: 150px; accent-color: var(--gold); cursor: pointer; }
 #settings .seg button.on { border-color: #f0d28c; color: #1a1206; background: linear-gradient(180deg, #f3d999, #b98d45); }
 
 /* ---- the title screen: the hollow under drifting mist, the lantern crest, the name ---- */

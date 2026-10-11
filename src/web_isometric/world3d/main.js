@@ -24,8 +24,12 @@ import { isHostile, shouldRetarget, retargetOnDeath, refFor, abilityCommand } fr
 import { verbsFor } from './hud/verbs.js';
 import { attachPerf } from './perf.js';
 import { buildDemo } from './demo.js';
+import { sound } from './audio.js';
+import { musicFor, bedFor, surfaceFor } from './soundtable.js';
+import { interiorKind } from './terrain-town.js';
 
 const $ = s => document.querySelector(s);
+const WATER_TILE = 4;   // zone.js / terrain.js tile kinds
 const params = new URLSearchParams(location.search);
 const pref = k => { try { return localStorage.getItem(k); } catch (_) { return null; } };
 const engine = createEngine($('#stage'), { quality: params.get('q') || pref('mh3d_quality') || 'high' });
@@ -40,11 +44,12 @@ async function runDemo() {
   if (params.get('gallery')) {
     const { showGallery, showMobGallery } = await import('./gallery.js');
     const g = params.get('gallery');
-    const { showBeastGallery, showAbilityGallery, showIconGallery } = await import('./gallery.js');
+    const { showBeastGallery, showAbilityGallery, showIconGallery, showSoundGallery } = await import('./gallery.js');
     const extra = ['town', 'furniture', 'graveyard'].includes(g) ? await loadKit(g) : null;
     const at = g === 'mobs' ? await showMobGallery(engine) : g === 'beasts' ? await showBeastGallery(engine, kits)
       : g === 'abilities' ? await showAbilityGallery(engine)
       : g === 'icons' ? (await showIconGallery()) || new THREE.Vector3()
+      : g === 'sounds' ? (await showSoundGallery()) || new THREE.Vector3()
       : showGallery(engine, extra || (g === 'nature' ? kits.nature : kits.dungeon), Number(params.get('scale')) || 1);
     engine.rig.target.copy(at); engine.placeCamera(true);
     window.MH3D = { engine, THREE, gallery: window.MH3D_gallery };
@@ -90,6 +95,10 @@ async function runGame() {
   const cues = new CombatCues({ engine, ents, getHero: () => hero && { actor: hero, ctl }, callout: $('#callout'),
     rangeOf: id => { const r = rangeOf(id, (hud.player && (hud.player.spells || {})[id] != null)); return r || null; },
     onStrike: () => hud.suggestStrike() });
+  // sound (audio.js): heard from where the camera looks, turned with it
+  combat.onSound = (name, at, opts) => sound.play(name, { at, ...(opts || {}) });
+  sound.listener = () => ({ x: engine.rig.target.x, z: engine.rig.target.z, yaw: engine.rig.yaw });
+  MH.bus.on('combat.state', on => sound.setBattle(!!on));
   combat.onTelegraph = (k, d) => cues.telegraph(k, d);
   combat.onTelegraphEnd = k => cues.telegraphEnd(k);
   combat.onOpening = src => cues.opening(src);
@@ -131,13 +140,15 @@ async function runGame() {
   MH.bus.on('loot.roll', r => hud.party.lootRoll(r));
   MH.bus.on('loot.result', r => hud.party.lootResult(r));
   // the marquee quest: an offer, a group member's embarking, its stages, the reward
-  MH.bus.on('quest.offer', e => hud.quest.offer(e.quest));
+  MH.bus.on('quest.offer', e => { sound.play('ui_offer'); hud.quest.offer(e.quest); });
   MH.bus.on('quest.embark', e => hud.quest.showEmbark(e));
-  MH.bus.on('quest.stage', e => hud.quest.stage(e));
-  MH.bus.on('quest.done', e => hud.quest.done(e));
+  MH.bus.on('quest.stage', e => { sound.play('quest_stage'); hud.quest.stage(e); });
+  MH.bus.on('quest.done', e => { sound.play('quest_done'); hud.quest.done(e); });
+  MH.bus.on('ability.improve', () => sound.play('improve'));
   MH.bus.on('quest.mark', vnum => mm.setQuestMark(vnum == null ? null : vnum));
   // a level gained: a column of light on the hero, stars thrown up around them
   MH.bus.on('hud.levelup', () => {
+    sound.play('levelup');
     if (!hero) return;
     const p = hero.root.position;
     fx.pillar(p, { school: 'holy', radius: 1.3, height: 10, time: 1.6 });
@@ -198,6 +209,7 @@ async function runGame() {
   // them (passages.js); `climb` is the short step onto or off the stairs around a hop
   const gate = new PassageGate();
   let heroSpots = [], lastActive = 0, climb = null, travel = null, relocating = null;
+  let stepSurface = 'step_dirt', stride = 0;   // footsteps: what is underfoot, distance since the last
 
   // ---- server events ----
   MH.bus.on('map', payload => {
@@ -256,7 +268,7 @@ async function runGame() {
     ents.sync(payload, MH.state.playerName);
     mm.setExplored((payload.rooms || []).map(r => r.vnum));
     mm.setTime(payload.time);
-    window.MH3D = { engine, zone: () => zone, hero, ctl, sync, ents, fx, combat, hud, cues, THREE,
+    window.MH3D = { engine, zone: () => zone, hero, ctl, sync, ents, fx, combat, hud, cues, THREE, sound,
       heroRoom: () => heroRoom, hop: () => hop, gate, lastPayload: () => lastPayload,
       // for probes: walk onto a passage of this room on purpose (what clicking it does)
       walkToPassage: dir => { const sp = zone.passageWorld(heroRoom, dir); ctl.walkTo(sp.x, sp.z, null, { goal: { room: heroRoom.vnum, dir }, avoid: null }); } };
@@ -295,6 +307,11 @@ async function runGame() {
       gate.enterRoom(heroSpots, { x: p.x - room.ox, z: p.z - room.oz });
     }
     const L = zone.layoutOf(room);
+    const look = { theme: L.theme, zoneKey: L.zoneKey, dark: L.dark, snowy: L.snowy, icy: L.icy,
+      interior: L.theme === 'inside' ? interiorKind(L) : null };
+    sound.setZoneMusic(musicFor(look));
+    sound.ambience(bedFor(look));
+    stepSurface = surfaceFor(look);
     const hour = lastPayload && lastPayload.time ? lastPayload.time.hour : 12;
     const dark = L.dark || L.theme === 'dungeon' || L.theme === 'cave';
     const mood = dark ? 'crypt' : L.theme === 'inside' ? 'interior'
@@ -360,6 +377,7 @@ async function runGame() {
     }
   }
   function teleport(room, pos) {
+    sound.play('teleport');
     zone.prebuild(room, 1);
     placeHero(room, pos);
     ctl.halt();
@@ -382,6 +400,7 @@ async function runGame() {
     const stairs = ps.dir === 'up' || ps.dir === 'down';
     hop = { from: heroRoom, dir: ps.dir, to: ps.exit.to, kind: ps.exit.kind, at: performance.now() };
     ctl.halt();
+    sound.play(stairs ? stepSurface : 'hop');
     sync.walked(heroRoom.vnum, ps.exit.to, ps.dir);
     // step onto the stairs (a little up, or down into the stairwell) while the screen dims
     climb = { from: hero.root.position.clone(), to: spot.setY(stairs ? (ps.dir === 'up' ? 0.5 : -0.6) : 0), t: 0, dur: 0.35 };
@@ -644,15 +663,33 @@ async function runGame() {
     const room = heroRoom;
     ctl.walkTo(at.x + toC.x, at.z + toC.z, () => { if (heroRoom === room) sendDoor(dir, action); });
   }
+  // a door's sound when its state really changes (not when a view merely refreshes it)
+  function setDoorHeard(r, dir, info) {
+    const d = zone.doorOf(r, dir);
+    const before = d ? { closed: d.closed, locked: d.locked } : null;
+    zone.setDoor(r, dir, info);
+    if (!before || !d || !heroRoom || Math.abs(r.ox - heroRoom.ox) + Math.abs(r.oz - heroRoom.oz) > 60) return false;
+    const at = doorAnchorWorld(r, dir);
+    if (before.closed !== d.closed) return sound.play(d.closed ? 'door_close' : 'door_open', { at });
+    if (before.locked !== d.locked) return sound.play('lock', { at });
+    return false;
+  }
   MH.bus.on('door.update', ev => {
     if (!zone) return;
-    for (const d of ev.doors || []) { const r = zone.rooms.get(d.vnum); if (r) zone.setDoor(r, d.dir, d); }
+    let heard = false;
+    for (const d of ev.doors || []) {
+      const r = zone.rooms.get(d.vnum);
+      if (!r) continue;
+      // the two sides of one door arrive together: one sound for both
+      if (heard) zone.setDoor(r, d.dir, d); else heard = setDoorHeard(r, d.dir, d);
+    }
   });
   MH.bus.on('door.result', res => {
     doorBusy = 0;
     if (res.ok && res.pending) { castbar.start(res.secs || 5, res.action === 'lock' ? 'Locking without a key…' : 'Picking the lock…'); return; }
     if (!res.ok && res.reason) hud.toast(res.reason);
-    if (res.door && zone) { const r = zone.rooms.get(res.vnum); if (r) zone.setDoor(r, res.dir, res.door); }
+    if (!res.ok) sound.play('ui_error');
+    if (res.door && zone) { const r = zone.rooms.get(res.vnum); if (r) setDoorHeard(r, res.dir, res.door); }
   });
   MH.bus.on('env.channel', c => castbar.start(c.secs || 5, c.label || 'Working…'));
   MH.bus.on('env.channel.end', () => castbar.end());
@@ -812,6 +849,18 @@ async function runGame() {
     if (mobs.length && mk !== seeded) { seeded = mk; sock.send(JSON.stringify({ type: 'mobpos', vnum: heroRoom.vnum, mobs })); }
   }
 
+  // footsteps: one every stride (longer when running), by what is underfoot
+  function footsteps(dt, p) {
+    const v = hop || climb || slide ? 0 : ctl.vel.length();
+    if (v < 0.6) { stride = Math.min(stride, 0.4); return; }
+    stride += v * dt;
+    const len = v > 3.2 ? 1.6 : 0.95;
+    if (stride < len) return;
+    stride = 0;
+    const wet = heroRoom && zone.tile(heroRoom, p.x, p.z) === WATER_TILE;
+    sound.play(wet ? 'step_water' : stepSurface, { vol: v > 3.2 ? 1 : 0.7 });
+  }
+
   // ---- the frame ----
   engine.onTick((dt, t) => {
     // behind the title screen the view drifts slowly over the hollow
@@ -833,6 +882,7 @@ async function runGame() {
     }
     const p = hero.root.position;
     engine.rig.target.set(p.x, 0, p.z);
+    footsteps(dt, p);
     zone.update(dt, t, p, ctl.vel);
     hero.update(dt);
     if (travel && (ctl.keys.size || MH.state.inCombat)) travel = null;

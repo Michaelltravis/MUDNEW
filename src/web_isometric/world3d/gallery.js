@@ -212,3 +212,43 @@ export async function showIconGallery() {
   window.MH3D_icons = { count: wrap.querySelectorAll('img').length, picto: Object.keys(PICTO).length };
   return null;
 }
+
+// /play?demo&gallery=sounds — every sound (soundtable.js), the school stings, the ambience beds
+// and the music, each a button that plays it: a listening pass for the whole set
+export async function showSoundGallery() {
+  const [{ sound }, T] = await Promise.all([import('./audio.js'), import('./soundtable.js')]);
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'position:fixed;inset:0;overflow:auto;z-index:70;padding:18px 22px;background:radial-gradient(ellipse at 50% 0%,#1a2130,#07090e);font:13px var(--body);color:var(--ink)';
+  const sec = (title, items) => `<div style="margin:0 0 16px"><div style="font:600 17px var(--title);letter-spacing:.12em;color:var(--gold-hi);text-transform:uppercase;margin:6px 0 9px">${title}</div>
+    <div style="display:flex;flex-wrap:wrap;gap:7px">${items.join('')}</div></div>`;
+  const btn = (kind, key, label, extra = '') => `<button class="btn alt" data-k="${kind}" data-v="${key}" ${extra} style="width:auto;padding:6px 11px;margin:0;font-size:12px">${label || key}</button>`;
+  const names = Object.keys(T.SOUNDS);
+  const group = pre => names.filter(n => pre.some(p => n.startsWith(p)));
+  const used = new Set();
+  const take = list => list.filter(n => !used.has(n) && used.add(n));
+  let html = `<p style="margin:0 0 12px;color:var(--ink-dim)">Click anywhere first (browsers start sound on a click). ${names.length} sounds, ${Object.keys(T.BEDS).length} ambience beds, ${T.MUSIC.length} tracks.</p>`;
+  html += sec('blows and defence', take(group(['swing', 'shot', 'bolt', 'hit', 'crit', 'hurt', 'miss', 'dodge', 'parry', 'block', 'resist', 'clang'])).map(n => btn('s', n)));
+  html += sec('what happens to someone', take(group(['heal', 'buff', 'debuff', 'stun', 'death', 'fall', 'hero_death', 'windup', 'resolve', 'slam', 'cancel', 'fizzle'])).map(n => btn('s', n)));
+  html += sec('spells by school (charge · sting · big sting)', Object.keys(T.SCHOOLS).map(s => btn('school', s)));
+  html += sec('getting about', take(group(['step', 'door', 'latch', 'lock', 'creak', 'hop', 'teleport'])).map(n => btn('s', n)));
+  html += sec('the interface', take(names).map(n => btn('s', n)));
+  html += sec('ambience beds', Object.keys(T.BEDS).map(b => btn('bed', b)).concat([btn('bed', '', 'stop')]));
+  html += sec('music', T.MUSIC.map(m => btn('music', m)).concat([btn('music', '', 'stop')]));
+  wrap.innerHTML = html;
+  document.body.appendChild(wrap);
+  wrap.addEventListener('click', e => {
+    const b = e.target.closest('button[data-k]');
+    if (!b) return;
+    sound.unlock();
+    const { k, v } = b.dataset;
+    if (k === 's') sound.play(v);
+    else if (k === 'school') {
+      sound.play('charge', { school: v });
+      setTimeout(() => sound.play('sting', { school: v, tier: 0 }), 500);
+      setTimeout(() => sound.play('sting', { school: v, tier: 2 }), 1300);
+    } else if (k === 'bed') sound.ambience(v || null);
+    else if (k === 'music') { if (v) sound.playMusic(v, 1); else sound.stopMusic(1); }
+  });
+  window.MH3D_sounds = { sound, count: names.length, buttons: wrap.querySelectorAll('button').length };
+  return null;
+}

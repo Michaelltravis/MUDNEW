@@ -62,3 +62,6 @@ server.log
 # 3D art toolchain (tools/art3d): npm deps and the downloaded source packs
 node_modules/
 tools/art3d/.cache/
+
+# sound toolchain (tools/audio): the downloaded source packs and music
+tools/audio/.cache/

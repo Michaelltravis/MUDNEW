@@ -7,6 +7,7 @@
 import * as THREE from 'three';
 import { THEMES, CLIPS, RELEASE, VARIANT_SCHOOL, timeline } from './abilityfx.js';
 import { SCHOOL } from './fx.js';
+import { SCHOOLS, schoolOf } from './soundtable.js';
 
 const V = (x = 0, y = 0, z = 0) => new THREE.Vector3(x, y, z);
 const hex = c => `#${new THREE.Color(c).getHexString()}`;
@@ -16,6 +17,7 @@ const GROWTH_COLOR = { vines: 0x4a8a2a, bones: 0xe8e2cc, ice: 0xbfe8ff, crystals
 export class Director {
   // chest(who) -> the point a blow or a bolt aims at; getHero() -> {actor, ctl, cls}
   constructor({ fx, engine, getHero, chest }) {
+    this.onSound = null;               // (name, world position, {school, tier}) => void (audio.js)
     this.fx = fx;
     this.engine = engine;
     this.getHero = getHero;
@@ -219,10 +221,13 @@ export class Director {
   }
 
   // ---- while the clip winds up ----
+  sfx(name, at, opts) { if (this.onSound) this.onSound(name, at, opts); }
+
   cast(r, who, target, pal, tl) {
     const t = r.cast;
     if (!t) return;
     const fx = this.fx, root = who.root;
+    if (tl.release > 0.2) this.sfx('charge', root.position, { school: pal.school });
     const dur = Math.max(0.25, tl.release);
     switch (t.kind) {
       case 'sigil':
@@ -279,6 +284,7 @@ export class Director {
     const t = r.travel;
     if (!t) return;
     const fx = this.fx;
+    this.sfx('travel', from, { tier: t.kind === 'beam' || t.kind === 'pierce' ? 3 : 2 });
     const n = t.arg && /^\d+$/.test(t.arg) ? Number(t.arg) : 1;
     const base = src ? src.root : dst.root;
     let dir = to.clone().sub(from).setY(0);
@@ -411,6 +417,11 @@ export class Director {
     const shapeR = Number((String(ev.shape || '').split(':')[1]) || 0);
     const R = r.radius || shapeR || (t && t.big ? 4 : 2.5);
     const heavy = r.flags.has('heavy') || (t && t.big);
+    if (t) {
+      this.sfx('sting', p, { school: pal.school, tier: t.big ? 2 : heavy ? 1 : 0 });
+      const imp = SCHOOLS[schoolOf(pal.school)] && SCHOOLS[schoolOf(pal.school)].impact;
+      if (imp) this.sfx(imp === 'shatter' && t.big ? 'shatter_big' : imp, p);
+    }
     if (t) switch (t.kind) {
       case 'hit': fx.impact(p, pal.school, heavy); break;
       case 'sparks':
@@ -524,6 +535,7 @@ export class Director {
     const t = r.aura;
     if (!t || !who || !who.root) return;
     const fx = this.fx, root = who.root;
+    this.sfx('aura', root.position, { school: pal.school });
     const T = r.time || (t.big ? 4 : 2.6);
     const around = (radius = 0.7) => { const a = Math.random() * Math.PI * 2, p = root.position; return V(p.x + Math.cos(a) * radius, p.y, p.z + Math.sin(a) * radius); };
     const steady = (every, fn) => fx.every(every, Math.ceil(T / every), fn);
