@@ -54,7 +54,7 @@ These were wrong for every player, everywhere, not only in the quests:
   multiplied by) = `FOE_DAMAGE[kind]` x `CLASS_D` x `LEVEL_D`^(level - 45) x the party's
   damage factor.
   - `FOE_DAMAGE`: elites 2.0, a ritual's waves 0.7, everything else 1.0.
-  - `CLASS_D` is what the class can stand, measured (Push 22): thief 0.54, necromancer 0.59,
+  - `CLASS_D` is what the class can stand, measured (Push 22): necromancer 0.50, thief 0.54,
     mage 0.64, assassin 0.78, bard 0.78, warrior 1.05, ranger 1.07, cleric 1.40, paladin 1.88.
     For a group it is the mean over who set out.
   - `LEVEL_D` is 1.009: creatures hit 0.9% harder a level above 45, because heroes grow
@@ -139,8 +139,10 @@ fixes change what a class deals or can stand, so both tables were measured again
     rise in the creatures' blows, so the rise is 0.9% (chosen, as before, so most classes come
     out flat across levels). `CLASS_D` is then each class's mean over the levels: thief 0.54,
     assassin 0.78, bard 0.78, warrior 1.05, ranger 1.07, cleric 1.40, paladin 1.88.
-  - The mage and the necromancer are again set at their weakest level, 0.64 and 0.59 (both at
-    60): heroes in plate stand more at 45 than they did (a mage 0.83), less at 60.
+  - The mage is again set at its weakest level, 0.64 (at 60): heroes in plate stand more at 45
+    than they did (a mage 0.83), less at 60. The necromancer's weakest level stands 0.59, but
+    its deaths come all at once (when the bone knight falls): played through at 0.55, a lone
+    necromancer still died 0.3-0.5 times a quest, at 0.50 0-0.4 times. It stays at 0.50.
   - The ranger falls most with level (1.25 at 45 to 0.91 at 60). At its mean, a lone
     level-60 ranger's trial boss costs about 70% of their health and 0.1 deaths a quest.
 - **The zone bosses** were measured again too (below).
@@ -207,9 +209,10 @@ set:
     worst a quest can do:
     - the mage at 0.64 since Push 22 (0.55 in Push 18, 0.75 before that): levels 45-60 stand
       0.83, 0.83, 0.66 and 0.64;
-    - the necromancer at 0.59 since Push 22 (0.50 in Push 18, 0.60 before that): levels 45-60
-      stand 0.65, 0.63, 0.61 and 0.59. Its servant makes it all-or-nothing: safe while the bone
-      knight stands, exposed when it falls.
+    - the necromancer at 0.50 (since Push 18; 0.60 before that): levels 45-60 stand 0.65,
+      0.63, 0.61 and 0.59 in Push 22, but its servant makes it all-or-nothing, safe while the
+      bone knight stands and exposed when it falls, so it is set where a quest costs it under
+      half a death at every level (played through: 0-0.4).
   - A paladin's boss costs 55-68% of their health across shares from 1.0 to 2.3: it mends
     itself back up. The share is set where the curve crosses 65%, and deaths start only
     above 2.3.

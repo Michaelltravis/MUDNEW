@@ -50,7 +50,7 @@ FOE_DAMAGE = {'elite': 2.0, 'minion': 1.0, 'warden': 1.0, 'wave': 0.7, 'boss': 1
 # and how hard a class's quest creatures hit at level 45: what a lone hero of that class can stand
 # (a thief or a mage has half a warrior's health and no heals; a paladin heals and wears plate),
 # measured the same way (tools/balance/sim.py --calibrate; docs/balance/marquee.md)
-CLASS_D = {'warrior': 1.05, 'paladin': 1.88, 'cleric': 1.4, 'mage': 0.64, 'necromancer': 0.59, 'thief': 0.54,
+CLASS_D = {'warrior': 1.05, 'paladin': 1.88, 'cleric': 1.4, 'mage': 0.64, 'necromancer': 0.5, 'thief': 0.54,
            'assassin': 0.78, 'ranger': 1.07, 'bard': 0.78}
 # ...and a little harder each level above it, as heroes grow sturdier (measured: 0.9% a level since the
 # endgame gear's stats count, Push 22; 1.8% before)
