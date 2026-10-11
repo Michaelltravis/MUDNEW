@@ -436,8 +436,10 @@ lone hero at its level (`bosses.size_zone_boss`):
   their own (`ZONE_BOSS_DAMAGE`), found by `tools/balance/bosses.py --calibrate`: the share at
   which a lone hero of the median class loses half their health at the worst moment, or a
   quarter of lone heroes die, whichever comes first. The shares run from 0.11 (the
-  Necromancer, whose spells hit nine times too hard) to 2.1 (Grimclaw and the Oakfather, whose
-  files have no damage dice and hit with 1d6).
+  Necromancer, whose spells hit nine times too hard) to 1.9-2.6 (Grimclaw and the Oakfather,
+  whose files have no damage dice and hit with 1d6). Measured again in Push 22, once the
+  endgame gear's stats counted and an archer needed a bow in hand: the bosses from level 44 up
+  hit a little softer where heroes now deal more (the gate guardians 1.2 to 0.95).
 
 Three fixes came out of measuring them:
 
@@ -457,17 +459,18 @@ What a lone hero at the boss's level meets, over the 20 bosses (two fights each;
 | class | health at worst (median) | deaths in 40 fights | minutes (median) |
 |---|---|---|---|
 | warrior | 22% | 0 | 1.6 |
-| paladin | 23% | 0 | 1.6 |
-| assassin | 42% | 1 | 1.9 |
-| cleric | 44% | 0 | 2.5 |
-| ranger | 56% | 1 | 2.8 |
-| bard | 58% | 1 | 2.3 |
-| thief | 58% | 4 | 1.7 |
-| necromancer | 80% | 17 | 2.3 |
-| mage | 96% | 23 | 2.7 |
+| paladin | 22% | 0 | 1.7 |
+| assassin | 40% | 0 | 1.7 |
+| cleric | 43% | 0 | 2.5 |
+| thief | 53% | 5 | 1.9 |
+| bard | 57% | 1 | 2.5 |
+| ranger | 60% | 1 | 3.1 |
+| necromancer | 79% | 16 | 2.4 |
+| mage | 100% | 26 | 3.0 |
 
-A party of three (warrior, cleric, mage) finishes any of them in 0.4-1.1 minutes, its
-worst-off member losing 0-41% (median 10%).
+A party of three (warrior, cleric, mage) finishes any of them in 0.5-1.2 minutes, its
+worst-off member losing 0-32% (median 10%). (Measured again in Push 22; Push 18's numbers
+were within a few points of these, the mage's 23 deaths now 26 and the necromancer's 17 now 16.)
 
 The spread between classes is the cost of a boss that can't know who fights it: a lone mage
 (about 190 health at level 45, and half the median hero's damage) or a necromancer whose bone
