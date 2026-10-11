@@ -593,6 +593,15 @@ class WebMapServer:
                         'summary': (str(t.get('description', '')).strip().split('\n')[0])[:110],
                     } for name, t in HELP_TOPICS.items()]})
                 await self._http_response(writer, 200, 'OK', body, content_type='application/json')
+            elif path.startswith('/explored'):
+                # the rooms this player has explored (the world map draws only those)
+                query = parse_qs(urlparse(path).query)
+                player = self._authed(query)
+                if not player:
+                    await self._http_response(writer, 404, 'Not Found', 'Player not found')
+                    return
+                rooms = sorted(set(getattr(player, 'explored_rooms', set()) or set()) | {getattr(getattr(player, 'room', None), 'vnum', None)} - {None})
+                await self._http_response(writer, 200, 'OK', json.dumps({'rooms': rooms}), content_type='application/json')
             elif path.startswith('/atlas'):
                 # the complete world atlas (static; cached server-side)
                 from map_system import build_atlas

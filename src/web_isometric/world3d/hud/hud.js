@@ -14,6 +14,12 @@ import { createShop } from './shop.js';
 import { createTalk } from './talk.js';
 import { createWho, hereRows } from './who.js';
 import { createHelp } from './help.js';
+import { createTalents } from './talents.js';
+import { createAlmanac } from './almanac.js';
+import { createTravel } from './travel.js';
+import { createStable } from './stable.js';
+import { createServices } from './services.js';
+import { createLegend } from './legend.js';
 import { abilityIcon, uiIcon } from './icons.js';
 import { classPortrait, creaturePortrait } from './portrait.js';
 import { SLOTS, cleanBar, defaultBar, placeNew, putOnBar, takeOffBar, diffAbilities, usable, costLine, rankOf } from '../abilities.js';
@@ -80,6 +86,17 @@ export function createHud() {
     here: () => hereRows(MH.state.lastPayload, (MH.state.player || {}).vnum, me()),
     onPick: (row, e) => MH.bus.emit('hud.pickWho', { row, x: e.clientX, y: e.clientY }),
   });
+  // progression and travel: talents, the almanac, travel, the stable, bank and mail, legend
+  const q = path => getJSON(`/${path}?player=${encodeURIComponent(me())}`);
+  const send = c => MH.sendCommand(c);
+  const talents = createTalents($('#talents'), { fetchTalents: () => q('talents'), send });
+  const almanac = createAlmanac($('#almanac'), { fetchAlmanac: () => q('almanac'), send, prefill: t => prefill(t) });
+  const travel = createTravel($('#travel'), { fetchTravel: () => q('travel'), send });
+  const stable = createStable($('#stable'), { fetchStable: () => q('stable'), send });
+  const services = createServices($('#services'), { fetchServices: () => q('services'), send, prefill: t => prefill(t) });
+  const legend = createLegend($('#legend'), { fetchLegend: () => q('legend'), fetchDoctrine: () => q('doctrine'), send,
+    isWarrior: () => String((MH.state.player || {}).char_class || '').toLowerCase() === 'warrior' });
+  const PROGRESS = { talents, almanac, travel, stable, services, legend };
   const help = createHelp($('#help'), {
     fetchTopics: () => getJSON('/help'),
     fetchTopic: name => getJSON(`/help?topic=${encodeURIComponent(name)}`),
@@ -653,6 +670,7 @@ export function createHud() {
   els.menu.querySelector('[data-act="map"]').addEventListener('click', () => MH.bus.emit('hud.map'));
   els.menu.querySelector('[data-act="who"]').addEventListener('click', () => who.toggle(undefined, me()));
   els.menu.querySelector('[data-act="help"]').addEventListener('click', () => help.toggle());
+  for (const [name, win] of Object.entries(PROGRESS)) els.menu.querySelector(`[data-act="${name}"]`).addEventListener('click', () => win.toggle());
   const syncSettings = () => {
     const q = ls.get('mh3d_quality') || 'high', u = ls.get('mh3d_ui') || 'auto';
     els.settings.querySelectorAll('[data-set="quality"] button').forEach(b => b.classList.toggle('on', b.dataset.v === q));
@@ -732,7 +750,9 @@ export function createHud() {
   // a window sounds as it opens and closes, however it was opened (a key, a button, a link)
   const WINDOW_SOUNDS = { inventory: ['bag_open', 'ui_close'], character: ['cloth', 'ui_close'], spellbook: ['book_open', 'book_close'],
     journal: ['book_open', 'book_close'], trainer: ['book_flip', 'ui_close'], settings: ['ui_open', 'ui_close'], bigmap: ['ui_open', 'ui_close'],
-    shop: ['coins', 'ui_close'], talk: ['ui_offer', 'ui_close'], who: ['ui_open', 'ui_close'], help: ['book_open', 'book_close'] };
+    shop: ['coins', 'ui_close'], talk: ['ui_offer', 'ui_close'], who: ['ui_open', 'ui_close'], help: ['book_open', 'book_close'],
+    talents: ['book_open', 'book_close'], almanac: ['book_open', 'book_close'], travel: ['ui_open', 'ui_close'], stable: ['leather', 'ui_close'],
+    services: ['coins', 'ui_close'], legend: ['book_open', 'book_close'] };
   for (const [id, [on, off]] of Object.entries(WINDOW_SOUNDS)) {
     const el = document.getElementById(id);
     if (!el) continue;
@@ -763,7 +783,9 @@ export function createHud() {
     if (digit && !e.ctrlKey && !e.metaKey && !e.altKey) { use(st.bar[+digit[1] - 1 + (e.shiftKey ? 8 : 0)]); e.preventDefault(); return; }
     if (k === 'Escape') {
       const mapOpen = !$('#bigmap').classList.contains('hidden');
-      if (inventory.open || character.open || spellbook.open || trainer.open || journal.open || mapOpen || shop.open || talk.open || who.open || help.open) {
+      const progOpen = Object.values(PROGRESS).some(w => w.open);
+      if (inventory.open || character.open || spellbook.open || trainer.open || journal.open || mapOpen || shop.open || talk.open || who.open || help.open || progOpen) {
+        for (const w of Object.values(PROGRESS)) w.toggle(false);
         inventory.toggle(false); character.toggle(false); spellbook.toggle(false); trainer.toggle(false); journal.toggle(false);
         shop.toggle(false); talk.toggle(false); who.toggle(false); help.toggle(false);
         MH.bus.emit('hud.map', false); return;
@@ -779,7 +801,9 @@ export function createHud() {
     if (k === 'm' || k === 'M') { MH.bus.emit('hud.map'); e.preventDefault(); return; }
     if (k === 'o' || k === 'O') { els.settings.classList.toggle('hidden'); e.preventDefault(); return; }
     if (k === 'p' || k === 'P') { who.toggle(undefined, me()); e.preventDefault(); return; }
-    if (k === 'h' || k === 'H') { help.toggle(); e.preventDefault(); }
+    if (k === 'h' || k === 'H') { help.toggle(); e.preventDefault(); return; }
+    const PKEYS = { n: 'talents', y: 'almanac', t: 'travel', u: 'stable', b: 'services', g: 'legend' };
+    if (PKEYS[k.toLowerCase()]) { PROGRESS[PKEYS[k.toLowerCase()]].toggle(); e.preventDefault(); }
   });
 
   // ---- for the right-click menu ----
@@ -794,10 +818,28 @@ export function createHud() {
   function openPanel(name) { if (name === 'inventory') inventory.toggle(true); else if (name === 'character') character.toggle(true); }
   function openTrainer(name) { trainer.toggle(true, name || ''); if (MH.refreshState) MH.refreshState(); }
   function openShop(kw) { shop.toggle(true, kw || ''); }
+  // give someone something: a short list of what you carry, by the word the MUD knows it by
+  function giveTo(name, x, y) {
+    const bag = ((MH.state.player || {}).inventory || []);
+    const el = $('#give-pick');
+    if (!bag.length) { toast('You carry nothing to give.'); return; }
+    const word = (it, list) => { const kw = String(it.name || it.short || 'item').toLowerCase().split(/\s+/).find(w => w.length > 1) || 'item';
+      let n = 0; for (const o of list) { if (String(o.name || o.short || '').toLowerCase().split(/\s+/).includes(kw)) n++; if (o === it) break; } return n > 1 ? `${n}.${kw}` : kw; };
+    el.innerHTML = `<div class="gp-title">Give ${esc(name)}…</div>` + bag.slice(0, 24).map((it, i) => `<button data-i="${i}">${esc(it.short || it.name)}</button>`).join('')
+      + '<button data-i="gold">Some gold…</button>';
+    el.style.left = `${Math.min(x, innerWidth - 240)}px`; el.style.top = `${Math.min(y, innerHeight - 320)}px`;
+    el.classList.remove('hidden');
+    el.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+      el.classList.add('hidden');
+      if (b.dataset.i === 'gold') { prefill(`give  coins ${name}`); return; }
+      MH.sendCommand(`give ${word(bag[+b.dataset.i], bag)} ${name}`);
+    }));
+    setTimeout(() => document.addEventListener('pointerdown', function off(e) { if (!el.contains(e.target)) { el.classList.add('hidden'); document.removeEventListener('pointerdown', off); } }), 0);
+  }
   function openTalk(name, kw) { talk.toggle(true, name, kw); }
   // whisper someone: the chat input set to tell them
   function whisper(name) { tellFrom = name; setMode('tell'); els.input.focus(); }
 
-  return { showGame, setPlayer, setTarget, targetCast, moment, fallen, suggestStrike, setRanges, setDistance, banner, toast, log, targetSkills, useAbility, prefill, openPanel, openTrainer, openShop, openTalk, flashSlot,
+  return { showGame, setPlayer, setTarget, targetCast, moment, fallen, suggestStrike, setRanges, setDistance, banner, toast, log, targetSkills, useAbility, prefill, openPanel, openTrainer, openShop, openTalk, giveTo, flashSlot,
     spellbook, unslot, party, quest, whisper, get player() { return st.player; }, get bar() { return st.bar.slice(); } };
 }

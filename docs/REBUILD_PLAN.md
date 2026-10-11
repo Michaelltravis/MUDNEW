@@ -916,3 +916,31 @@ it that way.
   the menu's dead `data-cmd` handler and the inventory's unused `sell` sound are gone.
 - **Tests**: `tests/web/essentials.test.mjs` (the windows' logic, the ground's items, the
   reaction keys); `tests/test_web_client.py` checks `/who`, `/help` and fixtures live.
+
+### `/play` progression and travel: talents, almanac, travel, stable, bank and mail, legend, world map (Push 17)
+Six windows on the menu (now four buttons wide), each with its key, built on the endpoints the
+2D client used to read:
+- **Talents** (N, `hud/talents.js`, `/talents`): the class's trees tier by tier, points to spend
+  at the top. A talent that can be taken now is lit, and a click takes it (`talents learn`);
+  the server keeps the rules (a tier opens at five points in its tree a tier, prerequisites,
+  top ranks). Warriors grow by doctrine instead, and the window says so.
+- **Almanac** (Y, `hud/almanac.js`, `/almanac`): the daily streak and what today, tomorrow and
+  day seven bring; achievements by category with progress bars, nearest to done first; titles
+  earned (Wear); collections and gear sets.
+- **Travel** (T, `hud/travel.js`, `/travel`): the waypoints found, what each costs and why one
+  can't be reached now (where you stand, the cooldown, gold); Travel goes.
+- **Stable** (U, `hud/stable.js`, `/stable`): mounts (Mount / Dismount, and the ones a stable
+  sells), pets and companions with their health (Dismiss).
+- **Bank and mail** (B, `hud/services.js`, `/services`): gold in the bank (Deposit / Withdraw at
+  a bank), mail (Delete; Write fills in `mail send`), what is kept at an inn.
+- **Legend** (G, `hud/legend.js`, `/legend`, `/doctrine`): prestige specialisation at level 50,
+  the server's leaderboards with your own place, and for a warrior the war doctrine and the
+  evolution of their abilities.
+- **The whole world** (the big map's World tab, `hud/worldmap.js`): every room you have
+  explored, coloured by zone, zone names over them, you marked; drag to pan, the wheel zooms,
+  hover for a room's name. New `/explored` (for the signed-in session only) gives the rooms
+  explored.
+- **Give…**: right-click another player near you → a short list of what you carry, or gold.
+- **Tests**: `tests/web/progression.test.mjs` (talent tiers and ranks, achievements' order,
+  travel rows, gold amounts, doctrine rows, the world map's view); `tests/test_web_client.py`
+  checks `/explored` and each window's endpoint live.

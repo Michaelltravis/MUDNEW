@@ -52,6 +52,7 @@ export function verbsFor(hit, ctx = {}) {
         near ? { label: 'Follow', cmd: `follow ${name}` } : far('Follow'),
         { label: 'Assist', cmd: `assist ${name}` },
         near ? { label: 'Trade', cmd: `trade ${name}` } : far('Trade'),
+        near ? { label: 'Give…', act: `give:${name}` } : far('Give…'),
         { label: 'Target', act: 'target' },
       ],
     };

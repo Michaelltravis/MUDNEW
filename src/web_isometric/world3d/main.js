@@ -30,6 +30,7 @@ import { musicFor, bedFor, surfaceFor } from './soundtable.js';
 import { interiorKind } from './terrain-town.js';
 import { GroundLoot } from './loot.js';
 import { ReactionPrompt, threatens, REACTIONS } from './reactions.js';
+import { createWorldMap } from './hud/worldmap.js';
 
 const $ = s => document.querySelector(s);
 const WATER_TILE = 4;   // zone.js / terrain.js tile kinds
@@ -204,10 +205,24 @@ async function runGame() {
   const bigEl = $('#bigmap');
   const mmBig = createMinimap(bigEl, room => { bigEl.classList.add('hidden'); travelTo(room); }, null, { cell: 1.7 });
   bigEl.querySelector('.bm-close').addEventListener('click', () => bigEl.classList.add('hidden'));
+  const world = createWorldMap(bigEl.querySelector('.wm-canvas'), {
+    fetchAtlas: async () => (await fetch('/atlas')).json(),
+    fetchExplored: async () => (await fetch(`/explored?player=${encodeURIComponent(MH.state.playerName || '')}`)).json(),
+    here: () => heroRoom && heroRoom.vnum,
+  });
+  let mapTab = 'zone';
+  const setMapTab = t => {
+    mapTab = t;
+    bigEl.querySelectorAll('.bm-tab').forEach(b => b.classList.toggle('on', b.dataset.tab === t));
+    bigEl.querySelector('.mm-wrap').classList.toggle('hidden', t !== 'zone');
+    bigEl.querySelector('.wm-wrap').classList.toggle('hidden', t !== 'world');
+    world.show(t === 'world' && !bigEl.classList.contains('hidden'));
+  };
+  bigEl.querySelectorAll('.bm-tab').forEach(b => b.addEventListener('click', () => setMapTab(b.dataset.tab)));
   MH.bus.on('hud.map', on => {
     const show = on === undefined || on === null ? bigEl.classList.contains('hidden') : !!on;
     bigEl.classList.toggle('hidden', !show);
-    if (show) mmBig.redraw();
+    if (show) { mmBig.redraw(); setMapTab(mapTab); } else world.show(false);
   });
   const mm = {
     setZone: z => { mmSmall.setZone(z); mmBig.setZone(z); },
@@ -805,7 +820,9 @@ async function runGame() {
     if (!hit) return;
     menuFor(hit, x, y);
   }
+  let lastMenuAt = { x: innerWidth / 2, y: innerHeight / 2 };
   function menuFor(hit, x, y) {
+    lastMenuAt = { x, y };
     const p = MH.state.player || {};
     const { title, items } = verbsFor(hit, { skills: hud.targetSkills(), posture: p.position, inCombat: MH.state.inCombat,
       room: heroRoom && heroRoom.vnum, inGroup: hud.party.inGroup });
@@ -827,6 +844,7 @@ async function runGame() {
     if (a.startsWith('talk:')) return inReach(hit.ent, 3, () => hud.openTalk(npc, a.slice(5)));
     if (a.startsWith('shop:')) return inReach(hit.ent, 3, () => hud.openShop(a.slice(5)));
     if (a === 'loot' || a === 'take') return takeLoot(hit.loot);
+    if (a.startsWith('give:')) return hud.giveTo(a.slice(5), lastMenuAt.x, lastMenuAt.y);
     if (a === 'walk' && hit.point) { travel = null; return ctl.walkTo(hit.point.x, hit.point.z); }
   }
 

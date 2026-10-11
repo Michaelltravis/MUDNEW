@@ -86,6 +86,12 @@
   <button data-act="map" data-icon="map" data-tip="Map" data-key="M"></button>
   <button data-act="who" data-icon="people" data-tip="Who is about" data-key="P"></button>
   <button data-act="help" data-icon="question" data-tip="Help and controls" data-key="H"></button>
+  <button data-act="talents" data-icon="halo" data-tip="Talents" data-key="N"></button>
+  <button data-act="almanac" data-icon="banner" data-tip="Almanac: daily, achievements, titles" data-key="Y"></button>
+  <button data-act="travel" data-icon="boot" data-tip="Travel" data-key="T"></button>
+  <button data-act="stable" data-icon="shield" data-tip="Stable: mounts, pets" data-key="U"></button>
+  <button data-act="services" data-icon="orbs" data-tip="Bank, mail, storage" data-key="B"></button>
+  <button data-act="legend" data-icon="wings" data-tip="Legend: prestige, leaderboards" data-key="G"></button>
   <button data-act="settings" data-icon="gear" data-tip="Settings" data-key="O"></button>
 </div>
 <div id="journal" class="hud panel ornate hidden">
@@ -93,8 +99,9 @@
   <div class="jr-book"><div class="jr-list"></div><div class="jr-page"></div></div>
 </div>
 <div id="bigmap" class="hud panel ornate hidden">
-  <div class="win-head"><span class="mm-zone">Map</span><span class="mm-time"></span><button class="bm-close win-x" title="Close (M)">✕</button></div>
+  <div class="win-head"><span class="mm-zone">Map</span><span class="mm-time"></span><span class="ch-tabs bm-tabs"><button class="bm-tab on" data-tab="zone">Zone</button><button class="bm-tab" data-tab="world">World</button></span><button class="bm-close win-x" title="Close (M)">✕</button></div>
   <div class="mm-wrap"><canvas width="1760" height="1080"></canvas></div>
+  <div class="wm-wrap hidden"><canvas class="wm-canvas"></canvas></div>
   <div class="bm-foot"><span class="mm-room"></span><span class="bm-legend"><b>★</b> your guild · <b>◆</b> your quest · <b>▲▼</b> stairs · click a room to walk there</span></div>
 </div>
 <div id="tipcard" class="tipcard hidden"></div>
@@ -136,6 +143,31 @@
   <div class="hp-body sb-body"></div>
 </div>
 <div id="react" class="hidden"></div>
+<div id="talents" class="hud panel ornate hidden">
+  <div class="win-head"><span>Talents</span><button class="tl-close win-x" title="Close (N)">✕</button></div>
+  <div class="tl-body sb-body"></div>
+</div>
+<div id="almanac" class="hud panel ornate hidden">
+  <div class="win-head"><span>Almanac</span><span class="ch-tabs"><button class="al-tab on" data-tab="daily">Daily</button><button class="al-tab" data-tab="achievements">Achievements</button><button class="al-tab" data-tab="titles">Titles</button><button class="al-tab" data-tab="collections">Collections</button></span><button class="al-close win-x" title="Close (Y)">✕</button></div>
+  <div class="al-body sb-body"></div>
+</div>
+<div id="travel" class="hud panel ornate hidden">
+  <div class="win-head"><span>Travel</span><button class="tv-close win-x" title="Close (T)">✕</button></div>
+  <div class="tv-body sb-body"></div>
+</div>
+<div id="stable" class="hud panel ornate hidden">
+  <div class="win-head"><span>Stable</span><button class="st-close win-x" title="Close (U)">✕</button></div>
+  <div class="st-body sb-body"></div>
+</div>
+<div id="services" class="hud panel ornate hidden">
+  <div class="win-head"><span>Bank and mail</span><span class="ch-tabs"><button class="sv-tab on" data-tab="bank">Bank</button><button class="sv-tab" data-tab="mail">Mail</button><button class="sv-tab" data-tab="storage">Storage</button></span><button class="sv-close win-x" title="Close (B)">✕</button></div>
+  <div class="sv-body sb-body"></div>
+</div>
+<div id="legend" class="hud panel ornate hidden">
+  <div class="win-head"><span>Legend</span><span class="ch-tabs"><button class="lg-tab on" data-tab="prestige">Prestige</button><button class="lg-tab" data-tab="boards">Leaderboards</button><button class="lg-tab" data-tab="doctrine">Doctrine</button></span><button class="lg-close win-x" title="Close (G)">✕</button></div>
+  <div class="lg-body sb-body"></div>
+</div>
+<div id="give-pick" class="hidden"></div>
 <div id="item-tip" class="hidden"></div>
 <div id="item-menu" class="hidden"></div>
 <div id="ctx-menu" class="hidden"></div>

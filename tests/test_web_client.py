@@ -6,7 +6,8 @@ Checks: the retired 2D clients' URLs (/platformer, /2d, /iso) redirect to /play;
 its shared scripts from /v/<commit>/shared/ and nothing from the old 2D folder; a telnet
 connection's long lines are wrapped at 80 columns, and a connection that announced itself
 as the web bridge (server.WEB_MARK, as web_client.py does) gets them whole; /who (for the
-signed-in session only) and /help answer the who and help windows; a fixture can't be taken.
+signed-in session only) and /help answer the who and help windows; a fixture can't be taken;
+/explored and the progression windows' endpoints answer the session.
 """
 import asyncio
 import http.client
@@ -106,10 +107,32 @@ async def windows():
     await tn.cmd('quit', 0.6)
 
 
+async def progression():
+    """The data behind /play's progression and travel windows (Push 17)."""
+    tn = Telnet()
+    await tn.open()
+    import test_webmove as tw
+    await tn.cmd('goto 3001', 1.0)
+    status, _, body = get(f'/explored?player=Gauntlet&t={tw.TOKEN}')
+    rooms = json.loads(body).get('rooms', []) if status == 200 else []
+    check(status == 200 and 3001 in rooms, f'/explored lists the rooms explored, the one you stand in too ({status}, {len(rooms)} rooms)')
+    status, _, _ = get('/explored?player=Gauntlet&t=wrong')
+    check(status == 404, f'/explored answers only to the session ({status})')
+    for path in ('talents', 'almanac', 'travel', 'stable', 'services', 'legend', 'doctrine'):
+        status, _, body = get(f'/{path}?player=Gauntlet&t={tw.TOKEN}')
+        try:
+            data = json.loads(body) if status == 200 else None
+        except ValueError:
+            data = None
+        check(isinstance(data, dict) and data, f'/{path} answers its window ({status}, {sorted(data)[:5] if isinstance(data, dict) else body[:60]})')
+    await tn.cmd('quit', 0.6)
+
+
 async def main():
     pages()
     await wrapping()
     await windows()
+    await progression()
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
     sys.exit(1 if failures else 0)
 
