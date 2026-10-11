@@ -20,7 +20,7 @@ const W = 24, H = 15, FLOOR = 0;
 // the browser scripts that lay rooms out (roomgen) need a window and a little of the old client
 globalThis.window = globalThis;
 globalThis.document = { createElement: () => ({ getContext: () => null }) };
-for (const f of ['world3d/hud-shim.js', 'platformer/themes-zones.js', 'platformer/roomgen.js']) {
+for (const f of ['world3d/hud-shim.js', 'shared/themes-zones.js', 'shared/roomgen.js']) {
   vm.runInThisContext(fs.readFileSync(path.join(ROOT, 'src/web_isometric', f), 'utf8'), { filename: f });
 }
 const MH = globalThis.MH;

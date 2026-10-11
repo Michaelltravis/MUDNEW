@@ -1,7 +1,7 @@
 // Inventory panel (I): worn gear in slots around the hero, the bag as a grid, item
 // tooltips (stats, damage, armour, effects) and actions that go out as the MUD's own
 // commands (wear, wield, remove, quaff, eat, drink, recite, drop, examine). Item art comes
-// from the 2D client's icon painter (platformer/items.js, no Phaser needed).
+// from the shared icon painter (shared/items.js).
 import { sound } from '../audio.js';
 
 const $ = s => document.querySelector(s);

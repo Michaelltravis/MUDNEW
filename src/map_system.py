@@ -1462,7 +1462,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'precipitation': getattr(w, 'precipitation', 'none'),
         }
 
-    # Detailed info for the player's current room (used by the platformer client)
+    # Detailed info for the player's current room (the web client's MH.state.currentRoom)
     current_room = None
     if player.room:
         cur = player.room

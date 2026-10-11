@@ -639,7 +639,6 @@ export function createHud() {
   }));
   els.settings.querySelector('[data-act="perf"]').addEventListener('click', () => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'F3' })));
   els.settings.querySelector('[data-act="camreset"]').addEventListener('click', () => MH.bus.emit('hud.cameraReset'));
-  els.settings.querySelector('[data-act="classic"]').addEventListener('click', () => window.open('/platformer', '_blank'));
   // sound: a master switch and a slider per bus (audio.js keeps them in localStorage)
   const muteBtn = els.settings.querySelector('[data-act="mute"]');
   const syncSound = () => {

@@ -4,7 +4,7 @@ Screenshots for the Gauntlet Loop (see `.claude/skills/gauntlet-loop/SKILL.md`).
 
 | Script | Does |
 |---|---|
-| `capture.js` | logs the `Gauntlet` character into the Phaser client, fixes hour/weather, visits `rooms.json`, screenshots each label |
+| `capture.js` | logs the `Gauntlet` character into the web client (`/play`), fixes hour/weather, visits `rooms.json`, screenshots each label |
 | `capture-ref.js` | `--setup` clones + patches BrowserQuest for node 22; `--serve` starts it (:8000 game, :8001 static); default captures the same labels |
 | `montage.js` | blind A/B pairs (`--run`, `--round`, `--seed`) or a `--sheet` contact sheet |
 | `rooms.json` | label → Misthollow room vnum (+ commands) and reference camera spot |

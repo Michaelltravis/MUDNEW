@@ -70,6 +70,10 @@ from config import Config
 # `say` can't carry an escape sequence (a forged MAPSYNC) to other players' clients
 _CONTROL_CHARS = re.compile(r'[\x00-\x08\x0b-\x1f\x7f]')
 
+# the web bridge's first line (web_client.py): its page lays text out itself, so the
+# connection's messages are not hard-wrapped at 80 columns as a telnet terminal's are
+WEB_MARK = b'\x1b]WEB\x07'
+
 logger = logging.getLogger('Misthollow.Server')
 
 class Connection:
@@ -119,6 +123,7 @@ class Connection:
         self.play_after = None          # a character asked for by name, opened via its account
         self.login_failures = 0         # wrong passwords on this connection (security.py)
         self.forgot_sent = False
+        self.is_web = False             # the web bridge announced itself (WEB_MARK): no hard wrap
         
         logger.info(f"New connection from {self.address}")
         
@@ -127,8 +132,9 @@ class Connection:
         try:
             if message is None:
                 return
-            # Word-wrap before sending
-            message = _wrap_text(message, 80)
+            # Word-wrap for a telnet terminal (a web page wraps its own text)
+            if not self.is_web:
+                message = _wrap_text(message, 80)
             # Convert all newlines to \r\n for telnet compatibility
             message = message.replace('\r\n', '\n').replace('\n', '\r\n')
             if newline and not message.endswith('\r\n'):
@@ -1634,6 +1640,9 @@ class MUDServer:
                     data = await asyncio.wait_for(reader.readline(), timeout=1800.0)
                     if not data:
                         break
+                    if data.strip() == WEB_MARK:
+                        conn.is_web = True
+                        continue
                     line = _CONTROL_CHARS.sub('', data.decode('utf-8', errors='ignore')).strip()
                     await conn.handle_input(line)
                 except asyncio.TimeoutError:

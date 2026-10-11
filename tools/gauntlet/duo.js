@@ -7,7 +7,7 @@ const { chromium } = require('playwright');
 async function login(ctx, name, pass) {
   const page = await ctx.newPage();
   page.on('pageerror', e => console.log(name, 'pageerror:', String(e).slice(0, 140)));
-  await page.goto('http://localhost:4001/platformer?gauntlet=1', { waitUntil: 'load' });
+  await page.goto('http://localhost:4001/play', { waitUntil: 'load' });
   await page.waitForSelector('#login-name'); await page.fill('#login-name', name); await page.fill('#login-pass', pass || process.env.PASS || 'gauntlet1'); await page.click('#login-btn');
   for (let i = 0; i < 40; i++) { await page.waitForTimeout(500); if (await page.evaluate(() => !!(window.MH && MH.state.currentRoom))) break; }
   await page.waitForTimeout(800);

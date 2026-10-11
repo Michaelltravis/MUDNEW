@@ -58,14 +58,14 @@ commit winners. You are the only role that reads `key.json`.
 
 ### Builder (fresh context, one piece)
 ```
-You are a builder in a Gauntlet Loop for Misthollow (Python MUD + Phaser top-down web client
-in src/web_isometric/platformer/). Piece: {piece.title}. Goal: {piece.goal}.
+You are a builder in a Gauntlet Loop for Misthollow (Python MUD + three.js web client at /play,
+in src/web_isometric/world3d/ and shared/). Piece: {piece.title}. Goal: {piece.goal}.
 You may ONLY edit these files: {piece.files}. Do not touch anything else.
 Reference bar: {reference.name}. Its screenshots are in docs/gauntlet/reference/browserquest/;
 ours from the last round are in docs/gauntlet/{run}/round-{n-1}/mh/. Look at both before coding.
 Previous critic verdict for this piece (fix these first): {verdict or "none, first round"}.
 Answer-key questions the critic will ask: {piece.questions}.
-Hard rules: keep the game playable; run `node tools/qc_platformer_rooms.js` and
+Hard rules: keep the game playable; run `node --test tests/web/*.test.mjs` and
 `python3 tests/test_suite.py localhost 4000 --smoke` before finishing (start ./run.sh if
 needed) and report their results verbatim. Do not judge your own work and do not write
 "looks great"; describe what changed and why in <= 8 bullets. Write that summary to

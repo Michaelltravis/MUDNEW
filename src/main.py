@@ -10,6 +10,7 @@ import signal
 import sys
 import os
 import logging
+import logging.handlers
 from datetime import datetime
 
 # Add src to path
@@ -25,7 +26,9 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('../log/mud.log'),
+        # 10 MB a file, the last five kept (mud.log.1 ... mud.log.5): a busy week no longer
+        # grows one file without end
+        logging.handlers.RotatingFileHandler('../log/mud.log', maxBytes=10 * 1024 * 1024, backupCount=5),
         logging.StreamHandler()
     ]
 )

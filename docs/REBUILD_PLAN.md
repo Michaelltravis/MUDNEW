@@ -107,7 +107,7 @@ CC0 low-poly (KayKit, Quaternius) — see `docs/art/SOURCES.md`.
 | M1 | seamless world on real zones: `/zonemap`, terrain builders per theme, controller with A*, `webmove`, doors, passages, zone changes, login + HUD | **M1a shipped**; M1b shipped (monsters, towns and interiors, inventory, character sheet) |
 | M2 | living world: class heroes, mob models, NPCs, items, other players' positions | |
 | M3 | combat in 3D, then Phase 3 real-time combat | **combat v2 ready for the owner's test** (see below): events, reach, timing, wind-ups |
-| M4 | polish, switch-over, retire the Phaser client | |
+| M4 | polish, switch-over, retire the Phaser client | **2D clients retired** (Push 15): `/platformer`, `/2d` and `/iso` redirect to `/play`; the five scripts `/play` shared moved to `src/web_isometric/shared/` |
 
 M0 notes: all URLs under `/v/<commit>/` are immutable (served gzip, `web_map.py`
 `static_3d`), so a deploy never needs a hard refresh. Kit models are baked into float
@@ -860,3 +860,27 @@ it that way.
 - **Tests**: `tests/test_spells_audit.py` (every book spell cast as the bar casts it: no errors,
   no silent no-ops; group and room targeting, cooldowns, names, the effects above, stuns, no
   command defined twice, every class-book skill a command).
+
+### The 2D clients retired, and server polish (owner: "We don't need 2d")
+- **`/play` is the only web client.**
+  - The five scripts it borrowed from the Phaser client (the socket layer, the text parser, zone
+    themes, item icons, room layouts) moved to `src/web_isometric/shared/`. They are served
+    like the rest of `/play`: immutable under `/v/<commit>/`, gzipped.
+  - The platformer, the top-down `/2d` client, the old isometric `/iso` page and the rest of
+    their folder (Phaser, tiles, sprites, scenes) are deleted; their URLs redirect to `/play`.
+    The Settings "Old 2D client" button is gone.
+  - The endpoints the 2D windows used (`/shop`, `/stable`, `/travel`, `/almanac`, `/talents`,
+    and the rest) stay: the next pushes build `/play` windows on them.
+  - The 2D art packs (`src/web_isometric/sprites/`, 91 MB; `art/`, 9.6 MB) are unused now. They
+    stay until the owner says otherwise.
+  - Tools: `tools/gauntlet/capture.js` and `duo.js` drive `/play`; the onboarding capture and
+    the 2D room checker (`tools/qc_platformer_rooms.js`) are retired.
+- **Web text is no longer hard-wrapped.** The server wrapped every message at 80 columns, so
+  `/play`'s chat broke mid-sentence and lost colours mid-line. The bridge now announces itself
+  (`server.WEB_MARK`), and only telnet is wrapped.
+- **Log rotation**: `log/mud.log` rotates at 10 MB, and five old files are kept.
+- **Quieter logs**: a telnet player's every move logged two lines (one a warning, "NO connected
+  clients"), and a `/play` page load logged a line for each of its few hundred files. Both are
+  debug now.
+- **Tests**: `tests/test_web_client.py` (live): the old URLs redirect, `/play` loads its shared
+  scripts and nothing from the 2D folder, telnet wraps and the web doesn't.

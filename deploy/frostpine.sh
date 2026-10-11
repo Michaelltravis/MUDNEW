@@ -99,4 +99,4 @@ else
   echo "   $SERVER_LOG:"; tail -5 "$SERVER_LOG" | sed 's/^/     /'
   exit 1
 fi
-echo "== open https://map.frostpine.net/platformer"
+echo "== open https://map.frostpine.net/play"

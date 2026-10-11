@@ -98,6 +98,9 @@ class TelnetBridge:
         """Connect to the MUD server."""
         try:
             self.reader, self.writer = await asyncio.open_connection(self.mud_host, self.mud_port)
+            # announce a web connection (server.WEB_MARK): the page wraps its own text
+            self.writer.write(b'\x1b]WEB\x07\r\n')
+            await self.writer.drain()
             return True
         except Exception as e:
             logger.error(f"Failed to connect to MUD: {e}")

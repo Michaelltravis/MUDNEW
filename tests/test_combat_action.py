@@ -77,11 +77,13 @@ async def main():
             check(not mine('attack', t1) and again and again[-1][1].get('res') in ('not_ready', 'perfect'),
                   f'pressed again at once: no blow ({again[-1][1].get("res") if again else None})')
 
-            # the swings come by themselves, every 3 s
+            # the swings come by themselves, every 3 s. Counted on the swing clock: a creature this
+            # big has the boss kit, and its Terrifying Roar may stun the hero, whose swing then
+            # comes on time but is spent ('skip', no blow)
             await asyncio.sleep(10.5)
-            blows = [t for t, _e in mine('attack', t0)]
-            gaps = [b - a for a, b in zip(blows, blows[1:])]
-            check(len(blows) >= 4 and all(2.7 <= g <= 3.4 for g in gaps), f'then a blow every 3 s by itself ({[round(g, 2) for g in gaps]})')
+            ticks = [t for t, e in mine('swing', t0) if e.get('res') != 'not_ready']
+            gaps = [b - a for a, b in zip(ticks, ticks[1:])]
+            check(len(ticks) >= 4 and all(2.7 <= g <= 3.4 for g in gaps), f'then a swing every 3 s by itself ({[round(g, 2) for g in gaps]})')
 
             # the global cooldown
             t2 = time.time()

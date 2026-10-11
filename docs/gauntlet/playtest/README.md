@@ -18,7 +18,8 @@ Remove with `bash deploy/install-autopull.sh --remove`.
 
 Proxy: `map.frostpine.net/*` → :4001; `mud.frostpine.net/ws` **and `mud.frostpine.net/art/*`** → :4003
 (the `/art/` route is new; without it characters render as silhouettes). Play at
-`https://map.frostpine.net/platformer`.
+`https://map.frostpine.net/play`. (This script was written for the 2D client, retired in Push 15;
+`/platformer` now redirects to `/play`.)
 
 ## Script (15 minutes, one sitting, a brand-new character)
 1. **forge a new soul** → human → a class from the picker (warrior, cleric, ranger carry "★ first pick").

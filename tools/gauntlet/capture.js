@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Gauntlet evidence: screenshot Misthollow's platformer client in a fixed set
+// Gauntlet evidence: screenshot Misthollow's web client (/play) in a fixed set
 // of situations. Deterministic where the game allows it (fixed hour/weather
 // via admin commands, seeded Math.random in the page, first-run tips silenced).
 //
@@ -57,7 +57,7 @@ function isBlankPng(buf) {
   const errors = [];
   page.on('pageerror', e => errors.push(String(e).slice(0, 200)));
 
-  await page.goto(`http://${CFG.mud.host}:${CFG.mud.mapPort}/platformer?gauntlet=1`, { waitUntil: 'load' });
+  await page.goto(`http://${CFG.mud.host}:${CFG.mud.mapPort}/play`, { waitUntil: 'load' });
   await page.waitForSelector('#login-name', { timeout: 20000 });
   await page.fill('#login-name', CFG.character.name);
   await page.fill('#login-pass', CFG.character.password);
@@ -99,7 +99,9 @@ function isBlankPng(buf) {
       // frame is read back, so every frame is exactly intervalMs of play apart
       // and the stamps are game time, like the reference's.
       const stamps = []; let played = 0;
-      if (r.filmstrip.canvasOnly) {
+      // (the in-page readback and the frozen loop need the retired Phaser client's MH.game;
+      // on /play the frames are plain screenshots, intervalMs apart in wall-clock time)
+      if (r.filmstrip.canvasOnly && await page.evaluate(() => !!(window.MH && MH.game && MH.game.renderer))) {
         // world storyboards: frames are read back IN-PAGE from the renderer at
         // exact game-time intervals (fast), while the held key is re-pressed
         // from outside in parallel. No HUD in these frames, no frozen loop,

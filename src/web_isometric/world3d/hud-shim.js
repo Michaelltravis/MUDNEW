@@ -1,5 +1,5 @@
-// The few helpers the shared scripts (roomgen.js, parser.js) expect from the old Phaser
-// client's sprites.js / scene.js, without loading Phaser. Classic script, loaded before them.
+// The few helpers the shared scripts (shared/roomgen.js, parser.js) expect from the retired
+// Phaser client's sprites.js / scene.js. Classic script, loaded before them.
 (() => {
   const MH = window.MH = window.MH || {};
   // the 3D client asks for its zone's rooms plus the occupants of every room near the hero

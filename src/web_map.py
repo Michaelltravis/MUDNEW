@@ -39,6 +39,7 @@ def _redact(path: str) -> str:
 _WEB_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'web_isometric')
 _STATIC_3D = {
     'world3d': ('world3d', {'js', 'json', 'css', 'mp3', 'ogg', 'm4a', 'wav'}),
+    'shared': ('shared', {'js'}),     # net, parser, zone themes, item icons, room layouts
     'vendor': ('vendor', {'js'}),
     'art3d': ('art3d', {'glb', 'png', 'webp', 'json'}),
     'fonts': ('fonts', {'woff2'}),
@@ -81,7 +82,7 @@ def asset_version():
 
 
 def static_3d(path):
-    """Resolve a /v/<ver>/..., /world3d/, /vendor/, /art3d/ or /fonts/ path to (file, ext, immutable),
+    """Resolve a /v/<ver>/..., /world3d/, /shared/, /vendor/, /art3d/ or /fonts/ path to (file, ext, immutable),
     or None when it is not an allowed file (unknown root, extension, or traversal)."""
     rel = path.split('?', 1)[0]
     immutable = False
@@ -250,7 +251,7 @@ class WebMapServer:
         matching_clients = 0
         dead_clients = []
         client_names = [c.player_name for c in self.clients if c.player_name]
-        logger.info(f"notify_player called for '{player.name}', connected clients: {client_names}")
+        logger.debug(f"notify_player called for '{player.name}', connected clients: {client_names}")
         for client in list(self.clients):
             if not client.player_name:
                 continue
@@ -259,13 +260,13 @@ class WebMapServer:
             matching_clients += 1
             try:
                 payload = build_map_payload(player, mode=client.mode)
-                logger.info(f"notify_player: sending {len(payload.get('rooms', []))} rooms to '{client.player_name}'")
+                logger.debug(f"notify_player: sending {len(payload.get('rooms', []))} rooms to '{client.player_name}'")
                 success = await self._ws_send(client.writer, json.dumps(payload))
                 if not success:
                     dead_clients.append(client)
                     logger.warning(f"notify_player: send failed for '{client.player_name}'")
                 else:
-                    logger.info(f"notify_player: send SUCCESS for '{client.player_name}'")
+                    logger.debug(f"notify_player: send SUCCESS for '{client.player_name}'")
             except Exception as e:
                 logger.error(f"notify_player exception for '{client.player_name}': {e}")
                 dead_clients.append(client)
@@ -274,7 +275,8 @@ class WebMapServer:
             self.clients.discard(client)
             logger.info(f"Removed dead WebSocket client for '{client.player_name}'")
         if matching_clients == 0:
-            logger.warning(f"notify_player: NO connected clients for '{player.name}' (total clients: {len(self.clients)}, names: {client_names})")
+            # a telnet player has no map client: the usual case, not a fault
+            logger.debug(f"notify_player: no map client for '{player.name}' (total clients: {len(self.clients)}, names: {client_names})")
 
     async def notify_room(self, room, event=None, skip=None):
         """Push fresh map payloads to every connected player standing in the
@@ -393,7 +395,9 @@ class WebMapServer:
                 return
             method = parts[0]
             path = parts[1]
-            logger.info(f"HTTP request: method='{method}' path='{_redact(path)}'")
+            # a page load fetches a few hundred static files: those only at debug level
+            static = path.startswith(('/v/', '/world3d/', '/shared/', '/vendor/', '/art3d/', '/fonts/'))
+            (logger.debug if static else logger.info)(f"HTTP request: method='{method}' path='{_redact(path)}'")
 
 
             headers = {}
@@ -651,15 +655,12 @@ class WebMapServer:
                     return
                 except FileNotFoundError:
                     await self._http_response(writer, 404, 'Not Found', 'Sprite not found')
-            elif path.startswith('/iso') or path.startswith('/isometric'):
-                # Serve the isometric 3D view
-                iso_path = os.path.join(os.path.dirname(__file__), 'web_isometric', 'index.html')
-                try:
-                    with open(iso_path, 'r', encoding='utf-8') as f:
-                        iso_html = f.read()
-                    await self._http_response(writer, 200, 'OK', iso_html, content_type='text/html')
-                except FileNotFoundError:
-                    await self._http_response(writer, 404, 'Not Found', 'Isometric view not found')
+            elif path.startswith(('/platformer', '/2d', '/iso')):
+                # the 2D clients (platformer, top-down, isometric) are retired: /play is the web client
+                writer.write(b"HTTP/1.1 302 Found\r\nLocation: /play\r\nContent-Length: 0\r\n"
+                             b"Cache-Control: no-cache\r\nConnection: close\r\n\r\n")
+                await writer.drain()
+                return
             elif path.startswith('/talents'):
                 # talent trees + the player's progression, for the talent UI
                 parsed = urlparse(path)
@@ -1243,7 +1244,7 @@ class WebMapServer:
                     return
                 except FileNotFoundError:
                     await self._http_response(writer, 404, 'Not Found', 'Art not found')
-            elif path.startswith(('/v/', '/world3d/', '/vendor/', '/art3d/', '/fonts/')):
+            elif path.startswith(('/v/', '/world3d/', '/shared/', '/vendor/', '/art3d/', '/fonts/')):
                 hit = static_3d(path)
                 if not hit:
                     await self._http_response(writer, 404, 'Not Found', 'Not found')
@@ -1288,50 +1289,6 @@ class WebMapServer:
                     await self._http_response(writer, 200, 'OK', page, content_type='text/html')
                 except FileNotFoundError:
                     await self._http_response(writer, 404, 'Not Found', '3D client not found')
-            elif path.startswith('/platformer/'):
-                # Serve platformer client assets (js/css/png/json/woff2, no traversal)
-                asset_dir = os.path.realpath(os.path.join(os.path.dirname(__file__), 'web_isometric', 'platformer'))
-                asset_file = path.split('?', 1)[0].replace('/platformer/', '', 1)
-                asset_path = os.path.realpath(os.path.join(asset_dir, asset_file))
-                ext = asset_file.rsplit('.', 1)[-1].lower() if '.' in asset_file else ''
-                if not asset_path.startswith(asset_dir + os.sep) or ext not in ('js', 'css', 'png', 'json', 'woff2', 'woff'):
-                    await self._http_response(writer, 404, 'Not Found', 'Not found')
-                    return
-                try:
-                    if ext in ('png', 'woff2', 'woff'):
-                        with open(asset_path, 'rb') as f:
-                            data = f.read()
-                        bct = {'png': 'image/png', 'woff2': 'font/woff2', 'woff': 'font/woff'}[ext]
-                        writer.write((f"HTTP/1.1 200 OK\r\nContent-Type: {bct}\r\n"
-                                      f"Content-Length: {len(data)}\r\nConnection: close\r\nAccess-Control-Allow-Origin: *\r\n\r\n").encode())
-                        writer.write(data)
-                        await writer.drain()
-                        return
-                    with open(asset_path, 'r', encoding='utf-8') as f:
-                        body = f.read()
-                    ct = ('application/javascript' if ext == 'js' else 'text/css' if ext == 'css'
-                          else 'application/json')
-                    await self._http_response(writer, 200, 'OK', body, content_type=ct)
-                except FileNotFoundError:
-                    await self._http_response(writer, 404, 'Not Found', 'Asset not found')
-            elif path.startswith('/platformer'):
-                # Serve the 2D platformer client
-                plat_path = os.path.join(os.path.dirname(__file__), 'web_isometric', 'platformer.html')
-                try:
-                    with open(plat_path, 'r', encoding='utf-8') as f:
-                        plat_html = f.read()
-                    await self._http_response(writer, 200, 'OK', plat_html, content_type='text/html')
-                except FileNotFoundError:
-                    await self._http_response(writer, 404, 'Not Found', 'Platformer client not found')
-            elif path.startswith('/2d'):
-                # Serve the Phaser 2D top-down view
-                client2d_path = os.path.join(os.path.dirname(__file__), 'web_isometric', 'client2d.html')
-                try:
-                    with open(client2d_path, 'r', encoding='utf-8') as f:
-                        client2d_html = f.read()
-                    await self._http_response(writer, 200, 'OK', client2d_html, content_type='text/html')
-                except FileNotFoundError:
-                    await self._http_response(writer, 404, 'Not Found', '2D client not found')
             else:
                 await self._http_response(writer, 200, 'OK', self._html(), content_type='text/html')
 

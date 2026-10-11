@@ -18,8 +18,8 @@ that change every fight, not only the quests.
 - **Time:** a lone hero who knows the way plays a quest through in 40-72 simulated minutes
   (median 58). That is 12-20 minutes of fighting, 6-29 of resting and 17-33 of walking. See
   [Time](#time-and-the-two-hour-goal) for what that means against the two-hour goal.
-- **Both combat modes:** the numbers hold in the round-by-round fights (telnet and the 2D
-  client) and in the 3D client's real-time combat.
+- **Both combat modes:** the numbers hold in the round-by-round fights (telnet, and `/play`
+  with real-time combat off) and in `/play`'s real-time combat.
 
 ## Fixes that change every fight
 

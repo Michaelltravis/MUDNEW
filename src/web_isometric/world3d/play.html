@@ -126,7 +126,6 @@
   <div class="row">HUD size <span class="seg" data-set="ui"><button data-v="auto">Auto</button><button data-v="0.85">S</button><button data-v="1">M</button><button data-v="1.15">L</button></span></div>
   <div class="row">Camera <span class="seg"><button data-act="camreset" title="Right-drag turns and tilts the view">North up (Home)</button></span></div>
   <div class="row">Performance <span class="seg"><button data-act="perf">F3</button></span></div>
-  <div class="row">Old 2D client <span class="seg"><button data-act="classic">Open</button></span></div>
   <div class="row">Real-time combat <span class="seg" data-set="combat"><button data-v="action" title="Your blows land as you strike; creatures act on their own clocks">On</button><button data-v="rounds" title="Everyone strikes once a 3-second round">Off</button></span></div>
   <div class="row">Sound <span class="seg"><button data-act="mute" title="All sound on or off">On</button></span></div>
   <div class="row vol">Master <input type="range" min="0" max="100" data-vol="master" aria-label="Master volume"></div>
@@ -187,12 +186,12 @@
 <div id="loading"><div class="ld-ring"></div><div class="ld-name">Misthollow</div><div class="ld-sub">The mist gathers…</div></div>
 <div id="moment" class="hidden"><div class="mo-rays"></div><div class="mo-kicker"></div><div class="mo-title"></div><div class="mo-sub"></div></div>
 
-<script src="/platformer/net.js?v={{V}}"></script>
-<script src="/platformer/parser.js?v={{V}}"></script>
-<script src="/platformer/themes-zones.js?v={{V}}"></script>
-<script src="/platformer/items.js?v={{V}}"></script>
+<script src="/v/{{V}}/shared/net.js"></script>
+<script src="/v/{{V}}/shared/parser.js"></script>
+<script src="/v/{{V}}/shared/themes-zones.js"></script>
+<script src="/v/{{V}}/shared/items.js"></script>
 <script src="/v/{{V}}/world3d/hud-shim.js"></script>
-<script src="/platformer/roomgen.js?v={{V}}"></script>
+<script src="/v/{{V}}/shared/roomgen.js"></script>
 <script type="module" src="/v/{{V}}/world3d/main.js"></script>
 </body>
 </html>
