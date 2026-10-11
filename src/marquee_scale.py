@@ -39,8 +39,8 @@ ROUNDS = {'elite': 22, 'minion': 6, 'warden': 40, 'wave': 6, 'boss': 60, 'add': 
 # how each class's damage compares with the median hero's, measured with the real combat code
 # (tools/balance/sim.py, levels 45-60 alone; docs/balance/marquee.md): a quest's creatures are
 # sized to the classes that embarked, so every party's fights last about as long
-CLASS_K = {'warrior': 1.47, 'paladin': 1.13, 'cleric': 0.82, 'mage': 0.52, 'necromancer': 1.04, 'thief': 1.05,
-           'assassin': 1.47, 'ranger': 0.73, 'bard': 0.85}
+CLASS_K = {'warrior': 1.49, 'paladin': 1.16, 'cleric': 0.86, 'mage': 0.56, 'necromancer': 1.16, 'thief': 1.05,
+           'assassin': 1.48, 'ranger': 0.78, 'bard': 0.87}
 
 
 # how hard each kind of creature hits, as a share of its own blows and specials (zone_097): health
@@ -50,10 +50,11 @@ FOE_DAMAGE = {'elite': 2.0, 'minion': 1.0, 'warden': 1.0, 'wave': 0.7, 'boss': 1
 # and how hard a class's quest creatures hit at level 45: what a lone hero of that class can stand
 # (a thief or a mage has half a warrior's health and no heals; a paladin heals and wears plate),
 # measured the same way (tools/balance/sim.py --calibrate; docs/balance/marquee.md)
-CLASS_D = {'warrior': 1.05, 'paladin': 1.88, 'cleric': 1.4, 'mage': 0.64, 'necromancer': 0.5, 'thief': 0.54,
-           'assassin': 0.78, 'ranger': 1.07, 'bard': 0.78}
+CLASS_D = {'warrior': 0.99, 'paladin': 2.07, 'cleric': 1.48, 'mage': 0.67, 'necromancer': 0.45, 'thief': 0.57,
+           'assassin': 0.82, 'ranger': 1.04, 'bard': 1.04}
 # ...and a little harder each level above it, as heroes grow sturdier (measured: 0.9% a level since the
-# endgame gear's stats count, Push 22; 1.8% before)
+# endgame gear's stats count, Push 22, and again with gear health and attributes counting, Push 23;
+# 1.8% before)
 LEVEL_D = 1.009
 
 

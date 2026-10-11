@@ -1168,6 +1168,13 @@ to-hit and damage numbers.
   - The `/play` character sheet shows the total with a small +2 beside it, and its parts on
     hover.
 - **Creatures are as they were:** their gear counts only in their blows.
+- **Measured again** (`docs/balance/marquee.md`, "Measured again with gear health and
+  attributes"):
+  - Lone heroes are sturdier with their gear's health, so quest creatures hit harder for most
+    classes: the bard 0.78 to 1.04, the paladin 1.88 to 2.07.
+  - Casters' damage rose with gear intelligence, so their creatures got more health.
+  - The necromancer's longer fights made it frailer: 0.50 to 0.45, where it dies 0.1-0.2
+    times a quest.
 - **Reading an attribute** costs about 1.4 µs; the gear's totals are worked out again only when
   what is worn changes.
 - **Tests:** `tests/test_item_stats.py`:

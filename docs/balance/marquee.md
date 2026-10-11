@@ -46,16 +46,16 @@ These were wrong for every player, everywhere, not only in the quests:
     317 at 55, 395 at 60 since the endgame gear's stats count (Push 22; 240, 282 and 332
     before). It was a guess at first (150 to 197).
   - `CLASS_K` is how a class's damage compares with the median, measured. At first it was a
-    guess with the mage at 1.1 and the warrior at 1.0; measured, they are 0.52 and 1.47
-    (Push 22). So a lone warrior's elites died in 31 s instead of 66, and a mage's took 82.
+    guess with the mage at 1.1 and the warrior at 1.0; measured, they are 0.56 and 1.49
+    (Push 23). So a lone warrior's elites died in 31 s instead of 66, and a mage's took 82.
   - For a group, both are the mean over everyone who set out. The quest now records their
     classes when it is accepted.
 - **Damage** (what the creature's blows and specials in `world/zones/zone_097.json` are
   multiplied by) = `FOE_DAMAGE[kind]` x `CLASS_D` x `LEVEL_D`^(level - 45) x the party's
   damage factor.
   - `FOE_DAMAGE`: elites 2.0, a ritual's waves 0.7, everything else 1.0.
-  - `CLASS_D` is what the class can stand, measured (Push 22): necromancer 0.50, thief 0.54,
-    mage 0.64, assassin 0.78, bard 0.78, warrior 1.05, ranger 1.07, cleric 1.40, paladin 1.88.
+  - `CLASS_D` is what the class can stand, measured (Push 23): necromancer 0.45, thief 0.57,
+    mage 0.67, assassin 0.82, warrior 0.99, ranger 1.04, bard 1.04, cleric 1.48, paladin 2.07.
     For a group it is the mean over who set out.
   - `LEVEL_D` is 1.009: creatures hit 0.9% harder a level above 45, because heroes grow
     sturdier (1.8% before the endgame gear's stats counted).
@@ -147,6 +147,29 @@ fixes change what a class deals or can stand, so both tables were measured again
     level-60 ranger's trial boss costs about 70% of their health and 0.1 deaths a quest.
 - **The zone bosses** were measured again too (below).
 
+## Measured again with gear health and attributes (Push 23)
+
+- **Gear's health, mana and attributes count now** (they only showed in `score` before): an
+  item's +200 health raises the real maximum, and +2 constitution, intelligence or wisdom
+  reaches regeneration, saves, spell criticals and the rest. The simulator's heroes wear the
+  same gear table, so they carry it too.
+- **Damage** moved little: the median hero deals 1-5% more, so `dpr()` stays. Casters' own
+  damage rose with their gear's intelligence (spell criticals): `CLASS_K` mage 0.52 to 0.56,
+  cleric 0.82 to 0.86, necromancer 1.04 to 1.16, ranger 0.73 to 0.78.
+- **What each class can stand** rose for most (`--calibrate`, the classes split over three
+  runs; the four whose `CLASS_K` moved measured again under their new value):
+  - warrior 0.99, cleric 1.48, thief 0.57, ranger 1.04, bard 1.04 (0.78: its health and
+    charisma from gear), assassin 0.82.
+  - The paladin's curve stays flat (55-79% of its health at the boss over shares 1.4-3.0,
+    deaths only from 3.5): measured on a wider grid, it is 2.07.
+  - The mage stays at its weakest level, 0.67 (levels 45-60 stand 0.75, 0.86, 0.75, 0.69).
+    Played through eight times at 0.67, it died 0.2 times a quest at 45 and never at 60.
+  - The necromancer's damage rose, so its quest creatures got more health: longer fights,
+    more time for the bone knight to fall. Its level-60 cliff moved down (0.4: 0.1 deaths a
+    quest, 0.5: 0.8). It is set at 0.45: played through eight times at 45, 55 and 60, it died
+    0.1-0.2 times a quest.
+- `LEVEL_D` stays 0.9% a level: most classes still come out flat across levels.
+
 ## How it was measured
 
 `tools/balance/sim.py` plays each class's quest with real `World`, `Player` and `Mobile`
@@ -207,12 +230,12 @@ set:
     classes come out nearly flat across levels, which is how the rise was chosen.
   - Two classes are set at their weakest level instead of the mean, since a death is the
     worst a quest can do:
-    - the mage at 0.64 since Push 22 (0.55 in Push 18, 0.75 before that): levels 45-60 stand
-      0.83, 0.83, 0.66 and 0.64;
-    - the necromancer at 0.50 (since Push 18; 0.60 before that): levels 45-60 stand 0.65,
-      0.63, 0.61 and 0.59 in Push 22, but its servant makes it all-or-nothing, safe while the
-      bone knight stands and exposed when it falls, so it is set where a quest costs it under
-      half a death at every level (played through: 0-0.4).
+    - the mage at 0.67 since Push 23 (0.64 in Push 22, 0.55 in Push 18, 0.75 before that):
+      levels 45-60 stand 0.75, 0.86, 0.75 and 0.69;
+    - the necromancer at 0.45 since Push 23 (0.50 from Push 18, 0.60 before that): its servant
+      makes it all-or-nothing, safe while the bone knight stands and exposed when it falls, so
+      it is set where a quest costs it well under half a death at every level (played through:
+      0.1-0.2).
   - A paladin's boss costs 55-68% of their health across shares from 1.0 to 2.3: it mends
     itself back up. The share is set where the curve crosses 65%, and deaths start only
     above 2.3.
