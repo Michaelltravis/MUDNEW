@@ -1,6 +1,7 @@
 // What the right-click menu offers for what is under the cursor. Pure (no DOM): tested in Node.
 // Each verb is {label, cmd} (a server command to send), {label, act} (something main.js does:
-// 'attack', 'target', 'walk', 'inventory', 'character', 'door:<action>') or {label} (greyed).
+// 'attack', 'target', 'walk', 'inventory', 'character', 'door:<action>', 'talk:<kw>', 'shop:<kw>',
+// 'loot', 'take') or {label} (greyed).
 import { doorVerbs } from '../doorlogic.js';
 import { refFor, isHostile } from '../targeting.js';
 
@@ -22,8 +23,8 @@ export function verbsFor(hit, ctx = {}) {
     const npc = d.shopkeeper || d.trainer || d.quest || ['innkeeper', 'banker', 'healer', 'stable_master', 'receptionist'].includes(d.special);
     const items = [];
     if (npc && !isHostile(hit.ent)) {
-      items.push({ label: 'Talk', cmd: `talk ${kw}` });
-      if (d.shopkeeper) items.push({ label: 'Shop', cmd: 'list' });
+      items.push({ label: 'Talk', act: `talk:${kw}` });
+      if (d.shopkeeper) items.push({ label: 'Shop', act: `shop:${kw}` });
       if (d.trainer) items.push({ label: 'Master your abilities', act: 'trainer' });
       if (d.special === 'innkeeper' || d.special === 'receptionist') items.push({ label: 'Rent a room', cmd: 'rent' });
       if (d.special === 'banker') items.push({ label: 'Bank balance', cmd: 'balance' });
@@ -32,7 +33,7 @@ export function verbsFor(hit, ctx = {}) {
       items.push({ label: 'Attack', act: 'attack' });
       for (const s of (ctx.skills || []).slice(0, 3)) items.push({ label: s.label, act: `ability:${s.id}` });
       items.push({ label: 'Target', act: 'target' }, { label: 'Consider', cmd: `consider ${ref}` }, { label: 'Look', cmd: `look ${kw}` });
-      if (d.quest) items.push({ label: 'Talk', cmd: `talk ${kw}` });
+      if (d.quest) items.push({ label: 'Talk', act: `talk:${kw}` });
     }
     return { title, items };
   }
@@ -61,6 +62,15 @@ export function verbsFor(hit, ctx = {}) {
       title: cap(info.label || 'door'),
       items: doorVerbs(info).map(v => (v.action ? { label: v.label, act: `door:${v.action}` } : { label: v.label })),
     };
+  }
+  if (hit.kind === 'item') {
+    // something on the ground (loot.js): a corpse is looted, anything else taken
+    const l = hit.loot || {};
+    const it = l.item || {};
+    const title = cap(it.short || it.name || 'something');
+    return l.corpse
+      ? { title, items: [{ label: 'Loot everything', act: 'loot' }, { label: 'Look inside', cmd: `look in ${l.kw}` }] }
+      : { title, items: [{ label: 'Take', act: 'take' }, { label: 'Look', cmd: `look ${l.kw}` }] };
   }
   if (hit.kind === 'self') {
     const p = ctx.posture || 'standing';

@@ -84,6 +84,8 @@
   <button data-act="abilities" data-icon="book" data-tip="Spellbook" data-key="K"></button>
   <button data-act="journal" data-icon="scroll" data-tip="Quest journal" data-key="L"></button>
   <button data-act="map" data-icon="map" data-tip="Map" data-key="M"></button>
+  <button data-act="who" data-icon="people" data-tip="Who is about" data-key="P"></button>
+  <button data-act="help" data-icon="question" data-tip="Help and controls" data-key="H"></button>
   <button data-act="settings" data-icon="gear" data-tip="Settings" data-key="O"></button>
 </div>
 <div id="journal" class="hud panel ornate hidden">
@@ -116,6 +118,24 @@
   <div class="win-head"><span class="tr-who">Training</span><button class="tr-close win-x" title="Close">✕</button></div>
   <div class="tr-body sb-body"></div>
 </div>
+<div id="shop" class="hud panel ornate hidden">
+  <div class="win-head"><span class="sh-who">Shop</span><span class="ch-tabs sh-tabs"><button class="sh-tab on" data-tab="buy">Buy</button><button class="sh-tab" data-tab="sell">Sell</button></span><button class="sh-close win-x" title="Close (Esc)">✕</button></div>
+  <div class="sh-body sb-body"></div>
+</div>
+<div id="talk" class="hud panel ornate hidden">
+  <div class="win-head"><span class="tk-who">Conversation</span><button class="tk-close win-x" title="Close (Esc)">✕</button></div>
+  <div class="tk-body sb-body"></div>
+</div>
+<div id="who" class="hud panel ornate hidden">
+  <div class="win-head"><span>Who is about</span><span class="ch-tabs wh-tabs"><button class="wh-tab on" data-tab="online">Online</button><button class="wh-tab" data-tab="here">Here</button></span><button class="wh-close win-x" title="Close (P)">✕</button></div>
+  <div class="wh-body sb-body"></div>
+</div>
+<div id="help" class="hud panel ornate hidden">
+  <div class="win-head"><span>Help</span><button class="hp-close win-x" title="Close (H)">✕</button></div>
+  <input class="hp-search" type="search" placeholder="Search: a command, a spell, a class, a place…" aria-label="Search help">
+  <div class="hp-body sb-body"></div>
+</div>
+<div id="react" class="hidden"></div>
 <div id="item-tip" class="hidden"></div>
 <div id="item-menu" class="hidden"></div>
 <div id="ctx-menu" class="hidden"></div>
@@ -126,6 +146,7 @@
   <div class="row">HUD size <span class="seg" data-set="ui"><button data-v="auto">Auto</button><button data-v="0.85">S</button><button data-v="1">M</button><button data-v="1.15">L</button></span></div>
   <div class="row">Camera <span class="seg"><button data-act="camreset" title="Right-drag turns and tilts the view">North up (Home)</button></span></div>
   <div class="row">Performance <span class="seg"><button data-act="perf">F3</button></span></div>
+  <div class="row">Auto-loot <span class="seg" data-set="autoloot"><button data-v="on" title="Take what a kill drops, at once">On</button><button data-v="off">Off</button></span></div>
   <div class="row">Real-time combat <span class="seg" data-set="combat"><button data-v="action" title="Your blows land as you strike; creatures act on their own clocks">On</button><button data-v="rounds" title="Everyone strikes once a 3-second round">Off</button></span></div>
   <div class="row">Sound <span class="seg"><button data-act="mute" title="All sound on or off">On</button></span></div>
   <div class="row vol">Master <input type="range" min="0" max="100" data-vol="master" aria-label="Master volume"></div>

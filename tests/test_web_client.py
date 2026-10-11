@@ -5,10 +5,12 @@ Needs a running server (./run.sh) and the gauntlet admin account (tools/gauntlet
 Checks: the retired 2D clients' URLs (/platformer, /2d, /iso) redirect to /play; /play loads
 its shared scripts from /v/<commit>/shared/ and nothing from the old 2D folder; a telnet
 connection's long lines are wrapped at 80 columns, and a connection that announced itself
-as the web bridge (server.WEB_MARK, as web_client.py does) gets them whole.
+as the web bridge (server.WEB_MARK, as web_client.py does) gets them whole; /who (for the
+signed-in session only) and /help answer the who and help windows; a fixture can't be taken.
 """
 import asyncio
 import http.client
+import json
 import os
 import re
 import sys
@@ -76,9 +78,38 @@ async def wrapping():
           f'web: the same line arrives whole ({[len(l) for l in hit]})')
 
 
+async def windows():
+    """The data behind /play's who and help windows (Push 16)."""
+    tn = Telnet()
+    await tn.open()                 # signed in: the map server answers to this session's token
+    import test_webmove as tw
+    status, _, body = get(f'/who?player=Gauntlet&t={tw.TOKEN}')
+    data = json.loads(body or b'{}') if status == 200 else {}
+    me = [p for p in data.get('players', []) if p.get('name') == 'Gauntlet']
+    check(status == 200 and me and me[0].get('level') and me[0].get('cls'), f'/who lists who is online, with level and class ({status}, {me[:1]})')
+    status, _, _ = get('/who?player=Gauntlet&t=wrong')
+    check(status == 404, f'/who answers only to the session ({status})')
+    status, _, body = get('/help')
+    topics = json.loads(body).get('topics', []) if status == 200 else []
+    check(len(topics) > 300 and any(t['name'] == 'bash' for t in topics), f'/help lists the topics ({len(topics)})')
+    status, _, body = get('/help?topic=bash')
+    check(status == 200 and 'bash' in json.loads(body).get('text', '').lower(), '/help?topic= reads one')
+    # a fixture is the room's: it can't be picked up, and /play doesn't draw it as loot
+    await tn.cmd('goto 3001', 1.0)
+    text = await tn.cmd('get fountain', 0.8)
+    check('fixed in place' in text, f'a fountain stays where it is ({text.strip()[:60]!r})')
+    status, _, body = get(f'/state?player=Gauntlet&mode=near&t={tw.TOKEN}')
+    rooms = json.loads(body).get('nearby', []) if status == 200 else []
+    items = [it for r in rooms if r.get('vnum') == 3001 for it in r.get('items', [])]
+    check(items and all(it.get('fixed') for it in items if it.get('name') in ('fountain', 'atm')),
+          f'the payload marks fixtures ({[(it.get("name"), it.get("fixed")) for it in items]})')
+    await tn.cmd('quit', 0.6)
+
+
 async def main():
     pages()
     await wrapping()
+    await windows()
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
     sys.exit(1 if failures else 0)
 

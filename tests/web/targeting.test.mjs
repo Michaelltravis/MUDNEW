@@ -55,7 +55,9 @@ test('right-click menus: creature, shopkeeper, player, door, yourself, the groun
   assert.equal(m.items.find(i => i.label === 'Consider').cmd, 'consider #12');
   const shop = verbsFor({ kind: 'mob', ent: mob(13, { data: { name: 'the baker', shopkeeper: true } }) });
   assert.deepEqual(labels(shop).slice(0, 2), ['Talk', 'Shop']);
-  assert.equal(shop.items[0].cmd, 'talk baker');
+  // Talk and Shop open their windows (hud/talk.js, hud/shop.js) instead of printing to chat
+  assert.equal(shop.items[0].act, 'talk:baker');
+  assert.equal(shop.items[1].act, 'shop:baker');
   const pl = verbsFor({ kind: 'player', ent: { kind: 'player', vnum: 10, data: { name: 'Bob', level: 7 } } }, { room: 10 });
   assert.ok(labels(pl).includes('Invite to group'));
   assert.equal(pl.items.find(i => i.label === 'Invite to group').cmd, 'group invite Bob');

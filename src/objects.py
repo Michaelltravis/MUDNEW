@@ -70,6 +70,7 @@ class Object:
         
         # Item properties
         self.item_type = "other"  # weapon, armor, potion, etc.
+        self.fixed = False            # a fixture can't be picked up (from_prototype)
         self.wear_slot = None  # Where it can be worn
         self.set_id = None      # Zone set id
         self.weight = 1
@@ -247,6 +248,9 @@ class Object:
         obj.room_desc = proto.get('room_desc', f"{obj.short_desc} lies here.")
         obj.description = proto.get('description', 'You see nothing special.')
         obj.item_type = proto.get('item_type', proto.get('type', 'other'))
+        # a fixture (a fountain, a board, a signpost, the bank's machine) stays where it is
+        obj.fixed = (proto.get('type') == 'furniture' or obj.item_type in ('fountain', 'furniture')
+                     or (proto.get('weight') or 0) >= 1000 or bool(proto.get('no_take')))
         # preset/area data may use 'wear_pos' instead of 'wear_slot'
         obj.wear_slot = proto.get('wear_slot') or proto.get('wear_pos')
         # Support wear_flags list (CircleMUD-style) as fallback for wear_slot

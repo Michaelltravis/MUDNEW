@@ -2093,8 +2093,10 @@ class CommandHandler:
                 zone_name = p.room.zone.name[:20]
             # Idle time
             idle_secs = 0
-            if hasattr(p, 'connection') and p.connection and hasattr(p.connection, 'last_input_time'):
-                idle_secs = int(_time.time() - p.connection.last_input_time)
+            last = getattr(getattr(p, 'connection', None), 'last_input', None)   # server.Connection
+            if last is not None:
+                from datetime import datetime as _dt
+                idle_secs = int((_dt.now() - last).total_seconds())
             idle_str = ''
             if idle_secs > 300:
                 idle_min = idle_secs // 60
@@ -8664,7 +8666,11 @@ class CommandHandler:
             if not player.room.items:
                 await player.send("There's nothing here to get.")
                 return
-            for item in list(player.room.items):
+            loose = [it for it in player.room.items if not getattr(it, 'fixed', False)]
+            if not loose:
+                await player.send("There's nothing here you can take.")
+                return
+            for item in loose:
                 player.room.items.remove(item)
                 player.inventory.append(item)
                 await cls._record_collection_item(player, item)
@@ -8677,6 +8683,9 @@ class CommandHandler:
             
         # Find item in room with numbered targeting (e.g., "2.corpse", "3.sword")
         item = player.find_item_in_room(item_name)
+        if item and getattr(item, 'fixed', False):
+            await player.send(f"{item.short_desc[:1].upper()}{item.short_desc[1:]} is fixed in place.")
+            return
         if item:
             player.room.items.remove(item)
             player.inventory.append(item)

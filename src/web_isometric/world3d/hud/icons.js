@@ -217,6 +217,7 @@ export const PICTO = {
     c.globalCompositeOperation = 'destination-out'; line(c, 2.5, [[-14, -40], [-14, 34]]); line(c, 2.5, [[14, -30], [14, 44]]);
     c.setLineDash([5, 5]); line(c, 3, [[-32, 26], [-6, 0], [22, 10], [34, -24]]); c.setLineDash([]); c.globalCompositeOperation = 'source-over';
   },
+  question(c) { c.font = 'bold 92px Georgia, serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('?', 0, 6); },
   gear(c) {
     for (let i = 0; i < 8; i++) { c.save(); c.rotate(i * TAU / 8); c.fillRect(-7, -44, 14, 16); c.restore(); }
     disc(c, 0, 0, 32); c.globalCompositeOperation = 'destination-out'; disc(c, 0, 0, 13); c.globalCompositeOperation = 'source-over';

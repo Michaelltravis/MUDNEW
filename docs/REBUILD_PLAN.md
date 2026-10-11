@@ -884,3 +884,35 @@ it that way.
   debug now.
 - **Tests**: `tests/test_web_client.py` (live): the old URLs redirect, `/play` loads its shared
   scripts and nothing from the 2D folder, telnet wraps and the web doesn't.
+
+### `/play` essentials: loot, shop, talk, reactions, who, help (Push 16)
+- **Loot you can see** (`world3d/loot.js`, `lootlogic.js`): corpses lie as low mounds under a
+  slow gold ring, anything else on the ground as its painted icon bobbing over a ring in its
+  rarity's colour. A click walks over and takes it (a corpse: everything in it; taken once
+  within reach, so a spot hard against a wall still works); a right-click offers Loot / Look
+  inside or Take / Look. Settings has **Auto-loot** (the server's own `autoloot`).
+  - Fixtures are the room's: the server never let anything resist `get`, so a player could
+    pocket the temple fountain, the bank's ATM or the quest board, and `get all` took them all.
+    Objects now know when they are fixed (`Object.fixed`: furniture, a fountain, or 1,000
+    weight and up); `get` refuses them, `get all` leaves them, and the payload marks them.
+- **Shop window** (`hud/shop.js`): right-click a shopkeeper → Shop. Buy and Sell tabs with the
+  server's prices (`/shop`), icons, and why a row can't be bought or sold; buying goes by the
+  item's number in the shop's list (`buy 3`), selling by the word the MUD knows it by.
+- **Talk window** (`hud/talk.js`): right-click → Talk walks over and opens what they say, the
+  dialogue's responses as buttons, the quests they offer (Accept) and finished quests to hand in
+  (Turn in).
+- **A marked blow coming** (`world3d/reactions.js`): when a creature winds up at you, a prompt
+  shows the keys that answer it — **Q** brace, **E** sidestep, **X** interrupt (a cast the
+  server calls interruptible) — with the time left. They are everyone's (`brace`, `sidestep`,
+  `interrupt`) and no longer need a slot on the bar. E is the door key otherwise.
+- **FLANKED**: a warning when two or more creatures are on you; a class resource at its peak
+  (Momentum 10) glows.
+- **Who** (P, `hud/who.js`, `/who`): everyone online (your group first) and who is in the room
+  with you; a name opens the same menu a right-click would. `who`'s idle times were never shown
+  (it read an attribute nothing set); they are now.
+- **Help** (H, `hud/help.js`, `/help`): the controls, and a search over the game's 763 help
+  topics.
+- **Small things**: graphics quality applies at once (only smoother edges wait for a reload);
+  the menu's dead `data-cmd` handler and the inventory's unused `sell` sound are gone.
+- **Tests**: `tests/web/essentials.test.mjs` (the windows' logic, the ground's items, the
+  reaction keys); `tests/test_web_client.py` checks `/who`, `/help` and fixtures live.

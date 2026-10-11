@@ -503,6 +503,8 @@ def item_info(item):
         'weight': getattr(item, 'weight', 0),
         'cost': getattr(item, 'cost', 0),
     }
+    if getattr(item, 'fixed', False):
+        info['fixed'] = True      # a fixture: part of the room, not loot
     # type-specific combat stats so the client can show a real tooltip
     if itype == 'weapon':
         info['damage_dice'] = getattr(item, 'damage_dice', None)

@@ -28,6 +28,8 @@ import { sound } from './audio.js';
 import { ActionClock } from './actionclock.js';
 import { musicFor, bedFor, surfaceFor } from './soundtable.js';
 import { interiorKind } from './terrain-town.js';
+import { GroundLoot } from './loot.js';
+import { ReactionPrompt, threatens, REACTIONS } from './reactions.js';
 
 const $ = s => document.querySelector(s);
 const WATER_TILE = 4;   // zone.js / terrain.js tile kinds
@@ -86,6 +88,13 @@ async function runGame() {
   const myClass = () => String(MH.state.player && MH.state.player.char_class || '').toLowerCase();
   const reachOf = () => (ranges.auto[myClass()] || { range: ranges.melee || 2.5 }).range;
   const ents = new Entities(engine, $('#plates'), kits);
+  // what lies on the ground (loot.js): corpses and items, a click takes them
+  const loot = new GroundLoot(engine, { slot: (v, k) => ents.slot(v, k), icon: it => {
+    const c = document.createElement('canvas'); c.width = c.height = 64;
+    try { if (MH.itemIcons) MH.itemIcons.intoCanvas(c, it); } catch (_) {}
+    return c;
+  } });
+  engine.onTick((dt, t) => loot.update(dt, t));
   const fx = new FX(engine, $('#fct'));
   const combat = new CombatView({
     engine, fx, ents,
@@ -229,7 +238,7 @@ async function runGame() {
     if (!payload.player || !payload.player.vnum) return;
     if (!zone) { if (!starting) starting = start(payload).catch(err => { console.error(err); hud.toast('Could not load the world: ' + err.message); }).finally(() => { starting = null; }); return; }
     if (starting) return;
-    ents.sync(payload, MH.state.playerName);
+    ents.sync(payload, MH.state.playerName); loot.sync(payload);
     applyPendingAggro();
     mm.setExplored((payload.rooms || []).map(r => r.vnum));
     mm.setTime(payload.time);
@@ -274,10 +283,10 @@ async function runGame() {
     engine.placeCamera(true);
     hud.showGame(true);
     hud.banner(room.name, zone.name);
-    ents.sync(payload, MH.state.playerName);
+    ents.sync(payload, MH.state.playerName); loot.sync(payload);
     mm.setExplored((payload.rooms || []).map(r => r.vnum));
     mm.setTime(payload.time);
-    window.MH3D = { engine, zone: () => zone, hero, ctl, sync, ents, fx, combat, hud, cues, THREE, sound,
+    window.MH3D = { engine, zone: () => zone, hero, ctl, sync, ents, loot, fx, combat, hud, cues, THREE, sound,
       heroRoom: () => heroRoom, hop: () => hop, gate, lastPayload: () => lastPayload,
       // for probes: walk onto a passage of this room on purpose (what clicking it does)
       walkToPassage: dir => { const sp = zone.passageWorld(heroRoom, dir); ctl.walkTo(sp.x, sp.z, null, { goal: { room: heroRoom.vnum, dir }, avoid: null }); } };
@@ -287,6 +296,7 @@ async function runGame() {
     if (zone) zone.dispose();
     zone = new Zone(engine, kits, zm);
     ents.setZone(zone);
+    loot.clear();
     mm.setZone(zone);
   }
 
@@ -378,7 +388,7 @@ async function runGame() {
       const r = zone.rooms.get(v);
       teleport(r, oldV != null ? zone.arrival(r, oldV, null) : zone.centre(r));
       hud.banner(r.name, zone.name);
-      if (lastPayload) ents.sync(lastPayload, MH.state.playerName);
+      if (lastPayload) { ents.sync(lastPayload, MH.state.playerName); loot.sync(lastPayload); }
     } finally {
       const next = relocating && relocating.next;
       relocating = null;
@@ -431,7 +441,7 @@ async function runGame() {
         const r = zone.rooms.get(v);
         land(r, zone.arrival(r, h.from.vnum, h.dir), h.from.vnum);
         hud.banner(r.name, zone.name);
-        if (lastPayload) ents.sync(lastPayload, MH.state.playerName);
+        if (lastPayload) { ents.sync(lastPayload, MH.state.playerName); loot.sync(lastPayload); }
       } else {
         const r = zone.rooms.get(v);
         land(r, zone.arrival(r, h.from.vnum, h.dir), h.from.vnum);
@@ -509,6 +519,8 @@ async function runGame() {
     if (e.button !== 0 || e.ctrlKey || !ctl) return;
     const hit = ents.pick(e.clientX, e.clientY);
     if (hit) { ents.setTarget(hit.key, { byHand: true }); return; }
+    const item = loot.pick(e.clientX, e.clientY, canvas);
+    if (item) { takeLoot(item); return; }
     const g = ctl.groundAt(e.clientX, e.clientY);
     if (!g) return;
     travel = null;
@@ -723,6 +735,9 @@ async function runGame() {
   // E: do what the prompt says
   window.addEventListener('keydown', e => {
     if (!hero || e.repeat || /INPUT|TEXTAREA/.test(e.target.tagName)) return;
+    // a marked blow coming: Q, E or X answer it first (reactions.js)
+    const answer = react.press(e.key, performance.now());
+    if (answer) { MH.sendCommand(answer); drawReact(performance.now()); e.preventDefault(); return; }
     if (e.key.toLowerCase() !== 'e') return;
     const d = nearestDoor(2.6);
     if (!d) return;
@@ -767,6 +782,8 @@ async function runGame() {
   function pickAt(x, y) {
     const ent = ents.pick(x, y);
     if (ent) return { kind: ent.kind === 'player' ? 'player' : 'mob', ent };
+    const item = loot.pick(x, y, canvas);
+    if (item) return { kind: 'item', loot: item };
     const r = canvas.getBoundingClientRect();
     const hp = hero.root.position.clone().setY(hero.root.position.y + 1.1).project(engine.camera);
     const sx = r.left + (hp.x + 1) / 2 * r.width, sy = r.top + (1 - hp.y) / 2 * r.height;
@@ -786,6 +803,9 @@ async function runGame() {
     if (!hero || !heroRoom) return;
     const hit = pickAt(x, y);
     if (!hit) return;
+    menuFor(hit, x, y);
+  }
+  function menuFor(hit, x, y) {
     const p = MH.state.player || {};
     const { title, items } = verbsFor(hit, { skills: hud.targetSkills(), posture: p.position, inCombat: MH.state.inCombat,
       room: heroRoom && heroRoom.vnum, inGroup: hud.party.inGroup });
@@ -802,8 +822,80 @@ async function runGame() {
     if (a.startsWith('tell:')) return hud.whisper(a.slice(5));
     if (a === 'inventory' || a === 'character') return hud.openPanel(a);
     if (a === 'trainer') return hud.openTrainer(hit.ent.data && (hit.ent.data.short || hit.ent.data.name));
+    // talking and trading happen in the same room: walk over first
+    const npc = hit.ent && hit.ent.data ? (hit.ent.data.short || hit.ent.data.name) : '';
+    if (a.startsWith('talk:')) return inReach(hit.ent, 3, () => hud.openTalk(npc, a.slice(5)));
+    if (a.startsWith('shop:')) return inReach(hit.ent, 3, () => hud.openShop(a.slice(5)));
+    if (a === 'loot' || a === 'take') return takeLoot(hit.loot);
     if (a === 'walk' && hit.point) { travel = null; return ctl.walkTo(hit.point.x, hit.point.z); }
   }
+
+  // ---- what lies on the ground: walk over, then take it (a corpse: everything in it) ----
+  // (taken as soon as it is within reach: the spot itself may be hard against a wall or a pillar)
+  let lootWalk = null;
+  const nearLoot = l => heroRoom && l.vnum === heroRoom.vnum && l.root
+    && Math.hypot(l.root.position.x - hero.root.position.x, l.root.position.z - hero.root.position.z) < 1.8;
+  function takeLoot(l) {
+    if (!l || !hero || !l.root) return;
+    const cmd = l.corpse ? `get all ${l.kw}` : `get ${l.kw}`;
+    const go = () => { lootWalk = null; MH.sendCommand(cmd); setTimeout(() => MH.refreshState && MH.refreshState(), 450); };
+    if (nearLoot(l)) return go();
+    travel = null;
+    ctl.walkTo(l.root.position.x, l.root.position.z);
+    lootWalk = { l, go, until: performance.now() + 9000 };
+  }
+  engine.onTick(() => {
+    if (!lootWalk || !hero) return;
+    if (performance.now() > lootWalk.until || !ctl.path) { if (nearLoot(lootWalk.l)) lootWalk.go(); else lootWalk = null; return; }
+    if (nearLoot(lootWalk.l)) { ctl.stop(); lootWalk.go(); }
+  });
+  // a name in the who window: the menu a right-click on them would open
+  MH.bus.on('hud.pickWho', ({ row, x, y }) => {
+    const ent = row.kind === 'mob' ? ents.list.get(`m${row.id}`) : ents.list.get(`p${row.name}`);
+    if (ent) menuFor({ kind: ent.kind === 'player' ? 'player' : 'mob', ent }, x, y);
+  });
+  // graphics quality from Settings, at once (only smoother edges wait for a reload)
+  MH.bus.on('hud.quality', q => { if (engine.setQuality(q)) hud.toast('Smoother edges come with the next reload'); });
+
+  // ---- a marked blow coming at you: Q brace, E sidestep, X interrupt (reactions.js) ----
+  const react = new ReactionPrompt();
+  const reactEl = $('#react');
+  let reactSig = '';
+  function drawReact(now) {
+    const c = react.active(now);
+    const sig = c ? `${c.label}|${c.keys.join('')}|${c.used || ''}` : '';
+    if (sig !== reactSig) {
+      reactSig = sig;
+      reactEl.classList.toggle('hidden', !c);
+      if (c) reactEl.innerHTML = `<span class="rx-what">${cap(String(c.label)).replace(/[&<>"]/g, '')}!</span>`
+        + c.keys.map(k => `<span class="rx-key${c.used === k ? ' used' : ''}"><kbd>${k.toUpperCase()}</kbd>${REACTIONS[k].label}</span>`).join('')
+        + '<span class="rx-bar"></span>';
+    }
+    if (c) { const bar = reactEl.querySelector('.rx-bar'); if (bar) bar.style.transform = `scaleX(${Math.max(0, (c.until - now) / c.span).toFixed(3)})`; }
+  }
+  engine.onLateTick(() => drawReact(performance.now()));
+  const fightsMe = src => {
+    const e = src && src.m != null ? ents.list.get(`m${src.m}`) : null;
+    return !!(e && ((e.data && String(e.data.fighting || '').toLowerCase() === String(MH.state.playerName || '').toLowerCase()) || ents.targeted === e));
+  };
+  MH.bus.on('combat.events', p => {
+    if (!hero) return;
+    for (const e of p.events || []) {
+      if (e.k === 'windup' && threatens(e, s => combat.isHero(s), ev => fightsMe(ev.src))) react.windup(e, performance.now());
+      else if ((e.k === 'resolve' || e.k === 'cancel') && e.src) react.end(e.src.m);
+    }
+  });
+
+  // ---- FLANKED: two or more creatures on you at once ----
+  let flankedAt = 0;
+  engine.onTick(() => {
+    if (!hero || !heroRoom || !MH.state.inCombat) return;
+    const now = performance.now();
+    if (now - flankedAt < 15000) return;
+    const me = String(MH.state.playerName || '').toLowerCase();
+    const on = [...ents.list.values()].filter(e => e.kind === 'mob' && e.vnum === heroRoom.vnum && e.data && String(e.data.fighting || '').toLowerCase() === me);
+    if (on.length >= 2) { flankedAt = now; hud.toast(`Flanked: ${on.length} foes on you — back off so they come one at a time`); }
+  });
 
   // ---- auto-target: whatever attacks you becomes your target (targeting.js decides when) ----
   const pendingAggro = new Map();      // creature id -> when it hit us before it was drawn

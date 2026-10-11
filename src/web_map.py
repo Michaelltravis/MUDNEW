@@ -552,6 +552,47 @@ class WebMapServer:
                     writer.write(body)
                 await writer.drain()
                 return
+            elif path.startswith('/who'):
+                # who is online, for the web client's who window (the `who` command's list)
+                query = parse_qs(urlparse(path).query)
+                player = self._authed(query)
+                if not player:
+                    await self._http_response(writer, 404, 'Not Found', 'Player not found')
+                    return
+                group = getattr(player, 'group', None)
+                mates = {getattr(m, 'name', '') for m in (getattr(group, 'members', None) or [])} if group else set()
+                from datetime import datetime
+                classes = getattr(player.config, 'CLASSES', {}) or {}
+                out = []
+                for p in list(self.world.players.values()):
+                    conn = getattr(p, 'connection', None)
+                    last = getattr(conn, 'last_input', None)
+                    idle = int((datetime.now() - last).total_seconds() // 60) if last else 0
+                    room = getattr(p, 'room', None)
+                    out.append({
+                        'name': p.name, 'level': getattr(p, 'level', 1),
+                        'cls': (classes.get(p.char_class, {}) or {}).get('name', p.char_class),
+                        'title': getattr(p, 'title', '') or '', 'guild': getattr(p, 'guild', None) or '',
+                        'zone': room.zone.name if room is not None and getattr(room, 'zone', None) else '',
+                        'idle_min': idle if idle >= 5 else 0,
+                        'group': p is not player and p.name in mates,
+                    })
+                await self._http_response(writer, 200, 'OK', json.dumps({'players': out}), content_type='application/json')
+            elif path.startswith('/help'):
+                # the game's help topics, for the web client's help window: the list (no query) or
+                # one topic's text (?topic=); the same words as the MUD's `help`
+                query = parse_qs(urlparse(path).query)
+                from help_data import HELP_TOPICS, get_help_text
+                topic = (query.get('topic') or [''])[0].strip().lower()
+                if topic:
+                    text = re.sub(r'\x1b\[[0-9;]*m', '', get_help_text(topic) or '')
+                    body = json.dumps({'name': topic, 'text': text})
+                else:
+                    body = json.dumps({'topics': [{
+                        'name': name, 'category': t.get('category', ''),
+                        'summary': (str(t.get('description', '')).strip().split('\n')[0])[:110],
+                    } for name, t in HELP_TOPICS.items()]})
+                await self._http_response(writer, 200, 'OK', body, content_type='application/json')
             elif path.startswith('/atlas'):
                 # the complete world atlas (static; cached server-side)
                 from map_system import build_atlas

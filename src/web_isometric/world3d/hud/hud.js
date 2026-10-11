@@ -10,6 +10,10 @@ import { createTrainer } from './trainer.js';
 import { createParty } from './party.js';
 import { createQuest } from './quest.js';
 import { createJournal } from './journal.js';
+import { createShop } from './shop.js';
+import { createTalk } from './talk.js';
+import { createWho, hereRows } from './who.js';
+import { createHelp } from './help.js';
 import { abilityIcon, uiIcon } from './icons.js';
 import { classPortrait, creaturePortrait } from './portrait.js';
 import { SLOTS, cleanBar, defaultBar, placeNew, putOnBar, takeOffBar, diffAbilities, usable, costLine, rankOf } from '../abilities.js';
@@ -58,6 +62,28 @@ export function createHud() {
     onDragEnd: () => els.ab.classList.remove('dragging'),
   });
   const trainer = createTrainer($('#trainer'), { icon: id => ICON(id), onTrain: id => MH.sendCommand(`practice ${id}`) });
+  // the everyday windows: a shopkeeper's wares, a conversation, who is about, help
+  const me = () => MH.state.playerName || '';
+  const getJSON = async url => { const r = await fetch(url); if (!r.ok) throw new Error(r.status); return r.json(); };
+  const itemCanvas = item => { const c = document.createElement('canvas'); c.width = c.height = 84; try { if (MH.itemIcons) MH.itemIcons.intoCanvas(c, item); } catch (_) {} return c; };
+  const shop = createShop($('#shop'), {
+    fetchShop: kw => getJSON(`/shop?player=${encodeURIComponent(me())}&keeper=${encodeURIComponent(kw || '')}`),
+    send: c => MH.sendCommand(c), icon: itemCanvas, sound,
+  });
+  const talk = createTalk($('#talk'), {
+    send: c => MH.sendCommand(c), sound,
+    listen: fn => { const h = ({ text }) => fn(text || ''); MH.bus.on('terminal.output', h); return () => MH.bus.off('terminal.output', h); },
+    fetchQuests: () => getJSON(`/quests?player=${encodeURIComponent(me())}`),
+  });
+  const who = createWho($('#who'), {
+    fetchWho: () => getJSON(`/who?player=${encodeURIComponent(me())}`),
+    here: () => hereRows(MH.state.lastPayload, (MH.state.player || {}).vnum, me()),
+    onPick: (row, e) => MH.bus.emit('hud.pickWho', { row, x: e.clientX, y: e.clientY }),
+  });
+  const help = createHelp($('#help'), {
+    fetchTopics: () => getJSON('/help'),
+    fetchTopic: name => getJSON(`/help?topic=${encodeURIComponent(name)}`),
+  });
   const party = createParty({
     frames: $('#party'), invite: $('#group-invite'), loot: $('#loot-roll'),
     onTarget: name => MH.bus.emit('hud.targetPlayer', name),
@@ -158,6 +184,7 @@ export function createHud() {
     mpOrb.querySelector('.fill').style.height = pct(res.cur, res.max);
     mpOrb.querySelector('.val').textContent = `${res.cur}/${res.max}`;
     mpOrb.querySelector('.lab').textContent = res.name;
+    mpOrb.classList.toggle('full', !!(p.resource && p.resource.max) && res.cur >= res.max);
     mpOrb.dataset.res = String(res.name || 'mana').toLowerCase();
     const floor = p.exp_floor || 0, next = p.exp_to_level || 0;
     const capped = !next || next - floor > 1e9;
@@ -618,13 +645,14 @@ export function createHud() {
     b.innerHTML = `<img alt="" src="${uiIcon(b.dataset.icon, { size: 72 })}"><kbd>${esc(b.dataset.key || '')}</kbd>`;
     b.dataset.tipTitle = b.dataset.tip; b.dataset.tipSub = b.dataset.key ? `Key: ${b.dataset.key}` : '';
   });
-  els.menu.querySelectorAll('button[data-cmd]').forEach(b => b.addEventListener('click', () => MH.sendCommand(b.dataset.cmd)));
   els.menu.querySelector('[data-act="settings"]').addEventListener('click', () => els.settings.classList.toggle('hidden'));
   els.menu.querySelector('[data-act="inventory"]').addEventListener('click', () => inventory.toggle());
   els.menu.querySelector('[data-act="character"]').addEventListener('click', () => character.toggle());
   els.menu.querySelector('[data-act="abilities"]').addEventListener('click', () => spellbook.toggle());
   els.menu.querySelector('[data-act="journal"]').addEventListener('click', () => journal.toggle());
   els.menu.querySelector('[data-act="map"]').addEventListener('click', () => MH.bus.emit('hud.map'));
+  els.menu.querySelector('[data-act="who"]').addEventListener('click', () => who.toggle(undefined, me()));
+  els.menu.querySelector('[data-act="help"]').addEventListener('click', () => help.toggle());
   const syncSettings = () => {
     const q = ls.get('mh3d_quality') || 'high', u = ls.get('mh3d_ui') || 'auto';
     els.settings.querySelectorAll('[data-set="quality"] button').forEach(b => b.classList.toggle('on', b.dataset.v === q));
@@ -632,7 +660,7 @@ export function createHud() {
   };
   els.settings.querySelectorAll('[data-set="quality"] button').forEach(b => b.addEventListener('click', () => {
     ls.set('mh3d_quality', b.dataset.v); syncSettings();
-    toast('Graphics quality changes after a reload');
+    MH.bus.emit('hud.quality', b.dataset.v);
   }));
   els.settings.querySelectorAll('[data-set="ui"] button').forEach(b => b.addEventListener('click', () => {
     ls.set('mh3d_ui', b.dataset.v); applyScale(); syncSettings();
@@ -658,6 +686,15 @@ export function createHud() {
     if (!MH.logout()) toast('Finish the fight before you log out.');
   });
   syncSettings();
+  const lootSeg = els.settings.querySelector('[data-set="autoloot"]');
+  const syncLoot = () => lootSeg && lootSeg.querySelectorAll('button').forEach(b =>
+    b.classList.toggle('on', (b.dataset.v === 'on') === !!(MH.state.player && MH.state.player.autoloot)));
+  if (lootSeg) lootSeg.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+    MH.sendCommand(`autoloot ${b.dataset.v}`);
+    if (MH.state.player) MH.state.player.autoloot = b.dataset.v === 'on';
+    syncLoot();
+  }));
+  MH.bus.on('map', syncLoot);
 
   // ---- real-time combat: the swing ring on the attack button, a press refused mid-cooldown ----
   (function ring() {
@@ -694,7 +731,8 @@ export function createHud() {
   // ---- sounds for windows and buttons (audio.js) ----
   // a window sounds as it opens and closes, however it was opened (a key, a button, a link)
   const WINDOW_SOUNDS = { inventory: ['bag_open', 'ui_close'], character: ['cloth', 'ui_close'], spellbook: ['book_open', 'book_close'],
-    journal: ['book_open', 'book_close'], trainer: ['book_flip', 'ui_close'], settings: ['ui_open', 'ui_close'], bigmap: ['ui_open', 'ui_close'] };
+    journal: ['book_open', 'book_close'], trainer: ['book_flip', 'ui_close'], settings: ['ui_open', 'ui_close'], bigmap: ['ui_open', 'ui_close'],
+    shop: ['coins', 'ui_close'], talk: ['ui_offer', 'ui_close'], who: ['ui_open', 'ui_close'], help: ['book_open', 'book_close'] };
   for (const [id, [on, off]] of Object.entries(WINDOW_SOUNDS)) {
     const el = document.getElementById(id);
     if (!el) continue;
@@ -725,8 +763,9 @@ export function createHud() {
     if (digit && !e.ctrlKey && !e.metaKey && !e.altKey) { use(st.bar[+digit[1] - 1 + (e.shiftKey ? 8 : 0)]); e.preventDefault(); return; }
     if (k === 'Escape') {
       const mapOpen = !$('#bigmap').classList.contains('hidden');
-      if (inventory.open || character.open || spellbook.open || trainer.open || journal.open || mapOpen) {
+      if (inventory.open || character.open || spellbook.open || trainer.open || journal.open || mapOpen || shop.open || talk.open || who.open || help.open) {
         inventory.toggle(false); character.toggle(false); spellbook.toggle(false); trainer.toggle(false); journal.toggle(false);
+        shop.toggle(false); talk.toggle(false); who.toggle(false); help.toggle(false);
         MH.bus.emit('hud.map', false); return;
       }
       MH.bus.emit('hud.untarget'); els.settings.classList.add('hidden'); return;
@@ -738,7 +777,9 @@ export function createHud() {
     if (e.ctrlKey || e.metaKey || e.altKey) return;
     if (k === 'l' || k === 'L') { journal.toggle(); e.preventDefault(); return; }
     if (k === 'm' || k === 'M') { MH.bus.emit('hud.map'); e.preventDefault(); return; }
-    if (k === 'o' || k === 'O') { els.settings.classList.toggle('hidden'); e.preventDefault(); }
+    if (k === 'o' || k === 'O') { els.settings.classList.toggle('hidden'); e.preventDefault(); return; }
+    if (k === 'p' || k === 'P') { who.toggle(undefined, me()); e.preventDefault(); return; }
+    if (k === 'h' || k === 'H') { help.toggle(); e.preventDefault(); }
   });
 
   // ---- for the right-click menu ----
@@ -752,9 +793,11 @@ export function createHud() {
   function prefill(text) { els.input.value = text; els.input.focus(); }
   function openPanel(name) { if (name === 'inventory') inventory.toggle(true); else if (name === 'character') character.toggle(true); }
   function openTrainer(name) { trainer.toggle(true, name || ''); if (MH.refreshState) MH.refreshState(); }
+  function openShop(kw) { shop.toggle(true, kw || ''); }
+  function openTalk(name, kw) { talk.toggle(true, name, kw); }
   // whisper someone: the chat input set to tell them
   function whisper(name) { tellFrom = name; setMode('tell'); els.input.focus(); }
 
-  return { showGame, setPlayer, setTarget, targetCast, moment, fallen, suggestStrike, setRanges, setDistance, banner, toast, log, targetSkills, useAbility, prefill, openPanel, openTrainer, flashSlot,
+  return { showGame, setPlayer, setTarget, targetCast, moment, fallen, suggestStrike, setRanges, setDistance, banner, toast, log, targetSkills, useAbility, prefill, openPanel, openTrainer, openShop, openTalk, flashSlot,
     spellbook, unslot, party, quest, whisper, get player() { return st.player; }, get bar() { return st.bar.slice(); } };
 }

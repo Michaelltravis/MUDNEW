@@ -106,13 +106,14 @@ export function createEngine(container, opts = {}) {
   }, { passive: false });
 
   // ---- post: bloom only on what is really bright (torches, sparks), then tone map ----
-  let composer = null;
-  if (q.bloom) {
-    composer = new EffectComposer(renderer);
-    composer.addPass(new RenderPass(scene, camera));
-    composer.addPass(new UnrealBloomPass(new THREE.Vector2(256, 256), 0.32, 0.45, 0.88));
-    composer.addPass(new OutputPass());
+  function makeComposer() {
+    const c = new EffectComposer(renderer);
+    c.addPass(new RenderPass(scene, camera));
+    c.addPass(new UnrealBloomPass(new THREE.Vector2(256, 256), 0.32, 0.45, 0.88));
+    c.addPass(new OutputPass());
+    return c;
   }
+  let composer = q.bloom ? makeComposer() : null;
 
   function resize() {
     const w = container.clientWidth || window.innerWidth, h = container.clientHeight || window.innerHeight;
@@ -174,12 +175,36 @@ export function createEngine(container, opts = {}) {
   }
   renderer.setAnimationLoop(() => frame());
 
+  // a graphics quality chosen in Settings, at once: the pixel ratio, shadows and bloom change
+  // now; smoothed edges (antialias) are fixed when the page starts. Returns whether a reload
+  // would still change something.
+  function setQuality(name) {
+    const nq = QUALITY[name] || QUALITY.high;
+    if (nq === api.quality) return false;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, nq.dpr));
+    if (renderer.shadowMap.enabled !== nq.shadows) {
+      renderer.shadowMap.enabled = nq.shadows;
+      sun.castShadow = nq.shadows;
+      // materials compile with or without shadows: have them rebuilt
+      scene.traverse(o => { const m = o.material; if (m) (Array.isArray(m) ? m : [m]).forEach(x => { x.needsUpdate = true; }); });
+    }
+    if (sun.shadow.mapSize.x !== nq.shadowSize) {
+      sun.shadow.mapSize.set(nq.shadowSize, nq.shadowSize);
+      if (sun.shadow.map) { sun.shadow.map.dispose(); sun.shadow.map = null; }
+    }
+    if (nq.bloom && !composer) composer = makeComposer();
+    else if (!nq.bloom && composer) { if (composer.dispose) composer.dispose(); composer = null; }
+    api.quality = nq;
+    resize();
+    return nq.antialias !== q.antialias;
+  }
+
   const api = {
     THREE, renderer, scene, camera, rig, sun, hemi, quality: q,
     timeScale: 1,                      // slow motion for the effects gallery
     onTick: fn => ticks.push(fn),
     onLateTick: fn => lateTicks.push(fn),
-    orbit, snapNorth,
+    orbit, snapNorth, setQuality,
     hitStop: ms => { stopUntil = Math.max(stopUntil, performance.now() + ms); },
     setMood, placeCamera,
     // stop the loop and advance by hand, `n` frames of `dt` each (a slow machine still shows
