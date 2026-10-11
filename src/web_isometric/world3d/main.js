@@ -12,6 +12,7 @@ import { Entities } from './entities.js';
 import { spawnDressed, dress } from './equip.js';
 import { cutout } from './cutout.js';
 import { FX } from './fx.js';
+import { Adorn } from './adorn.js';
 import { CombatView } from './combat.js';
 import { CombatCues } from './combatcues.js';
 import { createBubbles } from './hud/bubbles.js';
@@ -99,6 +100,7 @@ async function runGame() {
   } });
   engine.onTick((dt, t) => loot.update(dt, t));
   const fx = new FX(engine, $('#fct'));
+  const adorn = new Adorn(engine, fx);       // what lingers round the well-geared and the renowned
   const combat = new CombatView({
     engine, fx, ents,
     getHero: () => hero && { actor: hero, ctl, cls: (MH.state.player && MH.state.player.char_class || '').toLowerCase() },
@@ -305,7 +307,7 @@ async function runGame() {
     ents.sync(payload, MH.state.playerName); loot.sync(payload);
     mm.setExplored((payload.rooms || []).map(r => r.vnum));
     mm.setTime(payload.time);
-    window.MH3D = { engine, zone: () => zone, hero, ctl, sync, ents, loot, fx, combat, hud, cues, THREE, sound,
+    window.MH3D = { engine, zone: () => zone, hero, ctl, sync, ents, loot, fx, combat, hud, cues, THREE, sound, adorn,
       heroRoom: () => heroRoom, hop: () => hop, gate, lastPayload: () => lastPayload,
       // for probes: walk onto a passage of this room on purpose (what clicking it does)
       walkToPassage: dir => { const sp = zone.passageWorld(heroRoom, dir); ctl.walkTo(sp.x, sp.z, null, { goal: { room: heroRoom.vnum, dir }, avoid: null }); } };
@@ -1056,6 +1058,7 @@ async function runGame() {
       hud.toast("The way didn't open.");
     }
     ents.update(dt, t, p);
+    adorn.update(dt, t, hero, ents.dressed());
     fightTick(dt);
     sync.tick();
     reportPositions(dt);

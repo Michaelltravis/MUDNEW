@@ -6,7 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { planLook, swingClips, starterLook, kitIndex, CLASS_BASE, PROC } from '../../src/web_isometric/world3d/gearlook.js';
-import { buildProc, SHAPES } from '../../src/web_isometric/world3d/procgear.js';
+import { buildProc, buildAddon, SHAPES, ADDONS, MOTIFS, HANGING } from '../../src/web_isometric/world3d/procgear.js';
 
 const ART = path.join(path.dirname(fileURLToPath(import.meta.url)), '../../src/web_isometric/art3d');
 const kit = kitIndex(JSON.parse(fs.readFileSync(path.join(ART, 'chars/equip.json'), 'utf8')));
@@ -72,18 +72,126 @@ test('the swing follows the hand: two hands, two blades, a bow, a staff, nothing
   assert.equal(planLook({ v: 1, sig: 'k', main: { k: 'axe', h: 2, m: 'steel', t: 1 } }, 'warrior', kit).idle, '2H_Melee_Idle');
 });
 
-test('shapes built in code are whole, and painted from real palette columns', () => {
-  const N = kit.N;
-  const paint = role => (kit.col({ wood: 'wood', wood_dark: 'wood_dark', wood_pale: 'wood_pale', metal: 'steel', metal_dark: 'steel~dark', leather: 'leather', string: 'white', hole: 'black', gem: 'gem_red' }[role]) + 0.5) / N;
-  for (const shape of new Set(Object.values(PROC))) {
-    const g = buildProc(shape, { t: 1 }, paint);
-    const verts = g.position.length / 3;
-    assert.ok(verts > 30 && verts < 3000, `${shape}: ${verts} vertices`);
-    assert.ok(g.index.every(i => i < verts), `${shape}: indices in range`);
-    assert.ok([...g.position, ...g.normal, ...g.uv].every(Number.isFinite), `${shape}: finite`);
-    for (let i = 0; i < g.uv.length; i += 2) {
-      const c = g.uv[i] * N - 0.5;
-      assert.ok(Math.abs(c - Math.round(c)) < 1e-4 && kit.columns[Math.round(c)], `${shape}: u on a column centre`);
-    }
+// what a role of a built-in-code piece is painted with (as equip.js PROC_PAINT)
+const PAINT = { wood: 'wood', wood_dark: 'wood_dark', wood_pale: 'wood_pale', metal: 'steel', metal_dark: 'steel~dark', leather: 'leather',
+  string: 'white', hole: 'black', gem: 'gem_red', bone: 'bone', cloth: 'red', gold: 'gold' };
+const paint = role => { assert.ok(PAINT[role], `a role equip.js can paint: ${role}`); return (kit.col(PAINT[role]) + 0.5) / kit.N; };
+function whole(g, what) {
+  const verts = g.position.length / 3;
+  assert.ok(verts > 10 && verts < 3000, `${what}: ${verts} vertices`);
+  assert.ok(g.index.every(i => i < verts), `${what}: indices in range`);
+  assert.ok([...g.position, ...g.normal, ...g.uv].every(Number.isFinite), `${what}: finite`);
+  for (let i = 0; i < g.uv.length; i += 2) {
+    const c = g.uv[i] * kit.N - 0.5;
+    assert.ok(Math.abs(c - Math.round(c)) < 1e-4 && kit.columns[Math.round(c)], `${what}: u on a column centre`);
   }
+  // every face looks out: wound the way its normals point (the material draws front faces only)
+  const P = q => [g.position[q * 3], g.position[q * 3 + 1], g.position[q * 3 + 2]];
+  for (let t = 0; t < g.index.length; t += 3) {
+    const [i, j, k] = [g.index[t], g.index[t + 1], g.index[t + 2]];
+    const [a, b, c] = [P(i), P(j), P(k)];
+    const u = b.map((v, x) => v - a[x]), w = c.map((v, x) => v - a[x]);
+    const n = [u[1] * w[2] - u[2] * w[1], u[2] * w[0] - u[0] * w[2], u[0] * w[1] - u[1] * w[0]];
+    if (Math.hypot(...n) < 1e-12) continue;
+    const dot = [0, 1, 2].reduce((sum, x) => sum + n[x] * (g.normal[i * 3 + x] + g.normal[j * 3 + x] + g.normal[k * 3 + x]), 0);
+    assert.ok(dot > 0, `${what}: face ${t / 3} is wound inward`);
+  }
+}
+
+test('shapes built in code are whole, and painted from real palette columns', () => {
+  for (const shape of new Set([...Object.values(PROC), ...Object.keys(SHAPES)])) whole(buildProc(shape, { t: 1, h: 2 }, paint), shape);
+});
+
+test('hanging things turn over in the hand: a lantern hangs below a hip, out past a hand', () => {
+  for (const shape of HANGING) {
+    const down = buildProc(shape, {}, paint), out = buildProc(shape, {}, paint, { flip: true });
+    const ys = a => Array.from({ length: a.position.length / 3 }, (_, i) => a.position[i * 3 + 1]);
+    assert.ok(Math.max(...ys(down)) < 0.05 && Math.min(...ys(out)) > -0.05, `${shape} hangs one way, then the other`);
+    whole(out, `${shape} turned`);         // and still facing out
+  }
+});
+
+test('add-ons are whole: a gem, a boss, a crest, pauldrons, crowns, every class\'s emblem', () => {
+  const at = { p: [0, 1, -0.3], r: 0.14, rz: 0.4, lean: 0.12, side: -1, spikes: true };
+  for (const kind of Object.keys(ADDONS)) whole(buildAddon(kind, { ...at, r: kind === 'crown' ? 0.45 : at.r }, paint), kind);
+  whole(buildAddon('crown', { ...at, r: 0.45, variant: 'circlet' }, paint), 'circlet');
+  for (const [cls, poly] of Object.entries(MOTIFS)) {
+    const g = buildAddon('emblem', { ...at, motif: cls }, paint);
+    whole(g, `${cls} emblem`);
+    // both faces cut whole (n - 2 triangles each) and a rim of n quads
+    assert.equal(g.index.length / 3, 2 * (poly.length - 2) + 2 * poly.length, `${cls}: the emblem's outline is filled`);
+  }
+});
+
+const kinds = plan => plan.addons.map(a => a.kind).sort();
+const kitted = (look, cls = 'paladin') => {
+  const plan = planLook({ v: 1, ...look }, cls, kit);
+  for (const a of plan.addons) {
+    assert.ok(ADDONS[a.kind] || (a.shape && SHAPES[a.kind]), `${a.kind} can be built`);
+    if (a.on) assert.ok(kit.pieces[a.on] && plan.props.some(p => p.name === a.on), `${a.kind} sits on ${a.on}, which is worn`);
+    assert.ok(['pommel', 'front', 'top', 'crown', 'back', 'shoulder', 'hip'].includes(a.spot), `${a.kind}: a spot equip.js knows (${a.spot})`);
+    for (const to of Object.values(a.roles || {})) assert.ok(kit.col(to) != null, `${a.kind}: ${to} is in the palette`);
+  }
+  return plan;
+};
+
+test('finer gear, finer detail: a pommel stone and a boss at 2, a plume, and pauldrons on heavy armour at 3', () => {
+  const at = t => ({ sig: `fine${t}`, main: { k: 'sword', h: 1, m: 'steel', t }, off: { k: 'shield', v: 'round', m: 'iron', t }, head: { k: 'helm', m: 'steel', t }, body: { w: 3, m: 'steel', t } });
+  assert.deepEqual(kinds(kitted(at(1))), [], 'tier 1: plain');
+  assert.deepEqual(kinds(kitted(at(2))), ['boss', 'crest', 'gem']);
+  assert.deepEqual(kinds(kitted(at(3))), ['boss', 'crest', 'gem', 'pauldron', 'pauldron']);
+  const pauldrons = kitted(at(3)).addons.filter(a => a.kind === 'pauldron');
+  assert.deepEqual(pauldrons.map(a => a.side).sort(), [-1, 1], 'one on each shoulder');
+  assert.ok(pauldrons.every(a => a.on.includes('-Arm')), 'measured from the arm it sits on');
+  const robed = kitted({ sig: 'robes3', body: { w: 0, c: 'blue', t: 3 } }, 'mage');
+  assert.ok(!kinds(robed).includes('pauldron'), 'robes get no pauldrons');
+  // the trim brightens with the tier
+  const trim = t => kitted(at(t)).props.find(p => p.name === 'kit-shield_round_color');
+  assert.ok(Object.values(trim(3).remap).includes(kit.col('gold')), 'a fine shield is trimmed in gold');
+  assert.equal(kitted({ sig: 'pl', head: { k: 'helm', m: 'steel', t: 2 } }, 'paladin').addons[0].roles.cloth, 'royal_blue', "a paladin's plume");
+});
+
+test('crowns, circlets and lights', () => {
+  const crown = kitted({ sig: 'cr', head: { k: 'crown', v: 'circlet', m: 'silver', t: 3 } }, 'ranger');
+  assert.deepEqual(crown.addons.map(a => [a.kind, a.variant, a.on, a.spot]), [['crown', 'circlet', 'rogue-Head', 'crown']], 'a circlet round the head');
+  const lantern = kitted({ sig: 'ln', main: { k: 'sword', h: 1, m: 'steel', t: 1 }, light: { k: 'lantern' } });
+  assert.ok(lantern.addons.some(a => a.kind === 'lantern' && a.shape && a.spot === 'hip'), 'a lantern at the hip');
+  assert.ok(lantern.glow > 0, 'and it is lit');
+  const torch = kitted({ sig: 'tr', main: { k: 'sword', h: 1, m: 'steel', t: 1 }, light: { k: 'torch' } });
+  assert.ok(torch.procs.some(p => p.shape === 'torch' && p.piece.endsWith('_Offhand')), 'a torch in the free hand');
+  const busy = kitted({ sig: 'tb', main: { k: 'sword', h: 1, m: 'steel', t: 1 }, off: { k: 'shield', v: 'round', m: 'iron', t: 1 }, light: { k: 'torch' } });
+  assert.ok(!busy.procs.some(p => p.shape === 'torch'), 'no hand free, no torch');
+  const held = kitted({ sig: 'hl', off: { k: 'lantern', h: 1, t: 2 } }, 'cleric');
+  assert.ok(held.procs.some(p => p.shape === 'lantern'), 'a lantern carried in the hand');
+});
+
+test('renown: a cloak at 10, its emblem at 20, a mantle at 35, motes at 45, a shining emblem at prestige', () => {
+  const at = rn => kitted({ ...starterLook('warrior'), rn, sig: `rn${rn}` }, 'warrior');
+  const cape = plan => plan.props.some(p => /_Cape$/.test(p.name));
+  assert.ok(!cape(at(0)) && cape(at(1)), 'level 10: a cloak');
+  assert.deepEqual(kinds(at(1)), []);
+  assert.deepEqual(kinds(at(2)), ['emblem'], 'level 20: the class emblem on it');
+  assert.equal(at(2).addons[0].motif, 'warrior');
+  assert.deepEqual(kinds(at(3)), ['emblem', 'pauldron', 'pauldron'], 'level 35: a mantle');
+  assert.ok(!at(3).adorn.motes && at(4).adorn.motes === 'class_warrior', 'level 45: motes in the class colour');
+  assert.equal(at(4).addons.find(a => a.kind === 'emblem').roles.gold, 'gold');
+  assert.equal(at(5).addons.find(a => a.kind === 'emblem').roles.gold, 'gold~glow', 'prestige: the emblem shines');
+  assert.ok(at(5).glow > 0 && at(4).glow === 0);
+  // a cloak they wear keeps its own look, and takes the emblem
+  const own = kitted({ ...starterLook('assassin'), rn: 2, sig: 'own' }, 'assassin');
+  assert.ok(own.props.some(p => p.name === 'rogue-Rogue_Cape') && kinds(own).includes('emblem'));
+});
+
+test('what shines: an element from tier 4, a legendary brighter, and what lingers round them', () => {
+  const sword = (t, e, extra = {}) => kitted({ sig: `sh${t}${e}`, main: { k: 'sword', h: 1, m: 'steel', t, e }, ...extra });
+  assert.equal(sword(3, 'fire').glow, 0, 'tier 3: a fire gem, unlit');
+  const four = sword(4, 'fire');
+  assert.equal(four.glow, 1);
+  assert.equal(four.addons.find(a => a.kind === 'gem').roles.gem, 'fire~glow');
+  assert.equal(four.adorn.element, 'fire');
+  const legend = sword(5, 'frost', { aura: 'legendary' });
+  assert.ok(legend.glow > 1 && legend.adorn.legendary && legend.adorn.aura === 'legendary');
+  const bow = kitted({ sig: 'bw', main: { k: 'bow', h: 2, m: 'wood', t: 4, e: 'nature' } }, 'ranger');
+  assert.equal(bow.adorn.hand, 'handslotl', "a bow's sparks come from the hand that holds it");
+  assert.ok(!sword(2).adorn.motes && !sword(2).adorn.element && !sword(2).adorn.legendary, 'plain gear: nothing lingers');
 });

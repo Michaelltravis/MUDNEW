@@ -483,6 +483,12 @@ async function waitFor(page, fn, arg, secs = 60) {
     const mine = await page.evaluate(() => ({ hero: MH3D.hero.gear && MH3D.hero.gear.sig, look: MH.state.player.look && MH.state.player.look.sig,
       pieces: MH3D.hero.gear ? MH3D.hero.gear.plan.props.map(p => p.name) : [] }));
     check(mine.hero && mine.hero === mine.look, `Gauntlet wears its own look (${mine.hero}: ${mine.pieces.join(', ')})`);
+    // renown shows: a cloak and its emblem from level 20, motes round the hero from level 45 (adorn.js)
+    await sleep(1500);
+    const fame = await page.evaluate(() => { const g = MH3D.hero.gear; return { rn: MH.state.player.look.rn || 0, addons: g.plan.addons.map(a => a.kind),
+      adorned: MH3D.adorn.on.has(MH3D.hero), motes: !!g.plan.adorn.motes, glow: g.glow.value }; });
+    check(fame.rn < 2 || fame.addons.includes('emblem'), `renown ${fame.rn}: ${fame.addons.join(', ') || 'no add-ons'}`);
+    check(!fame.motes || fame.adorned, `adorned as its standing asks (motes ${fame.motes}, adorned ${fame.adorned}, glow ${fame.glow})`);
     const before = await page2.evaluate(() => MH3D.ents.list.get('pGauntlet').actor.gear.sig);
     await page2.screenshot({ path: path.join(OUT, 'gear-before.png') });
     // a two-handed greatblade instead of whatever was in hand

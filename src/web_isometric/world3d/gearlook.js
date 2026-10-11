@@ -46,12 +46,19 @@ const MAIN = {
   axe: h => (h === 2 ? 'barbarian-2H_Axe' : 'barbarian-1H_Axe'),
   dagger: () => 'rogue-Knife', staff: () => 'mage-2H_Staff', wand: () => 'mage-1H_Wand',
   crossbow: h => (h === 2 ? 'rogue-2H_Crossbow' : 'rogue-1H_Crossbow'), thrown: () => 'rogue-Throwable',
-  // until they have shapes of their own, the nearest there is
-  spear: () => 'mage-2H_Staff', polearm: () => 'barbarian-2H_Axe', scythe: () => 'barbarian-2H_Axe',
-  pick: () => 'barbarian-1H_Axe', claw: () => 'rogue-Knife', whip: () => 'rogue-Knife',
 };
-// built in code (procgear.js): kind -> shape
-export const PROC = { bow: 'bow', mace: 'mace', hammer: 'mace', instrument: 'lute' };
+// built in code (procgear.js): kind -> shape (an instrument by its variant)
+export const PROC = { bow: 'bow', mace: 'mace', hammer: 'hammer', spear: 'spear', polearm: 'polearm', scythe: 'scythe',
+  pick: 'pick', whip: 'whip', claw: 'claw', instrument: 'lute', orb: 'orb', relic: 'orb', skull: 'orb', censer: 'censer',
+  lantern: 'lantern', torch: 'torch' };
+const INSTRUMENT_SHAPES = new Set(['lute', 'lyre', 'harp', 'flute', 'drum', 'horn']);
+export const procShape = p => (p.k === 'instrument' && INSTRUMENT_SHAPES.has(p.v) ? p.v : PROC[p.k]);
+// a helm's plume, unless the helm has a colour of its own: one that stands out on steel and gold
+const PLUME = { warrior: 'crimson', paladin: 'royal_blue', cleric: 'white', mage: 'violet', necromancer: 'black',
+  thief: 'grey', assassin: 'black', ranger: 'forest', bard: 'magenta' };
+// the cloak a class's renown gives it (level 10) when it wears none
+const RENOWN_CAPE = { warrior: 'knight', paladin: 'knight', cleric: 'knight', mage: 'mage', necromancer: 'mage',
+  thief: 'rogue', assassin: 'rogue', ranger: 'rogue', bard: 'rogue' };
 const OFFHAND = { sword: 'knight-1H_Sword_Offhand', axe: 'barbarian-1H_Axe_Offhand', dagger: 'rogue-Knife_Offhand' };
 const SHIELD = { round: 'knight-Round_Shield', badge: 'knight-Badge_Shield', square: 'knight-Rectangle_Shield', spike: 'knight-Spike_Shield' };
 const SHIELD_PAINTED = { round: 'kit-shield_round_color', badge: 'kit-shield_badge_color', square: 'kit-shield_square_color', spike: 'kit-shield_spikes_color' };
@@ -88,6 +95,24 @@ function clothOf(p, cls) {
   return `class_${String(cls || 'paladin').toLowerCase()}`;
 }
 
+// finer gear, finer trim: silver at tier 2, gold from 3, a gold that shines on a legendary
+function trimFor(p) {
+  const t = (p && p.t) || 0;
+  return t >= 5 ? 'gold~glow' : t >= 3 ? 'gold' : t === 2 ? 'silver' : null;
+}
+// a gem: its element, its set's, from tier 4 shining; a legendary shines holy if nothing else
+export function gemFor(p, cls) {
+  const t = (p && p.t) || 0;
+  const base = p && p.e ? p.e : p && p.s ? `set_${p.s}_accent` : t >= 5 ? 'holy' : null;
+  if (!base) return t >= 2 ? `class_${String(cls || 'paladin').toLowerCase()}` : null;
+  return t >= 4 ? `${base}~glow` : base;
+}
+function withTrim(r, p) {
+  const trim = trimFor(p);
+  if (trim) { r.trim = trim; r.gold = trim; }
+  return r;
+}
+
 // role -> ramp name, for each kind of piece
 function armourRoles(a, cls) {
   const r = {};
@@ -99,28 +124,29 @@ function armourRoles(a, cls) {
   }
   const cloth = clothOf(a, cls);
   r.cloth = worn(cloth, a); r.cloth_dark = darkOf(cloth, a);
-  return r;
+  return withTrim(r, a);
 }
-function weaponRoles(p) {
+function weaponRoles(p, cls) {
   const r = {};
-  const wooden = ['staff', 'bow', 'wand', 'instrument'].includes(p.k);
+  const wooden = ['staff', 'bow', 'wand', 'instrument', 'orb', 'relic', 'skull', 'censer', 'lantern', 'torch'].includes(p.k);
   const metal = wooden ? p.m2 : p.m;
   const wood = wooden ? p.m : p.m2;
   if (metal) { r.metal = worn(metal, p); r.metal_dark = darkOf(metal, p); }
   if (wood) r.wood = worn(wood, p);
-  if (p.e) r.gem = p.e;
-  else if (p.s) r.gem = `set_${p.s}_accent`;
-  return r;
+  const g = gemFor(p, cls);
+  if (g) { r.gem = g; r.crystal = g; }
+  if (p.k === 'lantern' || p.k === 'torch') r.gem = 'fire~glow';
+  return withTrim(r, p);
 }
 function shieldRoles(p, cls) {
   const r = { metal: worn(p.m || 'iron', p), metal_dark: darkOf(p.m || 'iron', p) };
   if (p.m2) r.wood = worn(p.m2, p);
-  r.gem = p.s ? `set_${p.s}_accent` : p.e || `class_${String(cls || 'paladin').toLowerCase()}`;
-  return r;
+  r.gem = gemFor(p, cls) || `class_${String(cls || 'paladin').toLowerCase()}`;
+  return withTrim(r, p);
 }
 function headRoles(p, cls) {
   if (p.k === 'hat' || p.k === 'hood') { const c = clothOf(p, cls); return { cloth: worn(c, p), cloth_light: worn(c, p) }; }
-  if (p.m) return { metal: worn(p.m, p), metal_dark: darkOf(p.m, p) };
+  if (p.m) return withTrim({ metal: worn(p.m, p), metal_dark: darkOf(p.m, p) }, p);
   return {};
 }
 function capeRoles(p, cls) {
@@ -147,11 +173,12 @@ function remapOf(kit, name, roles) {
 const mountOf = (kit, piece) => kit.pieces[piece] && kit.pieces[piece].mount;
 
 // A look -> {key, parts, props: [{name, remap, fit}], procs: [{shape, piece (whose mount it
-// borrows), bone, roles, look}], idle}
+// borrows), look, roles}], addons: [{kind, on (a piece) | bone, spot, roles, ...}], glow, adorn, idle}
 export function planLook(look, cls, kit) {
   look = look || starterLook(cls);
   cls = String(cls || '').toLowerCase();
   const base = baseOf(cls);
+  const rn = look.rn || 0;
   // measured from what the class starts in (a cleric's knight body stands for leather), then
   // arms and legs from what the torso stands for
   const torso = look.body && Math.abs(look.body.w - base.w) >= 2 ? BY_WEIGHT[look.body.w] : base.model;
@@ -160,14 +187,20 @@ export function planLook(look, cls, kit) {
   const arms = limb(look.arms), legs = limb(look.legs);
   const hooded = look.head ? look.head.k === 'hood' : base.hood;
   const headModel = base.model;
-  const props = [], procs = [];
-  const add = (name, roles, fit) => { if (kit.pieces[name]) props.push({ name, remap: remapOf(kit, name, roles || {}), fit: fit || null }); };
+  const props = [], procs = [], addons = [];
+  const add = (name, roles, fit) => {
+    if (!kit.pieces[name]) return null;
+    props.push({ name, remap: remapOf(kit, name, roles || {}), fit: fit || null });
+    return name;
+  };
+  const gemOr = (p, fallback) => gemFor(p, cls) || fallback;
 
   // the body: the class's head, torso, arms and legs from whichever models the armour asks for
   const bodyRoles = armourRoles(look.body, cls);
+  const headPart = hooded ? 'rogue-HeadHooded' : `${headModel}-Head`;
   const parts = [
     // a hood in its own colour, or the class's
-    [hooded ? 'rogue-HeadHooded' : `${headModel}-Head`, hooded ? headRoles(look.head || { k: 'hood', t: 1 }, cls) : {}],
+    [headPart, hooded ? headRoles(look.head || { k: 'hood', t: 1 }, cls) : {}],
     [`${torso}-Body`, bodyRoles],
     [`${arms}-ArmLeft`, look.arms ? armourRoles(look.arms, cls) : bodyRoles],
     [`${arms}-ArmRight`, look.arms ? armourRoles(look.arms, cls) : bodyRoles],
@@ -176,38 +209,77 @@ export function planLook(look, cls, kit) {
   ];
   for (const [name, roles] of parts) add(name, roles);
 
-  // the main hand
+  // the main hand: a piece from the pack, or a shape built in code; finer ones get a pommel stone
   const m = look.main;
   if (m) {
-    if (PROC[m.k]) procs.push({ shape: PROC[m.k], piece: m.k === 'bow' ? 'knight-1H_Sword_Offhand' : 'knight-1H_Sword', look: m, roles: weaponRoles(m) });
+    const shape = procShape(m);
+    if (shape) procs.push({ shape, piece: m.k === 'bow' ? 'knight-1H_Sword_Offhand' : 'knight-1H_Sword', look: m, roles: weaponRoles(m, cls) });
     else if (MAIN[m.k]) {
-      const name = m.h === 2 && m.k === 'sword' && (m.t || 0) >= 3 ? 'kit-sword_2handed_color' : MAIN[m.k](m.h);
-      add(name, weaponRoles(m));
+      const name = add(m.h === 2 && m.k === 'sword' && (m.t || 0) >= 3 ? 'kit-sword_2handed_color' : MAIN[m.k](m.h), weaponRoles(m, cls));
+      if (name && (m.t || 0) >= 2 && !['crossbow', 'thrown', 'staff'].includes(m.k)) addons.push({ kind: 'gem', on: name, spot: 'pommel', roles: { gem: gemOr(m, 'gem_red') } });
     }
   }
-  // the off hand: a shield, a second weapon, or something held
+  // the off hand: a shield (a boss on a finer one), a second weapon, or something held
   const o = look.off;
   const bowInLeft = m && m.k === 'bow';
   if (o && !bowInLeft) {
     if (o.k === 'shield') {
       const v = SHIELD[o.v] ? o.v : 'round';
-      const name = (o.t || 0) >= 2 || o.s ? SHIELD_PAINTED[v] : v === 'round' && o.m2 ? 'barbarian-Barbarian_Round_Shield' : SHIELD[v];
-      add(name, shieldRoles(o, cls));
-    } else if (OFFHAND[o.k]) add(OFFHAND[o.k], weaponRoles(o));
-    else if (WEAPON_KINDS.has(o.k) && !PROC[o.k]) add('rogue-Knife_Offhand', weaponRoles(o));
-    else if (PROC[o.k]) procs.push({ shape: PROC[o.k], piece: 'knight-1H_Sword_Offhand', look: o, roles: weaponRoles(o) });
+      const name = add((o.t || 0) >= 2 || o.s ? SHIELD_PAINTED[v] : v === 'round' && o.m2 ? 'barbarian-Barbarian_Round_Shield' : SHIELD[v], shieldRoles(o, cls));
+      if (name && (o.t || 0) >= 2) addons.push({ kind: 'boss', on: name, spot: 'front', roles: { metal: (o.t || 0) >= 3 ? 'gold' : worn(o.m || 'iron', o), gem: gemOr(o, `class_${cls}`) } });
+    } else if (OFFHAND[o.k] || (WEAPON_KINDS.has(o.k) && !procShape(o))) {
+      const name = add(OFFHAND[o.k] || 'rogue-Knife_Offhand', weaponRoles(o, cls));
+      if (name && (o.t || 0) >= 2) addons.push({ kind: 'gem', on: name, spot: 'pommel', roles: { gem: gemOr(o, 'gem_red') } });
+    } else if (procShape(o)) procs.push({ shape: procShape(o), piece: 'knight-1H_Sword_Offhand', look: o, roles: weaponRoles(o, cls) });
     else if (o.k === 'book') add('mage-Spellbook', o.c ? { cloth_accent: worn(o.c, o) } : {});
   }
-  // the head
+  // the head: a helm (a crest on a finer one), a hat, a hood, a crown
   const h = look.head;
-  if (h && HEAD[h.k]) add(HEAD[h.k], headRoles(h, cls), FIT[`${HEAD[h.k]}@${headModel}`]);
-  // the back: a cloak, a quiver
-  if (look.back) add(CAPE[look.back.v] || CAPE.rogue, capeRoles(look.back, cls));
+  if (h && HEAD[h.k]) {
+    const name = add(HEAD[h.k], headRoles(h, cls), FIT[`${HEAD[h.k]}@${headModel}`]);
+    if (name && h.k === 'helm' && (h.t || 0) >= 2) addons.push({ kind: 'crest', on: name, spot: 'top', roles: { cloth: h.s || h.c ? clothOf(h, cls) : PLUME[cls] || 'crimson' } });
+  }
+  if (h && h.k === 'crown') addons.push({ kind: 'crown', on: headPart, bone: 'head', spot: 'crown', variant: h.v,
+    roles: { metal: worn(h.m || 'gold', h), gem: gemOr(h, 'gem_red') } });
+  // the back: a cloak (or, from level 10, the class's own), the class's emblem on it from level 20
+  let cape = null;
+  if (look.back) cape = add(CAPE[look.back.v] || CAPE.rogue, capeRoles(look.back, cls));
+  else if (rn >= 1) cape = add(CAPE[RENOWN_CAPE[cls] || 'rogue'], capeRoles({ k: 'cloak', t: 1 }, cls));
+  if (cape && rn >= 2) addons.push({ kind: 'emblem', on: cape, spot: 'back', motif: cls, roles: { gold: rn >= 5 ? 'gold~glow' : rn >= 4 ? 'gold' : 'silver' } });
   if (look.quiver || (m && m.k === 'bow')) add('kit-quiver', {});
+  // the shoulders: pauldrons on fine heavy armour, a mantle from level 35
+  const b = look.body;
+  if ((b && b.w >= 2 && (b.t || 0) >= 3) || rn >= 3) {
+    // fine heavy armour in its own metal; else a mantle in the class's colour, trimmed as renown rises
+    const mantle = b && b.w >= 2 && b.m && (b.t || 0) >= 3 ? { metal: worn(b.m, b), metal_dark: trimFor(b) || darkOf(b.m, b) }
+      : { metal: clothOf(b && (b.s || b.c) ? b : {}, cls), metal_dark: rn >= 4 ? 'gold' : 'silver' };
+    for (const side of ['l', 'r']) {
+      addons.push({ kind: 'pauldron', on: `${arms}-Arm${side === 'l' ? 'Left' : 'Right'}`, bone: `upperarm${side}`, spot: 'shoulder',
+        side: side === 'l' ? 1 : -1, spikes: !!(b && (b.t || 0) >= 4 && b.w >= 2), roles: mantle });
+    }
+  }
+  // a light: a lantern at the hip, a torch in a free hand
+  const light = look.light && look.light.k;
+  if (light === 'lantern') addons.push({ kind: 'lantern', shape: true, bone: 'hips', spot: 'hip', roles: { gem: 'fire~glow', metal_dark: 'black_iron' } });
+  const handFree = !o && !(m && (m.h === 2 || m.k === 'bow'));
+  if (light === 'torch' && handFree) procs.push({ shape: 'torch', piece: 'knight-1H_Sword_Offhand', look: { k: 'torch', t: 1 }, roles: { gem: 'fire~glow' } });
 
   const twoHanded = m && (m.h === 2 || ['spear', 'polearm', 'scythe'].includes(m.k)) && !['bow', 'crossbow', 'staff'].includes(m.k);
   const key = `${look.sig || JSON.stringify(look)}|${cls}`;
-  return { key, parts: parts.map(p => p[0]), props, procs, idle: twoHanded ? '2H_Melee_Idle' : 'Idle' };
+  // what shines (equip.js lights the ~glow columns), and what lingers round the hero (adorn.js)
+  const all = [...props.flatMap(p => Object.values(p.remap || {}).map(c => kit.columns[c] && kit.columns[c].name)),
+    ...procs.flatMap(p => Object.values(p.roles)), ...addons.flatMap(a => Object.values(a.roles || {}))];
+  const legendary = look.aura === 'legendary' || Object.values(look).some(p => p && typeof p === 'object' && p.t === 5);
+  const glow = all.some(n => String(n || '').endsWith('~glow')) ? (legendary ? 1.3 : 1) : 0;
+  const adorn = {
+    motes: rn >= 4 ? `class_${cls}` : null,
+    aura: look.aura || null,
+    legendary,
+    element: (m && m.e && (m.t || 0) >= 4) ? m.e : null,
+    hand: m && m.k === 'bow' ? 'handslotl' : 'handslotr',     // where the weapon's sparks come from
+    set: look.set || null,
+  };
+  return { key, parts: parts.map(p => p[0]), props, procs, addons, glow, adorn, idle: twoHanded ? '2H_Melee_Idle' : 'Idle' };
 }
 
 // ---- the swing: what the hand holds decides the blow ----

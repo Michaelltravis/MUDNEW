@@ -107,6 +107,11 @@ export class Entities {
     if (e.vnum !== to) this.moveTo(e, to);
   }
 
+  // everyone drawn in what they wear (adorn.js decides who shows more)
+  *dressed() {
+    for (const e of this.list.values()) if (e.actor && e.actor.gear) yield e.actor;
+  }
+
   // another player put on or took off gear (the server's 'look' relay): re-dress them
   look({ name, look }) {
     const e = name && this.list.get(`p${name}`);

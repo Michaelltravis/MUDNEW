@@ -13,6 +13,7 @@ import { RECIPES } from './abilityfx-table.js';
 import { Director } from './fxdirector.js';
 import { LANDS } from './soundtable.js';
 import { swingClips } from './gearlook.js';
+import { SCHOOL } from './fx.js';
 
 // the ordinary swing, by class: for anyone without a look (gearlook.js swingClips picks it
 // from what the hand holds)
@@ -27,6 +28,15 @@ const SWING = {
   mage: ['Spellcast_Shoot'],
   necromancer: ['Spellcast_Shoot'],
 };
+// a blow trails its weapon's element once that glows (tier 4 and up), a legendary's gold,
+// else its class's colour
+function slashColour(src, cls) {
+  const m = src.look && src.look.main;
+  if (m && m.e && (m.t || 0) >= 4 && SCHOOL[m.e]) return SCHOOL[m.e].spark;
+  if (m && (m.lg || m.t === 5)) return 0xffd56a;
+  const theme = !src.mob && THEMES[cls];
+  return theme ? theme.slash : src.hero ? 0xfff0d0 : 0xffb0a0;
+}
 const RANGED_AUTO = { ranger: { kind: 'shot', school: 'physical' }, mage: { kind: 'bolt', school: 'arcane', size: 0.16 }, necromancer: { kind: 'bolt', school: 'necrotic', size: 0.16 } };
 
 const COLORS = { dmgOut: '#ffe9a8', dmgIn: '#ff6a52', heal: '#7dff8f', miss: '#b8b8c4', crit: '#ffb02a', parry: '#8cc8ff', block: '#9ad0ff', dodge: '#d8e0ff', spell: '#e0b8ff' };
@@ -249,9 +259,9 @@ export class CombatView {
       this.fx.projectile(this.chest(src), this.chest(dst), { kind: r.kind === 'shot' ? 'arrow' : 'orb', school: r.school, speed, size: r.size || 0.2, delay: 0.25, onHit: () => this.land(e, src, dst, r.school) });
     } else {
       this.expect(e, 300);
-      // a hero's or another player's blow trails their class's colour
-      const theme = !src.mob && THEMES[cls];
-      this.fx.slash(src.root.position, dst.root.position, { color: theme ? theme.slash : src.hero ? 0xfff0d0 : 0xffb0a0, delay: 0.18 });
+      // a hero's or another player's blow trails their weapon's element or their class's colour
+      const m = src.look && src.look.main;
+      this.fx.slash(src.root.position, dst.root.position, { color: slashColour(src, cls), wide: !!(m && m.h === 2), delay: 0.18 });
       this.fx.after(0.3, () => this.land(e, src, dst, e.school || 'physical'));
     }
   }

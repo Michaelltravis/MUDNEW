@@ -285,6 +285,11 @@ async function buildEquip(job) {
     addCol(`set_${set}_accent`, rampOf(mixRgb(hexRgb(accent), [255, 255, 255], 0.35), hexRgb(accent), mixRgb(hexRgb(accent), [0, 0, 0], 0.5)), 'gem', 'gem');
   }
   for (const c of [...cols]) {
+    // a gem or an element that shines (tier 4 and up, a legendary, a prestige emblem): the same
+    // colour, a little brighter; equip.js lights exactly these columns from within
+    if (c.family === 'gem' || c.name === 'gold' || c.name === 'silver') {
+      addCol(`${c.name}~glow`, c.rows.map(px => px.map(v => Math.min(255, Math.round(v * 1.12 + 18)))), 'gem', 'glow');
+    }
     if (!c.family || !['metal', 'leather', 'cloth', 'fur', 'wood'].includes(c.family)) continue;
     addCol(`${c.name}~worn`, wornOf(c.rows), c.role, c.family);
     if (c.family === 'metal' || c.family === 'cloth') {

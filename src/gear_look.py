@@ -275,6 +275,12 @@ ELEMENTS = [
     (_rx(r'thorn|verdant|druid|wild|living|grove|nature'), 'nature'),
 ]
 ELEMENT_FLAGS = {'flaming': 'fire', 'frost': 'frost'}
+# which instrument (the client builds each its own shape)
+INSTRUMENTS = [
+    (_rx(r'lyre'), 'lyre'), (_rx(r'harp'), 'harp'), (re.compile(r'flute|pipes?\b|whistle|recorder|ocarina'), 'flute'),
+    (_rx(r'drum|tabor|tambour'), 'drum'), (_rx(r'horn\b|trumpet|bugle|warhorn'), 'horn'),
+]
+CROWNS = [(_rx(r'circlet|diadem|tiara|coronet|laurel'), 'circlet')]
 
 
 def _named_set(item):
@@ -328,6 +334,8 @@ def weapon_piece(item):
     if 'two_handed' in set(getattr(item, 'flags', ()) or ()):
         hands = 2
     p = {'k': kind, 'h': hands}
+    if kind == 'instrument':
+        p['v'] = _first(INSTRUMENTS, text, 'lute')
     if kind in ('staff', 'bow', 'wand', 'instrument'):
         p['m'] = _first(WOODS, text, 'wood')
         metal = _first(METALS, text)
@@ -357,6 +365,9 @@ def held_piece(item):
     p = {'k': kind}
     if kind in ('book',):
         p['c'] = _first(COLOURS, text)
+    if kind == 'instrument':
+        p['v'] = _first(INSTRUMENTS, text, 'lute')
+        p['m'] = _first(WOODS, text, 'wood')
     p.update(_common(item, text))
     return {k: v for k, v in p.items() if v is not None}
 
@@ -375,6 +386,8 @@ def head_piece(item):
     text = _text(item)
     kind = _first(HEADS, text, 'helm')
     p = {'k': kind}
+    if kind == 'crown':
+        p['v'] = _first(CROWNS, text, 'crown')
     if kind in ('helm', 'crown', 'horned'):
         p['m'] = _material(text, 'gold' if kind == 'crown' else 'iron')
     else:

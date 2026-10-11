@@ -1025,3 +1025,46 @@ wasn't even sent. Now every hero wears their gear, and everyone around sees it c
   - `tests/web/equipkit.test.mjs`: one rig, every part, where pieces hang, the palette.
   - `tests/web/probe_play3d.js gear`: two browsers; one wields a greatblade and the other sees
     it.
+
+### Finer gear, finer detail; standing that shows (Push 20)
+The second half of the owner's ask: detail that grows as gear and level do. Everything new is
+merged into the same one mesh (no extra draw calls), and placed from the shape of the piece it
+sits on, so it fits every body.
+- **Every weapon kind** (`world3d/procgear.js`): hammers and mauls, spears, polearms, scythes,
+  picks, whips, claws, an orb, a censer, a lantern and a torch. Instruments by name (a lyre, a
+  harp, a flute, a drum, a horn; a lute otherwise), and a crown or a circlet. The server now
+  names the instrument and the crown it reads (`src/gear_look.py`), held or wielded.
+- **Detail by tier** (`world3d/gearlook.js` plans it, `world3d/equip.js` places it):
+  - 0: dull and worn.
+  - 1: clean.
+  - 2: silver trim, a stone in the pommel, a boss on the shield, a plume on the helm (each
+    class its own colour: crimson, royal blue, white…).
+  - 3: gold trim, pauldrons on heavy armour.
+  - 4: gems glow in their element's colour (or the set's), and sparks rise off the weapon.
+  - 5: a legendary: shining gold trim, a slow pulse, a sunwheel on the ground under its bearer.
+  - Four pieces of one of the ten named sets draw a ring in the set's colour under the wearer.
+- **Renown by level**:
+  - 10: the class's cloak.
+  - 20: the class's emblem on it, in silver (chevron, sunburst, eye, skull, fan, drop, leaf,
+    cross, lyre).
+  - 35: a mantle on the shoulders in the class colour.
+  - 45: gold, and faint motes in the class colour.
+  - Prestige: the emblem shines.
+- **How it is drawn**:
+  - Glow: palette columns marked `~glow` light themselves, through a few lines patched into the
+    material's shader. It doesn't use `material.emissive`, so hit flashes still work.
+  - Motes, sparks and rings (`world3d/adorn.js`) live as long as the gear is worn. They show for
+    the hero and the nearest 4 (medium quality) or 8 (high) others within 22 m; none at low
+    quality.
+  - A blow trails its weapon's element or a legendary's gold.
+  - A torch in the light slot is carried in a free hand; a lantern hangs at the hip.
+- **Fixed on the way**: every tube built in code (shafts, bow limbs, blades) was wound
+  inside-out, so it drew dark. The Push 19 bow, mace and lute are now lit properly too.
+- **Gallery**: `&only=` also takes `held` (focuses, lights, instruments), `renown` (one class
+  at each band) and `crowns`; tiers now show the add-ons and the glow.
+- **Tests**:
+  - `tests/web/gearlook.test.mjs`: every shape and add-on is whole, faces outward and is painted
+    from real columns; detail by tier; renown bands; crowns and lights; what glows; hanging
+    shapes turned in the hand.
+  - `tests/test_gear_look.py`: instruments and crowns by name.
+  - `probe_play3d.js gear`: a renowned hero is adorned.

@@ -260,7 +260,7 @@ export async function showSoundGallery() {
 export async function showGearGallery(engine) {
   const q = new URLSearchParams(location.search);
   const only = q.get('only'), onlyCls = q.get('cls'), onlyTier = q.get('tier');
-  const [{ spawnDressed }, { starterLook, CLASS_BASE }] = await Promise.all([import('./equip.js'), import('./gearlook.js')]);
+  const [{ spawnDressed }, { starterLook, CLASS_BASE }, { FX }, { Adorn }] = await Promise.all([import('./equip.js'), import('./gearlook.js'), import('./fx.js'), import('./adorn.js')]);
   const CLASSES = Object.keys(CLASS_BASE).filter(c => !onlyCls || onlyCls.split(',').includes(c));
   const METAL = ['iron', 'steel', 'steel', 'gold', 'mithril', 'gold'];
   const LEATHER = ['leather', 'leather', 'leather_dark', 'leather_red', 'dragonhide', 'leather_black'];
@@ -287,8 +287,19 @@ export async function showGearGallery(engine) {
   const want = s => !only || only.split(',').includes(s);
   if (want('tiers')) for (const cls of CLASSES) rows.push({ title: cls, items: [0, 1, 2, 3, 4, 5].filter(t => onlyTier == null || +onlyTier === t).map(t => ({ label: `${cls} t${t}`, cls, look: tierLook(cls, t) })) });
   const kindsOf = (k, h = 1) => ({ k, h, m: 'steel', t: 2 });
-  if (want('kinds')) rows.push({ title: 'kinds', items: [['sword', 1], ['sword', 2], ['axe', 1], ['axe', 2], ['dagger', 1], ['mace', 1], ['hammer', 2], ['bow', 2], ['crossbow', 1], ['crossbow', 2], ['staff', 2], ['wand', 1], ['spear', 2], ['polearm', 2], ['thrown', 1]]
+  if (want('kinds')) rows.push({ title: 'kinds', items: [['sword', 1], ['sword', 2], ['axe', 1], ['axe', 2], ['dagger', 1], ['mace', 1], ['hammer', 1], ['hammer', 2], ['bow', 2], ['crossbow', 1], ['crossbow', 2], ['staff', 2], ['wand', 1], ['spear', 2], ['polearm', 2], ['scythe', 2], ['pick', 1], ['whip', 1], ['claw', 1], ['thrown', 1]]
     .map(([k, h]) => ({ label: `${k}${h === 2 ? ' 2h' : ''}`, cls: 'paladin', look: { v: 1, sig: `kind:${k}:${h}`, main: k === 'bow' || k === 'staff' ? { k, h, m: 'wood', t: 2 } : kindsOf(k, h), body: { w: 2, m: 'steel', t: 2 } } })) });
+  // held in the off hand: focuses, lights and instruments
+  if (want('held')) rows.push({ title: 'held', items: [['orb'], ['censer'], ['lantern'], ['torch'], ['instrument', 'lute'], ['instrument', 'lyre'], ['instrument', 'harp'], ['instrument', 'flute'], ['instrument', 'drum'], ['instrument', 'horn'], ['book']]
+    .map(([k, v]) => ({ label: v || k, cls: 'bard', look: { v: 1, sig: `held:${k}:${v}`, main: kindsOf('sword'), off: { k, v, h: 1, m: 'wood', m2: 'brass', t: 3 }, body: { w: 1, m: 'leather', t: 2 } } }))
+    .concat(['lantern', 'torch'].map(k => ({ label: `${k} (light)`, cls: 'bard', look: { v: 1, sig: `light:${k}`, main: kindsOf('sword'), light: { k }, body: { w: 1, m: 'leather', t: 2 } } }))) });
+  // renown: one class at each band (level 10 a cloak, 20 its emblem, 35 a mantle, 45 motes, prestige)
+  if (want('renown')) for (const cls of (onlyCls ? CLASSES : ['warrior', 'mage', 'ranger'])) {
+    rows.push({ title: `renown ${cls}`, items: [0, 1, 2, 3, 4, 5].map(rn => ({ label: `${cls} rn${rn}`, cls, look: { ...starterLook(cls), rn, sig: `renown:${cls}:${rn}` } })) });
+  }
+  // crowns and circlets on every head
+  if (want('crowns')) rows.push({ title: 'crowns', items: ['paladin', 'warrior', 'mage', 'thief', 'ranger'].flatMap(cls => ['crown', 'circlet'].map(v => ({ label: `${v} on ${cls}`, cls,
+    look: { v: 1, sig: `crown:${cls}:${v}`, head: { k: 'crown', v, m: v === 'crown' ? 'gold' : 'silver', t: 3 }, body: { w: CLASS_BASE[cls].w, m: 'steel', t: 2 } } }))) });
   if (want('heads')) rows.push({ title: 'heads', items: ['paladin', 'warrior', 'mage', 'thief'].flatMap(cls => ['helm', 'horned', 'hat', 'hood'].map(k => ({ label: `${k} on ${CLASS_BASE[cls].model}`, cls,
     look: { v: 1, sig: `head:${cls}:${k}`, head: k === 'helm' || k === 'horned' ? { k, m: 'steel', t: 2 } : { k, c: 'blue', t: 2 }, body: { w: CLASS_BASE[cls].w, m: 'steel', t: 2 } } }))) });
   if (want('shields')) rows.push({ title: 'shields', items: ['round', 'badge', 'square', 'spike'].flatMap(v => [1, 3].map(t => ({ label: `${v} t${t}`, cls: 'paladin',
@@ -331,8 +342,15 @@ export async function showGearGallery(engine) {
     }
   }
   const v = new THREE.Vector3();
+  // what lingers round them (adorn.js): everyone in view is adorned here
+  const fx = new FX(engine, document.body);
+  const adorn = new Adorn(engine, fx);
+  adorn.tier = 'gallery';
+  let clock = 0;
   engine.onTick(dt => {
+    clock += dt;
     actors.forEach(a => a.update(dt));
+    adorn.update(dt, clock, null, actors);
     const cv = engine.renderer.domElement.getBoundingClientRect();
     for (const l of labels) {
       v.copy(l.at).project(engine.camera);
@@ -340,7 +358,7 @@ export async function showGearGallery(engine) {
       l.el.style.transform = `translate(${(cv.left + (v.x + 1) / 2 * cv.width).toFixed(0)}px, ${(cv.top + (1 - v.y) / 2 * cv.height).toFixed(0)}px) translate(-50%, 0)`;
     }
   });
-  window.MH3D_gallery = { actors };
+  window.MH3D_gallery = { actors, adorn, fx };
   engine.setMood('day', true);
   return new THREE.Vector3(width / 2 - step / 2, 0, (rows.length - 1) * gap / 2);
 }
