@@ -689,6 +689,14 @@ class World:
         except Exception as e:
             logger.warning(f"Failed to register legendary items: {e}")
 
+        # every item's level, from the creatures that wear and drop it (gear_look.py: how the
+        # 3D client draws gear, and the level the tooltips show)
+        try:
+            import gear_look
+            gear_look.build_item_levels(self)
+        except Exception as e:
+            logger.warning(f"Failed to work out item levels: {e}")
+
         logger.info(f"World loaded: {len(self.zones)} zones, {len(self.rooms)} rooms")
         
     def _world_looks_corrupted(self):

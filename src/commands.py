@@ -340,6 +340,13 @@ class CommandHandler:
                     await player.send(f"{c['red']}Something went wrong with that command; it has been logged.{c['reset']}")
                 except Exception:
                     pass
+            # gear put on or taken off (wear, wield, remove, a disarm): the 3D clients around
+            # see it at once (gear_look.py)
+            try:
+                import gear_look
+                await gear_look.after_command(player)
+            except Exception:
+                logger.exception('gear look relay failed')
         else:
             # Check if it's a direction
             if cmd in Config.DIRECTIONS:

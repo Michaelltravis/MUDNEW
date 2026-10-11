@@ -1,8 +1,7 @@
 // A small second renderer: a character turning on a plinth (the class preview at creation
 // and the portrait on the character sheet).
 import * as THREE from 'three';
-import { spawnCharacter } from '../assets.js';
-import { classModel } from '../entities.js';
+import { spawnDressed } from '../equip.js';
 
 export function makeStage() {
   let renderer = null, canvas = null, actor = null, raf = 0, token = 0;
@@ -33,10 +32,10 @@ export function makeStage() {
       }
       if (!raf) { clock.getDelta(); loop(); }
     },
-    async show(cls, { flourish = true } = {}) {
+    // look: what they wear (gear_look.py); none: the class's starting gear
+    async show(cls, { flourish = true, look = null } = {}) {
       const my = ++token;
-      const look = classModel(cls);
-      const a = await spawnCharacter(look.model, { tint: look.tint });
+      const a = await spawnDressed(look, cls);
       if (my !== token) return;
       if (actor) scene.remove(actor.root);
       actor = a;

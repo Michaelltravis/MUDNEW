@@ -54,7 +54,7 @@ stored once, meshopt-compressed).
 
 | Pack | Author | Covers | Source |
 |---|---|---|---|
-| KayKit Character Pack: Adventurers 1.0 | Kay Lousberg | Knight, Barbarian, Mage, Rogue, Rogue (hooded), weapons/shields/hats; 75 animations | https://kaylousberg.itch.io/kaykit-adventurers (mirror: github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0) |
+| KayKit Character Pack: Adventurers 1.0 | Kay Lousberg | Knight, Barbarian, Mage, Rogue, Rogue (hooded), weapons/shields/hats; the pack's painted shields, painted two-handed sword and quiver (`Assets/gltf`); 75 animations | https://kaylousberg.itch.io/kaykit-adventurers (mirror: github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0) |
 | KayKit Character Pack: Skeletons 1.0 | Kay Lousberg | skeleton warrior, mage, rogue, minion; 95 animations (superset, same rig) | https://kaylousberg.itch.io/kaykit-skeletons (mirror: github.com/KayKit-Game-Assets/KayKit-Character-Pack-Skeletons-1.0) |
 | KayKit Dungeon Remastered 1.0 | Kay Lousberg | walls, floors, pillars, torches, barrels, crates, chests, rubble, stairs (37 used of 200+) | https://kaylousberg.itch.io/kaykit-dungeon-remastered (mirror: github.com/KayKit-Game-Assets/KayKit-Dungeon-Remastered-1.0) |
 | Stylized Nature MegaKit (standard) | Quaternius | trees, pines, dead trees, bushes, ferns, grass, flowers, rocks, pebbles (26 used) | https://opengameart.org/content/stylized-nature-megakit, https://quaternius.com |
@@ -67,6 +67,13 @@ stored once, meshopt-compressed).
 | KayKit Medieval Hexagon 1.0 | Kay Lousberg | town houses, tavern, smithy, church, market, towers, wells, town walls, street props (64 used) | https://kaylousberg.itch.io/kaykit-medieval-hexagon (mirror: github.com/KayKit-Game-Assets/KayKit-Medieval-Hexagon-Pack-1.0) |
 | KayKit Furniture Bits 1.0 | Kay Lousberg | beds, tables, chairs, shelves, cabinets, rugs, lamps, books, pictures (all 53) | https://kaylousberg.itch.io/furniture-bits (mirror: github.com/KayKit-Game-Assets/KayKit-Furniture-Bits-1.0) |
 | KayKit Halloween Bits 1.0 | Kay Lousberg | graves, gravestones, fences, lanterns, benches, shrines, dead trees (all 63) | https://kaylousberg.itch.io/halloween-bits (mirror: github.com/KayKit-Game-Assets/KayKit-Halloween-Bits-1.0) |
+
+Heroes are dressed from the equipment kit (`chars/equip.glb` + `equip.json`, the `equip` job in
+`build.mjs`): every body part and piece of the five adventurers on one rig, their four textures
+merged into one palette of colour ramps (`tools/art3d/ramps.json` names each swatch's role and adds
+ramps for materials, cloth colours, elements, races, the classes' and the named sets' colours).
+`world3d/equip.js` merges what a hero wears into one mesh; weapons the pack lacks (bow, mace, lute)
+are built in code in the same style (`world3d/procgear.js`), so they need no art source.
 
 Towns, interiors and graveyards are placed by `world3d/terrain-town.js`: houses fill empty
 map cells beside streets, shopfronts (pressed to two tiles) stand where a street meets an

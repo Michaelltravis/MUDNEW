@@ -67,7 +67,7 @@ export class Controller {
     this.stop();
     this.vel.set(0, 0);
     this.dashing = null;
-    this.actor.play('Idle', 0.15);
+    this.actor.play(this.actor.idle || 'Idle', 0.15);
   }
 
   // can the body move from tile (ax, az) to the next tile (bx, bz)? (for path search)
@@ -193,7 +193,7 @@ export class Controller {
     if (this.lock === 0) {
       if (speed > 3.2) this.actor.play('Running_A', 0.15, speed / RUN * 1.05);
       else if (speed > 0.25) this.actor.play('Walking_A', 0.15, Math.max(0.6, speed / WALK));
-      else this.actor.play('Idle', 0.25);
+      else this.actor.play(this.actor.idle || 'Idle', 0.25);
     }
     return speed;
   }

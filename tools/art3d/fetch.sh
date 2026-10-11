@@ -49,6 +49,10 @@ for f in json.load(sys.stdin)['files']:
         print(n)
 " "$re")
 }
+# the equipment kit's standalone pieces (build.mjs 'equip'): painted shields, the painted
+# two-handed sword, the quiver; they share the characters' textures
+kaykit_gltf KayKit-Character-Pack-Adventures-1.0 kaykit-adventurers \
+  'quiver|shield_(round|badge|square|spikes)_color|sword_2handed_color'
 # towns: houses, shops, temple, walls, market props (KayKit Medieval Hexagon)
 kaykit_gltf KayKit-Medieval-Hexagon-Pack-1.0 kaykit-hexagon \
   '(building_(home_A|home_B|tavern|blacksmith|church|market|tower_A|well|windmill|barracks|watermill)_(blue|red|yellow|green))|barrel|bucket_water|crate_A_big|crate_B_small|crate_long_A|sack|wheelbarrow|weaponrack|tent|fence_wood_straight|fence_stone_straight|wall_straight|wall_straight_gate|wall_corner_A_outside|trees_A_medium|tree_single_A|pallet|resource_lumber|target|ladder'

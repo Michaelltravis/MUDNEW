@@ -1,5 +1,5 @@
 // Browser probe for /play against a local server (./run.sh), with the gauntlet admin account.
-//   NODE_PATH=/opt/node22/lib/node_modules node tests/web/probe_play3d.js stairs|doors|camera|menu|autotarget|creatures|spellbook|trainer|party|abilityfx [outdir]
+//   NODE_PATH=/opt/node22/lib/node_modules node tests/web/probe_play3d.js stairs|doors|camera|menu|autotarget|creatures|spellbook|trainer|party|gear|abilityfx [outdir]
 // CommonJS on purpose (the global Playwright only resolves through NODE_PATH with require).
 // WebGL may render at ~1 fps in a container, so the probe places the hero directly and waits
 // on frames instead of walking in real time.
@@ -23,6 +23,8 @@
 //   creatures: a blob, a mimic, a statue, a chess rook, a stone golem, a goblin farmer, a brownie,
 //           a living book and the Sewer King each get the right body (looks.js, from the payload's
 //           short description and room line).
+//   gear: two browsers (Gauntlet, Gauntletb) in the temple: each hero wears its own look; when
+//           Gauntlet wields a greatblade, Gauntletb sees it re-dressed within seconds.
 //   abilityfx: in the crypt with a spectre, a few of the character's own abilities each start
 //           their own recipe on the key press (abilityfx.js) and the server's event plays the
 //           rest (what flies, lands, lingers), with no page errors.
@@ -462,6 +464,41 @@ async function waitFor(page, fn, arg, secs = 60) {
     check(played >= 2, `${played} of ${pick.length} abilities played their own look from the key press and the server's event`);
     await page.evaluate(() => MH.sendCommand('purge', false));
     await sleep(800);
+  }
+
+  if (MODE === 'gear') {
+    // two browsers in the temple: Gauntlet changes gear, Gauntletb sees it re-dressed (equip.js,
+    // the server's 'look' relay); each hero wears its own look
+    const page2 = await (await browser.newContext({ viewport: { width: 960, height: 540 } })).newPage();
+    page2.on('pageerror', e => errors.push('B: ' + String(e).slice(0, 300)));
+    await page2.goto(`http://${CFG.mud.host}:${CFG.mud.mapPort}/play?q=low`, { waitUntil: 'load' });
+    await waitFor(page2, () => document.getElementById('loading').classList.contains('done'));
+    await page2.fill('#login-name', 'Gauntletb');
+    await page2.fill('#login-pass', 'gauntlet1');
+    await page2.click('#login-btn');
+    check(await waitFor(page2, () => !!(window.MH3D && MH3D.hero), null, 120), 'second player logged in');
+    for (const pg of [page, page2]) await pg.evaluate(() => { MH.sendCommand('group leave', false); MH.sendCommand('goto 3001', false); });
+    const seen = await waitFor(page2, () => { const e = MH3D.ents.list.get('pGauntlet'); return !!(e && e.actor && e.actor.gear); }, null, 60);
+    check(seen, 'Gauntletb draws Gauntlet dressed');
+    const mine = await page.evaluate(() => ({ hero: MH3D.hero.gear && MH3D.hero.gear.sig, look: MH.state.player.look && MH.state.player.look.sig,
+      pieces: MH3D.hero.gear ? MH3D.hero.gear.plan.props.map(p => p.name) : [] }));
+    check(mine.hero && mine.hero === mine.look, `Gauntlet wears its own look (${mine.hero}: ${mine.pieces.join(', ')})`);
+    const before = await page2.evaluate(() => MH3D.ents.list.get('pGauntlet').actor.gear.sig);
+    await page2.screenshot({ path: path.join(OUT, 'gear-before.png') });
+    // a two-handed greatblade instead of whatever was in hand
+    await page.evaluate(() => { MH.sendCommand('remove all', false); MH.sendCommand('load obj 15023', false); MH.sendCommand('wield greatblade', false); });
+    const redressed = await waitFor(page2, sig => { const e = MH3D.ents.list.get('pGauntlet'); return e && e.actor.gear.sig !== sig; }, before, 15);
+    const theirs = await page2.evaluate(() => { const g = MH3D.ents.list.get('pGauntlet').actor.gear; return { sig: g.sig, pieces: g.plan.props.map(p => p.name) }; });
+    check(redressed && theirs.pieces.some(n => /2H_Sword|sword_2handed/.test(n)), `Gauntletb sees the greatblade in Gauntlet's hands within seconds (${theirs.pieces.join(', ')})`);
+    await page.evaluate(() => MH.refreshState && MH.refreshState());
+    const own = await waitFor(page, () => MH3D.hero.gear.plan.props.some(p => /2H_Sword|sword_2handed/.test(p.name)), null, 15);
+    check(own, 'and Gauntlet sees it in its own hands');
+    await sleep(1500);
+    await page2.screenshot({ path: path.join(OUT, 'gear-after-other.png') });
+    await page.screenshot({ path: path.join(OUT, 'gear-after-own.png') });
+    // put things back as they were
+    await page.evaluate(() => { MH.sendCommand('remove all', false); MH.sendCommand('junk greatblade', false); MH.sendCommand('wear all', false); });
+    await sleep(1500);
   }
 
   check(errors.length === 0, `no page errors${errors.length ? ': ' + errors.join(' / ') : ''}`);

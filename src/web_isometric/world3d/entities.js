@@ -4,6 +4,7 @@
 // Which body each creature gets is decided in looks.js.
 import * as THREE from 'three';
 import { spawnCharacter, spawnMob } from './assets.js';
+import { spawnDressed, dress } from './equip.js';
 import { creatureLook, hashStr } from './looks.js';
 import { makeProc, makeProp } from './proc.js';
 import { isHostile, conOf } from './targeting.js';
@@ -106,6 +107,14 @@ export class Entities {
     if (e.vnum !== to) this.moveTo(e, to);
   }
 
+  // another player put on or took off gear (the server's 'look' relay): re-dress them
+  look({ name, look }) {
+    const e = name && this.list.get(`p${name}`);
+    if (!e || !look) return;
+    e.data.look = look;
+    if (e.actor) dress(e.actor, look, e.data.char_class);
+  }
+
   // payload.nearby: [{vnum, mobs, players, doors, items}]
   sync(payload, selfName) {
     // a payload without `nearby` (an older /state reply) says nothing about who is around:
@@ -124,6 +133,7 @@ export class Entities {
       const e = this.list.get(key);
       if (!e) { this.create(key, w); continue; }
       e.data = w.data;
+      if (e.kind === 'player' && e.actor && w.data.look) dress(e.actor, w.data.look, w.data.char_class);
       this.markHostile(e);
       if (e.vnum !== w.vnum) {
         this.moveTo(e, w.vnum);
@@ -160,17 +170,19 @@ export class Entities {
     if (w.kind === 'mob' && w.data.level) e.plate.querySelector('.lv').textContent = w.data.level;
     if (w.data.boss) e.plate.classList.add('boss');
     this.plates.appendChild(e.plate);
-    const look = w.kind === 'player' ? classModel(w.data.char_class) : creatureLook(w.data);
+    // another player is dressed in what they wear (equip.js); a creature gets its body from looks.js
+    const isPlayer = w.kind === 'player';
+    const look = isPlayer ? {} : creatureLook(w.data);
     e.look = look;
     e.fly = (look.beast ? look.beast.fly : look.fly) || 0;
     e.still = !!look.still;        // a statue: no breathing while it stands guard
-    spawnLook(look, { kits: this.kits, seed: hashStr(key) }).then(actor => {
+    (isPlayer ? spawnDressed(w.data.look, w.data.char_class) : spawnLook(look, { kits: this.kits, seed: hashStr(key) })).then(actor => {
       if (!e.alive) return;
       e.actor = actor;
       e.root = actor.root;
       e.root.position.copy(at);
       e.root.rotation.y = (hashStr(key) % 628) / 100;
-      actor.play(isHostile(w) ? 'Idle_Combat' : 'Idle', 0, e.still ? 0 : 0.85 + (hashStr(key) % 30) / 100);
+      actor.play(isHostile(w) ? 'Idle_Combat' : actor.idle || 'Idle', 0, e.still ? 0 : 0.85 + (hashStr(key) % 30) / 100);
       this.engine.scene.add(e.root);
     }).catch(() => {});
   }
@@ -238,7 +250,7 @@ export class Entities {
       // the further behind, the faster they run)
       if (e.goal) {
         const p = e.root.position, dx = e.goal.x - p.x, dz = e.goal.z - p.z, d = Math.hypot(dx, dz);
-        if (d < 0.1) { e.goal = null; if (e.actor) e.actor.play(isHostile(e) ? 'Idle_Combat' : 'Idle', 0.18, e.still ? 0 : 1); }
+        if (d < 0.1) { e.goal = null; if (e.actor) e.actor.play(isHostile(e) ? 'Idle_Combat' : e.actor.idle || 'Idle', 0.18, e.still ? 0 : 1); }
         else {
           const speed = e.kind === 'player' ? Math.min(9, Math.max(3.2, d * 4)) : 3.2;
           const step = Math.min(d, speed * dt);

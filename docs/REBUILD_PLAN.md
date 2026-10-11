@@ -976,3 +976,52 @@ again after the balance follow-ups", "Zone bosses") and `docs/balance/bosses.md`
   `lib/players` and the leaderboards.
 - **Tests**: `tests/test_marquee_log.py`; `tests/test_balance.py` (zone bosses: sizing, adds,
   poison, the summon cap); `tests/test_spells_audit.py` (damage over time, the bone knight).
+
+### Gear you can see: heroes dressed in what they wear (Push 19) (owner: "make equipment look unique on players… scale in detail as the player level and gear gets better")
+Until now a hero's 3D body came from the class alone and never changed; other players' gear
+wasn't even sent. Now every hero wears their gear, and everyone around sees it change.
+- **What the server says** (`src/gear_look.py`): each character's `look`, the one place items
+  are read.
+  - Per worn piece: kind (sword, bow, mace, helm, hood, cloak…), hands, armour weight (cloth,
+    leather, mail, plate), material and colour (ramp names), element, named set and a tier 0-5.
+  - A `sig` hash, so a client re-dresses only on change.
+  - The item level comes from `min_level`, else the strongest creature that carries or drops
+    the item (nearly all gear), else its set's level range. It now shows in the tooltips.
+  - Tiers: level <8 → 0, <18 → 1, <30 → 2, <42 → 3, else 4; one more for magic, glowing,
+    humming, superior or enchanted gear; a legendary is 5.
+  - Sent in your payload, in other players' entries, and as a signature in combat updates.
+  - Wear, wield, remove or a disarm relays the new look to the 3D clients around at once
+    (`web_map.relay_look`).
+  - `tools/qc_gear.py` shows how all the world's gear is read.
+- **The art** (`tools/art3d/build.mjs` `equip`, `tools/art3d/ramps.json`): every body part and
+  piece of the five KayKit adventurers on one rig.
+  - Their four textures (grids of colour ramps) merged into one 366-column palette, with ramps
+    for materials, cloths, elements, races, and the class and named-set colours.
+  - Worn and dark variants of each.
+  - Plus the pack's painted shields, painted greatsword and quiver.
+  - 627 KB (`art3d/chars/equip.glb` + `equip.json`).
+- **Dressing** (`world3d/gearlook.js` plans, `world3d/equip.js` builds):
+  - What a hero wears is merged into one skinned mesh: 2 draw calls however much they wear,
+    recoloured by moving UVs between palette columns. Re-dressing swaps the geometry in place.
+  - A class keeps its silhouette: the torso, arms and legs come from another model only when
+    armour is two weight steps from what the class starts in (a mage in plate gets the knight's
+    torso).
+  - Metal and leather take the item's material, cloth its colour, its set's or the class's;
+    tier 0 is dull and worn.
+  - The bow, the mace and the lute, which no pack has, are built in code in the same style
+    (`world3d/procgear.js`).
+  - The swing follows the hand (two-handed, dual blades, a bow, a staff), and a two-handed
+    weapon idles two-handed.
+  - The hero, other players, the portraits, the character sheet and the class preview at
+    creation all use it.
+- **Gallery**: `/play?demo&gallery=gear` (`&only=tiers|kinds|heads|shields|capes|mixes`,
+  `&cls=`, `&tier=`): every class at tiers 0-5, every weapon kind, every head and shield, cloaks,
+  and mixed bodies.
+- **Tests**:
+  - `tests/test_gear_look.py`: item levels, how items are read, the starting looks, tiers, the
+    relay.
+  - `tests/web/gearlook.test.mjs`: silhouettes, bodies by weight, heads, colours, swings,
+    shapes.
+  - `tests/web/equipkit.test.mjs`: one rig, every part, where pieces hang, the palette.
+  - `tests/web/probe_play3d.js gear`: two browsers; one wields a greatblade and the other sees
+    it.

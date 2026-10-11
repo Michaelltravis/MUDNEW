@@ -10,6 +10,7 @@ const ART = new URL('../art3d/', import.meta.url).href;
 const loader = new GLTFLoader();
 loader.setMeshoptDecoder(MeshoptDecoder);
 const load = file => loader.loadAsync(ART + file);
+export const loadArt = load;
 
 // ---- kits -------------------------------------------------------------------
 // A kit model can be several meshes (trunk + leaves). For instancing, each part's
@@ -18,7 +19,7 @@ const load = file => loader.loadAsync(ART + file);
 // The optimiser stores positions as normalised integers (-1..1) and puts the real
 // size in the node transform. Baking that transform into integer storage clamps
 // everything to 1 m (walls came out flat), so bake into plain floats.
-function floatAttr(attr) {
+export function floatAttr(attr) {
   const n = attr.count, s = attr.itemSize, out = new Float32Array(n * s);
   for (let i = 0; i < n; i++) {
     out[i * s] = attr.getX(i);

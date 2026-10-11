@@ -505,6 +505,14 @@ def item_info(item):
     }
     if getattr(item, 'fixed', False):
         info['fixed'] = True      # a fixture: part of the room, not loot
+    if itype in ('weapon', 'armor', 'worn') or getattr(item, 'wear_slot', None):
+        # the item's level (from the creatures that carry it) and how fine it looks (gear_look.py)
+        try:
+            import gear_look
+            info['level'] = gear_look.item_level(item)
+            info['tier'] = gear_look.item_tier(item)
+        except Exception:
+            pass
     # type-specific combat stats so the client can show a real tooltip
     if itype == 'weapon':
         info['damage_dice'] = getattr(item, 'damage_dice', None)
@@ -657,19 +665,18 @@ def _cooldowns(player):
 
 
 def _worn_aura(player):
-    """'legendary' when any legendary piece is worn; 'set' at 4+ pieces of
-    one named set - drives the class-colored aura on the world sprite."""
-    worn = [it for it in getattr(player, 'equipment', {}).values() if it]
-    if any(getattr(it, 'rarity', '') == 'legendary' for it in worn):
-        return 'legendary'
-    counts = {}
-    for it in worn:
-        sid = getattr(it, 'set_id', None)
-        if sid:
-            counts[str(sid)] = counts.get(str(sid), 0) + 1
-    if any(c >= 4 for c in counts.values()):
-        return 'set'
-    return None
+    """'legendary' when any legendary piece is worn; 'set' at 4+ pieces of one set."""
+    import gear_look
+    return gear_look.worn_aura(player)
+
+
+def _look(entity):
+    """How a character's gear looks, for the 3D client (gear_look.py)."""
+    try:
+        import gear_look
+        return gear_look.look_of(entity)
+    except Exception:
+        return None
 
 
 def _in_combat(player) -> bool:
@@ -855,6 +862,7 @@ def build_combat_payload(player) -> dict:
                         'char_class': getattr(entity, 'char_class', ''),
                         'hp': getattr(entity, 'hp', 0),
                         'maxHp': getattr(entity, 'max_hp', 1),
+                        'lk': (_look(entity) or {}).get('sig'),
                         **_pos_fields(entity),
                         **_ally_combat(entity, player),
                     })
@@ -1280,6 +1288,7 @@ def _room_entities(room, vnum, player):
                     # where they stand (3D clients), and whether they are in your group
                     **_pos_fields(entity),
                     'groupmate': bool(getattr(player, 'group', None)) and getattr(entity, 'group', None) is getattr(player, 'group', None),
+                    'look': _look(entity),
                     **_ally_combat(entity, player),
                 })
 
@@ -1601,6 +1610,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
                 for item in getattr(player, 'inventory', [])
             ],
             'aura': _worn_aura(player),
+            'look': _look(player),
             'mount': _mount_info(player),
             'position': getattr(player, 'position', 'standing'),
             'autoloot': bool(getattr(player, 'autoloot', False)),

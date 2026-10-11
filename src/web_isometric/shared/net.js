@@ -350,6 +350,7 @@
         else if (payload.type === 'improve') MH.bus.emit('ability.improve', payload);
         // other players: where they stand, and group changes (party frames, invites)
         else if (payload.type === 'presence') MH.bus.emit('player.presence', payload);
+        else if (payload.type === 'look') MH.bus.emit('player.look', payload);
         else if (payload.type === 'group') MH.bus.emit('group.update', payload);
         else if (payload.type === 'group_invite') MH.bus.emit('group.invite', payload);
         // the server wants this session's token (subscribe) / another login took the character

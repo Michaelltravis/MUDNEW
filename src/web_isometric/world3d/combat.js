@@ -12,8 +12,10 @@ import { recipeFor, timeline, THEMES } from './abilityfx.js';
 import { RECIPES } from './abilityfx-table.js';
 import { Director } from './fxdirector.js';
 import { LANDS } from './soundtable.js';
+import { swingClips } from './gearlook.js';
 
-// the hero's ordinary swing, by class (the class model carries that weapon)
+// the ordinary swing, by class: for anyone without a look (gearlook.js swingClips picks it
+// from what the hand holds)
 const SWING = {
   warrior: ['2H_Melee_Attack_Chop', '2H_Melee_Attack_Slice', '2H_Melee_Attack_Stab'],
   paladin: ['1H_Melee_Attack_Chop', '1H_Melee_Attack_Slice_Diagonal', '1H_Melee_Attack_Slice_Horizontal'],
@@ -61,9 +63,15 @@ export class CombatView {
   localSwing() {
     const h = this.getHero();
     if (!h || !h.ctl) return;
-    const list = SWING[String(h.cls || '').toLowerCase()] || SWING.paladin;
+    const cls = String(h.cls || '').toLowerCase();
+    const list = this.clips({ hero: true, cls, look: MH.state.player && MH.state.player.look }, !!RANGED_AUTO[cls]);
     h.ctl.swing(list[Math.floor(Math.random() * list.length)], true);
     h.ctl.localSwingAt = performance.now();
+  }
+  // a hero's or another player's swing: from what they hold, else their class's
+  clips(who, ranged) {
+    if (who.look) return swingClips(who.look, who.cls, ranged);
+    return SWING[String(who.cls || '').toLowerCase()] || SWING.paladin;
   }
   // what the hero is about to do: the recipe (main.js plays its start on the key press)
   recipe(id, cls, ev = {}) { return recipeFor(RECIPES, id, cls, ev); }
@@ -73,11 +81,11 @@ export class CombatView {
     if (!ref) return null;
     const h = this.getHero();
     if (ref.p && h && ref.p.toLowerCase() === String(this.heroName()).toLowerCase()) {
-      return { actor: h.actor, root: h.actor.root, hero: true, cls: h.cls };
+      return { actor: h.actor, root: h.actor.root, hero: true, cls: h.cls, look: MH.state.player && MH.state.player.look };
     }
     const e = ref.m != null ? this.ents.list.get(`m${ref.m}`) : ref.p ? this.ents.list.get(`p${ref.p}`) : null;
     if (!e || !e.root) return null;
-    return { actor: e.actor, root: e.root, ent: e, mob: ref.m != null, cls: e.data && e.data.char_class };
+    return { actor: e.actor, root: e.root, ent: e, mob: ref.m != null, cls: e.data && e.data.char_class, look: e.data && e.data.look };
   }
   chest(who) { return who.root.position.clone().setY(who.root.position.y + (who.ent && who.ent.plateY ? who.ent.plateY * 0.45 : 1.15)); }
   face(who, other) {
@@ -226,7 +234,7 @@ export class CombatView {
     // heroes shoot what their class shoots (arrows, arcane or shadow bolts); creatures as the server says
     const ranged = ((src.hero || !src.mob) && RANGED_AUTO[cls]) || e.ranged;
     let anim;
-    if (src.hero || !src.mob) { const list = SWING[cls] || SWING.paladin; anim = list[Math.floor(Math.random() * list.length)]; }
+    if (src.hero || !src.mob) { const list = this.clips(src, !!ranged); anim = list[Math.floor(Math.random() * list.length)]; }
     else anim = ['1H_Melee_Attack_Chop', '1H_Melee_Attack_Slice_Diagonal', '1H_Melee_Attack_Stab'][Math.floor(Math.random() * 3)];
     this.play(src, anim, 1.15);
     const rkind = ranged && (typeof ranged === 'object' ? ranged.kind : e.style === 'bolt' ? 'bolt' : 'shot');
@@ -255,7 +263,9 @@ export class CombatView {
     const heroHit = dst.hero;
     const res = e.res || (e.amt > 0 ? 'hit' : 'miss');
     // what it sounds like: a wound on the hero, a blade or a fist, a ring of steel
-    const blade = src && !src.mob && ['warrior', 'paladin', 'thief', 'assassin', 'bard'].includes(String(src.cls || '').toLowerCase());
+    const held = src && src.look && src.look.main && src.look.main.k;
+    const blade = src && !src.mob && (held ? ['sword', 'axe', 'dagger', 'polearm', 'scythe', 'spear', 'claw'].includes(held)
+      : ['warrior', 'paladin', 'thief', 'assassin', 'bard'].includes(String(src.cls || '').toLowerCase()));
     this.sfx(res === 'hit' ? (heroHit ? 'hurt' : blade ? 'hit_blade' : 'hit') : LANDS[res] || 'miss', dst, { school });
     if (res === 'hit' || res === 'crit') {
       const crit = e.crit || res === 'crit';

@@ -13,7 +13,7 @@ const title = s => String(s || '').replace(/_/g, ' ').replace(/\b\w/g, c => c.to
 export function createCharacter() {
   const root = $('#character');
   const body = root.querySelector('.ch-body');
-  let player = null, open = false, tab = 'overview', stage = null, shownClass = '', sig = '';
+  let player = null, open = false, tab = 'overview', stage = null, shownClass = '', shownSig = '', sig = '';
 
   root.querySelectorAll('.ch-tabs button').forEach(b => b.addEventListener('click', () => {
     tab = b.dataset.tab; sig = '';
@@ -89,7 +89,11 @@ export function createCharacter() {
     if (tab === 'overview') {
       stage = stage || makeStage();
       stage.attach(portrait.querySelector('canvas'));
-      if (shownClass !== player.char_class || !stage._shown) { shownClass = player.char_class; stage._shown = true; stage.show(player.char_class, { flourish: false }); }
+      const lsig = (player.look && player.look.sig) || '';
+      if (shownClass !== player.char_class || shownSig !== lsig || !stage._shown) {
+        shownClass = player.char_class; shownSig = lsig; stage._shown = true;
+        stage.show(player.char_class, { flourish: false, look: player.look });
+      }
     } else if (stage) { stage.stop(); stage._shown = false; }
   }
   function toggle(on = !open) {

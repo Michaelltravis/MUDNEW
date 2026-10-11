@@ -2389,7 +2389,14 @@ class Player(Character):
             await AchievementManager.check_level(self)
         except Exception:
             pass
-        
+
+        # a new band of renown (levels 10, 20, 35, 45): the 3D clients around see it (gear_look.py)
+        try:
+            import gear_look
+            await gear_look.touch(self)
+        except Exception:
+            pass
+
     async def check_new_abilities(self):
         """Learn everything this level has reached, at 50%, announced (mastery.py)."""
         import mastery

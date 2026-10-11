@@ -21,7 +21,7 @@ import { createStable } from './stable.js';
 import { createServices } from './services.js';
 import { createLegend } from './legend.js';
 import { abilityIcon, uiIcon } from './icons.js';
-import { classPortrait, creaturePortrait } from './portrait.js';
+import { lookPortrait, creaturePortrait } from './portrait.js';
 import { SLOTS, cleanBar, defaultBar, placeNew, putOnBar, takeOffBar, diffAbilities, usable, costLine, rankOf } from '../abilities.js';
 import { conOf } from '../targeting.js';
 import { recipeFor } from '../abilityfx.js';
@@ -185,9 +185,11 @@ export function createHud() {
     els.pf.querySelector('.ini').textContent = (p.name || '?')[0].toUpperCase();
     els.pf.querySelector('.lvl').textContent = p.level || 1;
     els.pf.dataset.cls = cls;
-    if (cls && portraitFor !== cls) {
-      portraitFor = cls;
-      classPortrait(cls).then(url => { if (url && portraitFor === cls) { const img = els.pf.querySelector('.face'); img.src = url; img.classList.add('on'); } });
+    // the portrait shows what you wear: taken again when your look changes
+    const pkey = `${cls}:${(p.look && p.look.sig) || ''}`;
+    if (cls && portraitFor !== pkey) {
+      portraitFor = pkey;
+      lookPortrait(p.look, cls).then(url => { if (url && portraitFor === pkey) { const img = els.pf.querySelector('.face'); img.src = url; img.classList.add('on'); } });
     }
     vbar(els.pf.querySelector('.vbar.hp'), p.hp, p.max_hp);
     const res = p.resource && p.resource.max ? { cur: p.resource.value, max: p.resource.max, name: p.resource.name }
@@ -539,7 +541,7 @@ export function createHud() {
       const img = els.tf.querySelector('.face');
       img.classList.remove('on');
       targetCast(null);
-      const shot = t.kind === 'player' ? classPortrait(t.char_class) : creaturePortrait(t);
+      const shot = t.kind === 'player' ? lookPortrait(t.look, t.char_class) : creaturePortrait(t);
       shot.then(url => { if (url && targetKey === key) { img.src = url; img.classList.add('on'); } });
     }
   }

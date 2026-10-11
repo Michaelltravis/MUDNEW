@@ -1,8 +1,10 @@
 // Build the 3D client's art from the downloaded CC0 packs (see fetch.sh and
 // docs/art/SOURCES.md). Usage:
 //   cd tools/art3d && npm ci && node build.mjs <cache dir from fetch.sh>
-// Output goes to src/web_isometric/art3d/. Three kinds of job:
+// Output goes to src/web_isometric/art3d/. The kinds of job:
 //   char  - one rigged character, animations stripped (they live in the shared rig file)
+//   equip - the equipment kit: every adventurer body part and piece on ONE rig with ONE palette
+//           texture, so the client can dress a hero in any mix and draw them as one mesh
 //   anims - the shared animation set for every KayKit humanoid (same 41-joint rig)
 //   kit   - many static models merged into ONE file: shared textures are stored once and
 //           the client loads a whole kit with one request; each model is a top-level
@@ -14,7 +16,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
-import { NodeIO, getBounds } from '@gltf-transform/core';
+import { NodeIO, getBounds, TextureInfo } from '@gltf-transform/core';
 import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
 import { dedup, prune, weld, resample, meshopt, textureCompress, mergeDocuments, unpartition } from '@gltf-transform/functions';
 import { MeshoptEncoder, MeshoptDecoder } from 'meshoptimizer';
@@ -79,6 +81,8 @@ const JOBS = [
     ({ kind: 'char', src: `${ADV}/${n}.glb`, out: `chars/${n.toLowerCase()}.glb` })),
   ...['Skeleton_Warrior', 'Skeleton_Minion', 'Skeleton_Mage', 'Skeleton_Rogue'].map(n =>
     ({ kind: 'char', src: `${SKEL}/${n}.glb`, out: `chars/${n.toLowerCase()}.glb` })),
+  // one quantization volume for the whole kit, so every part shares one skin
+  { kind: 'equip', out: 'chars/equip.glb', quantizationVolume: 'scene' },
   // the skeleton pack's set is a superset (95 clips) of the adventurers' (76), same rig
   { kind: 'anims', src: `${SKEL}/Skeleton_Warrior.glb`, out: 'chars/rig_anims.glb' },
   { kind: 'kit', out: 'kits/dungeon.glb', items: DUNGEON.map(k => ({ key: k, src: findFile(DUN, k) })) },
@@ -108,7 +112,8 @@ async function finish(doc, job) {
   if (job.texture) {
     tf.push(textureCompress({ encoder: sharp, targetFormat: 'webp', resize: [job.texture, job.texture] }));
   }
-  tf.push(meshopt({ encoder: MeshoptEncoder, level: 'medium' }), unpartition());
+  tf.push(meshopt({ encoder: MeshoptEncoder, level: 'medium', ...(job.quantizationVolume ? { quantizationVolume: job.quantizationVolume } : {}) }),
+    unpartition());
   await doc.transform(...tf);
   const out = path.join(OUT, job.out);
   fs.mkdirSync(path.dirname(out), { recursive: true });
@@ -195,6 +200,218 @@ async function buildKit(job) {
   return finish(doc, job);
 }
 
+// ---- the equipment kit ----
+// The five KayKit adventurers share one 41-joint rig (same joints, same order, same bind
+// matrices) and paint everything from one texture each: an 8x4 grid of vertical colour ramps.
+// So: every body part (6 per model) and every piece (weapons, shields, hats, capes, plus the
+// pack's standalone pieces) goes onto the knight's rig, and every UV is re-pointed at one
+// shared palette with a column per ramp. Recolouring a piece is then a change of column, and
+// a dressed hero merges into one mesh with one material (equip.js).
+const ADV_ROOT = 'kaykit-adventurers/addons/kaykit_character_pack_adventures';
+const RAMPS = JSON.parse(fs.readFileSync(new URL('./ramps.json', import.meta.url), 'utf8'));
+const EQUIP_MODELS = [['knight', 'Knight', 'knight'], ['barbarian', 'Barbarian', 'barbarian'], ['mage', 'Mage', 'mage'],
+  ['rogue', 'Rogue', 'rogue'], ['rogue_hooded', 'Rogue_Hooded', 'rogue']];
+const zQuat = deg => [0, 0, Math.sin(deg * Math.PI / 360), Math.cos(deg * Math.PI / 360)];
+// the pack's standalone pieces hang where the matching piece in a character hangs
+const EQUIP_EXTRAS = [
+  { key: 'shield_round_color', tex: 'knight', like: 'knight-Round_Shield' },
+  { key: 'shield_badge_color', tex: 'knight', like: 'knight-Badge_Shield' },
+  { key: 'shield_square_color', tex: 'knight', like: 'knight-Rectangle_Shield' },
+  { key: 'shield_spikes_color', tex: 'knight', like: 'knight-Spike_Shield' },
+  { key: 'sword_2handed_color', tex: 'knight', like: 'knight-2H_Sword' },
+  // on the back, leaning so the arrows rise over the right shoulder
+  { key: 'quiver', tex: 'rogue', mount: { bone: 'chest', t: [-0.1, 0.12, -0.3], r: zQuat(24), s: [0.8, 0.8, 0.8] } },
+];
+const PAL_W = 4, PAL_H = 128;
+const hexRgb = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+const mixRgb = (a, b, t) => a.map((v, i) => Math.round(v + (b[i] - v) * t));
+const rampOf = (top, mid, bot) => Array.from({ length: PAL_H }, (_, r) => {
+  const f = r / (PAL_H - 1);
+  return f < 0.5 ? mixRgb(top, mid, f / 0.5) : mixRgb(mid, bot, (f - 0.5) / 0.5);
+});
+// tier 0: dull and a little dark; a metal's darker parts (the knight's dark steel starts where steel ends)
+const wornOf = rows => rows.map(c => { const l = 0.3 * c[0] + 0.59 * c[1] + 0.11 * c[2]; return c.map(v => Math.round((v + (l - v) * 0.4) * 0.92)); });
+const darkOf = rows => { const b = rows[rows.length - 1]; return rampOf(b, b.map(v => v * 0.83), b.map(v => v * 0.66)); };
+const FAMILY_ROLE = { metal: 'metal', leather: 'leather', fur: 'fur', wood: 'wood', cloth: 'cloth', gem: 'gem', skin: 'skin' };
+
+async function buildEquip(job) {
+  const srcs = [];
+  for (const [key, file, tex] of EQUIP_MODELS) {
+    const doc = await io.read(path.join(CACHE, `${ADV_ROOT}/Characters/gltf/${file}.glb`));
+    for (const a of doc.getRoot().listAnimations()) dropAnimation(a);
+    srcs.push({ key, tex, doc });
+  }
+  // the rig must be the same in every model, or parts can't share it
+  const base = srcs[0].doc;
+  const baseSkin = base.getRoot().listSkins()[0];
+  const joints = baseSkin.listJoints();
+  const jointNames = joints.map(j => j.getName());
+  const ibm0 = baseSkin.getInverseBindMatrices();
+  for (const s of srcs.slice(1)) {
+    const sk = s.doc.getRoot().listSkins()[0];
+    if (sk.listJoints().map(j => j.getName()).join() !== jointNames.join()) throw new Error(`equip: ${s.key} has another rig`);
+    const ibm = sk.getInverseBindMatrices();
+    for (let i = 0; i < joints.length; i++) {
+      const a = ibm0.getElement(i, []), b = ibm.getElement(i, []);
+      if (a.some((v, k) => Math.abs(v - b[k]) > 1e-4)) throw new Error(`equip: ${s.key} binds ${jointNames[i]} differently`);
+    }
+  }
+
+  // ---- the palette: a column per (texture, swatch) the models use, then the authored ramps ----
+  const cols = [];
+  const colOf = new Map();
+  const addCol = (name, rows, role, family = null) => { colOf.set(name, cols.length); cols.push({ name, rows, role, family }); };
+  const harvested = new Set();
+  for (const s of srcs) {
+    if (harvested.has(s.tex)) continue;
+    harvested.add(s.tex);
+    const img = s.doc.getRoot().listTextures()[0].getImage();
+    const { data, info } = await sharp(Buffer.from(img)).raw().ensureAlpha().toBuffer({ resolveWithObject: true });
+    const at = (x, y) => { const i = (y * info.width + x) * 4; return [data[i], data[i + 1], data[i + 2]]; };
+    for (const [sw, role] of Object.entries(RAMPS.swatchRoles[s.tex])) {
+      const sx = +sw % 8, sy = Math.floor(+sw / 8);
+      const x = Math.round((sx * 128 + 52) * info.width / 1024), y0 = sy * info.height / 4, step = info.height / 4 / PAL_H;
+      const rows = Array.from({ length: PAL_H }, (_, r) => {
+        const a = at(x, Math.floor(y0 + r * step)), b = at(x, Math.min(info.height - 1, Math.floor(y0 + r * step + step / 2)));
+        return a.map((v, k) => Math.round((v + b[k]) / 2));
+      });
+      addCol(`${s.tex}:${sw}`, rows, role);
+    }
+  }
+  for (const [name, a] of Object.entries(RAMPS.authored)) addCol(name, rampOf(...a.c.map(hexRgb)), FAMILY_ROLE[a.family], a.family);
+  for (const [cls, [a, b]] of Object.entries(RAMPS.classes)) addCol(`class_${cls}`, rampOf(mixRgb(hexRgb(a), [255, 255, 255], 0.3), hexRgb(a), hexRgb(b)), 'cloth', 'cloth');
+  for (const [set, [a, b, accent]] of Object.entries(RAMPS.sets)) {
+    addCol(`set_${set}`, rampOf(mixRgb(hexRgb(a), [255, 255, 255], 0.3), hexRgb(a), hexRgb(b)), 'cloth', 'cloth');
+    addCol(`set_${set}_accent`, rampOf(mixRgb(hexRgb(accent), [255, 255, 255], 0.35), hexRgb(accent), mixRgb(hexRgb(accent), [0, 0, 0], 0.5)), 'gem', 'gem');
+  }
+  for (const c of [...cols]) {
+    if (!c.family || !['metal', 'leather', 'cloth', 'fur', 'wood'].includes(c.family)) continue;
+    addCol(`${c.name}~worn`, wornOf(c.rows), c.role, c.family);
+    if (c.family === 'metal' || c.family === 'cloth') {
+      // a metal's darker parts, a cloth's shadowed panels
+      const role = c.family === 'metal' ? 'metal_dark' : 'cloth_dark';
+      addCol(`${c.name}~dark`, darkOf(c.rows), role, c.family);
+      addCol(`${c.name}~worn~dark`, darkOf(wornOf(c.rows)), role, c.family);
+    }
+  }
+  const N = cols.length;
+  const W = N * PAL_W;
+  const rgb = Buffer.alloc(W * PAL_H * 3), mr = Buffer.alloc(W * PAL_H * 3);
+  cols.forEach((c, i) => {
+    const worn = c.name.includes('~worn');
+    const rough = Math.min(1, (RAMPS.roughness[c.role] ?? 0.8) + (worn ? 0.15 : 0));
+    const metal = (RAMPS.metalness[c.role] ?? 0) * (worn ? 0.4 : 1);
+    for (let y = 0; y < PAL_H; y++) for (let x = 0; x < PAL_W; x++) {
+      const o = (y * W + i * PAL_W + x) * 3;
+      rgb[o] = c.rows[y][0]; rgb[o + 1] = c.rows[y][1]; rgb[o + 2] = c.rows[y][2];
+      mr[o] = 255; mr[o + 1] = Math.round(rough * 255); mr[o + 2] = Math.round(metal * 255);
+    }
+  });
+  const png = buf => sharp(buf, { raw: { width: W, height: PAL_H, channels: 3 } }).png({ compressionLevel: 9 }).toBuffer();
+  const palTex = base.createTexture('equip_palette').setImage(new Uint8Array(await png(rgb))).setMimeType('image/png');
+  const mrTex = base.createTexture('equip_palette_mr').setImage(new Uint8Array(await png(mr))).setMimeType('image/png');
+  const mat = base.createMaterial('equip').setBaseColorTexture(palTex).setMetallicRoughnessTexture(mrTex)
+    .setMetallicFactor(1).setRoughnessFactor(1);
+  for (const ti of [mat.getBaseColorTextureInfo(), mat.getMetallicRoughnessTextureInfo()]) {
+    ti.setMinFilter(TextureInfo.MinFilter.LINEAR).setMagFilter(TextureInfo.MagFilter.LINEAR)
+      .setWrapS(TextureInfo.WrapMode.CLAMP_TO_EDGE).setWrapT(TextureInfo.WrapMode.CLAMP_TO_EDGE);
+  }
+
+  // every UV onto its ramp's column: u picks the column, v keeps the place in the ramp (the shade)
+  const pieces = {};
+  const readdress = (mesh, tex) => {
+    const used = {};
+    for (const prim of mesh.listPrimitives()) {
+      const uv = prim.getAttribute('TEXCOORD_0');
+      const out = uv.clone();
+      const el = [];
+      for (let i = 0; i < uv.getCount(); i++) {
+        uv.getElement(i, el);
+        const sx = Math.min(7, Math.max(0, Math.floor(el[0] * 8))), sy = Math.min(3, Math.max(0, Math.floor(el[1] * 4)));
+        const col = colOf.get(`${tex}:${sx + 8 * sy}`);
+        if (col === undefined) throw new Error(`equip: ${tex} swatch ${sx + 8 * sy} has no role in ramps.json`);
+        used[col] = cols[col].role;
+        const fv = Math.min(1 - 0.5 / PAL_H, Math.max(0.5 / PAL_H, el[1] * 4 - sy));
+        out.setElement(i, [(col + 0.5) / N, fv]);
+      }
+      prim.setAttribute('TEXCOORD_0', out);
+      prim.setMaterial(mat);
+    }
+    return used;
+  };
+  const tris = mesh => mesh.listPrimitives().reduce((n, p) => n + (p.getIndices() ? p.getIndices().getCount() : p.getAttribute('POSITION').getCount()) / 3, 0);
+  const rig = base.getRoot().listNodes().find(n => n.getName() === 'Rig');
+  const bone = name => joints.find(j => j.getName() === name);
+  const models = {};
+  const PART = /_(Head_Hooded|Head|Body|ArmLeft|ArmRight|LegLeft|LegRight)$/;
+  for (const s of srcs) {
+    const map = s.doc === base ? null : mergeDocuments(base, s.doc);
+    const here = n => (map ? map.get(n) : n);
+    const kept = new Set();
+    for (const n of s.doc.getRoot().listNodes()) {
+      if (!n.getMesh()) continue;
+      const node = here(n);
+      if (n.getSkin()) {
+        const m = PART.exec(n.getName());
+        if (!m) throw new Error(`equip: unknown body part ${n.getName()}`);
+        const part = m[1] === 'Head_Hooded' ? 'HeadHooded' : m[1];
+        if (s.key === 'rogue_hooded' && part !== 'HeadHooded') continue;   // the rest is the rogue's
+        const model = s.key === 'rogue_hooded' ? 'rogue' : s.key;
+        const name = `${model}-${part}`;
+        node.getParentNode()?.removeChild(node);
+        rig.addChild(node);
+        node.setName(name).setSkin(baseSkin);
+        kept.add(node);
+        pieces[name] = { type: 'part', model, part, tris: tris(node.getMesh()), cols: readdress(node.getMesh(), s.tex) };
+        (models[model] ||= {})[part] = name;
+      } else {
+        if (s.key === 'rogue_hooded') continue;
+        const boneName = n.getParentNode().getName();
+        const name = `${s.key}-${n.getName()}`;
+        node.getParentNode()?.removeChild(node);
+        bone(boneName).addChild(node);
+        node.setName(name);
+        kept.add(node);
+        pieces[name] = { type: 'prop', model: s.key, bone: boneName, tris: tris(node.getMesh()),
+          mount: { t: node.getTranslation(), r: node.getRotation(), s: node.getScale() }, cols: readdress(node.getMesh(), s.tex) };
+      }
+    }
+    if (map) {
+      // the copy's own rig, and the parts and pieces it duplicates, go
+      for (const n of s.doc.getRoot().listNodes()) if (!kept.has(map.get(n))) map.get(n).dispose();
+      for (const sk of s.doc.getRoot().listSkins()) map.get(sk).dispose();
+      for (const sc of s.doc.getRoot().listScenes()) map.get(sc).dispose();
+    }
+  }
+  for (const x of EQUIP_EXTRAS) {
+    const doc = await io.read(path.join(CACHE, `${ADV_ROOT}/Assets/gltf/${x.key}.gltf`));
+    const map = mergeDocuments(base, doc);
+    const n = map.get(doc.getRoot().listNodes().find(nd => nd.getMesh()));
+    const mount = x.like ? { bone: pieces[x.like].bone, ...pieces[x.like].mount } : x.mount;
+    n.getParentNode()?.removeChild(n);
+    for (const sc of doc.getRoot().listScenes()) map.get(sc).dispose();
+    bone(mount.bone).addChild(n);
+    const name = `kit-${x.key}`;
+    n.setName(name).setTranslation(mount.t).setRotation(mount.r).setScale(mount.s);
+    pieces[name] = { type: 'prop', model: 'kit', bone: mount.bone, tris: tris(n.getMesh()),
+      mount: { t: mount.t, r: mount.r, s: mount.s }, cols: readdress(n.getMesh(), x.tex) };
+  }
+  for (const m of base.getRoot().listMaterials()) if (m !== mat) m.dispose();
+  for (const t of base.getRoot().listTextures()) if (t !== palTex && t !== mrTex) t.dispose();
+  await base.transform(weld());
+  const size = await finish(base, job);
+  // the manifest: what every column is, every piece, where it hangs and which roles it paints
+  const manifest = {
+    v: 1, palette: { cols: N, w: PAL_W, h: PAL_H },
+    joints: jointNames,
+    columns: cols.map(c => ({ name: c.name, role: c.role, family: c.family })),
+    models, pieces,
+  };
+  fs.writeFileSync(path.join(OUT, 'chars', 'equip.json'), JSON.stringify(manifest));
+  console.log(`chars/equip.json  ${N} palette columns, ${Object.keys(pieces).length} pieces`);
+  return size;
+}
+
 // each source pack's licence travels with the built files
 const LICENCES = {
   'kaykit-adventurers.txt': 'kaykit-adventurers/addons/kaykit_character_pack_adventures/LICENSE.txt',
@@ -253,7 +470,7 @@ const only = process.argv[3];
 for (const job of JOBS) {
   if (only && !job.out.includes(only)) continue;
   const size = job.kind === 'char' ? await buildChar(job) : job.kind === 'anims' ? await buildAnims(job)
-    : job.kind === 'mob' ? await buildMob(job) : await buildKit(job);
+    : job.kind === 'mob' ? await buildMob(job) : job.kind === 'equip' ? await buildEquip(job) : await buildKit(job);
   console.log(`${job.out}  ${(size / 1024).toFixed(0)} KB`);
 }
 // the client's creature registry reads each model's clip names from here

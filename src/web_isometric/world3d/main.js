@@ -3,12 +3,13 @@
 // the hero walks freely and the server is told which room they entered (sync.js).
 import * as THREE from 'three';
 import { createEngine } from './engine.js';
-import { loadKit, spawnCharacter } from './assets.js';
+import { loadKit } from './assets.js';
 import { Zone, fetchZonemap, REV } from './zone.js';
 import { ROOM_W, ROOM_H } from './terrain.js';
 import { Controller, findPath } from './controller.js';
 import { Sync } from './sync.js';
-import { Entities, classModel } from './entities.js';
+import { Entities } from './entities.js';
+import { spawnDressed, dress } from './equip.js';
 import { cutout } from './cutout.js';
 import { FX } from './fx.js';
 import { CombatView } from './combat.js';
@@ -48,10 +49,11 @@ async function runDemo() {
   if (params.get('gallery')) {
     const { showGallery, showMobGallery } = await import('./gallery.js');
     const g = params.get('gallery');
-    const { showBeastGallery, showAbilityGallery, showIconGallery, showSoundGallery } = await import('./gallery.js');
+    const { showBeastGallery, showAbilityGallery, showIconGallery, showSoundGallery, showGearGallery } = await import('./gallery.js');
     const extra = ['town', 'furniture', 'graveyard'].includes(g) ? await loadKit(g) : null;
     const at = g === 'mobs' ? await showMobGallery(engine) : g === 'beasts' ? await showBeastGallery(engine, kits)
       : g === 'abilities' ? await showAbilityGallery(engine)
+      : g === 'gear' ? await showGearGallery(engine)
       : g === 'icons' ? (await showIconGallery()) || new THREE.Vector3()
       : g === 'sounds' ? (await showSoundGallery()) || new THREE.Vector3()
       : showGallery(engine, extra || (g === 'nature' ? kits.nature : kits.dungeon), Number(params.get('scale')) || 1);
@@ -248,6 +250,8 @@ async function runGame() {
   MH.bus.on('map', payload => {
     lastPayload = payload;
     if (payload.player) { hud.setPlayer(payload.player); ents.heroLevel = payload.player.level || 1; }
+    // what the hero wears (gear_look.py): re-dressed when it changes
+    if (hero && payload.player && payload.player.look) dress(hero, payload.player.look, payload.player.char_class);
     if ('group' in payload) hud.party.update(payload.group);
     if (payload.player && 'quest' in payload.player) hud.quest.update(payload.player.quest);
     if (!payload.player || !payload.player.vnum) return;
@@ -269,6 +273,7 @@ async function runGame() {
     // (swings, hits and casts are drawn from the server's combat events: combat.js)
   });
   MH.bus.on('move.result', res => { if (sync) sync.onResult(res); });
+  MH.bus.on('player.look', p => ents.look(p));      // another player changed gear
   MH.bus.on('target.set', t => hud.setTarget(t));
   MH.bus.on('target.clear', () => hud.setTarget(null));
 
@@ -280,8 +285,7 @@ async function runGame() {
     engine.rig.yaw = 0;          // the title screen's drift ends: play starts north up
     enterZone(zm);
     const room = zone.rooms.get(v);
-    const look = classModel(payload.player.char_class);
-    hero = await spawnCharacter(look.model, { tint: look.tint });
+    hero = await spawnDressed(payload.player.look, payload.player.char_class);
     engine.scene.add(hero.root);
     ctl = new Controller(engine, hero, blockedFor);
     ctl.avoidDefault = avoidStairs();

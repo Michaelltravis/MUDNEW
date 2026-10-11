@@ -3,8 +3,8 @@
 // The body comes from the same code that puts it in the world (a class model, or a creature's
 // look from looks.js), lit like a painting: warm key light, cool rim, a dark mist behind.
 import * as THREE from 'three';
-import { spawnCharacter } from '../assets.js';
-import { classModel, spawnLook } from '../entities.js';
+import { spawnLook } from '../entities.js';
+import { spawnDressed } from '../equip.js';
 import { creatureLook } from '../looks.js';
 
 const SIZE = 192;
@@ -48,15 +48,14 @@ function shoot(actor, { bust = 0.5, turn = 0.45 } = {}) {
   return url;
 }
 
-// the hero's (or another player's) class portrait
-export function classPortrait(cls) {
-  const key = `class:${String(cls || '').toLowerCase()}`;
-  if (!cache.has(key)) {
-    const look = classModel(cls);
-    cache.set(key, spawnCharacter(look.model, { tint: look.tint }).then(a => shoot(a, { bust: 0.55 })).catch(() => null));
-  }
+// the hero's (or another player's) portrait, in what they wear (gear_look.py's look; none:
+// the class's starting gear)
+export function lookPortrait(look, cls) {
+  const key = `look:${(look && look.sig) || 'starter'}:${String(cls || '').toLowerCase()}`;
+  if (!cache.has(key)) cache.set(key, spawnDressed(look, cls).then(a => shoot(a, { bust: 0.55 })).catch(() => null));
   return cache.get(key);
 }
+export const classPortrait = cls => lookPortrait(null, cls);
 
 // a creature's portrait from its payload data (the body looks.js gives it in the world)
 export function creaturePortrait(data, kits = null) {

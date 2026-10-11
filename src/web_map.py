@@ -228,6 +228,14 @@ class WebMapServer:
         await self._send_all(self._viewers([pos[0]], skip_name=player.name),
                              {'type': 'presence', 'name': player.name, 'vnum': pos[0], 'x': round(pos[1], 2), 'z': round(pos[2], 2)})
 
+    async def relay_look(self, player, look):
+        """A character's gear changed (gear_look.py): the 3D clients that can see them re-dress them."""
+        room = getattr(player, 'room', None)
+        if room is None:
+            return
+        await self._send_all(self._viewers([room.vnum], skip_name=player.name),
+                             {'type': 'look', 'name': player.name, 'look': look})
+
     async def note_room(self, player):
         """Tell the 3D clients around a player that the player changed rooms (any way: a walk,
         recall, a portal, following the leader...). Called whenever the player's own view is
