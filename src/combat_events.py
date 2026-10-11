@@ -15,26 +15,73 @@ Event shape (all fields optional except k):
   poison, sound, physical, blood), ranged (bool), area {shape, r, angle, x, z}, ms (wind-up)
 """
 import asyncio
+import contextvars
 import logging
 
 logger = logging.getLogger('Misthollow')
 
-_pending = {}        # room vnum -> (room, [events])
+_pending = {}        # room vnum -> (room, [events]) ready to send
 _scheduled = False
-_hold = 0            # >0 while an action (a round, a skill) is still producing events
+
+
+class _Action:
+    """One action's events (a round, a swing, a skill), held until it finishes."""
+    __slots__ = ('rooms', 'depth', 'closed')
+
+    def __init__(self):
+        self.rooms = {}
+        self.depth = 0
+        self.closed = False
+
+
+# the action this task is in (each asyncio task has its own; a task started inside an action
+# shares it until the action ends, then goes on alone)
+_action = contextvars.ContextVar('misthollow_combat_action', default=None)
+
+
+def _open():
+    a = _action.get()
+    return a if a is not None and not a.closed else None
 
 
 class hold:
-    """`with hold():` keeps this moment's events together until the action finishes, so a
-    swing and its wounds leave in one message even though the round awaits in between."""
+    """`with hold():` keeps this action's events together until it finishes, so a swing and
+    its wounds leave in one message even though the round awaits in between. Each action holds
+    only its own events: another one, in this room or elsewhere, is never kept waiting."""
     def __enter__(self):
-        global _hold
-        _hold += 1
+        a = _open()
+        self._token = None
+        if a is None:
+            a = _Action()
+            self._token = _action.set(a)
+        a.depth += 1
+        self._a = a
+        return self
 
     def __exit__(self, *exc):
-        global _hold
-        _hold = max(0, _hold - 1)
+        a = self._a
+        a.depth -= 1
+        if a.depth <= 0 and not a.closed:
+            a.closed = True
+            for vnum, (room, events) in a.rooms.items():
+                entry = _pending.get(vnum)
+                if entry is None:
+                    _pending[vnum] = (room, list(events))
+                else:
+                    entry[1].extend(events)
+            a.rooms.clear()
+            if self._token is not None:
+                try:
+                    _action.reset(self._token)
+                except ValueError:
+                    _action.set(None)
+            _schedule()
         return False
+
+
+def _target():
+    a = _open()
+    return a.rooms if a is not None else _pending
 
 
 def ref(ch):
@@ -52,15 +99,15 @@ def ref(ch):
 
 def mark(room):
     """Where the next event for `room` will go: lets a wrapper put an action ahead of the
-    wounds it caused (the swing before its damage numbers)."""
-    entry = _pending.get(getattr(room, 'vnum', None))
+    wounds it caused (the swing before its damage numbers). Take it inside the action's hold."""
+    entry = _target().get(getattr(room, 'vnum', None))
     return len(entry[1]) if entry else 0
 
 
 def emit_at(room, index, k, src=None, dst=None, **fields):
-    """emit(), but inserted at `index` (from mark()) instead of appended."""
+    """emit(), but inserted at `index` (from mark(), in the same hold) instead of appended."""
     emit(room, k, src, dst, **fields)
-    entry = _pending.get(getattr(room, 'vnum', None))
+    entry = _target().get(getattr(room, 'vnum', None))
     if entry and index is not None and index < len(entry[1]) - 1:
         entry[1].insert(index, entry[1].pop())
 
@@ -91,33 +138,37 @@ def emit_private(ch, k, src=None, dst=None, **fields):
 
 
 def emit(room, k, src=None, dst=None, **fields):
-    """Queue one event for the web clients in `room` (sent at the end of this tick)."""
-    global _scheduled
+    """Queue one event for the web clients in `room`: sent at the end of this moment, or when
+    the action it belongs to (hold) finishes."""
     if room is None:
         return
     ev = _event(k, src, dst, fields)
     vnum = getattr(room, 'vnum', None)
     if vnum is None:
         return
-    entry = _pending.get(vnum)
+    target = _target()
+    entry = target.get(vnum)
     if entry is None:
-        entry = _pending[vnum] = (room, [])
+        entry = target[vnum] = (room, [])
     entry[1].append(ev)
-    if not _scheduled:
-        try:
-            loop = asyncio.get_running_loop()
-        except RuntimeError:
-            return
-        _scheduled = True
-        loop.call_soon(lambda: asyncio.ensure_future(_flush()))
+    if target is _pending:
+        _schedule()
+
+
+def _schedule():
+    global _scheduled
+    if _scheduled or not _pending:
+        return
+    try:
+        loop = asyncio.get_running_loop()
+    except RuntimeError:
+        return
+    _scheduled = True
+    loop.call_soon(lambda: asyncio.ensure_future(_flush()))
 
 
 async def _flush():
     global _scheduled
-    for _ in range(150):               # an action is mid-way: wait for the rest of it (<=3 s)
-        if _hold <= 0:
-            break
-        await asyncio.sleep(0.02)
     _scheduled = False
     batch = list(_pending.items())
     _pending.clear()

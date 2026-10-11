@@ -306,7 +306,7 @@ export function createHud() {
     st.barSig = sig;
     const row = (from, to) => Array.from({ length: to - from }, (_, k) => slotHtml(from + k)).join('');
     els.slots.innerHTML = `<div class="bar-row shift${st.bar.slice(8).some(Boolean) ? '' : ' unused'}">${row(8, 16)}</div>`
-      + `<div class="bar-row main"><div class="slot fixed attack" data-act="attack" data-tip-title="Attack" data-tip-sub="Swing at your target — or press F (or Space)"><img class="ic" alt="" src="${uiIcon('sword', { size: 96 })}"><span class="key">F</span></div>`
+      + `<div class="bar-row main"><div class="slot fixed attack" data-act="attack" data-tip-title="Attack" data-tip-sub="Swing at your target — or press F (or Space)"><img class="ic" alt="" src="${uiIcon('sword', { size: 96 })}"><span class="key">F</span><i class="swing"></i></div>`
       + `${row(0, 8)}<div class="slot fixed flee" data-act="flee" data-tip-title="Flee" data-tip-sub="Break off the fight and run"><img class="ic" alt="" src="${uiIcon('flee', { size: 96, color: '#d8e6f0', glow: 'rgba(160,200,240,.6)' })}"></div></div>`;
     els.slots.querySelectorAll('.slot').forEach(el => {
       const i = el.dataset.i != null ? +el.dataset.i : -1;
@@ -405,12 +405,20 @@ export function createHud() {
     if (p) trainer.update({ ...p, abilities: st.abilities });
   });
   const cdTotal = new Map();             // how long each running cooldown was when it started
+  const NO_GCD = new Set(['brace', 'sidestep', 'interrupt', 'flee', 'escape', 'evade']);
   function paintCooldowns() {
     const elapsed = (performance.now() - st.cdAt) / 1000;
     const p = st.player;
+    // real-time combat: the global cooldown sweeps every skill on the bar (action_combat.py)
+    const clock = MH.actionClock;
+    const gcd = clock && MH.combatMode === 'action' && MH.state.inCombat ? clock.gcdLeft(performance.now()) / 1000 : 0;
     els.slots.querySelectorAll('.slot[data-id]').forEach(slot => {
       const id = slot.dataset.id;
-      const left = (st.cooldowns[id] || 0) - elapsed;
+      const own = (st.cooldowns[id] || 0) - elapsed;
+      const g = NO_GCD.has(id) ? 0 : gcd;
+      const left = Math.max(own, g);
+      if (g > own && g > 0.05) { cdTotal.set(id, clock.gcd / 1000); slot.dataset.gcd = '1'; }
+      else if (own > 0.05) delete slot.dataset.gcd;
       const cd = slot.querySelector('.cd');
       if (!cd) return;
       if (left > 0.05) {
@@ -421,8 +429,12 @@ export function createHud() {
       } else if (slot.classList.contains('cooling')) {
         slot.classList.remove('cooling');
         cdTotal.delete(id);
-        slot.classList.add('ready');
-        setTimeout(() => slot.classList.remove('ready'), 700);
+        // the end of the global cooldown is not news: only a skill's own cooldown flashes ready
+        if (slot.dataset.gcd) delete slot.dataset.gcd;
+        else {
+          slot.classList.add('ready');
+          setTimeout(() => slot.classList.remove('ready'), 700);
+        }
       }
       // a spell you haven't the mana for
       const a = st.byId.get(id);
@@ -648,6 +660,38 @@ export function createHud() {
   });
   syncSettings();
 
+  // ---- real-time combat: the swing ring on the attack button, a press refused mid-cooldown ----
+  (function ring() {
+    requestAnimationFrame(ring);
+    const clock = MH.actionClock;
+    // (the bar is rebuilt as it changes: find the button's ring each frame)
+    const swingEl = els.slots.querySelector('.slot[data-act="attack"] .swing');
+    const on = !!(clock && MH.combatMode === 'action' && MH.state.inCombat && swingEl);
+    if (swingEl) swingEl.parentElement.classList.toggle('rt', on);
+    if (!on) return;
+    const now = performance.now();
+    swingEl.style.setProperty('--sw', clock.progress(now).toFixed(3));
+    swingEl.parentElement.classList.toggle('perfect', clock.inPerfect(now));
+    swingEl.parentElement.classList.toggle('queued', clock.queued && !clock.ready(now));
+  })();
+  function flashSlot(id, kind = 'busy') {
+    const el = els.slots.querySelector(`.slot[data-id="${id}"]`);
+    if (!el) return;
+    el.classList.add(kind);
+    setTimeout(() => el.classList.remove(kind), 320);
+  }
+  // Settings: real time (on by default) or the 3-s round
+  const rtSeg = els.settings.querySelector('[data-set="combat"]');
+  const syncRt = () => rtSeg && rtSeg.querySelectorAll('button').forEach(b => b.classList.toggle('on', (b.dataset.v === 'action') === (MH.combatMode === 'action')));
+  if (rtSeg) rtSeg.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+    MH.combatMode = b.dataset.v === 'action' ? 'action' : null;
+    ls.set('mh3d_combat', b.dataset.v === 'action' ? 'action' : 'rounds');
+    if (MH.resubscribe) MH.resubscribe();
+    syncRt();
+    toast(MH.combatMode ? 'Real-time combat: your blows land as you strike' : 'Combat in rounds: a blow every 3 seconds');
+  }));
+  syncRt();
+
   // ---- sounds for windows and buttons (audio.js) ----
   // a window sounds as it opens and closes, however it was opened (a key, a button, a link)
   const WINDOW_SOUNDS = { inventory: ['bag_open', 'ui_close'], character: ['cloth', 'ui_close'], spellbook: ['book_open', 'book_close'],
@@ -712,6 +756,6 @@ export function createHud() {
   // whisper someone: the chat input set to tell them
   function whisper(name) { tellFrom = name; setMode('tell'); els.input.focus(); }
 
-  return { showGame, setPlayer, setTarget, targetCast, moment, fallen, suggestStrike, setRanges, setDistance, banner, toast, log, targetSkills, useAbility, prefill, openPanel, openTrainer,
+  return { showGame, setPlayer, setTarget, targetCast, moment, fallen, suggestStrike, setRanges, setDistance, banner, toast, log, targetSkills, useAbility, prefill, openPanel, openTrainer, flashSlot,
     spellbook, unslot, party, quest, whisper, get player() { return st.player; }, get bar() { return st.bar.slice(); } };
 }

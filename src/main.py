@@ -186,6 +186,12 @@ class Misthollow:
                         _combat_move(self.world, 0.2)
                     except Exception as e:
                         logger.debug(f"combat move tick failed: {e}")
+                    # real-time combat for the 3D client's action mode (action_combat.py)
+                    try:
+                        import action_combat
+                        await action_combat.tick(self.world)
+                    except Exception as e:
+                        logger.debug(f"action combat tick failed: {e}")
 
                 # Combat tick (every COMBAT_ROUND_SECONDS; creatures act a beat later)
                 if combat_tick >= int(self.config.TICKS_PER_SECOND * self.config.COMBAT_ROUND_SECONDS):

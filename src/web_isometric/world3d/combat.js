@@ -56,6 +56,15 @@ export class CombatView {
     const k = this.pairKey(e.src, e.dst);
     this.impacts.set(k, { at: performance.now() + delayMs, crit: e.res === 'crit' || e.crit, n: 0 });
   }
+  // real-time combat: the hero's blow, shown the moment the key is pressed (the server's attack
+  // event then finds it already swinging and doesn't swing twice)
+  localSwing() {
+    const h = this.getHero();
+    if (!h || !h.ctl) return;
+    const list = SWING[String(h.cls || '').toLowerCase()] || SWING.paladin;
+    h.ctl.swing(list[Math.floor(Math.random() * list.length)], true);
+    h.ctl.localSwingAt = performance.now();
+  }
   // what the hero is about to do: the recipe (main.js plays its start on the key press)
   recipe(id, cls, ev = {}) { return recipeFor(RECIPES, id, cls, ev); }
 

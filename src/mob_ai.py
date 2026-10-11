@@ -87,6 +87,8 @@ def classify_mob(mob) -> set:
         roles.add('caster')
     if ('mob_boss' in flags or 'boss' in flags) and not is_boss_class:
         roles.add('boss')
+    if is_boss_class:
+        roles.add('scripted')     # bosses.py's own rotation: never the bruiser's blows on top
     if 'mob_pack' in flags or 'pack' in flags:
         roles.add('pack')
     if 'mob_healer' in flags or 'healer_ai' in flags:
@@ -936,7 +938,7 @@ async def declare_intents(mob):
         intent = _choose_legacy_intent(mob, target)
     if intent is None and 'pack' in roles:
         intent = _choose_pack_intent(mob, target)
-    if intent is None and not roles & {'boss', 'caster', 'legacy_special'}:
+    if intent is None and not roles & {'boss', 'caster', 'legacy_special', 'scripted'}:
         intent = _choose_bruiser_intent(mob, target)
     if intent is None:
         return

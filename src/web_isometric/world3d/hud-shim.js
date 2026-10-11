@@ -4,6 +4,8 @@
   const MH = window.MH = window.MH || {};
   // the 3D client asks for its zone's rooms plus the occupants of every room near the hero
   MH.mapMode = 'near';
+  // real-time combat (action_combat.py), on unless Settings turned it off
+  MH.combatMode = (() => { try { return localStorage.getItem('mh3d_combat') === 'rounds' ? null : 'action'; } catch (_) { return 'action'; } })();
   MH.mulberry32 = MH.mulberry32 || function (seed) {
     let a = seed >>> 0;
     return function () {

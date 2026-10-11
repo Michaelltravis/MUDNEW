@@ -155,21 +155,30 @@ def _wrap_one_round():
         lines = []
         undo_a, undo_d = _capture(attacker, lines), _capture(defender, lines)
         hp0 = getattr(defender, 'hp', 0)
-        mark = ev.mark(room)
-        try:
-            with ev.hold():
+        attacker._swing_res = None
+        with ev.hold():
+            mark = ev.mark(room)
+            try:
                 await orig(cls, attacker, defender)
-        finally:
-            undo_a(); undo_d()
-            if scale != 1:
-                attacker._dmg_scale = 1
-        text = _plain(lines)
-        wounded = getattr(defender, 'hp', 0) < hp0
-        res = ('crit' if 'critical hit' in text else 'hit') if wounded or 'damage]' in text else _outcome(text)
-        if res:
-            ev.emit_at(room, mark, 'attack', src=attacker, dst=defender, res=res, ranged=ranged or None,
-                       weapon=_weapon_kind(attacker), perfect=('perfect strike' in text) or None,
-                       style=cr.mob_style(attacker) if ranged and not _is_player(attacker) else None)
+            finally:
+                undo_a(); undo_d()
+                if scale != 1:
+                    attacker._dmg_scale = 1
+            text = _plain(lines)
+            wounded = getattr(defender, 'hp', 0) < hp0
+            # the round says what became of the swing (combat.py _swing_res); its words are the
+            # fallback for a round that didn't say
+            told = getattr(attacker, '_swing_res', None)
+            if told in ('hit', 'crit', 'miss', 'dodge', 'parry', 'block'):
+                res = told
+            elif told == 'skip':
+                res = None
+            else:
+                res = ('crit' if 'critical hit' in text else 'hit') if wounded or 'damage]' in text else _outcome(text)
+            if res:
+                ev.emit_at(room, mark, 'attack', src=attacker, dst=defender, res=res, ranged=ranged or None,
+                           weapon=_weapon_kind(attacker), perfect=('perfect strike' in text) or None,
+                           style=cr.mob_style(attacker) if ranged and not _is_player(attacker) else None)
         if scale != 1 and wounded and _is_player(attacker) and time.time() - getattr(attacker, '_pb_said', 0) > 9:
             attacker._pb_said = time.time()
             c = attacker.config.COLORS
@@ -177,6 +186,14 @@ def _wrap_one_round():
             tip = ("Too close for a clean shot — step back to draw properly." if cls_name == 'ranger'
                    else "Too close to shape your bolts — step back to cast cleanly.")
             await attacker.send(f"{c['yellow']}{tip}{c['reset']}")
+        # what the swing came to: None (no turn), {'res': 'skip'} (the turn was lost) or the blow
+        outcome = told or res
+        if not outcome:
+            return None
+        import action_combat
+        action_combat.turn_taken(attacker)
+        return {'res': outcome, 'amt': getattr(attacker, '_swing_amt', 0) if outcome in ('hit', 'crit') else 0,
+                'perfect': 'perfect strike' in text}
 
     CombatHandler.one_round = classmethod(one_round)
 
@@ -276,6 +293,11 @@ def _joined(cmd, args):
     return cmd, list(args or [])
 
 
+# what a refused skill or cast says (no animation; in action mode its cooldown second comes back)
+_REFUSALS = ("you don't know", 'huh?', 'not ready', 'cooldown', 'must wait', 'not enough',
+             'too exhausted', 'you need', "can't", 'cannot', 'who?', 'not here', 'nobody')
+
+
 def _ability_of(cmd, args):
     """(ability key, remaining args) when a command is a ranged-checked class ability."""
     c = _canonical(cmd)
@@ -358,8 +380,27 @@ def _wrap_execute():
                     name, rest = _class_ability(player, jcmd), jargs
         except Exception:
             name = None
+        # action mode (action_combat.py): skills and casts one a second; a refused one gives
+        # its second back
+        import action_combat
+        gcd = action_combat.gcd_applies(player, cmd, name)
+        if gcd:
+            if await action_combat.gcd_refuse(player):
+                return
+            gcd_before = getattr(player, 'gcd_until', 0)
+            action_combat.gcd_start(player)
         if not name:
-            return await orig(cls, player, cmd, args)
+            if not gcd:
+                return await orig(cls, player, cmd, args)
+            cast_lines = []
+            undo_cast = _capture(player, cast_lines)
+            try:
+                return await orig(cls, player, cmd, args)
+            finally:
+                undo_cast()
+                if any(w in _plain(cast_lines) for w in _REFUSALS):
+                    player.gcd_until = gcd_before
+                action_combat.tell(player)
         klass = str(getattr(player, 'char_class', '') or '').lower()
         rng, shape = cr.ABILITY_RANGE.get(name) or (None, event_shape(name, klass))
         target = None
@@ -380,55 +421,65 @@ def _wrap_execute():
             label = name.replace('_', ' ')
             await player.send(f"{c['yellow']}{target.name} is too far for {label} ({d:.0f} m; it reaches {rng:g} m).{c['reset']}")
             ev.emit(room, 'oor', src=player, dst=target, ability=name, need=rng, dist=round(d, 1))
+            if gcd:
+                player.gcd_until = gcd_before     # nothing was used: no cooldown
+                action_combat.tell(player)
             return
         lines = []
-        mark = ev.mark(room)
-        opener = (target is not None and not _is_player(target) and getattr(player, 'fighting', None) is None
-                  and getattr(target, 'room', None) is room and getattr(target, 'hp', 0) > 0
-                  and shape != 'self' and not shape.startswith('nova'))
-        if opener:
-            # Not yet fighting: many skills refuse ("You must be fighting!"). Aimed at a
-            # creature in reach, the skill opens the fight instead, as its first blow.
-            held = []
-            undo = _hold_output(player, held)
-            try:
-                with ev.hold():
-                    await orig(cls, player, cmd, args)
-            finally:
-                undo()
-            if any(w in _plain([m for m, _a, _k in held]) for w in _NOT_FIGHTING):
-                from combat import CombatHandler
-                await CombatHandler.start_combat(player, target, first_strike=False)
-                opener = False      # now fighting: use it for real below
-            else:
-                for m, a, k in held:
-                    await player.send(m, *a, **k)
-                lines = [m for m, _a, _k in held]
-        if not opener:
-            undo = _capture(player, lines)
-            try:
-                with ev.hold():
-                    await orig(cls, player, cmd, args)
-            finally:
-                undo()
-        text = _plain(lines)
-        if any(w in text for w in ("you don't know", 'huh?', 'not ready', 'cooldown', 'must wait', 'not enough',
-                                   'too exhausted', 'you need', "can't", 'cannot', 'who?', 'not here', 'nobody')):
-            return   # refused by the ability itself: no animation
-        tgt = target if target is not None else getattr(player, 'fighting', None)
-        res = _outcome(text) if not ally else None
-        if shape == 'dash' and tgt is not None and cr.pos_of(tgt) is not None:
-            tx, tz = cr.pos_of(tgt)
-            px, pz = cr.pos_of(player) or (tx, tz)
-            dx, dz = px - tx, pz - tz
-            dd = max(0.01, (dx * dx + dz * dz) ** 0.5)
-            cr.set_pos(player, tx + dx / dd * 1.4, tz + dz / dd * 1.4)
-        variant = str(rest[0]).lower()[:24] if name in VARIANT_ABILITIES and rest else None
-        if name in PRIVATE_ABILITIES:
-            ev.emit_private(player, 'ability', src=player, ability=name, shape=shape)
-            return
-        ev.emit_at(room, mark, 'ability', src=player, dst=tgt if shape not in ('self',) else None,
-                   ability=name, res=res, shape=shape, variant=variant)
+        # one hold around the whole use (an opener's refusal, the fight it starts, the real use):
+        # its mark and its wounds stay in this action, so the ability leads them
+        with ev.hold():
+            mark = ev.mark(room)
+            opener = (target is not None and not _is_player(target) and getattr(player, 'fighting', None) is None
+                      and getattr(target, 'room', None) is room and getattr(target, 'hp', 0) > 0
+                      and shape != 'self' and not shape.startswith('nova'))
+            if opener:
+                # Not yet fighting: many skills refuse ("You must be fighting!"). Aimed at a
+                # creature in reach, the skill opens the fight instead, as its first blow.
+                held = []
+                undo = _hold_output(player, held)
+                try:
+                    with ev.hold():
+                        await orig(cls, player, cmd, args)
+                finally:
+                    undo()
+                if any(w in _plain([m for m, _a, _k in held]) for w in _NOT_FIGHTING):
+                    from combat import CombatHandler
+                    await CombatHandler.start_combat(player, target, first_strike=False)
+                    opener = False      # now fighting: use it for real below
+                else:
+                    for m, a, k in held:
+                        await player.send(m, *a, **k)
+                    lines = [m for m, _a, _k in held]
+            if not opener:
+                undo = _capture(player, lines)
+                try:
+                    with ev.hold():
+                        await orig(cls, player, cmd, args)
+                finally:
+                    undo()
+            text = _plain(lines)
+            if any(w in text for w in _REFUSALS):
+                if gcd:
+                    player.gcd_until = gcd_before
+                    action_combat.tell(player)
+                return   # refused by the ability itself: no animation
+            if gcd:
+                action_combat.tell(player)
+            tgt = target if target is not None else getattr(player, 'fighting', None)
+            res = _outcome(text) if not ally else None
+            if shape == 'dash' and tgt is not None and cr.pos_of(tgt) is not None:
+                tx, tz = cr.pos_of(tgt)
+                px, pz = cr.pos_of(player) or (tx, tz)
+                dx, dz = px - tx, pz - tz
+                dd = max(0.01, (dx * dx + dz * dz) ** 0.5)
+                cr.set_pos(player, tx + dx / dd * 1.4, tz + dz / dd * 1.4)
+            variant = str(rest[0]).lower()[:24] if name in VARIANT_ABILITIES and rest else None
+            if name in PRIVATE_ABILITIES:
+                ev.emit_private(player, 'ability', src=player, ability=name, shape=shape)
+                return
+            ev.emit_at(room, mark, 'ability', src=player, dst=tgt if shape not in ('self',) else None,
+                       ability=name, res=res, shape=shape, variant=variant)
 
     CommandHandler.execute = classmethod(execute)
 
@@ -473,7 +524,9 @@ def _wrap_mob_ai():
         intent = getattr(mob, 'pending_intent', None)
         if intent and intent is not before and getattr(mob, 'room', None) is not None:
             intent['area'] = _area_for(mob, intent)
-            ms = int((cr.round_seconds() + cr.NPC_PHASE_DELAY) * 1000)
+            import action_combat
+            ms = (int(action_combat.WINDUP * 1000) if action_combat.on_clock(mob)
+                  else int((cr.round_seconds() + cr.NPC_PHASE_DELAY) * 1000))
             if time.time() < getattr(mob, 'slowed_until', 0):
                 # slowed (marquee_abilities): the wind-up takes a round longer, and its mark says so
                 intent['declared_at'] = intent.get('declared_at', time.time()) + cr.round_seconds()
@@ -490,18 +543,18 @@ def _wrap_mob_ai():
         intent = getattr(mob, 'pending_intent', None)
         mob._resolving_intent = intent
         room = getattr(mob, 'room', None)
-        mark = ev.mark(room) if room is not None else None
-        try:
-            with ev.hold():
+        with ev.hold():
+            mark = ev.mark(room) if room is not None else None
+            try:
                 return await orig_resolve(mob)
-        finally:
-            mob._resolving_intent = None
-            if intent and room is not None:
-                dodged = getattr(mob, '_dodged_by_position', None) or []
-                mob._dodged_by_position = []
-                ev.emit_at(room, mark, 'resolve', src=mob, label=intent.get('label'), kind=intent.get('kind'),
-                           area=intent.get('area'), school=_school_of_label(intent.get('label')),
-                           dodged=[ev.ref(c) for c in dodged] or None)
+            finally:
+                mob._resolving_intent = None
+                if intent and room is not None:
+                    dodged = getattr(mob, '_dodged_by_position', None) or []
+                    mob._dodged_by_position = []
+                    ev.emit_at(room, mark, 'resolve', src=mob, label=intent.get('label'), kind=intent.get('kind'),
+                               area=intent.get('area'), school=_school_of_label(intent.get('label')),
+                               dodged=[ev.ref(c) for c in dodged] or None)
 
     mob_ai._resolve_intent = _resolve_intent
 
@@ -611,23 +664,23 @@ def _wrap_spells():
         room = getattr(caster, 'room', None)
         tgt = target if target is not None and target is not caster and not isinstance(target, str) else None
         hp0 = getattr(target, 'hp', None) if target is not None and not isinstance(target, str) else None
-        mark = ev.mark(room) if room is not None else None
         lines = []
         undo = _capture(caster, lines)
-        try:
-            with ev.hold():
+        with ev.hold():
+            mark = ev.mark(room) if room is not None else None
+            try:
                 result = await orig_apply(cls, caster, target, spell, spell_name)
-        finally:
-            undo()
-        if room is not None:
-            # the cast goes ahead of the wounds it caused, with how it went
-            text = _plain(lines)
-            res = ('resist' if any(w in text for w in ('resists your spell', 'shrugs off', 'unaffected'))
-                   else 'immune' if 'immune' in text else None)
-            ev.emit_at(room, mark, 'spell', src=caster, dst=tgt, spell=spell_name, res=res,
-                       school=cr.spell_school(spell_name, spell, caster), shape=cr.ability_range(spell_name, True)[1])
-        if target is not None and hp0 is not None and getattr(target, 'hp', hp0) > hp0 and room is not None:
-            ev.emit(room, 'heal', src=caster, dst=target, amt=int(target.hp - hp0), school=cr.spell_school(spell_name, spell, caster))
+            finally:
+                undo()
+            if room is not None:
+                # the cast goes ahead of the wounds it caused, with how it went
+                text = _plain(lines)
+                res = ('resist' if any(w in text for w in ('resists your spell', 'shrugs off', 'unaffected'))
+                       else 'immune' if 'immune' in text else None)
+                ev.emit_at(room, mark, 'spell', src=caster, dst=tgt, spell=spell_name, res=res,
+                           school=cr.spell_school(spell_name, spell, caster), shape=cr.ability_range(spell_name, True)[1])
+            if target is not None and hp0 is not None and getattr(target, 'hp', hp0) > hp0 and room is not None:
+                ev.emit(room, 'heal', src=caster, dst=target, amt=int(target.hp - hp0), school=cr.spell_school(spell_name, spell, caster))
         return result
 
     SpellHandler.apply_spell = classmethod(apply_spell)

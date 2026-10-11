@@ -1159,7 +1159,7 @@ def _mob_roles(entity) -> list:
     """mob_ai tactical roles (pack, caster, boss, ...) so the client can pick art by role."""
     try:
         from mob_ai import classify_mob
-        return sorted(classify_mob(entity))
+        return sorted(r for r in classify_mob(entity) if r != 'scripted')
     except Exception:
         return []
 

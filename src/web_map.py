@@ -124,6 +124,7 @@ class WebMapClient:
         self.player_name: Optional[str] = None
         self.token: Optional[str] = None     # the session secret it subscribed with
         self.mode: str = 'full'
+        self.combat: Optional[str] = None    # 'action': real-time combat (action_combat.py)
 
 
 class WebMapServer:
@@ -504,12 +505,17 @@ class WebMapServer:
             elif path.startswith('/combatdata'):
                 # combat v2 ranges for the 3D client (one source of truth: combat_range.py)
                 import combat_range as cr
+                import action_combat
                 body = json.dumps({
                     'melee': cr.MELEE, 'pointBlank': cr.POINT_BLANK, 'round': cr.round_seconds(),
                     'npcDelay': cr.NPC_PHASE_DELAY,
                     'auto': {k: {'range': v[0], 'ranged': v[1]} for k, v in cr.AUTO_RANGE.items()},
                     'abilities': {k: {'range': v[0], 'shape': v[1]} for k, v in cr.ABILITY_RANGE.items()},
                     'spellDefault': cr.DEFAULT_SPELL[0],
+                    # real-time combat (action_combat.py): the clocks the client predicts with
+                    'action': {'on': action_combat.enabled(), 'swing': action_combat.SWING, 'gcd': action_combat.GCD,
+                               'windup': action_combat.WINDUP, 'perfect': action_combat.PERFECT_WINDOW,
+                               'grace': action_combat.PERFECT_GRACE},
                 })
                 await self._http_response(writer, 200, 'OK', body, content_type='application/json')
             elif path.startswith('/zonemap'):
@@ -1410,6 +1416,7 @@ class WebMapServer:
                     client.mode = payload.get('mode', 'full')
                     client.player_name = player.name if player else None
                     client.token = payload.get('token') if player else None
+                    client.combat = 'action' if player and payload.get('combat') == 'action' else None
                     logger.info(f"WebSocket subscribe: player='{payload.get('player')}' mode='{client.mode}' ok={bool(player)}")
                     if not player:
                         await self._ws_send(writer, json.dumps({'type': 'auth', 'ok': False}))
@@ -1448,6 +1455,7 @@ class WebMapServer:
             if (client.player_name or '').lower() == str(name).lower() and client.token != keep_token:
                 client.player_name = None
                 client.token = None
+                client.combat = None
                 try:
                     await self._ws_send(client.writer, json.dumps({'type': 'revoked'}))
                 except Exception:

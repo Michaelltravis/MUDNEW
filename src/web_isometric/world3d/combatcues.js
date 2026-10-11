@@ -129,6 +129,9 @@ export class CombatCues {
         break;
       }
     }
+    // out of a marked blow's ground: say so at once (main.js sends where you stand)
+    if (this._inDanger && !danger && this.onLeave) this.onLeave();
+    this._inDanger = !!danger;
     if (danger) {
       this.arrow.visible = true;
       this.arrow.position.set(hp.x + danger.ax * 1.5, 0.06, hp.z + danger.az * 1.5);

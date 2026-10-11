@@ -517,6 +517,10 @@ class CombatHandler:
             return
 
         c = cls.config.COLORS
+        # what became of this swing (combat_hooks and action_combat read it): None = no turn,
+        # 'skip' = the turn was lost, else miss / dodge / parry / block / hit / crit
+        attacker._swing_res = 'skip'
+        attacker._swing_amt = 0
 
         # One low-HP warning per fight (covers heavies resolved in mob_ai too)
         await cls.check_low_hp(attacker)
@@ -605,6 +609,7 @@ class CombatHandler:
                     await attacker.send(f"{c['yellow']}You swing blindly and miss!{c['reset']}")
                 if hasattr(defender, 'send'):
                     await defender.send(f"{c['cyan']}{attacker.name} swings blindly!{c['reset']}")
+                attacker._swing_res = 'miss'
                 return
 
         # Defensive skills (dodge/parry/shield block/blur)
@@ -646,6 +651,7 @@ class CombatHandler:
                     await defender.send(f"{c['cyan']}Your ghostly reflexes let you dodge!{c['reset']}")
                 if hasattr(attacker, 'send'):
                     await attacker.send(f"{c['yellow']}{defender.name} dodges like a ghost!{c['reset']}")
+                attacker._swing_res = 'dodge'
                 return
 
         # Assassin Evasion (100% dodge)
@@ -655,6 +661,7 @@ class CombatHandler:
                 await defender.send(f"{c['cyan']}You effortlessly evade {attacker.name}'s attack!{c['reset']}")
             if hasattr(attacker, 'send'):
                 await attacker.send(f"{c['yellow']}{defender.name} is untouchable!{c['reset']}")
+            attacker._swing_res = 'dodge'
             return
 
         # Shadow Step dodge (one-time)
@@ -664,6 +671,7 @@ class CombatHandler:
                 await defender.send(f"{c['cyan']}You dodge the attack from the shadows!{c['reset']}")
             if hasattr(attacker, 'send'):
                 await attacker.send(f"{c['yellow']}{defender.name} dodges from the shadows!{c['reset']}")
+            attacker._swing_res = 'dodge'
             return
 
         # Avoidance checks
@@ -727,6 +735,7 @@ class CombatHandler:
                         if hasattr(attacker, 'send'):
                             await attacker.send(f"{c['red']}{defender.name} counters! [{counter_dmg}]{c['reset']}")
                         await attacker.take_damage(counter_dmg, defender)
+                attacker._swing_res = 'dodge'
                 return
             parry = int(defender.skills.get('parry', 0) * 0.25)
             try:
@@ -748,6 +757,7 @@ class CombatHandler:
                         defender.luck_points = min(10, defender.luck_points + 1)
                         if hasattr(defender, 'send'):
                             await defender.send(f"{c['bright_yellow']}[Luck: {defender.luck_points}/10]{c['reset']}")
+                attacker._swing_res = 'parry'
                 return
             sblock = int(defender.skills.get('shield_block', 0) * 0.3)
             if sblock and defender.equipment.get('shield') and random.randint(1, 100) <= sblock:
@@ -756,6 +766,7 @@ class CombatHandler:
                     await defender.send(f"{c['cyan']}You block the attack with your shield!{c['reset']}")
                 if hasattr(attacker, 'send'):
                     await attacker.send(f"{c['yellow']}{defender.name} blocks your attack!{c['reset']}")
+                attacker._swing_res = 'block'
                 return
             # Evasion (chance to avoid entirely)
             evasion = defender.skills.get('evasion', 0)
@@ -765,6 +776,7 @@ class CombatHandler:
                     await defender.send(f"{c['cyan']}You evade the attack!{c['reset']}")
                 if hasattr(attacker, 'send'):
                     await attacker.send(f"{c['yellow']}{defender.name} evades your attack!{c['reset']}")
+                attacker._swing_res = 'dodge'
                 return
 
         if hit_roll >= defense:
@@ -978,6 +990,7 @@ class CombatHandler:
                 if damage <= 0:
                     if hasattr(attacker, 'send'):
                         await attacker.send(f"{c['yellow']}{defender.name}'s bone shield absorbs the blow!{c['reset']}")
+                    attacker._swing_res = 'block'
                     return
             damage = max(1, damage)
 
@@ -985,6 +998,8 @@ class CombatHandler:
             damage = cls.cap_boss_swing(attacker, defender, damage)
             if not cls.is_player(attacker):
                 damage = cls.mitigate_incoming(defender, damage)
+            attacker._swing_res = 'crit' if is_crit else 'hit'
+            attacker._swing_amt = damage
 
             # Heavy hits and crits chip double poise (consumed in Mobile.take_damage)
             exploiting_stagger = False
@@ -1256,6 +1271,7 @@ class CombatHandler:
             if killed:
                 await cls.handle_death(attacker, defender)
         else:
+            attacker._swing_res = 'miss'
             # Miss - with variety
             miss_messages_attacker = [
                 f"You miss {defender.name}.",
@@ -1307,6 +1323,16 @@ class CombatHandler:
                 await mastery.improve(attacker, 'dual_wield', rate=0.25)
                 await cls.offhand_attack(attacker, defender)
 
+        # the rest of the round: rituals, pets, a companion, a burning mount (an action-mode
+        # swing leaves them to the 3-s round: action_combat.py)
+        if not getattr(attacker, '_swing_only', False):
+            await cls.round_extras(attacker, defender)
+
+    @classmethod
+    async def round_extras(cls, attacker: 'Character', defender: 'Character'):
+        """What a round brings besides the swing: ritual time, pets and their pacts, a combat
+        companion, a mount's fire aura."""
+        c = cls.config.COLORS
         # Ritual duration and channeling check
         if getattr(attacker, 'channeling_ritual', False):
             ritual_duration = getattr(attacker, 'ritual_duration', 0)

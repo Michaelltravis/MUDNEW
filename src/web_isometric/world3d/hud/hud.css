@@ -278,6 +278,16 @@ button { font: inherit; color: inherit; }
 #settings .seg button { padding: 3px 9px; border-radius: 5px; border: 1px solid var(--edge-dim); background: rgba(255,255,255,.04); cursor: pointer; font: 700 11.5px var(--label); color: var(--ink-dim); }
 #settings .seg button:hover { color: var(--ink); border-color: var(--edge); }
 #settings .row.vol { margin: 4px 14px; }
+/* real-time combat: the swing ring on the attack button, gold in the perfect-strike window */
+.slot.attack .swing { position: absolute; inset: -3px; border-radius: 12px; pointer-events: none; display: none; z-index: 3;
+  background: conic-gradient(from 0deg, rgba(255, 214, 120, .95) calc(var(--sw, 0) * 360deg), rgba(255, 255, 255, .07) 0);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 3px));
+          mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 3px)); }
+.slot.attack.rt .swing { display: block; }
+.slot.attack.rt.perfect .swing { background: conic-gradient(#fff3c4 0 360deg); filter: drop-shadow(0 0 6px #ffd86a); }
+.slot.attack.rt.queued::after { content: ''; position: absolute; top: 4px; right: 4px; width: 7px; height: 7px; border-radius: 50%; background: #ffd86a; box-shadow: 0 0 6px #ffd86a; z-index: 4; }
+.slot.busy { animation: busy .3s ease-out; }
+@keyframes busy { 0%, 100% { filter: none; } 40% { filter: brightness(.6) sepia(1) hue-rotate(-40deg) saturate(3); } }
 #settings .row.vol input[type=range] { width: 150px; accent-color: var(--gold); cursor: pointer; }
 #settings .seg button.on { border-color: #f0d28c; color: #1a1206; background: linear-gradient(180deg, #f3d999, #b98d45); }
 

@@ -1007,8 +1007,9 @@ class World:
         # resolves next round in mob_ai_tick.
         from mob_ai import declare_intents
         from environment import check_player_traps, tick as env_tick
+        import action_combat
         for npc in list(self.npcs):
-            if npc.is_fighting and npc.fighting is not None:
+            if npc.is_fighting and npc.fighting is not None and not action_combat.on_clock(npc):
                 try:
                     # a fighting mob can stumble into a player-laid trap
                     if getattr(npc.room, 'player_traps', None) and __import__('random').random() < 0.30:
@@ -1047,7 +1048,12 @@ class World:
                     player.fighting = None
                     player.position = 'standing'
                     continue
-                await CombatHandler.one_round(player, player.fighting)
+                if action_combat.active(player):
+                    # action mode (action_combat.py): the swings are on the player's own clock;
+                    # the round still brings rituals, pets, a companion, a burning mount
+                    await CombatHandler.round_extras(player, player.fighting)
+                elif not action_combat.round_skips(player):
+                    await CombatHandler.one_round(player, player.fighting)
                 # Send prompt after combat round so player always sees HP
                 if hasattr(player, 'connection') and player.connection:
                     await player.connection.send_prompt()
@@ -1072,8 +1078,12 @@ class World:
         """The creatures' half of a combat round (see combat_tick)."""
         from combat import CombatHandler
         from mob_ai import mob_ai_tick
+        import action_combat
         rooms = set()
         for npc in list(self.npcs):
+            # a creature fighting an action-mode player takes its turns on its own clock
+            if npc.is_fighting and action_combat.round_skips(npc):
+                continue
             if npc.is_fighting:
                 # Check if target is still valid
                 if npc.fighting is None or npc.fighting.hp <= 0 or (hasattr(npc.fighting, 'room') and npc.fighting not in npc.room.characters):

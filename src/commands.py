@@ -983,6 +983,12 @@ class CommandHandler:
         return move_cost
         
     @classmethod
+    async def cmd_webattack(cls, player: 'Player', args: List[str]):
+        """The 3D client's attack key in real-time combat (action_combat.py)."""
+        import action_combat
+        await action_combat.webattack(player, args)
+
+    @classmethod
     async def cmd_webmove(cls, player: 'Player', args: List[str]):
         """Internal, for the 3D web client (/play): "webmove <from> <to>".
 
@@ -4915,6 +4921,14 @@ class CommandHandler:
         if not player.is_fighting:
             await player.send(f"{c['yellow']}You're not fighting anyone!{c['reset']}")
             return
+        import action_combat
+        if action_combat.wants(player):
+            # real-time combat: judged against your own swing clock (action_combat.py)
+            if action_combat.perfect_press(player):
+                await player.send(f"{c['bright_yellow']}You read the rhythm — your next strike will land PERFECTLY!{c['reset']}")
+            else:
+                await player.send(f"{c['yellow']}Your timing is off — you swing wide and must steady yourself.{c['reset']}")
+            return
         now = time.time()
         world = getattr(player, 'world', None)
         round_start = getattr(world, 'last_combat_round', 0) if world else 0
@@ -4955,7 +4969,9 @@ class CommandHandler:
             await player.send(f"{c['yellow']}There's no area attack to evade.{c['reset']}")
             return
         mob, intent = threat
-        if now - intent.get('declared_at', now) < 1.5:
+        import action_combat
+        soon = 1.0 if action_combat.on_clock(mob) else 1.5     # a real-time wind-up is 2 s long
+        if now - intent.get('declared_at', now) < soon:
             await player.send(f"{c['yellow']}Too soon — watch the wind-up and move at the last moment!{c['reset']}")
             return
         player.sidestep_until = now + 2.5

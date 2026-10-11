@@ -283,8 +283,10 @@
   function sendMapSubscribe() {
     const st = MH.state;
     if (!st.playerName || !st.mapSocket || st.mapSocket.readyState !== WebSocket.OPEN) return;
-    st.mapSocket.send(JSON.stringify({ type: 'subscribe', player: st.playerName, token: st.mapToken || '', mode: MH.mapMode || 'full' }));
+    st.mapSocket.send(JSON.stringify({ type: 'subscribe', player: st.playerName, token: st.mapToken || '', mode: MH.mapMode || 'full',
+      combat: MH.combatMode || undefined }));
   }
+  MH.resubscribe = sendMapSubscribe;
   function startResubscribe() {
     stopResubscribe();
     MH.state.mapResubscribeInterval = setInterval(() => {

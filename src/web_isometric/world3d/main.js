@@ -25,6 +25,7 @@ import { verbsFor } from './hud/verbs.js';
 import { attachPerf } from './perf.js';
 import { buildDemo } from './demo.js';
 import { sound } from './audio.js';
+import { ActionClock } from './actionclock.js';
 import { musicFor, bedFor, surfaceFor } from './soundtable.js';
 import { interiorKind } from './terrain-town.js';
 
@@ -77,7 +78,11 @@ async function runGame() {
 
   // ranges and round timing, one source of truth on the server (combat_range.py)
   let ranges = { melee: 2.5, auto: {}, abilities: {}, spellDefault: 14 };
-  fetch('/combatdata').then(r => r.json()).then(d => { ranges = d; hud.setRanges(d); }).catch(() => {});
+  // real-time combat (action_combat.py): your swing clock and the global cooldown, as the
+  // server last told them (Settings -> Real-time combat; off: the 3-s round)
+  const clock = MH.actionClock = new ActionClock();
+  const actionMode = () => MH.combatMode === 'action' && !(ranges.action && ranges.action.on === false);
+  fetch('/combatdata').then(r => r.json()).then(d => { ranges = d; hud.setRanges(d); clock.configure(d.action); }).catch(() => {});
   const myClass = () => String(MH.state.player && MH.state.player.char_class || '').toLowerCase();
   const reachOf = () => (ranges.auto[myClass()] || { range: ranges.melee || 2.5 }).range;
   const ents = new Entities(engine, $('#plates'), kits);
@@ -100,6 +105,8 @@ async function runGame() {
   sound.listener = () => ({ x: engine.rig.target.x, z: engine.rig.target.z, yaw: engine.rig.yaw });
   MH.bus.on('combat.state', on => sound.setBattle(!!on));
   combat.onTelegraph = (k, d) => cues.telegraph(k, d);
+  // stepping out of a marked blow's ground: the server hears where you stand at once
+  cues.onLeave = () => { posClock = 0; };
   combat.onTelegraphEnd = k => cues.telegraphEnd(k);
   combat.onOpening = src => cues.opening(src);
   MH.bus.on('hud.abilityHover', a => cues.hoverAbility(a && a.id));
@@ -121,6 +128,8 @@ async function runGame() {
   });
   engine.onTick((dt, t) => { if (hero) cues.update(dt, t); });
   MH.bus.on('combat.events', p => {
+    // the server's word on your swing clock (private to you)
+    for (const e of p.events || []) if (e.k === 'swing' && combat.isHero(e.src)) clock.told(e, performance.now());
     if (hero) combat.handle(p.events, p.room);
     for (const e of p.events || []) if (e.k === 'death' && e.dst && e.dst.p && combat.isHero(e.dst)) hud.fallen();
     // the target's wind-up shows on the target frame as a cast bar
@@ -558,6 +567,17 @@ async function runGame() {
     if (t.kind !== 'mob') return hud.toast('You cannot attack that.');
     inReach(t, reachOf(), () => {
       ctl.face(t.root.position.x, t.root.position.z);
+      if (actionMode()) {
+        // real time: every press goes to the server; a blow that is due shows at once, an early
+        // press waits for the clock (pressed in its last moments, that blow lands perfectly)
+        const now = performance.now();
+        const press = clock.press(now);
+        if (press.swing && MH.state.inCombat) combat.localSwing();
+        const cmd = `webattack ${refFor(t)}`;
+        lastAction = { cmd, at: now };
+        MH.sendCommand(cmd, false);
+        return;
+      }
       // (the opening blow comes back at once as an attack event, with the class's swing)
       if (!MH.state.inCombat) { const cmd = `kill ${refFor(t)}`; lastAction = { cmd, at: performance.now() }; MH.sendCommand(cmd); }
     });
@@ -597,8 +617,15 @@ async function runGame() {
     { label: 'Take off the bar', run: () => hud.unslot(slot) },
     { label: 'Spellbook (K)', run: () => hud.spellbook.toggle(true) },
   ]));
+  const NO_GCD = new Set(['brace', 'sidestep', 'interrupt', 'flee', 'escape', 'evade']);
   MH.bus.on('hud.ability', ab => {
     const t = ents.targeted;
+    // real time: skills and casts wait for the global cooldown (the bar shows its sweep)
+    if (actionMode() && MH.state.inCombat && !NO_GCD.has(ab.id)) {
+      const now = performance.now();
+      if (clock.gcdLeft(now) > 80) return hud.flashSlot && hud.flashSlot(ab.id, 'busy');
+      clock.startGcd(now);
+    }
     // the hero starts the ability's own move on the key press (its recipe, abilityfx.js: the
     // clip, a leap or a blink, what gathers in the hands); the server's event then only adds
     // what flies and lands (fxdirector.js picks up where the key press left off)

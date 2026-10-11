@@ -721,3 +721,44 @@ Four more classes on the same engine (the last four — thief, ranger, bard, ass
   tone and footsteps, every synth runs); `/play?demo&gallery=sounds` plays every sound, sting,
   bed and track; in a browser, the sounds play in a fight, while walking and opening windows, the
   battle music crossfades in and out, and the probe suite still reports no page errors.
+
+### Real-time combat for /play (owner's pick, third of four)
+- **Opt-in, on by default**: /play's map socket subscribes with `combat:'action'` (Settings →
+  Real-time combat, On/Off, kept per browser). A player is in action mode while one of their
+  live /play clients asks for it — a closed tab, a lost socket or a newer login puts them back
+  on rounds at once. Telnet and `/platformer` keep the 3-s round and today's rules.
+  `Config.ACTION_COMBAT = False` turns it all off.
+- **Same pace, real feel** (`src/action_combat.py`): swings stay 3.0 s apart, so damage per
+  second (and every balance number) is unchanged. What changes:
+  - F lands the first blow the moment it is pressed (`webattack`), then the swings come by
+    themselves every 3 s while the foe is in reach; the button wears a ring that fills to the
+    next swing and turns gold in the last 0.6 s — press F then and that blow lands perfectly
+    (pressed earlier, that swing can't be perfect any more, so holding F never pays);
+  - skills and casts resolve at once behind a 1-s global cooldown ("Not ready yet."; the bar
+    sweeps; brace, sidestep, interrupt and flee never wait; a refused skill gives its second
+    back);
+  - creatures fighting you act on their own staggered clocks (a turn every 3 s ± 0.3 s, the
+    first a moment after they engage), and their wind-ups land 2 s after they are declared
+    (marked 2 s long) — step out of the red ring and the client tells the server at once;
+  - rituals, pets, a companion, a burning mount and the marquee effects stay on the 3-s round.
+- **Under it**:
+  - combat events are buffered per action (a round, a swing, a skill) instead of behind one
+    global hold, so overlapping actions never delay each other; a mark taken inside the hold
+    keeps an action ahead of its wounds;
+  - the round says what became of each swing (hit, crit, miss, dodge, parry, block, a lost
+    turn) instead of the wrapper reading it from the text;
+  - the end of a round (rituals, pets, companion, mount aura) is its own step
+    (`CombatHandler.round_extras`), which a real-time swing leaves to the round;
+  - every turn restarts a swing clock in both modes, so switching mid-fight never brings two
+    swings close together.
+- **A fix it found**: bosses (bosses.py) were also given the ordinary bruiser's crushing blows
+  on top of their own rotation. They no longer are, so **every boss hits less hard** — the
+  marquee balance pass (next) retunes for it.
+- **Not needed yet**: stuns, blindness and other per-swing counters keep their rate because
+  swings stay 3 s apart (a `stunned_until` clock waits for faster swings).
+- **Tests**: `tests/test_action_combat.py` (offline: event buffers, swing results, who is in
+  action mode, the round leaving their swings alone, webattack, the cooldown and its wording,
+  perfect timing, creature turns and 2-s wind-ups, the boss fix), `tests/test_combat_action.py`
+  (live: first blow at once, then every 3 s, a refused second skill, a wind-up landing 2.0 s
+  after it was marked, switching off mid-fight), `tests/web/actionclock.test.mjs`;
+  `test_combat_v2` still covers the round.
