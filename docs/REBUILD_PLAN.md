@@ -1114,8 +1114,8 @@ sits on, so it fits every body.
   percentage (+20 heals a fifth faster). Nothing read them before, on any item.
 - **What gear still doesn't do** (true of every item, not only these; left for a decision):
   - Health, mana and moves from gear only show in `score`: the real maximum never rises. That
-    needs one effective maximum read everywhere health is capped.
-  - Wisdom, constitution and charisma from gear change nothing.
+    needs one effective maximum read everywhere health is capped. (Done in Push 23.)
+  - Wisdom, constitution and charisma from gear change nothing. (Done in Push 23.)
   - Nothing reads resistances, water breathing, life drain, song power or corruption
     immunity, and haste only comes from spells.
 - **The balance simulator chooses gear right.** It scored a lower (better) armour class as
@@ -1141,3 +1141,39 @@ sits on, so it fits every body.
     necromancer.
   - The zone bosses' damage shares are measured again: the level-60 gate guardians 1.2 to
     0.95. A lone hero still loses about half their health to one at their level.
+
+### Gear health, mana and attributes that count (Push 23) (owner: "Make gear health, mana and stats actually work")
+Before, an item's +200 health, +30 mana or +2 constitution showed in `score` and did nothing:
+the real maxima never rose, and only strength, dexterity and intelligence from gear reached the
+to-hit and damage numbers.
+- **A player's attributes and maxima count what they wear, everywhere** (`player.py`
+  `GEAR_STATS`).
+  - `player.con` is their own constitution plus every worn piece's and set's.
+  - `player.max_hp` is their own health plus their gear's; the same for mana, moves and all
+    six attributes.
+  - So gear reaches everything that reads them: health and mana caps, healing, regeneration
+    (constitution, intelligence, wisdom), armour class from dexterity, spell saves (wisdom)
+    and criticals (intelligence), skills' attribute bonus, perception, abilities' formulas.
+  - Items may name a stat short or long (`con`, `constitution`) and health or mana by any of
+    their names (`hp`, `max_hp`, `hitpoints`; `mana`, `max_mana`).
+- **Their own values stay their own.**
+  - The save keeps the base, so nothing grows with each save.
+  - A level, a spell's +2 and its end move the base only.
+  - Character creation and New Game+ set it outright.
+- **Taking gear off lowers the maxima**, and health, mana and moves come down with them after
+  the command. Putting it on raises the maxima; regeneration fills them.
+- **Shown where you look:**
+  - `score` gives each attribute as its own value and what gear adds, `Con: 13(+2)`, and the
+    real maxima.
+  - The `/play` character sheet shows the total with a small +2 beside it, and its parts on
+    hover.
+- **Creatures are as they were:** their gear counts only in their blows.
+- **Reading an attribute** costs about 1.4 µs; the gear's totals are worked out again only when
+  what is worn changes.
+- **Tests:** `tests/test_item_stats.py`:
+  - Coral Plate's +200 is a real maximum; the shard's +2 reaches all six attributes.
+  - Legacy names count; dexterity from gear improves armour class.
+  - The save keeps the base, and loading adds the gear again.
+  - Levels and spells move the base; taking gear off lowers health.
+  - Dexterity from gear counts once in to-hit.
+  - A creature's attributes stay its own.

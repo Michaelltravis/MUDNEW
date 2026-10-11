@@ -679,6 +679,17 @@ def _look(entity):
         return None
 
 
+def _gear_stats(player):
+    """What worn gear adds to each attribute and maximum ({'str': 2, 'max_hp': 200}), non-zero only."""
+    if not hasattr(player, 'gear_bonus'):
+        return {}
+    try:
+        from player import GEAR_STATS
+        return {k: v for k in GEAR_STATS if (v := int(player.gear_bonus(k)))}
+    except Exception:
+        return {}
+
+
 def _npc_look(mob):
     """A creature's look, when its zone dressed it (not the gear every creature is handed) and
     something of it shows: a weapon, a shield, a helm, armour or a cloak."""
@@ -1604,6 +1615,8 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'dex': getattr(player, 'dex', 0),
             'con': getattr(player, 'con', 0),
             'cha': getattr(player, 'cha', 0),
+            # what worn gear adds to those and to the maxima (the values above count it)
+            'gear_stats': _gear_stats(player),
             # totals (equipment + stats + stance), not the base attributes
             'hitroll': player.get_hit_bonus() if hasattr(player, 'get_hit_bonus') else getattr(player, 'hitroll', 0),
             'damroll': player.get_damage_bonus() if hasattr(player, 'get_damage_bonus') else getattr(player, 'damroll', 0),

@@ -260,17 +260,17 @@ class Character:
         bonus += self.get_equipment_bonus('hitroll')
 
         # DEX is primary factor for accuracy (dodging, precision)
-        effective_dex = self.dex + self.get_equipment_bonus('dex')
+        effective_dex = self.gear_stat('dex')
         bonus += (effective_dex - 10) // 2
 
         # STR provides minor bonus (raw power helping land blows)
-        effective_str = self.str + self.get_equipment_bonus('str')
+        effective_str = self.gear_stat('str')
         bonus += (effective_str - 10) // 4
 
         # INT provides bonus for tactical awareness (mainly for casters)
         if hasattr(self, 'char_class'):
             if str(self.char_class).lower() in ('mage', 'necromancer', 'cleric'):
-                effective_int = self.int + self.get_equipment_bonus('int') + self.get_soulstone_bonus_int()
+                effective_int = self.gear_stat('int') + self.get_soulstone_bonus_int()
                 bonus += (effective_int - 10) // 3
 
         # Bard song bonuses
@@ -311,13 +311,13 @@ class Character:
         bonus += self.get_equipment_bonus('damroll')
 
         # STR is primary factor for damage
-        effective_str = self.str + self.get_equipment_bonus('str')
+        effective_str = self.gear_stat('str')
         bonus += (effective_str - 10) // 2
 
         # DEX provides minor damage bonus (precision strikes for finesse classes)
         if hasattr(self, 'char_class'):
             if str(self.char_class).lower() in ('thief', 'assassin', 'ranger'):
-                effective_dex = self.dex + self.get_equipment_bonus('dex')
+                effective_dex = self.gear_stat('dex')
                 bonus += (effective_dex - 10) // 5
 
         # Bard song bonuses
@@ -417,10 +417,14 @@ class Character:
                 total += bonuses_in.get(stat, 0)
         return total
 
+    def gear_stat(self, stat: str) -> int:
+        """An attribute with what worn gear adds to it. A creature's gear counts only where this
+        is asked (its blows); a player's attributes count their gear everywhere (Player)."""
+        return getattr(self, stat, 0) + self.get_equipment_bonus(stat)
+
     def get_effective_stat(self, stat: str) -> int:
         """Get effective stat value including equipment bonuses and debuffs."""
-        base = getattr(self, stat, 0)
-        total = base + self.get_equipment_bonus(stat)
+        total = self.gear_stat(stat)
         # Achievement stat bonuses
         try:
             from achievements import AchievementManager
@@ -434,6 +438,31 @@ class Character:
         if stat == 'dex' and getattr(self, 'thirst', 60) <= 0:
             total -= 2
         return total
+
+
+# ---------------------------------------------------------------- what worn gear adds
+# A player's attributes and maxima count their worn gear everywhere: `player.con` is their own
+# constitution plus every worn piece's (and its set's), `player.max_hp` their own health plus
+# their gear's. Their own (the base) is what is saved and what levels and spells move; gear adds
+# only while it is worn. Items name a stat short or long ('con', 'constitution') and health, mana
+# and moves by any of their names. A creature's attributes stay its own (Character.gear_stat).
+GEAR_STATS = {
+    'str': ('str', 'strength'), 'dex': ('dex', 'dexterity'), 'con': ('con', 'constitution'),
+    'int': ('int', 'intelligence'), 'wis': ('wis', 'wisdom'), 'cha': ('cha', 'charisma'),
+    'max_hp': ('hp', 'max_hp', 'hitpoints'), 'max_mana': ('mana', 'max_mana'), 'max_move': ('move', 'max_move'),
+}
+
+
+def _gear_stat(name):
+    """A player attribute that is its base plus what worn gear adds. Writing it moves the base by
+    as much as the value moved (a level's gain, a spell's +2 and its -2 when it ends);
+    Player.set_base() sets the base outright."""
+    def get(self):
+        return self.__dict__.get('_base', {}).get(name, 0) + self.gear_bonus(name)
+
+    def put(self, value):
+        self.__dict__.setdefault('_base', {})[name] = value - self.gear_bonus(name)
+    return property(get, put)
 
 
 class Player(Character):
@@ -878,6 +907,77 @@ class Player(Character):
         if len(self.journal) > 200:
             self.journal = self.journal[-200:]
         
+    # ---- what worn gear adds (GEAR_STATS) ----
+    def _gear_totals(self) -> dict:
+        """Every affect type's total over worn gear and its sets' bonuses, reckoned again only
+        when what is worn changes (or the zone, for a set's home-zone bonus)."""
+        eq = self.__dict__.get('equipment') or {}
+        room = self.__dict__.get('room')
+        zone = getattr(getattr(room, 'zone', None), 'number', None) if room is not None else None
+        sig = (zone,) + tuple((id(it), getattr(it, 'vnum', None), len(getattr(it, 'affects', None) or ()))
+                              for it in eq.values() if it)
+        cache = self.__dict__.get('_gear_cache')
+        if cache is not None and cache[0] == sig:
+            return cache[1]
+        totals, sets = {}, {}
+        for it in eq.values():
+            if not it:
+                continue
+            for a in getattr(it, 'affects', None) or ():
+                if isinstance(a, dict):
+                    kind = a.get('applies_to') if a.get('type') == 'modify_stat' else a.get('type')
+                    value = a.get('value', 0)
+                elif getattr(a, 'type', None) == 'modify_stat':
+                    kind, value = getattr(a, 'applies_to', None), getattr(a, 'value', 0)
+                else:
+                    continue
+                if kind and isinstance(value, (int, float)):
+                    totals[kind] = totals.get(kind, 0) + value
+            sid = getattr(it, 'set_id', None)
+            if sid:
+                sid = int(sid) if isinstance(sid, str) and sid.isdigit() else sid
+                sets[sid] = sets.get(sid, 0) + 1
+        if sets:
+            try:
+                from sets import get_set_bonus
+            except Exception:
+                get_set_bonus = None
+            for sid, pieces in sets.items() if get_set_bonus else ():
+                for in_zone in (False, True) if zone == sid else (False,):
+                    for kind, value in (get_set_bonus(sid, pieces, in_zone=in_zone) or {}).items():
+                        if isinstance(value, (int, float)):
+                            totals[kind] = totals.get(kind, 0) + value
+        self.__dict__['_gear_cache'] = (sig, totals)
+        return totals
+
+    def get_equipment_bonus(self, stat: str) -> int:
+        """Total of one affect type over worn gear and its sets' bonuses."""
+        return self._gear_totals().get(stat, 0)
+
+    def gear_bonus(self, name: str) -> int:
+        """What worn gear adds to an attribute or a maximum, under any of its names."""
+        totals = self._gear_totals()
+        return sum(totals.get(k, 0) for k in GEAR_STATS.get(name, (name,)))
+
+    def gear_stat(self, stat: str) -> int:
+        """A player's attributes count their gear already."""
+        return getattr(self, stat, 0)
+
+    def base_stat(self, name: str) -> int:
+        """An attribute or maximum without what gear adds (what is saved)."""
+        return self.__dict__.get('_base', {}).get(name, 0)
+
+    def set_base(self, name: str, value) -> None:
+        """Set an attribute's or maximum's own value outright, whatever is worn."""
+        self.__dict__.setdefault('_base', {})[name] = value
+
+    def clamp_vitals(self) -> None:
+        """Health, mana and moves can't stay above maxima that fell (gear taken off)."""
+        for cur, top in (('hp', 'max_hp'), ('mana', 'max_mana'), ('move', 'max_move')):
+            limit = getattr(self, top)
+            if getattr(self, cur, 0) > limit:
+                setattr(self, cur, limit)
+
     @classmethod
     def create_new(cls, name: str, password: str, race: str, char_class: str, 
                    stats: Dict[str, int], world: 'World') -> 'Player':
@@ -888,24 +988,20 @@ class Player(Character):
         player.race = race
         player.char_class = char_class
         
-        # Set stats
-        player.str = stats['str']
-        player.int = stats['int']
-        player.wis = stats['wis']
-        player.dex = stats['dex']
-        player.con = stats['con']
-        player.cha = stats['cha']
+        # Set stats (their own: gear comes later and adds while worn)
+        for stat in ('str', 'int', 'wis', 'dex', 'con', 'cha'):
+            player.set_base(stat, stats[stat])
         
         # Calculate derived stats based on class
         class_data = player.config.CLASSES[char_class]
         # HP: 12-22 range based on class and constitution
         # progression-01: a level-1 bard or thief rolled 13-14 HP and died to level-1
         # creatures; the first ten minutes must not hinge on a CON roll — floor at 16
-        player.max_hp = max(16, 12 + class_data['hit_dice'] // 2 + (player.con - 10) // 2)
+        player.set_base('max_hp', max(16, 12 + class_data['hit_dice'] // 2 + (player.con - 10) // 2))
         # Mana: ~100 base, scales with INT + WIS
-        player.max_mana = 100 + class_data['mana_dice'] * 5 + (player.int + player.wis - 20) * 2
+        player.set_base('max_mana', 100 + class_data['mana_dice'] * 5 + (player.int + player.wis - 20) * 2)
         # Moves: 100+ base, scales with constitution
-        player.max_move = 100 + class_data['move_dice'] * 5 + player.con * 2
+        player.set_base('max_move', 100 + class_data['move_dice'] * 5 + player.con * 2)
         
         player.hp = player.max_hp
         player.mana = player.max_mana
@@ -1080,17 +1176,18 @@ class Player(Character):
             'gold': self.gold,
             'alignment': self.alignment,
             'hp': self.hp,
-            'max_hp': self.max_hp,
+            # their own maxima and attributes: what gear adds comes back with the gear
+            'max_hp': self.base_stat('max_hp'),
             'mana': self.mana,
-            'max_mana': self.max_mana,
+            'max_mana': self.base_stat('max_mana'),
             'move': self.move,
-            'max_move': self.max_move,
-            'str': self.str,
-            'int': self.int,
-            'wis': self.wis,
-            'dex': self.dex,
-            'con': self.con,
-            'cha': self.cha,
+            'max_move': self.base_stat('max_move'),
+            'str': self.base_stat('str'),
+            'int': self.base_stat('int'),
+            'wis': self.base_stat('wis'),
+            'dex': self.base_stat('dex'),
+            'con': self.base_stat('con'),
+            'cha': self.base_stat('cha'),
             'armor_class': self.armor_class,
             'hitroll': self.hitroll,
             'damroll': self.damroll,
@@ -1296,17 +1393,10 @@ class Player(Character):
             player.gold = data['gold']
             player.alignment = data.get('alignment', 0)
             player.hp = data['hp']
-            player.max_hp = data['max_hp']
             player.mana = data['mana']
-            player.max_mana = data['max_mana']
             player.move = data['move']
-            player.max_move = data['max_move']
-            player.str = data['str']
-            player.int = data['int']
-            player.wis = data['wis']
-            player.dex = data['dex']
-            player.con = data['con']
-            player.cha = data['cha']
+            for name in ('max_hp', 'max_mana', 'max_move', 'str', 'int', 'wis', 'dex', 'con', 'cha'):
+                player.set_base(name, data[name])
             player.armor_class = data.get('armor_class', 100)
             player.hitroll = data.get('hitroll', 0)
             player.damroll = data.get('damroll', 0)
@@ -3536,3 +3626,10 @@ class Player(Character):
             self.spells[spell_name] = min(95, current_prof + improvement)
 
             await self.send(f"{c['bright_cyan']}Your knowledge of {spell_name.replace('_', ' ')} deepens! ({old_prof}% -> {self.spells[spell_name]}%){c['reset']}")
+
+
+# a player's attributes and maxima count their worn gear (GEAR_STATS); installed after the class
+# so the class body keeps the builtin str() and int()
+for _name in GEAR_STATS:
+    setattr(Player, _name, _gear_stat(_name))
+del _name

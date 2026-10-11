@@ -341,10 +341,13 @@ class CommandHandler:
                 except Exception:
                     pass
             # gear put on or taken off (wear, wield, remove, a disarm): the 3D clients around
-            # see it at once (gear_look.py)
+            # see it at once (gear_look.py), and health, mana and moves can't stay above maxima
+            # that fell with it
             try:
                 import gear_look
                 await gear_look.after_command(player)
+                if hasattr(player, 'clamp_vitals'):
+                    player.clamp_vitals()
             except Exception:
                 logger.exception('gear look relay failed')
         else:
@@ -1459,9 +1462,9 @@ class CommandHandler:
         player.level = 1
         player.exp = 0
         player.gold = gold_keep
-        player.hp = player.max_hp = 100
-        player.mana = player.max_mana = 100
-        player.move = player.max_move = 100
+        for top in ('max_hp', 'max_mana', 'max_move'):
+            player.set_base(top, 100)      # their own; what they wear still adds
+        player.hp, player.mana, player.move = player.max_hp, player.max_mana, player.max_move
 
         player.quests_completed = []
         player.quest_flags = {}
@@ -1791,15 +1794,14 @@ class CommandHandler:
         display_class = get_class_display(player)
         await player.send(f"{c['cyan']}{V} {c['white']}Race: {race_info.get('name', player.race):<12} Class: {display_class:<12} Level: {player.level:<3}{c['cyan']}    {V}{c['reset']}")
         await player.send(f"{c['cyan']}{LT}{H*W}{RT}{c['reset']}")
-        # Calculate effective max values with equipment bonuses
-        eff_max_hp = player.max_hp + player.get_equipment_bonus('hp')
-        eff_max_mana = player.max_mana + player.get_equipment_bonus('mana')
-        eff_max_move = player.max_move + player.get_equipment_bonus('move')
+        # the maxima count worn gear (Player.max_hp is its own plus what gear adds)
+        eff_max_hp, eff_max_mana, eff_max_move = player.max_hp, player.max_mana, player.max_move
         await player.send(f"{c['cyan']}{V} {c['bright_red']}HP: {player.hp:>4}/{eff_max_hp:<4}{c['cyan']}  {c['bright_cyan']}Mana: {player.mana:>4}/{eff_max_mana:<4}{c['cyan']}  {c['bright_yellow']}Move: {player.move:>4}/{eff_max_move:<4}{c['cyan']}   {V}{c['reset']}")
         await player.send(f"{c['cyan']}{LT}{H*W}{RT}{c['reset']}")
-        # Calculate stat bonuses from equipment
-        def stat_display(base, stat_name):
-            bonus = player.get_equipment_bonus(stat_name)
+        # each attribute: their own, and what gear (and a soulstone, for intelligence) adds
+        def stat_display(stat_name):
+            base = player.base_stat(stat_name) if hasattr(player, 'base_stat') else getattr(player, stat_name)
+            bonus = player.gear_bonus(stat_name) if hasattr(player, 'gear_bonus') else player.get_equipment_bonus(stat_name)
             soulstone = player.get_soulstone_bonus_int() if stat_name == 'int' and hasattr(player, 'get_soulstone_bonus_int') else 0
             total_bonus = bonus + soulstone
             if total_bonus > 0:
@@ -1807,12 +1809,12 @@ class CommandHandler:
             elif total_bonus < 0:
                 return f"{base:>2}({total_bonus})"
             return f"{base:>2}"
-        str_d = stat_display(player.str, 'str')
-        int_d = stat_display(player.int, 'int')
-        wis_d = stat_display(player.wis, 'wis')
-        dex_d = stat_display(player.dex, 'dex')
-        con_d = stat_display(player.con, 'con')
-        cha_d = stat_display(player.cha, 'cha')
+        str_d = stat_display('str')
+        int_d = stat_display('int')
+        wis_d = stat_display('wis')
+        dex_d = stat_display('dex')
+        con_d = stat_display('con')
+        cha_d = stat_display('cha')
         await player.send(f"{c['cyan']}{V} {c['white']}Str:{str_d:<7} Int:{int_d:<7} Wis:{wis_d:<7} Dex:{dex_d:<7} Con:{con_d:<7} Cha:{cha_d:<5}{c['cyan']}{V}{c['reset']}")
         await player.send(f"{c['cyan']}{LT}{H*W}{RT}{c['reset']}")
         await player.send(f"{c['cyan']}{V} {c['bright_green']}Experience: {player.exp:<10}{c['cyan']} {c['bright_yellow']}Gold: {player.gold:<10}{c['cyan']} {c['white']}Practices: {player.practices:<3}{c['cyan']}  {V}{c['reset']}")

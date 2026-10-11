@@ -10,6 +10,9 @@ const ATTRS = [['str', 'Strength'], ['int', 'Intelligence'], ['wis', 'Wisdom'], 
 const PRIME = { warrior: 'str', paladin: 'str', mage: 'int', necromancer: 'int', cleric: 'wis', thief: 'dex', ranger: 'dex', assassin: 'dex', bard: 'cha' };
 const title = s => String(s || '').replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 
+// what worn gear adds to a maximum (counted in it already), as a note beside its label
+const fromGear = (p, k) => { const g = (p.gear_stats || {})[k] || 0; return g ? ` <small class="gear">${g > 0 ? '+' : ''}${g} from gear</small>` : ''; };
+
 export function createCharacter() {
   const root = $('#character');
   const body = root.querySelector('.ch-body');
@@ -35,16 +38,21 @@ export function createCharacter() {
         <div class="ch-name">${esc(p.name)}</div>
         <div class="ch-title">${esc(p.title || '')}</div>
         <div class="ch-line">Level ${p.level || 1} ${esc(title(p.race))} ${esc(title(p.char_class))}</div>
-        <div class="ch-lab">Health</div>${bar(p.hp, p.max_hp, 'hp')}
-        <div class="ch-lab">${esc(res[2])}</div>${bar(res[0], res[1], 'mp')}
-        <div class="ch-lab">Movement</div>${bar(p.move, p.max_move, 'mv')}
+        <div class="ch-lab">Health${fromGear(p, 'max_hp')}</div>${bar(p.hp, p.max_hp, 'hp')}
+        <div class="ch-lab">${esc(res[2])}${res[2] === 'Mana' ? fromGear(p, 'max_mana') : ''}</div>${bar(res[0], res[1], 'mp')}
+        <div class="ch-lab">Movement${fromGear(p, 'max_move')}</div>${bar(p.move, p.max_move, 'mv')}
         <div class="ch-lab">Experience</div>${next - floor > 1e9 || !next
           ? `<div class="ch-bar xp"><b style="width:100%"></b><span>Max level · ${(p.exp || 0).toLocaleString()} xp</span></div>`
           : bar(Math.max(0, (p.exp || 0) - floor), Math.max(1, next - floor), 'xp')}
         <div class="ch-gold">${(p.gold || 0).toLocaleString()} gold</div>
       </div>
     </div>
-    <div class="ch-attrs">${ATTRS.map(([k, n]) => `<div class="${k === prime ? 'prime' : ''}" title="${n}${k === prime ? ' — your prime stat' : ''}"><div class="v">${p[k] ?? '–'}</div><div class="k">${k.toUpperCase()}</div></div>`).join('')}</div>
+    <div class="ch-attrs">${ATTRS.map(([k, n]) => {
+      // what worn gear adds counts already; shown beside it
+      const g = (p.gear_stats || {})[k] || 0;
+      const tip = `${n}${k === prime ? ' — your prime stat' : ''}${g ? ` (${p[k] - g} your own, ${g > 0 ? '+' : ''}${g} from gear)` : ''}`;
+      return `<div class="${k === prime ? 'prime' : ''}" title="${tip}"><div class="v">${p[k] ?? '–'}${g ? `<small class="gear">${g > 0 ? '+' : ''}${g}</small>` : ''}</div><div class="k">${k.toUpperCase()}</div></div>`;
+    }).join('')}</div>
     <div class="ch-combat">
       <div><span>Hit</span><b>${p.hitroll >= 0 ? '+' : ''}${p.hitroll ?? 0}</b></div>
       <div><span>Damage</span><b>${p.damroll >= 0 ? '+' : ''}${p.damroll ?? 0}</b></div>
