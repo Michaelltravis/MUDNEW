@@ -1,0 +1,213 @@
+{
+  "run": "progression-01",
+  "character": "NewGeugu",
+  "opener": "bash",
+  "start": {
+    "level": null,
+    "exp": null,
+    "hp": null,
+    "maxhp": null
+  },
+  "end": {
+    "level": 10,
+    "exp": 2878,
+    "hp": 85,
+    "maxhp": 85
+  },
+  "fights": [
+    {
+      "vnum": 2513,
+      "target": "mage",
+      "threat": "\n\u2551 Combat: OB  -1  DB -13  PB  0%                     \u2551\r\n\u2551 DB:base -8 st +0 sh +",
+      "level_before": 10,
+      "level_after": 10,
+      "levelled": false,
+      "exp_before": 100,
+      "exp_after": 762,
+      "duration_s": 54.8,
+      "rounds": 15,
+      "ended": "mob_killed",
+      "bashes": 7,
+      "braces": 0,
+      "opener_used": "bash",
+      "reactions": {
+        "brace": 0,
+        "sidestep": 0,
+        "interrupt": 0,
+        "swing": 0,
+        "perfect": 0
+      },
+      "hp_start": 85,
+      "hp_end": 74,
+      "maxhp": 85,
+      "label": "mage (L10)",
+      "t_elapsed_s": 63.2
+    },
+    {
+      "vnum": 2537,
+      "target": "mage",
+      "threat": "Moderate",
+      "level_before": 10,
+      "level_after": 10,
+      "levelled": false,
+      "exp_before": 762,
+      "exp_after": 1622,
+      "duration_s": 46.1,
+      "rounds": 11,
+      "ended": "mob_killed",
+      "bashes": 6,
+      "braces": 0,
+      "opener_used": "bash",
+      "reactions": {
+        "brace": 0,
+        "sidestep": 0,
+        "interrupt": 0,
+        "swing": 0,
+        "perfect": 0
+      },
+      "hp_start": 78,
+      "hp_end": 42,
+      "maxhp": 85,
+      "label": "mage (L12)",
+      "t_elapsed_s": 117.7
+    },
+    {
+      "vnum": 4114,
+      "target": "mage",
+      "threat": "Challenging",
+      "level_before": 10,
+      "level_after": 10,
+      "levelled": false,
+      "exp_before": 1622,
+      "exp_after": 1590,
+      "duration_s": 35.2,
+      "rounds": 14,
+      "ended": "player_died",
+      "bashes": 4,
+      "braces": 0,
+      "opener_used": "bash",
+      "reactions": {
+        "brace": 0,
+        "sidestep": 0,
+        "interrupt": 0,
+        "swing": 0,
+        "perfect": 0
+      },
+      "hp_start": 62,
+      "hp_end": 3,
+      "maxhp": 85,
+      "label": "mage (L13, aggressive)",
+      "t_elapsed_s": 236.3
+    },
+    {
+      "vnum": 2537,
+      "target": "mage",
+      "threat": "Moderate",
+      "level_before": 10,
+      "level_after": 10,
+      "levelled": false,
+      "exp_before": 1590,
+      "exp_after": 1559,
+      "duration_s": 41.3,
+      "rounds": 17,
+      "ended": "player_died",
+      "bashes": 5,
+      "braces": 0,
+      "opener_used": "bash",
+      "reactions": {
+        "brace": 0,
+        "sidestep": 0,
+        "interrupt": 0,
+        "swing": 0,
+        "perfect": 0
+      },
+      "hp_start": 85,
+      "hp_end": 46,
+      "maxhp": 85,
+      "label": "mage (L12) again",
+      "t_elapsed_s": 288.8
+    },
+    {
+      "vnum": 6259,
+      "target": "wizard",
+      "threat": "Dangerous",
+      "level_before": 10,
+      "level_after": 10,
+      "levelled": false,
+      "exp_before": 1559,
+      "exp_after": 2936,
+      "duration_s": 21.1,
+      "rounds": 9,
+      "ended": "mob_killed",
+      "bashes": 3,
+      "braces": 0,
+      "opener_used": "bash",
+      "reactions": {
+        "brace": 0,
+        "sidestep": 0,
+        "interrupt": 0,
+        "swing": 0,
+        "perfect": 0
+      },
+      "hp_start": 85,
+      "hp_end": 13,
+      "maxhp": 85,
+      "label": "wizard (L15, aggressive)",
+      "t_elapsed_s": 318.3
+    },
+    {
+      "vnum": 4114,
+      "target": "mage",
+      "threat": "Challenging",
+      "level_before": 10,
+      "level_after": 10,
+      "levelled": false,
+      "exp_before": 2936,
+      "exp_after": 2878,
+      "duration_s": 27.1,
+      "rounds": 11,
+      "ended": "player_died",
+      "bashes": 3,
+      "braces": 0,
+      "opener_used": "bash",
+      "reactions": {
+        "brace": 0,
+        "sidestep": 0,
+        "interrupt": 0,
+        "swing": 0,
+        "perfect": 0
+      },
+      "hp_start": 71,
+      "hp_end": 24,
+      "maxhp": 85,
+      "label": "mage (L13) again",
+      "t_elapsed_s": 489.6
+    }
+  ],
+  "rests": [
+    {
+      "after": "mage (L12)",
+      "seconds": 72.1
+    },
+    {
+      "after": "wizard (L15, aggressive)",
+      "seconds": 132.9
+    }
+  ],
+  "deaths": 3,
+  "level_reached": 10,
+  "time_to_level": {
+    "2": 63.2,
+    "3": 63.2,
+    "4": 63.2,
+    "5": 63.2,
+    "6": 63.2,
+    "7": 63.2,
+    "8": 63.2,
+    "9": 63.2,
+    "10": 63.2
+  },
+  "total_s": 490.6,
+  "active_fight_s": 225.6,
+  "rest_s": 205.0
+}

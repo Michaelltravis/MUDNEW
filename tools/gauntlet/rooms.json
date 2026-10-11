@@ -1,0 +1,151 @@
+[
+  {
+    "label": "city",
+    "vnum": 3014,
+    "note": "Market Square, Midgaard: crowd, statue, fountain",
+    "ref": {
+      "camera": [
+        40,
+        222
+      ],
+      "note": "BrowserQuest village: two houses, lamp posts"
+    }
+  },
+  {
+    "label": "forest",
+    "vnum": 27001,
+    "note": "Whispering Woods: winding forest path",
+    "ref": {
+      "camera": [
+        20,
+        165
+      ],
+      "note": "grassland with trees, rocks and a path"
+    }
+  },
+  {
+    "label": "dungeon",
+    "vnum": 14002,
+    "note": "Plaza of Bones: undead city",
+    "ref": {
+      "camera": [
+        60,
+        40
+      ],
+      "note": "underworld lava caverns"
+    }
+  },
+  {
+    "label": "cave",
+    "vnum": 27021,
+    "note": "Bear's Den cave",
+    "ref": {
+      "camera": [
+        130,
+        220
+      ],
+      "note": "cave interior with a bridge over water"
+    }
+  },
+  {
+    "label": "water",
+    "vnum": 6809,
+    "note": "Reef Shallows, wading water",
+    "ref": {
+      "camera": [
+        20,
+        180
+      ],
+      "note": "river, dock and bridge"
+    }
+  },
+  {
+    "label": "combat",
+    "vnum": 14002,
+    "cmds": [
+      "kill keeper"
+    ],
+    "waitMs": 6500,
+    "after": [
+      "flee",
+      "goto 3001"
+    ],
+    "note": "mid-fight: wind-up bar / hit flash / feed",
+    "ref": {
+      "camera": null,
+      "attackNearest": true,
+      "note": "fight a rat near spawn"
+    },
+    "pre": [
+      "zreset"
+    ]
+  },
+  {
+    "label": "fight",
+    "vnum": 14002,
+    "cmds": [
+      "kill keeper"
+    ],
+    "waitMs": 800,
+    "filmstrip": {
+      "frames": 8,
+      "intervalMs": 1000,
+      "cols": 4
+    },
+    "after": [
+      "flee",
+      "goto 3001"
+    ],
+    "note": "combat feel storyboard: 8 frames over 8s of a fight with the grave keeper",
+    "ref": {
+      "camera": null,
+      "attackNearest": true,
+      "note": "rat fight near spawn, same 8-frame storyboard"
+    },
+    "pre": [
+      "zreset"
+    ]
+  },
+  {
+    "label": "castle",
+    "vnum": 15001,
+    "note": "King Welmar's Castle hall"
+  },
+  {
+    "label": "sewer",
+    "vnum": 7001,
+    "note": "Midgaard sewer"
+  },
+  {
+    "label": "dwarf",
+    "vnum": 6501,
+    "note": "Dwarven Kingdom"
+  },
+  {
+    "label": "walk",
+    "vnum": 6000,
+    "cmds": [],
+    "waitMs": 3500,
+    "filmstrip": {
+      "frames": 6,
+      "intervalMs": 450,
+      "cols": 3,
+      "canvasOnly": true
+    },
+    "note": "continuous world: hold A from mid-room at the Edge of the Forest (6000), west through the gap onto the Light Forest trail (6001) and on. Zone 60 holds only rabbits and foxes (no aggressors), so the strip is a walk; the Whispering Woods route (27001 east) kept turning into a dire-wolf fight because the wolf wanders into Eastern Trail",
+    "ref": {
+      "walkTo": [
+        12,
+        0
+      ],
+      "note": "BrowserQuest: walk 12 tiles east from spawn, camera scrolling"
+    },
+    "js": "(() => { const sc = MH.game.scene.getScenes(true).find(s => s.player); sc.player.setPosition(sc.pxW * 0.38, sc.pxH / 2); const inp = document.getElementById('command-input'); if (inp) inp.blur(); document.body.focus(); })()",
+    "keys": {
+      "down": "a"
+    },
+    "pre": [
+      "zreset"
+    ]
+  }
+]

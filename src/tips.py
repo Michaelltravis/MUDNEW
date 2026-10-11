@@ -139,7 +139,7 @@ TIPS = {
 EVENT_TIPS = {
     'first_kill': "Great job on your first kill! Check 'achievements' to see your progress.",
     'first_death': "Don't worry about dying - you respawn at the temple with partial health.",
-    'level_up': "Congratulations on leveling up! You may have learned new skills or spells.",
+    'level_up': "Congratulations on leveling up! New abilities come with your level, and every ability grows as you use it.",
     'low_health': "Your health is low! Consider fleeing or using a healing item.",
     'new_zone': "You've entered a new area. 'Look' around to get your bearings.",
     'found_secret': "You found a secret! Keep searching - there may be more hidden things.",

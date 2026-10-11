@@ -17,6 +17,17 @@
         "up": {
           "to_room": 7000,
           "description": "A steep trail ascends to The Fissure Under The Ledge"
+        },
+        "down": {
+          "to_room": 7072,
+          "hidden": true,
+          "search_difficulty": 60,
+          "requires_light": true,
+          "secret": true,
+          "reveal_message": "You discover a submerged tunnel leading down."
+        },
+        "east": {
+          "to_room": 7101
         }
       },
       "mob_resets": [
@@ -48,6 +59,9 @@
         "east": {
           "to_room": 7103,
           "description": "East.  You see nothing of interest."
+        },
+        "west": {
+          "to_room": 7100
         }
       },
       "extra_descs": {
@@ -479,6 +493,14 @@
         "west": {
           "to_room": 7104,
           "description": "The cobblestones lead to A Junction In The Sewer Pipes"
+        },
+        "up": {
+          "to_room": 7022,
+          "hidden": true,
+          "search_difficulty": 60,
+          "requires_light": true,
+          "secret": true,
+          "reveal_message": "A seam in the smooth ceiling parts, revealing a chamber above."
         }
       },
       "mob_resets": [

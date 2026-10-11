@@ -1,0 +1,16 @@
+{
+  "piece": "atmosphere",
+  "pick": "A",
+  "per_label": { "city": "A", "forest": "A", "dungeon": "B", "cave": "A", "water": "A" },
+  "reasons": [
+    "cave: A's two wall torches throw warm pools that fade into darkness across the rock floor, plus a purple glow on the floor; B's cave is one flat brown wash with identical brightness in every corner and a hard repeating rock-wall tile border.",
+    "dungeon: A shows a sunlit tan desert with a lava stairway and a visible tile grid, nothing reads as a dungeon; B's grey fog, tombstone rows, torch sconces on the top wall and the brighter pool around the player read as a necropolis at night without the title text.",
+    "forest/water: A's lighting falls off toward the screen edges but the palette collapses: A forest player and mobs are green-on-green smudges and A water rocks nearly vanish in the blue tint, while B's forest trees/rocks/paths and B's beach-river-dock pop cleanly even though B's ground is a uniformly lit, obviously tiled grid."
+  ],
+  "fixes": [
+    { "what": "Add per-source light falloff (torches, lava, windows) with a radial gradient into darkness instead of a single uniform brightness across the whole room; the dungeon and cave screens on the losing side have zero light sources that affect the floor.", "file_hint": "src/web_isometric/platformer/immersion.js" },
+    { "what": "Break the visible tile grid: paint the ground with soft edge blends, noise and terrain-edge feathering so grass/sand/rock read as painted terrain instead of repeating square tiles.", "file_hint": "src/web_isometric/platformer/painter.js" },
+    { "what": "Keep the biome tint from flattening readability: the murky forest and blue-washed water screens need actors, exits and rocks to keep a separate value/hue from the floor (rim light or outline) so the vignette does not swallow them.", "file_hint": "src/web_isometric/platformer/themes-zones.js" }
+  ],
+  "confidence": "low"
+}

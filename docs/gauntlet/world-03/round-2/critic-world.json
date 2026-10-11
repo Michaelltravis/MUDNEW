@@ -1,0 +1,19 @@
+{
+  "piece": "world",
+  "pick": "B",
+  "per_label": { "walk": "B", "forest": "B" },
+  "reasons": [
+    "walk: B's camera stays fixed on the character while the world slides under it. The path junction drifts from the upper-right at 1.1s to the centre by 2.9s, so it reads as one continuous forest. The path bending north is visible well before the character reaches it. A barely changes across 0.0s to 2.3s. The town layout looks the same in every frame and the character moves a few pixels, so there is no sense of traversal and no destination ever appears.",
+    "walk: B has visible tile or lighting seams. At 1.7s there is a rectangular lighter block at the upper right. At 4.1s there is a hard vertical edge at the right, around x=1895, where the shading changes. These read as unpainted or stale regions. A has no flashes or blank regions, but it also shows nothing happening.",
+    "forest: B reads as a lit place with depth. It has a dark vignette, a soft glow around the path, a canopy overhang at the top, and shadowed foreground bushes at the bottom. The path is a wide painted dirt road with soft edges, and its fork and bend are easy to follow. A is bright, flat, saturated green tile with a hard-edged brown strip. It has no lighting or depth falloff and looks like a 2000s tileset.",
+    "forest: A wins on tree crispness. Its trees have clean outlines, readable trunks and drop shadows. B's trees are blurry dark blobs, smeared and low-contrast, and individual trunks and silhouettes are not readable. B's overall mood is more modern, but its tree rendering is muddy.",
+    "overall: B is closer to a modern polished game in atmosphere, continuity and path readability. It is held back by blurry trees and visible rectangular seams."
+  ],
+  "fixes": [
+    { "what": "Remove the rectangular lighter blocks and hard vertical edges in the forest ground and lighting layer (seen at 1.7s upper right and 4.1s right edge). Blend chunk boundaries or paint the lighting as one continuous overlay.", "file_hint": "" },
+    { "what": "Sharpen the tree canopies with crisp edges and a light/shadow split per tree. Add visible trunks, and stop the blur or smear filter from softening the silhouettes.", "file_hint": "" },
+    { "what": "Reduce the heavy dark vignette and the overall murk. Raise mid-tone contrast between path, grass and canopy so the path and trees pop at gameplay scale.", "file_hint": "" },
+    { "what": "Keep the camera locked while the world scrolls, and pre-render the next area ahead of the character so the destination is always on screen. Keep the transition seamless.", "file_hint": "" }
+  ],
+  "confidence": "low"
+}

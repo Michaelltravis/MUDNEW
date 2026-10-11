@@ -1,0 +1,18 @@
+{
+  "piece": "world",
+  "pick": "A",
+  "per_label": { "walk": "A", "forest": "A" },
+  "reasons": [
+    "Walk: A holds one framing and scale across 0.0s to 7.5s while the world slides under the character. The side-path junction appears at 2.4s, the grey and rabbit creatures drift past, and a pine enters at the top left by 7.5s, so the destination shows up ahead of the character. B covers 2.3s in one town square, and the character barely moves between 0.0s and 2.3s. It shows no traversal and no destination, so it proves little about continuity.",
+    "Forest: A reads as a lit place. It has a bright clearing around the path, a dark canopy vignette on the edges and bottom, and soft light falloff, and the path is painted and branches. B is a flat, evenly lit green tile plane with no light direction and no depth beyond the drop shadows.",
+    "Weakness of A: the trees are dark blurry blobs with no crisp silhouettes. The bottom and edge canopy is muddy and low contrast, and the whole frame looks soft and over-vignetted. B's trees and rocks are far crisper and more readable, and B wins on silhouette clarity. That is not enough to outweigh A's depth and continuity.",
+    "Neither side shows blank regions or full-screen flashes. A has a dark band at the right edge in the 7.5s frame and a faint seam in the canopy, which look like tile or chunk boundaries."
+  ],
+  "fixes": [
+    { "what": "Sharpen the tree canopies. Give them a light rim and a clear outline against the dark ground, and reduce the blur and fog overlay so individual trees read at game scale.", "file_hint": "" },
+    { "what": "Lighten the edge and bottom vignette and raise the mid-tone contrast, so the forest floor and the path edges stay legible and the scene stops looking muddy.", "file_hint": "" },
+    { "what": "Remove the visible seam at the right edge of the 7.5s walk frame and the chunk boundaries in the canopy, so the world looks seamless.", "file_hint": "" },
+    { "what": "Add crisp ground detail such as grass tufts, path edge stones and shadows to the path texture, to match the readability of the reference sprites.", "file_hint": "" }
+  ],
+  "confidence": "medium"
+}

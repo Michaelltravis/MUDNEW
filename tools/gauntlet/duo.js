@@ -1,0 +1,34 @@
+// Gauntlet evidence: two live clients (Gauntlet, Gauntletb) in one room.
+// CMDS='[["A","goto 3014"],["B","goto 3014"],["B","follow Gauntlet"],["A","group Gauntletb"],["B","group accept"],["A","kill cityguard"]]' \
+//   OUT=docs/gauntlet/<run>/round-<n>/mh NODE_PATH=/opt/node22/lib/node_modules xvfb-run -a node tools/gauntlet/duo.js
+// Writes duo_A.png and duo_B.png. Defaults to the admin accounts (see tools/gauntlet/README.md);
+// A_NAME=... B_NAME=... PASS=... drives any two characters, e.g. two fresh newcomers walking (no goto).
+const { chromium } = require('playwright');
+async function login(ctx, name, pass) {
+  const page = await ctx.newPage();
+  page.on('pageerror', e => console.log(name, 'pageerror:', String(e).slice(0, 140)));
+  await page.goto('http://localhost:4001/platformer?gauntlet=1', { waitUntil: 'load' });
+  await page.waitForSelector('#login-name'); await page.fill('#login-name', name); await page.fill('#login-pass', pass || process.env.PASS || 'gauntlet1'); await page.click('#login-btn');
+  for (let i = 0; i < 40; i++) { await page.waitForTimeout(500); if (await page.evaluate(() => !!(window.MH && MH.state.currentRoom))) break; }
+  await page.waitForTimeout(800);
+  try { await page.click('#welcome-go', { timeout: 1500 }); } catch (_) {}   // new characters get a welcome card
+  await page.evaluate(() => { window.__out = []; MH.bus.on('terminal.output', t => __out.push(String(t.text).replace(/\s+/g, ' ').slice(0, 140))); });
+  return page;
+}
+(async () => {
+  const browser = await chromium.launch({ args: ['--use-gl=swiftshader','--enable-webgl','--ignore-gpu-blocklist'] });
+  const ctxA = await browser.newContext({ viewport: { width: 1280, height: 720 } });
+  const ctxB = await browser.newContext({ viewport: { width: 1280, height: 720 } });
+  const A = await login(ctxA, process.env.A_NAME || 'Gauntlet'), B = await login(ctxB, process.env.B_NAME || 'Gauntletb');   // A_NAME/B_NAME/PASS: any two characters (e.g. two newcomers)
+  const cmds = JSON.parse(process.env.CMDS || '[]');
+  for (const [who, c] of cmds) { await (who === 'A' ? A : B).evaluate(x => MH.sendCommand(x, false), c); await A.waitForTimeout(900); }
+  // POLL='<css selector>' waits (up to 90 s) until that element is visible on B before the screenshots
+  if (process.env.POLL) { for (let i = 0; i < 90; i++) { await B.waitForTimeout(1000); if (await B.evaluate(sel => { const e = document.querySelector(sel); return !!(e && e.offsetParent !== null); }, process.env.POLL)) break; } await B.waitForTimeout(400); }
+  else await A.waitForTimeout(3500);
+  const info = await A.evaluate(() => ({ vnum: MH.state.player.vnum, group: MH.state.lastPayload && MH.state.lastPayload.group, keys: Object.keys(MH.state.lastPayload || {}), cur: MH.state.lastPayload.current_room && Object.keys(MH.state.lastPayload.current_room), out: __out.slice(-6) }));
+  console.log('B:', JSON.stringify(await B.evaluate(() => ({ vnum: MH.state.player.vnum, out: __out.slice(-5) }))).slice(0, 700));
+  console.log(JSON.stringify(info).slice(0, 600));
+  for (const pg of [A, B]) { try { await pg.evaluate(() => { const o = document.getElementById('welcome-overlay'); if (o) o.classList.remove('show'); }); } catch (_) {} }
+  await A.screenshot({ path: process.env.OUT + '/duo_A.png' }); await B.screenshot({ path: process.env.OUT + '/duo_B.png' });
+  await A.evaluate(() => MH.sendCommand('quit', false)); await B.evaluate(() => MH.sendCommand('quit', false)); await browser.close();
+})();

@@ -59,6 +59,14 @@
         "up": {
           "to_room": 11005,
           "description": "The path continues up"
+        },
+        "down": {
+          "to_room": 11014,
+          "hidden": true,
+          "search_difficulty": 60,
+          "requires_light": true,
+          "secret": true,
+          "reveal_message": "Roots part beneath the green, revealing a hollow below."
         }
       },
       "vnum": 11001,
@@ -375,9 +383,8 @@
       "description": "This building on the forest floor serves as a training facility for\nelven warriors and rangers. Practice dummies, target posts, and weapon\nracks line the walls. Young elves practice their forms here under the\nwatchful eyes of veterans. The hall is open-air, with a roof but no\nwalls, allowing trainees to stay connected with nature while they hone\ntheir skills. Dust motes drift in the stale air. The walls are rough-\nhewn and cold to the touch.",
       "terrain": "forest",
       "exits": {
-        "west": {
-          "to_room": 11001,
-          "description": "The path continues west"
+        "up": {
+          "to_room": 11001
         }
       },
       "vnum": 11014,

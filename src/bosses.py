@@ -179,12 +179,23 @@ class Boss(Mobile):
             await self._spawn_adds(ability['summon'])
 
         if cast_time and cast_time > 0:
+            area = self._cast_area(ability, target)
             self.ai_state['cast'] = {
                 'ability': ability,
                 'resolve_at': time.time() + cast_time,
                 'target': target,
                 'interrupted': False,
+                'area': area,
             }
+            # the 3D client marks the ground it will land on (and calls STEP OUT)
+            try:
+                import combat_events as ev
+                from combat_hooks import _school_of_label
+                ev.emit(self.room, 'windup', src=self, dst=target, label=name, kind='aoe' if ability.get('aoe') else 'heavy',
+                        ms=int(cast_time * 1000), area=area, school=_school_of_label(name),
+                        interruptible=bool(ability.get('interruptible')) or None)
+            except Exception:
+                pass
         else:
             await self._resolve_ability(ability, target)
 
@@ -205,11 +216,25 @@ class Boss(Mobile):
             if self.room:
                 await self.room.send_to_room(f"{self.name}'s {ability.get('name')} is interrupted!")
             self.ai_state['cast'] = None
+            self._emit('cancel', label=ability.get('name'), reason='stagger' if ability.get('vulnerable_after') else 'interrupt')
             await self._apply_vulnerability(ability)
             return
 
-        await self._resolve_ability(ability, target)
+        self._resolving_area = cast.get('area')
+        self._spared = []
+        try:
+            await self._resolve_ability(ability, target)
+        finally:
+            area, spared = self._resolving_area, self._spared
+            self._resolving_area, self._spared = None, []
         self.ai_state['cast'] = None
+        try:
+            import combat_events as ev
+            from combat_hooks import _school_of_label
+            ev.emit(self.room, 'resolve', src=self, label=ability.get('name'), kind='aoe' if ability.get('aoe') else 'heavy',
+                    area=area, school=_school_of_label(ability.get('name')), dodged=[ev.ref(c) for c in spared] or None)
+        except Exception:
+            pass
 
     async def _resolve_ability(self, ability: Dict, target):
         if not self.room:
@@ -230,6 +255,11 @@ class Boss(Mobile):
         for tgt in targets:
             if dodgeable and self._did_dodge(tgt):
                 await tgt.send(f"You dodge {self.name}'s {name}!")
+                continue
+            # stepped out of the marked ground: the blow hits only earth
+            if self._clear_of(getattr(self, '_resolving_area', None), tgt):
+                await tgt.send(f"You are clear of {self.name}'s {name} — it hits only ground!")
+                getattr(self, '_spared', []).append(tgt)
                 continue
 
             if damage > 0:
@@ -253,6 +283,39 @@ class Boss(Mobile):
         if interruptible and ability.get('on_success_message') and self.room:
             await self.room.send_to_room(ability['on_success_message'])
 
+    def _cast_area(self, ability: Dict, target):
+        """Where a wound-up ability will land, in room metres (None without positions):
+        around the boss for an area blow, where the target stood for a single one."""
+        try:
+            import combat_range as cr
+            if ability.get('aoe'):
+                p = cr.pos_of(self)
+                return {'shape': 'circle', 'r': float(ability.get('radius', 4.5)), 'x': round(p[0], 2), 'z': round(p[1], 2)} if p else None
+            p = cr.pos_of(target) if target is not None else None
+            return {'shape': 'circle', 'r': float(ability.get('radius', 2.2)), 'x': round(p[0], 2), 'z': round(p[1], 2)} if p else None
+        except Exception:
+            return None
+
+    @staticmethod
+    def _clear_of(area, tgt) -> bool:
+        if not area or area.get('x') is None:
+            return False
+        try:
+            import combat_range as cr
+            p = cr.pos_of(tgt)
+        except Exception:
+            return False
+        if p is None:
+            return False
+        return ((p[0] - area['x']) ** 2 + (p[1] - area['z']) ** 2) ** 0.5 > area.get('r', 2) + 0.35
+
+    def _emit(self, k, **fields):
+        try:
+            import combat_events as ev
+            ev.emit(self.room, k, src=self, **fields)
+        except Exception:
+            pass
+
     def _calculate_ability_damage(self, ability: Dict) -> int:
         if ability.get('damage_dice'):
             damage = CombatHandler.roll_dice(ability['damage_dice'])
@@ -262,6 +325,8 @@ class Boss(Mobile):
                 damage = random.randint(dmg_min, dmg_max)
             else:
                 damage = int(ability.get('damage', 0))
+        elif any(ability.get(k) for k in ('summon', 'heal_pct', 'heal_amount', 'magic_immune_duration')):
+            damage = 0      # a call for help, a heal, a ward: no blow of its own
         else:
             damage = max(5, self.level * 2)
 
@@ -307,12 +372,14 @@ class Boss(Mobile):
             spawn_items = [(spawn_config, 1)]
 
         from mobs import Mobile
+        spawned = []
         for vnum, count in spawn_items:
             proto = self.world.mob_prototypes.get(int(vnum))
             if not proto:
                 continue
             for _ in range(count):
                 add = Mobile.from_prototype(proto, self.world)
+                spawned.append(add)
                 add.room = self.room
                 add.home_room = self.room
                 add.home_zone = self.home_zone
@@ -322,6 +389,13 @@ class Boss(Mobile):
                     add.fighting = self.fighting
                     add.position = 'fighting'
 
+        # a quest's boss (marquee.py): its adds belong to the quest too
+        hook = getattr(self, 'on_adds', None)
+        if hook and spawned:
+            try:
+                hook(spawned)
+            except Exception:
+                pass
         await self.room.send_to_room("Reinforcements rush into the fight!")
 
     def can_dodge(self) -> bool:

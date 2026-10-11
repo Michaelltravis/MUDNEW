@@ -66,6 +66,10 @@ def _wrap_text(text: str, width: int = 80) -> str:
 
 from config import Config
 
+# control characters never come from a player's keyboard: stripped from every line, so a
+# `say` can't carry an escape sequence (a forged MAPSYNC) to other players' clients
+_CONTROL_CHARS = re.compile(r'[\x00-\x08\x0b-\x1f\x7f]')
+
 logger = logging.getLogger('Misthollow.Server')
 
 class Connection:
@@ -112,6 +116,9 @@ class Connection:
         # Account system temps
         self.account = None
         self.temp_account_name = None
+        self.play_after = None          # a character asked for by name, opened via its account
+        self.login_failures = 0         # wrong passwords on this connection (security.py)
+        self.forgot_sent = False
         
         logger.info(f"New connection from {self.address}")
         
@@ -241,6 +248,11 @@ class Connection:
         if not name:
             await self.send("Enter account name (or character name): ")
             return
+
+        # a web client coming back with its sign-in token (security.py)
+        if name.lower().startswith('resume '):
+            await self.handle_resume(name.split())
+            return
             
         # Validate name
         if len(name) < 3 or len(name) > 12:
@@ -267,6 +279,15 @@ class Connection:
         # Check for legacy player file (not yet migrated to account)
         player_file = os.path.join(self.config.PLAYER_DIR, f"{name_lower}.json")
         if os.path.exists(player_file):
+            # a character that belongs to an account opens with the account's password
+            # only (its own stored password is not a way in)
+            owner = self._account_of(player_file)
+            if owner and Account.exists(owner):
+                self.temp_account_name = owner
+                self.play_after = name_cap
+                await self.send(f"{name_cap} belongs to an account. Account password: ")
+                self.state = self.STATE_ACCOUNT_PASSWORD
+                return
             self.temp_name = name_cap
             await self.send(f"Welcome back, {name_cap}! Enter your password: ")
             self.state = self.STATE_GET_PASSWORD
@@ -298,30 +319,42 @@ class Connection:
         
         if os.path.exists(player_file):
             # Existing player - verify password
+            import security
+            wait = security.locked(self.temp_name)
+            if wait:
+                await self._locked_out(wait)
+                return
             from player import Player
             self.player = Player.load(self.temp_name, self.world)
             
-            if self.player and self.player.check_password(password):
-                # Check if already has account
-                if hasattr(self.player, 'account_name') and self.player.account_name:
-                    await self.enter_game()
-                else:
-                    # Offer migration to account system
-                    self.temp_password = password
-                    await self.send("\r\n")
-                    await self.send("Would you like to create an account for multiple characters? (Y/N)")
-                    await self.send("(You can always do this later with 'account create')")
-                    self.state = self.STATE_MIGRATE_OFFER
-            else:
-                await self.send("Wrong password!")
+            if self.player and getattr(self.player, 'account_name', None):
+                # it joined an account since the name was typed: the account opens it
                 self.player = None
+                await self.send(f"{self.temp_name} belongs to an account. Log in with the account's name.")
                 self.temp_name = None
                 await self.send("What name shall you be known by? ")
                 self.state = self.STATE_GET_NAME
+            elif self.player and await self.player.check_password(password):
+                security.succeeded(self.temp_name)
+                # Offer migration to account system
+                self.temp_password = password
+                await self.send("\r\n")
+                await self.send("Would you like to create an account for multiple characters? (Y/N)")
+                await self.send("(You can always do this later with 'account create')")
+                self.state = self.STATE_MIGRATE_OFFER
+            else:
+                await self._wrong_password(self.temp_name)
+                self.player = None
+                self.temp_name = None
+                if not self.writer.is_closing():
+                    await self.send("What name shall you be known by? ")
+                self.state = self.STATE_GET_NAME
         else:
             # New player - set password
-            if len(password) < 4:
-                await self.send("Password must be at least 4 characters. Enter password: ")
+            import security
+            why = security.weak(password)
+            if why:
+                await self.send(f"{why} Enter password: ")
                 return
             self.temp_password = password
             await self.send("Confirm password: ")
@@ -451,18 +484,20 @@ class Connection:
         """Create the new character."""
         from player import Player
         
-        # For account-based characters, use a placeholder password
-        # (account authentication protects the character)
-        password = self.temp_password if self.temp_password else "account_protected"
-        
+        # A character made from the account menu has no password of its own: its account
+        # opens it (security.py). One made at the name prompt keeps the one it chose.
         self.player = Player.create_new(
             name=self.temp_name,
-            password=password,
+            password=None,
             race=self.temp_race,
             char_class=self.temp_class,
             stats=self.temp_stats,
             world=self.world
         )
+        if self.temp_password and not self.account:
+            import security
+            self.player.password_hash = await security.hash_async(self.temp_password)
+        self.temp_password = None
         
         # Link to account if creating via account flow
         if self.account:
@@ -475,6 +510,13 @@ class Connection:
         
     async def enter_game(self):
         """Enter the game world."""
+        # Already playing (another window, or a connection that dropped and hasn't timed
+        # out): this connection takes the character over. Nothing is loaded twice, and the
+        # old session neither saves a stale copy nor removes the live one from the world.
+        existing = self.world.players.get(self.player.name.lower()) if self.player else None
+        if existing is not None and existing is not self.player:
+            await self._take_over(existing)
+            return
         self.state = self.STATE_PLAYING
         self.player.connection = self
         
@@ -485,6 +527,9 @@ class Connection:
         
         # Move to starting room before adding to world
         room = self.world.get_room(self.player.room_vnum or self.config.STARTING_ROOM)
+        if room is None:
+            # the room is gone (a private trial closed while you were away): back to safety
+            room = self.world.get_room(getattr(self.player, 'recall_point', None) or 0) or self.world.get_room(self.config.STARTING_ROOM)
         if room:
             self.player.room = room
 
@@ -535,6 +580,20 @@ class Connection:
             import logging
             logging.getLogger('Misthollow').error(f"Rent processing error: {e}")
 
+        # Learn by doing (mastery.py): a character made before it catches up on everything
+        # its level has reached
+        try:
+            import mastery
+            caught = mastery.grant_now(self.player)
+            if caught:
+                names = ', '.join(mastery.name_of(a) for a, _k in caught[:6]) + (', …' if len(caught) > 6 else '')
+                await self.send(f"{c['bright_yellow']}Your training catches up with your level: {len(caught)} new "
+                                f"abilit{'y' if len(caught) == 1 else 'ies'} ({names}). Abilities now grow as you use them; "
+                                f"type 'skills' (or press K in /play).{c['reset']}")
+        except Exception as e:
+            import logging
+            logging.getLogger('Misthollow').error(f"Ability catch-up error: {e}")
+
         if room:
             room.characters.append(self.player)
             
@@ -545,6 +604,13 @@ class Connection:
             
             # Announce arrival
             await room.send_to_room(f"{self.player.name} has entered the realm.", exclude=[self.player])
+            # graphical clients already in the room see the newcomer at once
+            wm = getattr(self.player.world, 'web_map', None)
+            if wm:
+                try:
+                    await wm.notify_room(room, {'type': 'player_move', 'name': self.player.name, 'action': 'arrive', 'to': room.vnum})
+                except Exception:
+                    pass
             
             # Daily login bonus check
             try:
@@ -585,8 +651,9 @@ class Connection:
             if hasattr(self.world, 'web_map') and self.world.web_map:
                 await self.world.web_map.notify_player(self.player)
             
-            # Send map sync signal for web client (hidden control message)
-            await self.send(f"\x1b]MAPSYNC:{self.player.name}\x07")
+            # Send map sync signal for web client (hidden control message), with this
+            # session's secret for the map server
+            await self._issue_web_token()
             
             # Start tutorial for new players (level 1, no quests completed)
             if self.player.level == 1 and not getattr(self.player, 'quests_completed', []):
@@ -626,12 +693,18 @@ class Connection:
         # Forgot/reset flow
         if password.lower().startswith('forgot'):
             from accounts import Account, AccountManager
+            import security
             account = Account.load(self.temp_account_name)
             if not account or not account.settings.get('email'):
                 await self.send("No email on file for this account.")
                 await self.send("Set one after login with: account email <address>")
                 await self.send("Account password: ")
                 return
+            if self.forgot_sent or not security.forgot_allowed(account.account_name):
+                await self.send("A reset email was sent recently. Check your inbox, or try again in 15 minutes.")
+                await self.send("Account password: ")
+                return
+            self.forgot_sent = True
             token = AccountManager.generate_reset_token(account)
             sent = AccountManager.send_reset_email(account, token)
             if sent:
@@ -651,7 +724,13 @@ class Connection:
             token = parts[1]
             new_pw = parts[2]
             from accounts import AccountManager
-            ok = AccountManager.reset_with_token(self.temp_account_name, token, new_pw)
+            import security
+            why = security.weak(new_pw)
+            if why:
+                await self.send(why)
+                await self.send("Account password: ")
+                return
+            ok = await AccountManager.reset_with_token(self.temp_account_name, token, new_pw)
             if ok:
                 await self.send("Password reset! Please log in with your new password.")
             else:
@@ -660,15 +739,96 @@ class Connection:
             return
         
         from accounts import AccountManager
-        self.account = AccountManager.authenticate(self.temp_account_name, password)
+        import security
+        wait = security.locked(self.temp_account_name)
+        if wait:
+            await self._locked_out(wait)
+            return
+        self.account = await AccountManager.authenticate(self.temp_account_name, password)
         
         if self.account:
+            security.succeeded(self.temp_account_name)
+            # asked for one of its characters by name: straight in
+            wanted, self.play_after = self.play_after, None
+            if wanted and wanted in self.account.characters:
+                from player import Player
+                self.player = Player.load(wanted, self.world)
+                if self.player:
+                    self.player.account_name = self.account.account_name
+                    await self.enter_game()
+                    return
             await self.show_character_menu()
         else:
-            await self.send("Invalid password!")
+            await self._wrong_password(self.temp_account_name, "Invalid password!")
             self.temp_account_name = None
-            await self.send("\r\nEnter account name (or character name): ")
+            self.play_after = None
+            if not self.writer.is_closing():
+                await self.send("\r\nEnter account name (or character name): ")
             self.state = self.STATE_GET_NAME
+
+    @staticmethod
+    def _account_of(player_file: str):
+        """The account a saved character belongs to ('' when none)."""
+        try:
+            import json
+            with open(player_file) as f:
+                return (json.load(f).get('account_name') or '').lower()
+        except (OSError, ValueError):
+            return ''
+
+    async def _wrong_password(self, name: str, line: str = "Wrong password!"):
+        """Count a failed login: the name locks after five in ten minutes, and this
+        connection closes after three."""
+        import security
+        security.failed(name)
+        self.login_failures += 1
+        logger.warning(f"Failed login for '{name}' from {self.address}")
+        await self.send(line)
+        if self.login_failures >= security.FAILS_PER_CONNECTION:
+            await self.send("Too many failed attempts. Goodbye.")
+            self.writer.close()
+
+    async def _locked_out(self, wait: int):
+        mins = max(1, (wait + 59) // 60)
+        await self.send(f"Too many failed logins for that name. Try again in {mins} minute{'s' if mins != 1 else ''}.")
+        self.temp_account_name = None
+        self.temp_name = None
+        self.play_after = None
+        await self.send("Enter account name (or character name): ")
+        self.state = self.STATE_GET_NAME
+
+    async def handle_resume(self, parts):
+        """`resume <name> <token>` from a web client: the device token stands in for the
+        password once, and is swapped for a fresh one (security.py)."""
+        import security
+        from player import Player
+        name = parts[1] if len(parts) == 3 else ''
+        token = parts[2] if len(parts) == 3 else ''
+        player = None
+        if name.isalpha() and 3 <= len(name) <= 12:
+            fresh = security.use_token(name, token)
+            if fresh:
+                player = Player.load(name.capitalize(), self.world)
+                if player is None:
+                    security.forget_all(name)
+        if player is None:
+            await self.send("That sign-in has expired. Please log in with your password.")
+            await self.send("Enter account name (or character name): ")
+            return
+        if getattr(player, 'account_name', None):
+            from accounts import Account
+            self.account = Account.load(player.account_name)
+        self.player = player
+        await self._send_raw(security.resume_signal(fresh))
+        await self.enter_game()
+
+    async def _send_raw(self, data: bytes):
+        """Bytes straight to the client (a hidden signal must not be word-wrapped)."""
+        try:
+            self.writer.write(data)
+            await self.writer.drain()
+        except (ConnectionResetError, BrokenPipeError, ConnectionAbortedError, OSError):
+            pass
     
     async def show_character_menu(self):
         """Display character selection menu."""
@@ -1081,8 +1241,10 @@ class Connection:
     
     async def handle_change_password(self, password: str):
         """Handle new password entry."""
-        if not password or len(password) < 4:
-            await self.send("Password must be at least 4 characters. Try again: ", newline=False)
+        import security
+        why = security.weak(password)
+        if why:
+            await self.send(f"{why} Try again: ", newline=False)
             return
         self.temp_new_password = password
         await self.send("Confirm new password: ", newline=False)
@@ -1097,9 +1259,9 @@ class Connection:
             await self.show_character_menu()
             return
         
-        self.account.set_password(password)
+        await self.account.set_password(password)
         self.account.save()
-        await self.send("Password changed successfully!")
+        await self.send("Password changed successfully! Web browsers signed in to this account will ask for it again.")
         self.temp_new_password = None
         self.state = self.STATE_SELECT_CHAR
         await self.show_character_menu()
@@ -1166,13 +1328,14 @@ class Connection:
         """Handle offer to migrate to account system."""
         if response.lower() in ('y', 'yes'):
             from accounts import AccountManager
-            account = AccountManager.migrate_legacy_player(self.temp_name, self.temp_password)
+            account = await AccountManager.migrate_legacy_player(self.temp_name, self.temp_password, self.player)
             if account:
                 self.account = account
                 await self.send(f"\r\nAccount '{account.account_name}' created!")
                 await self.send(f"Character '{self.temp_name}' linked to account.")
         
         # Enter game regardless
+        self.temp_password = None
         await self.enter_game()
         
     async def handle_command(self, line: str):
@@ -1185,9 +1348,23 @@ class Connection:
             await self.send_prompt()
             return
 
-        # Echo command back to player so they see what they typed
+        # Echo command back to player so they see what they typed (not the 3D client's
+        # internal moves: those are its walking, not something the player typed). A line
+        # carrying a password or a sign-in token is neither echoed (snoop sees the echo)
+        # nor kept for '!'.
         c = self.config.COLORS
-        await self.send(f"{c['cyan']}> {line}{c['reset']}\r\n")
+        # the web clients' sign-in tokens (security.py): their own quiet requests
+        first = line.split(None, 1)[0].lower() if line.split() else ''
+        if first in ('remember', 'forget'):
+            await self._device_token(first, line.split()[1:])
+            return
+        web_internal = line.startswith(('webmove ', 'webdoor ', 'webbar ', 'webattack'))
+        secret = self._secret_line(line)
+        if secret:
+            web_internal = True
+            await self.send(f"{c['cyan']}> {secret}{c['reset']}\r\n")
+        if not web_internal:
+            await self.send(f"{c['cyan']}> {line}{c['reset']}\r\n")
 
         # Handle ! to repeat last command
         if line.strip() == '!':
@@ -1199,8 +1376,9 @@ class Connection:
                 await self.send_prompt()
                 return
 
-        # Store command for ! repeat
-        self.player.last_command = line
+        # Store command for ! repeat (not the 3D client's own walking and door work)
+        if not web_internal:
+            self.player.last_command = line
 
         # Parse command and arguments
         parts = line.split()
@@ -1250,8 +1428,73 @@ class Connection:
         
         await self.send_prompt()
         
+    @staticmethod
+    def _secret_line(line: str) -> str:
+        """What to show instead of a line that carries a password or a token ('' if it
+        carries none)."""
+        words = line.split()
+        if not words:
+            return ''
+        first = words[0].lower()
+        if first == 'account' and len(words) > 1 and words[1].lower() in ('password', 'recover', 'reset'):
+            return f"account {words[1].lower()} ****"
+        return ''
+
+    async def _device_token(self, verb: str, args):
+        """`remember`: a sign-in token for this browser, sent over the hidden RESUME
+        signal (only web clients ask). `forget <token>`: that browser signs out."""
+        import security
+        if not self.player:
+            return
+        if verb == 'remember':
+            token = security.issue_token(self.player.name)
+            await self._send_raw(security.resume_signal(token))
+        elif args:
+            security.forget_token(self.player.name, args[0])
+
+    async def _issue_web_token(self):
+        """A fresh secret for this session's graphical clients. The map socket and the map
+        server's per-player endpoints answer only to it; it rides the MAPSYNC signal, which
+        only this connection receives. Clients holding an older one are cut off."""
+        import secrets
+        token = secrets.token_urlsafe(18)
+        self.player.web_token = token
+        wm = getattr(self.world, 'web_map', None)
+        if wm and hasattr(wm, 'revoke'):
+            try:
+                await wm.revoke(self.player.name, token)
+            except Exception:
+                pass
+        await self.send(f"\x1b]MAPSYNC:{self.player.name}:{token}\x07")
+
+    async def _take_over(self, existing):
+        """Attach this connection to a character already in the world, closing the old one."""
+        c = self.config.COLORS
+        old = getattr(existing, 'connection', None)
+        if old is not None and old is not self:
+            try:
+                await old.send(f"\r\n{c['bright_yellow']}{existing.name} has just logged in somewhere else, "
+                               f"so this session is closing.{c['reset']}\r\n")
+            except Exception:
+                pass
+            old.player = None              # its disconnect must not save or remove the character
+            try:
+                old.writer.close()
+            except Exception:
+                pass
+        self.player = existing
+        existing.connection = self
+        self.state = self.STATE_PLAYING
+        logger.info(f"{existing.name} taken over by a new connection from {self.address}")
+        await self.send(f"{c['bright_cyan']}You take over {existing.name}, who was already in the world.{c['reset']}")
+        await existing.do_look([])
+        await self._issue_web_token()
+
     async def disconnect(self):
         """Handle disconnection gracefully — stop combat, save state, clean up."""
+        if getattr(self, '_disconnected', False):
+            return                         # quit already did this; the input loop's finally comes again
+        self._disconnected = True
         logger.info(f"Connection closed: {self.address}")
         
         if self.player:
@@ -1275,6 +1518,13 @@ class Connection:
                 self.player.last_logout = now
             except Exception as e:
                 logger.error(f"Error updating player state on disconnect: {e}")
+
+            # Leave the group (no ghost members sharing gold, loot and experience)
+            try:
+                from groups import GroupManager
+                await GroupManager.disconnect(self.player)
+            except Exception as e:
+                logger.error(f"Error leaving the group on disconnect: {e}")
 
             # Save player state
             try:
@@ -1384,7 +1634,7 @@ class MUDServer:
                     data = await asyncio.wait_for(reader.readline(), timeout=1800.0)
                     if not data:
                         break
-                    line = data.decode('utf-8', errors='ignore').strip()
+                    line = _CONTROL_CHARS.sub('', data.decode('utf-8', errors='ignore')).strip()
                     await conn.handle_input(line)
                 except asyncio.TimeoutError:
                     # Force-rent at 2x cost on idle timeout

@@ -1455,12 +1455,24 @@ domain, mortal? Then face the flames of eternity!"''',
         self.world.obj_prototypes.update({int(k): v for k, v in zone.objects.items()})
         
     async def save_zones(self):
-        """Save all zones to disk."""
+        """Save all zones to disk.
+
+        Never overwrites an existing zone file: the default world is a
+        small bootstrap fallback, and clobbering real hand-built zone
+        files (severing all of Midgaard's out-of-town connections) is
+        far worse than skipping a save.
+        """
         zones_dir = os.path.join(self.config.WORLD_DIR, 'zones')
         os.makedirs(zones_dir, exist_ok=True)
-        
+
         for zone_num, zone in self.world.zones.items():
             filepath = os.path.join(zones_dir, f"zone_{zone_num:03d}.json")
+            if os.path.exists(filepath):
+                logger.warning(
+                    f"NOT saving default zone {zone_num} ({zone.name}): "
+                    f"{filepath} already exists and would be overwritten"
+                )
+                continue
             with open(filepath, 'w') as f:
                 json.dump(zone.to_dict(), f, indent=2)
             logger.info(f"Saved zone {zone_num}: {zone.name}")

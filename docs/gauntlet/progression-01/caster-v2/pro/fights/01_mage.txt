@@ -1,0 +1,388 @@
+                                ║
+║                 A true adventurer emerges!                 ║
+║                                                              ║
+║  ★ NEW TITLE:                 Veteran                  ★  ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+
+Congratulations on leveling up! You may have learned new skills or spells.
+
+💡 You've reached level 10! Type 'talents' to see your talent tree — customize
+your playstyle!
+
+  +======================================================+
+  |     ★ NEW ABILITIES UNLOCKED! ★                      |
+  +------------------------------------------------------+
+  |                                                      |
+  |  SKILLS:                                             |
+  |    ⚔ Execute                                    |
+  |      A powerful new technique                        |
+  |                                                      |
+  +======================================================+
+  Use 'skills' or 'spells' to see all your abilities.
+
+
+★ ACHIEVEMENT UNLOCKED ★
+📈 Journeyman
+Reach level 10
++20 achievement points
++250 gold
+New title unlocked: 'the Journeyman'
+
+
+★ ACHIEVEMENT UNLOCKED ★
+🛡️ Deathless
+Reach level 10 without dying
++50 achievement points
+Stat bonus: +2 CON (permanent)
+New title unlocked: 'the Deathless'
+
+You feel a surge of divine energy! Fully restored!
+> score
+╔════════════════════════════════════════════════════════════════╗
+║ Newdlbup the Adventurer                                      ║
+╠════════════════════════════════════════════════════════════════╣
+║ Race: Human        Class: Warrior      Level: 10     ║
+╠════════════════════════════════════════════════════════════════╣
+║ HP:   82/82    Mana:  154/154   Move:  197/197    ║
+╠════════════════════════════════════════════════════════════════╣
+║ Str: 9      Int:16      Wis:15      Dex:12      Con:12      Cha:10   ║
+╠════════════════════════════════════════════════════════════════╣
+║ Experience: 100        Gold: 500        Practices: 41   ║
+║ To next level: 16428                                   ║
+╠════════════════════════════════════════════════════════════════╣
+║ Armor Class: 78    Hitroll:  +0  Damroll:  +0            ║
+║ Combat: OB  +0  DB +17  PB  0%                     ║
+║ DB:base +22 st +0 sh 
+[t=   0.0s]  +0  DB +17  PB  0%                     ║
+[t=   0.0s] ║ DB:base +22 st +0 sh +0 dg +0/+0 wt -5               ║
+[t=   0.0s] ║ PB:base +0 st +0 pa +0 sb +0 wt -2                   ║
+[t=   0.0s] ║ Mood: normal     Wimpy: 0                          ║
+[t=   0.0s] ╠════════════════════════════════════════════════════════════════╣
+[t=   0.0s] ║ Hunger: Satiated      Thirst: Thirsty       Stealth: --  PER: 16║
+[t=   0.0s] ╚════════════════════════════════════════════════════════════════╝
+[t=   0.0s] 82/82hp 154/154mp 197/197mv> 
+[t=   0.0s] > kill mage
+[t=   0.0s] You attack mage!
+[t=   0.0s] 💡 As a warrior, you build Rage when dealing and taking damage. Spend it on
+[t=   0.0s] powerful abilities!
+[t=   0.0s] Your slash injures mage! [17 damage]
+[t=   0.0s] mage [█████████░] [184/201]
+[t=   0.0s] 82/82hp 154/154mp 196/197mv [mage: 184/201]> 
+[t=   0.0s] > bash mage
+[t=   0.0s] Your bash barely scratch mage! [3]
+[t=   0.0s] mage [█████████░] [181/201]
+[t=   0.0s] mage is stunned!
+[t=   0.0s] [Momentum: █░░░░░░░░░ 1/10]
+[t=   0.0s] 82/82hp 154/154mp 196/197mv [Momentum: █░░░░░░░░░ 1/10] [mage: 181/201]> 
+[t=   1.5s] Your slash lands squarely and hits mage! [14 damage]
+[t=   1.5s] 💥 mage reels — STAGGERED! Strike now!
+[t=   1.5s] mage [████████░░] [167/201]
+[t=   1.5s] 82/82hp 154/154mp 195/197mv [Momentum: █░░░░░░░░░ 1/10] [mage: 167/201]> 
+[t=   1.5s] mage murmurs arcane words and a shimmering aura surrounds them!
+[t=   4.5s] > swing
+[t=   4.5s] You read the rhythm — your next strike will land PERFECTLY!
+[t=   4.5s] 82/82hp 154/154mp 195/197mv [Momentum: █░░░░░░░░░ 1/10] [mage: 167/201]> 
+[t=   5.5s] ★ PERFECT STRIKE!
+[t=   5.5s] You press the opening while mage reels — wide open!
+[t=   5.5s] Your slash connects — it decimates mage! [32 damage]
+[t=   5.5s] mage [█████░░░░░] [119/201]
+[t=   5.5s] 82/82hp 154/154mp 196/197mv [Momentum: █░░░░░░░░░ 1/10] [mage: 119/201]> 
+[t=   8.5s] > swing
+[t=   8.5s] You read the rhythm — your next strike will land PERFECTLY!
+[t=   8.5s] 82/82hp 154/154mp 196/197mv [Momentum: █░░░░░░░░░ 1/10] [mage: 119/201]> 
+[t=   9.6s] > cleave mage
+[t=   9.6s] Your cleave tickle mage! [1]
+[t=   9.6s] mage [█████░░░░░] [118/201]
+[t=   9.6s] Your cleave tickle mage! [2]
+[t=   9.6s] mage [█████████░] [192/194]
+[t=   9.6s] [Momentum: ██░░░░░░░░ 2/10]
+[t=   9.6s] 82/82hp 154/154mp 196/197mv [Momentum: ██░░░░░░░░ 2/10] [mage: 118/201]> 
+[t=   9.6s] ⚠ mage begins an incantation — arcane power crackles around it! (interrupt it!)
+[t=   9.6s] *** CRITICAL HIT! ***
+[t=   9.6s] ★ PERFECT STRIKE!
+[t=   9.6s] Your slash devastates mage! [38 damage]
+[t=   9.6s] mage [███░░░░░░░] [80/201]
+[t=   9.6s] 82/82hp 154/154mp 195/197mv [Momentum: ██░░░░░░░░ 2/10] [mage: 80/201]> 
+[t=   9.6s] mage's glancing stab hits you! [3 damage]
+[t=   9.6s] > interrupt
+[t=   9.6s] You slam into mage and BREAK its Fireball!
+[t=   9.6s] 80/82hp 154/154mp 197/197mv [Momentum: ██░░░░░░░░ 2/10] [mage: 80/201]> 
+[t=  12.6s] > swing
+[t=  12.6s] You read the rhythm — your next strike will land PERFECTLY!
+[t=  12.6s] 80/82hp 154/154mp 197/197mv [Momentum: ██░░░░░░░░ 2/10] [mage: 80/201]> 
+[t=  13.6s] ★ PERFECT STRIKE!
+[t=  13.6s] Your slash lands squarely and wounds mage! [19 damage]
+[t=  13.6s] mage [███░░░░░░░] [61/201]
+[t=  13.6s] 80/82hp 154/154mp 196/197mv [Momentum: ██░░░░░░░░ 2/10] [mage: 61/201]> 
+[t=  13.6s] mage chants a healing incantation and wounds close! [+27 HP]
+[t=  13.6s] mage's stab hits you — it hits you! [13 damage]
+[t=  16.6s] > swing
+[t=  16.6s] You read the rhythm — your next strike will land PERFECTLY!
+[t=  16.6s] 68/82hp 154/154mp 197/197mv [Momentum: ██░░░░░░░░ 2/10] [mage: 88/201]> 
+[t=  17.7s] ★ PERFECT STRIKE!
+[t=  17.7s] Your slash connects — it devastates mage! [34 damage]
+[t=  17.7s] 💥 mage reels — STAGGERED! Strike now!
+[t=  17.7s] mage [██░░░░░░░░] [54/201]
+[t=  17.7s] 68/82hp 154/154mp 196/197mv [Momentum: ██░░░░░░░░ 2/10] [mage: 54/201]> 
+[t=  18.7s] > bash mage
+[t=  18.7s] Your bash tickle mage! [1]
+[t=  18.7s] mage [██░░░░░░░░] [53/201]
+[t=  18.7s] mage is stunned!
+[t=  18.7s] [Momentum: ███░░░░░░░ 3/10]
+[t=  18.7s] 68/82hp 154/154mp 196/197mv [Momentum: ███░░░░░░░ 3/10] [mage: 53/201]> 
+[t=  21.7s] > swing
+[t=  21.7s] You read the rhythm — your next strike will land PERFECTLY!
+[t=  21.7s] 69/82hp 154/154mp 197/197mv [Momentum: ███░░░░░░░ 3/10] [mage: 53/201]> 
+[t=  21.7s] ★ PERFECT STRIKE!
+[t=  21.7s] You press the opening while mage reels — wide open!
+[t=  21.7s] Your slash hits mage! [11 damage]
+[t=  21.7s] mage flees west!
+[t=  21.7s] mage [█░░░░░░░░░] [37/201]
+[t=  21.7s] 69/82hp 154/154mp 196/197mv [Momentum: ███░░░░░░░ 3/10]> 
+[t=  24.7s] > swing
+[t=  24.7s] You're not fighting anyone!
+[t=  24.7s] 69/82hp 154/154mp 196/197mv [Momentum: ███░░░░░░░ 3/10]> 
+[t=  27.7s] > swing
+[t=  27.7s] You're not fighting anyone!
+[t=  27.7s] Tip: Type 'achievements' to see your progress and goals.
+[t=  27.7s] 70/82hp 154/154mp 197/197mv [Momentum: ███░░░░░░░ 3/10]> 
+[t=  27.7s] > cleave mage
+[t=  27.7s] You attack mage!
+[t=  27.7s] *** CRITICAL HIT! ***
+[t=  27.7s] Your slash lands squarely and maims mage! [48 damage]
+[t=  27.7s] mage [███████░░░] [144/194]
+[t=  27.7s] Your cleave barely scratch mage! [3]
+[t=  27.7s] mage [███████░░░] [141/194]
+[t=  27.7s] [Momentum: ████░░░░░░ 4/10]
+[t=  27.7s] 70/82hp 154/154mp 196/197mv [Momentum: ████░░░░░░ 4/10] [mage: 141/194]> 
+[t=  29.8s] Your slash connects — it wounds mage! [20 damage]
+[t=  29.8s] 💥 mage reels — STAGGERED! Strike now!
+[t=  29.8s] mage [██████░░░░] [121/194]
+[t=  29.8s] 70/82hp 154/154mp 195/197mv [Momentum: ████░░░░░░ 4/10] [mage: 121/194]> 
+[t=  29.8s] mage murmurs arcane words and a shimmering aura surrounds them!
+[t=  32.8s] > swing
+[t=  32.8s] You read the rhythm — your next strike will land PERFECTLY!
+[t=  32.8s] 76/82hp 154/154mp 197/197mv [Momentum: ████░░░░░░ 4/10] [mage: 121/194]> 
+[t=  33.7s] mage arrives from the west.
+[t=  33.8s] ★ PERFECT STRIKE!
+[t=  33.8s] You press the opening while mage reels — wide open!
+[t=  33.8s] Your slash devastates mage! [37 damage]
+[t=  33.8s] mage [███░░░░░░░] [66/194]
+[t=  33.8s] 76/82hp 154/154mp 196/197mv [Momentum: ████░░░░░░ 4/10] [mage: 66/194]> 
+[t=  33.8s] mage chants a healing incantation and wounds close! [+34 HP]
+[t=  33.8s] mage's stab hits home, a quick one! [8 damage]
+[t=  36.8s] > swing
+[t=  36.8s] You read the rhythm — your next strike will land PERFECTLY!
+[t=  36.8s] 69/82hp 154/154mp 197/197mv [Momentum: ████░░░░░░ 4/10] [mage: 100/194]> 
+[t=  36.8s] > bash mage
+[t=  36.8s] Your bash barely scratch mage! [3]
+[t=  36.8s] mage [█████░░░░░] [97/194]
+[t=  36.8s] mage is stunned!
+[t=  36.8s] [Momentum: █████░░░░░ 5/10]
+[t=  36.8s] 69/82hp 154/154mp 197/197mv [Momentum: █████░░░░░ 5/10] [mage: 97/194]> 
+[t=  37.9s] *** CRITICAL HIT! ***
+[t=  37.9s] ★ PERFECT STRIKE!
+[t=  37.9s] Your slash lands squarely and devastates mage! [34 damage]
+[t=  37.9s] mage [███░░░░░░░] [63/194]
+[t=  37.9s] 69/82hp 154/154mp 196/197mv [Momentum: █████░░░░░ 5/10] [mage: 63/194]> 
+[t=  39.4s] mage arrives from the north.
+[t=  41.4s] > swing
+[t=  41.4s] You read the rhythm — your next strike will land PERFECTLY!
+[t=  41.4s] 70/82hp 154/154mp 197/197mv [Momentum: █████░░░░░ 5/10] [mage: 63/194]> 
+[t=  41.9s] ★ PERFECT STRIKE!
+[t=  41.9s] Your slash connects — it decimates mage! [27 damage]
+[t=  41.9s] mage flees south!
+[t=  41.9s] mage [█░░░░░░░░░] [36/194]
+[t=  41.9s] 70/82hp 154/154mp 196/197mv [Momentum: █████░░░░░ 5/10]> 
+[t=  44.9s] > swing
+[t=  44.9s] You're not fighting anyone!
+[t=  44.9s] 70/82hp 154/154mp 196/197mv [Momentum: █████░░░░░ 5/10]> 
+[t=  45.9s] > cleave mage
+[t=  45.9s] You attack mage!
+[t=  45.9s] Your slash mauls mage! [26 damage]
+[t=  45.9s] mage flees west!
+[t=  45.9s] mage [█░░░░░░░░░] [21/201]
+[t=  45.9s] Your cleave scratch mage! [5]
+[t=  45.9s] mage [█████████░] [186/191]
+[t=  45.9s] [Momentum: ██████░░░░ 6/10]
+[t=  45.9s] 71/82hp 154/154mp 196/197mv [Momentum: ██████░░░░ 6/10]> 
+[t=  48.9s] > swing
+[t=  48.9s] You're not fighting anyone!
+[t=  48.9s] 71/82hp 154/154mp 196/197mv [Momentum: ██████░░░░ 6/10]> 
+[t=  50.0s] Merchants haggle loudly in a nearby stall.
+[t=  52.0s] > swing
+[t=  52.0s] You're not fighting anyone!
+[t=  52.0s] 72/82hp 154/154mp 197/197mv [Momentum: ██████░░░░ 6/10]> 
+[t=  55.0s] > swing
+[t=  55.0s] You're not fighting anyone!
+[t=  55.0s] 72/82hp 154/154mp 197/197mv [Momentum: ██████░░░░ 6/10]> 
+[t=  55.0s] > bash mage
+[t=  55.0s] You attack mage!
+[t=  55.0s] Your slash lands squarely and decimates mage! [27 damage]
+[t=  55.0s] mage [████████░░] [159/191]
+[t=  55.0s] Your bash tickle mage! [1]
+[t=  55.0s] mage [████████░░] [158/191]
+[t=  55.0s] mage is stunned!
+[t=  55.0s] [Momentum: ███████░░░ 7/10]
+[t=  55.0s] 72/82hp 154/154mp 196/197mv [Momentum: ███████░░░ 7/10] [mage: 158/191]> 
+[t=  58.0s] > swing
+[t=  58.0s] You read the rhythm — your next strike will land PERFECTLY!
+[t=  58.0s] 73/82hp 154/154mp 197/197mv [Momentum: ███████░░░ 7/10] [mage: 158/191]> 
+[t=  58.1s] ★ PERFECT STRIKE!
+[t=  58.1s] Your slash connects — it decimates mage! [29 damage]
+[t=  58.1s] 💥 mage reels — STAGGERED! Strike now!
+[t=  58.1s] mage [██████░░░░] [129/191]
+[t=  58.1s] 73/82hp 154/154mp 196/197mv [Momentum: ███████░░░ 7/10] [mage: 129/191]> 
+[t=  58.1s] mage murmurs arcane words and a shimmering aura surrounds them!
+[t=  61.1s] > swing
+[t=  61.1s] You read the rhythm — your next strike will land PERFECTLY!
+[t=  61.1s] 74/82hp 154/154mp 197/197mv [Momentum: ███████░░░ 7/10] [mage: 129/191]> 
+[t=  62.1s] ★ PERFECT STRIKE!
+[t=  62.1s] You press the opening while mage reels — wide open!
+[t=  62.1s] Your slash devastates mage! [36 damage]
+[t=  62.1s] mage [███░░░░░░░] [75/191]
+[t=  62.1s] 74/82hp 154/154mp 196/197mv [Momentum: ███████░░░ 7/10] [mage: 75/191]> 
+[t=  62.1s] mage chants a healing incantation and wounds close! [+42 HP]
+[t=  64.1s] > cleave mage
+[t=  64.1s] Your cleave tickle mage! [1]
+[t=  64.1s] mage [██████░░░░] [116/191]
+[t=  64.1s] [Momentum: ████████░░ 8/10]
+[t=  64.1s] 74/82hp 154/154mp 196/197mv [Momentum: ████████░░ 8/10] [mage: 116/191]> 
+[t=  66.1s] Your slash lands squarely and mauls mage! [23 damage]
+[t=  66.1s] mage [████░░░░░░] [93/191]
+[t=  66.1s] 75/82hp 154/154mp 196/197mv [Momentum: ████████░░ 8/10] [mage: 93/191]> 
+[t=  66.1s] mage's quick pounding blow hits you! [7 damage]
+[t=  69.1s] > swing
+[t=  69.1s] You read the rhythm — your next strike will land PERFECTLY!
+[t=  69.1s] 68/82hp 154/154mp 196/197mv [Momentum: ████████░░ 8/10] [mage: 93/191]> 
+[t=  70.2s] *** CRITICAL HIT! ***
+[t=  70.2s] ★ PERFECT STRIKE!
+[t=  70.2s] Your slash connects — it devastates mage! [38 damage]
+[t=  70.2s] mage [██░░░░░░░░] [55/191]
+[t=  70.2s] 68/82hp 154/154mp 195/197mv [Momentum: ████████░░ 8/10] [mage: 55/191]> 
+[t=  70.2s] mage chants a healing incantation and wounds close! [+35 HP]
+[t=  70.2s] mage's pounding blow hits you — it grazes you! [9 damage]
+[t=  73.2s] > swing
+[t=  73.2s] You read the rhythm — your next strike will land PERFECTLY!
+[t=  73.2s] 60/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10] [mage: 90/191]> 
+[t=  73.2s] > bash mage
+[t=  73.2s] Your bash tickle mage! [2]
+[t=  73.2s] mage [████░░░░░░] [88/191]
+[t=  73.2s] mage is stunned!
+[t=  73.2s] [Momentum: █████████░ 9/10]
+[t=  73.2s] 60/82hp 154/154mp 197/197mv [Momentum: █████████░ 9/10] [mage: 88/191]> 
+[t=  74.2s] ★ PERFECT STRIKE!
+[t=  74.2s] Your slash decimates mage! [31 damage]
+[t=  74.2s] 💥 mage reels — STAGGERED! Strike now!
+[t=  74.2s] mage [██░░░░░░░░] [57/191]
+[t=  74.2s] 60/82hp 154/154mp 196/197mv [Momentum: █████████░ 9/10] [mage: 57/191]> 
+[t=  77.2s] > swing
+[t=  77.2s] You read the rhythm — your next strike will land PERFECTLY!
+[t=  77.2s] 61/82hp 154/154mp 197/197mv [Momentum: █████████░ 9/10] [mage: 57/191]> 
+[t=  78.2s] ★ PERFECT STRIKE!
+[t=  78.2s] You press the opening while mage reels — wide open!
+[t=  78.2s] Your slash lands squarely and wounds mage! [20 damage]
+[t=  78.2s] mage flees north!
+[t=  78.2s] mage [█░░░░░░░░░] [27/191]
+[t=  78.2s] 61/82hp 154/154mp 196/197mv [Momentum: █████████░ 9/10]> 
+[t=  81.2s] > swing
+[t=  81.2s] You're not fighting anyone!
+[t=  81.2s] 62/82hp 154/154mp 197/197mv [Momentum: █████████░ 9/10]> 
+[t=  82.2s] > cleave mage
+[t=  82.2s] Cleave whom?
+[t=  82.2s] 62/82hp 154/154mp 197/197mv [Momentum: █████████░ 9/10]> 
+[t=  85.3s] > swing
+[t=  85.3s] You're not fighting anyone!
+[t=  85.3s] 62/82hp 154/154mp 197/197mv [Momentum: █████████░ 9/10]> 
+[t=  88.3s] > swing
+[t=  88.3s] You're not fighting anyone!
+[t=  88.3s] 63/82hp 154/154mp 197/197mv [Momentum: █████████░ 9/10]> 
+[t=  90.4s] You hear muffled voices through the walls.
+[t=  91.4s] > swing
+[t=  91.4s] You're not fighting anyone!
+[t=  91.4s] 75/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t=  91.4s] > bash mage
+[t=  91.4s] Bash whom?
+[t=  91.4s] 75/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t=  94.4s] > swing
+[t=  94.4s] You're not fighting anyone!
+[t=  94.4s] 75/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t=  97.4s] > swing
+[t=  97.4s] You're not fighting anyone!
+[t=  97.4s] 76/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t= 100.4s] > swing
+[t= 100.4s] You're not fighting anyone!
+[t= 100.4s] 76/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t= 100.4s] > cleave mage
+[t= 100.4s] Cleave whom?
+[t= 100.4s] 76/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t= 103.4s] > swing
+[t= 103.4s] You're not fighting anyone!
+[t= 103.4s] 77/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t= 106.4s] > swing
+[t= 106.4s] You're not fighting anyone!
+[t= 106.4s] 78/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t= 109.4s] > swing
+[t= 109.4s] You're not fighting anyone!
+[t= 109.4s] 78/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t= 109.4s] > bash mage
+[t= 109.4s] Bash whom?
+[t= 109.4s] 78/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t= 112.4s] > swing
+[t= 112.4s] You're not fighting anyone!
+[t= 112.4s] 79/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t= 115.4s] > swing
+[t= 115.4s] You're not fighting anyone!
+[t= 115.4s] 79/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t= 118.4s] > swing
+[t= 118.4s] You're not fighting anyone!
+[t= 118.4s] 80/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t= 118.4s] > cleave mage
+[t= 118.4s] Cleave whom?
+[t= 118.4s] 80/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t= 120.5s] mage arrives from the north.
+[t= 121.5s] > swing
+[t= 121.5s] You're not fighting anyone!
+[t= 121.5s] 81/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t= 124.5s] > swing
+[t= 124.5s] You're not fighting anyone!
+[t= 124.5s] 81/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t= 127.5s] > swing
+[t= 127.5s] You're not fighting anyone!
+[t= 127.5s] 82/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t= 127.5s] > bash mage
+[t= 127.5s] You attack mage!
+[t= 127.5s] Your slash connects — it wounds mage! [19 damage]
+[t= 127.5s] mage flees east!
+[t= 127.5s] mage [░░░░░░░░░░] [17/191]
+[t= 127.5s] 82/82hp 154/154mp 196/197mv [Momentum: ████████░░ 8/10]> 
+[t= 130.5s] > swing
+[t= 130.5s] You're not fighting anyone!
+[t= 130.5s] 82/82hp 154/154mp 196/197mv [Momentum: ████████░░ 8/10]> 
+[t= 133.5s] > swing
+[t= 133.5s] You're not fighting anyone!
+[t= 133.5s] 82/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t= 136.5s] > swing
+[t= 136.5s] You're not fighting anyone!
+[t= 136.5s] 82/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t= 136.5s] > cleave mage
+[t= 136.5s] Cleave whom?
+[t= 136.5s] 82/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t= 139.5s] > swing
+[t= 139.5s] You're not fighting anyone!
+[t= 139.5s] 82/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t= 140.9s] The heat of the day begins to fade.
+[t= 142.9s] > swing
+[t= 142.9s] You're not fighting anyone!
+[t= 142.9s] 82/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t= 145.9s] > swing
+[t= 145.9s] You're not fighting anyone!
+[t= 145.9s] 82/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t= 145.9s] > bash mage
+[t= 145.9s] Bash whom?
+[t= 145.9s] 82/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 
+[t= 148.9s] > swing
+[t= 148.9s] You're not fighting anyone!
+[t= 148.9s] 82/82hp 154/154mp 197/197mv [Momentum: ████████░░ 8/10]> 

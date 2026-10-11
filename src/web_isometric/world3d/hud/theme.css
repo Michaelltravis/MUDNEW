@@ -1,0 +1,155 @@
+/* Misthollow's look: "lanterns in the mist". The hollow is a fog-bound valley and the HUD is a
+   traveller's kit carried through it: panels of dark mistglass bound in brass filigree, titles
+   engraved in Cinzel, lore set in Alegreya, warm lantern gold against the cool mist. This file
+   holds the fonts, the colour and type tokens and the shared pieces (panels, window heads,
+   buttons, tabs, chips, keycaps, tooltips, dividers); hud.css lays the HUD out with them. */
+
+@font-face { font-family: 'Cinzel'; src: url('../../fonts/Cinzel.woff2') format('woff2'); font-weight: 400 900; font-display: swap; }
+@font-face { font-family: 'Cinzel Decorative'; src: url('../../fonts/CinzelDecorative-700.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Alegreya'; src: url('../../fonts/Alegreya.woff2') format('woff2'); font-weight: 400 900; font-display: swap; }
+@font-face { font-family: 'Alegreya'; src: url('../../fonts/Alegreya-italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: 'Alegreya Sans'; src: url('../../fonts/AlegreyaSans-400.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Alegreya Sans'; src: url('../../fonts/AlegreyaSans-500.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Alegreya Sans'; src: url('../../fonts/AlegreyaSans-700.woff2') format('woff2'); font-weight: 700 900; font-display: swap; }
+@font-face { font-family: 'Alegreya Sans SC'; src: url('../../fonts/AlegreyaSansSC-500.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Alegreya Sans SC'; src: url('../../fonts/AlegreyaSansSC-700.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+
+:root {
+  --ui: 1;
+  /* type */
+  --display: 'Cinzel Decorative', 'Cinzel', Georgia, serif;
+  --title: 'Cinzel', Georgia, 'Times New Roman', serif;
+  --lore: 'Alegreya', Georgia, serif;
+  --body: 'Alegreya Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --label: 'Alegreya Sans SC', 'Alegreya Sans', system-ui, sans-serif;
+  /* ink and lantern light */
+  --ink: #f0e7d2;
+  --ink-dim: #b9ad93;
+  --ink-faint: #7d735f;
+  --brass: #a8834a;
+  --gold: #d8b46a;
+  --gold-hi: #f6dfa2;
+  --ember: #ff9a4a;
+  /* the mist */
+  --night: #080b12;
+  --slate: #111723;
+  --mist: #8ea6be;
+  --mist-hi: #cfe0ee;
+  --glass: rgba(12, 16, 25, 0.82);
+  --glass-hi: rgba(22, 28, 40, 0.92);
+  --edge: rgba(216, 180, 106, 0.42);
+  --edge-dim: rgba(216, 180, 106, 0.16);
+  /* vitals and allegiance */
+  --hp: #b8261f;
+  --hp-hi: #ff7055;
+  --mana: #2a62c8;
+  --mana-hi: #7fb4ff;
+  --xp: #c49af8;
+  --hostile: #ff6650;
+  --neutral: #f2d27a;
+  --npc: #8fe0a0;
+  --ally: #8cc8ff;
+  /* rarity */
+  --common: #d8d2c4; --uncommon: #7fe07a; --rare: #6aa8ff; --epic: #c87aff; --legendary: #ffb02a;
+  /* ornaments (inline SVG): a filigree corner for each corner, the grain of the glass */
+  --corner-tl: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cg fill='none' stroke='%23d8b46a' stroke-linecap='round'%3E%3Cpath d='M2.5 24V8.5Q2.5 2.5 8.5 2.5H24' stroke-width='1.4'/%3E%3Cpath d='M6 18v-8q0-4 4-4h8' stroke-width='.9' opacity='.55'/%3E%3Cpath d='M2.5 13q5 0 5-5' stroke-width='1' opacity='.75'/%3E%3Cpath d='M13 2.5q0 5-5 5' stroke-width='1' opacity='.75'/%3E%3C/g%3E%3Cpath d='M5.5 1.6l2.4 2.4-2.4 2.4-2.4-2.4z' fill='%23f6dfa2'/%3E%3C/svg%3E");
+  --corner-tr: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cg transform='translate(30 0) scale(-1 1)'%3E%3Cg fill='none' stroke='%23d8b46a' stroke-linecap='round'%3E%3Cpath d='M2.5 24V8.5Q2.5 2.5 8.5 2.5H24' stroke-width='1.4'/%3E%3Cpath d='M6 18v-8q0-4 4-4h8' stroke-width='.9' opacity='.55'/%3E%3Cpath d='M2.5 13q5 0 5-5' stroke-width='1' opacity='.75'/%3E%3Cpath d='M13 2.5q0 5-5 5' stroke-width='1' opacity='.75'/%3E%3C/g%3E%3Cpath d='M5.5 1.6l2.4 2.4-2.4 2.4-2.4-2.4z' fill='%23f6dfa2'/%3E%3C/g%3E%3C/svg%3E");
+  --corner-bl: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cg transform='translate(0 30) scale(1 -1)'%3E%3Cg fill='none' stroke='%23d8b46a' stroke-linecap='round'%3E%3Cpath d='M2.5 24V8.5Q2.5 2.5 8.5 2.5H24' stroke-width='1.4'/%3E%3Cpath d='M6 18v-8q0-4 4-4h8' stroke-width='.9' opacity='.55'/%3E%3Cpath d='M2.5 13q5 0 5-5' stroke-width='1' opacity='.75'/%3E%3Cpath d='M13 2.5q0 5-5 5' stroke-width='1' opacity='.75'/%3E%3C/g%3E%3Cpath d='M5.5 1.6l2.4 2.4-2.4 2.4-2.4-2.4z' fill='%23f6dfa2'/%3E%3C/g%3E%3C/svg%3E");
+  --corner-br: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Cg transform='translate(30 30) scale(-1 -1)'%3E%3Cg fill='none' stroke='%23d8b46a' stroke-linecap='round'%3E%3Cpath d='M2.5 24V8.5Q2.5 2.5 8.5 2.5H24' stroke-width='1.4'/%3E%3Cpath d='M6 18v-8q0-4 4-4h8' stroke-width='.9' opacity='.55'/%3E%3Cpath d='M2.5 13q5 0 5-5' stroke-width='1' opacity='.75'/%3E%3Cpath d='M13 2.5q0 5-5 5' stroke-width='1' opacity='.75'/%3E%3C/g%3E%3Cpath d='M5.5 1.6l2.4 2.4-2.4 2.4-2.4-2.4z' fill='%23f6dfa2'/%3E%3C/g%3E%3C/svg%3E");
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .95 0 0 0 0 .85 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --rule-diamond: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath d='M7 1l6 6-6 6-6-6z' fill='none' stroke='%23d8b46a' stroke-width='1.2'/%3E%3Cpath d='M7 4.2l2.8 2.8L7 9.8 4.2 7z' fill='%23f6dfa2'/%3E%3C/svg%3E");
+}
+
+/* ---- the panel: mistglass bound in brass ---- */
+.panel {
+  background:
+    var(--grain),
+    radial-gradient(120% 70% at 50% 0%, rgba(216, 180, 106, 0.09), rgba(216, 180, 106, 0) 60%),
+    linear-gradient(180deg, rgba(20, 26, 38, 0.9), rgba(9, 12, 19, 0.92));
+  border: 1px solid var(--edge);
+  border-radius: 10px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255, 236, 190, 0.05), inset 0 1px 0 rgba(255, 236, 190, 0.12),
+    inset 0 -20px 40px rgba(0, 0, 0, 0.25), 0 14px 34px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(7px) saturate(1.1);
+  -webkit-backdrop-filter: blur(7px) saturate(1.1);
+}
+/* the filigree at the corners (an overlay that never catches the mouse) */
+.panel.ornate::before {
+  content: ''; position: absolute; inset: -4px; pointer-events: none; z-index: 1;
+  background: var(--corner-tl) top left / 30px no-repeat, var(--corner-tr) top right / 30px no-repeat,
+    var(--corner-bl) bottom left / 30px no-repeat, var(--corner-br) bottom right / 30px no-repeat;
+  filter: drop-shadow(0 0 3px rgba(243, 210, 140, 0.25));
+}
+.panel.ornate.small::before { inset: -3px; background-size: 22px, 22px, 22px, 22px; }
+
+/* ---- a window's head: the title engraved between two gilded rules ---- */
+.win-head { position: relative; display: flex; align-items: center; gap: 10px; padding: 10px 14px 9px;
+  border-bottom: 1px solid var(--edge-dim); background: linear-gradient(180deg, rgba(216, 180, 106, 0.08), rgba(216, 180, 106, 0));
+  border-radius: 10px 10px 0 0; }
+.win-head > span:first-child { font: 600 16px var(--title); color: var(--gold-hi); letter-spacing: .12em; text-transform: uppercase;
+  text-shadow: 0 1px 0 #000, 0 0 12px rgba(243, 210, 140, 0.25); display: flex; align-items: center; gap: 10px; }
+.win-head > span:first-child::before { content: ''; width: 14px; height: 14px; background: var(--rule-diamond) center / contain no-repeat; }
+.win-head::after { content: ''; position: absolute; left: 14px; right: 14px; bottom: -1px; height: 1px;
+  background: linear-gradient(90deg, rgba(216, 180, 106, 0), rgba(246, 223, 162, 0.7) 50%, rgba(216, 180, 106, 0)); }
+.win-x { margin-left: auto; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; padding: 0;
+  border: 1px solid var(--edge); background: radial-gradient(circle at 35% 30%, #3a3022, #15110b); color: var(--gold-hi);
+  font: 700 12px var(--body); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 236, 190, 0.15); }
+.win-x:hover { border-color: var(--gold-hi); box-shadow: 0 0 10px rgba(243, 210, 140, 0.4); }
+
+/* ---- buttons: lacquered brass, or dark with a gilded edge ---- */
+.btn { display: inline-block; width: 100%; margin-top: 8px; padding: 11px 16px; border-radius: 7px; cursor: pointer; position: relative;
+  border: 1px solid #f0d28c; background: linear-gradient(180deg, #c99c4f 0%, #9a7233 48%, #7a5622 52%, #8f6a2f 100%);
+  color: #fffaf0; font: 700 14px var(--title); letter-spacing: .14em; text-transform: uppercase; text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 245, 220, 0.45), inset 0 -2px 6px rgba(0, 0, 0, 0.25), 0 6px 16px rgba(0, 0, 0, 0.45);
+  transition: filter .15s, box-shadow .15s, transform .08s; }
+.btn:hover { filter: brightness(1.12); box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 245, 220, 0.5), 0 0 18px rgba(243, 200, 120, 0.45), 0 6px 16px rgba(0, 0, 0, 0.45); }
+.btn:active { transform: translateY(1px); }
+.btn.alt { border-color: var(--edge); background: linear-gradient(180deg, rgba(40, 46, 60, 0.85), rgba(18, 22, 32, 0.9)); color: var(--ink); }
+.btn.alt:hover { border-color: var(--gold); color: var(--gold-hi); }
+.btn:disabled { opacity: .5; cursor: default; filter: grayscale(.4); }
+
+/* tabs: bookmarks along a window's head */
+.ch-tabs { display: flex; gap: 4px; margin-left: auto; }
+.ch-tabs button { font: 700 12px var(--label); letter-spacing: .06em; padding: 4px 11px 5px; border-radius: 6px 6px 2px 2px; cursor: pointer;
+  border: 1px solid var(--edge-dim); border-bottom-color: transparent; background: rgba(255, 255, 255, 0.03); color: var(--ink-dim); }
+.ch-tabs button:hover { color: var(--ink); border-color: var(--edge); }
+.ch-tabs button.on { color: #1a1206; border-color: #f0d28c; background: linear-gradient(180deg, #f3d999, #b98d45); text-shadow: none; }
+.ch-tabs + .win-x { margin-left: 8px; }
+
+/* chips, keycaps, divider */
+.chip { display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px; border-radius: 999px; font: 500 12px var(--body);
+  border: 1px solid var(--edge-dim); background: rgba(255, 255, 255, 0.04); color: var(--ink); }
+kbd, .kbd { display: inline-grid; place-items: center; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 4px;
+  font: 700 11px var(--body); color: #1b1408; background: linear-gradient(#f6dfa2, #c69a4c); box-shadow: 0 2px 0 #6b5220, inset 0 1px 0 rgba(255, 255, 255, 0.5); }
+.rule { height: 14px; margin: 10px 0; background:
+  var(--rule-diamond) center / 14px no-repeat,
+  linear-gradient(90deg, rgba(216, 180, 106, 0), rgba(216, 180, 106, 0.55) 30%, rgba(216, 180, 106, 0) 47%, rgba(216, 180, 106, 0) 53%, rgba(216, 180, 106, 0.55) 70%, rgba(216, 180, 106, 0)) center / 100% 1px no-repeat; }
+.lab, .ch-lab { font: 700 11px var(--label); letter-spacing: .12em; color: var(--ink-faint); text-transform: lowercase; }
+
+/* ---- the tooltip card (abilities, items, buffs): dark vellum, gilded edge ---- */
+.tipcard { position: fixed; z-index: 60; max-width: 300px; min-width: 200px; padding: 10px 12px 11px; border-radius: 8px; pointer-events: none;
+  background: var(--grain), linear-gradient(180deg, rgba(26, 22, 18, 0.97), rgba(12, 11, 9, 0.97));
+  border: 1px solid var(--edge); box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.7), 0 12px 30px rgba(0, 0, 0, 0.65); font: 14px/1.4 var(--body); color: var(--ink);
+  animation: unfurl .14s ease-out; }
+.tipcard .tc-head { display: flex; gap: 10px; align-items: center; }
+.tipcard .tc-ic { width: 44px; height: 44px; border-radius: 8px; flex: none; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6), 0 0 10px rgba(0, 0, 0, 0.5); }
+.tipcard .tc-name { font: 700 16px var(--title); color: var(--gold-hi); letter-spacing: .03em; line-height: 1.15; }
+.tipcard .tc-sub { font: 500 12px var(--label); color: var(--ink-dim); letter-spacing: .05em; }
+.tipcard .tc-desc { margin-top: 8px; font: 15px/1.4 var(--lore); color: var(--ink); }
+.tipcard .tc-meta { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 7px; font-size: 12.5px; color: var(--ink-dim); }
+.tipcard .tc-meta b { color: var(--ink); font-weight: 700; }
+.tipcard .tc-foot { margin-top: 7px; font-size: 12px; color: var(--ink-faint); font-style: italic; }
+.tipcard .tc-bar { height: 4px; border-radius: 2px; background: rgba(0, 0, 0, 0.6); margin-top: 6px; position: relative; overflow: hidden; }
+.tipcard .tc-bar b { position: absolute; inset: 0 auto 0 0; background: linear-gradient(90deg, #7d55c8, var(--xp)); }
+
+/* ---- motion ---- */
+@keyframes unfurl { from { opacity: 0; transform: translateY(4px) scale(.985); } to { opacity: 1; transform: none; } }
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+@keyframes breathe { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+
+/* scrollbars: a thin gilded thumb */
+* { scrollbar-width: thin; scrollbar-color: rgba(216, 180, 106, 0.45) transparent; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, rgba(243, 217, 153, 0.55), rgba(168, 131, 74, 0.55)); border-radius: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::selection { background: rgba(216, 180, 106, 0.35); }

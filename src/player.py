@@ -517,6 +517,11 @@ class Player(Character):
 
         # Recall system
         self.recall_point = 3001  # Default recall point (Temple of Midgaard)
+        # the marquee quest (marquee.py): the quest you run or help with, and the marquee
+        # abilities' long cooldowns (marquee_abilities.py), kept across logins
+        self.marquee = None
+        self.marquee_help = None
+        self.marquee_cd = {}
         self.autorecall_hp = None  # HP threshold for automatic recall
         self.autorecall_is_percent = False  # Whether autorecall_hp is a percentage
 
@@ -892,7 +897,9 @@ class Player(Character):
         # Calculate derived stats based on class
         class_data = player.config.CLASSES[char_class]
         # HP: 12-22 range based on class and constitution
-        player.max_hp = 12 + class_data['hit_dice'] // 2 + (player.con - 10) // 2
+        # progression-01: a level-1 bard or thief rolled 13-14 HP and died to level-1
+        # creatures; the first ten minutes must not hinge on a CON roll — floor at 16
+        player.max_hp = max(16, 12 + class_data['hit_dice'] // 2 + (player.con - 10) // 2)
         # Mana: ~100 base, scales with INT + WIS
         player.max_mana = 100 + class_data['mana_dice'] * 5 + (player.int + player.wis - 20) * 2
         # Moves: 100+ base, scales with constitution
@@ -905,14 +912,12 @@ class Player(Character):
         # Starting resources
         player.gold = player.config.STARTING_GOLD
         player.exp = player.config.STARTING_EXPERIENCE
-        player.practices = 5
+        player.practices = 0          # abilities grow by use now (mastery.py)
         player.trains = 0
         
-        # Learn starting skills/spells
-        for skill in class_data['skills'][:3]:  # First 3 skills
-            player.skills[skill] = 50  # 50% proficiency
-        for spell in class_data['spells'][:2]:  # First 2 spells
-            player.spells[spell] = 50
+        # Learn the level-1 abilities, at 50%
+        import mastery
+        mastery.grant_now(player)
             
         # Give starting equipment
         player._give_starting_equipment()
@@ -1005,12 +1010,19 @@ class Player(Character):
                 self.equipment[slot] = item
             
     def set_password(self, password: str):
-        """Set the player's password (hashed)."""
-        self.password_hash = hashlib.sha256(password.encode()).hexdigest()
+        """Set the player's password (salted PBKDF2, security.py). No password (a character
+        made from the account menu) leaves the hash empty: it opens through the account."""
+        import security
+        self.password_hash = security.hash_password(password) if password else ""
         
-    def check_password(self, password: str) -> bool:
-        """Check if the password matches."""
-        return self.password_hash == hashlib.sha256(password.encode()).hexdigest()
+    async def check_password(self, password: str) -> bool:
+        """Check if the password matches; an old-style hash is upgraded (saved with the
+        character)."""
+        import security
+        ok, rehash = await security.verify_async(self.password_hash, password)
+        if ok and rehash:
+            self.password_hash = await security.hash_async(password)
+        return ok
         
     async def send(self, message: str, newline: bool = True):
         """Send a message to the player."""
@@ -1082,10 +1094,13 @@ class Player(Character):
             'damroll': self.damroll,
             'practices': self.practices,
             'trains': self.trains,
-            'room_vnum': self.room.vnum if self.room else self.config.STARTING_ROOM,
+            # a private trial's rooms vanish with it: such a room names the way back (instance_exit)
+            'room_vnum': (getattr(self.room, 'instance_exit', None) or self.room.vnum) if self.room else self.config.STARTING_ROOM,
             'skills': self.skills,
             'spells': self.spells,
             'talents': getattr(self, 'talents', {}),
+            'path': getattr(self, 'path', None),
+            'path_switch_available': getattr(self, 'path_switch_available', False),
             'quests_completed': self.quests_completed,
             'quest_flags': self.quest_flags,
             'quest_chains': self.quest_chains,
@@ -1100,6 +1115,7 @@ class Player(Character):
             'affects': AffectManager.save_affects(self),
             'companions': self._save_companions(),
             'custom_aliases': self.custom_aliases,
+            'web_bar': getattr(self, 'web_bar', None),   # the 3D client's action bar, as arranged
             'autoloot': self.autoloot,
             'autoloot_gold': self.autoloot_gold,
             'autogold': self.autogold,
@@ -1113,6 +1129,9 @@ class Player(Character):
             'show_room_vnums': self.show_room_vnums,
             'autoexit': self.autoexit,
             'recall_point': self.recall_point,
+            'marquee': self.marquee,
+            'marquee_help': self.marquee_help,
+            'marquee_cd': self.marquee_cd,
             'autorecall_hp': self.autorecall_hp,
             'autorecall_is_percent': self.autorecall_is_percent,
             'hunger': self.hunger,
@@ -1189,7 +1208,14 @@ class Player(Character):
             'disabled_channels': list(getattr(self, 'disabled_channels', set())),
             'friend_notify': getattr(self, 'friend_notify', True),
         }
-        
+        # stats are saved without the buffs on them: the buffs are saved too and loading
+        # applies them again (saved with them inside, a buff stuck for good after a relog)
+        for stat in AffectManager.VALID_STATS:
+            if isinstance(data.get(stat), (int, float)) and not isinstance(data.get(stat), bool):
+                bonus = AffectManager.stat_bonus(self, stat)
+                if bonus:
+                    data[stat] = data[stat] - bonus
+
         filepath = os.path.join(self.config.PLAYER_DIR, f"{self.name.lower()}.json")
         os.makedirs(os.path.dirname(filepath), exist_ok=True)
         
@@ -1285,7 +1311,51 @@ class Player(Character):
             player.room_vnum = data.get('room_vnum', Config.STARTING_ROOM)
             player.skills = data.get('skills', {})
             player.spells = data.get('spells', {})
+            # Combat reinvention: migrate renamed ability keys so existing
+            # characters keep their learned abilities at equal power.
+            LEGACY_ABILITY_MAP = {
+                # Necromancer (Soulbinder)
+                'death_grip': 'mistgrasp', 'death_coil': 'wraithfire',
+                'plague_strike': 'mistrot', 'finger_of_death': 'sever_cord',
+                # Mage (Adept of the High Tower)
+                'blink': 'stepwise', 'displacement': 'phase_step',
+                'mirror_image': 'tower_echoes', 'spell_reflection': 'mirrorward',
+                'time_warp': 'quicken', 'icy_veins': 'rimeheart',
+                'combustion_master': 'kindling_focus', 'arcane_explosion': 'resonance_burst',
+                # Cleric (Keeper of the Holy Order)
+                'prayer_of_mending': 'travelling_grace', 'spirit_link': 'shared_burden',
+                'lightwell': 'font_of_the_vigil',
+                # Paladin (Lightbringer)
+                'consecration': 'hallowed_ground', 'hammer_of_justice': 'dawnhammer',
+                'avenging_wrath_master': 'ascendant_hour', 'crusaders_judgment': 'verdict_of_the_order',
+                'hand_of_freedom': 'unfettered',
+                # Final de-WoW pass (learnable spells)
+                'vampiric_touch': 'leechcraft', 'hymn_of_hope': 'refrain_of_hope',
+                'mass_dispel': 'cleansing_rite',
+            }
+            for old_key, new_key in LEGACY_ABILITY_MAP.items():
+                if old_key in player.spells:
+                    player.spells.setdefault(new_key, player.spells.pop(old_key))
+                else:
+                    player.spells.pop(old_key, None)
+            # Skill renames (combat reinvention, skill pass) — migrate skills
+            LEGACY_SKILL_MAP = {
+                'aimed_shot': 'truesight_shot', 'kill_command': 'wildbond_strike',
+                'rapid_fire': 'loosing_storm', 'hunters_mark': 'quarry_mark',
+                'arcane_barrage': 'charge_release', 'arcane_blast': 'towerbolt',
+                'evocation': 'drink_the_leyline',
+                'shadow_step': 'slip_the_veil', 'vanish': 'fade',
+                'holy_fire': 'pyre_of_faith',
+                'templars_verdict': 'order_verdict', 'word_of_glory': 'absolution',
+                'divine_storm': 'halo_of_reckoning', 'smite': 'censure',
+                'avatar_of_war': 'war_incarnate', 'drain_soul': 'soul_siphon',
+            }
+            for old_key, new_key in LEGACY_SKILL_MAP.items():
+                if old_key in player.skills:
+                    player.skills.setdefault(new_key, player.skills.pop(old_key))
             player.talents = data.get('talents', {})
+            player.path = data.get('path', None)
+            player.path_switch_available = data.get('path_switch_available', False)
             player.quests_completed = data.get('quests_completed', [])
             player.quest_flags = data.get('quest_flags', {})
             player.quest_chains = data.get('quest_chains', {})
@@ -1299,6 +1369,7 @@ class Player(Character):
 
             player.flags = set(data.get('flags', []))
             player.custom_aliases = data.get('custom_aliases', {})
+            player.web_bar = data.get('web_bar')
             player.autoloot = data.get('autoloot', False)
             player.autoloot_gold = data.get('autoloot_gold', True)
             player.autogold = data.get('autogold', True)
@@ -1312,6 +1383,9 @@ class Player(Character):
             player.wimpy = data.get('wimpy', 0)
             player.autoexit = data.get('autoexit', True)
             player.recall_point = data.get('recall_point', 3001)
+            player.marquee = data.get('marquee')
+            player.marquee_help = data.get('marquee_help')
+            player.marquee_cd = data.get('marquee_cd') or {}
             player.autorecall_hp = data.get('autorecall_hp', None)
             player.autorecall_is_percent = data.get('autorecall_is_percent', False)
             player.hunger = data.get('hunger', 168)
@@ -1462,6 +1536,12 @@ class Player(Character):
             player.momentum = data.get('momentum', 0)
             player.ability_usage = data.get('ability_usage', {})
             player.ability_evolutions = data.get('ability_evolutions', {})
+            # migrate renamed evolution forms (whirlwind/avatar_of_war)
+            _EVO_RENAME = {'whirlwind': 'bloodwhirl', 'avatar_of_war': 'war_incarnate'}
+            if isinstance(player.ability_evolutions, dict):
+                for _k, _v in list(player.ability_evolutions.items()):
+                    if _v in _EVO_RENAME:
+                        player.ability_evolutions[_k] = _EVO_RENAME[_v]
             player.last_warrior_ability = data.get('last_warrior_ability', None)
             player.unstoppable_rounds = data.get('unstoppable_rounds', 0)
 
@@ -1997,6 +2077,14 @@ class Player(Character):
         if not target_name or not self.room:
             return None
 
+        # the 3D client names creatures exactly: "#12" is map_system's id for one live mob
+        if target_name.startswith('#') and target_name[1:].isdigit():
+            uid = int(target_name[1:])
+            for char in self.room.characters:
+                if char is not self and getattr(char, '_web_uid', None) == uid:
+                    return char
+            return None
+
         # Check labels first (case-insensitive)
         label_upper = target_name.upper()
         if label_upper in self.target_labels:
@@ -2152,7 +2240,13 @@ class Player(Character):
         Levels 31-60: Use HIGH_LEVEL_EXP_MULTIPLIER (1.6x) for slower progression
         """
         threshold = getattr(self.config, 'HIGH_LEVEL_THRESHOLD', 30)
-        
+
+        # Easy to start: the first four levels are a ramp, not the full curve.
+        # progression-01 measured level 2 at 9.5 min on the 800-xp base (70-140
+        # xp per newcomer kill); 2-3 kills a level puts level 5 near 15 minutes.
+        ramp = getattr(self.config, 'NEWCOMER_EXP', (250, 350, 500, 650))
+        if self.level <= len(ramp):
+            return int(ramp[self.level - 1])
         if self.level <= threshold:
             # Standard progression for levels 1-30
             return int(self.config.BASE_EXP * (self.config.EXP_MULTIPLIER ** (self.level - 1)))
@@ -2172,7 +2266,11 @@ class Player(Character):
         class_data = self.config.CLASSES[self.char_class]
         
         # Gain HP
-        hp_gain = random.randint(1, class_data['hit_dice']) + (self.con - 10) // 4
+        # progression-01: two level-10 warriors forged the same way rolled 53 and 85
+        # max HP — a 1..d roll per level is the widest variance in the game. Floor
+        # the roll at half the hit die so levels are a gain, not a lottery.
+        hd = class_data['hit_dice']
+        hp_gain = random.randint(max(1, hd // 2), hd) + (self.con - 10) // 4
         self.max_hp += max(1, hp_gain)
         self.hp = self.max_hp
         
@@ -2186,9 +2284,7 @@ class Player(Character):
         self.max_move += max(0, move_gain)
         self.move = self.max_move
         
-        # Gain practices
-        practice_gain = (self.wis - 10) // 2 + 2
-        self.practices += practice_gain
+        # (no practice sessions any more: abilities grow as they are used, mastery.py)
         
         c = self.config.COLORS
         
@@ -2240,7 +2336,6 @@ class Player(Character):
         await self.send(f"{c['bright_cyan']}║{c['reset']}  {c['bright_green']}Health:  {c['white']}+{hp_gain:<3}{c['reset']}  {c['green']}({self.max_hp} total){c['reset']}                           {c['bright_cyan']}║{c['reset']}")
         await self.send(f"{c['bright_cyan']}║{c['reset']}  {c['bright_cyan']}Mana:    {c['white']}+{mana_gain:<3}{c['reset']}  {c['cyan']}({self.max_mana} total){c['reset']}                           {c['bright_cyan']}║{c['reset']}")
         await self.send(f"{c['bright_cyan']}║{c['reset']}  {c['bright_yellow']}Move:    {c['white']}+{move_gain:<3}{c['reset']}  {c['yellow']}({self.max_move} total){c['reset']}                           {c['bright_cyan']}║{c['reset']}")
-        await self.send(f"{c['bright_cyan']}║{c['reset']}  {c['bright_magenta']}Practice:{c['white']} +{practice_gain:<3}{c['reset']} {c['magenta']}({self.practices} available){c['reset']}                      {c['bright_cyan']}║{c['reset']}")
         await self.send(f"{c['bright_cyan']}║{c['reset']}                                                              {c['bright_cyan']}║{c['reset']}")
         
         # Milestone message
@@ -2290,110 +2385,10 @@ class Player(Character):
             pass
         
     async def check_new_abilities(self):
-        """Check if player qualifies for new skills/spells with epic notifications."""
-        class_data = self.config.CLASSES[self.char_class]
-        c = self.config.COLORS
-        
-        # Ability descriptions for flavor
-        ABILITY_DESC = {
-            # Combat skills
-            'kick': 'A powerful kick that deals bonus damage',
-            'bash': 'Shield bash that can stun enemies',
-            'rescue': 'Pull an ally from combat danger',
-            'disarm': 'Knock the weapon from your foe\'s hands',
-            'parry': 'Deflect incoming attacks with your weapon',
-            'dodge': 'Nimbly avoid enemy strikes',
-            'second_attack': 'Strike twice in a single round',
-            'third_attack': 'Land three blows per round',
-            'dual_wield': 'Fight with a weapon in each hand',
-            'critical_strike': 'Chance for devastating critical hits',
-            'backstab': 'Strike from shadows for massive damage',
-            'sneak': 'Move unseen through the shadows',
-            'hide': 'Conceal yourself from enemies',
-            'pick_lock': 'Open locks without a key',
-            'steal': 'Pilfer items from unsuspecting targets',
-            'track': 'Follow the trail of your quarry',
-            'hunt': 'Relentlessly pursue fleeing enemies',
-            'berserk': 'Enter a rage, trading defense for offense',
-            'whirlwind': 'Strike all enemies around you',
-            'cleave': 'Powerful sweeping attack',
-            'shield_block': 'Block attacks with your shield',
-            'taunt': 'Draw enemy attention to yourself',
-            # Spells
-            'magic_missile': 'Unerring bolts of arcane force',
-            'fireball': 'Explosive ball of flame',
-            'lightning_bolt': 'A crackling bolt of electricity',
-            'cure_light': 'Mend minor wounds',
-            'cure_serious': 'Heal moderate injuries',
-            'cure_critical': 'Restore grievous wounds',
-            'heal': 'Powerful restorative magic',
-            'armor': 'Magical protection surrounds you',
-            'bless': 'Divine favor improves combat',
-            'sanctuary': 'Holy aura reduces damage taken',
-            'word_of_recall': 'Instantly return to safety',
-            'detect_invisible': 'See the unseen',
-            'invisibility': 'Become invisible to enemies',
-            'fly': 'Soar through the air',
-            'summon': 'Call an ally to your side',
-            'charm': 'Bend a creature to your will',
-            'sleep': 'Put enemies into slumber',
-            'poison': 'Coat your attacks with venom',
-            'animate_dead': 'Raise fallen foes as minions',
-            'energy_drain': 'Steal life force from enemies',
-        }
-        
-        # Skills unlocked at various levels
-        skill_levels = {
-            1: 0, 2: 1, 3: 1, 5: 2, 7: 2, 10: 3, 15: 4, 20: 5, 25: 6, 30: 7
-        }
-        
-        max_skills = skill_levels.get(self.level, 0)
-        available_skills = class_data['skills'][:max_skills + 3]
-        available_spells = class_data['spells'][:max_skills + 2]
-        
-        new_skills = []
-        new_spells = []
-        
-        for skill in available_skills:
-            if skill not in self.skills:
-                self.skills[skill] = 30
-                new_skills.append(skill)
-                
-        for spell in available_spells:
-            if spell not in self.spells:
-                self.spells[spell] = 30
-                new_spells.append(spell)
-        
-        # Display epic notification if we learned anything
-        if new_skills or new_spells:
-            await self.send("")
-            await self.send(f"{c['bright_cyan']}  +{'=' * 54}+{c['reset']}")
-            await self.send(f"{c['bright_cyan']}  |{c['bright_yellow']}     ★ NEW ABILITIES UNLOCKED! ★                      {c['bright_cyan']}|{c['reset']}")
-            await self.send(f"{c['bright_cyan']}  +{'-' * 54}+{c['reset']}")
-            
-            if new_skills:
-                await self.send(f"{c['bright_cyan']}  |{c['reset']}                                                      {c['bright_cyan']}|{c['reset']}")
-                await self.send(f"{c['bright_cyan']}  |{c['bright_green']}  SKILLS:{c['reset']}                                             {c['bright_cyan']}|{c['reset']}")
-                for skill in new_skills:
-                    skill_name = skill.replace('_', ' ').title()
-                    desc = ABILITY_DESC.get(skill, 'A powerful new technique')
-                    await self.send(f"{c['bright_cyan']}  |{c['reset']}    {c['white']}⚔ {skill_name:<20}{c['reset']}                       {c['bright_cyan']}|{c['reset']}")
-                    await self.send(f"{c['bright_cyan']}  |{c['reset']}      {c['cyan']}{desc[:46]:<46}{c['reset']}  {c['bright_cyan']}|{c['reset']}")
-            
-            if new_spells:
-                await self.send(f"{c['bright_cyan']}  |{c['reset']}                                                      {c['bright_cyan']}|{c['reset']}")
-                await self.send(f"{c['bright_cyan']}  |{c['bright_magenta']}  SPELLS:{c['reset']}                                             {c['bright_cyan']}|{c['reset']}")
-                for spell in new_spells:
-                    spell_name = spell.replace('_', ' ').title()
-                    desc = ABILITY_DESC.get(spell, 'A mystical new power')
-                    await self.send(f"{c['bright_cyan']}  |{c['reset']}    {c['white']}✦ {spell_name:<20}{c['reset']}                       {c['bright_cyan']}|{c['reset']}")
-                    await self.send(f"{c['bright_cyan']}  |{c['reset']}      {c['magenta']}{desc[:46]:<46}{c['reset']}  {c['bright_cyan']}|{c['reset']}")
-            
-            await self.send(f"{c['bright_cyan']}  |{c['reset']}                                                      {c['bright_cyan']}|{c['reset']}")
-            await self.send(f"{c['bright_cyan']}  +{'=' * 54}+{c['reset']}")
-            await self.send(f"{c['yellow']}  Use 'skills' or 'spells' to see all your abilities.{c['reset']}")
-            await self.send("")
-                
+        """Learn everything this level has reached, at 50%, announced (mastery.py)."""
+        import mastery
+        await mastery.grant(self)
+
     def get_damage_message(self, damage: int) -> str:
         """Get a message describing the damage amount."""
         if damage <= 0:
@@ -2427,6 +2422,43 @@ class Player(Character):
         """Take damage, return True if killed."""
         c = self.config.COLORS
         damage_type = damage_type or 'physical'
+
+        flags = getattr(self, 'affect_flags', set())
+        # Corpse Shield: a necromancer's pet absorbs part of every blow
+        if amount > 1 and 'damage_redirect_pet' in flags:
+            from affects import AffectManager
+            aff = AffectManager.get_affect(self, 'corpse_shield') or AffectManager.get_affect(self, 'Corpse Shield')
+            pct = getattr(aff, 'value', 50) if aff else 50
+            pet = next((c2 for c2 in (getattr(self, 'companions', None) or [])
+                        if getattr(c2, 'hp', 0) > 0 and getattr(c2, 'room', None) == self.room), None)
+            if pet:
+                redirected = max(1, amount * max(10, min(90, pct)) // 100)
+                amount -= redirected
+                pet.hp -= redirected
+                await self.send(f"{c['green']}Your corpse shield diverts {redirected} damage to {pet.name}!{c['reset']}")
+                if pet.hp <= 0:
+                    pet.hp = 0
+                    await self.send(f"{c['yellow']}{pet.name} is torn apart absorbing the blow!{c['reset']}")
+                    if pet.room and pet in pet.room.characters:
+                        pet.room.characters.remove(pet)
+                    if hasattr(self, 'companions') and pet in self.companions:
+                        self.companions.remove(pet)
+
+        # Spirit Link: linked groupmates shoulder part of each other's pain
+        if amount > 3 and 'spirit_link' in flags and getattr(self, 'group', None):
+            linked = [m for m in getattr(self.group, 'members', [])
+                      if m is not self and getattr(m, 'hp', 0) > 1
+                      and 'spirit_link' in getattr(m, 'affect_flags', set())
+                      and getattr(m, 'room', None) == self.room]
+            if linked:
+                share = (amount * 30 // 100) // len(linked)
+                if share > 0:
+                    amount -= share * len(linked)
+                    for m in linked:
+                        m.hp = max(1, m.hp - share)   # the link never kills
+                        if hasattr(m, 'send'):
+                            await m.send(f"{c['cyan']}The spirit link draws {share} of {self.name}'s pain into you.{c['reset']}")
+                    await self.send(f"{c['cyan']}Your linked spirits absorb {share * len(linked)} damage.{c['reset']}")
         
         # Player protection intercept - check if any ally is protecting this player
         if attacker and self.room and amount > 0:
@@ -2754,6 +2786,8 @@ class Player(Character):
         """Handle player death."""
         import random
         c = self.config.COLORS
+        # a new death: CombatHandler.handle_death (which runs after this) handles each one once
+        self._death_processed = False
         
         # Stop fighting
         if self.fighting:
@@ -2842,8 +2876,11 @@ class Player(Character):
                 # Handle both dict affects and Affect objects
                 self.affects = [a for a in self.affects if getattr(a, 'name', a.get('name', '') if isinstance(a, dict) else '') not in bad_affects]
         
-        # Move to temple/recall point
-        if self.room:
+        # Move to temple/recall point. The removal must be safe: a hunting mob can
+        # finish a player whose room list no longer holds them (a dropped
+        # connection mid-hunt), and an unguarded remove() here took the whole
+        # server down (progression-01 tier runs).
+        if self.room and self in self.room.characters:
             self.room.characters.remove(self)
         
         recall_vnum = getattr(self, 'recall_point', self.config.STARTING_ROOM)

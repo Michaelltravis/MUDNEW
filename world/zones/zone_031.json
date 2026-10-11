@@ -1108,6 +1108,9 @@
         "west": {
           "to_room": 3203,
           "description": "Deep waters churn near On The River"
+        },
+        "south": {
+          "to_room": 13000
         }
       }
     },

@@ -1,0 +1,248 @@
+{
+  "_doc": "Maps Misthollow classes and mob_ai roles / name keywords to Lucifer actor packs in manifest.json. First match wins; 'fallback' keeps the old renderer. Townsfolk use the robed cultist sheet (non-hostile tint) so the street reads in one style; animals/monsters with no Lucifer sheet fall through to DCSS art. classes: pack plus a hue/sat/light recolour so every class has its own model; skin tones are left untouched by the recolour.",
+  "classes": {
+    "warrior": {
+      "pack": "lucifer-warrior",
+      "hue": 0,
+      "sat": 1.0,
+      "light": 1.12,
+      "greySat": 0
+    },
+    "paladin": {
+      "pack": "lucifer-warrior",
+      "hue": 40,
+      "sat": 1.25,
+      "light": 1.32,
+      "greySat": 0.42
+    },
+    "ranger": {
+      "pack": "lucifer-warrior",
+      "hue": 100,
+      "sat": 1.1,
+      "light": 1.12,
+      "greySat": 0.4
+    },
+    "thief": {
+      "pack": "lucifer-warrior",
+      "hue": 250,
+      "sat": 0.7,
+      "light": 1.12,
+      "greySat": 0.3
+    },
+    "assassin": {
+      "pack": "lucifer-warrior",
+      "hue": 330,
+      "sat": 0.8,
+      "light": 1.12,
+      "greySat": 0.35
+    },
+    "mage": {
+      "pack": "lucifer-sorceress",
+      "hue": 200,
+      "sat": 1.15,
+      "light": 1.12,
+      "greySat": 0
+    },
+    "cleric": {
+      "pack": "lucifer-sorceress",
+      "hue": 45,
+      "sat": 0.9,
+      "light": 1.43,
+      "greySat": 0.25
+    },
+    "bard": {
+      "pack": "lucifer-sorceress",
+      "hue": 290,
+      "sat": 1.2,
+      "light": 1.18,
+      "greySat": 0.3
+    },
+    "necromancer": {
+      "pack": "lucifer-necromancer",
+      "hue": 0,
+      "sat": 1.0,
+      "light": 1.12,
+      "greySat": 0
+    }
+  },
+  "mobs": [
+    {
+      "match": [
+        "skeleton king",
+        "lich king",
+        "bone lord"
+      ],
+      "pack": "lucifer-skeleton-king-boss"
+    },
+    {
+      "match": [
+        "ancient",
+        "elder lich",
+        "wight"
+      ],
+      "pack": "lucifer-skeleton-ancient-boss"
+    },
+    {
+      "match": [
+        "archer",
+        "hunter",
+        "skeletal archer"
+      ],
+      "pack": "lucifer-skeleton-hunter-enemy"
+    },
+    {
+      "match": [
+        "skeleton",
+        "undead",
+        "zombie",
+        "ghoul",
+        "grave keeper",
+        "bones"
+      ],
+      "pack": "lucifer-skeleton-grunt-enemy"
+    },
+    {
+      "match": [
+        "goblin chief",
+        "goblin king",
+        "warg rider",
+        "rider"
+      ],
+      "pack": "lucifer-goblin-rider-boss"
+    },
+    {
+      "match": [
+        "ogre",
+        "troll",
+        "ettin",
+        "giant"
+      ],
+      "pack": "lucifer-goblin-beast-boss"
+    },
+    {
+      "match": [
+        "slinger",
+        "goblin archer",
+        "kobold"
+      ],
+      "pack": "lucifer-goblin-slinger-enemy"
+    },
+    {
+      "match": [
+        "goblin",
+        "orc",
+        "berserker",
+        "hobgoblin"
+      ],
+      "pack": "lucifer-goblin-berserker-enemy"
+    },
+    {
+      "match": [
+        "cultist",
+        "acolyte",
+        "priest",
+        "shaman",
+        "mage",
+        "wizard",
+        "sorcer",
+        "witch"
+      ],
+      "pack": "lucifer-cultist-enemy"
+    },
+    {
+      "match": [
+        "possessed",
+        "demon",
+        "fiend",
+        "imp",
+        "shade",
+        "wraith",
+        "spectre",
+        "ghost"
+      ],
+      "pack": "lucifer-possessed-enemy"
+    },
+    {
+      "roles": [
+        "boss"
+      ],
+      "pack": "lucifer-skeleton-king-boss"
+    },
+    {
+      "roles": [
+        "caster",
+        "healer"
+      ],
+      "pack": "lucifer-cultist-enemy"
+    },
+    {
+      "roles": [
+        "pack",
+        "ambusher",
+        "coward",
+        "trapsmith"
+      ],
+      "pack": "lucifer-goblin-berserker-enemy"
+    },
+    {
+      "match": [
+        "guard",
+        "soldier",
+        "knight",
+        "warrior",
+        "mercenary",
+        "bandit",
+        "thug"
+      ],
+      "pack": "lucifer-warrior",
+      "variant": {
+        "key": "guard",
+        "hue": 0,
+        "sat": 1.0,
+        "light": 1.12,
+        "greySat": 0
+      }
+    },
+    {
+      "match": [
+        "citizen",
+        "merchant",
+        "vendor",
+        "keeper",
+        "sage",
+        "guide",
+        "master",
+        "man",
+        "woman",
+        "sage",
+        "elder",
+        "scholar",
+        "priestess",
+        "monk",
+        "villager",
+        "peasant",
+        "farmer",
+        "innkeeper",
+        "bartender",
+        "smith",
+        "baker"
+      ],
+      "pack": "lucifer-cultist-enemy",
+      "variant": {
+        "key": "townsfolk",
+        "hue": 28,
+        "sat": 0.9,
+        "light": 1.35,
+        "greySat": 0.28
+      }
+    }
+  ],
+  "anim_aliases": {
+    "run": "walk",
+    "walk": "run",
+    "attack": "attack01",
+    "cast": "attack02",
+    "die": "death",
+    "hit": "hurt"
+  }
+}

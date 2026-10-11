@@ -193,8 +193,7 @@
       "flags": [],
       "exits": {
         "north": {
-          "to_room": 6704,
-          "description": "The trail leads north to the crossroads."
+          "to_room": 6709
         }
       },
       "gathering_nodes": [
@@ -238,6 +237,9 @@
         "east": {
           "to_room": 6710,
           "description": "The blighted path continues toward darkness."
+        },
+        "south": {
+          "to_room": 6707
         }
       }
     },

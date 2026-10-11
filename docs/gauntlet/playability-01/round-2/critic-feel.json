@@ -1,0 +1,16 @@
+{
+  "piece": "feel",
+  "pick": "B",
+  "per_label": { "fight": "B", "combat": "B" },
+  "reasons": [
+    "fight: A's eight frames (0.0s-10.5s) are near-identical - the knight stands in the same blue puddle spotlight, the skull/ghost enemies never close in, the HP bar stays full red and no number or flash changes; nothing on screen says a fight is even happening. B's frames change: the rat is adjacent to the player at 0.0-4.5s, the bottom log strip reads 'You killed a rat' at 1.5s-4.5s, and the red HP bar visibly shrinks in the 7.5s-10.5s row, so you can track the exchange frame by frame.",
+    "combat: B has legible hit feedback - a white '4' and a red '6' floating above the player's head (outgoing vs incoming damage in different colours), a named tag 'Critic', a target reticle square on the rat and a second rat lunging at the player. A shows the knight at HP 207/207 with the nearest enemy a screen-width away, a faded 'corpse of ...' label, and no damage number, impact flash, or recoil anywhere.",
+    "combat/next action: B's target square on the rat plus the rat's contact sprite tells the player what they are fighting and where to click, without covering the action. A's hotbar (attack/flee/bash/cleave/kick) is a static row of labels at the bottom with no marked target, no cooldown state and no cue on the field about which enemy those buttons apply to."
+  ],
+  "fixes": [
+    { "what": "Spawn floating damage numbers (white for player hits, red for hits taken) and a 2-3 frame white impact flash + small recoil on the struck sprite every time damage resolves; currently the fight leaves the scene pixel-identical for 10 s.", "file_hint": "src/web_isometric/platformer/fx-abilities.js" },
+    { "what": "Give enemies a visible wind-up before their attack (e.g. sprite pull-back / red tint for ~0.4 s) and a stagger pose after being hit, and make them actually close to melee range so the exchange reads in the storyboard.", "file_hint": "src/web_isometric/platformer/scene-topdown.js" },
+    { "what": "Draw a target reticle around the currently engaged enemy with its HP bar and name over its head, and highlight the hotbar slot that applies to it, so the player knows who they are fighting and what to press without reading the log.", "file_hint": "src/web_isometric/platformer/ui-arpg.js" }
+  ],
+  "confidence": "high"
+}

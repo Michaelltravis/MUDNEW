@@ -134,6 +134,10 @@ class RegenerationCalculator:
         """
         # Start with base regen
         regen = character.max_mana * base_rate * position_mult
+        # song/spell riders (Hymn of Hope): percentage boost to mana regen
+        rider = getattr(character, 'mana_regen', 0)
+        if rider:
+            regen *= (1.0 + max(0, rider) / 100.0)
 
         # Stat bonus: Intelligence and Wisdom
         int_modifier = (character.int - 10) * 0.01  # +1% per point above 10

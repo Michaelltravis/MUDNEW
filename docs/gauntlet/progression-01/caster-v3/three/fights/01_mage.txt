@@ -1,0 +1,141 @@
+                                ║
+║                 A true adventurer emerges!                 ║
+║                                                              ║
+║  ★ NEW TITLE:                 Veteran                  ★  ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+
+Congratulations on leveling up! You may have learned new skills or spells.
+
+💡 You've reached level 10! Type 'talents' to see your talent tree — customize
+your playstyle!
+
+  +======================================================+
+  |     ★ NEW ABILITIES UNLOCKED! ★                      |
+  +------------------------------------------------------+
+  |                                                      |
+  |  SKILLS:                                             |
+  |    ⚔ Execute                                    |
+  |      A powerful new technique                        |
+  |                                                      |
+  +======================================================+
+  Use 'skills' or 'spells' to see all your abilities.
+
+
+★ ACHIEVEMENT UNLOCKED ★
+📈 Journeyman
+Reach level 10
++20 achievement points
++250 gold
+New title unlocked: 'the Journeyman'
+
+
+★ ACHIEVEMENT UNLOCKED ★
+🛡️ Deathless
+Reach level 10 without dying
++50 achievement points
+Stat bonus: +2 CON (permanent)
+New title unlocked: 'the Deathless'
+
+You feel a surge of divine energy! Fully restored!
+> score
+╔════════════════════════════════════════════════════════════════╗
+║ Newgeugu the Adventurer                                      ║
+╠════════════════════════════════════════════════════════════════╣
+║ Race: Human        Class: Warrior      Level: 10     ║
+╠════════════════════════════════════════════════════════════════╣
+║ HP:   85/85    Mana:  132/132   Move:  171/171    ║
+╠════════════════════════════════════════════════════════════════╣
+║ Str:15      Int:11      Wis:14      Dex: 6      Con:14      Cha:15   ║
+╠════════════════════════════════════════════════════════════════╣
+║ Experience: 100        Gold: 500        Practices: 41   ║
+║ To next level: 16428                                   ║
+╠════════════════════════════════════════════════════════════════╣
+║ Armor Class: 108   Hitroll:  +0  Damroll:  +0            ║
+║ Combat: OB  -1  DB -13  PB  0%                     ║
+║ DB:base -8 st +0 sh +
+[t=   0.0s] se -8 st +0 sh +0 dg +0/+0 wt -5                ║
+[t=   0.0s] ║ PB:base +0 st +0 pa +0 sb +0 wt -2                   ║
+[t=   0.0s] ║ Mood: normal     Wimpy: 0                          ║
+[t=   0.0s] ╠════════════════════════════════════════════════════════════════╣
+[t=   0.0s] ║ Hunger: Satiated      Thirst: Thirsty       Stealth: --  PER: 13║
+[t=   0.0s] ╚════════════════════════════════════════════════════════════════╝
+[t=   0.0s] 85/85hp 132/132mp 171/171mv> 
+[t=   0.0s] > kill mage
+[t=   0.0s] You attack mage!
+[t=   0.0s] 💡 As a warrior, you build Rage when dealing and taking damage. Spend it on
+[t=   0.0s] powerful abilities!
+[t=   0.0s] Your slash injures mage! [17 damage]
+[t=   0.0s] mage [█████████░] [179/196]
+[t=   0.0s] 85/85hp 132/132mp 170/171mv [mage: 179/196]> 
+[t=   0.0s] > bash mage
+[t=   0.0s] Your bash barely scratch mage! [3]
+[t=   0.0s] mage [████████░░] [176/196]
+[t=   0.0s] mage is stunned!
+[t=   0.0s] [Momentum: █░░░░░░░░░ 1/10]
+[t=   0.0s] 85/85hp 132/132mp 170/171mv [Momentum: █░░░░░░░░░ 1/10] [mage: 176/196]> 
+[t=   3.5s] Your slash lands squarely and decimates mage! [28 damage]
+[t=   3.5s] 💥 mage reels — STAGGERED! Strike now!
+[t=   3.5s] mage [███████░░░] [148/196]
+[t=   3.5s] 85/85hp 132/132mp 170/171mv [Momentum: █░░░░░░░░░ 1/10] [mage: 148/196]> 
+[t=   3.5s] mage murmurs arcane words and a shimmering aura surrounds them!
+[t=   7.6s] You press the opening while mage reels — wide open!
+[t=   7.6s] Your slash connects — it hits mage! [11 damage]
+[t=   7.6s] mage [██████░░░░] [132/196]
+[t=   7.6s] 85/85hp 132/132mp 170/171mv [Momentum: █░░░░░░░░░ 1/10] [mage: 132/196]> 
+[t=   9.6s] > bash mage
+[t=   9.6s] Your bash nick mage! [8]
+[t=   9.6s] mage [██████░░░░] [124/196]
+[t=   9.6s] mage is stunned!
+[t=   9.6s] [Momentum: ░░░░░░░░░░ 0/10]
+[t=   9.6s] 85/85hp 132/132mp 170/171mv [mage: 124/196]> 
+[t=  11.6s] ⚠ mage begins an incantation — arcane power crackles around it! (interrupt it!)
+[t=  11.6s] Your slash hits mage! [11 damage]
+[t=  11.6s] mage [█████░░░░░] [113/196]
+[t=  11.6s] 85/85hp 132/132mp 169/171mv [mage: 113/196]> 
+[t=  15.6s] *** CRITICAL HIT! ***
+[t=  15.6s] Your slash lands squarely and devastates mage! [34 damage]
+[t=  15.6s] mage [████░░░░░░] [79/196]
+[t=  15.6s] 85/85hp 132/132mp 170/171mv [mage: 79/196]> 
+[t=  15.6s] mage hurls a crackling fireball at Newgeugu! [22]
+[t=  15.6s] mage's spell hits you for 22 damage!
+[t=  15.6s] mage's quick stab hits you! [7 damage]
+[t=  18.6s] > bash mage
+[t=  18.6s] Your bash barely scratch mage! [4]
+[t=  18.6s] mage [███░░░░░░░] [75/196]
+[t=  18.6s] mage is stunned!
+[t=  18.6s] [Momentum: ░░░░░░░░░░ 0/10]
+[t=  18.6s] 57/85hp 132/132mp 171/171mv [mage: 75/196]> 
+[t=  19.7s] Your slash connects — it hits mage! [11 damage]
+[t=  19.7s] mage [███░░░░░░░] [64/196]
+[t=  19.7s] 57/85hp 132/132mp 170/171mv [mage: 64/196]> 
+[t=  19.7s] mage chants a healing incantation and wounds close! [+21 HP]
+[t=  23.7s] *** CRITICAL HIT! ***
+[t=  23.7s] Your slash devastates mage! [34 damage]
+[t=  23.7s] 💥 mage reels — STAGGERED! Strike now!
+[t=  23.7s] mage [██░░░░░░░░] [51/196]
+[t=  23.7s] 58/85hp 132/132mp 170/171mv [mage: 51/196]> 
+[t=  27.7s] > bash mage
+[t=  27.7s] Your bash nick mage! [7]
+[t=  27.7s] mage [██░░░░░░░░] [41/196]
+[t=  27.7s] mage is stunned!
+[t=  27.7s] [Momentum: ░░░░░░░░░░ 0/10]
+[t=  27.7s] 59/85hp 132/132mp 171/171mv [mage: 41/196]> 
+[t=  27.8s] You press the opening while mage reels — wide open!
+[t=  27.8s] Your slash lands squarely and mauls mage! [24 damage]
+[t=  27.8s] mage flees east!
+[t=  27.8s] mage [░░░░░░░░░░] [5/196]
+[t=  27.8s] 59/85hp 132/132mp 170/171mv> 
+[t=  36.8s] > bash mage
+[t=  36.8s] Bash whom?
+[t=  36.8s] 72/85hp 132/132mp 171/171mv> 
+[t=  45.8s] > bash mage
+[t=  45.8s] Bash whom?
+[t=  45.8s] 74/85hp 132/132mp 171/171mv> 
+[t=  51.8s] mage arrives from the east.
+[t=  54.8s] > bash mage
+[t=  54.8s] You attack mage!
+[t=  54.8s] *** CRITICAL HIT! ***
+[t=  54.8s] Your slash connects — it devastates mage! [40 damage]
+[t=  54.8s] ☠ mage is DEAD! You killed mage.

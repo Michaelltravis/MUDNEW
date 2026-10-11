@@ -1,0 +1,15 @@
+{
+  "reference": "BrowserQuest (mozilla/BrowserQuest, node server + HTML5 client)",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "shots": [
+    {
+      "label": "walk",
+      "camera": null,
+      "note": "BrowserQuest: walk 12 tiles east from spawn, camera scrolling",
+      "file": "docs/gauntlet/reference/browserquest/walk.png"
+    }
+  ]
+}

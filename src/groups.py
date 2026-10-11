@@ -4,7 +4,10 @@ Misthollow Group System
 Party formation, XP sharing, loot rules, group chat, auto-follow, and group effects.
 """
 
+import asyncio
 import logging
+import random
+import time
 from typing import List, Optional, Dict, TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -24,8 +27,9 @@ class Group:
         self.leader = leader
         self.members: List['Player'] = [leader]
         self.config = Config()
-        self.loot_mode = 'freeforall'  # 'freeforall' or 'roundrobin'
+        self.loot_mode = 'roll'  # 'roll' (need/greed/pass), 'freeforall' or 'roundrobin'
         self._rr_index = 0  # round-robin pointer
+        self.active_rolls: List['LootRoll'] = []
         self.auto_follow = True  # members auto-follow leader on move
 
     # ------------------------------------------------------------------
@@ -54,7 +58,9 @@ class Group:
             self.disband()
 
     def disband(self):
-        """Disband the group."""
+        """Disband the group (open loot rolls end: their items go back to the corpse)."""
+        for roll in list(self.active_rolls):
+            roll.cancel()
         for member in list(self.members):
             if hasattr(member, 'group'):
                 member.group = None
@@ -74,6 +80,9 @@ class Group:
         # Move leader to front
         self.members.remove(new_leader)
         self.members.insert(0, new_leader)
+        # the group follows its new leader (no one keeps trailing the old one)
+        for member in self.members:
+            member.following = None if member is new_leader else (new_leader if self.auto_follow else None)
         logger.info(f"{new_leader.name} is now group leader")
         return True
 
@@ -81,14 +90,17 @@ class Group:
     # Loot
     # ------------------------------------------------------------------
 
-    def next_looter(self) -> 'Player':
-        """Return the next player in the round-robin rotation."""
+    def next_looter(self, present: Optional[List['Player']] = None) -> 'Player':
+        """Return the next player in the round-robin rotation (among `present`, when given)."""
         if not self.members:
             return None
-        self._rr_index = self._rr_index % len(self.members)
-        looter = self.members[self._rr_index]
-        self._rr_index = (self._rr_index + 1) % len(self.members)
-        return looter
+        for _ in range(len(self.members)):
+            self._rr_index = self._rr_index % len(self.members)
+            looter = self.members[self._rr_index]
+            self._rr_index = (self._rr_index + 1) % len(self.members)
+            if present is None or looter in present:
+                return looter
+        return present[0] if present else None
 
     # ------------------------------------------------------------------
     # XP sharing
@@ -164,18 +176,19 @@ class Group:
     # Gold splitting
     # ------------------------------------------------------------------
 
-    async def split_gold(self, total_gold: int):
-        """Split gold evenly among group members."""
-        if not self.members:
+    async def split_gold(self, total_gold: int, among: Optional[List['Player']] = None):
+        """Split gold evenly among group members (or those given: the ones present)."""
+        members = [m for m in (among if among is not None else self.members) if getattr(m, 'connection', None)]
+        if not members:
             return
-        gold_per = total_gold // len(self.members)
-        remainder = total_gold % len(self.members)
+        gold_per = total_gold // len(members)
+        remainder = total_gold % len(members)
         c = self.config.COLORS
-        for member in self.members:
+        for member in members:
             member.gold += gold_per
             await member.send(f"{c['yellow']}You receive {gold_per} gold as your share.{c['reset']}")
         if remainder > 0:
-            self.leader.gold += remainder
+            (self.leader if self.leader in members else members[0]).gold += remainder
 
     # ------------------------------------------------------------------
     # Utility
@@ -223,30 +236,34 @@ class GroupManager:
             await inviter.send(f"{c['red']}Only the group leader can invite.{c['reset']}")
             return
 
-        # Store pending invite
-        cls._pending_invites[target.name.lower()] = {'from': inviter}
+        # Store pending invite (it lapses after INVITE_SECONDS)
+        cls._pending_invites[target.name.lower()] = {'from': inviter, 'at': time.time()}
         await inviter.send(f"{c['green']}You invite {target.name} to join your group.{c['reset']}")
         await target.send(
             f"{c['bright_green']}{inviter.name} invites you to join their group.{c['reset']}\n"
             f"{c['cyan']}Type 'group accept' to join or 'group decline' to refuse.{c['reset']}"
         )
+        await _event(target, {'type': 'group_invite', 'from': inviter.name, 'level': getattr(inviter, 'level', 1),
+                              'char_class': getattr(inviter, 'char_class', ''), 'expires': INVITE_SECONDS})
 
     @classmethod
     async def accept_invite(cls, player: 'Player'):
         """Accept a pending group invite."""
         c = player.config.COLORS
         invite = cls._pending_invites.pop(player.name.lower(), None)
+        if invite and time.time() - invite.get('at', 0) > INVITE_SECONDS:
+            invite = None
         if not invite:
             await player.send(f"{c['yellow']}You have no pending group invitations.{c['reset']}")
             return
 
         inviter = invite['from']
-        # Make the player follow the leader
-        player.following = inviter
-
+        if not getattr(inviter, 'connection', None):
+            await player.send(f"{c['yellow']}{inviter.name} is no longer here.{c['reset']}")
+            return
         success = await cls.join_group(inviter, player)
-        if not success:
-            player.following = None
+        if success:
+            await broadcast(inviter.group)
 
     @classmethod
     async def decline_invite(cls, player: 'Player'):
@@ -280,7 +297,7 @@ class GroupManager:
         group.add_member(member)
         leader.group = group
         member.group = group
-        member.following = leader
+        member.following = leader if group.auto_follow else None
 
         await leader.send(f"{c['bright_green']}{member.name} joins your group!{c['reset']}")
         await member.send(f"{c['bright_green']}You join {leader.name}'s group!{c['reset']}")
@@ -307,7 +324,7 @@ class GroupManager:
             return False
 
         new_member.group = group
-        new_member.following = leader
+        new_member.following = leader if group.auto_follow else None
 
         for member in group.members:
             if member == new_member:
@@ -325,31 +342,53 @@ class GroupManager:
         return True
 
     @staticmethod
-    async def leave_group(player: 'Player'):
-        """Leave the current group."""
+    async def leave_group(player: 'Player', reason: str = 'leaves'):
+        """Leave the current group; the others are told, even the last one left."""
         c = player.config.COLORS
-        if not getattr(player, 'group', None):
+        group = getattr(player, 'group', None)
+        if not group:
             await player.send(f"{c['red']}You're not in a group!{c['reset']}")
             return
-
-        group = player.group
-        if group.is_leader(player):
-            # Transfer leadership if possible
-            if len(group.members) > 1:
-                new_leader = group.members[1]
-                group.set_leader(new_leader)
-                group.remove_member(player)
-                await player.send(f"{c['yellow']}You leave the group. {new_leader.name} is the new leader.{c['reset']}")
-                for member in group.members:
-                    await member.send(f"{c['yellow']}{player.name} left. {new_leader.name} is now leader.{c['reset']}")
-            else:
-                group.disband()
-                await player.send(f"{c['yellow']}You disband the group.{c['reset']}")
-        else:
-            group.remove_member(player)
+        others = [m for m in group.members if m is not player]
+        new_leader = None
+        if group.is_leader(player) and others:
+            new_leader = others[0]
+            group.set_leader(new_leader)
+        group.remove_member(player)          # disbands when one member would be left
+        if reason == 'leaves':
             await player.send(f"{c['yellow']}You leave the group.{c['reset']}")
-            for member in group.members:
-                await member.send(f"{c['yellow']}{player.name} leaves the group.{c['reset']}")
+        line = {'leaves': f"{player.name} leaves the group.", 'quit': f"{player.name} has left the realm and the group.",
+                'kicked': f"{player.name} has been removed from the group."}.get(reason, f"{player.name} leaves the group.")
+        if group.members and new_leader:
+            line += f" {new_leader.name} is now the leader."
+        if not group.members:
+            line += " The group is disbanded."
+        for member in others:
+            await member.send(f"{c['yellow']}{line}{c['reset']}")
+        await _event(player, {'type': 'group', 'group': None})
+        if group.members:
+            await broadcast(group)
+        else:
+            for member in others:
+                await _event(member, {'type': 'group', 'group': None})
+
+    @classmethod
+    async def kick(cls, leader: 'Player', target: 'Player'):
+        """The leader removes a member (works in a group of two, which then disbands)."""
+        c = leader.config.COLORS
+        await target.send(f"{c['yellow']}{leader.name} removes you from the group.{c['reset']}")
+        await leader.send(f"{c['yellow']}You remove {target.name} from the group.{c['reset']}")
+        await cls.leave_group(target, reason='kicked')
+
+    @classmethod
+    async def disconnect(cls, player: 'Player'):
+        """A member leaving the realm leaves the group too (no ghosts sharing loot and gold)."""
+        cls._pending_invites.pop(player.name.lower(), None)
+        for name, inv in list(cls._pending_invites.items()):
+            if inv.get('from') is player:
+                cls._pending_invites.pop(name, None)
+        if getattr(player, 'group', None):
+            await cls.leave_group(player, reason='quit')
 
     # ------------------------------------------------------------------
     # Display
@@ -402,7 +441,7 @@ class GroupManager:
             return
 
         group = player.group
-        loot_label = 'Round-Robin' if group.loot_mode == 'roundrobin' else 'Free-for-All'
+        loot_label = {'roundrobin': 'Round-Robin', 'roll': 'Need/Greed roll'}.get(group.loot_mode, 'Free-for-All')
         follow_label = 'On' if group.auto_follow else 'Off'
 
         await player.send(f"\n{c['bright_cyan']}╔══════════════════════════════════════════════════════════╗{c['reset']}")
@@ -505,3 +544,209 @@ class GroupManager:
                     if aura:
                         auras.add(aura)
         return auras
+
+
+# ---------------------------------------------------------------------------
+# Need / greed / pass loot rolls (modern group loot)
+# ---------------------------------------------------------------------------
+ROLL_TIMEOUT = 20
+ROLL_WORTH_RARITIES = ('uncommon', 'rare', 'epic', 'legendary')
+_roll_seq = 0
+
+
+def _worth_rolling(item) -> bool:
+    if getattr(item, 'rarity', 'common') in ROLL_WORTH_RARITIES:
+        return True
+    if getattr(item, 'item_type', '') in ('weapon', 'armor') and getattr(item, 'cost', 0) >= 50:
+        return True
+    return getattr(item, 'cost', 0) >= 200
+
+
+class LootRoll:
+    """One item up for need/greed/pass among the group members present."""
+
+    def __init__(self, group: 'Group', item, corpse, members: List['Player']):
+        global _roll_seq
+        _roll_seq += 1
+        self.id = _roll_seq
+        self.group = group
+        self.item = item
+        self.corpse = corpse
+        self.members = list(members)
+        self.votes: Dict[str, str] = {}
+        self.started = time.time()
+        self.done = False
+        self._task = None
+        # the roll holds the item while it runs: nobody can pick it out of the corpse meanwhile
+        if item in getattr(corpse, 'contents', []):
+            corpse.contents.remove(item)
+
+    def _give_back(self):
+        """Return the item to its corpse (or the floor, if the corpse is gone)."""
+        corpse = self.corpse
+        room = getattr(getattr(self.group, 'leader', None), 'room', None)
+        if corpse is not None and isinstance(getattr(corpse, 'contents', None), list) and \
+                (room is None or corpse in getattr(room, 'items', [corpse])):
+            corpse.contents.append(self.item)
+        elif room is not None:
+            room.items.append(self.item)
+
+    def cancel(self):
+        """The group broke up: the roll ends and the item goes back."""
+        if self.done:
+            return
+        self.done = True
+        if self._task:
+            self._task.cancel()
+        if self in self.group.active_rolls:
+            self.group.active_rolls.remove(self)
+        self._give_back()
+
+    @property
+    def item_name(self) -> str:
+        return getattr(self.item, 'short_desc', None) or getattr(self.item, 'name', 'an item')
+
+    def event(self) -> dict:
+        return {'type': 'loot_roll', 'id': self.id, 'item': self.item_name,
+                'rarity': getattr(self.item, 'rarity', 'common'), 'timeout': ROLL_TIMEOUT}
+
+    async def announce(self):
+        c = Config.COLORS
+        for m in self.members:
+            try:
+                await m.send(f"{c['bright_yellow']}Loot roll: {self.item_name} — 'roll need', 'roll greed' or 'roll pass' ({ROLL_TIMEOUT}s).{c['reset']}")
+                wm = getattr(getattr(m, 'world', None), 'web_map', None)
+                if wm:
+                    await wm.notify_event(m, self.event())
+            except Exception:
+                pass
+        self._task = asyncio.create_task(self._expire())
+
+    async def _expire(self):
+        try:
+            await asyncio.sleep(ROLL_TIMEOUT)
+            await self.resolve()
+        except asyncio.CancelledError:
+            pass
+
+    async def vote(self, player: 'Player', choice: str) -> bool:
+        if self.done or player not in self.members:
+            return False
+        self.votes[player.name.lower()] = choice
+        if all(m.name.lower() in self.votes for m in self.members):
+            if self._task:
+                self._task.cancel()
+            await self.resolve()
+        return True
+
+    async def resolve(self):
+        if self.done:
+            return
+        self.done = True
+        c = Config.COLORS
+        if self in self.group.active_rolls:
+            self.group.active_rolls.remove(self)
+        pool = [m for m in self.members if self.votes.get(m.name.lower()) == 'need']
+        tier = 'need'
+        if not pool:
+            pool = [m for m in self.members if self.votes.get(m.name.lower()) == 'greed']
+            tier = 'greed'
+        # only someone still in the realm can win
+        pool = [m for m in pool if getattr(m, 'connection', None)]
+        if not pool:
+            self._give_back()
+            for m in self.members:
+                try:
+                    await m.send(f"{c['yellow']}Everyone passed on {self.item_name}; it stays in the corpse.{c['reset']}")
+                    wm = getattr(getattr(m, 'world', None), 'web_map', None)
+                    if wm:
+                        await wm.notify_event(m, {'type': 'loot_result', 'id': self.id, 'item': self.item_name, 'winner': None})
+                except Exception:
+                    pass
+            return
+        rolls = {m.name: random.randint(1, 100) for m in pool}
+        winner = max(pool, key=lambda m: rolls[m.name])
+        try:
+            winner.inventory.append(self.item)        # the roll held it: no one else has it
+        except Exception:
+            self._give_back()
+        summary = ', '.join(f"{n} {r}" for n, r in sorted(rolls.items(), key=lambda kv: -kv[1]))
+        for m in self.members:
+            try:
+                await m.send(f"{c['bright_green']}{winner.name} wins {self.item_name} ({tier}: {summary}).{c['reset']}")
+                wm = getattr(getattr(m, 'world', None), 'web_map', None)
+                if wm:
+                    await wm.notify_event(m, {'type': 'loot_result', 'id': self.id, 'item': self.item_name,
+                                              'winner': winner.name, 'tier': tier, 'rolls': rolls})
+            except Exception:
+                pass
+
+
+async def start_rolls(killer: 'Player', corpse) -> int:
+    """After a group kill, put each worthwhile item in the corpse up for a roll
+    among the members standing in the room. Returns the number of rolls."""
+    group = getattr(killer, 'group', None)
+    if not group or group.loot_mode != 'roll' or not getattr(corpse, 'contents', None):
+        return 0
+    room = getattr(killer, 'room', None)
+    members = [m for m in group.members if getattr(m, 'room', None) is room and getattr(m, 'connection', None)]
+    if len(members) < 2:
+        return 0
+    n = 0
+    for item in list(corpse.contents):
+        if not _worth_rolling(item):
+            continue
+        roll = LootRoll(group, item, corpse, members)
+        group.active_rolls.append(roll)
+        await roll.announce()
+        n += 1
+        if n >= 4:
+            break
+    return n
+
+
+async def cast_vote(player: 'Player', choice: str) -> Optional['LootRoll']:
+    """Vote on the oldest open roll the player has not answered yet."""
+    group = getattr(player, 'group', None)
+    if not group:
+        return None
+    for roll in list(group.active_rolls):
+        if not roll.done and player in roll.members and player.name.lower() not in roll.votes:
+            await roll.vote(player, choice)
+            return roll
+    return None
+
+
+# ---------------------------------------------------------------------------
+# Graphical clients: what changed in the group, as events (party frames, invite popup)
+# ---------------------------------------------------------------------------
+INVITE_SECONDS = 60
+
+
+async def _event(player: 'Player', event: dict):
+    wm = getattr(getattr(player, 'world', None), 'web_map', None)
+    if wm is None or not getattr(player, 'connection', None):
+        return
+    try:
+        await wm.notify_event(player, event)
+    except Exception:
+        pass
+
+
+async def broadcast(group: Optional['Group']):
+    """Every member's party frames, now (joins, leaves, leader, loot mode, follow)."""
+    if not group:
+        return
+    from map_system import build_group_block
+    for member in list(group.members):
+        await _event(member, {'type': 'group', 'group': build_group_block(member)})
+
+
+def present_members(player: 'Player') -> List['Player']:
+    """The player's group members in the room and in the realm, when at least two."""
+    group = getattr(player, 'group', None)
+    if not group:
+        return []
+    room = getattr(player, 'room', None)
+    here = [m for m in group.members if getattr(m, 'room', None) is room and getattr(m, 'connection', None)]
+    return here if len(here) >= 2 else []

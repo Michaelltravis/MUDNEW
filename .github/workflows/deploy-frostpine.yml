@@ -1,0 +1,31 @@
+name: deploy to frostpine
+# Push-to-deploy: anything pushed to the `deploy` branch (or a manual run) is pulled and
+# restarted on frostpine by deploy/frostpine.sh over SSH.
+# Needs three repository secrets: FROSTPINE_HOST, FROSTPINE_USER, FROSTPINE_SSH_KEY
+# (the private half of a deploy-only key whose public half is in that user's authorized_keys).
+on:
+  push:
+    branches: [deploy]
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: branch to deploy
+        default: claude/nice-johnson-slpinu
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ssh and run deploy/frostpine.sh
+        env:
+          HOST: ${{ secrets.FROSTPINE_HOST }}
+          USER: ${{ secrets.FROSTPINE_USER }}
+          KEY: ${{ secrets.FROSTPINE_SSH_KEY }}
+          BRANCH: ${{ github.event.inputs.branch || github.ref_name }}
+        run: |
+          test -n "$HOST" -a -n "$USER" -a -n "$KEY" || { echo "secrets FROSTPINE_HOST / FROSTPINE_USER / FROSTPINE_SSH_KEY are not set"; exit 1; }
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/deploy_key && chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          # the `deploy` branch is a pointer to whatever we want live; the script pulls it by name
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new "$USER@$HOST" \
+            "cd \"\${MUD_DIR:-\$HOME/MUDNEW}\" && git fetch origin $BRANCH && git checkout -q $BRANCH && git reset -q --hard origin/$BRANCH && bash deploy/frostpine.sh $BRANCH"

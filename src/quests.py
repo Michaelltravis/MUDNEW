@@ -138,6 +138,55 @@ class DialogueNode:
 
 # Quest definitions (could be loaded from JSON files)
 QUEST_DEFINITIONS = {
+    # ========== THE TRIAL OF UNLEARNING (respec, all brackets) ==========
+    # Completing any Trial resets your talents and frees you to choose a
+    # new Path (lone wolf / fellowship). Difficulty scales by bracket.
+    'trial_of_unlearning_novice': {
+        'name': 'Trial of Unlearning',
+        'description': 'Sage Aldric can cleanse what you have learned - if you prove your '
+                       'humility. Walk to the temple altar and reflect.',
+        'type': 'visit',
+        'level_min': 1,
+        'level_max': 19,
+        'quest_giver': 3200,
+        'objectives': [
+            {'type': 'visit', 'description': 'Reflect at the temple altar', 'target': 3054, 'required': 1},
+        ],
+        'rewards': {'exp': 50, 'gold': 0, 'items': [], 'respec': True},
+        'repeatable': True,
+    },
+    'trial_of_unlearning_adept': {
+        'name': 'Trial of Unlearning',
+        'description': 'The adept\'s trial: a pilgrimage beyond comfort. Visit the altar, '
+                       'then stand at the gates of the city you defend.',
+        'type': 'visit',
+        'level_min': 20,
+        'level_max': 39,
+        'quest_giver': 3200,
+        'objectives': [
+            {'type': 'visit', 'description': 'Reflect at the temple altar', 'target': 3054, 'required': 1},
+            {'type': 'visit', 'description': 'Stand outside the west gate', 'target': 3052, 'required': 1},
+            {'type': 'visit', 'description': 'Stand outside the east gate', 'target': 3053, 'required': 1},
+        ],
+        'rewards': {'exp': 200, 'gold': 0, 'items': [], 'respec': True},
+        'repeatable': True,
+    },
+    'trial_of_unlearning_master': {
+        'name': 'Trial of Unlearning',
+        'description': 'The master\'s trial: carry your doubts to the edge of the dragon\'s '
+                       'domain and back. Few return unchanged.',
+        'type': 'visit',
+        'level_min': 40,
+        'level_max': 70,
+        'quest_giver': 3200,
+        'objectives': [
+            {'type': 'visit', 'description': 'Reflect at the temple altar', 'target': 3054, 'required': 1},
+            {'type': 'visit', 'description': 'Reach the mountain pass of the Dragon\'s Domain', 'target': 8000, 'required': 1},
+        ],
+        'rewards': {'exp': 800, 'gold': 0, 'items': [], 'respec': True},
+        'repeatable': True,
+    },
+
     # ========== BEGINNER QUESTS (Level 1-10) ==========
     'rat_problem': {
         'name': 'Rat Problem',
@@ -1276,15 +1325,18 @@ QUEST_DEFINITIONS = {
     },
     'tutorial_8_exploration': {
         'name': 'Into the Unknown',
-        'description': 'Venture beyond the city walls! Head to the East Gate and fight a creature outside. From the Temple, go south, south, east, east, east to reach the East Gate, then east again to go outside. Try fighting a rabbit, a fox, or a deer in the Light Forest — they are safe for your level. Return to the Temple when done.',
+        # progression-01: this used to send newcomers out the EAST gate, where the only
+        # creatures are level-4 aggressive goblins; the rabbits, foxes and deer live in
+        # the Light Forest beyond the WEST gate (6001 and the shaded paths north of it).
+        'description': 'Venture beyond the city walls! Head out the West Gate to the Light Forest and fight a creature there. From the Temple, go south, south, then west six times to reach the Edge of the Forest, and once more west onto the forest trail. Try fighting a rabbit or a fox — they are safe for your level. Return to the Temple when done.',
         'type': 'tutorial',
         'level_min': 1,
         'level_max': 5,
         'quest_giver': 3200,
         'objectives': [
-            {'type': 'visit', 'description': 'Reach Outside the East Gate (go south, south, east, east, east, east from Temple)', 'target': '3053', 'required': 1},
-            {'type': 'kill', 'description': 'Defeat a creature outside the city (try "kill rabbit" or "kill fox")', 'target': 'any', 'required': 1},
-            {'type': 'visit', 'description': 'Return to the Temple (go west back through the gate, then retrace your steps north)', 'target': '3001', 'required': 1}
+            {'type': 'visit', 'description': 'Reach the trail through the Light Forest (south, south, then west seven times from the Temple)', 'target': '6001', 'required': 1},
+            {'type': 'kill', 'description': 'Defeat a creature in the forest (try "kill rabbit" or "kill fox" — the shaded path north has both)', 'target': 'any', 'required': 1},
+            {'type': 'visit', 'description': 'Return to the Temple (east back through the West Gate, then north from Temple Square)', 'target': '3001', 'required': 1}
         ],
         'rewards': {'exp': 300, 'gold': 150, 'title': 'the Initiated'},
         'next_quest': 'tutorial_9_newbie_zone',
@@ -1572,16 +1624,16 @@ QUEST_DEFINITIONS = {
 
     'tutorial_9_newbie_zone': {
         'name': 'Proving Grounds',
-        'description': 'Test your skills in the Newbie Zone! The Great Field is north of the Temple, past the Altar. From the Temple, go north three times to reach the Great Field, then go east to enter the Newbie Zone. Defeat 3 creatures there, then return to the Temple.',
+        'description': 'Test your skills in the Newbie Zone! The Great Field is north of the Temple, past the Altar. From the Temple, go north four times (the field is two rooms deep) to reach the Great Field, then go east to enter the Newbie Zone. Defeat 3 creatures there, then return to the Temple.',
         'type': 'tutorial',
         'level_min': 1,
         'level_max': 7,
         'quest_giver': 3200,
         'objectives': [
-            {'type': 'visit', 'description': 'Find the Great Field (go north 3 times from the Temple)', 'target': '3061', 'required': 1},
+            {'type': 'visit', 'description': 'Find the far end of the Great Field (go north 4 times from the Temple)', 'target': '3061', 'required': 1},
             {'type': 'visit', 'description': 'Enter the Newbie Zone (go east from the Great Field)', 'target': '18600', 'required': 1},
             {'type': 'kill', 'description': 'Defeat 3 creatures in the Newbie Zone', 'target': 'any', 'required': 3},
-            {'type': 'visit', 'description': 'Return to Sage Aldric at the Temple (go west, then south 3 times)', 'target': '3001', 'required': 1}
+            {'type': 'visit', 'description': 'Return to Sage Aldric at the Temple (go west, then south 4 times)', 'target': '3001', 'required': 1}
         ],
         'rewards': {'exp': 500, 'gold': 200},
         'next_quest': 'tutorial_10_skills',
@@ -2315,6 +2367,18 @@ class QuestManager:
         c = player.config.COLORS
         await player.send(f"\r\n{c['bright_green']}Quest Completed: {quest.name}{c['reset']}\r\n")
 
+        # Trial of Unlearning: cleanse talents and free the path choice
+        if (quest.rewards or {}).get('respec'):
+            try:
+                from talents import TalentManager
+                refunded = TalentManager.reset_talents(player)
+                player.path_switch_available = True
+                await player.send(f"{c['bright_cyan']}The Trial cleanses you. "
+                                  f"{refunded} talent point{'s' if refunded != 1 else ''} refunded - "
+                                  f"and you may choose a new Path ('path' command).{c['reset']}")
+            except Exception:
+                pass
+
         if quest.rewards.get('exp'):
             await player.gain_exp(quest.rewards['exp'], source='quest')
             await player.send(f"{c['bright_yellow']}You gain {quest.rewards['exp']} experience!{c['reset']}")
@@ -2564,7 +2628,9 @@ class QuestManager:
         
         if quest.rewards.get('practices'):
             player.practices += quest.rewards['practices']
-            await player.send(f"{c['bright_cyan']}You receive {quest.rewards['practices']} practice sessions!{c['reset']}")
+            await player.send(f"{c['bright_cyan']}You receive {quest.rewards['practices']} practice session"
+                              f"{'s' if quest.rewards['practices'] != 1 else ''} — each pays your guild's trainer "
+                              f"for a step of training past mastery.{c['reset']}")
         
         if quest.rewards.get('title'):
             player.title = quest.rewards['title']

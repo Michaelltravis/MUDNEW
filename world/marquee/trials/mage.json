@@ -1,0 +1,106 @@
+{
+  "name": "The Collapsing Star",
+  "intro": "You look into the bead of black glass \u2014 and you are inside it. Brass rings the size of cities turn around you, and at the heart of everything a star is dying.",
+  "rooms": [
+    {
+      "key": "orrery",
+      "name": "The Collapsing Star - The Shattered Orrery",
+      "sector": "inside",
+      "description": "The broken rings of a vast brass orrery turn slowly overhead, each carrying the ghost of a planet. North, two rings have locked together across the only way on.",
+      "exits": {
+        "north": {
+          "to": "horizon",
+          "door": "orrery ring"
+        }
+      }
+    },
+    {
+      "key": "horizon",
+      "name": "The Collapsing Star - The Event Horizon",
+      "sector": "mountain",
+      "description": "Here the light bends. Stones float loose of the ground and drift toward the north, where a rift in the dark opens onto something very bright and very hungry.",
+      "exits": {
+        "south": {
+          "to": "orrery",
+          "door": "orrery ring"
+        },
+        "north": {
+          "to": "heart",
+          "door": "horizon rift"
+        }
+      }
+    },
+    {
+      "key": "heart",
+      "name": "The Collapsing Star - The Heart of the Void",
+      "sector": "inside",
+      "description": "A dying star hangs in the dark, the size of a house and the colour of a bruise. Something long and black is coiled around it, drinking.",
+      "exits": {
+        "south": {
+          "to": "horizon",
+          "door": "horizon rift"
+        }
+      }
+    }
+  ],
+  "entrance": "orrery",
+  "waves": [
+    {
+      "room": "orrery",
+      "mobs": [
+        [
+          9714,
+          2
+        ],
+        [
+          9715,
+          1
+        ]
+      ],
+      "text": "Star-wrought sentinels grind to life among the broken rings of the orrery!"
+    },
+    {
+      "room": "horizon",
+      "mobs": [
+        [
+          9714,
+          2
+        ],
+        [
+          9715,
+          1
+        ]
+      ],
+      "text": "Things pulled from other worlds tumble out of the dark!"
+    },
+    {
+      "room": "horizon",
+      "mobs": [
+        [
+          9715,
+          3
+        ]
+      ],
+      "text": "Gravity motes spiral in from every side!"
+    }
+  ],
+  "gates": [
+    {
+      "after": 0,
+      "room": "orrery",
+      "dir": "north",
+      "text": "The orrery's rings swing apart \u2014 the way to the horizon is open."
+    },
+    {
+      "after": 2,
+      "room": "horizon",
+      "dir": "north",
+      "text": "The horizon tears open on the heart of the void."
+    }
+  ],
+  "boss": {
+    "vnum": 9716,
+    "room": "heart",
+    "text": "Vaelith the Star-Eater uncoils from the dying star. 'Another moth,' she says. 'Come closer. Everything does, in the end.'"
+  }
+}

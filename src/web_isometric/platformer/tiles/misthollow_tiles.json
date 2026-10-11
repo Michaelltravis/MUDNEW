@@ -1,0 +1,613 @@
+{
+  "$schema": "misthollow-tilekit/1.0",
+  "tile": 64,
+  "terrains": [
+    "inside",
+    "city",
+    "field",
+    "forest",
+    "hills",
+    "mountain",
+    "shallow",
+    "deep",
+    "underwater",
+    "desert",
+    "swamp",
+    "dungeon",
+    "indoor"
+  ],
+  "dayNightTint": {
+    "midday": "0xBEE4F5",
+    "dusk": "0xFF9636",
+    "night": "0x4664A5"
+  },
+  "atlases": {
+    "terrain": {
+      "image": "terrain_atlas.png",
+      "tileWidth": 64,
+      "tileHeight": 64,
+      "columns": 16,
+      "rows": 13,
+      "tilecount": 208,
+      "pieces": [
+        "floor",
+        "wallN",
+        "wallE",
+        "wallS",
+        "wallW",
+        "cornerNW",
+        "cornerNE",
+        "cornerSE",
+        "cornerSW",
+        "openN",
+        "openE",
+        "openS",
+        "openW",
+        "stairUp",
+        "stairDown",
+        "floorAlt"
+      ],
+      "frame": "row*16 + col   (row = terrains.indexOf(terrain), col = pieces.indexOf(piece))",
+      "frames": {
+        "inside": {
+          "floor": 0,
+          "wallN": 1,
+          "wallE": 2,
+          "wallS": 3,
+          "wallW": 4,
+          "cornerNW": 5,
+          "cornerNE": 6,
+          "cornerSE": 7,
+          "cornerSW": 8,
+          "openN": 9,
+          "openE": 10,
+          "openS": 11,
+          "openW": 12,
+          "stairUp": 13,
+          "stairDown": 14,
+          "floorAlt": 15
+        },
+        "city": {
+          "floor": 16,
+          "wallN": 17,
+          "wallE": 18,
+          "wallS": 19,
+          "wallW": 20,
+          "cornerNW": 21,
+          "cornerNE": 22,
+          "cornerSE": 23,
+          "cornerSW": 24,
+          "openN": 25,
+          "openE": 26,
+          "openS": 27,
+          "openW": 28,
+          "stairUp": 29,
+          "stairDown": 30,
+          "floorAlt": 31
+        },
+        "field": {
+          "floor": 32,
+          "wallN": 33,
+          "wallE": 34,
+          "wallS": 35,
+          "wallW": 36,
+          "cornerNW": 37,
+          "cornerNE": 38,
+          "cornerSE": 39,
+          "cornerSW": 40,
+          "openN": 41,
+          "openE": 42,
+          "openS": 43,
+          "openW": 44,
+          "stairUp": 45,
+          "stairDown": 46,
+          "floorAlt": 47
+        },
+        "forest": {
+          "floor": 48,
+          "wallN": 49,
+          "wallE": 50,
+          "wallS": 51,
+          "wallW": 52,
+          "cornerNW": 53,
+          "cornerNE": 54,
+          "cornerSE": 55,
+          "cornerSW": 56,
+          "openN": 57,
+          "openE": 58,
+          "openS": 59,
+          "openW": 60,
+          "stairUp": 61,
+          "stairDown": 62,
+          "floorAlt": 63
+        },
+        "hills": {
+          "floor": 64,
+          "wallN": 65,
+          "wallE": 66,
+          "wallS": 67,
+          "wallW": 68,
+          "cornerNW": 69,
+          "cornerNE": 70,
+          "cornerSE": 71,
+          "cornerSW": 72,
+          "openN": 73,
+          "openE": 74,
+          "openS": 75,
+          "openW": 76,
+          "stairUp": 77,
+          "stairDown": 78,
+          "floorAlt": 79
+        },
+        "mountain": {
+          "floor": 80,
+          "wallN": 81,
+          "wallE": 82,
+          "wallS": 83,
+          "wallW": 84,
+          "cornerNW": 85,
+          "cornerNE": 86,
+          "cornerSE": 87,
+          "cornerSW": 88,
+          "openN": 89,
+          "openE": 90,
+          "openS": 91,
+          "openW": 92,
+          "stairUp": 93,
+          "stairDown": 94,
+          "floorAlt": 95
+        },
+        "shallow": {
+          "floor": 96,
+          "wallN": 97,
+          "wallE": 98,
+          "wallS": 99,
+          "wallW": 100,
+          "cornerNW": 101,
+          "cornerNE": 102,
+          "cornerSE": 103,
+          "cornerSW": 104,
+          "openN": 105,
+          "openE": 106,
+          "openS": 107,
+          "openW": 108,
+          "stairUp": 109,
+          "stairDown": 110,
+          "floorAlt": 111
+        },
+        "deep": {
+          "floor": 112,
+          "wallN": 113,
+          "wallE": 114,
+          "wallS": 115,
+          "wallW": 116,
+          "cornerNW": 117,
+          "cornerNE": 118,
+          "cornerSE": 119,
+          "cornerSW": 120,
+          "openN": 121,
+          "openE": 122,
+          "openS": 123,
+          "openW": 124,
+          "stairUp": 125,
+          "stairDown": 126,
+          "floorAlt": 127
+        },
+        "underwater": {
+          "floor": 128,
+          "wallN": 129,
+          "wallE": 130,
+          "wallS": 131,
+          "wallW": 132,
+          "cornerNW": 133,
+          "cornerNE": 134,
+          "cornerSE": 135,
+          "cornerSW": 136,
+          "openN": 137,
+          "openE": 138,
+          "openS": 139,
+          "openW": 140,
+          "stairUp": 141,
+          "stairDown": 142,
+          "floorAlt": 143
+        },
+        "desert": {
+          "floor": 144,
+          "wallN": 145,
+          "wallE": 146,
+          "wallS": 147,
+          "wallW": 148,
+          "cornerNW": 149,
+          "cornerNE": 150,
+          "cornerSE": 151,
+          "cornerSW": 152,
+          "openN": 153,
+          "openE": 154,
+          "openS": 155,
+          "openW": 156,
+          "stairUp": 157,
+          "stairDown": 158,
+          "floorAlt": 159
+        },
+        "swamp": {
+          "floor": 160,
+          "wallN": 161,
+          "wallE": 162,
+          "wallS": 163,
+          "wallW": 164,
+          "cornerNW": 165,
+          "cornerNE": 166,
+          "cornerSE": 167,
+          "cornerSW": 168,
+          "openN": 169,
+          "openE": 170,
+          "openS": 171,
+          "openW": 172,
+          "stairUp": 173,
+          "stairDown": 174,
+          "floorAlt": 175
+        },
+        "dungeon": {
+          "floor": 176,
+          "wallN": 177,
+          "wallE": 178,
+          "wallS": 179,
+          "wallW": 180,
+          "cornerNW": 181,
+          "cornerNE": 182,
+          "cornerSE": 183,
+          "cornerSW": 184,
+          "openN": 185,
+          "openE": 186,
+          "openS": 187,
+          "openW": 188,
+          "stairUp": 189,
+          "stairDown": 190,
+          "floorAlt": 191
+        },
+        "indoor": {
+          "floor": 192,
+          "wallN": 193,
+          "wallE": 194,
+          "wallS": 195,
+          "wallW": 196,
+          "cornerNW": 197,
+          "cornerNE": 198,
+          "cornerSE": 199,
+          "cornerSW": 200,
+          "openN": 201,
+          "openE": 202,
+          "openS": 203,
+          "openW": 204,
+          "stairUp": 205,
+          "stairDown": 206,
+          "floorAlt": 207
+        }
+      }
+    },
+    "variants": {
+      "image": "floor_variants.png",
+      "tileWidth": 64,
+      "tileHeight": 64,
+      "columns": 4,
+      "rows": 13,
+      "tilecount": 52,
+      "pieces": [
+        "base",
+        "var1",
+        "var2",
+        "var3"
+      ],
+      "frame": "row*4 + variant",
+      "frames": {
+        "inside": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "city": [
+          4,
+          5,
+          6,
+          7
+        ],
+        "field": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "forest": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "hills": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "mountain": [
+          20,
+          21,
+          22,
+          23
+        ],
+        "shallow": [
+          24,
+          25,
+          26,
+          27
+        ],
+        "deep": [
+          28,
+          29,
+          30,
+          31
+        ],
+        "underwater": [
+          32,
+          33,
+          34,
+          35
+        ],
+        "desert": [
+          36,
+          37,
+          38,
+          39
+        ],
+        "swamp": [
+          40,
+          41,
+          42,
+          43
+        ],
+        "dungeon": [
+          44,
+          45,
+          46,
+          47
+        ],
+        "indoor": [
+          48,
+          49,
+          50,
+          51
+        ]
+      },
+      "weights": [
+        0.7,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "note": "weighted pick per floor cell to break up large rooms"
+    },
+    "transitions": {
+      "image": "terrain_transitions.png",
+      "tileWidth": 64,
+      "tileHeight": 64,
+      "columns": 8,
+      "rows": 13,
+      "tilecount": 104,
+      "transparent": true,
+      "layer": "overlay — render ABOVE the floor layer",
+      "dirs": [
+        "N",
+        "E",
+        "S",
+        "W",
+        "NW",
+        "NE",
+        "SE",
+        "SW"
+      ],
+      "frame": "row*8 + dir",
+      "frames": {
+        "inside": {
+          "N": 0,
+          "E": 1,
+          "S": 2,
+          "W": 3,
+          "NW": 4,
+          "NE": 5,
+          "SE": 6,
+          "SW": 7
+        },
+        "city": {
+          "N": 8,
+          "E": 9,
+          "S": 10,
+          "W": 11,
+          "NW": 12,
+          "NE": 13,
+          "SE": 14,
+          "SW": 15
+        },
+        "field": {
+          "N": 16,
+          "E": 17,
+          "S": 18,
+          "W": 19,
+          "NW": 20,
+          "NE": 21,
+          "SE": 22,
+          "SW": 23
+        },
+        "forest": {
+          "N": 24,
+          "E": 25,
+          "S": 26,
+          "W": 27,
+          "NW": 28,
+          "NE": 29,
+          "SE": 30,
+          "SW": 31
+        },
+        "hills": {
+          "N": 32,
+          "E": 33,
+          "S": 34,
+          "W": 35,
+          "NW": 36,
+          "NE": 37,
+          "SE": 38,
+          "SW": 39
+        },
+        "mountain": {
+          "N": 40,
+          "E": 41,
+          "S": 42,
+          "W": 43,
+          "NW": 44,
+          "NE": 45,
+          "SE": 46,
+          "SW": 47
+        },
+        "shallow": {
+          "N": 48,
+          "E": 49,
+          "S": 50,
+          "W": 51,
+          "NW": 52,
+          "NE": 53,
+          "SE": 54,
+          "SW": 55
+        },
+        "deep": {
+          "N": 56,
+          "E": 57,
+          "S": 58,
+          "W": 59,
+          "NW": 60,
+          "NE": 61,
+          "SE": 62,
+          "SW": 63
+        },
+        "underwater": {
+          "N": 64,
+          "E": 65,
+          "S": 66,
+          "W": 67,
+          "NW": 68,
+          "NE": 69,
+          "SE": 70,
+          "SW": 71
+        },
+        "desert": {
+          "N": 72,
+          "E": 73,
+          "S": 74,
+          "W": 75,
+          "NW": 76,
+          "NE": 77,
+          "SE": 78,
+          "SW": 79
+        },
+        "swamp": {
+          "N": 80,
+          "E": 81,
+          "S": 82,
+          "W": 83,
+          "NW": 84,
+          "NE": 85,
+          "SE": 86,
+          "SW": 87
+        },
+        "dungeon": {
+          "N": 88,
+          "E": 89,
+          "S": 90,
+          "W": 91,
+          "NW": 92,
+          "NE": 93,
+          "SE": 94,
+          "SW": 95
+        },
+        "indoor": {
+          "N": 96,
+          "E": 97,
+          "S": 98,
+          "W": 99,
+          "NW": 100,
+          "NE": 101,
+          "SE": 102,
+          "SW": 103
+        }
+      }
+    }
+  },
+  "blendPriority": [
+    "deep",
+    "underwater",
+    "shallow",
+    "swamp",
+    "desert",
+    "field",
+    "hills",
+    "city",
+    "inside",
+    "indoor",
+    "dungeon",
+    "mountain",
+    "forest"
+  ],
+  "autotile": {
+    "rule": "For each floor cell of terrain T, look at its 4 orthogonal + 4 diagonal neighbours. For every orthogonal neighbour of a DIFFERENT, lower-priority terrain on side D, stamp transitions.frames[T][D] on the overlay layer. For every diagonal neighbour that differs while BOTH its shared orthogonal neighbours match T, stamp the matching outer-corner (NW/NE/SE/SW).",
+    "edgeDirs": [
+      "N",
+      "E",
+      "S",
+      "W"
+    ],
+    "cornerDirs": [
+      "NW",
+      "NE",
+      "SE",
+      "SW"
+    ],
+    "cornerNeighbours": {
+      "NW": [
+        "N",
+        "W"
+      ],
+      "NE": [
+        "N",
+        "E"
+      ],
+      "SE": [
+        "S",
+        "E"
+      ],
+      "SW": [
+        "S",
+        "W"
+      ]
+    }
+  },
+  "roomDescriptorExample": {
+    "floor": "dungeon",
+    "wall": "dungeon",
+    "cols": 14,
+    "rows": 5,
+    "exits": {
+      "W": [
+        2
+      ],
+      "E": [
+        2
+      ]
+    },
+    "features": [
+      {
+        "r": 2,
+        "c": 11,
+        "piece": "stairDown"
+      }
+    ]
+  }
+}

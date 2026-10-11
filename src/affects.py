@@ -56,6 +56,7 @@ class AffectManager:
 
     # Affect type constants
     TYPE_MODIFY_STAT = 'modify_stat'
+    TYPE_STAT = TYPE_MODIFY_STAT      # the name the level 31-60 abilities use
     TYPE_FLAG = 'flag'
     TYPE_DOT = 'dot'  # Damage over time
     TYPE_HOT = 'hot'  # Healing over time
@@ -65,7 +66,9 @@ class AffectManager:
         'str', 'int', 'wis', 'dex', 'con', 'cha',
         'hit', 'damage', 'armor_class', 'hitroll', 'damroll',
         'max_hp', 'max_mana', 'max_move',
-        'saving_throw', 'spell_resist', 'damage_reduction'
+        'saving_throw', 'spell_resist', 'damage_reduction',
+        # percentage riders consumed by combat/spell/regen math
+        'crit_chance', 'spell_power', 'heal_power', 'mana_regen',
     }
 
     # Valid flag names
@@ -74,6 +77,7 @@ class AffectManager:
         'sense_life', 'waterwalk', 'fly', 'haste', 'slow',
         'blind', 'poisoned', 'paralyzed', 'stunned', 'feared',
         'silenced', 'regenerating', 'diseased', 'marked',
+        'spirit_link', 'damage_redirect_pet',
         # New defensive flags
         'stoneskin', 'mirror_image', 'displacement', 'mana_shield',
         'ice_armor', 'fire_shield', 'spell_reflect', 'blink',
@@ -146,12 +150,19 @@ class AffectManager:
             logger.warning(f"Invalid stat name '{stat_name}' for affect {affect.name}")
             return
 
-        # Modify the stat
-        if hasattr(character, stat_name):
-            current_value = getattr(character, stat_name)
+        # Modify the stat (riders like spell_power start at 0 when absent)
+        if True:
+            current_value = getattr(character, stat_name, 0)
             new_value = current_value + affect.value
             setattr(character, stat_name, new_value)
             logger.debug(f"  Modified {stat_name}: {current_value} -> {new_value}")
+
+    @staticmethod
+    def stat_bonus(character: 'Character', stat_name: str):
+        """How much the character's active stat affects add to one stat right now."""
+        return sum(a.value for a in (getattr(character, 'affects', None) or [])
+                   if a.type == AffectManager.TYPE_MODIFY_STAT and a.applies_to == stat_name
+                   and isinstance(a.value, (int, float)))
 
     @staticmethod
     def _apply_flag(character: 'Character', affect: Affect):

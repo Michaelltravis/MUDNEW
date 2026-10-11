@@ -1,0 +1,16 @@
+{
+  "piece": "actors",
+  "pick": "B",
+  "per_label": { "city": "B", "combat": "B", "cave": "B" },
+  "reasons": [
+    "city: B's player is a shield-bearing knight sitting inside a bright blue ring/aura at screen centre and is found instantly; A's player is a tiny grey sprite on the sand path next to a white selection box that reads identically to the grey guard NPCs on the rooftops, so it takes scanning to find.",
+    "combat: B shows the grave keeper with a red hostile ring under it, a red 'Crushing Blow' wind-up banner with a timing bar, and a floating '34' damage number, so attack, wind-up and hit are readable with no text; A shows a blonde figure holding a sword sprite next to a rat with no flash, no ring, no telegraph, and the nearby skeleton is not visually flagged as hostile versus the pink-dressed bystander.",
+    "cave: B's bear is a large dark silhouette lit under a torch with a name label and the player carries the same blue ring; A's cave has only the grey player sprite with a selection box on a dark floor and no visible enemies at all, and the grey player sprite plus box reads as a flat cursor rather than a character."
+  ],
+  "fixes": [
+    { "what": "Draw a persistent coloured ring/aura under the player (and a red one under aggressive mobs) so the player pops from same-palette NPCs; A's grey warrior is indistinguishable from the grey guards.", "file_hint": "src/web_isometric/platformer/scene-topdown.js" },
+    { "what": "Add a visible wind-up telegraph (ground circle or pulsing outline on the attacker) and a white hit-flash/knock on the target when damage lands; A's combat shot shows only a static sword sprite next to the rat.", "file_hint": "src/web_isometric/platformer/fx-abilities.js" },
+    { "what": "Give hostile sprites a distinct tint/outline from friendly bystanders so a skeleton and a villager are not both plain unmarked sprites in the same shot.", "file_hint": "src/web_isometric/platformer/lpc.js" }
+  ],
+  "confidence": "high"
+}

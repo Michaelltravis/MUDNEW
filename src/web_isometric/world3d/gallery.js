@@ -1,0 +1,254 @@
+// /play?gallery=dungeon|nature — every model of a kit in a row, for checking art and
+// scale with the game camera. A development page, not part of the game.
+import * as THREE from 'three';
+import { trs, spawnMob, mobIndexReady } from './assets.js';
+import { creatureLook } from './looks.js';
+import { spawnLook } from './entities.js';
+
+export function showGallery(engine, kit, scale = 1) {
+  const only = new URLSearchParams(location.search).get('only');
+  const names = [...kit.keys()].filter(n => !only || only.split(',').some(o => n.includes(o)));
+  const cols = 8, step = 5;
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(cols * step + 6, Math.ceil(names.length / cols) * step + 6),
+    new THREE.MeshStandardMaterial({ color: 0x6d6a60, roughness: 1 }));
+  floor.rotation.x = -Math.PI / 2;
+  floor.position.set(cols * step / 2 - step / 2, 0, Math.ceil(names.length / cols) * step / 2 - step / 2);
+  floor.receiveShadow = true;
+  engine.scene.add(floor);
+  names.forEach((n, i) => {
+    const m = kit.get(n);
+    for (const p of m.parts) {
+      const mesh = new THREE.Mesh(p.geometry, p.material);
+      mesh.applyMatrix4(trs((i % cols) * step, 0, Math.floor(i / cols) * step, 0, scale));
+      mesh.castShadow = mesh.receiveShadow = true;
+      engine.scene.add(mesh);
+    }
+  });
+  names.forEach((n, i) => engine.scene.add(new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1),
+    new THREE.Vector3((i % cols) * step, 0.05, Math.floor(i / cols) * step), 2.2, 0xff3030, 0.5, 0.3)));
+  console.log('gallery order:', names.join(', '));
+  engine.setMood('day', true);
+  return new THREE.Vector3(cols * step / 2, 0, step * 1.5);
+}
+
+// every creature model in a row, each with an arrow along +Z (the way actors face)
+export async function showMobGallery(engine) {
+  const index = await mobIndexReady();
+  const only = new URLSearchParams(location.search).get('only');
+  const names = Object.keys(index).sort().filter(n => !only || only.split(',').includes(n));
+  const cols = Math.min(8, names.length), step = 4;
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(cols * step + 6, Math.ceil(names.length / cols) * step + 6),
+    new THREE.MeshStandardMaterial({ color: 0x6d6a60, roughness: 1 }));
+  floor.rotation.x = -Math.PI / 2;
+  floor.position.set(cols * step / 2 - step / 2, 0, Math.ceil(names.length / cols) * step / 2 - step / 2);
+  floor.receiveShadow = true;
+  engine.scene.add(floor);
+  const actors = [];
+  for (let i = 0; i < names.length; i++) {
+    const a = await spawnMob(names[i], { height: 1.4 });
+    const x = (i % cols) * step, z = Math.floor(i / cols) * step;
+    a.root.position.set(x, 0, z);
+    a.play('Idle', 0);
+    engine.scene.add(a.root);
+    engine.scene.add(new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1), new THREE.Vector3(x, 0.05, z), 1.6, 0xff3030, 0.4, 0.25));
+    actors.push(a);
+  }
+  engine.onTick(dt => actors.forEach(a => a.update(dt)));
+  console.log('mob gallery order:', names.join(', '));
+  engine.setMood('day', true);
+  return new THREE.Vector3(cols * step / 2, 0, step * 1.5);
+}
+
+// creatures at their in-game sizes beside a knight, from descriptions the MUD uses (each
+// through looks.js, exactly as the game picks them), labelled
+const SAMPLES = ['the green gelatinous blob', 'the giant hornet', 'the goat herder', 'a goblin mushroom farmer', 'the Spider Queen',
+  'the mimic', 'the Book Monster', 'the dancing sword', 'the magic carpet', 'the broom', 'the stone golem', 'the statue of Indra',
+  'a fire elemental', 'the djinn', 'A tiny pixie', 'the sea hag', 'the merman', 'a lizard man', 'the baker', 'the cityguard',
+  "the mages' guildmaster", 'an orc shaman', 'a skeletal warrior', 'a rotting zombie', 'an ancient lich', 'a vampire spawn',
+  'the Black Rook', 'the White Bishop', 'a possessed suit of armor', 'the red dragon', 'the baby dragon', 'a black bear',
+  'the large, grey wolf', 'the giant earth beetle', 'a sewer crocodile', 'the dragon turtle', 'a hell hound', 'the ancient tree',
+  'the myconoid', 'a ghostly mermaid', { short: 'the Sewer King', long: 'A massive rat-man standing here.', boss: true }];
+
+export async function showBeastGallery(engine, kits) {
+  const only = new URLSearchParams(location.search).get('only');
+  const list = [{ short: 'the knight (hero)' }, ...SAMPLES.map(s => typeof s === 'string' ? { short: s } : s)]
+    .filter(m => !only || only.split(',').some(o => m.short.toLowerCase().includes(o)));
+  const cols = 10, step = 3.2, rows = Math.ceil(list.length / cols);
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(cols * step + 6, rows * step * 1.4 + 6), new THREE.MeshStandardMaterial({ color: 0x6f7a5a, roughness: 1 }));
+  floor.rotation.x = -Math.PI / 2; floor.position.set((cols - 1) * step / 2, 0, (rows - 1) * step * 0.7); floor.receiveShadow = true;
+  engine.scene.add(floor);
+  const actors = [], labels = [];
+  for (let i = 0; i < list.length; i++) {
+    const m = list[i], x = (i % cols) * step, z = Math.floor(i / cols) * step * 1.4;
+    const look = i === 0 ? { model: 'knight' } : creatureLook({ ...m, pv: i });
+    const a = await spawnLook(look, { kits, seed: i });
+    const fly = look.beast ? look.beast.fly : look.fly;
+    a.root.position.set(x, fly || 0, z);
+    a.play('Idle', 0, look.still ? 0 : 1);
+    engine.scene.add(a.root);
+    actors.push(a);
+    const el = document.createElement('div');
+    el.textContent = m.short;
+    el.style.cssText = 'position:fixed;left:0;top:0;font:11px sans-serif;color:#fff;background:#0008;padding:1px 4px;border-radius:3px;pointer-events:none;white-space:nowrap;z-index:50';
+    document.body.appendChild(el);
+    labels.push({ el, at: new THREE.Vector3(x, -0.2, z + 0.9) });
+  }
+  const v = new THREE.Vector3();
+  engine.onTick(dt => {
+    actors.forEach(a => a.update(dt));
+    const cv = engine.renderer.domElement.getBoundingClientRect();
+    for (const l of labels) {
+      v.copy(l.at).project(engine.camera);
+      l.el.style.display = v.z > 1 ? 'none' : '';
+      l.el.style.transform = `translate(${(cv.left + (v.x + 1) / 2 * cv.width).toFixed(0)}px, ${(cv.top + (1 - v.y) / 2 * cv.height).toFixed(0)}px) translate(-50%, 0)`;
+    }
+  });
+  console.log('beast gallery:', list.map(m => m.short).join(', '));
+  engine.setMood('day', true);
+  return new THREE.Vector3((cols - 1) * step / 2, 0, (rows - 1) * step * 0.6);
+}
+
+// /play?demo&gallery=abilities&cls=mage[&only=fireball,frost][&speed=0.5][&manual] — a class's
+// whole book played in turn by its hero on training dummies, labelled with each recipe line
+// (abilityfx-table.js). ← → step, space pauses. `manual` stops the clock for screenshots
+// (MH3D.gallery.play(i), then engine.step()): tests/web/probe_play3d.js abilityfx.
+export async function showAbilityGallery(engine) {
+  const q = new URLSearchParams(location.search);
+  const cls = (q.get('cls') || 'mage').toLowerCase();
+  const only = q.get('only');
+  const [{ FX }, { Director }, { RECIPES }, { recipeFor, timeline }, { spawnCharacter }, { classModel }] = await Promise.all([
+    import('./fx.js'), import('./fxdirector.js'), import('./abilityfx-table.js'), import('./abilityfx.js'), import('./assets.js'), import('./entities.js')]);
+  engine.timeScale = Number(q.get('speed')) || 1;
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(40, 30), new THREE.MeshStandardMaterial({ color: 0x4a4740, roughness: 1 }));
+  floor.rotation.x = -Math.PI / 2; floor.position.set(3.5, 0, 0); floor.receiveShadow = true;
+  engine.scene.add(floor);
+  const fx = new FX(engine, document.querySelector('#fct'));
+  const body = async (model, opts, x, z, yaw) => {
+    const a = await spawnCharacter(model, opts);
+    a.root.position.set(x, 0, z); a.root.rotation.y = yaw;
+    a.play('Idle', 0);
+    engine.scene.add(a.root);
+    return a;
+  };
+  const look = classModel(cls);
+  const hero = await body(look.model, { tint: look.tint }, 0, 0, Math.PI / 2);
+  const dummy = await body('knight', { flat: true, tint: 0x8a7a64 }, 7, 0, -Math.PI / 2);
+  const left = await body('knight', { flat: true, tint: 0x7a6e5c }, 8.6, -2.4, -Math.PI / 2);
+  const right = await body('knight', { flat: true, tint: 0x7a6e5c }, 8.6, 2.4, -Math.PI / 2);
+  const ally = await body('knight', { tint: 0xd0e0ff }, -1.6, 2.6, Math.PI / 2);
+  const actors = [hero, dummy, left, right, ally];
+  const who = (a, mob = true) => ({ actor: a, root: a.root, mob, cls: a === hero ? cls : null });
+  const director = new Director({ fx, engine, getHero: () => null, chest: w => w.root.position.clone().setY(w.root.position.y + 1.15) });
+  let book = [];
+  try { book = (await (await fetch(`/abilitybook?cls=${cls}`)).json()).abilities || []; } catch (_) { book = []; }
+  const aimOf = id => { const b = book.find(a => a.id === id); return b ? b.target || 'enemy' : (RECIPES[cls][id].includes('ally') ? 'ally' : 'enemy'); };
+  const nameOf = id => (book.find(a => a.id === id) || {}).name || id.replace(/_/g, ' ');
+  const ids = Object.keys(RECIPES[cls] || {}).filter(id => !only || only.split(',').some(o => id.includes(o)))
+    .filter(id => !(book.find(a => a.id === id) || {}).passive);
+  const label = document.createElement('div');
+  label.style.cssText = 'position:fixed;left:50%;top:14px;transform:translateX(-50%);font:600 18px Georgia,serif;color:#fff;background:#000b;padding:6px 14px;border-radius:6px;z-index:60;text-align:center;white-space:nowrap';
+  document.body.appendChild(label);
+  let i = -1, wait = 0, paused = false;
+  function play(n) {
+    i = ((n % ids.length) + ids.length) % ids.length;
+    const id = ids[i], aim = aimOf(id);
+    const r = recipeFor(RECIPES, id, cls, {});
+    hero.root.position.set(0, 0, 0); hero.root.rotation.y = Math.PI / 2;
+    const dst = aim === 'enemy' ? who(dummy) : aim === 'ally' ? who(ally, false) : null;
+    const shape = aim === 'self' || aim === 'object' || aim === 'special' ? 'self' : aim === 'area' || aim === 'group' ? `nova:${r.radius || 6}` : 'ranged';
+    const hits = aim === 'enemy' || aim === 'area' ? [who(left), who(right)] : [];
+    director.play(r, { src: who(hero, false), dst, hits, e: { shape }, onLand: () => {
+      for (const d of aim === 'enemy' ? [dummy, ...(r.land && ['nova', 'quake', 'blast'].includes(r.land.kind) ? [left, right] : [])] : aim === 'area' ? [left, right, dummy] : []) d.once('Hit_A', 0.05, 1.2);
+    } });
+    label.innerHTML = `<b>${i + 1}/${ids.length} · ${nameOf(id)}</b> <span style="font:12px monospace;color:#cde">${cls} · ${aim}<br>${RECIPES[cls][id]}</span>`;
+    wait = Math.max(2.4, timeline(r, 7).end + 1.4);
+    return { id, aim, land: timeline(r, aim === 'enemy' ? 7 : 0).land };
+  }
+  addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') play(i + 1);
+    else if (e.key === 'ArrowLeft') play(i - 1);
+    else if (e.key === ' ') paused = !paused;
+  });
+  const manual = q.has('manual');
+  engine.onTick(dt => {
+    actors.forEach(a => a.update(dt));
+    if (manual || paused) return;
+    if ((wait -= dt) <= 0) play(i + 1);
+  });
+  if (manual) engine.setManual(true);
+  engine.setMood('night', true);
+  window.MH3D_gallery = { cls, ids, play, fx, director };
+  console.log(`ability gallery: ${cls}, ${ids.length} abilities`);
+  return new THREE.Vector3(3.5, 0, 0.5);
+}
+
+// /play?demo&gallery=icons[&cls=mage] — every class's ability icons (hud/icons.js), labelled,
+// and the menu's own icons: a development page for the painted icon set.
+export async function showIconGallery() {
+  const q = new URLSearchParams(location.search);
+  const only = (q.get('cls') || '').toLowerCase();
+  const [{ abilityIcon, uiIcon, PICTO }, { RECIPES }] = await Promise.all([import('./hud/icons.js'), import('./abilityfx-table.js')]);
+  let book = {};
+  const classes = Object.keys(RECIPES).filter(c => !only || c === only);
+  await Promise.all(classes.map(async c => {
+    try { book[c] = (await (await fetch(`/abilitybook?cls=${c}`)).json()).abilities || []; } catch (_) { book[c] = []; }
+  }));
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'position:fixed;inset:0;overflow:auto;z-index:70;padding:18px 22px;background:radial-gradient(ellipse at 50% 0%,#1a2130,#07090e);font:13px var(--body);color:var(--ink)';
+  const sec = (title, items) => `<div style="margin:0 0 18px"><div style="font:600 18px var(--title);letter-spacing:.12em;color:var(--gold-hi);text-transform:uppercase;margin:6px 0 10px">${title}</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:10px">${items.join('')}</div></div>`;
+  const cell = (src, label) => `<div style="text-align:center"><img src="${src}" width="56" height="56" style="display:block;margin:0 auto 4px;border-radius:9px;box-shadow:0 0 0 1px #000,0 4px 10px #0008"><div style="font-size:11px;line-height:1.15;color:var(--ink-dim)">${label}</div></div>`;
+  let html = '';
+  for (const c of classes) {
+    const ids = Object.keys(RECIPES[c]);
+    html += sec(c, ids.map(id => {
+      const b = (book[c] || []).find(a => a.id === id) || {};
+      return cell(abilityIcon(id, c, { type: b.type || 'skill', passive: !!b.passive }), b.name || id.replace(/_/g, ' '));
+    }));
+  }
+  if (!only) html += sec('the menu', ['helm', 'satchel', 'armor', 'book', 'scroll', 'map', 'gear', 'people', 'flee', 'sword', 'shield', 'banner'].map(n => cell(uiIcon(n, { size: 64 }), n)));
+  wrap.innerHTML = html;
+  document.body.appendChild(wrap);
+  window.MH3D_icons = { count: wrap.querySelectorAll('img').length, picto: Object.keys(PICTO).length };
+  return null;
+}
+
+// /play?demo&gallery=sounds — every sound (soundtable.js), the school stings, the ambience beds
+// and the music, each a button that plays it: a listening pass for the whole set
+export async function showSoundGallery() {
+  const [{ sound }, T] = await Promise.all([import('./audio.js'), import('./soundtable.js')]);
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'position:fixed;inset:0;overflow:auto;z-index:70;padding:18px 22px;background:radial-gradient(ellipse at 50% 0%,#1a2130,#07090e);font:13px var(--body);color:var(--ink)';
+  const sec = (title, items) => `<div style="margin:0 0 16px"><div style="font:600 17px var(--title);letter-spacing:.12em;color:var(--gold-hi);text-transform:uppercase;margin:6px 0 9px">${title}</div>
+    <div style="display:flex;flex-wrap:wrap;gap:7px">${items.join('')}</div></div>`;
+  const btn = (kind, key, label, extra = '') => `<button class="btn alt" data-k="${kind}" data-v="${key}" ${extra} style="width:auto;padding:6px 11px;margin:0;font-size:12px">${label || key}</button>`;
+  const names = Object.keys(T.SOUNDS);
+  const group = pre => names.filter(n => pre.some(p => n.startsWith(p)));
+  const used = new Set();
+  const take = list => list.filter(n => !used.has(n) && used.add(n));
+  let html = `<p style="margin:0 0 12px;color:var(--ink-dim)">Click anywhere first (browsers start sound on a click). ${names.length} sounds, ${Object.keys(T.BEDS).length} ambience beds, ${T.MUSIC.length} tracks.</p>`;
+  html += sec('blows and defence', take(group(['swing', 'shot', 'bolt', 'hit', 'crit', 'hurt', 'miss', 'dodge', 'parry', 'block', 'resist', 'clang'])).map(n => btn('s', n)));
+  html += sec('what happens to someone', take(group(['heal', 'buff', 'debuff', 'stun', 'death', 'fall', 'hero_death', 'windup', 'resolve', 'slam', 'cancel', 'fizzle'])).map(n => btn('s', n)));
+  html += sec('spells by school (charge · sting · big sting)', Object.keys(T.SCHOOLS).map(s => btn('school', s)));
+  html += sec('getting about', take(group(['step', 'door', 'latch', 'lock', 'creak', 'hop', 'teleport'])).map(n => btn('s', n)));
+  html += sec('the interface', take(names).map(n => btn('s', n)));
+  html += sec('ambience beds', Object.keys(T.BEDS).map(b => btn('bed', b)).concat([btn('bed', '', 'stop')]));
+  html += sec('music', T.MUSIC.map(m => btn('music', m)).concat([btn('music', '', 'stop')]));
+  wrap.innerHTML = html;
+  document.body.appendChild(wrap);
+  wrap.addEventListener('click', e => {
+    const b = e.target.closest('button[data-k]');
+    if (!b) return;
+    sound.unlock();
+    const { k, v } = b.dataset;
+    if (k === 's') sound.play(v);
+    else if (k === 'school') {
+      sound.play('charge', { school: v });
+      setTimeout(() => sound.play('sting', { school: v, tier: 0 }), 500);
+      setTimeout(() => sound.play('sting', { school: v, tier: 2 }), 1300);
+    } else if (k === 'bed') sound.ambience(v || null);
+    else if (k === 'music') { if (v) sound.playMusic(v, 1); else sound.stopMusic(1); }
+  });
+  window.MH3D_sounds = { sound, count: names.length, buttons: wrap.querySelectorAll('button').length };
+  return null;
+}
