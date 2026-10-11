@@ -1383,8 +1383,11 @@ class CombatHandler:
                 await mastery.improve(attacker, 'dual_wield', rate=0.25)
                 await cls.offhand_attack(attacker, defender)
 
-        # haste (Quicken, Rimeheart, a song): an extra swing about every other round
-        if 'haste' in (getattr(attacker, 'affect_flags', None) or set()) and defender.is_alive and random.random() < 0.5:
+        # haste (Quicken, Rimeheart, a song, or worn gear that quickens): an extra swing about
+        # every other round
+        hasted = 'haste' in (getattr(attacker, 'affect_flags', None) or set()) or (
+            hasattr(attacker, 'gear_hasted') and attacker.gear_hasted())
+        if hasted and defender.is_alive and random.random() < 0.5:
             await cls.bonus_attack(attacker, defender)
 
         # Titan's Wrath (the warrior's capstone): every swing cleaves through the foes around them

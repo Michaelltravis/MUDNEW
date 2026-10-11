@@ -2412,12 +2412,21 @@ class SpellHandler:
     @staticmethod
     def _saves(caster, target, spell):
         """A spell that allows a saving throw (spell['save']), resisted: d20 + half the target's
-        wisdom against 10 + half the caster's level."""
+        wisdom + their saving throw (higher is better: Shield of Faith +2, a dirge -1, saves on
+        their gear) against 10 + half the caster's level. Spell resistance may shrug it off first,
+        and a curse may fail on one warded against curses (curse_resist on their gear)."""
         if not spell.get('save') or target is None or target is caster or isinstance(target, str):
             return False
         if random.randint(1, 100) <= max(0, int(getattr(target, 'spell_resist', 0) or 0)):
             return True
-        roll = random.randint(1, 20) + getattr(target, 'wis', 10) // 2 - int(getattr(target, 'saving_throw', 0) or 0)
+        if 'curse' in str(spell.get('name', '')).lower() and hasattr(target, 'gear_saves'):
+            ward = min(75, max(0, int(target.get_equipment_bonus('curse_resist'))))
+            if ward and random.randint(1, 100) <= ward:
+                return True
+        bonus = int(getattr(target, 'saving_throw', 0) or 0)
+        if hasattr(target, 'gear_saves'):
+            bonus += target.gear_saves()
+        roll = random.randint(1, 20) + getattr(target, 'wis', 10) // 2 + bonus
         return roll > 10 + caster.level // 2
 
     @classmethod
@@ -2492,8 +2501,14 @@ class SpellHandler:
         if resist > 0:
             damage = max(1, int(damage * (100 - min(75, resist)) / 100))
 
-        # Apply spell damage
-        damage_type = spell.get('damage_type', 'magic')
+        # Apply spell damage, as its school (fire, frost, shadow...: what a resistance answers to)
+        damage_type = spell.get('damage_type')
+        if not damage_type:
+            try:
+                import combat_range
+                damage_type = combat_range.spell_school(spell_name, spell, caster)
+            except Exception:
+                damage_type = 'magic'
         killed = await target.take_damage(damage, caster, damage_type=damage_type)
 
         await caster.send(f"{c['bright_red']}Your spell does {damage} damage to {target.name}!{c['reset']}")

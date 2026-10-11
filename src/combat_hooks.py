@@ -214,7 +214,7 @@ def _wrap_take_damage(klass):
         dealt = hp0 - getattr(self, 'hp', hp0)
         if dealt > 0 and room is not None:
             ev.emit(room, 'dmg', src=attacker, dst=self, amt=int(dealt), left=max(0, int(getattr(self, 'hp', 0))),
-                    school=None if dtype in (None, 'physical', 'magic') else str(dtype))
+                    school=None if dtype in (None, 'physical', 'magic') else {'disease': 'poison', 'cold': 'frost'}.get(str(dtype), str(dtype)))
         return result
 
     klass.take_damage = take_damage

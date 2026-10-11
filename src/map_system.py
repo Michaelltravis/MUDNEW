@@ -690,6 +690,26 @@ def _gear_stats(player):
         return {}
 
 
+def _gear_wards(player):
+    """What a player's worn gear wards against, in words: ['fire 20%', 'shadow 75%', 'saves +2',
+    'spells 10%', 'hasted'] (empty: nothing)."""
+    if not hasattr(player, 'resistance'):
+        return []
+    try:
+        from player import RESIST_KEYS
+        out = [f'{k} {player.resistance(k)}%' for k in RESIST_KEYS if player.resistance(k)]
+        if player.gear_saves():
+            out.append(f'saves {player.gear_saves():+d}')
+        gear_spell = player.gear_bonus('spell_resist')
+        if gear_spell:
+            out.append(f'spells {int(gear_spell)}%')
+        if player.gear_hasted():
+            out.append('hasted')
+        return out
+    except Exception:
+        return []
+
+
 def _npc_look(mob):
     """A creature's look, when its zone dressed it (not the gear every creature is handed) and
     something of it shows: a weapon, a shield, a helm, armour or a cloak."""
@@ -1617,6 +1637,8 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'cha': getattr(player, 'cha', 0),
             # what worn gear adds to those and to the maxima (the values above count it)
             'gear_stats': _gear_stats(player),
+            # what it wards against ('fire 20%'...), its saves, haste
+            'gear_wards': _gear_wards(player),
             # totals (equipment + stats + stance), not the base attributes
             'hitroll': player.get_hit_bonus() if hasattr(player, 'get_hit_bonus') else getattr(player, 'hitroll', 0),
             'damroll': player.get_damage_bonus() if hasattr(player, 'get_damage_bonus') else getattr(player, 'damroll', 0),

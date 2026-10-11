@@ -254,6 +254,9 @@ class Object:
             if isinstance(proto, dict) and proto.get('effects'):
                 obj.affects, more = effects_as_affects(proto['effects'])
                 obj.flags |= more
+        if not obj.wear_slot and world is not None and isinstance((getattr(world, 'obj_prototypes', {}) or {}).get(obj.vnum), dict) \
+                and world.obj_prototypes[obj.vnum].get('effects'):
+            obj.wear_slot = infer_wear_slot(obj) or 'hold'
         obj.lore_id = data.get('lore_id')
         obj.lore_title = data.get('lore_title')
         obj.lore_text = data.get('lore_text')
@@ -316,6 +319,10 @@ class Object:
         extra, extra_flags = effects_as_affects(proto.get('effects'))
         obj.affects = list(proto.get('affects', []) or []) + extra
         obj.flags = set(proto.get('flags', [])) | extra_flags
+        # an endgame trinket with stats and no slot is worn where its name says (an amulet at the
+        # neck), else held (a pearl, a clockwork gear)
+        if (extra or extra_flags) and not obj.wear_slot:
+            obj.wear_slot = infer_wear_slot(obj) or 'hold'
         obj.lore_id = proto.get('lore_id')
         obj.lore_title = proto.get('lore_title')
         obj.lore_text = proto.get('lore_text')

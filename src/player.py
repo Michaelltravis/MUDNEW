@@ -450,7 +450,29 @@ GEAR_STATS = {
     'str': ('str', 'strength'), 'dex': ('dex', 'dexterity'), 'con': ('con', 'constitution'),
     'int': ('int', 'intelligence'), 'wis': ('wis', 'wisdom'), 'cha': ('cha', 'charisma'),
     'max_hp': ('hp', 'max_hp', 'hitpoints'), 'max_mana': ('mana', 'max_mana'), 'max_move': ('move', 'max_move'),
+    # a percent chance to shrug off a spell's hold, and a percent off its damage (spells.py)
+    'spell_resist': ('spell_resist', 'magic_resist'),
 }
+
+# What share of each kind of harm a player's gear (and sets) turns aside, by school
+# (combat_range.spell_school's names; 'cold' is frost). Items name it '<kind>_resist'; a shadow
+# ward also turns death magic. Never more than RESIST_CAP percent.
+RESIST_KEYS = {
+    'fire': ('fire_resist',), 'frost': ('cold_resist', 'frost_resist', 'ice_resist'),
+    'lightning': ('lightning_resist', 'electric_resist', 'shock_resist'), 'poison': ('poison_resist', 'acid_resist'),
+    'disease': ('disease_resist',), 'shadow': ('shadow_resist',), 'necrotic': ('necrotic_resist', 'shadow_resist'),
+    'holy': ('holy_resist',), 'arcane': ('arcane_resist',), 'nature': ('nature_resist',), 'sound': ('sound_resist',),
+}
+RESIST_ALIASES = {'cold': 'frost', 'ice': 'frost', 'electric': 'lightning', 'shock': 'lightning', 'acid': 'poison',
+                  'plague': 'disease', 'negative': 'necrotic', 'death': 'necrotic', 'dark': 'shadow'}
+RESIST_CAP = 75
+
+
+def school_of_damage(damage_type):
+    """A damage type as a school a resistance answers to (None: a blow, or plain magic)."""
+    kind = str(damage_type or 'physical').lower()
+    kind = RESIST_ALIASES.get(kind, kind)
+    return kind if kind in RESIST_KEYS else None
 
 
 def _gear_stat(name):
@@ -970,6 +992,26 @@ class Player(Character):
     def set_base(self, name: str, value) -> None:
         """Set an attribute's or maximum's own value outright, whatever is worn."""
         self.__dict__.setdefault('_base', {})[name] = value
+
+    def resistance(self, damage_type) -> int:
+        """The percent of this kind of harm worn gear turns aside (0 for blows and plain magic)."""
+        school = school_of_damage(damage_type)
+        if school is None:
+            return 0
+        totals = self._gear_totals()
+        return max(0, min(RESIST_CAP, int(sum(totals.get(k, 0) for k in RESIST_KEYS[school]))))
+
+    def gear_saves(self) -> int:
+        """What gear adds to a saving throw (spells.py _saves: a d20, higher is better). Items give
+        saves the old way, a percent where lower is better: -10 is two points on the d20."""
+        totals = self._gear_totals()
+        return int(round(-(totals.get('saves', 0) + totals.get('saving_spell', 0)) / 5))
+
+    def gear_hasted(self) -> bool:
+        """Worn gear that quickens (an item flagged 'haste', or a haste affect)."""
+        if self._gear_totals().get('haste', 0) > 0:
+            return True
+        return any('haste' in (getattr(it, 'flags', None) or ()) for it in (self.__dict__.get('equipment') or {}).values() if it)
 
     def clamp_vitals(self) -> None:
         """Health, mana and moves can't stay above maxima that fell (gear taken off)."""
@@ -2110,7 +2152,7 @@ class Player(Character):
             affect_descriptions.append(f"{c['green']}{char.name} struggles against vines and roots wrapped around their limbs.{c['reset']}")
         if 'slow' in affect_flags:
             affect_descriptions.append(f"{c['cyan']}{char.name} moves with unnatural slowness, as if wading through honey.{c['reset']}")
-        if 'haste' in affect_flags:
+        if 'haste' in affect_flags or (hasattr(char, 'gear_hasted') and char.gear_hasted()):
             affect_descriptions.append(f"{c['bright_cyan']}{char.name} moves with supernatural speed, almost blurring.{c['reset']}")
         if 'sanctuary' in affect_flags:
             affect_descriptions.append(f"{c['bright_white']}{char.name} is surrounded by a shimmering white aura.{c['reset']}")
@@ -2525,6 +2567,10 @@ class Player(Character):
         """Take damage, return True if killed."""
         c = self.config.COLORS
         damage_type = damage_type or 'physical'
+        # worn gear turns aside part of fire, frost, poison, shadow... (Player.resistance)
+        resist = self.resistance(damage_type) if amount > 1 else 0
+        if resist:
+            amount = max(1, int(amount * (100 - resist) / 100))
 
         flags = getattr(self, 'affect_flags', set())
         # Corpse Shield: a necromancer's pet absorbs part of every blow

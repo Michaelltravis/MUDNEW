@@ -200,9 +200,132 @@ async def gear_stats():
     check(mob.con == con and mob.gear_stat('con') == con + 2, "a creature's constitution stays its own")
 
 
+async def resists_and_haste():
+    """Resistances, saves, spell resistance, curse wards and haste from gear, for players."""
+    import random
+    from config import Config
+    from world import World
+    from objects import Object
+    from player import Player
+    from spells import SpellHandler, SPELLS
+    from combat import CombatHandler
+    from affects import AffectManager
+    world = World(Config())
+    await world.load()
+
+    def obj(vnum):
+        return Object.from_prototype(world.obj_prototypes[vnum], world)
+
+    def ring(**affects):
+        r = Object(0, world)
+        r.name = r.short_desc = 'a test ring'
+        r.item_type, r.wear_slot = 'armor', 'finger'
+        r.affects = [{'type': k, 'value': v} for k, v in affects.items()]
+        return r
+
+    hero = Player.create_new(name='Gearward', password=None, race='human', char_class='warrior',
+                             stats={s: 13 for s in ('str', 'int', 'wis', 'dex', 'con', 'cha')}, world=world)
+    hero.connection = Conn()
+    hero.equipment = {'finger1': ring(fire_resist=20, cold_resist=10, poison_resist=15, disease_resist=10)}
+    check(hero.resistance('fire') == 20 and hero.resistance('frost') == 10 and hero.resistance('cold') == 10,
+          'fire and cold wards (cold answers to frost)')
+    check(hero.resistance('physical') == 0 and hero.resistance('magic') == 0, 'a blow and plain magic are not warded')
+    hero.equipment['neck1'] = obj(24503)                # the Amulet of Light: shadow 100
+    check(hero.resistance('shadow') == 75 and hero.resistance('necrotic') == 75, 'a shadow ward turns death magic too, at most 75%')
+
+    # resisted harm is smaller
+    async def taken(kind, amount=100):
+        hero.max_hp = 100000
+        hero.hp = hero.max_hp
+        await hero.take_damage(amount, None, kind)
+        return hero.max_hp - hero.hp
+    check(await taken('fire') == 80 and await taken('frost') == 90 and await taken('physical') == 100,
+          'fire 100 -> 80, frost 100 -> 90, a blow 100')
+    # a poison's tick and a plague's: their own wards
+    check(await taken('poison') == 85 and await taken('disease') == 90, 'poison and plague ticks are warded')
+
+    # a spell's blow comes as its school
+    seen = []
+    orig = hero.take_damage
+
+    async def spy(amount, attacker=None, damage_type='physical'):
+        seen.append(damage_type)
+        return await orig(amount, attacker, damage_type)
+    hero.take_damage = spy
+    caster = Player.create_new(name='Gearcaster', password=None, race='human', char_class='mage',
+                               stats={s: 13 for s in ('str', 'int', 'wis', 'dex', 'con', 'cha')}, world=world)
+    caster.connection = Conn()
+    caster.room = hero.room = world.rooms.get(3001)
+    for name in ('fireball', 'chill_touch', 'lightning_bolt'):
+        spell = SPELLS.get(name)
+        if spell and spell.get('damage_dice'):
+            await SpellHandler._spell_damage(caster, hero, spell, name)
+    del hero.take_damage
+    check({'fire', 'frost'} <= set(seen), f'spells strike as their school ({seen})')
+
+    # saving throws: higher is better, gear's saves count (the old -10 is two points)
+    hero.equipment = {'finger1': ring(saves=-10)}
+    check(hero.gear_saves() == 2, 'saves -10 on gear: +2 to the saving throw')
+    random.seed(7)
+    save_spell = {'name': 'Test Hold', 'save': True}
+    caster.level = 30
+
+    def rate(times=4000):
+        return sum(SpellHandler._saves(caster, hero, save_spell) for _ in range(times)) / times
+    hero.equipment = {}
+    bare = rate()
+    a = AffectManager.apply_affect(hero, {'name': 'shield of faith', 'type': 'modify_stat', 'applies_to': 'saving_throw', 'value': 4, 'duration': 5})
+    blessed = rate()
+    AffectManager.remove_affect(hero, a)
+    hero.equipment = {'finger1': ring(saves=-10)}
+    geared = rate()
+    check(blessed > bare + 0.1 and geared > bare + 0.05, f'a saving-throw blessing and gear saves help: {bare:.2f} -> {blessed:.2f} / {geared:.2f}')
+    # spell resistance and curse wards from gear
+    hero.equipment = {'finger1': ring(spell_resist=10)}
+    check(hero.spell_resist == 10, 'spell resistance on gear counts')
+    hero.equipment = {'finger1': ring(curse_resist=75)}
+    cursed = sum(SpellHandler._saves(caster, hero, {'name': 'Curse', 'save': True}) for _ in range(2000)) / 2000
+    check(cursed > 0.75, f'a curse ward shrugs off three curses in four ({cursed:.2f})')
+
+    # haste: the Gear of Infinite Motion can be held now, and quickens
+    gear = obj(24803)
+    check(gear.wear_slot == 'hold' and 'haste' in gear.flags, f'the Gear of Infinite Motion is held, and quickens ({gear.wear_slot}, {gear.flags})')
+    check(obj(24503).wear_slot in ('neck', 'neck1'), 'the Amulet of Light is worn at the neck')
+    hero.equipment = {'hold': gear}
+    check(hero.gear_hasted(), 'held, its wearer is hasted')
+    foe = next(ch for r in world.rooms.values() for ch in getattr(r, 'characters', []) if not hasattr(ch, 'account_name'))
+    foe.send = Conn().send
+    foe.room = hero.room
+    swings = []
+    orig_bonus = CombatHandler.bonus_attack.__func__
+
+    async def counted(cls, attacker, defender, *a, **k):
+        swings.append(attacker)
+    CombatHandler.bonus_attack = classmethod(counted)
+    real_random = random.random
+    random.random = lambda: 0.0
+    try:
+        foe.hp = foe.max_hp = 10 ** 6
+        hero.hp = hero.max_hp
+        hero.fighting, foe.fighting = foe, hero
+        hero.position = foe.position = 'fighting'
+        await CombatHandler.one_round(hero, foe)
+        hasted = swings.count(hero)
+        hero.equipment = {}
+        swings.clear()
+        await CombatHandler.one_round(hero, foe)
+        plain = swings.count(hero)
+    finally:
+        random.random = real_random
+        CombatHandler.bonus_attack = classmethod(orig_bonus)
+        hero.fighting = foe.fighting = None
+    check(hasted == plain + 1, f'a round with the Gear held brings one more swing ({plain} -> {hasted})')
+
+
 async def main():
     await offline()
     await gear_stats()
+    await resists_and_haste()
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
     sys.exit(1 if failures else 0)
 

@@ -59,6 +59,7 @@ export function createCharacter() {
       <div><span>Armour</span><b>${p.armor_class ?? p.armor ?? '–'}</b></div>
       <div><span>Stance</span><b>${esc(title(p.position || 'standing'))}</b></div>
     </div>
+    ${(p.gear_wards || []).length ? `<div class="ch-lab">From your gear</div><div class="ch-wards">${p.gear_wards.map(w => `<span>${esc(w)}</span>`).join('')}</div>` : ''}
     <div class="ch-lab">Active effects</div>
     <div class="ch-affects">${aff.length ? aff.map(a => {
       const n = title(a.name || a.type || a.spell || 'effect');

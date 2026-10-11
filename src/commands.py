@@ -1838,6 +1838,14 @@ class CommandHandler:
         mood = getattr(player, 'stance', 'normal')
         wimpy = int(getattr(player, 'wimpy', 0))
         await player.send(f"{c['cyan']}{V} {c['white']}Mood: {c['bright_cyan']}{mood:<10}{c['white']} Wimpy: {wimpy:<4}{c['cyan']}                       {V}{c['reset']}")
+        # what worn gear wards against (fire 20%, shadow 75%...), its saves, and whether it quickens
+        try:
+            from map_system import _gear_wards
+            wards = ', '.join(_gear_wards(player))
+            if wards:
+                await player.send(f"{c['cyan']}{V} {c['white']}Gear: {c['bright_green']}{wards[:56]:<56}{c['cyan']} {V}{c['reset']}")
+        except Exception:
+            pass
 
         # Show hunger and thirst status
         hunger_cond = player.get_hunger_condition()

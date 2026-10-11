@@ -148,7 +148,9 @@ class Config:
     ABSORB_ARMOR_SOFTCAP = 20
     ABSORB_ARMOR_PENALTY_PER_WEIGHT = 0.02
     ABSORB_ARMOR_MAX_PENALTY = 0.40
-    ABSORB_MAGIC_TYPES = {'magic', 'fire', 'cold', 'lightning', 'acid', 'arcane', 'holy', 'shadow'}
+    ABSORB_MAGIC_TYPES = {'magic', 'fire', 'cold', 'lightning', 'acid', 'arcane', 'holy', 'shadow',
+                          # a spell's school (combat_range.spell_school): every school a ward absorbs
+                          'frost', 'necrotic', 'poison', 'nature', 'sound', 'disease'}
 
     # Shield-style evasion bonuses
     SHIELD_EVASION_BONUSES = {
