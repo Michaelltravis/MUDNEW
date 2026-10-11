@@ -1485,7 +1485,7 @@ class CombatHandler:
                     await attacker.send(f"{c['bright_red']}Your {attacker.mount.name}'s flames sear {defender.name}! [{fire_dmg}]{c['reset']}")
                 if hasattr(defender, 'send'):
                     await defender.send(f"{c['bright_red']}Flames from {attacker.mount.name} burn you! [{fire_dmg}]{c['reset']}")
-                killed = await defender.take_damage(fire_dmg, attacker)
+                killed = await defender.take_damage(fire_dmg, attacker, 'fire')
                 if killed:
                     await cls.handle_death(attacker, defender)
 
@@ -3006,7 +3006,7 @@ class CombatHandler:
         elif effect_type == 'extra_damage':
             # Immediate extra damage
             extra_damage = poison_config.get('damage', 15)
-            await victim.take_damage(extra_damage, attacker)
+            await victim.take_damage(extra_damage, attacker, 'poison')
             if hasattr(victim, 'send'):
                 await victim.send(f"{color_code}The venom burns! ({extra_damage} additional damage){c['reset']}")
 

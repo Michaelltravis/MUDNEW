@@ -214,7 +214,7 @@ def _wrap_take_damage(klass):
         dealt = hp0 - getattr(self, 'hp', hp0)
         if dealt > 0 and room is not None:
             ev.emit(room, 'dmg', src=attacker, dst=self, amt=int(dealt), left=max(0, int(getattr(self, 'hp', 0))),
-                    school=None if dtype in (None, 'physical', 'magic') else {'disease': 'poison', 'cold': 'frost'}.get(str(dtype), str(dtype)))
+                    school=None if dtype in (None, 'physical', 'magic') else fx_school(str(dtype)))
         return result
 
     klass.take_damage = take_damage
@@ -497,14 +497,17 @@ def _area_for(mob, intent):
     return None
 
 
+def fx_school(school):
+    """A kind of harm as the 3D client draws it (a disease looks like poison)."""
+    return {'disease': 'poison', 'cold': 'frost'}.get(school, school)
+
+
 def _school_of_label(label):
-    l = (label or '').lower()
-    for word, school in (('fire', 'fire'), ('flame', 'fire'), ('breath', 'fire'), ('ice', 'frost'), ('frost', 'frost'),
-                         ('lightning', 'lightning'), ('shadow', 'shadow'), ('venom', 'poison'), ('poison', 'poison'),
-                         ('missile', 'arcane'), ('roar', 'sound'), ('summon', 'necrotic')):
-        if word in l:
-            return school
-    return 'physical'
+    # the harm it deals (combat_range.harm_school); a summoning wind-up looks necrotic
+    school = cr.harm_school(label)
+    if school == 'physical' and 'summon' in (label or '').lower():
+        return 'necrotic'
+    return fx_school(school)
 
 
 def _wrap_mob_ai():

@@ -172,6 +172,25 @@ fixes change what a class deals or can stand, so both tables were measured again
 - **The zone bosses** were measured again too (below): most hit harder, since heroes carry more
   health.
 
+## Measured again with gear wards (Push 24)
+
+- **Gear's wards count now:** fire, frost, poison, shadow and the rest turn aside up to 75% of
+  their kind of harm, and every source says its kind: spells their school, boss abilities by
+  name or their own `element` (69 of 100 are elemental), creatures' spells, breath and venom,
+  poison ticks and hazards. Gear's saves, spell resistance and haste count too.
+- **The quests moved within noise** (all nine classes alone at 45, 50, 55 and 60, three runs
+  each, the simulator's fixed seeds). 24 of 36 rows came out exactly as before, and no class
+  got harder. A few deaths went away: the assassin at 50 and 60 and the necromancer at 45,
+  0.3 a quest each.
+  - The heroes wear the same gear table, and most of its pieces ward nothing: what a ward
+    adds is a little less of a poison spit or an ice storm.
+  - `CLASS_K`, `CLASS_D` and `LEVEL_D` stay.
+- **The zone bosses** eased a little: a lone hero's median worst fight is 49% of their
+  health, from 51%, and they die 35 times in 360 fights, from 39.
+  - The poison-spitting spider queens eased most: the Spider Queen of level 26 from 50% to
+    41%, with no deaths now; the spider queen of level 12 from 52% to 46%.
+  - That is a ward doing its work. `ZONE_BOSS_DAMAGE` stays.
+
 ## How it was measured
 
 `tools/balance/sim.py` plays each class's quest with real `World`, `Player` and `Mobile`
@@ -518,18 +537,19 @@ What a lone hero at the boss's level meets, over the 20 bosses (two fights each;
 |---|---|---|---|
 | paladin | 24% | 0 | 1.6 |
 | warrior | 28% | 0 | 1.5 |
-| cleric | 42% | 0 | 2.3 |
-| assassin | 47% | 1 | 1.6 |
-| bard | 53% | 0 | 2.2 |
-| necromancer | 56% | 12 | 2.1 |
-| thief | 58% | 8 | 1.8 |
-| ranger | 61% | 2 | 2.9 |
-| mage | 89% | 16 | 2.6 |
+| cleric | 40% | 0 | 2.3 |
+| assassin | 46% | 0 | 1.7 |
+| bard | 52% | 0 | 2.2 |
+| necromancer | 54% | 12 | 2.1 |
+| thief | 56% | 6 | 1.8 |
+| ranger | 60% | 1 | 2.9 |
+| mage | 89% | 16 | 2.5 |
 
 A party of three (warrior, cleric, mage) finishes any of them in 0.5-1.0 minutes, its
 worst-off member losing 0-21% (median 12%). (Measured again in Push 23, with gear's health and
 attributes counting: 39 deaths in 360 fights, 49 in Push 22; the mage 16, from 26, and the
-necromancer 12, from 16.)
+necromancer 12, from 16. And in Push 24, with gear's wards meeting the bosses' fire, poison and
+the rest: 35 deaths.)
 
 The spread between classes is the cost of a boss that can't know who fights it: a lone mage
 (about 190 health at level 45, and half the median hero's damage) or a necromancer whose bone

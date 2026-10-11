@@ -1008,7 +1008,7 @@ class Pet(Mobile):
             
             # Apply damage to target
             if hasattr(target, 'take_damage'):
-                await target.take_damage(damage, self)
+                await target.take_damage(damage, self, 'necrotic')
             else:
                 target.hp -= damage
             

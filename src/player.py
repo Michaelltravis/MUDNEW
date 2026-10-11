@@ -2570,7 +2570,10 @@ class Player(Character):
         # worn gear turns aside part of fire, frost, poison, shadow... (Player.resistance)
         resist = self.resistance(damage_type) if amount > 1 else 0
         if resist:
-            amount = max(1, int(amount * (100 - resist) / 100))
+            kept = max(1, int(amount * (100 - resist) / 100))
+            if amount - kept > 0:
+                await self.send(f"{c['cyan']}Your gear turns aside {amount - kept} of the {school_of_damage(damage_type)} damage.{c['reset']}")
+            amount = kept
 
         flags = getattr(self, 'affect_flags', set())
         # Corpse Shield: a necromancer's pet absorbs part of every blow

@@ -194,9 +194,9 @@ class Boss(Mobile):
             # the 3D client marks the ground it will land on (and calls STEP OUT)
             try:
                 import combat_events as ev
-                from combat_hooks import _school_of_label
+                from combat_hooks import fx_school
                 ev.emit(self.room, 'windup', src=self, dst=target, label=name, kind='aoe' if ability.get('aoe') else 'heavy',
-                        ms=int(cast_time * 1000), area=area, school=_school_of_label(name),
+                        ms=int(cast_time * 1000), area=area, school=fx_school(self._ability_school(ability)),
                         interruptible=bool(ability.get('interruptible')) or None)
             except Exception:
                 pass
@@ -234,9 +234,9 @@ class Boss(Mobile):
             self.ai_state['cast'] = None      # resolved or not, it is over (a failed one must not freeze the boss)
         try:
             import combat_events as ev
-            from combat_hooks import _school_of_label
+            from combat_hooks import fx_school
             ev.emit(self.room, 'resolve', src=self, label=ability.get('name'), kind='aoe' if ability.get('aoe') else 'heavy',
-                    area=area, school=_school_of_label(ability.get('name')), dodged=[ev.ref(c) for c in spared] or None)
+                    area=area, school=fx_school(self._ability_school(ability)), dodged=[ev.ref(c) for c in spared] or None)
         except Exception:
             pass
 
@@ -271,7 +271,7 @@ class Boss(Mobile):
             if damage > 0:
                 if hasattr(tgt, 'send'):      # a pet holding the boss has nobody to tell
                     await tgt.send(f"{self.name}'s {name} hits you! [{damage}]")
-                await tgt.take_damage(damage, self)
+                await tgt.take_damage(damage, self, self._ability_school(ability))
 
         if ability.get('heal_pct'):
             heal_amount = int(self.max_hp * (ability['heal_pct'] / 100))
@@ -322,6 +322,13 @@ class Boss(Mobile):
             ev.emit(self.room, k, src=self, **fields)
         except Exception:
             pass
+
+    @staticmethod
+    def _ability_school(ability: Dict) -> str:
+        """The harm an ability deals (what worn resistances answer to): its own `element`, else
+        what its name says (Frost Breath, Plague Touch; a blow is physical)."""
+        import combat_range
+        return combat_range.harm_school(ability.get('name'), ability.get('element'))
 
     def _calculate_ability_damage(self, ability: Dict) -> int:
         if ability.get('damage_dice'):

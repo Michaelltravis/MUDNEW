@@ -16,6 +16,7 @@ Design (owner: "think about the classes and what ranges make sense"):
   point. Rangers start with a bow.
 """
 import math
+import re
 import time
 
 MELEE = 2.5          # a sword's reach, edge to edge, generous for a top-down view
@@ -252,6 +253,49 @@ def spell_school(name, spell=None, caster=None):
         req = req[0]
     cls = str(req or getattr(caster, 'char_class', '') or '').lower()
     return _CLASS_SCHOOL.get(cls, 'arcane')
+
+
+# ---- what kind of harm a creature's ability, a lingering effect or a hazard does ----
+# (worn gear's resistances answer to it, Player.resistance). Each word is matched against the
+# start of a word of the name (a word of three letters or fewer only against a whole word: 'ice'
+# is not 'device'), first match in this order: the blows first ('Blade Storm', 'Mirror Blade'),
+# then the element before how it comes ('Frost Breath' is frost; a breath naming none is fire).
+_HARM_WORDS = (
+    ('blade', 'physical'), ('shockwave', 'physical'), ('shatter', 'physical'),
+    ('censure', 'holy'), ('gilded', 'holy'), ('holy', 'holy'), ('smite', 'holy'), ('divine', 'holy'), ('radiant', 'holy'),
+    ('necrotic', 'necrotic'), ('soul', 'necrotic'), ('death', 'necrotic'), ('drain', 'necrotic'), ('wail', 'necrotic'),
+    ('wasting', 'necrotic'), ('hunger', 'necrotic'), ('wither', 'necrotic'), ('decay', 'necrotic'), ('mistrot', 'necrotic'),
+    ('plague', 'disease'), ('pestilen', 'disease'), ('disease', 'disease'), ('miasma', 'disease'), ('blight', 'disease'), ('rot', 'disease'),
+    ('poison', 'poison'), ('venom', 'poison'), ('toxic', 'poison'), ('acid', 'poison'), ('serpent', 'poison'),
+    ('shadow', 'shadow'), ('black', 'shadow'), ('eclipse', 'shadow'), ('fallen', 'shadow'), ('severing', 'shadow'),
+    ('ashen', 'shadow'), ('void', 'shadow'), ('dark', 'shadow'), ('curse', 'shadow'),
+    ('psychic', 'arcane'), ('mind', 'arcane'), ('disintegrat', 'arcane'), ('arcane', 'arcane'), ('mirror', 'arcane'),
+    ('prismatic', 'arcane'), ('elemental', 'arcane'), ('color', 'arcane'), ('starfall', 'arcane'), ('event', 'arcane'),
+    ('accounting', 'arcane'), ('debt', 'arcane'), ('missile', 'arcane'), ('magic', 'arcane'),
+    ('frost', 'frost'), ('permafrost', 'frost'), ('ice', 'frost'), ('icy', 'frost'), ('cold', 'frost'), ('chill', 'frost'),
+    ('freez', 'frost'), ('blizzard', 'frost'), ('avalanche', 'frost'),
+    ('lightning', 'lightning'), ('thunder', 'lightning'), ('storm', 'lightning'), ('shock', 'lightning'), ('spark', 'lightning'),
+    ('fire', 'fire'), ('flame', 'fire'), ('inferno', 'fire'), ('searing', 'fire'), ('burn', 'fire'), ('meteor', 'fire'),
+    ('bomb', 'fire'), ('slag', 'fire'), ('smoulder', 'fire'), ('magma', 'fire'), ('lava', 'fire'),
+    ('vine', 'nature'), ('entangle', 'nature'), ('thorn', 'nature'), ('bramble', 'nature'), ('root', 'nature'),
+    ('bell', 'sound'), ('peal', 'sound'), ('discord', 'sound'), ('silence', 'sound'), ('cry', 'sound'), ('roar', 'sound'),
+    ('sonic', 'sound'), ('requiem', 'sound'), ('shriek', 'sound'), ('scream', 'sound'), ('howl', 'sound'),
+    ('breath', 'fire'),
+)
+_HARM_ALIASES = {'cold': 'frost', 'ice': 'frost', 'acid': 'poison', 'electric': 'lightning', 'psychic': 'arcane'}
+
+
+def harm_school(name, element=None):
+    """The school of harm a named ability, breath, lingering effect or hazard deals ('physical'
+    for a blow); an ability's own `element` says it outright."""
+    if element:
+        el = str(element).lower()
+        return _HARM_ALIASES.get(el, el)
+    words = re.findall(r'[a-z]+', str(name or '').lower())
+    for word, school in _HARM_WORDS:
+        if any(w == word or (len(word) > 3 and w.startswith(word)) for w in words):
+            return school
+    return 'physical'
 
 
 async def spell_out_of_range(caster, target, spell_name, spell):

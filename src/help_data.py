@@ -3150,7 +3150,13 @@ HELP_TOPICS = {'auction': {'category': 'command',
                           'WIS: healing potency, spell resilience, tracking/taming.\n'
                           'CHA: bard inspiration, social checks, vendor reactions.\n'
                           '\n'
-                          'Many skills add a small bonus from their primary stat.',
+                          'Many skills add a small bonus from their primary stat.\n'
+                          '\n'
+                          'Worn gear adds to your stats, health, mana and moves while\n'
+                          'worn. It may also ward against a kind of harm (fire, cold,\n'
+                          'lightning, poison, disease, shadow, holy, arcane, nature,\n'
+                          'sound; at most 75%), add to saving throws, resist spells or\n'
+                          "quicken you. 'score' lists what your gear wards against.",
            'syntax': 'stats',
            'title': 'Stats'},
  'stop': {'category': 'command',

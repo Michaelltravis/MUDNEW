@@ -1187,3 +1187,64 @@ to-hit and damage numbers.
   - Levels and spells move the base; taking gear off lowers health.
   - Dexterity from gear counts once in to-hit.
   - A creature's attributes stay its own.
+
+### Resistances, saves and haste from gear (Push 24) (owner: "Make resistances and haste from gear work too")
+Before, an item's fire or poison resistance, its saves and its haste were listed and did
+nothing. Every spell and creature attack also arrived as untyped damage, so no resistance
+could have applied anyway.
+- **Gear turns aside each kind of harm** (`player.py` `Player.resistance`, applied first in
+  `take_damage`).
+  - The kinds: fire, frost (items say cold), lightning, poison (acid too), disease, shadow,
+    necrotic (a shadow ward covers it as well), holy, arcane, nature and sound.
+  - Items name it `<kind>_resist`; set bonuses count. A ward never turns more than 75%.
+  - The hero is told what their gear turned aside: "Your gear turns aside 12 of the fire
+    damage."
+- **Every source now says what kind of harm it is**, so a ward has something to meet:
+  - **Spells** strike as their school (`combat_range.spell_school`).
+  - **Creature abilities, breaths, lingering effects and hazards** use one table,
+    `combat_range.harm_school`. It names the element before the delivery: Frost Breath is
+    frost, a breath that names nothing is fire, and Blade Storm and Shockwave are blows.
+  - **Boss abilities:** 69 of the 100 are elemental now, among them Fire Breath, Plague Touch,
+    Soul Rend, Psychic Storm, Great Bell and Vine Entangle. An ability's own `element` key
+    settles a shared name: the Poisoner's Miasma is poison, Pestilence's a disease.
+  - **Creatures' spells** (fireball, lightning bolt, ice storm, shadow bolt, magic missile), a
+    dragon's fire breath and venomous bites.
+  - **Poison, burning and plague ticks** are warded when they land. A bleed is a wound and
+    stays unwarded.
+  - **Hazards:** gas vents, flames, lightning through water, freezing water, thorns, burning
+    rooms, storm lightning and blizzard cold.
+  - **Other sources:** a world boss's blast (a lich's is death magic, a dragon's fire); a
+    creature's fire shield searing a hero who strikes it; legendary weapon procs, a nightmare
+    mount's flames, envenomed blades and a lich acolyte's bolt (these last four matter in
+    player-versus-player fights).
+- **Saving throws count gear.**
+  - Items give saves the old way: a percent where lower is better, so -10 is +2 on the d20.
+  - The throw's sign is fixed. Shield of Faith and Holy Aura used to make their wearers
+    worse at saving.
+- **Spell resistance from gear counts.** It gives a chance to shrug off a spell's hold and
+  takes a share off its damage, creatures' spells included (as are Aegis and Holy Aura's).
+- **Curse wards** (`curse_resist`) give that chance for a curse to fail.
+- **Haste from gear:** an item flagged `haste`, or with a haste affect, gives the spell's extra
+  swing about every other round.
+  - The Gear of Infinite Motion, the one item that quickens, can be held now.
+  - Endgame trinkets with stats and no slot are worn where their name says (the Amulet of
+    Light at the neck) or held.
+- **Shown where you look:** `score` has a "Gear:" line, and the `/play` character sheet a row
+  of chips: fire 20%, saves +2, spells 10%, hasted.
+- **Creatures are as they were:** they have no wards. Typing their attacks changes only what
+  a hero's gear meets. A fire shield still burns only those who strike in melee, so it no
+  longer burns a dragon for breathing on its wearer.
+- **Measured again** (`docs/balance/marquee.md`, "Measured again with gear wards"): lone heroes'
+  quests moved within noise, and no class got harder. The zone bosses eased a little (a lone
+  hero's median worst 49%, from 51%; 35 deaths in 360 fights, from 39), most of all the
+  spider queens behind a poison ward. Nothing was retuned.
+- **Tests:** `tests/test_item_stats.py`:
+  - Wards, their cap and warded harm.
+  - Spells strike as their school.
+  - Saves work both ways; spell and curse wards work.
+  - The held Gear brings an extra swing.
+  - Every boss ability has its kind, and an `element` key settles it.
+  - A poison tick is warded and a bleed is not.
+  - A boss's Fire Breath meets a fire ward, and the hero is told.
+  - A creature's fireball meets a fire ward and spell resistance.
+  - A creature's fire shield sears less behind a fire ward.

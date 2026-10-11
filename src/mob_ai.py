@@ -276,6 +276,9 @@ async def _cast_offensive(mob, target, spell):
         except Exception:
             pass
         damage = max(1, min(damage, int(getattr(target, 'max_hp', damage) * 0.6)))
+    # it burns, freezes or shocks as its school: what a worn resistance answers to
+    import combat_range
+    school = combat_range.harm_school(spell_name)
     mob.mana = max(0, mob.mana - mana_cost)
     # Mirrorward (spells.py, spell_reflect): the spell turns back on its caster, and the ward is spent
     if 'spell_reflect' in (getattr(target, 'affect_flags', None) or set()):
@@ -284,16 +287,20 @@ async def _cast_offensive(mob, target, spell):
             if a.applies_to == 'spell_reflect':
                 AffectManager.remove_affect(target, a)
         await mob.room.send_to_room(f"{c['bright_cyan']}{target.name}'s ward flings {mob.name}'s spell back! [{damage}]{c['reset']}")
-        if await mob.take_damage(damage, target):
+        if await mob.take_damage(damage, target, school):
             from combat import CombatHandler
             await CombatHandler.handle_death(target, mob)
         return
+    # the target's spell resistance (a percent, worn gear's among it) blunts it, as a hero's spell
+    resist = int(getattr(target, 'spell_resist', 0) or 0)
+    if resist > 0:
+        damage = max(1, int(damage * (100 - min(75, resist)) / 100))
     await mob.room.send_to_room(
         f"{c['bright_magenta']}{mob.name} {msg} {target.name}! [{damage}]{c['reset']}"
     )
     if hasattr(target, 'send'):
         await target.send(f"{c['bright_red']}{mob.name}'s spell hits you for {damage} damage!{c['reset']}")
-    killed = await target.take_damage(damage, mob)
+    killed = await target.take_damage(damage, mob, school)
     if killed:
         from combat import CombatHandler
         await CombatHandler.handle_death(mob, target)
@@ -986,7 +993,7 @@ async def _resolve_legacy(mob, target, which):
         await mob.room.send_to_room(
             f"{c['bright_red']}{mob.name} breathes a torrent of fire over {target.name}! [{dmg}]{c['reset']}"
         )
-        if await target.take_damage(dmg, mob):
+        if await target.take_damage(dmg, mob, 'fire'):
             await CombatHandler.handle_death(mob, target)
     elif which == 'poison':
         damage = max(1, int(mob.roll_dice(mob.damage_dice) * 0.5))
@@ -1011,7 +1018,7 @@ async def _resolve_legacy(mob, target, which):
                     await target.send(f"{c['green']}You feel poison coursing through your veins!{c['reset']}")
         except Exception:
             pass
-        if await target.take_damage(dmg, mob):
+        if await target.take_damage(dmg, mob, 'poison'):
             await CombatHandler.handle_death(mob, target)
     else:   # paralyze
         if _braced(target) or _sidestep_roll(target):

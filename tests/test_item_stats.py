@@ -4,6 +4,8 @@ scores armour the right way round, and the weapon in hand decides the reach of a
 blow (a bow shoots whoever holds it; a caster's bolt whatever they hold). A player's health,
 mana, moves and six attributes count what they wear, everywhere: saved as their own, levelled
 and spelled as their own, falling back when the gear comes off; a creature's stay its own.
+Worn wards turn aside their kind of harm from every source (spells, creatures' breath and venom,
+boss abilities, lingering poison), gear saves and spell resistance count, and hasted gear quickens.
 
     python3 tests/test_item_stats.py
 """
@@ -322,10 +324,141 @@ async def resists_and_haste():
     check(hasted == plain + 1, f'a round with the Gear held brings one more swing ({plain} -> {hasted})')
 
 
+async def harm_sources():
+    """Creatures' breath, boss abilities, poison ticks and hazards strike as their kind of harm,
+    so worn wards turn them aside too."""
+    import combat_range as cr
+    from config import Config
+    from world import World
+    from objects import Object
+    from player import Player
+    from affects import AffectManager
+    from bosses import create_mob_from_prototype
+    import mob_ai
+    world = World(Config())
+    await world.load()
+
+    names = {'Fire Breath Cone': 'fire', 'Frost Breath': 'frost', 'Lightning Breath': 'lightning', 'Necrotic Breath': 'necrotic',
+             'Poison Spit': 'poison', 'Plague Touch': 'disease', 'Psychic Storm': 'arcane', 'Blade Storm': 'physical',
+             'Shockwave': 'physical', 'Searing Censure': 'holy', 'Searing Claw': 'fire', 'War Cry': 'sound',
+             'Vine Entangle': 'nature', "Death's Embrace": 'necrotic', 'Tail Sweep': 'physical', 'Crystal Spire': 'physical',
+             'burning': 'fire', 'garrote_bleed': 'physical', 'Requiem': 'sound', 'ice_storm': 'frost'}
+    wrong = {n: cr.harm_school(n) for n, want in names.items() if cr.harm_school(n) != want}
+    check(not wrong, f'each ability, breath and lingering harm has its kind ({wrong})')
+    check(cr.harm_school('Miasma') == 'disease' and cr.harm_school('Miasma', 'poison') == 'poison',
+          "an ability's own element says it outright (the Poisoner's Miasma is poison, Pestilence's a disease)")
+    every = {}
+    for proto in world.mob_prototypes.values():
+        for ab in (proto.get('boss_config') or {}).get('abilities') or []:
+            every[ab.get('name')] = cr.harm_school(ab.get('name'), ab.get('element'))
+    check(every.get('Miasma') is not None and sum(1 for s in every.values() if s != 'physical') >= 50,
+          f"most boss abilities are elemental ({sum(1 for s in every.values() if s != 'physical')} of {len(every)})")
+
+    def ring(**affects):
+        r = Object(0, world)
+        r.name = r.short_desc = 'a test ring'
+        r.item_type, r.wear_slot = 'armor', 'finger'
+        r.affects = [{'type': k, 'value': v} for k, v in affects.items()]
+        return r
+    class Said(Conn):
+        def __init__(self):
+            self.sent = []
+
+        async def send(self, message='', newline=True):
+            self.sent.append(str(message))
+    hero = Player.create_new(name='Harmward', password=None, race='human', char_class='warrior',
+                             stats={s: 13 for s in ('str', 'int', 'wis', 'dex', 'con', 'cha')}, world=world)
+    hero.connection = Said()
+    room = world.rooms.get(3001)
+    hero.room = room
+    room.characters.append(hero)
+    hero.equipment = {'finger1': ring(fire_resist=50, poison_resist=50, cold_resist=25)}
+
+    def fresh():
+        hero.set_base('max_hp', 100000)
+        hero.hp = hero.max_hp
+        hero.affects = [a for a in hero.affects if a.type != AffectManager.TYPE_DOT]
+
+    # a poison tick is warded; a bleed is a wound
+    fresh()
+    AffectManager.apply_affect(hero, {'name': 'poison', 'type': AffectManager.TYPE_DOT, 'applies_to': 'hp', 'value': 20, 'duration': 4})
+    await AffectManager.tick_affects(hero, poison_only=True)
+    poisoned = hero.max_hp - hero.hp
+    fresh()
+    AffectManager.apply_affect(hero, {'name': 'garrote_bleed', 'type': AffectManager.TYPE_DOT, 'applies_to': 'hp', 'value': 20, 'duration': 4})
+    await AffectManager.tick_affects(hero)
+    bled = hero.max_hp - hero.hp
+    check(poisoned == 10 and bled == 20, f'a poison tick of 20 is 10 behind a poison ward; a bleed still 20 ({poisoned}, {bled})')
+    fresh()
+
+    # a boss's breath
+    boss = create_mob_from_prototype(dict(world.mob_prototypes[9706]), world)
+    boss.room = room
+    room.characters.append(boss)
+
+    async def ability(ab):
+        fresh()
+        await boss._resolve_ability(dict(ab, damage=200), hero)
+        return hero.max_hp - hero.hp
+    try:
+        breath = await ability({'name': 'Fire Breath Cone'})
+        frost = await ability({'name': 'Frost Breath'})
+        blow = await ability({'name': 'Tail Sweep'})
+        miasma = await ability({'name': 'Miasma', 'element': 'poison'})
+        check((breath, frost, blow, miasma) == (100, 150, 200, 100),
+              f"a boss's Fire Breath 200 -> 100 behind a fire ward, Frost Breath 150, a tail 200, the Poisoner's Miasma 100 "
+              f"({breath}, {frost}, {blow}, {miasma})")
+        check('turns aside 100 of the poison' in ' '.join(hero.connection.sent[-4:]), 'the hero is told their gear turned it aside')
+
+        # a creature's fireball, and spell resistance on gear
+        caster = create_mob_from_prototype(dict(world.mob_prototypes[9706]), world)
+        caster.room = room
+        caster.is_boss = True          # its numbers as they come (no lone-caster cap)
+        caster.level, caster.mana = 40, 1000
+        import random
+        state = random.getstate()
+        try:
+            fresh()
+            random.seed(3)
+            await mob_ai._cast_offensive(caster, hero, mob_ai.CASTER_OFFENSIVE[0])
+            warded = hero.max_hp - hero.hp
+            hero.equipment = {}
+            fresh()
+            random.seed(3)
+            await mob_ai._cast_offensive(caster, hero, mob_ai.CASTER_OFFENSIVE[0])
+            bare = hero.max_hp - hero.hp
+            hero.equipment = {'finger1': ring(spell_resist=20)}
+            fresh()
+            random.seed(3)
+            await mob_ai._cast_offensive(caster, hero, mob_ai.CASTER_OFFENSIVE[0])
+            resisted = hero.max_hp - hero.hp
+        finally:
+            random.setstate(state)
+        check(bare > 0 and warded == max(1, bare // 2) and resisted == max(1, int(bare * 0.8)),
+              f"a creature's fireball is fire (half behind the ward) and spell resistance blunts it ({bare} -> {warded}, {resisted})")
+
+        # a creature's fire shield sears a hero who strikes it less behind a fire ward
+        hero.equipment = {'finger1': ring(fire_resist=50)}
+        boss.flags = list(getattr(boss, 'flags', None) or []) + ['fire_shield']
+        boss.hp = boss.max_hp = 10 ** 6
+        fresh()
+        await boss.take_damage(160, hero, 'physical')
+        seared = hero.max_hp - hero.hp
+        hero.equipment = {}
+        fresh()
+        await boss.take_damage(160, hero, 'physical')
+        check((seared, hero.max_hp - hero.hp) == (10, 20), f"a fire shield's sear 20 -> 10 behind a fire ward ({seared}, {hero.max_hp - hero.hp})")
+    finally:
+        for ch in (boss, hero):
+            if ch in room.characters:
+                room.characters.remove(ch)
+
+
 async def main():
     await offline()
     await gear_stats()
     await resists_and_haste()
+    await harm_sources()
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
     sys.exit(1 if failures else 0)
 

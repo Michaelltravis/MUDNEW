@@ -1156,7 +1156,7 @@ class Mobile(Character):
                 f"{c['bright_red']}{self.name} {attack_type} {target.name}! [{damage}]{c['reset']}"
             )
             
-            killed = await target.take_damage(damage, self)
+            killed = await target.take_damage(damage, self, {'poisons': 'poison', 'breathes fire on': 'fire'}.get(attack_type, 'physical'))
             if killed:
                 from combat import CombatHandler
                 await CombatHandler.handle_death(self, target)
@@ -1221,6 +1221,8 @@ class Mobile(Character):
                 and ('fire_shield' in wards or 'fire_shield' in (getattr(self, 'flags', None) or ()))
                 and getattr(attacker, 'hp', 0) > 0):
             burn = max(2, min(25, amount // 8))
+            if hasattr(attacker, 'resistance'):      # a hero's fire ward
+                burn = max(1, burn * (100 - attacker.resistance('fire')) // 100)
             attacker.hp -= burn
             if hasattr(attacker, 'send'):
                 await attacker.send(f"{Config().COLORS['red']}{self.name}'s flames sear you! [{burn}]{Config().COLORS['reset']}")
@@ -1250,6 +1252,8 @@ class Mobile(Character):
         # Paladin Retribution Aura (nearby allies): thorns damage to attacker
         if amount > 0 and attacker and 'retribution' in self.get_paladin_auras():
             thorn = max(2, min(20, int(amount * 0.10)))
+            if hasattr(attacker, 'resistance'):      # a hero's holy ward
+                thorn = max(1, thorn * (100 - attacker.resistance('holy')) // 100)
             try:
                 attacker.hp -= thorn
                 if hasattr(attacker, 'send'):

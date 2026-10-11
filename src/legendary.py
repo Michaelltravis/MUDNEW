@@ -64,6 +64,12 @@ PROC_TYPES = {
     'on_defend': 'When hit',
 }
 
+# the harm each on-hit proc deals (what a worn resistance answers to); the rest are blows
+PROC_SCHOOL = {'gravity_crush': 'arcane', 'memory_wound': 'arcane', 'echo_shatter': 'sound', 'rust_devour': 'disease',
+               'hunger_drain': 'necrotic', 'clockwork_unwind': 'arcane', 'root_pierce': 'nature', 'void_cut': 'shadow',
+               'dream_fracture': 'arcane'}
+
+
 async def trigger_on_hit_procs(attacker, defender, damage: int, weapon=None):
     """Called from combat when attacker lands a hit. Checks weapon + all equipped items."""
     if not hasattr(attacker, 'equipment'):
@@ -92,6 +98,7 @@ async def trigger_on_hit_procs(attacker, defender, damage: int, weapon=None):
             
             effect = proc.get('effect', '')
             proc_dmg = proc.get('damage', 0)
+            school = PROC_SCHOOL.get(effect, 'physical')
             
             if effect == 'phantom_drown':
                 actual = random.randint(proc_dmg // 2, proc_dmg)
@@ -100,7 +107,7 @@ async def trigger_on_hit_procs(attacker, defender, damage: int, weapon=None):
                     await attacker.send(f"{c['bright_cyan']}🌊 Phantom water fills {defender.name}'s lungs — they choke and stagger! [{actual}]{c['reset']}")
                 if hasattr(defender, 'send'):
                     await defender.send(f"{c['bright_cyan']}🌊 You hear the roar of a drowned ocean — water that isn't there floods your throat! [{actual}]{c['reset']}")
-                await defender.take_damage(actual, attacker)
+                await defender.take_damage(actual, attacker, school)
 
             elif effect == 'gravity_crush':
                 actual = random.randint(proc_dmg // 2, proc_dmg)
@@ -109,7 +116,7 @@ async def trigger_on_hit_procs(attacker, defender, damage: int, weapon=None):
                     await attacker.send(f"{c['bright_magenta']}◉ Gravity inverts around {defender.name} — their bones groan under impossible weight! [{actual}]{c['reset']}")
                 if hasattr(defender, 'send'):
                     await defender.send(f"{c['bright_magenta']}◉ The world crushes inward — gravity itself rejects you! [{actual}]{c['reset']}")
-                await defender.take_damage(actual, attacker)
+                await defender.take_damage(actual, attacker, school)
 
             elif effect == 'memory_wound':
                 actual = random.randint(proc_dmg // 2, proc_dmg)
@@ -118,7 +125,7 @@ async def trigger_on_hit_procs(attacker, defender, damage: int, weapon=None):
                     await attacker.send(f"{c['bright_yellow']}✧ The blade cuts through {defender.name}'s memories — old wounds reopen! [{actual}]{c['reset']}")
                 if hasattr(defender, 'send'):
                     await defender.send(f"{c['bright_yellow']}✧ Every scar you've ever earned splits open at once! [{actual}]{c['reset']}")
-                await defender.take_damage(actual, attacker)
+                await defender.take_damage(actual, attacker, school)
 
             elif effect == 'echo_shatter':
                 actual = random.randint(proc_dmg // 2, proc_dmg)
@@ -127,7 +134,7 @@ async def trigger_on_hit_procs(attacker, defender, damage: int, weapon=None):
                     await attacker.send(f"{c['bright_white']}🔔 A single perfect note shatters the air around {defender.name}! [{actual}]{c['reset']}")
                 if hasattr(defender, 'send'):
                     await defender.send(f"{c['bright_white']}🔔 A sound beyond hearing splits your skull from the inside! [{actual}]{c['reset']}")
-                await defender.take_damage(actual, attacker)
+                await defender.take_damage(actual, attacker, school)
                 # Echo chains to one nearby enemy
                 if attacker.room:
                     for char in attacker.room.characters:
@@ -136,7 +143,7 @@ async def trigger_on_hit_procs(attacker, defender, damage: int, weapon=None):
                             if chain_dmg > 0:
                                 if hasattr(attacker, 'send'):
                                     await attacker.send(f"{c['bright_white']}🔔 The echo rebounds into {char.name}! [{chain_dmg}]{c['reset']}")
-                                await char.take_damage(chain_dmg, attacker)
+                                await char.take_damage(chain_dmg, attacker, school)
                             break
 
             elif effect == 'rust_devour':
@@ -146,7 +153,7 @@ async def trigger_on_hit_procs(attacker, defender, damage: int, weapon=None):
                     await attacker.send(f"{c['yellow']}🦠 Rust crawls across {defender.name}'s flesh like a living infection! [{actual}]{c['reset']}")
                 if hasattr(defender, 'send'):
                     await defender.send(f"{c['yellow']}🦠 Your skin oxidizes and flakes — you're rusting alive! [{actual}]{c['reset']}")
-                await defender.take_damage(actual, attacker)
+                await defender.take_damage(actual, attacker, school)
 
             elif effect == 'glass_splinter':
                 actual = random.randint(proc_dmg // 2, proc_dmg)
@@ -155,14 +162,14 @@ async def trigger_on_hit_procs(attacker, defender, damage: int, weapon=None):
                     await attacker.send(f"{c['bright_cyan']}🔷 Glass shards erupt from {defender.name}'s own reflection! [{actual}]{c['reset']}")
                 if hasattr(defender, 'send'):
                     await defender.send(f"{c['bright_cyan']}🔷 Your reflection shatters outward — glass bites into your flesh! [{actual}]{c['reset']}")
-                await defender.take_damage(actual, attacker)
+                await defender.take_damage(actual, attacker, school)
                 # AoE splash from shards
                 if attacker.room:
                     for char in attacker.room.characters:
                         if char != attacker and char != defender and char.is_alive and not hasattr(char, 'connection'):
                             splash = actual // 3
                             if splash > 0:
-                                await char.take_damage(splash, attacker)
+                                await char.take_damage(splash, attacker, school)
 
             elif effect == 'hunger_drain':
                 actual = random.randint(proc_dmg // 2, proc_dmg)
@@ -173,7 +180,7 @@ async def trigger_on_hit_procs(attacker, defender, damage: int, weapon=None):
                     await attacker.send(f"{c['bright_red']}👁 The blade feeds — {defender.name}'s vitality pours into you! (+{heal} HP) [{actual}]{c['reset']}")
                 if hasattr(defender, 'send'):
                     await defender.send(f"{c['bright_red']}👁 Something hollow and starving reaches through the wound and pulls! [{actual}]{c['reset']}")
-                await defender.take_damage(actual, attacker)
+                await defender.take_damage(actual, attacker, school)
 
             elif effect == 'clockwork_unwind':
                 actual = random.randint(proc_dmg // 2, proc_dmg)
@@ -182,14 +189,14 @@ async def trigger_on_hit_procs(attacker, defender, damage: int, weapon=None):
                     await attacker.send(f"{c['yellow']}⚙ Gears grind — {defender.name}'s movements stutter and unwind! [{actual}]{c['reset']}")
                 if hasattr(defender, 'send'):
                     await defender.send(f"{c['yellow']}⚙ Your joints lock, your muscles seize — time runs backward through your body! [{actual}]{c['reset']}")
-                await defender.take_damage(actual, attacker)
+                await defender.take_damage(actual, attacker, school)
 
             elif effect == 'root_pierce':
                 actual = random.randint(proc_dmg // 2, proc_dmg)
                 extra_damage += actual
                 if hasattr(attacker, 'send'):
                     await attacker.send(f"{c['green']}🌿 Barbed roots erupt from the wound and burrow deeper into {defender.name}! [{actual}]{c['reset']}")
-                await defender.take_damage(actual, attacker)
+                await defender.take_damage(actual, attacker, school)
 
             elif effect == 'void_cut':
                 actual = random.randint(proc_dmg // 2, proc_dmg)
@@ -198,7 +205,7 @@ async def trigger_on_hit_procs(attacker, defender, damage: int, weapon=None):
                     await attacker.send(f"{c['bright_magenta']}⊘ The blade cuts a seam in reality — {defender.name} bleeds into the void! [{actual}]{c['reset']}")
                 if hasattr(defender, 'send'):
                     await defender.send(f"{c['bright_magenta']}⊘ A wound opens that leads nowhere — your essence leaks into emptiness! [{actual}]{c['reset']}")
-                await defender.take_damage(actual, attacker)
+                await defender.take_damage(actual, attacker, school)
 
             elif effect == 'dream_fracture':
                 actual = random.randint(proc_dmg // 2, proc_dmg)
@@ -207,7 +214,7 @@ async def trigger_on_hit_procs(attacker, defender, damage: int, weapon=None):
                     await attacker.send(f"{c['bright_magenta']}💤 {defender.name} flickers — caught between waking and dreaming! [{actual}]{c['reset']}")
                 if hasattr(defender, 'send'):
                     await defender.send(f"{c['bright_magenta']}💤 Reality dissolves — are you awake? Were you ever? [{actual}]{c['reset']}")
-                await defender.take_damage(actual, attacker)
+                await defender.take_damage(actual, attacker, school)
 
     return extra_damage
 

@@ -139,7 +139,7 @@ async def spring_trap(room, victim, trap=None, forced=False):
         await room.send_to_room(
             f"{c['green']}⚠ A vent hisses — {name} is engulfed in noxious gas! [{dmg}]{c['reset']}"
         )
-        killed = await victim.take_damage(dmg, None)
+        killed = await victim.take_damage(dmg, None, 'poison')
     # (take_damage has already died — a player's or a creature's: a second die() was a second
     # death, and for a player a second death penalty)
     if killed and hasattr(victim, 'die') and not hasattr(victim, 'account_name') and not getattr(victim, '_dying', False):
@@ -408,7 +408,7 @@ async def try_shove(attacker, victim, room):
             })
         except Exception:
             pass
-        if await victim.take_damage(dmg, attacker):
+        if await victim.take_damage(dmg, attacker, 'fire'):
             from combat import CombatHandler
             await CombatHandler.handle_death(attacker, victim)
     elif what == 'ledge':
@@ -484,7 +484,7 @@ async def elemental_cast(caster, target, spell_name, room=None):
             if hasattr(ch, 'send'):
                 await ch.send(f"{c['bright_cyan']}Electricity surges up through the water! [{splash}]{c['reset']}")
             try:
-                if await ch.take_damage(splash, caster):
+                if await ch.take_damage(splash, caster, 'lightning'):
                     from combat import CombatHandler
                     await CombatHandler.handle_death(caster, ch)
             except Exception:
@@ -510,7 +510,7 @@ async def heavy_impact(room):
         try:
             if hasattr(ch, 'send'):
                 await ch.send(f"{c['bright_cyan']}You crash through into the freezing water! [{dmg}]{c['reset']}")
-            if await ch.take_damage(dmg, None) and hasattr(ch, 'die') and not hasattr(ch, 'account_name') and not getattr(ch, '_dying', False):
+            if await ch.take_damage(dmg, None, 'frost') and hasattr(ch, 'die') and not hasattr(ch, 'account_name') and not getattr(ch, '_dying', False):
                 await ch.die(None)
         except Exception:
             pass
@@ -540,7 +540,7 @@ async def tick(world):
             try:
                 if hasattr(ch, 'send'):
                     await ch.send(f"{c['green']}🌿 The thorns rake you as you fight! [{dmg}]{c['reset']}")
-                if await ch.take_damage(dmg, None) and hasattr(ch, 'die') and not hasattr(ch, 'account_name') and not getattr(ch, '_dying', False):
+                if await ch.take_damage(dmg, None, 'nature') and hasattr(ch, 'die') and not hasattr(ch, 'account_name') and not getattr(ch, '_dying', False):
                     await ch.die(None)
             except Exception:
                 pass
@@ -568,7 +568,7 @@ async def tick(world):
             try:
                 if hasattr(ch, 'send'):
                     await ch.send(f"{c['bright_red']}The burning room sears you! [{dmg}]{c['reset']}")
-                if await ch.take_damage(dmg, None) and hasattr(ch, 'die') and not hasattr(ch, 'account_name') and not getattr(ch, '_dying', False):
+                if await ch.take_damage(dmg, None, 'fire') and hasattr(ch, 'die') and not hasattr(ch, 'account_name') and not getattr(ch, '_dying', False):
                     await ch.die(None)
             except Exception:
                 pass

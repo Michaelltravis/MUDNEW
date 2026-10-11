@@ -242,6 +242,21 @@ class AffectManager:
         return 'dealt'
 
     @staticmethod
+    def _dot_amount(character, affect):
+        """A lingering harm's tick, less what a player's worn gear turns aside of its kind
+        (poison, burning, plague...: combat_range.harm_school; a bleed is a wound, unwarded)."""
+        amount = affect.value
+        if amount > 1 and hasattr(character, 'resistance'):
+            try:
+                import combat_range
+                resist = character.resistance(combat_range.harm_school(affect.name))
+            except Exception:
+                resist = 0
+            if resist:
+                amount = max(1, int(amount * (100 - resist) / 100))
+        return amount
+
+    @staticmethod
     async def tick_affects(character: 'Character', poison_only: bool = False):
         """
         Process affects for one tick, decrementing durations and removing expired affects.
@@ -261,13 +276,14 @@ class AffectManager:
             if poison_only:
                 if affect.type == AffectManager.TYPE_DOT and affect.name == 'poison':
                     # Damage over time
-                    fate = await AffectManager._dot_kills(character, affect.value)
+                    amount = AffectManager._dot_amount(character, affect)
+                    fate = await AffectManager._dot_kills(character, amount)
                     if fate == 'dead':
                         return
                     if fate == 'dealt':
                         continue
                     old_hp = character.hp
-                    character.hp = max(1, character.hp - affect.value)
+                    character.hp = max(1, character.hp - amount)
                     damage_dealt = old_hp - character.hp
 
                     if damage_dealt > 0:
@@ -290,12 +306,13 @@ class AffectManager:
             # Apply DOT/HOT effects
             if affect.type == AffectManager.TYPE_DOT:
                 # Damage over time
-                fate = await AffectManager._dot_kills(character, affect.value)
+                amount = AffectManager._dot_amount(character, affect)
+                fate = await AffectManager._dot_kills(character, amount)
                 if fate == 'dead':
                     return
                 old_hp = character.hp
                 if fate is None:
-                    character.hp = max(1, character.hp - affect.value)
+                    character.hp = max(1, character.hp - amount)
                 damage_dealt = old_hp - character.hp
 
                 if damage_dealt > 0:
