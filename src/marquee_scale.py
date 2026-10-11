@@ -27,7 +27,7 @@ specials in world/zones/zone_097.json) is scaled by:
 set so a lone hero of any class loses up to about half their health to an elite or a warden and two
 thirds of it to the trial's boss at the worst moment of the fight, and seldom dies (much of it in
 blows they can see coming and step out of). A lone hero who knows the way plays a quest through
-in 40-80 minutes. The measurements, how they were taken and what they found:
+in 40-72 minutes. The measurements, how they were taken and what they found:
 docs/balance/marquee.md.
 """
 import math
@@ -39,8 +39,8 @@ ROUNDS = {'elite': 22, 'minion': 6, 'warden': 40, 'wave': 6, 'boss': 60, 'add': 
 # how each class's damage compares with the median hero's, measured with the real combat code
 # (tools/balance/sim.py, levels 45-60 alone; docs/balance/marquee.md): a quest's creatures are
 # sized to the classes that embarked, so every party's fights last about as long
-CLASS_K = {'warrior': 1.58, 'paladin': 1.11, 'cleric': 0.85, 'mage': 0.65, 'necromancer': 0.99, 'thief': 1.13,
-           'assassin': 1.59, 'ranger': 0.99, 'bard': 0.92}
+CLASS_K = {'warrior': 1.58, 'paladin': 1.22, 'cleric': 0.89, 'mage': 0.58, 'necromancer': 1.1, 'thief': 1.14,
+           'assassin': 1.6, 'ranger': 0.99, 'bard': 0.92}
 
 
 # how hard each kind of creature hits, as a share of its own blows and specials (zone_097): health
@@ -50,8 +50,8 @@ FOE_DAMAGE = {'elite': 2.0, 'minion': 1.0, 'warden': 1.0, 'wave': 0.7, 'boss': 1
 # and how hard a class's quest creatures hit at level 45: what a lone hero of that class can stand
 # (a thief or a mage has half a warrior's health and no heals; a paladin heals and wears plate),
 # measured the same way (tools/balance/sim.py --calibrate; docs/balance/marquee.md)
-CLASS_D = {'warrior': 1.06, 'paladin': 1.33, 'cleric': 1.33, 'mage': 0.74, 'necromancer': 0.7, 'thief': 0.56,
-           'assassin': 0.8, 'ranger': 0.99, 'bard': 0.7}
+CLASS_D = {'warrior': 0.94, 'paladin': 1.77, 'cleric': 1.35, 'mage': 0.75, 'necromancer': 0.6, 'thief': 0.55,
+           'assassin': 0.77, 'ranger': 0.97, 'bard': 0.7}
 # ...and a little harder each level above it, as heroes grow sturdier (measured: 1.8% a level)
 LEVEL_D = 1.018
 

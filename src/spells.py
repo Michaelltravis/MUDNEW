@@ -341,6 +341,7 @@ SPELLS = {
         'name': 'Identify',
         'mana_cost': 20,
         'target': 'object',
+        'special': 'identify',
         'message_self': 'You examine the item closely...',
     },
     'teleport': {
@@ -650,6 +651,7 @@ SPELLS = {
     'divine_protection': {
         'name': 'Divine Protection',
         'mana_cost': 100,
+        'cooldown': 300,          # invulnerability is a lifesaver, not a stance (as divine_shield_master)
         'target': 'self',
         'duration_ticks': 3,
         'affects': [{'type': 'invulnerable', 'value': 1}],  # Nearly invulnerable
@@ -1929,7 +1931,6 @@ class SpellHandler:
         
         # Soul fragments reduce mana cost by 10% per fragment
         if hasattr(caster, 'soul_fragments') and caster.soul_fragments > 0:
-            import time
             if time.time() < getattr(caster, 'soul_fragment_expires', 0):
                 discount = mana_cost * 0.10 * caster.soul_fragments
                 mana_cost = max(1, int(mana_cost - discount))
@@ -1955,6 +1956,19 @@ class SpellHandler:
                 return
         except Exception:
             pass
+
+        # a spell's own cooldown (SPELLS 'cooldown', seconds), kept on the character
+        cooldown = spell.get('cooldown') or 0
+        if cooldown:
+            left = (getattr(caster, 'spell_cd', None) or {}).get(spell_name, 0) - time.time()
+            if left > 0:
+                await caster.send(f"{c['yellow']}{spell.get('name', spell_name)} is not ready yet ({int(left) + 1}s).{c['reset']}")
+                return
+
+        # a spell for the room's foes with none here strikes nothing: nothing is spent
+        if spell.get('target') == 'room' and spell_name not in cls.ROOM_NO_FOES_NEEDED and not cls.foes_in_room(caster):
+            await caster.send(f"{c['yellow']}There is nothing here for {spell.get('name', spell_name)} to strike.{c['reset']}")
+            return
 
         # Check proficiency for failure (after the target and reach checks: you can't
         # fizzle a spell at someone you can't reach). A spell known at 50% fizzles one cast in
@@ -1994,6 +2008,10 @@ class SpellHandler:
             await cls.apply_spell(caster, target, spell, spell_name)
         finally:
             caster._ability_scale = prev_scale
+        if cooldown:
+            if not isinstance(getattr(caster, 'spell_cd', None), dict):
+                caster.spell_cd = {}
+            caster.spell_cd[spell_name] = time.time() + cooldown
 
         # Talent procs: clearcast
         try:
@@ -2107,24 +2125,29 @@ class SpellHandler:
         
         # a creature that can't be charmed, put to sleep or blinded (its flags; bosses are never
         # charmed) shrugs it off: a charmed quest boss would end the fight for good
-        if target is not None and target != caster and not isinstance(target, str) and not hasattr(target, 'connection'):
-            flags = set(getattr(target, 'flags', ()) or ())
-            kinds = {a.get('type') for a in (spell.get('affects') or []) if isinstance(a, dict)}
-            from combat import CombatHandler
-            if (('charmed' in kinds and ('no_charm' in flags or CombatHandler.is_boss_mob(target)))
-                    or ('sleeping' in kinds and 'no_sleep' in flags) or ('blind' in kinds and 'no_blind' in flags)):
-                await caster.send(f"{c['yellow']}{target.name} is unaffected.{c['reset']}")
-                return
+        if target is not None and target != caster and spell.get('target') != 'room' and cls._immune(target, spell):
+            await caster.send(f"{c['yellow']}{target.name} is unaffected.{c['reset']}")
+            return
 
         # Saving throw (debuffs like sleep) before any message: a resisted spell never
         # announces that it worked
-        if spell.get('save') and target is not None and target != caster and not isinstance(target, str):
-            save_roll = random.randint(1, 20) + target.wis // 2
-            if save_roll > 10 + caster.level // 2:
-                await caster.send(f"{c['yellow']}{target.name} resists your spell!{c['reset']}")
-                if hasattr(target, 'send'):
-                    await target.send(f"{c['cyan']}You resist the spell!{c['reset']}")
-                return
+        if target is not None and target != caster and not isinstance(target, str) and cls._saves(caster, target, spell):
+            await caster.send(f"{c['yellow']}{target.name} resists your spell!{c['reset']}")
+            if hasattr(target, 'send'):
+                await target.send(f"{c['cyan']}You resist the spell!{c['reset']}")
+            return
+
+        # Mirrorward (spell_reflect): a hostile spell aimed at its bearer turns back on the caster,
+        # and the ward is spent
+        if (spell.get('target') == 'offensive' and target is not None and not isinstance(target, str)
+                and target is not caster and 'spell_reflect' in (getattr(target, 'affect_flags', None) or set())):
+            for a in list(getattr(target, 'affects', []) or []):
+                if a.applies_to == 'spell_reflect':
+                    AffectManager.remove_affect(target, a)
+            await caster.send(f"{c['bright_cyan']}{target.name}'s ward flings your spell back at you!{c['reset']}")
+            if hasattr(target, 'send'):
+                await target.send(f"{c['bright_cyan']}Your ward flings {caster.name}'s spell back!{c['reset']}")
+            target = caster
 
         # Send cast messages
         if isinstance(target, str):
@@ -2174,9 +2197,11 @@ class SpellHandler:
 
         # Apply damage spells
         if 'damage_dice' in spell:
-            # Room-target spells (like earthquake) handle damage in their special handler
+            # a room spell strikes every foe here (a handler with its own blast deals its own)
             if spell.get('target') == 'room':
-                pass
+                if spell.get('special') not in cls.ROOM_OWN_DAMAGE:
+                    for foe in cls.foes_in_room(caster):
+                        await cls._spell_damage(caster, foe, spell, spell_name)
             # Dispel evil should not harm non-evil targets
             elif spell.get('special') == 'dispel_evil' and (not hasattr(target, 'alignment') or target.alignment >= -100):
                 await caster.send(f"{c['yellow']}{target.name} is not evil enough to be affected.{c['reset']}")
@@ -2184,102 +2209,7 @@ class SpellHandler:
                     await target.send(f"{c['cyan']}You resist the holy power!{c['reset']}")
                 return
             else:
-                damage = cls.roll_dice(spell['damage_dice'])
-                damage += spell.get('damage_per_level', 0) * caster.level
-                # Affix bonuses: spell_power and per-spell bonus (percentage)
-                spell_bonus = caster.get_equipment_bonus('spell_power') + caster.get_equipment_bonus(spell_name) + getattr(caster, 'spell_power', 0)
-                if spell_bonus:
-                    damage = int(damage * (1 + (spell_bonus / 100)))
-
-                # Apply weather modifier to damage
-                if caster.room and caster.room.zone and hasattr(caster.room.zone, 'weather'):
-                    weather_mult = caster.room.zone.weather.get_spell_modifier(spell['name'])
-                    damage = int(damage * weather_mult)
-
-                # Soulstone bonus (necromancer offhand)
-                try:
-                    stone = caster.equipment.get('hold') if hasattr(caster, 'equipment') else None
-                    if stone and (getattr(stone, 'is_soulstone', False) or ('soulstone' in getattr(stone, 'flags', set()))):
-                        damage += getattr(stone, 'soulstone_spell_damage', 2)
-                except Exception:
-                    pass
-
-                # Mage arcane charges: +8% damage per charge
-                if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'mage':
-                    charges = getattr(caster, 'arcane_charges', 0)
-                    if charges > 0:
-                        damage = int(damage * (1 + (0.08 * charges)))
-                        await caster.send(f"{c['magenta']}Arcane charges amplify your spell! ({charges} charges, +{charges * 8}% damage){c['reset']}")
-
-                # Spell critical strike chance
-                # Base 5% + 1% per 2 INT above 10 + 0.5% per level
-                crit_chance = 5
-                int_bonus = (getattr(caster, 'int', 10) - 10) // 2
-                crit_chance += int_bonus
-                crit_chance += caster.level // 2
-                # Mage bonus: +5% spell crit
-                if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'mage':
-                    crit_chance += 5
-                # Talent bonuses
-                try:
-                    from talents import TalentManager
-                    crit_chance += int(TalentManager.get_talent_bonus(caster, 'stat_bonus', 'crit_chance'))
-                    # Combustion increases crit chance
-                    if hasattr(caster, 'affect_flags') and 'combustion' in caster.affect_flags:
-                        crit_chance += 30
-                except Exception:
-                    pass
-                crit_chance = min(crit_chance, 60)  # Cap at 60%
-                
-                is_crit = random.randint(1, 100) <= crit_chance
-                if is_crit:
-                    crit_mult = 1.5  # 150% damage
-                    # Mage gets better crits
-                    if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'mage':
-                        crit_mult = 2.0  # 200% damage
-                    try:
-                        from talents import TalentManager
-                        crit_mult += TalentManager.get_talent_bonus(caster, 'stat_bonus', 'crit_damage') / 100.0
-                    except Exception:
-                        pass
-                    damage = int(damage * crit_mult)
-                    await caster.send(f"{c['bright_yellow']}*** CRITICAL SPELL! ***{c['reset']}")
-
-                # Apply spell damage
-                damage_type = spell.get('damage_type', 'magic')
-                killed = await target.take_damage(damage, caster, damage_type=damage_type)
-
-                await caster.send(f"{c['bright_red']}Your spell does {damage} damage to {target.name}!{c['reset']}")
-
-                # elemental terrain interplay: fire ignites webbed rooms, frost
-                # freezes water into ice, lightning cast into water splashes
-                # everyone standing in the fight
-                try:
-                    from environment import elemental_cast
-                    await elemental_cast(caster, target, spell_name)
-                except Exception:
-                    pass
-
-                # Build arcane charges on offensive casts
-                if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'mage':
-                    if hasattr(caster, 'arcane_charges') and hasattr(caster, 'max_arcane_charges'):
-                        if caster.arcane_charges < caster.max_arcane_charges:
-                            caster.arcane_charges += 1
-                            await caster.send(f"{c['cyan']}Arcane charge gained ({caster.arcane_charges}/{caster.max_arcane_charges}).{c['reset']}")
-                
-                if killed:
-                    from combat import CombatHandler
-                    await CombatHandler.handle_death(caster, target)
-                elif not caster.is_fighting and target != caster:
-                    # Start combat if not already fighting
-                    from combat import CombatHandler
-                    await CombatHandler.start_combat(caster, target)
-                    
-                # Handle vampiric drain
-                if spell.get('special') == 'drain_hp':
-                    heal_amount = damage // 2
-                    caster.hp = min(caster.max_hp, caster.hp + heal_amount)
-                    await caster.send(f"{c['bright_green']}You absorb {heal_amount} life force!{c['reset']}")
+                await cls._spell_damage(caster, target, spell, spell_name)
                 
         # Apply healing spells
         elif 'heal_dice' in spell:
@@ -2348,6 +2278,14 @@ class SpellHandler:
                 old_hp = target.hp
                 target.hp = min(target.max_hp, target.hp + heal)
                 actual_heal = target.hp - old_hp
+                # Beacon of Light: a quarter of a heal on anyone else also mends the beacon's bearer
+                for bearer in cls.allies_in_room(caster):
+                    if bearer is not target and 'beacon_of_light' in (getattr(bearer, 'affect_flags', None) or set()) and actual_heal > 0:
+                        shared = min(bearer.max_hp - bearer.hp, max(1, actual_heal // 4))
+                        if shared > 0:
+                            bearer.hp += shared
+                            if hasattr(bearer, 'send'):
+                                await bearer.send(f"{c['bright_yellow']}The beacon shares the light with you (+{shared}).{c['reset']}")
                 
                 if target == caster:
                     await caster.send(f"{c['bright_green']}You heal {actual_heal} hit points!{c['reset']}")
@@ -2385,13 +2323,212 @@ class SpellHandler:
                 # Level 15: 100 + 30 = 130 ticks (~13 min)
                 # Level 30: 100 + 60 = 160 ticks (~16 min)
                 duration = duration + (caster.level * 2)
-            for affect in spell['affects']:
-                await cls.apply_affect(target, affect, duration, spell['name'], caster.level, caster=caster, spell_key=spell_name)
-                
+            # a room spell's curse falls on every foe here (each may be immune, or resist); a group
+            # spell's blessing on everyone in the group standing here
+            kind = spell.get('target')
+            if kind == 'room':
+                recipients = []
+                for foe in cls.foes_in_room(caster):
+                    if cls._immune(foe, spell) or cls._saves(caster, foe, spell):
+                        await caster.send(f"{c['yellow']}{foe.name} is unaffected.{c['reset']}")
+                    else:
+                        recipients.append(foe)
+            elif kind == 'group':
+                recipients = cls.allies_in_room(caster)
+            else:
+                recipients = [target]
+            for who in recipients:
+                for affect in spell['affects']:
+                    await cls.apply_affect(who, affect, duration, spell['name'], caster.level, caster=caster, spell_key=spell_name)
+                if kind == 'group' and who is not caster and hasattr(who, 'send'):
+                    await who.send(f"{c['bright_magenta']}{caster.name}'s {spell['name']} settles on you.{c['reset']}")
+
         # Handle special spells
         if spell.get('special'):
             await cls.handle_special_spell(caster, target, spell)
             
+    # room spells whose handler deals the blast itself (the per-foe damage above skips them)
+    ROOM_OWN_DAMAGE = {'earthquake', 'explode_corpse'}
+    # room spells cast with no foe in sight (a blessing on the ground, a cleansing of allies)
+    ROOM_NO_FOES_NEEDED = {'font_of_the_vigil', 'cleansing_rite', 'hallowed_ground'}
+    # NPCs who keep a post: never caught in a spell meant for foes
+    _SERVICE = ('guildmaster', 'trainer', 'shopkeeper', 'healer', 'banker', 'postmaster')
+
+    @staticmethod
+    def allies_in_room(caster, pets=False):
+        """The caster and the group members standing beside them (and, asked for, the pets and
+        companions of any of them here)."""
+        room = getattr(caster, 'room', None)
+        out = [caster]
+        for m in (getattr(getattr(caster, 'group', None), 'members', None) or []):
+            if m is not caster and getattr(m, 'room', None) is room and getattr(m, 'hp', 0) > 0:
+                out.append(m)
+        if pets and room is not None:
+            out += [ch for ch in list(room.characters) if getattr(ch, 'owner', None) in out and ch not in out]
+        return out
+
+    @classmethod
+    def foes_in_room(cls, caster):
+        """Whom a spell meant for the room's foes strikes: the creatures fighting the caster,
+        their group or their pets; before a fight, every creature here that may be attacked.
+        Never a player (a duel's foe aside), anyone's pet, a quest's figure, an NPC at their post,
+        nor anything in a peaceful room."""
+        room = getattr(caster, 'room', None)
+        if room is None or 'peaceful' in (getattr(room, 'flags', None) or ()):
+            return []
+        try:
+            import marquee
+            touch = lambda ch: marquee.can_touch(caster, ch)
+        except Exception:
+            touch = lambda ch: True
+        friends = cls.allies_in_room(caster, pets=True)
+
+        def foe(ch):
+            if ch in friends or getattr(ch, 'hp', 0) <= 0:
+                return False
+            if hasattr(ch, 'connection'):
+                return getattr(caster, 'fighting', None) is ch or getattr(ch, 'fighting', None) is caster
+            if getattr(ch, 'owner', None) is not None or getattr(ch, 'special', None) in cls._SERVICE:
+                return False
+            if (getattr(ch, 'marquee_tag', None) or {}).get('kind') == 'npc':
+                return False
+            return touch(ch)
+        here = [ch for ch in list(room.characters) if foe(ch)]
+        fighting = [ch for ch in here if getattr(ch, 'fighting', None) in friends or any(getattr(f, 'fighting', None) is ch for f in friends)]
+        return fighting or here
+
+    @staticmethod
+    def _immune(target, spell):
+        """A creature flagged against the spell's charm, sleep or blindness (and a boss against
+        any charm) shrugs it off."""
+        if target is None or isinstance(target, str) or hasattr(target, 'connection'):
+            return False
+        flags = set(getattr(target, 'flags', ()) or ())
+        kinds = {a.get('type') for a in (spell.get('affects') or []) if isinstance(a, dict)}
+        from combat import CombatHandler
+        return (('charmed' in kinds and ('no_charm' in flags or CombatHandler.is_boss_mob(target)))
+                or ('sleeping' in kinds and 'no_sleep' in flags) or ('blind' in kinds and 'no_blind' in flags))
+
+    @staticmethod
+    def _saves(caster, target, spell):
+        """A spell that allows a saving throw (spell['save']), resisted: d20 + half the target's
+        wisdom against 10 + half the caster's level."""
+        if not spell.get('save') or target is None or target is caster or isinstance(target, str):
+            return False
+        if random.randint(1, 100) <= max(0, int(getattr(target, 'spell_resist', 0) or 0)):
+            return True
+        roll = random.randint(1, 20) + getattr(target, 'wis', 10) // 2 - int(getattr(target, 'saving_throw', 0) or 0)
+        return roll > 10 + caster.level // 2
+
+    @classmethod
+    async def _spell_damage(cls, caster, target, spell, spell_name, mult=1.0):
+        """A damage spell's blow on one target: the dice, the caster's bonuses, a critical, the
+        blow itself (and a kill, or the fight it starts), a drain's healing. Returns the damage."""
+        c = cls.config.COLORS
+        damage = cls.roll_dice(spell['damage_dice'])
+        damage += spell.get('damage_per_level', 0) * caster.level
+        damage = max(1, int(damage * mult))
+        # Affix bonuses: spell_power and per-spell bonus (percentage)
+        spell_bonus = caster.get_equipment_bonus('spell_power') + caster.get_equipment_bonus(spell_name) + getattr(caster, 'spell_power', 0)
+        if spell_bonus:
+            damage = int(damage * (1 + (spell_bonus / 100)))
+
+        # Apply weather modifier to damage
+        if caster.room and caster.room.zone and hasattr(caster.room.zone, 'weather'):
+            weather_mult = caster.room.zone.weather.get_spell_modifier(spell['name'])
+            damage = int(damage * weather_mult)
+
+        # Soulstone bonus (necromancer offhand)
+        try:
+            stone = caster.equipment.get('hold') if hasattr(caster, 'equipment') else None
+            if stone and (getattr(stone, 'is_soulstone', False) or ('soulstone' in getattr(stone, 'flags', set()))):
+                damage += getattr(stone, 'soulstone_spell_damage', 2)
+        except Exception:
+            pass
+
+        # Mage arcane charges: +8% damage per charge
+        if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'mage':
+            charges = getattr(caster, 'arcane_charges', 0)
+            if charges > 0:
+                damage = int(damage * (1 + (0.08 * charges)))
+                await caster.send(f"{c['magenta']}Arcane charges amplify your spell! ({charges} charges, +{charges * 8}% damage){c['reset']}")
+
+        # Spell critical strike chance
+        # Base 5% + 1% per 2 INT above 10 + 0.5% per level
+        crit_chance = 5
+        int_bonus = (getattr(caster, 'int', 10) - 10) // 2
+        crit_chance += int_bonus
+        crit_chance += caster.level // 2
+        # Mage bonus: +5% spell crit
+        if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'mage':
+            crit_chance += 5
+        # Talent bonuses
+        try:
+            from talents import TalentManager
+            crit_chance += int(TalentManager.get_talent_bonus(caster, 'stat_bonus', 'crit_chance'))
+            # Combustion increases crit chance
+            if hasattr(caster, 'affect_flags') and 'combustion' in caster.affect_flags:
+                crit_chance += 30
+        except Exception:
+            pass
+        crit_chance = min(crit_chance, 60)  # Cap at 60%
+        
+        is_crit = random.randint(1, 100) <= crit_chance
+        if is_crit:
+            crit_mult = 1.5  # 150% damage
+            # Mage gets better crits
+            if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'mage':
+                crit_mult = 2.0  # 200% damage
+            try:
+                from talents import TalentManager
+                crit_mult += TalentManager.get_talent_bonus(caster, 'stat_bonus', 'crit_damage') / 100.0
+            except Exception:
+                pass
+            damage = int(damage * crit_mult)
+            await caster.send(f"{c['bright_yellow']}*** CRITICAL SPELL! ***{c['reset']}")
+
+        # a target's spell resistance (a percent) blunts the blow
+        resist = int(getattr(target, 'spell_resist', 0) or 0)
+        if resist > 0:
+            damage = max(1, int(damage * (100 - min(75, resist)) / 100))
+
+        # Apply spell damage
+        damage_type = spell.get('damage_type', 'magic')
+        killed = await target.take_damage(damage, caster, damage_type=damage_type)
+
+        await caster.send(f"{c['bright_red']}Your spell does {damage} damage to {target.name}!{c['reset']}")
+
+        # elemental terrain interplay: fire ignites webbed rooms, frost
+        # freezes water into ice, lightning cast into water splashes
+        # everyone standing in the fight
+        try:
+            from environment import elemental_cast
+            await elemental_cast(caster, target, spell_name)
+        except Exception:
+            pass
+
+        # Build arcane charges on offensive casts
+        if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'mage':
+            if hasattr(caster, 'arcane_charges') and hasattr(caster, 'max_arcane_charges'):
+                if caster.arcane_charges < caster.max_arcane_charges:
+                    caster.arcane_charges += 1
+                    await caster.send(f"{c['cyan']}Arcane charge gained ({caster.arcane_charges}/{caster.max_arcane_charges}).{c['reset']}")
+        
+        if killed:
+            from combat import CombatHandler
+            await CombatHandler.handle_death(caster, target)
+        elif not caster.is_fighting and target != caster:
+            # Start combat if not already fighting
+            from combat import CombatHandler
+            await CombatHandler.start_combat(caster, target)
+            
+        # Handle vampiric drain
+        if spell.get('special') == 'drain_hp':
+            heal_amount = damage // 2
+            caster.hp = min(caster.max_hp, caster.hp + heal_amount)
+            await caster.send(f"{c['bright_green']}You absorb {heal_amount} life force!{c['reset']}")
+        return damage
+
     @classmethod
     def _scale_absorb_value(cls, base_value: int, caster_level: int, caster: Optional['Character'],
                             target: Optional['Character'], spell_key: Optional[str]) -> int:
@@ -2434,6 +2571,28 @@ class SpellHandler:
         """Apply a spell affect to a character using the AffectManager."""
         affect_type = affect['type']
         value = affect['value']
+
+        # Unfettered's ward: nothing slows or holds them while it lasts
+        if affect_type in cls.IMPAIRING and time.time() < (getattr(target, 'freedom_until', 0) or 0):
+            return
+
+        # a stun is counted in the target's lost turns (CombatHandler.one_round reads
+        # stunned_rounds); a boss only staggers
+        if affect_type == 'stunned':
+            from combat import CombatHandler
+            CombatHandler.stun(target, duration)
+            return
+
+        # a creature charmed stops fighting at once (one_round keeps it out while the charm holds)
+        if affect_type == 'charmed' and not hasattr(target, 'connection'):
+            target.fighting = None
+            if getattr(target, 'position', None) == 'fighting':
+                target.position = 'standing'
+            for ch in list(getattr(getattr(target, 'room', None), 'characters', []) or []):
+                if getattr(ch, 'fighting', None) is target and hasattr(ch, 'connection'):
+                    ch.fighting = None
+                    if ch.position == 'fighting':
+                        ch.position = 'standing'
 
         if affect_type in ('divine_shield', 'stoneskin', 'armour_ward'):
             value = cls._scale_absorb_value(value, caster_level, caster, target, spell_key)
@@ -2539,12 +2698,292 @@ class SpellHandler:
         for old in [a for a in (getattr(target, 'affects', None) or []) if a.name == spell_name and a.applies_to in kinds]:
             AffectManager.remove_affect(target, old)
 
+    # ---------------------------------------------------------------- specials with a method
+    # harm a cleansing lifts: holds, hexes, poisons and plagues (damage over time), stat-sappers
+    HARMFUL = {'blind', 'poisoned', 'silenced', 'stunned', 'charmed', 'feared', 'paralyzed', 'entangled',
+               'sleeping', 'slow', 'diseased', 'marked', 'fumble', 'cursed'}
+    # what slows or holds a body in place (Unfettered frees from it, and wards against it)
+    IMPAIRING = {'slow', 'entangled', 'paralyzed'}
+
+    @classmethod
+    def _cleanse(cls, ch, kinds=None):
+        """Lift harmful magic from one character (kinds: only these, e.g. IMPAIRING). Returns how
+        many were lifted."""
+        from affects import AffectManager
+        only = kinds is not None
+        kinds = kinds or cls.HARMFUL
+        lifted = 0
+        for a in list(getattr(ch, 'affects', None) or []):
+            harmful = a.applies_to in kinds
+            if not only:
+                harmful = harmful or a.type == AffectManager.TYPE_DOT or (
+                    a.type == AffectManager.TYPE_MODIFY_STAT and isinstance(a.value, (int, float)) and a.value < 0
+                    and a.applies_to != 'armor_class')
+            if harmful:
+                AffectManager.remove_affect(ch, a)
+                lifted += 1
+        attrs = ('slowed_until', 'rooted_until') if only else ('slowed_until', 'rooted_until', 'stunned_rounds', 'blinded_rounds')
+        for attr in attrs:
+            if getattr(ch, attr, 0):
+                setattr(ch, attr, 0)
+                lifted += 1
+        if not only and getattr(ch, 'position', None) == 'sleeping' and hasattr(ch, 'connection'):
+            ch.position = 'standing'
+        return lifted
+
+    @classmethod
+    def _dot(cls, ch, name, per_tick, ticks, caster):
+        """Damage over time on a creature (AffectManager: a tick every AFFECT_TICK_SECONDS)."""
+        from affects import AffectManager
+        cls._refresh(ch, name, ('hp',))
+        AffectManager.apply_affect(ch, {'name': name, 'type': AffectManager.TYPE_DOT, 'applies_to': 'hp',
+                                        'value': max(1, int(per_tick)), 'duration': ticks,
+                                        'caster_level': getattr(caster, 'level', 1)})
+
+    @staticmethod
+    def _scale(caster):
+        """How well the caster knows the spell being cast (mastery), for parts dealt later."""
+        return getattr(caster, '_ability_scale', 1) or 1
+
+    @classmethod
+    async def _special_requiem(cls, caster, target, spell):
+        """A dirge that eats at every foe here: 3d6+5 a tick for 15 ticks."""
+        c = cls.config.COLORS
+        foes = cls.foes_in_room(caster)
+        for foe in foes:
+            cls._dot(foe, 'Requiem', (cls.roll_dice('3d6+5') + caster.level // 4) * cls._scale(caster), 15, caster)
+        if foes and not caster.is_fighting:
+            from combat import CombatHandler
+            await CombatHandler.start_combat(caster, foes[0])
+        await caster.send(f"{c['magenta']}The requiem settles on {len(foes)} foe{'s' if len(foes) != 1 else ''}, eating at their lives.{c['reset']}")
+
+    @classmethod
+    async def _special_meteor_storm(cls, caster, target, spell):
+        """The storm's blast (dealt above) leaves every foe burning: 3d6 a tick for 5 ticks."""
+        c = cls.config.COLORS
+        foes = cls.foes_in_room(caster)
+        for foe in foes:
+            cls._dot(foe, 'Meteor Burn', cls.roll_dice('3d6') * cls._scale(caster), 5, caster)
+        if foes:
+            await caster.send(f"{c['red']}Molten stone keeps burning on {len(foes)} foe{'s' if len(foes) != 1 else ''}.{c['reset']}")
+
+    @classmethod
+    async def _special_consecration(cls, caster, target, spell):
+        """Hallowed Ground: for its rounds the floor sears every foe standing here."""
+        import marquee_abilities as ma
+        rounds = int(spell.get('duration_ticks', 10))
+
+        async def step(e, i):
+            for foe in cls.foes_in_room(e.caster):
+                await ma._deal(e.caster, foe, (cls.roll_dice('2d6') + e.caster.level // 2) * e.power, 'holy')
+        ma._begin(ma.Effect(caster, 'hallowed_ground', rounds, step=step))
+
+    @classmethod
+    async def _special_lightwell(cls, caster, target, spell):
+        """Font of the Vigil: for its rounds the font mends every wounded ally standing here."""
+        import marquee_abilities as ma
+        rounds = int(spell.get('duration_ticks', 30))
+
+        async def step(e, i):
+            for ally in cls.allies_in_room(e.caster):
+                if ally.hp < ally.max_hp:
+                    ma._heal(e.caster, ally, (cls.roll_dice('2d6') + e.caster.level // 3) * e.power)
+        ma._begin(ma.Effect(caster, 'font_of_the_vigil', rounds, step=step))
+
+    @classmethod
+    async def _special_mass_dispel(cls, caster, target, spell):
+        """Cleansing Rite: harmful magic stripped from everyone on the caster's side here."""
+        c = cls.config.COLORS
+        lifted = 0
+        for ally in cls.allies_in_room(caster, pets=True):
+            n = cls._cleanse(ally)
+            lifted += n
+            if n and ally is not caster and hasattr(ally, 'send'):
+                await ally.send(f"{c['bright_cyan']}{caster.name}'s rite washes the harm from you.{c['reset']}")
+        await caster.send(f"{c['bright_cyan']}The rite lifts {lifted} harmful effect{'s' if lifted != 1 else ''} from your side.{c['reset']}")
+
+    @classmethod
+    async def _special_hand_of_freedom(cls, caster, target, spell):
+        """Unfettered: free from every slow and hold, and warded against new ones for a while."""
+        c = cls.config.COLORS
+        who = target if target is not None and not isinstance(target, str) else caster
+        cls._cleanse(who, cls.IMPAIRING)
+        who.freedom_until = time.time() + int(spell.get('duration_ticks', 8)) * cls.config.AFFECT_TICK_SECONDS
+        if who is not caster and hasattr(who, 'send'):
+            await who.send(f"{c['bright_yellow']}Nothing can hold you now.{c['reset']}")
+
+    @classmethod
+    async def _special_summon_gargoyle(cls, caster, target, spell):
+        """A stone gargoyle fights at the caster's side for the spell's duration."""
+        from pets import PetManager
+        c = cls.config.COLORS
+        minutes = max(1, int(spell.get('duration_ticks', 30)) * cls.config.AFFECT_TICK_SECONDS // 60)
+        pet = await PetManager.summon_pet(caster, 'stone_gargoyle', duration_minutes=minutes)
+        if pet is None:
+            await caster.send(f"{c['yellow']}The gargoyle will not come while you hold so many servants.{c['reset']}")
+            return
+        if caster.is_fighting and caster.fighting is not None:
+            pet.fighting = caster.fighting
+            pet.position = 'fighting'
+
+    @classmethod
+    async def _special_soul_harvest(cls, caster, target, spell):
+        """Tears at the souls of every foe here; each one torn gives a Soul Shard (up to ten)."""
+        from combat import CombatHandler
+        c = cls.config.COLORS
+        foes = cls.foes_in_room(caster)
+        for foe in foes:
+            dmg = int((cls.roll_dice('4d8') + caster.level) * cls._scale(caster))
+            if await foe.take_damage(dmg, caster, damage_type='shadow'):
+                await CombatHandler.handle_death(caster, foe)
+        before = getattr(caster, 'soul_shards', 0) or 0
+        caster.soul_shards = min(10, before + max(1, len(foes)))
+        await caster.send(f"{c['magenta']}{len(foes)} soul{'s' if len(foes) != 1 else ''} torn: "
+                          f"+{caster.soul_shards - before} Soul Shard{'s' if caster.soul_shards - before != 1 else ''} "
+                          f"({caster.soul_shards}/10).{c['reset']}")
+
+    @classmethod
+    async def _special_apocalypse_necro(cls, caster, target, spell):
+        """The necromancer's ultimate: death-magic tears through every foe here, and the dead on
+        the floor rise to serve (up to three, for three minutes)."""
+        from combat import CombatHandler
+        from pets import PetManager
+        c = cls.config.COLORS
+        foes = cls.foes_in_room(caster)
+        for foe in foes:
+            dmg = int((cls.roll_dice('10d10') + caster.level * 4) * cls._scale(caster))
+            if await foe.take_damage(dmg, caster, damage_type='shadow'):
+                await CombatHandler.handle_death(caster, foe)
+        risen = 0
+        room = caster.room
+        for corpse in [o for o in list(getattr(room, 'items', []) or []) if 'corpse' in str(getattr(o, 'name', '')).lower()][:3]:
+            pet = await PetManager.summon_pet(caster, 'undead_warrior', duration_minutes=3)
+            if pet is None:
+                break
+            room.items.remove(corpse)
+            risen += 1
+        await caster.send(f"{c['bright_magenta']}Death-magic sweeps {len(foes)} foe{'s' if len(foes) != 1 else ''}"
+                          f"{f' and {risen} corpse' + ('s rise' if risen != 1 else ' rises') + ' to serve you' if risen else ''}!{c['reset']}")
+
+    @classmethod
+    async def _special_divine_intervention(cls, caster, target, spell):
+        """For a desperate window (12 s) no one in the caster's group here can be brought below 1
+        health (Player.take_damage reads death_ward_until)."""
+        c = cls.config.COLORS
+        until = time.time() + 12
+        for ally in cls.allies_in_room(caster):
+            ally.death_ward_until = until
+            if hasattr(ally, 'send'):
+                await ally.send(f"{c['bright_yellow']}The gods hold you to life — for now.{c['reset']}")
+
+    @classmethod
+    async def _special_prayer_of_mending(cls, caster, target, spell):
+        """Travelling Grace: having mended its first ally (above), the grace hops on to each other
+        wounded ally here, worst first (up to four more)."""
+        import marquee_abilities as ma
+        c = cls.config.COLORS
+        first = target if target is not None and not isinstance(target, str) else caster
+        hurt = sorted((a for a in cls.allies_in_room(caster) if a is not first and a.hp < a.max_hp),
+                      key=lambda a: a.hp / max(1, a.max_hp))[:4]
+        for ally in hurt:
+            amount = (cls.roll_dice(spell.get('heal_dice', '4d8+10')) + spell.get('heal_per_level', 0) * caster.level) * cls._scale(caster)
+            gained = ma._heal(caster, ally, amount)
+            await caster.send(f"{c['bright_green']}The grace leaps to {ally.name} (+{gained}).{c['reset']}")
+            if hasattr(ally, 'send'):
+                await ally.send(f"{c['bright_green']}{caster.name}'s grace leaps to you (+{gained}).{c['reset']}")
+
+    @classmethod
+    async def _special_serenity(cls, caster, target, spell):
+        """Having restored them (above), Serenity also calms every harmful effect on its target."""
+        c = cls.config.COLORS
+        who = target if target is not None and not isinstance(target, str) else caster
+        n = cls._cleanse(who)
+        if n:
+            await caster.send(f"{c['bright_cyan']}Serenity calms {n} harmful effect{'s' if n != 1 else ''}.{c['reset']}")
+
+    @classmethod
+    async def _special_corpse_shield(cls, caster, target, spell):
+        """The ward (applied above) passes part of every blow to a servant: without one, it holds
+        nothing, so say so."""
+        from pets import PetManager
+        c = cls.config.COLORS
+        if not any(p.room is caster.room and p.hp > 0 for p in PetManager.get_player_pets(caster)):
+            await caster.send(f"{c['yellow']}You have no servant beside you to take the blows.{c['reset']}")
+
+    @classmethod
+    async def _special_chain_lightning(cls, caster, target, spell):
+        """Having struck its target (above), the lightning leaps to two more foes here, weaker
+        with each leap (60%, then 36%)."""
+        c = cls.config.COLORS
+        others = [f for f in cls.foes_in_room(caster) if f is not target]
+        mult = 1.0
+        for foe in others[:2]:
+            mult *= 0.6
+            await caster.send(f"{c['bright_cyan']}The lightning leaps to {foe.name}!{c['reset']}")
+            await cls._spell_damage(caster, foe, spell, 'chain_lightning', mult=mult)
+
+    @classmethod
+    async def _special_cold_snap(cls, caster, target, spell):
+        """Every frost spell's cooldown ends at once."""
+        from combat_range import spell_school
+        c = cls.config.COLORS
+        cds = getattr(caster, 'spell_cd', None) or {}
+        reset = [k for k in list(cds) if k != 'cold_snap' and spell_school(k, SPELLS.get(k) or {}, caster) == 'frost']
+        for k in reset:
+            cds.pop(k, None)
+        await caster.send(f"{c['cyan']}Your frost power surges anew"
+                          f"{f' ({len(reset)} spell' + ('s' if len(reset) != 1 else '') + ' ready again)' if reset else ''}.{c['reset']}")
+
+    @classmethod
+    async def _special_resurrect(cls, caster, target, spell):
+        """Gives back the experience a player's death took (within ten minutes of it)."""
+        c = cls.config.COLORS
+        name = target if isinstance(target, str) else None
+        if not name or target is caster:
+            await caster.send(f"{c['yellow']}Resurrect whom?{c['reset']}")
+            return
+        world = getattr(caster, 'world', None)
+        who = (getattr(world, 'players', None) or {}).get(name.lower().split()[0])
+        death = getattr(who, 'last_death', None) if who is not None else None
+        if not who or not death or time.time() - float(death.get('at', 0)) > 600:
+            await caster.send(f"{c['yellow']}{who.name if who else name.title()} has not died these ten minutes past.{c['reset']}")
+            return
+        restored = int(death.get('exp', 0))
+        who.exp += restored
+        who.last_death = None
+        await caster.send(f"{c['bright_yellow']}You call {who.name} back from the threshold: {restored} experience restored.{c['reset']}")
+        if who is not caster and hasattr(who, 'send'):
+            await who.send(f"{c['bright_yellow']}{caster.name} calls you back from the threshold: {restored} experience restored.{c['reset']}")
+
+    @classmethod
+    async def _special_siren_song(cls, caster, target, spell):
+        """The charm itself is the spell's affect, laid on every foe here above."""
+
+    @classmethod
+    async def _special_spirit_link(cls, caster, target, spell):
+        """The link itself is the spell's affect, laid on the whole group above (Player.take_damage
+        shares a linked member's wounds)."""
+
+    @classmethod
+    async def _special_magnum_opus(cls, caster, target, spell):
+        """The masterpiece's blessings are the spell's affects, laid on the whole group above."""
+
+    @classmethod
+    async def _special_crusaders_judgment(cls, caster, target, spell):
+        """The verdict is the spell's own enormous blow, dealt above."""
+
     @classmethod
     async def handle_special_spell(cls, caster: 'Player', target: 'Character', spell: dict):
         """Handle special spell effects."""
         from affects import AffectManager
         c = cls.config.COLORS
         special = spell.get('special')
+
+        # the specials with a method of their own (SpellHandler._special_<name>)
+        handler = getattr(cls, f'_special_{special}', None) if special else None
+        if handler is not None:
+            await handler(caster, target, spell)
+            return
 
         if special == 'cold_snap':
             # Refresh frost-related cooldowns/flags
@@ -2564,12 +3003,11 @@ class SpellHandler:
             total = base + charges * per
             if caster.room:
                 hit = 0
-                for char in list(caster.room.characters):
-                    if char is not caster and hasattr(char, 'hp') and getattr(char, 'hp', 0) > 0 and not hasattr(char, 'connection'):
-                        killed = await char.take_damage(total, caster)
-                        hit += 1
-                        if killed:
-                            await CombatHandler.handle_death(caster, char)
+                for char in cls.foes_in_room(caster):
+                    killed = await char.take_damage(total, caster)
+                    hit += 1
+                    if killed:
+                        await CombatHandler.handle_death(caster, char)
                 await caster.send(f"{c['magenta']}Resonance Burst detonates for {total} (spent {charges} Arcane Charge{'s' if charges != 1 else ''}), striking {hit} foe{'s' if hit != 1 else ''}!{c['reset']}")
             return
 
@@ -2702,12 +3140,13 @@ class SpellHandler:
             return
 
         elif special == 'blood_boil':
-            # AoE disease damage
+            # AoE disease damage on every foe here
             if caster.room:
-                for char in list(caster.room.characters):
-                    if char != caster and hasattr(char, 'hp'):
-                        dmg = cls.roll_dice('2d6') + caster.level
-                        await char.take_damage(dmg, caster)
+                from combat import CombatHandler
+                for char in cls.foes_in_room(caster):
+                    dmg = cls.roll_dice('2d6') + caster.level
+                    if await char.take_damage(dmg, caster):
+                        await CombatHandler.handle_death(caster, char)
                 await caster.send(f"{c['red']}Blood boils in your enemies' veins!{c['reset']}")
             return
 
@@ -2790,17 +3229,16 @@ class SpellHandler:
             # Burst all festering wounds on all enemies + summon ghouls
             if caster.room:
                 total_burst = 0
-                for char in list(caster.room.characters):
-                    if char != caster and hasattr(char, 'hp'):
-                        wounds = getattr(char, 'festering_wounds', 0)
-                        if wounds > 0:
-                            burst_damage = wounds * (10 + caster.level)
-                            char.festering_wounds = 0
-                            await char.take_damage(burst_damage, caster)
-                            total_burst += wounds
-                        # Base damage even without wounds
-                        base_dmg = cls.roll_dice('3d6') + caster.level
-                        await char.take_damage(base_dmg, caster)
+                from combat import CombatHandler
+                for char in cls.foes_in_room(caster):
+                    wounds = getattr(char, 'festering_wounds', 0)
+                    burst_damage = cls.roll_dice('3d6') + caster.level     # base damage even without wounds
+                    if wounds > 0:
+                        burst_damage += wounds * (10 + caster.level)
+                        char.festering_wounds = 0
+                        total_burst += wounds
+                    if await char.take_damage(burst_damage, caster):
+                        await CombatHandler.handle_death(caster, char)
                 await caster.send(f"{c['bright_magenta']}The apocalypse consumes your enemies! ({total_burst} wounds burst){c['reset']}")
                 # Summon ghouls based on wounds burst
                 if total_burst > 0:
@@ -3028,16 +3466,16 @@ class SpellHandler:
             # Hit all enemies in room
             if caster.room:
                 hit_count = 0
-                for char in list(caster.room.characters):
-                    if char != caster and not (hasattr(char, 'owner') and char.owner == caster):
-                        if hasattr(char, 'hp') and hasattr(char, 'take_damage'):
-                            killed = await char.take_damage(total_damage, caster)
-                            if hasattr(char, 'send'):
-                                await char.send(f"{c['bright_red']}The explosion engulfs you for {total_damage} damage!{c['reset']}")
-                            hit_count += 1
-                            if killed:
-                                from combat import CombatHandler
-                                await CombatHandler.handle_death(caster, char)
+                for char in cls.foes_in_room(caster):
+                    if char is sacrificed_pet:
+                        continue
+                    killed = await char.take_damage(total_damage, caster)
+                    if hasattr(char, 'send'):
+                        await char.send(f"{c['bright_red']}The explosion engulfs you for {total_damage} damage!{c['reset']}")
+                    hit_count += 1
+                    if killed:
+                        from combat import CombatHandler
+                        await CombatHandler.handle_death(caster, char)
                 
                 await caster.send(f"{c['yellow']}Your explosion hits {hit_count} enemies for {total_damage} damage each!{c['reset']}")
             
@@ -3476,18 +3914,15 @@ class SpellHandler:
 
         elif special == 'earthquake':
             # Damage all enemies in the room
-            enemies = []
-            for char in caster.room.characters[:]:
-                if char != caster:
-                    if hasattr(char, 'is_player') or hasattr(char, 'flags'):
-                        enemies.append(char)
-
+            from combat import CombatHandler
             damage = cls.roll_dice('5d8') + caster.level * 2
 
-            for enemy in enemies:
+            for enemy in cls.foes_in_room(caster):
                 killed = await enemy.take_damage(damage // 2, caster)  # Half damage to all enemies
                 if hasattr(enemy, 'send'):
                     await enemy.send(f"{c['red']}The earthquake hits you for {damage // 2} damage!{c['reset']}")
+                if killed:
+                    await CombatHandler.handle_death(caster, enemy)
 
         elif special == 'dispel_magic':
             # Remove magical effects from target
@@ -3519,10 +3954,8 @@ class SpellHandler:
 
         elif special == 'mass_charm':
             # Attempt to charm all enemies in the room
-            enemies = []
-            for char in caster.room.characters[:]:
-                if char != caster and not hasattr(char, 'is_player'):
-                    enemies.append(char)
+            charm = {'affects': [{'type': 'charmed'}]}
+            enemies = [ch for ch in cls.foes_in_room(caster) if not hasattr(ch, 'connection') and not cls._immune(ch, charm)]
 
             charmed_count = 0
             for enemy in enemies:

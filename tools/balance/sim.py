@@ -295,7 +295,8 @@ def rotation(cls, level):
 # what a hero casts on themselves before a fight, if they have it (lasts the fight)
 DEFENSIVE = ['summon_gargoyle', 'divine_shield', 'divine_protection', 'bone_shield', 'corpse_shield', 'mana_shield',
              'fire_shield', 'mirrorward', 'stoneskin', 'armor', 'sanctuary', 'shield', 'barkskin', 'ice_armor', 'blur',
-             'bless', 'protection_from_evil', 'righteous_fury', 'evasion', 'rallying_cry']
+             'bless', 'protection_from_evil', 'righteous_fury', 'evasion', 'rallying_cry',
+             'tower_echoes', 'phase_step', 'stepwise', 'mirror_image', 'displacement', 'blink']
 
 
 SERVANTS = 1       # a necromancer's raised dead (an hour each, from the last fight's corpses; up to level/10 + 1)
@@ -308,7 +309,8 @@ async def prepare(hero):
     from commands import CommandHandler
     if hero.char_class == 'necromancer' and hero.spells.get('animate_dead', 0) > 0:
         from pets import PetManager
-        have = [p for p in PetManager.get_player_pets(hero) if p.is_alive and p.room is hero.room]
+        # the raised dead only: a gargoyle (Summon Gargoyle, a summon) stands beside them, not for one
+        have = [p for p in PetManager.get_player_pets(hero) if p.is_alive and p.room is hero.room and p.pet_type == 'undead']
         for _ in range(SERVANTS - len(have)):
             await PetManager.summon_pet(hero, 'undead_warrior', duration_minutes=60)
     have = {e['id']: e for e in mastery.book(hero.char_class) if (e.get('level') or 99) <= hero.level}

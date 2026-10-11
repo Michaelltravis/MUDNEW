@@ -798,3 +798,65 @@ Four more classes on the same engine (the last four — thief, ranger, bard, ass
   - `tests/test_balance.py`: the fixes, the scale, party sizing, and one quest simulated.
   - `test_marquee`: a mixed party's creatures follow its classes.
   - `test_marquee_abilities`: Thousand Shadows' test foe is sized to the damage curve.
+
+### Spells and abilities that do what they say (owner: "What else needs work or polish?")
+A harness cast every spell in every class book the way the 3D bar casts it, on a groupmate or a
+foe as the spell asks, and diffed everything that changed. `tests/test_spells_audit.py` keeps
+it that way.
+- **Cooldowns**: a spell's cooldown was never enforced (Meteor Storm's ten minutes was zero). It
+  now holds, is kept on the character, refuses at no cost ("…is not ready yet (Ns)") and shows
+  on the bar.
+- **Group and room spells**:
+  - group spells now reach the group; they buffed only the caster (Quicken, Epic Tale,
+    Refrain of Hope, Song of Battle, Anthem of Defense, Shared Burden);
+  - room spells now strike the foes; their curses fell on the caster (Chord of Disruption
+    silenced the bard, Siren Song charmed them, Meteor Storm stunned the mage, Crypt Winter
+    slowed the necromancer), and Meteor Storm, Crypt Winter and Void Eruption did no damage;
+  - every area spell shares one rule for who is a foe: those fighting you or your group, else
+    the attackable creatures here; never groupmates, pets, service NPCs or quest figures
+    (Earthquake, Blood Boil, Corpse Explosion, Apocalypse and Resonance Burst hurt groupmates;
+    Mass Charm charmed them);
+  - a room spell with nothing to strike is refused at no cost.
+- **Spells that did nothing now do what their description says**:
+  - Requiem, Hallowed Ground, Font of the Vigil, Cleansing Rite, Unfettered, Summon Gargoyle
+    (a new pet), Soul Harvest, Apocalypse (necromancer), Divine Intervention;
+  - Travelling Grace's hops, Serenity's cleanse, Chain Lightning's leaps, Cold Snap, Resurrect
+    (gives back the experience a death took);
+  - Identify was never wired to its handler.
+- **Effects that were only displayed now work**:
+  - sanctuary, invulnerability, mana shield, protection from evil/good, divine guardian;
+  - guardian spirit, fire shield, ice armor;
+  - mirror image, displacement and blink (blows find images);
+  - Mirrorward (reflects a spell, creatures' too);
+  - haste (an extra swing), slow, stun (lost turns; a boss staggers);
+  - charm (stops fighting), fear, paralysis, entanglement;
+  - silence and deafen on creatures (no spells), a song's fumble;
+  - spell resistance and saving throws, beacon of light, detect evil.
+  - Titan's Wrath now cleaves, and its invulnerability lasts the intended ~12 s, not 30.
+- **Casting by name**: `cast` takes the name the spellbook shows ("Cinderlance", "Cure Light
+  Wounds"), and `spells` lists those names.
+- **Commands that replaced each other**: 19 were defined two or three times, and only the last
+  ran.
+  - Restored: shop `show <item>`, inn lockers (the house chest at home), an immortal's
+    `save <zone>` (also `zsave`), cure potions through `quaff`/`use`, and `pet`.
+  - Titles: earned ones or your own words.
+  - The warrior's rage and the cleric's favour bars errored.
+  - Halo of Reckoning/Divine Storm hit shopkeepers and pets and never killed.
+  - The dead copies are gone.
+- **Warrior talents**: Warlord's Presence and Perfect Form answered "Huh?". They now work on
+  Momentum: repeats don't reset it; Perfect Form builds two a blow.
+- **Stuns that never ended**: Bash (30%), Kidney Shot and a creature's paralysing touch set the
+  target's position to "stunned", which nothing ever reset. A creature lost nothing by it (its
+  swings ignore position), but a boss so "stunned" never cast, enraged or changed phase again
+  for the rest of the fight: a paladin could bash any boss into a punching bag. All three now
+  go through `CombatHandler.stun`: the target loses a round (two for a full Kidney Shot) and a
+  creature its wind-up; a boss only staggers, and keeps its feet under a bash.
+- **Balance measured again** (`docs/balance/marquee.md`): the fixes moved what classes deal and
+  stand, so `marquee_scale` `CLASS_K`/`CLASS_D` were recalibrated (the mage deals 0.58, the
+  necromancer 1.10; the paladin stands 1.77, the warrior 0.94, the necromancer 0.60). The
+  simulator stopped re-raising a necromancer's bone knight once a gargoyle stood by; it counts
+  only the raised dead now. Lone heroes die 0.03 times a quest (0.18 before); no group fight
+  was lost in 324 simulated group quests.
+- **Tests**: `tests/test_spells_audit.py` (every book spell cast as the bar casts it: no errors,
+  no silent no-ops; group and room targeting, cooldowns, names, the effects above, stuns, no
+  command defined twice, every class-book skill a command).

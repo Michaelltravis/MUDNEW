@@ -522,6 +522,8 @@ class Player(Character):
         self.marquee = None
         self.marquee_help = None
         self.marquee_cd = {}
+        self.spell_cd = {}          # spell -> when it may be cast again (SPELLS 'cooldown')
+        self.last_death = None      # {'exp': lost, 'at': when}: what a resurrection gives back
         self.autorecall_hp = None  # HP threshold for automatic recall
         self.autorecall_is_percent = False  # Whether autorecall_hp is a percentage
 
@@ -1132,6 +1134,8 @@ class Player(Character):
             'marquee': self.marquee,
             'marquee_help': self.marquee_help,
             'marquee_cd': self.marquee_cd,
+            'spell_cd': {k: v for k, v in (self.spell_cd or {}).items() if v > time.time()},
+            'last_death': self.last_death,
             'autorecall_hp': self.autorecall_hp,
             'autorecall_is_percent': self.autorecall_is_percent,
             'hunger': self.hunger,
@@ -1386,6 +1390,8 @@ class Player(Character):
             player.marquee = data.get('marquee')
             player.marquee_help = data.get('marquee_help')
             player.marquee_cd = data.get('marquee_cd') or {}
+            player.spell_cd = data.get('spell_cd') or {}
+            player.last_death = data.get('last_death')
             player.autorecall_hp = data.get('autorecall_hp', None)
             player.autorecall_is_percent = data.get('autorecall_is_percent', False)
             player.hunger = data.get('hunger', 168)
@@ -2600,6 +2606,39 @@ class Player(Character):
         except Exception:
             pass
 
+        # protections spells leave (spells.py): invulnerable takes nothing; sanctuary halves the
+        # blow; protection from evil (good) a sixth of an evil (good) attacker's; divine guardian
+        # a fifth; a mana shield draws half of what is left from mana
+        wards = getattr(self, 'affect_flags', None) or set()
+        if wards and amount > 0:
+            if 'invulnerable' in wards:
+                await self.send(f"{c['bright_yellow']}The blow breaks on your divine protection!{c['reset']}")
+                return False
+            if 'sanctuary' in wards:
+                amount = max(1, amount // 2)
+            align = getattr(attacker, 'alignment', 0) or 0
+            if ('prot_evil' in wards and align <= -350) or ('prot_good' in wards and align >= 350):
+                amount = max(1, amount - amount // 6)
+            if 'divine_guardian' in wards:
+                amount = max(1, amount - amount // 5)
+            if 'mana_shield' in wards and getattr(self, 'mana', 0) > 0:
+                drawn = min(amount // 2, self.mana)
+                if drawn > 0:
+                    self.mana -= drawn
+                    amount -= drawn
+                    await self.send(f"{c['cyan']}Your mana shield takes {drawn} of the blow.{c['reset']}")
+            # a fire shield burns a melee attacker; ice armor may numb them (slowed a round)
+            if attacker is not None and damage_type == 'physical' and getattr(attacker, 'hp', 0) > 0 and attacker is not self:
+                if 'fire_shield' in wards:
+                    burn = max(2, min(25, amount // 8))
+                    attacker.hp -= burn
+                    await self.send(f"{c['red']}Your fire shield sears {attacker.name}! [{burn}]{c['reset']}")
+                    if attacker.hp <= 0:
+                        from combat import CombatHandler
+                        await CombatHandler.handle_death(self, attacker)
+                if 'ice_armor' in wards and random.random() < 0.25:
+                    attacker.slowed_until = max(getattr(attacker, 'slowed_until', 0) or 0, time.time() + 3)
+
         # Warrior Ignore Pain absorption
         if hasattr(self, 'ignore_pain_absorb') and self.ignore_pain_absorb > 0:
             absorbed = min(amount, self.ignore_pain_absorb)
@@ -2634,6 +2673,19 @@ class Player(Character):
                 amount = max(0, amount - reduced)
 
         # Warrior death save (Eternal Guardian)
+        # Guardian Spirit (spells.py): the blow that would kill heals instead (30%), once
+        if amount >= self.hp and 'guardian_spirit' in (getattr(self, 'affect_flags', None) or set()):
+            from affects import AffectManager
+            for a in list(self.affects):
+                if a.applies_to == 'guardian_spirit':
+                    AffectManager.remove_affect(self, a)
+            amount = 0
+            self.hp = max(self.hp, int(self.max_hp * 0.3))
+            await self.send(f"{c['bright_white']}Your guardian spirit catches you as you fall!{c['reset']}")
+        # Divine Intervention (spells.py): for its window nothing brings them below 1 health
+        if amount >= self.hp and time.time() < (getattr(self, 'death_ward_until', 0) or 0):
+            amount = max(0, self.hp - 1)
+            await self.send(f"{c['bright_yellow']}Divine intervention holds you to life!{c['reset']}")
         if amount >= self.hp and getattr(self, 'warrior_death_save_rounds', 0) > 0:
             amount = self.hp - 1
             self.warrior_death_save_rounds = 0
@@ -2852,6 +2904,7 @@ class Player(Character):
             
         exp_loss = int(self.exp * exp_percent)
         self.exp = max(0, self.exp - exp_loss)
+        self.last_death = {'exp': exp_loss, 'at': time.time()}     # a resurrection gives it back
         if exp_loss > 0:
             await self.send(f"{c['yellow']}You lose {exp_loss} experience points.{c['reset']}")
         

@@ -106,7 +106,7 @@ class CommandHandler:
         'sslam': 'shield_slam',
         # Ranger commands
         'comp': 'companion',
-        'pet': 'companion',
+        'pick_lock': 'pick',
         'tra': 'track',
         'camo': 'camouflage',
         'amb': 'ambush',
@@ -1424,25 +1424,6 @@ class CommandHandler:
         await PuzzleManager.request_hint(player)
 
     @classmethod
-    async def cmd_achievements(cls, player: 'Player', args: List[str]):
-        """View achievements and progress."""
-        from achievements import AchievementManager
-        category = args[0].lower() if args else None
-        valid_cats = {'combat', 'exploration', 'progression', 'class', 'social', 'wealth', 'collection'}
-        if category and category not in valid_cats:
-            category = None
-        await AchievementManager.show_achievements(player, category)
-
-    @classmethod
-    async def cmd_title(cls, player: 'Player', args: List[str]):
-        """Set or view your display title from earned achievements."""
-        from achievements import AchievementManager
-        if not args:
-            await AchievementManager.show_titles(player)
-        else:
-            await AchievementManager.set_title(player, ' '.join(args))
-
-    @classmethod
     async def cmd_collections(cls, player: 'Player', args: List[str]):
         """View collection progress."""
         from collection_system import CollectionManager
@@ -1727,11 +1708,6 @@ class CommandHandler:
         
         # Mark all as read if viewing
         JournalManager.mark_read(player)
-
-    @classmethod
-    async def cmd_examine(cls, player: 'Player', args: List[str]):
-        """Examine something in detail."""
-        await player.do_look(args)
 
     @classmethod
     async def cmd_weather(cls, player: 'Player', args: List[str]):
@@ -2236,25 +2212,6 @@ class CommandHandler:
         
         await player.send(f"{c['bright_cyan']}═══════════════════════════════════════{c['reset']}")
         await player.send(f"{c['bright_black']}Categories: {', '.join(valid_categories)}{c['reset']}\n")
-
-    @classmethod
-    async def cmd_achievements(cls, player: 'Player', args: List[str]):
-        """View your achievements and progress.
-        
-        Usage: achievements [category]
-        Categories: combat, exploration, progression, collection, social
-        """
-        from achievements import AchievementManager
-        
-        category = args[0].lower() if args else None
-        valid_categories = ['combat', 'exploration', 'progression', 'collection', 'social']
-        
-        if category and category not in valid_categories:
-            c = player.config.COLORS
-            await player.send(f"{c['yellow']}Valid categories: {', '.join(valid_categories)}{c['reset']}")
-            return
-        
-        await AchievementManager.show_achievements(player, category)
 
     @classmethod
     async def cmd_account(cls, player: 'Player', args: List[str]):
@@ -3684,7 +3641,7 @@ class CommandHandler:
         await cls.show_redit_menu(player)
 
     @classmethod
-    async def cmd_save(cls, player: 'Player', args: List[str]):
+    async def cmd_zsave(cls, player: 'Player', args: List[str]):
         """Save a zone to disk (immortal only)."""
         c = player.config.COLORS
         if not player.is_immortal:
@@ -5350,35 +5307,6 @@ class CommandHandler:
         await CombatHandler.do_assassinate(player, target)
 
     @classmethod
-    async def cmd_garrote(cls, player: 'Player', args: List[str]):
-        """Strangle a target from behind, silencing them."""
-        if 'garrote' not in player.skills:
-            await player.send("You don't know how to garrote!")
-            return
-
-        if player.is_fighting:
-            await player.send("You're too busy fighting!")
-            return
-
-        if not args:
-            if hasattr(player, "fighting") and player.fighting:
-                target = player.fighting
-                args = [target.name]
-            else:
-                await player.send("Garrote whom?")
-                return
-
-        target_name = ' '.join(args)
-        target = player.find_target_in_room(target_name)
-
-        if not target:
-            await player.send(f"You don't see '{target_name}' here.")
-            return
-
-        from combat import CombatHandler
-        await CombatHandler.do_garrote(player, target)
-
-    @classmethod
     async def cmd_shadowstep(cls, player: 'Player', args: List[str]):
         """Shadow Step — teleport behind target, dodge next attack, +1 Intel."""
         import time
@@ -5697,19 +5625,32 @@ class CommandHandler:
             hits = sorted((k for k in player.spells if k.startswith(name)), key=len)
             return hits[0] if hits else None
 
+        from spells import SPELLS
+
+        def by_name(text):
+            """A known spell by the name the spellbook shows it under ('Cinderlance' is
+            pyroblast, 'Cure Light Wounds' is cure_light)."""
+            norm = ' '.join(text.lower().replace('_', ' ').split())
+            for k in player.spells:
+                shown = (SPELLS.get(k) or {}).get('name') or ''
+                if shown and ' '.join(shown.lower().split()) == norm:
+                    return k
+            return None
+
         matching_spell = None
         target_name = None
         if quoted is not None and quoted.strip():
             # cast 'lightning bolt' orc: the quotes say where the spell's name ends
-            matching_spell = lookup('_'.join(quoted.lower().split()))
+            key = '_'.join(quoted.lower().split())
+            matching_spell = key if key in player.spells else (by_name(quoted) or lookup(key))
             target_name = rest.lower() or None
         if not matching_spell:
             # unquoted: the longest run of leading words that names a spell wins, so
             # "cast magic missile orc" is magic_missile at "orc", not magic_missile at
             # "missile orc" ("animate dead knight" -> animate_dead, "knight")
-            for num_words in range(min(3, len(words)), 0, -1):
+            for num_words in range(min(4, len(words)), 0, -1):
                 spell_try = '_'.join(words[:num_words])
-                found = spell_try if spell_try in player.spells else None
+                found = spell_try if spell_try in player.spells else by_name(' '.join(words[:num_words]))
                 if not found and num_words == 1:
                     found = lookup(spell_try)
                 elif not found:
@@ -5748,9 +5689,9 @@ class CommandHandler:
             await player.send(f"{c['cyan']}╠═══════════════════════════════════════╣{c['reset']}")
         
         for spell, proficiency in player.spells.items():
-            spell_name = spell.replace('_', ' ').title()
             from spells import SPELLS
             spell_info = SPELLS.get(spell, {})
+            spell_name = spell_info.get('name') or spell.replace('_', ' ').title()     # as the spellbook shows it
             mana_cost = spell_info.get('mana_cost', 10)
             if use_ascii:
                 await player.send(f"{c['cyan']}| {c['bright_magenta']}{spell_name:<20} {c['white']}Mana: {mana_cost:<3} {proficiency}%{c['cyan']}  |{c['reset']}")
@@ -6810,7 +6751,7 @@ class CommandHandler:
         await player.send(f"{c['bright_red']}╚═══════════════════════════════════════╝{c['reset']}")
     
     @classmethod
-    def _make_bar(cls, current, maximum, width, filled_color, empty_color):
+    def _make_bar(cls, current, maximum, width=20, filled_color='', empty_color=''):
         """Create a visual bar."""
         if maximum <= 0:
             return f"{empty_color}{'░' * width}"
@@ -7111,210 +7052,6 @@ class CommandHandler:
     # ==================== RANGER COMPANION & TRACKING SYSTEM ====================
     
     @classmethod
-    async def cmd_companion(cls, player: 'Player', args: List[str]):
-        """View or command your animal companion."""
-        c = player.config.COLORS
-        
-        if player.char_class.lower() != 'ranger':
-            await player.send(f"{c['red']}Only rangers can have animal companions!{c['reset']}")
-            return
-        
-        if not player.animal_companion:
-            await player.send(f"{c['yellow']}You don't have an animal companion.{c['reset']}")
-            await player.send(f"{c['cyan']}Use 'tame <animal>' to bond with a wild beast.{c['reset']}")
-            return
-        
-        comp = player.animal_companion
-        
-        if not args:
-            # Show companion status
-            hp_bar = cls._make_bar(comp.hp, comp.max_hp, 15, c['bright_green'], c['red'])
-            
-            await player.send(f"{c['bright_green']}╔══════════════════════════════════════════════════╗{c['reset']}")
-            await player.send(f"{c['bright_green']}║{c['bright_yellow']}  🐾 ANIMAL COMPANION 🐾                          {c['bright_green']}║{c['reset']}")
-            await player.send(f"{c['bright_green']}╠══════════════════════════════════════════════════╣{c['reset']}")
-            await player.send(f"{c['bright_green']}║ {c['white']}Name: {c['bright_cyan']}{comp.name}{c['reset']}")
-            await player.send(f"{c['bright_green']}║ {c['white']}Type: {c['cyan']}{player.companion_type.title()}{c['reset']}")
-            await player.send(f"{c['bright_green']}║ {c['white']}HP: {hp_bar} {comp.hp}/{comp.max_hp}{c['reset']}")
-            await player.send(f"{c['bright_green']}║ {c['white']}Level: {comp.level}{c['reset']}")
-            
-            from spells import RANGER_COMPANIONS
-            comp_data = RANGER_COMPANIONS.get(player.companion_type, {})
-            special = comp_data.get('special', 'none').title()
-            await player.send(f"{c['bright_green']}║ {c['white']}Special: {c['bright_yellow']}{special}{c['reset']}")
-            
-            await player.send(f"{c['bright_green']}╠══════════════════════════════════════════════════╣{c['reset']}")
-            await player.send(f"{c['bright_green']}║ {c['cyan']}Commands: attack, defend, stay, follow, heel{c['reset']}")
-            await player.send(f"{c['bright_green']}╚══════════════════════════════════════════════════╝{c['reset']}")
-            return
-        
-        command = args[0].lower()
-        
-        if command == 'attack':
-            if not player.is_fighting:
-                await player.send(f"{c['yellow']}You're not fighting anyone for {comp.name} to attack!{c['reset']}")
-                return
-            target = player.fighting
-            comp.fighting = target
-            await player.send(f"{c['bright_green']}You command {comp.name} to attack!{c['reset']}")
-            await player.room.send_to_room(f"{comp.name} lunges at {target.name}!", exclude=[player])
-        
-        elif command == 'defend':
-            await player.send(f"{c['cyan']}{comp.name} moves to defend you.{c['reset']}")
-            if not hasattr(comp, 'defending'):
-                comp.defending = player
-        
-        elif command == 'stay':
-            comp.following = None
-            await player.send(f"{c['cyan']}{comp.name} stays in place.{c['reset']}")
-        
-        elif command == 'follow':
-            comp.following = player
-            await player.send(f"{c['cyan']}{comp.name} begins following you.{c['reset']}")
-        
-        elif command == 'heel':
-            if comp.room != player.room:
-                if comp.room and comp in comp.room.characters:
-                    comp.room.characters.remove(comp)
-                player.room.characters.append(comp)
-                comp.room = player.room
-                await player.send(f"{c['cyan']}{comp.name} returns to your side.{c['reset']}")
-            else:
-                await player.send(f"{c['yellow']}{comp.name} is already at your side.{c['reset']}")
-        
-        else:
-            await player.send(f"{c['yellow']}Unknown command. Try: attack, defend, stay, follow, heel{c['reset']}")
-    
-    @classmethod
-    async def cmd_tame(cls, player: 'Player', args: List[str]):
-        """Attempt to tame a wild animal as your companion."""
-        c = player.config.COLORS
-        import random
-        
-        if player.char_class.lower() != 'ranger':
-            await player.send(f"{c['red']}Only rangers can tame animals!{c['reset']}")
-            return
-        
-        if 'tame' not in player.skills:
-            await player.send(f"{c['red']}You haven't learned how to tame animals!{c['reset']}")
-            return
-        
-        if player.animal_companion:
-            await player.send(f"{c['yellow']}You already have a companion! Use 'dismiss' first.{c['reset']}")
-            return
-        
-        if not args:
-            await player.send(f"{c['yellow']}Tame which animal?{c['reset']}")
-            return
-        
-        target_name = ' '.join(args).lower()
-        
-        from mobs import Mobile
-        from spells import RANGER_COMPANIONS
-        
-        # Find target animal
-        target = None
-        matched_type = None
-        
-        for char in player.room.characters:
-            if isinstance(char, Mobile) and target_name in char.name.lower():
-                # Check if it's a tameable beast
-                for comp_type, comp_data in RANGER_COMPANIONS.items():
-                    for keyword in comp_data['keywords']:
-                        if keyword in char.name.lower():
-                            target = char
-                            matched_type = comp_type
-                            break
-                    if matched_type:
-                        break
-                if matched_type:
-                    break
-        
-        if not target:
-            await player.send(f"{c['red']}You don't see a tameable animal called '{target_name}' here.{c['reset']}")
-            await player.send(f"{c['cyan']}Tameable types: wolf, bear, hawk, cat, boar{c['reset']}")
-            return
-        
-        comp_data = RANGER_COMPANIONS[matched_type]
-        
-        # Check level requirement
-        if player.level < comp_data['level_required']:
-            await player.send(f"{c['red']}You need to be level {comp_data['level_required']} to tame a {matched_type}!{c['reset']}")
-            return
-        
-        # Check if target is hostile/fighting
-        if target.is_fighting:
-            await player.send(f"{c['red']}{target.name} is too aggressive to tame right now!{c['reset']}")
-            return
-        
-        # Taming attempt
-        skill_level = player.skills.get('tame', 50)
-        difficulty = comp_data['level_required'] * 2
-        chance = skill_level - difficulty + (player.level - comp_data['level_required']) * 2
-        
-        await player.send(f"{c['cyan']}You approach {target.name} slowly, attempting to bond...{c['reset']}")
-        await player.room.send_to_room(f"{player.name} approaches {target.name} carefully.", exclude=[player])
-        
-        if random.randint(1, 100) <= chance:
-            # Success! Convert to companion
-            player.animal_companion = target
-            player.companion_type = matched_type
-            
-            # Set companion stats based on ranger
-            target.max_hp = int(player.max_hp * comp_data['hp_mult'])
-            target.hp = target.max_hp
-            target.level = player.level
-            target.armor_class = comp_data['armor_class']
-            target.following = player
-            target.is_companion = True
-            target.companion_owner = player
-            target.special_ability = comp_data['special']
-            
-            await player.send(f"{c['bright_green']}Success! {target.name} bonds with you as your companion!{c['reset']}")
-            await player.send(f"{c['cyan']}{comp_data['description']}{c['reset']}")
-            await player.room.send_to_room(
-                f"{target.name} nuzzles {player.name} affectionately.",
-                exclude=[player]
-            )
-        else:
-            await player.send(f"{c['yellow']}{target.name} refuses to bond with you.{c['reset']}")
-            # Failed tame might make it hostile
-            if random.randint(1, 100) <= 20:
-                await player.send(f"{c['red']}{target.name} becomes aggressive!{c['reset']}")
-                from combat import CombatHandler
-                await CombatHandler.start_combat(target, player)
-    
-    @classmethod
-    async def cmd_dismiss(cls, player: 'Player', args: List[str]):
-        """Release your animal companion back to the wild."""
-        c = player.config.COLORS
-        
-        if not player.animal_companion:
-            await player.send(f"{c['yellow']}You don't have an animal companion.{c['reset']}")
-            return
-        
-        comp = player.animal_companion
-        
-        await player.send(f"{c['cyan']}You release {comp.name} back to the wild.{c['reset']}")
-        await player.send(f"{c['cyan']}{comp.name} nuzzles you one last time before departing.{c['reset']}")
-        
-        if player.room:
-            await player.room.send_to_room(
-                f"{comp.name} bounds away into the wilderness.",
-                exclude=[player]
-            )
-            if comp in player.room.characters:
-                player.room.characters.remove(comp)
-        
-        # Remove from world
-        if hasattr(player, 'world') and hasattr(player.world, 'npcs'):
-            if comp in player.world.npcs:
-                player.world.npcs.remove(comp)
-        
-        player.animal_companion = None
-        player.companion_type = None
-    
-    @classmethod
     async def cmd_track(cls, player: 'Player', args: List[str]):
         """Track a creature type or specific target."""
         c = player.config.COLORS
@@ -7512,28 +7249,6 @@ class CommandHandler:
             await player.send(f"{c['green']}  → Arrow {i+1} hits {target.name}! [{damage}]{c['reset']}")
         
         await target.take_damage(total_damage, player)
-
-    @classmethod
-    async def cmd_volley(cls, player: 'Player', args: List[str]):
-        """Rain arrows on all enemies in the room."""
-        c = player.config.COLORS
-        import random
-        from mobs import Mobile
-        
-        if 'volley' not in player.skills:
-            await player.send(f"{c['red']}You don't know Volley.{c['reset']}")
-            return
-        
-        targets = [m for m in player.room.characters if isinstance(m, Mobile) and m.hp > 0]
-        if not targets:
-            await player.send(f"{c['yellow']}No enemies to target!{c['reset']}")
-            return
-        
-        await player.send(f"{c['bright_green']}You fire a volley of arrows into the air!{c['reset']}")
-        for target in targets:
-            damage = random.randint(6, 14) + player.level // 2
-            await player.send(f"{c['green']}  → {target.name} takes {damage} damage!{c['reset']}")
-            await target.take_damage(damage, player)
 
     @classmethod
     async def cmd_marked_shot(cls, player: 'Player', args: List[str]):
@@ -7971,21 +7686,23 @@ class CommandHandler:
         target = player.fighting
         
         # Stun duration based on combo points
-        stun_duration = 1 + (player.combo_points - 4)  # 1-2 ticks
-        
+        stun_duration = 1 + (player.combo_points - 4)  # 1-2 rounds
+
         from affects import AffectManager
+        from combat import CombatHandler
         affect_data = {
             'name': 'kidney_shot',
             'type': AffectManager.TYPE_FLAG,
             'applies_to': 'stunned',
             'value': 1,
-            'duration': stun_duration,
+            'duration': 1,
             'caster_level': player.level
         }
-        AffectManager.apply_affect(target, affect_data)
-        target.position = 'stunned'
-        
-        await player.send(f"{c['bright_yellow']}You kidney shot {target.name}! Stunned for {stun_duration} ticks!{c['reset']}")
+        if CombatHandler.stun(target, stun_duration) == 'stagger':
+            await player.send(f"{c['bright_yellow']}You kidney shot {target.name}! It staggers but keeps its feet.{c['reset']}")
+        else:
+            AffectManager.apply_affect(target, affect_data)
+            await player.send(f"{c['bright_yellow']}You kidney shot {target.name}! Stunned for {stun_duration} rounds!{c['reset']}")
         if hasattr(target, 'send'):
             await target.send(f"{c['bright_red']}{player.name} kidney shots you! You're stunned!{c['reset']}")
         
@@ -8574,45 +8291,6 @@ class CommandHandler:
         player.hp = min(player.max_hp, player.hp + heal)
         await player.send(f"{c['bright_green']}✨ Word of Glory heals you for {heal} HP! [{player.hp}/{player.max_hp}]{c['reset']}")
         await player.room.send_to_room(f"A golden light surrounds {player.name}, healing their wounds.", exclude=[player])
-
-    @classmethod
-    async def cmd_divine_storm(cls, player: 'Player', args: List[str]):
-        """AoE holy damage. Costs 5 Holy Power. Paladin only. 30s CD."""
-        import time
-        c = player.config.COLORS
-        if player.char_class.lower() != 'paladin':
-            await player.send(f"{c['red']}Only paladins can use Divine Storm!{c['reset']}")
-            return
-        now = time.time()
-        if now < getattr(player, 'divine_storm_cooldown', 0):
-            remaining = int(player.divine_storm_cooldown - now)
-            await player.send(f"{c['yellow']}Divine Storm on cooldown ({remaining}s).{c['reset']}")
-            return
-        if player.holy_power < 5:
-            await player.send(f"{c['red']}You need 5 Holy Power! (Current: {player.holy_power}/5){c['reset']}")
-            return
-        player.holy_power = 0
-        player.divine_storm_cooldown = now + 30
-        from combat import CombatHandler
-        weapon = player.equipment.get('wield')
-        if weapon and hasattr(weapon, 'damage_dice'):
-            base_damage = CombatHandler.roll_dice(weapon.damage_dice)
-        else:
-            base_damage = random.randint(2, 8)
-        damage = int(base_damage * 1.5) + player.get_damage_bonus()
-        damage = max(1, damage)
-        await player.send(f"{c['bright_yellow']}⚡ Divine Storm! Holy energy radiates outward!{c['reset']}")
-        await player.room.send_to_room(f"{player.name} unleashes a divine storm!", exclude=[player])
-        enemies = [ch for ch in player.room.characters if ch.fighting == player and ch != player]
-        if player.fighting and player.fighting not in enemies:
-            enemies.append(player.fighting)
-        for enemy in enemies:
-            if hasattr(enemy, 'send'):
-                await enemy.send(f"{c['bright_yellow']}{player.name}'s divine storm hits you! [{damage}]{c['reset']}")
-            await player.send(f"{c['green']}Divine Storm hits {enemy.name}! [{damage}]{c['reset']}")
-            killed = await enemy.take_damage(damage, player)
-            if killed:
-                await CombatHandler.handle_death(player, enemy)
 
     @classmethod
     async def cmd_oath(cls, player: 'Player', args: List[str]):
@@ -9810,22 +9488,6 @@ class CommandHandler:
             if p != player and p.room and player.room and p.room.zone == player.room.zone:
                 if not getattr(p, 'noshout', False):
                     await p.send(f"\r\n{c['bright_yellow']}{player.name} shouts, '{message}'{c['reset']}")
-                
-    @classmethod
-    async def cmd_gossip(cls, player: 'Player', args: List[str]):
-        """Gossip to all players."""
-        if not args:
-            await player.send("Gossip what?")
-            return
-            
-        message = ' '.join(args)
-        c = player.config.COLORS
-        
-        await player.send(f"{c['bright_magenta']}You gossip, '{message}'{c['reset']}")
-        
-        for p in player.world.players.values():
-            if p != player:
-                await p.send(f"\r\n{c['bright_magenta']}{player.name} gossips, '{message}'{c['reset']}")
                 
     @classmethod
     async def cmd_emote(cls, player: 'Player', args: List[str]):
@@ -11722,59 +11384,6 @@ class CommandHandler:
             exclude=[player]
         )
 
-    @classmethod
-    async def cmd_companion(cls, player: 'Player', args: List[str]):
-        """Show your companion's stats. Usage: companion"""
-        from pets import PetManager
-
-        c = player.config.COLORS
-
-        pets = PetManager.get_player_pets(player)
-
-        if not pets:
-            await player.send(f"{c['yellow']}You don't have any companions.{c['reset']}")
-            return
-
-        await player.send(f"{c['bright_cyan']}╔══════════════════════════════════════════════════════╗{c['reset']}")
-        await player.send(f"{c['bright_cyan']}║{c['bright_yellow']}                  Your Companions                     {c['bright_cyan']}║{c['reset']}")
-        await player.send(f"{c['bright_cyan']}╚══════════════════════════════════════════════════════╝{c['reset']}")
-
-        for pet in pets:
-            hp_bar = cls._make_bar(pet.hp, pet.max_hp, 20)
-            loyalty_bar = cls._make_bar(pet.loyalty, 100, 20)
-
-            pet_type = "PERMANENT" if pet.is_persistent else "TEMPORARY"
-            time_remaining = ""
-            if pet.timer:
-                remaining = pet.get_despawn_time()
-                if remaining:
-                    minutes = remaining // 60
-                    seconds = remaining % 60
-                    time_remaining = f" (Time left: {minutes}m {seconds}s)"
-
-            await player.send(f"\n{c['white']}{pet.name} [{pet_type}]{c['reset']}{time_remaining}")
-            await player.send(f"  Level: {pet.level}  Type: {pet.pet_type}")
-            await player.send(f"  HP:      {hp_bar} {pet.hp}/{pet.max_hp}")
-            await player.send(f"  Loyalty: {loyalty_bar} {pet.loyalty}/100")
-
-            if pet.room == player.room:
-                await player.send(f"  Location: {c['green']}Here{c['reset']}")
-            elif pet.room:
-                await player.send(f"  Location: {c['yellow']}{pet.room.name}{c['reset']}")
-            else:
-                await player.send(f"  Location: {c['red']}Unknown{c['reset']}")
-
-    @staticmethod
-    def _make_bar(current: int, maximum: int, width: int = 20) -> str:
-        """Create a visual bar for stats."""
-        if maximum == 0:
-            filled = 0
-        else:
-            filled = int((current / maximum) * width)
-
-        bar = '█' * filled + '░' * (width - filled)
-        return f"[{bar}]"
-
     # ==================== DOOR COMMANDS ====================
 
     @classmethod
@@ -12398,10 +12007,14 @@ class CommandHandler:
 
     @classmethod
     async def cmd_show(cls, player: 'Player', args: List[str]):
-        """Show detailed stats of an item in the shop. Usage: show <item>"""
+        """Show detailed stats of an item in the shop. Usage: show <item> (an immortal's show
+        zones|players|stats: showstats)"""
         from shops import ShopManager
 
         c = player.config.COLORS
+        if args and args[0].lower() in ('zones', 'players', 'stats') and getattr(player, 'is_immortal', False):
+            await cls.cmd_showstats(player, args)
+            return
 
         if not args:
             await player.send(f"{c['yellow']}Show what? Use 'list' to see available items.{c['reset']}")
@@ -13078,26 +12691,6 @@ class CommandHandler:
                         await p.send(f"{c['magenta']}[Gossip] {player.name}: {message}{c['reset']}")
 
     @classmethod
-    async def cmd_auction(cls, player: 'Player', args: List[str]):
-        """Auction channel for selling items. Usage: auction <message>"""
-        c = player.config.COLORS
-
-        if not args:
-            await player.send(f"{c['yellow']}Auction what?{c['reset']}")
-            return
-
-        message = ' '.join(args)
-        
-        if hasattr(player, 'world') and player.world:
-            for p in player.world.players.values():
-                if p == player:
-                    if not getattr(player, 'norepeat', False):
-                        await p.send(f"{c['bright_yellow']}[Auction] You auction: {message}{c['reset']}")
-                else:
-                    if not getattr(p, 'noshout', False):
-                        await p.send(f"{c['bright_yellow']}[Auction] {player.name}: {message}{c['reset']}")
-
-    @classmethod
     async def cmd_grats(cls, player: 'Player', args: List[str]):
         """Congratulations channel. Usage: grats <message>"""
         c = player.config.COLORS
@@ -13500,6 +13093,9 @@ class CommandHandler:
             return
         
         item_type = getattr(target_obj, 'item_type', '')
+        if item_type == 'potion' and len(args) <= 1:
+            await cls.cmd_quaff(player, args)
+            return
         if item_type == 'potion':
             # Quaff the potion
             effects = getattr(target_obj, 'spell_effects', [])
@@ -13616,11 +13212,6 @@ class CommandHandler:
             await cls.cmd_drink(player, args)
         else:
             await player.send(f"{c['yellow']}You can't figure out how to use {target_obj.short_desc}.{c['reset']}")
-
-    @classmethod
-    async def cmd_quaff(cls, player: 'Player', args: List[str]):
-        """Drink a potion. Usage: quaff <potion>"""
-        await cls.cmd_use(player, args)
 
     @classmethod
     async def cmd_recite(cls, player: 'Player', args: List[str]):
@@ -14081,15 +13672,6 @@ class CommandHandler:
         await send_channel_message(player, 'newbie', ' '.join(args))
 
     @classmethod
-    async def cmd_trade(cls, player: 'Player', args: List[str]):
-        """Send a message on the trade channel. Usage: trade <message>"""
-        if not args:
-            await player.send("Trade what?")
-            return
-        from social import send_channel_message
-        await send_channel_message(player, 'trade', ' '.join(args))
-
-    @classmethod
     async def cmd_lfg(cls, player: 'Player', args: List[str]):
         """Send a message on the LFG (Looking For Group) channel. Usage: lfg <message>"""
         if not args:
@@ -14299,24 +13881,6 @@ class CommandHandler:
         await player.send(f"{c['green']}Typo reported. Thank you!{c['reset']}")
 
     # ==================== SERVER INFO ====================
-
-    @classmethod
-    async def cmd_news(cls, player: 'Player', args: List[str]):
-        """Display server news and updates."""
-        c = player.config.COLORS
-        
-        await player.send(f"{c['bright_cyan']}=== Misthollow News ==={c['reset']}")
-        await player.send(f"{c['white']}Welcome to Misthollow!{c['reset']}")
-        await player.send(f"")
-        await player.send(f"{c['yellow']}Recent Updates:{c['reset']}")
-        await player.send(f"  - 7 unique class systems (Bard, Warrior, Ranger, Paladin, Thief, Cleric, Necromancer)")
-        await player.send(f"  - Pet and companion system")
-        await player.send(f"  - Banking system (west then north from Market Square)")
-        await player.send(f"  - Hunger/thirst system (drink from fountains!)")
-        await player.send(f"  - 30+ social commands")
-        await player.send(f"  - Web map at http://72.35.132.11:4001")
-        await player.send(f"")
-        await player.send(f"{c['cyan']}Type 'help' for commands, 'policy' for rules.{c['reset']}")
 
     @classmethod
     async def cmd_motd(cls, player: 'Player', args: List[str]):
@@ -14610,10 +14174,20 @@ class CommandHandler:
 
     @classmethod
     async def cmd_title(cls, player: 'Player', args: List[str]):
-        """Set your title. Usage: title <new title>"""
+        """Set your title: one you earned (title <number|name>, title reset) or your own words.
+        Usage: title <new title>"""
         c = player.config.COLORS
-        
+        from achievements import AchievementManager
+        earned = getattr(player, 'available_titles', None) or []
+        text = ' '.join(args)
+        if args and (text.lower() in ('none', 'default', 'reset') or (text.isdigit() and earned)
+                     or any(text.lower() in t.lower() for t in earned)):
+            await AchievementManager.set_title(player, text)
+            return
+
         if not args:
+            if earned:
+                await AchievementManager.show_titles(player)
             current = getattr(player, 'title', 'the Adventurer')
             await player.send(f"{c['cyan']}Your current title: {c['white']}{player.name} {current}{c['reset']}")
             await player.send(f"{c['yellow']}Usage: title <new title>{c['reset']}")
@@ -15470,7 +15044,10 @@ class CommandHandler:
 
     @classmethod
     async def cmd_save(cls, player: 'Player', args: List[str]):
-        """Save your character."""
+        """Save your character (an immortal's `save <zone>` saves a zone: zsave)."""
+        if args and getattr(player, 'is_immortal', False):
+            await cls.cmd_zsave(player, args)
+            return
         await player.save()
         await player.send("Character saved.")
         
@@ -15623,8 +15200,12 @@ class CommandHandler:
 
     @classmethod
     async def cmd_store(cls, player: 'Player', args: List[str]):
-        """Store an item in your inn locker."""
+        """Store an item in your inn locker (or, at home, in your house chest)."""
         c = player.config.COLORS
+        from housing import HouseManager
+        if HouseManager.in_house(player):
+            await cls._house_store(player, args)
+            return
 
         # Check if at an inn
         if not player.room:
@@ -15672,8 +15253,12 @@ class CommandHandler:
 
     @classmethod
     async def cmd_retrieve(cls, player: 'Player', args: List[str]):
-        """Retrieve an item from your inn locker."""
+        """Retrieve an item from your inn locker (or, at home, from your house chest)."""
         c = player.config.COLORS
+        from housing import HouseManager
+        if HouseManager.in_house(player):
+            await cls._house_retrieve(player, args)
+            return
 
         # Check if at correct inn
         if not player.room:
@@ -16883,6 +16468,10 @@ class CommandHandler:
         c = player.config.COLORS
 
         if not args:
+            from pets import PetManager
+            if not player.combat_companion and PetManager.get_player_pets(player):
+                await cls.cmd_pet(player, args)
+                return
             # Show status
             if player.combat_companion:
                 cc = player.combat_companion
@@ -17152,7 +16741,7 @@ class CommandHandler:
         await HouseManager.teleport_home(player)
 
     @classmethod
-    async def cmd_store(cls, player: 'Player', args: List[str]):
+    async def _house_store(cls, player: 'Player', args: List[str]):
         """Store an item in your house chest. Usage: store <item>"""
         from housing import HouseManager
 
@@ -17166,7 +16755,7 @@ class CommandHandler:
         await HouseManager.store_item(player, ' '.join(args))
 
     @classmethod
-    async def cmd_retrieve(cls, player: 'Player', args: List[str]):
+    async def _house_retrieve(cls, player: 'Player', args: List[str]):
         """Retrieve an item from your house chest. Usage: retrieve <item>"""
         from housing import HouseManager
 
@@ -18781,7 +18370,7 @@ class CommandHandler:
             await player.send(f"{c['yellow']}Nohassle deactivated.{c['reset']}")
 
     @classmethod
-    async def cmd_show(cls, player: 'Player', args: List[str]):
+    async def cmd_showstats(cls, player: 'Player', args: List[str]):
         """Show various game statistics (immortal only).
         
         Usage:
@@ -19490,13 +19079,26 @@ class CommandHandler:
         if 'divine_storm' not in player.skills and 'halo_of_reckoning' not in player.skills:
             await player.send(f"{c['red']}You don't know Divine Storm.{c['reset']}")
             return
-        from mobs import Mobile
         import random
-        targets = [m for m in player.room.characters if isinstance(m, Mobile) and m.hp > 0]
+        import time as _time
+        from spells import SpellHandler
+        from combat import CombatHandler
+        left = getattr(player, 'divine_storm_cooldown', 0) - _time.time()
+        if left > 0:
+            await player.send(f"{c['yellow']}Divine Storm is not ready yet ({int(left) + 1}s).{c['reset']}")
+            return
+        targets = SpellHandler.foes_in_room(player)
+        if not targets:
+            await player.send(f"{c['yellow']}There is no foe here for the storm to strike.{c['reset']}")
+            return
+        player.divine_storm_cooldown = _time.time() + 10
         await player.send(f"{c['bright_yellow']}You unleash a Divine Storm!{c['reset']}")
         for target in targets:
             dmg = random.randint(6, 12) + player.level
-            await target.take_damage(dmg, player)
+            if await target.take_damage(dmg, player):
+                await CombatHandler.handle_death(player, target)
+        if not player.is_fighting:
+            await CombatHandler.start_combat(player, targets[0])
 
     @classmethod
     async def cmd_judgment(cls, player: 'Player', args: List[str]):
@@ -19967,7 +19569,7 @@ class CommandHandler:
             'type': AffectManager.TYPE_FLAG,
             'applies_to': 'invulnerable',
             'value': 1,
-            'duration': 5,  # ~10 seconds (2s per tick)
+            'duration': 2,  # two affect ticks (6 s each): ~12 seconds
             'caster_level': player.level
         })
         # Double damage
@@ -19976,12 +19578,11 @@ class CommandHandler:
             'type': AffectManager.TYPE_STAT,
             'applies_to': 'damroll',
             'value': 50,
-            'duration': 5,
+            'duration': 2,
             'caster_level': player.level
         })
-        # AoE cleave flag
-        player.titans_wrath_active = True
-        player.titans_wrath_ticks = 5
+        # every swing cleaves the foes around them (CombatHandler.one_round reads it)
+        player.titans_wrath_until = now + 12
         
         await player.send(f"{c['bright_yellow']}████████████████████████████████████████████{c['reset']}")
         await player.send(f"{c['bright_yellow']}█ {c['bright_red']}TITAN'S WRATH{c['bright_yellow']} - YOU ARE UNSTOPPABLE! █{c['reset']}")
@@ -20176,6 +19777,40 @@ class CommandHandler:
         await player.send(f"{c['bright_red']}You mark {target.name} for DEATH - your attacks deal 50% more damage!{c['reset']}")
         if player.room:
             await player.room.send_to_room(f"A dark mark appears on {target.name} - they have been marked for death!", exclude=[player])
+
+    @classmethod
+    async def cmd_warlords_presence(cls, player: 'Player', args: List[str]):
+        """Warlord's Presence (warrior talent): for 15 s repeating an ability no longer resets your
+        Momentum — every ability builds it. 120 s cooldown."""
+        await cls._momentum_talent(player, 'warlords_presence', "Warlord's Presence", 15, 120,
+                                   "Your presence fills the field: for a while, nothing you do breaks your momentum.")
+
+    @classmethod
+    async def cmd_perfect_form(cls, player: 'Player', args: List[str]):
+        """Perfect Form (warrior talent): for 12 s every ability builds two Momentum and repeating
+        one never resets it. 180 s cooldown."""
+        await cls._momentum_talent(player, 'perfect_form', 'Perfect Form', 12, 180,
+                                   "You move in perfect form: every blow builds on the last, twice over.")
+
+    @classmethod
+    async def _momentum_talent(cls, player, talent, name, seconds, cooldown, line):
+        """The warrior's tier-5 Momentum talents (warrior_abilities.apply_momentum reads the until)."""
+        import time as _time
+        from talents import TalentManager
+        c = player.config.COLORS
+        if not TalentManager.has_talent(player, talent):
+            await player.send(f"{c['red']}You haven't learned {name}.{c['reset']}")
+            return
+        left = getattr(player, f'{talent}_cooldown_until', 0) - _time.time()
+        if left > 0:
+            await player.send(f"{c['yellow']}{name} is not ready yet ({int(left) + 1}s).{c['reset']}")
+            return
+        now = _time.time()
+        setattr(player, f'{talent}_until', now + seconds)
+        setattr(player, f'{talent}_cooldown_until', now + cooldown)
+        await player.send(f"{c['bright_yellow']}{line}{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"{c['yellow']}{player.name} settles into {name}.{c['reset']}", exclude=[player])
 
     @classmethod
     async def cmd_perfect_crime(cls, player: 'Player', args: List[str]):
@@ -20842,7 +20477,6 @@ class CommandHandler:
 
     # ==================== MAIL SYSTEM ====================
 
-    @classmethod
     @classmethod
     async def cmd_auction(cls, player: 'Player', args: List[str]):
         """Auction house commands for buying and selling items.

@@ -1139,8 +1139,8 @@ class Mobile(Character):
         elif self.special == 'paralyze':
             attack_type = 'tries to paralyze'
             if random.randint(1, 100) <= 20:
-                if hasattr(target, 'position'):
-                    target.position = 'stunned'
+                from combat import CombatHandler
+                CombatHandler.stun(target, 1)
                 await self.room.send_to_room(
                     f"{c['yellow']}{target.name} is paralyzed!{c['reset']}"
                 )
@@ -1199,6 +1199,29 @@ class Mobile(Character):
                         AffectManager.remove_affect(self, affect)
         except Exception:
             pass
+
+        # what spells leave on a creature (spells.py): invulnerable takes nothing, sanctuary
+        # halves the blow; a charm breaks the moment it is struck; a fire shield (or a fire
+        # elemental's flame) burns a melee attacker
+        wards = getattr(self, 'affect_flags', None) or set()
+        if amount > 0 and 'invulnerable' in wards:
+            return False
+        if amount > 0 and 'sanctuary' in wards:
+            amount = max(1, amount // 2)
+        if 'charmed' in wards:
+            from affects import AffectManager
+            for a in list(getattr(self, 'affects', []) or []):
+                if a.applies_to == 'charmed':
+                    AffectManager.remove_affect(self, a)
+        if (amount > 0 and attacker is not None and damage_type == 'physical' and attacker is not self
+                and ('fire_shield' in wards or 'fire_shield' in (getattr(self, 'flags', None) or ()))
+                and getattr(attacker, 'hp', 0) > 0):
+            burn = max(2, min(25, amount // 8))
+            attacker.hp -= burn
+            if hasattr(attacker, 'send'):
+                await attacker.send(f"{Config().COLORS['red']}{self.name}'s flames sear you! [{burn}]{Config().COLORS['reset']}")
+            if attacker.hp <= 0 and hasattr(attacker, 'die'):
+                await attacker.die(self)
 
         # Shield Wall damage reduction (50% while active)
         if hasattr(self, 'shield_wall_active') and self.shield_wall_active > 0:

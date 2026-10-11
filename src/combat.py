@@ -76,6 +76,19 @@ class CombatHandler:
         return bool(getattr(ch, 'is_boss', False)) or 'boss' in getattr(ch, 'flags', set())
 
     @classmethod
+    def stun(cls, target, rounds: int = 1) -> str:
+        """A stun (bash, kidney shot, a paralysing touch, a spell): the target loses its next
+        turn(s), which one_round counts down, and a creature its wind-up. A boss only staggers.
+        Returns 'stun' or 'stagger'."""
+        if cls.is_boss_mob(target):
+            target.staggered_until = max(getattr(target, 'staggered_until', 0) or 0, time.time() + 1.5)
+            return 'stagger'
+        target.stunned_rounds = max(getattr(target, 'stunned_rounds', 0) or 0, max(1, int(rounds)))
+        if not cls.is_player(target) and getattr(target, 'pending_intent', None):
+            target.pending_intent = None
+        return 'stun'
+
+    @classmethod
     def player_toughness(cls, player) -> float:
         """Level-scaled damage reduction a player enjoys against NPC damage."""
         lvl = getattr(player, 'level', 1) or 1
@@ -535,6 +548,41 @@ class CombatHandler:
         if not cls.is_player(attacker) and time.time() < getattr(attacker, 'slowed_until', 0) and random.random() < 0.5:
             return
 
+        # what a spell holds them with (spells.py affects): paralysis or fear costs the turn, a
+        # charmed creature won't fight at all, slow and entanglement cost every other swing, a
+        # fumble one in four
+        held = getattr(attacker, 'affect_flags', None) or set()
+        # a bard's discord (song_debuffs: a percent chance to fumble the swing)
+        fumble = int((getattr(attacker, 'song_debuffs', None) or {}).get('fumble', 0) or 0)
+        if fumble > 0 and random.randint(1, 100) <= fumble:
+            attacker._swing_res = 'skip'
+            return
+        if held:
+            cc = cls.config.COLORS
+            if 'paralyzed' in held:
+                if hasattr(attacker, 'send'):
+                    await attacker.send(f"{cc['yellow']}You are paralyzed and cannot move!{cc['reset']}")
+                attacker._swing_res = 'skip'
+                return
+            if 'charmed' in held and not cls.is_player(attacker):
+                attacker.fighting = None
+                if attacker.position == 'fighting':
+                    attacker.position = 'standing'
+                return
+            if 'feared' in held:
+                if hasattr(attacker, 'send'):
+                    await attacker.send(f"{cc['yellow']}You are too terrified to strike!{cc['reset']}")
+                attacker._swing_res = 'skip'
+                return
+            if ('slow' in held or 'entangled' in held) and random.random() < 0.5:
+                attacker._swing_res = 'skip'
+                return
+            if 'fumble' in held and random.random() < 0.25:
+                if hasattr(attacker, 'send'):
+                    await attacker.send(f"{cc['yellow']}You fumble your attack!{cc['reset']}")
+                attacker._swing_res = 'skip'
+                return
+
         # A sidestepping player spent the round entirely on evasion
         if getattr(attacker, 'sidestep_skip_attack', False):
             attacker.sidestep_skip_attack = False
@@ -661,6 +709,18 @@ class CombatHandler:
                 await defender.send(f"{c['cyan']}You effortlessly evade {attacker.name}'s attack!{c['reset']}")
             if hasattr(attacker, 'send'):
                 await attacker.send(f"{c['yellow']}{defender.name} is untouchable!{c['reset']}")
+            attacker._swing_res = 'dodge'
+            return
+
+        # Illusions and phasing (spells.py: Tower Echoes / mirror image, Phase Step /
+        # displacement, Stepwise / blink): some blows find only an image or empty air
+        dflags = getattr(defender, 'affect_flags', None) or set()
+        veil = (25 if 'mirror_image' in dflags else 0) + (15 if 'displacement' in dflags else 0) + (20 if 'blink' in dflags else 0)
+        if veil and random.randint(1, 100) <= min(40, veil):     # stacked, never more than two in five
+            if hasattr(defender, 'send'):
+                await defender.send(f"{c['cyan']}{attacker.name}'s blow strikes only an image of you!{c['reset']}")
+            if hasattr(attacker, 'send'):
+                await attacker.send(f"{c['yellow']}Your blow passes through an image of {defender.name}!{c['reset']}")
             attacker._swing_res = 'dodge'
             return
 
@@ -1322,6 +1382,17 @@ class CombatHandler:
             if attacker.equipment.get('dual_wield') and random.randint(1, 100) <= int(attacker.skills['dual_wield'] * 0.6):
                 await mastery.improve(attacker, 'dual_wield', rate=0.25)
                 await cls.offhand_attack(attacker, defender)
+
+        # haste (Quicken, Rimeheart, a song): an extra swing about every other round
+        if 'haste' in (getattr(attacker, 'affect_flags', None) or set()) and defender.is_alive and random.random() < 0.5:
+            await cls.bonus_attack(attacker, defender)
+
+        # Titan's Wrath (the warrior's capstone): every swing cleaves through the foes around them
+        if time.time() < getattr(attacker, 'titans_wrath_until', 0):
+            from spells import SpellHandler
+            for other in SpellHandler.foes_in_room(attacker):
+                if other is not defender and other.is_alive:
+                    await cls.bonus_attack(attacker, other)
 
         # the rest of the round: rituals, pets, a companion, a burning mount (an action-mode
         # swing leaves them to the 3-s round: action_combat.py)
@@ -2091,7 +2162,8 @@ class CombatHandler:
 
         # Soul Harvest for necromancers (legacy system)
         if hasattr(killer, 'char_class') and killer.char_class == 'necromancer':
-            skill_level = getattr(killer, 'skills', {}).get('soul_harvest', 0)
+            # learned as a spell (the necromancer's book), once as a skill
+            skill_level = max(getattr(killer, 'skills', {}).get('soul_harvest', 0), getattr(killer, 'spells', {}).get('soul_harvest', 0))
             if skill_level > 0:
                 # Calculate chance and max fragments based on skill level
                 if skill_level < 26:
@@ -2561,10 +2633,9 @@ class CombatHandler:
                 else:
                     await target.send(f"{c['bright_red']}{player.name} bashes you to the ground! [{damage}]{c['reset']}")
 
-            # Bash can stun
-            if random.randint(1, 100) <= 30:
-                if hasattr(target, 'position'):
-                    target.position = 'stunned'
+            # Bash can stun for a round (a boss keeps its feet)
+            if random.randint(1, 100) <= 30 and not cls.is_boss_mob(target):
+                cls.stun(target, 1)
                 await player.send(f"{c['bright_yellow']}{target.name} is stunned!{c['reset']}")
 
             await cls.break_guard(player, target)

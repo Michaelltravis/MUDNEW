@@ -632,8 +632,10 @@ def _cooldowns(player):
         # a cooldown when it slips past the 0.4s floor
         if 0.4 < rem < 86400:
             out[key] = round(rem, 1)
-    # the marquee abilities' long cooldowns (marquee_abilities.py), kept in one dict
-    for key, until in (getattr(player, 'marquee_cd', None) or {}).items():
+    # the marquee abilities' long cooldowns (marquee_abilities.py) and the spells' own
+    # (spells.py), each kept in one dict
+    timers = list((getattr(player, 'marquee_cd', None) or {}).items()) + list((getattr(player, 'spell_cd', None) or {}).items())
+    for key, until in timers:
         try:
             rem = float(until) - now
         except (TypeError, ValueError):

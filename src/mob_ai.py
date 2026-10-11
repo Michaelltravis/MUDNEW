@@ -166,9 +166,14 @@ CASTER_DEBUFFS = [
 ]
 
 
+def _silenced(mob):
+    """Silenced (Chord of Disruption) or deafened (a bard's symphony): no spells."""
+    return bool((getattr(mob, 'affect_flags', None) or set()) & {'silenced', 'deafened'})
+
+
 async def _caster_tick(mob, target):
     """Caster mob AI: heal self, buff, or offensive spell."""
-    if mob.mana < 10:
+    if mob.mana < 10 or _silenced(mob):
         return False
 
     c = mob.config.COLORS
@@ -272,6 +277,17 @@ async def _cast_offensive(mob, target, spell):
             pass
         damage = max(1, min(damage, int(getattr(target, 'max_hp', damage) * 0.6)))
     mob.mana = max(0, mob.mana - mana_cost)
+    # Mirrorward (spells.py, spell_reflect): the spell turns back on its caster, and the ward is spent
+    if 'spell_reflect' in (getattr(target, 'affect_flags', None) or set()):
+        from affects import AffectManager
+        for a in list(getattr(target, 'affects', []) or []):
+            if a.applies_to == 'spell_reflect':
+                AffectManager.remove_affect(target, a)
+        await mob.room.send_to_room(f"{c['bright_cyan']}{target.name}'s ward flings {mob.name}'s spell back! [{damage}]{c['reset']}")
+        if await mob.take_damage(damage, target):
+            from combat import CombatHandler
+            await CombatHandler.handle_death(target, mob)
+        return
     await mob.room.send_to_room(
         f"{c['bright_magenta']}{mob.name} {msg} {target.name}! [{damage}]{c['reset']}"
     )
@@ -705,7 +721,7 @@ def _choose_boss_intent(mob, target):
 def _choose_caster_intent(mob, target):
     """Pick the caster's next declared offensive/debuff spell (heal/buff stay instant)."""
     now = time.time()
-    if mob.mana < 10 or now < mob.ai_state.get('spell_cd', 0):
+    if mob.mana < 10 or now < mob.ai_state.get('spell_cd', 0) or _silenced(mob):
         return None
     hp_pct = mob.hp / max(1, mob.max_hp)
     # leave the round free for the instant self-heal / first-buff paths
@@ -1002,8 +1018,8 @@ async def _resolve_legacy(mob, target, which):
             )
             return
         if random.randint(1, 100) <= 35:
-            if hasattr(target, 'position'):
-                target.position = 'stunned'
+            from combat import CombatHandler
+            CombatHandler.stun(target, 1)
             await mob.room.send_to_room(f"{c['yellow']}{target.name} is paralyzed!{c['reset']}")
         else:
             await mob.room.send_to_room(
@@ -1110,6 +1126,9 @@ async def mob_ai_tick(mob):
     Called once per combat round from world.combat_tick().
     Returns True if the mob took a special action this round.
     """
+    held = getattr(mob, 'affect_flags', None) or set()
+    if held & {'paralyzed', 'charmed', 'feared'} or (getattr(mob, 'stunned_rounds', 0) or 0) > 0:
+        return False       # held by a spell (spells.py): no special this round either
     if not mob.is_fighting or not mob.fighting or not mob.room:
         mob.pending_intent = None   # never leave a wind-up dangling
         return False

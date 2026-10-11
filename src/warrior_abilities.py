@@ -246,13 +246,17 @@ def get_momentum_speed_reduction(player) -> float:
 
 def apply_momentum(player, ability_name: str):
     """Apply momentum gain/reset based on ability used."""
+    import time as _time
     last = getattr(player, 'last_warrior_ability', None)
-    if ability_name == last:
+    now = _time.time()
+    perfect = now < getattr(player, 'perfect_form_until', 0)            # talent: +2, never reset
+    presence = perfect or now < getattr(player, 'warlords_presence_until', 0)   # talent: never reset
+    if ability_name == last and not presence:
         # Same ability twice — reset
         player.momentum = 0
     else:
         # Different ability — gain +1
-        player.momentum = min(10, getattr(player, 'momentum', 0) + 1)
+        player.momentum = min(10, getattr(player, 'momentum', 0) + (2 if perfect else 1))
     player.last_warrior_ability = ability_name
 
     # Check for Unstoppable trigger

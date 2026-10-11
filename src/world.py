@@ -388,6 +388,11 @@ class Room:
 
                     for msg in debuff_messages:
                         await player.send(msg)
+
+                # Detect Evil (spells.py): evil shows to the one who looks for it
+                if ('detect_evil' in (getattr(player, 'affect_flags', None) or set())
+                        and (getattr(char, 'alignment', 0) or 0) <= -350):
+                    await player.send(f"{c['red']}{char.name} is wreathed in a dull red aura.{c['reset']}")
                     
     async def send_to_room(self, message: str, exclude: List = None, wake_sleepers: bool = False):
         """Send a message to everyone in the room (sleeping players don't see messages unless wake_sleepers=True)."""
