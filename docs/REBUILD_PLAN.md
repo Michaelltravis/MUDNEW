@@ -1175,6 +1175,9 @@ to-hit and damage numbers.
   - Casters' damage rose with gear intelligence, so their creatures got more health.
   - The necromancer's longer fights made it frailer: 0.50 to 0.45, where it dies 0.1-0.2
     times a quest.
+  - The zone bosses' damage shares were measured again: most rise (the Goblin King 0.25 to
+    0.40). A lone hero still loses about half their health to one at their level, and deaths
+    fall from 49 to 39 in 360 fights.
 - **Reading an attribute** costs about 1.4 µs; the gear's totals are worked out again only when
   what is worn changes.
 - **Tests:** `tests/test_item_stats.py`:

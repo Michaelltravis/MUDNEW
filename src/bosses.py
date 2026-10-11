@@ -473,26 +473,26 @@ ZONE_BOSS_ROUNDS = 40
 # vnum -> share of the boss's own blows, abilities, poison and adds, measured (--calibrate --runs 2):
 # a file with no damage dice hits with 1d6, a caster's kit can hit nine times too hard
 ZONE_BOSS_DAMAGE = {
-    20007: 0.59,    # L12 spider queen
-    20008: 0.88,    # L14 alpha wolf
-    3014: 0.44,     # L15 sewer king
-    3503: 0.25,     # L22 the Goblin King (and his goblins)
-    3016: 0.96,     # L25 ancient guardian
-    6314: 0.58,     # L26 the Spider Queen
-    5318: 0.11,     # L28 the Necromancer
-    19007: 0.65,    # L28 frozen dwarven king
-    7304: 0.71,     # L30 master mindflayer
-    19010: 0.48,    # L30 Vyrkothas the Frost Wyrm
-    27015: 1.93,    # L36 Grimclaw the Great Bear (no damage dice in its file)
-    27010: 2.62,    # L40 the Oakfather (no damage dice in its file)
-    27016: 0.61,    # L40 the Blightlord
-    5360: 1.05,     # L44 Aurexus the Bronze Dragon
+    20007: 0.57,    # L12 spider queen
+    20008: 0.99,    # L14 alpha wolf
+    3014: 0.47,     # L15 sewer king
+    3503: 0.4,      # L22 the Goblin King (and his goblins)
+    3016: 1.21,     # L25 ancient guardian
+    6314: 0.61,     # L26 the Spider Queen
+    5318: 0.12,     # L28 the Necromancer
+    19007: 0.85,    # L28 frozen dwarven king
+    7304: 0.78,     # L30 master mindflayer
+    19010: 0.52,    # L30 Vyrkothas the Frost Wyrm
+    27015: 2.27,    # L36 Grimclaw the Great Bear (no damage dice in its file)
+    27010: 2.25,    # L40 the Oakfather (no damage dice in its file)
+    27016: 0.65,    # L40 the Blightlord
+    5360: 1.04,     # L44 Aurexus the Bronze Dragon
     5200: 0.83,     # L45 beholder
-    14030: 0.5,     # L47 Verdraxx the Green Dragon
-    8003: 0.57,     # L50 Scorathax the Red Dragon
-    16025: 0.74,    # L50 Kaleidos the Prismatic Dragon
-    22030: 0.95,    # L60 gate guardian
-    22031: 0.95,    # L60 gate guardian
+    14030: 0.43,    # L47 Verdraxx the Green Dragon
+    8003: 0.66,     # L50 Scorathax the Red Dragon
+    16025: 0.81,    # L50 Kaleidos the Prismatic Dragon
+    22030: 1.08,    # L60 gate guardian
+    22031: 1.08,    # L60 gate guardian
 }
 
 

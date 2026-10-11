@@ -169,6 +169,8 @@ fixes change what a class deals or can stand, so both tables were measured again
     quest, 0.5: 0.8). It is set at 0.45: played through eight times at 45, 55 and 60, it died
     0.1-0.2 times a quest.
 - `LEVEL_D` stays 0.9% a level: most classes still come out flat across levels.
+- **The zone bosses** were measured again too (below): most hit harder, since heroes carry more
+  health.
 
 ## How it was measured
 
@@ -493,8 +495,9 @@ lone hero at its level (`bosses.size_zone_boss`):
   quarter of lone heroes die, whichever comes first. The shares run from 0.11 (the
   Necromancer, whose spells hit nine times too hard) to 1.9-2.6 (Grimclaw and the Oakfather,
   whose files have no damage dice and hit with 1d6). Measured again in Push 22, once the
-  endgame gear's stats counted and an archer needed a bow in hand: the bosses from level 44 up
-  hit a little softer where heroes now deal more (the gate guardians 1.2 to 0.95).
+  endgame gear's stats counted and an archer needed a bow in hand (the gate guardians 1.2 to
+  0.95), and in Push 23, once gear's health and attributes counted: heroes carry more health,
+  so most bosses hit harder (the Goblin King 0.25 to 0.40, the gate guardians 0.95 to 1.08).
 
 Three fixes came out of measuring them:
 
@@ -513,19 +516,20 @@ What a lone hero at the boss's level meets, over the 20 bosses (two fights each;
 
 | class | health at worst (median) | deaths in 40 fights | minutes (median) |
 |---|---|---|---|
-| warrior | 22% | 0 | 1.6 |
-| paladin | 22% | 0 | 1.7 |
-| assassin | 40% | 0 | 1.7 |
-| cleric | 43% | 0 | 2.5 |
-| thief | 53% | 5 | 1.9 |
-| bard | 57% | 1 | 2.5 |
-| ranger | 60% | 1 | 3.1 |
-| necromancer | 79% | 16 | 2.4 |
-| mage | 100% | 26 | 3.0 |
+| paladin | 24% | 0 | 1.6 |
+| warrior | 28% | 0 | 1.5 |
+| cleric | 42% | 0 | 2.3 |
+| assassin | 47% | 1 | 1.6 |
+| bard | 53% | 0 | 2.2 |
+| necromancer | 56% | 12 | 2.1 |
+| thief | 58% | 8 | 1.8 |
+| ranger | 61% | 2 | 2.9 |
+| mage | 89% | 16 | 2.6 |
 
-A party of three (warrior, cleric, mage) finishes any of them in 0.5-1.2 minutes, its
-worst-off member losing 0-32% (median 10%). (Measured again in Push 22; Push 18's numbers
-were within a few points of these, the mage's 23 deaths now 26 and the necromancer's 17 now 16.)
+A party of three (warrior, cleric, mage) finishes any of them in 0.5-1.0 minutes, its
+worst-off member losing 0-21% (median 12%). (Measured again in Push 23, with gear's health and
+attributes counting: 39 deaths in 360 fights, 49 in Push 22; the mage 16, from 26, and the
+necromancer 12, from 16.)
 
 The spread between classes is the cost of a boss that can't know who fights it: a lone mage
 (about 190 health at level 45, and half the median hero's damage) or a necromancer whose bone
