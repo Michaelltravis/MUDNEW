@@ -227,7 +227,7 @@ class Boss(Mobile):
         finally:
             area, spared = self._resolving_area, self._spared
             self._resolving_area, self._spared = None, []
-        self.ai_state['cast'] = None
+            self.ai_state['cast'] = None      # resolved or not, it is over (a failed one must not freeze the boss)
         try:
             import combat_events as ev
             from combat_hooks import _school_of_label
@@ -254,16 +254,19 @@ class Boss(Mobile):
 
         for tgt in targets:
             if dodgeable and self._did_dodge(tgt):
-                await tgt.send(f"You dodge {self.name}'s {name}!")
+                if hasattr(tgt, 'send'):      # a pet holding the boss has nobody to tell
+                    await tgt.send(f"You dodge {self.name}'s {name}!")
                 continue
             # stepped out of the marked ground: the blow hits only earth
             if self._clear_of(getattr(self, '_resolving_area', None), tgt):
-                await tgt.send(f"You are clear of {self.name}'s {name} — it hits only ground!")
+                if hasattr(tgt, 'send'):      # a pet holding the boss has nobody to tell
+                    await tgt.send(f"You are clear of {self.name}'s {name} — it hits only ground!")
                 getattr(self, '_spared', []).append(tgt)
                 continue
 
             if damage > 0:
-                await tgt.send(f"{self.name}'s {name} hits you! [{damage}]")
+                if hasattr(tgt, 'send'):      # a pet holding the boss has nobody to tell
+                    await tgt.send(f"{self.name}'s {name} hits you! [{damage}]")
                 await tgt.take_damage(damage, self)
 
         if ability.get('heal_pct'):

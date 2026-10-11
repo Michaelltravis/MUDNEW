@@ -762,3 +762,39 @@ Four more classes on the same engine (the last four — thief, ranger, bard, ass
   (live: first blow at once, then every 3 s, a refused second skill, a wind-up landing 2.0 s
   after it was marked, switching off mid-fight), `tests/web/actionclock.test.mjs`;
   `test_combat_v2` still covers the round.
+
+### Marquee balance pass (owner's pick, fourth of four)
+- **Measured, not guessed**: `tools/balance/sim.py` plays every class's marquee quest with the
+  real combat code on a simulated clock (a quest takes about a second), alone and in groups of
+  2, 3 and 6, at levels 45-60, in both combat modes. It found that the scale's idea of a hero's
+  damage was off: the median hero deals 204 a round at 45 and 332 at 60 (`dpr()` guessed 150 to
+  197), and a warrior deals 2.4 times what a mage does (`CLASS_K` guessed the mage stronger).
+  A lone warrior's elites died in half the intended time; a mage's took a third longer.
+- **The quests now** (`src/marquee_scale.py`):
+  - health comes from the measured damage of everyone who set out;
+  - damage is scaled by what the class (or the party) can stand (`CLASS_D`, measured: a
+    thief's creatures hit at 0.56, a paladin's at 1.33), by kind (an elite x2, a ritual's
+    waves x0.7) and by level (1.8% a level above 45). The quest keeps the classes that
+    embarked.
+  - Alone, an elite takes about a minute and a warden two; the trial's boss takes three
+    minutes and two thirds of the hero's health. Deaths are rare (0.18 a quest), and no
+    group lost a fight.
+  - A lone hero who knows the way finishes in 40-81 simulated minutes; the report says what
+    that means for the two-hour goal and which number to raise.
+- **Fixes that change every fight** (found on the way):
+  - creatures now wear the armour their zone files give them (`armor_class` was ignored);
+  - a mage's INT now helps them hit and a thief's DEX adds damage (a case mismatch);
+  - warrior skills grow with level;
+  - Charm Person, sleep and blindness no longer take hold on creatures flagged against them,
+    or on bosses;
+  - a shield spell cast again renews itself instead of stacking (stoneskin five times was five
+    shields);
+  - a boss whose blow landed on a pet froze for the rest of the fight;
+  - quest creatures with a party's health were handed the world's "boss" kit (a slam on
+    everyone in the room every 8 s, fear, adds).
+- **The report**: `docs/balance/marquee.md` covers the method, the assumptions, the
+  calibration, every table, and how to rerun it.
+- **Tests**:
+  - `tests/test_balance.py`: the fixes, the scale, party sizing, and one quest simulated.
+  - `test_marquee`: a mixed party's creatures follow its classes.
+  - `test_marquee_abilities`: Thousand Shadows' test foe is sized to the damage curve.

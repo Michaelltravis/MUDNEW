@@ -269,7 +269,7 @@ class Character:
 
         # INT provides bonus for tactical awareness (mainly for casters)
         if hasattr(self, 'char_class'):
-            if self.char_class in ['Mage', 'Necromancer', 'Cleric']:
+            if str(self.char_class).lower() in ('mage', 'necromancer', 'cleric'):
                 effective_int = self.int + self.get_equipment_bonus('int') + self.get_soulstone_bonus_int()
                 bonus += (effective_int - 10) // 3
 
@@ -316,7 +316,7 @@ class Character:
 
         # DEX provides minor damage bonus (precision strikes for finesse classes)
         if hasattr(self, 'char_class'):
-            if self.char_class in ['Thief', 'Assassin', 'Ranger']:
+            if str(self.char_class).lower() in ('thief', 'assassin', 'ranger'):
                 effective_dex = self.dex + self.get_equipment_bonus('dex')
                 bonus += (effective_dex - 10) // 5
 

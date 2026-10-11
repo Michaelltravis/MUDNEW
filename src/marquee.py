@@ -209,6 +209,12 @@ def _proto(vnum):
 _HOSTILE = ('aggressive', 'aggr_good', 'aggr_evil', 'aggr_neutral', 'wimpy', 'scavenger', 'helper')
 
 
+def _classes(m):
+    """Who the quest's creatures are made for: the classes of everyone who embarked (a quest
+    accepted before they were kept: the owner's class)."""
+    return m.get('classes') or m.get('cls')
+
+
 async def _place(run, m, vnum, room, kind, **tag):
     """Place one of the quest's creatures, made for the party (kind: marquee_scale.ROUNDS, or
     'npc' for a figure to speak with)."""
@@ -220,8 +226,12 @@ async def _place(run, m, vnum, room, kind, **tag):
     p = dict(proto)
     p['flags'] = [f for f in proto.get('flags', []) if f not in _HOSTILE]
     if kind != 'npc':
-        p['max_hp'] = ms.foe_health(kind, m.get('level', OFFER_LEVEL), n, m.get('cls'))
+        p['max_hp'] = ms.foe_health(kind, m.get('level', OFFER_LEVEL), n, _classes(m))
         p['exp'] = ms.exp_reward(int(proto.get('exp', 1000)), n)
+        # made for the party: as many levels above its file's as the quest is above 45, so a
+        # level-55 party still meets peers (a creature far below a hero skips its wind-ups and
+        # just swings — mob_ai._intent_exempt)
+        p['level'] = ms.foe_level(int(proto.get('level', OFFER_LEVEL)), m.get('level', OFFER_LEVEL))
     if proto.get('boss_config'):
         cfg = copy.deepcopy(proto['boss_config'])
         cfg['ability_interval'] = round(cfg.get('ability_interval', 4.0) * ms.tempo(n), 2)
@@ -236,7 +246,7 @@ async def _place(run, m, vnum, room, kind, **tag):
         p['boss_config'] = cfg
     mob = create_mob_from_prototype(p, WORLD)
     if kind != 'npc':
-        mob._dmg_scale = ms.damage_factor(n)
+        mob._dmg_scale = ms.foe_damage_scale(kind, n, _classes(m), m.get('level', OFFER_LEVEL))
     mob.marquee_tag = dict(tag, owner=run.owner.lower(), stage=m.get('stage', 0), kind=kind)
     mob._marquee_engage_at = time.time() + ENGAGE_DELAY
     mob.room = room
@@ -253,8 +263,8 @@ async def _place(run, m, vnum, room, kind, **tag):
 def _adopt(run, m, adds):
     """A quest boss called for help: the newcomers belong to the quest too (lighter than its own)."""
     for a in adds:
-        a.max_hp = a.hp = ms.foe_health('add', m.get('level', OFFER_LEVEL), m.get('n', 1), m.get('cls'))
-        a._dmg_scale = ms.damage_factor(m.get('n', 1))
+        a.max_hp = a.hp = ms.foe_health('add', m.get('level', OFFER_LEVEL), m.get('n', 1), _classes(m))
+        a._dmg_scale = ms.foe_damage_scale('add', m.get('n', 1), _classes(m), m.get('level', OFFER_LEVEL))
         a.marquee_tag = {'owner': run.owner.lower(), 'stage': m.get('stage', 0), 'kind': 'add', 'add': True}
         run.mobs.append(a)
 
@@ -568,6 +578,7 @@ async def begin(owner, members):
     q = mq.quest_for(cls)
     n = len(members)
     m = {'id': q['id'], 'cls': cls, 'stage': 0, 'progress': {}, 'party': [p.name for p in members], 'n': n,
+         'classes': [str(p.char_class).lower() for p in members],
          'level': ms.party_level(owner.level, [p.level for p in members if p is not owner]), 'accepted': int(time.time())}
     owner.marquee = m
     for p in members:

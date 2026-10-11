@@ -134,8 +134,10 @@ def classify_mob(mob) -> set:
         elif 'wimpy' in flags and getattr(mob, 'level', 99) <= 8:
             roles.add('coward')
 
-    # Boss by HP threshold (never for bosses.py Boss instances — see above)
-    if not roles & {'boss'} and not is_boss_class:
+    # Boss by HP threshold (never for bosses.py Boss instances — see above — nor for a marquee
+    # quest's creatures: their health is sized to the party hunting them (marquee_scale), and the
+    # boss kit — a slam on everyone in the room every 8 s, fear, adds — would ride along with it)
+    if not roles & {'boss'} and not is_boss_class and getattr(mob, 'marquee_tag', None) is None:
         if getattr(mob, 'max_hp', 0) > 5000:
             roles.add('boss')
         elif getattr(mob, 'is_boss', False):

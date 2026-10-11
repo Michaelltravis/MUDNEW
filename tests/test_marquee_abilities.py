@@ -325,7 +325,7 @@ async def main():
     sin.skills['thousand_shadows'] = 50
     weak, tough = foe(9704, 13, 7, sin), foe(9704, 14, 9, sin)
     tough.fighting = sin
-    weak.max_hp, weak.hp = 2000, 700
+    weak.max_hp, weak.hp = int(10 * dpr), int(4 * dpr)      # lives through the three rounds, then under 30%
     await CommandHandler.execute(sin, 'thousand', ['shadows'])
     for _ in range(3):
         await ma.on_round(world)

@@ -396,8 +396,8 @@ async def engine():
     check(not said(ann, 'A marquee quest') and marquee.eligible(ann) == 'learned', 'it is not offered again once learned')
 
     # a party of three: embarking fixes the size; every foe is made for it; any member's kill counts
-    bo = _world_player(world, 'Bo', q['giver_room'], level=52, connection=True)
-    cy = _world_player(world, 'Cy', q['giver_room'], level=50, connection=True)
+    bo = _world_player(world, 'Bo', q['giver_room'], level=52, connection=True, char_class='mage')
+    cy = _world_player(world, 'Cy', q['giver_room'], level=50, connection=True, char_class='cleric')
     lea = _world_player(world, 'Lea', q['giver_room'], level=46, connection=True)
     grp = types.SimpleNamespace(members=[lea, bo, cy], leader=lea)
     for p in (lea, bo, cy):
@@ -410,13 +410,16 @@ async def engine():
     check(m3 and m3['n'] == 3 and m3['party'] == ['Lea', 'Bo', 'Cy'] and bo.marquee_help['owner'] == 'Lea',
           'three embarked: the party is fixed at three')
     check(m3['level'] == 49, f"the quest's level is the party's average when higher ({m3['level']})")
+    check(m3['classes'] == ['warrior', 'mage', 'cleric'], f"and who embarked is kept (its foes are made for them: {m3['classes']})")
     m3['stage'] = 1
     run3 = marquee.RUNS['lea']
     put(bo, world.rooms[22030])
     await marquee._step()
     chief = next(x for x in run3.mobs if x.marquee_tag.get('slot') == 0)
-    check(chief.max_hp == ms.foe_health('elite', 49, 3, 'warrior') and abs(chief._dmg_scale - 1.2) < 1e-9,
-          f'made for three: x2.6 health, +20% damage ({chief.max_hp})')
+    party = ['warrior', 'mage', 'cleric']
+    check(chief.max_hp == ms.foe_health('elite', 49, 3, party) and abs(chief._dmg_scale - ms.foe_damage_scale('elite', 3, party, 49)) < 1e-9
+          and chief.max_hp < ms.foe_health('elite', 49, 3, 'warrior'),
+          f'made for three: x2.6 health, +20% damage, sized to a warrior, a mage and a cleric ({chief.max_hp})')
     check(sum(1 for x in run3.mobs if x.marquee_tag.get('escort') == 0) == 1, 'and one thrall at its side')
     chief.hp = 0
     await marquee.fallen(chief, bo)
@@ -568,7 +571,7 @@ async def live_group():
     await g.cmd('goto 22030', 1.0)
     await g.read(3.5)
     text = await g.cmd('kill warchief', 1.5)
-    hp = re.findall(r'Banner-Reaver war-chief: \d+/(\d+)', text)
+    hp = re.findall(r'Banner-Reaver war-\s*chief: \d+/(\d+)', text)      # (the prompt may wrap inside the name)
     want = ms.foe_health('elite', 60, 2, 'warrior')
     check(hp and int(hp[-1]) == want, f'a war-chief made for two: {hp[-1] if hp else "?"} health (x1.8 = {want})')
     await g.cmd('restore', 0.4)

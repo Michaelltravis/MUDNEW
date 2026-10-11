@@ -2105,6 +2105,17 @@ class SpellHandler:
                         )
                     return
         
+        # a creature that can't be charmed, put to sleep or blinded (its flags; bosses are never
+        # charmed) shrugs it off: a charmed quest boss would end the fight for good
+        if target is not None and target != caster and not isinstance(target, str) and not hasattr(target, 'connection'):
+            flags = set(getattr(target, 'flags', ()) or ())
+            kinds = {a.get('type') for a in (spell.get('affects') or []) if isinstance(a, dict)}
+            from combat import CombatHandler
+            if (('charmed' in kinds and ('no_charm' in flags or CombatHandler.is_boss_mob(target)))
+                    or ('sleeping' in kinds and 'no_sleep' in flags) or ('blind' in kinds and 'no_blind' in flags)):
+                await caster.send(f"{c['yellow']}{target.name} is unaffected.{c['reset']}")
+                return
+
         # Saving throw (debuffs like sleep) before any message: a resisted spell never
         # announces that it worked
         if spell.get('save') and target is not None and target != caster and not isinstance(target, str):
@@ -2499,6 +2510,7 @@ class SpellHandler:
             })
             return
         elif affect_type == 'all_stats':
+            cls._refresh(target, spell_name, ('str', 'int', 'wis', 'dex', 'con', 'cha'))
             for st in ('str', 'int', 'wis', 'dex', 'con', 'cha'):
                 AffectManager.apply_affect(target, {
                     'name': spell_name, 'type': AffectManager.TYPE_MODIFY_STAT,
@@ -2516,8 +2528,17 @@ class SpellHandler:
             return
 
         # Apply the affect using AffectManager
+        cls._refresh(target, spell_name, (affect_data['applies_to'],))
         AffectManager.apply_affect(target, affect_data)
-                
+
+    @staticmethod
+    def _refresh(target, spell_name, kinds):
+        """A spell cast again renews what it gave instead of adding it twice (stoneskin cast five
+        times over was five shields, armor five times -100 AC)."""
+        from affects import AffectManager
+        for old in [a for a in (getattr(target, 'affects', None) or []) if a.name == spell_name and a.applies_to in kinds]:
+            AffectManager.remove_affect(target, old)
+
     @classmethod
     async def handle_special_spell(cls, caster: 'Player', target: 'Character', spell: dict):
         """Handle special spell effects."""

@@ -218,8 +218,9 @@ class Mobile(Character):
         mob.con = 10 + mob.level // 5
         mob.cha = 10 + mob.level // 5
 
-        # Armor class: use zone data if present, otherwise derive from level
-        mob.armor_class = proto.get('ac', 100 - mob.level * 2)
+        # Armor class: use zone data if present (zone files say `armor_class`; a few older ones
+        # `ac`), otherwise derive from level
+        mob.armor_class = proto.get('armor_class', proto.get('ac', 100 - mob.level * 2))
 
         # Hitroll and damroll from zone data (default to level-based)
         mob.hitroll = proto.get('hitroll', mob.level // 2)

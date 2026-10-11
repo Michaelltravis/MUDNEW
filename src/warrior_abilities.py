@@ -270,12 +270,17 @@ def berserker_self_damage(player, pct: float) -> int:
 
 
 def get_weapon_damage(player) -> int:
-    """Get base weapon damage roll."""
+    """Get base weapon damage roll: the weapon's dice grown with the warrior's level, as an
+    ordinary swing's are (CombatHandler.scale_player_weapon_damage), plus the damage bonus."""
     from combat import CombatHandler
     weapon = player.equipment.get('wield') if hasattr(player, 'equipment') else None
     if weapon and hasattr(weapon, 'damage_dice'):
-        return CombatHandler.roll_dice(weapon.damage_dice) + player.get_damage_bonus()
-    return random.randint(1, 6) + player.get_damage_bonus()
+        dice = CombatHandler.roll_dice(weapon.damage_dice)
+    else:
+        dice = random.randint(1, 6)
+    if CombatHandler.is_player(player):
+        dice = CombatHandler.scale_player_weapon_damage(player, dice)
+    return dice + player.get_damage_bonus()
 
 
 async def apply_damage_to_target(player, target, damage: int, ability_name: str = '') -> bool:

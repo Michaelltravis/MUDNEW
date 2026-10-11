@@ -12,12 +12,23 @@ or the party's average if higher; 45-60).
   boss tempo   abilities come 6% sooner per extra hero
   rewards      experience x health factor (shared out), gold x (1 + 0.5 (n - 1))
 
-Base numbers are sized against a level-L hero's damage per round (DPR, from the class damage
-curves at mastery-level gear) so a lone level-45 warrior spends about 66 s on an elite, two
-minutes on the stage's warden and three on the trial's boss; with travel, talk and the gathering
-in between the whole quest runs about two hours alone. What the foes deal back (world/zones/
-zone_097.json) is sized so a lone level-45 hero takes about half their health from an elite and
-one to two times it from a boss, most of that from blows they can see coming and step out of.
+Health is sized against what the heroes who embarked really deal a round — dpr(level), the median
+hero measured with the game's own combat code (tools/balance/sim.py), times CLASS_K for each one's
+class (a lone hero's own; a party's mean) — so any lone hero spends about 66 s on an elite, two
+minutes on the stage's warden and three on the trial's boss, and a party a little less. The
+creatures rise with the quest's level (foe_level), and what they deal back (their blows and
+specials in world/zones/zone_097.json) is scaled by:
+
+  FOE_DAMAGE   their kind (an elite hits twice its file's blows, a ritual's waves 0.7)
+  CLASS_D      what the class that embarked can stand (a lone hero's; a party's mean)
+  LEVEL_D      1.8% more a level above 45, as heroes grow sturdier
+  damage factor for the party's size (above)
+
+set so a lone hero of any class loses up to about half their health to an elite or a warden and two
+thirds of it to the trial's boss at the worst moment of the fight, and seldom dies (much of it in
+blows they can see coming and step out of). A lone hero who knows the way plays a quest through
+in 40-80 minutes. The measurements, how they were taken and what they found:
+docs/balance/marquee.md.
 """
 import math
 
@@ -25,9 +36,24 @@ ROUND = 3.0          # seconds per combat round (combat_range.round_seconds)
 
 # rounds a lone hero needs for each kind of foe
 ROUNDS = {'elite': 22, 'minion': 6, 'warden': 40, 'wave': 6, 'boss': 60, 'add': 3}
-# how much each class's damage differs from the average (a caster bursts, a cleric heals)
-CLASS_K = {'warrior': 1.0, 'paladin': 0.92, 'cleric': 0.8, 'mage': 1.1, 'necromancer': 1.0, 'thief': 1.05,
-           'assassin': 1.12, 'ranger': 1.05, 'bard': 0.85}
+# how each class's damage compares with the median hero's, measured with the real combat code
+# (tools/balance/sim.py, levels 45-60 alone; docs/balance/marquee.md): a quest's creatures are
+# sized to the classes that embarked, so every party's fights last about as long
+CLASS_K = {'warrior': 1.58, 'paladin': 1.11, 'cleric': 0.85, 'mage': 0.65, 'necromancer': 0.99, 'thief': 1.13,
+           'assassin': 1.59, 'ranger': 0.99, 'bard': 0.92}
+
+
+# how hard each kind of creature hits, as a share of its own blows and specials (zone_097): health
+# follows the measured hero (dpr, CLASS_K), so fights last as long as the quest wants; the blows
+# are set so what a fight costs a lone hero stays where it wants too (docs/balance/marquee.md)
+FOE_DAMAGE = {'elite': 2.0, 'minion': 1.0, 'warden': 1.0, 'wave': 0.7, 'boss': 1.0, 'add': 1.0}
+# and how hard a class's quest creatures hit at level 45: what a lone hero of that class can stand
+# (a thief or a mage has half a warrior's health and no heals; a paladin heals and wears plate),
+# measured the same way (tools/balance/sim.py --calibrate; docs/balance/marquee.md)
+CLASS_D = {'warrior': 1.06, 'paladin': 1.33, 'cleric': 1.33, 'mage': 0.74, 'necromancer': 0.7, 'thief': 0.56,
+           'assassin': 0.8, 'ranger': 0.99, 'bard': 0.7}
+# ...and a little harder each level above it, as heroes grow sturdier (measured: 1.8% a level)
+LEVEL_D = 1.018
 
 
 def clamp_n(n):
@@ -58,16 +84,38 @@ def party_level(owner_level, levels=()):
 
 
 def dpr(level):
-    """A level-L hero's damage per round at the gear a quest like this expects."""
-    return 1.2 * (9 * (1 + 0.22 * level) + 0.6 * level)
+    """A level-L hero's damage per round at the gear a quest like this expects: the median of the
+    nine classes measured with the real combat code (tools/balance/sim.py: about 200 at level 45,
+    250 at 50, 275 at 55 and 345 at 60 — some 3.3% more a level)."""
+    return 204 * 1.033 ** (level - 45)
+
+
+def _mean(table, cls):
+    """A class's number, or a party's: the mean over its members' classes (each member deals, and
+    is dealt, what their own class does)."""
+    if isinstance(cls, (list, tuple)):
+        return sum(table.get(str(c).lower(), 1.0) for c in cls) / len(cls) if cls else 1.0
+    return table.get(str(cls).lower() if cls else 'warrior', 1.0)
 
 
 def foe_health(kind, level, n, cls='warrior'):
-    return int(ROUNDS.get(kind, 6) * dpr(level) * CLASS_K.get(cls, 1.0) * health_factor(n))
+    """cls: the quest's class, or the classes of everyone who embarked."""
+    return int(ROUNDS.get(kind, 6) * dpr(level) * _mean(CLASS_K, cls) * health_factor(n))
+
+
+def foe_level(proto_level, quest_level):
+    """A quest creature's level: its file's, lifted by how far the quest is above level 45."""
+    return int(proto_level) + max(0, int(quest_level) - 45)
 
 
 def foe_damage(base, n):
     return max(1, int(base * damage_factor(n)))
+
+
+def foe_damage_scale(kind, n, cls='warrior', level=45):
+    """What a quest creature's blows are multiplied by: its kind's share, what the quest's class
+    can stand at the quest's level, and the party's size."""
+    return FOE_DAMAGE.get(kind, 1.0) * _mean(CLASS_D, cls) * LEVEL_D ** max(0, int(level) - 45) * damage_factor(n)
 
 
 def exp_reward(base, n):
@@ -79,5 +127,6 @@ def gold_reward(base, n):
 
 
 def minutes(kind, level, n, cls='warrior'):
-    """How long the party needs for one foe, in minutes (n heroes, each a DPR)."""
-    return foe_health(kind, level, n, cls) / (dpr(level) * clamp_n(n)) * ROUND / 60
+    """How long the party needs for one foe, in minutes (n heroes, each dealing what their class
+    does: cls is the quest's class, or the classes of everyone who embarked)."""
+    return foe_health(kind, level, n, cls) / (dpr(level) * _mean(CLASS_K, cls) * clamp_n(n)) * ROUND / 60
