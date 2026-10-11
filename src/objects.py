@@ -35,6 +35,32 @@ _WEAR_SLOT_PATTERNS = [
 ]
 
 
+# Some zones (the endgame ones) give an item's stats as an `effects` dict ({"strength": 4,
+# "armor_class": -22, "haste": true}). They load as affects under the names the game reads
+# (Player.get_equipment_bonus), and the yes/no ones as item flags.
+EFFECT_AFFECTS = {
+    'hitroll': 'hitroll', 'damroll': 'damroll', 'armor_class': 'armor',
+    'strength': 'str', 'dexterity': 'dex', 'intelligence': 'int', 'wisdom': 'wis',
+    'constitution': 'con', 'charisma': 'cha',
+    'hp': 'hp', 'mana': 'mana', 'move': 'move',
+    'hp_regen': 'hp_regen', 'mana_regen': 'mana_regen', 'move_regen': 'move_regen',
+    'backstab': 'backstab', 'stealth': 'sneak',
+    'shadow_resistance': 'shadow_resist', 'life_drain': 'life_drain', 'song_power': 'song_power',
+}
+
+
+def effects_as_affects(effects):
+    """An item's `effects` dict as ([{type, value}...] affects, {flags})."""
+    affects, flags = [], set()
+    for key, value in (effects or {}).items() if isinstance(effects, dict) else ():
+        if isinstance(value, bool):
+            if value:
+                flags.add(key)
+        elif isinstance(value, (int, float)):
+            affects.append({'type': EFFECT_AFFECTS.get(key, key), 'value': int(value)})
+    return affects, flags
+
+
 def infer_wear_slot(item) -> Optional[str]:
     """Resolve an item's equipment slot, inferring from its name when the item
     carries no explicit wear_slot (e.g. legacy/preset gear that used wear_pos,
@@ -222,6 +248,12 @@ class Object:
         obj.light_hours = data.get('light_hours', 0)
         obj.affects = data.get('affects', [])
         obj.flags = set(data.get('flags', []))
+        # a copy saved before its zone's `effects` were read: its stats from the prototype
+        if not obj.affects and world is not None:
+            proto = (getattr(world, 'obj_prototypes', {}) or {}).get(obj.vnum)
+            if isinstance(proto, dict) and proto.get('effects'):
+                obj.affects, more = effects_as_affects(proto['effects'])
+                obj.flags |= more
         obj.lore_id = data.get('lore_id')
         obj.lore_title = data.get('lore_title')
         obj.lore_text = data.get('lore_text')
@@ -281,8 +313,9 @@ class Object:
         obj.liquid = proto.get('liquid', 'water')
         obj.spell_effects = proto.get('spell_effects', [])
         obj.light_hours = proto.get('light_hours', 0)
-        obj.affects = proto.get('affects', [])
-        obj.flags = set(proto.get('flags', []))
+        extra, extra_flags = effects_as_affects(proto.get('effects'))
+        obj.affects = list(proto.get('affects', []) or []) + extra
+        obj.flags = set(proto.get('flags', [])) | extra_flags
         obj.lore_id = proto.get('lore_id')
         obj.lore_title = proto.get('lore_title')
         obj.lore_text = proto.get('lore_text')

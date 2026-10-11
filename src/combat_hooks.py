@@ -182,8 +182,7 @@ def _wrap_one_round():
         if scale != 1 and wounded and _is_player(attacker) and time.time() - getattr(attacker, '_pb_said', 0) > 9:
             attacker._pb_said = time.time()
             c = attacker.config.COLORS
-            cls_name = str(getattr(attacker, 'char_class', '')).lower()
-            tip = ("Too close for a clean shot — step back to draw properly." if cls_name == 'ranger'
+            tip = ("Too close for a clean shot — step back to draw properly." if cr.wielded_kind(attacker) in cr.WEAPON_RANGE
                    else "Too close to shape your bolts — step back to cast cleanly.")
             await attacker.send(f"{c['yellow']}{tip}{c['reset']}")
         # what the swing came to: None (no turn), {'res': 'skip'} (the turn was lost) or the blow

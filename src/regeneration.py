@@ -49,6 +49,7 @@ class RegenerationCalculator:
         """
         # Start with base regen
         regen = character.max_hp * base_rate * position_mult
+        regen *= RegenerationCalculator._gear(character, 'hp_regen')
 
         # Stat bonus: Constitution
         con_modifier = (character.con - 10) * 0.01  # +1% per point above 10
@@ -138,6 +139,7 @@ class RegenerationCalculator:
         rider = getattr(character, 'mana_regen', 0)
         if rider:
             regen *= (1.0 + max(0, rider) / 100.0)
+        regen *= RegenerationCalculator._gear(character, 'mana_regen')
 
         # Stat bonus: Intelligence and Wisdom
         int_modifier = (character.int - 10) * 0.01  # +1% per point above 10
@@ -218,6 +220,7 @@ class RegenerationCalculator:
         """
         # Start with base regen
         regen = character.max_move * base_rate * position_mult
+        regen *= RegenerationCalculator._gear(character, 'move_regen')
 
         # Stat bonus: Dexterity
         dex_modifier = (character.dex - 10) * 0.01  # +1% per point above 10
@@ -284,6 +287,18 @@ class RegenerationCalculator:
         return max(1, int(regen))
 
     # Helper methods for modifiers
+
+    @staticmethod
+    def _gear(character, kind: str) -> float:
+        """What worn gear adds to a regeneration, as a factor: its 'hp_regen', 'mana_regen' or
+        'move_regen' affects are percentages (+20 is a fifth faster)."""
+        bonus = getattr(character, 'get_equipment_bonus', None)
+        if not bonus:
+            return 1.0
+        try:
+            return 1.0 + max(0, bonus(kind)) / 100.0
+        except Exception:
+            return 1.0
 
     @staticmethod
     def _get_weather_hp_modifier(weather: 'Weather') -> float:

@@ -51,7 +51,8 @@ async def main():
     from combat import CombatHandler
 
     # ---- the scale
-    check(abs(ms.dpr(45) - 204) < 1 and abs(ms.dpr(60) - 332) < 2, f'dpr() follows the measured median hero ({ms.dpr(45):.0f} at 45, {ms.dpr(60):.0f} at 60)')
+    check(abs(ms.dpr(45) - 204) < 1 and abs(ms.dpr(60) - 395) < 2, f'dpr() follows the measured median hero ({ms.dpr(45):.0f} at 45, {ms.dpr(60):.0f} at 60)')
+    check(abs(ms.dpr(30) - 126) < 2, f"below 45, where the endgame gear isn't worn, it keeps the slope the zone bosses were sized by ({ms.dpr(30):.0f} at 30)")
     check(all(abs(ms.minutes('elite', 46, 1, c) - 1.1) < 0.01 for c in ms.CLASS_K),
           "an elite takes ~66 s alone whatever the quest's class (its creatures are sized to the class)")
     check(ms.CLASS_K['warrior'] > 1.2 and ms.CLASS_K['mage'] < 0.8, 'a warrior hits harder than the median, a mage softer (measured)')

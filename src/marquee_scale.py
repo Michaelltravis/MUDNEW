@@ -39,8 +39,8 @@ ROUNDS = {'elite': 22, 'minion': 6, 'warden': 40, 'wave': 6, 'boss': 60, 'add': 
 # how each class's damage compares with the median hero's, measured with the real combat code
 # (tools/balance/sim.py, levels 45-60 alone; docs/balance/marquee.md): a quest's creatures are
 # sized to the classes that embarked, so every party's fights last about as long
-CLASS_K = {'warrior': 1.58, 'paladin': 1.22, 'cleric': 0.89, 'mage': 0.58, 'necromancer': 1.1, 'thief': 1.14,
-           'assassin': 1.6, 'ranger': 0.99, 'bard': 0.92}
+CLASS_K = {'warrior': 1.47, 'paladin': 1.13, 'cleric': 0.82, 'mage': 0.52, 'necromancer': 1.04, 'thief': 1.05,
+           'assassin': 1.47, 'ranger': 0.73, 'bard': 0.85}
 
 
 # how hard each kind of creature hits, as a share of its own blows and specials (zone_097): health
@@ -85,9 +85,12 @@ def party_level(owner_level, levels=()):
 
 def dpr(level):
     """A level-L hero's damage per round at the gear a quest like this expects: the median of the
-    nine classes measured with the real combat code (tools/balance/sim.py: about 200 at level 45,
-    250 at 50, 275 at 55 and 345 at 60 — some 3.3% more a level)."""
-    return 204 * 1.033 ** (level - 45)
+    nine classes measured with the real combat code (tools/balance/sim.py). Since the endgame
+    gear's stats count (Push 22): about 195 at level 45, 290 at 50, 310 at 55 and 385 at 60, some
+    4.5% more a level. Below 45 (the zone bosses) the 3.3% a level measured before, where that
+    gear isn't worn."""
+    x = level - 45
+    return 204 * (1.045 ** x if x >= 0 else 1.033 ** x)
 
 
 def _mean(table, cls):

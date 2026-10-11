@@ -7,7 +7,8 @@ Checks: the cast parser honours quotes and multi-word spells; a melee hero out o
 no blow and an 'oor' event while the creature walks in ('move' events); in reach, swings
 arrive as 'attack' events followed by their 'dmg' with the health left; a skill aimed at a
 creature you are not fighting opens the fight; a wind-up marks the ground and, stepped out
-of, resolves with the hero 'dodged' (or is broken with a 'cancel').
+of, resolves with the hero 'dodged' (or is broken with a 'cancel'); with a bow in hand the
+warrior shoots from 12 m (the weapon decides the reach).
 """
 import asyncio
 import json
@@ -233,6 +234,24 @@ async def main():
                 check('must be fighting' not in text.lower(), '…and opens the fight instead of refusing')
             await tn.cmd('restore', 0.3)
             await tn.cmd('purge', 0.6)
+            await asyncio.sleep(3.5)
+
+            # 4. the weapon decides the reach: a warrior with a bow in hand shoots from 12 m
+            mob = await spawn()
+            if mob:
+                for line in ('remove all', 'load obj 13', 'wield bow'):      # a short bow
+                    await tn.cmd(line, 0.5)
+                await place((3.0, 7.0), mob['id'], (15.0, 7.0))
+                got.clear()
+                await tn.cmd('kill spectre', 1.0)
+                mine = lambda: [e for e in events('attack') if str((e.get('src') or {}).get('p', '')).lower() == tw.CHAR.lower()]
+                t0 = time.time()
+                while time.time() - t0 < 10 and not mine():
+                    await asyncio.sleep(0.2)
+                shots = mine()
+                check(not events('oor') and bool(shots) and shots[0].get('ranged'), f'with a bow in hand a warrior shoots from 12 m ({shots[:1]})')
+                for line in ('restore', 'purge', 'remove all', 'junk bow', 'wear all'):
+                    await tn.cmd(line, 0.5)
             pumper.cancel()
     tn.w.close()
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")

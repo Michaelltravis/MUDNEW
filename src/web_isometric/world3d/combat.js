@@ -12,7 +12,7 @@ import { recipeFor, timeline, THEMES } from './abilityfx.js';
 import { RECIPES } from './abilityfx-table.js';
 import { Director } from './fxdirector.js';
 import { LANDS } from './soundtable.js';
-import { swingClips } from './gearlook.js';
+import { swingClips, rangedBlow } from './gearlook.js';
 import { SCHOOL } from './fx.js';
 
 // the ordinary swing, by class: for anyone without a look (gearlook.js swingClips picks it
@@ -37,7 +37,6 @@ function slashColour(src, cls) {
   const theme = !src.mob && THEMES[cls];
   return theme ? theme.slash : src.hero ? 0xfff0d0 : 0xffb0a0;
 }
-const RANGED_AUTO = { ranger: { kind: 'shot', school: 'physical' }, mage: { kind: 'bolt', school: 'arcane', size: 0.16 }, necromancer: { kind: 'bolt', school: 'necrotic', size: 0.16 } };
 
 const COLORS = { dmgOut: '#ffe9a8', dmgIn: '#ff6a52', heal: '#7dff8f', miss: '#b8b8c4', crit: '#ffb02a', parry: '#8cc8ff', block: '#9ad0ff', dodge: '#d8e0ff', spell: '#e0b8ff' };
 const keyOf = ref => JSON.stringify(ref || null);
@@ -74,7 +73,8 @@ export class CombatView {
     const h = this.getHero();
     if (!h || !h.ctl) return;
     const cls = String(h.cls || '').toLowerCase();
-    const list = this.clips({ hero: true, cls, look: MH.state.player && MH.state.player.look }, !!RANGED_AUTO[cls]);
+    const look = MH.state.player && MH.state.player.look;
+    const list = this.clips({ hero: true, cls, look }, !!rangedBlow(look, cls));
     h.ctl.swing(list[Math.floor(Math.random() * list.length)], true);
     h.ctl.localSwingAt = performance.now();
   }
@@ -241,8 +241,9 @@ export class CombatView {
     if (!src) return;
     if (dst) this.face(src, dst);
     const cls = String(src.cls || '').toLowerCase();
-    // heroes shoot what their class shoots (arrows, arcane or shadow bolts); creatures as the server says
-    const ranged = ((src.hero || !src.mob) && RANGED_AUTO[cls]) || e.ranged;
+    // heroes shoot what their weapon shoots (a bow's arrows; a caster's arcane or shadow bolts);
+    // creatures as the server says
+    const ranged = (src.hero || !src.mob) ? (rangedBlow(src.look, cls) || (e.ranged ? { kind: 'shot', school: 'physical' } : null)) : e.ranged;
     let anim;
     if (src.hero || !src.mob) { const list = this.clips(src, !!ranged); anim = list[Math.floor(Math.random() * list.length)]; }
     else anim = ['1H_Melee_Attack_Chop', '1H_Melee_Attack_Slice_Diagonal', '1H_Melee_Attack_Stab'][Math.floor(Math.random() * 3)];

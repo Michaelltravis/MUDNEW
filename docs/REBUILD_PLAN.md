@@ -1100,3 +1100,30 @@ sits on, so it fits every body.
   - `tests/web/gearlook.test.mjs`: race skin, hair and build; people dressed by trade and race;
     beasts and the ungeared left alone.
   - `probe_play3d.js gear`: the guards by the temple wear their swords.
+
+### Endgame gear that works; a bow shoots whoever holds it (Push 22)
+- **The endgame items' stats load.** 62 items in the level 40-70 zones (the Cinderbrand
+  Greatsword, Coral Plate, the Heartstone of the Expanse…) gave their stats as an `effects` dict
+  the server never read, so they had none.
+  - They now load as the affects the game reads (`objects.effects_as_affects`): to hit, damage,
+    armour (lower is better), the six attributes, health/mana/moves, regeneration, backstab,
+    stealth as sneaking. The yes/no ones (water breathing, haste, corruption immunity) become
+    item flags.
+  - Copies saved before the fix take their stats from the prototype once.
+- **Gear speeds regeneration.** A `hp_regen`, `mana_regen` or `move_regen` affect is a
+  percentage (+20 heals a fifth faster). Nothing read them before, on any item.
+- **What gear still doesn't do** (true of every item, not only these; left for a decision):
+  - Health, mana and moves from gear only show in `score`: the real maximum never rises. That
+    needs one effective maximum read everywhere health is capped.
+  - Wisdom, constitution and charisma from gear change nothing.
+  - Nothing reads resistances, water breathing, life drain, song power or corruption
+    immunity, and haste only comes from spells.
+- **The balance simulator chooses gear right.** It scored a lower (better) armour class as
+  worse; it now reads an item's `effects` too, and a ranger wields a bow when the world offers
+  one at its level.
+- **A bow shoots whoever holds it** (`combat_range.auto_range`, owner's pick):
+  - The ordinary blow's reach follows the weapon in hand: a bow 16 m, a crossbow 14, a thrown
+    weapon 10, anything else 2.5.
+  - A mage or a necromancer still throws a bolt at 10 m whatever they hold; a ranger with a
+    sword swings it. Rangers start with a bow.
+  - The client follows: reach, chasing or holding ground, the projectile, the swing.

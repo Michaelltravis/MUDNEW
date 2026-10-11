@@ -522,6 +522,8 @@ class WebMapServer:
                     'melee': cr.MELEE, 'pointBlank': cr.POINT_BLANK, 'round': cr.round_seconds(),
                     'npcDelay': cr.NPC_PHASE_DELAY,
                     'auto': {k: {'range': v[0], 'ranged': v[1]} for k, v in cr.AUTO_RANGE.items()},
+                    # the weapon in hand comes first (a bow shoots whoever holds it)
+                    'weapons': {k: {'range': v[0], 'ranged': v[1]} for k, v in cr.WEAPON_RANGE.items()},
                     'abilities': {k: {'range': v[0], 'shape': v[1]} for k, v in cr.ABILITY_RANGE.items()},
                     'spellDefault': cr.DEFAULT_SPELL[0],
                     # real-time combat (action_combat.py): the clocks the client predicts with

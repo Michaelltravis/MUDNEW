@@ -128,13 +128,17 @@ def _score(proto):
         if m:
             s += int(m.group(1)) * (int(m.group(2)) + 1) / 2 + int(m.group(3) or 0)
     s += float(proto.get('armor', 0) or 0) + float(proto.get('armor_bonus', 0) or 0) * 0.5
-    for a in proto.get('affects') or []:
+    # what it adds, as the game reads it (an endgame item's `effects` too); an `armor` affect
+    # lowers armour class, so the lower the better
+    from objects import effects_as_affects
+    for a in list(proto.get('affects') or []) + effects_as_affects(proto.get('effects'))[0]:
         if not isinstance(a, dict):
             continue
         v = float(a.get('value', 0) or 0)
         t = a.get('type') or a.get('location')
         s += {'damroll': 2.0, 'hitroll': 1.0, 'hp': 0.08, 'str': 1.0, 'dex': 1.0, 'con': 1.0,
-              'int': 0.6, 'wis': 0.6, 'armor': 0.5, 'mana': 0.03}.get(t, 0.2) * v
+              'int': 0.6, 'wis': 0.6, 'armor': -0.5, 'mana': 0.03,
+              'hp_regen': 0.1, 'mana_regen': 0.1, 'move_regen': 0.05}.get(t, 0.2) * v
     return s
 
 
@@ -158,16 +162,31 @@ def gear_table(world):
         if not slot:
             continue
         lvl = int(proto.get('min_level') or proto.get('level') or 0)
-        _GEAR.setdefault(slot.rstrip('12'), []).append((lvl, _score(proto), vnum))
+        kind = ''
+        if slot == 'wield':
+            try:
+                import gear_look
+                kind = gear_look.weapon_piece(obj).get('k') or ''
+            except Exception:
+                pass
+        _GEAR.setdefault(slot.rstrip('12'), []).append((lvl, _score(proto), vnum, kind))
     return _GEAR
+
+
+# what a class wants in hand when the world offers it (the reach of its ordinary blow follows
+# the weapon: combat_range.py), else the best of anything
+WANTS = {'ranger': ('bow', 'crossbow')}
 
 
 def dress(world, hero, level, pct):
     """Wear, in each slot, the item at the pct percentile of what that slot offers at this level."""
     from objects import create_object
     hero.equipment = {}
+    want = WANTS.get(str(getattr(hero, 'char_class', '') or '').lower())
     for base, items in gear_table(world).items():
-        fit = sorted((s, v) for lv, s, v in items if lv <= level)
+        fit = sorted((s, v) for lv, s, v, kind in items if lv <= level)
+        if base == 'wield' and want:
+            fit = sorted((s, v) for lv, s, v, kind in items if lv <= level and kind in want) or fit
         if not fit:
             continue
         n = 2 if base in ('neck', 'finger', 'wrist') else 1

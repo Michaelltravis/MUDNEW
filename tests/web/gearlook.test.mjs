@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { planLook, swingClips, starterLook, kitIndex, CLASS_BASE, PROC } from '../../src/web_isometric/world3d/gearlook.js';
+import { planLook, swingClips, starterLook, kitIndex, CLASS_BASE, PROC, rangedBlow } from '../../src/web_isometric/world3d/gearlook.js';
 import { buildProc, buildAddon, SHAPES, ADDONS, MOTIFS, HANGING } from '../../src/web_isometric/world3d/procgear.js';
 
 const ART = path.join(path.dirname(fileURLToPath(import.meta.url)), '../../src/web_isometric/art3d');
@@ -238,4 +238,14 @@ test('people the world dressed: their trade\'s body, their race, their gear', as
   const a = npcDress({ ...guard }, creatureLook(guard)), b = npcDress({ ...guard, pv: 3061 }, creatureLook(guard));
   assert.ok(a.look.sig !== guardLook.sig && a.look.sig.startsWith(guardLook.sig), 'its own signature (body, race, tone)');
   assert.ok(typeof b.look.tone === 'number');
+});
+
+test('the weapon decides the blow from afar: a bow shoots whoever holds it; a caster throws a bolt', () => {
+  assert.equal(rangedBlow({ main: { k: 'bow', h: 2 } }, 'warrior').kind, 'shot', 'a warrior with a bow shoots');
+  assert.equal(rangedBlow({ main: { k: 'sword', h: 1 } }, 'ranger'), null, 'a ranger with a sword swings');
+  assert.equal(rangedBlow(starterLook('ranger'), 'ranger').kind, 'shot', 'a ranger starts with a bow');
+  assert.equal(rangedBlow({ main: { k: 'staff', h: 2 } }, 'mage').kind, 'bolt');
+  assert.equal(rangedBlow({}, 'necromancer').school, 'necrotic', 'a bolt with nothing in hand');
+  assert.equal(rangedBlow({ main: { k: 'crossbow', h: 1 } }, 'mage').kind, 'shot', 'a mage with a crossbow shoots it');
+  assert.equal(rangedBlow(null, 'thief'), null);
 });

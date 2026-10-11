@@ -495,7 +495,12 @@ export function createHud() {
   function setRanges(d) { ranges = d; }
   function abilityRange(id) {
     if (!ranges) return null;
-    if (id === 'attack') { const a = ranges.auto[String(st.player && st.player.char_class || '').toLowerCase()]; return a ? a.range : ranges.melee; }
+    if (id === 'attack') {
+      // the weapon in hand decides the reach (a bow shoots), else the class
+      const look = st.player && st.player.look, k = look && look.main && look.main.k;
+      const a = (ranges.weapons && ranges.weapons[k]) || ranges.auto[String(st.player && st.player.char_class || '').toLowerCase()];
+      return a ? a.range : ranges.melee;
+    }
     const ab = ranges.abilities[id], info = st.byId.get(id);
     if (ab) return /^(self|nova)/.test(ab.shape) ? null : ab.range;
     if (info && info.target === 'self') return null;

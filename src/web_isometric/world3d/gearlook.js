@@ -305,11 +305,21 @@ export function planLook(look, cls, kit) {
     idle: twoHanded ? '2H_Melee_Idle' : 'Idle' };
 }
 
+// ---- the ordinary blow from afar (combat_range.py): a bow, a crossbow or a thrown weapon
+// shoots whoever holds it; a mage or a necromancer throws a bolt whatever they hold ----
+const WEAPON_SHOT = { bow: { kind: 'shot', school: 'physical' }, crossbow: { kind: 'shot', school: 'physical' },
+  thrown: { kind: 'shot', school: 'physical' } };
+const CASTER_BOLT = { mage: { kind: 'bolt', school: 'arcane', size: 0.16 }, necromancer: { kind: 'bolt', school: 'necrotic', size: 0.16 } };
+export function rangedBlow(look, cls) {
+  const k = look && look.main && look.main.k;
+  return WEAPON_SHOT[k] || CASTER_BOLT[String(cls || '').toLowerCase()] || null;
+}
+
 // ---- the swing: what the hand holds decides the blow ----
 const ONE_H = ['1H_Melee_Attack_Chop', '1H_Melee_Attack_Slice_Diagonal', '1H_Melee_Attack_Slice_Horizontal'];
 const TWO_H = ['2H_Melee_Attack_Chop', '2H_Melee_Attack_Slice', '2H_Melee_Attack_Stab'];
 const DUAL = ['Dualwield_Melee_Attack_Stab', 'Dualwield_Melee_Attack_Slice', 'Dualwield_Melee_Attack_Chop'];
-// ranged: whether the server shot (the class's auto-attack reach, combat_range.py)
+// ranged: whether the blow was a shot or a bolt (rangedBlow: the weapon in hand, else a caster's bolt)
 export function swingClips(look, cls, ranged) {
   cls = String(cls || '').toLowerCase();
   const m = look && look.main, o = look && look.off;

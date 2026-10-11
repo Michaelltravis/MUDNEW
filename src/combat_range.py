@@ -7,11 +7,13 @@ checks range. Telnet players have no position and are always treated as in reach
 nothing changes for them.
 
 Design (owner: "think about the classes and what ranges make sense"):
-  melee classes (warrior, paladin, cleric, thief, assassin, bard) swing at 2.5 m and close
-  gaps with charges, trips and throws; the ranger shoots from up to 16 m and fights poorly
-  point-blank; mages and necromancers throw a weak bolt from 10 m and cast from 14-20 m,
-  but their touch spells need 2.5 m; heals, blessings and songs reach allies at 12-15 m;
-  shouts and novas hit everything around the user, area spells everything around a point.
+  the ordinary blow follows the weapon in hand (owner: "ranged attacks follow weapon"): a bow
+  shoots from up to 16 m, a crossbow 14, a thrown weapon 10, and an archer fights poorly
+  point-blank; anything else swings at 2.5 m, closing gaps with charges, trips and throws.
+  Mages and necromancers throw a weak bolt from 10 m whatever they hold, and cast from
+  14-20 m, but their touch spells need 2.5 m; heals, blessings and songs reach allies at
+  12-15 m; shouts and novas hit everything around the user, area spells everything around a
+  point. Rangers start with a bow.
 """
 import math
 import time
@@ -19,11 +21,13 @@ import time
 MELEE = 2.5          # a sword's reach, edge to edge, generous for a top-down view
 POINT_BLANK = 3.0    # too close to draw a bow well
 
-# the ordinary blow, by class: (reach in metres, ranged?)
+# the ordinary blow: (reach in metres, ranged?), by the weapon in hand (gear_look.py's kind),
+# else by class (a caster's bolt; everyone else at arm's length)
+WEAPON_RANGE = {'bow': (16.0, True), 'crossbow': (14.0, True), 'thrown': (10.0, True)}
 AUTO_RANGE = {
     'warrior': (MELEE, False), 'paladin': (MELEE, False), 'cleric': (MELEE, False),
     'thief': (MELEE, False), 'assassin': (MELEE, False), 'bard': (MELEE, False),
-    'ranger': (16.0, True), 'mage': (10.0, True), 'necromancer': (10.0, True),
+    'ranger': (MELEE, False), 'mage': (10.0, True), 'necromancer': (10.0, True),
 }
 
 # per ability: (range in metres, shape)
@@ -92,7 +96,31 @@ def ability_range(name, is_spell=False):
     return ABILITY_RANGE.get(key(name)) or (DEFAULT_SPELL if is_spell else DEFAULT_SKILL)
 
 
+def wielded_kind(ch):
+    """What kind of weapon is in hand ('bow', 'sword'...), as gear_look.py reads it; None."""
+    eq = getattr(ch, 'equipment', None) or {}
+    w = eq.get('wield') if isinstance(eq, dict) else None
+    if w is None:
+        return None
+    kind = getattr(w, '_wield_kind', None)
+    if kind is None:
+        try:
+            import gear_look
+            kind = gear_look.weapon_piece(w).get('k') or ''
+        except Exception:
+            kind = ''
+        try:
+            w._wield_kind = kind            # an item's name does not change: read it once
+        except Exception:
+            pass
+    return kind or None
+
+
 def auto_range(ch):
+    """(reach, ranged?) of a character's ordinary blow: the weapon's, else the class's."""
+    weapon = WEAPON_RANGE.get(wielded_kind(ch))
+    if weapon:
+        return weapon
     return AUTO_RANGE.get(str(getattr(ch, 'char_class', '') or '').lower(), (MELEE, False))
 
 

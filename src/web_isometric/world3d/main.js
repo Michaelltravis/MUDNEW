@@ -90,7 +90,12 @@ async function runGame() {
   const actionMode = () => MH.combatMode === 'action' && !(ranges.action && ranges.action.on === false);
   fetch('/combatdata').then(r => r.json()).then(d => { ranges = d; hud.setRanges(d); clock.configure(d.action); }).catch(() => {});
   const myClass = () => String(MH.state.player && MH.state.player.char_class || '').toLowerCase();
-  const reachOf = () => (ranges.auto[myClass()] || { range: ranges.melee || 2.5 }).range;
+  // the hero's ordinary blow: the weapon in hand decides (a bow shoots), else the class
+  const heroAuto = () => {
+    const look = MH.state.player && MH.state.player.look, k = look && look.main && look.main.k;
+    return (ranges.weapons && ranges.weapons[k]) || ranges.auto[myClass()] || { range: ranges.melee || 2.5, ranged: false };
+  };
+  const reachOf = () => heroAuto().range;
   const ents = new Entities(engine, $('#plates'), kits);
   // what lies on the ground (loot.js): corpses and items, a click takes them
   const loot = new GroundLoot(engine, { slot: (v, k) => ents.slot(v, k), icon: it => {
@@ -631,7 +636,7 @@ async function runGame() {
     // the round's blow fell short: a melee hero closes in on its own (keys still win);
     // archers and casters keep the spot they chose and are told the range instead
     if (e.auto) {
-      if (!(ranges.auto[myClass()] || {}).ranged) { if (!ctl.keys.size && !ctl.path) approach(t, e.need || reachOf()); }
+      if (!heroAuto().ranged) { if (!ctl.keys.size && !ctl.path) approach(t, e.need || reachOf()); }
       else if (performance.now() - oorToast > 5000) { oorToast = performance.now(); hud.toast(`Out of range — get within ${e.need || reachOf()} m`); }
       return;
     }
@@ -969,7 +974,7 @@ async function runGame() {
     if ((chaseClock -= dt) > 0 || !MH.state.inCombat || !t || !t.root || t.kind !== 'mob') return;
     chaseClock = 0.4;
     const reach = reachOf();
-    const ranged = (ranges.auto[myClass()] || {}).ranged;
+    const ranged = heroAuto().ranged;
     // melee heroes follow a foe that steps away; archers and casters hold their ground
     if (!ranged && dist > reach + 0.3 && !ctl.keys.size && !ctl.path && t.vnum === heroRoom.vnum) approach(t, reach);
   }
