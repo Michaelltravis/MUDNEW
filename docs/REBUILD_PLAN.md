@@ -1127,3 +1127,14 @@ sits on, so it fits every body.
   - A mage or a necromancer still throws a bolt at 10 m whatever they hold; a ranger with a
     sword swings it. Rangers start with a bow.
   - The client follows: reach, chasing or holding ground, the projectile, the swing.
+- **Measured again** with the real combat code (`docs/balance/marquee.md`, "Measured again with
+  the endgame gear"):
+  - Heroes at 50-60 deal 10-17% more. `dpr()` rises 4.5% a level from 45 (3.3% before); below
+    45 it keeps the curve the zone bosses were sized by.
+  - `CLASS_K` follows (the ranger 0.99 to 0.73: a bow's blows are lighter than the swords it
+    used to fire).
+  - What classes can stand now falls about 1% a level, so the creatures' blows rise 0.9% a
+    level (1.8% before). `CLASS_D` is measured again for every class: the mage 0.64, the
+    necromancer 0.59, the paladin 1.88.
+  - The zone bosses' damage shares are measured again: the level-60 gate guardians 1.2 to
+    0.95. A lone hero still loses about half their health to one at their level.
