@@ -505,6 +505,16 @@ async function waitFor(page, fn, arg, secs = 60) {
     // put things back as they were
     await page.evaluate(() => { MH.sendCommand('remove all', false); MH.sendCommand('junk greatblade', false); MH.sendCommand('wear all', false); });
     await sleep(1500);
+    // people their zone armed wear it: the guards by the temple (a knight, a cityguard)
+    await page.evaluate(() => MH.sendCommand('goto 3004', false));
+    await waitFor(page, () => [...MH3D.ents.list.values()].some(e => e.kind === 'mob' && e.actor && e.actor.gear), null, 20);
+    const npcs = await page.evaluate(() => [...MH3D.ents.list.values()].filter(e => e.kind === 'mob' && e.actor && e.actor.gear)
+      .map(e => `${e.data.name}: ${e.actor.gear.plan.props.filter(p => !/-(Head|HeadHooded|Body|Arm|Leg)/.test(p.name)).map(p => p.name).join('+')} (${e.actor.gear.cls}, ${e.actor.gear.plan.build.h})`));
+    check(npcs.some(n => /1H_Sword/.test(n)), `armed people wear their gear: ${npcs.join('; ') || 'none dressed'}`);
+    await sleep(1500);
+    await page.screenshot({ path: path.join(OUT, 'gear-npcs.png') });
+    await page.evaluate(() => MH.sendCommand('goto 3001', false));
+    await sleep(800);
   }
 
   check(errors.length === 0, `no page errors${errors.length ? ': ' + errors.join(' / ') : ''}`);

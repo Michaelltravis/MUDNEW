@@ -3,6 +3,7 @@
 // race, class and stat-roll prompts, answered from these screens. The class step shows the
 // class's 3D model turning on a small stage.
 import { makeStage } from './stage.js';
+import { starterLook } from '../gearlook.js';
 import { uiIcon } from './icons.js';
 import { THEMES } from '../abilityfx.js';
 
@@ -109,9 +110,11 @@ export function setupLogin() {
   function races() {
     wizard('STEP 1 OF 3', 'CHOOSE YOUR LINEAGE', 'Your bloodline shapes your gifts and your fate.',
       `<div class="grid">${RACES.map(([id, de]) => `<div class="pick" data-v="${id}"><b>${id.replace('_', ' ')}</b><small>${de}</small></div>`).join('')}</div>`);
-    create.querySelectorAll('.pick').forEach(el => el.addEventListener('click', () => { send(el.dataset.v); wizard('', 'FORGE YOUR HERO', 'Weaving your lineage…', ''); }));
+    create.querySelectorAll('.pick').forEach(el => el.addEventListener('click', () => { lineage = el.dataset.v; send(el.dataset.v); wizard('', 'FORGE YOUR HERO', 'Weaving your lineage…', ''); }));
   }
-  let stage = null;
+  let stage = null, lineage = null;
+  // the class's starting gear on the race just chosen (its skin and its build)
+  const preview = id => (lineage ? { ...starterLook(id), race: lineage, sig: `starter:${id}:${lineage}` } : null);
   function classes() {
     wizard('STEP 2 OF 3', 'CHOOSE YOUR CALLING', 'Pick a class to see it up close. Three are marked as good first picks.',
       `<div class="split"><div class="grid">${CLASSES.map(([id, role]) =>
@@ -130,7 +133,7 @@ export function setupLogin() {
       create.querySelector('.fd').textContent = c[2];
       create.querySelector('.fs').textContent = `Role: ${c[1]} · Prime stat: ${c[3]}`;
       const b = $('#choose-class'); b.disabled = false; b.textContent = `Choose ${id}`;
-      stage.show(id);
+      stage.show(id, { look: preview(id) });
     };
     create.querySelectorAll('.pick').forEach(el => el.addEventListener('click', () => focus(el.dataset.v)));
     $('#choose-class').addEventListener('click', () => { if (pick) { send(pick); stage.stop(); wizard('', 'FORGE YOUR HERO', 'Rolling the dice of fate…', ''); } });

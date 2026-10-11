@@ -12,7 +12,9 @@ level and quality. That is all a renderer needs; a `sig` hash lets it re-dress o
           'back': {'k': 'cloak', 'v': 'rogue', 'c': 'black'}, 'quiver': 1, 'light': {'k': 'torch'}}
 
 Item level: an item's `min_level`, else the level of the strongest creature that wears, carries
-or drops it (that covers nearly all the world's gear), else its named set's level range. Tier:
+or drops it (that covers nearly all the world's gear), else its named set's level range. What a
+shop sells counts as its weakest carrier's level, and at least new (8): a level-33 shopkeeper's
+sword is still a shop sword. Tier:
 level <8 -> 0, <18 -> 1, <30 -> 2, <42 -> 3, else 4; one more (up to 4) for magic, glowing,
 humming, superior or enchanted gear; a legendary is 5. Renown (`rn`) is the character's own
 standing: level 10, 20, 35 and 45 each add a band, prestige makes it 5.
@@ -27,6 +29,7 @@ import re
 
 # ---------------------------------------------------------------- item levels
 ITEM_LEVELS = {}          # vnum -> level, filled by build_item_levels() at world load
+SHOP_LEVEL = 8            # the least a shop's goods count as: bought new, clean (tier 1)
 
 
 def _refs(value):
@@ -61,7 +64,7 @@ def build_item_levels(world):
                     levels[int(vnum)] = int(lvl)
                 except (TypeError, ValueError):
                     pass
-    worn_by = {}
+    worn_by, weakest, sold = {}, {}, set()
     for proto in (getattr(world, 'mob_prototypes', {}) or {}).values():
         if not isinstance(proto, dict):
             continue
@@ -69,6 +72,13 @@ def build_item_levels(world):
         for key in ('equipment', 'inventory', 'loot_table', 'boss_loot_table', 'equipment_rolls'):
             for v in _refs(proto.get(key)):
                 worn_by[v] = max(worn_by.get(v, 0), lvl)
+                weakest[v] = min(weakest.get(v, lvl), lvl)
+        for v in _refs((proto.get('shop_config') or {}).get('sells')):
+            sold.add(v)
+    # what a shop sells is ordinary gear, however strong the shopkeeper who also carries it: as
+    # good as the weakest creature that has it, and new (at least tier 1)
+    for v in sold:
+        levels.setdefault(v, max(SHOP_LEVEL, weakest.get(v, SHOP_LEVEL)))
     for v, lvl in worn_by.items():
         levels.setdefault(v, lvl)
     try:
@@ -445,10 +455,15 @@ def worn_aura(ch):
     return 'set' if any(c >= 4 for c in counts.values()) else None
 
 
+def _standing(ch):
+    """A player's renown; a creature has none (its level is no standing)."""
+    return renown(ch) if hasattr(ch, 'account_name') else 0
+
+
 def _signature(ch):
     """What the look depends on, cheaply: rebuilt only when this changes."""
     eq = getattr(ch, 'equipment', {}) or {}
-    parts = [renown(ch), str(getattr(ch, 'race', '') or '')]
+    parts = [_standing(ch), str(getattr(ch, 'race', '') or '')]
     for slot in sorted(eq):
         it = eq[slot]
         if it is not None:
@@ -464,7 +479,7 @@ def look_of(ch):
     if cached and cached[0] == key:
         return cached[1]
     eq = getattr(ch, 'equipment', {}) or {}
-    look = {'v': 1, 'rn': renown(ch)}
+    look = {'v': 1, 'rn': _standing(ch)}
     race = str(getattr(ch, 'race', '') or '').lower()
     if race:
         look['race'] = race

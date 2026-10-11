@@ -284,6 +284,9 @@ class Mobile(Character):
                     if obj:
                         mob.equipment[slot] = obj
 
+        # gear the zone gave them by name is shown on their body in /play (gear_look.py)
+        mob.own_gear = bool(mob.equipment)
+
         # Auto-equip if no explicit equipment provided
         if not equipment_data and proto.get('auto_equip', True):
             mob.auto_equip(proto)

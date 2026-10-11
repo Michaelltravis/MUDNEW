@@ -7,6 +7,8 @@
 // or more steps of weight away from what the class starts in (a mage in plate gets the
 // knight's torso). Colours always follow the gear: metal and leather by material, cloth by
 // the piece's colour, its named set, or the class's own colour; tier 0 is dull and worn.
+// A race brings its skin and its build (RACE); a creature their zone dressed brings the body
+// its trade gave it (look.base, looks.js npcDress).
 
 // a class's own model, the armour weight it starts in (0 cloth, 1 leather, 2 mail, 3 plate),
 // and whether it goes hooded when its head is bare
@@ -15,6 +17,19 @@ export const CLASS_BASE = {
   mage: { model: 'mage', w: 0 }, necromancer: { model: 'mage', w: 0 }, thief: { model: 'rogue', w: 1 },
   assassin: { model: 'rogue', w: 1, hood: true }, ranger: { model: 'rogue', w: 1, hood: true }, bard: { model: 'rogue', w: 1 },
 };
+// how each race looks: its skin (a palette ramp; a human keeps the model's own unless the look
+// gives a tone) and its build, height and breadth (looks.js sizes its people alike)
+export const RACE = {
+  human: { h: 1, w: 1 },
+  elf: { skin: 'skin_elf', h: 1.04, w: 0.94 },
+  dark_elf: { skin: 'skin_drow', hair: 'white', h: 1.02, w: 0.94 },
+  half_orc: { skin: 'skin_orc', h: 1.07, w: 1.12 },
+  dwarf: { skin: 'skin_dwarf', h: 0.82, w: 1.12 },
+  halfling: { skin: 'skin_tan', h: 0.72, w: 0.96 },
+  gnome: { skin: 'skin_gnome', h: 0.66, w: 1 },
+};
+const TONES = ['skin_light', 'skin_tan', 'skin_brown', 'skin_dark'];
+export const raceOf = look => RACE[String((look && look.race) || 'human').toLowerCase().replace(/[\s-]+/g, '_')] || RACE.human;
 const MODEL_W = { mage: 0, rogue: 1, barbarian: 2, knight: 3 };
 const BY_WEIGHT = ['mage', 'rogue', 'barbarian', 'knight'];
 export const baseOf = cls => CLASS_BASE[String(cls || '').toLowerCase()] || CLASS_BASE.paladin;
@@ -177,7 +192,8 @@ const mountOf = (kit, piece) => kit.pieces[piece] && kit.pieces[piece].mount;
 export function planLook(look, cls, kit) {
   look = look || starterLook(cls);
   cls = String(cls || '').toLowerCase();
-  const base = baseOf(cls);
+  // a creature dressed by its zone keeps the body its trade gave it (looks.js): look.base
+  const base = look.base ? { ...baseOf(cls), ...look.base } : baseOf(cls);
   const rn = look.rn || 0;
   // measured from what the class starts in (a cleric's knight body stands for leather), then
   // arms and legs from what the torso stands for
@@ -207,7 +223,13 @@ export function planLook(look, cls, kit) {
     [`${legs}-LegLeft`, look.legs ? armourRoles(look.legs, cls) : bodyRoles],
     [`${legs}-LegRight`, look.legs ? armourRoles(look.legs, cls) : bodyRoles],
   ];
-  for (const [name, roles] of parts) add(name, roles);
+  // the race's skin (and a dark elf's white hair) on every part of the body
+  const race = raceOf(look);
+  const flesh = {};
+  const skin = look.tone != null ? TONES[Math.abs(look.tone) % TONES.length] : race.skin;
+  if (skin) flesh.skin = skin;
+  if (race.hair) flesh.hair = race.hair;
+  for (const [name, roles] of parts) add(name, { ...roles, ...flesh });
 
   // the main hand: a piece from the pack, or a shape built in code; finer ones get a pommel stone
   const m = look.main;
@@ -279,7 +301,8 @@ export function planLook(look, cls, kit) {
     hand: m && m.k === 'bow' ? 'handslotl' : 'handslotr',     // where the weapon's sparks come from
     set: look.set || null,
   };
-  return { key, parts: parts.map(p => p[0]), props, procs, addons, glow, adorn, idle: twoHanded ? '2H_Melee_Idle' : 'Idle' };
+  return { key, parts: parts.map(p => p[0]), props, procs, addons, glow, adorn, build: { h: race.h, w: race.w },
+    idle: twoHanded ? '2H_Melee_Idle' : 'Idle' };
 }
 
 // ---- the swing: what the hand holds decides the blow ----

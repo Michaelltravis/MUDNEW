@@ -679,6 +679,17 @@ def _look(entity):
         return None
 
 
+def _npc_look(mob):
+    """A creature's look, when its zone dressed it (not the gear every creature is handed) and
+    something of it shows: a weapon, a shield, a helm, armour or a cloak."""
+    if not getattr(mob, 'own_gear', False):
+        return None
+    look = _look(mob)
+    if look and any(k in look for k in ('main', 'off', 'head', 'body', 'back')):
+        return look
+    return None
+
+
 def _in_combat(player) -> bool:
     """True only for a LIVE fight: target alive and in the same room.
     Stale fighting references must never wedge graphical clients."""
@@ -1272,6 +1283,10 @@ def _room_entities(room, vnum, player):
             if hp is not None and max_hp:
                 mob_info['hp'] = hp
                 mob_info['maxHp'] = max_hp
+            # the gear its zone gave it (a guard's sword and helm): a person in /play wears it
+            npc_look = _npc_look(entity)
+            if npc_look:
+                mob_info['look'] = npc_look
             mob_list.append(mob_info)
 
     # Build other-players list for this room

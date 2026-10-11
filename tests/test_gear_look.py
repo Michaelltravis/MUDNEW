@@ -118,6 +118,22 @@ async def offline():
     dark = gl.armour_piece(piece_of('shadowy dark robes', 'body'))
     check('e' not in dark and dark.get('c') == 'black', f'dark robes are black, not a shadow weapon ({dark})')
 
+    # what a shop sells is ordinary, however strong the shopkeeper who also carries it
+    sword = Object.from_prototype(world.obj_prototypes[3022], world)
+    check(gl.item_tier(sword) == 1, f"Midgaard's shop sword is tier 1, not its level-33 sellers' ({gl.item_level(sword)})")
+
+    # creatures: the gear their zone gave them shows, the gear every creature is handed does not;
+    # their level is no standing (no renown)
+    import map_system
+    mobs = [ch for r in world.rooms.values() for ch in getattr(r, 'characters', []) if not hasattr(ch, 'account_name')]
+    guard = next((m for m in mobs if getattr(m, 'vnum', None) == 3060), None)
+    lk = map_system._npc_look(guard) if guard else None
+    check(lk and lk['main']['k'] == 'sword' and lk['rn'] == 0, f'a cityguard wears its sword ({lk})')
+    high = next((m for m in mobs if getattr(m, 'own_gear', False) and (m.level or 0) >= 35 and map_system._npc_look(m)), None)
+    check(high is not None and map_system._npc_look(high)['rn'] == 0, 'a level-35 creature has no renown')
+    handed = [m for m in mobs if not getattr(m, 'own_gear', False) and getattr(m, 'equipment', None)]
+    check(handed and all(map_system._npc_look(m) is None for m in handed), f'auto-equipped creatures send no look ({len(handed)})')
+
     # every class's starting look
     looks = {}
     for cls in ('warrior', 'mage', 'cleric', 'thief', 'ranger', 'paladin', 'necromancer', 'bard', 'assassin'):

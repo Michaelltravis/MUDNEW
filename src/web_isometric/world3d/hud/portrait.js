@@ -5,7 +5,7 @@
 import * as THREE from 'three';
 import { spawnLook } from '../entities.js';
 import { spawnDressed } from '../equip.js';
-import { creatureLook } from '../looks.js';
+import { creatureLook, npcDress } from '../looks.js';
 
 const SIZE = 192;
 let studio = null;
@@ -60,6 +60,13 @@ export const classPortrait = cls => lookPortrait(null, cls);
 // a creature's portrait from its payload data (the body looks.js gives it in the world)
 export function creaturePortrait(data, kits = null) {
   const look = creatureLook(data || {});
+  // a person their zone dressed: in that gear
+  const npc = npcDress(data, look);
+  if (npc) {
+    const key = `npc:${npc.look.sig}:${npc.cls}`;
+    if (!cache.has(key)) cache.set(key, spawnDressed(npc.look, npc.cls).then(a => shoot(a, { bust: 0.55 })).catch(() => null));
+    return cache.get(key);
+  }
   const b = look.beast;
   const key = b ? `beast:${b.mob || b.proc || (b.prop && b.prop.join('/'))}:${b.tint || ''}:${b.h || ''}` : `person:${look.model}:${look.tint || ''}:${look.flat ? 1 : 0}`;
   if (!cache.has(key)) {

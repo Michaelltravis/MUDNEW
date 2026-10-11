@@ -1068,3 +1068,35 @@ sits on, so it fits every body.
     shapes turned in the hand.
   - `tests/test_gear_look.py`: instruments and crowns by name.
   - `probe_play3d.js gear`: a renowned hero is adorned.
+
+### The world dressed alike: people in their own gear, every race its own (Push 21)
+- **People wear what their zone gave them.** About 400 of the world's creatures have gear named
+  in their zone files (a cityguard's sword, a knight's blade, a shadow assassin's obsidian
+  dagger). Their entries now carry the same `look` a player's do, about 100 bytes each
+  (`map_system._npc_look`).
+  - The client dresses them as it dresses players, but keeps the body their trade gives them
+    (`world3d/looks.js` `npcDress`: a guard stands as a knight, a priest in robes). Their
+    colours are the trade's class (a guard a paladin's, a thief an assassin's).
+  - A wolf handed a sword stays a wolf: only creatures drawn as people are dressed.
+  - Gear every creature is handed when its zone names none is not shown.
+  - A creature's level is no standing: no renown flourishes on a shopkeeper.
+- **Race** (`world3d/gearlook.js` `RACE`):
+  - Each race has its skin on every part of the body: elf, dark elf (white hair too), half-orc,
+    dwarf, halfling and gnome. A human keeps the model's own skin, and human creatures vary
+    between four tones.
+  - Each race has its build: dwarves short and broad, halflings and gnomes small, half-orcs
+    tall and broad, elves slight. The sizes match those creatures already had.
+  - Players' race comes from the server's look; creatures' from their words (a "dwarven smith").
+    At character creation the class preview already shows the race just chosen.
+- **Shop gear is ordinary**: an item level came from the strongest creature carrying the item,
+  and Midgaard's level-33 shopkeepers made a plain shop sword tier 3 (gold trim, a pommel stone).
+  What a shop sells now counts as its weakest carrier's level, at least 8 (bought new: tier 1).
+- **Gallery**: `&only=races` shows every race in a warrior's and a mage's starting gear, and the
+  four human tones; `&only=people`, people the world dressed (a guard, a dwarven smith, a drow
+  assassin, a half-orc warrior…).
+- **Tests**:
+  - `tests/test_gear_look.py`: shop gear tiers; a cityguard's look; no renown for creatures; no
+    look for auto-equipped creatures.
+  - `tests/web/gearlook.test.mjs`: race skin, hair and build; people dressed by trade and race;
+    beasts and the ungeared left alone.
+  - `probe_play3d.js gear`: the guards by the temple wear their swords.

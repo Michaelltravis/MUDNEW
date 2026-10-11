@@ -5,7 +5,7 @@
 import * as THREE from 'three';
 import { spawnCharacter, spawnMob } from './assets.js';
 import { spawnDressed, dress } from './equip.js';
-import { creatureLook, hashStr } from './looks.js';
+import { creatureLook, hashStr, npcDress } from './looks.js';
 import { makeProc, makeProp } from './proc.js';
 import { isHostile, conOf } from './targeting.js';
 
@@ -139,6 +139,11 @@ export class Entities {
       if (!e) { this.create(key, w); continue; }
       e.data = w.data;
       if (e.kind === 'player' && e.actor && w.data.look) dress(e.actor, w.data.look, w.data.char_class);
+      // a dressed person whose gear changed (disarmed, or picked something up)
+      if (e.kind === 'mob' && e.actor && e.actor.gear && w.data.look) {
+        const npc = npcDress(w.data, e.look);
+        if (npc) dress(e.actor, npc.look, npc.cls);
+      }
       this.markHostile(e);
       if (e.vnum !== w.vnum) {
         this.moveTo(e, w.vnum);
@@ -175,13 +180,17 @@ export class Entities {
     if (w.kind === 'mob' && w.data.level) e.plate.querySelector('.lv').textContent = w.data.level;
     if (w.data.boss) e.plate.classList.add('boss');
     this.plates.appendChild(e.plate);
-    // another player is dressed in what they wear (equip.js); a creature gets its body from looks.js
+    // another player is dressed in what they wear (equip.js); a creature gets its body from
+    // looks.js, and a person their zone gave gear to wears it as a player would
     const isPlayer = w.kind === 'player';
     const look = isPlayer ? {} : creatureLook(w.data);
     e.look = look;
     e.fly = (look.beast ? look.beast.fly : look.fly) || 0;
     e.still = !!look.still;        // a statue: no breathing while it stands guard
-    (isPlayer ? spawnDressed(w.data.look, w.data.char_class) : spawnLook(look, { kits: this.kits, seed: hashStr(key) })).then(actor => {
+    const npc = isPlayer ? null : npcDress(w.data, look);
+    (isPlayer ? spawnDressed(w.data.look, w.data.char_class)
+      : npc ? spawnDressed(npc.look, npc.cls, { scale: npc.scale })
+        : spawnLook(look, { kits: this.kits, seed: hashStr(key) })).then(actor => {
       if (!e.alive) return;
       e.actor = actor;
       e.root = actor.root;

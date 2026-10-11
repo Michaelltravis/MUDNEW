@@ -347,12 +347,18 @@ export async function spawnDressed(look, cls, opts = {}) {
   mesh.boundingSphere = new THREE.Sphere(new THREE.Vector3(0, 1.1, 0), 3.2);   // a swung greatsword included
   mesh.name = 'dressed';
   root.add(mesh);
-  if (opts.scale) root.scale.setScalar(opts.scale);
   const actor = new Actor(root, clips);
-  actor.gear = { kit, mesh, plan, cls, sig: look && look.sig, glow: material.userData.glow };
+  actor.gear = { kit, mesh, plan, cls, sig: look && look.sig, glow: material.userData.glow, scale: opts.scale || 1 };
   material.userData.glow.value = plan.glow;
   actor.idle = plan.idle;
+  shape(actor);
   return actor;
+}
+
+// the body's build (its race's height and breadth) times the scale it was asked for
+function shape(actor) {
+  const g = actor.gear, b = g.plan.build || { h: 1, w: 1 };
+  actor.root.scale.set(g.scale * b.w, g.scale * b.h, g.scale * b.w);
 }
 
 // put a dressed actor into another look; false when nothing changed
@@ -366,5 +372,6 @@ export function dress(actor, look, cls) {
   Object.assign(g, { plan, sig, cls });
   g.glow.value = plan.glow;
   actor.idle = plan.idle;
+  shape(actor);
   return true;
 }

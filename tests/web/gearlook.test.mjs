@@ -195,3 +195,47 @@ test('what shines: an element from tier 4, a legendary brighter, and what linger
   assert.equal(bow.adorn.hand, 'handslotl', "a bow's sparks come from the hand that holds it");
   assert.ok(!sword(2).adorn.motes && !sword(2).adorn.element && !sword(2).adorn.legendary, 'plain gear: nothing lingers');
 });
+
+test('race: its skin on every part of the body, its build, a dark elf\'s white hair', async () => {
+  const { RACE, raceOf } = await import('../../src/web_isometric/world3d/gearlook.js');
+  for (const race of ['human', 'elf', 'dark_elf', 'half_orc', 'dwarf', 'halfling', 'gnome']) assert.ok(RACE[race], race);
+  assert.equal(raceOf({ race: 'Half-Orc' }), RACE.half_orc, 'the server\'s spelling is understood');
+  const dwarf = kitted({ ...starterLook('warrior'), race: 'dwarf', sig: 'dw' }, 'warrior');
+  const skinned = dwarf.props.filter(p => /-(Head|HeadHooded|Body|ArmLeft|ArmRight|LegLeft|LegRight)$/.test(p.name));
+  for (const p of skinned) {
+    const skinCols = Object.entries(kit.pieces[p.name].cols).filter(([, role]) => role === 'skin').map(([c]) => +c);
+    for (const c of skinCols) assert.equal(p.remap[c], kit.col('skin_dwarf'), `${p.name}: dwarf skin`);
+  }
+  assert.ok(dwarf.build.h < 0.9 && dwarf.build.w > 1, 'a dwarf is short and broad');
+  const drow = kitted({ ...starterLook('mage'), race: 'dark_elf', sig: 'de' }, 'mage');
+  const head = drow.props.find(p => p.name === 'mage-Head');
+  assert.ok(Object.values(head.remap).includes(kit.col('white')) && Object.values(head.remap).includes(kit.col('skin_drow')));
+  const human = kitted({ ...starterLook('mage'), race: 'human', sig: 'hu' }, 'mage');
+  assert.ok(!human.props.some(p => Object.values(p.remap || {}).includes(kit.col('skin_light'))), 'a human keeps the model\'s skin');
+  const toned = kitted({ ...starterLook('mage'), race: 'human', tone: 3, sig: 'ht' }, 'mage');
+  assert.ok(toned.props.some(p => Object.values(p.remap || {}).includes(kit.col('skin_dark'))), '…unless given a tone');
+  assert.deepEqual(human.build, { h: 1, w: 1 });
+});
+
+test('people the world dressed: their trade\'s body, their race, their gear', async () => {
+  const { npcDress, creatureLook } = await import('../../src/web_isometric/world3d/looks.js');
+  const guardLook = { v: 1, rn: 0, sig: 'g1', main: { k: 'sword', h: 1, m: 'steel', t: 1 } };
+  const guard = { name: 'cityguard', short: 'the cityguard', pv: 3060, look: guardLook };
+  const npc = npcDress(guard, creatureLook(guard));
+  assert.ok(npc, 'a guard their zone armed is dressed');
+  assert.equal(npc.cls, 'paladin');
+  assert.equal(npc.look.base.model, 'knight', "the body looks.js gives a guard");
+  assert.ok(npc.look.race === 'human' && npc.look.tone >= 0 && npc.look.rn === 0);
+  const plan = kitted(npc.look, npc.cls);
+  assert.ok(plan.props.some(p => p.name === 'knight-Body') && plan.props.some(p => p.name === 'knight-1H_Sword'), 'in a knight\'s body, with its sword');
+  const dwarf = { name: 'smith', short: 'the dwarven smith', pv: 9, look: { v: 1, rn: 0, sig: 'd1', main: { k: 'hammer', h: 1, m: 'iron', t: 1 } } };
+  const d = npcDress(dwarf, creatureLook(dwarf));
+  assert.equal(d.look.race, 'dwarf');
+  assert.equal(d.scale, 1, 'a dwarf\'s height comes with its race, not twice');
+  const wolf = { name: 'wolf', short: 'a grey wolf', pv: 10, look: guardLook };
+  assert.equal(npcDress(wolf, creatureLook(wolf)), null, 'a wolf handed a sword stays a wolf');
+  assert.equal(npcDress({ name: 'baker', short: 'the baker', pv: 3001 }, creatureLook({ name: 'baker', short: 'the baker' })), null, 'no gear: the body looks.js gives');
+  const a = npcDress({ ...guard }, creatureLook(guard)), b = npcDress({ ...guard, pv: 3061 }, creatureLook(guard));
+  assert.ok(a.look.sig !== guardLook.sig && a.look.sig.startsWith(guardLook.sig), 'its own signature (body, race, tone)');
+  assert.ok(typeof b.look.tone === 'number');
+});

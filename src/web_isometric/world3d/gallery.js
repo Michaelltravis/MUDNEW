@@ -297,6 +297,30 @@ export async function showGearGallery(engine) {
   if (want('renown')) for (const cls of (onlyCls ? CLASSES : ['warrior', 'mage', 'ranger'])) {
     rows.push({ title: `renown ${cls}`, items: [0, 1, 2, 3, 4, 5].map(rn => ({ label: `${cls} rn${rn}`, cls, look: { ...starterLook(cls), rn, sig: `renown:${cls}:${rn}` } })) });
   }
+  // every race, in a warrior's and a mage's starting gear (skin and build), and humans' tones
+  if (want('races')) for (const cls of (onlyCls ? CLASSES : ['warrior', 'mage'])) {
+    rows.push({ title: `races ${cls}`, items: ['human', 'elf', 'dark_elf', 'half_orc', 'dwarf', 'halfling', 'gnome'].map(race => ({ label: `${race} ${cls}`, cls,
+      look: { ...starterLook(cls), race, sig: `race:${cls}:${race}` } })).concat([0, 1, 2, 3].map(tone => ({ label: `human tone ${tone}`, cls,
+      look: { ...starterLook(cls), race: 'human', tone, sig: `tone:${cls}:${tone}` } }))) });
+  }
+  // people their zone dressed (looks.js npcDress): the body their trade gives, their race, their gear
+  if (want('people')) {
+    const { creatureLook, npcDress } = await import('./looks.js');
+    const P = [['the cityguard', { main: { k: 'sword', h: 1, m: 'steel', t: 1 }, off: { k: 'shield', v: 'round', m: 'iron', t: 1 } }],
+      ['the dwarven smith', { main: { k: 'hammer', h: 1, m: 'iron', t: 1 }, body: { w: 1, m: 'leather', t: 1 } }],
+      ['a drow assassin', { main: { k: 'dagger', h: 1, m: 'obsidian', t: 4, e: 'shadow' }, back: { k: 'cloak', v: 'rogue', c: 'black', t: 3 } }],
+      ['the half-orc warrior', { main: { k: 'axe', h: 2, m: 'iron', t: 2 }, body: { w: 2, m: 'iron', t: 2 } }],
+      ['the elven ranger', { main: { k: 'bow', h: 2, m: 'wood_pale', t: 3 }, quiver: 1 }],
+      ['the gnome alchemist', { off: { k: 'orb', t: 2 } }],
+      ['the halfling cook', { main: { k: 'dagger', h: 1, m: 'iron', t: 0 } }],
+      ['the high priest', { main: { k: 'mace', h: 1, m: 'gold', t: 3 }, body: { w: 0, c: 'white', t: 3 } }],
+      ['the knight templar', { main: { k: 'sword', h: 1, m: 'steel', t: 3 }, head: { k: 'helm', m: 'steel', t: 3 }, body: { w: 3, m: 'steel', t: 3 } }]];
+    rows.push({ title: 'people', items: P.flatMap(([short, gear], i) => {
+      const m = { name: short.split(' ').pop(), short, pv: 90000 + i, look: { v: 1, rn: 0, sig: `people:${i}`, ...gear } };
+      const npc = npcDress(m, creatureLook(m));
+      return npc ? [{ label: short, cls: npc.cls, look: npc.look, scale: npc.scale }] : [];
+    }) });
+  }
   // crowns and circlets on every head
   if (want('crowns')) rows.push({ title: 'crowns', items: ['paladin', 'warrior', 'mage', 'thief', 'ranger'].flatMap(cls => ['crown', 'circlet'].map(v => ({ label: `${v} on ${cls}`, cls,
     look: { v: 1, sig: `crown:${cls}:${v}`, head: { k: 'crown', v, m: v === 'crown' ? 'gold' : 'silver', t: 3 }, body: { w: CLASS_BASE[cls].w, m: 'steel', t: 2 } } }))) });
@@ -332,7 +356,7 @@ export async function showGearGallery(engine) {
     label(rows[r].title, new THREE.Vector3(-step * 1.2, 0, z), true);
     for (let i = 0; i < rows[r].items.length; i++) {
       const it = rows[r].items[i];
-      const a = await spawnDressed(it.look, it.cls);
+      const a = await spawnDressed(it.look, it.cls, { scale: it.scale });
       a.root.position.set(i * step, 0, z);
       a.play(a.idle || 'Idle', 0, 1);
       engine.scene.add(a.root);

@@ -245,3 +245,40 @@ function choose(m, { head, words, all }) {
   if (fb) return creature(fb, mods, all, boss, 'word');
   return person(m, all);
 }
+
+// ---- people the world dressed: drawn in their gear, like players ----
+// A person whose zone gave them gear by name (the server's look, gear_look.py) wears it: the
+// body their trade gave them above, their race from their words, a human's skin varying from
+// one kind of person to the next. Creatures, skeletons and the like keep the bodies above.
+const PEOPLE_RACES = [[/\b(drow|dark elf|dark elves)\b/, 'dark_elf'], [ORCISH, 'half_orc'],
+  [/\b(dwarf|dwarves|dwarven|duergar)\b/, 'dwarf'], [/\b(gnome|gnomes|svirfneblin|deep gnome)\b/, 'gnome'],
+  [/\b(halfling|halflings|hobbit|hobbits|brownie)\b/, 'halfling'], [/\b(elf|elves|elven|sylvan)\b/, 'elf']];
+// the class whose colours their trade wears, and the body its model stands for
+const TRADE_CLASS = [[/\bnecromancers?\b/, 'necromancer'],
+  [/\b(guards?|guardsman|soldiers?|sentry|watchman|warden|cityguard|captain|sergeant|lieutenant|militia|knights?|paladins?|templars?|crusaders?)\b/, 'paladin'],
+  [/\b(priests?|priestess|clerics?|monk|nun|acolyte|bishop|abbot|vicar|healer|oracle|druids?|shaman)\b/, 'cleric'],
+  [/\b(mages?|wizards?|witch|warlocks?|sorcerers?|sorceress|conjurer|enchanter|enchantress|illusionist|magus|summoner|arcanist)\b/, 'mage'],
+  [/\b(rangers?|hunter|huntress|trapper|scout|archer|bowman|poacher)\b/, 'ranger'],
+  [/\b(thief|thieves|rogues?|assassins?|cutpurse|pickpocket|spy|smuggler)\b/, 'assassin'],
+  [/\b(jester|bards?|minstrel|dancer|performer|juggler)\b/, 'bard']];
+const MODEL_CLASS = { knight: 'paladin', barbarian: 'warrior', mage: 'mage', rogue: 'thief', rogue_hooded: 'assassin' };
+const MODEL_BASE = { knight: { model: 'knight', w: 3 }, barbarian: { model: 'barbarian', w: 2 }, mage: { model: 'mage', w: 0 },
+  rogue: { model: 'rogue', w: 1, hood: false }, rogue_hooded: { model: 'rogue', w: 1, hood: true } };
+
+export function personRace(all) {
+  return (PEOPLE_RACES.find(([re]) => re.test(all)) || [null, 'human'])[1];
+}
+
+// how a dressed person is drawn: { look, cls, scale }, or null when they keep their body above
+export function npcDress(m, look) {
+  if (!m || !m.look || !look || look.beast || !MODEL_BASE[look.model]) return null;
+  const all = describe(m).all;
+  const race = personRace(all);
+  const dressed = { ...m.look, rn: 0, race, base: MODEL_BASE[look.model] };
+  if (race === 'human') dressed.tone = hashStr(m.pv != null ? `pv${m.pv}` : all) % 4;
+  dressed.sig = `${m.look.sig}:${look.model}:${race}:${dressed.tone ?? ''}`;
+  const cls = (TRADE_CLASS.find(([re]) => re.test(all)) || [null, MODEL_CLASS[look.model]])[1];
+  // a child is small, a boss large; a race's own build comes with its look (gearlook.js RACE)
+  const scale = (/\b(child|children|kid|baby|urchin|orphan|boy|girl)\b/.test(all) ? 0.62 : 1) * (m.boss || (m.flags || []).includes('boss') ? 1.25 : 1);
+  return { look: dressed, cls, scale };
+}
