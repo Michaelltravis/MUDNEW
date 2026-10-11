@@ -31,6 +31,7 @@ import os
 import random
 import time
 
+import marquee_log
 import marquee_quests as mq
 import marquee_scale as ms
 
@@ -225,6 +226,7 @@ async def _place(run, m, vnum, room, kind, **tag):
     n = m.get('n', 1)
     p = dict(proto)
     p['flags'] = [f for f in proto.get('flags', []) if f not in _HOSTILE]
+    p['marquee_sized'] = True              # bosses.size_zone_boss leaves it to marquee_scale
     if kind != 'npc':
         p['max_hp'] = ms.foe_health(kind, m.get('level', OFFER_LEVEL), n, _classes(m))
         p['exp'] = ms.exp_reward(int(proto.get('exp', 1000)), n)
@@ -425,6 +427,7 @@ async def _advance(run, owner, m):
                 and getattr(mob.room, 'zone', None) is run.trial.zone)
     run.ritual = None
     run.respawn = {}
+    marquee_log.record('stage', owner, m)
     m['stage'] = m.get('stage', 0) + 1
     m['progress'] = {}
     await _announce(m)
@@ -581,6 +584,7 @@ async def begin(owner, members):
          'classes': [str(p.char_class).lower() for p in members],
          'level': ms.party_level(owner.level, [p.level for p in members if p is not owner]), 'accepted': int(time.time())}
     owner.marquee = m
+    marquee_log.record('accept', owner, m)          # what real quests take (marquee_log.py)
     for p in members:
         if p is not owner:
             p.marquee_help = {'owner': owner.name, 'id': q['id'], 'cls': cls}
@@ -622,6 +626,7 @@ async def abandon(player, confirm=False):
         await player.send(f"{c['yellow']}Give up {mq.quest_for(m['cls'])['name']}? Everything done so far is lost. "
                           f"Type 'marquee abandon confirm'.{c['reset']}")
         return
+    marquee_log.record('abandon', player, m)
     await end(player, m, quiet=False)
 
 
@@ -699,6 +704,7 @@ async def finish(owner, m):
     """The return: the guildmaster teaches the marquee ability."""
     import mastery
     import marquee_abilities as ma
+    marquee_log.record('finish', owner, m)
     q, st = _stage(m)
     c = _c(owner)
     if st and st.get('say'):
@@ -1364,6 +1370,12 @@ async def cmd_marquee(player, args):
         return await abandon(player, confirm='confirm' in rest or 'yes' in rest)
     if sub in ('stage', 'forget') and getattr(player, 'is_immortal', False):
         return await _admin(player, sub, rest)
+    if sub == 'stats' and getattr(player, 'is_immortal', False):
+        # what real quests took (marquee_log.py): finished quests by class and party size
+        await player.send(f"{c['bright_cyan']}Marquee quests as played:{c['reset']}")
+        for line in marquee_log.summary():
+            await player.send(f"  {line}")
+        return
     owner_name, m, role = quest_of(player)
     q, st = _stage(m) if m else (None, None)
     if st and st['kind'] == 'ritual' and sub == st.get('verb'):

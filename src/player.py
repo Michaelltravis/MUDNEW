@@ -2905,6 +2905,15 @@ class Player(Character):
         exp_loss = int(self.exp * exp_percent)
         self.exp = max(0, self.exp - exp_loss)
         self.last_death = {'exp': exp_loss, 'at': time.time()}     # a resurrection gives it back
+        # a death on a marquee quest goes in the quest's log (marquee_log.py: what real quests take)
+        try:
+            import marquee
+            import marquee_log
+            _owner, _m, _role = marquee.quest_of(self)
+            if _m:
+                marquee_log.record('death', self, _m, who=self.name, owner_name=_owner)
+        except Exception:
+            pass
         if exp_loss > 0:
             await self.send(f"{c['yellow']}You lose {exp_loss} experience points.{c['reset']}")
         

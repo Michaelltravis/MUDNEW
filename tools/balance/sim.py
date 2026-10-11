@@ -99,11 +99,22 @@ async def load_world():
     world = World(Config())
     await world.load()
     world.web_map = None
+    no_saves()
     import combat_hooks
     import mastery
     combat_hooks.install()
     mastery.install()
     return world
+
+
+def no_saves():
+    """The simulation's heroes are never written to disk: an achievement (level 50, a boss)
+    saves the player, and thousands of simulated heroes filled lib/players and the leaderboards."""
+    from player import Player
+
+    async def no_save(self, *a, **k):
+        return None
+    Player.save = no_save
 
 
 def _score(proto):

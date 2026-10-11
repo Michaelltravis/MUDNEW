@@ -1106,7 +1106,8 @@ class Mobile(Character):
                     'name': 'poison',
                     'type': AffectManager.TYPE_DOT,
                     'applies_to': 'hp',
-                    'value': 3 + self.level // 5,
+                    # weighed like its blows (a zone boss's or a quest creature's _dmg_scale)
+                    'value': max(1, round((3 + self.level // 5) * (getattr(self, '_dmg_scale', 1) or 1))),
                     'duration': 4,
                     'caster_level': self.level
                 })

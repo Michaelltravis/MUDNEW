@@ -937,18 +937,24 @@ class Pet(Mobile):
             if not hasattr(self, 'shield_wall_active'):
                 self.shield_wall_active = 0
             
-            if self.shield_wall_active > 0:
-                return  # Already active
+            if self.shield_wall_active > 0 or getattr(self, 'shield_wall_cd', 0) > 0:
+                return  # up already, or still resting (it had no rest: up two rounds in three)
             
             self.shield_wall_active = 3  # 3 rounds
+            self.shield_wall_cd = 6      # ...and not again for 6 rounds from now
             
-            # Taunt all enemies in room to attack this pet
+            # Taunt the creatures attacking the owner, their group or their pets: never a
+            # player (a groupmate was turned onto the knight), never another pet
             if self.room:
+                owner = self.owner
+                friends = {owner} | set(getattr(getattr(owner, 'group', None), 'members', None) or [])
                 for char in self.room.characters:
-                    if hasattr(char, 'is_fighting') and char.is_fighting and char != self and char != self.owner:
-                        if not hasattr(char, 'owner'):  # Only taunt enemies, not other pets
-                            char.target = self
-                            char.fighting = self
+                    if char is self or hasattr(char, 'connection') or getattr(char, 'owner', None) is not None:
+                        continue
+                    foe_of = getattr(char, 'fighting', None)
+                    if foe_of is not None and (foe_of in friends or getattr(foe_of, 'owner', None) in friends):
+                        char.target = self
+                        char.fighting = self
                 
                 await self.room.send_to_room(
                     f"{c['bright_cyan']}{self.name} raises its shield and braces for impact!{c['reset']}",
@@ -1065,6 +1071,9 @@ class Pet(Mobile):
     async def ai_combat_tick(self):
         """AI behavior during combat - use special abilities automatically."""
         if not self.is_fighting or not self.target:
+            # out of a fight a raised shield comes down (it only counts down in rounds)
+            if getattr(self, 'shield_wall_active', 0):
+                self.shield_wall_active = 0
             return
         
         # Check if we have special_abilities attribute
@@ -1137,9 +1146,11 @@ class Pet(Mobile):
             else:
                 self.backstab_cooldown -= 1
         
-        # Decrement shield wall counter
+        # Decrement shield wall counter and its rest
         if hasattr(self, 'shield_wall_active') and self.shield_wall_active > 0:
             self.shield_wall_active -= 1
+        if getattr(self, 'shield_wall_cd', 0) > 0:
+            self.shield_wall_cd -= 1
 
 
 # Pet templates

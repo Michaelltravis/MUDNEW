@@ -225,6 +225,23 @@ class AffectManager:
             logger.debug(f"  Removed flag: {flag_name}")
 
     @staticmethod
+    async def _dot_kills(character, amount):
+        """Damage over time may finish a creature: the blow that would leave it at nothing is dealt
+        as a wound from whoever it is fighting, who gets the kill. A player is never killed by
+        it (lingering poison after a fight stops at 1 health). Returns None when the tick goes on
+        as usual, 'dealt' when the wound was dealt here (and the creature lived), 'dead'."""
+        if hasattr(character, 'connection') or amount < character.hp:
+            return None
+        killer = getattr(character, 'fighting', None)
+        if killer is None or getattr(killer, 'hp', 0) <= 0:
+            return None
+        from combat import CombatHandler
+        if await character.take_damage(amount, killer, 'poison'):
+            await CombatHandler.handle_death(killer, character)
+            return 'dead'
+        return 'dealt'
+
+    @staticmethod
     async def tick_affects(character: 'Character', poison_only: bool = False):
         """
         Process affects for one tick, decrementing durations and removing expired affects.
@@ -244,6 +261,11 @@ class AffectManager:
             if poison_only:
                 if affect.type == AffectManager.TYPE_DOT and affect.name == 'poison':
                     # Damage over time
+                    fate = await AffectManager._dot_kills(character, affect.value)
+                    if fate == 'dead':
+                        return
+                    if fate == 'dealt':
+                        continue
                     old_hp = character.hp
                     character.hp = max(1, character.hp - affect.value)
                     damage_dealt = old_hp - character.hp
@@ -268,8 +290,12 @@ class AffectManager:
             # Apply DOT/HOT effects
             if affect.type == AffectManager.TYPE_DOT:
                 # Damage over time
+                fate = await AffectManager._dot_kills(character, affect.value)
+                if fate == 'dead':
+                    return
                 old_hp = character.hp
-                character.hp = max(1, character.hp - affect.value)
+                if fate is None:
+                    character.hp = max(1, character.hp - affect.value)
                 damage_dealt = old_hp - character.hp
 
                 if damage_dealt > 0:

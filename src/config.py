@@ -141,8 +141,9 @@ class Config:
     BRISKNESS_DURATION_TICKS = 18
     BRISKNESS_WILDERNESS_BONUS = 0.20
 
-    # Absorption shields
-    ABSORB_LEVEL_BONUS = 4
+    # Absorption shields (spells._scale_absorb_value). 2 a level, not 4: at 4 a level-45 mage's
+    # stoneskin and armour ward held 369 against 191 health, so elites never got through
+    ABSORB_LEVEL_BONUS = 2
     ABSORB_PROF_SCALING = 0.5
     ABSORB_ARMOR_SOFTCAP = 20
     ABSORB_ARMOR_PENALTY_PER_WEIGHT = 0.02

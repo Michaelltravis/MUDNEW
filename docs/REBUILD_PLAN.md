@@ -944,3 +944,35 @@ Six windows on the menu (now four buttons wide), each with its key, built on the
 - **Tests**: `tests/web/progression.test.mjs` (talent tiers and ranks, achievements' order,
   travel rows, gold amounts, doctrine rows, the world map's view); `tests/test_web_client.py`
   checks `/explored` and each window's endpoint live.
+
+### Balance follow-ups: real quest times, zone bosses, the bone knight, caster shields (Push 18)
+Measured with the simulator; the findings and numbers: `docs/balance/marquee.md` ("Measured
+again after the balance follow-ups", "Zone bosses") and `docs/balance/bosses.md`.
+- **Real quests are written down** (`src/marquee_log.py`): acceptance, each stage's end, deaths,
+  the finish or abandonment, with the party, its classes, its level and the combat mode, in
+  `lib/marquee_runs.jsonl` (runtime data). `marquee stats` (immortals) sums them up by class and
+  party size: the number to tune the quests' length against once real players have played.
+- **Zone bosses** (the 20 dungeon bosses from level 12 to 60) are sized for a lone hero at their
+  level, like a marquee trial's boss (`bosses.size_zone_boss`): about two minutes alone, under
+  one for a party of three (before: a party of three felled any of them in 2-6 rounds). Each
+  boss's own blows are weighed by a measured share (`ZONE_BOSS_DAMAGE`,
+  `tools/balance/bosses.py --calibrate`) so the median lone hero loses about half their health
+  at the worst moment. Raid bosses above the level cap and the marquee quests' own are left as
+  they were.
+  - A creature's poison and a boss's adds now weigh as its blows do (they ignored the share).
+  - A summoning boss calls only while fewer than twice the call still stand (the Goblin King's
+    goblins were endless).
+  - A lone mage or necromancer still usually dies at a zone boss's level; the doc says why, and
+    what would change it.
+- **The bone knight**: its shield wall lasts three rounds and rests six (it was up two rounds in
+  three), comes down out of a fight, and its taunt turns only the creatures fighting its owner's
+  side, never a groupmate.
+- **Caster shields** gain 2 a level, not 4 (at 45 a mage's wards held twice their health).
+- **Damage over time finishes a creature** (credited to whoever it fights); a player is never
+  killed by it.
+- **Marquee numbers**: `CLASS_D` for the mage 0.55 and the necromancer 0.50, measured again
+  after the shield and knight changes; the other classes didn't move.
+- **The simulator no longer saves its heroes**: an achievement saved them, and thousands filled
+  `lib/players` and the leaderboards.
+- **Tests**: `tests/test_marquee_log.py`; `tests/test_balance.py` (zone bosses: sizing, adds,
+  poison, the summon cap); `tests/test_spells_audit.py` (damage over time, the bone knight).

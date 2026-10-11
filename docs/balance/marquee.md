@@ -15,8 +15,8 @@ that change every fight, not only the quests.
 - **Groups of 2, 3 and 6:** every party finishes, with no fight lost in 324 simulated group
   quests. The creatures are made for the heroes who set out: their health for what the party
   deals, their damage for what the party can stand.
-- **Time:** a lone hero who knows the way plays a quest through in 40-72 simulated minutes
-  (median 58). That is 12-20 minutes of fighting, 6-29 of resting and 17-33 of walking. See
+- **Time:** a lone hero who knows the way plays a quest through in 41-70 simulated minutes
+  (median 58). That is 13-20 minutes of fighting, 6-28 of resting and 17-33 of walking. See
   [Time](#time-and-the-two-hour-goal) for what that means against the two-hour goal.
 - **Both combat modes:** the numbers hold in the round-by-round fights (telnet, and `/play`
   with real-time combat off) and in `/play`'s real-time combat.
@@ -87,6 +87,34 @@ fixes change what a class deals or can stand, so both tables were measured again
   gargoyle working, a fallen knight was never raised again, and the creatures went straight
   for the necromancer, which no player would allow. Only the raised dead count now.
 
+## Measured again after the balance follow-ups (Push 18)
+
+- **Caster shields gain 2 a level, not 4** (`ABSORB_LEVEL_BONUS`). At 4, a level-45 mage's
+  stoneskin and armour ward held 369 damage against 191 health, so an elite's blows never got
+  through. Mages, clerics and bards now feel an elite's and a warden's blows.
+- **The bone knight's shield wall rests.** It was up about two rounds in three with no rest, it
+  stayed up after a fight, and its taunt turned fighting groupmates onto the knight. It now
+  lasts three rounds and rests six, comes down out of a fight, and turns only the creatures
+  fighting its owner, their group or their pets. A necromancer's servant holds less, so they
+  stand less.
+- **Damage over time finishes a creature.** Poison, plague and the rest stopped at 1 health, so a
+  creature at its last few points outlived every tick. The killing tick is now dealt as a wound
+  from whoever it fights, who gets the kill. A player is never killed by it: poison lingering
+  after a fight still stops at 1.
+- **`CLASS_D` measured again** for the classes these change (`--calibrate --classes
+  mage,necromancer --runs 8`): `CLASS_K` hardly moved (mage 0.57, necromancer 1.14). With
+  shields halved, a lone mage's trial boss cost up to 90% of their health, and a lone
+  necromancer at level 60 died 1.3 times a quest. Both are set at their weakest level again:
+  - the mage at 0.55 (levels 45-60 stand 0.55, 0.88, 0.67 and 0.67);
+  - the necromancer at 0.50 (0.65, 0.81, 0.50 and 0.50).
+  Their quests now cost a lone mage 32-50% of their health at the boss with no deaths, and a
+  lone necromancer at most 0.3 deaths a quest, as in Push 14.
+- **Real quests are written down** (`src/marquee_log.py`): each acceptance, each stage's end,
+  each death on the quest and its end (finished or abandoned), with the party, its classes and
+  level, and the combat mode, go to `lib/marquee_runs.jsonl` (an immortal's quests are tests and
+  are left out). `marquee stats` (immortals) sums them up by class and party size. See
+  [Time](#time-and-the-two-hour-goal).
+
 ## How it was measured
 
 `tools/balance/sim.py` plays each class's quest with real `World`, `Player` and `Mobile`
@@ -147,10 +175,12 @@ set:
     which is how the rise was chosen.
   - Two classes are set at their weakest level instead of the mean, since a death is the
     worst a quest can do:
-    - the mage at 0.75 (its mean is 0.88; level 45, where the quests open, stands 0.75);
-    - the necromancer at 0.60 (levels 45-60 stand 0.60, 0.86, 0.74 and 0.58; at the mean
-      0.70 a level-60 necromancer died 1.6 times a quest). Its servant makes it
-      all-or-nothing: safe while the bone knight stands, exposed when it falls.
+    - the mage at 0.55 since Push 18 (0.75 before; its mean is 0.69, and level 45, where the
+      quests open, stands 0.55);
+    - the necromancer at 0.50 since Push 18 (0.60 before; levels 45-60 stand 0.65, 0.81, 0.50
+      and 0.50; at the Push 14 share a level-60 necromancer died 1.3 times a quest). Its
+      servant makes it all-or-nothing: safe while the bone knight stands, exposed when it
+      falls.
   - A paladin's boss costs 55-68% of their health across shares from 1.0 to 2.3: it mends
     itself back up. The share is set where the curve crosses 65%, and deaths start only
     above 2.3.
@@ -160,53 +190,55 @@ set:
 
 ## Results
 
-Three quests per row, rounds mode, `--dodge 0.6 --gear 0.75 --walk 4 --travel 1`. "Fights
+Three quests per row, rounds mode, `--dodge 0.6 --gear 0.75 --walk 4 --travel 1`, measured again
+after Push 18. "Fights
 lost" counts the fights the party had to go back for.
 
 ### Alone
 
 | class | level | party | minutes in all | fighting | resting | on the way | deaths | fights lost (to) | hero damage/round | dpr() | health at worst: elite / warden / wave / boss |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| warrior | 45 | 1 | 60 | 19 | 7 | 33 | 0.0 | 0.0 | 279 | 204 | 36% / 23% / 17% / 89% |
-| warrior | 50 | 1 | 54 | 16 | 6 | 33 | 0.0 | 0.0 | 402 | 240 | 27% / 24% / 20% / 41% |
-| warrior | 55 | 1 | 58 | 17 | 7 | 33 | 0.0 | 0.0 | 441 | 282 | 28% / 35% / 23% / 61% |
-| warrior | 60 | 1 | 55 | 15 | 6 | 33 | 0.0 | 0.0 | 568 | 332 | 22% / 35% / 24% / 60% |
-| paladin | 45 | 1 | 56 | 18 | 18 | 19 | 0.0 | 0.0 | 229 | 204 | 23% / 54% / 17% / 66% |
-| paladin | 50 | 1 | 53 | 16 | 18 | 20 | 0.0 | 0.0 | 323 | 240 | 8% / 47% / 14% / 66% |
-| paladin | 55 | 1 | 54 | 17 | 17 | 20 | 0.0 | 0.0 | 341 | 282 | 23% / 40% / 19% / 63% |
-| paladin | 60 | 1 | 48 | 17 | 11 | 19 | 0.0 | 0.0 | 380 | 332 | 60% / 55% / 31% / 76% |
-| cleric | 45 | 1 | 66 | 20 | 27 | 20 | 0.0 | 0.0 | 155 | 204 | 8% / 41% / 18% / 63% |
-| cleric | 50 | 1 | 59 | 15 | 25 | 19 | 0.0 | 0.0 | 225 | 240 | 9% / 33% / 12% / 67% |
-| cleric | 55 | 1 | 62 | 17 | 25 | 20 | 0.0 | 0.0 | 249 | 282 | 11% / 39% / 15% / 79% |
-| cleric | 60 | 1 | 58 | 15 | 25 | 19 | 0.0 | 0.0 | 326 | 332 | 14% / 44% / 13% / 64% |
-| mage | 45 | 1 | 72 | 20 | 27 | 25 | 0.3 | 0.3 (boss 0.3) | 103 | 204 | 1% / 0% / 12% / 56% |
-| mage | 50 | 1 | 63 | 16 | 24 | 23 | 0.0 | 0.0 | 136 | 240 | 0% / 0% / 0% / 43% |
-| mage | 55 | 1 | 66 | 17 | 25 | 23 | 0.0 | 0.0 | 158 | 282 | 0% / 0% / 1% / 61% |
-| mage | 60 | 1 | 66 | 16 | 27 | 23 | 0.0 | 0.0 | 207 | 332 | 0% / 2% / 4% / 68% |
-| necromancer | 45 | 1 | 66 | 19 | 25 | 21 | 0.0 | 0.0 | 186 | 204 | 0% / 0% / 0% / 24% |
-| necromancer | 50 | 1 | 63 | 15 | 26 | 22 | 0.0 | 0.0 | 277 | 240 | 7% / 0% / 0% / 0% |
-| necromancer | 55 | 1 | 68 | 16 | 29 | 23 | 0.3 | 0.3 (boss 0.3) | 327 | 282 | 1% / 25% / 0% / 57% |
-| necromancer | 60 | 1 | 66 | 15 | 28 | 23 | 0.3 | 0.3 (boss 0.3) | 411 | 332 | 3% / 0% / 0% / 33% |
+| assassin | 45 | 1 | 43 | 18 | 7 | 18 | 0.0 | 0.0 | 309 | 204 | 32% / 29% / 19% / 49% |
+| assassin | 50 | 1 | 41 | 16 | 7 | 18 | 0.0 | 0.0 | 403 | 240 | 33% / 27% / 19% / 57% |
+| assassin | 55 | 1 | 44 | 18 | 9 | 18 | 0.0 | 0.0 | 431 | 282 | 32% / 38% / 25% / 75% |
+| assassin | 60 | 1 | 41 | 14 | 9 | 17 | 0.0 | 0.0 | 583 | 332 | 47% / 40% / 25% / 72% |
+| bard | 45 | 1 | 61 | 15 | 14 | 32 | 0.0 | 0.0 | 171 | 204 | - / 49% / 12% / 59% |
+| bard | 50 | 1 | 57 | 13 | 12 | 32 | 0.0 | 0.0 | 229 | 240 | - / 38% / 12% / 62% |
+| bard | 55 | 1 | 57 | 14 | 12 | 32 | 0.0 | 0.0 | 255 | 282 | - / 49% / 15% / 73% |
+| bard | 60 | 1 | 56 | 13 | 11 | 32 | 0.0 | 0.0 | 320 | 332 | - / 42% / 15% / 69% |
+| cleric | 45 | 1 | 66 | 20 | 27 | 20 | 0.0 | 0.0 | 156 | 204 | 11% / 50% / 23% / 70% |
+| cleric | 50 | 1 | 59 | 15 | 24 | 19 | 0.0 | 0.0 | 228 | 240 | 15% / 41% / 13% / 84% |
+| cleric | 55 | 1 | 62 | 17 | 25 | 20 | 0.0 | 0.0 | 241 | 282 | 18% / 45% / 20% / 68% |
+| cleric | 60 | 1 | 58 | 15 | 25 | 19 | 0.0 | 0.0 | 323 | 332 | 26% / 51% / 16% / 61% |
+| mage | 45 | 1 | 69 | 20 | 26 | 23 | 0.0 | 0.0 | 103 | 204 | 1% / 0% / 7% / 32% |
+| mage | 50 | 1 | 63 | 16 | 24 | 23 | 0.0 | 0.0 | 136 | 240 | 0% / 0% / 0% / 36% |
+| mage | 55 | 1 | 65 | 17 | 25 | 23 | 0.0 | 0.0 | 158 | 282 | 0% / 2% / 1% / 50% |
+| mage | 60 | 1 | 66 | 16 | 27 | 23 | 0.0 | 0.0 | 205 | 332 | 0% / 2% / 6% / 50% |
+| necromancer | 45 | 1 | 65 | 19 | 25 | 21 | 0.0 | 0.0 | 187 | 204 | 0% / 20% / 0% / 53% |
+| necromancer | 50 | 1 | 63 | 15 | 26 | 22 | 0.0 | 0.0 | 292 | 240 | 0% / 31% / 4% / 0% |
+| necromancer | 55 | 1 | 67 | 16 | 28 | 23 | 0.3 | 0.3 (boss 0.3) | 329 | 282 | 7% / 0% / 6% / 17% |
+| necromancer | 60 | 1 | 65 | 15 | 28 | 22 | 0.0 | 0.0 | 402 | 332 | 6% / 4% / 7% / 2% |
+| paladin | 45 | 1 | 57 | 18 | 19 | 20 | 0.3 | 0.3 (boss 0.3) | 232 | 204 | 21% / 46% / 18% / 72% |
+| paladin | 50 | 1 | 53 | 16 | 18 | 20 | 0.0 | 0.0 | 321 | 240 | 8% / 49% / 22% / 65% |
+| paladin | 55 | 1 | 54 | 17 | 17 | 20 | 0.0 | 0.0 | 344 | 282 | 26% / 41% / 19% / 61% |
+| paladin | 60 | 1 | 48 | 18 | 11 | 19 | 0.0 | 0.0 | 371 | 332 | 59% / 55% / 30% / 67% |
+| ranger | 45 | 1 | 70 | 18 | 27 | 25 | 0.3 | 0.3 (wave 0.3) | 190 | 204 | 60% / 52% / 32% / 59% |
+| ranger | 50 | 1 | 69 | 17 | 28 | 25 | 0.0 | 0.0 | 247 | 240 | 54% / 52% / 27% / 58% |
+| ranger | 55 | 1 | 69 | 17 | 27 | 25 | 0.0 | 0.0 | 273 | 282 | 56% / 50% / 28% / 60% |
+| ranger | 60 | 1 | 65 | 16 | 24 | 24 | 0.0 | 0.0 | 333 | 332 | 61% / 56% / 35% / 58% |
 | thief | 45 | 1 | 47 | 16 | 6 | 25 | 0.3 | 0.3 (boss 0.3) | 209 | 204 | - / 38% / 21% / 75% |
 | thief | 50 | 1 | 45 | 13 | 6 | 25 | 0.0 | 0.0 | 280 | 240 | - / 38% / 19% / 73% |
 | thief | 55 | 1 | 44 | 14 | 6 | 24 | 0.0 | 0.0 | 314 | 282 | - / 33% / 29% / 74% |
 | thief | 60 | 1 | 43 | 13 | 6 | 24 | 0.0 | 0.0 | 390 | 332 | - / 27% / 25% / 64% |
-| assassin | 45 | 1 | 42 | 18 | 6 | 18 | 0.0 | 0.0 | 309 | 204 | 30% / 29% / 20% / 45% |
-| assassin | 50 | 1 | 40 | 16 | 7 | 18 | 0.0 | 0.0 | 403 | 240 | 33% / 26% / 19% / 41% |
-| assassin | 55 | 1 | 45 | 18 | 9 | 18 | 0.0 | 0.0 | 429 | 282 | 32% / 41% / 31% / 72% |
-| assassin | 60 | 1 | 41 | 15 | 9 | 17 | 0.0 | 0.0 | 577 | 332 | 43% / 30% / 27% / 84% |
-| ranger | 45 | 1 | 67 | 17 | 26 | 24 | 0.0 | 0.0 | 191 | 204 | 56% / 54% / 34% / 58% |
-| ranger | 50 | 1 | 69 | 16 | 28 | 25 | 0.0 | 0.0 | 251 | 240 | 54% / 56% / 28% / 60% |
-| ranger | 55 | 1 | 70 | 17 | 27 | 25 | 0.0 | 0.0 | 275 | 282 | 56% / 59% / 33% / 67% |
-| ranger | 60 | 1 | 65 | 16 | 24 | 24 | 0.0 | 0.0 | 331 | 332 | 59% / 56% / 37% / 55% |
-| bard | 45 | 1 | 61 | 15 | 14 | 32 | 0.0 | 0.0 | 172 | 204 | - / 30% / 14% / 67% |
-| bard | 50 | 1 | 57 | 13 | 12 | 32 | 0.0 | 0.0 | 231 | 240 | - / 21% / 10% / 60% |
-| bard | 55 | 1 | 57 | 14 | 12 | 32 | 0.0 | 0.0 | 254 | 282 | - / 49% / 13% / 73% |
-| bard | 60 | 1 | 55 | 12 | 11 | 32 | 0.0 | 0.0 | 325 | 332 | - / 26% / 14% / 61% |
+| warrior | 45 | 1 | 60 | 19 | 7 | 33 | 0.0 | 0.0 | 279 | 204 | 36% / 23% / 17% / 89% |
+| warrior | 50 | 1 | 54 | 16 | 6 | 33 | 0.0 | 0.0 | 402 | 240 | 27% / 24% / 20% / 41% |
+| warrior | 55 | 1 | 58 | 17 | 7 | 33 | 0.0 | 0.0 | 441 | 282 | 28% / 35% / 23% / 61% |
+| warrior | 60 | 1 | 55 | 15 | 6 | 33 | 0.0 | 0.0 | 568 | 332 | 22% / 35% / 24% / 60% |
 
 The necromancer's boss costs little because its servant holds the boss's attention; its deaths
-come when the servant falls. A mage's and a cleric's elites cost little because their shields
-absorb an elite's blows.
+come when the servant falls. A mage's elites still cost little: a mage's creatures hit softest
+(`CLASS_D` 0.55) and their wards take the rest. A cleric's cost 11-26% now that shields gain 2 a
+level (Push 14: 8-14%).
 
 ### Groups
 
@@ -214,114 +246,114 @@ The worst-off member of each party; deaths count every member.
 
 | class | level | party | minutes in all | fighting | resting | on the way | deaths | fights lost (to) | hero damage/round | dpr() | health at worst: elite / warden / wave / boss |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| warrior | 45 | 2 | 75 | 16 | 26 | 33 | 0.0 | 0.0 | 299 | 204 | 38% / 41% / 11% / 56% |
+| assassin | 45 | 2 | 57 | 15 | 25 | 17 | 0.0 | 0.0 | 291 | 204 | 26% / 31% / 18% / 66% |
+| assassin | 45 | 3 | 62 | 18 | 27 | 18 | 0.0 | 0.0 | 315 | 204 | 36% / 41% / 23% / 71% |
+| assassin | 45 | 6 | 60 | 18 | 24 | 17 | 0.0 | 0.0 | 333 | 204 | 45% / 36% / 30% / 77% |
+| assassin | 50 | 2 | 62 | 15 | 30 | 18 | 0.0 | 0.0 | 391 | 240 | 18% / 39% / 19% / 57% |
+| assassin | 50 | 3 | 58 | 15 | 26 | 17 | 0.0 | 0.0 | 422 | 240 | 34% / 49% / 21% / 57% |
+| assassin | 50 | 6 | 59 | 16 | 26 | 17 | 0.0 | 0.0 | 452 | 240 | 35% / 39% / 31% / 69% |
+| assassin | 55 | 2 | 60 | 15 | 27 | 18 | 0.0 | 0.0 | 418 | 282 | 28% / 45% / 22% / 60% |
+| assassin | 55 | 3 | 61 | 16 | 26 | 18 | 0.0 | 0.0 | 461 | 282 | 34% / 52% / 30% / 73% |
+| assassin | 55 | 6 | 60 | 17 | 25 | 17 | 0.0 | 0.0 | 465 | 282 | 39% / 56% / 33% / 74% |
+| assassin | 60 | 2 | 60 | 14 | 28 | 18 | 0.0 | 0.0 | 537 | 332 | 30% / 35% / 26% / 55% |
+| assassin | 60 | 3 | 60 | 15 | 27 | 18 | 0.0 | 0.0 | 610 | 332 | 40% / 49% / 31% / 57% |
+| assassin | 60 | 6 | 61 | 16 | 27 | 18 | 0.0 | 0.0 | 637 | 332 | 50% / 40% / 28% / 72% |
+| bard | 45 | 2 | 66 | 13 | 21 | 32 | 0.0 | 0.0 | 176 | 204 | - / 52% / 12% / 67% |
+| bard | 45 | 3 | 66 | 14 | 20 | 31 | 0.0 | 0.0 | 188 | 204 | - / 56% / 26% / 71% |
+| bard | 45 | 6 | 72 | 16 | 24 | 32 | 0.0 | 0.0 | 197 | 204 | - / 40% / 29% / 74% |
+| bard | 50 | 2 | 64 | 11 | 21 | 32 | 0.0 | 0.0 | 243 | 240 | - / 26% / 4% / 59% |
+| bard | 50 | 3 | 68 | 12 | 23 | 32 | 0.0 | 0.0 | 259 | 240 | - / 31% / 23% / 53% |
+| bard | 50 | 6 | 66 | 13 | 21 | 32 | 0.0 | 0.0 | 265 | 240 | - / 40% / 27% / 70% |
+| bard | 55 | 2 | 61 | 11 | 19 | 31 | 0.0 | 0.0 | 266 | 282 | - / 40% / 13% / 61% |
+| bard | 55 | 3 | 62 | 12 | 19 | 31 | 0.0 | 0.0 | 285 | 282 | - / 45% / 26% / 59% |
+| bard | 55 | 6 | 66 | 14 | 20 | 32 | 0.0 | 0.0 | 294 | 282 | - / 44% / 30% / 73% |
+| bard | 60 | 2 | 60 | 10 | 19 | 31 | 0.0 | 0.0 | 344 | 332 | - / 41% / 13% / 53% |
+| bard | 60 | 3 | 65 | 12 | 22 | 32 | 0.0 | 0.0 | 371 | 332 | - / 41% / 27% / 53% |
+| bard | 60 | 6 | 61 | 12 | 17 | 31 | 0.0 | 0.0 | 375 | 332 | - / 45% / 26% / 74% |
+| cleric | 45 | 2 | 61 | 16 | 26 | 19 | 0.0 | 0.0 | 173 | 204 | 7% / 55% / 12% / 56% |
+| cleric | 45 | 3 | 66 | 18 | 28 | 20 | 0.0 | 0.0 | 181 | 204 | 40% / 56% / 34% / 71% |
+| cleric | 45 | 6 | 66 | 20 | 27 | 20 | 0.0 | 0.0 | 189 | 204 | 47% / 62% / 42% / 75% |
+| cleric | 50 | 2 | 63 | 14 | 29 | 20 | 0.0 | 0.0 | 247 | 240 | 10% / 35% / 5% / 60% |
+| cleric | 50 | 3 | 63 | 15 | 28 | 20 | 0.0 | 0.0 | 261 | 240 | 52% / 41% / 33% / 59% |
+| cleric | 50 | 6 | 64 | 16 | 28 | 20 | 0.0 | 0.0 | 266 | 240 | 47% / 53% / 37% / 73% |
+| cleric | 55 | 2 | 58 | 14 | 25 | 19 | 0.0 | 0.0 | 262 | 282 | 17% / 32% / 9% / 61% |
+| cleric | 55 | 3 | 60 | 16 | 24 | 19 | 0.3 | 0.0 | 287 | 282 | 47% / 38% / 40% / 61% |
+| cleric | 55 | 6 | 64 | 18 | 27 | 19 | 0.0 | 0.0 | 290 | 282 | 51% / 57% / 46% / 74% |
+| cleric | 60 | 2 | 57 | 13 | 25 | 19 | 0.0 | 0.0 | 355 | 332 | 12% / 33% / 14% / 67% |
+| cleric | 60 | 3 | 63 | 15 | 28 | 20 | 0.0 | 0.0 | 363 | 332 | 38% / 45% / 32% / 60% |
+| cleric | 60 | 6 | 67 | 17 | 31 | 20 | 0.0 | 0.0 | 386 | 332 | 40% / 53% / 43% / 70% |
+| mage | 45 | 2 | 66 | 16 | 27 | 23 | 0.0 | 0.0 | 108 | 204 | 15% / 13% / 4% / 65% |
+| mage | 45 | 3 | 67 | 18 | 26 | 23 | 0.0 | 0.0 | 119 | 204 | 30% / 35% / 29% / 71% |
+| mage | 45 | 6 | 73 | 20 | 29 | 24 | 0.0 | 0.0 | 127 | 204 | 45% / 51% / 31% / 77% |
+| mage | 50 | 2 | 64 | 14 | 27 | 23 | 0.0 | 0.0 | 150 | 240 | 3% / 23% / 4% / 63% |
+| mage | 50 | 3 | 70 | 16 | 30 | 24 | 0.0 | 0.0 | 167 | 240 | 37% / 38% / 21% / 62% |
+| mage | 50 | 6 | 67 | 17 | 27 | 24 | 0.0 | 0.0 | 175 | 240 | 41% / 50% / 26% / 73% |
+| mage | 55 | 2 | 64 | 14 | 27 | 23 | 0.0 | 0.0 | 181 | 282 | 6% / 17% / 10% / 58% |
+| mage | 55 | 3 | 65 | 16 | 26 | 23 | 0.0 | 0.0 | 191 | 282 | 33% / 23% / 26% / 73% |
+| mage | 55 | 6 | 70 | 18 | 28 | 24 | 0.0 | 0.0 | 201 | 282 | 49% / 48% / 32% / 72% |
+| mage | 60 | 2 | 62 | 13 | 25 | 23 | 0.0 | 0.0 | 217 | 332 | 14% / 7% / 9% / 54% |
+| mage | 60 | 3 | 65 | 15 | 27 | 23 | 0.0 | 0.0 | 252 | 332 | 36% / 40% / 29% / 59% |
+| mage | 60 | 6 | 63 | 16 | 25 | 23 | 0.0 | 0.0 | 257 | 332 | 39% / 51% / 37% / 72% |
+| necromancer | 45 | 2 | 63 | 16 | 26 | 22 | 0.0 | 0.0 | 218 | 204 | 9% / 44% / 7% / 60% |
+| necromancer | 45 | 3 | 68 | 19 | 27 | 22 | 0.0 | 0.0 | 211 | 204 | 27% / 45% / 21% / 73% |
+| necromancer | 45 | 6 | 70 | 21 | 27 | 22 | 0.0 | 0.0 | 206 | 204 | 40% / 61% / 29% / 73% |
+| necromancer | 50 | 2 | 63 | 13 | 28 | 22 | 0.0 | 0.0 | 302 | 240 | 3% / 24% / 3% / 41% |
+| necromancer | 50 | 3 | 62 | 16 | 25 | 21 | 0.0 | 0.0 | 276 | 240 | 34% / 34% / 21% / 60% |
+| necromancer | 50 | 6 | 63 | 17 | 25 | 21 | 0.0 | 0.0 | 295 | 240 | 41% / 49% / 28% / 75% |
+| necromancer | 55 | 2 | 59 | 13 | 25 | 21 | 0.0 | 0.0 | 349 | 282 | 19% / 40% / 3% / 39% |
+| necromancer | 55 | 3 | 67 | 17 | 28 | 22 | 0.0 | 0.0 | 323 | 282 | 49% / 49% / 25% / 67% |
+| necromancer | 55 | 6 | 70 | 19 | 29 | 22 | 0.0 | 0.0 | 319 | 282 | 48% / 36% / 32% / 76% |
+| necromancer | 60 | 2 | 58 | 12 | 25 | 21 | 0.0 | 0.0 | 435 | 332 | 5% / 34% / 9% / 58% |
+| necromancer | 60 | 3 | 67 | 16 | 29 | 22 | 0.0 | 0.0 | 412 | 332 | 44% / 37% / 25% / 66% |
+| necromancer | 60 | 6 | 63 | 17 | 25 | 21 | 0.0 | 0.0 | 390 | 332 | 46% / 48% / 30% / 70% |
+| paladin | 45 | 2 | 62 | 15 | 27 | 20 | 0.0 | 0.0 | 249 | 204 | 3% / 51% / 13% / 58% |
+| paladin | 45 | 3 | 64 | 18 | 26 | 20 | 0.0 | 0.0 | 259 | 204 | 32% / 61% / 29% / 77% |
+| paladin | 45 | 6 | 65 | 19 | 26 | 20 | 0.0 | 0.0 | 271 | 204 | 36% / 56% / 33% / 75% |
+| paladin | 50 | 2 | 62 | 14 | 28 | 20 | 0.0 | 0.0 | 333 | 240 | 10% / 28% / 11% / 61% |
+| paladin | 50 | 3 | 60 | 15 | 25 | 20 | 0.0 | 0.0 | 353 | 240 | 31% / 45% / 32% / 58% |
+| paladin | 50 | 6 | 67 | 17 | 30 | 20 | 0.0 | 0.0 | 358 | 240 | 38% / 48% / 30% / 77% |
+| paladin | 55 | 2 | 58 | 14 | 25 | 19 | 0.0 | 0.0 | 367 | 282 | 4% / 41% / 11% / 62% |
+| paladin | 55 | 3 | 62 | 16 | 27 | 19 | 0.0 | 0.0 | 382 | 282 | 36% / 68% / 27% / 64% |
+| paladin | 55 | 6 | 62 | 17 | 26 | 19 | 0.0 | 0.0 | 395 | 282 | 33% / 51% / 32% / 72% |
+| paladin | 60 | 2 | 64 | 15 | 29 | 20 | 0.0 | 0.0 | 395 | 332 | 31% / 43% / 16% / 61% |
+| paladin | 60 | 3 | 60 | 15 | 26 | 19 | 0.0 | 0.0 | 453 | 332 | 40% / 60% / 30% / 63% |
+| paladin | 60 | 6 | 62 | 17 | 26 | 20 | 0.0 | 0.0 | 450 | 332 | 53% / 70% / 38% / 75% |
+| ranger | 45 | 2 | 67 | 16 | 27 | 25 | 0.0 | 0.0 | 185 | 204 | 22% / 43% / 25% / 59% |
+| ranger | 45 | 3 | 70 | 18 | 27 | 25 | 0.0 | 0.0 | 195 | 204 | 44% / 42% / 27% / 76% |
+| ranger | 45 | 6 | 70 | 19 | 27 | 25 | 0.0 | 0.0 | 208 | 204 | 44% / 50% / 31% / 71% |
+| ranger | 50 | 2 | 68 | 14 | 29 | 25 | 0.0 | 0.0 | 252 | 240 | 23% / 50% / 19% / 57% |
+| ranger | 50 | 3 | 65 | 15 | 26 | 25 | 0.0 | 0.0 | 263 | 240 | 27% / 45% / 24% / 61% |
+| ranger | 50 | 6 | 72 | 17 | 30 | 25 | 0.0 | 0.0 | 274 | 240 | 33% / 48% / 30% / 70% |
+| ranger | 55 | 2 | 64 | 14 | 25 | 24 | 0.0 | 0.0 | 272 | 282 | 30% / 49% / 17% / 61% |
+| ranger | 55 | 3 | 68 | 16 | 27 | 24 | 0.0 | 0.0 | 292 | 282 | 35% / 50% / 25% / 57% |
+| ranger | 55 | 6 | 68 | 17 | 26 | 24 | 0.0 | 0.0 | 312 | 282 | 48% / 41% / 33% / 69% |
+| ranger | 60 | 2 | 68 | 14 | 30 | 25 | 0.0 | 0.0 | 343 | 332 | 28% / 57% / 27% / 60% |
+| ranger | 60 | 3 | 65 | 14 | 26 | 24 | 0.0 | 0.0 | 378 | 332 | 34% / 38% / 27% / 57% |
+| ranger | 60 | 6 | 67 | 16 | 26 | 25 | 0.0 | 0.0 | 373 | 332 | 46% / 61% / 33% / 71% |
+| thief | 45 | 2 | 57 | 13 | 20 | 24 | 0.0 | 0.0 | 230 | 204 | - / 46% / 17% / 65% |
+| thief | 45 | 3 | 64 | 15 | 23 | 25 | 0.0 | 0.0 | 250 | 204 | - / 31% / 23% / 77% |
+| thief | 45 | 6 | 60 | 15 | 21 | 24 | 0.0 | 0.0 | 257 | 204 | - / 24% / 28% / 71% |
+| thief | 50 | 2 | 52 | 11 | 18 | 23 | 0.0 | 0.0 | 300 | 240 | - / 33% / 18% / 60% |
+| thief | 50 | 3 | 55 | 12 | 20 | 23 | 0.0 | 0.0 | 339 | 240 | - / 25% / 25% / 57% |
+| thief | 50 | 6 | 57 | 12 | 21 | 24 | 0.0 | 0.0 | 355 | 240 | - / 41% / 31% / 67% |
+| thief | 55 | 2 | 56 | 12 | 20 | 24 | 0.0 | 0.0 | 329 | 282 | - / 36% / 27% / 62% |
+| thief | 55 | 3 | 60 | 13 | 23 | 24 | 0.0 | 0.0 | 378 | 282 | - / 32% / 26% / 66% |
+| thief | 55 | 6 | 59 | 14 | 21 | 24 | 0.0 | 0.0 | 391 | 282 | - / 33% / 32% / 70% |
+| thief | 60 | 2 | 60 | 12 | 23 | 25 | 0.0 | 0.0 | 405 | 332 | - / 40% / 23% / 55% |
+| thief | 60 | 3 | 59 | 12 | 21 | 25 | 0.0 | 0.0 | 462 | 332 | - / 28% / 27% / 66% |
+| thief | 60 | 6 | 57 | 13 | 20 | 24 | 0.0 | 0.0 | 497 | 332 | - / 36% / 33% / 73% |
+| warrior | 45 | 2 | 76 | 17 | 26 | 33 | 0.0 | 0.0 | 295 | 204 | 32% / 39% / 17% / 58% |
 | warrior | 45 | 3 | 76 | 18 | 25 | 33 | 0.0 | 0.0 | 322 | 204 | 42% / 60% / 25% / 76% |
-| warrior | 45 | 6 | 82 | 20 | 28 | 33 | 0.0 | 0.0 | 339 | 204 | 45% / 53% / 30% / 77% |
-| warrior | 50 | 2 | 73 | 13 | 26 | 34 | 0.0 | 0.0 | 430 | 240 | 37% / 31% / 23% / 54% |
+| warrior | 45 | 6 | 82 | 20 | 28 | 33 | 0.0 | 0.0 | 336 | 204 | 47% / 48% / 29% / 73% |
+| warrior | 50 | 2 | 73 | 13 | 26 | 34 | 0.0 | 0.0 | 431 | 240 | 40% / 43% / 22% / 54% |
 | warrior | 50 | 3 | 79 | 16 | 29 | 34 | 0.0 | 0.0 | 451 | 240 | 32% / 30% / 21% / 52% |
-| warrior | 50 | 6 | 76 | 16 | 26 | 33 | 0.0 | 0.0 | 462 | 240 | 46% / 47% / 32% / 70% |
+| warrior | 50 | 6 | 76 | 16 | 26 | 33 | 0.0 | 0.0 | 477 | 240 | 39% / 36% / 29% / 70% |
 | warrior | 55 | 2 | 73 | 14 | 26 | 33 | 0.0 | 0.0 | 469 | 282 | 30% / 34% / 20% / 54% |
 | warrior | 55 | 3 | 72 | 15 | 24 | 32 | 0.0 | 0.0 | 496 | 282 | 39% / 38% / 25% / 54% |
-| warrior | 55 | 6 | 76 | 17 | 26 | 33 | 0.0 | 0.0 | 517 | 282 | 48% / 45% / 37% / 72% |
+| warrior | 55 | 6 | 76 | 17 | 26 | 33 | 0.0 | 0.0 | 511 | 282 | 49% / 40% / 30% / 70% |
 | warrior | 60 | 2 | 71 | 13 | 25 | 33 | 0.0 | 0.0 | 601 | 332 | 20% / 40% / 18% / 63% |
 | warrior | 60 | 3 | 74 | 15 | 26 | 33 | 0.0 | 0.0 | 620 | 332 | 45% / 59% / 23% / 47% |
-| warrior | 60 | 6 | 77 | 16 | 28 | 34 | 0.0 | 0.0 | 664 | 332 | 39% / 55% / 30% / 73% |
-| paladin | 45 | 2 | 62 | 15 | 27 | 20 | 0.0 | 0.0 | 248 | 204 | 3% / 46% / 12% / 62% |
-| paladin | 45 | 3 | 65 | 18 | 27 | 20 | 0.0 | 0.0 | 254 | 204 | 35% / 48% / 28% / 77% |
-| paladin | 45 | 6 | 65 | 19 | 26 | 20 | 0.0 | 0.0 | 262 | 204 | 36% / 63% / 34% / 76% |
-| paladin | 50 | 2 | 62 | 14 | 28 | 20 | 0.0 | 0.0 | 336 | 240 | 9% / 28% / 10% / 60% |
-| paladin | 50 | 3 | 59 | 15 | 25 | 20 | 0.0 | 0.0 | 354 | 240 | 31% / 42% / 27% / 58% |
-| paladin | 50 | 6 | 67 | 17 | 30 | 20 | 0.0 | 0.0 | 362 | 240 | 40% / 56% / 32% / 76% |
-| paladin | 55 | 2 | 58 | 14 | 25 | 19 | 0.0 | 0.0 | 364 | 282 | 3% / 42% / 7% / 65% |
-| paladin | 55 | 3 | 62 | 16 | 27 | 19 | 0.0 | 0.0 | 382 | 282 | 36% / 68% / 27% / 64% |
-| paladin | 55 | 6 | 62 | 17 | 26 | 19 | 0.0 | 0.0 | 399 | 282 | 52% / 44% / 36% / 73% |
-| paladin | 60 | 2 | 63 | 15 | 28 | 20 | 0.0 | 0.0 | 399 | 332 | 20% / 25% / 15% / 62% |
-| paladin | 60 | 3 | 60 | 15 | 26 | 19 | 0.0 | 0.0 | 453 | 332 | 40% / 60% / 30% / 63% |
-| paladin | 60 | 6 | 63 | 16 | 26 | 20 | 0.0 | 0.0 | 465 | 332 | 62% / 53% / 39% / 74% |
-| cleric | 45 | 2 | 61 | 16 | 25 | 19 | 0.0 | 0.0 | 175 | 204 | 1% / 50% / 7% / 61% |
-| cleric | 45 | 3 | 66 | 18 | 28 | 20 | 0.0 | 0.0 | 181 | 204 | 39% / 51% / 30% / 75% |
-| cleric | 45 | 6 | 66 | 20 | 27 | 20 | 0.0 | 0.0 | 190 | 204 | 51% / 63% / 41% / 79% |
-| cleric | 50 | 2 | 63 | 14 | 29 | 20 | 0.0 | 0.0 | 245 | 240 | 2% / 22% / 3% / 58% |
-| cleric | 50 | 3 | 63 | 16 | 28 | 20 | 0.0 | 0.0 | 255 | 240 | 47% / 54% / 32% / 57% |
-| cleric | 50 | 6 | 64 | 16 | 28 | 20 | 0.0 | 0.0 | 267 | 240 | 48% / 43% / 41% / 75% |
-| cleric | 55 | 2 | 58 | 14 | 25 | 19 | 0.0 | 0.0 | 269 | 282 | 12% / 23% / 6% / 55% |
-| cleric | 55 | 3 | 60 | 16 | 24 | 19 | 0.3 | 0.0 | 285 | 282 | 47% / 38% / 42% / 60% |
-| cleric | 55 | 6 | 64 | 17 | 27 | 19 | 0.0 | 0.0 | 292 | 282 | 52% / 54% / 42% / 73% |
-| cleric | 60 | 2 | 57 | 13 | 25 | 19 | 0.0 | 0.0 | 347 | 332 | 7% / 28% / 13% / 62% |
-| cleric | 60 | 3 | 63 | 15 | 28 | 20 | 0.0 | 0.0 | 363 | 332 | 38% / 45% / 32% / 60% |
-| cleric | 60 | 6 | 68 | 17 | 31 | 20 | 0.0 | 0.0 | 381 | 332 | 50% / 48% / 41% / 71% |
-| mage | 45 | 2 | 67 | 17 | 27 | 23 | 0.0 | 0.0 | 109 | 204 | 1% / 15% / 0% / 56% |
-| mage | 45 | 3 | 67 | 18 | 26 | 23 | 0.0 | 0.0 | 116 | 204 | 42% / 41% / 23% / 68% |
-| mage | 45 | 6 | 72 | 20 | 28 | 24 | 0.0 | 0.0 | 130 | 204 | 48% / 55% / 30% / 74% |
-| mage | 50 | 2 | 64 | 14 | 27 | 23 | 0.3 | 0.0 | 152 | 240 | 3% / 19% / 2% / 71% |
-| mage | 50 | 3 | 70 | 16 | 30 | 24 | 0.0 | 0.0 | 169 | 240 | 38% / 52% / 20% / 59% |
-| mage | 50 | 6 | 67 | 16 | 27 | 24 | 0.0 | 0.0 | 172 | 240 | 36% / 44% / 38% / 71% |
-| mage | 55 | 2 | 64 | 14 | 27 | 23 | 0.0 | 0.0 | 180 | 282 | 1% / 0% / 6% / 59% |
-| mage | 55 | 3 | 65 | 16 | 26 | 23 | 0.0 | 0.0 | 193 | 282 | 40% / 31% / 25% / 70% |
-| mage | 55 | 6 | 70 | 18 | 29 | 24 | 0.0 | 0.0 | 202 | 282 | 48% / 45% / 40% / 72% |
-| mage | 60 | 2 | 62 | 13 | 25 | 23 | 0.0 | 0.0 | 221 | 332 | 6% / 12% / 7% / 56% |
-| mage | 60 | 3 | 65 | 15 | 27 | 23 | 0.0 | 0.0 | 247 | 332 | 39% / 44% / 27% / 69% |
-| mage | 60 | 6 | 63 | 15 | 25 | 23 | 0.0 | 0.0 | 260 | 332 | 44% / 44% / 35% / 69% |
-| necromancer | 45 | 2 | 64 | 16 | 26 | 22 | 0.0 | 0.0 | 220 | 204 | 12% / 24% / 11% / 60% |
-| necromancer | 45 | 3 | 68 | 19 | 27 | 22 | 0.0 | 0.0 | 217 | 204 | 28% / 38% / 21% / 69% |
-| necromancer | 45 | 6 | 70 | 21 | 27 | 22 | 0.0 | 0.0 | 212 | 204 | 51% / 54% / 30% / 77% |
-| necromancer | 50 | 2 | 63 | 13 | 28 | 22 | 0.0 | 0.0 | 303 | 240 | 6% / 56% / 11% / 61% |
-| necromancer | 50 | 3 | 62 | 15 | 25 | 21 | 0.0 | 0.0 | 299 | 240 | 28% / 36% / 19% / 60% |
-| necromancer | 50 | 6 | 64 | 17 | 25 | 21 | 0.0 | 0.0 | 296 | 240 | 38% / 51% / 33% / 74% |
-| necromancer | 55 | 2 | 59 | 13 | 25 | 21 | 0.0 | 0.0 | 341 | 282 | 31% / 17% / 14% / 61% |
-| necromancer | 55 | 3 | 67 | 17 | 28 | 22 | 0.0 | 0.0 | 322 | 282 | 48% / 39% / 22% / 75% |
-| necromancer | 55 | 6 | 69 | 18 | 29 | 22 | 0.0 | 0.0 | 334 | 282 | 46% / 52% / 30% / 74% |
-| necromancer | 60 | 2 | 59 | 12 | 25 | 21 | 0.3 | 0.0 | 424 | 332 | 22% / 46% / 12% / 77% |
-| necromancer | 60 | 3 | 67 | 16 | 29 | 22 | 0.0 | 0.0 | 402 | 332 | 38% / 48% / 27% / 70% |
-| necromancer | 60 | 6 | 62 | 16 | 25 | 21 | 0.0 | 0.0 | 413 | 332 | 46% / 30% / 31% / 71% |
-| thief | 45 | 2 | 57 | 13 | 20 | 24 | 0.0 | 0.0 | 229 | 204 | - / 43% / 17% / 56% |
-| thief | 45 | 3 | 63 | 15 | 23 | 25 | 0.0 | 0.0 | 245 | 204 | - / 31% / 28% / 71% |
-| thief | 45 | 6 | 60 | 15 | 21 | 24 | 0.0 | 0.0 | 251 | 204 | - / 29% / 31% / 81% |
-| thief | 50 | 2 | 51 | 11 | 18 | 23 | 0.0 | 0.0 | 301 | 240 | - / 32% / 17% / 61% |
-| thief | 50 | 3 | 54 | 12 | 19 | 23 | 0.0 | 0.0 | 340 | 240 | - / 25% / 25% / 54% |
-| thief | 50 | 6 | 58 | 13 | 21 | 24 | 0.0 | 0.0 | 347 | 240 | - / 41% / 32% / 72% |
-| thief | 55 | 2 | 56 | 12 | 20 | 24 | 0.0 | 0.0 | 328 | 282 | - / 32% / 27% / 61% |
-| thief | 55 | 3 | 60 | 13 | 23 | 24 | 0.0 | 0.0 | 378 | 282 | - / 32% / 26% / 66% |
-| thief | 55 | 6 | 59 | 14 | 21 | 24 | 0.0 | 0.0 | 393 | 282 | - / 36% / 34% / 74% |
-| thief | 60 | 2 | 60 | 12 | 23 | 25 | 0.0 | 0.0 | 408 | 332 | - / 38% / 23% / 55% |
-| thief | 60 | 3 | 59 | 12 | 21 | 25 | 0.0 | 0.0 | 462 | 332 | - / 28% / 27% / 66% |
-| thief | 60 | 6 | 57 | 13 | 20 | 24 | 0.0 | 0.0 | 495 | 332 | - / 40% / 36% / 73% |
-| assassin | 45 | 2 | 58 | 15 | 25 | 17 | 0.0 | 0.0 | 284 | 204 | 22% / 40% / 16% / 60% |
-| assassin | 45 | 3 | 62 | 18 | 27 | 18 | 0.0 | 0.0 | 315 | 204 | 29% / 51% / 23% / 73% |
-| assassin | 45 | 6 | 59 | 18 | 24 | 17 | 0.0 | 0.0 | 328 | 204 | 40% / 53% / 32% / 74% |
-| assassin | 50 | 2 | 62 | 15 | 30 | 18 | 0.0 | 0.0 | 392 | 240 | 18% / 21% / 14% / 62% |
-| assassin | 50 | 3 | 59 | 15 | 26 | 17 | 0.0 | 0.0 | 406 | 240 | 29% / 41% / 27% / 53% |
-| assassin | 50 | 6 | 60 | 16 | 26 | 17 | 0.0 | 0.0 | 441 | 240 | 40% / 52% / 35% / 72% |
-| assassin | 55 | 2 | 60 | 15 | 27 | 18 | 0.0 | 0.0 | 412 | 282 | 23% / 39% / 19% / 66% |
-| assassin | 55 | 3 | 60 | 16 | 26 | 18 | 0.0 | 0.0 | 465 | 282 | 34% / 52% / 28% / 66% |
-| assassin | 55 | 6 | 60 | 17 | 25 | 17 | 0.0 | 0.0 | 470 | 282 | 40% / 61% / 37% / 74% |
-| assassin | 60 | 2 | 59 | 14 | 27 | 18 | 0.0 | 0.0 | 543 | 332 | 27% / 41% / 21% / 66% |
-| assassin | 60 | 3 | 60 | 15 | 27 | 18 | 0.0 | 0.0 | 620 | 332 | 40% / 46% / 32% / 59% |
-| assassin | 60 | 6 | 61 | 16 | 27 | 18 | 0.0 | 0.0 | 644 | 332 | 47% / 43% / 42% / 68% |
-| ranger | 45 | 2 | 68 | 15 | 28 | 25 | 0.0 | 0.0 | 184 | 204 | 18% / 39% / 22% / 60% |
-| ranger | 45 | 3 | 71 | 18 | 28 | 25 | 0.0 | 0.0 | 196 | 204 | 50% / 52% / 26% / 72% |
-| ranger | 45 | 6 | 70 | 19 | 27 | 25 | 0.0 | 0.0 | 205 | 204 | 48% / 51% / 34% / 76% |
-| ranger | 50 | 2 | 68 | 14 | 29 | 25 | 0.0 | 0.0 | 251 | 240 | 29% / 31% / 22% / 55% |
-| ranger | 50 | 3 | 65 | 15 | 26 | 25 | 0.0 | 0.0 | 263 | 240 | 31% / 44% / 24% / 60% |
-| ranger | 50 | 6 | 72 | 17 | 31 | 25 | 0.0 | 0.0 | 281 | 240 | 39% / 49% / 32% / 74% |
-| ranger | 55 | 2 | 64 | 14 | 25 | 24 | 0.0 | 0.0 | 271 | 282 | 25% / 42% / 18% / 58% |
-| ranger | 55 | 3 | 68 | 16 | 27 | 24 | 0.0 | 0.0 | 292 | 282 | 35% / 50% / 25% / 57% |
-| ranger | 55 | 6 | 67 | 17 | 26 | 24 | 0.0 | 0.0 | 298 | 282 | 48% / 52% / 38% / 74% |
-| ranger | 60 | 2 | 68 | 14 | 30 | 25 | 0.0 | 0.0 | 342 | 332 | 27% / 57% / 23% / 56% |
-| ranger | 60 | 3 | 65 | 14 | 26 | 24 | 0.0 | 0.0 | 378 | 332 | 34% / 38% / 27% / 57% |
-| ranger | 60 | 6 | 68 | 16 | 27 | 25 | 0.0 | 0.0 | 378 | 332 | 52% / 50% / 39% / 73% |
-| bard | 45 | 2 | 65 | 13 | 21 | 32 | 0.0 | 0.0 | 179 | 204 | - / 56% / 8% / 57% |
-| bard | 45 | 3 | 65 | 14 | 20 | 31 | 0.0 | 0.0 | 186 | 204 | - / 52% / 25% / 71% |
-| bard | 45 | 6 | 72 | 16 | 24 | 32 | 0.0 | 0.0 | 193 | 204 | - / 47% / 30% / 74% |
-| bard | 50 | 2 | 64 | 11 | 21 | 32 | 0.0 | 0.0 | 246 | 240 | - / 23% / 5% / 61% |
-| bard | 50 | 3 | 68 | 12 | 23 | 32 | 0.0 | 0.0 | 259 | 240 | - / 39% / 24% / 53% |
-| bard | 50 | 6 | 65 | 13 | 21 | 32 | 0.0 | 0.0 | 265 | 240 | - / 41% / 26% / 73% |
-| bard | 55 | 2 | 61 | 11 | 19 | 31 | 0.0 | 0.0 | 268 | 282 | - / 36% / 7% / 56% |
-| bard | 55 | 3 | 62 | 12 | 19 | 31 | 0.0 | 0.0 | 285 | 282 | - / 45% / 26% / 59% |
-| bard | 55 | 6 | 66 | 13 | 21 | 32 | 0.0 | 0.0 | 296 | 282 | - / 46% / 33% / 74% |
-| bard | 60 | 2 | 60 | 10 | 19 | 31 | 0.0 | 0.0 | 345 | 332 | - / 38% / 12% / 65% |
-| bard | 60 | 3 | 65 | 12 | 22 | 32 | 0.0 | 0.0 | 372 | 332 | - / 41% / 27% / 55% |
-| bard | 60 | 6 | 60 | 12 | 17 | 31 | 0.0 | 0.0 | 380 | 332 | - / 48% / 26% / 67% |
+| warrior | 60 | 6 | 77 | 16 | 27 | 34 | 0.0 | 0.0 | 661 | 332 | 36% / 48% / 28% / 70% |
 
 ### Real-time combat (the 3D client)
 
@@ -369,8 +401,8 @@ The same quests, with skills a second apart (`--mode action`).
 ## Time and the two-hour goal
 
 The fights take what the design asks: an elite about a minute, a warden about two, a boss about
-three. Around them, a lone hero who knows the way spends 6-29 minutes resting and 17-33 walking,
-40-72 minutes in all. Thieves and assassins finish soonest: they have no mana to rest back.
+three. Around them, a lone hero who knows the way spends 6-28 minutes resting and 17-33 walking,
+41-70 minutes in all. Thieves and assassins finish soonest: they have no mana to rest back.
 Rangers, mages and necromancers finish last.
 
 That is efficient play by a player who knows the way. A first time through adds what the
@@ -381,6 +413,74 @@ If the quests still play short, one number moves them: `ROUNDS` in `marquee_scal
 rounds a lone hero needs for each kind of foe. Longer fights cost more health, so after changing
 it run `--calibrate` again and copy the new `CLASS_D`.
 
+Real quests now say how long they take: `marquee stats` (immortals) reads `lib/marquee_runs.jsonl`
+and gives, by class and party size, the quests finished, their median minutes and range, and
+deaths a quest. Once a few real quests are in, that is the number to tune `ROUNDS` against.
+
+## Zone bosses
+
+The bosses in the world's zones (the Goblin King, the dragons, the gate guardians: 20 of them
+from level 12 to 60) had never been measured. Their files were written for far weaker heroes:
+before this pass a party of three at a boss's level felled every one in 2-6 rounds, for 0-15%
+of its health. These are not the event bosses of `world_events.py` (150,000 health, "requiring
+group effort"), and the bosses above the mortal level cap (the four horsemen, Kirgan, the
+sovereigns at 62-70) keep their files' numbers: they are raid fights.
+
+A zone boss can't know who will fight it, so it is sized like a marquee trial's boss for a
+lone hero at its level (`bosses.size_zone_boss`):
+
+- **Health:** 40 rounds of what the median hero of its level deals (`marquee_scale.dpr`):
+  about two minutes alone (a warrior 1.6, a mage 2.7), and 0.4-1.1 minutes for a party of
+  three.
+- **Damage:** each boss's own blows, abilities, poison and adds are weighed by one share of
+  their own (`ZONE_BOSS_DAMAGE`), found by `tools/balance/bosses.py --calibrate`: the share at
+  which a lone hero of the median class loses half their health at the worst moment, or a
+  quarter of lone heroes die, whichever comes first. The shares run from 0.11 (the
+  Necromancer, whose spells hit nine times too hard) to 2.1 (Grimclaw and the Oakfather, whose
+  files have no damage dice and hit with 1d6).
+
+Three fixes came out of measuring them:
+
+- A creature's poison and a boss's adds ignored its damage share: the spider queens' poison
+  (`3 + level/5` a tick, every 3 s) and the Goblin King's goblins did their full damage at any
+  share. Both now weigh as the creature's blows do (a quest's adds keep their own share).
+- A boss's summons were endless: the Goblin King called three goblins every 18 s for as long as
+  the fight lasted, and once he lived long enough a room filled with them. A summoning ability
+  now calls only while fewer than twice its number of the boss's callers still stand. A phase's
+  adds still always come.
+- The simulator saved its heroes: an achievement (level 50) writes the player, and thousands of
+  simulated heroes filled `lib/players` and the leaderboards. It no longer writes anything.
+
+What a lone hero at the boss's level meets, over the 20 bosses (two fights each;
+[the full table](bosses.md)):
+
+| class | health at worst (median) | deaths in 40 fights | minutes (median) |
+|---|---|---|---|
+| warrior | 22% | 0 | 1.6 |
+| paladin | 23% | 0 | 1.6 |
+| assassin | 42% | 1 | 1.9 |
+| cleric | 44% | 0 | 2.5 |
+| ranger | 56% | 1 | 2.8 |
+| bard | 58% | 1 | 2.3 |
+| thief | 58% | 4 | 1.7 |
+| necromancer | 80% | 17 | 2.3 |
+| mage | 96% | 23 | 2.7 |
+
+A party of three (warrior, cleric, mage) finishes any of them in 0.4-1.1 minutes, its
+worst-off member losing 0-41% (median 10%).
+
+The spread between classes is the cost of a boss that can't know who fights it: a lone mage
+(about 190 health at level 45, and half the median hero's damage) or a necromancer whose bone
+knight falls usually dies at the boss's level, where a warrior or a paladin loses a quarter of
+their health. A level or two, or a friend, changes that. If every class should be able to solo
+them at level, the bosses could weigh their blows by the class they strike, as a marquee
+quest's creatures are made for the classes that embarked.
+
+The simulation's heroes don't interrupt a cast. The Necromancer's Drain Life heals him a tenth
+of his health unless interrupted, and the Goblin King keeps calling goblins, which the
+simulation's heroes fight first. So a lone mage, cleric, ranger or bard can take ten minutes or
+more over them, where a player who presses X or strikes the boss would not.
+
 ## Rerunning
 
     python3 tools/balance/sim.py --levels 45,50,55,60 --party 1,2,3,6 --runs 3     # the tables above
@@ -388,6 +488,9 @@ it run `--calibrate` again and copy the new `CLASS_D`.
     python3 tools/balance/sim.py --calibrate --levels 45,50,55,60 --runs 8         # CLASS_K and CLASS_D
     python3 tools/balance/sim.py --classes mage --levels 45 --party 1 --verbose    # one quest, stage by stage
     python3 tests/test_balance.py                                                  # the fixes, and one quest simulated
+    python3 tools/balance/bosses.py --runs 2 --report docs/balance/bosses.md       # the zone bosses, every class
+    python3 tools/balance/bosses.py --calibrate --runs 2                           # ZONE_BOSS_DAMAGE (bosses.py)
+    python3 tools/balance/bosses.py --bosses 3503 --classes mage                   # one boss, one class
 
 `--foe-damage elite=1.5` and `--class-damage mage=0.8` try other values without editing the
 code. Any creature turn that raises an error is printed once (`  ! ...`): those are the game's

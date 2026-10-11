@@ -244,6 +244,45 @@ async def main():
     check('slow' not in (caster.affect_flags or set()), "Unfettered's ward refuses a new slow")
     done(caster, ally, a, b)
 
+    # ---- damage over time finishes a creature (credited to whoever it fights), never a player
+    caster, ally, a, b, _ = await scene('necromancer')
+    a.hp = 5
+    AffectManager.apply_affect(a, {'name': 'plague', 'type': AffectManager.TYPE_DOT, 'applies_to': 'hp', 'value': 12, 'duration': 3})
+    await AffectManager.tick_affects(a)
+    check(a.hp <= 0 or a not in room.characters, f'a creature dies of its wounds (hp {a.hp})')
+    caster.hp = 5
+    AffectManager.apply_affect(caster, {'name': 'poison', 'type': AffectManager.TYPE_DOT, 'applies_to': 'hp', 'value': 12, 'duration': 3})
+    await AffectManager.tick_affects(caster)
+    check(caster.hp == 1, f'a player is never killed by it ({caster.hp})')
+    done(caster, ally, a, b)
+
+    # ---- the bone knight: its shield wall rests between uses and comes down out of a fight, and
+    # its taunt turns the creatures on its owner's side onto it, never a groupmate
+    from pets import PetManager
+    caster, ally, a, b, _ = await scene('necromancer')
+    knight = await PetManager.summon_pet(caster, 'undead_warrior', duration_minutes=60)
+    ally.fighting = b; ally.position = 'fighting'
+    b.fighting = ally; b.position = 'fighting'
+    knight.fighting = knight.target = a
+    await knight.use_special_ability('shield_wall')
+    check(knight.shield_wall_active == 3 and a.fighting is knight and b.fighting is knight and ally.fighting is b,
+          f"the shield wall turns the creatures on its owner and their group onto the knight, not a groupmate "
+          f"(a on {getattr(a.fighting, 'name', None)}, b on {getattr(b.fighting, 'name', None)}, ally on {getattr(ally.fighting, 'name', None)})")
+    knight.shield_wall_active = 0
+    await knight.use_special_ability('shield_wall')
+    check(knight.shield_wall_active == 0, 'the wall rests before it can be raised again (it was up two rounds in three)')
+    for _ in range(6):
+        await knight.ai_combat_tick()
+    check(getattr(knight, 'shield_wall_cd', 0) == 0, f'…for six rounds ({getattr(knight, "shield_wall_cd", None)} left)')
+    knight.shield_wall_active = 3
+    knight.fighting = knight.target = None
+    await knight.ai_combat_tick()
+    check(knight.shield_wall_active == 0, 'out of a fight the wall comes down')
+    for pet in PetManager.get_player_pets(caster):
+        if pet in room.characters:
+            room.characters.remove(pet)
+    done(caster, ally, a, b, knight)
+
     # ---- no command defined twice; every class-book skill is a command
     src = open(os.path.join(HERE, '..', 'src', 'commands.py')).read()
     tree = ast.parse(src)

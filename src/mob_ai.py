@@ -1003,7 +1003,9 @@ async def _resolve_legacy(mob, target, which):
             if not already:
                 AffectManager.apply_affect(target, {
                     'name': 'poison', 'type': AffectManager.TYPE_DOT, 'applies_to': 'hp',
-                    'value': 3 + mob.level // 5, 'duration': 4, 'caster_level': mob.level,
+                    # weighed like its blows (a zone boss's or a quest creature's _dmg_scale)
+                    'value': max(1, round((3 + mob.level // 5) * (getattr(mob, '_dmg_scale', 1) or 1))),
+                    'duration': 4, 'caster_level': mob.level,
                 })
                 if hasattr(target, 'send'):
                     await target.send(f"{c['green']}You feel poison coursing through your veins!{c['reset']}")

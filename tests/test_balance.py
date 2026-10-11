@@ -10,6 +10,8 @@
 - a shield spell cast again renews itself instead of stacking (stoneskin twice was two shields);
 - a boss whose blow lands on a pet goes on fighting (it froze mid-cast);
 - a quest creature with a party's health doesn't take the boss kit meant for big world creatures;
+- zone bosses are sized for a lone hero at their level (not a raid boss, not a quest's); their
+  adds and poison weigh as their blows do, and a summoner calls only while few of its help stand;
 - marquee_scale: dpr() follows the measured median hero; a quest's creatures are made for the
   classes that embarked (their damage, and what they can stand), a little harder each level;
 - tools/balance/sim.py plays a quest through with sane numbers.
@@ -171,12 +173,46 @@ async def main():
     check('boss' not in mob_ai.classify_mob(big) and 'boss' in mob_ai.classify_mob(plain_big),
           "a quest creature made for a party isn't handed the boss kit (a room-wide slam every 8 s); a big world creature still is")
 
+    # ---- zone bosses: sized for a lone hero at their level, their blows weighed boss by boss
+    import bosses as bz
+    room.characters[:] = left_as_found
+    king = create_mob_from_prototype(dict(world.mob_prototypes[3503]), world)        # the Goblin King, level 22
+    check(king.max_hp == int(bz.ZONE_BOSS_ROUNDS * ms.dpr(22)) and king._dmg_scale == bz.ZONE_BOSS_DAMAGE[3503],
+          f'a zone boss is sized for a lone hero at its level ({king.max_hp} health, its blows x{getattr(king, "_dmg_scale", 1)})')
+    death = create_mob_from_prototype(dict(world.mob_prototypes[22073]), world)      # Death, level 66: a raid
+    check(death.max_hp == world.mob_prototypes[22073]['max_hp'] and getattr(death, '_dmg_scale', 1) == 1,
+          'a boss above the level cap keeps its file (a raid fight)')
+    gorrund = create_mob_from_prototype(dict(world.mob_prototypes[9706]), world)
+    check(not getattr(gorrund, 'zone_sized', False), "a marquee quest's boss is left to marquee_scale")
+    king.room = room
+    room.characters.append(king)
+    await king._spawn_adds({'3501': 1})                     # a phase's adds: they always come
+    check(getattr(room.characters[-1], '_dmg_scale', 1) == king._dmg_scale, "a zone boss's adds hit as it does")
+    lackeys = next(a for a in king.abilities if a.get('summon'))
+    for _ in range(4):
+        await king._start_ability(lackeys)
+    called = list(king._called)
+    check(len(called) == 6, f'a boss calls for help only while fewer than twice the call stand ({len(called)} came of 4 calls of 3)')
+    for a in called[:4]:
+        a.hp = 0
+        room.characters.remove(a)
+    await king._start_ability(lackeys)
+    check(len(king._called) == 5, f'…and calls again once they fall ({len(king._called)} standing)')
+    spider = create_mob_from_prototype(dict(world.mob_prototypes[20007]), world)     # spider queen, level 12
+    spider.room = room
+    room.characters.append(spider)
+    await mob_ai._resolve_legacy(spider, bard, 'poison')
+    venom = [a for a in bard.affects if getattr(a, 'name', None) == 'poison']
+    want = max(1, round((3 + spider.level // 5) * spider._dmg_scale))
+    check(venom and venom[0].value == want, f'a zone boss\'s poison is weighed like its blows ({venom[0].value if venom else None}, want {want})')
+
     # ---- the simulator plays a quest through (in the room the checks above used: empty it again)
     room.characters[:] = left_as_found
     if '--quick' not in sys.argv:
         sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'tools', 'balance'))
         import importlib
         sim = importlib.import_module('sim')
+        sim.no_saves()
         sim.patch_deaths(world)
         sim.patch_damage()
         res = await sim.run_quest(world, 'warrior', 45, 1, 'rounds', 0.6, 1.0, 0.75, seed=1000)
