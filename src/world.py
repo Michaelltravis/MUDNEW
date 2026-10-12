@@ -1091,9 +1091,14 @@ class World:
         notes = list(player.__dict__.pop('_grant_notes', None) or [])
         try:
             import grants
-            notes += grants.apply_grants(player)
+            notes += grants.apply_grants(player, entering=True)
         except Exception:
             logger.exception('grants')
+        if player.__dict__.pop('_grant_save', False):
+            try:
+                await player.save()          # the account a gift made them, remembered
+            except Exception:
+                logger.exception('grant save')
         if notes:
             c = Config().COLORS
             for line in notes:

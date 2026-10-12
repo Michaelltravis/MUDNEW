@@ -190,12 +190,20 @@ async def main():
     try:
         dk = hero('Deckard')
         check(grants.load_grants()['deckard'].get('immortal') is True, 'Deckard is to be immortal')
-        check(grants.apply_grants(dk) == [] and not dk.grants_received, 'with no account yet, nothing is given (or spent)')
-        a = Account('deckard'); a.characters = ['Deckard']; a.save()
-        dk.account_name = 'deckard'
-        lines = grants.apply_grants(dk)
-        check(Account.load('deckard').is_admin and dk.is_immortal and any('immortal' in l for l in lines), f'with one, the account is an admin one ({lines})')
-        check(grants.apply_grants(dk) == [], 'once')
+        check(grants.apply_grants(dk) == [] and not dk.is_immortal, 'not while logging in (only on entering the world)')
+        dk.password_hash = 'x$hash'
+        lines = grants.apply_grants(dk, entering=True)
+        a = Account.load('deckard')
+        check(a and a.is_admin and a.characters == ['Deckard'] and a.password_hash == 'x$hash' and dk.account_name == 'deckard'
+              and dk.is_immortal and any('immortal' in l for l in lines),
+              f'a character with no account (as /play makes them) gets one of its own name and password, an admin one ({lines})')
+        check(grants.apply_grants(dk, entering=True) == [], 'once')
+        other = hero('Deckard2')
+        other.name = 'Deckard'
+        other.grants_received = []
+        a2 = Account('deckard'); a2.characters = ['Someone']; a2.is_admin = False; a2.save()
+        check(grants.apply_grants(other, entering=True) == [] and not Account.load('deckard').is_admin,
+              "an account of that name that isn't theirs is never made immortal")
     finally:
         accounts.ACCOUNTS_DIR = real_dir
 

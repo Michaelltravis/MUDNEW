@@ -37,8 +37,10 @@ def part_key(name, part, value) -> str:
     return f"{name.lower()}:{part}:{json.dumps(value, sort_keys=True)}"
 
 
-def apply_grants(player, grants=None) -> list:
-    """Give this player the parts of their gift they haven't had; returns lines to tell them."""
+def apply_grants(player, grants=None, entering=False) -> list:
+    """Give this player the parts of their gift they haven't had; returns lines to tell them.
+    `entering`: they are entering the world now (World.add_player), past the login; an immortal
+    part waits for that (it may give them an account, which the login must not see half-way)."""
     gift = (grants if grants is not None else load_grants()).get(str(getattr(player, 'name', '')).lower())
     if not gift:
         return []
@@ -46,7 +48,8 @@ def apply_grants(player, grants=None) -> list:
     if got is None:
         player.grants_received = got = []
     whole = grant_key(player.name, gift)
-    todo = [p for p in PARTS if gift.get(p) and part_key(player.name, p, gift[p]) not in got]
+    todo = [p for p in PARTS if gift.get(p) and part_key(player.name, p, gift[p]) not in got
+            and (entering or p != 'immortal')]
     if whole in got:
         # given whole before parts were counted: every part of it is had
         got.extend(part_key(player.name, p, gift[p]) for p in todo)
@@ -105,8 +108,22 @@ def apply_grants(player, grants=None) -> list:
             from accounts import Account
             acct = Account.load(player.account_name) if getattr(player, 'account_name', None) else None
             if acct is None:
-                logger.warning(f"grants: {player.name}: no account to make immortal")
-                continue          # not recorded: given once they have an account
+                # a character made on its own (as /play makes them) has no account: it gets one
+                # of its own name and password, which it logs in with just as before
+                key = player.name.lower()
+                acct = Account.load(key)
+                if acct is not None and player.name not in acct.characters:
+                    logger.warning(f"grants: {player.name}: account {key!r} is someone else's")
+                    continue
+                if acct is None:
+                    if not getattr(player, 'password_hash', ''):
+                        logger.warning(f"grants: {player.name}: no password to make an account with")
+                        continue
+                    acct = Account(key)
+                    acct.password_hash = player.password_hash
+                    acct.characters = [player.name]
+                player.account_name = acct.account_name
+                player._grant_save = True
             if not acct.is_admin:
                 acct.is_admin = True
                 acct.save()
