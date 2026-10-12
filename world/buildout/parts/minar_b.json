@@ -1,0 +1,422 @@
+{
+ "job": "minar_b",
+ "rooms": {
+  "14618": "Sunlight falls in coins and ribbons through a gap in the high beech canopy, dappling a small glade of soft, short grass. In the middle of the glade an old crab apple tree leans on its own elbow, its crooked boughs heavy with small sour fruit and its bark patched with silver lichen. The grey trunks march away north and east, and paths of trodden leaves lead south and west beneath the boughs.",
+  "14630": "Tall lime trees grow here among the beeches, and their heart-shaped leaves drip a sticky sweetness that glazes the fallen leaves below. The air is heavy with the scent of their pale, tasselled blossom. To the north the light brightens toward a sunlit glade, and the forest runs on east, south and west in long green aisles between the trunks.",
+  "14640": "A deer path crosses here, a narrow groove of bare earth worn deep between the ferns. Several young hornbeams beside it have been frayed to the pale wood where stags have rubbed their antlers, and strips of bark hang from them like torn ribbon. The path wanders off east and west, while the open forest leads north toward the lime trees and south into deeper shade.",
+  "14647": "An old sawpit lies open in the forest floor here, a long trench where woodcutters once stood to rip logs into planks, its sides slumped and furred with moss. A rotten trestle still straddles one end, and the sawdust heap beside it has long since rotted into a mound of dark earth sprouting nettles. The forest is open north toward a deer path, east and west, and south among oaks and ashes.",
+  "14654": "Oak and ash grow side by side here, the oaks broad and twisted, the ashes straight and grey and hung with bunches of winged keys. A dead ash still stands among them, bleached white and riddled from root to crown with neat round holes. Somewhere above, wood creaks against wood whenever the wind stirs. The forest stretches away north, east and west, and grows noticeably darker to the south.",
+  "14682": "The trunk of a great oak here is scored with deep, raking gouges, four parallel furrows torn through the bark higher than a tall man could reach. Below them a rotten log has been ripped apart and flung about, its punky wood strewn among tufts of coarse brown fur. Whatever did this was strong beyond reason. Paths lead away north and south, and the trees open a little east and west.",
+  "14660": "A stand of tall, straight ashes rises here, their pale trunks bare of branches for forty feet, like the masts of ships riding at anchor. The light between them is clear and cool, and the floor is carpeted with dog's mercury and the dry curls of last year's leaves. Wide aisles run north and east between the trunks, while the undergrowth of the older woods thickens south and west.",
+  "14686": "A flat circle of blackened earth lies here where charcoal burners once built their smouldering mounds, so long ago that no one could say when. Little grows on the scorched ground save a fuzz of moss, and bracket fungi crowd the stumps the burners left around its rim. The forest has crept back close on every side, with ways leading north among pale ashes and east, south and west into older growth.",
+  "14691": "A dark knot of firs grows here amid the broadleaves, and their resinous scent is sharp in the still air. The ground beneath them is a springy mat of brown needles where nothing else will grow, and their low dead branches are hung with grey-green tatters of lichen. Beyond the firs the oaks and beeches resume, the way open north and south as well as east and west.",
+  "14696": "High in the trunk of a great split oak, a fissure oozes dark wild honey that has run down the bark in long, glistening streaks. The sweet smell hangs heavy in the air, mingled with the scent of honeysuckle twining through the lower branches. The ground beneath is sticky with old drips. The woods continue east and west, and the oak's twin trunks frame the ways north and south.",
+  "14699": "Young saplings and brambles have rushed up into the space left by a fallen oak, weaving a thicket so dense that it walls off one side of the clearing. Blackberries ripen among the thorns, and the trampled grass of the open part is pocked with hoofprints. A way leads north into taller trees, while narrow gaps let you squeeze off east or west.",
+  "14698": "Several animal trails converge on a patch of churned black mud here, pitted with the cloven prints of deer and the heavier, rounder marks of boar. The canopy is so high and unbroken that the light is a deep green dusk even at noon. Trails leave the mud north, east and west, and a longer one slopes away south through the trees.",
+  "14695": "The old growth is so dense overhead that almost nothing grows beneath it, and the massive trunks stand alone on a bare floor of brown leaves. Sound dies quickly in the hush, so that your own footsteps seem loud and rude. Moss climbs every trunk on the same side, a soft green that almost glows in the gloom. The great trees go on and on, north, south, east and west.",
+  "14690": "The roots of the beeches here have broken the surface and knotted across the ground in a great grey net, so that every step means stepping over or between them. Pockets of black water collect in the hollows of the tangle, each holding a small dark reflection of the canopy. Picking your way with care, you can go north, east, south or west.",
+  "14685": "The ground sinks into a shallow hollow here where a thin white mist lingers long after it has lifted elsewhere. Dew beads every fern frond and spangles the small webs strung between them, and the air is cold and damp against your face. The trunks rising out of the mist look grey and ghostly, and the way climbs gently out of the hollow to the north, east, south and west.",
+  "14684": "Moss covers everything here in a deep, spongy blanket, smothering fallen logs and stones alike until the forest floor is a landscape of soft green hummocks. Your feet sink in to the ankle with every step, and water squeezes up around your boots. The thick quiet is broken only by the drip of moisture from the leaves. Ways wind north, east, south and west between the mossy mounds.",
+  "14681": "The oaks here are truly ancient, their trunks as wide as a cottage and their lowest limbs as thick as lesser trees. Ferns and small saplings grow in the crooks of the branches high overhead, a garden in the air. Beneath them the deep shade keeps the floor nearly bare. The rooted shoulders of the old giants part to let you pass north, east, south and west.",
+  "14653": "Boulders fallen from a grey outcrop lie scattered among the trees here, each blanketed in moss so thick that they look like great green beasts asleep in the leaf litter. The outcrop itself rises sheer beside you, closing off the way on one side, its face streaked dark with seeping water. The forest is open north along the foot of the rock, east among the oaks and south into older growth.",
+  "14646": "A long face of grey rock juts up through the forest here, taller than three men and running away out of sight among the trees. Water seeps down its stained surface, feeding cushions of moss and the polypody ferns that sprout from every crack. There is no way over it, but the forest stays open north toward a sea of bracken, east toward an old sawpit, and south along the foot of the rock.",
+  "14639": "Bracken grows chest-high here in a rolling green sea beneath widely spaced oaks, and its fronds brush and catch at you as you wade through. A sour, earthy smell rises from the trampled stems. Narrow tracks pushed through the fronds by passing beasts lead north, east, south and west, the southern one toward a wall of grey rock.",
+  "14629": "Ivy has swallowed a great oak here so completely that the tree has become a dark green tower, its trunk lost beneath woody stems as thick as your arm. The ivy's pale flowers give off a heavy, sweetish smell, and the ground beneath is littered with its dead leaves. Paths skirt the ivy tower north and south, and the woods open east and west.",
+  "14617": "Two great beeches have grown together here, their trunks leaning in until they fused high overhead into a single living arch of smooth grey bark. Beech mast crunches underfoot, and the ground beneath the arch is worn bare by feet that go out of their way to pass through it. The trees thin toward the forest's edge to the north, and the woods continue east, south and west.",
+  "14605": "The forest is younger and lighter near its northern edge, where slender silver birches and rowans stand among the oaks. Short moss and wood sorrel cover the ground, and the canopy is thin enough to let in a wash of pale green light. Bright daylight shows between the trunks to the north where the trees give out, while the forest continues east, south and west.",
+  "14810": "The great forest frays out into open country here in a fringe of silver birch, hawthorn and bramble. Beyond the last trunks a rolling sweep of heath and grass runs out under the wide sky toward a far horizon, and the wind comes freely across it, setting the birch leaves shivering. The eaves run on east and west along the forest's edge, and the deep woods begin just to the south.",
+  "14809": "Wilderness Way begins here at the edge of the trees, a rutted track of packed earth and grass that runs north out of the forest into open country. A weathered waymark post leans beside the ruts, its carving softened by years of rain. The eaves stretch away east and west, and a broad gap between two massive oaks leads south into the green gloom of MiNar.",
+  "2328": "Wilderness Way climbs gently out of the forest here between low banks of turf and flowering gorse. To the south the forest of MiNar stands like a dark wall across the land, its eaves dense and shadowed. The rutted track runs on north across open heath under a wide, windy sky, and the smell of leaf mould gives way to the honeyed scent of the gorse.",
+  "2329": "The Way bends here to skirt a stony knoll that rises close beside the road, its crown ringed with dark, wind-bent pines. Grey boulders spill from its flank right down to the verge, and the ruts swing wide to avoid them. The road runs east around the foot of the knoll, and south back toward the eaves of the great forest.",
+  "2330": "A little stream crosses the road here through a culvert of flat stones, chattering out of the heather on one side and losing itself in reeds on the other. Cart wheels have worn the culvert's capstones smooth and pale, and clumps of wild thyme scent the banks. Wilderness Way turns north here, while the other arm of the bend runs west around the stony knoll.",
+  "2331": "The road runs straight and level here across a strip of rough pasture, where tussocks of wiry grass and clumps of rushes grow. Close by, the stony flank of the knoll shows a cleft high up, roofed over with a great woven mass of boughs like the nest of some enormous bird. The Way carries on north across the open land and south toward a stone culvert.",
+  "2332": "Open heath rolls away on both sides of the road here, purple with heather and gold with broom. Nothing breaks the wind, which flattens the heather in long waves and sends cloud shadows racing over the land. The track is stony and dry, its ruts half filled with sand, and it runs on north toward a low rise and south toward the stony knoll and the forest beyond.",
+  "2333": "The road tops a low rise here, and from its crest you can see a long way across the open country. Far off, a single enormous tree lifts its crown above the land like a green thunderhead, and beyond it a vast sea of tall, pale grass ripples and shimmers in the wind. Wilderness Way runs down the far slope to the north and back south across the heath.",
+  "2334": "A squat milestone stands at the roadside here, its top worn into a saddle by travellers who have sat on it to rest. Rings of orange and grey lichen have crept over most of its face. The heath is giving way to rougher pasture, and the great tree looms nearer above the land. The road runs on north toward the tree and south over a gentle rise.",
+  "2335": "The road passes beneath the outermost boughs of an enormous tree here, whose trunk stands just to the west within a ring of old flagstones. To the east a trampled gap opens in a towering wall of grass, taller than a mounted rider, that marks the edge of the Grasslands. Wilderness Way itself runs on north beside the grass and south across the open heath.",
+  "2337": "Here the road runs along the edge of the Grasslands, where the grass rises in a sheer, whispering wall higher than a man on horseback. The wind combs through its tops with a sound like distant surf. Across the road lies open pasture, studded with thistles and grazed short. The Way runs north along the wall of grass and south toward the shade of the great tree.",
+  "2338": "The road swings east here to skirt a boggy hollow where a pond of brown water lies among rushes and yellow flag irises. The ground at the roadside is soft, and the ruts are brimming with water that mirrors the passing clouds. Willow scrub grows thickly around the far side of the pond. The Way leads east along the edge of the tall grass, and south past the pond's reedy margin.",
+  "2339": "Wheel ruts cut deep into the clay where the road turns here, and generations of carts have worn the bend into a broad, muddy curve. The grass of the Grasslands leans out over the verge, its stems as thick as a finger and topped with heavy, nodding heads of seed. The road heads north along the edge of the grass and west toward a reedy pond.",
+  "2340": "A broad opening has been trampled into the wall of grass beside the road here, and a beaten path plunges east into the green-gold dimness of the Grasslands. The road itself is wider and better kept along this stretch, with a ditch dug along one verge. Wilderness Way runs on north toward the Plains, and south along the edge of the grass.",
+  "101067": "The grass closes overhead a few paces in from the road, its stems leaning together into a whispering roof that turns the light green and gold. A trampled gap opens west onto Wilderness Way, and the stalks nearest it are grey with road dust. Narrow paths wind off north, east and south through the dense, rustling stems.",
+  "101037": "Feather grass grows here among the taller stems, its long silky plumes trailing down from the roof of grass like the hair of some great sleeping creature. On one side a tangled bank of briar and sloe shuts out the road entirely, though you can hear the wind passing over it. Trodden ways lead north and east, and south toward the gap onto the road.",
+  "101047": "The stems have been crushed flat here in a rough ring where some heavy beast has rolled and rolled, until the ground beneath is bare, dusty earth. Coarse hairs, dun and black, cling to the broken stalks around the edge. Light pours warm and golden into the hollow through the gap torn in the grass roof. Trails leave the ring in all four directions, north, south, east and west.",
+  "101057": "A great anthill of crumbly red earth rises waist-high among the stems here, its sides riddled with tiny tunnels. The grass grows thinner around it, and the light comes down more freely, warm on the back of your neck. A sharp, vinegary smell hangs in the air. Paths circle the mound and lead away north, east, south and west, each looking much like the others.",
+  "101035": "A gnarled hawthorn has grown up here in the midst of the grass, its trunk twisted by years of wind and its thorny branches knotted together with the stems overhead. Beneath it is a small round space carpeted with fallen leaves and dark red haws, quieter and more sheltered than the grass around it. Ways lead out from under the thorn north, east, south and west.",
+  "101045": "A thicket of wild roses closes off one side of this narrow pocket in the grass, its arching canes studded with thorns and hung with bright red hips. The grass stems tower above the roses and lean over them, roofing the place in rustling green. You can push on north, or follow the trodden paths south and west.",
+  "101075": "A huge grey boulder sits half buried in the earth here, crusted with yellow and orange lichen and warm to the touch. It must have lain here long before the grass grew, for the stems part around it like water around a rock in a stream. Scrapes on its flanks show where beasts have rubbed against it. Paths lead past the boulder north, east, south and west.",
+  "101085": "An old bank of earth runs along one side of this place, too steep and overgrown to climb, perhaps the remains of some ancient dyke or boundary. The grass grows thickly along its top and leans over to form a dim, green-roofed alley below. The ground is firm and dry. The alley runs east and west along the foot of the bank, and a narrower path turns away south.",
+  "101022": "A trail has been hacked through the grass here with blades, leaving a stubble of cut stems underfoot and a clean-edged corridor lit by a strip of brightness overhead. Many bootprints tramp along it in both directions. The cut trail runs on east and back west, where it fades into trampled stems, while rougher paths lead north toward an old earth bank and south.",
+  "101052": "Lightning or some careless fire has scorched a small pocket of the grass down to black stubble here, and the smell of old smoke still clings to it. Bright new shoots push up through the ash, and the stems around the burn lean inward, sooty and singed, to close the gap overhead. Paths cross the blackened ground north, east, south and west.",
+  "101030": "The grass here is a different kind, its stems a deep rusty red and its seed heads split three ways like the feet of a bird. The light that filters down through it has a ruddy, coppery glow, as though the whole place were lit by a banked fire. The stems creak and tick against one another in the wind. Paths run off north and east into more of the red grass, and south and west into green.",
+  "101060": "A shallow dry wash cuts through the grass here, its bottom a ribbon of pale sand and rounded pebbles left by some long-departed stream. Its low, crumbling banks are bound together with roots, and overhead the grass meets in a ragged arch. Walking the wash is easier than pushing through the stems, and it leads north and south, while paths climb out of it east and west.",
+  "101003": "A small round pond lies in a hollow here, ringed with rushes and soft, hoof-churned mud. Its water is clear and still, mirroring the arching grass that leans out over it. The air above the pond is cooler and smells of wet earth and green weed. Muddy trails, much used, lead away from the water north, east, south and west.",
+  "101013": "A cairn of grey stones stands here, waist-high and carefully built, though moss has filled the gaps between them and grass sprouts from its top. No one remembers who raised it, or why. The stems arch over it in a close, rustling dome. Paths lead off from the cairn north, east and south, and west toward a pond.",
+  "101043": "Game trails from every side meet here in a broad trampled space, the earth beaten hard and bare by countless hooves and paws. The prints of horses and wolves are pressed one over another into the dust. The grass around the crossing has been bent outward as if by a crowd. Trails run off north, east, south and west, each as well worn as the next.",
+  "101073": "The tumbled remains of a drystone wall run along one side of this place, the stones slumped into a long, low mound and overgrown with grass and bramble. Someone once farmed here, or tried to. The grass towers over the old wall and leans across the narrow path beside it. The path follows the wall east and west, and a trail leads north toward a crossing of game trails.",
+  "101063": "A deep ditch runs along one side of the path here, its bottom thick with nettles and its far bank crowned with a dense hedge of thorn. There is no crossing it. The grass leans over the ditch from both sides, closing it into a damp green tunnel. The path follows the ditch east and west, and a gap in the stems leads north.",
+  "101033": "Red poppies and blue cornflowers grow thickly among the grass stems here, a splash of colour in the green and gold. Their petals glow like lamps where the light strikes them, and the air smells faintly sweet. Paths lead north toward a pond, east toward the game trails, south toward a deep ditch, and west.",
+  "101056": "A muddy wallow lies in a dip here, churned to a thick brown porridge by hooves and rolling bodies. The stems around it are caked with dried mud to the height of a horse's shoulder, and the warm air hangs heavy with a rank, earthy smell. Every path out of the dip, north, east, south and west, is splashed with mud.",
+  "101026": "The grass grows so tall and close here that it arches together overhead into a long, dim tunnel, and the light that reaches the bottom is green and faint, as if seen through water. The air is warm, still and close, and your footsteps fall soft on a thick mat of dead stems. Openings in the tunnel's walls lead north, east, south and west.",
+  "101082": "The wind has laid the grass down here in great swirling whorls, as though some giant had pressed a hand upon it and turned. The flattened stems make a springy floor, while the standing grass around the edges bows and hisses with every gust. The light here is bright and restless. Paths lead away from the whorls north, east, south and west.",
+  "101072": "Tall thistles grow among the grass here, their purple heads bristling and their down drifting through the air in slow white wisps. Their spiny leaves catch at your legs, and burrs cling to everything that passes. The grass rises well above the thistles and meets over the path. Trails lead north, east toward the whorled grass, south and west.",
+  "101042": "A long-dead tree lies fallen across the path here, its trunk weathered silver-grey and smooth as bone. Its broken branches prop up the grass above, so that the stems make a rough roof like thatch laid over rafters. You must duck under the trunk or clamber over it to go north, east, south or west.",
+  "101012": "Here the grass forms a great hollow dome, the tall stems bending in from every side to meet high overhead like the roof of a thatched hall. Light filters through in thin golden threads, and the floor is a soft carpet of fallen blades and seed husks. It is strangely quiet under the dome. Arching doorways in the grass lead north, east, south and west.",
+  "101002": "Water seeps out of the ground here, keeping a small patch of earth dark and soft underfoot. Wild mint grows thickly around the seep, and the crushed leaves release a cool, sharp scent with every step. A few clumps of rushes rise among the grass stems. Paths lead off north, east, south and west, and the ground stays damp for some way along each.",
+  "101065": "A patch of white and purple clover spreads over the ground here beneath the arching grass, thick and lush as a cushion. Its honeyed scent hangs heavily in the warm air. The tall stems leave a little more room around the clover, and the light reaches it in warm, shifting patches. Narrow ways lead out of the clover north, east, south and west.",
+  "101087": "The wreck of an old cart lies here, its wheels sunk to the hubs in the earth and its bed rotted through, with grass growing up between the boards. One shaft still points ahead, as if waiting for a horse that never came back. Whoever drove it into the grass never drove it out again. Paths lead past the wreck north, east, south and west.",
+  "101058": "The grass here is a giant kind, its jointed stems as thick as a spear shaft and hard as cane, rising twice a man's height before they bend. When the wind blows they clack and knock together with a hollow, wooden sound. The ground between the canes is bare and dry. Paths wind off north toward an old cart, and east, south and west.",
+  "101088": "This is deep in the heart of the Grasslands, and every way looks the same: tall stems, golden light and a narrow trodden path. The wind rushes over the grass tops far above, yet down here the air hardly moves. It would be easy to walk in circles for hours. Identical paths lead north, east, south and west.",
+  "101032": "A well-used horse trail runs through the grass here, the ground pocked with hoofprints and the stems polished smooth where flanks have brushed against them. The smell of horse is strong, and old dung lies along the path. The trail runs north and south, and narrower side paths branch off east and west.",
+  "101062": "A standing stone rises from the earth here, taller than a man and leaning slightly, its sides worn smooth by wind and the rubbing of beasts. Faint spirals are carved into its face. The grass has grown up all around it, so that the stone stands in a close green chamber of its own. Paths lead away from the stone north, east, south and west.",
+  "101006": "A ring of old fence posts stands here among the stems, grey and split and leaning at all angles, the rails they once carried long since rotted away. Perhaps a corral for horses stood on this spot once. The grass has swallowed it entirely and closes overhead. Gaps in the old ring let paths out north, east, south and west.",
+  "101016": "The grass here is heavy with seed, its long heads bowed so low under their own weight that they brush your face and shoulders as you pass. Seeds shower down at every touch, catching in your hair and clothes and working into your boots. The air is hazy with chaff where the light comes through. Seed-strewn paths lead north, east, south and west.",
+  "101046": "A low bank of earth rises among the grass here, and a dark hole has been dug into its side, wide enough for a large dog to crawl into. The earth around the mouth is scratched bare and smells strongly of wolf. The grass has been trampled flat in a circle before the den. Paths lead away from the bank north, east, south and west.",
+  "101076": "A dense wall of blackthorn hems in this part of the grass, its black twigs bristling with long thorns and hung with dusty blue sloes. There is no way through it. The grass leans against the thorn hedge, forming a narrow corridor along its foot. The corridor runs east and west, and a path leads north away from the hedge.",
+  "101086": "The ground grows soft and wet here, and on one side the grass gives way to a stand of tall reeds rising out of black, sucking mud. A sour, marshy smell hangs in the air, and the light that comes through the reeds is grey-green. Firm ground follows the edge of the reeds east and west, and a drier path leads north back into the grass.",
+  "101066": "An old hedge of hawthorn and bramble runs along one side of the path here, thick with blackberries and rustling with the wind. Its roots form a low, mossy bank. Above, the grass reaches across to the hedge-top, making a long green passage. The passage runs east and west along the hedge, and a path turns away north.",
+  "101036": "The grass here is a pale, silvery kind whose fine leaves shimmer like water when the wind moves them. The light that filters through is white and cool rather than gold, and the whole place has a strange, dreamlike stillness. Paths lead north toward an old ring of fence posts, and east, south and west through the silver stems.",
+  "101018": "A long, low heap of fieldstones lies here, gathered long ago by farmers clearing the land for the plough. Lichen and moss have crept over every stone, and the grass grows thick among them. It is hard to imagine anyone ever farming this sea of grass. Paths lead off around the heap north, east, south and west.",
+  "101039": "An old sunken track crosses here, worn down between earthen banks by carts that passed this way in some forgotten time. The grass has reclaimed it completely, and the stems meet over its banks in a low arch. The old track runs north and south, and lesser paths climb out of it east and west.",
+  "101019": "A lone silver birch has grown up here among the grass, its slender white trunk rising through the stems and its small leaves trembling in the wind. Its bark peels in papery curls. Around its roots the ground is clearer, and the light is pale and dappled. Paths lead north, east toward a standing stone, south and west.",
+  "101028": "Wild oats grow among the taller grasses here, their drooping spikelets dangling like tiny bells and rattling softly in the wind. The stems around them are thin and wiry, and the light between them is bright. A dry, dusty smell rises from the ground. Rattling paths lead off north, east, south and west.",
+  "101078": "The ground here is riddled with tiny runs and holes, and it gives softly underfoot as though hollow beneath. Narrow tunnels thread through the matted base of the grass where small creatures come and go unseen. Above, the stems are tall and tangled together. Paths lead north, east, south and west over the soft, burrowed earth.",
+  "101069": "Heat gathers between the close-packed stems here, and the air is thick, still and drowsy, smelling of hay and dust. The stems tick and creak softly as they warm. Overhead the grass is so dense that the light is a dim, hot gold. Paths lead north, east, south and west, each as stifling as the last.",
+  "101077": "A well-trodden path leads through the grass here, and the stems along its sides are bruised and broken by passing feet and hooves. Toward the road the stalks are still grey with dust, but here they are clean and green. The path runs west toward Wilderness Way and east deeper into the grass, while side paths lead north and south.",
+  "101059": "A bank of turf crowned with spiny gorse rises along one side of the grass here, shutting out the road beyond. You can hear the wind sweeping across the open country past it, a different sound from the hiss of the grass around you. Paths lead north toward the road gap, and east and south into the stems.",
+  "101068": "A row of old pollarded willows stands along one side of the grass here, their squat trunks hollow and their heads bristling with whippy shoots. They mark the edge of the Grasslands, and beyond them the road runs unseen. Paths lead north, east and south through the stems beside the willows.",
+  "101049": "The stems here all lean the same way, bent by the wind that comes over the open ground beyond the edge of the grass. A tangle of dog roses and briar closes off that side, but the wind still finds its way through, rattling the seed heads. The light is brightest by the briars. Paths lead north, east and south.",
+  "101079": "A shallow pool of rainwater lies in a clay hollow here, its surface clouded with fine yellow silt. The grass stands around it in a ring, reflected upside down in the water. On one side a steep bank of yellow clay rises out of reach, bound with roots. Paths lead north, east and south around the edge of the pool.",
+  "101029": "A weathered stump stands here, all that remains of some tree that once grew among the grass, and the stems open in a ragged gap above it. Its top is streaked white where a hunting bird often perches, and pellets of fur and tiny bones lie at its foot. Paths lead away from the stump north, east, south and west.",
+  "101038": "Yellow ragwort and white yarrow grow thickly among the grass here, and the ground beneath them is dry, dusty and cracked. The bitter smell of the yarrow rises when you brush against it. The stems overhead are thinner, and the light is bright and hot. Dusty paths lead off north, east, south and west.",
+  "101009": "The curved stone wall of an old sheepfold rises on one side of the path here, broken and overgrown. Its stones are mossy and loose, and nettles grow thick inside it. The grass towers over the ruin and closes in on the path beside it. Paths lead north, east and west along the old fold.",
+  "101048": "An old well lies here, its stone lip crumbled and grown over with moss and grass, and its shaft choked to the brim with brambles. Whoever dug it must have lived here once, though no trace of a house remains. The stems arch over the well like a canopy. Paths lead away from it north, east and west.",
+  "101089": "A gap opens in the wall of grass here onto Wilderness Way, and through it you can glimpse the road and, beyond it, the vast trunk of an enormous tree. The stems around the gap are dusty and broken by passing feet. The road lies just to the west, and paths lead north and east into the dim golden depths of the Grasslands.",
+  "101008": "Several oval beds have been pressed into the grass here where large animals lay down to rest, the stems flattened and still smelling of their sleepers. The grass around them stands thick and high, and on one side a hawthorn hedge marks the edge of the Grasslands. Paths lead north, east, and south toward the gap onto the road.",
+  "2336": "An immense tree towers over this place, its trunk so broad that a dozen people joining hands could not circle it, and its crown spreading so wide that its outermost boughs shade the road. Old flagstones have been laid in a ring about its foot, heaved and tilted by the great roots, and iron rings for tethering horses are driven into the bark. A weathered notice board is nailed to the trunk at eye height. Wilderness Way passes by to the east.",
+  "14604": "Two massive oaks stand on either side of a broad gap here like the posts of a gateway, and between them a faint, much-trodden path leads in from the eaves to the north. Leaf litter has long since buried any trace of the road. The forest deepens to the south, and the trees run on east and west in long, shadowy ranks.",
+  "14616": "Bluebells carpet the forest floor here in a haze of violet-blue so thick that the ground seems to float, and their cool, sweet scent fills the air. The oaks above are tall and widely spaced, letting in a soft, even light. Ways lead north toward two great gateway oaks, east toward a beech arch, south toward a spring, and west to a holly thicket.",
+  "14628": "A spring wells up from beneath a mossy stone here, filling a clear little basin before it spills away as a chattering rill. Ferns crowd around the water, and the pebbles of its bed are bright green with weed. The rill runs off south through the trees, and the forest is open north, east toward an ivy-smothered oak, and west.",
+  "14638": "The rill from the spring runs through a stony bed here, and a line of flat stepping stones crosses it. Alders grow along its banks, their dark roots reaching into the water. The air is cool and smells of wet stone. You can follow the water south or back north toward its source, and the woods are open east and west.",
+  "14680": "The rill slips beneath a great arch of beech roots here and gurgles out the other side, cutting a deep little channel through the soft earth. Kingcups grow along its wet margins, bright yellow against the dark mud, and the ground is springy on both banks. The water runs on south, and the forest opens north, east, and west toward a bank of tangled roots.",
+  "14683": "Here the ground falls away on one side into a wide, reedy fen, and the rill runs along its edge, gathering speed. Beyond the reeds lie pools of black water and tussocks of sedge where no one could walk dry-shod. A path follows the edge of the fen north and south beside the rill, and the woods open east among mossy hummocks.",
+  "14688": "The rill drops over a ledge of dark rock here in a small, bright waterfall and gathers in a clear pool before running on. Ferns frame the fall, and the stones of the pool's bed are furred with green. Beyond the pool the reeds of the fen close off the way on one side. Paths lead north and south along the water, and east into the trees.",
+  "14689": "An old beech has grown over a great boulder here, clasping it in a fist of grey roots that spill down its sides and dig into the earth all around. Moss fills every crevice between root and stone, and the beech's crown spreads wide above. The woods are open north, east and south, and west toward the sound of falling water.",
+  "14694": "A small glade opens here around a broad, flat-topped stone like a table set out in the forest. Wood anemones and sorrel grow thickly in the light that falls into the glade, and the stone itself is warm to the touch. Ways lead out of the glade north, east, south and west into the shadowed trees.",
+  "14697": "A great oak stands here whose trunk is swollen with burrs, rounded knobs of twisted grain that bulge from the bark like the faces of old men, frowning, grinning or asleep. The forest around it is dark and old, and the air is very still. Ways lead north toward a sunny glade, east and west, and south into a tangle of fallen trunks.",
+  "14744": "Fallen trunks lie piled here in a great tangle, as though a whole stand of trees came down together in some long-past storm. Ivy and moss smother the heap, and the gaps beneath it are black and deep. There is no going through it, but a path leads north toward an oak knobbed with burrs, and another runs east around the edge of the tangle.",
+  "14743": "The forest floor begins a long, gentle descent here, and ground ivy and violets grow in the leaf litter. A deer trail runs downhill to the south, winding for some distance through ranks of old oaks and beeches. Back to the north the trees are thicker and darker, and a path leads west beside a tangle of fallen trunks.",
+  "14736": "The ground rises here into a low sandy knoll where a stand of tall pines has taken root among the broadleaves. Their red trunks glow warmly where the light strikes them, and the sand underfoot is soft and dry, strewn with needles. A long trail climbs away north, and paths lead down off the knoll east, south and west.",
+  "14735": "A small quarry has been cut into a rise of pale stone here, its face sheer and streaked with rain, closing off the way on one side. Squared blocks that were never carted away lie half buried in brambles at its foot, and saplings sprout from the ledges above. Paths lead east and west past the quarry floor, and south into the trees.",
+  "14726": "Whitebeams grow here among the oaks, and whenever the wind turns their leaves the whole wood flashes silver with their pale undersides. A dense thicket of holly closes the way on one side, and the ground is dry and stony. Paths lead east, south into a fern-lined dell, and west toward an old quarry.",
+  "14727": "A sheltered dell lies here, its sides lined with ferns and its floor holding a still, dark pool fed by a trickle from the rocks. The water is so clear that the drowned leaves on its bottom seem close enough to touch. Ways lead north among whitebeams, and east, south and west up out of the dell.",
+  "14728": "Old oaks hung with long grey beards of lichen stand here in a damp, misty stillness, their branches dripping. The lichen stirs gently though there is hardly any wind, and the mist muffles every sound. Wood sorrel covers the ground between the trunks. Ways lead north, east and west, and south toward brighter light at the forest's edge.",
+  "14729": "The trees grow farther apart here as the forest nears its southern edge, and brighter light filters through the thinning canopy. Bramble and young holly fill the gaps between the trunks, and the air smells of warm grass drifting in from the open country. The eaves lie just to the south, and the forest continues north, east and west.",
+  "14844": "Here the forest of MiNar comes to an end in a ragged line of oaks and blackthorn, and beyond the last trees rough hill pasture climbs away, scattered with grey stones, toward a far line of hazy blue mountains. The light is broad and bright after the forest's shade, and the wind blows cool off the hills. The eaves run east and west, and the trees close in again to the north.",
+  "14845": "An old dry-stone wall runs along the forest's edge here, tumbled and overgrown, as though someone once meant to fence the woods away from the hill pasture beyond. Red campion and stitchwort grow among its fallen stones. A sheep track follows the wall east and west along the eaves, and a gap in the trees leads north into the forest.",
+  "14730": "Hawthorn and blackthorn crowd together here beneath the oaks, white with blossom and shaken by the wind that comes in from the open land nearby. The ground is grassy and the light is bright. An old wall shows through the trees to the south where the forest ends, and the woods continue north, east and west.",
+  "14733": "The ruin of an old lime kiln stands here, a squat round tower of mortared stone with a blackened arch at its foot, half swallowed by ivy and elder. The ground around it is pale and chalky, and nettles grow rank in the old ash pit. Ways lead north, east toward the misty oaks, south and west.",
+  "14734": "Wild cherry trees grow tall and slender among the oaks here, their glossy bark banded and peeling in coppery strips. Small dark cherries hang in the high branches, and their stones crunch underfoot. Ways lead north toward an old quarry, east, south toward a ruined kiln, and west among sweet chestnuts.",
+  "14747": "Sweet chestnut trees grow here, their massive trunks twisted with deep spiralling furrows as if wrung by giant hands. Their spiny husks litter the ground and prickle underfoot, and long toothed leaves rattle overhead. The forest is open north, east and south, and to the west the ground falls steeply into a rocky ravine.",
+  "14745": "A long trail runs through a thicket of young beeches here, whose dead copper leaves cling to their twigs and whisper at every breath of air. To the west the ground drops into the stony bed of a ravine. The trail runs north for some way toward a ford, and paths lead east toward a sandy knoll and south among sweet chestnuts.",
+  "14746": "The waters of the fen gather here into a brown brook that slides out from among the reeds and runs across the forest floor in a broad, shallow ford. Stepping stones cross it to the west, where an old grassy ride runs among the elms. Paths lead north along the edge of the fen, east toward an oak knobbed with burrs, and south along a long trail.",
+  "14693": "Here the rill loses itself among the reeds of the fen, spreading into dark pools where tufts of cotton grass nod. Alder and willow lean over the boggy margin, and the ground quakes underfoot near the water. A firm path leads north upstream along the rill and south beside the fen, and the woods are open east toward a glade.",
+  "14576": "The old ride comes to an end here at a ford, where a brown brook running out of the fen crosses the way and a line of stepping stones leads east over the water. Willows lean low over the stream, trailing their leaves in it. The ride runs back north along the edge of the fen, the ground rises toward grey rock to the south, and the woods are open west.",
+  "14575": "An old mossy wall comes in through the trees from the west and ends against the ride here, its last stones tumbled into the grass. On the other side of the ride the fen stretches away in a waste of reeds and black pools, and the air is heavy with the smell of rotting stems. The ride runs north along the fen's edge and south toward a ford.",
+  "14574": "An ancient bank and ditch runs beside the ride here, holding back the wet ground of the fen, so worn and overgrown that it is little more than a long green hump. Rushes fill the ditch, and beyond the bank the reeds stretch away grey-green and whispering. The ride runs north and south, and the forest is open to the west.",
+  "14573": "Birch saplings have seeded themselves thickly along this stretch of the ride, crowding the old grassy lane until it is barely wide enough to walk. Their white stems stand at the edge of the fen, where the ground turns soft and the reeds begin. The ride runs north toward a log causeway and south between the birches, and a path leads west into older woods.",
+  "14572": "An old causeway of split logs leaves the ride here and runs east across the soft ground at the head of the fen, its timbers green with moss and sunk half into the mud. Someone laid it long ago so that riders could cross dry-shod. The grassy ride itself runs north and south, and the forest is open west among moss-cushioned boulders.",
+  "14571": "The gully that has followed the ride grows shallow here, its steep sides slumping into a broad, fern-choked hollow where water stands among the fronds. Beyond it the ground flattens into the reeds of a fen. The ride runs north along the gully's rim and south toward a causeway of logs, and the woods are open to the west.",
+  "14543": "A moss-grown marker stone stands beside the ride here, waist-high and carved on one face with a leaping stag. Beyond it the ground drops steeply into a gully, its bottom hidden in mist and ferns. The grassy ride runs north and south between rows of ancient elms, and a path leads west into the trees.",
+  "14521": "Here the ride begins to run along the rim of a gully, which opens beside it as a narrow cleft and widens as it goes. Mist rises from it in slow wisps, beading the grass of the ride with damp. Tall elms lean out over the edge. The ride runs north and south, and a path leads west into the woods.",
+  "14520": "A deer path crosses the old ride here, a narrow, hoof-pocked track coming out of the ferns on one side and vanishing among the trees on the other. The ride itself is a long, straight lane of short grass and moss between old elms, running north and south. The deer path leads west, and east toward the lip of a deep gully.",
+  "14516": "A long, straight ride runs through the forest here, a grassy lane cut in some long-forgotten age and still kept open by the passing of deer. Huge wych elms line it on both sides, their rough-barked limbs meeting overhead in a high green vault. The ride runs north and south, and gaps between the elms lead east and west.",
+  "14515": "The old ride begins here just inside the forest's edge, its mouth half choked with dead, silvered branches piled in heaps as if gathered by many hands and then abandoned. A cold, damp breath of air seems to come from somewhere near. The eaves lie to the north, the ride runs south into the forest, and the woods are open east among hazels and west into bracken.",
+  "14804": "At the forest's edge a dark hole opens among the roots of an old oak, its mouth braced with splintered timbers and woven sticks, and a crude passage leads down into the earth. Cold, damp air breathes up out of it, for this is the way down into the Tunnel of Sticks. A hawthorn-topped bank runs off west along the eaves, the edge of the trees continues east, and an old ride leads south into the forest.",
+  "14805": "Brushwood and dead sticks lie heaped along the forest's edge here in long, untidy windrows, as though someone had swept the floor of the woods and left the sweepings. Beyond the last trees open grassland rolls away under the sky. The eaves run east and west, and old hazels crowd the forest's edge to the south.",
+  "14806": "A scatter of old stumps marks where woodcutters once took timber from the forest's edge, and rosebay and raspberry canes have sprung up thickly among them. The sky is wide overhead, and the wind comes in off the open land carrying the smell of grass. The eaves run east and west, and the trees close in to the south.",
+  "14807": "Gorse and blackthorn grow thick along the forest's edge here, and through gaps in the thicket you can see a stony knoll rising out of the open land beyond, crowned with dark, wind-bent pines. The ground is rough with tussocks and molehills. The eaves run east toward the knoll and west, and the forest lies to the south.",
+  "14808": "A rough path climbs out of the forest's edge here toward the stony knoll of the Warrior's Grove, which rises just to the north with its crown of wind-bent pines. Steps worn by many boots have been cut into the slope among the boulders. The eaves run east and west, and the forest lies close to the south.",
+  "1297": "This bare crown of grey rock rises above the forest's eaves, ringed by a grove of ancient pines that the wind has bent and twisted into fantastic shapes. The flat bedrock in their midst is scarred with countless nicks where blades have struck it in practice, and a tall grey stone carved with names stands at its heart. The wind never stops up here. A woven doorway in a cleft leads east, a low stone lodge stands to the west, and a stepped path drops south to the forest.",
+  "1294": "This snug round chamber is woven entirely from boughs and withies, like the inside of an enormous nest roofed over and tucked into a cleft in the rock. The floor is deep in down, moss and old furs, and odd bright trinkets have been pressed into the weave of the walls. Daylight comes in through chinks in the weave as thin golden needles. A low, round doorway opens west onto the Warrior's Grove.",
+  "1299": "This low, comfortable lodge has been built of fieldstone against the rock, its beams blackened by years of pipe smoke and hearth fire. Two enormous, sagging armchairs face a wide fireplace, and the walls are crowded with old trophies: notched swords, a dented helm, a great tusked skull and maps marked with faded routes. A scarred table holds a game board set out for play. The door opens east onto the Warrior's Grove.",
+  "14603": "Grey boulders have rolled down from the stony knoll beyond the eaves and come to rest among the trees here, half sunk in bracken and furred with moss. Young hollies grow in their shelter. The forest's edge lies close to the north, where a path climbs toward the knoll, and the woods continue east, south and west.",
+  "14615": "A thicket of holly grows here beneath the oaks, its dark, glossy leaves catching what little light there is and its berries glowing red. Narrow passages wind through the prickly growth over dry, bare ground. Ways lead north toward a scatter of boulders, east into bluebells, south, and west among tall grey beeches.",
+  "14627": "Here the oaks give way to the smooth grey trunks of a beech wood, and between the buttress roots of the largest beech rainwater has gathered in a mossy basin as clear as glass. Copper leaves lie deep and dry underfoot. The ground falls away to the west toward the head of a deep gully, and ways lead north into holly, east to a spring, and south.",
+  "14637": "Tall oaks stand here in a stately rank, and from their highest branches hang great round clumps of mistletoe, pale green against the darker leaves. The ground beneath them is clear and level. A strip of ground leads west toward the rim of a gully, and the woods are open north, east toward a rill, and south.",
+  "14675": "A single huge yew stands here in a small open space, its fluted red trunk splitting into a dozen limbs and its dark foliage spreading low and wide. Nothing grows beneath it. On one side a great heap of deadfall, woven through with bramble and dog rose, closes the way. Paths lead north among tall oaks, south, and west toward the lip of a gully.",
+  "14677": "The canopy here is a dense weave of beech and hornbeam, and the light that comes through is so green that your own hands look strange in it. A slope of loose earth and stones closes the way on one side, fringed along its top with bare roots. Paths lead north toward a great yew, south toward a root-tangled bank, and west to a hollow oak.",
+  "14679": "A steep bank closes off one side of this place, its face a great knotted lattice of bare roots where the earth has washed away. Small ferns and toadstools grow in the pockets between them. Paths lead north under a dense green canopy, east toward the sound of running water, and west toward the soft ground at the head of a fen.",
+  "14678": "The forest gives way here to soft, sodden ground at the head of a wide reedy fen, where a fern-filled dell drains away into the reeds. An old causeway of split logs leads west across the wet ground to a grassy ride among the elms. The forest is open north toward a hollow oak and east toward a root-tangled bank, and the air smells of wet moss."
+ },
+ "extras": {
+  "14682": [
+   {
+    "keywords": "gouges furrows claw marks",
+    "description": "Each furrow is as wide as your finger and bitten deep into the living wood, and sap has wept from them and dried into beads of amber. Caught in the splinters at the top are a few stiff brown feathers, a strange thing to find on a bear's mark."
+   }
+  ],
+  "14617": [
+   {
+    "keywords": "arch beeches seam",
+    "description": "Where the two trunks meet, the bark has knitted into a seam like a healed scar. Woodsmen call it the wedding arch, and say that two who walk beneath it hand in hand will never be parted."
+   }
+  ],
+  "14809": [
+   {
+    "keywords": "waymark post",
+    "description": "The post is oak, silvered with age, and an arrow cut into it points up the road above the words TO THE PLAINS. Beneath them a newer hand has scratched a warning: KEEP TO THE WAY."
+   }
+  ],
+  "2334": [
+   {
+    "keywords": "milestone stone",
+    "description": "Under the lichen a carved hand points up the road, above a number of leagues worn too smooth to read. Only one word can still be made out beneath it: Garathorm."
+   }
+  ],
+  "101013": [
+   {
+    "keywords": "cairn stones",
+    "description": "The stones are smooth, rounded river stones, carried here from some distant stream bed, and the topmost bears a scratched sign like a horse's head. Travellers who find the cairn sometimes add a pebble of their own for luck."
+   }
+  ],
+  "101087": [
+   {
+    "keywords": "cart wreck boards tailboard",
+    "description": "The boards are grey and soft with rot, and the iron tyres have rusted into flaking rings. Burned into the tailboard, barely legible, is a merchant's mark: a pair of scales above the letter G."
+   }
+  ],
+  "101062": [
+   {
+    "keywords": "standing stone spirals",
+    "description": "The spirals wind inward on one face and outward on the other, cut by hands long dead. When the wind blows hard through the grass, a low humming seems to come from the stone itself."
+   }
+  ],
+  "2336": [
+   {
+    "keywords": "notice board notices",
+    "description": "Most of the notices have faded to blank scraps, but a few can still be read: a reward for a lost grey mare, a warning about wolves in the tall grass, and a neat card offering swords for hire, signed with two crossed blades and the word Rahn."
+   }
+  ],
+  "14697": [
+   {
+    "keywords": "burrs faces knobs",
+    "description": "Look long enough and the burrs become a crowd: a bearded king, a sleeping child, a man with his mouth open in a shout. Someone has pressed a copper coin into the eye of the largest, and the bark is slowly swallowing it."
+   }
+  ],
+  "14572": [
+   {
+    "keywords": "causeway logs timbers",
+    "description": "The logs are oak, split and laid side by side, and pegged at their ends to stakes driven deep into the mud. Most are sound still, though here and there one has rotted through and sunk, leaving a gap full of brown water."
+   }
+  ],
+  "14543": [
+   {
+    "keywords": "marker stone stag",
+    "description": "The stag is carved in a flowing, old-fashioned style, its antlers branching out into leaves. Below it, almost lost under the moss, is a small carved crown, the sign of some long-forgotten royal forest."
+   }
+  ],
+  "14804": [
+   {
+    "keywords": "hole mouth sticks timbers",
+    "description": "The sticks are woven together like the wall of a basket, and some still bear green leaves, as though the weaving is never finished. Fresh scratches score the timbers at the mouth, made by claws or by fingers."
+   }
+  ],
+  "1297": [
+   {
+    "keywords": "stone names",
+    "description": "The names are cut deep, one beneath another, dozens of them, each with a small sword beside it. They are said to be warriors who trained on this rock and fell in battle, and the newest are still sharp-edged."
+   }
+  ],
+  "1294": [
+   {
+    "keywords": "trinkets walls weave",
+    "description": "Someone with a magpie's eye has worked hundreds of small shining things into the walls: brass buttons, a cracked spectacle lens, rings of copper wire, a silver thimble. None of them is worth much, but each has been placed with care."
+   }
+  ],
+  "1299": [
+   {
+    "keywords": "trophies skull helm swords",
+    "description": "Every trophy carries a little brass plate engraved with two names, Mortis and Sojat, and a date long past. The plate beneath the tusked skull says only: Never Again."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "dun-horse",
+   "keywords": "horse wild dun",
+   "short_desc": "a shaggy dun horse",
+   "long_desc": "A shaggy dun horse stands among the tall stems, its ears flicking at every rustle.",
+   "description": "A stocky wild horse with a coat the colour of dry grass, a dark stripe down its spine and a coarse black mane that falls over its eyes. Its unshod hooves are chipped from the hard ground, and burrs are knotted in its tail. It watches you with one wary eye, ready to wheel and crash away through the grass.",
+   "kind": "animal",
+   "level": 6,
+   "aggressive": false,
+   "alignment": 0,
+   "rooms": [
+    "The Grasslands"
+   ],
+   "count": 6
+  },
+  {
+   "id": "prairie-wolf",
+   "keywords": "wolf prairie tawny",
+   "short_desc": "a tawny prairie wolf",
+   "long_desc": "A tawny prairie wolf slinks low through the grass, its yellow eyes fixed on you.",
+   "description": "A lean, long-legged wolf, smaller than its cousins of the deep woods, with a sandy coat that vanishes against the dry stems. Its ribs show under its pelt and its narrow muzzle is seamed with old scars. The packs follow the wild horses through the tall grass, but a lone traveller will do just as well.",
+   "kind": "animal",
+   "level": 8,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "The Grasslands",
+    "Wilderness Way"
+   ],
+   "count": 6,
+   "drops": [
+    {
+     "item": "tawny-pelt",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "red-stag",
+   "keywords": "stag deer red antlered",
+   "short_desc": "a great red stag",
+   "long_desc": "A great red stag lifts its antlered head from the ferns and watches you.",
+   "description": "A powerful stag with a russet coat, a shaggy ruff about its neck and a crown of antlers branching into a dozen tines. Shreds of velvet still hang from them where it has frayed them on the saplings. It stands utterly still, nostrils flaring, poised to bound away between the trunks.",
+   "kind": "animal",
+   "level": 9,
+   "aggressive": false,
+   "alignment": 0,
+   "sectors": [
+    "forest"
+   ],
+   "count": 5
+  },
+  {
+   "id": "owlbear",
+   "keywords": "owlbear bear owl",
+   "short_desc": "a hulking owlbear",
+   "long_desc": "A hulking owlbear tears at a rotten log with its claws, hooting deep in its chest.",
+   "description": "A monstrous beast with the body of a great brown bear and the head of an owl, its round amber eyes unblinking above a hooked beak big enough to crush a skull. Coarse fur on its shoulders shades into stiff grey feathers about its face, and its forepaws end in hooked claws as long as daggers. It reeks of carrion and wet feathers.",
+   "kind": "monster",
+   "level": 14,
+   "aggressive": true,
+   "alignment": -100,
+   "rooms": [
+    "The Great Forest Of MiNar"
+   ],
+   "count": 4,
+   "drops": [
+    {
+     "item": "owlbear-claw",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "woodland-sprite",
+   "keywords": "sprite woodland fey",
+   "short_desc": "a woodland sprite",
+   "long_desc": "A woodland sprite flits between the trunks, trailing a faint green glimmer.",
+   "description": "A slight, winged figure no taller than your knee, with skin the colour of new leaves and hair like a tangle of moss. Its wings are veined like beech leaves and hum softly as it hovers. It regards you with black, laughing eyes, far more curious than afraid.",
+   "kind": "humanoid",
+   "level": 8,
+   "aggressive": false,
+   "alignment": 400,
+   "rooms": [
+    "The Great Forest Of MiNar",
+    "By The Big Tree"
+   ],
+   "count": 4,
+   "drops": [
+    {
+     "item": "heartwood-sprig",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "deer-hunter",
+   "keywords": "hunter deer man woodsman",
+   "short_desc": "a weathered deer hunter",
+   "long_desc": "A weathered deer hunter crouches here, reading the ground for tracks.",
+   "description": "A lean, sun-browned man in patched greens and browns, with a longbow slung across his back and a knife with a handle of polished antler at his belt. His pale eyes are narrowed from years of watching for movement at the edge of sight. He nods to you without a word and goes back to studying the signs in the earth.",
+   "kind": "humanoid",
+   "level": 11,
+   "aggressive": false,
+   "alignment": 200,
+   "rooms": [
+    "Outside The Great Forest Of MiNar",
+    "Wilderness Way"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "antler-knife",
+     "chance": 30
+    },
+    {
+     "item": "smoked-venison",
+     "chance": 35
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "owlbear-claw",
+   "keywords": "claw owlbear hooked",
+   "short_desc": "a hooked owlbear claw",
+   "room_desc": "A hooked black claw as long as a dagger lies here.",
+   "description": "A curved black claw torn from the forepaw of an owlbear, as long as your hand and sharp enough to score oak. Hunters and alchemists in Garathorm pay well for such trophies.",
+   "kind": "treasure",
+   "level": 14
+  },
+  {
+   "id": "antler-knife",
+   "keywords": "knife antler handled hunting",
+   "short_desc": "an antler-handled knife",
+   "room_desc": "A hunting knife with a handle of polished antler lies here.",
+   "description": "A broad-bladed hunting knife with a handle cut from a stag's antler tine, polished smooth and dark by years of use. The blade is thin from honing but wickedly keen, made for skinning as much as for fighting.",
+   "kind": "weapon",
+   "level": 10,
+   "weapon_type": "slash",
+   "bonus": {
+    "hitroll": 1
+   }
+  },
+  {
+   "id": "heartwood-sprig",
+   "keywords": "sprig heartwood minar twig charm",
+   "short_desc": "a sprig of MiNar heartwood",
+   "room_desc": "A small sprig of golden wood, still bearing three green leaves, lies here.",
+   "description": "A slender twig of pale golden wood from the living heart of one of MiNar's great trees, still bearing three green leaves that never wilt. It is warm to the touch and smells of sap and rain, and a leather thong is knotted about it so that it can be worn.",
+   "kind": "armor",
+   "wear_slot": "neck",
+   "level": 9,
+   "bonus": {
+    "wis": 1
+   }
+  },
+  {
+   "id": "tawny-pelt",
+   "keywords": "pelt wolf tawny fur hide",
+   "short_desc": "a tawny wolf pelt",
+   "room_desc": "A tawny wolf pelt lies here in a dusty heap.",
+   "description": "The sandy, coarse-haired pelt of a prairie wolf, roughly skinned and smelling strongly of grass and beast. Its colour would hide a hunter well in the tall grass, and a furrier would pay a few coins for it.",
+   "kind": "treasure",
+   "level": 8
+  },
+  {
+   "id": "smoked-venison",
+   "keywords": "venison smoked strip meat",
+   "short_desc": "a strip of smoked venison",
+   "room_desc": "A strip of dark smoked venison lies here, wrapped in a dock leaf.",
+   "description": "A long strip of venison smoked dark over a slow fire of oak chips and rubbed with salt and juniper. It is as tough as leather and tastes of woodsmoke.",
+   "kind": "food",
+   "level": 8
+  }
+ ]
+}
