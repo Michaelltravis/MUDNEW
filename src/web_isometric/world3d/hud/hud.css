@@ -330,13 +330,14 @@ button { font: inherit; color: inherit; }
 #login-status { min-height: 18px; margin-top: 12px; font: 500 13px var(--body); color: var(--ink-dim); }
 #login-status.error { color: #ff9a8a; }
 #create { position: fixed; inset: 0; z-index: 31; display: grid; place-items: center; background: rgba(4,4,8,.6); }
-#create .card { position: relative; width: min(880px, calc(100vw - 32px)); max-height: calc(100vh - 40px); overflow: auto; padding: 24px 26px; }
+#create .card { position: relative; width: min(880px, calc(100vw - 32px)); max-height: calc(100vh - 40px); overflow: auto; padding: 24px 26px; scrollbar-gutter: stable; }
 #create h2 { margin: 0; font: 700 24px var(--title); color: var(--gold-hi); letter-spacing: .1em; }
 #create .step { color: var(--ink-faint); font: 700 11px var(--label); letter-spacing: .16em; margin-bottom: 4px; }
 #create .hint { color: var(--ink-dim); margin: 4px 0 14px; font: italic 15px var(--lore); }
 #create .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 9px; align-content: start; }
-#create .pick { padding: 11px 13px; border-radius: 9px; border: 1px solid var(--edge-dim); background: rgba(255,255,255,.035); cursor: pointer; text-align: left; transition: border-color .15s, background .15s, transform .1s; }
-#create .pick:hover, #create .pick.on { border-color: var(--gold); background: rgba(216,180,106,.1); transform: translateY(-1px); }
+#create .pick { padding: 11px 13px; border-radius: 9px; border: 1px solid var(--edge-dim); background: rgba(255,255,255,.035); cursor: pointer; text-align: left; transition: border-color .15s, background .15s, box-shadow .15s; }
+/* hover lights a choice up without moving it (a lift once nudged the card's scrollbar on and off, and the whole menu jumped) */
+#create .pick:hover, #create .pick.on { border-color: var(--gold); background: rgba(216,180,106,.1); box-shadow: inset 0 0 0 1px rgba(243,210,140,.25); }
 #create .pick b { display: block; font: 700 15px var(--title); text-transform: capitalize; color: var(--gold-hi); }
 #create .pick small { color: var(--ink-dim); }
 #create .pick .first { color: var(--gold); font-size: 11px; }
@@ -345,6 +346,7 @@ button { font: inherit; color: inherit; }
 #create .focus canvas { width: 260px; height: 300px; border-radius: 10px; background: radial-gradient(circle at 50% 40%, #2a3346, #0b0e15); box-shadow: 0 0 0 1px #000, 0 0 0 2px rgba(216,180,106,.35); }
 #create .focus .fn { font: 700 19px var(--title); color: var(--gold-hi); text-transform: capitalize; }
 #create .focus p { color: var(--ink-dim); margin: 6px 0; font-family: var(--lore); }
+#create .focus .fd { min-height: 3em; }   /* every class's blurb takes the same room: choosing one never re-centres the card */
 #create .stats { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin: 10px 0 16px; }
 #create .stats div { padding: 10px 0; border-radius: 8px; background: rgba(255,255,255,.04); border: 1px solid var(--edge-dim); text-align: center; }
 #create .stats div.prime { border-color: var(--gold); box-shadow: 0 0 12px rgba(243,210,140,.25); }
