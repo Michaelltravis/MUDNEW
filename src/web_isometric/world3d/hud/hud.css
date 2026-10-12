@@ -235,6 +235,30 @@ button { font: inherit; color: inherit; }
 @keyframes slot-glow { from { box-shadow: 0 0 0 1px #000, 0 0 0 2px var(--gold), 0 0 6px rgba(243,217,153,.3); } to { box-shadow: 0 0 0 1px #000, 0 0 0 3px var(--gold-hi), 0 0 22px rgba(243,217,153,.9); } }
 .slot.suggest { animation: slot-suggest .9s ease-in-out infinite alternate; }
 @keyframes slot-suggest { from { box-shadow: 0 0 0 1px #000, 0 0 0 2px #fff0b8, 0 0 8px rgba(255,220,120,.5); } to { box-shadow: 0 0 0 1px #000, 0 0 0 3px #fff6d8, 0 0 26px rgba(255,210,100,1); } }
+/* ---- extra action bars (bars.js): floating, dragged by the grip, across or along ---- */
+#xbars { position: fixed; inset: 0; z-index: 11; pointer-events: none; }   /* above the chat: a bar can be dragged over it */
+#xbars.hidden { display: none; }
+#xbars .xbar { position: absolute; pointer-events: auto; display: flex; align-items: center; gap: 6px; padding: 6px 8px 6px 6px;
+  transform: scale(var(--ui)); transform-origin: top left; }
+.xbar.off { display: none; }
+.xbar.vertical { flex-direction: column; padding: 6px 6px 8px; }
+.xbar .xslots { display: flex; gap: 6px; }
+.xbar.vertical .xslots { flex-direction: column; }
+.xbar .slot { width: 48px; height: 48px; }
+.xbar .slot .key { font-size: 10.5px; }
+.xgrip { display: flex; flex-direction: column; align-items: center; gap: 3px; width: 20px; cursor: grab; touch-action: none; user-select: none; }
+.xbar.vertical .xgrip { flex-direction: row; width: auto; height: 20px; }
+.xbar.moving .xgrip { cursor: grabbing; }
+.xbar.moving { box-shadow: 0 0 0 2px var(--gold-hi), 0 0 18px rgba(243,210,140,.45); }
+.xbar.locked .xgrip { cursor: default; }
+.xgrip .dots { width: 10px; height: 22px; opacity: .65;
+  background: radial-gradient(circle, var(--gold) 1.4px, transparent 1.6px) 0 0 / 5px 5px; }
+.xbar.vertical .xgrip .dots { width: 22px; height: 10px; }
+.xbar.locked .xgrip .dots { opacity: .25; }
+.xgrip button { width: 18px; height: 18px; padding: 0; border: 0; border-radius: 4px; cursor: pointer; font-size: 11px; line-height: 18px;
+  background: rgba(255,255,255,.06); color: var(--ink-dim); }
+.xgrip button:hover { background: rgba(243,210,140,.2); color: var(--gold-hi); }
+#xbars.dragging .slot.empty { box-shadow: inset 0 0 0 2px rgba(243,217,153,.55), 0 0 0 1px #000; }
 .slot .tick { position: absolute; left: 0; right: 0; top: 16px; z-index: 5; text-align: center; font: 800 13px var(--body); color: #9df0a8;
   text-shadow: 0 1px 2px #000; pointer-events: none; animation: slot-tick 1.5s ease-out forwards; }
 @keyframes slot-tick { from { transform: translateY(0); opacity: 1; } to { transform: translateY(-28px); opacity: 0; } }

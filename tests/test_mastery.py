@@ -179,7 +179,7 @@ async def live():
                 if d.get('type') == 'map_data':
                     bar = d['player'].get('bar')
                     break
-            check(bar is not None and bar[:4] == ['bash', 'kick', None, 'strike'] and len(bar) == 16,
+            check(bar is not None and bar[:4] == ['bash', 'kick', None, 'strike'] and len(bar) == 40,
                   f"the arranged bar comes back in the payload ({bar and bar[:4]})")
     await tn.cmd('webbar', 0.4)
 

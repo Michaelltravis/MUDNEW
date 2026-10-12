@@ -2,7 +2,7 @@
 // you know it — and the ones still to come ("Unlocks at level 12"). Drag one onto your bar
 // (or press its ＋), double-click to use it. Abilities improve as you use them, up to 85%; a
 // trainer teaches the rest. Data: the player payload's `abilities` (see abilities.js).
-import { rankOf, costLine, usable, BY_USE } from '../abilities.js';
+import { rankOf, costLine, usable, BY_USE, keyOf } from '../abilities.js';
 
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
@@ -19,7 +19,7 @@ export function createSpellbook(root, { icon, onUse, onAdd, onDragStart, onDragE
 
   function card(a) {
     const onBar = bar.indexOf(a.id);
-    const key = onBar < 0 ? '' : onBar < 8 ? String(onBar + 1) : `⇧${onBar - 7}`;
+    const key = onBar < 0 ? '' : keyOf(onBar) || 'bar 5';
     const pct = Math.max(0, Math.min(100, a.pct || 0));
     const can = usable(a);
     return `<div class="sb-card ${a.known ? '' : 'locked'}${a.passive ? ' passive' : ''}" data-id="${esc(a.id)}" ${can ? 'draggable="true"' : ''}

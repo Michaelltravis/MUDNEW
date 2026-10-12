@@ -23,7 +23,8 @@ import { createServices } from './services.js';
 import { createLegend } from './legend.js';
 import { abilityIcon, uiIcon } from './icons.js';
 import { lookPortrait, creaturePortrait } from './portrait.js';
-import { SLOTS, cleanBar, defaultBar, placeNew, putOnBar, takeOffBar, diffAbilities, usable, costLine, rankOf } from '../abilities.js';
+import { SLOTS, cleanBar, defaultBar, placeNew, putOnBar, takeOffBar, diffAbilities, usable, costLine, rankOf, MAIN, keyOf, slotForKey } from '../abilities.js';
+import { createBars } from './bars.js';
 import { conOf } from '../targeting.js';
 import { recipeFor } from '../abilityfx.js';
 import { RECIPES } from '../abilityfx-table.js';
@@ -55,16 +56,26 @@ export function createHud() {
   const els = {
     pf: $('#player-frame'), tf: $('#target-frame'), banner: $('#banner'), toasts: $('#toasts'),
     mm: $('#minimap'), ab: $('#actionbar'), chat: $('#chat'), log: $('#log'), input: $('#chat-input'),
-    menu: $('#menu'), settings: $('#settings'), slots: $('#slots'),
+    menu: $('#menu'), settings: $('#settings'), slots: $('#slots'), xbars: $('#xbars'),
   };
   const st = { player: null, abilities: null, byId: new Map(), bar: new Array(SLOTS).fill(null), custom: false, barEdited: 0,
-    barSig: '', glow: new Set(), cooldowns: {}, cdAt: 0, target: null, history: [], hi: -1 };
+    barSig: '', glow: new Set(), cooldowns: {}, cdAt: 0, target: null, history: [], hi: -1, barsFor: '' };
+  // the extra bars (bars.js): floating, movable; their slots behave as the main bar's
+  const bars = createBars(els.xbars, { onChange: () => { st.barSig = ''; renderBar(); try { syncSettings(); } catch (_) {} } });
+  // a slot anywhere on the bars (main and extra)
+  const slotQ = sel => els.slots.querySelector(sel) || els.xbars.querySelector(sel);
+  const slotQA = sel => [...els.slots.querySelectorAll(sel), ...els.xbars.querySelectorAll(sel)];
+  const keyTip = i => (keyOf(i, true) ? ` (${keyOf(i, true)})` : ' (bar 5)');
   const inventory = createInventory();
   const character = createCharacter();
   const spellbook = createSpellbook($('#spellbook'), {
     icon: id => ICON(id),
     onUse: id => use(id),
-    onAdd: id => { const i = st.bar.indexOf(null); if (i < 0) toast('Your bar is full: drag the ability onto a slot'); else editBar(putOnBar(st.bar, id, i)); },
+    onAdd: id => {
+      // the first free slot on a bar that shows (the main bar first)
+      const i = st.bar.findIndex((x, k) => x === null && (k < MAIN || k - MAIN < 8 * bars.count));
+      if (i < 0) toast('Your bars are full: drag the ability onto a slot (more bars: Settings, O)'); else editBar(putOnBar(st.bar, id, i));
+    },
     onDragStart: () => els.ab.classList.add('dragging'),
     onDragEnd: () => els.ab.classList.remove('dragging'),
   });
@@ -130,6 +141,7 @@ export function createHud() {
 
   function showGame(on) {
     for (const k of ['pf', 'mm', 'ab', 'chat', 'menu']) els[k].classList.toggle('hidden', !on);
+    bars.show(on);
     fitChat();
     els.log.scrollTop = els.log.scrollHeight;
   }
@@ -277,7 +289,6 @@ export function createHud() {
   // Abilities come from the payload (`abilities`, `bar`: see abilities.js). A character who
   // never arranged the bar gets the class's usual order; once you drag something, the bar is
   // yours and is kept with the character (`webbar`). New abilities glow into free slots.
-  const keyOf = i => i < 8 ? String(i + 1) : `⇧${i - 7}`;
   // the class's ability book (what each ability is, costs and unlocks at) comes once per class
   // from /abilitybook; the payload only carries how well you know each one (skills, spells)
   const books = new Map();
@@ -303,6 +314,7 @@ export function createHud() {
       pct: learned[id] || 0, known: !!learned[id], level: i + 1, target: SELF.has(id) ? 'self' : 'enemy' }));
   }
   function buildBar(p) {
+    if (p.name && p.name !== st.barsFor) { st.barsFor = p.name; bars.load(p.name); }
     const cls = String(p.char_class || '').toLowerCase();
     const list = abilityList(p);
     const prev = st.abilities && st.abilities.fromBook === !!books.get(cls) ? st.abilities : null, before = st.bar;
@@ -319,11 +331,11 @@ export function createHud() {
       const { learned, improved } = diffAbilities(prev, list);
       if (learned.length) {
         // into free slots, without moving what is already on your keys
-        const r = placeNew(st.custom ? st.bar : cleanBar(before, list), learned.filter(id => usable(st.byId.get(id))));
+        const r = placeNew(st.custom ? st.bar : cleanBar(before, list), learned.filter(id => usable(st.byId.get(id))), MAIN + 8 * bars.count);
         if (r.placed.length || !st.custom) editBar(r.bar, true);
         for (const id of learned) {
           const a = st.byId.get(id), i = st.bar.indexOf(id);
-          toast(`You learned ${a ? a.name : id}${a && a.passive ? ' (passive)' : i >= 0 ? ` — on your bar (${keyOf(i)})` : ' — open your spellbook (K)'}`);
+          toast(`You learned ${a ? a.name : id}${a && a.passive ? ' (passive)' : i >= 0 ? ` — on your bar${keyTip(i)}` : ' — open your spellbook (K)'}`);
           st.glow.add(id);
           setTimeout(() => { st.glow.delete(id); renderBar(); }, 9000);
         }
@@ -346,19 +358,20 @@ export function createHud() {
   }
   function slotHtml(i) {
     const id = st.bar[i], a = id && st.byId.get(id), key = keyOf(i);
-    if (!a) return `<div class="slot empty" data-i="${i}" data-tip-title="An empty slot" data-tip-sub="Drag an ability here from your spellbook (K)"><span class="key">${key}</span></div>`;
+    if (!a) return `<div class="slot empty" data-i="${i}" data-tip-title="An empty slot${keyTip(i)}" data-tip-sub="Drag an ability here from your spellbook (K)"><span class="key">${key}</span></div>`;
     return `<div class="slot${st.glow.has(id) ? ' glow' : ''}${a.marquee ? ' marquee' : ''}" data-i="${i}" data-id="${a.id}" draggable="true">`
       + `${ICON(a.id)}<span class="key">${key}</span><div class="cd"><i></i><span></span></div></div>`;
   }
   function renderBar() {
-    const sig = JSON.stringify([st.bar, [...st.glow], st.bar.map(id => id && st.byId.has(id))]);
+    const sig = JSON.stringify([st.bar, [...st.glow], st.bar.map(id => id && st.byId.has(id)), bars.count]);
     if (sig === st.barSig) return;
     st.barSig = sig;
     const row = (from, to) => Array.from({ length: to - from }, (_, k) => slotHtml(from + k)).join('');
     els.slots.innerHTML = `<div class="bar-row shift${st.bar.slice(8).some(Boolean) ? '' : ' unused'}">${row(8, 16)}</div>`
       + `<div class="bar-row main"><div class="slot fixed attack" data-act="attack" data-tip-title="Attack" data-tip-sub="Swing at your target — or press F (or Space)"><img class="ic" alt="" src="${uiIcon('sword', { size: 96 })}"><span class="key">F</span><i class="swing"></i></div>`
       + `${row(0, 8)}<div class="slot fixed flee" data-act="flee" data-tip-title="Flee" data-tip-sub="Break off the fight and run"><img class="ic" alt="" src="${uiIcon('flee', { size: 96, color: '#d8e6f0', glow: 'rgba(160,200,240,.6)' })}"></div></div>`;
-    els.slots.querySelectorAll('.slot').forEach(el => {
+    for (const r of bars.rows()) r.el.innerHTML = r.on ? row(r.from, r.to) : '';
+    slotQA('.slot').forEach(el => {
       const i = el.dataset.i != null ? +el.dataset.i : -1;
       el.addEventListener('click', () => use(el.dataset.act || st.bar[i]));
       if (el.dataset.id) {
@@ -366,7 +379,7 @@ export function createHud() {
           const a = st.byId.get(el.dataset.id);
           if (!a) return;
           const r = el.getBoundingClientRect();
-          showTip(abilityTip(a, keyOf(i)), r.left + r.width / 2, r.top);
+          showTip(abilityTip(a, keyOf(i, true)), r.left + r.width / 2, r.top);
           MH.bus.emit('hud.abilityHover', { id: a.id });
         });
         el.addEventListener('mouseleave', () => { hideTip(); MH.bus.emit('hud.abilityHover', null); });
@@ -381,10 +394,12 @@ export function createHud() {
         e.dataTransfer.setData('text/x-slot', String(i));
         e.dataTransfer.effectAllowed = 'move';
         els.ab.classList.add('dragging');
+        els.xbars.classList.add('dragging');
       });
       // dropped nowhere: off the bar
       el.addEventListener('dragend', e => {
         els.ab.classList.remove('dragging');
+        els.xbars.classList.remove('dragging');
         if (e.dataTransfer.dropEffect === 'none' && st.bar[i]) {
           const a = st.byId.get(st.bar[i]);
           editBar(takeOffBar(st.bar, i));
@@ -397,6 +412,7 @@ export function createHud() {
         e.preventDefault();
         el.classList.remove('over');
         els.ab.classList.remove('dragging');
+        els.xbars.classList.remove('dragging');
         const id = e.dataTransfer.getData('text/x-ability');
         if (id && st.byId.has(id)) editBar(putOnBar(st.bar, id, i));
       });
@@ -405,7 +421,7 @@ export function createHud() {
   }
   // "+2%": an ability on the bar grew
   function tick(id, by) {
-    const el = els.slots.querySelector(`.slot[data-id="${id}"]`);
+    const el = slotQ(`.slot[data-id="${id}"]`);
     if (!el || !(by > 0)) return;
     const t = document.createElement('div');
     t.className = 'tick';
@@ -416,7 +432,7 @@ export function createHud() {
   // use an ability by id (bar, spellbook, right-click menu) or the fixed Attack/Flee
   function use(id) {
     if (!id) return;
-    const el = els.slots.querySelector(id === 'attack' || id === 'flee' ? `.slot[data-act="${id}"]` : `.slot[data-id="${id}"]`);
+    const el = slotQ(id === 'attack' || id === 'flee' ? `.slot[data-act="${id}"]` : `.slot[data-id="${id}"]`);
     if (el) { el.classList.add('flash'); setTimeout(() => el.classList.remove('flash'), 180); }
     if (id === 'attack') { MH.bus.emit('hud.attack'); return; }
     if (id === 'flee') { MH.bus.emit('hud.flee'); return; }
@@ -438,7 +454,7 @@ export function createHud() {
       .filter(a => a && a.known && !a.passive && (a.target || 'enemy') === 'enemy' && (st.cooldowns[a.id] || 0) - now <= 0.05)
       .sort((x, y) => weight(y.id) - weight(x.id));
     for (const a of ready.slice(0, 2)) {
-      const el = els.slots.querySelector(`.slot[data-id="${a.id}"]`);
+      const el = slotQ(`.slot[data-id="${a.id}"]`);
       if (el) { el.classList.add('suggest'); setTimeout(() => el.classList.remove('suggest'), 2400); }
     }
   }
@@ -462,7 +478,7 @@ export function createHud() {
     // real-time combat: the global cooldown sweeps every skill on the bar (action_combat.py)
     const clock = MH.actionClock;
     const gcd = clock && MH.combatMode === 'action' && MH.state.inCombat ? clock.gcdLeft(performance.now()) / 1000 : 0;
-    els.slots.querySelectorAll('.slot[data-id]').forEach(slot => {
+    slotQA('.slot[data-id]').forEach(slot => {
       const id = slot.dataset.id;
       const own = (st.cooldowns[id] || 0) - elapsed;
       const g = NO_GCD.has(id) ? 0 : gcd;
@@ -521,7 +537,7 @@ export function createHud() {
     const hostile = st.target && st.target.hostile;
     sub.textContent = `${r.toFixed(r < 10 ? 1 : 0)} m${reach != null ? (near ? (hostile && !MH.state.inCombat ? ' · in reach — press F to attack' : ' · in reach') : ` · reach ${reach} m`) : ''}`;
     sub.className = 'tdist' + (reach != null && d <= reach + 0.3 && sameRoom ? ' ok' : '');
-    els.slots.querySelectorAll('.slot[data-id], .slot[data-act="attack"]').forEach(el => {
+    slotQA('.slot[data-id], .slot[data-act="attack"]').forEach(el => {
       const rng = abilityRange(el.dataset.id || 'attack');
       el.classList.toggle('far', rng != null && (d > rng + 0.3 || !sameRoom));
     });
@@ -689,7 +705,12 @@ export function createHud() {
     els.settings.querySelectorAll('[data-set="ui"] button').forEach(b => b.classList.toggle('on', b.dataset.v === u));
     const kb = ls.get('mh3d_bodies') === 'classic' ? 'classic' : 'kin';
     els.settings.querySelectorAll('[data-set="bodies"] button').forEach(b => b.classList.toggle('on', b.dataset.v === kb));
+    els.settings.querySelectorAll('[data-set="xbars"] button').forEach(b => b.classList.toggle('on', +b.dataset.v === bars.count));
   };
+  // how many extra bars show (bars.js; kept per character on this device)
+  els.settings.querySelectorAll('[data-set="xbars"] button').forEach(b => b.addEventListener('click', () => {
+    bars.setCount(+b.dataset.v); syncSettings();
+  }));
   els.settings.querySelectorAll('[data-set="bodies"] button').forEach(b => b.addEventListener('click', () => {
     ls.set('mh3d_bodies', b.dataset.v); syncSettings();
   }));
@@ -746,7 +767,7 @@ export function createHud() {
     swingEl.parentElement.classList.toggle('queued', clock.queued && !clock.ready(now));
   })();
   function flashSlot(id, kind = 'busy') {
-    const el = els.slots.querySelector(`.slot[data-id="${id}"]`);
+    const el = slotQ(`.slot[data-id="${id}"]`);
     if (!el) return;
     el.classList.add(kind);
     setTimeout(() => el.classList.remove(kind), 320);
@@ -813,8 +834,13 @@ export function createHud() {
     const k = e.key;
     if (k === 'Enter') { els.input.focus(); e.preventDefault(); return; }
     if (k === 'f' || k === 'F' || k === ' ') { use('attack'); e.preventDefault(); return; }
+    // 1-8 and Shift+1-8: the main bar; Alt+1-8 and Alt+Shift+1-8: the extra bars 3 and 4
     const digit = /^Digit([1-8])$/.exec(e.code || '');
-    if (digit && !e.ctrlKey && !e.metaKey && !e.altKey) { use(st.bar[+digit[1] - 1 + (e.shiftKey ? 8 : 0)]); e.preventDefault(); return; }
+    if (digit && !e.ctrlKey && !e.metaKey) {
+      const i = slotForKey(+digit[1], { shift: e.shiftKey, alt: e.altKey });
+      if (i < MAIN || i - MAIN < 8 * bars.count) use(st.bar[i]);
+      e.preventDefault(); return;
+    }
     if (k === 'Escape') {
       const mapOpen = !$('#bigmap').classList.contains('hidden');
       const progOpen = Object.values(PROGRESS).some(w => w.open);

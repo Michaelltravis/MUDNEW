@@ -199,6 +199,47 @@ async function waitFor(page, fn, arg, secs = 60) {
     await page.evaluate(me => MH.sendCommand(`restore ${me}`, false), me);
   }
 
+  if (MODE === 'bars') {
+    // extra action bars: one shows at first; an ability dragged onto it is kept (a 40-slot
+    // webbar); Alt+1 uses it; the grip moves it and the place is remembered; it turns; Settings
+    // shows three
+    check(await goto(3001), 'in the Temple of Garathorm (3001)');
+    const orig = await page.evaluate(() => (MH.state.player && MH.state.player.bar) || []);
+    check(await waitFor(page, () => document.querySelectorAll('#xbars .xbar:not(.off)').length === 1, null, 20), 'one extra bar shows at first');
+    const id = await page.evaluate(() => { const el = document.querySelector('#slots .bar-row.main .slot[data-id]'); return el && el.dataset.id; });
+    await page.evaluate(() => { window.__ab = []; MH.bus.on('hud.ability', a => window.__ab.push(a.id)); window.__sent.length = 0; });
+    await page.dragAndDrop('#slots .bar-row.main .slot[data-id]', '#xbars .xbar[data-bar="0"] .slot[data-i="16"]');
+    await sleep(600);
+    const sent = await page.evaluate(() => window.__sent.filter(c => c.startsWith('webbar ')).pop() || '');
+    const words = sent.split(' ').slice(1);
+    check(words.length === 40 && words[16] === id, `dragged onto bar 3: kept with the character (${words.length} slots, slot 17 = ${words[16]}, want ${id})`);
+    await page.keyboard.press('Alt+Digit1');
+    await sleep(300);
+    check(await page.evaluate(id => window.__ab.includes(id), id), `Alt+1 uses it (${id})`);
+    const grip = await page.$('#xbars .xbar[data-bar="0"] .xgrip .dots');
+    const gb = await grip.boundingBox();
+    const before = await page.evaluate(() => { const e = document.querySelector('#xbars .xbar[data-bar="0"]'); return [e.offsetLeft, e.offsetTop]; });
+    await page.mouse.move(gb.x + gb.width / 2, gb.y + gb.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(gb.x - 150, gb.y - 120, { steps: 8 });
+    await page.mouse.up();
+    const after = await page.evaluate(() => { const e = document.querySelector('#xbars .xbar[data-bar="0"]'); return [e.offsetLeft, e.offsetTop]; });
+    check(Math.abs(after[0] - before[0]) > 100 && Math.abs(after[1] - before[1]) > 80, `the grip moves it (${before} -> ${after})`);
+    const saved = await page.evaluate(n => localStorage.getItem(`mh3d_bars:${n}`), CFG.character.name.toLowerCase());
+    check(saved && JSON.parse(saved).bars[0] && Math.abs(JSON.parse(saved).bars[0].x - after[0]) < 2, 'and its place is remembered');
+    await page.click('#xbars .xbar[data-bar="0"] .xturn');
+    check(await page.evaluate(() => document.querySelector('#xbars .xbar[data-bar="0"]').classList.contains('vertical')), 'the turn button stands it on end');
+    await page.keyboard.press('o');
+    await page.click('#settings [data-set="xbars"] button[data-v="3"]');
+    await sleep(300);
+    check(await page.evaluate(() => document.querySelectorAll('#xbars .xbar:not(.off)').length) === 3, 'Settings: three extra bars');
+    await page.keyboard.press('o');
+    await page.screenshot({ path: path.join(OUT, 'bars.png') });
+    // leave the character's bar as it was
+    await page.evaluate(b => MH.sendCommand(`webbar ${b.length ? b.map(x => x || '-').join(' ') : ''}`.trim(), false), orig);
+    await page.evaluate(n => localStorage.removeItem(`mh3d_bars:${n}`), CFG.character.name.toLowerCase());
+  }
+
   if (MODE === 'deathtrap') {
     // the castle's inner hall: south of 22007 lies a death trap (22155). It is drawn as a ledge
     // round a burning abyss; walking at it stops at the edge with a prompt; E dares it

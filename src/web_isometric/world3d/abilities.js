@@ -2,10 +2,28 @@
 //
 // The player payload lists every ability of the class (`abilities`: id, name, type, pct,
 // level it unlocks at, known, cost, cooldown, range, target, description) and the bar the
-// player arranged (`bar`: 16 ability ids or null — keys 1-8, then Shift+1-8). Abilities are
+// player arranged (`bar`: SLOTS ability ids or null). The main bar is the first 16 (keys 1-8,
+// then Shift+1-8); three extra bars of 8 follow (Alt+1-8, Alt+Shift+1-8, and one you click),
+// floating panels the player places (hud/bars.js). Abilities are
 // learned by reaching their level (at 50%), improve as they are used (to 85%, "Mastered"),
 // and a trainer teaches the rest (to 100%).
-export const SLOTS = 16;
+export const MAIN = 16;
+export const EXTRA = [[16, 24], [24, 32], [32, 40]];
+export const SLOTS = 40;
+
+// the key a slot answers to, as the slot shows it ('' for the click-only bar); `long` for tips
+export function keyOf(i, long = false) {
+  if (i < 8) return String(i + 1);
+  if (i < 16) return long ? `Shift+${i - 7}` : `⇧${i - 7}`;
+  if (i < 24) return long ? `Alt+${i - 15}` : `A${i - 15}`;
+  if (i < 32) return long ? `Alt+Shift+${i - 23}` : `A⇧${i - 23}`;
+  return '';
+}
+// the slot a key press means: digit 1-8 with Shift/Alt held, or -1
+export function slotForKey(n, { shift = false, alt = false } = {}) {
+  if (!(n >= 1 && n <= 8)) return -1;
+  return (alt ? 16 : 0) + (shift ? 8 : 0) + n - 1;
+}
 export const BY_USE = 85;
 
 // what a proficiency is called
@@ -37,17 +55,19 @@ export function defaultBar(abilities, order = []) {
   const ids = known.slice().sort((a, b) => rank(a.id) - rank(b.id) || (a.level || 0) - (b.level || 0) || String(a.id).localeCompare(b.id))
     .map(a => a.id);
   const bar = new Array(SLOTS).fill(null);
-  ids.slice(0, SLOTS).forEach((id, i) => { bar[i] = id; });
+  ids.slice(0, MAIN).forEach((id, i) => { bar[i] = id; });     // the main bar; the extra bars are yours
   return bar;
 }
 
-// newly learned abilities take the first free slots (the top row first); returns where
-export function placeNew(bar, ids) {
+// newly learned abilities take the first free slots (the main bar first, then the extra bars
+// shown: `upto` slots); returns where
+export function placeNew(bar, ids, upto = SLOTS) {
   const out = bar.slice(), placed = [];
+  while (out.length < SLOTS) out.push(null);
   for (const id of ids) {
     if (out.includes(id)) continue;
     const i = out.indexOf(null);
-    if (i < 0) break;
+    if (i < 0 || i >= upto) break;
     out[i] = id;
     placed.push({ id, slot: i });
   }
