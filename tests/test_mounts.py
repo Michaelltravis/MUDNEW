@@ -157,6 +157,15 @@ async def main():
     grants.apply_grants(g2, {'placed': {'room': 14804}})
     check(g2.room_vnum == 14804, 'a gift can set where they wake (XTC: the way down into the Tunnel of Sticks)')
     check(grants.load_grants()['xtc'].get('room') == 14804, "XTC's gift wakes them at 14804")
+    check(grants.load_grants()['xtc'].get('gearup') is True, "and kits them out for the endgame")
+    k = hero('Kitted')
+    k.level = 5
+    grants.apply_grants(k, {'kitted': {'gearup': True}})
+    world.players.pop('kitted', None)
+    await world.add_player(k)
+    from prestige import get_max_level
+    check(k.level == get_max_level(k) and getattr(k.equipment.get('wield'), 'rarity', '') == 'legendary' and k.mount,
+          f'a gearup gift levels, gears and mounts them on entering the world (level {k.level})')
     imm = hero('Imm')
     real = Player.is_immortal
     Player.is_immortal = property(lambda self: True)

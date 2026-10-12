@@ -17250,6 +17250,16 @@ class CommandHandler:
         if not target:
             await player.send(f"{c['yellow']}{name.title()} is not online.{c['reset']}")
             return
+        report = await cls.gear_up(target)
+        await player.send(f"{c['bright_green']}{target.name} geared up: {', '.join(report)}.{c['reset']}")
+        if target is not player:
+            await target.send(f"{c['bright_yellow']}The gods kit you out for the hardest roads: {', '.join(report)}.{c['reset']}")
+
+    @classmethod
+    async def gear_up(cls, target) -> list:
+        """The kit gearup gives (also a login gift's, grants.py `gearup`): the highest level, the best
+        gear in every slot, a whole named set, a legendary weapon, gold and the fastest mount,
+        ridden; saved. Returns what it gave, as short phrases."""
         from objects import create_object, infer_wear_slot
         from prestige import get_max_level
         import gear_look
@@ -17267,7 +17277,7 @@ class CommandHandler:
             report.append(f"level {target.level} (+{levelled})")
         # the best piece the world has for every slot
         if not gear_look.ITEM_LEVELS:
-            gear_look.build_item_levels(player.world)
+            gear_look.build_item_levels(target.world)
         pairs = {'finger': ['finger1', 'finger2'], 'neck': ['neck1', 'neck2'], 'wrist': ['wrist1', 'wrist2']}
 
         def avg(d):
@@ -17275,14 +17285,14 @@ class CommandHandler:
             mm = re.match(r'\s*(\d+)d(\d+)\s*([+-]\s*\d+)?', str(d or ''))
             return int(mm.group(1)) * (int(mm.group(2)) + 1) / 2 + int((mm.group(3) or '0').replace(' ', '')) if mm else 0
         best = {}
-        for vnum, proto in player.world.obj_prototypes.items():
+        for vnum, proto in target.world.obj_prototypes.items():
             if not isinstance(proto, dict):
                 continue
             kind = proto.get('item_type') or proto.get('type')
             flags = set(proto.get('flags') or [])
             if kind not in ('armor', 'weapon', 'worn', 'treasure', 'light') or flags & {'cursed', 'quest', 'no_take'}:
                 continue
-            obj = create_object(vnum, player.world)
+            obj = create_object(vnum, target.world)
             if not obj:
                 continue
             slot = 'wield' if kind == 'weapon' else infer_wear_slot(obj)
@@ -17302,7 +17312,7 @@ class CommandHandler:
         # a whole named set over the slots it covers: the strongest one
         set_key = max(NAMED_SETS, key=lambda k: max((NAMED_SETS[k].get('level_range') or (0, 0))))
         for v in NAMED_SETS[set_key]['pieces']:
-            obj = create_object(int(v), player.world)
+            obj = create_object(int(v), target.world)
             if obj:
                 slot = 'wield' if obj.item_type == 'weapon' else infer_wear_slot(obj)
                 for s in pairs.get(slot, [slot]):
@@ -17317,7 +17327,7 @@ class CommandHandler:
         for s, v in chosen.items():
             if s == 'dual_wield':
                 continue
-            obj = create_object(v, player.world)
+            obj = create_object(v, target.world)
             if obj:
                 target.equipment[s] = obj
         # a legendary weapon in the hand: the strongest that strikes on a hit
@@ -17325,7 +17335,7 @@ class CommandHandler:
                       if (d.get('item_type') or d.get('type')) == 'weapon' and any(p.get('type') == 'on_hit' for p in d.get('procs', []))),
                      key=lambda v: (avg(LEGENDARY_ITEMS[v].get('damage_dice')), v), default=None)
         if legend:
-            leg = create_legendary(legend, player.world)
+            leg = create_legendary(legend, target.world)
             if leg:
                 if target.equipment.get('wield'):
                     target.inventory.append(target.equipment['wield'])
@@ -17342,9 +17352,7 @@ class CommandHandler:
         report.append(f"riding {MOUNT_TEMPLATES[fast]['name']}")
         target.hp, target.mana, target.move = target.max_hp, target.max_mana, target.max_move
         await target.save()
-        await player.send(f"{c['bright_green']}{target.name} geared up: {', '.join(report)}.{c['reset']}")
-        if target is not player:
-            await target.send(f"{c['bright_yellow']}The gods kit you out for the hardest roads: {', '.join(report)}.{c['reset']}")
+        return report
 
     @classmethod
     async def cmd_restore(cls, player: 'Player', args: List[str]):

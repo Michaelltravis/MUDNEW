@@ -1092,6 +1092,14 @@ class World:
             c = Config().COLORS
             for line in notes:
                 await player.send(f"{c['bright_yellow']}{line}{c['reset']}")
+        if player.__dict__.pop('_grant_gearup', False):
+            try:
+                from commands import CommandHandler
+                report = await CommandHandler.gear_up(player)
+                c = Config().COLORS
+                await player.send(f"{c['bright_yellow']}The gods kit you out for the hardest roads: {', '.join(report)}.{c['reset']}")
+            except Exception:
+                logger.exception('grant gearup')
         logger.info(f"Player entered world: {player.name}")
 
     async def remove_player(self, player: 'Player'):
