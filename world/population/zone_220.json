@@ -1,14 +1,97 @@
 {
-  "_about": "Who lives where in the Castle of the Apocalypse II, and which doors their keys open (src/population.py, applied when the world loads, so a rebuild of world/zones keeps it). The owner, 2026-10-12: Kirgan the Destroyer holds the key to the guardian's chamber; Pestilence is in the room right after the door from the Inner Hall; War at the end of the guardian chambers; Famine in the other guardian chambers on the far side (14163); Death the final boss.",
+  "_about": "Who lives where in the Castle of the Apocalypse II, and which doors their keys open (src/population.py, applied when the world loads, so a rebuild of world/zones keeps it). The owner, 2026-10-12: Kirgan the Destroyer holds the key to the guardian's chamber; Pestilence is in the room right after the door from the Inner Hall; War at the end of the guardian chambers; Famine in the other guardian chambers on the far side (14163); Death the final boss. Mechanics (src/boss_mechanics.py): Pestilence drops plague pools to step out of; War calls the castle's guards at 75% and 40%; Famine starves whoever stands still; Death raises waves of servants and darkens the room as he weakens.",
   "zone": 220,
   "bosses": [
-    {"vnum": 22100, "room": 22100, "why": "Kirgan the Destroyer, in the Guard Room off the inner corridor: he carries the inner gate key (his loot, every time)"},
-    {"vnum": 22070, "room": 14151, "why": "Pestilence, in the first Guardian Chamber, through the Inner Hall's locked door"},
-    {"vnum": 22071, "room": 14158, "why": "War, at The End Of The Guardian Chambers (the east wing)"},
-    {"vnum": 22072, "room": 14163, "why": "Famine, in the guardian chambers on the far (west) side"},
-    {"vnum": 22073, "room": 14153, "why": "Death, the final boss, at The Gates To Hell"}
+    {
+      "vnum": 22100,
+      "room": 22100,
+      "why": "Kirgan the Destroyer, in the Guard Room off the inner corridor: he carries the inner gate key (his loot, every time)"
+    },
+    {
+      "vnum": 22070,
+      "room": 14151,
+      "why": "Pestilence, in the first Guardian Chamber, through the Inner Hall's locked door",
+      "mechanics": [
+        {
+          "type": "plague_pools",
+          "every": 9,
+          "radius": 2.4,
+          "last": 14,
+          "pct": 0.04,
+          "why": "plague pools at a fighter's feet: step out"
+        }
+      ]
+    },
+    {
+      "vnum": 22071,
+      "room": 14158,
+      "why": "War, at The End Of The Guardian Chambers (the east wing)",
+      "mechanics": [
+        {
+          "type": "call_guards",
+          "at": [
+            75,
+            40
+          ],
+          "count": 3,
+          "rooms": 2,
+          "raise": [
+            22040
+          ],
+          "shout": "War raises his blade and roars 'TO ME!' The castle's guardians answer!",
+          "why": "calls the castle's guards at 75% and 40%"
+        }
+      ]
+    },
+    {
+      "vnum": 22072,
+      "room": 14163,
+      "why": "Famine, in the guardian chambers on the far (west) side",
+      "mechanics": [
+        {
+          "type": "hunger",
+          "every": 3,
+          "pct": 0.025,
+          "stamina": 10,
+          "warn": "Famine's hunger gnaws at all who stand still. Keep moving!",
+          "why": "starves whoever stands still"
+        }
+      ]
+    },
+    {
+      "vnum": 22073,
+      "room": 14153,
+      "why": "Death, the final boss, at The Gates To Hell",
+      "mechanics": [
+        {
+          "type": "waves",
+          "at": [
+            75,
+            50,
+            25
+          ],
+          "adds": {
+            "22040": 2
+          },
+          "shout": "Death lifts his scythe, and the dead of the castle rise to serve him!",
+          "why": "waves of servants at 75/50/25%"
+        },
+        {
+          "type": "gloom",
+          "max": 0.85,
+          "shout": "The light gutters and dies around Death...",
+          "why": "the room darkens as he weakens"
+        }
+      ]
+    }
   ],
   "doors": [
-    {"room": 14150, "dir": "south", "key": 22051, "name": "inner gate", "why": "the Inner Hall's door into the Guardian Chambers opens to Kirgan's key"}
+    {
+      "room": 14150,
+      "dir": "south",
+      "key": 22051,
+      "name": "inner gate",
+      "why": "the Inner Hall's door into the Guardian Chambers opens to Kirgan's key"
+    }
   ]
 }

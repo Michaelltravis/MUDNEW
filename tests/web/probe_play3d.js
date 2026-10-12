@@ -199,6 +199,28 @@ async function waitFor(page, fn, arg, secs = 60) {
     await page.evaluate(me => MH.sendCommand(`restore ${me}`, false), me);
   }
 
+  if (MODE === 'horsemen') {
+    // the castle's bosses fight with their rooms: Pestilence's plague pools on the ground, Death's gloom
+    const me = CFG.character.name.toLowerCase();
+    await page.evaluate(() => { window.__ev = []; MH.bus.on('combat.events', p => { for (const e of p.events || []) window.__ev.push(e.k); }); });
+    check(await goto(14151), 'in the first Guardian Chamber (14151)');
+    await page.evaluate(me => { for (const c of [`set ${me} maxhp 200000`, `set ${me} hp 200000`, 'kill pestilence']) MH.sendCommand(c, false); }, me);
+    const pool = await waitFor(page, () => window.__ev.includes('hazard'), null, 40);
+    check(pool, 'Pestilence spits a plague pool (a hazard event)');
+    await sleep(800);
+    await page.screenshot({ path: path.join(OUT, 'horsemen-pool.png') });
+    await page.evaluate(() => MH.sendCommand('flee', false));
+    await sleep(1500);
+    check(await goto(14153), 'at The Gates To Hell (14153)');
+    await page.evaluate(me => { for (const c of [`restore ${me}`, `set ${me} maxhp 200000`, `set ${me} hp 200000`, 'set death hp 12000', 'kill death']) MH.sendCommand(c, false); }, me);
+    const dark = await waitFor(page, () => (MH3D.engine.gloom || 0) > 0.5, null, 40);
+    check(dark, `the room darkens around Death (gloom ${await page.evaluate(() => MH3D.engine.gloom)})`);
+    await sleep(2500);
+    await page.screenshot({ path: path.join(OUT, 'horsemen-gloom.png') });
+    await page.evaluate(me => { for (const c of ['flee', `restore ${me}`]) MH.sendCommand(c, false); }, me);
+    await sleep(800);
+  }
+
   if (MODE === 'seam') {
     // a stretch of the Trade Road's woods (the owner's screenshot): rooms that lead to each other
     // sit side by side, so the way on is walked, not hopped

@@ -2,7 +2,8 @@
 after the zone files and before the first reset, so a rebuild of world/zones keeps it.
 
     {"zone": 220,
-     "bosses": [{"vnum": 22070, "room": 14151, "why": "..."}],      # spawn here, and only here
+     "bosses": [{"vnum": 22070, "room": 14151, "mechanics": [{"type": "plague_pools"}], "why": "..."}],
+                                                    # spawn here, and only here; fight mechanics
      "doors":  [{"room": 14150, "dir": "south", "key": 22051, "name": "inner gate"}]}   # locked to a key
 
 A boss placed here spawns in its room and nowhere else in the world (its other resets go). A door
@@ -42,6 +43,8 @@ def apply(world, data=None) -> list:
                 if r.mob_resets:
                     r.mob_resets = [m for m in r.mob_resets if int(m.get('vnum', -1)) != vnum]
             room.mob_resets.append({'vnum': vnum, 'max': 1})
+            if b.get('mechanics'):
+                world.mob_prototypes[vnum]['mechanics'] = b['mechanics']   # boss_mechanics.py
         for dd in d.get('doors') or []:
             room = world.rooms.get(int(dd['room']))
             ex = (room.exits or {}).get(dd['dir']) if room else None

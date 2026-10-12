@@ -134,6 +134,7 @@ export function createEngine(container, opts = {}) {
   // ---- mood blending ----
   const cur = { ...MOODS.day }, want = { ...MOODS.day };
   const colors = { sky: new THREE.Color(), ground: new THREE.Color(), sun: new THREE.Color(), fog: new THREE.Color() };
+  let gloomNow = 0;
   function setMood(m, instant) {
     Object.assign(want, typeof m === 'string' ? MOODS[m] : m);
     if (instant) Object.assign(cur, want);
@@ -145,12 +146,15 @@ export function createEngine(container, opts = {}) {
       colors[key].set(cur[key]).lerp(new THREE.Color(want[key]), k);
       cur[key] = colors[key].getHex();
     }
-    hemi.color.set(cur.sky); hemi.groundColor.set(cur.ground); hemi.intensity = cur.hemi;
-    sun.color.set(cur.sun); sun.intensity = cur.sunI;
-    scene.fog.color.set(cur.fog); scene.fog.near = cur.near; scene.fog.far = cur.far;
+    // a boss's gloom (combat.js gloom): the light dies as it weakens
+    gloomNow += ((api.gloom || 0) - gloomNow) * (1 - Math.exp(-dt * 1.5));
+    const dim = 1 - 0.85 * gloomNow;
+    hemi.color.set(cur.sky); hemi.groundColor.set(cur.ground); hemi.intensity = cur.hemi * dim;
+    sun.color.set(cur.sun); sun.intensity = cur.sunI * dim;
+    scene.fog.color.set(cur.fog); scene.fog.near = cur.near * (1 - 0.4 * gloomNow); scene.fog.far = cur.far * (1 - 0.5 * gloomNow);
     // under open sky the distance fades into the haze itself; enclosed, into the dark
     scene.background.set(cur.fog).multiplyScalar(cur.bg ?? 0.35);
-    renderer.toneMappingExposure = cur.exposure;
+    renderer.toneMappingExposure = cur.exposure * (1 - 0.45 * gloomNow);
   }
 
   // ---- loop ----

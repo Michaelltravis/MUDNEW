@@ -227,6 +227,8 @@ export class CombatView {
       case 'windup': return this.windup(e);
       case 'resolve': return this.resolveWindup(e);
       case 'cancel': return this.cancelWindup(e);
+      case 'hazard': return this.hazard(e);
+      case 'gloom': return this.gloom(e);
       case 'death': return this.death(e);
       case 'stun': return this.stun(e);
       case 'oor': return this.isHero(e.src) && this.onOutOfRange && this.onOutOfRange(e);   // only our own
@@ -455,7 +457,28 @@ export class CombatView {
     this.fx.text(p.clone().setY(src.root.position.y + 2.6), word, { color: '#ffe066', size: 15, rise: 0.6 });
     if (src.actor && !(src.ent && src.ent.dying)) src.actor.once(Math.random() < 0.5 ? 'Hit_A' : 'Hit_B', 0.05, 1.0);
   }
+  // a lasting danger on the ground (a boss's plague pool: boss_mechanics.py): marked for as long as
+  // it lasts, with the STEP OUT cue while you stand in it
+  hazard(e) {
+    const a = e.area || {};
+    // where it was laid: its spot, else at the feet of whoever it was laid on
+    const on = a.x == null ? this.resolve(e.dst) : null;
+    if (a.x == null && !(on && on.root)) return;
+    const center = a.x != null ? this.toWorld(a.x, a.z) : on.root.position.clone().setY(0), secs = Math.max(1, (e.ms || 10000) / 1000);
+    const color = { poison: 0x5adc3c, necrotic: 0x7a3cdc, fire: 0xff6a1a, frost: 0x6ad0ff }[e.school] || 0xff3a28;
+    this.fx.telegraph(center, { shape: 'circle', radius: a.r || 2.4, time: secs, color });
+    const key = `h${e.id || Math.random()}`;
+    if (this.onTelegraph) this.onTelegraph(key, { center, follow: null, shape: 'circle', r: a.r || 2.4, angle: Math.PI * 2, facing: 0,
+      until: performance.now() + secs * 1000, label: e.label || 'Get out!', src: this.resolve(e.src) });
+    this.fx.after(secs, () => this.onTelegraphEnd && this.onTelegraphEnd(key, 'gone'));
+  }
+  // the room darkens as a boss weakens (Death): 0 light .. 1 dark; it lifts when the boss falls
+  gloom(e) {
+    this.gloomFrom = e.src && e.src.m != null ? e.src.m : null;
+    if (this.onGloom) this.onGloom(Math.max(0, Math.min(1, Number(e.level) || 0)));
+  }
   death(e) {
+    if (this.gloomFrom != null && e.dst && e.dst.m === this.gloomFrom && this.onGloom) { this.gloomFrom = null; this.onGloom(0); }
     const dst = this.resolve(e.dst);
     if (!dst) return;
     this.sfx(dst.hero ? 'hero_death' : 'death', dst);

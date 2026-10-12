@@ -61,6 +61,12 @@ class Boss(Mobile):
         self.ability_interval = self.boss_config.get('ability_interval', 4.0)
         self.enrage_time = self.boss_config.get('enrage_time')
         self.enrage_multiplier = self.boss_config.get('enrage_multiplier', 1.5)
+        # what makes the fight more than blows (boss_mechanics.py: pools, guards, hunger, waves, gloom)
+        try:
+            import boss_mechanics
+            self.mechanics = boss_mechanics.build(proto.get('mechanics'))
+        except Exception:
+            self.mechanics = []
 
         # Override loot table if boss specific
         boss_loot = proto.get('boss_loot_table') or self.boss_config.get('loot_table')
@@ -91,6 +97,8 @@ class Boss(Mobile):
             self.ai_state['next_ability_time'] = 0
             self.ai_state['vulnerable_until'] = 0
             self.ai_state['enraged'] = False
+            for m in getattr(self, 'mechanics', ()):
+                m.reset(self)
             return
 
         now = time.time()
@@ -98,6 +106,11 @@ class Boss(Mobile):
             self.ai_state['combat_start'] = now
 
         await self._check_phase_transitions()
+        for m in getattr(self, 'mechanics', ()):
+            try:
+                await m.tick(self, now)
+            except Exception:
+                logger.exception(f'{self.name}: mechanic {m.spec.get("type")}')
         await self._handle_enrage(now)
         await self._handle_cast(now)
 

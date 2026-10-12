@@ -122,6 +122,9 @@ async function runGame() {
     onWound: ent => { if (ents.targeted === ent) hud.setTarget({ kind: ent.kind, ...ent.data }); },
     onAggro: id => aggro(id),
   });
+  // a boss's gloom (Death): the scene's light dims; it lifts when the boss falls or you leave
+  let gloomRoom = null;
+  combat.onGloom = level => { engine.gloom = level; gloomRoom = level > 0 && heroRoom ? heroRoom.vnum : null; };
   // fights made easy to read: a ring under your target, your reach while you hover an
   // ability, STEP OUT under a marked blow, STRIKE NOW at a staggered foe
   const cues = new CombatCues({ engine, ents, getHero: () => hero && { actor: hero, ctl }, callout: $('#callout'),
@@ -371,6 +374,7 @@ async function runGame() {
     setHeroRoom(room);
   }
   function setHeroRoom(room) {
+    if (gloomRoom != null && (!room || room.vnum !== gloomRoom)) { engine.gloom = 0; gloomRoom = null; }
     const changed = heroRoom !== room;
     heroRoom = room;
     mm.setRoom(room);
