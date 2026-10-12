@@ -15775,53 +15775,38 @@ class CommandHandler:
 
     @classmethod
     async def cmd_sets(cls, player: 'Player', args: List[str]):
-        """Show active zone set bonuses."""
+        """Show the sets you wear: each tier, what it gives, which are active and what's next."""
         c = player.config.COLORS
-        try:
-            from sets import ZONE_CATEGORIES, CATEGORY_BONUSES, get_set_bonus
-        except Exception:
-            await player.send(f"{c['yellow']}Set system not available.{c['reset']}")
-            return
-
-        # Count equipped pieces by set_id
+        import sets
+        import procs
         set_counts = {}
         for slot, item in getattr(player, 'equipment', {}).items():
-            if item and getattr(item, 'set_id', None):
+            if item and getattr(item, 'set_id', None) not in (None, ''):
                 set_id = item.set_id
                 if isinstance(set_id, str) and set_id.isdigit():
                     set_id = int(set_id)
                 set_counts[set_id] = set_counts.get(set_id, 0) + 1
-
         if not set_counts:
             await player.send(f"{c['yellow']}You have no set pieces equipped.{c['reset']}")
             return
-
         current_zone = getattr(player.room.zone, 'number', None) if player.room and player.room.zone else None
-
         await player.send(f"\n{c['bright_cyan']}╔══════════════════════════════════════════════════════╗{c['reset']}")
-        await player.send(f"{c['bright_cyan']}║{c['bright_yellow']}               ACTIVE SET BONUSES              {c['bright_cyan']}║{c['reset']}")
+        await player.send(f"{c['bright_cyan']}║{c['bright_yellow']}                  YOUR GEAR SETS                      {c['bright_cyan']}║{c['reset']}")
         await player.send(f"{c['bright_cyan']}╚══════════════════════════════════════════════════════╝{c['reset']}")
-
         for set_id, pieces in set_counts.items():
-            category = ZONE_CATEGORIES.get(set_id, 'unknown')
-            await player.send(f"\n{c['bright_green']}Set {set_id} ({category}) — {pieces} piece(s){c['reset']}")
-
-            # Always-on bonuses
-            always = get_set_bonus(set_id, pieces, in_zone=False)
-            if always:
-                await player.send(f"{c['white']}  Always-on:{c['reset']}")
-                for stat, val in always.items():
-                    await player.send(f"    {c['cyan']}{stat}{c['reset']}: +{val}")
-
-            # In-zone bonuses
-            in_zone = get_set_bonus(set_id, pieces, in_zone=True) if current_zone == set_id else {}
-            if in_zone:
-                await player.send(f"{c['white']}  In-zone:{c['reset']}")
-                for stat, val in in_zone.items():
-                    await player.send(f"    {c['bright_magenta']}{stat}{c['reset']}: +{val}")
-
-            if current_zone != set_id:
-                await player.send(f"{c['yellow']}  (Enter zone {set_id} to activate in-zone bonuses){c['reset']}")
+            cap = sets.SET_CAPS.get(set_id)
+            await player.send(f"\n{c['bright_green']}{sets.set_name(set_id)} — {pieces}{'/' + str(cap) if cap else ''} worn{c['reset']}")
+            named = isinstance(set_id, str)
+            for need, stats, where, set_proc_list in sets.set_tiers(set_id):
+                in_zone = where == 'in_zone'
+                active = pieces >= need and (not in_zone or current_zone == set_id)
+                parts = ([sets.describe_bonus(stats)] if stats else []) + [procs.describe(p) for p in set_proc_list]
+                mark = f"{c['bright_green']}✓" if active else f"{c['bright_black']}·"
+                label = f"{need} pieces{' in its zone' if in_zone else ''}"
+                tail = '' if active else (f" (wear {need - pieces} more)" if pieces < need else f" (in zone {set_id})")
+                await player.send(f"  {mark} {c['white']}{label}: {c['cyan']}{'; '.join(parts)}{c['bright_black']}{tail}{c['reset']}")
+            if not named and current_zone != set_id:
+                await player.send(f"{c['yellow']}  (its in-zone tiers wake in zone {set_id}){c['reset']}")
 
     @classmethod
     async def cmd_settings(cls, player: 'Player', args: List[str]):

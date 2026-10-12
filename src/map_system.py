@@ -633,12 +633,14 @@ def item_info(item):
         info['food_value'] = getattr(item, 'food_value', 0)
     elif itype in ('drink', 'fountain'):
         info['drinks'] = getattr(item, 'drinks', 0)
-    procs = getattr(item, 'procs', []) or []
-    if procs:
-        info['procs'] = [
-            (pr.get('desc') or pr.get('effect') or pr.get('type'))
-            for pr in procs if isinstance(pr, dict)
-        ]
+    # what it does in a fight, and its set with each tier (procs.py)
+    try:
+        import procs
+        lines = procs.item_lines(item)
+    except Exception:
+        lines = []
+    if lines:
+        info['procs'] = lines
     return info
 
 

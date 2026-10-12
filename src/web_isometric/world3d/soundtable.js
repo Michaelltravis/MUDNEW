@@ -105,7 +105,7 @@ export const SOUNDS = {
 export const EVENTS = {
   attack: 'swing', ability: null, spell: null, dmg: null, heal: 'heal', buff: 'buff', debuff: 'debuff',
   windup: 'windup', resolve: 'resolve', cancel: 'cancel', death: 'death', stun: 'stun', oor: null,
-  fizzle: 'fizzle', move: null,
+  fizzle: 'fizzle', move: null, proc: 'sting',
 };
 // where a blow arrives (combat.js land), by its result
 export const LANDS = {

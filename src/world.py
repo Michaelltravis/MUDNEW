@@ -771,6 +771,12 @@ class World:
             gear_look.build_item_levels(self)
         except Exception as e:
             logger.warning(f"Failed to work out item levels: {e}")
+        # how many of each set's pieces one hero can wear (sets.py: every tier can be reached)
+        try:
+            import sets
+            sets.build_set_caps(self)
+        except Exception as e:
+            logger.warning(f"Failed to work out set sizes: {e}")
 
         # the tutorials' directions, from the map as it is ("south twice, then west three times")
         try:

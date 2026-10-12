@@ -3751,6 +3751,11 @@ class SpellHandler:
                     else:
                         await caster.send(f"  {c['green']}{affect_type.title()}: {sign}{value}{c['reset']}")
 
+            # what it does in a fight and its set (procs.py)
+            import procs
+            for line in procs.item_lines(item, caster):
+                await caster.send(f"  {c['bright_yellow']}{line}{c['reset']}")
+
             await caster.send(f"{c['bright_cyan']}{'='*60}{c['reset']}")
 
         elif special == 'enchant_weapon':

@@ -827,26 +827,33 @@ class WebMapServer:
                     # ---- gear sets ----
                     gear_sets = []
                     try:
-                        from sets import NAMED_SETS, get_named_set_bonus
-                        worn_vnums = [getattr(it, 'vnum', None) for it in (getattr(player, 'equipment', {}) or {}).values() if it]
-                        owned_vnums = worn_vnums + [getattr(it, 'vnum', None) for it in (getattr(player, 'inventory', []) or [])]
-                        for sid, cfg in NAMED_SETS.items():
-                            pieces = cfg.get('pieces', {})
-                            worn = sum(1 for v in worn_vnums if v in pieces)
-                            owned = sum(1 for v in owned_vnums if v in pieces)
-                            if owned <= 0:
-                                continue
+                        # every set the hero owns a piece of, named or a zone's, with each tier
+                        import sets as _sets
+                        import procs as _procs
+                        def _sid(it):
+                            v = getattr(it, 'set_id', None)
+                            return int(v) if isinstance(v, str) and v.isdigit() else v
+                        worn_items = [it for it in (getattr(player, 'equipment', {}) or {}).values() if it]
+                        owned_items = worn_items + list(getattr(player, 'inventory', []) or [])
+                        owned_ids = []
+                        for it in owned_items:
+                            sid = _sid(it)
+                            if sid not in (None, '') and sid not in owned_ids:
+                                owned_ids.append(sid)
+                        for sid in owned_ids:
+                            worn = sum(1 for it in worn_items if _sid(it) == sid)
+                            owned = len({getattr(it, 'vnum', id(it)) for it in owned_items if _sid(it) == sid})
                             tiers = []
-                            for thr in sorted(cfg.get('bonuses', {})):
-                                bon = cfg['bonuses'][thr]
-                                txt = ', '.join(f"+{val} {stat.replace('_', ' ')}" for stat, val in bon.items())
-                                tiers.append({'need': thr, 'active': worn >= thr, 'text': txt})
-                            gear_sets.append({
-                                'name': cfg.get('name', sid), 'worn': worn,
-                                'owned': owned, 'total': len(pieces), 'tiers': tiers,
-                            })
+                            for need, stats, where, plist in _sets.set_tiers(sid):
+                                txt = '; '.join(([_sets.describe_bonus(stats)] if stats else []) + [_procs.describe(p) for p in plist])
+                                if where == 'in_zone':
+                                    txt += ' (in its zone)'
+                                tiers.append({'need': need, 'active': worn >= need, 'text': txt})
+                            total = len(_sets.NAMED_SETS[sid]['pieces']) if sid in _sets.NAMED_SETS else _sets.SET_CAPS.get(sid, 0)
+                            gear_sets.append({'name': _sets.set_name(sid), 'worn': worn, 'owned': owned,
+                                              'total': total, 'tiers': tiers})
                     except Exception:
-                        pass
+                        logger.exception('almanac gear sets')
                     data = {
                         'daily': {
                             'streak': streak, 'total_days': total_days,

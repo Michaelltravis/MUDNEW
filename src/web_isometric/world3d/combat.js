@@ -231,6 +231,7 @@ export class CombatView {
       case 'stun': return this.stun(e);
       case 'oor': return this.isHero(e.src) && this.onOutOfRange && this.onOutOfRange(e);   // only our own
       case 'fizzle': return this.fizzle(e);
+      case 'proc': return this.proc(e);
       default: return null;
     }
   }
@@ -328,6 +329,22 @@ export class CombatView {
       this.fx.p.emit(p, { count: 18, color: 0x8a8a96, speed: 1.1, up: 0.9, life: 0.9, size: 0.38, grow: 0.5, drag: 1.6 });
       this.fx.sparks(p, this.colorOf(e.school || 'arcane'), 6);
       this.fx.text(p.clone().setY(p.y + 0.5), 'Fizzled', { color: '#b8b0c8', size: 14, rise: 0.6 });
+    });
+  }
+  // gear acting by itself (procs.py): a burst in its school's colour on whoever it struck, its
+  // name above them, and a sting; a reflection or an aura comes off the wearer
+  proc(e) {
+    const dst = this.resolve(e.dst);
+    if (!dst) return;
+    const color = this.colorOf(e.school || 'arcane');
+    const p = this.chest(dst);
+    this.fx.after(0.12, () => {
+      this.sfx('sting', dst, { school: e.school || 'arcane' });
+      this.fx.impact(p, e.school || 'arcane', true);
+      this.fx.p.emit(p, { count: 22, color, speed: 3.2, up: 1.2, life: 0.55, size: 0.3, drag: 1.8, glyph: 'star', spin: 3 });
+      this.fx.shockwave(dst.root.position.clone(), { color, radius: 1.8, time: 0.35, thin: true });
+      this.fx.light(p, color, 6, 0.3);
+      this.fx.text(p.clone().setY(p.y + 0.7), e.name || 'Proc', { color: '#' + color.toString(16).padStart(6, '0'), size: 14, rise: 0.8 });
     });
   }
   colorOf(school) { return ({ fire: 0xff7a2a, frost: 0x9fd8ff, lightning: 0xbfd8ff, arcane: 0xc87aff, holy: 0xffe8a0, shadow: 0x8a4ad0, necrotic: 0x7aff8a, nature: 0x9aff6a, poison: 0xb8ff5a, sound: 0xffb8ff, blood: 0xd02a2a })[school] || 0xffffff; }

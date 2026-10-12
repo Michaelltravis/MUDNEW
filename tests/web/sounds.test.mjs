@@ -42,7 +42,7 @@ test('every recorded file was built (tools/audio/build.py), with as many variant
 
 test('every combat event and every blow has a sound or an explicit silence', () => {
   // combat_events.py: the kinds the server sends
-  for (const k of ['attack', 'ability', 'spell', 'dmg', 'heal', 'buff', 'debuff', 'windup', 'resolve', 'cancel', 'death', 'stun', 'oor', 'fizzle', 'move']) {
+  for (const k of ['attack', 'ability', 'spell', 'dmg', 'heal', 'buff', 'debuff', 'windup', 'resolve', 'cancel', 'death', 'stun', 'oor', 'fizzle', 'move', 'proc']) {
     assert.ok(k in EVENTS, `event "${k}" has no entry`);
     if (EVENTS[k]) assert.ok(SOUNDS[EVENTS[k]], `event "${k}" names a missing sound`);
   }

@@ -136,6 +136,7 @@ class Object:
         # Rarity & proc system (legendary.py)
         self.rarity = 'common'  # common, uncommon, rare, epic, legendary
         self.procs = []  # [{type, effect, chance, damage, desc}, ...]
+        self.special_properties = []  # what its zone says it does in a fight (procs.py)
         self.drop_source = None  # Boss name for legendaries
 
         # Lore/Readable text
@@ -266,6 +267,14 @@ class Object:
         obj.rarity = data.get('rarity', 'common')
         obj.procs = data.get('procs', [])
         obj.drop_source = data.get('drop_source', None)
+        # what its zone says it does in a fight (procs.py) is read from the prototype; a
+        # legendary's source is where it drops now
+        proto = (getattr(world, 'obj_prototypes', {}) or {}).get(obj.vnum) if world is not None else None
+        obj.special_properties = list(proto.get('special_properties') or []) if isinstance(proto, dict) else []
+        if obj.rarity == 'legendary':
+            from legendary import LEGENDARY_ITEMS
+            if obj.vnum in LEGENDARY_ITEMS:
+                obj.drop_source = LEGENDARY_ITEMS[obj.vnum].get('drop_source', obj.drop_source)
 
         # Load contents recursively
         obj.contents = [cls.from_dict(item_data, world) 
@@ -333,6 +342,7 @@ class Object:
         obj.rarity = proto.get('rarity', 'common')
         obj.procs = proto.get('procs', [])
         obj.drop_source = proto.get('drop_source', None)
+        obj.special_properties = list(proto.get('special_properties') or [])
         obj.pick_difficulty = proto.get('lock_difficulty', proto.get('pick_difficulty', 50))
 
         # Populate contents from 'contains' vnum list

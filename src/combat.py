@@ -106,8 +106,11 @@ class CombatHandler:
         """Weapon dice scale with level so a level-30 hero is not swinging a
         level-1 sword: dice x (1 + level*mult) + level//div."""
         lvl = getattr(attacker, 'level', 1) or 1
-        return int(dice_damage * (1.0 + lvl * cls.config.PLAYER_DAMAGE_MULT_PER_LEVEL)) \
+        dmg = int(dice_damage * (1.0 + lvl * cls.config.PLAYER_DAMAGE_MULT_PER_LEVEL)) \
             + int(lvl * cls.config.PLAYER_DAMAGE_FLAT_PER_LEVEL)
+        # a legendary's standing '+N% damage' (procs.equip_totals)
+        pct = attacker.get_equipment_bonus('damage_pct') if hasattr(attacker, 'get_equipment_bonus') else 0
+        return int(dmg * (100 + pct) / 100) if pct else dmg
 
     @classmethod
     def cap_boss_swing(cls, attacker, defender, damage: int) -> int:
@@ -1309,13 +1312,11 @@ class CombatHandler:
                     if attacker.combo_points < 5:
                         attacker.combo_points += 1
 
-            # Legendary proc system: on-hit effects
+            # what the gear does by itself (procs.py): on every weapon blow that lands
             if not killed:
-                try:
-                    from legendary import trigger_on_hit_procs
-                    await trigger_on_hit_procs(attacker, defender, damage, weapon)
-                except Exception:
-                    pass
+                import procs
+                await procs.on_hit(attacker, defender, weapon)
+                killed = getattr(defender, 'hp', 0) <= 0
 
             # Apply poison effects from envenomed weapon
             if not killed and weapon and hasattr(weapon, 'envenomed') and weapon.envenomed:
@@ -1676,6 +1677,9 @@ class CombatHandler:
             attacker._weapon_swing = False
             if killed:
                 await cls.handle_death(attacker, defender)
+            else:
+                import procs
+                await procs.on_hit(attacker, defender, weapon)
 
     @classmethod
     async def offhand_attack(cls, attacker: 'Character', defender: 'Character'):
@@ -1711,6 +1715,9 @@ class CombatHandler:
             attacker._weapon_swing = False
             if killed:
                 await cls.handle_death(attacker, defender)
+            else:
+                import procs
+                await procs.on_hit(attacker, defender, weapon)
         else:
             if hasattr(attacker, 'send'):
                 await attacker.send(f"{c['yellow']}Your off-hand misses {defender.name}.{c['reset']}")
@@ -1861,12 +1868,12 @@ class CombatHandler:
             except Exception as e:
                 logger.debug(f"Legendary drop check error: {e}")
 
-        # On-kill procs (legendary/epic item effects)
+        # On-kill procs (procs.py)
         try:
-            from legendary import trigger_on_kill_procs
-            await trigger_on_kill_procs(exp_recipient, victim)
+            import procs
+            await procs.on_kill(exp_recipient, victim)
         except Exception:
-            pass
+            logger.exception('on-kill procs')
 
         # Universal rare drop chance for all mobs (consumables/gold)
         if not hasattr(victim, 'connection') and hasattr(victim, 'inventory'):

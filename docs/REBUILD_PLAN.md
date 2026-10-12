@@ -1613,3 +1613,47 @@ The creature kit covers nearly every non-person creature: **404 kinds, every one
   newer skeletons follow their words (an ogre's two eyes, a cyclops' one, a minotaur's bull
   head, a cobra's hood, a hydra's three heads, a wyvern's two legs, a fire elemental's flame, a
   frog). The browser probe and `/play?demo&gallery=kin` show them in place.
+
+### Loot that drops, gear that procs, sets that count, and `gearup` (Push 32)
+Owner: "Make gear procs and set bonuses work too", and "load XTC with gear so I can test end game".
+- **Loot.** A creature spawned from its zone now carries what the zone gave it (`inventory`:
+  keys, coins, gear, dropped when it dies) and rolls the drops its zone wrote for it
+  (`loot_table`). Both lay unread before, so every creature fell back to the generic tier
+  table. 820 creatures carry 1,465 items between them, and 177 have their own drop tables
+  (among them the build-out's 84 items). A shopkeeper's wares stay its shop. `tests/test_loot.py`.
+- **Procs** (`src/procs.py`, one engine):
+  - **Sources:** the legendaries' own procs; zone items' spell-named affects (vampiric touch,
+    poison cloud, ice blast, turn undead), life drain, undead bane, chaos, and flaming, frost or
+    shocking weapons; a proc on four named sets (Necromancer's Regalia drains, Chaos Weave spits
+    a random school, Apocalypse Raiment breaks ruin over every foe, Frostlord's Mantle bites
+    whoever strikes you).
+  - **On hit:** every weapon blow a player lands (the main swing, the extra swings and haste,
+    the off-hand, cleave and circle); spells and abilities don't. A weapon's procs fire on its
+    own blows. Each has its chance, damage grown from the item's level (a legendary names its
+    own), a school that resistances answer, and a one-second cooldown. Chains and splashes find
+    only the wearer's foes. Creatures' gear doesn't proc, so their fights keep their tuning.
+  - **On defend:** dread (the attacker falters), a reflecting shield, and the frost aura. The
+    Cocoon of Arrested Decay turns a killing blow aside once a day.
+  - **On equip:** +damage %, all attributes (counted once when the item lists them too),
+    stealth, sight in the dark, a fire ward, and travel speed (read by Push 33).
+  - **On kill:** health and mana restored.
+  - **Seen:** the room reads one line. The 3D client gets a `proc` event and draws a burst in the
+    school's colour with the proc's name and a sting. Errors are logged, not swallowed.
+  - **Legendaries drop from real bosses:** each of the 20 is mapped to a boss of fitting level
+    (`legendary.LEGENDARY_BOSSES`, 3-5% a kill), and the item says who drops it. Any other boss
+    of level 40 or more has 1% at a random one.
+- **Sets:**
+  - A set's armour class is applied as armour (5 per point); `earth_resist` wards nature and
+    earth; `curse_resist` is a spell ward.
+  - Every tier can be reached: a tier asking for more pieces than one hero can wear at once
+    (from the pieces' slots: two rings, two necklaces, two bracers) unlocks at that many
+    (`sets.SET_CAPS`, built at load).
+  - `sets` names each set and shows every tier: what it gives, whether it's active, and how many
+    more to wear. Identify, inspect and the 3D tooltip list an item's procs, its set and the
+    tiers. The almanac shows zone sets as well as named ones.
+- **`gearup <player>`** (immortal): raises them to the level cap; fills every slot with the best
+  item by item level; adds a whole named set, a legendary weapon with an on-hit proc, 50,000 gold
+  and the fastest mount, ridden.
+- **Balance:** `tools/balance/bosses.py` reads the same before and after (median worst 49%,
+  25 deaths in 180). Its heroes wear ordinary gear, and creatures' gear doesn't proc.
+  `tests/test_procs.py` covers each kind.

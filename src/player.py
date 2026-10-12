@@ -461,10 +461,12 @@ RESIST_KEYS = {
     'fire': ('fire_resist',), 'frost': ('cold_resist', 'frost_resist', 'ice_resist'),
     'lightning': ('lightning_resist', 'electric_resist', 'shock_resist'), 'poison': ('poison_resist', 'acid_resist'),
     'disease': ('disease_resist',), 'shadow': ('shadow_resist',), 'necrotic': ('necrotic_resist', 'shadow_resist'),
-    'holy': ('holy_resist',), 'arcane': ('arcane_resist',), 'nature': ('nature_resist',), 'sound': ('sound_resist',),
+    'holy': ('holy_resist',), 'arcane': ('arcane_resist',), 'nature': ('nature_resist', 'earth_resist'), 'sound': ('sound_resist',),
 }
+# set bonuses named the old way: (what the game reads, by how much)
+SET_STAT_AS = {'armor_class': ('armor', -5), 'curse_resist': ('spell_resist', 1)}
 RESIST_ALIASES = {'cold': 'frost', 'ice': 'frost', 'electric': 'lightning', 'shock': 'lightning', 'acid': 'poison',
-                  'plague': 'disease', 'negative': 'necrotic', 'death': 'necrotic', 'dark': 'shadow'}
+                  'plague': 'disease', 'earth': 'nature', 'negative': 'necrotic', 'death': 'necrotic', 'dark': 'shadow'}
 RESIST_CAP = 75
 
 
@@ -904,6 +906,8 @@ class Player(Character):
 
         if hasattr(self, 'affect_flags') and 'infravision' in self.affect_flags:
             return True
+        if self.get_equipment_bonus('detect_all'):      # a legendary's all-seeing eye
+            return True
 
         # Rogue night vision (thief/assassin) via high perception
         if getattr(self, 'char_class', '') in ('thief', 'assassin'):
@@ -968,7 +972,17 @@ class Player(Character):
                 for in_zone in (False, True) if zone == sid else (False,):
                     for kind, value in (get_set_bonus(sid, pieces, in_zone=in_zone) or {}).items():
                         if isinstance(value, (int, float)):
+                            # a set's armour class is better armour (lower AC: a negative
+                            # 'armor', as items give it); a curse ward is a spell ward
+                            kind, value = SET_STAT_AS.get(kind, (kind, 1))[0], value * SET_STAT_AS.get(kind, (kind, 1))[1]
                             totals[kind] = totals.get(kind, 0) + value
+        # what legendaries' standing procs add (procs.equip_totals)
+        try:
+            import procs
+            for kind, value in procs.equip_totals([it for it in eq.values() if it]).items():
+                totals[kind] = totals.get(kind, 0) + value
+        except Exception:
+            logger.exception('equip procs')
         self.__dict__['_gear_cache'] = (sig, totals)
         return totals
 
@@ -2798,6 +2812,11 @@ class Player(Character):
                 if 'ice_armor' in wards and random.random() < 0.25:
                     attacker.slowed_until = max(getattr(attacker, 'slowed_until', 0) or 0, time.time() + 3)
 
+        # what worn gear does when struck (procs.py): dread, a blow turned back, a frost aura
+        if amount > 0 and attacker is not None and damage_type == 'physical':
+            import procs
+            await procs.on_defend(self, attacker, amount, damage_type)
+
         # Warrior Ignore Pain absorption
         if hasattr(self, 'ignore_pain_absorb') and self.ignore_pain_absorb > 0:
             absorbed = min(amount, self.ignore_pain_absorb)
@@ -2849,6 +2868,11 @@ class Player(Character):
             amount = self.hp - 1
             self.warrior_death_save_rounds = 0
             await self.send(f"{c['bright_cyan']}Your Eternal Guardian saves you from death!{c['reset']}")
+        # a cocoon (procs.cheat_death): once a day the killing blow is turned aside
+        if amount >= self.hp > 0:
+            import procs
+            if await procs.cheat_death(self):
+                amount = 0
 
         # Damage reduction / PB mitigation (affects + stance + parry/shield skill interactions)
         effective_pb = self.get_pb_value() if hasattr(self, 'get_pb_value') else int(getattr(self, 'damage_reduction', 0))
