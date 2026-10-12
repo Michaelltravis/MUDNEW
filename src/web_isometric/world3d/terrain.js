@@ -1,6 +1,7 @@
 // Turns a room layout (MH.generateRoomTopDown: a 24x15 tile grid of FLOOR / BLOCK /
 // WATER with gaps, obstacles and props) into 3D at a world offset. 1 tile = 1 m.
 // World axes: x = east, z = south, y = up; a room's tile (0,0) corner sits at origin.
+import { isDeadly, deathTrap } from './deathtrap.js';
 import * as THREE from 'three';
 import { Batcher, trs } from './assets.js';
 import { cutout } from './cutout.js';
@@ -264,6 +265,8 @@ export function buildRoom(layout, ox, oz, kits, room) {
   // the country beyond the room's edge where the zone map has no room: no void
   if (!PAVED.has(theme) && !UNDERGROUND.has(theme) && room && room.zoneRef) fillerLand(ctx(), theme);
   if (!PAVED.has(theme) && kits.graveyard && isGraveyard(layout)) graveyard(ctx());
+  // a death trap: a ledge round a burning abyss, bones, skulls on poles at the ways in (deathtrap.js)
+  if (room && isDeadly(room.data ? room.data.flags : room.flags)) deathTrap(ctx());
   b.build(group);
   const doors = room ? exitFeatures(group, layout, ox, oz, room, kits, owned) : {};
   // flames: tiny HDR spheres so the bloom pass picks them up

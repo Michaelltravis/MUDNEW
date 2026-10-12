@@ -738,6 +738,26 @@ async function runGame() {
     }
     return best;
   }
+  // a way out into a death trap the hero hasn't dared, within reach: {dir, room, at, dist}
+  function nearestDeadly(maxDist) {
+    if (!heroRoom) return null;
+    const p = hero.root.position;
+    let best = null;
+    for (const [dir, e] of Object.entries(heroRoom.data.exits)) {
+      const to = zone.rooms.get(e.to);
+      if (!zone.deadly(to)) continue;
+      const at = doorAnchorWorld(heroRoom, dir) || zone.passageWorld(heroRoom, dir);
+      const dist = Math.hypot(p.x - at.x, p.z - at.z);
+      if (dist < maxDist && (!best || dist < best.dist)) best = { dir, room: to, at, dist };
+    }
+    return best;
+  }
+  const DEADLY_PROMPT = { key: 'E', text: 'Certain death lies beyond — go on anyway', tone: 'locked' };
+  let deadlyToast = 0;
+  function dareDeath(d) {
+    zone.dared.add(d.room.vnum);
+    hud.toast(`You steel yourself for ${d.room.data.name || 'what lies beyond'}…`);
+  }
   let doorBusy = 0;
   const doorAuto = new Map();          // dir -> when we last opened it by walking into it
   function sendDoor(dir, action) {
@@ -794,7 +814,7 @@ async function runGame() {
     if (answer) { MH.sendCommand(answer); drawReact(performance.now()); e.preventDefault(); return; }
     if (e.key.toLowerCase() !== 'e') return;
     const d = nearestDoor(2.6);
-    if (!d) return;
+    if (!d) { const dd = nearestDeadly(3.2); if (dd) dareDeath(dd); return; }
     const pr = doorPrompt(d.info);
     if (pr && pr.action) sendDoor(d.dir, pr.action);
     else if (pr) hud.toast(pr.text);
@@ -818,10 +838,12 @@ async function runGame() {
     const p = hero.root.position;
     const near = nearestDoor(2.6);
     const speed = ctl.vel.length();
+    const deadly = nearestDeadly(3.2);
     if (near && (near.info.closed || (near.dist < 1.8 && speed < 1)) && !near.info.broken) {
       const hatch = near.dir === 'up' || near.dir === 'down';
       prompt.show(near.at.clone().setY(hatch ? 1.7 : 2.8), doorPrompt(near.info));
-    } else prompt.hide();
+    } else if (deadly) prompt.show(deadly.at.clone().setY(2.8), DEADLY_PROMPT);
+    else prompt.hide();
     if (near && near.info.closed && near.dist < 1.2 && ctl.keys.size) {
       const w = ctl.wish();
       const dx = near.at.x - p.x, dz = near.at.z - p.z, l = Math.hypot(dx, dz) || 1;
@@ -1089,6 +1111,10 @@ async function runGame() {
       else if (ps && ps.blocked === 'combat') {
         if (now - leashToast > 2500) { leashToast = now; hud.toast("You're fighting! Flee to escape."); }
       } else if (ps && ps.blocked === 'door') pushingDoor(heroRoom, ps.dir, now);
+      else if (ps && ps.blocked === 'deadly' && now - deadlyToast > 3000) {
+        deadlyToast = now;
+        hud.toast('Certain death lies beyond. Press E to go on anyway.');
+      }
       doorTick(dt, now);
     } else prompt.hide();
     castbar.update();

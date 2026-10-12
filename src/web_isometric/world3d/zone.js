@@ -6,6 +6,7 @@
 import * as THREE from 'three';
 import { buildRoom, ROOM_W, ROOM_H, isIndoor } from './terrain.js';
 import { passageSpot, arrivalSpot, wantsPassage } from './passages.js';
+import { isDeadly } from './deathlogic.js';
 
 const FLOOR = 0, BLOCK = 1, WATER = 4;
 const LIGHTS = 6;
@@ -26,6 +27,7 @@ export class Zone {
     this.num = zm.zone;
     this.name = zm.name;
     this.rooms = new Map();
+    this.dared = new Set();     // death traps the hero chose to walk into anyway (E at the edge)
     this.cells = new Map();
     for (const r of zm.rooms) {
       const room = {
@@ -97,6 +99,8 @@ export class Zone {
     return null;
   }
   doorClosed(room, dir) { const d = room.doors[dir]; return !!(d && d.closed); }
+  // a death trap the hero hasn't dared: they stop at its edge (main.js asks)
+  deadly(room) { return !!room && isDeadly(room.data.flags) && !this.dared.has(room.vnum); }
 
   // can the hero's body stand at (x, z), coming from room `from`?
   blocked(x, z, from) {
@@ -105,6 +109,7 @@ export class Zone {
     if (from && r !== from) {
       const d = this.openDir(from, r);
       if (!d || this.doorClosed(from, d) || this.doorClosed(r, REV[d])) return true;
+      if (this.deadly(r)) return true;
     }
     const t = this.tile(r, x, z);
     if (t === BLOCK) return true;
@@ -155,6 +160,7 @@ export class Zone {
       }
       if (!want || (gate && !gate.canFire(d, now))) continue;
       if (this.doorClosed(room, d)) return { dir: d, exit: e, blocked: 'door' };
+      if (this.deadly(this.rooms.get(e.to))) return { dir: d, exit: e, blocked: 'deadly' };
       if (inCombat) return { dir: d, exit: e, blocked: 'combat' };
       return { dir: d, exit: e };
     }

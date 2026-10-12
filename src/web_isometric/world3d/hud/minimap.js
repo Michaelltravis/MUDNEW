@@ -1,6 +1,8 @@
 // Minimap from the zone map: every room as a tile in its cell, the rooms you have explored
 // brighter, shared openings as bridges, passages as dots, the hero as an arrow. Click a
 // room to walk there (main.js plans the route through open exits and stairs).
+import { isDeadly } from '../deathlogic.js';
+const DEADLY = '#8a1c14';
 const SECTOR = {
   inside: '#8a8a96', dungeon: '#6f6a78', cave: '#6a6052', city: '#c7ab7c', forest: '#4f8a46', field: '#86a85a',
   hills: '#7e9a5c', mountain: '#8a857a', desert: '#d6bd86', swamp: '#56664a', water_swim: '#3f7fb0',
@@ -35,8 +37,15 @@ export function createMinimap(root, onPick, onNorth = null, { cell = 1 } = {}) {
       if (x < -cw || y < -ch || x > W() + cw || y > H() + ch) continue;
       const seen = explored.has(r.vnum) || r === room;
       ctx.globalAlpha = seen ? 0.95 : 0.32;
-      ctx.fillStyle = SECTOR[r.data.look] || SECTOR[r.data.sector] || SECTOR.default;
+      const fill = isDeadly(r.data.flags) ? DEADLY : SECTOR[r.data.look] || SECTOR[r.data.sector] || SECTOR.default;
+      ctx.fillStyle = fill;
       ctx.beginPath(); ctx.roundRect(x + pad, y + pad, cw - pad * 2, ch - pad * 2, 3 * S); ctx.fill();
+      if (fill === DEADLY) {
+        // a death trap: red, a skull on it
+        ctx.font = `${10 * S}px sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillStyle = '#ffd9cf'; ctx.fillText('☠', x + cw / 2, y + ch / 2);
+        ctx.fillStyle = fill;
+      }
       // openings: little bridges across the shared edge; passages: dots on the edge
       for (const [d, e] of Object.entries(r.data.exits)) {
         if (d === 'east' && e.kind === 'open') { ctx.fillRect(x + cw - pad - 1, y + ch / 2 - 2 * S, pad * 2 + 2, 4 * S); continue; }
@@ -56,7 +65,7 @@ export function createMinimap(root, onPick, onNorth = null, { cell = 1 } = {}) {
           const py = d === 'north' ? y + pad : d === 'south' ? y + ch - pad : y + ch / 2;
           ctx.beginPath(); ctx.arc(px, py, 2.2 * S, 0, Math.PI * 2); ctx.fill();
         }
-        ctx.fillStyle = SECTOR[r.data.look] || SECTOR[r.data.sector] || SECTOR.default;
+        ctx.fillStyle = fill;
       }
     }
     ctx.globalAlpha = 1;
