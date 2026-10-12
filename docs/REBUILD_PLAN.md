@@ -1248,3 +1248,77 @@ could have applied anyway.
   - A boss's Fire Breath meets a fire ward, and the hero is told.
   - A creature's fireball meets a fire ward and spell resistance.
   - A creature's fire shield sears less behind a fire ward.
+
+### The world on the Bedlam atlas, step 1: imported, matched, indexed (Push 25) (owner: "use this map as a basis for all our zones… keep all the room names… ensure the exits go the correct directions… index everything and note where we need to build out each zone")
+The owner's atlas of Bedlam (`world/atlas/bedlam-atlas.html`) charts 91 zones and 8,038 rooms,
+with names, map positions, terrain, doors, and exits that use only north/east/south/west/up/down
+(as the game does).
+
+Our world shares its ancestry. Midgaard is the atlas's Garathorm, Rome is its Port Halyon, and
+Haon-Dor, Moria, Thalos, Arachnos, the Sewers, the High Tower, Drow City, the Great Pyramid,
+Rand's Tower and Welmar's Castle are all there. But names, exits and numbering have drifted.
+
+This push changes nothing in the game. It builds the tools, the room-by-room match and the index.
+The re-lay comes in Pushes 26-27, once the owner has reviewed the proposals.
+
+- **The owner's decisions:**
+  - The atlas's names win, so the city becomes Garathorm. Our descriptions are reused where
+    they fit.
+  - Roads, plains, wilderness and forests (the connectors) open with placeholder descriptions.
+    New cities and dungeons stay sealed until built.
+  - Our zones that aren't on the atlas join it through connectors.
+  - Water will need a boat or a raft.
+- **`tools/atlas/extract.py`** reads the atlas page into `world/atlas/bedlam.json`: areas, rooms,
+  exits, doors (closed or locked), map labels and line bends.
+- **`tools/atlas/match.py`** pairs the atlas with our rooms, one to one, in passes:
+  - the same vnum and a like name, with Midgaard read as Garathorm;
+  - the same vnum and exits that agree;
+  - the same name inside zones already linked;
+  - walking the same way out of paired rooms, first by name and then by position.
+  - It drops coincidences of numbering. A link with no truly alike name is dropped whole, and a
+    lone pair stays only when vnum and name both agree.
+  - 1,142 atlas rooms pair with ours. 18 atlas zones are ours already, 9 are like one of ours
+    (Tunnel of Sticks, Castle of the Apocalypse, Elven Village, Northern Wilderness, Minos, the
+    god rooms, the stables, the arena), and 64 are new.
+- **Game vnums** (`world/atlas/vnums.json`):
+  - A paired room keeps our vnum, so spawns, shops, quests and tests stay valid.
+  - In a similar zone, the atlas room that takes over a room of ours keeps that room's vnum.
+  - A new room uses its atlas id. If that id is held by a different room of ours (Eden and our
+    Straight Path, Ancalador and New Thalos, and others), it becomes 200000 + id. That applies
+    to 324 rooms.
+- **Our rooms the atlas lacks** (159, in 79 groups):
+  - **Annex:** a group with a service or a real place stays and hangs off a free side of the
+    atlas room beside it: the Grunting Boar Inn, the bank, the pet shop, the guilds, Welmar's
+    prison.
+  - **Move:** a group with only creatures or items gives them to the atlas room beside it.
+  - **Drop:** a bare path goes; the atlas has its own way there.
+- **Hookups for our zones off the atlas** (32 zones):
+  - Each joins at the room and side it hangs off now when the atlas leaves that side free:
+    the Newbie Zone on the Great Field, Redferne's house, Khaz-Durum, the Sunken Ruins.
+  - Otherwise it joins the nearest free side: a dungeon's own rooms first (the Mindflayer's
+    Lair in the Sewer), then a connector. The Northern Wilderness chain moves onto the atlas's
+    Northern Wilderness.
+  - A zone that also has a compass way in drops its old named way (New Thalos's arch).
+  - No side is given twice.
+- **`tools/atlas/index.py`** writes `docs/world/ATLAS_INDEX.md` and `world/atlas/index.json`.
+  - **The owner's review list:** the hookups, the similar zones, and our rooms the atlas lacks.
+  - **The build-out queue** (90 zones): open zones first, nearest the temple first.
+  - **For every zone:**
+    - status, open or sealed, rooms, levels and terrain;
+    - creatures, items, bosses and services, and a level band (suggested from neighbours
+      when there are no creatures);
+    - every cross-zone link;
+    - what it needs.
+  - **Totals:**
+    - 6,753 rooms need descriptions, and 186 borrowed ones need checking;
+    - 389 of our rooms' exits differ from the atlas (the atlas wins);
+    - the atlas has 672 one-way exits and 154 rooms with no way out;
+    - there are 558 water rooms, and 11 places give a boat today.
+- **`world/atlas/overrides.json`** holds the owner's corrections: similar pairs, connectors,
+  zones kept beside the city, room pairings and hookups. The tools rerun from it.
+- **Tests:** `tests/test_atlas.py`:
+  - the import is whole, and the matcher is deterministic;
+  - every atlas room has one game vnum, and every room of ours is accounted for once;
+  - hookups and annexes land on free sides, never twice, and every zone of ours has a way in;
+  - the Newbie Zone stays on the Great Field;
+  - the index covers every zone and room.

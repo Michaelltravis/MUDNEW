@@ -1,0 +1,34 @@
+{
+ "_about": "Hand-kept choices for the atlas tools (tools/atlas/match.py reads this). Edit and rerun `python3 tools/atlas/match.py && python3 tools/atlas/index.py`. Area ids are the atlas's (world/atlas/bedlam.json); zones are ours.",
+
+ "_similar": "Atlas areas with the same theme as one of our zones but different rooms: the atlas layout replaces ours and our content moves onto it.",
+ "similar": {
+  "34": [210],
+  "56": [220],
+  "57": [220],
+  "17": [110],
+  "73": [66],
+  "116": [9],
+  "33": [12],
+  "22": [32],
+  "138": [250]
+ },
+
+ "_connectors": "Roads, plains, wilderness, forests, rivers and seas that join the other zones: open now, with placeholder descriptions where the room is new.",
+ "connectors": [8, 10, 35, 40, 72, 73, 71, 121, 41, 15, 90, 48, 51, 25, 13],
+
+ "_open_too": "Atlas-only areas that open with the connectors although they are not connectors (part of the city).",
+ "open_too": [3],
+
+ "_city_annex": "Our zones that stay beside the city when the atlas leaves them a free side there (otherwise they too take a connector).",
+ "city_annex": [186, 260, 250, 200, 79, 36],
+
+ "_internal": "Our zones that are not places (Limbo, the marquee quest creatures).",
+ "internal": [0, 97],
+
+ "_rooms": "Room pairings the matcher could not find or got wrong: {atlas id: our vnum} (null: never match this atlas room).",
+ "rooms": {},
+
+ "_hookups": "Where an ours-only zone joins the atlas world, when the proposal should change: {our zone: {\"atlas_room\": id, \"dir\": \"north\", \"zone_room\": our vnum}}.",
+ "hookups": {}
+}
