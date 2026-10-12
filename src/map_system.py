@@ -684,6 +684,15 @@ def _mount_info(player):
     }
 
 
+def _speed(player):
+    """How fast the player travels, a multiple of walking pace (mounts.travel_speed)."""
+    try:
+        from mounts import travel_speed
+        return travel_speed(player)
+    except Exception:
+        return 1.0
+
+
 def _intent_public(entity):
     """A mob's declared wind-up in client shape, or None. Covers both the
     mob_ai pending_intent system and the bosses.py cast telegraphs, so the
@@ -1451,6 +1460,9 @@ def _room_entities(room, vnum, player):
                     **_pos_fields(entity),
                     'groupmate': bool(getattr(player, 'group', None)) and getattr(entity, 'group', None) is getattr(player, 'group', None),
                     'look': _look(entity),
+                    # what they ride and how fast they go (others see them on their steed)
+                    'mount': (_mount_info(entity) or {}).get('key') or None,
+                    'speed': _speed(entity),
                     **_ally_combat(entity, player),
                 })
 
@@ -1780,6 +1792,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'aura': _worn_aura(player),
             'look': _look(player),
             'mount': _mount_info(player),
+            'speed': _speed(player),          # the 3D hero runs this much faster (Push 34)
             'position': getattr(player, 'position', 'standing'),
             'autoloot': bool(getattr(player, 'autoloot', False)),
             'autogold': bool(getattr(player, 'autogold', True)),

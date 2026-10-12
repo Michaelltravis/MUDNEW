@@ -1868,6 +1868,14 @@ class CombatHandler:
             except Exception as e:
                 logger.debug(f"Legendary drop check error: {e}")
 
+        # a boss's rare mount (mounts.BOSS_MOUNTS)
+        if not hasattr(victim, 'connection') and hasattr(exp_recipient, 'owned_mounts'):
+            try:
+                from mounts import boss_mount_drop
+                await boss_mount_drop(exp_recipient, victim)
+            except Exception:
+                logger.exception('boss mount drop')
+
         # On-kill procs (procs.py)
         try:
             import procs

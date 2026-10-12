@@ -3147,6 +3147,17 @@ class Player(Character):
         # Process bard performance
         await self.process_performance_tick()
 
+        # a ridden mount grows hungry, a point of loyalty every other minute (feeding restores it);
+        # a neglected one carries you slower (Mount.travel_bonus)
+        if getattr(self, 'mount', None) is not None and hasattr(self.mount, 'tick_loyalty'):
+            self._mount_minutes = (getattr(self, '_mount_minutes', 0) or 0) + 1
+            if self._mount_minutes % 2 == 0:
+                before = self.mount.loyalty
+                self.mount.tick_loyalty()
+                if before > 25 >= self.mount.loyalty:
+                    c = self.config.COLORS
+                    await self.send(f"{c['yellow']}{self.mount.name.capitalize()} is hungry and flagging. (feed it){c['reset']}")
+
         # Warrior Momentum decay out of combat
         if hasattr(self, 'momentum') and self.momentum > 0:
             if not self.is_fighting:

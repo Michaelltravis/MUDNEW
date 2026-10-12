@@ -1009,6 +1009,14 @@ HELP_TOPICS = {'auction': {'category': 'command',
              'description': 'Dismiss a pet or companion. Usage: dismiss <pet name>',
              'syntax': 'dismiss <pet name>',
              'title': 'Dismiss'},
+ 'ride': {'category': 'command',
+          'description': 'Ride several rooms in one go while mounted: ride n n 3e, or ride nnee. '
+                         'Up to 10 steps; you rein in at a closed door, water you cannot cross, '
+                         'a fight, or a hostile creature in your way. A mount also makes you '
+                         'travel faster in 3D (+15% to +60% by mount, more with haste) and '
+                         'halves what moving costs you.',
+          'syntax': 'ride <directions>',
+          'title': 'Ride'},
  'dismount': {'category': 'command',
               'description': 'Dismount your current mount.',
               'syntax': 'dismount',
@@ -2264,15 +2272,22 @@ HELP_TOPICS = {'auction': {'category': 'command',
            'description': 'Mount a creature you own.\n\n'
                           'With no arguments, lists your owned mounts.\n'
                           'Mounts increase movement speed and may provide combat bonuses.\n\n'
-                          'MOUNT TYPES:\n'
-                          '  Horse           - +50% speed, 2,000 gold (stables)\n'
-                          '  War Horse       - +50% speed, +2 damroll, stays mounted in combat, 5,000 gold\n'
-                          '  Nightmare       - +75% speed, fire aura damage, Dark Brotherhood faction reward\n'
-                          '  Griffin         - +100% speed, can fly over impassable terrain, rare Shadowspire drop\n'
-                          '  Clockwork Steed - +75% speed, never tires, rare Clockwork Foundry drop\n\n'
-                          'You are automatically dismounted when entering combat unless riding a\n'
-                          'War Horse or Nightmare. Use FEED to keep mount loyalty up.\n\n'
-                          'See also: dismount, stable, feed, mounts',
+                          'Riding makes you travel faster (the 3D hero runs faster) and halves\n'
+                          'what moving costs you; a hungry mount carries you slower. Haste stacks.\n\n'
+                          'MOUNT TYPES (travel speed):\n'
+                          '  Donkey / Pony   - +15% / +20%, 600 / 900 gold (stables)\n'
+                          '  Horse           - +35%, 2,000 gold (stables)\n'
+                          '  War Horse       - +30%, +2 damroll, stays mounted in combat, 5,000 gold\n'
+                          '  Nightmare       - +50%, fire aura, Dark Brotherhood exalted\n'
+                          '  Moonstag        - +45%, Elven Court exalted\n'
+                          '  Stoneboar       - +30%, +1 damroll, fights with you, Dwarven Kingdom exalted\n'
+                          '  Guard Warhorse  - +30%, +3 damroll, fights with you, Garathorm Guard exalted\n'
+                          '  Merchant Camel  - +25%, never tires, Merchant League exalted\n'
+                          '  Griffin         - +60%, flies over rough ground, won from the Roc Matriarch\n'
+                          '  Clockwork Steed - +50%, never tires, won from the Carillon Engine\n\n'
+                          'You are automatically dismounted when entering combat unless your mount\n'
+                          'fights with you. Use FEED to keep loyalty up; RIDE to speedwalk.\n\n'
+                          'See also: dismount, stable, feed, mounts, ride',
            'syntax': 'mount [name]',
            'title': 'Mount'},
  'mounts': {'category': 'command',

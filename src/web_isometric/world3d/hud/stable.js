@@ -15,10 +15,10 @@ export function createStable(root, { fetchStable, send }) {
     const m = data.mounts || { owned: [], purchasable: [] };
     const owned = (m.owned || []).map(x => `<div class="sh-row">
         <div class="sb-main"><div class="sb-name">${esc(x.name)}${x.active ? ' <span class="al-pts">riding</span>' : ''}</div>
-          <div class="sb-cost">+${x.speed_bonus || 0}% speed${x.can_fly ? ' · flies' : ''}${x.combat_ok ? ' · fights' : ''} · loyalty ${x.loyalty}</div></div>
+          <div class="sb-cost">+${x.travel ?? 0}% speed${x.can_fly ? ' · flies' : ''}${x.combat_ok ? ' · fights' : ''} · loyalty ${x.loyalty}</div></div>
         ${x.active ? '<button class="tr-buy" data-cmd="dismount">Dismount</button>' : `<button class="tr-buy" data-cmd="mount ${esc(x.key)}">Mount</button>`}</div>`).join('');
     const buy = (m.purchasable || []).map(x => `<div class="sh-row ${x.afford && m.at_stable ? '' : 'no'}">
-        <div class="sb-main"><div class="sb-name">${esc(x.name)}</div><div class="sb-cost">${esc(x.description || '')} · +${x.speed_bonus || 0}% speed${x.can_fly ? ' · flies' : ''}</div></div>
+        <div class="sb-main"><div class="sb-name">${esc(x.name)}</div><div class="sb-cost">${esc(x.description || '')} · +${x.travel ?? 0}% speed${x.can_fly ? ' · flies' : ''}</div></div>
         <div class="sh-price">${(x.cost || 0).toLocaleString()}</div>
         <button class="tr-buy" data-cmd="stable buy ${esc(x.key)}" ${x.afford && m.at_stable ? '' : 'disabled'}>Buy</button></div>`).join('');
     const pets = [...(data.pets || []).map(p => ({ ...p, kind: p.type })), ...(data.companions || []).map(c => ({ ...c, kind: c.role }))]

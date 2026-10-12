@@ -6,6 +6,7 @@ All player commands and their implementations.
 
 import logging
 import random
+import re
 import time
 from typing import List, TYPE_CHECKING
 
@@ -1024,12 +1025,17 @@ class CommandHandler:
         # bonus — a neglected mount carries you no faster than a half-hearted
         # trot — and a flying mount soars over rough ground, paying only the
         # base sector cost instead of the terrain/weather/sneak surcharges.
+        # The saving is kept to the fraction (a horse on a road costs a point every other step,
+        # not a point every step as the old max(1, ...) floor had it), and the floor is 0 only
+        # for a step the mount carried.
         if player.mount:
             loyalty_speed = getattr(player.mount, 'loyalty_speed', None)
             bonus = loyalty_speed() if callable(loyalty_speed) else getattr(player.mount, 'speed_bonus', 0.5)
             if getattr(player.mount, 'can_fly', False):
                 move_cost = min(move_cost, max(1, sector['move_cost']))
-            move_cost = max(1, int(move_cost * (1 - bonus)))
+            owed = move_cost * (1 - bonus) + (getattr(player, '_ride_owed', 0.0) or 0.0)
+            move_cost = int(owed)
+            player._ride_owed = owed - move_cost
 
         return move_cost
         
@@ -16512,6 +16518,58 @@ class CommandHandler:
     async def cmd_mounts(cls, player: 'Player', args: List[str]):
         """List your owned mounts."""
         await cls.cmd_mount(player, [])
+
+    RIDE_DIRS = {'n': 'north', 's': 'south', 'e': 'east', 'w': 'west', 'u': 'up', 'd': 'down'}
+    RIDE_MAX = 10
+
+    @classmethod
+    def ride_steps(cls, args: List[str]) -> List[str]:
+        """'n n 3e' / 'nnee' / 'north 2west' as a list of directions (at most RIDE_MAX)."""
+        steps = []
+        for tok in args:
+            tok = tok.lower().strip(',')
+            m = re.match(r'^(\d+)?([a-z]+)$', tok)
+            if not m:
+                return []
+            n, word = int(m.group(1) or 1), m.group(2)
+            full = word if word in cls.RIDE_DIRS.values() else cls.RIDE_DIRS.get(word)
+            if full:
+                steps += [full] * n
+            elif all(ch in cls.RIDE_DIRS for ch in word) and m.group(1) is None:
+                steps += [cls.RIDE_DIRS[ch] for ch in word]
+            else:
+                return []
+        return steps[:cls.RIDE_MAX]
+
+    @classmethod
+    async def cmd_ride(cls, player: 'Player', args: List[str]):
+        """Ride several rooms at once: ride n n 3e (or nnee). Up to 10 steps, mounted. You rein in
+        at a closed door, water you can't cross, a fight, or a hostile creature in your way."""
+        c = player.config.COLORS
+        if not player.mount:
+            await player.send(f"{c['yellow']}You need to be mounted to ride. (mount <name>){c['reset']}")
+            return
+        steps = cls.ride_steps(args)
+        if not steps:
+            await player.send(f"{c['yellow']}Ride where? e.g. ride n n 3e  (or: ride nnee){c['reset']}")
+            return
+        await player.send(f"{c['cyan']}You spur {player.mount.name} on.{c['reset']}")
+        done = 0
+        for d in steps:
+            if player.is_fighting or not player.mount:
+                break
+            here = player.room
+            await cls.cmd_move(player, d)
+            if player.room is here:
+                break                    # a door, water, no way: cmd_move said why
+            done += 1
+            danger = [m for m in player.room.characters
+                      if m is not player and 'aggressive' in (getattr(m, 'flags', None) or ()) and getattr(m, 'hp', 0) > 0]
+            if danger and done < len(steps):
+                await player.send(f"{c['red']}You rein in: {danger[0].name} bars the way.{c['reset']}")
+                break
+        if done < len(steps) and done:
+            await player.send(f"{c['yellow']}You rode {done} of {len(steps)} steps.{c['reset']}")
 
     # ==================== COMBAT COMPANIONS ====================
 

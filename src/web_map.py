@@ -1113,6 +1113,7 @@ class WebMapServer:
                             'key': key, 'name': tpl.get('name', key),
                             'description': tpl.get('description', ''),
                             'speed_bonus': tpl.get('speed_bonus', 0),
+                            'travel': int(round(tpl.get('travel', 0.3) * 100)),      # +35% speed
                             'can_fly': bool(tpl.get('can_fly')), 'combat_ok': bool(tpl.get('combat_ok')),
                             'loyalty': (m.get('loyalty', 100) if isinstance(m, dict) else 100),
                             'active': key == cur_key,
@@ -1135,6 +1136,7 @@ class WebMapServer:
                             'key': k, 'name': v.get('name', k), 'cost': v.get('cost', 0),
                             'description': v.get('description', ''),
                             'speed_bonus': v.get('speed_bonus', 0), 'can_fly': bool(v.get('can_fly')),
+                            'travel': int(round(v.get('travel', 0.3) * 100)),
                             'afford': getattr(player, 'gold', 0) >= v.get('cost', 0),
                         })
                     data = {
