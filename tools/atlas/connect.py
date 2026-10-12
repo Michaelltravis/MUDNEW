@@ -6,7 +6,8 @@ Excepted: rooms flagged deathtrap/death and the rooms beyond a one-way exit into
 meant to kill). Each round works out what the temple reaches and what reaches the temple over
 open rooms, then joins what is cut off, in this order of preference:
   1. our own old way (from the world before the re-lay) between rooms that both still exist,
-     when the side is free;
+     when the side is free; when it isn't, the atlas's own way out of that land walked back,
+     and failing that another free side;
   2. the way back along a one-way exit, when its opposite side is free;
   3. water: a river whose current runs one way flows both ways (you're in a boat anyway);
   4. a room one cell away on the atlas map (same zone, same level), both sides free.
@@ -53,6 +54,24 @@ def death_region(rooms, open_vnums):
     return deadly
 
 
+def _way_out(rooms, u, unreach, reach, fwd, free):
+    """The atlas's own way out of the land cut off around u: the nearest room on foot from u (over
+    rooms the temple doesn't reach) with a compass exit into a room it does reach, whose opposite
+    side there is free. Returns (that room, the way out, the reached room), or None."""
+    seen, q = {u}, collections.deque([u])
+    while q:
+        y = q.popleft()
+        for d in COMPASS:
+            t = _to((rooms[y].get('exits') or {}).get(d))
+            if t in reach and free(t, OPP[d]):
+                return y, d, t
+        for t in sorted(fwd.get(y, ())):
+            if t in unreach and t not in seen:
+                seen.add(t)
+                q.append(t)
+    return None
+
+
 def add_exit(rooms, a, d, b, why, log, name=None):
     rooms[a].setdefault('exits', {})[d] = {'to_room': b, 'description': f"To the {d} lies {name or rooms[b].get('name', 'somewhere')}."}
     log.append({'from': a, 'dir': d, 'to': b, 'why': why})
@@ -80,8 +99,11 @@ def connect(rooms, open_vnums, old_rooms, renumber=None, temple=3001, max_rounds
         def free(v, d):
             return d not in (rooms[v].get('exits') or {})
 
-        # 1. our own old ways (a room that was replaced counts as the one standing in for it; an old
-        #    named way, the arena's or a portal's, takes a free side, up and down first)
+        # 1. our own old ways (a room that was replaced counts as the one standing in for it). One
+        #    that can't keep its own direction gives way to the atlas's own way out of that land,
+        #    walked back (the gods' rooms lie up from the temple because the atlas goes down from
+        #    them to it); failing that, it takes a free side, up and down first (an old named way,
+        #    the arena's or a portal's, always does)
         for u in sorted(unreach):
             done = False
             for x, r in old_rooms.items():
@@ -91,13 +113,23 @@ def connect(rooms, open_vnums, old_rooms, renumber=None, temple=3001, max_rounds
                 for d, ex in (r.get('exits') or {}).items():
                     if stand(_to(ex)) != u:
                         continue
-                    sides = ([d] if d in COMPASS else []) + [k for k in ('up', 'down', 'north', 'east', 'south', 'west') if k != d]
-                    for dd in sides:
-                        if free(xs, dd) and free(u, OPP[dd]):
-                            add_exit(rooms, xs, dd, u, 'our old way in', log)
-                            add_exit(rooms, u, OPP[dd], xs, 'our old way in (back)', log)
+                    if d in COMPASS and free(xs, d) and free(u, OPP[d]):
+                        add_exit(rooms, xs, d, u, 'our old way in', log)
+                        add_exit(rooms, u, OPP[d], xs, 'our old way in (back)', log)
+                        done = True
+                    elif d in COMPASS:
+                        out = _way_out(rooms, u, unreach, reach, fwd, free)
+                        if out:
+                            y, dy, xo = out
+                            add_exit(rooms, xo, OPP[dy], y, 'the atlas way out, walked back', log)
                             done = True
-                            break
+                    if not done:
+                        for dd in [k for k in ('up', 'down', 'north', 'east', 'south', 'west') if k != d]:
+                            if free(xs, dd) and free(u, OPP[dd]):
+                                add_exit(rooms, xs, dd, u, 'our old way in', log)
+                                add_exit(rooms, u, OPP[dd], xs, 'our old way in (back)', log)
+                                done = True
+                                break
                     if done:
                         break
                 if done:

@@ -1398,10 +1398,12 @@ from git (`PRE_RELAY_REV`), so it reproduces byte for byte.
 - **Our 32 zones off the atlas** join at the 21 reviewed hookups.
 - **Every room connects** (`tools/atlas/connect.py`):
   - The temple reaches every open room, and you can walk back from each.
-  - What the atlas left unjoined got a way, 78 in all (each in `world/atlas/connections.json`
+  - What the atlas left unjoined got a way, 77 in all (each in `world/atlas/connections.json`
     with its reason):
-    - 16 of our own old ways in (Drow City from the desert, the arena, the god rooms by the
-      temple, Minos);
+    - 14 of our own old ways in (Drow City from the desert, the arena, Minos);
+    - 1 of the atlas's own ways out, walked back: the god rooms lie up from the temple, as they
+      always did, because the atlas goes down from them to it (our old `up` couldn't keep its
+      direction: the atlas uses the god room's `down` for its stairs);
     - 11 of our own old ways out (Arachnos);
     - 31 ways back along one-way entries;
     - 18 ways to rooms drawn close by on the map (Minos's pits, two cells apart);

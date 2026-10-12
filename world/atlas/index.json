@@ -196,8 +196,7 @@
    ],
    "links": {
     "30": [
-     "The Board Room of the Immortals (1200) down to The Temple Of Garathorm (3001)",
-     "The Board Room of the Immortals (1204) up to The Temple Of Garathorm (3001)"
+     "The Board Room of the Immortals (1200) down to The Temple Of Garathorm (3001)"
     ],
     "120": [
      "The Board Room of the Immortals (1204) east to Blindingly Lit Hallway (12202)"
@@ -208,7 +207,6 @@
    },
    "one_way": [
     "1200 north -> 1203",
-    "1200 down -> 3001",
     "1201 north -> 1826",
     "1203 down -> 1200",
     "1204 north -> 1204",
@@ -218,12 +216,6 @@
    "locked_doors_left_unlocked": [],
    "water_rooms": [],
    "connections_added": [
-    {
-     "from": 1204,
-     "dir": "up",
-     "to": 3001,
-     "why": "our old way in (back)"
-    },
     {
      "from": 1203,
      "dir": "west",
@@ -245,7 +237,7 @@
    "status": "ours (off the atlas)",
    "state": "open",
    "rooms": 41,
-   "steps_from_temple": 33,
+   "steps_from_temple": 32,
    "terrain": [
     [
      "inside",
@@ -502,7 +494,7 @@
    ],
    "links": {
     "12": [
-     "The Temple Of Garathorm (3001) down to The Board Room of the Immortals (1204)"
+     "The Temple Of Garathorm (3001) up to The Board Room of the Immortals (1200)"
     ],
     "50": [
      "The Quay (3049) south to On The River (3203)"
@@ -558,9 +550,9 @@
    "connections_added": [
     {
      "from": 3001,
-     "dir": "down",
-     "to": 1204,
-     "why": "our old way in"
+     "dir": "up",
+     "to": 1200,
+     "why": "the atlas way out, walked back"
     },
     {
      "from": 3044,
@@ -1165,7 +1157,7 @@
    "status": "matched",
    "state": "open",
    "rooms": 100,
-   "steps_from_temple": 22,
+   "steps_from_temple": 21,
    "terrain": [
     [
      "inside",
@@ -1289,7 +1281,7 @@
    "status": "matched",
    "state": "open",
    "rooms": 49,
-   "steps_from_temple": 31,
+   "steps_from_temple": 30,
    "terrain": [
     [
      "city",
@@ -1333,7 +1325,7 @@
    "status": "matched",
    "state": "open",
    "rooms": 59,
-   "steps_from_temple": 34,
+   "steps_from_temple": 33,
    "terrain": [
     [
      "inside",
@@ -1399,7 +1391,7 @@
    "status": "ours (off the atlas)",
    "state": "open",
    "rooms": 285,
-   "steps_from_temple": 22,
+   "steps_from_temple": 21,
    "terrain": [
     [
      "inside",
@@ -2584,7 +2576,7 @@
    "status": "ours (off the atlas)",
    "state": "open",
    "rooms": 5,
-   "steps_from_temple": 37,
+   "steps_from_temple": 36,
    "terrain": [
     [
      "flying",
@@ -2807,7 +2799,7 @@
    "status": "matched",
    "state": "open (connector)",
    "rooms": 350,
-   "steps_from_temple": 2,
+   "steps_from_temple": 3,
    "terrain": [
     [
      "inside",
@@ -3519,7 +3511,7 @@
    "status": "ours (off the atlas)",
    "state": "open",
    "rooms": 26,
-   "steps_from_temple": 38,
+   "steps_from_temple": 37,
    "terrain": [
     [
      "planar",
@@ -4295,7 +4287,7 @@
    "status": "ours (off the atlas)",
    "state": "open",
    "rooms": 19,
-   "steps_from_temple": 52,
+   "steps_from_temple": 51,
    "terrain": [
     [
      "forest",
@@ -6399,7 +6391,7 @@
    "status": "atlas-only",
    "state": "sealed until built",
    "rooms": 44,
-   "steps_from_temple": 22,
+   "steps_from_temple": 21,
    "terrain": [
     [
      "inside",
@@ -11974,7 +11966,7 @@
    "status": "atlas-only",
    "state": "sealed until built",
    "rooms": 86,
-   "steps_from_temple": 28,
+   "steps_from_temple": 29,
    "terrain": [
     [
      "city",
@@ -12128,7 +12120,7 @@
    "status": "atlas-only",
    "state": "sealed until built",
    "rooms": 21,
-   "steps_from_temple": 39,
+   "steps_from_temple": 40,
    "terrain": [
     [
      "city",
@@ -12209,7 +12201,7 @@
    "status": "atlas-only",
    "state": "sealed until built",
    "rooms": 98,
-   "steps_from_temple": 33,
+   "steps_from_temple": 34,
    "terrain": [
     [
      "inside",
@@ -12375,7 +12367,7 @@
    "status": "atlas-only",
    "state": "sealed until built",
    "rooms": 22,
-   "steps_from_temple": 31,
+   "steps_from_temple": 32,
    "terrain": [
     [
      "inside",
@@ -15287,9 +15279,9 @@
  "queue": [
   30,
   12,
-  120,
   403,
   408,
+  120,
   50,
   250,
   72,
@@ -15313,10 +15305,10 @@
   441,
   448,
   9,
-  33,
   15,
-  63,
+  33,
   53,
+  63,
   210,
   25,
   64,
@@ -15362,13 +15354,13 @@
   445,
   488,
   491,
-  496,
   419,
-  495,
+  496,
   416,
   449,
-  494,
+  495,
   461,
+  494,
   464,
   439,
   436,
