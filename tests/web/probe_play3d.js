@@ -199,6 +199,48 @@ async function waitFor(page, fn, arg, secs = 60) {
     await page.evaluate(me => MH.sendCommand(`restore ${me}`, false), me);
   }
 
+  if (MODE === 'dnd') {
+    // drag and drop gear: two rings onto both fingers, a helm off onto the pack, rings lit only
+    // on the fingers while dragged
+    check(await goto(3001), 'in the Temple of Garathorm (3001)');
+    await page.evaluate(() => { for (const c of ['remove all', 'oload 904', 'oload 904', 'oload 2570', 'wear cowl']) MH.sendCommand(c, false); });
+    await sleep(1500);
+    await page.evaluate(() => MH.refreshState && MH.refreshState());
+    await sleep(1200);
+    await page.keyboard.press('i');
+    await waitFor(page, () => !document.getElementById('inventory').classList.contains('hidden'), null, 10);
+    const RING = '#inventory .inv-bag .inv-cell[data-name="a platinum ring"]';
+    console.log('pack:', JSON.stringify(await page.evaluate(() => [...document.querySelectorAll('#inventory .inv-bag .inv-cell[data-name]')].map(e => e.dataset.name))),
+      'state:', JSON.stringify(await page.evaluate(() => (MH.state.player.inventory || []).map(i => i.short))));
+    check(await waitFor(page, s => document.querySelectorAll(s).length >= 2, RING, 15), 'platinum rings in the pack');
+    const src = await page.$(RING);
+    const sb = await src.boundingBox();
+    const f1 = await (await page.$('#inventory .inv-slot[data-slot="finger1"]')).boundingBox();
+    await page.mouse.move(sb.x + sb.width / 2, sb.y + sb.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(sb.x + sb.width / 2 + 30, sb.y + sb.height / 2 + 10, { steps: 4 });
+    await sleep(200);
+    const lit = await page.evaluate(() => [...document.querySelectorAll('#inventory .inv-slot.can-drop')].map(e => e.dataset.slot));
+    check(JSON.stringify(lit) === JSON.stringify(['finger1', 'finger2']), `dragging a ring lights both fingers, and only them (${lit})`);
+    await page.mouse.move(f1.x + f1.width / 2, f1.y + f1.height / 2, { steps: 8 });
+    await page.mouse.up();
+    await sleep(1500);
+    await sleep(500);
+    await page.dragAndDrop(RING, '#inventory .inv-slot[data-slot="finger2"]');
+    await sleep(1500);
+    const eq = await page.evaluate(() => { const e = MH.state.player.equipment || {}; return [e.finger1 && e.finger1.name, e.finger2 && e.finger2.name, e.head && e.head.name]; });
+    check(/ring/.test(eq[0] || '') && /ring/.test(eq[1] || ''), `a platinum ring on each finger (${eq[0]} / ${eq[1]})`);
+    await page.screenshot({ path: path.join(OUT, 'gear-rings.png') });
+    if (eq[2]) {
+      await page.dragAndDrop('#inventory .inv-slot[data-slot="head"] .inv-cell', '#inventory .inv-bag');
+      await sleep(1500);
+      const head = await page.evaluate(() => (MH.state.player.equipment || {}).head);
+      check(!head, 'the cowl dragged onto the pack comes off');
+    }
+    await page.evaluate(() => { for (const c of ['remove all', ...Array(16).fill('drop ring'), 'drop cowl']) MH.sendCommand(c, false); });
+    await sleep(800);
+  }
+
   if (MODE === 'ambient') {
     // the world's murmurs as sound and cue, never chat: beside the weaponsmith the hammer rings;
     // in the castle's Entrance Chambers no town sound, and the gate guardians north are heard

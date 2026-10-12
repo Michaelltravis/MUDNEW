@@ -60,7 +60,7 @@ class CommandHandler:
         'ge': 'get', 'ta': 'take', 'pi': 'pick',
         'pu': 'put', 'dp': 'drop',
         'gi': 'give',
-        'we': 'wear', 'wi': 'wield', 'ho': 'wield', 'rem': 'remove',
+        'we': 'wear', 'wi': 'wield', 'ho': 'hold', 'rem': 'remove',
         'c': 'cast',
         'pr': 'practice',
         'whe': 'where',
@@ -9136,174 +9136,175 @@ class CommandHandler:
         await player.send(f"{c['red']}You don't have '{item_name}'.{c['reset']}")
 
     @classmethod
+    def _what_and_where(cls, player, args, find):
+        """(item, slot) from "wear <item> [slot]": the whole of it names the item if it can
+        ("a ring of light"), else the last word may name the slot ("2.ring finger2")."""
+        from equip import slot_word
+        name = ' '.join(args).lower()
+        item = find(player, name)
+        if item is None and len(args) > 1 and slot_word(args[-1]):
+            item = find(player, ' '.join(args[:-1]).lower())
+            if item is not None:
+                return item, slot_word(args[-1])
+        return item, None
+
+    @classmethod
+    async def _put_on(cls, player, item, slot, you='wear', they='wears'):
+        """Put `item` (carried) in `slot`; what was there goes back to the pack (a swap)."""
+        old = player.equipment.get(slot)
+        if old is not None:
+            player.equipment[slot] = None
+            player.inventory.append(old)
+            await cls._record_collection_item(player, old)
+            await player.send(f"You remove {old.short_desc}.")
+        if item in player.inventory:
+            player.inventory.remove(item)
+        player.equipment[slot] = item
+        await player.send(f"You {you} {item.short_desc}.")
+        if player.room:
+            await player.room.send_to_room(f"{player.name} {they} {item.short_desc}.", exclude=[player])
+
+    @staticmethod
+    def _slot_names(slots):
+        nice = {'finger1': 'left finger', 'finger2': 'right finger', 'neck1': 'neck', 'neck2': 'neck',
+                'wrist1': 'left wrist', 'wrist2': 'right wrist', 'dual_wield': 'off hand', 'wield': 'main hand'}
+        return ' or '.join(dict.fromkeys(nice.get(s, s) for s in slots))
+
+    @classmethod
     async def cmd_wear(cls, player: 'Player', args: List[str]):
-        """Wear an item or 'wear all' to wear everything you can."""
-        from objects import infer_wear_slot
+        """Wear an item, or 'wear all'. "wear <item> <slot>" puts it in that slot (finger1,
+        finger2, neck2, ...), swapping out what is there; a ring goes on either finger. In
+        /play, drag it from your pack onto the slot."""
+        from equip import find_carried, slots_for, free_slot, slot_kind, PAIRS
         if not args:
             await player.send("Wear what?")
             return
 
-        item_name = ' '.join(args).lower()
-        # types that are never "worn" (they're wielded, used, or just carried)
-        non_wearable = ('weapon', 'food', 'drink', 'potion', 'scroll', 'wand',
-                        'staff', 'pill', 'container', 'key', 'trash', 'fountain')
-
-        # Handle "wear all"
-        if item_name == 'all':
+        if ' '.join(args).lower() == 'all':
             worn_count = 0
-            # anything with a resolvable wear slot (light auto-resolves to 'light')
-            items_to_wear = [item for item in player.inventory
-                           if item.item_type not in non_wearable and infer_wear_slot(item)]
-
-            # Handle paired slots
-            paired_slots = {
-                'finger': ['finger1', 'finger2'],
-                'neck': ['neck1', 'neck2'],
-                'wrist': ['wrist1', 'wrist2'],
-            }
-
-            for item in items_to_wear:
-                slot = infer_wear_slot(item)
+            for item in list(player.inventory):
+                if item.item_type == 'weapon':
+                    continue
+                slot = free_slot(player, item)
                 if not slot:
                     continue
-                actual_slot = slot
-                
-                # Handle paired slots
-                if slot in paired_slots:
-                    for paired in paired_slots[slot]:
-                        if not player.equipment.get(paired):
-                            actual_slot = paired
-                            break
-                    else:
-                        continue  # Both slots full, skip this item
-                elif player.equipment.get(slot):
-                    continue  # Slot occupied
-                
                 player.inventory.remove(item)
-                player.equipment[actual_slot] = item
+                player.equipment[slot] = item
                 await player.send(f"You wear {item.short_desc}.")
                 worn_count += 1
-
             if worn_count > 0:
-                await player.room.send_to_room(
-                    f"{player.name} puts on several items.",
-                    exclude=[player]
-                )
+                await player.room.send_to_room(f"{player.name} puts on several items.", exclude=[player])
             else:
                 await player.send("You don't have anything to wear.")
             return
 
-        # Find specific item in inventory
-        for item in player.inventory:
-            if item_name in item.name.lower():
-                if item.item_type in non_wearable:
-                    await player.send(f"You can't wear {item.short_desc}.")
-                    return
-
-                # resolve the slot (inferred from the name for legacy/preset gear
-                # that shipped without an explicit wear_slot, e.g. iron greaves)
-                slot = infer_wear_slot(item)
-                if not slot:
-                    await player.send(f"You can't figure out how to wear {item.short_desc}.")
-                    return
-
-                # Handle paired slots (finger, neck, wrist -> finger1/finger2, etc.)
-                paired_slots = {
-                    'finger': ['finger1', 'finger2'],
-                    'neck': ['neck1', 'neck2'],
-                    'wrist': ['wrist1', 'wrist2'],
-                }
-                
-                actual_slot = slot
-                if slot in paired_slots:
-                    # Find first empty slot in the pair
-                    for paired in paired_slots[slot]:
-                        if not player.equipment.get(paired):
-                            actual_slot = paired
-                            break
-                    else:
-                        # Both slots full
-                        await player.send(f"You're already wearing something in both {slot} slots.")
-                        return
-                elif player.equipment.get(slot):
-                    # Single slot already occupied
-                    await player.send(f"You're already wearing something there.")
-                    return
-
-                player.inventory.remove(item)
-                player.equipment[actual_slot] = item
-                await player.send(f"You wear {item.short_desc}.")
-                await player.room.send_to_room(
-                    f"{player.name} wears {item.short_desc}.",
-                    exclude=[player]
-                )
+        item, slot = cls._what_and_where(player, args, find_carried)
+        if item is None:
+            await player.send(f"You don't have '{' '.join(args)}'.")
+            return
+        if item.item_type == 'weapon':
+            await cls._wield_item(player, item, slot)
+            return
+        fits = slots_for(player, item)
+        if not fits:
+            await player.send(f"You can't wear {item.short_desc}.")
+            return
+        if slot:
+            if slot not in fits:
+                await player.send(f"That doesn't go there: {item.short_desc} goes on your {cls._slot_names(fits)}.")
                 return
+            await cls._put_on(player, item, slot)
+            return
+        slot = free_slot(player, item)
+        if slot:
+            await cls._put_on(player, item, slot)
+            return
+        kind = slot_kind(fits[0])
+        if kind in PAIRS:
+            await player.send(f"You're already wearing something in both {kind} slots. "
+                              f"(wear {item.name.split()[0]} {fits[-1]} swaps one out)")
+        else:
+            await player.send(f"You're already wearing something there. (wear {item.name.split()[0]} {fits[0]} swaps it)")
 
-        await player.send(f"You don't have '{item_name}'.")
-        
+    @classmethod
+    async def _wield_item(cls, player, item, slot=None):
+        """Wield `item`: in the main hand, or the off hand (dual wield, light weapons)."""
+        from equip import slots_for, can_offhand
+        if item.item_type != 'weapon':
+            await player.send(f"You can't wield {item.short_desc}.")
+            return
+        fits = slots_for(player, item)
+        if slot == 'dual_wield' and 'dual_wield' not in fits:
+            await player.send("You need to know dual wield, and the off hand takes only daggers, knives or short swords."
+                              if 'dual_wield' not in (player.skills or {}) else
+                              "Off-hand weapons must be daggers, knives, or short swords.")
+            return
+        if slot and slot not in fits:
+            await player.send(f"You can't wield {item.short_desc} there.")
+            return
+        if not slot:
+            if not player.equipment.get('wield'):
+                slot = 'wield'
+            elif 'dual_wield' not in (player.skills or {}):
+                await player.send("You're already wielding something. (wield <weapon> wield swaps it)")
+                return
+            elif not can_offhand(player, item):
+                await player.send("Off-hand weapons must be daggers, knives, or short swords.")
+                return
+            elif player.equipment.get('dual_wield'):
+                await player.send("You're already dual wielding.")
+                return
+            else:
+                slot = 'dual_wield'
+        if slot == 'dual_wield':
+            await cls._put_on(player, item, slot, 'off-hand', 'off-hands')
+        else:
+            await cls._put_on(player, item, slot, 'wield', 'wields')
+        try:
+            from tips import TipManager
+            await TipManager.show_tutorial_hint(player, 'tutorial_wield')
+        except Exception:
+            pass
+
     @classmethod
     async def cmd_wield(cls, player: 'Player', args: List[str]):
-        """Wield a weapon."""
+        """Wield a weapon. "wield <weapon> offhand" (or dual_wield) puts a light one in your off
+        hand; "wield <weapon> wield" swaps out what you hold."""
+        from equip import find_carried
         if not args:
             await player.send("Wield what?")
             return
-            
-        item_name = ' '.join(args).lower()
-        
-        # Find item in inventory
-        for item in player.inventory:
-            if item_name in item.name.lower():
-                if item.item_type != 'weapon':
-                    await player.send(f"You can't wield {item.short_desc}.")
-                    return
-                    
-                # If already wielding, require dual wield skill and use off-hand slot
-                if player.equipment.get('wield'):
-                    if 'dual_wield' not in player.skills:
-                        await player.send("You're already wielding something.")
-                        return
-                    if player.equipment.get('dual_wield'):
-                        await player.send("You're already dual wielding.")
-                        return
-                    # Restrict to light weapons
-                    name_l = (item.name + ' ' + item.short_desc).lower()
-                    allowed_name = any(x in name_l for x in ['dagger', 'knife', 'stiletto', 'short sword', 'shortsword'])
-                    if getattr(item, 'weapon_type', '') not in ('pierce', 'stab') and not allowed_name:
-                        await player.send("Off-hand weapons must be daggers, knives, or short swords.")
-                        return
-                    player.inventory.remove(item)
-                    player.equipment['dual_wield'] = item
-                    await player.send(f"You off-hand {item.short_desc}.")
-                    await player.room.send_to_room(
-                        f"{player.name} off-hands {item.short_desc}.",
-                        exclude=[player]
-                    )
-                    try:
-                        from tips import TipManager
-                        await TipManager.show_tutorial_hint(player, 'tutorial_wield')
-                    except Exception:
-                        pass
-                    return
-                    
-                player.inventory.remove(item)
-                player.equipment['wield'] = item
-                await player.send(f"You wield {item.short_desc}.")
-                await player.room.send_to_room(
-                    f"{player.name} wields {item.short_desc}.",
-                    exclude=[player]
-                )
-                try:
-                    from tips import TipManager
-                    await TipManager.show_tutorial_hint(player, 'tutorial_wield')
-                except Exception:
-                    pass
-                return
-                
-        await player.send(f"You don't have '{item_name}'.")
-        
+        item, slot = cls._what_and_where(player, args, find_carried)
+        if item is None:
+            await player.send(f"You don't have '{' '.join(args)}'.")
+            return
+        await cls._wield_item(player, item, slot)
+
+    @classmethod
+    async def cmd_hold(cls, player: 'Player', args: List[str]):
+        """Hold a light, a wand, a staff or an orb (a weapon you wield)."""
+        from equip import find_carried, slots_for
+        if not args:
+            await player.send("Hold what?")
+            return
+        item, slot = cls._what_and_where(player, args, find_carried)
+        if item is None:
+            await player.send(f"You don't have '{' '.join(args)}'.")
+            return
+        if item.item_type == 'weapon':
+            await cls._wield_item(player, item, slot)
+            return
+        fits = [s for s in slots_for(player, item) if s in ('light', 'hold')]
+        if not fits:
+            await player.send(f"You can't hold {item.short_desc}.")
+            return
+        await cls._put_on(player, item, slot if slot in fits else fits[0], 'hold', 'holds')
+
     @classmethod
     async def cmd_remove(cls, player: 'Player', args: List[str]):
-        """Remove worn equipment or 'remove all' to remove everything."""
+        """Remove worn equipment by its name ("remove 2.ring") or its slot ("remove finger2"),
+        or 'remove all'."""
+        from equip import find_worn
         if not args:
             await player.send("Remove what?")
             return
@@ -9330,21 +9331,16 @@ class CommandHandler:
                 await player.send("You're not wearing anything to remove.")
             return
 
-        # Find specific item in equipment
-        for slot, item in list(player.equipment.items()):
-            if item and item_name in item.name.lower():
-                player.equipment[slot] = None
-                player.inventory.append(item)
-                await cls._record_collection_item(player, item)
-                await player.send(f"You remove {item.short_desc}.")
-                await player.room.send_to_room(
-                    f"{player.name} removes {item.short_desc}.",
-                    exclude=[player]
-                )
-                return
+        slot, item = find_worn(player, item_name)
+        if item is None:
+            await player.send(f"You're not wearing '{item_name}'.")
+            return
+        player.equipment[slot] = None
+        player.inventory.append(item)
+        await cls._record_collection_item(player, item)
+        await player.send(f"You remove {item.short_desc}.")
+        await player.room.send_to_room(f"{player.name} removes {item.short_desc}.", exclude=[player])
 
-        await player.send(f"You're not wearing '{item_name}'.")
-        
     @classmethod
     async def cmd_give(cls, player: 'Player', args: List[str]):
         """Give an item to someone."""

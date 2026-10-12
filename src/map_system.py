@@ -593,6 +593,19 @@ def _build_set_by_vnum():
 _SET_BY_VNUM = _build_set_by_vnum()
 
 
+def _wear_slot(item):
+    """Where an item is worn, as the server would put it (named or read from its name: "iron
+    greaves" are legs), for the /play inventory's drag and drop."""
+    slot = getattr(item, 'wear_slot', None)
+    if slot:
+        return slot
+    try:
+        from objects import infer_wear_slot
+        return infer_wear_slot(item) if getattr(item, 'item_type', '') not in ('weapon', 'food', 'drink', 'potion', 'scroll', 'container', 'key', 'trash') else None
+    except Exception:
+        return None
+
+
 def item_info(item):
     """Compact item payload used for ground items, inventory and equipment:
     enough for the client to draw a real icon and rarity border."""
@@ -602,7 +615,7 @@ def item_info(item):
         'name': getattr(item, 'name', 'something'),
         'short': getattr(item, 'short_desc', '') or getattr(item, 'name', 'something'),
         'type': itype,
-        'slot': getattr(item, 'wear_slot', None),
+        'slot': _wear_slot(item),
         'rarity': getattr(item, 'rarity', 'common'),
         'set_id': getattr(item, 'set_id', None),
         'set_key': _SET_BY_VNUM.get(vnum),

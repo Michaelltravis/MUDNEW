@@ -51,16 +51,9 @@ def repair_config(shop_config: Dict) -> Dict:
 
 
 def carried(player, name: str):
-    """What the player carries by `name`: "sword", or "2.sword" for the second (the /play shop
-    window numbers by whole words; a part of a word still finds one when no word matches)."""
-    name = str(name or '').strip().lower()
-    n = 1
-    if '.' in name and name.split('.', 1)[0].isdigit():
-        n, name = int(name.split('.', 1)[0]), name.split('.', 1)[1]
-    inv = list(getattr(player, 'inventory', None) or [])
-    words = [it for it in inv if name in str(getattr(it, 'name', '')).lower().split()]
-    found = words or [it for it in inv if name in str(getattr(it, 'name', '')).lower()]
-    return found[n - 1] if 0 < n <= len(found) else None
+    """What the player carries by `name`: "sword", or "2.sword" for the second (equip.py)."""
+    from equip import find_carried
+    return find_carried(player, name)
 
 
 class ShopKeeper:

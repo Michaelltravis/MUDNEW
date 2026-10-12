@@ -2,6 +2,9 @@
 // tooltips (stats, damage, armour, effects) and actions that go out as the MUD's own
 // commands (wear, wield, remove, quaff, eat, drink, recite, drop, examine). Item art comes
 // from the shared icon painter (shared/items.js).
+// Drag and drop: from the pack onto a slot wears it there (what was there comes back to the
+// pack), from a slot onto the pack takes it off, a ring from one finger to the other moves it.
+// The slots an item fits light up as you drag it (a ring: both fingers; equip.py on the server).
 import { sound } from '../audio.js';
 
 const $ = s => document.querySelector(s);
@@ -16,7 +19,7 @@ const RARITY = { common: '#b8b0a0', uncommon: '#6fd06f', rare: '#5aa8ff', epic: 
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 // the word the MUD finds an item by, numbered when several share it ("2.sword")
-function keywordFor(item, list) {
+export function keywordFor(item, list) {
   const kw = String(item.name || item.short || 'item').toLowerCase().split(/\s+/).find(w => w.length > 1) || 'item';
   let n = 0;
   for (const it of list) {
@@ -25,6 +28,39 @@ function keywordFor(item, list) {
     if (it === item) break;
   }
   return n > 1 ? `${n}.${kw}` : kw;
+}
+
+// ---- drag and drop (pure: tests/web) ----
+export const PAIRS = { finger: ['finger1', 'finger2'], neck: ['neck1', 'neck2'], wrist: ['wrist1', 'wrist2'] };
+// the slots an item may go in (the server says yes or no: a weapon's off hand needs dual wield)
+export function slotsFor(item) {
+  if (!item) return [];
+  const t = item.type;
+  if (t === 'weapon') return ['wield', 'dual_wield'];
+  const s = String(item.slot || '');
+  if (t === 'light' && (!s || s === 'light' || s === 'hold')) return ['light'];   // a glowing ring is still a ring
+  if ((t === 'wand' || t === 'staff') && !s) return ['hold'];
+  if (!s) return [];
+  const kind = s.replace(/[12]$/, '');
+  return PAIRS[kind] ? PAIRS[kind].slice() : [s];
+}
+export const partnerOf = slot => { for (const p of Object.values(PAIRS)) { const i = p.indexOf(slot); if (i >= 0) return p[1 - i]; } return null; };
+const verbFor = (item, slot) => (item.type === 'weapon' ? 'wield' : slot === 'light' || slot === 'hold' ? 'hold' : 'wear');
+// the command that puts a carried item in a slot
+export function dropCommand(item, slot, list) { return `${verbFor(item, slot)} ${keywordFor(item, list)} ${slot}`; }
+export const removeCommand = slot => `remove ${slot}`;
+// moving worn gear from one slot of a pair to the other (and what is there to the first): the
+// commands in order, the carried list followed as each lands in the pack
+export function moveCommands(eq, inv, from, to) {
+  const a = eq[from], b = eq[to];
+  if (!a) return [];
+  const pack = inv.slice(), out = [removeCommand(from)];
+  pack.push(a);
+  if (b) { out.push(removeCommand(to)); pack.push(b); }
+  out.push(dropCommand(a, to, pack));
+  pack.splice(pack.indexOf(a), 1);
+  if (b) out.push(dropCommand(b, from, pack));
+  return out;
 }
 
 function actionsFor(item, worn) {
@@ -75,8 +111,8 @@ export function createInventory() {
     try { if (MH.itemIcons) MH.itemIcons.intoCanvas(c, item); } catch (_) {}
     return c;
   };
-  const run = (verb, item, list) => {
-    MH.sendCommand(`${verb} ${keywordFor(item, list)}`);
+  const run = (verb, item, list, slot = null) => {
+    MH.sendCommand(verb === 'remove' && slot ? removeCommand(slot) : `${verb} ${keywordFor(item, list)}`);
     sound.play({ wear: 'equip', wield: 'draw', hold: 'equip', remove: 'cloth', drop: 'ui_drop' }[verb] || 'ui_click');
     // wearing and dropping do not move you, so no map push follows: ask for one
     setTimeout(() => MH.refreshState && MH.refreshState(), 450);
@@ -86,12 +122,29 @@ export function createInventory() {
     menu.classList.remove('hidden');
     menu.style.left = `${Math.min(e.clientX, innerWidth - 160)}px`;
     menu.style.top = `${Math.min(e.clientY, innerHeight - 220)}px`;
-    menu.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { menu.classList.add('hidden'); run(b.dataset.v, item, list); }));
+    menu.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { menu.classList.add('hidden'); run(b.dataset.v, item, list, worn); }));
+  }
+  // a drag under way: {from: 'bag'|'worn', item, slot, list}
+  let drag = null;
+  const send = (cmds, snd) => {
+    for (const c of cmds) MH.sendCommand(c);
+    sound.play(snd);
+    setTimeout(() => MH.refreshState && MH.refreshState(), 450);
+  };
+  function lightSlots(on) {
+    const fits = !on ? [] : drag.from === 'bag' ? slotsFor(drag.item) : [partnerOf(drag.slot)].filter(Boolean);
+    doll.querySelectorAll('.inv-slot').forEach(w => {
+      w.classList.toggle('can-drop', on && fits.includes(w.dataset.slot));
+      w.classList.toggle('no-drop', on && !fits.includes(w.dataset.slot));
+      w.classList.remove('over');
+    });
+    bag.classList.toggle('bag-drop', !!on && drag.from === 'worn');
   }
   function cell(item, worn, list, label) {
     const d = document.createElement('div');
     d.className = 'inv-cell' + (item ? '' : ' empty');
     if (!item) { d.innerHTML = `<span>${label || ''}</span>`; return d; }
+    d.dataset.name = item.short || item.name || '';
     const r = item.set_id ? 'set' : (item.rarity || 'common');
     d.style.borderColor = RARITY[r] || RARITY.common;
     d.appendChild(icon(item));
@@ -99,7 +152,17 @@ export function createInventory() {
     d.addEventListener('mousemove', place);
     d.addEventListener('mouseleave', () => tip.classList.add('hidden'));
     d.addEventListener('click', e => { e.stopPropagation(); showMenu(e, item, worn, list); });
-    d.addEventListener('dblclick', e => { e.stopPropagation(); menu.classList.add('hidden'); run(actionsFor(item, worn)[0][1], item, list); });
+    d.addEventListener('dblclick', e => { e.stopPropagation(); menu.classList.add('hidden'); run(actionsFor(item, worn)[0][1], item, list, worn); });
+    // drag it: from the pack onto a slot, or off a slot (worn: the slot's name)
+    d.draggable = true;
+    d.addEventListener('dragstart', e => {
+      drag = { from: worn ? 'worn' : 'bag', item, slot: worn || null, list };
+      e.dataTransfer.setData('text/x-gear', worn || 'bag');
+      e.dataTransfer.effectAllowed = 'move';
+      tip.classList.add('hidden'); menu.classList.add('hidden');
+      requestAnimationFrame(() => lightSlots(true));
+    });
+    d.addEventListener('dragend', () => { lightSlots(false); drag = null; });
     return d;
   }
   function place(e) {
@@ -117,10 +180,30 @@ export function createInventory() {
     for (const [slot, label] of SLOTS) {
       const w = document.createElement('div');
       w.className = 'inv-slot';
-      w.appendChild(cell(eq[slot], true, wornList, label));
+      w.dataset.slot = slot;
+      w.appendChild(cell(eq[slot], eq[slot] ? slot : false, wornList, label));
+      const fits = () => drag && (drag.from === 'bag' ? slotsFor(drag.item).includes(slot) : partnerOf(drag.slot) === slot);
+      w.addEventListener('dragover', e => { if (fits()) { e.preventDefault(); w.classList.add('over'); } });
+      w.addEventListener('dragleave', () => w.classList.remove('over'));
+      w.addEventListener('drop', e => {
+        e.preventDefault();
+        if (!fits()) return;
+        const dr = drag;
+        if (dr.from === 'bag') send([dropCommand(dr.item, slot, inv)], dr.item.type === 'weapon' ? 'draw' : 'equip');
+        else send(moveCommands(eq, inv, dr.slot, slot), 'equip');
+      });
       doll.appendChild(w);
     }
     bag.innerHTML = '';
+    if (!bag.dataset.dnd) {
+      // worn gear dropped on the pack comes off
+      bag.dataset.dnd = '1';
+      bag.addEventListener('dragover', e => { if (drag && drag.from === 'worn') e.preventDefault(); });
+      bag.addEventListener('drop', e => {
+        e.preventDefault();
+        if (drag && drag.from === 'worn') send([removeCommand(drag.slot)], 'cloth');
+      });
+    }
     const cells = Math.max(30, Math.ceil(inv.length / 6) * 6);
     for (let i = 0; i < cells; i++) bag.appendChild(cell(inv[i], false, inv));
     root.querySelector('.inv-gold').textContent = `${(player.gold || 0).toLocaleString()} gold`;
