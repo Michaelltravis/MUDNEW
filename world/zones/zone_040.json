@@ -74,7 +74,7 @@
    "flags": [
     "no_mob"
    ],
-   "description": "The path stops here, to the north is a single mountain and around\nare some threatening hills. A small trail leads up the hillside through\nthe rocks to a dark cave located to the north. Off to the northeast, you\ncan see the southern end of what appears to be a large mountain range.\nRocks jut from the grassy slopes. Sheep trails wind between the\nhillocks.",
+   "description": "The path gives out at the foot of a lone, steep-sided mountain, and a\nnarrow trail scrambles on through tumbled boulders to the black mouth of\na cave in its north face. Cold air breathes out of the opening, smelling\nof wet stone. Grey hills crowd around in a threatening ring, their\ngrassy flanks broken by outcrops of rock. East, the land climbs into the\nmountains proper, while the path winds back south down among the hills.",
    "exits": {
     "north": {
      "to_room": 4010,
@@ -88,7 +88,8 @@
      "to_room": 4001,
      "description": "A rocky path climbs toward The Hills"
     }
-   }
+   },
+   "extra_descs": {}
   },
   "4010": {
    "vnum": 4010,
@@ -1748,8 +1749,8 @@
      "description": "To the south lies A Turn In The Path."
     }
    },
-   "description": "The ground rises and falls in grassy folds. Rocks break through the thin\nsoil of the slope. Ways lead north and south.",
-   "placeholder": true
+   "description": "A small path, hardly more than a goat track, runs down between steep\ngrassy banks from the main foothills path. Stones poke through the turf\nlike knuckles, and the bracken on either side grows waist-high. North,\nthe path climbs to join a wider way through the foothills; south, it\nslips toward a dark overhang where it turns beneath the rock.",
+   "extra_descs": {}
   },
   "204076": {
    "vnum": 204076,
@@ -1773,8 +1774,8 @@
      "description": "To the east lies Mountain Trail."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and east.",
-   "placeholder": true
+   "description": "The path turns here beneath a great shelf of rock, running through a\nshort natural tunnel whose walls are smoothed by wind and the brush of\npassing shoulders. Daylight glows at both ends, grey to the north where\nthe small path climbs back toward the foothills, and brighter to the\neast where the tunnel lets out onto the mountain trail. The air inside\nis cool and still, and a soot-blackened niche in the wall shows where\ntravellers have sheltered from the weather.",
+   "extra_descs": {}
   },
   "4075": {
    "vnum": 4075,
@@ -2575,8 +2576,14 @@
      "description": "To the down lies At The Plateau Before The Mountains."
     }
    },
-   "description": "Snow lingers in the shadowed hollows of the rock. A narrow ledge picks\nits way along the mountainside. Ways lead up and down.",
-   "placeholder": true
+   "description": "A narrow shelf of grey rock clings to the face of the cliff, scarcely\nwider than a man's shoulders, with handholds worn smooth by many\nclimbers. Below, the ledge drops back down to the broad plateau where\nthe mountains begin, and the Trade Road beyond it shrinks to a pale\nthread. Above, the way climbs on up the cliff toward a lip of broken\nstone where a smudge of smoke often hangs. The wind plucks at your\ncloak, thin and bitterly cold.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 604000,
+     "max": 1
+    }
+   ]
   },
   "8507": {
    "vnum": 8507,
@@ -2598,8 +2605,8 @@
      "description": "To the down lies On The Cliffside."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. The\nair is thin and cold, and loose scree shifts underfoot. Ways lead up and\ndown.",
-   "placeholder": true
+   "description": "Higher up, the ledge gives out and the climb goes on by a crooked\nchimney in the rock, studded with iron spikes driven into its cracks.\nThe spikes are crusted with rust and bent by hard use, and crude marks\nhacked into the stone beside them look like orc work. A reek of smoke\nand rancid fat drifts over the lip of the cliff above, while below, the\nchimney drops back to the narrow shelf. Far beneath your boots the\nplateau lies spread out in the thin light.",
+   "extra_descs": {}
   },
   "8508": {
    "vnum": 8508,
@@ -2625,8 +2632,10 @@
      "description": "To the down lies On The Cliffside."
     }
    },
-   "description": "A narrow ledge picks its way along the mountainside. The air is thin and\ncold, and loose scree shifts underfoot. Ways lead east, west and down.",
-   "placeholder": true
+   "description": "The top of the cliff has been made into a squalid camp. A ring of\nblackened stones holds a fire pit choked with ash and gnawed bones, and\na lean-to of stinking hides sags between poles jammed into cracks in the\nrock. At the very lip a rickety platform of lashed timbers juts out over\nthe drop, giving a clear view of the plateau and the road far below. A\ntrack follows the edge of the cliff east and west, and the spiked\nchimney leads back down the face.",
+   "extra_descs": {
+    "platform timbers lookout poles": "The platform is a crude thing of pine poles lashed together with\nrawhide, its planks black with grease and creaking at every gust. Rows\nof notches have been cut along one pole, a tally of something the\nwatchers here have counted on the road below."
+   }
   },
   "8509": {
    "vnum": 8509,
@@ -2648,8 +2657,8 @@
      "description": "To the west lies Orc Lookout Camp."
     }
    },
-   "description": "Snow lingers in the shadowed hollows of the rock. The air is thin and\ncold, and loose scree shifts underfoot. Ways lead east and west.",
-   "placeholder": true
+   "description": "The track runs along the very brink of the cliff, so close to the edge\nthat pebbles skitter away at every step and vanish without a sound.\nWest, the smoke and stink of the orc camp hang over the rocks; east, the\npath keeps to the edge, hemmed in by a wall of frost-cracked stone on\nits landward side. Tufts of wiry grass grow in the cracks, combed flat\nby the endless wind.",
+   "extra_descs": {}
   },
   "8510": {
    "vnum": 8510,
@@ -2671,8 +2680,14 @@
      "description": "To the west lies At The Edge Of The Cliff."
     }
    },
-   "description": "A narrow ledge picks its way along the mountainside. Snow lingers in the\nshadowed hollows of the rock. Ways lead north and west.",
-   "placeholder": true
+   "description": "Here the cliff edge bends away, and the track turns from the drop to\nclimb north into the mountains between two shoulders of bare rock. A\nlightning-split pine clings to the stone at the turning, its dead limbs\nbleached silver and its roots clawing at empty air. The way back west\nfollows the brink toward the orc camp, with nothing but cold space\nbetween the path and the plateau below.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 604000,
+     "max": 1
+    }
+   ]
   },
   "8511": {
    "vnum": 8511,
@@ -2698,8 +2713,8 @@
      "description": "To the west lies At The Edge Of The Cliff."
     }
    },
-   "description": "Snow lingers in the shadowed hollows of the rock. Bare rock climbs\nsteeply on one side and falls away on the other. Ways lead north, east\nand west.",
-   "placeholder": true
+   "description": "Small cairns line the top of the cliff here, each one capped with a\nscrap of filthy rag that snaps in the wind like a pennant. East, the\nsmoke of the orc camp rises beside its rickety lookout, and west the\npath dwindles along the brink toward a lonely point. A rougher way\nclimbs north up the mountainside, away from the drop.",
+   "extra_descs": {}
   },
   "8512": {
    "vnum": 8512,
@@ -2717,8 +2732,8 @@
      "description": "To the east lies At The Edge Of The Cliff."
     }
    },
-   "description": "A narrow ledge picks its way along the mountainside. Bare rock climbs\nsteeply on one side and falls away on the other. A way leads east.",
-   "placeholder": true
+   "description": "The path ends on a jutting prow of rock with nothing beyond it but empty\nair and a dizzying view. The wind is fierce here, and it has scoured the\nstone so clean that not even lichen grows. Far below, the plateau and\nthe long grey line of the road lie open for miles. The only way back is\neast along the brink.",
+   "extra_descs": {}
   },
   "8513": {
    "vnum": 8513,
@@ -2740,8 +2755,8 @@
      "description": "To the west lies In The Mountains."
     }
    },
-   "description": "A narrow ledge picks its way along the mountainside. Wind howls through\na cleft in the stone. Ways lead south and west.",
-   "placeholder": true
+   "description": "The mountainside slopes gently here before plunging over the cliffs\nbeyond, and the wind carries a faint smell of woodsmoke from somewhere\nbelow. A low wall of piled stones, built by orcs or by older hands,\ncurves across the slope as a windbreak. The path runs south toward the\nedge of the cliff and west across the scar of a rockslide.",
+   "extra_descs": {}
   },
   "8514": {
    "vnum": 8514,
@@ -2763,8 +2778,8 @@
      "description": "To the east lies In The Mountains."
     }
    },
-   "description": "Snow lingers in the shadowed hollows of the rock. A narrow ledge picks\nits way along the mountainside. Ways lead north and east.",
-   "placeholder": true
+   "description": "A rockslide has swept across the mountainside here, leaving a raw scar\nof pale stone and splintered rock. The path has been trodden anew across\nit, a narrow line of footholds between boulders that look ready to move\nagain. North, the way runs beneath a band of overhanging cliffs, and\neast it heads toward the edge of the heights.",
+   "extra_descs": {}
   },
   "8515": {
    "vnum": 8515,
@@ -2786,8 +2801,8 @@
      "description": "To the south lies In The Mountains."
     }
    },
-   "description": "The air is thin and cold, and loose scree shifts underfoot. A narrow\nledge picks its way along the mountainside. Ways lead east and south.",
-   "placeholder": true
+   "description": "Here the way squeezes along the foot of a band of cliffs, where the rock\noverhangs so far that the ground beneath stays dry and dusty even in\nrain. Old mud nests cling in rows under the overhang, long abandoned and\ncrumbling. The path leads east toward a high meadow with a dark tarn,\nand south along the foot of the cliffs.",
+   "extra_descs": {}
   },
   "8516": {
    "vnum": 8516,
@@ -2809,8 +2824,8 @@
      "description": "To the west lies In The Mountains."
     }
    },
-   "description": "The air is thin and cold, and loose scree shifts underfoot. Snow lingers\nin the shadowed hollows of the rock. Ways lead north and west.",
-   "placeholder": true
+   "description": "Tucked between the peaks lies a high meadow, where coarse grass and\ncushions of moss grow among scattered boulders. A small tarn sits in the\nmiddle, dark and perfectly still, mirroring the grey crags and the\nclouds above them. The way runs north up a gravel slope and west toward\na band of cliffs.",
+   "extra_descs": {}
   },
   "8517": {
    "vnum": 8517,
@@ -2832,8 +2847,8 @@
      "description": "To the south lies In The Mountains."
     }
    },
-   "description": "Snow lingers in the shadowed hollows of the rock. A narrow ledge picks\nits way along the mountainside. Ways lead north and south.",
-   "placeholder": true
+   "description": "Loose, rust-coloured gravel covers this slope, and every footstep sends\na little rattling slide ahead of you. Clumps of saxifrage cling to the\nlarger stones, starred with tiny pink flowers. Clouds drift past close\nenough to touch, wetting the stones as they go. The way climbs north\ntoward a glittering spring and descends south along the mountainside.",
+   "extra_descs": {}
   },
   "8518": {
    "vnum": 8518,
@@ -2859,8 +2874,8 @@
      "description": "To the west lies In The Mountains."
     }
    },
-   "description": "Wind howls through a cleft in the stone. Snow lingers in the shadowed\nhollows of the rock. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "Several paths meet at this bend in the mountainside, where a spring\nwells up from beneath a slab and spills down the rock in a glittering\nsheet. The stone around it is slick with ice even on the mildest days.\nNorth, a path heads toward the foot of a great cliff; south, another\nwinds down the slope; and west, a ledge runs across the mountain's face.",
+   "extra_descs": {}
   },
   "8519": {
    "vnum": 8519,
@@ -2882,8 +2897,10 @@
      "description": "To the up lies Middle Of The Carved Stairs."
     }
    },
-   "description": "Snow lingers in the shadowed hollows of the rock. Wind howls through a\ncleft in the stone. Ways lead south and up.",
-   "placeholder": true
+   "description": "The path ends at the foot of a towering cliff, where an arched doorway\nhas been carved into the rock, framing the first steps of a stair that\nclimbs up into the heart of the mountain. Worn figures of bearded\nwarriors flank the arch, their faces eroded to smooth ovals. The only\nother way leads south, back down the slope.",
+   "extra_descs": {
+    "figures warriors arch carvings runes": "Each figure leans upon a great axe, and their beards are carved in long\nbraids that reach to their belts. Dwarven runes run around the arch\nabove them, worn so shallow that only fingertips can follow them now."
+   }
   },
   "8520": {
    "vnum": 8520,
@@ -2905,8 +2922,8 @@
      "description": "To the west lies In The Mountains."
     }
    },
-   "description": "The air is thin and cold, and loose scree shifts underfoot. Snow lingers\nin the shadowed hollows of the rock. Ways lead south and west.",
-   "placeholder": true
+   "description": "Broken peaks crowd around a stony hollow here, their upper slopes\nstreaked with old snow that never quite melts. A path of trodden scree\ncomes up out of the south from the cliff edge and bends away west along\nthe foot of a crumbling ridge. The air is thin enough to make every\nbreath feel shallow, and somewhere among the rocks a trickle of\nmeltwater ticks and gurgles.",
+   "extra_descs": {}
   },
   "8521": {
    "vnum": 8521,
@@ -2928,8 +2945,8 @@
      "description": "To the east lies In The Mountains."
     }
    },
-   "description": "Wind howls through a cleft in the stone. The air is thin and cold, and\nloose scree shifts underfoot. Ways lead north and east.",
-   "placeholder": true
+   "description": "A long tongue of scree spills down from the heights here, and the path\ncrosses it on stones that rock and grind underfoot. East, the way runs\nback toward the stony hollow; north, it climbs a steepening gully choked\nwith boulders the size of huts. Lichen in rusty orange and pale green\ncrusts every surface the wind has not scoured clean.",
+   "extra_descs": {}
   },
   "8522": {
    "vnum": 8522,
@@ -2951,8 +2968,8 @@
      "description": "To the south lies In The Mountains."
     }
    },
-   "description": "A narrow ledge picks its way along the mountainside. Bare rock climbs\nsteeply on one side and falls away on the other. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "The gully narrows between walls of fractured grey stone, and the wind\nfunnels through it with a low, hollow moan. Old snow lies packed in the\ndeepest shadows, grey with grit and pitted by drips from above. A\nstunted rowan has rooted itself in a crack, its few red berries bright\nagainst the stone. The way climbs north over a jumble of fallen blocks\nand drops back south toward the scree.",
+   "extra_descs": {}
   },
   "8523": {
    "vnum": 8523,
@@ -2974,8 +2991,8 @@
      "description": "To the south lies In The Mountains."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. The\nair is thin and cold, and loose scree shifts underfoot. Ways lead east\nand south.",
-   "placeholder": true
+   "description": "The gully tops out on a windy saddle between two peaks, and for a moment\nthe whole range opens around you, ridge beyond ridge fading into blue\nhaze. The path turns east along the saddle toward the rim of a deep\ncleft, while south it drops back into the gully. Snow cornices overhang\nthe higher ridges, carved by the wind into curls like breaking waves.",
+   "extra_descs": {}
   },
   "8524": {
    "vnum": 8524,
@@ -2997,8 +3014,8 @@
      "description": "To the down lies The Illuminated Ravine."
     }
    },
-   "description": "Snow lingers in the shadowed hollows of the rock. A narrow ledge picks\nits way along the mountainside. Ways lead west and down.",
-   "placeholder": true
+   "description": "The saddle ends at the rim of a deep, narrow ravine, and a strange pale\nglow rises from its depths even in the full light of day. A rough stair\nof ledges leads down into it, slick with seeping water. The path back\nwest follows the saddle between the peaks. Leaning over the rim, you\ncatch glints and sparkles far below, as if the ravine walls were sewn\nwith countless tiny lamps.",
+   "extra_descs": {}
   },
   "8525": {
    "vnum": 8525,
@@ -3020,8 +3037,10 @@
      "description": "To the up lies In The Mountains."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. The\nair is thin and cold, and loose scree shifts underfoot. Ways lead north\nand up.",
-   "placeholder": true
+   "description": "At the foot of the ledges the ravine floor is a bed of smooth grey\npebbles, and the walls on either hand are seamed with veins of milky\ncrystal. The crystals drink in the daylight and give it back as a soft,\nsteady glow, so that no shadow here is ever truly dark. The ravine runs\non north between its shining walls, and the wet ledges climb back up to\nthe saddle above.",
+   "extra_descs": {
+    "crystal crystals veins vein": "The veins are a hand's breadth wide in places, a milky white crystal\nshot through with threads of pale gold. Laid against the stone, your\npalm feels a faint warmth, and the glow brightens a little beneath your\ntouch."
+   }
   },
   "8526": {
    "vnum": 8526,
@@ -3043,8 +3062,8 @@
      "description": "To the south lies The Illuminated Ravine."
     }
    },
-   "description": "The air is thin and cold, and loose scree shifts underfoot. Bare rock\nclimbs steeply on one side and falls away on the other. Ways lead north\nand south.",
-   "placeholder": true
+   "description": "The ravine walls lean so close that only a ribbon of sky shows far\noverhead, and here the crystal veins grow so thick that the stone itself\nseems made of light. A soft white radiance fills the cleft from end to\nend, throwing your shadow faintly in several directions at once. A thin\nstream runs down the middle of the floor, and the ravine follows its\ncourse north and south.",
+   "extra_descs": {}
   },
   "8527": {
    "vnum": 8527,
@@ -3066,8 +3085,8 @@
      "description": "To the up lies In The Mountains."
     }
    },
-   "description": "Snow lingers in the shadowed hollows of the rock. A narrow ledge picks\nits way along the mountainside. Ways lead south and up.",
-   "placeholder": true
+   "description": "The ravine ends at a steep headwall where the stream spills down from\nabove in a thin, chattering fall. The crystal veins dwindle here to a\nfew faint threads, and a pale moss glows dimly in the spray. Wet\nhandholds lead up the rock beside the fall toward the open mountainside,\nwhile the shining cleft stretches back south.",
+   "extra_descs": {}
   },
   "8528": {
    "vnum": 8528,
@@ -3089,8 +3108,8 @@
      "description": "To the down lies The Illuminated Ravine."
     }
    },
-   "description": "Wind howls through a cleft in the stone. A narrow ledge picks its way\nalong the mountainside. Ways lead north and down.",
-   "placeholder": true
+   "description": "Above the ravine the ground opens onto a high, barren shelf where\nnothing grows but black lichen. North, a colossal spire of dark rock\nthrusts into the sky like a single fang, dwarfing every peak around it.\nBehind you the waterfall's chatter rises from the ravine, where wet\nhandholds lead back down into the glow. Gusts come and go with sudden\nviolence, flinging grit across the stone.",
+   "extra_descs": {}
   },
   "8529": {
    "vnum": 8529,
@@ -3114,8 +3133,8 @@
      "description": "To the down lies In The Mountains."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead up and down.",
-   "placeholder": true
+   "description": "The stair winds upward inside the rock, each step cut with care and worn\ninto a hollow at its middle by the passage of countless feet. Narrow\nslits cut through the outer wall let in thin blades of daylight and a\nwhistle of cold wind. Carvings along the walls show ranks of bearded\nfigures climbing toward a great tooth of stone. The stair climbs up\ntoward the open air and winds down toward the mountainside below.",
+   "extra_descs": {}
   },
   "8530": {
    "vnum": 8530,
@@ -3150,8 +3169,16 @@
      "description": "To the down lies Middle Of The Carved Stairs."
     }
    },
-   "description": "Wind howls through a cleft in the stone. Bare rock climbs steeply on one\nside and falls away on the other. Ways lead north, east, south and down.",
-   "placeholder": true
+   "description": "The Tooth Of The World towers overhead, a fang of black stone so tall\nthat clouds snag on its tip and stream away like torn banners. At its\nfoot a broad stair has been cut down into the living rock, its first\nsteps worn into shallow bowls. East, a heavy door of weathered planks is\nset into the mountainside, and paths lead north and south across the\nwindswept shelf.",
+   "extra_descs": {
+    "tooth spire fang black stone": "Close to, the Tooth is not smooth at all but ribbed and fluted by ages\nof wind and ice, its black stone glittering with flecks like frost. Old\ndwarven runes are cut into its foot, too weathered to read but for one\ndeep sign shaped like a crown."
+   },
+   "mob_resets": [
+    {
+     "vnum": 604001,
+     "max": 1
+    }
+   ]
   },
   "8531": {
    "vnum": 8531,
@@ -3171,8 +3198,14 @@
      "description": "To the west lies Beside The Tooth Of The World."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads west.",
-   "placeholder": true
+   "description": "Behind the weathered door a cave runs back into the mountain, its walls\nrough and blackened by ancient smoke. Whoever once lived here is long\ngone; the floor is scored with deep claw marks, and a heap of dry\nbracken and shed fur fills the far corner where some great beast makes\nits bed. A heavy, musky reek hangs in the still air. The only way out is\nwest, through the door to the windswept shelf beside the Tooth.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 604003,
+     "max": 1
+    }
+   ]
   },
   "8532": {
    "vnum": 8532,
@@ -3194,8 +3227,8 @@
      "description": "To the south lies Beside The Tooth Of The World."
     }
    },
-   "description": "Snow lingers in the shadowed hollows of the rock. Wind howls through a\ncleft in the stone. Ways lead north and south.",
-   "placeholder": true
+   "description": "The path runs along a knife-edged ridge here, with steep slopes of\nshattered rock dropping away on either hand into misty hollows. Looking\nback south, the black bulk of the Tooth fills half the sky; ahead, the\nridge carries the path north toward lower, rounder heights. Little\ncairns of three or four stones mark the safest line along the crest.",
+   "extra_descs": {}
   },
   "8533": {
    "vnum": 8533,
@@ -3217,8 +3250,8 @@
      "description": "To the west lies In The Mountains."
     }
    },
-   "description": "Snow lingers in the shadowed hollows of the rock. Wind howls through a\ncleft in the stone. Ways lead east and west.",
-   "placeholder": true
+   "description": "A long, level ledge runs across the face of the mountain, wide enough\nfor two to walk abreast, with a sheer wall on one side and a steep drop\non the other. Far below, a dark glimmer of water marks a mountain tarn\ncupped in the rocks. The path follows the ledge east and west, and the\nwall above is streaked with the tracks of old snowslides.",
+   "extra_descs": {}
   },
   "8534": {
    "vnum": 8534,
@@ -3240,8 +3273,8 @@
      "description": "To the east lies In The Mountains."
     }
    },
-   "description": "A narrow ledge picks its way along the mountainside. Bare rock climbs\nsteeply on one side and falls away on the other. Ways lead north and\neast.",
-   "placeholder": true
+   "description": "Beneath an overhanging crag streaked with black water stains, the path\nturns a sharp corner. Icicles hang from the crag's lip in a ragged\nfringe, dripping steadily onto the stones and freezing again into lumpy\npillars. A hollow under the overhang has been used as a shelter, its\nfloor blackened by old fires. The way runs north up a slope of tilted\nslate and east along the foot of the mountain.",
+   "extra_descs": {}
   },
   "8535": {
    "vnum": 8535,
@@ -3267,8 +3300,8 @@
      "description": "To the west lies In The Mountains."
     }
    },
-   "description": "Wind howls through a cleft in the stone. Snow lingers in the shadowed\nhollows of the rock. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "Broken slabs of slate lie tilted every which way across this slope, like\nthe roof of some giant's house fallen in. The path threads between them,\ngoing north toward a ledge above a dark cleft and south down the slope,\nwhile a fainter track wanders off west. Patches of old snow lie in the\nslabs' shadows, crusted hard and grey.",
+   "extra_descs": {}
   },
   "8536": {
    "vnum": 8536,
@@ -3290,8 +3323,8 @@
      "description": "To the east lies In The Mountains."
     }
    },
-   "description": "The air is thin and cold, and loose scree shifts underfoot. Bare rock\nclimbs steeply on one side and falls away on the other. Ways lead north\nand east.",
-   "placeholder": true
+   "description": "A faint track wanders across a slope of coarse grass and frost-shattered\nstones, where the mountain's bones show through its thin skin of earth.\nA trickle of water runs in a groove beside the path, freezing at its\nedges into lace. The track bends here, leading north around a jutting\nspur and east toward the slope of tilted slates.",
+   "extra_descs": {}
   },
   "8537": {
    "vnum": 8537,
@@ -3313,8 +3346,8 @@
      "description": "To the south lies In The Mountains."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. A\nnarrow ledge picks its way along the mountainside. Ways lead east and\nsouth.",
-   "placeholder": true
+   "description": "The path rounds a spur of the mountain on a ledge of crumbling shale,\nwith handholds worn into the rock face. Beyond the spur the land opens\ninto a wide view of peaks and cloud, with snowfields gleaming on the\nhighest summits. East, the ledge leads toward an iron ring above a dark\ncleft, and south it drops along a grassy slope.",
+   "extra_descs": {}
   },
   "8538": {
    "vnum": 8538,
@@ -3340,8 +3373,8 @@
      "description": "To the down lies Hanging On A Rope."
     }
    },
-   "description": "Wind howls through a cleft in the stone. Snow lingers in the shadowed\nhollows of the rock. Ways lead south, west and down.",
-   "placeholder": true
+   "description": "A ledge of flat rock juts over a dark cleft here, and an iron ring as\nthick as a wrist is hammered into the stone at its edge, with a knotted\nrope tied fast to it and hanging down into the depths. Paths lead away\nsouth along a broken slope and west around a shoulder of the mountain.\nThe wind moans across the mouth of the cleft like breath over a jug.",
+   "extra_descs": {}
   },
   "8539": {
    "vnum": 8539,
@@ -3367,8 +3400,8 @@
      "description": "To the west lies At The Entrance To A Cave."
     }
    },
-   "description": "Wind howls through a cleft in the stone. The air is thin and cold, and\nloose scree shifts underfoot. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Here the mountains begin to fall away, and a stony track drops west\ntoward rolling foothills where a lone peak hides a dark cave mouth in\nits flank. The ridge path climbs back south toward the Tooth, and\nanother way winds east deeper among the heights. Sheep trails thread the\nlower slopes, and the wind carries the smell of grass up from the hills.",
+   "extra_descs": {}
   },
   "8540": {
    "vnum": 8540,
@@ -3390,8 +3423,8 @@
      "description": "To the down lies Entrance To The Shortcut."
     }
    },
-   "description": "A narrow ledge picks its way along the mountainside. The air is thin and\ncold, and loose scree shifts underfoot. Ways lead up and down.",
-   "placeholder": true
+   "description": "You dangle on a knotted rope halfway down a sheer cleft in the\nmountainside, your boots scrabbling for purchase on wet rock. Above, the\nrope runs up to an iron ring hammered into a ledge under a strip of grey\nsky; below, it vanishes down a shaft into darkness, toward the mouth of\na hewn tunnel. The wind sets the rope swaying, and small stones rattle\npast you into the gloom.",
+   "extra_descs": {}
   },
   "8541": {
    "vnum": 8541,
@@ -3413,8 +3446,16 @@
      "description": "To the up lies Hanging On A Rope."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north and up.",
-   "placeholder": true
+   "description": "A tall shaft rises here through the rock to a far-off patch of daylight,\nand a knotted rope hangs down its middle, swaying gently in the draught.\nThe rope's lowest knot dangles just above a floor of fitted stones,\nwhere a hewn passage begins and runs north into the dark. Water trickles\ndown the shaft's walls and gathers in a shallow pool beneath the rope.",
+   "extra_descs": {
+    "rope knotted hemp": "The rope is thick hemp, tarred black and knotted at every arm's length,\nand it is newer than it looks. Someone keeps it in good repair."
+   },
+   "mob_resets": [
+    {
+     "vnum": 604002,
+     "max": 1
+    }
+   ]
   },
   "8542": {
    "vnum": 8542,
@@ -3436,8 +3477,8 @@
      "description": "To the south lies Entrance To The Shortcut."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north and\nsouth.",
-   "placeholder": true
+   "description": "The passage runs dead straight through the rock here, its walls scored\nwith the parallel grooves of chisels and picks. Water drips from the\nceiling and trickles away along a gutter cut beside the floor, the only\nsound in the darkness besides your breathing. Soot stains above small\nniches in the wall show where lamps once burned. The tunnel continues\nnorth and south.",
+   "extra_descs": {}
   },
   "8543": {
    "vnum": 8543,
@@ -3463,8 +3504,14 @@
      "description": "To the west lies In The Shortcut."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north,\nsouth and west.",
-   "placeholder": true
+   "description": "The shortcut is a passage hewn through the mountain's roots, just tall\nenough to walk upright, with a floor of flat stones fitted together like\na cellar's. Three ways meet here: north to a small natural cave, south\nalong the straight hewn passage, and west into a narrower bore. A crude\narrow scratched in chalk on the wall points north, toward a faint grey\nlight.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 604002,
+     "max": 1
+    }
+   ]
   },
   "8544": {
    "vnum": 8544,
@@ -3486,8 +3533,8 @@
      "description": "To the east lies In The Shortcut."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north and\neast.",
-   "placeholder": true
+   "description": "The bore is narrower here, and the ceiling dips so low that you must\nstoop to pass, your shoulders brushing walls of cold, sweating stone.\nSomeone has cut a small mark at head height, a circle split by a single\nline, perhaps a miner's sign. The passage runs north into the darkness\nand east toward a meeting of ways.",
+   "extra_descs": {}
   },
   "8545": {
    "vnum": 8545,
@@ -3513,8 +3560,14 @@
      "description": "To the up lies In The Western Foothills."
     }
    },
-   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead east, south\nand up.",
-   "placeholder": true
+   "description": "A slanting shaft climbs up from the roof of the passage here, fitted\nwith iron rungs that lead toward a glimmer of daylight and a breath of\ngrassy air. The hewn tunnel bends south into darkness, while an opening\neast leads into the rough walls of a small natural cave. Roots have\nfound their way down the shaft, hanging like pale strings beside the\nrungs.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 604002,
+     "max": 1
+    }
+   ]
   },
   "8546": {
    "vnum": 8546,
@@ -3542,8 +3595,8 @@
      "description": "To the up lies Near The Northern Chasm."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead south, west and up.",
-   "placeholder": true
+   "description": "This is a small, rough cave, its walls glistening with damp and its\nfloor heaped with rubble fallen from the roof. A shaft of grey daylight\nslants down through a hole above, where the way climbs up to the open\nmountainside. Two passages leave the cave, one south and one west, both\nsquared off by tools and running away into darkness.",
+   "extra_descs": {}
   },
   "8547": {
    "vnum": 8547,
@@ -3565,8 +3618,8 @@
      "description": "To the down lies In The Small Cave."
     }
    },
-   "description": "Wind howls through a cleft in the stone. Snow lingers in the shadowed\nhollows of the rock. Ways lead north and down.",
-   "placeholder": true
+   "description": "This stony shelf lies a stone's throw from the lip of the Northern\nChasm, close enough to feel the cold breath rising from its depths. In\nthe middle of the shelf a black hole opens in the rock, just wide enough\nfor a body to squeeze through, and a draught of damp air sighs up out of\nit. The way down leads into the hole, and north the ground rises to the\ncorner of the chasm.",
+   "extra_descs": {}
   },
   "8548": {
    "vnum": 8548,
@@ -3588,8 +3641,8 @@
      "description": "To the down lies In The Shortcut."
     }
    },
-   "description": "Rocks break through the thin soil of the slope. The ground rises and\nfalls in grassy folds. Ways lead north and down.",
-   "placeholder": true
+   "description": "Grassy hummocks roll away on every side, dotted with grey boulders and\nclumps of yellow gorse. Half hidden in a fold of the hill, a narrow hole\nringed with iron rungs leads down into the dark beneath the mountains. A\nsheep track winds north between the hillocks, and the mountains loom\nclose behind, their lower slopes purple with heather.",
+   "extra_descs": {}
   },
   "8549": {
    "vnum": 8549,
@@ -3611,8 +3664,14 @@
      "description": "To the south lies In The Western Foothills."
     }
    },
-   "description": "Rocks break through the thin soil of the slope. The ground rises and\nfalls in grassy folds. Ways lead north and south.",
-   "placeholder": true
+   "description": "The foothills fold and dip here like a rumpled blanket, and the path\nruns along the bottom of a shallow green trough. A tiny brook trickles\nbeside it through beds of watercress and rushes. Sheep have cropped the\ngrass short, and tufts of their wool hang on every thorn. The way leads\nnorth up a rise crowned by a lone hawthorn and south toward a hidden\nhole in a fold of the hillside.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 604001,
+     "max": 1
+    }
+   ]
   },
   "8550": {
    "vnum": 8550,
@@ -3638,8 +3697,8 @@
      "description": "To the west lies In The Western Foothills."
     }
    },
-   "description": "Gorse and heather cling to the windy rise. The ground rises and falls in\ngrassy folds. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The path tops a rise where a lone hawthorn grows, bent almost double by\nthe wind, its branches combed out to one side. North, a path runs on\nthrough low hills toward the open foothills; south, it drops back into a\ngreen trough; and west a fainter track wanders off among the hillocks.\nFrom here the mountains stand in a great wall, grey above and green\nbelow.",
+   "extra_descs": {}
   },
   "8551": {
    "vnum": 8551,
@@ -3661,8 +3720,8 @@
      "description": "To the east lies In The Western Foothills."
     }
    },
-   "description": "Rocks break through the thin soil of the slope. A narrow path winds\nbetween the hillocks. Ways lead north and east.",
-   "placeholder": true
+   "description": "The hills grow steeper and rockier here, and the grass gives way to\nbracken and outcrops of weathered grey stone. An old dry-stone wall,\ntumbled in places, wanders across the slope and vanishes over a crest.\nThe track leads north toward the last of the foothills and east toward a\nlone hawthorn on a rise.",
+   "extra_descs": {}
   },
   "8552": {
    "vnum": 8552,
@@ -3680,8 +3739,8 @@
      "description": "To the south lies In The Western Foothills."
     }
    },
-   "description": "The ground rises and falls in grassy folds. Gorse and heather cling to\nthe windy rise. A way leads south.",
-   "placeholder": true
+   "description": "The foothills end abruptly at the foot of a sheer mountain wall, a cliff\nof pale stone that rises without crack or ledge for hundreds of feet.\nBoulders that have fallen from it lie half sunk in the turf, furred with\nmoss. There is no way on, and the only path leads back south among the\nhills. Water weeps down the cliff face in dark streaks, and the air here\nis cold and still.",
+   "extra_descs": {}
   },
   "8553": {
    "vnum": 8553,
@@ -3703,8 +3762,8 @@
      "description": "To the south lies The Corner Of The Northern Chasm."
     }
    },
-   "description": "Wind howls through a cleft in the stone. Bare rock climbs steeply on one\nside and falls away on the other. Ways lead north and south.",
-   "placeholder": true
+   "description": "The path climbs steeply among jagged teeth of rock, some taller than a\nhouse and leaning at drunken angles. Frost has split many of them open,\nand their broken faces gleam with fresh, sharp edges. South, the path\ndrops back toward the corner of the chasm, and north it squeezes on\nbetween the stones toward a sharp bend.",
+   "extra_descs": {}
   },
   "8554": {
    "vnum": 8554,
@@ -3726,8 +3785,14 @@
      "description": "To the south lies In The Mountains."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. Wind\nhowls through a cleft in the stone. Ways lead east and south.",
-   "placeholder": true
+   "description": "The path doubles back on itself around a blind shoulder of rock, so\nsharply that you must turn sideways to edge past. A sheer drop yawns at\nthe outer side of the bend, and the rock face is polished smooth by\ncountless hands groping for a grip. The way leads east onto open ground,\nand south back down among the jagged stones.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 604000,
+     "max": 1
+    }
+   ]
   },
   "8555": {
    "vnum": 8555,
@@ -3749,8 +3814,14 @@
      "description": "To the down lies In The Gorge."
     }
    },
-   "description": "Wind howls through a cleft in the stone. A narrow ledge picks its way\nalong the mountainside. Ways lead west and down.",
-   "placeholder": true
+   "description": "A flat table of rock no bigger than a village green sits among the\npeaks, carpeted with short, springy turf and tiny white flowers. The\nwind sweeps across it unhindered, and the view is immense: range upon\nrange of mountains, and far away the dim green of lowland forest. At its\nedge a steep path drops down into a dark gorge, and the sharp turn lies\nback west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 604001,
+     "max": 1
+    }
+   ]
   },
   "8556": {
    "vnum": 8556,
@@ -3772,8 +3843,8 @@
      "description": "To the down lies In The Gorge."
     }
    },
-   "description": "The air is thin and cold, and loose scree shifts underfoot. Wind howls\nthrough a cleft in the stone. Ways lead up and down.",
-   "placeholder": true
+   "description": "The gorge is a deep, narrow slot in the mountain, its walls rising so\nhigh that the sky is no more than a pale crack overhead. A torrent once\nran here, and its bed is a staircase of smooth boulders down which the\npath picks its way. The way climbs up toward the plateau's light and\ndrops down deeper into shadow.",
+   "extra_descs": {}
   },
   "8557": {
    "vnum": 8557,
@@ -3795,8 +3866,14 @@
      "description": "To the down lies Before The Mountains."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. Ways lead up and down.",
-   "placeholder": true
+   "description": "Ferns and dripping moss crowd the walls of the lower gorge, fed by\nsprings that seep from the rock and patter onto the stones. The air is\ndamp and still after the high winds, and every sound echoes back twice.\nDownward the gorge widens and lets in more light, opening onto greener\ncountry, while the boulder stair climbs back up into the gloom.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 604000,
+     "max": 1
+    }
+   ]
   },
   "8558": {
    "vnum": 8558,
@@ -3818,8 +3895,8 @@
      "description": "To the up lies In The Gorge."
     }
    },
-   "description": "Rocks break through the thin soil of the slope. Gorse and heather cling\nto the windy rise. Ways lead east and up.",
-   "placeholder": true
+   "description": "The gorge opens here onto grassy hills at the very foot of the\nmountains, and the grey wall of the range rises behind like a fortress.\nHeather and gorse cover the slopes, and a stream from the gorge chuckles\naway through the grass. A well-worn trail sets off east along the\nmountainside, and the gorge climbs up into the rock.",
+   "extra_descs": {}
   },
   "8559": {
    "vnum": 8559,
@@ -3845,8 +3922,8 @@
      "description": "To the south lies Near The Northern Chasm."
     }
    },
-   "description": "The air is thin and cold, and loose scree shifts underfoot. A narrow\nledge picks its way along the mountainside. Ways lead north, east and\nsouth.",
-   "placeholder": true
+   "description": "The Northern Chasm turns a sharp corner here, its two arms meeting in a\nvast pit of shadow from which a cold wind rises without ceasing. A path\nfollows the rim east, while another leaves the edge and climbs north\namong jagged rocks. South, the ground slopes down to a stony shelf near\nthe lip, where a dark hole opens in the rock.",
+   "extra_descs": {}
   },
   "8560": {
    "vnum": 8560,
@@ -3868,8 +3945,8 @@
      "description": "To the west lies The Corner Of The Northern Chasm."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. Ways lead east and west.",
-   "placeholder": true
+   "description": "A spur of rock juts out over the chasm here, and from its tip a ribbon\nof white water can be seen glinting at the bottom, impossibly far below.\nSomeone has driven an iron stake into the spur and tied a rope to it,\nthough the rope ends a few feet down in a frayed and ragged stump. The\nrim path runs on east, and west it bends toward a corner where the chasm\nturns.",
+   "extra_descs": {}
   },
   "8561": {
    "vnum": 8561,
@@ -3891,8 +3968,8 @@
      "description": "To the west lies At The Edge Of The Chasm."
     }
    },
-   "description": "The air is thin and cold, and loose scree shifts underfoot. A narrow\nledge picks its way along the mountainside. Ways lead east and west.",
-   "placeholder": true
+   "description": "A narrow path runs along the chasm's edge, squeezed between the abyss on\none hand and a rising slope of loose scree on the other. Here and there\na stunted juniper clings to the very brink, its roots gripping the stone\nlike fingers. The path continues east and west along the rim, and the\nwind rising from below smells of wet rock and moss.",
+   "extra_descs": {}
   },
   "8562": {
    "vnum": 8562,
@@ -3918,8 +3995,8 @@
      "description": "To the west lies The Edge Of The Chasm."
     }
    },
-   "description": "Wind howls through a cleft in the stone. The air is thin and cold, and\nloose scree shifts underfoot. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The world simply stops here: the ground ends at the brink of a chasm so\ndeep that its floor is lost in blue shadow and drifting mist. A cold\nupdraft breathes from the depths, carrying the faint roar of water far\nbelow. Paths follow the rim east and west, and a way south climbs a\nbald, white-splashed hill.",
+   "extra_descs": {}
   },
   "8563": {
    "vnum": 8563,
@@ -3941,8 +4018,14 @@
      "description": "To the west lies The Edge Of The Chasm."
     }
    },
-   "description": "Wind howls through a cleft in the stone. A narrow ledge picks its way\nalong the mountainside. Ways lead south and west.",
-   "placeholder": true
+   "description": "The rim of the chasm curves here, and the path along it crumbles where\nthe edge has broken away in great bites. Across the gulf, sheer cliffs\nof banded rock catch the light, striped red, grey and ochre like the\nlayers of a cake. The way runs back west along the brink, and a safer\npath turns south away from the edge into a fold of the mountains.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 604000,
+     "max": 1
+    }
+   ]
   },
   "8564": {
    "vnum": 8564,
@@ -3973,8 +4056,8 @@
      "description": "To the south lies In The Mountains."
     }
    },
-   "description": "Wind howls through a cleft in the stone. Snow lingers in the shadowed\nhollows of the rock. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "A fold in the mountainside shelters this spot from the wind, and snow\nlies deep in drifts against a sheer rock face. Set into that face, so\ncunningly that it is easy to miss, is a stout door of planks painted the\ngrey of the stone around it, leading east into the mountain. Paths lead\nnorth toward the chasm's rim and south along the foot of the cliff.",
+   "extra_descs": {}
   },
   "8565": {
    "vnum": 8565,
@@ -3992,8 +4075,8 @@
      "description": "To the north lies In The Mountains."
     }
    },
-   "description": "The air is thin and cold, and loose scree shifts underfoot. A narrow\nledge picks its way along the mountainside. A way leads north.",
-   "placeholder": true
+   "description": "The path ends in a cramped hollow walled in by cliffs, where the snow\nhas drifted chest-deep against the rock. Nothing grows here but a few\nclumps of frost-blackened heather. Rows of short scratches mark the rock\nat shoulder height, as though someone once counted days here. The only\nway out is back north along the foot of the cliff, and the silence is so\ndeep you can hear your own heart.",
+   "extra_descs": {}
   },
   "8566": {
    "vnum": 8566,
@@ -4019,8 +4102,8 @@
      "description": "To the west lies In The Mountains."
     }
    },
-   "description": "Snow lingers in the shadowed hollows of the rock. The air is thin and\ncold, and loose scree shifts underfoot. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "A wide, wind-scoured shelf runs across the mountainside here, strewn\nwith frost-split stones. South, a single enormous boulder sits alone at\nthe end of a spur, and a worn path leads out to it; west, the shelf runs\nback toward a crossing of trails. A narrower way leads north between two\ncliffs into a snow-choked hollow.",
+   "extra_descs": {}
   },
   "8567": {
    "vnum": 8567,
@@ -4050,8 +4133,10 @@
      "description": "To the west lies In The Mountains."
     }
    },
-   "description": "Wind howls through a cleft in the stone. Bare rock climbs steeply on one\nside and falls away on the other. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Four trails meet in this windswept hollow, and a tall standing stone\nmarks the crossing, its faces worn smooth by the weather. North, a bald\nhill rises against the sky, its crown splashed white; south, a well-\ntrodden trail descends along the mountainside. Other paths wander east\namong the peaks and west down a high, grassy valley.",
+   "extra_descs": {
+    "standing stone arrows": "Faint arrows have been scratched into each face of the stone, one for\nevery trail. Beside the arrow that points toward the bald hill, someone\nhas added the rough shape of a bird with its wings spread wide."
+   }
   },
   "8568": {
    "vnum": 8568,
@@ -4073,8 +4158,8 @@
      "description": "To the west lies In The Mountains."
     }
    },
-   "description": "The air is thin and cold, and loose scree shifts underfoot. Wind howls\nthrough a cleft in the stone. Ways lead east and west.",
-   "placeholder": true
+   "description": "A high valley runs between two ridges here, floored with tough grey\ngrass and boulders spotted with lichen. Snowmelt has cut a shallow\nchannel down its length, dry now and paved with rounded stones. Among\nthe boulders stand the walls of a shepherd's hut, roofless and half\nfallen. The way leads east toward a meeting of trails and west to where\nthe mountains drop toward the foothills.",
+   "extra_descs": {}
   },
   "8569": {
    "vnum": 8569,
@@ -4096,8 +4181,8 @@
      "description": "To the south lies In The Mountains."
     }
    },
-   "description": "A narrow ledge picks its way along the mountainside. Snow lingers in the\nshadowed hollows of the rock. Ways lead north and south.",
-   "placeholder": true
+   "description": "The hill is a bare dome of rock, its crown splashed white with the\ndroppings of carrion birds. A dead pine stands at the summit, stripped\nof bark and bleached grey, its branches worn smooth where heavy talons\ngrip. The smell of old carrion lingers in the hollows. North, the ground\nends abruptly at the lip of a vast chasm, and south the slope runs down\nto a meeting of trails.",
+   "extra_descs": {}
   },
   "8570": {
    "vnum": 8570,
@@ -4124,8 +4209,8 @@
      "description": "To the west lies In The Mountains."
     }
    },
-   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead east and west.",
-   "placeholder": true
+   "description": "Behind the hidden door lies a long, low room hollowed out of the rock,\nwarmer than the mountainside and smelling of tallow and old smoke. Bunks\nof rough timber line the walls, and a trestle table scarred with knife\ncuts stands before a hearth whose smoke escapes through a crack in the\nceiling. A second door, bound with iron, leads east deeper into the\nrock, and the way out is west.",
+   "extra_descs": {}
   },
   "8571": {
    "vnum": 8571,
@@ -4143,8 +4228,10 @@
      "description": "To the west lies The Hideaway."
     }
    },
-   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. A way leads\nwest.",
-   "placeholder": true
+   "description": "This small inner chamber is cut with more care than the room beyond, its\nwalls smoothed and its corners squared. A heavy chair carved from a\nsingle block of stone sits against the far wall like a throne, and\nbeside it an iron strongbox is bolted to the floor. Maps and lists of\nnames have been scratched into the plaster in a cramped hand. The only\ndoor leads back west.",
+   "extra_descs": {
+    "maps names plaster scratches lists": "The maps show the mountain trails in crude lines, with small marks at\nthe cliff camp, along the chasm's rim and at the road far below. Beside\nthem runs a long column of names, most of them struck through."
+   }
   },
   "8572": {
    "vnum": 8572,
@@ -4162,8 +4249,10 @@
      "description": "To the north lies In The Mountains."
     }
    },
-   "description": "The air is thin and cold, and loose scree shifts underfoot. Snow lingers\nin the shadowed hollows of the rock. A way leads north.",
-   "placeholder": true
+   "description": "A boulder as big as a cottage sits alone at the end of this spur,\ndropped here by some ancient ice and left balanced on the very brink of\na drop. Beneath its overhang a hollow has been scraped out and walled\nwith piled stones, and a weathered inscription is cut into the boulder's\nface above it. The view from here is vast and lonely. The only way back\nis north along the spur.",
+   "extra_descs": {
+    "inscription words boulder letters": "The letters are cut deep but softened by long weather. They read: Here I\nsat, and the mountains taught me patience; they have not finished\nteaching. Beneath the words a small open hand has been carved into the\nstone."
+   }
   },
   "9800": {
    "vnum": 9800,
@@ -4185,8 +4274,8 @@
      "description": "To the west lies Before The Mountains."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. The\nair is thin and cold, and loose scree shifts underfoot. Ways lead east\nand west.",
-   "placeholder": true
+   "description": "The trail begins its long climb here, a rutted path of packed earth and\nstone scratched along the flank of the mountains. Below it the slope\nfalls away in grassy folds to the hills; above, grey cliffs stack one\nupon another into the clouds. West, the trail drops to the grassy ground\nbefore the mountains, and east it rises steadily on.",
+   "extra_descs": {}
   },
   "9801": {
    "vnum": 9801,
@@ -4208,8 +4297,14 @@
      "description": "To the west lies Mountain Trail."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. Ways lead east and west.",
-   "placeholder": true
+   "description": "The trail crosses a long slope of scree on a path of flat stones laid by\nsome careful hand long ago, most of them still in place. A rusted iron\npost leans at the outer edge, all that remains of a railing. The way\nclimbs on east and slopes back west, and now and then loose stones\nrattle down from the heights above.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 604000,
+     "max": 1
+    }
+   ]
   },
   "9802": {
    "vnum": 9802,
@@ -4235,8 +4330,8 @@
      "description": "To the west lies Mountain Trail."
     }
    },
-   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. Ways lead north, east and\nwest.",
-   "placeholder": true
+   "description": "A side path branches off the mountain trail here, climbing north into\nthe high country toward a meeting of ways. The main trail goes on east,\nrising toward a peak whose summit is hidden in cloud, and west it drops\nback toward the foothills. A worn milestone stands at the fork, its\ncarved letters long since erased by frost.",
+   "extra_descs": {}
   },
   "9803": {
    "vnum": 9803,
@@ -4258,8 +4353,14 @@
      "description": "To the west lies Mountain Trail."
     }
    },
-   "description": "A narrow ledge picks its way along the mountainside. Wind howls through\na cleft in the stone. Ways lead east and west.",
-   "placeholder": true
+   "description": "The trail reaches its highest point here, skirting just below a summit\nof shattered rock wrapped in cloud. Freezing mist drifts across the\npath, beading on your cloak and hair, and the air is so thin that every\nstep is an effort. East, the trail begins its descent toward a valley;\nwest, it runs back down along the mountainside.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 604001,
+     "max": 1
+    }
+   ]
   },
   "9804": {
    "vnum": 9804,
@@ -4281,8 +4382,8 @@
      "description": "To the west lies Near the Mountain's Peak."
     }
    },
-   "description": "Snow lingers in the shadowed hollows of the rock. Wind howls through a\ncleft in the stone. Ways lead east and west.",
-   "placeholder": true
+   "description": "The trail winds downward in long loops, and with every turn the air\ngrows a little warmer and the rocks give way to tough grass and\nbilberry. Below, a green valley opens among the mountains, thick with\ntrees and threaded by a stream. The trail descends east toward it and\nclimbs west back toward the cloud-capped peak.",
+   "extra_descs": {}
   },
   "9805": {
    "vnum": 9805,
@@ -4304,8 +4405,8 @@
      "description": "To the west lies Trail to the Valley."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead east and west.",
-   "placeholder": true
+   "description": "Tall pines and silver birches fill the valley floor, and after the bare\nheights their shade feels close and green. A clear stream runs beside\nthe path over pebbles of every colour, and the air smells of resin and\nwet earth. The path climbs west out of the trees toward the mountain\ntrail, and east the woods thin toward a patch of open sky.",
+   "extra_descs": {}
   },
   "9806": {
    "vnum": 9806,
@@ -4327,8 +4428,10 @@
      "description": "To the down lies A Stairwell."
     }
    },
-   "description": "Old trees crowd close, their roots knotted across the path. Shafts of\npale light slant between the trunks. Ways lead west and down.",
-   "placeholder": true
+   "description": "The trees draw back around a quiet clearing where long grass grows over\nthe tumbled stones of some ancient wall. In the middle, set into a ring\nof mossy masonry, is a square trapdoor of oak bound with black iron, and\na way leads down through it into darkness. The woods close in on every\nside but the west, where a path leads back into the valley.",
+   "extra_descs": {
+    "trapdoor masonry ring": "The ring of masonry is the top of a round stone tower, buried in the\nearth up to its battlements, and the trapdoor sits where its roof should\nbe. Letters worn almost smooth run around the rim, and the clearest of\nthem spell out a single name: RAND."
+   }
   }
  },
  "mobs": {
@@ -5032,6 +5135,154 @@
    "inventory": [
     4101
    ]
+  },
+  "604000": {
+   "vnum": 604000,
+   "name": "mountain goat billy shaggy",
+   "short_desc": "a shaggy mountain goat",
+   "long_desc": "A shaggy mountain goat picks its way along the rocks, utterly unbothered by the drop.",
+   "description": "A sturdy billy goat with a coat of long, dirty-white hair that hangs in\na fringe over its legs, and a pair of black horns curving back from its\nbrow. Its yellow eyes, with their odd oblong pupils, regard you with\nmild contempt as it chews. A frayed leather collar hangs loose about its\nneck, as though it once belonged to some foothill herder.",
+   "level": 5,
+   "alignment": 0,
+   "hp_dice": "5d8+62",
+   "damage_dice": "2d6+2",
+   "armor_class": 82,
+   "exp": 295,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 704000,
+     "chance": 20
+    },
+    {
+     "vnum": 200,
+     "chance": 5
+    },
+    {
+     "vnum": 201,
+     "chance": 5
+    }
+   ]
+  },
+  "604001": {
+   "vnum": 604001,
+   "name": "hawk bird mountain brown",
+   "short_desc": "a mountain hawk",
+   "long_desc": "A mountain hawk perches on a jut of rock, its fierce gold eyes following your every move.",
+   "description": "It is a big, broad-winged hawk, brown above and barred with cream below,\nits hooked beak dark as horn. When the wind gusts it half opens its\nwings and rides the air without effort, then settles again with a ruffle\nof feathers. Its long tail feathers, banded brown and grey, are the kind\nfletchers prize.",
+   "level": 7,
+   "alignment": 0,
+   "hp_dice": "7d8+81",
+   "damage_dice": "2d6+5",
+   "armor_class": 76,
+   "exp": 405,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 704001,
+     "chance": 25
+    },
+    {
+     "vnum": 200,
+     "chance": 5
+    },
+    {
+     "vnum": 201,
+     "chance": 5
+    }
+   ]
+  },
+  "604002": {
+   "vnum": 604002,
+   "name": "rock spider grey giant",
+   "short_desc": "a grey rock spider",
+   "long_desc": "A grey rock spider the size of a hound clings motionless to the wall, nearly invisible against the stone.",
+   "description": "Its body is mottled grey and brown exactly like the rock it lives on,\nand its eight jointed legs bristle with stiff hairs that let it cling to\nthe smoothest wall. A cluster of small black eyes glitters above a pair\nof hooked fangs wet with clear venom. Fine silk lines laid along the\nfloor tremble at the slightest touch, warning it of anything that\npasses.",
+   "level": 14,
+   "alignment": 0,
+   "hp_dice": "14d8+158",
+   "damage_dice": "4d6+8",
+   "armor_class": 55,
+   "exp": 790,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 704002,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "604003": {
+   "vnum": 604003,
+   "name": "cave bear great brown",
+   "short_desc": "a great cave bear",
+   "long_desc": "A great cave bear rears up out of the gloom, swinging its massive head toward you.",
+   "description": "It is far larger than any forest bear, with a high, humped shoulder and\na broad, flat-browed skull. Its brown coat is matted and scarred, and\nits claws, each as long as a dagger, click on the stone when it moves.\nIts small dark eyes smoulder with slow, sullen anger at being disturbed.",
+   "level": 18,
+   "alignment": 0,
+   "hp_dice": "18d8+208",
+   "damage_dice": "5d6+10",
+   "armor_class": 43,
+   "exp": 1010,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 704002,
+     "chance": 15
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
   }
  },
  "objects": {
@@ -5519,6 +5770,58 @@
    "type": "armor",
    "min_level": 10,
    "armor": 9
+  },
+  "704000": {
+   "vnum": 704000,
+   "name": "trinket goat horn charm thong",
+   "short_desc": "a goat-horn trinket",
+   "room_desc": "A small trinket of carved goat horn lies here on a frayed leather thong.",
+   "description": "A thumb-length curl of goat horn, carved with a ring of tiny hoofprints and polished smooth by long wear, hangs from a frayed leather thong. Foothill herders tie such charms to their lead goats to keep them sure-footed on the heights, and the goats that ran wild on the mountain sometimes still wear them.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 5,
+   "wear_slot": "neck1",
+   "armor": 1,
+   "weight": 1,
+   "value": 130,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 1
+    }
+   ]
+  },
+  "704001": {
+   "vnum": 704001,
+   "name": "feathers hawk sheaf barred",
+   "short_desc": "a sheaf of barred hawk feathers",
+   "room_desc": "A sheaf of brown-and-cream hawk feathers lies here, stirring in the draught.",
+   "description": "A handful of long wing and tail feathers, barred brown and cream, stiff in the shaft and perfectly whole. A fletcher would pay well for them, for arrows fletched with mountain hawk are said to fly true even in a crosswind.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 7,
+   "weight": 1,
+   "value": 235
+  },
+  "704002": {
+   "vnum": 704002,
+   "name": "pick prospector rock hammer",
+   "short_desc": "a prospector's rock pick",
+   "room_desc": "A prospector's rock pick lies here, its haft wrapped in old grey cobweb.",
+   "description": "A short, heavy pick with a squared hammer face on one side of the head and a narrow spike on the other, made for splitting stone to see what lies within. The ash haft is darkened by the grip of some long-gone miner's hands, and strands of old web still cling to it.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 14,
+   "damage_dice": "2d5",
+   "weapon_type": "pierce",
+   "weight": 6,
+   "value": 390,
+   "affects": [
+    {
+     "type": "hitroll",
+     "value": 1
+    }
+   ]
   }
  },
  "lifespan": 20

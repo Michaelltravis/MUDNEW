@@ -24,8 +24,8 @@
      "description": "To the up lies The King's Road."
     }
    },
-   "description": "A narrow path winds between the hillocks. Rocks break through the thin\nsoil of the slope. Ways lead south and up.",
-   "placeholder": true
+   "description": "A small rocky path drops away from the King's Road, winding down a\nsteep, wooded hillside between grey boulders furred with moss. Oak and\nhazel lean over the path, and their roots make rough steps in the stony\nsoil. The way up climbs back to the road, and south the path descends\ndeeper into the hills of the King's Forest. Somewhere below, water\nchuckles over stones.",
+   "extra_descs": {}
   },
   "8666": {
    "vnum": 8666,
@@ -47,8 +47,8 @@
      "description": "To the south lies A Small Rocky Path."
     }
    },
-   "description": "The ground rises and falls in grassy folds. A narrow path winds between\nthe hillocks. Ways lead north and south.",
-   "placeholder": true
+   "description": "The path squeezes between two great slabs of grey rock that lean\ntogether overhead like the roof of a house. Ferns sprout from every\ncrack, and the stone is cool and damp to the touch. North the path\nclimbs toward the road, and south it winds on down the hillside. The air\nhere smells of moss and old leaves.",
+   "extra_descs": {}
   },
   "8667": {
    "vnum": 8667,
@@ -70,8 +70,14 @@
      "description": "To the south lies A Small Rocky Path."
     }
    },
-   "description": "The ground rises and falls in grassy folds. Gorse and heather cling to\nthe windy rise. Ways lead north and south.",
-   "placeholder": true
+   "description": "The trees open a little, and the path crosses a sloping meadow of\nbracken and foxgloves, bright against the dark woods around. A weathered\nstump has been carved into a rough seat, polished smooth by years of\nweary travellers. The path continues south down the slope and north back\ninto the rocks. Sunlight falls warm and still across the bracken.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644100,
+     "max": 1
+    }
+   ]
   },
   "8668": {
    "vnum": 8668,
@@ -93,8 +99,14 @@
      "description": "To the south lies A Small Rocky Path."
     }
    },
-   "description": "A narrow path winds between the hillocks. Rocks break through the thin\nsoil of the slope. Ways lead north and south.",
-   "placeholder": true
+   "description": "The path runs along the foot of a low cliff here, where water seeps from\nthe rock and drips into a chain of small pools. Hart's-tongue ferns and\nliverworts grow lush and green in the damp. North the path climbs back\nacross the bracken slope, and south it bends toward a dark opening in\nthe hillside. The quiet is broken only by the steady drip of water.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644101,
+     "max": 1
+    }
+   ]
   },
   "8669": {
    "vnum": 8669,
@@ -116,8 +128,8 @@
      "description": "To the south lies Inside The Cave."
     }
    },
-   "description": "From the crest the land below spreads out like a map. Rocks break\nthrough the thin soil of the slope. Ways lead north and south.",
-   "placeholder": true
+   "description": "The rocky path ends before the mouth of a cave in the hillside, a dark\narch half-curtained by trailing ivy. Cold air breathes out from within,\nsmelling of earth and wet stone. The cave opens to the south, while\nnorth the path climbs back up the hill. Scratches and old soot marks on\nthe rock show that others have sheltered here before.",
+   "extra_descs": {}
   },
   "8670": {
    "vnum": 8670,
@@ -137,8 +149,14 @@
      "description": "To the north lies A Small Rocky Path."
     }
    },
-   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads north.",
-   "placeholder": true
+   "description": "The cave is a low, dry chamber hollowed into the hillside, its rough\nwalls glittering faintly with flecks of quartz. A ring of blackened\nstones on the floor marks an old fire, and a shelf of rock along one\nwall makes a rough bed. Daylight filters in through the ivy at the\nentrance to the north. The air is still and smells of old smoke and damp\nearth.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644102,
+     "max": 1
+    }
+   ]
   },
   "8694": {
    "vnum": 8694,
@@ -156,8 +174,8 @@
      "description": "To the north lies The Bottom Of A Well."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Ferns and moss soften the\nground beneath a dim green canopy. A way leads north.",
-   "placeholder": true
+   "description": "A narrow gap opens into a hidden hollow beneath the roots of a great\ntree, roofed with tangled roots and packed earth. Someone has made a den\nof it, with a bed of dried bracken, a few pegs driven into the roots for\nhanging things, and a small pit for a fire. Pale light filters down\nthrough the roots from somewhere above. North, the passage leads back to\nthe bottom of the well.",
+   "extra_descs": {}
   },
   "8695": {
    "vnum": 8695,
@@ -179,8 +197,8 @@
      "description": "To the up lies In The Ruined City."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead south and up.",
-   "placeholder": true
+   "description": "You stand at the bottom of an old dry well, a shaft of mossy stones\nrising to a ring of daylight high above. Iron rungs set into the wall\nlead up toward the ruins of the city overhead. The floor is soft with\nfallen leaves and old mud, and ferns grow from the cracks in the\nstonework. South, a low gap in the well's side opens into a hidden\npassage among the roots.",
+   "extra_descs": {}
   },
   "8742": {
    "vnum": 8742,
@@ -198,8 +216,16 @@
      "description": "To the up lies The Small Island."
     }
    },
-   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. A way leads up.",
-   "placeholder": true
+   "description": "Mossy steps lead down from the small island into a sunken hollow where a\ngreat barrow mound rises, grassed over and ringed by leaning stones. A\ndoorway of massive stone slabs is set into its side beneath a carved\nlintel, but a fallen block seals the darkness beyond. The way up leads\nback to the trees of the small island. The air here is unnaturally\nstill, and even the birds fall silent.",
+   "extra_descs": {
+    "lintel knotwork doorway slabs": "The lintel is carved with a line of armed figures walking hand in hand\ninto a door of knotwork. The last figure has been chipped away, as if\nsomeone wished to unmake him."
+   },
+   "mob_resets": [
+    {
+     "vnum": 644103,
+     "max": 1
+    }
+   ]
   },
   "8745": {
    "vnum": 8745,
@@ -217,8 +243,8 @@
      "description": "To the up lies The Animal Path."
     }
    },
-   "description": "Gorse and heather cling to the windy rise. The ground rises and falls in\ngrassy folds. A way leads up.",
-   "placeholder": true
+   "description": "A broad ledge of grey stone juts from the steep slope here, a natural\nbalcony above a sea of treetops. Beyond its edge the King's Forest\nspreads away into the haze, its hills rolling and wooded. A goat track\nzigzags up the slope behind you toward the animal path. Lichen in rusty\norange patches crusts the rock, and the wind smells of pine resin.",
+   "extra_descs": {}
   },
   "8746": {
    "vnum": 8746,
@@ -236,10 +262,195 @@
      "description": "To the up lies The Trail."
     }
    },
-   "description": "Birdsong drifts down through the branches overhead. Old trees crowd\nclose, their roots knotted across the path. A way leads up.",
-   "placeholder": true
+   "description": "This is a deep hollow beneath an overhanging bank, where a great badger\nsett has been dug into the soft, sandy earth. Heaps of excavated soil\nand old bedding lie before the dark entrances, and the smell of musk is\nstrong. Roots dangle from the bank, and a steep scramble leads up to the\ntrail. The ground is pocked with pawprints and scored by sharp claws.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644100,
+     "max": 1
+    }
+   ]
   }
  },
- "mobs": {},
- "objects": {}
+ "mobs": {
+  "644100": {
+   "vnum": 644100,
+   "name": "badger brock",
+   "short_desc": "a grizzled badger",
+   "long_desc": "A grizzled badger snuffles among the roots, digging for grubs.",
+   "description": "A low, broad badger with a striped black-and-white face and a coat of\ncoarse grey hair. It is short-tempered and strong, and its long front\nclaws are caked with earth.",
+   "level": 7,
+   "alignment": 0,
+   "hp_dice": "7d8+81",
+   "damage_dice": "2d6+5",
+   "armor_class": 76,
+   "exp": 405,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": []
+  },
+  "644101": {
+   "vnum": 644101,
+   "name": "fox red",
+   "short_desc": "a red fox",
+   "long_desc": "A red fox pauses on the path, one forepaw raised, watching you with bright eyes.",
+   "description": "A slim fox with a russet coat, black stockings and a bushy white-tipped\ntail. It is wary and quick, and its sharp face seems to wear a look of\nprivate amusement.",
+   "level": 6,
+   "alignment": 0,
+   "hp_dice": "6d8+71",
+   "damage_dice": "2d6+3",
+   "armor_class": 79,
+   "exp": 350,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": []
+  },
+  "644102": {
+   "vnum": 644102,
+   "name": "poacher hunter man",
+   "short_desc": "a furtive poacher",
+   "long_desc": "A furtive poacher crouches in the shadows, a coil of wire snares over his shoulder.",
+   "description": "A wiry, unshaven hunter in a patched green coat, smelling of woodsmoke\nand blood. A knife hangs at his belt and a bundle of snares at his\nshoulder, and his darting eyes say he has no wish to be found by the\nKing's foresters or anyone else.",
+   "level": 11,
+   "alignment": -250,
+   "hp_dice": "11d8+143",
+   "damage_dice": "3d6+7",
+   "armor_class": 64,
+   "exp": 625,
+   "gold": 132,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744101,
+     "chance": 30
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "644103": {
+   "vnum": 644103,
+   "name": "barrow wight undead",
+   "short_desc": "a barrow wight",
+   "long_desc": "A barrow wight stands guard before the mound, cold light burning in its eyes.",
+   "description": "It is a tall, withered corpse in the corroded mail of an ancient\nchieftain, its skin drawn tight and grey over the bones. A pale light\nburns in its empty eye sockets, and rings glint on its skeletal fingers.\nThe air around it is as cold as a winter grave.",
+   "level": 16,
+   "alignment": -850,
+   "hp_dice": "16d8+239",
+   "damage_dice": "5d6+7",
+   "armor_class": 49,
+   "exp": 900,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744100,
+     "chance": 25
+    },
+    {
+     "vnum": 744102,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "744100": {
+   "vnum": 744100,
+   "name": "blade barrow sword bronze ancient",
+   "short_desc": "an ancient barrow-blade",
+   "room_desc": "An ancient leaf-shaped sword lies here, green with age.",
+   "description": "A broad, leaf-shaped sword of dark bronze, its hilt bound with gold wire and its blade etched with running hounds. It was laid in the barrow beside a forgotten king, and its edge is still keen.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 16,
+   "damage_dice": "2d5",
+   "weapon_type": "slash",
+   "weight": 6,
+   "value": 440,
+   "affects": [
+    {
+     "type": "hitroll",
+     "value": 1
+    }
+   ]
+  },
+  "744101": {
+   "vnum": 744101,
+   "name": "snare poacher wire coil",
+   "short_desc": "a poacher's wire snare",
+   "room_desc": "A coil of fine brass wire, knotted into a snare, lies here.",
+   "description": "A running noose of fine brass wire on a wooden peg, the tool of a poacher's trade. A gamekeeper would pay a bounty to see it, and a poacher would pay more to have it back.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 11,
+   "weight": 1,
+   "value": 355
+  },
+  "744102": {
+   "vnum": 744102,
+   "name": "ring grave tarnished silver",
+   "short_desc": "a tarnished grave-ring",
+   "room_desc": "A tarnished silver ring lies here.",
+   "description": "A heavy silver ring blackened with age, set with a cloudy grey stone. Taken from a barrow-dweller's finger, it feels cold no matter how long it is worn, and quiet thoughts come easier with it on.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 15,
+   "wear_slot": "finger1",
+   "armor": 2,
+   "weight": 1,
+   "value": 330,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 1
+    }
+   ]
+  }
+ }
 }

@@ -131,7 +131,7 @@ def check(path, world=None, quiet=False):
             probs.append(f'{v} {room.get("name")}: compass word {b}')
         if re.search(r'midgaard|placeholder|\{|\}|&[a-z]|\bvnum\b', text, re.I):
             probs.append(f'{v}: has a forbidden word or code (Midgaard, braces, colour codes, vnum)')
-        if ' '.join(text.split()) == ' '.join((room.get('description') or '').split()):
+        if room.get('placeholder') and ' '.join(text.split()) == ' '.join((room.get('description') or '').split()):
             probs.append(f'{v}: still the placeholder text')
         for s in sents:
             if len(s.split()) >= 5:

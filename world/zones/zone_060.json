@@ -630,8 +630,10 @@
      "description": "To the south lies The Dead End."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "This is the entrance hall of the Castle Of Caboon, a high, cold chamber\nof black stone where every sound echoes. Faded banners hang in rags from\niron poles along the walls, and the flagstones are thick with dust and\ndrifted leaves. To the north, a pair of tall inner doors is barred with\na beam of oak and bound with chains, sealing off whatever lies beyond.\nThe open archway leads back south to the dead end.",
+   "extra_descs": {
+    "doors inner beam chains": "The doors are twice the height of a man, carved with a pattern of\npainted vines now flaking away. A great oak beam rests across them in\niron brackets, and heavy chains are looped through the handles and\nlocked with a rusted padlock the size of a fist."
+   }
   },
   "2703": {
    "vnum": 2703,
@@ -653,8 +655,14 @@
      "description": "To the south lies The Dark Path."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Shafts of pale light slant\nbetween the trunks. Ways lead north and south.",
-   "placeholder": true
+   "description": "The living forest ends here, and beyond lies the abandoned forest: a\ngrey expanse of dead and dying trees, their bark peeling, their branches\nbare and black against the sky. Behind you to the north, green trees\nstand in a close ring around a huge old tree. A path of dark, ashy earth\nleads south between the dead trunks. The air is silent and smells\nfaintly of rot.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 606000,
+     "max": 1
+    }
+   ]
   },
   "2705": {
    "vnum": 2705,
@@ -680,8 +688,8 @@
      "description": "To the south lies The Dark Path."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. A worn track\ncrosses the open ground. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The path of black, ashy earth forks here among the dead trees, one\nbranch winding east and another bending south through thickets of\nwithered bramble. Every tree in sight is dead, grey and leafless, and\nsome have fallen across one another in great tangles. Above the bare\nbranches the sky is a dull, heavy grey. The edge of the living forest\nlies back north.",
+   "extra_descs": {}
   },
   "2711": {
    "vnum": 2711,
@@ -703,8 +711,8 @@
      "description": "To the west lies A Dead End."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. The land lies\nflat and quiet in every direction. Ways lead north and west.",
-   "placeholder": true
+   "description": "The path here runs through a stand of dead birches, their white bark\npeeled and blackened so that they look like bones standing upright in\nthe earth. Pale fungus grows in brackets up their trunks. A cold mist\nhangs low over the ground, curling around your ankles. The path leads\nnorth to the fork, and west into a thicket.",
+   "extra_descs": {}
   },
   "2712": {
    "vnum": 2712,
@@ -722,8 +730,8 @@
      "description": "To the east lies The Dark Path."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. The land lies\nflat and quiet in every direction. A way leads east.",
-   "placeholder": true
+   "description": "The path ends among the roots of a huge dead yew, its hollow trunk split\nopen wide enough to show a dark, empty cavity inside. Thorn and dead\nbracken close in around it on every side. A smell of old smoke clings to\nthe hollow, as if someone once sheltered there. The only way back is\neast.",
+   "extra_descs": {}
   },
   "2713": {
    "vnum": 2713,
@@ -745,8 +753,14 @@
      "description": "To the west lies The Dark Path."
     }
    },
-   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead south and west.",
-   "placeholder": true
+   "description": "The path turns here at the foot of a great oak that was split by\nlightning long ago, its two halves leaning apart like the jaws of a\ntrap. The wood inside is charred black. Dead heather crackles underfoot,\nbrittle as old paper, and a cold wind sighs through the bare twigs. The\npath leads south and west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 606000,
+     "max": 1
+    }
+   ]
   },
   "2714": {
    "vnum": 2714,
@@ -768,8 +782,8 @@
      "description": "To the east lies The Dark Path."
     }
    },
-   "description": "A worn track crosses the open ground. Open grassland rolls away under a\nwide sky. Ways lead north and east.",
-   "placeholder": true
+   "description": "A ditch of stagnant black water runs beside the path here, its surface\nskinned with oily rainbows and dead leaves. The path squeezes between\nthe ditch and a wall of thornbushes that have grown wild and tangled. A\nsour smell rises from the water. The way leads north toward a lightning-\nblasted oak, and east deeper into the dead wood.",
+   "extra_descs": {}
   },
   "2720": {
    "vnum": 2720,
@@ -791,8 +805,8 @@
      "description": "To the west lies The Dark Path."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. The land lies\nflat and quiet in every direction. Ways lead north and west.",
-   "placeholder": true
+   "description": "The remains of an old stone wall run alongside the path here, its stones\ntumbled and furred with black moss, perhaps once the boundary of some\nfield or estate. Through gaps in the dead trees, the dark towers of a\ncastle can be glimpsed in the distance. Grey toadstools grow in a ring\non the bare earth. The path bends north and west.",
+   "extra_descs": {}
   },
   "2728": {
    "vnum": 2728,
@@ -818,8 +832,8 @@
      "description": "To the south lies The Dark Path."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The path splits once more among the grey trunks, and a narrow side track\nwanders off east into a thicket. The ground here is soft and black, and\nevery footprint fills slowly with dark water. Old nests of sticks crown\nthe highest dead branches. The main path runs on north toward the dark\ntowers, and back south along the old wall.",
+   "extra_descs": {}
   },
   "2729": {
    "vnum": 2729,
@@ -837,8 +851,14 @@
      "description": "To the west lies The Dark Path."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. The land lies\nflat and quiet in every direction. A way leads west.",
-   "placeholder": true
+   "description": "The side track ends at the edge of a steep pit, a sinkhole in the black\nearth whose sides are slick with mud and whose bottom is lost in\nstagnant water. Dead roots stick out of its walls like grasping fingers.\nA cold breath rises from the water, smelling of rot. There is nowhere to\ngo but back west to the path.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 606000,
+     "max": 1
+    }
+   ]
   },
   "2730": {
    "vnum": 2730,
@@ -856,8 +876,8 @@
      "description": "To the east lies The Dark Path."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. A worn track crosses the\nopen ground. A way leads east.",
-   "placeholder": true
+   "description": "The path peters out here against a wall of blackthorn so dense that not\neven a hand could pass through it. The thorns are long and cruel, and\nscraps of cloth hang from them where others have tried. The dead trees\nlean in overhead, creaking in the wind. The only way out is back east.",
+   "extra_descs": {}
   },
   "2731": {
    "vnum": 2731,
@@ -883,8 +903,10 @@
      "description": "To the west lies A Dead End."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The dead trees close in here, and the path ends in a small clearing\nhemmed by thorn, with gaps leading east and west. The towers of a castle\nloom very near now above the bare branches, their windows dark. A tall\ngibbet of black timber stands in the clearing, its chains rusted and\nempty. The path runs back south.",
+   "extra_descs": {
+    "gibbet chains cage": "The gibbet is a post of tarred timber with an iron cage hanging from its\narm on rusted chains. The cage is empty, but its bars are bent outward,\nas if whatever was held there forced its way free."
+   }
   },
   "2732": {
    "vnum": 2732,
@@ -906,8 +928,14 @@
      "description": "To the west lies The Dark Path."
     }
    },
-   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. Ways lead north and west.",
-   "placeholder": true
+   "description": "The dark path ends here before the gate of a grim stone castle, whose\nwalls rise sheer and black from the dead earth. The gate stands open to\nthe north, a deep archway leading into shadow. Heavy iron studs cover\nits weathered doors, and a carved stone crest above the arch has been\nchiselled away. The only other way is west, back along the path.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 606000,
+     "max": 1
+    }
+   ]
   },
   "3224": {
    "vnum": 3224,
@@ -937,8 +965,8 @@
      "description": "To the west lies The Plains."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Open grassland\nrolls away under a wide sky. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The road leaves the Southern Gatehouse of Garathorm just to the north\nand strikes out across the open plains, its cobbles soon giving way to\npacked earth and dust. Deep wheel ruts and the prints of hooves and\nboots mark its surface. On either side the grass runs off east and west,\nwaving in the wind. The road runs straight on south.",
+   "extra_descs": {}
   },
   "3225": {
    "vnum": 3225,
@@ -968,8 +996,10 @@
      "description": "To the west lies The Plains."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The road runs straight and dusty through the heart of the plains, a pale\nribbon between tall banks of grass. A squat milestone stands at the\nverge, its carving worn but still legible. Wildflowers crowd the\nroadside, and the wind brings the smell of distant woodsmoke. The road\nleads north back to the city gate and south into open country, while the\ngrass spreads east and west.",
+   "extra_descs": {
+    "milestone stone": "A block of grey granite with a rounded top, half sunk in the verge. Its\nweathered face reads Garathorm, one mile, with the city's tower sigil\ncut beneath."
+   }
   },
   "3226": {
    "vnum": 3226,
@@ -999,8 +1029,10 @@
      "description": "To the west lies The Plains."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. The land lies\nflat and quiet in every direction. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "The road begins to roughen here as it runs south toward wilder country,\nits ruts deeper and its verges wild with gorse and broom. Behind it, to\nthe north, the walls of Garathorm have shrunk to a grey line above the\ngrass. A weathered signpost stands at the roadside, its arm pointing on\nto Wilderness Way. The plains spread east and west on either hand.",
+   "extra_descs": {
+    "signpost post arm": "The post is a split log with a single arm nailed to it. The letters\nburned into the arm read Wilderness Way, and someone has cut a small,\ncrude arrow beneath them."
+   }
   },
   "3504": {
    "vnum": 3504,
@@ -1022,8 +1054,14 @@
      "description": "If you go south, you will enter the Miden'Nir."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Old trees crowd close,\ntheir roots knotted across the path. Ways lead north and south.",
-   "placeholder": true
+   "description": "Though the open grassland lies only a stone's throw to the north, the\nground here is already wooded, a light stand of silver birch and young\noak with grass growing thick between the trunks. Sunlight dapples the\nground, and the air is warm and still. A faint smell of woodsmoke drifts\nthrough the branches from somewhere deeper in. A trail leads south\nbetween the trees toward the forest of Miden'nir.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 606001,
+     "max": 1
+    }
+   ]
   },
   "3505": {
    "vnum": 3505,
@@ -1293,8 +1331,10 @@
      "description": "The forest continues here."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Old trees crowd close,\ntheir roots knotted across the path. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Here the forest of Miden'nir thins out at its eastern margin, and\nbetween the trunks the open plains shine bright with sunlight. The\nundergrowth has been trampled flat in places, and a crude stake hung\nwith knotted cords and small bones has been driven into the ground\nbeneath an oak. The air smells of old smoke and something rank. The\nwoods grow thicker and greener to the west, while the forest's edge runs\non south.",
+   "extra_descs": {
+    "stake cords bones": "A sharpened stake taller than a man, with strings of knotted cord\nhanging from its tip. Tiny bones and teeth are threaded on the cords,\nand they click together in the wind like a warning."
+   }
   },
   "3513": {
    "vnum": 3513,
@@ -1320,8 +1360,8 @@
      "description": "It gets darker and thicker this way."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Old trees crowd close,\ntheir roots knotted across the path. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The plains give way here to the first trees of Miden'nir, tall oaks and\nbeeches whose roots heave the ground into ridges beneath a carpet of\nleaf mould. Light still streams in from the open grass to the east, but\nwestward the trunks crowd closer and the shadows deepen toward the deep\nforest. A fallen beech lies along the margin, its bark peeling in long\nstrips. The edge of the woods runs on north.",
+   "extra_descs": {}
   },
   "3514": {
    "vnum": 3514,
@@ -1401,7 +1441,7 @@
     }
    ],
    "flags": [],
-   "description": "The ground is quite muddy here and puddles are all around. Your boots\nmake a disgusting SQUISH as you walk here. You can go in any of the four\ncardinal directions from here. Hopefully, it will be dryer. Bird calls\necho through the canopy. Ancient trees rise on all sides.",
+   "description": "The forest floor sags here into a broad sinkhole, a sunken bowl of black\nmud where rainwater stands in brown pools between the roots. Your boots\nsink to the ankle with every step, and each one comes free with a wet,\nsucking squelch. Gnarled oaks lean over the rim, their bared roots\nhanging like old rope above the water. Trails climb out of the hollow\nnorth to the crossroads, east toward the mountains, south onto a darker\npath, and west where the trees grow thinner and the light returns.",
    "exits": {
     "north": {
      "to_room": 3510,
@@ -1419,7 +1459,8 @@
      "to_room": 3515,
      "description": "Some light trees and daylight."
     }
-   }
+   },
+   "extra_descs": {}
   },
   "3517": {
    "vnum": 3517,
@@ -1535,8 +1576,8 @@
      "description": "To the west lies A Dead End Path In The Deep, Dark Forest."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Birdsong drifts down\nthrough the branches overhead. Ways lead east and west.",
-   "placeholder": true
+   "description": "Here the lighter woods give way to something older and darker, and the\ntrail shrinks to a thread between ancient trunks. Behind you to the\neast, the faint trail still shows among ferns and green light, but\nwestward the trees stand shoulder to shoulder, their crowns knitting\ninto a black roof. The air turns cool and still, and somewhere beyond\nthe trees a river murmurs in the dark. Each step forward feels like a\nstep out of the day.",
+   "extra_descs": {}
   },
   "3521": {
    "vnum": 3521,
@@ -1637,8 +1678,10 @@
      "description": "To the down lies The Narrow Steps."
     }
    },
-   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead north, south and down.",
-   "placeholder": true
+   "description": "The forest ends abruptly at the brink of a sheer cliff, and the wind\nhowls up out of the empty space where the land falls away. Far below,\nbroken country of rock and scrub fades into haze. Narrow steps are cut\ndown the cliff face, but a barricade of boulders and lashed timbers,\ngrown over with thorn, blocks the way down. To the south a small stone\nhut perches on a spur of rock above the void, and the path leads back\nnorth into the pines.",
+   "extra_descs": {
+    "barricade steps boulders timbers": "Fallen boulders have been wedged together with rough-hewn timbers and\nlashed tight with rope gone grey with age. Briars have grown all through\nthe barricade, and a crude mark daubed in red ochre on the topmost stone\nwarns travellers away from the steps below."
+   }
   },
   "4301": {
    "vnum": 4301,
@@ -1658,8 +1701,8 @@
      "description": "To the north lies The Cliff Edge."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads north.",
-   "placeholder": true
+   "description": "The hut is a single round room of dry-stacked stone, so small that a\ntall traveller could touch both walls with outstretched arms. A narrow\nwindow in the far side looks out on nothing but empty air and, very far\nbelow, the haze of the lowlands, and the wind moans through every chink\nin the stones. A stone bench runs around the wall beneath a roof of\nslate. The only door leads north, back to the cliff edge.",
+   "extra_descs": {}
   },
   "4330": {
    "vnum": 4330,
@@ -1681,8 +1724,8 @@
      "description": "To the south lies The Cliff Edge."
     }
    },
-   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead. Ways lead north and south.",
-   "placeholder": true
+   "description": "The path winds through a wood of old pines whose needles carpet the\nground in a soft brown layer that muffles every step. The trees begin to\nthin to the south, where the light grows strangely bright and open, and\nthe wind carries a chill. The sound of rushing water drifts from the\nbridge to the north. Resin scents the cool air.",
+   "extra_descs": {}
   },
   "4331": {
    "vnum": 4331,
@@ -1704,8 +1747,8 @@
      "description": "To the south lies The Forest Path."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead north and south.",
-   "placeholder": true
+   "description": "A narrow wooden bridge spans a rocky stream here, its planks grey and\nwarped, its rails polished smooth by countless hands. The water rushes\nwhite over the stones below, flashing under an open strip of sky. A\nsmall hill rises beyond the bridge to the north, and to the south a path\ndisappears among the trees. Moss grows thick on the bridge's timbers\nwherever the spray reaches them.",
+   "extra_descs": {}
   },
   "4332": {
    "vnum": 4332,
@@ -1727,8 +1770,8 @@
      "description": "To the south lies On The Bridge."
     }
    },
-   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead north and south.",
-   "placeholder": true
+   "description": "A small, rounded hill rises here out of the forest, its crown bare of\ntrees and covered in short grass and wild thyme. From the top you can\nsee the dense woods spreading on every side under a wide sky. A small\npath leads north into the trees, and to the south the ground falls away\ntoward a wooden bridge. The wind blows freely across the summit, bending\nthe grass.",
+   "extra_descs": {}
   },
   "6000": {
    "vnum": 6000,
@@ -5115,8 +5158,8 @@
      "description": "To the west lies Road Through The Plains."
     }
    },
-   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "This is common grazing ground close to the city, the grass cropped short\nand dotted with clumps of nettle and dock where the herds have passed. A\nworn footpath slants across it toward the gatehouse road to the west.\nRooks' nests crown a distant line of elms. The common runs on east and\nsouth.",
+   "extra_descs": {}
   },
   "8136": {
    "vnum": 8136,
@@ -5146,8 +5189,8 @@
      "description": "To the west lies Road Through The Plains."
     }
    },
-   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The grass here has been scythed in long swathes, and a stack of hay\nstands under a thatched cap on a frame of poles, smelling sweet in the\nsun. Stubble crunches underfoot between the cut rows. A worn path leads\nfrom the stack toward the city gate. The road lies just west, and the\nplains open out north, east and south, rolling gently under drifting\ncloud.",
+   "extra_descs": {}
   },
   "8137": {
    "vnum": 8137,
@@ -5177,8 +5220,14 @@
      "description": "To the west lies The Plains."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Open grassland\nrolls away under a wide sky. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A narrow brook wanders across the plain here in a channel no wider than\na stride, crossed by a single grey plank worn smooth by many feet.\nWatercress grows thick in the clear water, and forget-me-nots edge the\nbanks. The grass is lush and green along the stream and paler beyond.\nOpen land lies in every direction, north, east, south and west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 606001,
+     "max": 1
+    }
+   ]
   },
   "8138": {
    "vnum": 8138,
@@ -5208,8 +5257,8 @@
      "description": "To the west lies Road Through The Plains."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. A worn track\ncrosses the open ground. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The wreck of an old farm cart lies here in the long grass, one wheel\ngone and its bed split open, with tall sorrel growing up through the\nboards. The road lies only a short walk to the west. Yarrow and knapweed\ncover the ground, and the air hums with the warm smell of summer grass.\nThe plains stretch north, east and south.",
+   "extra_descs": {}
   },
   "8139": {
    "vnum": 8139,
@@ -5239,8 +5288,8 @@
      "description": "To the west lies The Plains."
     }
    },
-   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A gentle rise lifts the ground a little here, enough to see far across\nthe swaying sea of grass. The towers of Garathorm stand to one side, and\non the other the dark line of the forest marks the edge of the plains.\nCloud shadows race across the land, chased by the wind. The grassland\nleads away north, east, south and west.",
+   "extra_descs": {}
   },
   "8140": {
    "vnum": 8140,
@@ -5270,8 +5319,10 @@
      "description": "To the west lies The Plains."
     }
    },
-   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A tall standing stone rises from the grass here, grey and grained like\nold bone, leaning a little as if listening to the wind. The turf around\nits foot has never been ploughed, and harebells grow in its shelter.\nFrom here the plains spread wide in all directions, broken only by the\nshadows of passing clouds. Ways lead north, east, south and west through\nthe grass.",
+   "extra_descs": {
+    "standing stone": "The stone stands half again the height of a man. Faint rings are cut\ninto its weathered face, one inside another, and the lichen grows\nthickest in their grooves."
+   }
   },
   "8141": {
    "vnum": 8141,
@@ -5297,8 +5348,14 @@
      "description": "To the west lies Road Through The Plains."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Open grassland\nrolls away under a wide sky. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "Thistles grow tall and thick across this stretch of the plain, their\npurple heads releasing drifts of silvery down whenever the wind gusts. A\nsheep track winds between them, the only easy way through, and tufts of\nwool cling to the spiny leaves. The road runs close by to the west. Open\ngrass lies north and east.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 606001,
+     "max": 1
+    }
+   ]
   },
   "8142": {
    "vnum": 8142,
@@ -5324,8 +5381,8 @@
      "description": "To the west lies The Plains."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The ground here rises in sandy hummocks riddled with the holes of a\nlarge warren, the earth around each burrow kicked out in pale fans. The\ngrass is cropped close to the roots, and tiny paths run between the\nholes. A sharp wind blows across the open ground, carrying the scent of\nthyme. The warren gives way to open grass north, east and west.",
+   "extra_descs": {}
   },
   "8143": {
    "vnum": 8143,
@@ -5351,8 +5408,8 @@
      "description": "To the west lies The Plains."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. A worn track\ncrosses the open ground. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "A broad patch of the plain here was burned not long ago, perhaps by a\nlightning strike, and the ground is still black and sooty underfoot.\nBright green shoots and fireweed are already pushing up through the\nashes. The smell of charred grass lingers whenever the wind drops. The\nburned ground gives way to green grass north, east and west.",
+   "extra_descs": {}
   },
   "8144": {
    "vnum": 8144,
@@ -5374,8 +5431,8 @@
      "description": "To the west lies The Plains."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. Ways lead north and west.",
-   "placeholder": true
+   "description": "The plain ends abruptly here at the lip of a steep gully, its sides\novergrown with impenetrable bramble and blackthorn. Far below, a trickle\nof water glints among the stones. The wind is strong at the edge,\ncombing the grass flat and whistling through the thorns. The only ways\non lead north and west, back across the grassland.",
+   "extra_descs": {}
   },
   "8145": {
    "vnum": 8145,
@@ -5405,8 +5462,14 @@
      "description": "To the west lies At The Edge Of The Plains."
     }
    },
-   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The grass runs up to the edge of the forest here, where the first trees\nof Miden'nir stand in a ragged line to the west. A thin trail of smoke\nrises above the treetops beyond them, and the wind carries a whiff of\nburning. Clumps of gorse grow at the forest's margin, bright with yellow\nflowers. The open plains lie north, east and south.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 606001,
+     "max": 1
+    }
+   ]
   },
   "8146": {
    "vnum": 8146,
@@ -5432,8 +5495,8 @@
      "description": "To the west lies At The Edge Of The Forest."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "Bracken and foxgloves spread out of the woods here onto the edge of the\nplain, and the grass grows rank and tussocky. A narrow track, trodden by\ndeer, leads west in under the dark eaves of the forest. The road lies a\nshort walk to the east. Northward the grassland follows the edge of the\ntrees.",
+   "extra_descs": {}
   },
   "8147": {
    "vnum": 8147,
@@ -5463,8 +5526,8 @@
      "description": "To the west lies The Plains."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Young trees have crept out of the forest onto the grassland here, a\nscattering of birch saplings and hazel shrubs among the long grass. The\nroad runs close by to the north, and southward the saplings thicken into\na light wood. Someone has woven a hunter's blind of cut branches beside\na hazel clump, now brown and sagging. Open grass leads east toward the\ncity and west toward the edge of the forest.",
+   "extra_descs": {}
   },
   "8148": {
    "vnum": 8148,
@@ -5490,8 +5553,14 @@
      "description": "To the south lies On A Small Path."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Open grassland\nrolls away under a wide sky. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The grass grows long and wild on this last stretch of the plains, where\nthe dusty road ends just to the north. A small path leaves the grass to\nthe south and plunges into the dark woods of Miden'nir, and beyond the\ntrees the jagged line of the mountains cuts across the sky. Gusts of\nwind push the grass flat in silver waves. Open plain stretches east\ntoward the city.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 606001,
+     "max": 1
+    }
+   ]
   },
   "8175": {
    "vnum": 8175,
@@ -5513,8 +5582,8 @@
      "description": "To the west lies The Plains."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. Ways lead south and west.",
-   "placeholder": true
+   "description": "The grass dips here into a shallow hollow where rainwater has gathered\nin a reedy pond, its margins trampled into mud by hoofprints. Clouds\nslide across its surface, mirrored in the still water. Rushes and marsh\nmarigolds crowd the wet ground, giving way to dry grass on the rise.\nOpen country leads south and west.",
+   "extra_descs": {}
   },
   "8176": {
    "vnum": 8176,
@@ -5536,8 +5605,8 @@
      "description": "To the south lies The Plains."
     }
    },
-   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead east and south.",
-   "placeholder": true
+   "description": "A lone hawthorn stands here on the open grass, bent almost double by\nyears of wind, every twisted branch streaming the same way. The turf\naround it is short and springy, starred with daisies and yellow\ntormentil. Far across the plain the towers of Garathorm rise grey above\nthe swaying grass. The plains roll on east and south under a big,\nrestless sky.",
+   "extra_descs": {}
   },
   "8177": {
    "vnum": 8177,
@@ -5563,8 +5632,8 @@
      "description": "To the west lies The Plains."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The dusty road lies just to the south here, and a dry ditch runs\nalongside it, choked with cornflowers and chicory. Fine dust from\npassing carts has settled on the grass, dulling its green to grey. A\ncrooked old fence post stands alone in the meadow, its fence long gone.\nThe grassland rolls away north and west.",
+   "extra_descs": {}
   },
   "8178": {
    "vnum": 8178,
@@ -5590,8 +5659,14 @@
      "description": "To the west lies The Plains."
     }
    },
-   "description": "A worn track crosses the open ground. Wildflowers dot the meadow, and\ninsects hum among them. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "An old cart track crosses the grass here, two deep ruts worn into the\nearth and long since grown over with plantain and clover. Scarlet\npoppies nod along its edges in the breeze. The track seems to lead\nnowhere in particular, fading out among the tussocks. The plains stretch\nnorth toward a reedy hollow, south toward the road, and west across\nrolling grass.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 606001,
+     "max": 1
+    }
+   ]
   },
   "8179": {
    "vnum": 8179,
@@ -5617,8 +5692,8 @@
      "description": "To the south lies A Road Through The Plains."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. Ways lead north, east and\nsouth.",
-   "placeholder": true
+   "description": "Close to the road's end here, the plains grow rough and stony, and a\ntumbled cairn of fieldstones rises waist-high from the grass, raised\nlong ago for some purpose no one remembers. The road runs just south,\ntoward the head of a forest trail. Beyond the grass the dark mass of the\nforest fills the horizon. Rough grass leads north and east.",
+   "extra_descs": {}
   },
   "8180": {
    "vnum": 8180,
@@ -5644,8 +5719,8 @@
      "description": "To the south lies The Plains."
     }
    },
-   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. Ways lead north, east and\nsouth.",
-   "placeholder": true
+   "description": "A ring of grey fieldstones lies half-sunk in the turf here, the hearth\nof some long-gone herders' camp, its centre still faintly darker than\nthe grass around it. Clover and white yarrow grow thickly over the\nground. The breeze carries the scent of hay from somewhere across the\nplain. The grass rolls north toward a lone thorn tree, and on east and\nsouth.",
+   "extra_descs": {}
   },
   "8190": {
    "vnum": 8190,
@@ -5675,8 +5750,8 @@
      "description": "To the west lies The Plains."
     }
    },
-   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "The grey walls of Garathorm rise close at hand, and roads pass on two\nsides of this patch of grass: one just to the north, running to the\nwestern gate, and another to the east, leaving the city by its southern\ngate. An old well with a stone curb and a rusted iron winch stands in\nthe trampled grass. Wheel ruts and hoofprints crisscross the ground near\nthe roads. The plains stretch away south and west, green and windy.",
+   "extra_descs": {}
   },
   "10582": {
    "vnum": 10582,
@@ -5700,8 +5775,8 @@
      "description": "To the down lies On the Ocean Shore."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and down.",
-   "placeholder": true
+   "description": "The passage tilts steeply here, a slope of packed sand and loose stones\ndescending beneath a low, rocky overhang hung with salt-crusted roots.\nThe roar of the sea grows loud, and cool, briny air rushes up to meet\nyou, a welcome relief after the stifling heat. Footholds have been\nscraped into the sand by others going before. The slope leads down\ntoward the ocean shore, and the trail climbs back east into the green.",
+   "extra_descs": {}
   },
   "10583": {
    "vnum": 10583,
@@ -5725,8 +5800,8 @@
      "description": "To the west lies Down the Slope to a Shore."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east and west.",
-   "placeholder": true
+   "description": "Here the green tunnel gives way to walls of earth and dark stone,\noverhung by a matted roof of roots and creepers. The air is still warm\nand damp, but the salt smell is stronger now, and the low, rhythmic boom\nof surf carries from somewhere beyond the rock. Sand gritting underfoot\nhints at the shore ahead. The trail continues west, and back east into\nthe vines.",
+   "extra_descs": {}
   },
   "10584": {
    "vnum": 10584,
@@ -5750,8 +5825,8 @@
      "description": "To the west lies On a Sultry Trail."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and west.",
-   "placeholder": true
+   "description": "The walls of vines press very close here, and the trail is so narrow\nthat leaves brush both shoulders at once. A faint breeze stirs from the\nwest, bringing a breath of salt that cuts through the heavy, flower-\nscented air. The ground slopes gently underfoot. The trail runs north\nand west.",
+   "extra_descs": {}
   },
   "10585": {
    "vnum": 10585,
@@ -5775,8 +5850,14 @@
      "description": "To the south lies On a Sultry Trail."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and south.",
-   "placeholder": true
+   "description": "The trail turns sharply here around the trunk of a vast tree whose\nbuttress roots stand taller than a man, forming walls of grey, ridged\nwood on either side. Steam rises gently from the leaf litter in the\nheavy heat. Moss hangs in dripping curtains from every surface. The way\nleads east and south along the narrow green tunnel.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 606000,
+     "max": 1
+    }
+   ]
   },
   "10586": {
    "vnum": 10586,
@@ -5800,8 +5881,8 @@
      "description": "To the west lies On a Sultry Trail."
     }
    },
-   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "Heavy blossoms of crimson and gold hang from the creepers that roof the\ntrail here, and their sweet, cloying scent makes the head swim. The\nground underfoot is soft with rotting leaves and pale roots. Water drips\nsteadily from above, warm as bathwater. The trail leads east toward the\nforest and west deeper into the green.",
+   "extra_descs": {}
   },
   "10587": {
    "vnum": 10587,
@@ -5825,8 +5906,8 @@
      "description": "To the west lies On a Sultry Trail."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "Leaving the deep, dark forest behind to the east, the trail plunges into\na tunnel of living green, its walls woven from vines and creepers so\ndense that no sky can be seen. The air is hot and thick, heavy with the\nsmell of damp leaves and blossom. Sweat beads on your skin within a few\nsteps. The trail continues west through the green gloom.",
+   "extra_descs": {}
   }
  },
  "mobs": {
@@ -6657,6 +6738,66 @@
     6056,
     6018
    ]
+  },
+  "606000": {
+   "vnum": 606000,
+   "name": "goblin scout",
+   "short_desc": "a goblin scout",
+   "long_desc": "A goblin scout from a roving band crouches low, watching the path with narrowed eyes.",
+   "description": "This lean goblin is smaller and quicker than the brutes of the war-\ncamps, its green skin smeared with soot and mud to hide it in the gloom.\nIt wears a jerkin of patched leather hung with snares, and a notched\ndagger is thrust through its belt. Its long ears twitch at every sound.",
+   "level": 11,
+   "alignment": -400,
+   "hp_dice": "11d8+143",
+   "damage_dice": "3d6+7",
+   "armor_class": 64,
+   "exp": 625,
+   "gold": 132,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 706000,
+     "chance": 25
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "606001": {
+   "vnum": 606001,
+   "name": "hare brown",
+   "short_desc": "a brown hare",
+   "long_desc": "A brown hare sits up in the grass, its long ears turning to catch the wind.",
+   "description": "The hare is lean and long-legged, its tawny coat flecked with black and\nits ears tipped with dark fur. Its large amber eyes are set far to the\nsides of its head, so that it seems to watch everything at once. At the\nfirst sign of danger it will be away across the plain in great zigzag\nbounds.",
+   "level": 2,
+   "alignment": 0,
+   "hp_dice": "2d8+35",
+   "damage_dice": "1d6+1",
+   "armor_class": 91,
+   "exp": 130,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": []
   }
  },
  "objects": {
@@ -7369,6 +7510,26 @@
    "weight": 0,
    "value": 0,
    "readable_text": "=== LIGHT FOREST ===\nRecommended Level: 3-10\nEast: Return to Garathorm\nDeeper into forest: Increasing danger\nSeek Ranger Thornwood for guidance and quests"
+  },
+  "706000": {
+   "vnum": 706000,
+   "name": "dagger notched goblin blade",
+   "short_desc": "a goblin's notched dagger",
+   "room_desc": "A crude dagger with a notched, blackened blade lies here.",
+   "description": "A crude dagger of black iron, hammered out on some goblin forge. Its edge is notched like a saw from hard use, and the grip is wrapped in strips of greasy hide. It is ugly, but it is sharp.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 11,
+   "damage_dice": "2d5",
+   "weapon_type": "pierce",
+   "weight": 6,
+   "value": 315,
+   "affects": [
+    {
+     "type": "hitroll",
+     "value": 1
+    }
+   ]
   }
  },
  "lifespan": 60

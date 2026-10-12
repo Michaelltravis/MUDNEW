@@ -24,8 +24,8 @@
      "description": "To the south lies On Mira Retrum."
     }
    },
-   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead east and south.",
-   "placeholder": true
+   "description": "Here the slack water of Mira Retrum gathers itself and begins to run,\nsmooth and swift and glassy, sliding away east between low banks of\nwhite sand toward the open ocean. The boat lurches as the current takes\nit, and the hiss of moving water grows to a steady rush. South, beyond a\nline of standing ripples, the calm sea lies drowsing in the sun.",
+   "extra_descs": {}
   },
   "10600": {
    "vnum": 10600,
@@ -53,8 +53,8 @@
      "description": "To the up lies Down the Slope to a Shore."
     }
    },
-   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead south, west and up.",
-   "placeholder": true
+   "description": "A long boathouse of tarred timber stands on the shore here, built so\nclose under the bluff that its back wall is bare rock beaded with damp.\nIts seaward end lies wide open, and a slipway of greased logs runs west\ninto the bright water of Mira Retrum, whose glitter throws rippling\nlight across the rafters. At the back, a steep stair of planks climbs up\nthrough a hatch toward the slope and the plains above. Nets hang drying\noverhead, and the shed runs on south past racks of long oars.",
+   "extra_descs": {}
   },
   "10601": {
    "vnum": 10601,
@@ -78,8 +78,10 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
-   "placeholder": true
+   "description": "The far end of the boathouse is given over to caulking and mending, and\na cold tar cauldron squats here on a hearth of blackened stones. A\nsecond slipway runs west into the water of Mira Retrum, its logs worn\nsmooth and pale by many keels. Beside the open end, a weathered board\nnailed to a post bears a long column of carved names. North, the shed\nleads back past the oar racks to the foot of the stair.",
+   "extra_descs": {
+    "board names post carved": "Each name is a boat that put out from this shed and never came home: the\nTern, the Good Margery, the Sister Ash and dozens more, cut by many\ndifferent hands over many years. Beside the newest, someone has pinned a\nlittle wreath of dried sea-pinks."
+   }
   },
   "10602": {
    "vnum": 10602,
@@ -105,8 +107,14 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Sheltered by the bluff, the water here lies so calm that the tarred\nboathouse to the east is mirrored upside down in it, slipway and all.\nBrown and golden weed sways on the stones below, combed out by the slow\npull of the tide. Across the open water to the west, Leper Island lifts\npale cliffs and dark jungle from the sea, and a thin thread of smoke\nrises from its peak. The shallows run on south along the shore.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644804,
+     "max": 1
+    }
+   ]
   },
   "10603": {
    "vnum": 10603,
@@ -132,8 +140,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "Your boat rocks in the shallows just off the boathouse, where the water\nis so clear that every pebble on the bottom stands out sharp in bands of\nwavering sunlight. East, a worn slipway climbs out of the sea into the\nopen end of the shed. Above its tarred roof the pale sandstone bluff\nrises in ledges tufted with sea-pinks. The water runs north along the\nshore and west toward Leper Island, glittering all the way.",
+   "extra_descs": {}
   },
   "10604": {
    "vnum": 10604,
@@ -163,8 +171,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. The water runs\ndeep and cold, too deep to wade. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Leper Island looms close here, a wall of pale, wave-gnawed cliffs\ncrowned with dark jungle. North, the sea runs straight into the mouth of\na vast sea cave, where a tongue of white sand gleams in the shadow\nbeneath the arch. The swell booms hollowly somewhere inside and sighs\nout again with a cool breath of wet stone. Open water leads east toward\nthe mainland boathouse, south into the wide sea, and west along the foot\nof the cliffs.",
+   "extra_descs": {}
   },
   "10605": {
    "vnum": 10605,
@@ -190,8 +198,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The far shore is a smudge on the horizon. The water runs deep and cold,\ntoo deep to wade. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The cliffs of Leper Island rise sheer from the water beside the boat,\npale stone banded with grey and hung with vines that trail almost to the\nsea. Waves suck and gurgle in a row of small caves along their foot, and\nthe air in their shadow is cool and smells of wet rock and green leaves.\nEast lies the great cave's mouth with its white beach, while the water\nruns on west along the island and south into the open sea.",
+   "extra_descs": {}
   },
   "10606": {
    "vnum": 10606,
@@ -217,8 +225,14 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Leper Island ends here in a ragged point of tumbled boulders, and a\nstack of pale rock stands alone a stone's throw off it, its top streaked\nwhite beneath an untidy crown of old nests. Past the point the sea opens\nout, and the far shore of the plains shows as a long, low line of grassy\nbluffs. The water runs east beneath the island's cliffs, west along the\nplains' shore, and south into the deep.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644800,
+     "max": 1
+    }
+   ]
   },
   "10607": {
    "vnum": 10607,
@@ -248,8 +262,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The shore of the plains bends close here, a low bluff of red earth\ntopped with waving grass, and a little beach of coarse sand lies at its\nfoot, strewn with weed. The coast curves so sharply that the ways north\nand west both follow it to the same stretch of water. East, the rocky\npoint of Leper Island juts into the sea, and south lies open water.",
+   "extra_descs": {}
   },
   "10608": {
    "vnum": 10608,
@@ -279,8 +293,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The far shore is a smudge on the horizon. Deep water stretches away,\ndark and restless. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The plains' shore wanders in and out here in a chain of little coves,\neach with its own scrap of pale sand and its own fringe of rushes where\nfresh water seeps from the bluff. Whether you steer north or west, the\nwinding coast leads on to the same cove ahead. The water is brown-green\nand smells of wet earth, and the dry whirr of insects drifts down from\nthe grass. East and south lies the open sea.",
+   "extra_descs": {}
   },
   "10609": {
    "vnum": 10609,
@@ -310,8 +324,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A lone pine stands on the bluff above this stretch of shore, its crown\ncombed flat by the wind and leaning out over the water as if to see what\nlies beyond the sea. Here the coast swings round in a long curve, so\nthat both the way north and the way west lead along it toward the next\nheadland. South, the black ribs of a wreck stand up from a sandbar;\neast, the little coves wind back toward Leper Island.",
+   "extra_descs": {}
   },
   "10610": {
    "vnum": 10610,
@@ -337,8 +351,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. The far shore is a\nsmudge on the horizon. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Long streaks of yellow pollen lie on the water here, blown out from the\nflowering grass of the plains, and they swirl into lazy spirals wherever\nan oar dips. The air carries the warm, dusty sweetness of hay over the\nsalt. The shore lies close by, a grassy bluff cut by a dry gully, while\nthe sea leads east toward the lone pine, west along the coast and south\ninto open water.",
+   "extra_descs": {}
   },
   "10611": {
    "vnum": 10611,
@@ -364,8 +378,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. The far shore is a\nsmudge on the horizon. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The sea here is stained a clear tea-brown by fresh water spreading out\nfrom the falls along the shore, and a sharp seam marks where it meets\nthe blue salt water. The surface carries the cool, earthy smell of a\nstream. West, the white thread of the falls drops down the bluff; east\nlie the pollen streaks, and south the sea opens toward an old buoy.",
+   "extra_descs": {}
   },
   "10612": {
    "vnum": 10612,
@@ -391,8 +405,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "A stream pours over the lip of the bluff here in a white ribbon of\nfalling water, crashing into a pool among the boulders at the sea's edge\nwith a steady, hollow roar. Spray drifts out over the boat in a cool,\nrainbow-tinted mist, and ferns cling to the wet rock all around the\nfall. The shore runs on east and west, and the open sea lies south.",
+   "extra_descs": {}
   },
   "10613": {
    "vnum": 10613,
@@ -418,8 +432,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "High on the bluff above this stretch of shore stands the stump of an old\nwatchtower, its stones the same rust-red as the cliff, its top broken\nand its arrow slits staring out to sea. A rusted iron ring for mooring\nboats is still set in a boulder at the water's edge. The falls roar\nfaintly to the east, while west the shore runs on and south lies the\nopen sea.",
+   "extra_descs": {}
   },
   "10614": {
    "vnum": 10614,
@@ -445,8 +459,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The far shore is a smudge on the horizon. Deep water stretches away,\ndark and restless. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Here the stumps of a drowned wood stand up out of the shallows by the\nhundred, black and smooth as horn, some no higher than a knee and some\ntaller than a man. The sea moves among them with a soft, sucking sound,\nand weed has wound itself around every one. It is said that this was dry\nmeadow and forest before the sea came in. The shore runs east and west,\nand the open sea lies south.",
+   "extra_descs": {}
   },
   "10615": {
    "vnum": 10615,
@@ -472,8 +486,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. The far shore is a smudge\non the horizon. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "The bluffs above this stretch of shore are purple with wild thyme, and\nthe breeze carries its warm, sharp scent out over the water. Below them\nthe sea runs clear and pale over a floor of smooth pebbles, speckled\ngrey and green and rust. East, the drowned stumps crowd the shallows;\nwest the shore runs on toward rocky ledges, and south lies the open sea.",
+   "extra_descs": {}
   },
   "10616": {
    "vnum": 10616,
@@ -499,8 +513,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. The far shore is a smudge\non the horizon. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Flat ledges of red sandstone run out from the foot of the bluff here,\nand the swell washes over them and drains away, leaving a hundred tide\npools brimming and flashing in the sun. The rock is slick with green\nweed and studded with limpet shells. The shore runs east and west, and\nsouth a line of sunken stones leads out across the sea.",
+   "extra_descs": {}
   },
   "10617": {
    "vnum": 10617,
@@ -526,8 +540,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. The water runs\ndeep and cold, too deep to wade. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "A great arch of red sandstone stands out from the bluff into the sea\nhere, tall enough to sail a boat beneath, and the swell runs through it\nwith a hollow boom that echoes along the shore. Grass grows shaggy along\nits crown, and long beards of weed drip from its underside. The shore\nruns east toward the tide-pool ledges and west toward a ruined jetty,\nand the open sea lies south.",
+   "extra_descs": {}
   },
   "10618": {
    "vnum": 10618,
@@ -553,8 +567,10 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "A jetty of tumbled stones runs out from the shore here, its far end\ncollapsed into the sea and its old mooring posts worn to stumps. On the\nbluff above stand the roofless shells of a few stone cottages, their\ndoorways empty and their gardens gone to thistle. The shore runs east\ntoward a great arch and west toward lower ground, and the sea opens\nsouth.",
+   "extra_descs": {
+    "cottages shells ruins doorways": "The cottages were built of the same rust-red stone as the bluff and\nroofed once with turf. Over the doorway of the largest someone has\ncarved a fish and a date too worn to read, and inside, a hearthstone is\nstill blackened by fires that went out long ago."
+   }
   },
   "10619": {
    "vnum": 10619,
@@ -580,8 +596,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. Waves slap against the\nhull of anything that floats here. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Here the bluffs of the plains sink into low banks of yellow clay,\nriddled with the round holes of burrows and slumping into the sea in\nmuddy fans. Clumps of rushes grow along the water's edge, the first of\nthe reed beds that fill the far end of the sea. East, the shore climbs\nagain toward the ruined jetty; west it bends into a broad, shallow\ncorner, and south lies open water.",
+   "extra_descs": {}
   },
   "10620": {
    "vnum": 10620,
@@ -603,8 +619,8 @@
      "description": "To the south lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead east and south.",
-   "placeholder": true
+   "description": "The sea ends here in a wide, shallow corner, hemmed in by banks of clay\non one hand and endless reed beds on the other, and the water lies so\nstill and brown that the reeds stand doubled in it. A silence hangs over\nthe place, broken only by the dry rattle of stems. Open water leads back\neast along the shore of the plains and south into the sea's lonely far\nreaches.",
+   "extra_descs": {}
   },
   "10621": {
    "vnum": 10621,
@@ -630,8 +646,14 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "Here the water runs over a shelf of brown rock just beneath the surface,\nits weed streaming out like long hair in the slow current. Close at\nhand, the mainland's sandstone bluffs rise in tiers of buff and rust,\nand a thin fall of fresh water spills from a cleft to patter on the\nrocks below. North, the cliffs of Leper Island hem in the sea; south and\nwest, the water opens wide and blue.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644801,
+     "max": 1
+    }
+   ]
   },
   "10622": {
    "vnum": 10622,
@@ -661,8 +683,14 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The far shore is a smudge on the horizon. Deep water stretches away,\ndark and restless. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A breeze funnels between Leper Island and the mainland here, ruffling\nthe sea into dark patches that race across it like the shadows of\nrunning cats. Every so often a short wave slaps the bow and flings a\ncold spatter of spray into your face. The old fishing stakes stand in\ntheir crooked rows to the south, the reef lies east, and open water\nstretches north and west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644803,
+     "max": 1
+    }
+   ]
   },
   "10623": {
    "vnum": 10623,
@@ -692,8 +720,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "Out here the sea moves in a long, slow heave that lifts the boat and\nlowers it again like a sleeper's breathing. Looking back, Leper Island\ncan be seen whole: a green hump of jungle rising to a bald grey cone,\nfrom whose crest a feather of smoke leans with the wind. Open water\nstretches every way, north toward the island's rocky point, east toward\nthe mainland, and south and west across the sea.",
+   "extra_descs": {}
   },
   "10624": {
    "vnum": 10624,
@@ -723,8 +751,14 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The wind dies away here, and the sea lies so flat and glassy that every\ncloud floats upside down on its surface, until the boat seems to hang in\nthe middle of the sky. The only sounds are the drip from your oars and a\nfaint, far piping of birds. North, the grassy bluffs of the plains draw\nnearer, while open water lies east, south and west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644800,
+     "max": 1
+    }
+   ]
   },
   "10625": {
    "vnum": 10625,
@@ -754,8 +788,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "The swell stirs fine white sand from the shallows here, and the water is\nclouded to a strange milky green that hides the bottom completely. Now\nand then an oar touches sand that you cannot see. West, the wreck's\nblack ribs rise from their sandbar; north, the coves of the plains'\nshore lie close, and the sea opens east and south toward a tall marker\npole.",
+   "extra_descs": {}
   },
   "10626": {
    "vnum": 10626,
@@ -785,8 +819,16 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "A long sandbar breaks the surface here, pale and ribbed by the waves,\nand stranded on its crest lie the black ribs of an old ship, standing up\nfrom the sand like the bones of some great beast. Weed and barnacles\ncrust the timbers, and the swell gurgles in and out among them. North, a\nlone pine marks the shore of the plains, and open water lies east, south\nand west.",
+   "extra_descs": {
+    "wreck ribs ship timbers stern": "Enough of the stern survives to show that she was a broad, two-masted\ntrader, far bigger than any fishing boat. A name was once painted across\nher transom, but the sea has scoured away all but the last few letters,\nALYON, as of some ship out of Port Halyon that came to grief a long way\nfrom home."
+   },
+   "mob_resets": [
+    {
+     "vnum": 644805,
+     "max": 1
+    }
+   ]
   },
   "10627": {
    "vnum": 10627,
@@ -816,8 +858,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Great shadows of cloud drift across the sea here, so that the water\ndarkens to slate and brightens to sapphire again as they pass over the\nboat. Within each shadow the air turns suddenly cool. East, the black\nribs of the wreck stand up from their sandbar; north lies the pollen-\nstreaked water under the bluffs, and the sea runs on south and west.",
+   "extra_descs": {}
   },
   "10628": {
    "vnum": 10628,
@@ -847,8 +889,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. The far shore is a\nsmudge on the horizon. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "An old barrel buoy, tarred black and bearded with weed, rides here on a\nrusted chain, nodding and bowing with every swell as though in greeting.\nIts iron hoops weep long red stains down the staves. South, a dark\nskerry topped with a cairn stands up from the sea; the shore of the\nplains lies north, and open water runs east and west.",
+   "extra_descs": {}
   },
   "10629": {
    "vnum": 10629,
@@ -878,8 +920,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. The far shore is a smudge\non the horizon. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Cold water wells up from the depths here in a broad, slowly turning\npatch, smooth and dark green, and the air above it is suddenly chill\nenough to raise gooseflesh. It smells of the deep and of old, cold\nstone. North, the roar of the falls carries faintly across the water;\neast bobs the barrel buoy, and the sea runs on south and west.",
+   "extra_descs": {}
   },
   "10630": {
    "vnum": 10630,
@@ -909,8 +951,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. The far shore is a smudge\non the horizon. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A fresh breeze off the plains whips the sea into short, bright waves\nhere, and their crests break into little white horses that run alongside\nthe boat and vanish. Spray stings your eyes and dries to salt on your\nlips. North, a ruined tower stands on the bluffs; the cold green\nupwelling lies east, and the sea runs south and west.",
+   "extra_descs": {}
   },
   "10631": {
    "vnum": 10631,
@@ -940,8 +982,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A dense bed of dark weed covers the bottom here, so that the water looks\nas black as ink and the boat seems to float above a bottomless pit. Only\nwhen the sun strikes straight down can you make out long fronds stirring\nin the gloom. North, the drowned stumps stand in the shallows; south, a\ngreat stone head rises from the sea, and the water runs on east and\nwest.",
+   "extra_descs": {}
   },
   "10632": {
    "vnum": 10632,
@@ -971,8 +1013,14 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The far shore is a smudge on the horizon. The water runs deep and cold,\ntoo deep to wade. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A knob of rock no bigger than a cottage roof breaks the surface here,\nand on it the fishermen of the coast have built a tiny shrine of\ndriftwood and stone with a roof of shells. Faded ribbons flutter from\nits eaves. West, a line of stones shows under the water like a sunken\nroad; north lies the shore of the plains, and open water runs east and\nsouth.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644804,
+     "max": 1
+    }
+   ]
   },
   "10633": {
    "vnum": 10633,
@@ -1002,8 +1050,10 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "A causeway of great fitted stones runs beneath the water here, so near\nthe surface that the boat seems to float down a drowned road, its paving\nstill straight and true and edged with kerbs. It runs from the shore of\nthe plains out toward the middle of the sea and is lost in the deeps.\nEast, the little shrine stands on its rock, and open water lies north,\nsouth and west.",
+   "extra_descs": {
+    "causeway stones road paving": "The paving stones are each as long as a bed and fitted so closely that a\nknife blade would not slip between them. Deep ruts worn by wheels run\nalong the middle, and here and there a stone is carved with the same\nsign, a crown above a wave."
+   }
   },
   "10634": {
    "vnum": 10634,
@@ -1033,8 +1083,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The water is a thick, soupy green here, clouded by some bloom too fine\nto see, and it leaves a faint, greasy sheen on the oars and a smell like\ncut grass. The bottom is hidden entirely. East, the drowned causeway\nruns on beneath the surface; north a great arch of red rock stands at\nthe shore, and the sea runs south toward a forest of kelp and west into\nhaze.",
+   "extra_descs": {}
   },
   "10635": {
    "vnum": 10635,
@@ -1064,8 +1114,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A haze lies over the western water here, and through it the far shore\nplays tricks: low reed banks float above the horizon, doubled upside\ndown in the air, and the ruined cottages on the bluff seem to stretch\ntall and thin. Close by, the sea is quiet and pale blue. North lies the\nbroken jetty, east the green bloom, south a little islet of white sand,\nand west more haze.",
+   "extra_descs": {}
   },
   "10636": {
    "vnum": 10636,
@@ -1095,8 +1145,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. The far shore is a smudge\non the horizon. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Wisps of mist rise from the water here and drift like smoke, gathering\ninto a low, soft bank that hides the far shore and muffles every sound.\nThe air is cool and damp on your face, and moisture beads on the\ngunwales. North the shore of the plains sinks lower, east the haze\nshimmers over the water, and south and west the sea fades into the mist.",
+   "extra_descs": {}
   },
   "10637": {
    "vnum": 10637,
@@ -1126,8 +1176,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "These are the loneliest reaches of Mira Retrum, where the water is a\ndull pewter and the horizon is lost in haze. From somewhere to the west\ncomes a low and endless hiss, like wind in a field of barley, though the\nair here is still. North lies a shallow corner among the reeds, east the\ndrifting mist, and south the sea runs on.",
+   "extra_descs": {}
   },
   "10638": {
    "vnum": 10638,
@@ -1157,8 +1207,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "East of here the calm of Mira Retrum breaks: the water begins to slide\nand hurry, ruffled into lines of standing ripples, and a deep, rushing\nmurmur rises where Quickstream sets out for the ocean. The boat strains\ntoward it like a dog on a leash. North lies the still corner among the\nreeds, south the swirling eddies, and west the last lonely reaches of\nthe sea.",
+   "extra_descs": {}
   },
   "10639": {
    "vnum": 10639,
@@ -1188,8 +1238,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "A floating island of reeds, torn loose from the marshes by some storm,\nturns slowly here, its matted roots trailing beneath it and its feathery\nheads still nodding as if nothing had happened. The water is brown-green\nand smells of marsh. North lies the reedy corner of the sea; east the\nwater begins to run toward Quickstream, and south and west the reed beds\nclose in.",
+   "extra_descs": {}
   },
   "10640": {
    "vnum": 10640,
@@ -1211,8 +1261,8 @@
      "description": "To the south lies On Mira Retrum."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead east and south.",
-   "placeholder": true
+   "description": "This is the farthest corner of Mira Retrum, walled on two sides by reed\nbeds so tall and dense that nothing can be seen beyond them but sky. The\nwater is still and dark, flecked with fallen seed, and the loneliness\nhere is so deep that the slap of a wavelet makes you start. Open water\nleads back east, and south the shallows run toward a mudflat.",
+   "extra_descs": {}
   },
   "10641": {
    "vnum": 10641,
@@ -1238,8 +1288,14 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "Off the mainland's bluffs the bottom drops away abruptly, and the bright\ngreen of the shallows gives way to a deep, cold blue. A loose raft of\nyellow-brown weed lies spread on the surface here, buoyed by countless\nberry-like bladders that glisten in the sun. North, the brown reef shows\nas a dark stain under the water, while the sea rolls on south and west\nin long, lazy swells.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644801,
+     "max": 1
+    }
+   ]
   },
   "10642": {
    "vnum": 10642,
@@ -1269,8 +1325,16 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "A double row of old fishing stakes marches across the water here, grey\npoles driven into the bottom long ago for a weir, most of them now\nleaning or snapped off at the waterline. Weed hangs from them in green\nbeards, and their tops are whitened by roosting birds. Open water lies\nall around: east toward the bluffs, south toward the turquoise shoal,\nand north and west into the wider sea.",
+   "extra_descs": {
+    "stakes weir poles": "The stakes were cut from black oak and pointed with axes, and a few\nstill hold the rotten wattle of the old weir between them. Fishermen say\nthe weir is older than the walls of Garathorm, and that no one has\nemptied it since the night its builders rowed out and never came back."
+   },
+   "mob_resets": [
+    {
+     "vnum": 644800,
+     "max": 1
+    }
+   ]
   },
   "10643": {
    "vnum": 10643,
@@ -1300,8 +1364,10 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "The water here is clear as glass, and on the pale sand far below the\nboat lies a huge iron anchor, its flukes furred with orange growth and a\nlength of rotten cable snaking from its ring. Ripples cast a moving net\nof light across it, so that it almost seems to stir. The sea runs on\nnorth toward Leper Island, east to the fishing stakes, and south and\nwest across open water.",
+   "extra_descs": {
+    "anchor iron flukes ring": "The anchor is taller than a man and far too large for any boat that\nsails Mira Retrum now. Letters were cast into its shank, but the growth\nhas crusted over all of them except the first, a squared, old-fashioned\nG."
+   }
   },
   "10644": {
    "vnum": 10644,
@@ -1331,8 +1397,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Beneath the boat the bottom is a garden of red weed and pale, branching\nsea fans, all swaying together in the slow surge like poppies in a\nsummer wind. The sunlight reaching down to them is green and full of\ndrifting specks. East, the great anchor lies on its bed of sand; west, a\ntall marker pole stands up out of the sea, and open water runs north and\nsouth.",
+   "extra_descs": {}
   },
   "10645": {
    "vnum": 10645,
@@ -1362,8 +1428,10 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A tall pole of grey timber stands up out of the sea here, driven deep\ninto some hidden rock and braced with rusted iron bands. Its top is\ncarved into the shape of a leaping fish, and the paint still clinging to\nit shows that it was once bright blue and gold. The water swirls past\nits foot in small, busy eddies. Open sea lies on every side, with the\ngarden of red weed east and the milky shallows north.",
+   "extra_descs": {
+    "pole fish carved marker": "The fish is carved with care, every scale cut separately and its mouth\nopen as if gasping. Fishermen of Mira Retrum set such poles over rocks\nthat lurk just under the surface, and they still touch an oar to this\none for luck as they pass."
+   }
   },
   "10646": {
    "vnum": 10646,
@@ -1393,8 +1461,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. The far shore is a smudge\non the horizon. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Here the sea is deep, and looking down over the side you can watch\nshafts of sunlight slant into the blue and draw together far below, like\nthe spokes of a great wheel meeting at a hub you cannot see. The surface\nis quiet, broken only by the faint, rhythmic slap of water on the hull.\nNorth, the wreck's ribs stand on their sandbar; the marker pole rises\neast, and open water runs south and west.",
+   "extra_descs": {}
   },
   "10647": {
    "vnum": 10647,
@@ -1424,8 +1492,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The water shoals over a great bank of cockle shells here, millions of\nthem, white and pink and grey, so that the sea above has the pale gleam\nof mother-of-pearl. When the swell draws back, the shells shift and\nwhisper against one another below the keel. West, a dark skerry topped\nwith a stone cairn rises from the sea, and open water lies north, east\nand south.",
+   "extra_descs": {}
   },
   "10648": {
    "vnum": 10648,
@@ -1455,8 +1523,10 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A skerry of dark rock rises from the sea here, its flanks streaked white\nand its crown topped by a squat cairn of piled stones. The sharp, fishy\nreek of an old roost carries across the water, and the swell breaks\nlazily over a shelf at the rock's foot. East lies the shell bank, and\nopen sea stretches north, south and west.",
+   "extra_descs": {
+    "cairn skerry stones": "The cairn is built of flat stones set without mortar, and a hollow at\nits heart holds coins gone green with age, a bent fishhook and a child's\ncarved wooden boat. Whoever leaves something here, the fishermen say,\nwill always find the way home across Mira Retrum."
+   }
   },
   "10649": {
    "vnum": 10649,
@@ -1486,8 +1556,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Out in the middle of Mira Retrum the shores have sunk away into haze on\nevery side, and only the skerry and its cairn, a little way east, break\nthe endless shine of the water. The swell is slow and low, and the\nsilence is so deep that the creak of the boat seems loud. Open water\nruns north, south and west, as empty as the sky.",
+   "extra_descs": {}
   },
   "10650": {
    "vnum": 10650,
@@ -1517,8 +1587,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "On the sandy bottom beneath the boat lies a small fishing skiff, settled\non her side and swathed in waving weed, her mast snapped and her oars\nlong gone. Paint still shows on her bow where a name was lettered, but\nshe lies too deep for it to be read. West, a great stone head rises from\nthe sea; south lies a rock awash in foam, and open water runs north and\neast.",
+   "extra_descs": {}
   },
   "10651": {
    "vnum": 10651,
@@ -1548,8 +1618,10 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. The water runs\ndeep and cold, too deep to wade. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A colossal stone head rises from the sea here, crowned and bearded, the\nhead of some forgotten king whose body stands lost in the green depths\nbelow. His face is worn almost smooth by wind and water, his eyes are\nblind hollows, and weed hangs from his chin like a second beard of\ngreen. Swells slap against his cheeks and fall back, and open sea runs\nnorth, east, south and west.",
+   "extra_descs": {
+    "head statue king crown stone": "The crown is a plain circlet set with square studs, and letters run\naround it in a script no one on the coast can read. Sailors rub the\nking's nose for luck when the sea is calm enough to come alongside, and\nit has been worn bright and smooth by their hands."
+   }
   },
   "10652": {
    "vnum": 10652,
@@ -1579,8 +1651,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Squared blocks of pale stone lie scattered on the bottom here, half\nburied in sand, as if a wall or a tower had tumbled into the sea long\nago. Fishermen say that on still evenings a bell can be heard ringing\nsomewhere beneath the water, slow and muffled, from a town that was\ndrowned when the sea came in. East, the stone king gazes blindly out of\nthe waves, and the sea runs north, south and west.",
+   "extra_descs": {}
   },
   "10653": {
    "vnum": 10653,
@@ -1610,8 +1682,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "Far off across the water, a cloud of white sea birds wheels and plunges\nover a patch of broken, glittering sea, and their thin cries carry\nfaintly on the wind. Close at hand the water is calm, bottle-green and\nempty. North, the drowned causeway runs beneath the surface; south lies\nwater of a startling blue, and the sea opens east and west.",
+   "extra_descs": {}
   },
   "10654": {
    "vnum": 10654,
@@ -1641,8 +1713,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Tall stalks of kelp rise from the deep here and spread their golden-\nbrown fronds across the surface in a floating forest, which sways and\nparts around the bow with a rubbery rustle. Looking down between them,\nthe stalks drop away like taut ropes into green twilight. East, the sea\nruns calm and bottle-green, and open water lies north, south and west.",
+   "extra_descs": {}
   },
   "10655": {
    "vnum": 10655,
@@ -1672,8 +1744,14 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A tiny islet of white sand rises from the sea here, no bigger than a\nthreshing floor, with a tuft of grey salt-bush clinging to its crown and\na fringe of broken shells around its edge. The water around it is\nturquoise and so clear that its sandy flanks can be traced far down. The\nkelp forest lies east, and the sea runs north, south and west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644803,
+     "max": 1
+    }
+   ]
   },
   "10656": {
    "vnum": 10656,
@@ -1703,8 +1781,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "The bottom here is shaped into great ridges of sand, like dunes lying\nunder the water, each crested with a line of brighter ripples, and the\nsea above them shades from pale to deep and back again as you pass. Bits\nof shell roll slowly down their flanks with each surge. East rises the\nislet of white sand, south the reeds come close, and the sea runs on\nnorth and west.",
+   "extra_descs": {}
   },
   "10657": {
    "vnum": 10657,
@@ -1734,8 +1812,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "A faint, steady pull has crept into the sea here, and bits of weed and\nfoam drift past the boat all in the same direction, as though the water\nitself had somewhere to be. The surface is streaked with long, wavering\nlines where it slides. North and west the lonely water stretches into\nhaze; east lie the sunken sand ridges, and south the sea drifts toward\nthe reeds.",
+   "extra_descs": {}
   },
   "10658": {
    "vnum": 10658,
@@ -1765,8 +1843,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The far shore is a smudge on the horizon. Deep water stretches away,\ndark and restless. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The sea is restless here, puckered into small, swirling eddies that spin\nthe boat gently about whenever you rest the oars. Long streamers of foam\nare all drawn the same way, toward a hissing line of white water beyond\nthe haze. Reed beds edge the sea to the south, and open water lies\nnorth, east and west.",
+   "extra_descs": {}
   },
   "10659": {
    "vnum": 10659,
@@ -1796,8 +1874,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The far shore is a smudge on the horizon. The water runs deep and cold,\ntoo deep to wade. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A fowler's hide stands in the shallows here, a little hut of bound reeds\nraised on stilts above the water, its door hanging open and its thatch\nhalf blown away. The reeds rise thick and tall around it, rustling. East\nthe eddies swirl, south and west lie the reed-fringed shallows, and\nnorth a channel of open water winds away among the beds.",
+   "extra_descs": {}
   },
   "10660": {
    "vnum": 10660,
@@ -1823,8 +1901,14 @@
      "description": "To the south lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The sea runs out here in a broad flat of shining mud, studded with the\nblack stumps of old posts and threaded by little channels that wind away\ninto the reeds. The smell of mud and rotting stems hangs over\neverything, and the water is barely deep enough to float the boat. North\nand east lies water a little deeper; south, the shallows follow the\nreeds toward a quiet bay.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644800,
+     "max": 1
+    }
+   ]
   },
   "10661": {
    "vnum": 10661,
@@ -1850,8 +1934,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. Waves slap against the\nhull of anything that floats here. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "Here the mainland's bluffs dwindle into a long slope of dunes tufted\nwith pale grass, and the sea's edge becomes a ribbon of white sand. The\nwater is a clear turquoise over a bottom of rippled sand, and so warm\nthat a faint haze shimmers above it. From somewhere south comes the\nsoft, endless boom of surf on the outer bar. Deeper water lies north\nbeneath the bluffs, and open sea west.",
+   "extra_descs": {}
   },
   "10662": {
    "vnum": 10662,
@@ -1881,8 +1965,14 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A broad shoal of white shell sand lies a few feet below the keel here,\nand the water above it glows a vivid, almost unreal turquoise. Fragments\nof shell glint on the bottom like scattered coins, and at the shoal's\nedges the colour drops into deep blue as sharply as a line drawn with a\nrule. The mainland dunes lie east, the white bar beyond the water south,\nand the wider sea north and west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644801,
+     "max": 1
+    }
+   ]
   },
   "10663": {
    "vnum": 10663,
@@ -1912,8 +2002,14 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. The far shore is a\nsmudge on the horizon. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The sun's glare lies on the water here in a broad, blinding road of\nlight, and it is hard to look anywhere but down into the shade beside\nthe hull. There the sea is a clean, deep green, threaded with drifting\nmotes of weed. The turquoise shoal glows to the east; south lies the\nchoppy water near the bar, and north and west the open sea rolls on.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644804,
+     "max": 1
+    }
+   ]
   },
   "10664": {
    "vnum": 10664,
@@ -1943,8 +2039,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A drift of grey pumice floats on the water here, hundreds of stones as\nlight as cork that knock against the hull with a dry, hollow clatter.\nThey must have come a long way, from some burning island far beyond the\nbar, and their pocked faces are already furred with green. Otherwise the\nsea is empty and blue: the glare lies east, the ocean swell rolls in\nfrom the south, and open water runs north and west.",
+   "extra_descs": {}
   },
   "10665": {
    "vnum": 10665,
@@ -1974,8 +2070,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The far shore is a smudge on the horizon. Deep water stretches away,\ndark and restless. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A long line of creamy foam wanders across the sea here, marking where\nthe water drawn in through the gap in the bar meets the slack water of\nthe inner sea. Feathers, seed husks and scraps of weed have gathered\nalong it like the tideline on a beach. North stands the carved marker\npole and east lies the pumice drift, while the sea runs on south toward\nthe bar and west into open water.",
+   "extra_descs": {}
   },
   "10666": {
    "vnum": 10666,
@@ -2005,8 +2101,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "A great mat of floating weed lies spread across the sea here, so thick\nand green that it looks like a meadow you could walk on, and the boat\npushes into it with a soft, dragging hiss. Air bladders pop under the\nhull, and the smell of salt and rot hangs heavy. Clear water lies beyond\nits ragged edges on every side, north and south, east and west.",
+   "extra_descs": {}
   },
   "10667": {
    "vnum": 10667,
@@ -2036,8 +2132,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The far shore is a smudge on the horizon. The water runs deep and cold,\ntoo deep to wade. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A narrow band of short, steep wavelets runs across the sea here where\ntwo slow drifts meet and jostle, and the boat jerks and twists as it\ncrosses, water chuckling loudly under the bow. On either side of the\nband the surface lies smooth again. North lies the pale shell bank, east\nthe great mat of floating weed, and the sea runs on south and west.",
+   "extra_descs": {}
   },
   "10668": {
    "vnum": 10668,
@@ -2067,8 +2163,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Long, glassy slicks wind across the sea here like paths through a field,\nsmooth lanes the breeze cannot ruffle, while the water between them\nshivers and sparkles. The boat seems to want to follow them. North, a\ndark skerry stands up from the sea, and south lies the quiet driftwood\nbay; to the west a faint smell of sulphur hangs over the water, and east\nthe sea runs on.",
+   "extra_descs": {}
   },
   "10669": {
    "vnum": 10669,
@@ -2098,8 +2194,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "Strings of silver bubbles rise from the bottom here and burst on the\nsurface with soft little pops, and the water around the boat is as warm\nas a bath and smells faintly of rotten eggs. Far below, a pale crust of\nyellow and white rims the vents where the bubbles escape. The sea runs\nnorth and east, south toward a quiet bay, and west toward a rock where\nthe swell breaks white.",
+   "extra_descs": {}
   },
   "10670": {
    "vnum": 10670,
@@ -2129,8 +2225,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "A single black rock lies just awash here, and every swell that reaches\nit breaks in a white, seething smother before draining away in a hundred\nhissing rills. Boats give it a wide berth, and a few splintered planks\nare wedged in a crack on its flank. East lies the warm, bubbling water;\nsouth the sea drifts toward the quiet bay, and north and west it\nstretches away open.",
+   "extra_descs": {}
   },
   "10671": {
    "vnum": 10671,
@@ -2160,8 +2256,14 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "The water here is speckled with drifting seeds and sea-beans, smooth\nbrown and red and mottled, carried from shores no one in Garathorm has\never seen. They gather in little rafts and spin slowly in the eddies\naround the boat. North, the stone king's crowned head shows above the\nwater; east the swell breaks white on a lone rock, and the sea drifts\nsouth toward the quiet bay and west toward a dead tree standing in the\nwater.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644805,
+     "max": 1
+    }
+   ]
   },
   "10672": {
    "vnum": 10672,
@@ -2191,8 +2293,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A whole dead tree stands upright in the sea here, drowned where it grew,\nits grey trunk rising from the water and its bare branches spread\nagainst the sky like the fingers of an open hand. The bark is long gone\nand the wood is polished silver. To the west the water turns abruptly to\na deep, startling blue; north and east the sea runs open, and south it\ndrifts toward a quiet bay.",
+   "extra_descs": {}
   },
   "10673": {
    "vnum": 10673,
@@ -2222,8 +2324,10 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The sandy shallows end here at the rim of a great round hole in the sea\nfloor, and the water above it is a deep, startling blue, so dark at its\nheart that it looks like a well sunk straight down into the night. A\nchill rises from it. East stands the dead tree, drowned where it grew;\nsouth the sea drifts toward a quiet bay, and north and west the shallows\nrun on.",
+   "extra_descs": {
+    "hole blue well rim": "Peering down, you can see sand from the rim pouring over the edge in\nslow, silent falls, and far below, ledges of white rock stepping down\ninto darkness. No fisherman will drop a line here, for they say that\nwhat takes the hook is never what gets hauled up."
+   }
   },
   "10674": {
    "vnum": 10674,
@@ -2253,8 +2357,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "There is no shade anywhere out here, and the sun beats down on the water\nuntil it glares like hot brass and the gunwales grow too warm to touch.\nSalt dries in a white crust on everything the spray has wetted. East\nlies the deep blue hole; to the south the drift runs toward the quiet\nbay, and north and west the open sea shimmers away.",
+   "extra_descs": {}
   },
   "10675": {
    "vnum": 10675,
@@ -2284,8 +2388,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Just under the surface lies a great ring of piled stones, a fish trap\nbuilt by hands long gone to pen the fish when the tide fell. Weed has\nknitted the stones together, and the water inside the ring is a shade\ncalmer than outside. North rises the little islet of white sand; east\nlies open, glaring water, and the sea drifts south toward a quiet bay\nand west toward the reeds.",
+   "extra_descs": {}
   },
   "10676": {
    "vnum": 10676,
@@ -2311,8 +2415,8 @@
      "description": "To the south lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The reed beds of the far shore crowd close here, a whispering wall of\ntall brown stems with feathery heads that nod and bow in every breeze.\nThe water is shallow and cloudy with fine silt, and the oars come up\nstreaked with mud. South, the sea drifts away along the reeds toward a\nquiet bay, and open water lies north and east.",
+   "extra_descs": {}
   },
   "10677": {
    "vnum": 10677,
@@ -2338,8 +2442,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. The water runs\ndeep and cold, too deep to wade. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "Shallow, sun-warmed water lies over a meadow of eelgrass here, its green\nblades leaning one way and then the other as each small swell passes.\nThe smell of warm weed and salt hangs heavy in the still air, and the\nmainland dunes shiver in the heat. South, a long bar of white sand shows\nbeyond the shallows, crested with dunes, while open sea lies north and\nwest.",
+   "extra_descs": {}
   },
   "10678": {
    "vnum": 10678,
@@ -2369,8 +2473,14 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The far shore is a smudge on the horizon. Deep water stretches away,\ndark and restless. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Little swells come at the boat from two sides here, one rolling in off\nthe open sea and one rebounding from the bar, so that the water heaps\nand slaps in a restless chop. The colour beneath you shifts from green\nto blue and back as sandbanks and hollows pass under the keel. South\nlies the sheltered water along the bar, east the warm eelgrass shallows,\nand north and west the open sea.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644800,
+     "max": 1
+    }
+   ]
   },
   "10679": {
    "vnum": 10679,
@@ -2400,8 +2510,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "From here the white bar is close enough to make out the wrack and\nbleached driftwood along its inner beach, and above its dunes hangs a\nhaze of fine spray from the ocean surf beyond. The sound of that surf\ncomes as a low, unending thunder that you feel through the planks. The\nwater near the boat is quiet and smells of weed. South lies the channel\nalong the bar, with open water east, west and north.",
+   "extra_descs": {}
   },
   "10680": {
    "vnum": 10680,
@@ -2431,8 +2541,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The ocean swell that enters through the gap in the bar spreads out here\ninto broad, smooth undulations, so that the whole sea looks like rumpled\nsilk. The water is a deep, clean blue, and a cool breath rises off it\nwith the smell of the open ocean. South, the white cairn and its\nfigurehead mark the gap, and open water runs north, east and west.",
+   "extra_descs": {}
   },
   "10681": {
    "vnum": 10681,
@@ -2462,8 +2572,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The far shore is a smudge on the horizon. The water runs deep and cold,\ntoo deep to wade. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The wind blows steadily across the bar here, lifting plumes of fine\nwhite sand from the dune crests and sprinkling them over the water,\nwhere they sink in glittering threads. The sea is a rich blue, ruffled\nand lively. South, the bar opens toward the ocean; east and west the\ninner sea runs along the dunes, and north lies open water.",
+   "extra_descs": {}
   },
   "10682": {
    "vnum": 10682,
@@ -2493,8 +2603,14 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A heat shimmer hangs over the bar here, so that its dunes seem to float\na hand's breadth above the sea, and the great whale's skeleton on the\nsand to the south wavers like a reflection in a pool. The water is warm\nand slack and smells of sun-baked weed. Small ripples lap at the hull\nwith a sleepy, steady sound, and open sea lies north, east and west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644801,
+     "max": 1
+    }
+   ]
   },
   "10683": {
    "vnum": 10683,
@@ -2524,8 +2640,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The water is shallow and astonishingly clear here, and the boat's own\nshadow glides over the white sand below, ringed with a halo of rippling\nlight. The sand is printed with the wandering trails of small things\nthat crawl by night. South, the bar lies low beside the water; west\nopens a quiet bay, and the sea runs north and east.",
+   "extra_descs": {}
   },
   "10684": {
    "vnum": 10684,
@@ -2551,8 +2667,8 @@
      "description": "To the south lies On Mira Retrum."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. The far shore is a\nsmudge on the horizon. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "The slow drift of the whole inner sea seems to end in this quiet bay,\nand its curving shore is heaped high with driftwood bleached silver by\nthe sun, whole trees among it with their roots in the air. The water is\ncalm and warm, littered with weed and floating husks, and the air smells\nof sun-dried wood. North and east the open sea leads away, and south the\nbay ends at a headland of black rock.",
+   "extra_descs": {}
   },
   "10685": {
    "vnum": 10685,
@@ -2574,8 +2690,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The far shore is a smudge on the horizon. The water runs deep and cold,\ntoo deep to wade. Ways lead north and west.",
-   "placeholder": true
+   "description": "A long white bar of sand lies close alongside, its dunes crowned with\nmarram grass that hisses and bends in the wind. Beyond it, out of sight,\nthe Southern Ocean pounds the outer beach, and now and then a burst of\nspray shows white above the crest. Inside the bar the water is still and\nglassy, green over pale sand. The sheltered channel runs west along the\nbar, and north lie the eelgrass shallows.",
+   "extra_descs": {}
   },
   "10686": {
    "vnum": 10686,
@@ -2601,8 +2717,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The far shore is a smudge on the horizon. The water runs deep and cold,\ntoo deep to wade. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "Inside the bar the water is a sheet of pale jade, so shallow that the\nripple marks on the bottom show clearly through it. On the bar itself a\nsingle dead tree, grey and leafless, leans away from the ocean as though\nit has been trying to walk off the sand for a hundred years. The calm\nchannel runs east and west along the bar, and deeper water lies north.",
+   "extra_descs": {}
   },
   "10687": {
    "vnum": 10687,
@@ -2628,8 +2744,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. The far shore is a\nsmudge on the horizon. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "Here a hooked spit of white sand curls out from the bar, and behind it a\nnarrow tidal creek winds away among the dunes, its banks crusted with\nsalt. The water inside the hook is dead calm and as warm as a bath.\nWest, the bar is broken by a gap where ocean swells roll through; east,\nthe sheltered channel runs on along the sand, and north lies open water.",
+   "extra_descs": {}
   },
   "10688": {
    "vnum": 10688,
@@ -2659,8 +2775,16 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Here the white bar is broken by a wide gap, and through it the swells of\nthe Southern Ocean roll in long and green, lifting the boat high and\nsetting it gently down. On the tip of the bar stands a cairn of white\nstones crowned with an old ship's figurehead, a carved woman gazing out\nto sea. South, the gap leads out onto the Southern Ocean, while the\ncalmer water of Mira Retrum lies north, east and west.",
+   "extra_descs": {
+    "figurehead cairn woman carved": "The figurehead is a woman carved in oak, her hair streaming back as if\nin a gale and one hand pressed to her heart. Her paint has weathered to\na ghostly grey, but her eyes of blue glass still catch the light, and\nfishermen touch their caps to her as they pass through the gap."
+   },
+   "mob_resets": [
+    {
+     "vnum": 644803,
+     "max": 1
+    }
+   ]
   },
   "10689": {
    "vnum": 10689,
@@ -2690,8 +2814,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The ocean's breath is strong here at the gap in the bar, and the boat\nrides up and down on swells that have travelled from beyond the edge of\nany map. South, the gap opens wide onto the Southern Ocean, its water\ndark and endless. East, the white cairn with its figurehead stands on\nthe tip of the bar, and west the bar runs on toward a great bleached\nskeleton lying on the sand. Northward lie the quieter waters of the\ninner sea.",
+   "extra_descs": {}
   },
   "10690": {
    "vnum": 10690,
@@ -2717,8 +2841,10 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The bleached skeleton of a great whale lies along the crest of the bar\nhere, its ribs arching over the sand like the beams of a roofless hall\nand its skull half buried in a dune. Wind sings faintly through the\nbones. Inside the bar the water is calm and green; east lies the gap\nwhere the ocean swells come in, and west the bar runs on, low and white.\nOpen water lies north.",
+   "extra_descs": {
+    "skeleton whale bones ribs skull jawbone": "Each rib is longer than a cart, scoured smooth and white by sand and\nwind. Someone has cut a ring of small, careful marks into the great\njawbone, and the children of fishermen dare one another to sleep a night\nbeneath it."
+   }
   },
   "10691": {
    "vnum": 10691,
@@ -2744,8 +2870,8 @@
      "description": "To the west lies On Mira Retrum."
     }
    },
-   "description": "The far shore is a smudge on the horizon. The water runs deep and cold,\ntoo deep to wade. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The bar is so low here that the ocean pours over it in storms, and broad\nfans of white sand have spilled out into the inner sea, where the water\nover them is barely deep enough to float the boat and glows a pale gold.\nDriftwood and torn weed lie stranded along the crest. East, the whale's\ngreat ribs arch over the sand, and west the bar runs on toward a dark\nheadland. North lies deeper water.",
+   "extra_descs": {}
   },
   "10692": {
    "vnum": 10692,
@@ -2767,8 +2893,8 @@
      "description": "To the east lies On Mira Retrum."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. The water runs\ndeep and cold, too deep to wade. Ways lead north and east.",
-   "placeholder": true
+   "description": "Here the white bar comes to an end against a low headland of black,\npitted rock, its ledges riddled with tide pools that flash like mirrors\nwhen the sun strikes them. The swell surges among the rocks with a deep,\nsucking gurgle. North lies a quiet bay heaped with silver driftwood, and\neast the bar runs back toward the whale's bones.",
+   "extra_descs": {}
   },
   "10693": {
    "vnum": 10693,
@@ -2798,8 +2924,8 @@
      "description": "To the west lies The Southern Ocean."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The swells here are long and heavy, and spray blows off their crests in\nwhite streamers whenever the wind freshens. Looking back, the figurehead\non her cairn can just be seen guarding the gap in the bar to the north.\nEast, the ocean rolls on forever, swell after identical swell, while the\nwater runs south into deeper blue and west along the outside of the bar.",
+   "extra_descs": {}
   },
   "10694": {
    "vnum": 10694,
@@ -2829,8 +2955,8 @@
      "description": "To the west lies The Southern Ocean."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "Beyond the bar the sea changes entirely: the water turns a deep, cold\nindigo, and the swells come marching in long ranks, each one lifting the\nboat high enough to show the white line of Mira Retrum's beaches before\ndropping it into a blue valley. North, the gap in the bar leads back to\ncalmer water. The ocean runs on east and south, and to the west it\nstretches away unbroken, as though there were no end to it at all.",
+   "extra_descs": {}
   },
   "10695": {
    "vnum": 10695,
@@ -2860,8 +2986,8 @@
      "description": "To the west lies The Southern Ocean."
     }
    },
-   "description": "The far shore is a smudge on the horizon. The water runs deep and cold,\ntoo deep to wade. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Far from any shore now, the boat climbs each swell and slides down its\nback into a trough so deep that for a moment only the sky can be seen.\nThe bar of Mira Retrum has dwindled behind to a thin white thread on the\nhorizon. East, the ocean stretches away without a mark on it, unchanging\nhowever far you go; the swells run on south and west, and the way north\nleads back toward the bar.",
+   "extra_descs": {}
   },
   "10696": {
    "vnum": 10696,
@@ -2891,8 +3017,8 @@
      "description": "To the west lies The Southern Ocean."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "Two sets of swells cross each other here, one from the ocean's far\nreaches and one rebounding from some distant coast, heaping the water\ninto sudden, lurching peaks. Spray bursts over the bow without warning.\nTo the west the ocean runs on and on without change, as if it would\nnever end, while the way north leads back toward the bar and the swells\nroll east and south.",
+   "extra_descs": {}
   },
   "10697": {
    "vnum": 10697,
@@ -2918,8 +3044,8 @@
      "description": "To the west lies The Southern Ocean."
     }
    },
-   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "Strands of torn kelp, thick as a man's wrist and longer than the boat,\nroll in the troughs here, carried from some unknown coast. The air has\nturned noticeably colder, and the swells come in heavy and slow, grey\nalong their backs. The ocean is so featureless that steering north or\neast brings you back to the same stretch of rolling water, while to the\nwest the swells run on toward a colder sea.",
+   "extra_descs": {}
   },
   "10698": {
    "vnum": 10698,
@@ -2945,8 +3071,8 @@
      "description": "To the south lies The Southern Ocean."
     }
    },
-   "description": "Deep water stretches away, dark and restless. The far shore is a smudge\non the horizon. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "Nothing breaks the circle of the horizon here but the slow procession of\nthe swells, and the loneliness of the open ocean presses close around\nthe boat. A single long grey feather floats past on the water, turning\ngently. The air is cold and clean, with a bite that speaks of ice not\nfar off; the ocean runs north and east, and south toward a colder\ncurrent.",
+   "extra_descs": {}
   },
   "10699": {
    "vnum": 10699,
@@ -2976,8 +3102,8 @@
      "description": "To the west lies Lost in the Ocean."
     }
    },
-   "description": "The far shore is a smudge on the horizon. Deep water stretches away,\ndark and restless. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "A cold current sets in from the south here, and the water turns grey and\nsmells of snow, with a few small lumps of ice turning slowly in the\nswell. South, that current runs on toward the Southern Mira Retrum,\nwhere white bergs glimmer far off in the haze. To the west a bank of fog\nlies on the sea like a wall of wet wool, swallowing the horizon, and the\nopen ocean rolls away north and east.",
+   "extra_descs": {}
   },
   "10700": {
    "vnum": 10700,
@@ -3011,8 +3137,8 @@
      "description": "To the up lies The Southern Ocean."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead north, east, south, west and up.",
-   "placeholder": true
+   "description": "Fog closes in on every side, thick and white and dripping, until the bow\nof the boat is the farthest thing you can see. North, south, east and\nwest look exactly alike, and every way you steer seems to bring you back\ninto the same grey murk. Only now and then a great swell heaves up out\nof the fog, and riding up over its crest might carry you clear, back to\nthe open Southern Ocean.",
+   "extra_descs": {}
   },
   "10701": {
    "vnum": 10701,
@@ -3042,8 +3168,8 @@
      "description": "To the west lies Lost in the Ocean."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The fog is so thick here that it beads on your skin and drips from your\nhair, and the water beneath the boat is black and utterly still. Sounds\ndie within a few feet: the creak of a plank, the splash of an oar.\nWhether you turn north or south, east or west, the grey wall moves with\nyou, and there is no telling where the open ocean lies.",
+   "extra_descs": {}
   },
   "10702": {
    "vnum": 10702,
@@ -3073,8 +3199,8 @@
      "description": "To the west lies Lost in the Ocean."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east, south and\nwest.",
-   "placeholder": true
+   "description": "A slow, silent eddy turns the boat in a lazy circle here, and the fog\nswirls in its wake like smoke stirred by a hand. Once, far off, there\ncomes a hollow boom, as of surf on some unseen rock, but it does not\ncome again. North and south lead into the same blank greyness, and so do\neast and west, with nothing to choose between them.",
+   "extra_descs": {}
   },
   "10703": {
    "vnum": 10703,
@@ -3104,8 +3230,14 @@
      "description": "To the west lies Lost in the Ocean."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. The far shore is a\nsmudge on the horizon. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Somewhere above the fog a pale smudge of light hangs where the sun must\nbe, but it seems to slide about the sky as the boat turns, and soon you\ncannot be sure of it at all. Strands of drifting weed, the same strands\nyou have surely passed before, curl around the hull. The water runs\nnorth and south, east and west into identical grey nothing.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644801,
+     "max": 1
+    }
+   ]
   },
   "106265": {
    "vnum": 106265,
@@ -3133,8 +3265,14 @@
      "description": "To the up lies Cliff."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, south and up.",
-   "placeholder": true
+   "description": "A high, narrow chamber rises over this patch of white sand, and a\nnatural chimney climbs up through the rock toward the cliff above, with\na glimmer of grey daylight far at its top. A ladder of rope and\ndriftwood rungs once hung down the shaft, but its lower half has rotted\naway, and a fall of boulders now chokes the bottom. South lies the\nhidden beach with its still green pool, and north the sand runs on into\na smaller recess.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644802,
+     "max": 1
+    }
+   ]
   },
   "106266": {
    "vnum": 106266,
@@ -3154,8 +3292,8 @@
      "description": "To the south lies White Sand Beach."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads south.",
-   "placeholder": true
+   "description": "The cave ends in a small round grotto where the white sand slopes into a\npool of astonishing blue. The sea enters only from below, through a\ndrowned arch, and the daylight it carries makes the water glow as if lit\nfrom within, throwing trembling blue reflections over the walls. Tiny\nshells lie heaped in the hollows of the sand like spilled sugar. The\nonly way out is back south, beneath the chimney.",
+   "extra_descs": {}
   },
   "106267": {
    "vnum": 106267,
@@ -3179,8 +3317,10 @@
      "description": "To the east lies White Sand Beach."
     }
    },
-   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and east.",
-   "placeholder": true
+   "description": "This hidden beach lies in a broad, low chamber of the cave, its white\nsand sloping to a still green pool that the sea feeds through some\ndrowned passage. In the middle of the sand stands a flat-topped stone,\nworn smooth, with a weathered board propped against it. Niches have been\nscraped into the walls at shoulder height, each blackened by the smoke\nof old candles. North, the beach runs on beneath a dark chimney in the\nrock, and east an arch leads back to the bend in the cave.",
+   "extra_descs": {
+    "board stone flat weathered": "Words burned into the board with a hot iron have faded, but they can\nstill be read: LEAVE WHAT YOU BRING UPON THE STONE, FRIEND, AND GO IN\nPEACE. WE WILL COME DOWN WHEN YOU ARE GONE. Beneath them, in smaller and\nshakier letters, someone has added: BLESS YOU."
+   }
   },
   "106271": {
    "vnum": 106271,
@@ -3208,8 +3348,16 @@
      "description": "To the up lies Narrow Gully."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, south and up.",
-   "placeholder": true
+   "description": "A beach of fine white sand slopes up out of the water inside a vast sea\ncave, its arched roof alive with light thrown up off the waves. South,\nthe cave mouth frames a bright half-moon of open sea. At the back a\nnarrow gully climbs up into the island, but it is choked with thorn and\nbarred by a fence of lashed driftwood stakes. The beach runs on north\ninto the cool gloom of the cave.",
+   "extra_descs": {
+    "fence stakes driftwood gully thorn": "The stakes are bleached driftwood lashed with tarred rope, their\nsharpened points turned outward, and thorny brush has been packed\nbetween them until nothing bigger than a lizard could pass. A strip of\nred cloth knotted to the tallest stake has faded almost to pink, the old\nsign of a sickness that must not be carried away."
+   },
+   "mob_resets": [
+    {
+     "vnum": 644802,
+     "max": 1
+    }
+   ]
   },
   "106272": {
    "vnum": 106272,
@@ -3233,8 +3381,8 @@
      "description": "To the south lies White Sand Beach."
     }
    },
-   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
-   "placeholder": true
+   "description": "Deeper in the cave the sand is cool and firm, rippled by the tide into\nlong ridges that crunch underfoot. Far overhead, a crack in the roof\nlets fall a single blade of daylight that strikes the beach like a\npillar of white fire, leaving the walls in blue dusk. Each surge of the\nsea outside rolls in as a slow, hollow breath. The beach continues north\naround a bend in the rock and south toward the bright mouth of the cave.",
+   "extra_descs": {}
   },
   "106273": {
    "vnum": 106273,
@@ -3258,10 +3406,229 @@
      "description": "To the west lies Beach on Leper Island."
     }
    },
-   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead south and west.",
-   "placeholder": true
+   "description": "Here the cave bends, and the white sand narrows to a strip between walls\nof pale stone fluted by ages of waves. A crust of dried weed and broken\nshells along one wall marks where storm tides reach, higher than a tall\nman's head. West, a low arch opens into a second hidden stretch of\nbeach, lit by a faint green glow. South, the sand runs back toward the\ncave mouth and the sound of the sea.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 644802,
+     "max": 1
+    }
+   ]
   }
  },
- "mobs": {},
- "objects": {}
+ "mobs": {
+  "644800": {
+   "vnum": 644800,
+   "name": "gull grey-backed bird seabird",
+   "short_desc": "a grey-backed gull",
+   "long_desc": "A grey-backed gull bobs on the swell here, eyeing you with a pale, greedy eye.",
+   "description": "It is a big, heavy-bodied sea bird with a slate-grey back, a snowy\nbreast and a hooked yellow bill marked with a red spot near the tip. It\nrides the water as easily as a cork, ready to snatch anything that looks\nlike food, including whatever you happen to be holding. Its harsh,\nlaughing cry carries a long way over the water.",
+   "level": 1,
+   "alignment": 0,
+   "hp_dice": "1d8+26",
+   "damage_dice": "1d6+0",
+   "armor_class": 94,
+   "exp": 75,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": []
+  },
+  "644801": {
+   "vnum": 644801,
+   "name": "jellyfish jelly moon pale",
+   "short_desc": "a pale moon jellyfish",
+   "long_desc": "A pale moon jellyfish pulses slowly just beneath the surface, trailing fine threads.",
+   "description": "Its bell is as wide as a shield and clear as cloudy glass, with four\npale violet rings glowing at its heart like the reflection of a moon. A\nfringe of fine threads hangs beneath it, almost invisible in the water,\nand anything they brush comes away with a burning red welt. It drifts\nwherever the swell carries it, opening and closing with a slow, patient\nrhythm.",
+   "level": 3,
+   "alignment": 0,
+   "hp_dice": "3d8+44",
+   "damage_dice": "1d6+2",
+   "armor_class": 88,
+   "exp": 185,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": []
+  },
+  "644802": {
+   "vnum": 644802,
+   "name": "crab sand pale",
+   "short_desc": "a sand crab",
+   "long_desc": "A sand crab scuttles sideways here, its claws raised and clicking.",
+   "description": "Its shell is the colour of white sand speckled with grey, and on the\noldest of them it is as broad as a platter. Stalked black eyes swivel to\nfollow you, and its two claws, one much bigger than the other, open and\nshut with a dry click. When frightened, it can bury itself in sand\nfaster than you can blink.",
+   "level": 2,
+   "alignment": 0,
+   "hp_dice": "2d8+35",
+   "damage_dice": "1d6+1",
+   "armor_class": 91,
+   "exp": 130,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744802,
+     "chance": 20
+    },
+    {
+     "vnum": 200,
+     "chance": 5
+    },
+    {
+     "vnum": 201,
+     "chance": 5
+    }
+   ]
+  },
+  "644803": {
+   "vnum": 644803,
+   "name": "seal grey playful",
+   "short_desc": "a playful grey seal",
+   "long_desc": "A playful grey seal pops its head out of the water, whiskers dripping, and watches you with great dark eyes.",
+   "description": "It is a sleek, mottled grey beast as long as a man, with a round, dog-\nlike head, a bristling moustache of whiskers and huge dark eyes full of\nmischief. It rolls and dives around the boat and surfaces on the other\nside with a snort, as if it has played a fine joke. For all its play its\nteeth are sharp, and in the water it is far stronger than you are.",
+   "level": 5,
+   "alignment": 0,
+   "hp_dice": "5d8+62",
+   "damage_dice": "2d6+2",
+   "armor_class": 82,
+   "exp": 295,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": []
+  },
+  "644804": {
+   "vnum": 644804,
+   "name": "clam giant shell",
+   "short_desc": "a giant clam",
+   "long_desc": "A giant clam lies half-open on the bottom beneath the boat, its fluted lips rippling blue and green.",
+   "description": "The clam is wider than a cartwheel, its two heavy, wavy-edged shells\ncrusted with weed and barnacles. Between them its mantle shimmers in\nblues, greens and golds like a peacock's tail, and it snaps shut with\ncrushing force on anything that pokes inside. Divers on the coast dream\nof the pearls such clams are said to keep.",
+   "level": 7,
+   "alignment": 0,
+   "hp_dice": "7d8+81",
+   "damage_dice": "2d6+5",
+   "armor_class": 76,
+   "exp": 405,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744800,
+     "chance": 30
+    },
+    {
+     "vnum": 200,
+     "chance": 5
+    },
+    {
+     "vnum": 201,
+     "chance": 5
+    }
+   ]
+  },
+  "644805": {
+   "vnum": 644805,
+   "name": "fisherman man sunburnt fisher",
+   "short_desc": "a sunburnt fisherman",
+   "long_desc": "A sunburnt fisherman sits in a small tarred skiff here, paying out a line over the side.",
+   "description": "He is a wiry, leathery man of middle years, burnt as brown as a\nhazelnut, with salt crusted in his beard and a battered straw hat pulled\nlow against the glare. A great spiral conch hangs from a cord at his\nshoulder for calling across the water when the mist comes down, and a\nbundle of dried weed sits by his knee to chew on. He nods to you\npolitely, but his eyes never leave his line for long.",
+   "level": 4,
+   "alignment": 300,
+   "hp_dice": "4d8+60",
+   "damage_dice": "2d6+0",
+   "armor_class": 85,
+   "exp": 240,
+   "gold": 48,
+   "flags": [
+    "stay_zone"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 744801,
+     "chance": 25
+    },
+    {
+     "vnum": 744803,
+     "chance": 35
+    },
+    {
+     "vnum": 200,
+     "chance": 5
+    },
+    {
+     "vnum": 201,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "744800": {
+   "vnum": 744800,
+   "name": "pearl sea lustrous",
+   "short_desc": "a lustrous sea pearl",
+   "room_desc": "A lustrous sea pearl lies here, glowing softly.",
+   "description": "A pearl as big as a hazelnut, perfectly round, with a soft, creamy lustre that shifts to pink and silver as it turns. Merchants in Garathorm pay well for pearls from the warm shallows of Mira Retrum.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 7,
+   "weight": 1,
+   "value": 235
+  },
+  "744801": {
+   "vnum": 744801,
+   "name": "conch shell horn spiral",
+   "short_desc": "a conch shell horn",
+   "room_desc": "A great spiral conch shell lies here, its tip worn into a mouthpiece.",
+   "description": "A heavy spiral shell, cream outside and flushed a glossy pink within, its pointed tip ground away and smoothed into a mouthpiece. Blown hard, it sounds a deep, mournful note that carries for miles across the water, and fishermen use it to find one another in the mist.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 4,
+   "weight": 1,
+   "value": 145
+  },
+  "744802": {
+   "vnum": 744802,
+   "name": "buckler crab shell shield",
+   "short_desc": "a crab-shell buckler",
+   "room_desc": "A small round buckler made from a crab's shell lies here.",
+   "description": "The broad, speckled carapace of an old sand crab, scraped clean and dried hard, with a leather grip laced through holes bored in its rim. It is light and a little brittle at the edges, but surprisingly good at turning a blow.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 3,
+   "wear_slot": "shield",
+   "armor": 3,
+   "weight": 6,
+   "value": 90
+  },
+  "744803": {
+   "vnum": 744803,
+   "name": "seaweed dried weed bundle",
+   "short_desc": "a bundle of dried seaweed",
+   "room_desc": "A bundle of dried seaweed, tied with twine, lies here.",
+   "description": "Dark, crinkled strips of sea-wrack dried in the sun and tied with twine. It is salty and tough and takes a great deal of chewing, but it keeps for months and fills an empty belly on a long day at sea.",
+   "item_type": "food",
+   "type": "food",
+   "min_level": 2,
+   "food_value": 12,
+   "nutrition": 12,
+   "weight": 1,
+   "value": 7
+  }
+ }
 }

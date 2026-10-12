@@ -24,8 +24,14 @@
      "description": "To the down lies The Rangers Camp."
     }
    },
-   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead up and down.",
-   "placeholder": true
+   "description": "The lower slopes of the mountain are clothed in birch and rowan, their\npale trunks leaning on a hillside littered with mossy boulders. A rough\npath switches back and forth across the slope, climbing toward darker\npines and bare grey rock above. Below, between the trees, the Rangers\nCamp lies close at hand among the birches. The air is cool and smells of\nearth and fallen leaves.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 605003,
+     "max": 1
+    }
+   ]
   },
   "1860": {
    "vnum": 1860,
@@ -47,8 +53,8 @@
      "description": "To the down lies The Rangers Camp."
     }
    },
-   "description": "Shafts of pale light slant between the trunks. Birdsong drifts down\nthrough the branches overhead. Ways lead up and down.",
-   "placeholder": true
+   "description": "The path climbs steeply here through twisted pines that grip the rock\nwith bare, knotted roots. Above, the trees give out against a face of\ngrey stone, and a dark cave mouth gapes just a short scramble up the\nslope. The air is thin and sharp with resin, and loose scree slithers\naway underfoot at every step. Far below, through the branches, a thread\nof woodsmoke rises from the Rangers Camp, where the path leads back\ndown.",
+   "extra_descs": {}
   },
   "1861": {
    "vnum": 1861,
@@ -72,8 +78,14 @@
      "description": "To the down lies Climbing The Mountain."
     }
    },
-   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead south and down.",
-   "placeholder": true
+   "description": "Just inside the mouth of a cave high on the mountain, the rock walls\narch close overhead, blackened by the soot of old campfires. Daylight\nspills in from the opening behind you, where a steep path drops back\ndown the wooded slope. A chill draught breathes out of the dark to the\nsouth, carrying the smell of wet stone and the faint grind of shifting\nrubble. A ring of fire-cracked stones sits on the gritty floor.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 605003,
+     "max": 1
+    }
+   ]
   },
   "3200": {
    "vnum": 3200,
@@ -240,8 +252,8 @@
      "description": "To the west lies On The River."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "Here the river slips through an opening low in the city wall and into a\nlong vaulted culvert of old brick. A narrow towpath ledge runs along one\nside above the dark water. Grey daylight leaks in from the east, where\nthe arch under the bridge hangs with ragged seaweed. The walls sweat and\ndrip, and the ledge leads on west into the gloom.",
+   "extra_descs": {}
   },
   "3207": {
    "vnum": 3207,
@@ -265,8 +277,8 @@
      "description": "To the west lies On The River."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "An iron grating set into the vault lets down thin bars of light, and\nthrough it drift the muffled sounds of the city above: cartwheels, a\nshout, a slammed shutter. Below it the brick ledge is slick with green\nslime. The river runs smooth and quiet beside you, carrying a scum of\nstraw and leaves. The culvert continues east toward the bridge and west\ninto darkness.",
+   "extra_descs": {}
   },
   "3208": {
    "vnum": 3208,
@@ -290,8 +302,10 @@
      "description": "To the west lies On The River."
     }
    },
-   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and west.",
-   "placeholder": true
+   "description": "A small niche is cut into the wall above the towpath, holding a crude\nstone figure of a river spirit, its lap crusted with old candle wax.\nOpposite, a side drain spills a thin stream into the river with a\nconstant chuckle. The bricks here are older and darker, laid in a\nherringbone pattern by some forgotten mason. The ledge runs east and\nwest along the water.",
+   "extra_descs": {
+    "niche figure spirit shrine": "The figure is no taller than a forearm, rough-carved from river stone,\nwith robes scored like fish scales and a calm, blank face. Bent pins\nhave been pressed into the old wax in its lap, offerings for luck from\nthose who work the culvert."
+   }
   },
   "3209": {
    "vnum": 3209,
@@ -315,8 +329,8 @@
      "description": "To the west lies On The River."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
-   "placeholder": true
+   "description": "The vault drops lower here, so that a tall traveller must stoop along\nthe ledge. Pale roots have forced their way through the mortar overhead\nand hang down like threads, dripping onto the water. The noises of the\ncity have faded behind, and only the river's soft rush fills the tunnel.\nA breath of fresher air, smelling of reeds and mud, comes from the west.",
+   "extra_descs": {}
   },
   "203210": {
    "vnum": 203210,
@@ -340,8 +354,8 @@
      "description": "To the west lies The Meeting Of Rivers."
     }
    },
-   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
-   "placeholder": true
+   "description": "The culvert ends in a broad arch of mossy stone, its rusted grille long\nsince wrenched up and left hanging. Green daylight pours in from the\nwest, where the river runs out to meet another current among the reeds.\nThe towpath here is crumbling, and ferns sprout from every crack in the\nwalls. Back east the tunnel stretches away under the city, dark and\ndripping.",
+   "extra_descs": {}
   },
   "203211": {
    "vnum": 203211,
@@ -363,8 +377,8 @@
      "description": "To the west lies On The River."
     }
    },
-   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead east and west.",
-   "placeholder": true
+   "description": "The river runs fast and brown here, just outside the walls of Garathorm,\nand it shoulders your boat back toward the city at every stroke. West,\nthe water slides under the grey stone of the wall through a low arch\nguarded by iron bars. The banks are low shelves of pale, sun-cracked\nrock, scattered with dry thorn and drifts of grit blown in from the\nwaste beyond. Upstream, the river comes on out of the east between\nbleached boulders.",
+   "extra_descs": {}
   },
   "203212": {
    "vnum": 203212,
@@ -386,8 +400,8 @@
      "description": "To the west lies On The River."
     }
    },
-   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead east and west.",
-   "placeholder": true
+   "description": "Your boat labours against a strong brown current that carries silt and\nthe odd twist of dead brush down toward the city. A sandbar humps out of\nthe water near one bank, crusted white where the sun has dried it.\nBeyond the low rock shelves the land is dust and scrub as far as the eye\ncan follow, shimmering with heat. The river leads east toward far grey\nheights, and west back toward the walls.",
+   "extra_descs": {}
   },
   "203213": {
    "vnum": 203213,
@@ -409,8 +423,8 @@
      "description": "To the west lies On The River."
     }
    },
-   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead east and west.",
-   "placeholder": true
+   "description": "A weathered post leans out of the shallows near the bank, the frayed\nstub of an old ferry rope still knotted around its top. The current\nboils around it and drags at your hull, brown with the silt of distant\ncountry. A dry wash cuts down through the bank here, its mouth choked\nwith pale stones rolled smooth in some long-ago flood. Open water leads\neast against the current, or west with it.",
+   "extra_descs": {}
   },
   "3214": {
    "vnum": 3214,
@@ -432,8 +446,8 @@
      "description": "To the west lies On The River."
     }
    },
-   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead east and west.",
-   "placeholder": true
+   "description": "Red and ochre cliffs begin to crowd the river here, their faces carved\nby the wind into ribs and hollows. The water is quick and opaque, the\ncolour of strong tea, and it slaps at your boat with small hard waves.\nTufts of salt-grass cling to the foot of the rocks wherever the spray\ncan reach them. Ahead, east, the banks grow higher; behind you, west,\nthey open out toward the plain.",
+   "extra_descs": {}
   },
   "3215": {
    "vnum": 3215,
@@ -455,8 +469,10 @@
      "description": "To the west lies On The River."
     }
    },
-   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead east and west.",
-   "placeholder": true
+   "description": "High on the cliff face above the water, someone long ago carved the\nfigure of a robed traveller with one arm raised toward the mountain.\nWind and blown sand have softened it until the face is gone. Below it\nthe river runs deep and fast, folding over hidden rocks in smooth brown\nhumps that rock your boat. The channel continues east and west between\nsun-bleached walls.",
+   "extra_descs": {
+    "figure traveller carving cliff": "The figure is twice the height of a man, cut in shallow relief into the\ncliff. Its raised arm points upstream toward the mountain, and beneath\nits feet a row of worn marks may once have been letters."
+   }
   },
   "3216": {
    "vnum": 3216,
@@ -478,8 +494,8 @@
      "description": "To the west lies On The River."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead east and west.",
-   "placeholder": true
+   "description": "The mountain fills the sky ahead now, a great shoulder of bare rock that\nthrows its shadow across the river. The water runs colder here and\nfaster, and a dull roar carries down from somewhere upstream. Boulders\nthe size of houses lie tumbled along both banks, split by heat and\nfrost. Your boat can push on east toward the noise or drift back west\ninto the sunlight.",
+   "extra_descs": {}
   },
   "3217": {
    "vnum": 3217,
@@ -501,8 +517,8 @@
      "description": "To the west lies On The River."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead east and west.",
-   "placeholder": true
+   "description": "Here the river bursts from a black tunnel mouth in the mountainside, and\nthe water just ahead is white with rapids. Spray drifts back over your\nboat, cold even under the hot sun, and the rocks around the opening are\nslick and dark with it. The roar of the water echoes out of the dark\nlike something breathing. The tunnel leads east into the mountain's\nheart; the open river runs west, away toward the distant city walls.",
+   "extra_descs": {}
   },
   "5001": {
    "vnum": 5001,
@@ -585,8 +601,8 @@
      "description": "Deep waters churn near A Long Tunnel"
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Your boat bucks and spins through a run of rapids that roar between\nwalls of black, wet rock, and spray soaks everything. In the darkness\nthe water is felt more than seen, heaving and dropping beneath the hull.\nOn the south wall a low crawlway opens just above the waterline, barely\nwide enough for a body to squeeze through. The torrent races on east\ntoward a meeting of tunnels, and back west lies the narrowing passage.",
+   "extra_descs": {}
   },
   "5004": {
    "vnum": 5004,
@@ -1418,8 +1434,8 @@
      "description": "To the west lies An Underground Lake."
     }
    },
-   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead east, south and west.",
-   "placeholder": true
+   "description": "Your boat drifts on black, still water beneath a low ceiling of stone\nhung with pale fingers of dripping lime. Each drop rings on the surface,\nand the sound runs away into the dark. To the south a narrow tunnel\nopens above a shelf of dry rock at the water's edge. The lake stretches\nback west into blackness, while a slow current begins to tug the boat\neast, where the water narrows into a river.",
+   "extra_descs": {}
   },
   "205073": {
    "vnum": 205073,
@@ -1441,8 +1457,8 @@
      "description": "To the west lies An Underground Lake."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead east and west.",
-   "placeholder": true
+   "description": "The lake narrows into a river that slides through a tunnel of wet,\nglittering rock, and the current takes your boat in its grip. The walls\npass close enough to touch, banded white and rust where minerals have\nbled from the stone. The darkness is complete beyond whatever light you\ncarry, and the air smells of cold iron. The water hurries east; west, it\nwidens back into the lake.",
+   "extra_descs": {}
   },
   "205074": {
    "vnum": 205074,
@@ -1464,8 +1480,8 @@
      "description": "To the west lies On An Underground River."
     }
    },
-   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead east and west.",
-   "placeholder": true
+   "description": "A roar grows ahead, deep enough to feel through the planks of your boat,\nand the current quickens into a smooth, sliding rush. A grey smear of\ndaylight shows far down the tunnel to the east, hazed by rising mist.\nThe ceiling drips steadily, and pale threads of root hang through cracks\nin the stone. Turning back west against the current takes hard work at\nthe oars.",
+   "extra_descs": {}
   },
   "5075": {
    "vnum": 5075,
@@ -1487,8 +1503,8 @@
      "description": "To the down lies Falling In A Waterfall."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead west and down.",
-   "placeholder": true
+   "description": "The river shoots out of the mountain into blinding daylight and pours\nover a lip of smooth stone, and your boat teeters at the very brink.\nBelow, the water falls away in a white column, roaring into a gorge of\nsun-bleached rock. Spray hangs in the air and throws a broken rainbow\nacross the cliffs. The only ways are the long drop down or a desperate\npull back west into the tunnel.",
+   "extra_descs": {}
   },
   "5076": {
    "vnum": 5076,
@@ -1506,8 +1522,8 @@
      "description": "To the down lies In A River Gorge."
     }
    },
-   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. A way leads down.",
-   "placeholder": true
+   "description": "You are falling with the water, tumbling through a roaring white chaos\nof spray and noise. The cliff streams past in a blur of wet stone and\nclinging green moss. Somewhere far beneath, the pool at the foot of the\nfalls churns and waits. There is nothing to do but hold on to whatever\nis left of your boat and go down with the river.",
+   "extra_descs": {}
   },
   "5077": {
    "vnum": 5077,
@@ -1525,8 +1541,8 @@
      "description": "To the east lies In A River Gorge."
     }
    },
-   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. A way leads east.",
-   "placeholder": true
+   "description": "The falls thunder into a deep green pool at the head of a narrow gorge,\nand your boat spins in the churning water at their foot. Sheer walls of\npale, sun-bleached rock rise on both sides, far too smooth to climb, and\nthe waterfall itself cannot be fought. Only a strip of hot blue sky\nshows overhead. The current gathers itself and runs east down the gorge.",
+   "extra_descs": {}
   },
   "5078": {
    "vnum": 5078,
@@ -1548,8 +1564,14 @@
      "description": "To the west lies In A River Gorge."
     }
    },
-   "description": "The water runs deep and cold, too deep to wade. The far shore is a\nsmudge on the horizon. Ways lead east and west.",
-   "placeholder": true
+   "description": "Fast brown water races between the walls of the gorge, slapping against\nledges and spinning your boat through narrow chutes. The cliffs are\nstriped in buff and rust, scoured smooth to the height of a tall man by\nold floods, and dry tufts of grass cling to cracks above the flood line.\nHot sunlight strikes the water only at midday, when the shadows shrink\nto nothing. The thunder of the falls echoes from the west, and the river\nhurries on east.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 605000,
+     "max": 1
+    }
+   ]
   },
   "5079": {
    "vnum": 5079,
@@ -1571,8 +1593,8 @@
      "description": "To the west lies In A River Gorge."
     }
    },
-   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead east and west.",
-   "placeholder": true
+   "description": "The gorge begins to widen here, and its walls step back in broken\nterraces of bleached stone. A shingle bar splits the current, its\npebbles baked white by the sun, and your boat scrapes over its tail amid\nchattering brown ripples. Driftwood lies jammed high in a crevice, left\nthere by some forgotten flood. Ahead, east, the river runs out between\nhigh banks; behind, west, the gorge narrows toward the falls.",
+   "extra_descs": {}
   },
   "5080": {
    "vnum": 5080,
@@ -1594,8 +1616,14 @@
      "description": "To the west lies In A River Gorge."
     }
    },
-   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead east and west.",
-   "placeholder": true
+   "description": "Earthen banks rise steeply on either side, higher than a mounted rider,\ntheir faces riddled with burrows and the dangling roots of the scrub\nthat grows along the top. The river is still deep and quick, dark brown\nwith silt, and it bumps your boat along with steady force. Above the\nbanks, a hot dry wind lifts the dust into the air. The water runs on\neast, and back west into the gorge.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 605000,
+     "max": 1
+    }
+   ]
   },
   "5081": {
    "vnum": 5081,
@@ -1617,8 +1645,8 @@
      "description": "To the west lies On A High Banked River."
     }
    },
-   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead east and west.",
-   "placeholder": true
+   "description": "The current eases here, and the water clears enough to show a bed of\nrounded stones beneath your boat. The banks are still high and steep,\ncut in layers of red clay and pale sand like the pages of a book.\nNesting holes pock the upper layers, and grass fringes the rim against a\nwide sky. Downstream, east, the river spreads wider; upstream, west, it\nquickens toward the gorge.",
+   "extra_descs": {}
   },
   "5082": {
    "vnum": 5082,
@@ -1640,8 +1668,14 @@
      "description": "To the west lies On A High Banked River."
     }
    },
-   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead east and west.",
-   "placeholder": true
+   "description": "The banks fall away and the river spreads wide and shallow across a bed\nof sand and pebbles. Reeds stand in green ranks along both edges,\nrustling in the warm wind, and the water is clear enough to show every\nripple's shadow on the bottom. Your boat glides easily now. The open\nriver continues east, while west the banks climb high again.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 605000,
+     "max": 1
+    }
+   ]
   },
   "5083": {
    "vnum": 5083,
@@ -1663,8 +1697,8 @@
      "description": "To the west lies On A Wide River."
     }
    },
-   "description": "Reeds rustle along the water's edge. Shallow water laps around stones\nand reeds. Ways lead east and west.",
-   "placeholder": true
+   "description": "Broad and slow, the river meanders across open country, its surface\nwrinkled by the breeze into a thousand glints of light. Low islands of\nreed and mud dot the water, and a line of willows marks the far bank.\nThe air carries the first faint tang of salt from somewhere ahead. Your\nboat can follow the current east or work back west.",
+   "extra_descs": {}
   },
   "5084": {
    "vnum": 5084,
@@ -1686,8 +1720,14 @@
      "description": "To the west lies On A Wide River."
     }
    },
-   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead east and west.",
-   "placeholder": true
+   "description": "The river is very wide here, and its water has turned faintly brackish,\ntasting of salt on the spray. Clumps of sea-pink and samphire grow on\nthe mudbanks, and the wind blows in cool and damp from the open sea that\nlies somewhere beyond the flats. Old mooring stakes stand crooked in the\nshallows. The current carries your boat on east toward the Sea of\nStorms, or you can pull back west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 605000,
+     "max": 1
+    }
+   ]
   },
   "8903": {
    "vnum": 8903,
@@ -1709,8 +1749,8 @@
      "description": "To the south lies The Slow Part Of The River."
     }
    },
-   "description": "Mud and pebbles shift beneath the slow water. Reeds rustle along the\nwater's edge. Ways lead north and south.",
-   "placeholder": true
+   "description": "A long spit of gravel and reed divides the water here, and your boat\nrides the seam where two currents part. The northern arm runs quick and\nbright between willows, while the southern arm spreads out slow and dark\nunder a skin of duckweed. Tracks of many small feet pattern the mud at\nthe tip of the spit. The banks beyond are rough pasture, open to the\nwind.",
+   "extra_descs": {}
   },
   "8904": {
    "vnum": 8904,
@@ -1732,8 +1772,16 @@
      "description": "To the south lies The Split Of The River."
     }
    },
-   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead east and south.",
-   "placeholder": true
+   "description": "Here the branch swings in a long curve, and the current presses your\nboat toward a steep bank of crumbling earth. A squat marker stone stands\nat the water's edge, carved with the tower sigil of Garathorm and green\nwith lichen. Willows trail their leaves in the water, and the open\nmeadows beyond them stir in the wind. The river turns south toward the\nplace where it splits, and runs east toward the old mill.",
+   "extra_descs": {
+    "marker stone sigil": "A knee-high block of grey stone, its top worn round by weather. The\ncarving shows a walled tower above three wavy lines, the old sign that\nthese waters belong to the city of Garathorm."
+   },
+   "mob_resets": [
+    {
+     "vnum": 605002,
+     "max": 1
+    }
+   ]
   },
   "8905": {
    "vnum": 8905,
@@ -1755,8 +1803,8 @@
      "description": "To the west lies The Northern Branch Of The River."
     }
    },
-   "description": "The current is gentle here, clear enough to see the bottom. Reeds rustle\nalong the water's edge. Ways lead east and west.",
-   "placeholder": true
+   "description": "On one bank stand the stone footings of an old water mill, its wheel\nlong gone and its sluice choked with drifted branches. The branch runs\nclear and brisk past the ruin, rippling over a shallow sill of flat\nstones that scrape gently under your boat. Meadowsweet and nettles crowd\nthe bank above. The water leads on west, and back east toward the\nmeeting of the rivers.",
+   "extra_descs": {}
   },
   "8906": {
    "vnum": 8906,
@@ -1778,8 +1826,8 @@
      "description": "To the west lies The Northern Branch Of The River."
     }
    },
-   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead east and west.",
-   "placeholder": true
+   "description": "The water of this branch runs clear and cold over a bed of gravel, and\nyour boat slips along with only a whisper against the hull. Alders lean\nout from the banks, trailing their lower twigs in the current. A fallen\ntrunk lies half-sunk along one edge, furred with green moss. The branch\nwinds on west, and east it joins the other river.",
+   "extra_descs": {}
   },
   "8907": {
    "vnum": 8907,
@@ -1801,8 +1849,14 @@
      "description": "To the west lies The Northern Branch Of The River."
     }
    },
-   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead east and west.",
-   "placeholder": true
+   "description": "Two currents meet here and swirl together around your boat, one cool and\nclear, the other carrying the darker water that runs out of the culvert\nto the east. Eddies spin lazily along the seam between them. Reeds and\nyellow flag iris crowd both banks, and beyond them rough meadow rolls\naway under a wide sky. The Northern Branch Of The River opens to the\nwest.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 605002,
+     "max": 1
+    }
+   ]
   },
   "8908": {
    "vnum": 8908,
@@ -1824,8 +1878,8 @@
      "description": "To the south lies In The Riverbend."
     }
    },
-   "description": "The current is gentle here, clear enough to see the bottom. Reeds rustle\nalong the water's edge. Ways lead north and south.",
-   "placeholder": true
+   "description": "The river all but stops here, lying deep and glassy between banks of\nsoft black mud. Water lilies spread their pads across the surface, and\nyour boat pushes through them with a slow, wet rustle. The air is warm\nand still, thick with the smell of mint and rotting leaves. Only a faint\ndrift carries you south toward the bend, while north the water quickens\ntoward the split.",
+   "extra_descs": {}
   },
   "8909": {
    "vnum": 8909,
@@ -1847,8 +1901,8 @@
      "description": "To the west lies In The Riverbend."
     }
    },
-   "description": "Mud and pebbles shift beneath the slow water. Shallow water laps around\nstones and reeds. Ways lead north and west.",
-   "placeholder": true
+   "description": "The river turns sharply here, carving a tall bank of raw earth on the\noutside of the bend where roots hang bare above the water. On the inner\nside a little beach of pale sand slopes gently into the shallows. The\ncurrent swings your boat around in a slow arc. Upstream lies the slow\nwater to the north, and the bend carries on west.",
+   "extra_descs": {}
   },
   "8910": {
    "vnum": 8910,
@@ -1870,8 +1924,14 @@
      "description": "To the east lies In The Riverbend."
     }
    },
-   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead north and east.",
-   "placeholder": true
+   "description": "An ancient crack willow grows half in the river here, its split trunk\nleaning so far out that its crown nearly touches the far bank. Water\ngurgles through the hollow at its base. The current eddies in a broad\nbrown pool where leaves turn in slow circles around your boat. The river\nwinds away north, and back east around the bend.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 605002,
+     "max": 1
+    }
+   ]
   },
   "8911": {
    "vnum": 8911,
@@ -1893,8 +1953,8 @@
      "description": "To the west lies On The River."
     }
    },
-   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead south and west.",
-   "placeholder": true
+   "description": "A rickety fishing platform of grey planks juts from the bank on a few\nleaning posts, built by some patient soul and long since abandoned. The\nwater beneath your boat is deep and slow, with long weeds streaming in\nthe current like green hair. Grassy slopes rise on both sides toward a\nline of distant trees. The river bends away west, and south it curls\nback around the old willow.",
+   "extra_descs": {}
   },
   "8912": {
    "vnum": 8912,
@@ -1916,8 +1976,8 @@
      "description": "To the west lies In The Riverbend."
     }
    },
-   "description": "Shallow water laps around stones and reeds. Mud and pebbles shift\nbeneath the slow water. Ways lead east and west.",
-   "placeholder": true
+   "description": "This is a straight, easy reach where the river runs smooth between open\nmeadows. A broken fence of split rails comes down to the water on one\nside, and the bank there is churned into hoof-pocked mud where cattle\ncome to drink. The sky is wide and full of moving cloud. Your boat\ndrifts west with the current or can be paddled back east.",
+   "extra_descs": {}
   },
   "8913": {
    "vnum": 8913,
@@ -1939,8 +1999,8 @@
      "description": "To the east lies On The River."
     }
    },
-   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead north and east.",
-   "placeholder": true
+   "description": "The river loops around a shoulder of higher ground crowned with a stand\nof beeches, and their roots form a gnarled stair down to the water.\nClear water runs over stones of every colour, and your boat grinds\ngently on a gravel bar before sliding free. The meadows are left behind\nhere, and the trees begin to close in. The bend leads north under the\nbeeches, and east back to the open reach.",
+   "extra_descs": {}
   },
   "8914": {
    "vnum": 8914,
@@ -1962,8 +2022,8 @@
      "description": "To the west lies On The River."
     }
    },
-   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead south and west.",
-   "placeholder": true
+   "description": "Woods press close on both banks now, oak and ash with a tangled\nunderstorey of hazel, and the light on the water turns green and\ndappled. A faint, steady rumble drifts on the air from somewhere\ndownstream. The current has quickened, and your boat begins to move with\npurpose. The river runs on west toward the sound, and back south around\nthe beech-crowned bend.",
+   "extra_descs": {}
   },
   "8915": {
    "vnum": 8915,
@@ -1985,8 +2045,8 @@
      "description": "To the west lies At The Waterfall."
     }
    },
-   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead east and west.",
-   "placeholder": true
+   "description": "The rumble has become a roar, and a fine mist drifts back upstream to\nbead on your clothes and the gunwales of your boat. The river runs fast\nand smooth toward a ragged line where the water seems simply to end, and\nbeyond it hangs a haze of white spray above treetops far below. Ferns\nand moss grow thick on the wet rocks of the banks. The edge lies just\nwest; the calmer reach lies back east.",
+   "extra_descs": {}
   },
   "8916": {
    "vnum": 8916,
@@ -2008,8 +2068,8 @@
      "description": "To the down lies The Lake."
     }
    },
-   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead east and down.",
-   "placeholder": true
+   "description": "The river slides over a broad lip of mossy stone and drops in a\nthundering white curtain to a lake far below. Your boat hangs at the\nvery edge, held by an eddy behind a jutting rock. To one side the water\nhas worn a smooth, steep chute through the stone, the one way down a\nboat might survive. Upstream, the river runs back east under the trees.",
+   "extra_descs": {}
   },
   "8917": {
    "vnum": 8917,
@@ -2039,8 +2099,8 @@
      "description": "To the west lies The Lake."
     }
    },
-   "description": "Reeds rustle along the water's edge. Shallow water laps around stones\nand reeds. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "The waterfall crashes into the lake right beside your boat, and the\nwater here heaves and boils in a never-ending churn of foam. Spray\ndrenches everything and fills the air with a constant roar. Through the\ncurtain of falling water to the east, a dark opening shows in the cliff\nbehind. The lake spreads out calmer to the north, south and west, ringed\nby tall pines.",
+   "extra_descs": {}
   },
   "8918": {
    "vnum": 8918,
@@ -2060,8 +2120,8 @@
      "description": "To the west lies The Lake."
     }
    },
-   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads west.",
-   "placeholder": true
+   "description": "Behind the falling water lies a hollow in the cliff, a low cave whose\nwalls glisten with spray and are furred with bright green moss. The\nlight here is strange and shifting, filtered through the roaring white\ncurtain that hides the opening. The floor is a ledge of smooth, wet\nstone that slopes back into darkness and ends against solid rock. The\nonly way out is west, through the water, back to the lake.",
+   "extra_descs": {}
   },
   "8919": {
    "vnum": 8919,
@@ -2083,8 +2143,8 @@
      "description": "To the west lies The Lake."
     }
    },
-   "description": "Mud and pebbles shift beneath the slow water. The current is gentle\nhere, clear enough to see the bottom. Ways lead north and west.",
-   "placeholder": true
+   "description": "Boulders lie scattered through the shallows here, worn round by the\nendless pounding of the falls nearby. Mist drifts across the water in\nslow veils, and when the sun breaks through it a faint rainbow arches\nover the lake. Your boat bumps gently against a mossy stone. The\nchurning water beneath the falls lies north, and sandy shallows lie\nwest.",
+   "extra_descs": {}
   },
   "8920": {
    "vnum": 8920,
@@ -2106,8 +2166,14 @@
      "description": "To the east lies The Lake."
     }
    },
-   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead north and east.",
-   "placeholder": true
+   "description": "A shelving beach of grey sand edges the lake here, strewn with bleached\ndriftwood and marked by the tracks of beasts come down to drink. The\nwater is shallow and warm, and reeds rise in thick clumps around your\nboat. A sunken log lies just beneath the surface, slick with green weed.\nDeeper water lies north and east.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 605001,
+     "max": 1
+    }
+   ]
   },
   "8921": {
    "vnum": 8921,
@@ -2137,8 +2203,8 @@
      "description": "To the west lies The Dark River."
     }
    },
-   "description": "Mud and pebbles shift beneath the slow water. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
-   "placeholder": true
+   "description": "Here the lake begins to drain away, its water drawn slowly toward a gap\nin the trees where a river leaves it, dark beneath overhanging boughs.\nYour boat turns idly in the gentle pull. Behind, the falls throw up a\nwhite haze above the water. The open lake lies north, east and south,\nand the Dark River slides away west into the forest's shadow.",
+   "extra_descs": {}
   },
   "8922": {
    "vnum": 8922,
@@ -2160,8 +2226,8 @@
      "description": "To the south lies The Lake."
     }
    },
-   "description": "The current is gentle here, clear enough to see the bottom. Reeds rustle\nalong the water's edge. Ways lead east and south.",
-   "placeholder": true
+   "description": "A tall outcrop of grey rock rises straight out of the water here, its\nledges tufted with heather and stunted birch. The lake lies dark and\nstill at its foot, so deep that the bottom is lost to sight beneath your\nboat. Pines crowd the far shore, their reflections unbroken on the calm\nsurface. The water leads east toward the lilies and south toward the\nlake's outflow.",
+   "extra_descs": {}
   },
   "8923": {
    "vnum": 8923,
@@ -2183,8 +2249,8 @@
      "description": "To the west lies The Lake."
     }
    },
-   "description": "Mud and pebbles shift beneath the slow water. Shallow water laps around\nstones and reeds. Ways lead south and west.",
-   "placeholder": true
+   "description": "This quiet reach of the lake lies in the shelter of a mossy cliff, out\nof the worst of the spray. Water lilies float in a broad green raft,\ntheir white blossoms closed tight in the shade. The water is clear and\ndeep enough that your boat seems to hang above the pale stones on the\nbottom. The thunder of the falls comes from the south, and open water\nstretches west.",
+   "extra_descs": {}
   },
   "8924": {
    "vnum": 8924,
@@ -2206,8 +2272,14 @@
      "description": "To the west lies The Dark River."
     }
    },
-   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead east and west.",
-   "placeholder": true
+   "description": "The river leaves the lake and slips beneath a roof of black-barked\ntrees, and at once the light fails and the air turns cool. The water is\nstained as dark as strong ale by fallen leaves, and your boat seems to\nfloat on nothing at all. Long grey beards of lichen hang from the\nbranches overhead. Behind you, east, the lake glimmers in the daylight;\nahead, west, the river winds into the gloom.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 605001,
+     "max": 1
+    }
+   ]
   },
   "8925": {
    "vnum": 8925,
@@ -2229,8 +2301,8 @@
      "description": "To the west lies Split Of The Dark River."
     }
    },
-   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead east and west.",
-   "placeholder": true
+   "description": "Huge, twisted roots reach out of the banks and down into the black water\nlike the fingers of drowned giants. The canopy is so thick that only a\nthin crack of grey sky shows above the river's course. The silence is\nheavy, broken only by the drip of water from the leaves and the soft\ncreak of your boat. The river winds on west, and back east toward the\nlake.",
+   "extra_descs": {}
   },
   "8926": {
    "vnum": 8926,
@@ -2256,8 +2328,8 @@
      "description": "To the south lies In The Bend Of The River."
     }
    },
-   "description": "Mud and pebbles shift beneath the slow water. The current is gentle\nhere, clear enough to see the bottom. Ways lead north, east and south.",
-   "placeholder": true
+   "description": "Here the Dark River divides around a low, wooded island, one arm curving\naway north and the other south. The current hesitates at the parting,\nand your boat drifts in a slow circle on the black water. Through the\ntrees of the island the mossy roof of a cabin can just be seen. The way\nback east leads toward the lake.",
+   "extra_descs": {}
   },
   "8927": {
    "vnum": 8927,
@@ -2283,8 +2355,8 @@
      "description": "To the west lies The Dark River."
     }
    },
-   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "A muddy landing opens on the bank here, where the undergrowth comes\nright down to the water in a wall of bramble, elder and nettle. A path\nof sorts pushes south into the thicket, little more than a gap in the\nleaves. The river bends here, running north to where it splits around\nthe island and west along the island's lower shore. Your boat bumps\nagainst a half-sunk log.",
+   "extra_descs": {}
   },
   "8928": {
    "vnum": 8928,
@@ -2302,8 +2374,8 @@
      "description": "To the north lies In The Bend Of The River."
     }
    },
-   "description": "Birdsong drifts down through the branches overhead. Ferns and moss\nsoften the ground beneath a dim green canopy. A way leads north.",
-   "placeholder": true
+   "description": "The thicket closes in on every side, a dense green maze of bramble,\nelder and waist-high nettles that snag at clothes and skin. Overhead the\ndark trees of the river forest blot out all but a few coins of light. A\ntrampled hollow in the middle shows where some large beast has bedded\ndown, and its musky smell lingers. The only way out is the narrow gap\nleading north to the landing.",
+   "extra_descs": {}
   },
   "8929": {
    "vnum": 8929,
@@ -2325,8 +2397,8 @@
      "description": "To the west lies In The River Bend."
     }
    },
-   "description": "Reeds rustle along the water's edge. Shallow water laps around stones\nand reeds. Ways lead east and west.",
-   "placeholder": true
+   "description": "The water here runs between steep banks of exposed roots and stones, and\nthe current picks up a little, chuckling over a shallow sill. Your boat\nscrapes over the sill and slides on. A single silver birch stands out\npale against the dark trees, its bark scored with old carved initials.\nThe river's course leads east toward a muddy landing and west around the\nisland's lower bend.",
+   "extra_descs": {}
   },
   "8930": {
    "vnum": 8930,
@@ -2348,8 +2420,14 @@
      "description": "To the east lies The Dark River."
     }
    },
-   "description": "Shallow water laps around stones and reeds. Mud and pebbles shift\nbeneath the slow water. Ways lead north and east.",
-   "placeholder": true
+   "description": "The river turns sharply around the island's lower end, where a bar of\nblack silt has built up on the inside of the bend. Sticks and dead\nleaves have piled against it into a tangled dam, and the water spills\nover in a soft rush that rocks your boat. The trees lean so close that\ntheir branches knit together overhead. The river bends away north and\neast.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 605001,
+     "max": 1
+    }
+   ]
   },
   "8931": {
    "vnum": 8931,
@@ -2371,8 +2449,10 @@
      "description": "To the south lies In The River Bend."
     }
    },
-   "description": "Mud and pebbles shift beneath the slow water. Shallow water laps around\nstones and reeds. Ways lead north and south.",
-   "placeholder": true
+   "description": "Tall ferns lean out over the water here, and the banks are hidden\nbeneath them so that the river seems to flow through a green tunnel. The\nwater is very still, and every drip from the leaves sends rings\nspreading across the surface around your boat. A pale stone carved with\na spiral sits half-buried in the bank among the ferns. The river runs\nnorth and south.",
+   "extra_descs": {
+    "pale stone spiral": "The stone is smooth and pale, about the size of a crouching sheep, and\nthe spiral cut into it winds inward seven times. Moss fills the groove,\nbut the line is still sharp, as if whoever cut it meant it to last."
+   }
   },
   "8932": {
    "vnum": 8932,
@@ -2398,8 +2478,8 @@
      "description": "To the west lies The Dark River."
     }
    },
-   "description": "The current is gentle here, clear enough to see the bottom. Reeds rustle\nalong the water's edge. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "A side channel breaks away west through a gap in the trees here, drawing\noff part of the black water with a soft, sucking gurgle. The main stream\nruns on north and south along the island's far side. Across the water,\nthe island's trees stand close and dark, and the smell of old woodsmoke\ndrifts from among them. Your boat rocks in the cross-currents where the\nwaters divide.",
+   "extra_descs": {}
   },
   "8933": {
    "vnum": 8933,
@@ -2421,8 +2501,8 @@
      "description": "To the south lies The Dark River."
     }
    },
-   "description": "Shallow water laps around stones and reeds. Mud and pebbles shift\nbeneath the slow water. Ways lead east and south.",
-   "placeholder": true
+   "description": "The river doubles back on itself here around the far side of the island,\nand your boat turns slowly in a deep, dark pool at the bend. An old\nrowing boat lies rotting on the bank, its planks sprung and green with\nmoss, half swallowed by ferns. Somewhere overhead the wind moves in the\ntreetops, though hardly a breath reaches the water. The bend leads east\nand south.",
+   "extra_descs": {}
   },
   "8934": {
    "vnum": 8934,
@@ -2444,8 +2524,14 @@
      "description": "To the west lies In The River Bend."
     }
    },
-   "description": "Mud and pebbles shift beneath the slow water. The current is gentle\nhere, clear enough to see the bottom. Ways lead east and west.",
-   "placeholder": true
+   "description": "This stretch of the river is narrow and deep, walled in by banks of\nblack mud where the roots of yew trees knot together. Clusters of pale\ntoadstools grow along a rotting log at the water's edge, glowing faintly\nin the gloom. The current is sluggish, and your boat moves only as fast\nas the oars can push it. The river runs east toward the drowned oak and\nwest into a further bend.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 605001,
+     "max": 1
+    }
+   ]
   },
   "8935": {
    "vnum": 8935,
@@ -2467,8 +2553,8 @@
      "description": "To the west lies The Dark River."
     }
    },
-   "description": "Mud and pebbles shift beneath the slow water. Shallow water laps around\nstones and reeds. Ways lead south and west.",
-   "placeholder": true
+   "description": "The river bends hard around the head of the island, and the current\nshoves your boat toward a bank of tangled bramble and fallen trees. A\ngreat drowned oak lies across half the channel, its bare limbs rising\nfrom the water like the ribs of a wreck. The forest is very dark here\nand smells of wet earth and fungus. The channel leads west past the\nfallen giant, and south along the island's shore.",
+   "extra_descs": {}
   },
   "8936": {
    "vnum": 8936,
@@ -2494,8 +2580,8 @@
      "description": "To the west lies The Small Island."
     }
    },
-   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead north, south and west.",
-   "placeholder": true
+   "description": "The island's shore lies close at hand to the west, where a patch of\ntrampled grass makes a landing among the roots. A narrow trail runs from\nit toward a small cabin half hidden in the trees. An old iron ring is\ndriven into a stump at the water's edge, just right for mooring your\nboat. The river runs dark and slow along the shore, curving north around\nthe island and south toward the place where it splits.",
+   "extra_descs": {}
   },
   "8937": {
    "vnum": 8937,
@@ -2517,8 +2603,8 @@
      "description": "To the south lies Inside The Cabin."
     }
    },
-   "description": "A worn track crosses the open ground. Open grassland rolls away under a\nwide sky. Ways lead east and south.",
-   "placeholder": true
+   "description": "The island is a small rise of rough grass and wildflowers, ringed by\ndark trees whose roots drink from the river on every side. A trail worn\nthrough the grass runs from the landing on the east shore to a low log\ncabin standing to the south. Overhead the canopy opens just enough to\nshow a patch of sky. An old chopping block, scarred by countless blows,\nstands in the grass.",
+   "extra_descs": {}
   },
   "8938": {
    "vnum": 8938,
@@ -2536,8 +2622,10 @@
      "description": "To the north lies The Small Island."
     }
    },
-   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. A way leads north.",
-   "placeholder": true
+   "description": "The cabin is a single cramped room of rough-hewn logs, chinked with moss\nand clay, and it smells of damp ashes and old pipe smoke. A fieldstone\nhearth fills one wall, its chimney stained black, and a plank bed and a\nheavy table built from split logs take up most of the floor. Light falls\nin through a small window of scraped horn. The doorway leads north, back\nout onto the island.",
+   "extra_descs": {
+    "hearth lintel tally marks": "Someone has scratched rows of tally marks into the lintel stone above\nthe hearth, dozens of them in neat groups of five. They look like the\ncount of days in a long and lonely stay."
+   }
   },
   "8939": {
    "vnum": 8939,
@@ -2559,8 +2647,8 @@
      "description": "To the west lies In The River Bend."
     }
    },
-   "description": "The current is gentle here, clear enough to see the bottom. Reeds rustle\nalong the water's edge. Ways lead east and west.",
-   "placeholder": true
+   "description": "The side channel runs narrow and quick between walls of dark holly,\ncarrying your boat away from the island at a steady pace. The water is\nclearer here, and long ribbons of weed wave beneath the surface.\nSomewhere ahead the sound of a louder, faster river can be heard through\nthe trees. The channel leads west, and back east toward the island.",
+   "extra_descs": {}
   },
   "8940": {
    "vnum": 8940,
@@ -2582,8 +2670,14 @@
      "description": "To the south lies In The River Bend."
     }
    },
-   "description": "The current is gentle here, clear enough to see the bottom. Shallow\nwater laps around stones and reeds. Ways lead east and south.",
-   "placeholder": true
+   "description": "The channel turns sharply around a steep bank where a badger sett has\nbeen dug deep among the roots of an old oak, its spoil heaps fresh and\npale. The water runs fast around the outside of the bend, and you have\nto fend your boat off a fallen branch. The forest begins to thin a\nlittle, letting grey light through. The channel curves south, and back\neast toward the island.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 605001,
+     "max": 1
+    }
+   ]
   },
   "8941": {
    "vnum": 8941,
@@ -2605,8 +2699,8 @@
      "description": "To the west lies The Dark River."
     }
    },
-   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead north and west.",
-   "placeholder": true
+   "description": "Here the channel bends once more, broadening as it goes, and swirls of\nmuddy brown from somewhere ahead begin to mingle with the dark water\naround your boat. The banks are lower, fringed with sedge and purple\nloosestrife. The roar of a big river is close now, beyond a screen of\nalder. The water leads west toward it and north back along the channel.",
+   "extra_descs": {}
   },
   "8942": {
    "vnum": 8942,
@@ -2632,8 +2726,8 @@
      "description": "To the west lies On The Swift Flowing River."
     }
    },
-   "description": "Reeds rustle along the water's edge. Shallow water laps around stones\nand reeds. Ways lead north, east and west.",
-   "placeholder": true
+   "description": "The Dark River pours its black water into a broad, swift river here, and\nthe two run side by side for a while, dark and brown, before the\nstronger current swallows the weaker. Your boat bucks in the tumbling\nseam between them. High banks rise beyond, crowned with the trees of\nHaon-Dor. The swift river can be joined to the north or to the west, and\nthe quieter channel runs back east.",
+   "extra_descs": {}
   }
  },
  "mobs": {
@@ -3195,6 +3289,136 @@
    },
    "inventory": [
     5030
+   ]
+  },
+  "605000": {
+   "vnum": 605000,
+   "name": "crab river mud-brown",
+   "short_desc": "a mud-brown river crab",
+   "long_desc": "A mud-brown river crab clings to a stone in the current, claws raised.",
+   "description": "The crab is as broad as a buckler, its shell the colour of river silt\nand crusted with tiny pale barnacles. One claw is much larger than the\nother and bears a jagged edge that could snap a finger. Its eyes swivel\non short stalks, following every movement.",
+   "level": 7,
+   "alignment": 0,
+   "hp_dice": "7d8+81",
+   "damage_dice": "2d6+5",
+   "armor_class": 76,
+   "exp": 405,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": []
+  },
+  "605001": {
+   "vnum": 605001,
+   "name": "frog giant river",
+   "short_desc": "a giant river frog",
+   "long_desc": "A giant river frog squats half-submerged among the weeds, its throat pulsing.",
+   "description": "The frog is the size of a large dog, mottled green and black, with cold\ngolden eyes set high on its flat head. Its wide mouth could swallow a\ngoose whole, and river folk say it will gulp down anything that glints.\nA rank smell of pond mud clings to its slick skin.",
+   "level": 9,
+   "alignment": 0,
+   "hp_dice": "9d8+102",
+   "damage_dice": "3d6+4",
+   "armor_class": 70,
+   "exp": 515,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 705002,
+     "chance": 15
+    },
+    {
+     "vnum": 200,
+     "chance": 5
+    },
+    {
+     "vnum": 201,
+     "chance": 5
+    }
+   ]
+  },
+  "605002": {
+   "vnum": 605002,
+   "name": "heron grey bird",
+   "short_desc": "a grey heron",
+   "long_desc": "A grey heron stands motionless in the shallows, watching the water.",
+   "description": "Tall and gaunt, the heron stands on legs as thin as reeds, its grey\nplumage edged with black and a long dark plume trailing from its crown.\nIts dagger of a beak is poised above the water, and its yellow eye\nmisses nothing. When it strikes, it strikes faster than thought.",
+   "level": 5,
+   "alignment": 0,
+   "hp_dice": "5d8+62",
+   "damage_dice": "2d6+2",
+   "armor_class": 82,
+   "exp": 295,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 705003,
+     "chance": 30
+    },
+    {
+     "vnum": 200,
+     "chance": 5
+    },
+    {
+     "vnum": 201,
+     "chance": 5
+    }
+   ]
+  },
+  "605003": {
+   "vnum": 605003,
+   "name": "kobold scavenger",
+   "short_desc": "a kobold scavenger",
+   "long_desc": "A kobold scavenger crouches over a heap of salvage, sorting it with quick claws.",
+   "description": "The kobold is a scrawny, dog-faced little creature no taller than a\nchild, with rust-red scales, a ratlike tail and small horns curling back\nfrom its brow. It is hung about with a jangling collection of stolen\nbuckles, cord and bits of broken lamps. Its yellow eyes dart greedily to\nanything you carry.",
+   "level": 10,
+   "alignment": -300,
+   "hp_dice": "10d8+130",
+   "damage_dice": "3d6+6",
+   "armor_class": 67,
+   "exp": 570,
+   "gold": 120,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 705000,
+     "chance": 20
+    },
+    {
+     "vnum": 705001,
+     "chance": 30
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
    ]
   }
  },
@@ -3793,6 +4017,65 @@
    "set_id": 50,
    "type": "treasure",
    "armor": 5
+  },
+  "705000": {
+   "vnum": 705000,
+   "name": "lantern spelunker brass hooded",
+   "short_desc": "a spelunker's hooded lantern",
+   "room_desc": "A dented brass lantern with a hinged hood lies here on its side.",
+   "description": "A squat brass lantern with a hinged iron hood that can be closed to a slit, the kind cave-delvers hang from their belts. Its glass is scratched and its handle is wrapped in greasy cord, but the wick is good and the oil well is deep.",
+   "item_type": "light",
+   "type": "light",
+   "min_level": 10,
+   "light_hours": 48,
+   "weight": 2,
+   "value": 35
+  },
+  "705001": {
+   "vnum": 705001,
+   "name": "fungus caps glowing mushroom",
+   "short_desc": "a handful of glowing fungus caps",
+   "room_desc": "A handful of pale fungus caps glows softly on the ground.",
+   "description": "These small, pale mushroom caps give off a soft blue-green glow, bright enough to read by in a dark place. They smell of earth and wet stone, and those who have eaten them say they taste faintly of hazelnuts.",
+   "item_type": "food",
+   "type": "food",
+   "min_level": 8,
+   "food_value": 14,
+   "nutrition": 14,
+   "weight": 1,
+   "value": 13
+  },
+  "705002": {
+   "vnum": 705002,
+   "name": "charm stone river smooth cord",
+   "short_desc": "a river-smoothed stone charm",
+   "room_desc": "A smooth grey stone threaded on a leather cord lies here.",
+   "description": "A flat, egg-shaped pebble polished by the river until it feels like silk, bored through and threaded on a thong of plaited leather. A tiny wave has been scratched into one face. River folk say such stones keep a clear head in deep water.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 9,
+   "wear_slot": "neck1",
+   "armor": 1,
+   "weight": 1,
+   "value": 210,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 1
+    }
+   ]
+  },
+  "705003": {
+   "vnum": 705003,
+   "name": "feather heron grey plume",
+   "short_desc": "a long grey heron feather",
+   "room_desc": "A long grey heron feather lies here, lifting slightly in the air.",
+   "description": "A flight feather as long as a forearm, soft grey shading to black at the tip. Fletchers and hatters in Garathorm pay well for an unbroken feather like this one.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 5,
+   "weight": 1,
+   "value": 175
   }
  },
  "lifespan": 30
