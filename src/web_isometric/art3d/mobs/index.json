@@ -1,0 +1,348 @@
+{
+ "alien": {
+  "anims": [
+   "Bite_Front",
+   "Bite_InPlace",
+   "Dance",
+   "Death",
+   "HitRecieve",
+   "Idle",
+   "Jump",
+   "No",
+   "Walk",
+   "Yes"
+  ]
+ },
+ "alien_tall": {
+  "anims": [
+   "Bite_Front",
+   "Bite_InPlace",
+   "Dance",
+   "Death",
+   "HitRecieve",
+   "Idle",
+   "Jump",
+   "No",
+   "Walk",
+   "Yes"
+  ]
+ },
+ "bat": {
+  "anims": [
+   "Bite_Front",
+   "Death",
+   "Flying"
+  ]
+ },
+ "bee": {
+  "anims": [
+   "Bite_Front",
+   "Death",
+   "Flying"
+  ]
+ },
+ "cactus": {
+  "anims": [
+   "Bite_Front",
+   "Bite_InPlace",
+   "Dance",
+   "Death",
+   "HitRecieve",
+   "Idle",
+   "Jump",
+   "No",
+   "Walk",
+   "Yes"
+  ]
+ },
+ "chicken": {
+  "anims": [
+   "Idle"
+  ]
+ },
+ "crab": {
+  "anims": [
+   "Bite_Front",
+   "Bite_InPlace",
+   "Dance",
+   "Death",
+   "HitRecieve",
+   "Idle",
+   "Jump",
+   "No",
+   "Walk",
+   "Yes"
+  ]
+ },
+ "cthulhu": {
+  "anims": [
+   "Flying",
+   "HitRecieve"
+  ]
+ },
+ "cyclops": {
+  "anims": [
+   "Bite_Front",
+   "Bite_InPlace",
+   "Dance",
+   "Death",
+   "HitRecieve",
+   "Idle",
+   "Jump",
+   "No",
+   "Walk",
+   "Yes"
+  ]
+ },
+ "deer": {
+  "anims": [
+   "Bite_Front",
+   "Bite_InPlace",
+   "Dance",
+   "Death",
+   "HitRecieve",
+   "Idle",
+   "Jump",
+   "No",
+   "Walk",
+   "Yes"
+  ]
+ },
+ "demon": {
+  "anims": [
+   "Bite_Front",
+   "Bite_InPlace",
+   "Dance",
+   "Death",
+   "HitRecieve",
+   "Idle",
+   "Jump",
+   "No",
+   "Walk",
+   "Yes"
+  ]
+ },
+ "ghost": {
+  "anims": [
+   "Bite_Front",
+   "Bite_InPlace",
+   "Dance",
+   "Death",
+   "HitRecieve",
+   "Idle",
+   "Jump",
+   "No",
+   "Walk",
+   "Yes"
+  ]
+ },
+ "greendemon": {
+  "anims": [
+   "Bite_Front",
+   "Bite_InPlace",
+   "Dance",
+   "Death",
+   "HitRecieve",
+   "Idle",
+   "Jump",
+   "No",
+   "Walk",
+   "Yes"
+  ]
+ },
+ "mushroom": {
+  "anims": [
+   "Idle"
+  ]
+ },
+ "panda": {
+  "anims": [
+   "Bite_Front",
+   "Bite_InPlace",
+   "Dance",
+   "Death",
+   "HitRecieve",
+   "Idle",
+   "Jump",
+   "No",
+   "Walk",
+   "Yes"
+  ]
+ },
+ "penguin": {
+  "anims": [
+   "Idle"
+  ]
+ },
+ "pig": {
+  "anims": [
+   "Idle"
+  ]
+ },
+ "skull": {
+  "anims": [
+   "Bite_Front",
+   "Bite_InPlace",
+   "Dance",
+   "Death",
+   "HitRecieve",
+   "Idle",
+   "Jump",
+   "No",
+   "Walk",
+   "Yes"
+  ]
+ },
+ "tree": {
+  "anims": [
+   "Bite_Front",
+   "Bite_InPlace",
+   "Dance",
+   "Death",
+   "HitRecieve",
+   "Idle",
+   "Jump",
+   "No",
+   "Walk",
+   "Yes"
+  ]
+ },
+ "yellowdragon": {
+  "anims": [
+   "Bite_Front",
+   "Bite_Front.001",
+   "Death",
+   "Flying",
+   "Flying.001",
+   "Flying.002",
+   "Flying.003",
+   "HitRecieve"
+  ]
+ },
+ "yeti": {
+  "anims": [
+   "Bite_Front",
+   "Bite_InPlace",
+   "Dance",
+   "Death",
+   "HitRecieve",
+   "Idle",
+   "Jump",
+   "No",
+   "Walk",
+   "Yes"
+  ]
+ },
+ "cat": {
+  "anims": [
+   "Idle",
+   "Walking"
+  ]
+ },
+ "dog": {
+  "anims": [
+   "Idle",
+   "Walking"
+  ]
+ },
+ "eagle": {
+  "anims": [
+   "Flying",
+   "Idle"
+  ]
+ },
+ "piranha": {
+  "anims": [
+   "Bite",
+   "Swimming"
+  ]
+ },
+ "wolf": {
+  "anims": [
+   "Idle",
+   "Walking"
+  ]
+ },
+ "fox": {
+  "anims": [
+   "ArmatureAction"
+  ]
+ },
+ "fish": {
+  "anims": [
+   "ArmatureAction"
+  ]
+ },
+ "bird": {
+  "anims": [
+   "ArmatureAction",
+   "Plane.001Action",
+   "PlaneAction"
+  ]
+ },
+ "chick": {
+  "anims": [
+   "ArmatureAction.002"
+  ]
+ },
+ "whale": {
+  "anims": [
+   "ArmatureAction",
+   "PlaneAction"
+  ]
+ },
+ "cow": {
+  "anims": [
+   "Death",
+   "Idle",
+   "Jump",
+   "Run",
+   "Walk",
+   "WalkSlow"
+  ]
+ },
+ "horse": {
+  "anims": [
+   "Death",
+   "Idle",
+   "Jump",
+   "Run",
+   "Walk",
+   "WalkSlow"
+  ]
+ },
+ "llama": {
+  "anims": [
+   "Idle",
+   "Jump"
+  ]
+ },
+ "farm_pig": {
+  "anims": [
+   "Idle",
+   "Jump"
+  ]
+ },
+ "pug": {
+  "anims": [
+   "Idle",
+   "Jump"
+  ]
+ },
+ "sheep": {
+  "anims": [
+   "Idle",
+   "Jump"
+  ]
+ },
+ "zebra": {
+  "anims": [
+   "Death",
+   "Idle",
+   "Jump",
+   "Run",
+   "Walk",
+   "WalkSlow"
+  ]
+ }
+}

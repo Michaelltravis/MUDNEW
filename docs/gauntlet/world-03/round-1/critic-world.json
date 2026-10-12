@@ -1,0 +1,16 @@
+{
+  "piece": "world",
+  "pick": "A",
+  "per_label": { "walk": "A", "forest": "B" },
+  "reasons": [
+    "walk: A holds identical framing and scale across all six frames (0.0s-1.8s): house, trees, rocks and path stay locked while the character moves east, with no cut, flash or overlay. B changes layout between 0.0s (Winding Forest Path, wide path) and 0.5s (Rocky Outcropping, different trees and path), which is a cut with a title card swap. Neither side shows a clear destination before arrival, but A at least never swaps the world.",
+    "walk: B has combat HUD, enemy plates, damage numbers and a STAGGERED banner stacked over the scene from 1.4s-2.3s, and the dark vignette plus haze hides the terrain, so the walk stops reading as traversal. A shows only a clean bottom bar and no stale overlays.",
+    "forest: B reads as a lit place with depth. It has a soft light pool, a canopy vignette, particles and a path with edge shading that you can follow from the centre to the lower right. Its trees are dark blobs with weak silhouettes, though. A has crisp trees, but the ground is a flat saturated green tile plane with no lighting, and the thin brown paths at the left and right edges are hard to follow as terrain."
+  ],
+  "fixes": [
+    { "what": "walk (B): keep one continuous scrolling world across area boundaries with locked camera framing and scale. Render the next area's trees, path and creatures beyond the edge before the character reaches it, and use no layout swap at the transition.", "file_hint": "" },
+    { "what": "walk (B): drop the combat HUD, target plates, damage numbers and banners from the traversal. Lighten the vignette and haze so the terrain stays readable while moving.", "file_hint": "" },
+    { "what": "forest (A): add lighting and depth with a canopy vignette, light pools, tinted ground variation and drifting particles. Widen and shade the path with edges so it reads as painted terrain you can follow.", "file_hint": "" }
+  ],
+  "confidence": "medium"
+}

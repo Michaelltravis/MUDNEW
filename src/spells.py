@@ -247,8 +247,8 @@ SPELLS = {
         'message_self': 'You raise a corpse to serve you!',
         'message_room': '$n raises a corpse from the dead!',
     },
-    'vampiric_touch': {
-        'name': 'Vampiric Touch',
+    'leechcraft': {
+        'name': 'Leechcraft',
         'mana_cost': 30,
         'damage_dice': '2d6+2',
         'damage_per_level': 1,
@@ -341,6 +341,7 @@ SPELLS = {
         'name': 'Identify',
         'mana_cost': 20,
         'target': 'object',
+        'special': 'identify',
         'message_self': 'You examine the item closely...',
     },
     'teleport': {
@@ -528,7 +529,7 @@ SPELLS = {
         'message_other': 'A shimmering force shield surrounds $N!',
     },
     'mirror_image': {
-        'name': 'Mirror Image',
+        'name': 'Tower Echoes',
         'mana_cost': 40,
         'target': 'self',
         'duration_ticks': 12,
@@ -571,15 +572,6 @@ SPELLS = {
         'affects': [{'type': 'ac', 'value': -20}, {'type': 'fire_shield', 'value': 1}],
         'message_self': 'Flames surround you in a protective shield!',
         'message_room': 'Flames erupt around $n in a protective shield!',
-    },
-    'spell_reflection': {
-        'name': 'Spell Reflection',
-        'mana_cost': 70,
-        'target': 'self',
-        'duration_ticks': 8,
-        'affects': [{'type': 'spell_reflect', 'value': 1}],  # 50% chance to reflect
-        'message_self': 'A reflective aura surrounds you!',
-        'message_room': 'A shimmering aura surrounds $n!',
     },
     'blink': {
         'name': 'Blink',
@@ -659,6 +651,7 @@ SPELLS = {
     'divine_protection': {
         'name': 'Divine Protection',
         'mana_cost': 100,
+        'cooldown': 300,          # invulnerability is a lifesaver, not a stance (as divine_shield_master)
         'target': 'self',
         'duration_ticks': 3,
         'affects': [{'type': 'invulnerable', 'value': 1}],  # Nearly invulnerable
@@ -676,7 +669,7 @@ SPELLS = {
     },
     # Paladin Talent Spells
     'lay_on_hands': {
-        'name': 'Lay on Hands',
+        'name': 'Laying of Hands',
         'mana_cost': 20,  # Minimum cost, uses all remaining mana
         'target': 'defensive',
         'special': 'lay_on_hands',
@@ -684,7 +677,7 @@ SPELLS = {
         'message_target': '$n places healing hands upon you!',
     },
     'avenging_wrath': {
-        'name': 'Avenging Wrath',
+        'name': 'Ascendant Hour',
         'mana_cost': 100,
         'target': 'self',
         'duration_ticks': 10,
@@ -765,15 +758,48 @@ SPELLS = {
         'message_self': 'Dark energy drains $N\'s vitality!',
         'message_room': 'Dark energy surrounds $N, draining their strength!',
     },
-    'death_grip': {
-        'name': 'Death Grip',
-        'mana_cost': 45,
+    # ── Soulbinder reinvention (Misthollow originals; replace the DK/Warlock
+    #    lifts). Anchored on Soul Shards + the Mist. ──
+    'mistgrasp': {
+        'name': 'Mistgrasp',
+        'mana_cost': 40,
         'damage_dice': '3d8+3',
         'damage_per_level': 2,
         'target': 'offensive',
-        'special': 'death_grip',  # Also stuns
-        'message_self': 'You grasp $N with the power of death!',
-        'message_room': 'Dark energy grips $N!',
+        'special': 'mistgrasp',  # tendrils of mist: dmg + brief rot + 1 Soul Shard
+        'message_self': 'Tendrils of grave-mist seize $N!',
+        'message_room': 'Cold mist coils around $N!',
+    },
+    'wraithfire': {
+        'name': 'Wraithfire',
+        'mana_cost': 35,
+        'damage_dice': '2d8+4',
+        'damage_per_level': 2,
+        'target': 'offensive',
+        'special': 'wraithfire',  # spends up to 5 Soul Shards, +dmg per shard
+        'message_self': 'You hurl bound spirits at $N!',
+        'message_room': 'Screaming wraiths engulf $N!',
+    },
+    'mistrot': {
+        'name': 'Mistrot',
+        'mana_cost': 30,
+        'damage_dice': '1d8+2',
+        'damage_per_level': 1,
+        'target': 'offensive',
+        'special': 'mistrot',  # stacking rot DoT; binds a Soul Shard
+        'message_self': 'You sow creeping rot into $N!',
+        'message_room': 'Greenish rot festers across $N!',
+    },
+    'sever_cord': {
+        'name': 'Sever the Cord',
+        'mana_cost': 90,
+        'damage_dice': '6d8+10',
+        'damage_per_level': 4,
+        'target': 'offensive',
+        'save': True,
+        'special': 'sever_cord',  # execute: <25% HP -> massive reap + 3 shards
+        'message_self': 'You sever the silver cord binding $N to life!',
+        'message_room': "$N's soul is torn loose!",
     },
     'finger_of_death': {
         'name': 'Finger of Death',
@@ -832,7 +858,7 @@ SPELLS = {
 
     # ========== TALENT SPELLS (NEW) ==========
     'pyroblast': {
-        'name': 'Pyroblast',
+        'name': 'Cinderlance',
         'mana_cost': 60,
         'damage_dice': '5d8',
         'damage_per_level': 3,
@@ -842,7 +868,7 @@ SPELLS = {
         'message_room': '$n hurls a massive pyroblast at $N!',
     },
     'combustion': {
-        'name': 'Combustion',
+        'name': 'Kindling Focus',
         'mana_cost': 40,
         'target': 'defensive',
         'duration_ticks': 6,
@@ -851,7 +877,7 @@ SPELLS = {
         'message_other': '$N ignites with overwhelming power.',
     },
     'ice_barrier': {
-        'name': 'Ice Barrier',
+        'name': 'Rimewall',
         'mana_cost': 35,
         'target': 'defensive',
         'duration_ticks': 8,
@@ -860,7 +886,7 @@ SPELLS = {
         'message_other': 'Ice surrounds $N in a protective barrier.',
     },
     'ice_lance': {
-        'name': 'Ice Lance',
+        'name': 'Rimelance',
         'mana_cost': 20,
         'damage_dice': '2d6+4',
         'damage_per_level': 2,
@@ -870,7 +896,7 @@ SPELLS = {
         'message_room': '$n launches a lance of ice at $N!',
     },
     'deep_freeze': {
-        'name': 'Deep Freeze',
+        'name': 'Gravefrost',
         'mana_cost': 45,
         'damage_dice': '3d6+6',
         'damage_per_level': 2,
@@ -890,7 +916,7 @@ SPELLS = {
         'message_other': '$N exhales a blast of winter air.',
     },
     'arcane_missiles': {
-        'name': 'Arcane Missiles',
+        'name': 'Mist Darts',
         'mana_cost': 30,
         'damage_dice': '3d5',
         'damage_per_level': 2,
@@ -900,7 +926,7 @@ SPELLS = {
         'message_room': 'Arcane missiles strike $N!',
     },
     'presence_of_mind': {
-        'name': 'Presence of Mind',
+        'name': 'Clear Mind',
         'mana_cost': 15,
         'target': 'defensive',
         'duration_ticks': 4,
@@ -909,7 +935,7 @@ SPELLS = {
         'message_other': '$N looks intensely focused.',
     },
     'arcane_power': {
-        'name': 'Arcane Power',
+        'name': 'Tower Surge',
         'mana_cost': 25,
         'target': 'defensive',
         'duration_ticks': 6,
@@ -926,7 +952,7 @@ SPELLS = {
         'message_room': '$n rips open a rift of raw mana at $N!',
     },
     'guardian_spirit': {
-        'name': 'Guardian Spirit',
+        'name': 'Wardspirit',
         'mana_cost': 50,
         'target': 'defensive',
         'duration_ticks': 8,
@@ -935,7 +961,7 @@ SPELLS = {
         'message_other': 'A guardian spirit watches over $N.',
     },
     'divine_hymn': {
-        'name': 'Divine Hymn',
+        'name': 'Hymn of the Vigil',
         'mana_cost': 70,
         'heal_dice': '3d8+6',
         'heal_per_level': 2,
@@ -944,7 +970,7 @@ SPELLS = {
         'message_room': '$n sings a divine hymn!',
     },
     'power_word_shield': {
-        'name': 'Power Word: Shield',
+        'name': 'Wardword',
         'mana_cost': 35,
         'target': 'defensive',
         'duration_ticks': 8,
@@ -971,7 +997,7 @@ SPELLS = {
         'message_other': '$N feels less pain.',
     },
     'shadowform': {
-        'name': 'Shadowform',
+        'name': 'Umbral Shroud',
         'mana_cost': 25,
         'target': 'defensive',
         'duration_ticks': 12,
@@ -980,7 +1006,7 @@ SPELLS = {
         'message_other': '$N fades into shadow.',
     },
     'mind_flay': {
-        'name': 'Mind Flay',
+        'name': 'Soulflay',
         'mana_cost': 30,
         'damage_dice': '3d6',
         'damage_per_level': 2,
@@ -992,7 +1018,7 @@ SPELLS = {
         'message_room': "$n flays $N's mind!",
     },
     'shadow_word_pain': {
-        'name': 'Shadow Word: Pain',
+        'name': 'Whisper of Pain',
         'mana_cost': 25,
         'target': 'offensive',
         'special': 'shadow_word_pain',
@@ -1000,7 +1026,7 @@ SPELLS = {
         'message_room': '$n afflicts $N with shadowy pain.',
     },
     'holy_shock': {
-        'name': 'Holy Shock',
+        'name': 'Dawnflash',
         'mana_cost': 35,
         'target': 'offensive',
         'special': 'holy_shock',
@@ -1008,7 +1034,7 @@ SPELLS = {
         'message_room': '$n unleashes a holy shock at $N!',
     },
     'beacon_of_light': {
-        'name': 'Beacon of Light',
+        'name': 'Beacon of Dawn',
         'mana_cost': 30,
         'target': 'defensive',
         'duration_ticks': 20,
@@ -1035,7 +1061,7 @@ SPELLS = {
         'message_other': '$N becomes a divine guardian.',
     },
     'army_of_dead': {
-        'name': 'Army of the Dead',
+        'name': 'Crypt Legion',
         'mana_cost': 60,
         'target': 'defensive',
         'special': 'army_of_dead',
@@ -1043,7 +1069,7 @@ SPELLS = {
         'message_other': '$n summons an army of the dead!',
     },
     'blood_boil': {
-        'name': 'Blood Boil',
+        'name': 'Boiling Bile',
         'mana_cost': 35,
         'target': 'room',
         'special': 'blood_boil',
@@ -1051,7 +1077,7 @@ SPELLS = {
         'message_room': '$n boils the blood of the room!',
     },
     'vampiric_blood': {
-        'name': 'Vampiric Blood',
+        'name': 'Crimson Tide',
         'mana_cost': 30,
         'target': 'defensive',
         'duration_ticks': 6,
@@ -1069,7 +1095,7 @@ SPELLS = {
         'message_other': 'Bones knit into a protective shell around $N.',
     },
     'howling_blast': {
-        'name': 'Howling Blast',
+        'name': 'Gravegale',
         'mana_cost': 35,
         'target': 'room',
         'damage_dice': '3d6',
@@ -1079,7 +1105,7 @@ SPELLS = {
         'message_room': 'A howl of frost rips through the room!',
     },
     'obliterate': {
-        'name': 'Obliterate',
+        'name': 'Soulrend',
         'mana_cost': 40,
         'damage_dice': '5d6',
         'damage_per_level': 3,
@@ -1090,7 +1116,7 @@ SPELLS = {
     },
     # Death Knight - Blood
     'death_strike': {
-        'name': 'Death Strike',
+        'name': 'Crypt Strike',
         'mana_cost': 35,
         'damage_dice': '4d6',
         'damage_per_level': 2,
@@ -1100,7 +1126,7 @@ SPELLS = {
         'message_room': '$n strikes $N with a deathly blow!',
     },
     'dancing_rune_weapon': {
-        'name': 'Dancing Rune Weapon',
+        'name': 'Wraithblade',
         'mana_cost': 60,
         'target': 'self',
         'duration_ticks': 8,
@@ -1110,7 +1136,7 @@ SPELLS = {
     },
     # Death Knight - Frost
     'remorseless_winter': {
-        'name': 'Remorseless Winter',
+        'name': 'Crypt Winter',
         'mana_cost': 45,
         'target': 'room',
         'damage_dice': '2d6',
@@ -1132,7 +1158,7 @@ SPELLS = {
     },
     # Death Knight - Unholy
     'festering_strike': {
-        'name': 'Festering Strike',
+        'name': 'Rotting Strike',
         'mana_cost': 30,
         'damage_dice': '3d6',
         'damage_per_level': 2,
@@ -1151,7 +1177,7 @@ SPELLS = {
     },
     # Priest - Shadow
     'vampiric_embrace': {
-        'name': 'Vampiric Embrace',
+        'name': 'Leeching Veil',
         'mana_cost': 40,
         'target': 'self',
         'duration_ticks': 15,
@@ -1234,65 +1260,104 @@ SPELLS = {
     # These powerful abilities unlock at higher levels and define endgame play.
 
     # ===== MAGE LEVEL 31-60 =====
-    'time_warp': {
-        'name': 'Time Warp',
-        'mana_cost': 120,
-        'target': 'group',
-        'duration_ticks': 20,
-        'level_required': 38,
-        'class_required': 'mage',
-        'cooldown': 300,  # 5 minutes
-        'affects': [
-            {'type': 'haste', 'value': 1},
-            {'type': 'hitroll', 'value': 4},
-            {'type': 'damroll', 'value': 3}
-        ],
-        'message_self': 'You bend the fabric of time, hastening your allies!',
-        'message_room': '$n warps time itself, hastening everyone nearby!',
+    # ── Keeper of the Holy Order reinvention (the Vigil). Reuse the proven
+    #    special hooks under Misthollow names. ──
+    # ── Lightbringer reinvention (the Holy Order / Dawnward). ──
+    'hallowed_ground': {  # was consecration
+        'name': 'Hallowed Ground', 'mana_cost': 60, 'target': 'room', 'duration_ticks': 10,
+        'level_required': 38, 'class_required': 'paladin', 'cooldown': 20,
+        'special': 'consecration', 'damage_per_tick': '2d6+4',
+        'message_self': 'You sanctify the ground; it sears the unworthy.',
     },
-    'arcane_explosion': {
-        'name': 'Arcane Explosion',
-        'mana_cost': 80,
-        'damage_dice': '8d8+20',
-        'damage_per_level': 4,
-        'target': 'room',
-        'level_required': 44,
-        'class_required': 'mage',
-        'cooldown': 30,
-        'element': 'arcane',
-        'message_self': 'You unleash a devastating arcane explosion!',
-        'message_room': '$n unleashes a massive arcane explosion that engulfs everything!',
+    'dawnhammer': {  # was hammer_of_justice
+        'name': 'Dawnhammer', 'mana_cost': 50, 'damage_dice': '4d8+10', 'target': 'offensive',
+        'level_required': 44, 'class_required': 'paladin', 'cooldown': 45,
+        'affects': [{'type': 'stunned', 'value': 1}], 'duration_ticks': 4,
+        'message_self': 'You bring down a hammer of dawnlight upon $N!',
     },
-    'icy_veins': {
-        'name': 'Icy Veins',
-        'mana_cost': 100,
-        'target': 'self',
-        'duration_ticks': 15,
-        'level_required': 50,
-        'class_required': 'mage',
-        'cooldown': 180,  # 3 minutes
-        'affects': [
-            {'type': 'crit_chance', 'value': 30},
-            {'type': 'haste', 'value': 1},
-            {'type': 'spell_power', 'value': 15}
-        ],
-        'message_self': 'Frost surges through your veins, sharpening your focus!',
-        'message_room': '$n\'s eyes glow icy blue as frost power surges through them!',
+    'ascendant_hour': {  # was avenging_wrath
+        'name': 'Ascendant Hour', 'mana_cost': 120, 'target': 'self', 'duration_ticks': 20,
+        'level_required': 50, 'class_required': 'paladin', 'cooldown': 180,
+        'affects': [{'type': 'damroll', 'value': 12}, {'type': 'hitroll', 'value': 8}, {'type': 'heal_power', 'value': 30}, {'type': 'haste', 'value': 1}],
+        'message_self': 'The Order\'s light crowns you; your hour is ascendant.',
     },
-    'combustion_master': {
-        'name': 'Combustion',
-        'mana_cost': 80,
-        'target': 'self',
-        'duration_ticks': 12,
-        'level_required': 56,
-        'class_required': 'mage',
-        'cooldown': 180,
-        'affects': [
-            {'type': 'fire_crit', 'value': 100},  # Guaranteed fire crits
-            {'type': 'damroll', 'value': 8}
-        ],
-        'message_self': 'Your inner fire ignites - every spell WILL burn!',
-        'message_room': '$n erupts in flames, fire magic guaranteed to devastate!',
+    'verdict_of_the_order': {  # was crusaders_judgment
+        'name': 'Verdict of the Order', 'mana_cost': 250, 'damage_dice': '12d10+40', 'target': 'offensive',
+        'level_required': 60, 'class_required': 'paladin', 'cooldown': 600,
+        'special': 'crusaders_judgment',
+        'message_self': 'You pronounce the Order\'s final verdict upon $N!',
+    },
+    'unfettered': {  # was hand_of_freedom
+        'name': 'Unfettered', 'mana_cost': 40, 'target': 'defensive', 'duration_ticks': 8,
+        'level_required': 32, 'class_required': 'paladin', 'cooldown': 30,
+        'special': 'hand_of_freedom',
+        'message_self': 'A touch of dawn frees $N from every binding.',
+    },
+    'travelling_grace': {  # was prayer_of_mending
+        'name': 'Travelling Grace', 'mana_cost': 60, 'heal_dice': '4d8+10', 'heal_per_level': 2,
+        'target': 'defensive', 'level_required': 32, 'class_required': 'cleric', 'cooldown': 15,
+        'special': 'prayer_of_mending', 'bounces': 3,
+        'message_self': "A grace settles on $N, ready to leap to the next in need.",
+    },
+    'shared_burden': {  # was spirit_link
+        'name': 'Shared Burden', 'mana_cost': 100, 'target': 'group', 'duration_ticks': 15,
+        'level_required': 38, 'class_required': 'cleric', 'cooldown': 120,
+        'special': 'spirit_link', 'affects': [{'type': 'spirit_link', 'value': 1}],
+        'message_self': 'You bind your circle to share every wound between them.',
+    },
+    'font_of_the_vigil': {  # was lightwell
+        'name': 'Font of the Vigil', 'mana_cost': 100, 'target': 'room', 'duration_ticks': 30,
+        'level_required': 50, 'class_required': 'cleric', 'cooldown': 180,
+        'special': 'lightwell', 'heal_per_tick': '2d8+5',
+        'message_self': 'You raise a font of the Vigil; its light mends all who tarry near.',
+    },
+    # ── Adept of the High Tower reinvention (Mages Circle / the Mist).
+    #    Identity renames preserve the affect mechanics; Resonance Burst gets
+    #    a genuinely-new Arcane-Charge-spend mechanic. ──
+    'stepwise': {  # was blink
+        'name': 'Stepwise', 'mana_cost': 30, 'target': 'self', 'duration_ticks': 12,
+        'affects': [{'type': 'blink', 'value': 1}],
+        'message_self': 'You fold space and step a pace sideways through the Mist.',
+    },
+    'phase_step': {  # was displacement
+        'name': 'Phase Step', 'mana_cost': 35, 'target': 'self', 'duration_ticks': 18,
+        'affects': [{'type': 'displacement', 'value': 1}],
+        'message_self': 'Your outline blurs as you phase half a step out of the world.',
+    },
+    'tower_echoes': {  # was mirror_image
+        'name': 'Tower Echoes', 'mana_cost': 40, 'target': 'self', 'duration_ticks': 12,
+        'affects': [{'type': 'mirror_image', 'value': 3}],
+        'message_self': 'Three echoes of the High Tower step out of you.',
+    },
+    'mirrorward': {  # was spell_reflection
+        'name': 'Mirrorward', 'mana_cost': 70, 'target': 'self', 'duration_ticks': 8,
+        'affects': [{'type': 'spell_reflect', 'value': 1}],
+        'message_self': 'A mirrored ward of leyline-glass surrounds you.',
+    },
+    'quicken': {  # was time_warp
+        'name': 'Quicken', 'mana_cost': 120, 'target': 'group', 'duration_ticks': 20,
+        'level_required': 38, 'class_required': 'mage', 'cooldown': 300,
+        'affects': [{'type': 'haste', 'value': 1}, {'type': 'hitroll', 'value': 4}, {'type': 'damroll', 'value': 3}],
+        'message_self': 'You quicken the hour for your circle.',
+    },
+    'rimeheart': {  # was icy_veins
+        'name': 'Rimeheart', 'mana_cost': 100, 'target': 'self', 'duration_ticks': 15,
+        'level_required': 50, 'class_required': 'mage', 'cooldown': 180,
+        'affects': [{'type': 'crit_chance', 'value': 30}, {'type': 'haste', 'value': 1}, {'type': 'spell_power', 'value': 15}],
+        'message_self': 'Crypt-cold floods your veins; your casting sharpens to ice.',
+    },
+    'kindling_focus': {  # was combustion_master
+        'name': 'Kindling Focus', 'mana_cost': 80, 'target': 'self', 'duration_ticks': 12,
+        'level_required': 56, 'class_required': 'mage', 'cooldown': 180,
+        'affects': [{'type': 'fire_crit', 'value': 100}, {'type': 'damroll', 'value': 8}],
+        'message_self': 'You gather every ember into a single searing focus.',
+    },
+    'resonance_burst': {  # was arcane_explosion — now spends Arcane Charges
+        'name': 'Resonance Burst', 'mana_cost': 70, 'target': 'self',
+        'level_required': 44, 'class_required': 'mage', 'cooldown': 24,
+        'special': 'resonance_burst',
+        'message_self': 'You release your stored arcane resonance in a ringing burst!',
+        'message_room': '$n releases a ringing burst of arcane resonance!',
     },
     'meteor_storm': {
         'name': 'Meteor Storm',
@@ -1314,20 +1379,6 @@ SPELLS = {
     },
 
     # ===== CLERIC LEVEL 31-60 =====
-    'prayer_of_mending': {
-        'name': 'Prayer of Mending',
-        'mana_cost': 60,
-        'heal_dice': '4d8+10',
-        'heal_per_level': 2,
-        'target': 'defensive',
-        'level_required': 32,
-        'class_required': 'cleric',
-        'cooldown': 15,
-        'special': 'prayer_of_mending',  # Bounces to injured allies
-        'bounces': 3,
-        'message_self': 'You place a prayer of mending on $N - it will bounce to heal others!',
-        'message_other': 'A glowing prayer settles on you, ready to heal and bounce!',
-    },
     'spirit_link': {
         'name': 'Spirit Link',
         'mana_cost': 100,
@@ -1341,8 +1392,8 @@ SPELLS = {
         'message_self': 'You link the spirits of your allies - damage is shared equally!',
         'message_room': 'Glowing spirit chains connect everyone in $n\'s group!',
     },
-    'mass_dispel': {
-        'name': 'Mass Dispel',
+    'cleansing_rite': {
+        'name': 'Cleansing Rite',
         'mana_cost': 80,
         'target': 'room',
         'level_required': 44,
@@ -1351,19 +1402,6 @@ SPELLS = {
         'special': 'mass_dispel',
         'message_self': 'You unleash a wave of purifying energy!',
         'message_room': 'A wave of holy light purges magical effects from everyone!',
-    },
-    'lightwell': {
-        'name': 'Lightwell',
-        'mana_cost': 100,
-        'target': 'room',
-        'duration_ticks': 30,
-        'level_required': 50,
-        'class_required': 'cleric',
-        'cooldown': 180,
-        'special': 'lightwell',
-        'heal_per_tick': '2d8+5',
-        'message_self': 'You summon a radiant Lightwell that pulses with healing energy!',
-        'message_room': 'A pillar of holy light appears, radiating healing energy!',
     },
     'serenity': {
         'name': 'Serenity',
@@ -1402,49 +1440,6 @@ SPELLS = {
         'message_self': 'You grant $N freedom from all bonds!',
         'message_other': 'Golden light surrounds you - you are FREE!',
     },
-    'consecration': {
-        'name': 'Consecration',
-        'mana_cost': 60,
-        'target': 'room',
-        'duration_ticks': 10,
-        'level_required': 38,
-        'class_required': 'paladin',
-        'cooldown': 20,
-        'special': 'consecration',
-        'damage_per_tick': '2d6+4',
-        'message_self': 'You consecrate the ground with holy fire!',
-        'message_room': 'Holy flames erupt from the ground around $n!',
-    },
-    'hammer_of_justice': {
-        'name': 'Hammer of Justice',
-        'mana_cost': 50,
-        'damage_dice': '4d8+10',
-        'target': 'offensive',
-        'level_required': 44,
-        'class_required': 'paladin',
-        'cooldown': 45,
-        'affects': [{'type': 'stunned', 'value': 1}],
-        'duration_ticks': 4,
-        'message_self': 'You hurl a hammer of holy justice at $N!',
-        'message_room': '$n hurls a blazing hammer at $N, stunning them!',
-    },
-    'avenging_wrath_master': {
-        'name': 'Avenging Wrath',
-        'mana_cost': 120,
-        'target': 'self',
-        'duration_ticks': 20,
-        'level_required': 50,
-        'class_required': 'paladin',
-        'cooldown': 180,
-        'affects': [
-            {'type': 'damroll', 'value': 12},
-            {'type': 'hitroll', 'value': 8},
-            {'type': 'heal_power', 'value': 30},
-            {'type': 'haste', 'value': 1}
-        ],
-        'message_self': 'Wings of GOLDEN LIGHT burst from your back!',
-        'message_room': 'WINGS OF LIGHT burst from $n as divine wrath fills them!',
-    },
     'divine_shield_master': {
         'name': 'Divine Shield',
         'mana_cost': 80,
@@ -1457,33 +1452,8 @@ SPELLS = {
         'message_self': 'You are surrounded by an IMPENETRABLE divine shield!',
         'message_room': '$n is encased in a bubble of PURE DIVINE LIGHT!',
     },
-    'crusaders_judgment': {
-        'name': "Crusader's Judgment",
-        'mana_cost': 250,
-        'damage_dice': '12d10+40',
-        'target': 'offensive',
-        'level_required': 60,
-        'class_required': 'paladin',
-        'cooldown': 600,
-        'special': 'crusaders_judgment',
-        'message_self': 'You invoke the ULTIMATE JUDGMENT of the Light!',
-        'message_room': 'Divine power EXPLODES as $n calls down CRUSADER\'S JUDGMENT!',
-    },
 
     # ===== NECROMANCER LEVEL 31-60 =====
-    'death_coil': {
-        'name': 'Death Coil',
-        'mana_cost': 45,
-        'damage_dice': '3d8+8',
-        'heal_dice': '4d8+12',
-        'target': 'offensive',
-        'level_required': 32,
-        'class_required': 'necromancer',
-        'cooldown': 12,
-        'special': 'death_coil',
-        'message_self': 'You hurl a coil of death energy at $N!',
-        'message_room': '$n hurls dark death energy at $N!',
-    },
     'corpse_shield': {
         'name': 'Corpse Shield',
         'mana_cost': 60,
@@ -1496,20 +1466,6 @@ SPELLS = {
         'affects': [{'type': 'damage_redirect_pet', 'value': 50}],
         'message_self': 'Your undead minion forms a protective barrier around you!',
         'message_room': 'Bones and shadow swirl around $n protectively!',
-    },
-    'plague_strike': {
-        'name': 'Plague Strike',
-        'mana_cost': 55,
-        'damage_dice': '3d6+5',
-        'target': 'offensive',
-        'level_required': 44,
-        'class_required': 'necromancer',
-        'cooldown': 20,
-        'special': 'plague_strike',
-        'affects': [{'type': 'plague', 'value': 1}],
-        'duration_ticks': 10,
-        'message_self': 'You strike $N with virulent plague!',
-        'message_room': '$n strikes $N with a diseased blow that spreads to nearby foes!',
     },
     'summon_gargoyle': {
         'name': 'Summon Gargoyle',
@@ -1547,8 +1503,8 @@ SPELLS = {
     },
 
     # ===== BARD LEVEL 31-60 =====
-    'hymn_of_hope': {
-        'name': 'Hymn of Hope',
+    'refrain_of_hope': {
+        'name': 'Refrain of Hope',
         'mana_cost': 50,
         'target': 'group',
         'duration_ticks': 20,
@@ -1639,6 +1595,64 @@ SPELLS = {
         'message_room': '$n performs their MAGNUM OPUS - music of LEGENDARY power fills the air!',
     },
 
+    # ---- talent capstones (QA 2026-06-12): were unlockable but undefined ----
+    'phoenix_flames': {
+        'name': 'Phoenix Flames', 'mana_cost': 60, 'damage_dice': '6d10+10',
+        'damage_per_level': 2, 'target': 'offensive',
+        'message_self': 'A phoenix of living flame erupts from your hands and engulfs $N!',
+        'message_room': 'A phoenix of living flame bursts from $n and engulfs $N!',
+    },
+    'renew': {
+        'name': 'Renew', 'mana_cost': 30, 'heal_dice': '2d8+6', 'heal_per_level': 1,
+        'target': 'defensive', 'duration_ticks': 8,
+        'affects': [{'type': 'regenerating', 'value': 1}],
+        'message_self': 'A gentle warmth settles in, knitting wounds closed over time.',
+        'message_other': "$N is wrapped in a soft, mending light.",
+    },
+    'inner_focus': {
+        'name': 'Inner Focus', 'mana_cost': 40, 'target': 'self', 'duration_ticks': 5,
+        'cooldown': 90,
+        'affects': [{'type': 'spell_power', 'value': 20}, {'type': 'heal_power', 'value': 20}],
+        'message_self': 'You center your mind; your next workings will strike true.',
+    },
+    'wound_poison': {
+        'name': 'Wasting Coat', 'mana_cost': 35, 'damage_dice': '3d6+4', 'target': 'offensive',
+        'duration_ticks': 6, 'affects': [{'type': 'poison', 'value': 4}],
+        'message_self': 'You rake $N with venom-slick blades!',
+        'message_room': '$n rakes $N with venom-slick blades!',
+    },
+    'polymorph': {
+        'name': 'Beastshape', 'mana_cost': 70, 'target': 'offensive', 'duration_ticks': 3,
+        'cooldown': 60, 'affects': [{'type': 'sleep', 'value': 1}],
+        'message_self': 'You weave a glamour - $N blinks, bleats, and becomes a placid sheep!',
+        'message_room': '$n gestures at $N, who blinks, bleats, and becomes a placid sheep!',
+    },
+    'divine_favor': {
+        'name': 'Divine Favor', 'mana_cost': 45, 'target': 'self', 'duration_ticks': 8,
+        'cooldown': 120, 'affects': [{'type': 'heal_power', 'value': 30}],
+        'message_self': 'A mantle of golden light settles on your shoulders.',
+    },
+    'dark_transformation': {
+        'name': 'Risen Horror', 'mana_cost': 80, 'target': 'self', 'duration_ticks': 10,
+        'cooldown': 120,
+        'affects': [{'type': 'damroll', 'value': 6}, {'type': 'spell_power', 'value': 15}],
+        'message_self': 'Shadow boils out of your veins - you are something more than alive.',
+        'message_room': "Darkness coils around $n like a living shroud.",
+    },
+    'breath_of_sindragosa': {
+        'name': 'Breath of the Crypt', 'mana_cost': 90, 'damage_dice': '8d8+12',
+        'damage_per_level': 2, 'target': 'offensive', 'duration_ticks': 3,
+        'affects': [{'type': 'slow', 'value': 1}],
+        'message_self': 'You exhale a torrent of grave-frost over $N!',
+        'message_room': '$n exhales a torrent of grave-frost over $N!',
+    },
+    'grand_illusion': {
+        'name': 'Grand Illusion', 'mana_cost': 100, 'target': 'self', 'duration_ticks': 10,
+        'cooldown': 180,
+        'affects': [{'type': 'displacement', 'value': 1}, {'type': 'mirror_image', 'value': 3}],
+        'message_self': 'The stage is yours: a dozen of you take a bow at once.',
+        'message_room': 'A dozen copies of $n take a bow at once!',
+    },
 }
 
 # ========== RANGER COMPANION SYSTEM ==========
@@ -1868,6 +1882,9 @@ class SpellHandler:
 
     @classmethod
     async def cast_spell(cls, caster: 'Player', spell_name: str, target_name: Optional[str] = None):
+        if 'silenced' in getattr(caster, 'affect_flags', set()):
+            await caster.send(f"{caster.config.COLORS['red']}You open your mouth, but the discordant silence swallows the words!{caster.config.COLORS['reset']}")
+            return
         """Cast a spell."""
         c = cls.config.COLORS
         
@@ -1914,7 +1931,6 @@ class SpellHandler:
         
         # Soul fragments reduce mana cost by 10% per fragment
         if hasattr(caster, 'soul_fragments') and caster.soul_fragments > 0:
-            import time
             if time.time() < getattr(caster, 'soul_fragment_expires', 0):
                 discount = mana_cost * 0.10 * caster.soul_fragments
                 mana_cost = max(1, int(mana_cost - discount))
@@ -1924,19 +1940,55 @@ class SpellHandler:
             await caster.send(f"{c['red']}You don't have enough mana to cast that spell.{c['reset']}")
             return
             
-        # Check proficiency for failure
-        proficiency = caster.spells.get(spell_name, 50)
-        if random.randint(1, 100) > proficiency:
-            caster.mana -= mana_cost // 2
-            await caster.send(f"{c['yellow']}You lose your concentration and the spell fizzles.{c['reset']}")
-            return
-            
         # Get target
         target = await cls.get_target(caster, spell, target_name)
+        if target is None and spell.get('target') in ('object', 'door'):
+            await caster.send(f"{caster.config.COLORS['yellow']}Cast {spell.get('name', spell_name)} on what?{caster.config.COLORS['reset']}")
+            return
         if target is None and spell['target'] not in ('self', 'special', 'object', 'door', 'group', 'room'):
             await caster.send("Cast the spell on whom?")
             return
-            
+
+        # Combat v2: every spell has a reach (combat_range.py). Out of it nothing is spent.
+        try:
+            from combat_range import spell_out_of_range
+            if target is not None and target is not caster and await spell_out_of_range(caster, target, spell_name, spell):
+                return
+        except Exception:
+            pass
+
+        # a spell's own cooldown (SPELLS 'cooldown', seconds), kept on the character
+        cooldown = spell.get('cooldown') or 0
+        if cooldown:
+            left = (getattr(caster, 'spell_cd', None) or {}).get(spell_name, 0) - time.time()
+            if left > 0:
+                await caster.send(f"{c['yellow']}{spell.get('name', spell_name)} is not ready yet ({int(left) + 1}s).{c['reset']}")
+                return
+
+        # a spell for the room's foes with none here strikes nothing: nothing is spent
+        if spell.get('target') == 'room' and spell_name not in cls.ROOM_NO_FOES_NEEDED and not cls.foes_in_room(caster):
+            await caster.send(f"{c['yellow']}There is nothing here for {spell.get('name', spell_name)} to strike.{c['reset']}")
+            return
+
+        # Check proficiency for failure (after the target and reach checks: you can't
+        # fizzle a spell at someone you can't reach). A spell known at 50% fizzles one cast in
+        # eight, mastered (85%) one in 27 (mastery.py).
+        import mastery
+        proficiency = caster.spells.get(spell_name, 50)
+        if random.random() * 100 < mastery.fizzle_chance(proficiency):
+            caster.mana -= mana_cost // 2
+            await caster.send(f"{c['yellow']}You lose your concentration and the spell fizzles.{c['reset']}")
+            if hasattr(caster, 'char_class'):
+                await mastery.improve(caster, spell_name, ok=False)
+            try:
+                import combat_events
+                from combat_range import spell_school
+                combat_events.emit(caster.room, 'fizzle', caster, target if target is not caster and not isinstance(target, str) else None,
+                                   spell=spell_name, school=spell_school(spell_name, spell, caster))
+            except Exception:
+                pass
+            return
+
         # Deduct mana
         caster.mana -= mana_cost
         
@@ -1949,8 +2001,17 @@ class SpellHandler:
             else:
                 await caster.send(f"{c['cyan']}Soul fragment consumed! Mana cost: {mana_cost}/{original_cost} ({caster.soul_fragments} remaining){c['reset']}")
 
-        # Apply spell effect
-        await cls.apply_spell(caster, target, spell, spell_name)
+        # Apply spell effect, its damage and healing as strong as the spell is known
+        prev_scale = getattr(caster, '_ability_scale', 1)
+        caster._ability_scale = mastery.power(proficiency)
+        try:
+            await cls.apply_spell(caster, target, spell, spell_name)
+        finally:
+            caster._ability_scale = prev_scale
+        if cooldown:
+            if not isinstance(getattr(caster, 'spell_cd', None), dict):
+                caster.spell_cd = {}
+            caster.spell_cd[spell_name] = time.time() + cooldown
 
         # Talent procs: clearcast
         try:
@@ -2005,6 +2066,11 @@ class SpellHandler:
             # Defensive spells default to self
             if not target_name:
                 return caster
+            # numbered ("2.guard") and exact ("#12") targets, then any name that contains it
+            if hasattr(caster, 'find_target_in_room'):
+                found = caster.find_target_in_room(target_name)
+                if found is not None:
+                    return found
             # Or can target others
             for char in caster.room.characters:
                 if target_name.lower() in char.name.lower():
@@ -2025,6 +2091,12 @@ class SpellHandler:
             # Otherwise need explicit target
             if not target_name:
                 return None
+
+            # numbered ("2.wolf") and exact ("#12") targets, then any name that contains it
+            if hasattr(caster, 'find_target_in_room'):
+                found = caster.find_target_in_room(target_name)
+                if found is not None and found is not caster:
+                    return found
 
             for char in caster.room.characters:
                 if char != caster and target_name.lower() in char.name.lower():
@@ -2051,6 +2123,32 @@ class SpellHandler:
                         )
                     return
         
+        # a creature that can't be charmed, put to sleep or blinded (its flags; bosses are never
+        # charmed) shrugs it off: a charmed quest boss would end the fight for good
+        if target is not None and target != caster and spell.get('target') != 'room' and cls._immune(target, spell):
+            await caster.send(f"{c['yellow']}{target.name} is unaffected.{c['reset']}")
+            return
+
+        # Saving throw (debuffs like sleep) before any message: a resisted spell never
+        # announces that it worked
+        if target is not None and target != caster and not isinstance(target, str) and cls._saves(caster, target, spell):
+            await caster.send(f"{c['yellow']}{target.name} resists your spell!{c['reset']}")
+            if hasattr(target, 'send'):
+                await target.send(f"{c['cyan']}You resist the spell!{c['reset']}")
+            return
+
+        # Mirrorward (spell_reflect): a hostile spell aimed at its bearer turns back on the caster,
+        # and the ward is spent
+        if (spell.get('target') == 'offensive' and target is not None and not isinstance(target, str)
+                and target is not caster and 'spell_reflect' in (getattr(target, 'affect_flags', None) or set())):
+            for a in list(getattr(target, 'affects', []) or []):
+                if a.applies_to == 'spell_reflect':
+                    AffectManager.remove_affect(target, a)
+            await caster.send(f"{c['bright_cyan']}{target.name}'s ward flings your spell back at you!{c['reset']}")
+            if hasattr(target, 'send'):
+                await target.send(f"{c['bright_cyan']}Your ward flings {caster.name}'s spell back!{c['reset']}")
+            target = caster
+
         # Send cast messages
         if isinstance(target, str):
             # Object/door/special target strings
@@ -2097,20 +2195,13 @@ class SpellHandler:
                 await cls.handle_special_spell(caster, target, spell)
             return
 
-        # Check for saving throw (for debuffs)
-        if spell.get('save') and target != caster:
-            save_roll = random.randint(1, 20) + target.wis // 2
-            if save_roll > 10 + caster.level // 2:
-                await caster.send(f"{c['yellow']}{target.name} resists your spell!{c['reset']}")
-                if hasattr(target, 'send'):
-                    await target.send(f"{c['cyan']}You resist the spell!{c['reset']}")
-                return
-                
         # Apply damage spells
         if 'damage_dice' in spell:
-            # Room-target spells (like earthquake) handle damage in their special handler
+            # a room spell strikes every foe here (a handler with its own blast deals its own)
             if spell.get('target') == 'room':
-                pass
+                if spell.get('special') not in cls.ROOM_OWN_DAMAGE:
+                    for foe in cls.foes_in_room(caster):
+                        await cls._spell_damage(caster, foe, spell, spell_name)
             # Dispel evil should not harm non-evil targets
             elif spell.get('special') == 'dispel_evil' and (not hasattr(target, 'alignment') or target.alignment >= -100):
                 await caster.send(f"{c['yellow']}{target.name} is not evil enough to be affected.{c['reset']}")
@@ -2118,93 +2209,7 @@ class SpellHandler:
                     await target.send(f"{c['cyan']}You resist the holy power!{c['reset']}")
                 return
             else:
-                damage = cls.roll_dice(spell['damage_dice'])
-                damage += spell.get('damage_per_level', 0) * caster.level
-                # Affix bonuses: spell_power and per-spell bonus (percentage)
-                spell_bonus = caster.get_equipment_bonus('spell_power') + caster.get_equipment_bonus(spell_name)
-                if spell_bonus:
-                    damage = int(damage * (1 + (spell_bonus / 100)))
-
-                # Apply weather modifier to damage
-                if caster.room and caster.room.zone and hasattr(caster.room.zone, 'weather'):
-                    weather_mult = caster.room.zone.weather.get_spell_modifier(spell['name'])
-                    damage = int(damage * weather_mult)
-
-                # Soulstone bonus (necromancer offhand)
-                try:
-                    stone = caster.equipment.get('hold') if hasattr(caster, 'equipment') else None
-                    if stone and (getattr(stone, 'is_soulstone', False) or ('soulstone' in getattr(stone, 'flags', set()))):
-                        damage += getattr(stone, 'soulstone_spell_damage', 2)
-                except Exception:
-                    pass
-
-                # Mage arcane charges: +8% damage per charge
-                if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'mage':
-                    charges = getattr(caster, 'arcane_charges', 0)
-                    if charges > 0:
-                        damage = int(damage * (1 + (0.08 * charges)))
-                        await caster.send(f"{c['magenta']}Arcane charges amplify your spell! ({charges} charges, +{charges * 8}% damage){c['reset']}")
-
-                # Spell critical strike chance
-                # Base 5% + 1% per 2 INT above 10 + 0.5% per level
-                crit_chance = 5
-                int_bonus = (getattr(caster, 'int', 10) - 10) // 2
-                crit_chance += int_bonus
-                crit_chance += caster.level // 2
-                # Mage bonus: +5% spell crit
-                if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'mage':
-                    crit_chance += 5
-                # Talent bonuses
-                try:
-                    from talents import TalentManager
-                    crit_chance += int(TalentManager.get_talent_bonus(caster, 'stat_bonus', 'crit_chance'))
-                    # Combustion increases crit chance
-                    if hasattr(caster, 'affect_flags') and 'combustion' in caster.affect_flags:
-                        crit_chance += 30
-                except Exception:
-                    pass
-                crit_chance = min(crit_chance, 60)  # Cap at 60%
-                
-                is_crit = random.randint(1, 100) <= crit_chance
-                if is_crit:
-                    crit_mult = 1.5  # 150% damage
-                    # Mage gets better crits
-                    if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'mage':
-                        crit_mult = 2.0  # 200% damage
-                    try:
-                        from talents import TalentManager
-                        crit_mult += TalentManager.get_talent_bonus(caster, 'stat_bonus', 'crit_damage') / 100.0
-                    except Exception:
-                        pass
-                    damage = int(damage * crit_mult)
-                    await caster.send(f"{c['bright_yellow']}*** CRITICAL SPELL! ***{c['reset']}")
-
-                # Apply spell damage
-                damage_type = spell.get('damage_type', 'magic')
-                killed = await target.take_damage(damage, caster, damage_type=damage_type)
-                
-                await caster.send(f"{c['bright_red']}Your spell does {damage} damage to {target.name}!{c['reset']}")
-
-                # Build arcane charges on offensive casts
-                if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'mage':
-                    if hasattr(caster, 'arcane_charges') and hasattr(caster, 'max_arcane_charges'):
-                        if caster.arcane_charges < caster.max_arcane_charges:
-                            caster.arcane_charges += 1
-                            await caster.send(f"{c['cyan']}Arcane charge gained ({caster.arcane_charges}/{caster.max_arcane_charges}).{c['reset']}")
-                
-                if killed:
-                    from combat import CombatHandler
-                    await CombatHandler.handle_death(caster, target)
-                elif not caster.is_fighting and target != caster:
-                    # Start combat if not already fighting
-                    from combat import CombatHandler
-                    await CombatHandler.start_combat(caster, target)
-                    
-                # Handle vampiric drain
-                if spell.get('special') == 'drain_hp':
-                    heal_amount = damage // 2
-                    caster.hp = min(caster.max_hp, caster.hp + heal_amount)
-                    await caster.send(f"{c['bright_green']}You absorb {heal_amount} life force!{c['reset']}")
+                await cls._spell_damage(caster, target, spell, spell_name)
                 
         # Apply healing spells
         elif 'heal_dice' in spell:
@@ -2216,9 +2221,10 @@ class SpellHandler:
             else:
                 heal = cls.roll_dice(heal_str)
                 heal += spell.get('heal_per_level', 0) * caster.level
+                heal = max(1, int(heal * getattr(caster, '_ability_scale', 1)))   # how well it is known
 
             # Affix bonuses: heal_power and per-spell bonus (percentage)
-            heal_bonus = caster.get_equipment_bonus('heal_power') + caster.get_equipment_bonus(spell_name)
+            heal_bonus = caster.get_equipment_bonus('heal_power') + caster.get_equipment_bonus(spell_name) + getattr(caster, 'heal_power', 0)
             if heal_bonus:
                 heal = int(heal * (1 + (heal_bonus / 100)))
 
@@ -2272,6 +2278,14 @@ class SpellHandler:
                 old_hp = target.hp
                 target.hp = min(target.max_hp, target.hp + heal)
                 actual_heal = target.hp - old_hp
+                # Beacon of Light: a quarter of a heal on anyone else also mends the beacon's bearer
+                for bearer in cls.allies_in_room(caster):
+                    if bearer is not target and 'beacon_of_light' in (getattr(bearer, 'affect_flags', None) or set()) and actual_heal > 0:
+                        shared = min(bearer.max_hp - bearer.hp, max(1, actual_heal // 4))
+                        if shared > 0:
+                            bearer.hp += shared
+                            if hasattr(bearer, 'send'):
+                                await bearer.send(f"{c['bright_yellow']}The beacon shares the light with you (+{shared}).{c['reset']}")
                 
                 if target == caster:
                     await caster.send(f"{c['bright_green']}You heal {actual_heal} hit points!{c['reset']}")
@@ -2309,13 +2323,227 @@ class SpellHandler:
                 # Level 15: 100 + 30 = 130 ticks (~13 min)
                 # Level 30: 100 + 60 = 160 ticks (~16 min)
                 duration = duration + (caster.level * 2)
-            for affect in spell['affects']:
-                await cls.apply_affect(target, affect, duration, spell['name'], caster.level, caster=caster, spell_key=spell_name)
-                
+            # a room spell's curse falls on every foe here (each may be immune, or resist); a group
+            # spell's blessing on everyone in the group standing here
+            kind = spell.get('target')
+            if kind == 'room':
+                recipients = []
+                for foe in cls.foes_in_room(caster):
+                    if cls._immune(foe, spell) or cls._saves(caster, foe, spell):
+                        await caster.send(f"{c['yellow']}{foe.name} is unaffected.{c['reset']}")
+                    else:
+                        recipients.append(foe)
+            elif kind == 'group':
+                recipients = cls.allies_in_room(caster)
+            else:
+                recipients = [target]
+            for who in recipients:
+                for affect in spell['affects']:
+                    await cls.apply_affect(who, affect, duration, spell['name'], caster.level, caster=caster, spell_key=spell_name)
+                if kind == 'group' and who is not caster and hasattr(who, 'send'):
+                    await who.send(f"{c['bright_magenta']}{caster.name}'s {spell['name']} settles on you.{c['reset']}")
+
         # Handle special spells
         if spell.get('special'):
             await cls.handle_special_spell(caster, target, spell)
             
+    # room spells whose handler deals the blast itself (the per-foe damage above skips them)
+    ROOM_OWN_DAMAGE = {'earthquake', 'explode_corpse'}
+    # room spells cast with no foe in sight (a blessing on the ground, a cleansing of allies)
+    ROOM_NO_FOES_NEEDED = {'font_of_the_vigil', 'cleansing_rite', 'hallowed_ground'}
+    # NPCs who keep a post: never caught in a spell meant for foes
+    _SERVICE = ('guildmaster', 'trainer', 'shopkeeper', 'healer', 'banker', 'postmaster')
+
+    @staticmethod
+    def allies_in_room(caster, pets=False):
+        """The caster and the group members standing beside them (and, asked for, the pets and
+        companions of any of them here)."""
+        room = getattr(caster, 'room', None)
+        out = [caster]
+        for m in (getattr(getattr(caster, 'group', None), 'members', None) or []):
+            if m is not caster and getattr(m, 'room', None) is room and getattr(m, 'hp', 0) > 0:
+                out.append(m)
+        if pets and room is not None:
+            out += [ch for ch in list(room.characters) if getattr(ch, 'owner', None) in out and ch not in out]
+        return out
+
+    @classmethod
+    def foes_in_room(cls, caster):
+        """Whom a spell meant for the room's foes strikes: the creatures fighting the caster,
+        their group or their pets; before a fight, every creature here that may be attacked.
+        Never a player (a duel's foe aside), anyone's pet, a quest's figure, an NPC at their post,
+        nor anything in a peaceful room."""
+        room = getattr(caster, 'room', None)
+        if room is None or 'peaceful' in (getattr(room, 'flags', None) or ()):
+            return []
+        try:
+            import marquee
+            touch = lambda ch: marquee.can_touch(caster, ch)
+        except Exception:
+            touch = lambda ch: True
+        friends = cls.allies_in_room(caster, pets=True)
+
+        def foe(ch):
+            if ch in friends or getattr(ch, 'hp', 0) <= 0:
+                return False
+            if hasattr(ch, 'connection'):
+                return getattr(caster, 'fighting', None) is ch or getattr(ch, 'fighting', None) is caster
+            if getattr(ch, 'owner', None) is not None or getattr(ch, 'special', None) in cls._SERVICE:
+                return False
+            if (getattr(ch, 'marquee_tag', None) or {}).get('kind') == 'npc':
+                return False
+            return touch(ch)
+        here = [ch for ch in list(room.characters) if foe(ch)]
+        fighting = [ch for ch in here if getattr(ch, 'fighting', None) in friends or any(getattr(f, 'fighting', None) is ch for f in friends)]
+        return fighting or here
+
+    @staticmethod
+    def _immune(target, spell):
+        """A creature flagged against the spell's charm, sleep or blindness (and a boss against
+        any charm) shrugs it off."""
+        if target is None or isinstance(target, str) or hasattr(target, 'connection'):
+            return False
+        flags = set(getattr(target, 'flags', ()) or ())
+        kinds = {a.get('type') for a in (spell.get('affects') or []) if isinstance(a, dict)}
+        from combat import CombatHandler
+        return (('charmed' in kinds and ('no_charm' in flags or CombatHandler.is_boss_mob(target)))
+                or ('sleeping' in kinds and 'no_sleep' in flags) or ('blind' in kinds and 'no_blind' in flags))
+
+    @staticmethod
+    def _saves(caster, target, spell):
+        """A spell that allows a saving throw (spell['save']), resisted: d20 + half the target's
+        wisdom + their saving throw (higher is better: Shield of Faith +2, a dirge -1, saves on
+        their gear) against 10 + half the caster's level. Spell resistance may shrug it off first,
+        and a curse may fail on one warded against curses (curse_resist on their gear)."""
+        if not spell.get('save') or target is None or target is caster or isinstance(target, str):
+            return False
+        if random.randint(1, 100) <= max(0, int(getattr(target, 'spell_resist', 0) or 0)):
+            return True
+        if 'curse' in str(spell.get('name', '')).lower() and hasattr(target, 'gear_saves'):
+            ward = min(75, max(0, int(target.get_equipment_bonus('curse_resist'))))
+            if ward and random.randint(1, 100) <= ward:
+                return True
+        bonus = int(getattr(target, 'saving_throw', 0) or 0)
+        if hasattr(target, 'gear_saves'):
+            bonus += target.gear_saves()
+        roll = random.randint(1, 20) + getattr(target, 'wis', 10) // 2 + bonus
+        return roll > 10 + caster.level // 2
+
+    @classmethod
+    async def _spell_damage(cls, caster, target, spell, spell_name, mult=1.0):
+        """A damage spell's blow on one target: the dice, the caster's bonuses, a critical, the
+        blow itself (and a kill, or the fight it starts), a drain's healing. Returns the damage."""
+        c = cls.config.COLORS
+        damage = cls.roll_dice(spell['damage_dice'])
+        damage += spell.get('damage_per_level', 0) * caster.level
+        damage = max(1, int(damage * mult))
+        # Affix bonuses: spell_power and per-spell bonus (percentage)
+        spell_bonus = caster.get_equipment_bonus('spell_power') + caster.get_equipment_bonus(spell_name) + getattr(caster, 'spell_power', 0)
+        if spell_bonus:
+            damage = int(damage * (1 + (spell_bonus / 100)))
+
+        # Apply weather modifier to damage
+        if caster.room and caster.room.zone and hasattr(caster.room.zone, 'weather'):
+            weather_mult = caster.room.zone.weather.get_spell_modifier(spell['name'])
+            damage = int(damage * weather_mult)
+
+        # Soulstone bonus (necromancer offhand)
+        try:
+            stone = caster.equipment.get('hold') if hasattr(caster, 'equipment') else None
+            if stone and (getattr(stone, 'is_soulstone', False) or ('soulstone' in getattr(stone, 'flags', set()))):
+                damage += getattr(stone, 'soulstone_spell_damage', 2)
+        except Exception:
+            pass
+
+        # Mage arcane charges: +8% damage per charge
+        if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'mage':
+            charges = getattr(caster, 'arcane_charges', 0)
+            if charges > 0:
+                damage = int(damage * (1 + (0.08 * charges)))
+                await caster.send(f"{c['magenta']}Arcane charges amplify your spell! ({charges} charges, +{charges * 8}% damage){c['reset']}")
+
+        # Spell critical strike chance
+        # Base 5% + 1% per 2 INT above 10 + 0.5% per level
+        crit_chance = 5
+        int_bonus = (getattr(caster, 'int', 10) - 10) // 2
+        crit_chance += int_bonus
+        crit_chance += caster.level // 2
+        # Mage bonus: +5% spell crit
+        if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'mage':
+            crit_chance += 5
+        # Talent bonuses
+        try:
+            from talents import TalentManager
+            crit_chance += int(TalentManager.get_talent_bonus(caster, 'stat_bonus', 'crit_chance'))
+            # Combustion increases crit chance
+            if hasattr(caster, 'affect_flags') and 'combustion' in caster.affect_flags:
+                crit_chance += 30
+        except Exception:
+            pass
+        crit_chance = min(crit_chance, 60)  # Cap at 60%
+        
+        is_crit = random.randint(1, 100) <= crit_chance
+        if is_crit:
+            crit_mult = 1.5  # 150% damage
+            # Mage gets better crits
+            if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'mage':
+                crit_mult = 2.0  # 200% damage
+            try:
+                from talents import TalentManager
+                crit_mult += TalentManager.get_talent_bonus(caster, 'stat_bonus', 'crit_damage') / 100.0
+            except Exception:
+                pass
+            damage = int(damage * crit_mult)
+            await caster.send(f"{c['bright_yellow']}*** CRITICAL SPELL! ***{c['reset']}")
+
+        # a target's spell resistance (a percent) blunts the blow
+        resist = int(getattr(target, 'spell_resist', 0) or 0)
+        if resist > 0:
+            damage = max(1, int(damage * (100 - min(75, resist)) / 100))
+
+        # Apply spell damage, as its school (fire, frost, shadow...: what a resistance answers to)
+        damage_type = spell.get('damage_type')
+        if not damage_type:
+            try:
+                import combat_range
+                damage_type = combat_range.spell_school(spell_name, spell, caster)
+            except Exception:
+                damage_type = 'magic'
+        killed = await target.take_damage(damage, caster, damage_type=damage_type)
+
+        await caster.send(f"{c['bright_red']}Your spell does {damage} damage to {target.name}!{c['reset']}")
+
+        # elemental terrain interplay: fire ignites webbed rooms, frost
+        # freezes water into ice, lightning cast into water splashes
+        # everyone standing in the fight
+        try:
+            from environment import elemental_cast
+            await elemental_cast(caster, target, spell_name)
+        except Exception:
+            pass
+
+        # Build arcane charges on offensive casts
+        if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'mage':
+            if hasattr(caster, 'arcane_charges') and hasattr(caster, 'max_arcane_charges'):
+                if caster.arcane_charges < caster.max_arcane_charges:
+                    caster.arcane_charges += 1
+                    await caster.send(f"{c['cyan']}Arcane charge gained ({caster.arcane_charges}/{caster.max_arcane_charges}).{c['reset']}")
+        
+        if killed:
+            from combat import CombatHandler
+            await CombatHandler.handle_death(caster, target)
+        elif not caster.is_fighting and target != caster:
+            # Start combat if not already fighting
+            from combat import CombatHandler
+            await CombatHandler.start_combat(caster, target)
+            
+        # Handle vampiric drain
+        if spell.get('special') == 'drain_hp':
+            heal_amount = damage // 2
+            caster.hp = min(caster.max_hp, caster.hp + heal_amount)
+            await caster.send(f"{c['bright_green']}You absorb {heal_amount} life force!{c['reset']}")
+        return damage
+
     @classmethod
     def _scale_absorb_value(cls, base_value: int, caster_level: int, caster: Optional['Character'],
                             target: Optional['Character'], spell_key: Optional[str]) -> int:
@@ -2359,13 +2587,39 @@ class SpellHandler:
         affect_type = affect['type']
         value = affect['value']
 
+        # Unfettered's ward: nothing slows or holds them while it lasts
+        if affect_type in cls.IMPAIRING and time.time() < (getattr(target, 'freedom_until', 0) or 0):
+            return
+
+        # a stun is counted in the target's lost turns (CombatHandler.one_round reads
+        # stunned_rounds); a boss only staggers
+        if affect_type == 'stunned':
+            from combat import CombatHandler
+            CombatHandler.stun(target, duration)
+            return
+
+        # a creature charmed stops fighting at once (one_round keeps it out while the charm holds)
+        if affect_type == 'charmed' and not hasattr(target, 'connection'):
+            target.fighting = None
+            if getattr(target, 'position', None) == 'fighting':
+                target.position = 'standing'
+            for ch in list(getattr(getattr(target, 'room', None), 'characters', []) or []):
+                if getattr(ch, 'fighting', None) is target and hasattr(ch, 'connection'):
+                    ch.fighting = None
+                    if ch.position == 'fighting':
+                        ch.position = 'standing'
+
         if affect_type in ('divine_shield', 'stoneskin', 'armour_ward'):
             value = cls._scale_absorb_value(value, caster_level, caster, target, spell_key)
 
         # Determine if this is a stat modification or a flag
         stat_types = {'hitroll', 'damroll', 'ac', 'str', 'int', 'wis', 'dex', 'con', 'cha',
                      'armor_class', 'max_hp', 'max_mana', 'max_move', 'saving_throw',
-                     'spell_resist', 'damage_reduction'}
+                     'spell_resist', 'damage_reduction',
+                     'crit_chance', 'spell_power', 'heal_power', 'mana_regen'}
+        if affect_type == 'fire_crit':
+            affect_type = 'crit_chance'   # fire-school crit rides the same math
+            affect['type'] = 'crit_chance'
         flag_types = {'blind', 'invisible', 'sanctuary', 'haste', 'fly', 'detect_magic',
                      'detect_invisible', 'sense_life', 'waterwalk', 'stoneskin', 'mirror_image',
                      'displacement', 'mana_shield', 'ice_armor', 'fire_shield', 'spell_reflect',
@@ -2373,7 +2627,8 @@ class SpellHandler:
                      'detect_evil', 'charmed', 'entangled', 'sleeping', 'stunned', 'slow',
                      'combustion', 'presence_of_mind', 'arcane_power', 'guardian_spirit',
                      'beacon_of_light', 'holy_shield', 'divine_guardian', 'aegis_ward', 'shadowform',
-                     'armour_ward', 'briskness', 'shielded'}
+                     'armour_ward', 'briskness', 'shielded',
+                     'silenced', 'spirit_link', 'damage_redirect_pet', 'regenerating'}
 
         # Create affect data for AffectManager
         affect_data = {
@@ -2414,8 +2669,29 @@ class SpellHandler:
         elif affect_type in flag_types:
             affect_data['type'] = AffectManager.TYPE_FLAG
             # Absorption shields keep their value, other flags are binary
-            if affect_type not in ('divine_shield', 'stoneskin', 'armour_ward'):
+            if affect_type not in ('divine_shield', 'stoneskin', 'armour_ward', 'damage_redirect_pet'):
                 affect_data['value'] = 1  # Flags are binary (on/off)
+        elif affect_type == 'plague':
+            # virulent DOT + diseased marker (necromancer plague strike)
+            AffectManager.apply_affect(target, {
+                'name': 'plague', 'type': AffectManager.TYPE_DOT, 'applies_to': 'hp',
+                'value': max(2, value * 3 + caster_level // 4),
+                'duration': duration, 'caster_level': caster_level,
+            })
+            AffectManager.apply_affect(target, {
+                'name': 'plague', 'type': AffectManager.TYPE_FLAG, 'applies_to': 'diseased',
+                'value': 1, 'duration': duration, 'caster_level': caster_level,
+            })
+            return
+        elif affect_type == 'all_stats':
+            cls._refresh(target, spell_name, ('str', 'int', 'wis', 'dex', 'con', 'cha'))
+            for st in ('str', 'int', 'wis', 'dex', 'con', 'cha'):
+                AffectManager.apply_affect(target, {
+                    'name': spell_name, 'type': AffectManager.TYPE_MODIFY_STAT,
+                    'applies_to': st, 'value': value,
+                    'duration': duration, 'caster_level': caster_level,
+                })
+            return
         elif affect_type == 'sleep':
             # Special case: sleep changes position immediately
             target.position = 'sleeping'
@@ -2426,8 +2702,291 @@ class SpellHandler:
             return
 
         # Apply the affect using AffectManager
+        cls._refresh(target, spell_name, (affect_data['applies_to'],))
         AffectManager.apply_affect(target, affect_data)
-                
+
+    @staticmethod
+    def _refresh(target, spell_name, kinds):
+        """A spell cast again renews what it gave instead of adding it twice (stoneskin cast five
+        times over was five shields, armor five times -100 AC)."""
+        from affects import AffectManager
+        for old in [a for a in (getattr(target, 'affects', None) or []) if a.name == spell_name and a.applies_to in kinds]:
+            AffectManager.remove_affect(target, old)
+
+    # ---------------------------------------------------------------- specials with a method
+    # harm a cleansing lifts: holds, hexes, poisons and plagues (damage over time), stat-sappers
+    HARMFUL = {'blind', 'poisoned', 'silenced', 'stunned', 'charmed', 'feared', 'paralyzed', 'entangled',
+               'sleeping', 'slow', 'diseased', 'marked', 'fumble', 'cursed'}
+    # what slows or holds a body in place (Unfettered frees from it, and wards against it)
+    IMPAIRING = {'slow', 'entangled', 'paralyzed'}
+
+    @classmethod
+    def _cleanse(cls, ch, kinds=None):
+        """Lift harmful magic from one character (kinds: only these, e.g. IMPAIRING). Returns how
+        many were lifted."""
+        from affects import AffectManager
+        only = kinds is not None
+        kinds = kinds or cls.HARMFUL
+        lifted = 0
+        for a in list(getattr(ch, 'affects', None) or []):
+            harmful = a.applies_to in kinds
+            if not only:
+                harmful = harmful or a.type == AffectManager.TYPE_DOT or (
+                    a.type == AffectManager.TYPE_MODIFY_STAT and isinstance(a.value, (int, float)) and a.value < 0
+                    and a.applies_to != 'armor_class')
+            if harmful:
+                AffectManager.remove_affect(ch, a)
+                lifted += 1
+        attrs = ('slowed_until', 'rooted_until') if only else ('slowed_until', 'rooted_until', 'stunned_rounds', 'blinded_rounds')
+        for attr in attrs:
+            if getattr(ch, attr, 0):
+                setattr(ch, attr, 0)
+                lifted += 1
+        if not only and getattr(ch, 'position', None) == 'sleeping' and hasattr(ch, 'connection'):
+            ch.position = 'standing'
+        return lifted
+
+    @classmethod
+    def _dot(cls, ch, name, per_tick, ticks, caster):
+        """Damage over time on a creature (AffectManager: a tick every AFFECT_TICK_SECONDS)."""
+        from affects import AffectManager
+        cls._refresh(ch, name, ('hp',))
+        AffectManager.apply_affect(ch, {'name': name, 'type': AffectManager.TYPE_DOT, 'applies_to': 'hp',
+                                        'value': max(1, int(per_tick)), 'duration': ticks,
+                                        'caster_level': getattr(caster, 'level', 1)})
+
+    @staticmethod
+    def _scale(caster):
+        """How well the caster knows the spell being cast (mastery), for parts dealt later."""
+        return getattr(caster, '_ability_scale', 1) or 1
+
+    @classmethod
+    async def _special_requiem(cls, caster, target, spell):
+        """A dirge that eats at every foe here: 3d6+5 a tick for 15 ticks."""
+        c = cls.config.COLORS
+        foes = cls.foes_in_room(caster)
+        for foe in foes:
+            cls._dot(foe, 'Requiem', (cls.roll_dice('3d6+5') + caster.level // 4) * cls._scale(caster), 15, caster)
+        if foes and not caster.is_fighting:
+            from combat import CombatHandler
+            await CombatHandler.start_combat(caster, foes[0])
+        await caster.send(f"{c['magenta']}The requiem settles on {len(foes)} foe{'s' if len(foes) != 1 else ''}, eating at their lives.{c['reset']}")
+
+    @classmethod
+    async def _special_meteor_storm(cls, caster, target, spell):
+        """The storm's blast (dealt above) leaves every foe burning: 3d6 a tick for 5 ticks."""
+        c = cls.config.COLORS
+        foes = cls.foes_in_room(caster)
+        for foe in foes:
+            cls._dot(foe, 'Meteor Burn', cls.roll_dice('3d6') * cls._scale(caster), 5, caster)
+        if foes:
+            await caster.send(f"{c['red']}Molten stone keeps burning on {len(foes)} foe{'s' if len(foes) != 1 else ''}.{c['reset']}")
+
+    @classmethod
+    async def _special_consecration(cls, caster, target, spell):
+        """Hallowed Ground: for its rounds the floor sears every foe standing here."""
+        import marquee_abilities as ma
+        rounds = int(spell.get('duration_ticks', 10))
+
+        async def step(e, i):
+            for foe in cls.foes_in_room(e.caster):
+                await ma._deal(e.caster, foe, (cls.roll_dice('2d6') + e.caster.level // 2) * e.power, 'holy')
+        ma._begin(ma.Effect(caster, 'hallowed_ground', rounds, step=step))
+
+    @classmethod
+    async def _special_lightwell(cls, caster, target, spell):
+        """Font of the Vigil: for its rounds the font mends every wounded ally standing here."""
+        import marquee_abilities as ma
+        rounds = int(spell.get('duration_ticks', 30))
+
+        async def step(e, i):
+            for ally in cls.allies_in_room(e.caster):
+                if ally.hp < ally.max_hp:
+                    ma._heal(e.caster, ally, (cls.roll_dice('2d6') + e.caster.level // 3) * e.power)
+        ma._begin(ma.Effect(caster, 'font_of_the_vigil', rounds, step=step))
+
+    @classmethod
+    async def _special_mass_dispel(cls, caster, target, spell):
+        """Cleansing Rite: harmful magic stripped from everyone on the caster's side here."""
+        c = cls.config.COLORS
+        lifted = 0
+        for ally in cls.allies_in_room(caster, pets=True):
+            n = cls._cleanse(ally)
+            lifted += n
+            if n and ally is not caster and hasattr(ally, 'send'):
+                await ally.send(f"{c['bright_cyan']}{caster.name}'s rite washes the harm from you.{c['reset']}")
+        await caster.send(f"{c['bright_cyan']}The rite lifts {lifted} harmful effect{'s' if lifted != 1 else ''} from your side.{c['reset']}")
+
+    @classmethod
+    async def _special_hand_of_freedom(cls, caster, target, spell):
+        """Unfettered: free from every slow and hold, and warded against new ones for a while."""
+        c = cls.config.COLORS
+        who = target if target is not None and not isinstance(target, str) else caster
+        cls._cleanse(who, cls.IMPAIRING)
+        who.freedom_until = time.time() + int(spell.get('duration_ticks', 8)) * cls.config.AFFECT_TICK_SECONDS
+        if who is not caster and hasattr(who, 'send'):
+            await who.send(f"{c['bright_yellow']}Nothing can hold you now.{c['reset']}")
+
+    @classmethod
+    async def _special_summon_gargoyle(cls, caster, target, spell):
+        """A stone gargoyle fights at the caster's side for the spell's duration."""
+        from pets import PetManager
+        c = cls.config.COLORS
+        minutes = max(1, int(spell.get('duration_ticks', 30)) * cls.config.AFFECT_TICK_SECONDS // 60)
+        pet = await PetManager.summon_pet(caster, 'stone_gargoyle', duration_minutes=minutes)
+        if pet is None:
+            await caster.send(f"{c['yellow']}The gargoyle will not come while you hold so many servants.{c['reset']}")
+            return
+        if caster.is_fighting and caster.fighting is not None:
+            pet.fighting = caster.fighting
+            pet.position = 'fighting'
+
+    @classmethod
+    async def _special_soul_harvest(cls, caster, target, spell):
+        """Tears at the souls of every foe here; each one torn gives a Soul Shard (up to ten)."""
+        from combat import CombatHandler
+        c = cls.config.COLORS
+        foes = cls.foes_in_room(caster)
+        for foe in foes:
+            dmg = int((cls.roll_dice('4d8') + caster.level) * cls._scale(caster))
+            if await foe.take_damage(dmg, caster, damage_type='shadow'):
+                await CombatHandler.handle_death(caster, foe)
+        before = getattr(caster, 'soul_shards', 0) or 0
+        caster.soul_shards = min(10, before + max(1, len(foes)))
+        await caster.send(f"{c['magenta']}{len(foes)} soul{'s' if len(foes) != 1 else ''} torn: "
+                          f"+{caster.soul_shards - before} Soul Shard{'s' if caster.soul_shards - before != 1 else ''} "
+                          f"({caster.soul_shards}/10).{c['reset']}")
+
+    @classmethod
+    async def _special_apocalypse_necro(cls, caster, target, spell):
+        """The necromancer's ultimate: death-magic tears through every foe here, and the dead on
+        the floor rise to serve (up to three, for three minutes)."""
+        from combat import CombatHandler
+        from pets import PetManager
+        c = cls.config.COLORS
+        foes = cls.foes_in_room(caster)
+        for foe in foes:
+            dmg = int((cls.roll_dice('10d10') + caster.level * 4) * cls._scale(caster))
+            if await foe.take_damage(dmg, caster, damage_type='shadow'):
+                await CombatHandler.handle_death(caster, foe)
+        risen = 0
+        room = caster.room
+        for corpse in [o for o in list(getattr(room, 'items', []) or []) if 'corpse' in str(getattr(o, 'name', '')).lower()][:3]:
+            pet = await PetManager.summon_pet(caster, 'undead_warrior', duration_minutes=3)
+            if pet is None:
+                break
+            room.items.remove(corpse)
+            risen += 1
+        await caster.send(f"{c['bright_magenta']}Death-magic sweeps {len(foes)} foe{'s' if len(foes) != 1 else ''}"
+                          f"{f' and {risen} corpse' + ('s rise' if risen != 1 else ' rises') + ' to serve you' if risen else ''}!{c['reset']}")
+
+    @classmethod
+    async def _special_divine_intervention(cls, caster, target, spell):
+        """For a desperate window (12 s) no one in the caster's group here can be brought below 1
+        health (Player.take_damage reads death_ward_until)."""
+        c = cls.config.COLORS
+        until = time.time() + 12
+        for ally in cls.allies_in_room(caster):
+            ally.death_ward_until = until
+            if hasattr(ally, 'send'):
+                await ally.send(f"{c['bright_yellow']}The gods hold you to life — for now.{c['reset']}")
+
+    @classmethod
+    async def _special_prayer_of_mending(cls, caster, target, spell):
+        """Travelling Grace: having mended its first ally (above), the grace hops on to each other
+        wounded ally here, worst first (up to four more)."""
+        import marquee_abilities as ma
+        c = cls.config.COLORS
+        first = target if target is not None and not isinstance(target, str) else caster
+        hurt = sorted((a for a in cls.allies_in_room(caster) if a is not first and a.hp < a.max_hp),
+                      key=lambda a: a.hp / max(1, a.max_hp))[:4]
+        for ally in hurt:
+            amount = (cls.roll_dice(spell.get('heal_dice', '4d8+10')) + spell.get('heal_per_level', 0) * caster.level) * cls._scale(caster)
+            gained = ma._heal(caster, ally, amount)
+            await caster.send(f"{c['bright_green']}The grace leaps to {ally.name} (+{gained}).{c['reset']}")
+            if hasattr(ally, 'send'):
+                await ally.send(f"{c['bright_green']}{caster.name}'s grace leaps to you (+{gained}).{c['reset']}")
+
+    @classmethod
+    async def _special_serenity(cls, caster, target, spell):
+        """Having restored them (above), Serenity also calms every harmful effect on its target."""
+        c = cls.config.COLORS
+        who = target if target is not None and not isinstance(target, str) else caster
+        n = cls._cleanse(who)
+        if n:
+            await caster.send(f"{c['bright_cyan']}Serenity calms {n} harmful effect{'s' if n != 1 else ''}.{c['reset']}")
+
+    @classmethod
+    async def _special_corpse_shield(cls, caster, target, spell):
+        """The ward (applied above) passes part of every blow to a servant: without one, it holds
+        nothing, so say so."""
+        from pets import PetManager
+        c = cls.config.COLORS
+        if not any(p.room is caster.room and p.hp > 0 for p in PetManager.get_player_pets(caster)):
+            await caster.send(f"{c['yellow']}You have no servant beside you to take the blows.{c['reset']}")
+
+    @classmethod
+    async def _special_chain_lightning(cls, caster, target, spell):
+        """Having struck its target (above), the lightning leaps to two more foes here, weaker
+        with each leap (60%, then 36%)."""
+        c = cls.config.COLORS
+        others = [f for f in cls.foes_in_room(caster) if f is not target]
+        mult = 1.0
+        for foe in others[:2]:
+            mult *= 0.6
+            await caster.send(f"{c['bright_cyan']}The lightning leaps to {foe.name}!{c['reset']}")
+            await cls._spell_damage(caster, foe, spell, 'chain_lightning', mult=mult)
+
+    @classmethod
+    async def _special_cold_snap(cls, caster, target, spell):
+        """Every frost spell's cooldown ends at once."""
+        from combat_range import spell_school
+        c = cls.config.COLORS
+        cds = getattr(caster, 'spell_cd', None) or {}
+        reset = [k for k in list(cds) if k != 'cold_snap' and spell_school(k, SPELLS.get(k) or {}, caster) == 'frost']
+        for k in reset:
+            cds.pop(k, None)
+        await caster.send(f"{c['cyan']}Your frost power surges anew"
+                          f"{f' ({len(reset)} spell' + ('s' if len(reset) != 1 else '') + ' ready again)' if reset else ''}.{c['reset']}")
+
+    @classmethod
+    async def _special_resurrect(cls, caster, target, spell):
+        """Gives back the experience a player's death took (within ten minutes of it)."""
+        c = cls.config.COLORS
+        name = target if isinstance(target, str) else None
+        if not name or target is caster:
+            await caster.send(f"{c['yellow']}Resurrect whom?{c['reset']}")
+            return
+        world = getattr(caster, 'world', None)
+        who = (getattr(world, 'players', None) or {}).get(name.lower().split()[0])
+        death = getattr(who, 'last_death', None) if who is not None else None
+        if not who or not death or time.time() - float(death.get('at', 0)) > 600:
+            await caster.send(f"{c['yellow']}{who.name if who else name.title()} has not died these ten minutes past.{c['reset']}")
+            return
+        restored = int(death.get('exp', 0))
+        who.exp += restored
+        who.last_death = None
+        await caster.send(f"{c['bright_yellow']}You call {who.name} back from the threshold: {restored} experience restored.{c['reset']}")
+        if who is not caster and hasattr(who, 'send'):
+            await who.send(f"{c['bright_yellow']}{caster.name} calls you back from the threshold: {restored} experience restored.{c['reset']}")
+
+    @classmethod
+    async def _special_siren_song(cls, caster, target, spell):
+        """The charm itself is the spell's affect, laid on every foe here above."""
+
+    @classmethod
+    async def _special_spirit_link(cls, caster, target, spell):
+        """The link itself is the spell's affect, laid on the whole group above (Player.take_damage
+        shares a linked member's wounds)."""
+
+    @classmethod
+    async def _special_magnum_opus(cls, caster, target, spell):
+        """The masterpiece's blessings are the spell's affects, laid on the whole group above."""
+
+    @classmethod
+    async def _special_crusaders_judgment(cls, caster, target, spell):
+        """The verdict is the spell's own enormous blow, dealt above."""
+
     @classmethod
     async def handle_special_spell(cls, caster: 'Player', target: 'Character', spell: dict):
         """Handle special spell effects."""
@@ -2435,12 +2994,80 @@ class SpellHandler:
         c = cls.config.COLORS
         special = spell.get('special')
 
+        # the specials with a method of their own (SpellHandler._special_<name>)
+        handler = getattr(cls, f'_special_{special}', None) if special else None
+        if handler is not None:
+            await handler(caster, target, spell)
+            return
+
         if special == 'cold_snap':
             # Refresh frost-related cooldowns/flags
             for attr in ['last_ice_lance', 'last_deep_freeze', 'last_howling_blast']:
                 if hasattr(caster, attr):
                     setattr(caster, attr, 0)
             await caster.send(f"{c['cyan']}Your frost power surges anew.{c['reset']}")
+            return
+
+        elif special == 'resonance_burst':
+            # Spend Arcane Charges for an escalating room burst (mage signature)
+            from combat import CombatHandler
+            charges = getattr(caster, 'arcane_charges', 0)
+            caster.arcane_charges = 0
+            base = cls.roll_dice('6d8+12') + caster.level * 3
+            per = 6 + caster.level // 3
+            total = base + charges * per
+            if caster.room:
+                hit = 0
+                for char in cls.foes_in_room(caster):
+                    killed = await char.take_damage(total, caster)
+                    hit += 1
+                    if killed:
+                        await CombatHandler.handle_death(caster, char)
+                await caster.send(f"{c['magenta']}Resonance Burst detonates for {total} (spent {charges} Arcane Charge{'s' if charges != 1 else ''}), striking {hit} foe{'s' if hit != 1 else ''}!{c['reset']}")
+            return
+
+        elif special in ('mistgrasp', 'wraithfire', 'mistrot', 'sever_cord'):
+            # ── Soulbinder originals — Soul-Shard death magic ──
+            from combat import CombatHandler
+            from affects import AffectManager
+            def _grant_shards(n):
+                cur = getattr(caster, 'soul_shards', 0)
+                caster.soul_shards = min(10, cur + n)
+                gained = caster.soul_shards - cur
+                if gained:
+                    c2 = caster.config.COLORS
+                    return f"{c2['magenta']}(+{gained} Soul Shard{'s' if gained != 1 else ''}: {caster.soul_shards}/10){c2['reset']}"
+                return ''
+            base = cls.roll_dice(spell['damage_dice']) + caster.level * spell.get('damage_per_level', 0)
+            note = ''
+            if special == 'mistgrasp':
+                damage = base
+                AffectManager.apply_affect(target, {'name': 'mistrot', 'type': AffectManager.TYPE_DOT,
+                    'applies_to': 'hp', 'value': 4 + caster.level // 6, 'duration': 4, 'caster_level': caster.level})
+                note = _grant_shards(1)
+            elif special == 'wraithfire':
+                spent = min(5, getattr(caster, 'soul_shards', 0))
+                caster.soul_shards -= spent
+                damage = base + spent * (8 + caster.level // 4)
+                if spent:
+                    note = f"{c['magenta']}(consumed {spent} Soul Shard{'s' if spent != 1 else ''}){c['reset']}"
+            elif special == 'mistrot':
+                damage = base
+                AffectManager.apply_affect(target, {'name': 'mistrot', 'type': AffectManager.TYPE_DOT,
+                    'applies_to': 'hp', 'value': 6 + caster.level // 4, 'duration': 6,
+                    'caster_level': caster.level, 'stacking': True})
+                note = _grant_shards(1)
+            else:  # sever_cord — execute
+                hp_pct = (target.hp / target.max_hp) if getattr(target, 'max_hp', 0) else 1.0
+                if hp_pct <= 0.25:
+                    damage = base + caster.level * 6
+                    note = _grant_shards(3) + f" {c['bright_red']}THE CORD IS SEVERED!{c['reset']}"
+                else:
+                    damage = base
+            await caster.send(f"{c['magenta']}{spell['name']} strikes {target.name} for {damage} damage! {note}{c['reset']}")
+            killed = await target.take_damage(damage, caster)
+            if killed:
+                await CombatHandler.handle_death(caster, target)
             return
 
         elif special == 'briskness':
@@ -2528,12 +3155,13 @@ class SpellHandler:
             return
 
         elif special == 'blood_boil':
-            # AoE disease damage
+            # AoE disease damage on every foe here
             if caster.room:
-                for char in list(caster.room.characters):
-                    if char != caster and hasattr(char, 'hp'):
-                        dmg = cls.roll_dice('2d6') + caster.level
-                        await char.take_damage(dmg, caster)
+                from combat import CombatHandler
+                for char in cls.foes_in_room(caster):
+                    dmg = cls.roll_dice('2d6') + caster.level
+                    if await char.take_damage(dmg, caster):
+                        await CombatHandler.handle_death(caster, char)
                 await caster.send(f"{c['red']}Blood boils in your enemies' veins!{c['reset']}")
             return
 
@@ -2553,7 +3181,6 @@ class SpellHandler:
 
         elif special == 'finger_of_death':
             # Finger of Death: massive damage + instant kill chance on low HP targets
-            import random
             
             # Calculate damage: 12d10+30 + 8 per level
             damage = cls.roll_dice('12d10+30') + (caster.level * 8)
@@ -2617,17 +3244,16 @@ class SpellHandler:
             # Burst all festering wounds on all enemies + summon ghouls
             if caster.room:
                 total_burst = 0
-                for char in list(caster.room.characters):
-                    if char != caster and hasattr(char, 'hp'):
-                        wounds = getattr(char, 'festering_wounds', 0)
-                        if wounds > 0:
-                            burst_damage = wounds * (10 + caster.level)
-                            char.festering_wounds = 0
-                            await char.take_damage(burst_damage, caster)
-                            total_burst += wounds
-                        # Base damage even without wounds
-                        base_dmg = cls.roll_dice('3d6') + caster.level
-                        await char.take_damage(base_dmg, caster)
+                from combat import CombatHandler
+                for char in cls.foes_in_room(caster):
+                    wounds = getattr(char, 'festering_wounds', 0)
+                    burst_damage = cls.roll_dice('3d6') + caster.level     # base damage even without wounds
+                    if wounds > 0:
+                        burst_damage += wounds * (10 + caster.level)
+                        char.festering_wounds = 0
+                        total_burst += wounds
+                    if await char.take_damage(burst_damage, caster):
+                        await CombatHandler.handle_death(caster, char)
                 await caster.send(f"{c['bright_magenta']}The apocalypse consumes your enemies! ({total_burst} wounds burst){c['reset']}")
                 # Summon ghouls based on wounds burst
                 if total_burst > 0:
@@ -2855,15 +3481,16 @@ class SpellHandler:
             # Hit all enemies in room
             if caster.room:
                 hit_count = 0
-                for char in list(caster.room.characters):
-                    if char != caster and not (hasattr(char, 'owner') and char.owner == caster):
-                        if hasattr(char, 'hp') and hasattr(char, 'take_damage'):
-                            killed = await char.take_damage(total_damage, caster)
-                            await char.send(f"{c['bright_red']}The explosion engulfs you for {total_damage} damage!{c['reset']}")
-                            hit_count += 1
-                            if killed and hasattr(char, 'send'):
-                                from combat import CombatHandler
-                                await CombatHandler.handle_death(caster, char)
+                for char in cls.foes_in_room(caster):
+                    if char is sacrificed_pet:
+                        continue
+                    killed = await char.take_damage(total_damage, caster)
+                    if hasattr(char, 'send'):
+                        await char.send(f"{c['bright_red']}The explosion engulfs you for {total_damage} damage!{c['reset']}")
+                    hit_count += 1
+                    if killed:
+                        from combat import CombatHandler
+                        await CombatHandler.handle_death(caster, char)
                 
                 await caster.send(f"{c['yellow']}Your explosion hits {hit_count} enemies for {total_damage} damage each!{c['reset']}")
             
@@ -2937,10 +3564,13 @@ class SpellHandler:
                 caster.room = temple
                 temple.characters.append(caster)
                 await caster.do_look([])
+                if hasattr(caster, 'sync_room'):
+                    await caster.sync_room()          # the 3D client follows
                 
         elif special == 'teleport':
-            # Random teleport (dangerous!)
-            rooms = list(caster.world.rooms.values())
+            # Random teleport (dangerous!), but never into a room the caster may not be in
+            # (the God Rooms, a land sealed until built)
+            rooms = [r for r in caster.world.rooms.values() if r.admits(caster)]
             if rooms:
                 new_room = random.choice(rooms)
                 if caster.room:
@@ -2949,6 +3579,8 @@ class SpellHandler:
                 new_room.characters.append(caster)
                 await caster.send(f"{c['bright_cyan']}You materialize in a new location!{c['reset']}")
                 await caster.do_look([])
+                if hasattr(caster, 'sync_room'):
+                    await caster.sync_room()          # the 3D client follows
                 
         elif special == 'fear':
             # Make target flee
@@ -2968,34 +3600,24 @@ class SpellHandler:
                 await caster.send(f"{c['bright_red']}You drain {drain} experience from {target.name}!{c['reset']}")
 
         elif special == 'break_door':
-            # Break a locked door
-            # Need to get direction from target_name in original cast
-            direction = None
-            for dir_name in caster.config.DIRECTIONS.keys():
-                if target and dir_name in str(target).lower():
-                    direction = dir_name
-                    break
-
-            if not direction or direction not in caster.room.exits:
+            # Break a door (by direction or name: "cast 'break door' s", "... trapdoor")
+            import doors
+            direction, exit_data, door, err = doors.resolve(caster.room, str(target or '').split())
+            if err in ('what', 'noexit', 'noname') or not direction:
                 await caster.send(f"{c['red']}There's no door in that direction!{c['reset']}")
                 return
-
-            exit_data = caster.room.exits[direction]
-            if 'door' not in exit_data:
+            if err == 'nodoor':
                 await caster.send(f"{c['yellow']}There's no door {direction}.{c['reset']}")
                 return
 
-            door = exit_data['door']
-
             # Make a loud noise
             await caster.room.send_to_room(
-                f"{c['bright_red']}**CRASH** The {door.get('name', 'door')} explodes into splinters!{c['reset']}"
+                f"{c['bright_red']}**CRASH** The {doors.label(door)} explodes into splinters!{c['reset']}"
             )
 
-            # Break the door
-            door['broken'] = True
-            door['state'] = 'open'
-            door['locked'] = False
+            # Break the door (both sides)
+            doors.apply(caster.room, direction, state='open', locked=False, broken=True,
+                        sealed_until=None, barricaded_until=None, magically_blocked=None, hp=None)
 
             # Alert nearby mobs (aggressive behavior)
             for npc in caster.room.characters:
@@ -3005,34 +3627,26 @@ class SpellHandler:
                         await CombatHandler.start_combat(npc, caster)
 
         elif special == 'block_door':
-            # Magically block a door
-            direction = None
-            for dir_name in caster.config.DIRECTIONS.keys():
-                if target and dir_name in str(target).lower():
-                    direction = dir_name
-                    break
-
-            if not direction or direction not in caster.room.exits:
+            # Magically block a door (both sides, for a while: it used to never expire)
+            import doors
+            direction, exit_data, door, err = doors.resolve(caster.room, str(target or '').split())
+            if err in ('what', 'noexit', 'noname') or not direction:
                 await caster.send(f"{c['red']}There's no door in that direction!{c['reset']}")
                 return
-
-            exit_data = caster.room.exits[direction]
-            if 'door' not in exit_data:
+            if err == 'nodoor':
                 await caster.send(f"{c['yellow']}There's no door {direction}.{c['reset']}")
                 return
 
-            door = exit_data['door']
-
             # Check if already blocked
-            if door.get('magically_blocked', False):
-                await caster.send(f"{c['yellow']}The door is already magically sealed!{c['reset']}")
+            if door.get('magically_blocked', False) or door.get('sealed_until', 0) > time.time():
+                await caster.send(f"{c['yellow']}The {doors.label(door)} is already magically sealed!{c['reset']}")
                 return
 
             # Block the door
-            door['magically_blocked'] = True
-            door['block_expires'] = caster.world.game_time.hour + (spell['duration_ticks'] // 60) if hasattr(caster.world, 'game_time') else 0
+            doors.apply(caster.room, direction, mirror=('sealed_until',),
+                        sealed_until=time.time() + 120 + getattr(caster, 'level', 1) * 2)
 
-            await caster.send(f"{c['bright_blue']}Magical energy surrounds the {door.get('name', 'door')}, sealing it shut!{c['reset']}")
+            await caster.send(f"{c['bright_blue']}Magical energy surrounds the {doors.label(door)}, sealing it shut!{c['reset']}")
 
         elif special == 'identify':
             # Identify an item in inventory, equipped, or on the ground
@@ -3141,6 +3755,11 @@ class SpellHandler:
                     else:
                         await caster.send(f"  {c['green']}{affect_type.title()}: {sign}{value}{c['reset']}")
 
+            # what it does in a fight and its set (procs.py)
+            import procs
+            for line in procs.item_lines(item, caster):
+                await caster.send(f"  {c['bright_yellow']}{line}{c['reset']}")
+
             await caster.send(f"{c['bright_cyan']}{'='*60}{c['reset']}")
 
         elif special == 'enchant_weapon':
@@ -3219,17 +3838,15 @@ class SpellHandler:
 
         elif special == 'create_food':
             # Create food item
-            from objects import GameObject
-            food = GameObject.create_from_template({
-                'vnum': 9999,
-                'name': 'conjured bread',
-                'short_desc': 'a loaf of conjured bread',
-                'description': 'A magically created loaf of bread.',
-                'item_type': 'food',
-                'weight': 1,
-                'cost': 0,
-                'food_value': 12,
-            })
+            from objects import Object
+            food = Object(9999, caster.world)
+            food.name = 'conjured bread'
+            food.short_desc = 'a loaf of conjured bread'
+            food.room_desc = 'A loaf of conjured bread lies here.'
+            food.description = 'A magically created loaf of bread, still warm.'
+            food.item_type = 'food'
+            food.weight = 1
+            food.food_value = 12
             caster.inventory.append(food)
             await caster.send(f"{c['bright_yellow']}You conjure a loaf of bread!{c['reset']}")
 
@@ -3247,18 +3864,17 @@ class SpellHandler:
                 await caster.send(f"{c['bright_cyan']}You fill the waterskin with fresh water!{c['reset']}")
             else:
                 # Create a waterskin
-                from objects import GameObject
-                waterskin = GameObject.create_from_template({
-                    'vnum': 9998,
-                    'name': 'conjured waterskin',
-                    'short_desc': 'a conjured waterskin',
-                    'description': 'A magically created waterskin filled with water.',
-                    'item_type': 'drink',
-                    'weight': 2,
-                    'cost': 0,
-                    'drinks': 20,
-                    'liquid': 'water',
-                })
+                from objects import Object
+                waterskin = Object(9998, caster.world)
+                waterskin.name = 'conjured waterskin'
+                waterskin.short_desc = 'a conjured waterskin'
+                waterskin.room_desc = 'A conjured waterskin lies here.'
+                waterskin.description = 'A magically created waterskin, beaded with cool condensation.'
+                waterskin.item_type = 'drink'
+                waterskin.weight = 2
+                waterskin.drinks = 20
+                waterskin.max_drinks = 20
+                waterskin.liquid = 'water'
                 caster.inventory.append(waterskin)
                 await caster.send(f"{c['bright_cyan']}You conjure a waterskin full of water!{c['reset']}")
 
@@ -3287,6 +3903,10 @@ class SpellHandler:
             if target_player.is_fighting:
                 await caster.send(f"{c['red']}{target_player.name} is fighting and cannot be summoned!{c['reset']}")
                 return
+            # nor into a room they may not be in (the God Rooms, a sealed land)
+            if not caster.room or not caster.room.admits(target_player):
+                await caster.send(f"{c['red']}A divine force will not let {target_player.name} be brought here.{c['reset']}")
+                return
 
             # Move player
             old_room = target_player.room
@@ -3302,6 +3922,8 @@ class SpellHandler:
 
             await target_player.send(f"{c['bright_yellow']}You are summoned!{c['reset']}")
             await target_player.do_look([])
+            if hasattr(target_player, 'sync_room'):
+                await target_player.sync_room()
 
             await caster.room.send_to_room(
                 f"{target_player.name} appears in a flash of light!",
@@ -3323,18 +3945,15 @@ class SpellHandler:
 
         elif special == 'earthquake':
             # Damage all enemies in the room
-            enemies = []
-            for char in caster.room.characters[:]:
-                if char != caster:
-                    if hasattr(char, 'is_player') or hasattr(char, 'flags'):
-                        enemies.append(char)
-
+            from combat import CombatHandler
             damage = cls.roll_dice('5d8') + caster.level * 2
 
-            for enemy in enemies:
+            for enemy in cls.foes_in_room(caster):
                 killed = await enemy.take_damage(damage // 2, caster)  # Half damage to all enemies
                 if hasattr(enemy, 'send'):
                     await enemy.send(f"{c['red']}The earthquake hits you for {damage // 2} damage!{c['reset']}")
+                if killed:
+                    await CombatHandler.handle_death(caster, enemy)
 
         elif special == 'dispel_magic':
             # Remove magical effects from target
@@ -3366,10 +3985,8 @@ class SpellHandler:
 
         elif special == 'mass_charm':
             # Attempt to charm all enemies in the room
-            enemies = []
-            for char in caster.room.characters[:]:
-                if char != caster and not hasattr(char, 'is_player'):
-                    enemies.append(char)
+            charm = {'affects': [{'type': 'charmed'}]}
+            enemies = [ch for ch in cls.foes_in_room(caster) if not hasattr(ch, 'connection') and not cls._immune(ch, charm)]
 
             charmed_count = 0
             for enemy in enemies:

@@ -1,0 +1,153 @@
+{
+  "run": "progression-01",
+  "character": "NewSxepv",
+  "opener": "bash",
+  "start": {
+    "level": null,
+    "exp": null,
+    "hp": null,
+    "maxhp": null
+  },
+  "end": {
+    "level": 10,
+    "exp": 3116,
+    "hp": 75,
+    "maxhp": 82
+  },
+  "fights": [
+    {
+      "vnum": 20008,
+      "target": "queen",
+      "threat": "\u2551 Combat: OB  +1  DB +17  PB  0%                     \u2551\r\n\u2551 DB:base +22 st +0 sh +",
+      "level_before": 12,
+      "level_after": 10,
+      "levelled": false,
+      "exp_before": 100,
+      "exp_after": 1906,
+      "duration_s": 8.5,
+      "rounds": 5,
+      "ended": "mob_killed",
+      "bashes": 1,
+      "braces": 0,
+      "opener_used": "bash",
+      "reactions": {
+        "brace": 0,
+        "sidestep": 0,
+        "interrupt": 0,
+        "swing": 0,
+        "perfect": 0
+      },
+      "hp_start": 82,
+      "hp_end": 82,
+      "maxhp": 82,
+      "label": "spider queen (boss L12)",
+      "t_elapsed_s": 17.7
+    },
+    {
+      "vnum": 20008,
+      "target": "queen",
+      "threat": "Moderate",
+      "level_before": 10,
+      "level_after": 10,
+      "levelled": false,
+      "exp_before": 1906,
+      "exp_after": 3179,
+      "duration_s": 43.3,
+      "rounds": 16,
+      "ended": "mob_killed",
+      "bashes": 5,
+      "braces": 0,
+      "opener_used": "bash",
+      "reactions": {
+        "brace": 0,
+        "sidestep": 0,
+        "interrupt": 0,
+        "swing": 0,
+        "perfect": 0
+      },
+      "hp_start": 50,
+      "hp_end": 14,
+      "maxhp": 82,
+      "label": "spider queen again",
+      "t_elapsed_s": 70.1
+    },
+    {
+      "vnum": 20009,
+      "target": "wolf",
+      "threat": "Even",
+      "level_before": 10,
+      "level_after": 10,
+      "levelled": false,
+      "exp_before": 3179,
+      "exp_after": 3179,
+      "duration_s": 9.3,
+      "rounds": 8,
+      "ended": "mob_killed",
+      "bashes": 2,
+      "braces": 2,
+      "opener_used": "bash",
+      "reactions": {
+        "brace": 2,
+        "sidestep": 0,
+        "interrupt": 0,
+        "swing": 0,
+        "perfect": 0
+      },
+      "hp_start": 75,
+      "hp_end": 61,
+      "maxhp": 82,
+      "label": "alpha wolf (boss L14)",
+      "t_elapsed_s": 238.4
+    },
+    {
+      "vnum": 20009,
+      "target": "wolf",
+      "threat": "Even",
+      "level_before": 10,
+      "level_after": 10,
+      "levelled": false,
+      "exp_before": 3116,
+      "exp_after": 3116,
+      "duration_s": 150.5,
+      "rounds": 18,
+      "ended": "timeout",
+      "bashes": 17,
+      "braces": 0,
+      "opener_used": "bash",
+      "reactions": {
+        "brace": 0,
+        "sidestep": 0,
+        "interrupt": 0,
+        "swing": 0,
+        "perfect": 0
+      },
+      "hp_start": 21,
+      "hp_end": 73,
+      "maxhp": 82,
+      "label": "alpha wolf again",
+      "t_elapsed_s": 399.0
+    }
+  ],
+  "rests": [
+    {
+      "after": "spider queen again",
+      "seconds": 150.6
+    }
+  ],
+  "deaths": 0,
+  "level_reached": 10,
+  "time_to_level": {
+    "2": 17.7,
+    "3": 17.7,
+    "4": 17.7,
+    "5": 17.7,
+    "6": 17.7,
+    "7": 17.7,
+    "8": 17.7,
+    "9": 17.7,
+    "10": 17.7
+  },
+  "total_s": 400.0,
+  "active_fight_s": 211.6,
+  "rest_s": 150.6
+}

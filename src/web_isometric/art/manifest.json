@@ -1,0 +1,5880 @@
+{
+ "tile": 32,
+ "actors": {
+  "lucifer-cultist-enemy": {
+   "pack": "lucifer-cultist-enemy",
+   "frame": 48,
+   "anims": {
+    "attack01": {
+     "left": {
+      "file": "lucifer-cultist-enemy/Left/Png/CultistLeftAttack01.png",
+      "frames": 11,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-cultist-enemy/Up/Png/CultistUpAttack01.png",
+      "frames": 11,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-cultist-enemy/Down/Png/CultistDownAttack01.png",
+      "frames": 11,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-cultist-enemy/Right/Png/CultistRightAttack01.png",
+      "frames": 11,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "idle": {
+     "left": {
+      "file": "lucifer-cultist-enemy/Left/Png/CultistLeftIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-cultist-enemy/Up/Png/CultistUpIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-cultist-enemy/Down/Png/CultistDownIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-cultist-enemy/Right/Png/CultistRightIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "hurt": {
+     "left": {
+      "file": "lucifer-cultist-enemy/Left/Png/CultistLefttHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-cultist-enemy/Up/Png/CultistUpHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-cultist-enemy/Down/Png/CultistDownHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-cultist-enemy/Right/Png/CultistRightHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "death": {
+     "left": {
+      "file": "lucifer-cultist-enemy/Left/Png/CultistLeftDeath.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-cultist-enemy/Up/Png/CultistUpDeath.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-cultist-enemy/Down/Png/CultistDownDeath.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-cultist-enemy/Right/Png/CultistRightDeath.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "land": {
+     "left": {
+      "file": "lucifer-cultist-enemy/Left/Png/CultistLeftLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-cultist-enemy/Up/Png/CultistUpLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-cultist-enemy/Down/Png/CultistDownLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-cultist-enemy/Right/Png/CultistRightLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "walk": {
+     "left": {
+      "file": "lucifer-cultist-enemy/Left/Png/CultistLeftWalk.png",
+      "frames": 8,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-cultist-enemy/Down/Png/CultistDownWalk.png",
+      "frames": 8,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-cultist-enemy/Right/Png/CultistRightWalk.png",
+      "frames": 8,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "jump": {
+     "left": {
+      "file": "lucifer-cultist-enemy/Left/Png/CultistLeftJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-cultist-enemy/Up/Png/CultistUpJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-cultist-enemy/Down/Png/CultistDownJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-cultist-enemy/Right/Png/CultistRightJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "run": {
+     "up": {
+      "file": "lucifer-cultist-enemy/Up/Png/CultistUpRun.png",
+      "frames": 8,
+      "w": 48,
+      "h": 48
+     }
+    }
+   }
+  },
+  "lucifer-goblin-beast-boss": {
+   "pack": "lucifer-goblin-beast-boss",
+   "frame": 48,
+   "anims": {
+    "idle": {
+     "left": {
+      "file": "lucifer-goblin-beast-boss/Left/Png/GoblinBeastLeftIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-goblin-beast-boss/Up/Png/GoblinBeastUpIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-goblin-beast-boss/Down/Png/GoblinBeastDownIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-goblin-beast-boss/Right/Png/GoblinBeastRightIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "walk": {
+     "left": {
+      "file": "lucifer-goblin-beast-boss/Left/Png/GoblinBeastLeftWalk.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-goblin-beast-boss/Up/Png/GoblinBeastUpWalk.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-goblin-beast-boss/Down/Png/GoblinBeastDownWalk.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-goblin-beast-boss/Right/Png/GoblinBeastRightWalk.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "attack01": {
+     "left": {
+      "file": "lucifer-goblin-beast-boss/Left/Png/GoblinBeastLeftAttack01.png",
+      "frames": 8,
+      "w": 64,
+      "h": 64
+     },
+     "up": {
+      "file": "lucifer-goblin-beast-boss/Up/Png/GoblinBeastUpAttack01.png",
+      "frames": 8,
+      "w": 64,
+      "h": 64
+     },
+     "down": {
+      "file": "lucifer-goblin-beast-boss/Down/Png/GoblinBeastDownAttack01.png",
+      "frames": 8,
+      "w": 64,
+      "h": 64
+     },
+     "right": {
+      "file": "lucifer-goblin-beast-boss/Right/Png/GoblinBeastRightAttack01.png",
+      "frames": 8,
+      "w": 64,
+      "h": 64
+     }
+    },
+    "death": {
+     "left": {
+      "file": "lucifer-goblin-beast-boss/Left/Png/GoblinBeastLeftDeath.png",
+      "frames": 10,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-goblin-beast-boss/Up/Png/GoblinBeastUpDeath.png",
+      "frames": 10,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-goblin-beast-boss/Down/Png/GoblinBeastDownDeath.png",
+      "frames": 10,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-goblin-beast-boss/Right/Png/GoblinBeastRightDeath.png",
+      "frames": 10,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "hurt": {
+     "left": {
+      "file": "lucifer-goblin-beast-boss/Left/Png/GoblinBeastLeftHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-goblin-beast-boss/Up/Png/GoblinBeastUpHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-goblin-beast-boss/Down/Png/GoblinBeastDownHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-goblin-beast-boss/Right/Png/GoblinBeastRightHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "attack02": {
+     "left": {
+      "file": "lucifer-goblin-beast-boss/Left/Png/GoblinBeastLeftAttack02.png",
+      "frames": 9,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-goblin-beast-boss/Up/Png/GoblinBeastUpAttack02.png",
+      "frames": 9,
+      "w": 64,
+      "h": 64
+     },
+     "down": {
+      "file": "lucifer-goblin-beast-boss/Down/Png/GoblinBeastDownAttack02.png",
+      "frames": 9,
+      "w": 64,
+      "h": 64
+     },
+     "right": {
+      "file": "lucifer-goblin-beast-boss/Right/Png/GoblinBeastRightAttack02.png",
+      "frames": 9,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "attack03": {
+     "left": {
+      "file": "lucifer-goblin-beast-boss/Left/Png/GoblinBeastLeftAttack03.png",
+      "frames": 14,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-goblin-beast-boss/Up/Png/GoblinBeastUpAttack03.png",
+      "frames": 14,
+      "w": 64,
+      "h": 64
+     },
+     "down": {
+      "file": "lucifer-goblin-beast-boss/Down/Png/GoblinBeastDownAttack03.png",
+      "frames": 14,
+      "w": 64,
+      "h": 64
+     },
+     "right": {
+      "file": "lucifer-goblin-beast-boss/Right/Png/GoblinBeastRightAttack03.png",
+      "frames": 14,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "land": {
+     "left": {
+      "file": "lucifer-goblin-beast-boss/Left/Png/GoblinBeastLeftLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-goblin-beast-boss/Up/Png/GoblinBeastUpLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-goblin-beast-boss/Down/Png/GoblinBeastDownLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-goblin-beast-boss/Right/Png/GoblinBeastRightLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "jump": {
+     "left": {
+      "file": "lucifer-goblin-beast-boss/Left/Png/GoblinBeastLeftJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-goblin-beast-boss/Up/Png/GoblinBeastUpJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-goblin-beast-boss/Down/Png/GoblinBeastDownJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-goblin-beast-boss/Right/Png/GoblinBeastRightJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    }
+   }
+  },
+  "lucifer-goblin-berserker-enemy": {
+   "pack": "lucifer-goblin-berserker-enemy",
+   "frame": 48,
+   "anims": {
+    "death": {
+     "left": {
+      "file": "lucifer-goblin-berserker-enemy/Left/Png/GoblinLeftDeath.png",
+      "frames": 9,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-goblin-berserker-enemy/Up/Png/GoblinUpDeath.png",
+      "frames": 9,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-goblin-berserker-enemy/Down/Png/GoblinDownDeath.png",
+      "frames": 9,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-goblin-berserker-enemy/Right/Png/GoblinRightDeath.png",
+      "frames": 9,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "hurt": {
+     "left": {
+      "file": "lucifer-goblin-berserker-enemy/Left/Png/GoblinLeftHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-goblin-berserker-enemy/Up/Png/GoblinUpHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-goblin-berserker-enemy/Down/Png/GoblinDownHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-goblin-berserker-enemy/Right/Png/GoblinRightHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "run": {
+     "left": {
+      "file": "lucifer-goblin-berserker-enemy/Left/Png/GoblinLeftRun.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-goblin-berserker-enemy/Up/Png/GoblinUpRun.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-goblin-berserker-enemy/Down/Png/GoblinDownRun.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-goblin-berserker-enemy/Right/Png/GoblinRightRun.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "attack01": {
+     "left": {
+      "file": "lucifer-goblin-berserker-enemy/Left/Png/GoblinLeftAttack01.png",
+      "frames": 10,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-goblin-berserker-enemy/Up/Png/GoblinUpAttack01.png",
+      "frames": 10,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-goblin-berserker-enemy/Down/Png/GoblinDownAttack01.png",
+      "frames": 10,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-goblin-berserker-enemy/Right/Png/GoblinRightAttack01.png",
+      "frames": 10,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "land": {
+     "left": {
+      "file": "lucifer-goblin-berserker-enemy/Left/Png/GoblinLeftLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-goblin-berserker-enemy/Up/Png/GoblinUpLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-goblin-berserker-enemy/Down/Png/GoblinDownLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-goblin-berserker-enemy/Right/Png/GoblinRightLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "jump": {
+     "left": {
+      "file": "lucifer-goblin-berserker-enemy/Left/Png/GoblinLeftJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-goblin-berserker-enemy/Up/Png/GoblinUpJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-goblin-berserker-enemy/Down/Png/GoblinDownJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-goblin-berserker-enemy/Right/Png/GoblinRightJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "idle": {
+     "left": {
+      "file": "lucifer-goblin-berserker-enemy/Left/Png/GoblinLeftIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-goblin-berserker-enemy/Up/Png/GoblinUpIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-goblin-berserker-enemy/Down/Png/GoblinDownIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-goblin-berserker-enemy/Right/Png/GoblinRightIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    }
+   }
+  },
+  "lucifer-goblin-rider-boss": {
+   "pack": "lucifer-goblin-rider-boss",
+   "frame": 80,
+   "anims": {
+    "idle": {
+     "left": {
+      "file": "lucifer-goblin-rider-boss/Left/Png/GoblinRiderLeftIdle.png",
+      "frames": 5,
+      "w": 80,
+      "h": 80
+     },
+     "up": {
+      "file": "lucifer-goblin-rider-boss/Up/Png/GoblinRiderUpIdle.png",
+      "frames": 5,
+      "w": 80,
+      "h": 80
+     },
+     "right": {
+      "file": "lucifer-goblin-rider-boss/Right/Png/GoblinRiderRightIdle.png",
+      "frames": 5,
+      "w": 80,
+      "h": 80
+     }
+    },
+    "death": {
+     "left": {
+      "file": "lucifer-goblin-rider-boss/Left/Png/GoblinRiderLeftDeath.png",
+      "frames": 10,
+      "w": 80,
+      "h": 80
+     },
+     "up": {
+      "file": "lucifer-goblin-rider-boss/Up/Png/GoblinRiderUpDeath.png",
+      "frames": 10,
+      "w": 80,
+      "h": 80
+     },
+     "right": {
+      "file": "lucifer-goblin-rider-boss/Right/Png/GoblinRiderRightDeath.png",
+      "frames": 10,
+      "w": 80,
+      "h": 80
+     }
+    },
+    "attack01": {
+     "left": {
+      "file": "lucifer-goblin-rider-boss/Left/Png/GoblinRiderLeftAttack01.png",
+      "frames": 6,
+      "w": 80,
+      "h": 80
+     },
+     "up": {
+      "file": "lucifer-goblin-rider-boss/Up/Png/GoblinRiderUpAttack01.png",
+      "frames": 6,
+      "w": 80,
+      "h": 80
+     },
+     "right": {
+      "file": "lucifer-goblin-rider-boss/Right/Png/GoblinRiderRightAttack01.png",
+      "frames": 6,
+      "w": 80,
+      "h": 80
+     }
+    },
+    "hurt": {
+     "left": {
+      "file": "lucifer-goblin-rider-boss/Left/Png/GoblinRiderLeftHurt.png",
+      "frames": 4,
+      "w": 80,
+      "h": 80
+     },
+     "up": {
+      "file": "lucifer-goblin-rider-boss/Up/Png/GoblinRiderUpHurt.png",
+      "frames": 4,
+      "w": 80,
+      "h": 80
+     },
+     "right": {
+      "file": "lucifer-goblin-rider-boss/Right/Png/GoblinRiderRightHurt.png",
+      "frames": 4,
+      "w": 80,
+      "h": 80
+     }
+    },
+    "attack03": {
+     "left": {
+      "file": "lucifer-goblin-rider-boss/Left/Png/GoblinRiderLeftAttack03.png",
+      "frames": 5,
+      "w": 80,
+      "h": 80
+     },
+     "up": {
+      "file": "lucifer-goblin-rider-boss/Up/Png/GoblinRiderUpAttack03.png",
+      "frames": 5,
+      "w": 80,
+      "h": 80
+     },
+     "right": {
+      "file": "lucifer-goblin-rider-boss/Right/Png/GoblinRiderRightAttack03.png",
+      "frames": 5,
+      "w": 80,
+      "h": 80
+     }
+    },
+    "move": {
+     "left": {
+      "file": "lucifer-goblin-rider-boss/Left/Png/GoblinRiderLeftMove.png",
+      "frames": 4,
+      "w": 80,
+      "h": 80
+     },
+     "up": {
+      "file": "lucifer-goblin-rider-boss/Up/Png/GoblinRiderUpMove.png",
+      "frames": 4,
+      "w": 80,
+      "h": 80
+     },
+     "right": {
+      "file": "lucifer-goblin-rider-boss/Right/Png/GoblinRiderRightMove.png",
+      "frames": 4,
+      "w": 80,
+      "h": 80
+     }
+    },
+    "attack02": {
+     "left": {
+      "file": "lucifer-goblin-rider-boss/Left/Png/GoblinRiderLeftAttack02.png",
+      "frames": 5,
+      "w": 80,
+      "h": 80
+     },
+     "up": {
+      "file": "lucifer-goblin-rider-boss/Up/Png/GoblinRiderUpAttack02.png",
+      "frames": 5,
+      "w": 80,
+      "h": 80
+     },
+     "right": {
+      "file": "lucifer-goblin-rider-boss/Right/Png/GoblinRiderRightAttack02.png",
+      "frames": 5,
+      "w": 80,
+      "h": 80
+     }
+    },
+    "goblinriderattack01": {
+     "down": {
+      "file": "lucifer-goblin-rider-boss/Down/Png/GoblinRiderAttack01.png",
+      "frames": 6,
+      "w": 80,
+      "h": 80
+     }
+    },
+    "goblinriderdeath": {
+     "down": {
+      "file": "lucifer-goblin-rider-boss/Down/Png/GoblinRiderDeath.png",
+      "frames": 10,
+      "w": 80,
+      "h": 80
+     }
+    },
+    "goblinrideridle": {
+     "down": {
+      "file": "lucifer-goblin-rider-boss/Down/Png/GoblinRiderIdle.png",
+      "frames": 5,
+      "w": 80,
+      "h": 80
+     }
+    },
+    "goblinriderhurt": {
+     "down": {
+      "file": "lucifer-goblin-rider-boss/Down/Png/GoblinRiderHurt.png",
+      "frames": 4,
+      "w": 80,
+      "h": 80
+     }
+    },
+    "goblinridermove": {
+     "down": {
+      "file": "lucifer-goblin-rider-boss/Down/Png/GoblinRiderMove.png",
+      "frames": 4,
+      "w": 80,
+      "h": 80
+     }
+    },
+    "goblinriderattack02": {
+     "down": {
+      "file": "lucifer-goblin-rider-boss/Down/Png/GoblinRiderAttack02.png",
+      "frames": 5,
+      "w": 80,
+      "h": 80
+     }
+    },
+    "goblinriderattack03": {
+     "down": {
+      "file": "lucifer-goblin-rider-boss/Down/Png/GoblinRiderAttack03.png",
+      "frames": 5,
+      "w": 80,
+      "h": 80
+     }
+    }
+   }
+  },
+  "lucifer-goblin-slinger-enemy": {
+   "pack": "lucifer-goblin-slinger-enemy",
+   "frame": 48,
+   "anims": {
+    "death": {
+     "left": {
+      "file": "lucifer-goblin-slinger-enemy/Left/Png/GoblinSlingerLeftDeath.png",
+      "frames": 9,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-goblin-slinger-enemy/Up/Png/GoblinSlingerUpDeath.png",
+      "frames": 9,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-goblin-slinger-enemy/Down/Png/GoblinSlingerDownDeath.png",
+      "frames": 9,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-goblin-slinger-enemy/Right/Png/GoblinSlingerRightDeath.png",
+      "frames": 9,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "hurt": {
+     "left": {
+      "file": "lucifer-goblin-slinger-enemy/Left/Png/GoblinSlingerLeftHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-goblin-slinger-enemy/Up/Png/GoblinSlingerUpHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-goblin-slinger-enemy/Down/Png/GoblinSlingerDownHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-goblin-slinger-enemy/Right/Png/GoblinSlingerRightHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "jump": {
+     "left": {
+      "file": "lucifer-goblin-slinger-enemy/Left/Png/GoblinSlingerLeftJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-goblin-slinger-enemy/Up/Png/GoblinSlingerUpJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-goblin-slinger-enemy/Down/Png/GoblinSlingerDownJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-goblin-slinger-enemy/Right/Png/GoblinSlingerRightJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "land": {
+     "left": {
+      "file": "lucifer-goblin-slinger-enemy/Left/Png/GoblinSlingerLeftLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-goblin-slinger-enemy/Up/Png/GoblinSlingerUpLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-goblin-slinger-enemy/Down/Png/GoblinSlingerDownLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-goblin-slinger-enemy/Right/Png/GoblinSlingerRightLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "attack01": {
+     "left": {
+      "file": "lucifer-goblin-slinger-enemy/Left/Png/GoblinSlingerLeftAttack01.png",
+      "frames": 21,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-goblin-slinger-enemy/Up/Png/GoblinSlingerUpAttack01.png",
+      "frames": 21,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-goblin-slinger-enemy/Down/Png/GoblinSlingerDownAttack01.png",
+      "frames": 21,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-goblin-slinger-enemy/Right/Png/GoblinSlingerRightAttack01.png",
+      "frames": 21,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "run": {
+     "left": {
+      "file": "lucifer-goblin-slinger-enemy/Left/Png/GoblinSlingerLeftRun.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-goblin-slinger-enemy/Up/Png/GoblinSlingerUpRun.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-goblin-slinger-enemy/Down/Png/GoblinSlingerDownRun.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-goblin-slinger-enemy/Right/Png/GoblinSlingerRightRun.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "idle": {
+     "left": {
+      "file": "lucifer-goblin-slinger-enemy/Left/Png/GoblinSlingerLeftIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-goblin-slinger-enemy/Up/Png/GoblinSlingerUpIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-goblin-slinger-enemy/Down/Png/GoblinSlingerDownIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-goblin-slinger-enemy/Right/Png/GoblinSlingerRightIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    }
+   }
+  },
+  "lucifer-necromancer": {
+   "pack": "lucifer-necromancer",
+   "frame": 48,
+   "anims": {
+    "attack02": {
+     "left": {
+      "file": "lucifer-necromancer/Left/Png/NecromancerLeftAttack02.png",
+      "frames": 7,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-necromancer/Up/Png/NecromancerUpAttack02.png",
+      "frames": 7,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-necromancer/Down/Png/NecromancerDownAttack02.png",
+      "frames": 7,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-necromancer/Right/Png/NecromancerRightAttack02.png",
+      "frames": 7,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "hurt": {
+     "left": {
+      "file": "lucifer-necromancer/Left/Png/NecromancerLeftHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-necromancer/Up/Png/NecromancerUpHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-necromancer/Down/Png/NecromancerDownHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-necromancer/Right/Png/NecromancerRightHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "death": {
+     "left": {
+      "file": "lucifer-necromancer/Left/Png/NecromancerLeftDeath.png",
+      "frames": 11,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-necromancer/Up/Png/NecromancerUpDeath.png",
+      "frames": 11,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-necromancer/Down/Png/NecromancerDownDeath.png",
+      "frames": 11,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-necromancer/Right/Png/NecromancerRightDeath.png",
+      "frames": 11,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "attack03": {
+     "left": {
+      "file": "lucifer-necromancer/Left/Png/NecromancerLeftAttack03.png",
+      "frames": 12,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-necromancer/Up/Png/NecromancerUpAttack03.png",
+      "frames": 12,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-necromancer/Down/Png/NecromancerDownAttack03.png",
+      "frames": 12,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-necromancer/Right/Png/NecromancerRightAttack03.png",
+      "frames": 12,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "attack01": {
+     "left": {
+      "file": "lucifer-necromancer/Left/Png/NecromancerLeftAttack01.png",
+      "frames": 7,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-necromancer/Up/Png/NecromancerUpAttack01.png",
+      "frames": 7,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-necromancer/Down/Png/NecromancerDownAttack01.png",
+      "frames": 7,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-necromancer/Right/Png/NecromancerRightAttack01.png",
+      "frames": 7,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "jump": {
+     "left": {
+      "file": "lucifer-necromancer/Left/Png/NecromancerLeftJump.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-necromancer/Up/Png/NecromancerUpJump.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-necromancer/Down/Png/NecromancerDownJump.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-necromancer/Right/Png/NecromancerRightJump.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "climb": {
+     "left": {
+      "file": "lucifer-necromancer/Left/Png/NecromancerLeftClimb.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-necromancer/Up/Png/NecromancerUpClimb.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-necromancer/Down/Png/NecromancerDownClimb.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-necromancer/Right/Png/NecromancerRightClimb.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "idle": {
+     "left": {
+      "file": "lucifer-necromancer/Left/Png/NecromancerLefttIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-necromancer/Up/Png/NecromancerUpIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-necromancer/Down/Png/NecromancerDownIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-necromancer/Right/Png/NecromancerRightIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "land": {
+     "left": {
+      "file": "lucifer-necromancer/Left/Png/NecromancerLeftLand.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-necromancer/Up/Png/NecromancerUpLand.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-necromancer/Down/Png/NecromancerDownLand.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-necromancer/Right/Png/NecromancerRightLand.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "run": {
+     "left": {
+      "file": "lucifer-necromancer/Left/Png/NecromancerLeftRun.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-necromancer/Up/Png/NecromancerUpRun.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-necromancer/Down/Png/NecromancerDownRun.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-necromancer/Right/Png/NecromancerRightRun.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "walk": {
+     "right": {
+      "file": "lucifer-necromancer/Right/Png/NecromancerRightWalk.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    }
+   }
+  },
+  "lucifer-possessed-enemy": {
+   "pack": "lucifer-possessed-enemy",
+   "frame": 48,
+   "anims": {
+    "land": {
+     "left": {
+      "file": "lucifer-possessed-enemy/Left/Png/PossesedLeftLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-possessed-enemy/Up/Png/PossesedUpLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-possessed-enemy/Down/Png/PossesedDownLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-possessed-enemy/Right/Png/PossesedRightLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "walk": {
+     "left": {
+      "file": "lucifer-possessed-enemy/Left/Png/PossesedLeftWalk.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-possessed-enemy/Up/Png/PossesedUpWalk.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-possessed-enemy/Down/Png/PossesedDownWalk.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-possessed-enemy/Right/Png/PossesedRightWalk.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "death": {
+     "left": {
+      "file": "lucifer-possessed-enemy/Left/Png/PossesedLeftDeath.png",
+      "frames": 10,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-possessed-enemy/Up/Png/PossesedUpDeath.png",
+      "frames": 10,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-possessed-enemy/Down/Png/PossesedDownDeath.png",
+      "frames": 10,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-possessed-enemy/Right/Png/PossesedRightDeath.png",
+      "frames": 10,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "hurt": {
+     "left": {
+      "file": "lucifer-possessed-enemy/Left/Png/PossesedLefttHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-possessed-enemy/Up/Png/PossesedUpHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-possessed-enemy/Down/Png/PossesedDownHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-possessed-enemy/Right/Png/PossesedRightHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "idle": {
+     "left": {
+      "file": "lucifer-possessed-enemy/Left/Png/PossesedLefttIdle.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-possessed-enemy/Up/Png/PossesedUpIdle.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-possessed-enemy/Down/Png/PossesedDownIdle.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-possessed-enemy/Right/Png/PossesedRightIdle.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "jump": {
+     "left": {
+      "file": "lucifer-possessed-enemy/Left/Png/PossesedLeftJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-possessed-enemy/Up/Png/PossesedUpJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-possessed-enemy/Down/Png/PossesedDownJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-possessed-enemy/Right/Png/PossesedRightJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "attack01": {
+     "left": {
+      "file": "lucifer-possessed-enemy/Left/Png/PossesedLeftAttack01.png",
+      "frames": 11,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-possessed-enemy/Up/Png/PossesedUpAttack01.png",
+      "frames": 11,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-possessed-enemy/Down/Png/PossesedDownAttack01.png",
+      "frames": 11,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-possessed-enemy/Right/Png/PossesedRightAttack01.png",
+      "frames": 11,
+      "w": 48,
+      "h": 48
+     }
+    }
+   }
+  },
+  "lucifer-skeleton-ancient-boss": {
+   "pack": "lucifer-skeleton-ancient-boss",
+   "frame": 80,
+   "anims": {
+    "land": {
+     "left": {
+      "file": "lucifer-skeleton-ancient-boss/Left/Png/AncientSkeletonLeftLand.png",
+      "frames": 4,
+      "w": 80,
+      "h": 80
+     },
+     "up": {
+      "file": "lucifer-skeleton-ancient-boss/Up/Png/AncientSkeletonUpLand.png",
+      "frames": 4,
+      "w": 80,
+      "h": 80
+     },
+     "down": {
+      "file": "lucifer-skeleton-ancient-boss/Down/Png/AncientSkeletonDownLand.png",
+      "frames": 4,
+      "w": 80,
+      "h": 80
+     },
+     "right": {
+      "file": "lucifer-skeleton-ancient-boss/Right/Png/AncientSkeletonRightLand.png",
+      "frames": 4,
+      "w": 80,
+      "h": 80
+     }
+    },
+    "attack01": {
+     "left": {
+      "file": "lucifer-skeleton-ancient-boss/Left/Png/AncientSkeletonLeftAttack01.png",
+      "frames": 7,
+      "w": 80,
+      "h": 80
+     },
+     "up": {
+      "file": "lucifer-skeleton-ancient-boss/Up/Png/AncientSkeletonUpAttack01.png",
+      "frames": 7,
+      "w": 80,
+      "h": 80
+     },
+     "down": {
+      "file": "lucifer-skeleton-ancient-boss/Down/Png/AncientSkeletonDownAttack01.png",
+      "frames": 7,
+      "w": 80,
+      "h": 80
+     },
+     "right": {
+      "file": "lucifer-skeleton-ancient-boss/Right/Png/AncientSkeletonRightAttack01.png",
+      "frames": 7,
+      "w": 80,
+      "h": 80
+     }
+    },
+    "attack02": {
+     "left": {
+      "file": "lucifer-skeleton-ancient-boss/Left/Png/AncientSkeletonLeftAttack02.png",
+      "frames": 13,
+      "w": 80,
+      "h": 80
+     },
+     "up": {
+      "file": "lucifer-skeleton-ancient-boss/Up/Png/AncientSkeletonUpAttack02.png",
+      "frames": 13,
+      "w": 80,
+      "h": 80
+     },
+     "down": {
+      "file": "lucifer-skeleton-ancient-boss/Down/Png/AncientSkeletonDownAttack02.png",
+      "frames": 13,
+      "w": 80,
+      "h": 80
+     },
+     "right": {
+      "file": "lucifer-skeleton-ancient-boss/Right/Png/AncientSkeletonRightAttack02.png",
+      "frames": 13,
+      "w": 80,
+      "h": 80
+     }
+    },
+    "attack03": {
+     "left": {
+      "file": "lucifer-skeleton-ancient-boss/Left/Png/AncientSkeletonLeftAttack03.png",
+      "frames": 7,
+      "w": 80,
+      "h": 80
+     },
+     "up": {
+      "file": "lucifer-skeleton-ancient-boss/Up/Png/AncientSkeletonUpAttack03.png",
+      "frames": 7,
+      "w": 80,
+      "h": 80
+     },
+     "down": {
+      "file": "lucifer-skeleton-ancient-boss/Down/Png/AncientSkeletonDownAttack03.png",
+      "frames": 7,
+      "w": 80,
+      "h": 80
+     },
+     "right": {
+      "file": "lucifer-skeleton-ancient-boss/Right/Png/AncientSkeletonRightAttack03.png",
+      "frames": 7,
+      "w": 80,
+      "h": 80
+     }
+    },
+    "death": {
+     "left": {
+      "file": "lucifer-skeleton-ancient-boss/Left/Png/AncientSkeletonLeftDeath.png",
+      "frames": 9,
+      "w": 80,
+      "h": 80
+     },
+     "up": {
+      "file": "lucifer-skeleton-ancient-boss/Up/Png/AncientSkeletonUpDeath.png",
+      "frames": 9,
+      "w": 80,
+      "h": 80
+     },
+     "down": {
+      "file": "lucifer-skeleton-ancient-boss/Down/Png/AncientSkeletonDownDeath.png",
+      "frames": 9,
+      "w": 80,
+      "h": 80
+     },
+     "right": {
+      "file": "lucifer-skeleton-ancient-boss/Right/Png/AncientSkeletonRightDeath.png",
+      "frames": 9,
+      "w": 80,
+      "h": 80
+     }
+    },
+    "idle": {
+     "left": {
+      "file": "lucifer-skeleton-ancient-boss/Left/Png/AncientSkeletonLefttIdle.png",
+      "frames": 7,
+      "w": 80,
+      "h": 80
+     },
+     "up": {
+      "file": "lucifer-skeleton-ancient-boss/Up/Png/AncientSkeletonUpIdle.png",
+      "frames": 7,
+      "w": 80,
+      "h": 80
+     },
+     "down": {
+      "file": "lucifer-skeleton-ancient-boss/Down/Png/AncientSkeletonDownIdle.png",
+      "frames": 7,
+      "w": 80,
+      "h": 80
+     },
+     "right": {
+      "file": "lucifer-skeleton-ancient-boss/Right/Png/AncientSkeletonRightIdle.png",
+      "frames": 7,
+      "w": 80,
+      "h": 80
+     }
+    },
+    "walk": {
+     "left": {
+      "file": "lucifer-skeleton-ancient-boss/Left/Png/AncientSkeletonLeftWalk.png",
+      "frames": 8,
+      "w": 96,
+      "h": 96
+     },
+     "up": {
+      "file": "lucifer-skeleton-ancient-boss/Up/Png/AncientSkeletonUpWalk.png",
+      "frames": 8,
+      "w": 80,
+      "h": 80
+     },
+     "down": {
+      "file": "lucifer-skeleton-ancient-boss/Down/Png/AncientSkeletonDownWalk.png",
+      "frames": 8,
+      "w": 80,
+      "h": 80
+     },
+     "right": {
+      "file": "lucifer-skeleton-ancient-boss/Right/Png/AncientSkeletonRightWalk.png",
+      "frames": 8,
+      "w": 96,
+      "h": 96
+     }
+    },
+    "hurt": {
+     "left": {
+      "file": "lucifer-skeleton-ancient-boss/Left/Png/AncientSkeletonLeftHurt.png",
+      "frames": 4,
+      "w": 80,
+      "h": 80
+     },
+     "up": {
+      "file": "lucifer-skeleton-ancient-boss/Up/Png/AncientSkeletonUpHurt.png",
+      "frames": 4,
+      "w": 80,
+      "h": 80
+     },
+     "down": {
+      "file": "lucifer-skeleton-ancient-boss/Down/Png/AncientSkeletonDownHurt.png",
+      "frames": 4,
+      "w": 80,
+      "h": 80
+     },
+     "right": {
+      "file": "lucifer-skeleton-ancient-boss/Right/Png/AncientSkeletonRightHurt.png",
+      "frames": 4,
+      "w": 80,
+      "h": 80
+     }
+    },
+    "jump": {
+     "left": {
+      "file": "lucifer-skeleton-ancient-boss/Left/Png/AncientSkeletonLeftJump.png",
+      "frames": 5,
+      "w": 80,
+      "h": 80
+     },
+     "up": {
+      "file": "lucifer-skeleton-ancient-boss/Up/Png/AncientSkeletonUpJump.png",
+      "frames": 5,
+      "w": 80,
+      "h": 80
+     },
+     "down": {
+      "file": "lucifer-skeleton-ancient-boss/Down/Png/AncientSkeletonDownJump.png",
+      "frames": 5,
+      "w": 80,
+      "h": 80
+     },
+     "right": {
+      "file": "lucifer-skeleton-ancient-boss/Right/Png/AncientSkeletonRightJump.png",
+      "frames": 5,
+      "w": 80,
+      "h": 80
+     }
+    }
+   }
+  },
+  "lucifer-skeleton-grunt-enemy": {
+   "pack": "lucifer-skeleton-grunt-enemy",
+   "frame": 48,
+   "anims": {
+    "land": {
+     "left": {
+      "file": "lucifer-skeleton-grunt-enemy/Left/Png/SkeletonWithSwordLefttLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-skeleton-grunt-enemy/Up/Png/SkeletonWithSwordUpLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-skeleton-grunt-enemy/Down/Png/SkeletonWithSwordDownLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-skeleton-grunt-enemy/Right/Png/SkeletonWithSwordRightLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "death": {
+     "left": {
+      "file": "lucifer-skeleton-grunt-enemy/Left/Png/SkeletonWithSwordLefttDeath.png",
+      "frames": 8,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-skeleton-grunt-enemy/Up/Png/SkeletonWithSwordUpDeath.png",
+      "frames": 8,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-skeleton-grunt-enemy/Down/Png/SkeletonWithSwordDownDeath.png",
+      "frames": 8,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-skeleton-grunt-enemy/Right/Png/SkeletonWithSwordRightDeath.png",
+      "frames": 8,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "attack01": {
+     "left": {
+      "file": "lucifer-skeleton-grunt-enemy/Left/Png/SkeletonWithSwordLeftAttack01.png",
+      "frames": 8,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-skeleton-grunt-enemy/Up/Png/SkeletonWithSwordUpAttack01.png",
+      "frames": 8,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-skeleton-grunt-enemy/Down/Png/SkeletonWithSwordDownAttack01.png",
+      "frames": 8,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-skeleton-grunt-enemy/Right/Png/SkeletonWithSwordRightAttack01.png",
+      "frames": 8,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "jump": {
+     "left": {
+      "file": "lucifer-skeleton-grunt-enemy/Left/Png/SkeletonWithSwordLefttJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-skeleton-grunt-enemy/Up/Png/SkeletonWithSwordUpJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-skeleton-grunt-enemy/Down/Png/SkeletonWithSwordDownJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-skeleton-grunt-enemy/Right/Png/SkeletonWithSwordRightJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "run": {
+     "left": {
+      "file": "lucifer-skeleton-grunt-enemy/Left/Png/SkeletonWithSwordLefttRun.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-skeleton-grunt-enemy/Right/Png/SkeletonWithSwordRightRun.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "idle": {
+     "left": {
+      "file": "lucifer-skeleton-grunt-enemy/Left/Png/SkeletonWithSwordLefttIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-skeleton-grunt-enemy/Up/Png/SkeletonWithSwordUpIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-skeleton-grunt-enemy/Down/Png/SkeletonWithSwordDownIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-skeleton-grunt-enemy/Right/Png/SkeletonWithSwordRightIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "hurt": {
+     "left": {
+      "file": "lucifer-skeleton-grunt-enemy/Left/Png/SkeletonWithSwordLefttHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-skeleton-grunt-enemy/Up/Png/SkeletonWithSwordUpHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-skeleton-grunt-enemy/Down/Png/SkeletonWithSwordDownHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-skeleton-grunt-enemy/Right/Png/SkeletonWithSwordRightHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "walk": {
+     "up": {
+      "file": "lucifer-skeleton-grunt-enemy/Up/Png/SkeletonWithSwordUpWalk.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-skeleton-grunt-enemy/Down/Png/SkeletonWithSwordDownWalk.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    }
+   }
+  },
+  "lucifer-skeleton-hunter-enemy": {
+   "pack": "lucifer-skeleton-hunter-enemy",
+   "frame": 48,
+   "anims": {
+    "land": {
+     "left": {
+      "file": "lucifer-skeleton-hunter-enemy/Left/Png/SkeletonWithBowLefttLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-skeleton-hunter-enemy/Up/Png/SkeletonWithBowUpLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-skeleton-hunter-enemy/Down/Png/SkeletonWithBowDownLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-skeleton-hunter-enemy/Right/Png/SkeletonWithBowRightLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "idle": {
+     "left": {
+      "file": "lucifer-skeleton-hunter-enemy/Left/Png/SkeletonWithBowLefttIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-skeleton-hunter-enemy/Up/Png/SkeletonWithBowUpIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-skeleton-hunter-enemy/Down/Png/SkeletonWithBowDownIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-skeleton-hunter-enemy/Right/Png/SkeletonWithBowRightIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "death": {
+     "left": {
+      "file": "lucifer-skeleton-hunter-enemy/Left/Png/SkeletonWithBowLefttDeath.png",
+      "frames": 8,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-skeleton-hunter-enemy/Up/Png/SkeletonWithBowUpDeath.png",
+      "frames": 8,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-skeleton-hunter-enemy/Down/Png/SkeletonWithBowDownDeath.png",
+      "frames": 8,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-skeleton-hunter-enemy/Right/Png/SkeletonWithBowRightDeath.png",
+      "frames": 8,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "hurt": {
+     "left": {
+      "file": "lucifer-skeleton-hunter-enemy/Left/Png/SkeletonWithBowLefttHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-skeleton-hunter-enemy/Up/Png/SkeletonWithBowUpHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-skeleton-hunter-enemy/Down/Png/SkeletonWithBowDownHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-skeleton-hunter-enemy/Right/Png/SkeletonWithBowRightHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "run": {
+     "left": {
+      "file": "lucifer-skeleton-hunter-enemy/Left/Png/SkeletonWithBowLefttRun.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-skeleton-hunter-enemy/Right/Png/SkeletonWithBowRightRun.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "jump": {
+     "left": {
+      "file": "lucifer-skeleton-hunter-enemy/Left/Png/SkeletonWithBowLefttJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-skeleton-hunter-enemy/Up/Png/SkeletonWithBowUpJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-skeleton-hunter-enemy/Down/Png/SkeletonWithBowDownJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-skeleton-hunter-enemy/Right/Png/SkeletonWithBowRightJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "attack01": {
+     "left": {
+      "file": "lucifer-skeleton-hunter-enemy/Left/Png/SkeletonWithBowLeftAttack01.png",
+      "frames": 12,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-skeleton-hunter-enemy/Up/Png/SkeletonWithBowUpAttack01.png",
+      "frames": 12,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-skeleton-hunter-enemy/Down/Png/SkeletonWithBowDownAttack01.png",
+      "frames": 12,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-skeleton-hunter-enemy/Right/Png/SkeletonWithBowRightAttack01.png",
+      "frames": 12,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "walk": {
+     "up": {
+      "file": "lucifer-skeleton-hunter-enemy/Up/Png/SkeletonWithSBowUpWalk.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-skeleton-hunter-enemy/Down/Png/SkeletonWithBowDownWalk.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    }
+   }
+  },
+  "lucifer-skeleton-king-boss": {
+   "pack": "lucifer-skeleton-king-boss",
+   "frame": 48,
+   "anims": {
+    "death": {
+     "left": {
+      "file": "lucifer-skeleton-king-boss/Left/Png/SkeletonKingLeftDeath.png",
+      "frames": 13,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-skeleton-king-boss/Up/Png/SkeletonKingUpDeath.png",
+      "frames": 13,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-skeleton-king-boss/Down/Png/SkeletonKingDownDeath.png",
+      "frames": 13,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-skeleton-king-boss/Right/Png/SkeletonKingRightDeath.png",
+      "frames": 13,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "idle": {
+     "left": {
+      "file": "lucifer-skeleton-king-boss/Left/Png/SkeletonKingLeftIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-skeleton-king-boss/Up/Png/SkeletonKingUpIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-skeleton-king-boss/Down/Png/SkeletonKingDownIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-skeleton-king-boss/Right/Png/SkeletonKingRightIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "attack01": {
+     "left": {
+      "file": "lucifer-skeleton-king-boss/Left/Png/SkeletonKingLeftAttack01.png",
+      "frames": 10,
+      "w": 64,
+      "h": 64
+     },
+     "up": {
+      "file": "lucifer-skeleton-king-boss/Up/Png/SkeletonKingUpAttack01.png",
+      "frames": 10,
+      "w": 64,
+      "h": 64
+     },
+     "down": {
+      "file": "lucifer-skeleton-king-boss/Down/Png/SkeletonKingDownAttack01.png",
+      "frames": 10,
+      "w": 64,
+      "h": 64
+     },
+     "right": {
+      "file": "lucifer-skeleton-king-boss/Right/Png/SkeletonKingRightAttack01.png",
+      "frames": 10,
+      "w": 64,
+      "h": 64
+     }
+    },
+    "attack03": {
+     "left": {
+      "file": "lucifer-skeleton-king-boss/Left/Png/SkeletonKingLeftAttack03.png",
+      "frames": 12,
+      "w": 64,
+      "h": 64
+     },
+     "up": {
+      "file": "lucifer-skeleton-king-boss/Up/Png/SkeletonKingUpAttack03.png",
+      "frames": 12,
+      "w": 64,
+      "h": 64
+     },
+     "down": {
+      "file": "lucifer-skeleton-king-boss/Down/Png/SkeletonKingDownAttack03.png",
+      "frames": 12,
+      "w": 64,
+      "h": 64
+     },
+     "right": {
+      "file": "lucifer-skeleton-king-boss/Right/Png/SkeletonKingRightAttack03.png",
+      "frames": 12,
+      "w": 64,
+      "h": 64
+     }
+    },
+    "land": {
+     "left": {
+      "file": "lucifer-skeleton-king-boss/Left/Png/SkeletonKingLeftLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-skeleton-king-boss/Up/Png/SkeletonKingUpLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-skeleton-king-boss/Down/Png/SkeletonKingDownLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-skeleton-king-boss/Right/Png/SkeletonKingRightLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "walk": {
+     "left": {
+      "file": "lucifer-skeleton-king-boss/Left/Png/SkeletonKingLeftWalk.png",
+      "frames": 10,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-skeleton-king-boss/Up/Png/SkeletonKingUpWalk.png",
+      "frames": 10,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-skeleton-king-boss/Down/Png/SkeletonKingDownWalk.png",
+      "frames": 10,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-skeleton-king-boss/Right/Png/SkeletonKingRightWalk.png",
+      "frames": 10,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "jump": {
+     "left": {
+      "file": "lucifer-skeleton-king-boss/Left/Png/SkeletonKingLeftJump.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-skeleton-king-boss/Up/Png/SkeletonKingUpJump.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-skeleton-king-boss/Down/Png/SkeletonKingDownJump.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-skeleton-king-boss/Right/Png/SkeletonKingRightJump.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "hurt": {
+     "left": {
+      "file": "lucifer-skeleton-king-boss/Left/Png/SkeletonKingLeftHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-skeleton-king-boss/Up/Png/SkeletonKingUpHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-skeleton-king-boss/Down/Png/SkeletonKingDownHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-skeleton-king-boss/Right/Png/SkeletonKingRightHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "attack02": {
+     "left": {
+      "file": "lucifer-skeleton-king-boss/Left/Png/SkeletonKingLeftAttack02.png",
+      "frames": 4,
+      "w": 128,
+      "h": 128
+     },
+     "up": {
+      "file": "lucifer-skeleton-king-boss/Up/Png/SkeletonKingUpAttack02.png",
+      "frames": 4,
+      "w": 128,
+      "h": 128
+     },
+     "down": {
+      "file": "lucifer-skeleton-king-boss/Down/Png/SkeletonKingDownAttack02.png",
+      "frames": 4,
+      "w": 128,
+      "h": 128
+     },
+     "right": {
+      "file": "lucifer-skeleton-king-boss/Right/Png/SkeletonKingRightAttack02.png",
+      "frames": 4,
+      "w": 128,
+      "h": 128
+     }
+    }
+   }
+  },
+  "lucifer-sorceress": {
+   "pack": "lucifer-sorceress",
+   "frame": 48,
+   "anims": {
+    "death": {
+     "left": {
+      "file": "lucifer-sorceress/Left/Png/SorceressLefttDeath.png",
+      "frames": 10,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-sorceress/Up/Png/SorceressUpDeath.png",
+      "frames": 10,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-sorceress/Down/Png/SorceressDownDeath.png",
+      "frames": 10,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-sorceress/Right/Png/SorceressRightDeath.png",
+      "frames": 10,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "run": {
+     "left": {
+      "file": "lucifer-sorceress/Left/Png/SorceressLeftRun.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-sorceress/Up/Png/SorceressUpRun.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-sorceress/Down/Png/SorceressDownRun.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-sorceress/Right/Png/SorceressRightRun.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "land": {
+     "left": {
+      "file": "lucifer-sorceress/Left/Png/SorceressLeftLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-sorceress/Up/Png/SorceressUpLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-sorceress/Down/Png/SorceressDownLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-sorceress/Right/Png/SorceressRightLand.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "climb": {
+     "left": {
+      "file": "lucifer-sorceress/Left/Png/SorceressLefttClimb.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-sorceress/Up/Png/SorceressUpClimb.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-sorceress/Down/Png/SorceressDownClimb.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-sorceress/Right/Png/SorceressRightClimb.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "idle": {
+     "left": {
+      "file": "lucifer-sorceress/Left/Png/SorceressLeftIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-sorceress/Up/Png/SorceressUpIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-sorceress/Down/Png/SorceressDownIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-sorceress/Right/Png/SorceressRightIdle.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "attack03": {
+     "left": {
+      "file": "lucifer-sorceress/Left/Png/SorceressLeftAttack03.png",
+      "frames": 7,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-sorceress/Up/Png/SorceressUpAttack03.png",
+      "frames": 7,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-sorceress/Down/Png/SorceressDownAttack03.png",
+      "frames": 7,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-sorceress/Right/Png/SorceressRightAttack03.png",
+      "frames": 7,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "attack02": {
+     "left": {
+      "file": "lucifer-sorceress/Left/Png/SorceressLeftAttack02.png",
+      "frames": 7,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-sorceress/Up/Png/SorceressUpAttack02.png",
+      "frames": 7,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-sorceress/Down/Png/SorceressDownAttack02.png",
+      "frames": 7,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-sorceress/Right/Png/SorceressRightAttack02.png",
+      "frames": 7,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "attack01": {
+     "left": {
+      "file": "lucifer-sorceress/Left/Png/SorceressLeftAttack01.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-sorceress/Up/Png/SorceressUpAttack01.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-sorceress/Down/Png/SorceressDownAttack01.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "hurt": {
+     "left": {
+      "file": "lucifer-sorceress/Left/Png/SorceressLefttHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-sorceress/Up/Png/SorceressUpHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-sorceress/Down/Png/SorceressDownHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-sorceress/Right/Png/SorceressRightHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "jump": {
+     "left": {
+      "file": "lucifer-sorceress/Left/Png/SorceressLeftJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-sorceress/Up/Png/SorceressUpJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-sorceress/Down/Png/SorceressDownJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-sorceress/Right/Png/SorceressRightJump.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "sorceressrighattack01": {
+     "right": {
+      "file": "lucifer-sorceress/Right/Png/SorceressRighAttack01.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     }
+    }
+   }
+  },
+  "lucifer-warrior": {
+   "pack": "lucifer-warrior",
+   "frame": 48,
+   "anims": {
+    "attack01": {
+     "left": {
+      "file": "lucifer-warrior/Left/Png/WarriorLeftAttack01.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-warrior/Up/Png/WarriorUpAttack01.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-warrior/Down/Png/WarriorDownAttack01.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-warrior/Right/Png/WarriorRightAttack01.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "hurt": {
+     "left": {
+      "file": "lucifer-warrior/Left/Png/WarriorLeftHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-warrior/Up/Png/WarriorUpHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-warrior/Down/Png/WarriorDownHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-warrior/Right/Png/WarriorRightHurt.png",
+      "frames": 4,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "climb": {
+     "left": {
+      "file": "lucifer-warrior/Left/Png/WarriorLeftClimb.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-warrior/Up/Png/WarriorUpClimb.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-warrior/Down/Png/WarriorDownClimb.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-warrior/Right/Png/WarriorRightClimb.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "walk": {
+     "left": {
+      "file": "lucifer-warrior/Left/Png/WarriorLeftWalk.png",
+      "frames": 8,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-warrior/Up/Png/WarriorUpWalk.png",
+      "frames": 8,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-warrior/Down/Png/WarriorDownWalk.png",
+      "frames": 8,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-warrior/Right/Png/WarriorRightWalk.png",
+      "frames": 8,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "death": {
+     "left": {
+      "file": "lucifer-warrior/Left/Png/WarriorLeftDeath.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-warrior/Up/Png/WarriorUpDeath.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-warrior/Down/Png/WarriorDownDeath.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-warrior/Right/Png/WarriorRightDeath.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "attack02": {
+     "left": {
+      "file": "lucifer-warrior/Left/Png/WarriorLeftAttack02.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-warrior/Up/Png/WarriorUpAttack02.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-warrior/Down/Png/WarriorDownAttack02.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-warrior/Right/Png/WarriorRightAttack02.png",
+      "frames": 6,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "land": {
+     "left": {
+      "file": "lucifer-warrior/Left/Png/WarriorLeftLand.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-warrior/Up/Png/WarriorUpLand.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-warrior/Down/Png/WarriorDownLand.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-warrior/Right/Png/WarriorRightLand.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "attack03": {
+     "left": {
+      "file": "lucifer-warrior/Left/Png/WarriorLeftAttack03.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-warrior/Up/Png/WarriorUpAttack03.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-warrior/Down/Png/WarriorDownAttack03.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-warrior/Right/Png/WarriorRightAttack03.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "jump": {
+     "left": {
+      "file": "lucifer-warrior/Left/Png/WarriorLeftJump.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-warrior/Up/Png/WarriorUpJump.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-warrior/Down/Png/WarriorDownJump.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-warrior/Right/Png/WarriorRightJump.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     }
+    },
+    "idle": {
+     "left": {
+      "file": "lucifer-warrior/Left/Png/WarriorLeftIdle.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "up": {
+      "file": "lucifer-warrior/Up/Png/WarriorUpIdle.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "down": {
+      "file": "lucifer-warrior/Down/Png/WarriorDownIdle.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     },
+     "right": {
+      "file": "lucifer-warrior/Right/Png/WarriorRightIdle.png",
+      "frames": 5,
+      "w": 48,
+      "h": 48
+     }
+    }
+   }
+  }
+ },
+ "tilesets": {
+  "cave-and-desert-tileset:Tileset Base": {
+   "file": "cave-and-desert-tileset/Base Tileset/PNG/Tileset Base.png",
+   "w": 1024,
+   "h": 576,
+   "cols": 32,
+   "rows": 18
+  },
+  "cave-and-desert-tileset:Desert Background Underground Layer 3": {
+   "file": "cave-and-desert-tileset/Backgrounds/Underground/PNGs/Desert Background Underground Layer 3.png",
+   "w": 512,
+   "h": 512,
+   "cols": 16,
+   "rows": 16
+  },
+  "cave-and-desert-tileset:Desert Background Underground Layer 1": {
+   "file": "cave-and-desert-tileset/Backgrounds/Underground/PNGs/Desert Background Underground Layer 1.png",
+   "w": 512,
+   "h": 512,
+   "cols": 16,
+   "rows": 16
+  },
+  "cave-and-desert-tileset:Desert Background Underground Layer 2": {
+   "file": "cave-and-desert-tileset/Backgrounds/Underground/PNGs/Desert Background Underground Layer 2.png",
+   "w": 512,
+   "h": 512,
+   "cols": 16,
+   "rows": 16
+  },
+  "cave-and-desert-tileset:Desert Background Underground Layer 4": {
+   "file": "cave-and-desert-tileset/Backgrounds/Underground/PNGs/Desert Background Underground Layer 4.png",
+   "w": 512,
+   "h": 512,
+   "cols": 16,
+   "rows": 16
+  },
+  "cave-and-desert-tileset:Desert Background Underground Layer 5": {
+   "file": "cave-and-desert-tileset/Backgrounds/Underground/PNGs/Desert Background Underground Layer 5.png",
+   "w": 512,
+   "h": 512,
+   "cols": 16,
+   "rows": 16
+  },
+  "cave-and-desert-tileset:Desert Background Desert Layer 5": {
+   "file": "cave-and-desert-tileset/Backgrounds/Desert/PNGs/Desert Background Desert Layer 5.png",
+   "w": 512,
+   "h": 288,
+   "cols": 16,
+   "rows": 9
+  },
+  "cave-and-desert-tileset:Desert Background Desert Layer 2": {
+   "file": "cave-and-desert-tileset/Backgrounds/Desert/PNGs/Desert Background Desert Layer 2.png",
+   "w": 512,
+   "h": 288,
+   "cols": 16,
+   "rows": 9
+  },
+  "cave-and-desert-tileset:Desert Background Desert Layer 4": {
+   "file": "cave-and-desert-tileset/Backgrounds/Desert/PNGs/Desert Background Desert Layer 4.png",
+   "w": 512,
+   "h": 288,
+   "cols": 16,
+   "rows": 9
+  },
+  "cave-and-desert-tileset:Desert Background Desert Layer 1": {
+   "file": "cave-and-desert-tileset/Backgrounds/Desert/PNGs/Desert Background Desert Layer 1.png",
+   "w": 512,
+   "h": 288,
+   "cols": 16,
+   "rows": 9
+  },
+  "cave-and-desert-tileset:Desert Background Desert Layer 3": {
+   "file": "cave-and-desert-tileset/Backgrounds/Desert/PNGs/Desert Background Desert Layer 3.png",
+   "w": 512,
+   "h": 288,
+   "cols": 16,
+   "rows": 9
+  },
+  "cave-and-desert-tileset:Standing Torch": {
+   "file": "cave-and-desert-tileset/Decorations/PNGs/Standing Torch.png",
+   "w": 128,
+   "h": 64,
+   "cols": 4,
+   "rows": 2
+  },
+  "cave-and-desert-tileset:Palm 1": {
+   "file": "cave-and-desert-tileset/Decorations/PNGs/Palm 1.png",
+   "w": 128,
+   "h": 160,
+   "cols": 4,
+   "rows": 5
+  },
+  "cave-and-desert-tileset:Palm 0": {
+   "file": "cave-and-desert-tileset/Decorations/PNGs/Palm 0.png",
+   "w": 128,
+   "h": 160,
+   "cols": 4,
+   "rows": 5
+  },
+  "cave-and-desert-tileset:Wall Torch": {
+   "file": "cave-and-desert-tileset/Decorations/PNGs/Wall Torch.png",
+   "w": 128,
+   "h": 32,
+   "cols": 4,
+   "rows": 1
+  },
+  "cave-and-desert-tileset:Decorations": {
+   "file": "cave-and-desert-tileset/Decorations/PNGs/Decorations.png",
+   "w": 256,
+   "h": 192,
+   "cols": 8,
+   "rows": 6
+  },
+  "cave-and-desert-tileset:Swinging axe": {
+   "file": "cave-and-desert-tileset/Traps/PNGs/Swinging axe.png",
+   "w": 1536,
+   "h": 64,
+   "cols": 48,
+   "rows": 2
+  },
+  "cave-and-desert-tileset:Coconut Falling": {
+   "file": "cave-and-desert-tileset/Traps/PNGs/Coconut Falling.png",
+   "w": 224,
+   "h": 64,
+   "cols": 7,
+   "rows": 2
+  },
+  "cave-and-desert-tileset:Falling Rock": {
+   "file": "cave-and-desert-tileset/Traps/PNGs/Falling Rock.png",
+   "w": 512,
+   "h": 64,
+   "cols": 16,
+   "rows": 2
+  },
+  "cave-and-desert-tileset:Sharp Shards": {
+   "file": "cave-and-desert-tileset/Traps/PNGs/Sharp Shards.png",
+   "w": 352,
+   "h": 32,
+   "cols": 11,
+   "rows": 1
+  },
+  "cave-and-desert-tileset:Ground Breaking": {
+   "file": "cave-and-desert-tileset/Traps/PNGs/Ground Breaking.png",
+   "w": 352,
+   "h": 64,
+   "cols": 11,
+   "rows": 2
+  },
+  "cave-and-desert-tileset:Retracting Spikes": {
+   "file": "cave-and-desert-tileset/Traps/PNGs/Retracting Spikes.png",
+   "w": 448,
+   "h": 32,
+   "cols": 14,
+   "rows": 1
+  },
+  "green-valley-tileset:Foozle_2DT0008_GreenValley_Tileset_Pixel_Art": {
+   "file": "green-valley-tileset/Foozle_2DT0008_GreenValley_Tileset_Pixel_Art.png",
+   "w": 416,
+   "h": 64,
+   "cols": 13,
+   "rows": 2
+  },
+  "legend-main-character:Legend_MainCharacter_Purple_Spritesheet_All_Animations": {
+   "file": "legend-main-character/Legend_MainCharacter_Purple_Spritesheet_All_Animations.png",
+   "w": 1344,
+   "h": 4928,
+   "cols": 42,
+   "rows": 154
+  },
+  "legend-main-character:Legend_MainCharacter_Red_Spritesheet_All_Animations": {
+   "file": "legend-main-character/Legend_MainCharacter_Red_Spritesheet_All_Animations.png",
+   "w": 1344,
+   "h": 4928,
+   "cols": 42,
+   "rows": 154
+  },
+  "legend-main-character:Legend_MainCharacter_Green_Spritesheet_All_Animations": {
+   "file": "legend-main-character/Legend_MainCharacter_Green_Spritesheet_All_Animations.png",
+   "w": 1344,
+   "h": 4928,
+   "cols": 42,
+   "rows": 154
+  },
+  "lucifer-dungeon-tileset:DungeonTileset": {
+   "file": "lucifer-dungeon-tileset/Png/DungeonTileset.png",
+   "w": 672,
+   "h": 256,
+   "cols": 21,
+   "rows": 8
+  },
+  "lucifer-exterior-tileset:OuterTileset": {
+   "file": "lucifer-exterior-tileset/Png/OuterTileset.png",
+   "w": 1280,
+   "h": 256,
+   "cols": 40,
+   "rows": 8
+  },
+  "lucifer-lava-dungeon-tileset:LavaDungeonTileset": {
+   "file": "lucifer-lava-dungeon-tileset/LavaDungeonTileset.png",
+   "w": 576,
+   "h": 512,
+   "cols": 18,
+   "rows": 16
+  },
+  "lucifer-lava-dungeon-tileset:Lava": {
+   "file": "lucifer-lava-dungeon-tileset/Animated Tiles/Lava Dungeon/Lava/Png/Lava.png",
+   "w": 320,
+   "h": 32,
+   "cols": 10,
+   "rows": 1
+  },
+  "lucifer-lava-dungeon-tileset:Torch": {
+   "file": "lucifer-lava-dungeon-tileset/Animated Tiles/Lava Dungeon/Deco/Png/Torch.png",
+   "w": 128,
+   "h": 32,
+   "cols": 4,
+   "rows": 1
+  },
+  "lucifer-lava-dungeon-tileset:Lava lamp": {
+   "file": "lucifer-lava-dungeon-tileset/Animated Tiles/Lava Dungeon/Deco/Png/Lava lamp.png",
+   "w": 96,
+   "h": 32,
+   "cols": 3,
+   "rows": 1
+  },
+  "lucifer-lava-dungeon-tileset:StandingFlagDamaged": {
+   "file": "lucifer-lava-dungeon-tileset/Animated Tiles/Lava Dungeon/Flags/Png/StandingFlagDamaged.png",
+   "w": 384,
+   "h": 64,
+   "cols": 12,
+   "rows": 2
+  },
+  "lucifer-lava-dungeon-tileset:HangingFlag": {
+   "file": "lucifer-lava-dungeon-tileset/Animated Tiles/Lava Dungeon/Flags/Png/HangingFlag.png",
+   "w": 384,
+   "h": 64,
+   "cols": 12,
+   "rows": 2
+  },
+  "lucifer-lava-dungeon-tileset:StandingFlag": {
+   "file": "lucifer-lava-dungeon-tileset/Animated Tiles/Lava Dungeon/Flags/Png/StandingFlag.png",
+   "w": 384,
+   "h": 64,
+   "cols": 12,
+   "rows": 2
+  },
+  "lucifer-lava-dungeon-tileset:Wide door brown closing": {
+   "file": "lucifer-lava-dungeon-tileset/Animated Tiles/Lava Dungeon/Doors/Wide Door Brown/Png/Wide door brown closing.png",
+   "w": 256,
+   "h": 96,
+   "cols": 8,
+   "rows": 3
+  },
+  "lucifer-lava-dungeon-tileset:Wide door brown Opening": {
+   "file": "lucifer-lava-dungeon-tileset/Animated Tiles/Lava Dungeon/Doors/Wide Door Brown/Png/Wide door brown Opening.png",
+   "w": 256,
+   "h": 96,
+   "cols": 8,
+   "rows": 3
+  },
+  "lucifer-lava-dungeon-tileset:Wide door red closing": {
+   "file": "lucifer-lava-dungeon-tileset/Animated Tiles/Lava Dungeon/Doors/Wide door Red/Png/Wide door red closing.png",
+   "w": 256,
+   "h": 96,
+   "cols": 8,
+   "rows": 3
+  },
+  "lucifer-lava-dungeon-tileset:Wide door red opening": {
+   "file": "lucifer-lava-dungeon-tileset/Animated Tiles/Lava Dungeon/Doors/Wide door Red/Png/Wide door red opening.png",
+   "w": 256,
+   "h": 96,
+   "cols": 8,
+   "rows": 3
+  },
+  "lucifer-lava-dungeon-tileset:Narrow door Brown Opening": {
+   "file": "lucifer-lava-dungeon-tileset/Animated Tiles/Lava Dungeon/Doors/Narrow Door Brown/Png/Narrow door Brown Opening.png",
+   "w": 128,
+   "h": 96,
+   "cols": 4,
+   "rows": 3
+  },
+  "lucifer-lava-dungeon-tileset:Narrow door Brown Closing": {
+   "file": "lucifer-lava-dungeon-tileset/Animated Tiles/Lava Dungeon/Doors/Narrow Door Brown/Png/Narrow door Brown Closing.png",
+   "w": 128,
+   "h": 96,
+   "cols": 4,
+   "rows": 3
+  },
+  "lucifer-lava-dungeon-tileset:Narrow door red Opening": {
+   "file": "lucifer-lava-dungeon-tileset/Animated Tiles/Lava Dungeon/Doors/Narrow Door Red/Png/Narrow door red Opening.png",
+   "w": 128,
+   "h": 96,
+   "cols": 4,
+   "rows": 3
+  },
+  "lucifer-lava-dungeon-tileset:Narrow door red Closing": {
+   "file": "lucifer-lava-dungeon-tileset/Animated Tiles/Lava Dungeon/Doors/Narrow Door Red/Png/Narrow door red Closing.png",
+   "w": 128,
+   "h": 96,
+   "cols": 4,
+   "rows": 3
+  },
+  "lucifer-rpg-ui:Main Menu animated background ": {
+   "file": "lucifer-rpg-ui/Main Menu/Spritesheet/Main Menu animated background .png",
+   "w": 19200,
+   "h": 270,
+   "cols": 600,
+   "rows": 8
+  },
+  "lucifer-rpg-ui:Login screen": {
+   "file": "lucifer-rpg-ui/Login Screen/Spritesheet/Login screen.png",
+   "w": 7680,
+   "h": 270,
+   "cols": 240,
+   "rows": 8
+  },
+  "lucifer-rpg-ui:spritesheet": {
+   "file": "lucifer-rpg-ui/Skill Icons/spritesheet.png",
+   "w": 198,
+   "h": 198,
+   "cols": 6,
+   "rows": 6
+  }
+ },
+ "sheets": {
+  "cave-and-desert-tileset": [],
+  "green-valley-tileset": [],
+  "legend-main-character": [],
+  "lucifer-dungeon-tileset": [],
+  "lucifer-effects": [
+   {
+    "file": "lucifer-effects/Effects/Pickup effects/Png/Gem Pickup effect.png",
+    "w": 36,
+    "h": 20
+   },
+   {
+    "file": "lucifer-effects/Effects/Pickup effects/Png/Gold Pickup effect.png",
+    "w": 36,
+    "h": 20
+   },
+   {
+    "file": "lucifer-effects/Effects/Pickup effects/Png/Health Potion Pickup effect.png",
+    "w": 36,
+    "h": 20
+   },
+   {
+    "file": "lucifer-effects/Effects/Pickup effects/Png/Mana Potion Pickup effect.png",
+    "w": 36,
+    "h": 20
+   },
+   {
+    "file": "lucifer-effects/Effects/Pickup effects/Png/Stamina Potion Pickup effect.png",
+    "w": 36,
+    "h": 20
+   },
+   {
+    "file": "lucifer-effects/Effects/Rarity Effects/Png/Common effect.png",
+    "w": 48,
+    "h": 20
+   },
+   {
+    "file": "lucifer-effects/Effects/Rarity Effects/Png/Legendary effect.png",
+    "w": 54,
+    "h": 23
+   },
+   {
+    "file": "lucifer-effects/Effects/Rarity Effects/Png/Magic effect.png",
+    "w": 54,
+    "h": 20
+   },
+   {
+    "file": "lucifer-effects/Effects/Rarity Effects/Png/Mythic effect.png",
+    "w": 48,
+    "h": 26
+   },
+   {
+    "file": "lucifer-effects/Effects/Rarity Effects/Png/Rare effect.png",
+    "w": 42,
+    "h": 20
+   },
+   {
+    "file": "lucifer-effects/Effects/VFX/Destroy Effect.png",
+    "w": 288,
+    "h": 48
+   },
+   {
+    "file": "lucifer-effects/Effects/Wave/Big/Down/WaveBigDown.png",
+    "w": 192,
+    "h": 64
+   },
+   {
+    "file": "lucifer-effects/Effects/Wave/Big/Left/WaveBigLeft.png",
+    "w": 192,
+    "h": 64
+   },
+   {
+    "file": "lucifer-effects/Effects/Wave/Big/Right/WaveBigRight.png",
+    "w": 192,
+    "h": 64
+   },
+   {
+    "file": "lucifer-effects/Effects/Wave/Big/Up/WaveBigUp.png",
+    "w": 192,
+    "h": 64
+   },
+   {
+    "file": "lucifer-effects/Effects/Wave/Small/Down/WaveSmallDown.png",
+    "w": 96,
+    "h": 32
+   },
+   {
+    "file": "lucifer-effects/Effects/Wave/Small/Left/WaveSmallLeft.png",
+    "w": 96,
+    "h": 32
+   },
+   {
+    "file": "lucifer-effects/Effects/Wave/Small/Right/WaveSmallRIght.png",
+    "w": 96,
+    "h": 32
+   },
+   {
+    "file": "lucifer-effects/Effects/Wave/Small/Up/WaveSmallUp.png",
+    "w": 96,
+    "h": 32
+   }
+  ],
+  "lucifer-equipment": [
+   {
+    "file": "lucifer-equipment/Equipment/Bottom/Png/Common Chainmail Leggings.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Bottom/Png/Common Leggings.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Bottom/Png/Rare Explorers Leggings.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Bottom/Png/Rare Plate Leggings.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Bottom/Png/Wizards Leggings.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Chest/Png/Common ChainMail Chestpiece.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Chest/Png/Common Gambeson.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Chest/Png/Common Ragged shirt.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Chest/Png/Legendary Royal Chestpiece.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Chest/Png/Magic Sorceress Gambeson.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Chest/Png/Magic Wizards Tunic Chestpiece.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Chest/Png/Rare Explorers Top.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Chest/Png/Rare Plate Chestpiece.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Feet/Png/Common Chainmail Boots.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Feet/Png/Rare Explorers Boots.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Feet/Png/Rare Plate Boots.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Feet/Png/Wizards Shoes.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Head/Png/Common Chainmail Helmet.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Head/Png/Legendary Royal Helmet.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Head/Png/Rare Explorers Ushanka.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Head/Png/Rare Plate Helmet.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Head/Png/Wizards Hat.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Misc/Png/Common SIlver Amulet.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Misc/Png/Golden Enchanted Ring.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Misc/Png/Rare Explorers Gloves.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Misc/Png/Rare Golden Gem Amulet.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Misc/Png/Silver Enchanted Ring.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Misc/Png/Wizards Amulet.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Misc/Png/Wizards Sparkle Ring.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Rarity Backgrounds/16x16/Png/Common .png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Rarity Backgrounds/16x16/Png/Legendary.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Rarity Backgrounds/16x16/Png/Magic.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Rarity Backgrounds/16x16/Png/Mythic.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Rarity Backgrounds/16x16/Png/Rare.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Rarity Backgrounds/16x16/Png/Set.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Rarity Backgrounds/16x32/Png/Common .png",
+    "w": 32,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Rarity Backgrounds/16x32/Png/Legendary.png",
+    "w": 32,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Rarity Backgrounds/16x32/Png/Magic.png",
+    "w": 32,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Rarity Backgrounds/16x32/Png/Mythic.png",
+    "w": 32,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Rarity Backgrounds/16x32/Png/Rare.png",
+    "w": 32,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Rarity Backgrounds/16x32/Png/Set.png",
+    "w": 32,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Weapons/Png/Common Arming Sword.png",
+    "w": 32,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Weapons/Png/Common Bearded Axe.png",
+    "w": 32,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Weapons/Png/Common Greatsword.png",
+    "w": 32,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Weapons/Png/Common Shamshir.png",
+    "w": 32,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Weapons/Png/Common Spear.png",
+    "w": 32,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Weapons/Png/Legendary Dane Axe.png",
+    "w": 32,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Weapons/Png/Legendary Rapier .png",
+    "w": 32,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Weapons/Png/Legendary Shamshir.png",
+    "w": 32,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Weapons/Png/Mages Spire.png",
+    "w": 32,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Weapons/Png/Mythic Battleaxe.png",
+    "w": 32,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Weapons/Png/Mythic Godhammer.png",
+    "w": 32,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Weapons/Png/Rare Explorers Hook.png",
+    "w": 32,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Weapons/Png/Rare Greatsword.png",
+    "w": 32,
+    "h": 16
+   },
+   {
+    "file": "lucifer-equipment/Equipment/Weapons/Png/Wizards Pole.png",
+    "w": 32,
+    "h": 16
+   }
+  ],
+  "lucifer-exterior-tileset": [],
+  "lucifer-lava-dungeon-tileset": [],
+  "lucifer-pickups": [
+   {
+    "file": "lucifer-pickups/Pickups/Gems/Png/BlueGem.png",
+    "w": 144,
+    "h": 16
+   },
+   {
+    "file": "lucifer-pickups/Pickups/Gems/Png/OrangeGem.png",
+    "w": 144,
+    "h": 16
+   },
+   {
+    "file": "lucifer-pickups/Pickups/Gems/Png/PinkGem.png",
+    "w": 128,
+    "h": 16
+   },
+   {
+    "file": "lucifer-pickups/Pickups/Gold/Png/PileOfCoins.png",
+    "w": 128,
+    "h": 16
+   },
+   {
+    "file": "lucifer-pickups/Pickups/Gold/Png/PileOfGold.png",
+    "w": 128,
+    "h": 16
+   },
+   {
+    "file": "lucifer-pickups/Pickups/Potions/Health/Png/BigHealthPotion.png",
+    "w": 144,
+    "h": 16
+   },
+   {
+    "file": "lucifer-pickups/Pickups/Potions/Health/Png/SmallHealthPotion.png",
+    "w": 160,
+    "h": 16
+   },
+   {
+    "file": "lucifer-pickups/Pickups/Potions/Mana/Png/BigManaPotion.png",
+    "w": 144,
+    "h": 16
+   },
+   {
+    "file": "lucifer-pickups/Pickups/Potions/Mana/Png/SmallManaPotion.png",
+    "w": 160,
+    "h": 16
+   },
+   {
+    "file": "lucifer-pickups/Pickups/Potions/Stamina/Png/BigStaminaPotion.png",
+    "w": 144,
+    "h": 16
+   },
+   {
+    "file": "lucifer-pickups/Pickups/Potions/Stamina/Png/SmallStaminaPotion.png",
+    "w": 160,
+    "h": 16
+   }
+  ],
+  "lucifer-rpg-ui": [
+   {
+    "file": "lucifer-rpg-ui/Boss Health Bar/BossHealthBar.png",
+    "w": 76,
+    "h": 18
+   },
+   {
+    "file": "lucifer-rpg-ui/Boss Names/Boss Names1.png",
+    "w": 72,
+    "h": 9
+   },
+   {
+    "file": "lucifer-rpg-ui/Boss Names/Boss Names2.png",
+    "w": 72,
+    "h": 9
+   },
+   {
+    "file": "lucifer-rpg-ui/Boss Names/Boss Names3.png",
+    "w": 72,
+    "h": 9
+   },
+   {
+    "file": "lucifer-rpg-ui/Boss Names/Boss Names4.png",
+    "w": 72,
+    "h": 9
+   },
+   {
+    "file": "lucifer-rpg-ui/Button Background/ButtonBackground.png",
+    "w": 70,
+    "h": 17
+   },
+   {
+    "file": "lucifer-rpg-ui/Character Actions/Necromancer Attack 1.png",
+    "w": 16,
+    "h": 11
+   },
+   {
+    "file": "lucifer-rpg-ui/Character Actions/Necromancer Attack 2.png",
+    "w": 16,
+    "h": 11
+   },
+   {
+    "file": "lucifer-rpg-ui/Character Actions/Sorceress Attack 1.png",
+    "w": 16,
+    "h": 11
+   },
+   {
+    "file": "lucifer-rpg-ui/Character Actions/Sorceress Attack 2.png",
+    "w": 16,
+    "h": 11
+   },
+   {
+    "file": "lucifer-rpg-ui/Character Actions/Warrior Attack 1.png",
+    "w": 16,
+    "h": 11
+   },
+   {
+    "file": "lucifer-rpg-ui/Character Actions/Warrior Attack 2.png",
+    "w": 16,
+    "h": 11
+   },
+   {
+    "file": "lucifer-rpg-ui/Character Icons/Necromancer Icon.png",
+    "w": 16,
+    "h": 17
+   },
+   {
+    "file": "lucifer-rpg-ui/Character Icons/Sroceress Icon.png",
+    "w": 16,
+    "h": 17
+   },
+   {
+    "file": "lucifer-rpg-ui/Character Icons/Warrior Icon.png",
+    "w": 16,
+    "h": 17
+   },
+   {
+    "file": "lucifer-rpg-ui/Character underlay/Character underlay Enemy.png",
+    "w": 18,
+    "h": 7
+   },
+   {
+    "file": "lucifer-rpg-ui/Character underlay/Character underlay Friendly.png",
+    "w": 18,
+    "h": 7
+   },
+   {
+    "file": "lucifer-rpg-ui/Generic/Additional buttons/Active/Png/EquipmentButtonActive.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Generic/Additional buttons/Active/Png/InventoryButtonActive.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Generic/Additional buttons/Active/Png/LeaderboardsButtonActive.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Generic/Additional buttons/Active/Png/SettingsButtonActive.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Generic/Additional buttons/Active/Png/SkillsButtonActive.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Generic/Additional buttons/Normal/Png/EquipmentButtonNormal.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Generic/Additional buttons/Normal/Png/InventoryButtonNormal.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Generic/Additional buttons/Normal/Png/LeaderboardsButtonNormal.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Generic/Additional buttons/Normal/Png/SettingsButtonNormal.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Generic/Additional buttons/Normal/Png/SkillsButtonNormal.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Generic/Additional buttons/Pressed/Png/EquipmentButtonPressed.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Generic/Additional buttons/Pressed/Png/InventoryButtonPressed.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Generic/Additional buttons/Pressed/Png/LeaderboardsButtonPressed.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Generic/Additional buttons/Pressed/Png/SettingsButtonPressed.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Generic/Additional buttons/Pressed/Png/SkillsButtonPressed.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Generic/Menu buttons/Png/GenericButton.png",
+    "w": 48,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Generic/Menu buttons/Png/GenericButtonActive.png",
+    "w": 48,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Generic/Menu buttons/Png/GenericButtonPressed.png",
+    "w": 48,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Generic/Menu/Png/GenericArrow.png",
+    "w": 14,
+    "h": 13
+   },
+   {
+    "file": "lucifer-rpg-ui/Generic/Menu/Png/GenericPanel.png",
+    "w": 48,
+    "h": 48
+   },
+   {
+    "file": "lucifer-rpg-ui/Generic/Menu/Png/GenericTextField.png",
+    "w": 48,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD Health Bar/HUDHealthBar.png",
+    "w": 102,
+    "h": 27
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Chat/ChatBackground.png",
+    "w": 48,
+    "h": 48
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Hotbar/Hotbar.png",
+    "w": 198,
+    "h": 40
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Hotbar/HotbarSkillBackground/Png/HotbarSkillBackground1.png",
+    "w": 14,
+    "h": 14
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Hotbar/HotbarSkillBackground/Png/HotbarSkillBackground2.png",
+    "w": 14,
+    "h": 14
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Hotbar/HotbarSkillNo/Png/HotbarSkillNo1.png",
+    "w": 6,
+    "h": 6
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Hotbar/HotbarSkillNo/Png/HotbarSkillNo2.png",
+    "w": 6,
+    "h": 6
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Hotbar/HotbarSkillNo/Png/HotbarSkillNo3.png",
+    "w": 6,
+    "h": 6
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Hotbar/HotbarSkillNo/Png/HotbarSkillNo4.png",
+    "w": 6,
+    "h": 6
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Hotbar/LevelBar/Png/LevelBar.png",
+    "w": 48,
+    "h": 3
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Hotbar/LevelBar/Png/LevelBarBackground.png",
+    "w": 48,
+    "h": 3
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Hotbar/MainBars/Png/MainBars1.png",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Hotbar/MainBars/Png/MainBars2.png",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Hotbar/MainBars/Png/MainBars3.png",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Hotbar/MainBars/Png/MainBars4.png",
+    "w": 30,
+    "h": 30
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Hotbar/SphereMask/Png/SphereMask.png",
+    "w": 300,
+    "h": 30
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Inventory/Png/Inventory.png",
+    "w": 98,
+    "h": 131
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Inventory/Png/InventoryEmptyFields.png",
+    "w": 98,
+    "h": 131
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Minimap/Png/MinimapBackground.png",
+    "w": 61,
+    "h": 55
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Minimap/Png/MinimapFrame.png",
+    "w": 61,
+    "h": 55
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Quests/Png/Maximize or minimaze button1.png",
+    "w": 7,
+    "h": 7
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Quests/Png/Maximize or minimaze button2.png",
+    "w": 7,
+    "h": 7
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Quests/Png/QuestPanel.png",
+    "w": 48,
+    "h": 7
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Skill panel/Png/SkillPanelGreen.png",
+    "w": 98,
+    "h": 131
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Skill panel/Png/SkillPanelPurple.png",
+    "w": 98,
+    "h": 131
+   },
+   {
+    "file": "lucifer-rpg-ui/HUD/Skill panel/Png/SkillPanelRed.png",
+    "w": 98,
+    "h": 131
+   },
+   {
+    "file": "lucifer-rpg-ui/Login Screen/Png/Login screen1.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Login Screen/Png/Login screen10.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Login Screen/Png/Login screen11.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Login Screen/Png/Login screen12.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Login Screen/Png/Login screen13.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Login Screen/Png/Login screen14.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Login Screen/Png/Login screen15.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Login Screen/Png/Login screen16.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Login Screen/Png/Login screen2.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Login Screen/Png/Login screen3.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Login Screen/Png/Login screen4.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Login Screen/Png/Login screen5.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Login Screen/Png/Login screen6.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Login Screen/Png/Login screen7.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Login Screen/Png/Login screen8.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Login Screen/Png/Login screen9.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Main Menu  design.png",
+    "w": 4800,
+    "h": 2700
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 1.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 10.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 11.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 12.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 13.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 14.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 15.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 16.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 17.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 18.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 19.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 2.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 20.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 21.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 22.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 23.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 24.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 25.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 26.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 27.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 28.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 29.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 3.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 30.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 31.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 32.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 33.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 34.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 35.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 36.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 37.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 38.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 39.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 4.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 40.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 5.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 6.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 7.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 8.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu animated background 9.png",
+    "w": 480,
+    "h": 270
+   },
+   {
+    "file": "lucifer-rpg-ui/Main Menu/Png/Main Menu design.png",
+    "w": 4800,
+    "h": 2700
+   },
+   {
+    "file": "lucifer-rpg-ui/Panels/Panels/SimplePanel01.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "lucifer-rpg-ui/Panels/Panels/SimplePanel02.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "lucifer-rpg-ui/Panels/Panels/SimplePanel03.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "lucifer-rpg-ui/Panels/Panels/SimplePanel04.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "lucifer-rpg-ui/Panels/SimplePanel01.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "lucifer-rpg-ui/Panels/SimplePanel02.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "lucifer-rpg-ui/Panels/SimplePanel03.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "lucifer-rpg-ui/Panels/SimplePanel04.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Green Skills/Png/Necromancer Green Skill 01.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Green Skills/Png/Necromancer Green Skill 02.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Green Skills/Png/Necromancer Green Skill 03.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Green Skills/Png/Necromancer Green Skill 04.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Green Skills/Png/Necromancer Green Skill 05.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Green Skills/Png/Necromancer Green Skill 06.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Green Skills/Png/Necromancer Green Skill 07.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Green Skills/Png/Necromancer Green Skill 08.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Green Skills/Png/Necromancer Green Skill 09.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Green Skills/Png/Necromancer Green Skill 10.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Green Skills/Png/Necromancer Green Skill 11.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Green Skills/Png/Necromancer Green Skill 12.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Purple Skills/Png/Necromancer Icon 01.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Purple Skills/Png/Necromancer Icon 02.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Purple Skills/Png/Necromancer Icon 03.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Purple Skills/Png/Necromancer Icon 04.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Purple Skills/Png/Necromancer Icon 05.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Purple Skills/Png/Necromancer Icon 06.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Purple Skills/Png/Necromancer Icon 07.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Purple Skills/Png/Necromancer Icon 08.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Purple Skills/Png/Necromancer Icon 09.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Purple Skills/Png/Necromancer Icon 10.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Purple Skills/Png/Necromancer Icon 11.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Purple Skills/Png/Necromancer Icon 12.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Purple Skills/Png/Necromancer Icon 13.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Purple Skills/Png/Necromancer Icon 14.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Red Skills/Png/Necromancer Red Skill 01.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Red Skills/Png/Necromancer Red Skill 02.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Red Skills/Png/Necromancer Red Skill 03.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Red Skills/Png/Necromancer Red Skill 04.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Red Skills/Png/Necromancer Red Skill 05.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Red Skills/Png/Necromancer Red Skill 06.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Red Skills/Png/Necromancer Red Skill 07.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Red Skills/Png/Necromancer Red Skill 08.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Red Skills/Png/Necromancer Red Skill 09.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Red Skills/Png/Necromancer Red Skill 10.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Red Skills/Png/Necromancer Red Skill 11.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Necromancer Icons/Necromancer Red Skills/Png/Necromancer Red Skill 12.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Green Skills/Png/Sorceress Green Skill 01.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Green Skills/Png/Sorceress Green Skill 02.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Green Skills/Png/Sorceress Green Skill 03.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Green Skills/Png/Sorceress Green Skill 04.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Green Skills/Png/Sorceress Green Skill 05.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Green Skills/Png/Sorceress Green Skill 06.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Green Skills/Png/Sorceress Green Skill 07.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Green Skills/Png/Sorceress Green Skill 08.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Green Skills/Png/Sorceress Green Skill 09.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Green Skills/Png/Sorceress Green Skill 10.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Green Skills/Png/Sorceress Green Skill 11.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Green Skills/Png/Sorceress Green Skill 12.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Purple Skills/Png/Sorceress Red Skill 01.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Purple Skills/Png/Sorceress Red Skill 02.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Purple Skills/Png/Sorceress Red Skill 03.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Purple Skills/Png/Sorceress Red Skill 04.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Purple Skills/Png/Sorceress Red Skill 05.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Purple Skills/Png/Sorceress Red Skill 06.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Purple Skills/Png/Sorceress Red Skill 07.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Purple Skills/Png/Sorceress Red Skill 08.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Purple Skills/Png/Sorceress Red Skill 09.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Purple Skills/Png/Sorceress Red Skill 10.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Purple Skills/Png/Sorceress Red Skill 11.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Purple Skills/Png/Sorceress Red Skill 12.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Red Icons/Png/Sorceress Icon 01.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Red Icons/Png/Sorceress Icon 02.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Red Icons/Png/Sorceress Icon 03.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Red Icons/Png/Sorceress Icon 04.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Red Icons/Png/Sorceress Icon 05.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Red Icons/Png/Sorceress Icon 06.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Red Icons/Png/Sorceress Icon 07.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Red Icons/Png/Sorceress Icon 08.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Red Icons/Png/Sorceress Icon 09.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Red Icons/Png/Sorceress Icon 10.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Red Icons/Png/Sorceress Icon 11.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Sorceress Icons/Sorceress Red Icons/Png/Sorceress Icon 12.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Green Skills/Png/Warrior Icon 01.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Green Skills/Png/Warrior Icon 02.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Green Skills/Png/Warrior Icon 03.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Green Skills/Png/Warrior Icon 04.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Green Skills/Png/Warrior Icon 05.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Green Skills/Png/Warrior Icon 06.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Green Skills/Png/Warrior Icon 07.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Green Skills/Png/Warrior Icon 08.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Green Skills/Png/Warrior Icon 09.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Green Skills/Png/Warrior Icon 10.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Green Skills/Png/Warrior Icon 11.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Green Skills/Png/Warrior Icon 12.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Green Skills/Png/Warrior Icon 13.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Purple Skills/Png/Warrior Purple Skill 01.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Purple Skills/Png/Warrior Purple Skill 02.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Purple Skills/Png/Warrior Purple Skill 03.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Purple Skills/Png/Warrior Purple Skill 04.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Purple Skills/Png/Warrior Purple Skill 05.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Purple Skills/Png/Warrior Purple Skill 06.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Purple Skills/Png/Warrior Purple Skill 07.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Purple Skills/Png/Warrior Purple Skill 08.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Purple Skills/Png/Warrior Purple Skill 09.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Purple Skills/Png/Warrior Purple Skill 10.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Purple Skills/Png/Warrior Purple Skill 11.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Purple Skills/Png/Warrior Purple Skill 12.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Red Skills/Png/Warrior Skill Icon 01.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Red Skills/Png/Warrior Skill Icon 02.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Red Skills/Png/Warrior Skill Icon 03.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Red Skills/Png/Warrior Skill Icon 04.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Red Skills/Png/Warrior Skill Icon 05.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Red Skills/Png/Warrior Skill Icon 06.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Red Skills/Png/Warrior Skill Icon 07.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Red Skills/Png/Warrior Skill Icon 08.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Red Skills/Png/Warrior Skill Icon 09.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Red Skills/Png/Warrior Skill Icon 10.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Red Skills/Png/Warrior Skill Icon 11.png",
+    "w": 16,
+    "h": 16
+   },
+   {
+    "file": "lucifer-rpg-ui/Skill Icons/Warrior Icons/Warrior Red Skills/Png/Warrior Skill Icon 12.png",
+    "w": 16,
+    "h": 16
+   }
+  ],
+  "pixel-magic-sprite-effects": [
+   {
+    "file": "pixel-magic-sprite-effects/Earth_Spike/001.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Earth_Spike/002.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Earth_Spike/003.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Earth_Spike/004.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Earth_Spike/005.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Earth_Spike/006.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Earth_Spike/007.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Earth_Spike/008.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Earth_Spike/009.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Explosion/001.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Explosion/002.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Explosion/003.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Explosion/004.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Explosion/005.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Explosion/006.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Explosion/007.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Fire_Ball/001.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Fire_Ball/002.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Fire_Ball/003.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Fire_Ball/004.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Fire_Ball/005.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Fire_Ball/006.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Fire_Ball/007.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Fire_Ball/008.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Fire_Ball/009.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Fire_Ball/010.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Icons/tile000.png",
+    "w": 32,
+    "h": 32
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Icons/tile001.png",
+    "w": 32,
+    "h": 32
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Icons/tile002.png",
+    "w": 32,
+    "h": 32
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Icons/tile003.png",
+    "w": 32,
+    "h": 32
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Icons/tile004.png",
+    "w": 32,
+    "h": 32
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Icons/tile005.png",
+    "w": 32,
+    "h": 32
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Icons/tile006.png",
+    "w": 32,
+    "h": 32
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Icons/tile007.png",
+    "w": 32,
+    "h": 32
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Icons/tile008.png",
+    "w": 32,
+    "h": 32
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Icons/tile009.png",
+    "w": 32,
+    "h": 32
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Molten_Spear/001.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Molten_Spear/002.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Molten_Spear/003.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Molten_Spear/004.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Molten_Spear/005.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Molten_Spear/006.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Molten_Spear/007.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Molten_Spear/008.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Molten_Spear/009.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Molten_Spear/010.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Molten_Spear/011.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Molten_Spear/012.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Pixel_Magic_Effects_Animations.png",
+    "w": 640,
+    "h": 832
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Pixel_Magic_Effects_Icons.png",
+    "w": 320,
+    "h": 32
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Portal/001.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Portal/002.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Portal/003.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Portal/004.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Portal/005.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Portal/006.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Portal/007.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Portal/008.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Portal/009.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Portal/010.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Rocks/001.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Rocks/002.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Rocks/003.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Rocks/004.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Rocks/005.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Rocks/006.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Rocks/007.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Rocks/008.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Rocks/009.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Rocks/010.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Tornado/001.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Tornado/002.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Tornado/003.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Tornado/004.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Tornado/005.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Tornado/006.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Tornado/007.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Tornado/008.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Tornado/009.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water/001.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water/002.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water/003.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water/004.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water/005.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water/006.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water/007.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water/008.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water/009.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water/010.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water_Geyser/001.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water_Geyser/002.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water_Geyser/003.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water_Geyser/004.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water_Geyser/005.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water_Geyser/006.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water_Geyser/007.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water_Geyser/008.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water_Geyser/009.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water_Geyser/010.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water_Geyser/011.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water_Geyser/012.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Water_Geyser/013.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Wind/001.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Wind/002.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Wind/003.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Wind/004.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Wind/005.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Wind/006.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Wind/007.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Wind/008.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Wind/009.png",
+    "w": 64,
+    "h": 64
+   },
+   {
+    "file": "pixel-magic-sprite-effects/Wind/010.png",
+    "w": 64,
+    "h": 64
+   }
+  ],
+  "rpg-ui-set-1": [
+   {
+    "file": "rpg-ui-set-1/Accept_Button_Dark.png",
+    "w": 200,
+    "h": 53
+   },
+   {
+    "file": "rpg-ui-set-1/Accept_Button_Light.png",
+    "w": 200,
+    "h": 53
+   },
+   {
+    "file": "rpg-ui-set-1/Accept_Button_Normal.png",
+    "w": 200,
+    "h": 53
+   },
+   {
+    "file": "rpg-ui-set-1/Bonus_Level_Base.png",
+    "w": 89,
+    "h": 89
+   },
+   {
+    "file": "rpg-ui-set-1/Button.png",
+    "w": 90,
+    "h": 88
+   },
+   {
+    "file": "rpg-ui-set-1/Chest.png",
+    "w": 308,
+    "h": 308
+   },
+   {
+    "file": "rpg-ui-set-1/Chest2.png",
+    "w": 308,
+    "h": 308
+   },
+   {
+    "file": "rpg-ui-set-1/Coin.png",
+    "w": 308,
+    "h": 308
+   },
+   {
+    "file": "rpg-ui-set-1/Coin_Button.png",
+    "w": 132,
+    "h": 129
+   },
+   {
+    "file": "rpg-ui-set-1/Coins.png",
+    "w": 308,
+    "h": 308
+   },
+   {
+    "file": "rpg-ui-set-1/Corner.png",
+    "w": 386,
+    "h": 382
+   },
+   {
+    "file": "rpg-ui-set-1/Decline_Button_Dark.png",
+    "w": 200,
+    "h": 53
+   },
+   {
+    "file": "rpg-ui-set-1/Decline_Button_Light.png",
+    "w": 200,
+    "h": 53
+   },
+   {
+    "file": "rpg-ui-set-1/Decline_Button_Normal.png",
+    "w": 200,
+    "h": 53
+   },
+   {
+    "file": "rpg-ui-set-1/Exit_Button_Dark.png",
+    "w": 53,
+    "h": 53
+   },
+   {
+    "file": "rpg-ui-set-1/Exit_Button_Light.png",
+    "w": 53,
+    "h": 53
+   },
+   {
+    "file": "rpg-ui-set-1/Exit_Button_Normal.png",
+    "w": 53,
+    "h": 53
+   },
+   {
+    "file": "rpg-ui-set-1/Leaderboard_Button_Dark.png",
+    "w": 95,
+    "h": 95
+   },
+   {
+    "file": "rpg-ui-set-1/Leaderboard_Button_Light.png",
+    "w": 95,
+    "h": 95
+   },
+   {
+    "file": "rpg-ui-set-1/Leaderboard_Button_Normal.png",
+    "w": 95,
+    "h": 95
+   },
+   {
+    "file": "rpg-ui-set-1/Login_Button_1.png",
+    "w": 338,
+    "h": 65
+   },
+   {
+    "file": "rpg-ui-set-1/Login_Button_Dark.png",
+    "w": 338,
+    "h": 65
+   },
+   {
+    "file": "rpg-ui-set-1/Login_Button_Light.png",
+    "w": 338,
+    "h": 65
+   },
+   {
+    "file": "rpg-ui-set-1/Main_Button_BG.png",
+    "w": 381,
+    "h": 324
+   },
+   {
+    "file": "rpg-ui-set-1/Main_Button_Fill.png",
+    "w": 213,
+    "h": 213
+   },
+   {
+    "file": "rpg-ui-set-1/Main_Button_Overlay.png",
+    "w": 213,
+    "h": 213
+   },
+   {
+    "file": "rpg-ui-set-1/Main_Button_Overlay_Dark.png",
+    "w": 213,
+    "h": 213
+   },
+   {
+    "file": "rpg-ui-set-1/Main_Button_Overlay_Light.png",
+    "w": 213,
+    "h": 213
+   },
+   {
+    "file": "rpg-ui-set-1/Panel_1.png",
+    "w": 624,
+    "h": 436
+   },
+   {
+    "file": "rpg-ui-set-1/Panel_2.png",
+    "w": 907,
+    "h": 209
+   },
+   {
+    "file": "rpg-ui-set-1/Register_Button_Dark.png",
+    "w": 338,
+    "h": 66
+   },
+   {
+    "file": "rpg-ui-set-1/Register_Button_Light.png",
+    "w": 338,
+    "h": 66
+   },
+   {
+    "file": "rpg-ui-set-1/Register_Button_Normal.png",
+    "w": 338,
+    "h": 66
+   },
+   {
+    "file": "rpg-ui-set-1/UI_LOGIN_REGISTER.png",
+    "w": 524,
+    "h": 800
+   },
+   {
+    "file": "rpg-ui-set-1/bag.png",
+    "w": 308,
+    "h": 308
+   }
+  ],
+  "trap-pack": [
+   {
+    "file": "trap-pack/Arrow Trap/PNGs/Arrow Trap - Level 1.png",
+    "w": 1632,
+    "h": 32
+   },
+   {
+    "file": "trap-pack/Arrow Trap/PNGs/Arrow Trap - Level 2.png",
+    "w": 2592,
+    "h": 32
+   },
+   {
+    "file": "trap-pack/Arrow Trap/PNGs/Arrow Trap - Level 3.png",
+    "w": 3328,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Arrow Trap/PNGs/Arrow.png",
+    "w": 29,
+    "h": 3
+   },
+   {
+    "file": "trap-pack/Arrow Trap/Transitions/PNGs/Arrow Trap - Level 1 - Transition.png",
+    "w": 1248,
+    "h": 32
+   },
+   {
+    "file": "trap-pack/Arrow Trap/Transitions/PNGs/Arrow Trap - Level 2 - Transition.png",
+    "w": 1248,
+    "h": 32
+   },
+   {
+    "file": "trap-pack/Arrow Trap/Transitions/PNGs/Arrow Trap - Level 3 - Transition.png",
+    "w": 1664,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Ceiling Trap/PNGs/Ceiling Trap - Level 1.png",
+    "w": 896,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Ceiling Trap/PNGs/Ceiling Trap - Level 2.png",
+    "w": 1440,
+    "h": 32
+   },
+   {
+    "file": "trap-pack/Ceiling Trap/PNGs/Ceiling Trap - Level 3.png",
+    "w": 1632,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Ceiling Trap/Transitions/PNGs/Ceiling Trap - Level 1 - Transition.png",
+    "w": 640,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Ceiling Trap/Transitions/PNGs/Ceiling Trap - Level 2 - Transition.png",
+    "w": 1056,
+    "h": 32
+   },
+   {
+    "file": "trap-pack/Ceiling Trap/Transitions/PNGs/Ceiling Trap - Level 3 - Transition.png",
+    "w": 1056,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Fire Breather Trap/PNGs/Fire Breather Trap - Level 1.png",
+    "w": 1056,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Fire Breather Trap/PNGs/Fire Breather Trap - Level 2.png",
+    "w": 2560,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Fire Breather Trap/PNGs/Fire Thrower Trap - Level 3.png",
+    "w": 4800,
+    "h": 96
+   },
+   {
+    "file": "trap-pack/Fire Breather Trap/Transition/PNGs/Fire Breather Trap - Level 1 - Transition.png",
+    "w": 1440,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Fire Breather Trap/Transition/PNGs/Fire Breather Trap - Level 2 - Transition.png",
+    "w": 1440,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Fire Breather Trap/Transition/PNGs/Fire Breather Trap - Level 3 - Transition.png",
+    "w": 2496,
+    "h": 96
+   },
+   {
+    "file": "trap-pack/Fire Trap/PNGs/Fire Trap - Level 1.png",
+    "w": 288,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Fire Trap/PNGs/Fire Trap - Level 2.png",
+    "w": 288,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Fire Trap/PNGs/Fire Trap - Level 3.png",
+    "w": 384,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Fire Trap/Transition/PNGs/Fire Trap - Level 1 - Transition.png",
+    "w": 288,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Fire Trap/Transition/PNGs/Fire Trap - Level 2 - Transition.png",
+    "w": 352,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Fire Trap/Transition/PNGs/Fire Trap - Level 3 - Transition.png",
+    "w": 352,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Lightning Trap/PNGs/Lightning Trap - Level 1.png",
+    "w": 960,
+    "h": 96
+   },
+   {
+    "file": "trap-pack/Lightning Trap/PNGs/Lightning Trap - Level 2.png",
+    "w": 1152,
+    "h": 96
+   },
+   {
+    "file": "trap-pack/Lightning Trap/PNGs/Lightning Trap - Level 3.png",
+    "w": 2112,
+    "h": 96
+   },
+   {
+    "file": "trap-pack/Lightning Trap/Transition/PNGs/Lightning Trap - Level 1 - Transition.png",
+    "w": 960,
+    "h": 96
+   },
+   {
+    "file": "trap-pack/Lightning Trap/Transition/PNGs/Lightning Trap - Level 2 - Transition.png",
+    "w": 1152,
+    "h": 96
+   },
+   {
+    "file": "trap-pack/Lightning Trap/Transition/PNGs/Lightning Trap - Level 3 - Transition.png",
+    "w": 1248,
+    "h": 96
+   },
+   {
+    "file": "trap-pack/Magic trap/PNGs/Magic trap - Level 1.png",
+    "w": 800,
+    "h": 32
+   },
+   {
+    "file": "trap-pack/Magic trap/PNGs/Magic trap - Level 2.png",
+    "w": 2496,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Magic trap/PNGs/Magic trap - Level 3.png",
+    "w": 4176,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Magic trap/Transition/PNGs/Magic trap - Level 1 - Transition.png",
+    "w": 448,
+    "h": 32
+   },
+   {
+    "file": "trap-pack/Magic trap/Transition/PNGs/Magic trap - Level 2 - Transition.png",
+    "w": 1824,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Magic trap/Transition/PNGs/Magic trap - Level 3 - Transition.png",
+    "w": 2016,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Punch Trap/PNGs/Punch Trap - Level 1.png",
+    "w": 1248,
+    "h": 32
+   },
+   {
+    "file": "trap-pack/Punch Trap/PNGs/Punch Trap - Level 2.png",
+    "w": 2688,
+    "h": 32
+   },
+   {
+    "file": "trap-pack/Punch Trap/PNGs/Punch Trap - Level 3.png",
+    "w": 1536,
+    "h": 32
+   },
+   {
+    "file": "trap-pack/Punch Trap/Transition/PNGs/Punch Trap - Level 1 - Transition.png",
+    "w": 1248,
+    "h": 32
+   },
+   {
+    "file": "trap-pack/Punch Trap/Transition/PNGs/Punch Trap - Level 2 - Transition.png",
+    "w": 1728,
+    "h": 32
+   },
+   {
+    "file": "trap-pack/Punch Trap/Transition/PNGs/Punch Trap - Level 3 - Transition.png",
+    "w": 1632,
+    "h": 32
+   },
+   {
+    "file": "trap-pack/Sandworm Trap/PNGs/Sandworm trap - Level 1.png",
+    "w": 352,
+    "h": 32
+   },
+   {
+    "file": "trap-pack/Sandworm Trap/PNGs/Sandworm trap - Level 2.png",
+    "w": 1248,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Sandworm Trap/PNGs/Sandworm trap - Level 3.png",
+    "w": 3456,
+    "h": 32
+   },
+   {
+    "file": "trap-pack/Sandworm Trap/Transitions/PNGs/Sandworm trap - Level 1 - Transition.png",
+    "w": 320,
+    "h": 32
+   },
+   {
+    "file": "trap-pack/Sandworm Trap/Transitions/PNGs/Sandworm trap - Level 2 - Transition.png",
+    "w": 960,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Saw Trap/PNGs/Saw Trap - Level 1.png",
+    "w": 1024,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Saw Trap/PNGs/Saw Trap - Level 2.png",
+    "w": 1920,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Saw Trap/PNGs/Saw Trap - Level 3.png",
+    "w": 1728,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Saw Trap/Transitions/PNGs/Saw Trap - Level 1 - Transition.png",
+    "w": 704,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Saw Trap/Transitions/PNGs/Saw Trap - Level 2 - Transition.png",
+    "w": 768,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Saw Trap/Transitions/PNGs/Saw Trap - Level 3 - Transition.png",
+    "w": 960,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Toxic Trap/PNGs/Toxic Trap - Level 1.png",
+    "w": 3840,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Toxic Trap/PNGs/Toxic Trap - Level 2.png",
+    "w": 2016,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Toxic Trap/PNGs/Toxic Trap - Level 3.png",
+    "w": 2016,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Toxic Trap/Transitions/PNGs/Toxic Trap - Level 1 - Transition.png",
+    "w": 1824,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Toxic Trap/Transitions/PNGs/Toxic Trap - Level 2 - Transition.png",
+    "w": 1824,
+    "h": 64
+   },
+   {
+    "file": "trap-pack/Toxic Trap/Transitions/PNGs/Toxic Trap - Level 3 - Transition.png",
+    "w": 1824,
+    "h": 64
+   }
+  ]
+ }
+}

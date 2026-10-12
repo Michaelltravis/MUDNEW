@@ -1,0 +1,106 @@
+{
+  "name": "The Hall of Unsung Kings",
+  "intro": "The last chord fades and the Elemental Nexus fades with it. You stand in a hall built to hold a song \u2014 and the song is gone. Only the silence it left behind remains, and the silence is listening.",
+  "rooms": [
+    {
+      "key": "gallery",
+      "name": "The Hall of Unsung Kings - The Gallery of Faces",
+      "sector": "inside",
+      "description": "Portraits of kings line the walls, every one with its mouth painted out. North, a door carved with musical notes stands shut.",
+      "exits": {
+        "north": {
+          "to": "stair",
+          "door": "carved door"
+        }
+      }
+    },
+    {
+      "key": "stair",
+      "name": "The Hall of Unsung Kings - The Silent Stair",
+      "sector": "inside",
+      "description": "A great stair climbs between pillars carved like organ pipes. Your footsteps make no sound on it at all. North, the throne room doors are sealed.",
+      "exits": {
+        "south": {
+          "to": "gallery",
+          "door": "carved door"
+        },
+        "north": {
+          "to": "throne",
+          "door": "throne doors"
+        }
+      }
+    },
+    {
+      "key": "throne",
+      "name": "The Hall of Unsung Kings - The Mute Throne",
+      "sector": "inside",
+      "description": "A throne of silent bells under a crown of stopped clocks. The king on it has been waiting a thousand years for someone to remember the words.",
+      "exits": {
+        "south": {
+          "to": "stair",
+          "door": "throne doors"
+        }
+      }
+    }
+  ],
+  "entrance": "gallery",
+  "waves": [
+    {
+      "room": "gallery",
+      "mobs": [
+        [
+          9774,
+          2
+        ],
+        [
+          9775,
+          1
+        ]
+      ],
+      "text": "Hollow courtiers step down out of the portraits!"
+    },
+    {
+      "room": "stair",
+      "mobs": [
+        [
+          9774,
+          2
+        ],
+        [
+          9775,
+          1
+        ]
+      ],
+      "text": "The courtiers come down the silent stair toward you!"
+    },
+    {
+      "room": "stair",
+      "mobs": [
+        [
+          9775,
+          3
+        ]
+      ],
+      "text": "Silent echoes pour from the organ-pipe pillars!"
+    }
+  ],
+  "gates": [
+    {
+      "after": 0,
+      "room": "gallery",
+      "dir": "north",
+      "text": "The carved door hums a single note and swings open."
+    },
+    {
+      "after": 2,
+      "room": "stair",
+      "dir": "north",
+      "text": "The throne room doors open on silence."
+    }
+  ],
+  "boss": {
+    "vnum": 9776,
+    "room": "throne",
+    "text": "The Mute King rises from his throne of silent bells. He opens his mouth to speak, and nothing comes out \u2014 nothing at all. Then he draws his sword."
+  }
+}

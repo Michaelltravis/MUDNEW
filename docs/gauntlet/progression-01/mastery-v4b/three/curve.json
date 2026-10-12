@@ -1,0 +1,212 @@
+{
+  "run": "progression-01",
+  "character": "NewAwqzk",
+  "opener": "bash",
+  "start": {
+    "level": null,
+    "exp": null,
+    "hp": null,
+    "maxhp": null
+  },
+  "end": {
+    "level": 5,
+    "exp": 2023,
+    "hp": 58,
+    "maxhp": 58
+  },
+  "fights": [
+    {
+      "vnum": 18645,
+      "target": "newbie",
+      "threat": "Even",
+      "level_before": 5,
+      "level_after": 5,
+      "levelled": false,
+      "exp_before": 100,
+      "exp_after": 456,
+      "duration_s": 35.4,
+      "rounds": 14,
+      "ended": "mob_killed",
+      "bashes": 4,
+      "braces": 1,
+      "opener_used": "bash",
+      "reactions": {
+        "brace": 1,
+        "sidestep": 0,
+        "interrupt": 0,
+        "swing": 0,
+        "perfect": 0
+      },
+      "hp_start": 58,
+      "hp_end": 53,
+      "maxhp": 58,
+      "label": "newbie zone: balcony newbie (L5)",
+      "t_elapsed_s": 42.8
+    },
+    {
+      "vnum": 18639,
+      "target": "spectre",
+      "threat": "Even",
+      "level_before": 5,
+      "level_after": 5,
+      "levelled": false,
+      "exp_before": 456,
+      "exp_after": 885,
+      "duration_s": 23.1,
+      "rounds": 9,
+      "ended": "mob_killed",
+      "bashes": 3,
+      "braces": 0,
+      "opener_used": "bash",
+      "reactions": {
+        "brace": 0,
+        "sidestep": 0,
+        "interrupt": 0,
+        "swing": 0,
+        "perfect": 0
+      },
+      "hp_start": 32,
+      "hp_end": 38,
+      "maxhp": 58,
+      "label": "newbie zone: spectre (L6)",
+      "t_elapsed_s": 75.1
+    },
+    {
+      "vnum": 18629,
+      "target": "minotaur",
+      "threat": "Moderate",
+      "level_before": 5,
+      "level_after": 5,
+      "levelled": false,
+      "exp_before": 885,
+      "exp_after": 1395,
+      "duration_s": 41.1,
+      "rounds": 17,
+      "ended": "mob_killed",
+      "bashes": 5,
+      "braces": 1,
+      "opener_used": "bash",
+      "reactions": {
+        "brace": 1,
+        "sidestep": 0,
+        "interrupt": 0,
+        "swing": 0,
+        "perfect": 0
+      },
+      "hp_start": 40,
+      "hp_end": 5,
+      "maxhp": 58,
+      "label": "newbie zone: minotaur (L7)",
+      "t_elapsed_s": 123.6
+    },
+    {
+      "vnum": 3509,
+      "target": "goblin",
+      "threat": "Even",
+      "level_before": 5,
+      "level_after": 5,
+      "levelled": false,
+      "exp_before": 1395,
+      "exp_after": 1368,
+      "duration_s": 10.0,
+      "rounds": 7,
+      "ended": "player_died",
+      "bashes": 2,
+      "braces": 1,
+      "opener_used": "bash",
+      "reactions": {
+        "brace": 1,
+        "sidestep": 0,
+        "interrupt": 0,
+        "swing": 0,
+        "perfect": 0
+      },
+      "hp_start": 54,
+      "hp_end": 23,
+      "maxhp": 58,
+      "label": "light forest: goblin pack (L4 x2, aggressive)",
+      "t_elapsed_s": 254.7
+    },
+    {
+      "vnum": 3512,
+      "target": "goblin",
+      "threat": "Even",
+      "level_before": 5,
+      "level_after": 5,
+      "levelled": false,
+      "exp_before": 1368,
+      "exp_after": 1563,
+      "duration_s": 11.4,
+      "rounds": 5,
+      "ended": "mob_killed",
+      "bashes": 2,
+      "braces": 1,
+      "opener_used": "bash",
+      "reactions": {
+        "brace": 1,
+        "sidestep": 0,
+        "interrupt": 0,
+        "swing": 0,
+        "perfect": 0
+      },
+      "hp_start": 58,
+      "hp_end": 17,
+      "maxhp": 58,
+      "label": "light forest: goblin pack again",
+      "t_elapsed_s": 276.1
+    },
+    {
+      "vnum": 18629,
+      "target": "minotaur",
+      "threat": "Moderate",
+      "level_before": 5,
+      "level_after": 5,
+      "levelled": false,
+      "exp_before": 1532,
+      "exp_after": 2023,
+      "duration_s": 67.6,
+      "rounds": 26,
+      "ended": "mob_killed",
+      "bashes": 8,
+      "braces": 1,
+      "opener_used": "bash",
+      "reactions": {
+        "brace": 1,
+        "sidestep": 0,
+        "interrupt": 0,
+        "swing": 0,
+        "perfect": 0
+      },
+      "hp_start": 54,
+      "hp_end": 19,
+      "maxhp": 58,
+      "label": "newbie zone: minotaur again (L7)",
+      "t_elapsed_s": 465.1
+    }
+  ],
+  "rests": [
+    {
+      "after": "newbie zone: minotaur (L7)",
+      "seconds": 111.0
+    },
+    {
+      "after": "light forest: goblin pack again",
+      "seconds": 114.0
+    },
+    {
+      "after": "newbie zone: minotaur again (L7)",
+      "seconds": 70.9
+    }
+  ],
+  "deaths": 1,
+  "level_reached": 5,
+  "time_to_level": {
+    "2": 42.8,
+    "3": 42.8,
+    "4": 42.8,
+    "5": 42.8
+  },
+  "total_s": 537.1,
+  "active_fight_s": 188.6,
+  "rest_s": 295.9
+}

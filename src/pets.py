@@ -470,6 +470,10 @@ class Pet(Mobile):
             return
         
         target_room = exit_data['room']
+        if not target_room.admits(self):       # the God Rooms, a sealed land
+            if hasattr(self.owner, 'send'):
+                await self.owner.send(f"{c['yellow']}{self.name} won't go that way.{c['reset']}")
+            return
         old_room = self.room
         
         # Leave current room
@@ -553,8 +557,8 @@ class Pet(Mobile):
                 await self.owner.send(f"{c['red']}{self.name} has nowhere to flee!{c['reset']}")
             return
         
-        # Pick random exit
-        available_exits = [d for d, e in self.room.exits.items() if e and e.get('room')]
+        # Pick random exit (not into a room it may not be in: the God Rooms, a sealed land)
+        available_exits = [d for d, e in self.room.exits.items() if e and e.get('room') and e['room'].admits(self)]
         if not available_exits:
             if hasattr(self.owner, 'send'):
                 await self.owner.send(f"{c['red']}{self.name} has nowhere to flee!{c['reset']}")
@@ -937,18 +941,24 @@ class Pet(Mobile):
             if not hasattr(self, 'shield_wall_active'):
                 self.shield_wall_active = 0
             
-            if self.shield_wall_active > 0:
-                return  # Already active
+            if self.shield_wall_active > 0 or getattr(self, 'shield_wall_cd', 0) > 0:
+                return  # up already, or still resting (it had no rest: up two rounds in three)
             
             self.shield_wall_active = 3  # 3 rounds
+            self.shield_wall_cd = 6      # ...and not again for 6 rounds from now
             
-            # Taunt all enemies in room to attack this pet
+            # Taunt the creatures attacking the owner, their group or their pets: never a
+            # player (a groupmate was turned onto the knight), never another pet
             if self.room:
+                owner = self.owner
+                friends = {owner} | set(getattr(getattr(owner, 'group', None), 'members', None) or [])
                 for char in self.room.characters:
-                    if hasattr(char, 'is_fighting') and char.is_fighting and char != self and char != self.owner:
-                        if not hasattr(char, 'owner'):  # Only taunt enemies, not other pets
-                            char.target = self
-                            char.fighting = self
+                    if char is self or hasattr(char, 'connection') or getattr(char, 'owner', None) is not None:
+                        continue
+                    foe_of = getattr(char, 'fighting', None)
+                    if foe_of is not None and (foe_of in friends or getattr(foe_of, 'owner', None) in friends):
+                        char.target = self
+                        char.fighting = self
                 
                 await self.room.send_to_room(
                     f"{c['bright_cyan']}{self.name} raises its shield and braces for impact!{c['reset']}",
@@ -1002,7 +1012,7 @@ class Pet(Mobile):
             
             # Apply damage to target
             if hasattr(target, 'take_damage'):
-                await target.take_damage(damage, self)
+                await target.take_damage(damage, self, 'necrotic')
             else:
                 target.hp -= damage
             
@@ -1065,6 +1075,9 @@ class Pet(Mobile):
     async def ai_combat_tick(self):
         """AI behavior during combat - use special abilities automatically."""
         if not self.is_fighting or not self.target:
+            # out of a fight a raised shield comes down (it only counts down in rounds)
+            if getattr(self, 'shield_wall_active', 0):
+                self.shield_wall_active = 0
             return
         
         # Check if we have special_abilities attribute
@@ -1137,9 +1150,11 @@ class Pet(Mobile):
             else:
                 self.backstab_cooldown -= 1
         
-        # Decrement shield wall counter
+        # Decrement shield wall counter and its rest
         if hasattr(self, 'shield_wall_active') and self.shield_wall_active > 0:
             self.shield_wall_active -= 1
+        if getattr(self, 'shield_wall_cd', 0) > 0:
+            self.shield_wall_cd -= 1
 
 
 # Pet templates
@@ -1156,6 +1171,19 @@ PET_TEMPLATES = {
         'damage_dice': '2d6',
         'special_abilities': ['whirlwind', 'fly'],
         'flags': ['fly'],
+    },
+    'stone_gargoyle': {     # a necromancer's Summon Gargoyle (spells.py)
+        'name': 'stone gargoyle',
+        'short_desc': 'a hulking stone gargoyle',
+        'long_desc': 'A hulking stone gargoyle crouches here, wings folded like a cloak of slate.',
+        'pet_type': 'summon',
+        'role': 'warrior',
+        'level_mult': 1.0,
+        'duration': 180,
+        'hp_dice': '20d10+150',
+        'damage_dice': '3d8',
+        'special_abilities': [],
+        'flags': [],
     },
     'fire_elemental': {
         'name': 'fire elemental',

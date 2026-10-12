@@ -1,123 +1,1331 @@
 {
-  "number": 32,
-  "name": "Midgaard Stables",
-  "lifespan": 30,
-  "rooms": {
-    "3200": {
-      "vnum": 3200,
-      "name": "Stable Road",
-      "description": "A wide cobblestone road leads south from the bustling streets of Midgaard toward a large wooden stable complex. The scent of hay and horses fills the air. A weathered sign reads 'Midgaard Royal Stables - Finest Mounts in the Realm'. Hoofprints and wheel ruts mark the well-traveled path.",
-      "sector_type": "city",
-      "flags": [
-        "no_mob"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 3005
-        },
-        "south": {
-          "room_vnum": 3201
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3200,
-          "max": 1
-        }
-      ]
-    },
-    "3201": {
-      "vnum": 3201,
-      "name": "Midgaard Royal Stables - Main Hall",
-      "description": "You stand in the main hall of the Royal Stables. Sturdy wooden stalls line both sides of the wide central aisle. The sweet smell of fresh hay mingles with the warm scent of horses. Saddles, bridles, and riding gear hang from pegs along the walls. The stable master oversees all business from a small desk near the entrance. A passage to the east leads to the premium stables, while the training paddock lies to the south.",
-      "sector_type": "city",
-      "flags": [
-        "peaceful",
-        "no_mob"
-      ],
-      "exits": {
-        "north": {
-          "room_vnum": 3200
-        },
-        "east": {
-          "room_vnum": 3202
-        },
-        "south": {
-          "room_vnum": 3203
-        }
-      }
-    },
-    "3202": {
-      "vnum": 3202,
-      "name": "Premium Stables",
-      "description": "These stalls are larger and better-appointed than the common ones. Brass nameplates mark each stall, and the bedding is fresh and deep. War horses stamp impatiently in their reinforced stalls, while more exotic mounts peer from behind enchanted barriers. A sign lists the available mounts and their prices.",
-      "sector_type": "city",
-      "flags": [
-        "peaceful",
-        "no_mob"
-      ],
-      "exits": {
-        "west": {
-          "room_vnum": 3201
-        }
-      }
-    },
-    "3203": {
-      "vnum": 3203,
-      "name": "Training Paddock",
-      "description": "A large open paddock stretches out behind the stables, enclosed by a sturdy wooden fence. Riders practice their skills here, circling the paddock on various mounts. A few hay bales serve as practice targets. The ground is packed earth, worn smooth by countless hooves.",
-      "sector_type": "field",
-      "flags": [
-        "peaceful"
-      ],
-      "exits": {
-        "north": {
-          "room_vnum": 3201
-        }
-      }
-    }
-  },
-  "mobs": {
-    "3200": {
-      "vnum": 3200,
-      "name": "the stable master",
-      "short_desc": "Brynn the Stable Master",
-      "long_desc": "Brynn the Stable Master stands here, sizing up potential riders.",
-      "description": "A stout, weathered man with calloused hands and a knowing look. Brynn has spent his entire life around horses and exotic mounts. He can tell a rider's skill at a glance.",
-      "level": 25,
-      "alignment": 500,
-      "hp_dice": "5d10+100",
-      "damage_dice": "2d6+5",
-      "gold": 500,
-      "flags": [
-        "sentinel",
-        "no_charm",
-        "helper"
-      ],
-      "special": "stable_master",
-      "keywords": [
-        "brynn",
-        "stable",
-        "master",
-        "stablemaster"
-      ],
-      "talk_responses": {
-        "default": "Brynn says, 'Looking for a mount? Type STABLE LIST to see what we have, or STABLE BUY <mount> to purchase one.'",
-        "horse": "Brynn says, 'A fine choice! Our riding horses are 2,000 gold. Reliable and swift.'",
-        "warhorse": "Brynn says, 'War horses are trained for battle \u2014 5,000 gold. They won't throw you when swords clash!'",
-        "nightmare": "Brynn lowers his voice, 'Nightmares... those aren't for sale. Earn the Dark Brotherhood's trust, and they might gift you one.'",
-        "griffin": "Brynn whistles, 'Griffins are wild and proud. I've heard they nest in Shadowspire. Slay the right beast and one might bond to you.'",
-        "clockwork": "Brynn scratches his head, 'Clockwork Steeds? Those come from the Clockwork Foundry. Never need feeding, those mechanical beasts.'"
-      }
-    }
-  },
-  "objects": {},
-  "resets": [
+ "number": 32,
+ "name": "Stable & Temple",
+ "builders": "Cambell",
+ "atlas_area": 22,
+ "rooms": {
+  "3210": {
+   "vnum": 3210,
+   "name": "The Stable Entrance",
+   "map": {
+    "x": 1,
+    "y": 18,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "no_mob"
+   ],
+   "mob_resets": [
     {
-      "type": "mob",
-      "vnum": 3200,
-      "room": 3201,
-      "max": 1
+     "vnum": 3203,
+     "max": 1
     }
-  ]
+   ],
+   "description": "A wide cobblestone road leads south from the bustling streets of Garathorm toward a large wooden stable complex. The scent of hay and horses fills the air. A weathered sign reads 'Garathorm Royal Stables - Finest Mounts in the Realm'. Hoofprints and wheel ruts mark the well-traveled path.",
+   "exits": {
+    "north": {
+     "to_room": 15003,
+     "description": "To the north lies On The King's Road Outside The Castle."
+    },
+    "south": {
+     "to_room": 203603,
+     "description": "To the south lies The Royal Stable."
+    }
+   }
+  },
+  "203602": {
+   "vnum": 203602,
+   "name": "A Large Stall",
+   "map": {
+    "x": 0,
+    "y": 17,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 203603,
+     "description": "To the east lies The Royal Stable."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "203603": {
+   "vnum": 203603,
+   "name": "The Royal Stable",
+   "map": {
+    "x": 1,
+    "y": 17,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3210,
+     "description": "To the north lies The Stable Entrance."
+    },
+    "south": {
+     "to_room": 203605,
+     "description": "To the south lies The Royal Stable."
+    },
+    "west": {
+     "to_room": 203602,
+     "description": "To the west lies A Large Stall."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "203604": {
+   "vnum": 203604,
+   "name": "A Stall",
+   "map": {
+    "x": 0,
+    "y": 16,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 203605,
+     "description": "To the east lies The Royal Stable."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "203605": {
+   "vnum": 203605,
+   "name": "The Royal Stable",
+   "map": {
+    "x": 1,
+    "y": 16,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 203603,
+     "description": "To the north lies The Royal Stable."
+    },
+    "east": {
+     "to_room": 203606,
+     "description": "To the east lies A Stall."
+    },
+    "south": {
+     "to_room": 203608,
+     "description": "To the south lies The Royal Stable."
+    },
+    "west": {
+     "to_room": 203604,
+     "description": "To the west lies A Stall."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "203606": {
+   "vnum": 203606,
+   "name": "A Stall",
+   "map": {
+    "x": 2,
+    "y": 16,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 203605,
+     "description": "To the west lies The Royal Stable."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "203607": {
+   "vnum": 203607,
+   "name": "A Stall",
+   "map": {
+    "x": 0,
+    "y": 15,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 203608,
+     "description": "To the east lies The Royal Stable."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "203608": {
+   "vnum": 203608,
+   "name": "The Royal Stable",
+   "map": {
+    "x": 1,
+    "y": 15,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 203605,
+     "description": "To the north lies The Royal Stable."
+    },
+    "east": {
+     "to_room": 203609,
+     "description": "To the east lies A Stall."
+    },
+    "south": {
+     "to_room": 203610,
+     "description": "To the south lies A Small Room."
+    },
+    "west": {
+     "to_room": 203607,
+     "description": "To the west lies A Stall."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "203609": {
+   "vnum": 203609,
+   "name": "A Stall",
+   "map": {
+    "x": 2,
+    "y": 15,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 203608,
+     "description": "To the west lies The Royal Stable."
+    },
+    "down": {
+     "to_room": 203612,
+     "description": "To the down lies In A Dusty Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead west and down.",
+   "placeholder": true
+  },
+  "203610": {
+   "vnum": 203610,
+   "name": "A Small Room",
+   "map": {
+    "x": 1,
+    "y": 14,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 203608,
+     "description": "To the north lies The Royal Stable."
+    },
+    "up": {
+     "to_room": 203611,
+     "description": "To the up lies A Small Loft."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and up.",
+   "placeholder": true
+  },
+  "203611": {
+   "vnum": 203611,
+   "name": "A Small Loft",
+   "map": {
+    "x": 1,
+    "y": 14,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "down": {
+     "to_room": 203610,
+     "description": "To the down lies A Small Room."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads down.",
+   "placeholder": true
+  },
+  "203612": {
+   "vnum": 203612,
+   "name": "In A Dusty Tunnel",
+   "map": {
+    "x": 3,
+    "y": 16,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 203613,
+     "description": "To the south lies In A Dusty Tunnel."
+    },
+    "up": {
+     "to_room": 203609,
+     "description": "To the up lies A Stall."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and up.",
+   "placeholder": true
+  },
+  "203613": {
+   "vnum": 203613,
+   "name": "In A Dusty Tunnel",
+   "map": {
+    "x": 3,
+    "y": 15,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 203612,
+     "description": "To the north lies In A Dusty Tunnel."
+    },
+    "south": {
+     "to_room": 203614,
+     "description": "To the south lies In An Endless Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "203614": {
+   "vnum": 203614,
+   "name": "In An Endless Tunnel",
+   "map": {
+    "x": 3,
+    "y": 14,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 203613,
+     "description": "To the north lies In A Dusty Tunnel."
+    },
+    "south": {
+     "to_room": 203615,
+     "description": "To the south lies In A Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "203615": {
+   "vnum": 203615,
+   "name": "In A Tunnel",
+   "map": {
+    "x": 3,
+    "y": 13,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 203614,
+     "description": "To the north lies In An Endless Tunnel."
+    },
+    "south": {
+     "to_room": 203618,
+     "description": "To the south lies Tunnel Entrance."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "203616": {
+   "vnum": 203616,
+   "name": "A Small Room",
+   "map": {
+    "x": 0,
+    "y": 12,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 203617,
+     "description": "To the east lies A Dim Hallway."
+    },
+    "south": {
+     "to_room": 203619,
+     "description": "To the south lies A Monster's Lair."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east and south.",
+   "placeholder": true
+  },
+  "203617": {
+   "vnum": 203617,
+   "name": "A Dim Hallway",
+   "map": {
+    "x": 2,
+    "y": 12,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 203618,
+     "description": "To the east lies Tunnel Entrance."
+    },
+    "south": {
+     "to_room": 203620,
+     "description": "To the south lies A Monster's Lair."
+    },
+    "west": {
+     "to_room": 203616,
+     "description": "To the west lies A Small Room."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "203618": {
+   "vnum": 203618,
+   "name": "Tunnel Entrance",
+   "map": {
+    "x": 3,
+    "y": 12,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 203615,
+     "description": "To the north lies In A Tunnel."
+    },
+    "west": {
+     "to_room": 203617,
+     "description": "To the west lies A Dim Hallway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and west.",
+   "placeholder": true
+  },
+  "203619": {
+   "vnum": 203619,
+   "name": "A Monster's Lair",
+   "map": {
+    "x": 0,
+    "y": 10,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 203621,
+     "description": "To the south lies An Underground Path."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads south.",
+   "placeholder": true
+  },
+  "203620": {
+   "vnum": 203620,
+   "name": "A Monster's Lair",
+   "map": {
+    "x": 2,
+    "y": 10,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 203622,
+     "description": "To the south lies In A Small, Dirty Place."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "203621": {
+   "vnum": 203621,
+   "name": "An Underground Path",
+   "map": {
+    "x": 0,
+    "y": 9,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 203619,
+     "description": "To the north lies A Monster's Lair."
+    },
+    "east": {
+     "to_room": 203622,
+     "description": "To the east lies In A Small, Dirty Place."
+    },
+    "south": {
+     "to_room": 3211,
+     "description": "To the south lies On A Path Before A Temple."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Birdsong\ndrifts down through the branches overhead. Ways lead north, east and\nsouth.",
+   "placeholder": true
+  },
+  "203622": {
+   "vnum": 203622,
+   "name": "In A Small, Dirty Place",
+   "map": {
+    "x": 2,
+    "y": 9,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 203620,
+     "description": "To the north lies A Monster's Lair."
+    },
+    "east": {
+     "to_room": 203623,
+     "description": "To the east lies In A Disgusting Place."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Old trees crowd\nclose, their roots knotted across the path. Ways lead north and east.",
+   "placeholder": true
+  },
+  "203623": {
+   "vnum": 203623,
+   "name": "In A Disgusting Place",
+   "map": {
+    "x": 3,
+    "y": 9,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 203618,
+     "description": "To the north lies Tunnel Entrance."
+    },
+    "west": {
+     "to_room": 203622,
+     "description": "To the west lies In A Small, Dirty Place."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead north and west.",
+   "placeholder": true
+  },
+  "3211": {
+   "vnum": 3211,
+   "name": "On A Path Before A Temple",
+   "map": {
+    "x": 0,
+    "y": 8,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "no_mob",
+    "peaceful"
+   ],
+   "description": "You stand in the main hall of the Royal Stables. Sturdy wooden stalls line both sides of the wide central aisle. The sweet smell of fresh hay mingles with the warm scent of horses. Saddles, bridles, and riding gear hang from pegs along the walls. The stable master oversees all business from a small desk near the entrance. A passage to the east leads to the premium stables, while the training paddock lies to the south.",
+   "exits": {
+    "north": {
+     "to_room": 203621,
+     "description": "To the north lies An Underground Path."
+    },
+    "south": {
+     "to_room": 203625,
+     "description": "To the south lies The Golden Arches Of Judgement."
+    }
+   }
+  },
+  "203625": {
+   "vnum": 203625,
+   "name": "The Golden Arches Of Judgement",
+   "map": {
+    "x": 0,
+    "y": 7,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3211,
+     "description": "To the north lies On A Path Before A Temple."
+    },
+    "south": {
+     "to_room": 203626,
+     "description": "To the south lies A Magnificent Entrance Hall."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Shafts of pale light slant\nbetween the trunks. Ways lead north and south.",
+   "placeholder": true
+  },
+  "203626": {
+   "vnum": 203626,
+   "name": "A Magnificent Entrance Hall",
+   "map": {
+    "x": 0,
+    "y": 6,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 203625,
+     "description": "To the north lies The Golden Arches Of Judgement."
+    },
+    "south": {
+     "to_room": 203628,
+     "description": "To the south lies Behind The Huge Wooden Gate."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "203627": {
+   "vnum": 203627,
+   "name": "A Hallway Corner",
+   "map": {
+    "x": -1,
+    "y": 5,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 203652,
+     "description": "To the north lies A guard room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 203628,
+     "description": "To the east lies Behind The Huge Wooden Gate."
+    },
+    "south": {
+     "to_room": 203633,
+     "description": "To the south lies A Hallway Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "203628": {
+   "vnum": 203628,
+   "name": "Behind The Huge Wooden Gate",
+   "map": {
+    "x": 0,
+    "y": 5,
+    "z": -1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 203626,
+     "description": "To the north lies A Magnificent Entrance Hall."
+    },
+    "east": {
+     "to_room": 203629,
+     "description": "To the east lies A Gallery Hallway."
+    },
+    "west": {
+     "to_room": 203627,
+     "description": "To the west lies A Hallway Corner."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north,\neast and west.",
+   "placeholder": true
+  },
+  "203629": {
+   "vnum": 203629,
+   "name": "A Gallery Hallway",
+   "map": {
+    "x": 1,
+    "y": 5,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 203631,
+     "description": "To the south lies A Wide Hallway."
+    },
+    "west": {
+     "to_room": 203628,
+     "description": "To the west lies Behind The Huge Wooden Gate."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead south and west.",
+   "placeholder": true
+  },
+  "203631": {
+   "vnum": 203631,
+   "name": "A Wide Hallway",
+   "map": {
+    "x": 1,
+    "y": 4,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 203629,
+     "description": "To the north lies A Gallery Hallway."
+    },
+    "east": {
+     "to_room": 203632,
+     "description": "To the east lies The Hallway Where It Turns."
+    },
+    "south": {
+     "to_room": 203635,
+     "description": "To the south lies A Dirty, Narrow Corridor."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "203632": {
+   "vnum": 203632,
+   "name": "The Hallway Where It Turns",
+   "map": {
+    "x": 4,
+    "y": 4,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 203636,
+     "description": "To the south lies A Hallway Intersection."
+    },
+    "west": {
+     "to_room": 203631,
+     "description": "To the west lies A Wide Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "203633": {
+   "vnum": 203633,
+   "name": "A Hallway Corridor",
+   "map": {
+    "x": -1,
+    "y": 4,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 203627,
+     "description": "To the north lies A Hallway Corner."
+    },
+    "south": {
+     "to_room": 203642,
+     "description": "To the south lies At A Hallway Turn."
+    },
+    "down": {
+     "to_room": 203638,
+     "description": "To the down lies In An Obscure Dungeon."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, south and down.",
+   "placeholder": true
+  },
+  "3212": {
+   "vnum": 3212,
+   "name": "Behind The Altar",
+   "map": {
+    "x": -3,
+    "y": 2,
+    "z": -1
+   },
+   "sector_type": "city",
+   "flags": [
+    "no_mob",
+    "peaceful"
+   ],
+   "description": "These stalls are larger and better-appointed than the common ones. Brass nameplates mark each stall, and the bedding is fresh and deep. War horses stamp impatiently in their reinforced stalls, while more exotic mounts peer from behind enchanted barriers. A sign lists the available mounts and their prices.",
+   "exits": {
+    "west": {
+     "to_room": 203633,
+     "description": "To the west lies A Hallway Corridor."
+    }
+   }
+  },
+  "203635": {
+   "vnum": 203635,
+   "name": "A Dirty, Narrow Corridor",
+   "map": {
+    "x": 1,
+    "y": 3,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 203631,
+     "description": "To the north lies A Wide Hallway."
+    },
+    "south": {
+     "to_room": 203640,
+     "description": "To the south lies A Narrow Turn In The Corridor."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "203636": {
+   "vnum": 203636,
+   "name": "A Hallway Intersection",
+   "map": {
+    "x": 4,
+    "y": 0,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 203632,
+     "description": "To the north lies The Hallway Where It Turns."
+    },
+    "east": {
+     "to_room": 203637,
+     "description": "To the east lies Another Hallway Corner."
+    },
+    "west": {
+     "to_room": 203643,
+     "description": "To the west lies Another Hallway Corner."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "203637": {
+   "vnum": 203637,
+   "name": "Another Hallway Corner",
+   "map": {
+    "x": 5,
+    "y": 0,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 203644,
+     "description": "To the south lies In A Long Hallway."
+    },
+    "west": {
+     "to_room": 203636,
+     "description": "To the west lies A Hallway Intersection."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "203638": {
+   "vnum": 203638,
+   "name": "In An Obscure Dungeon",
+   "map": {
+    "x": -1,
+    "y": 4,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 203645,
+     "description": "To the south lies A Holding Cell."
+    },
+    "up": {
+     "to_room": 203633,
+     "description": "To the up lies A Hallway Corridor."
+    },
+    "down": {
+     "to_room": 203638,
+     "description": "To the down lies In An Obscure Dungeon."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead south, up and down.",
+   "placeholder": true
+  },
+  "3213": {
+   "vnum": 3213,
+   "name": "Before The Grand Altar",
+   "map": {
+    "x": -3,
+    "y": 0,
+    "z": -1
+   },
+   "sector_type": "city",
+   "flags": [
+    "peaceful"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3212,
+     "description": "To the north lies Behind The Altar.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 203646,
+     "description": "To the south lies An Entrance Hall."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north and south.",
+   "placeholder": true
+  },
+  "203640": {
+   "vnum": 203640,
+   "name": "A Narrow Turn In The Corridor",
+   "map": {
+    "x": 1,
+    "y": 2,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 203635,
+     "description": "To the north lies A Dirty, Narrow Corridor."
+    },
+    "east": {
+     "to_room": 203641,
+     "description": "To the east lies In A Hole."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "203641": {
+   "vnum": 203641,
+   "name": "In A Hole",
+   "map": {
+    "x": 3,
+    "y": 2,
+    "z": -1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 203640,
+     "description": "To the west lies A Narrow Turn In The Corridor."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. A way\nleads west.",
+   "placeholder": true
+  },
+  "203642": {
+   "vnum": 203642,
+   "name": "At A Hallway Turn",
+   "map": {
+    "x": -1,
+    "y": 0,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 203633,
+     "description": "To the north lies A Hallway Corridor."
+    },
+    "east": {
+     "to_room": 203643,
+     "description": "To the east lies Another Hallway Corner."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "203643": {
+   "vnum": 203643,
+   "name": "Another Hallway Corner",
+   "map": {
+    "x": 3,
+    "y": 0,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 203636,
+     "description": "To the east lies A Hallway Intersection."
+    },
+    "west": {
+     "to_room": 203642,
+     "description": "To the west lies At A Hallway Turn."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "203644": {
+   "vnum": 203644,
+   "name": "In A Long Hallway",
+   "map": {
+    "x": 5,
+    "y": -1,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 203637,
+     "description": "To the north lies Another Hallway Corner."
+    },
+    "south": {
+     "to_room": 203650,
+     "description": "To the south lies A Hallway Corner.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "203645": {
+   "vnum": 203645,
+   "name": "A Holding Cell",
+   "map": {
+    "x": -1,
+    "y": 3,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 203638,
+     "description": "To the north lies In An Obscure Dungeon."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "203646": {
+   "vnum": 203646,
+   "name": "An Entrance Hall",
+   "map": {
+    "x": -3,
+    "y": -1,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3213,
+     "description": "To the north lies Before The Grand Altar.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 203647,
+     "description": "To the east lies A Small Treasury.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 203648,
+     "description": "To the south lies A Hallway Ending."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "203647": {
+   "vnum": 203647,
+   "name": "A Small Treasury",
+   "map": {
+    "x": -2,
+    "y": -1,
+    "z": -1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 203646,
+     "description": "To the west lies An Entrance Hall."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. A way leads\nwest.",
+   "placeholder": true
+  },
+  "203648": {
+   "vnum": 203648,
+   "name": "A Hallway Ending",
+   "map": {
+    "x": -3,
+    "y": -2,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 203646,
+     "description": "To the north lies An Entrance Hall.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 203649,
+     "description": "To the east lies A Hallway Intersection."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and east.",
+   "placeholder": true
+  },
+  "203649": {
+   "vnum": 203649,
+   "name": "A Hallway Intersection",
+   "map": {
+    "x": -2,
+    "y": -2,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 203650,
+     "description": "To the east lies A Hallway Corner."
+    },
+    "west": {
+     "to_room": 203648,
+     "description": "To the west lies A Hallway Ending."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "203650": {
+   "vnum": 203650,
+   "name": "A Hallway Corner",
+   "map": {
+    "x": 5,
+    "y": -2,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 203644,
+     "description": "To the north lies In A Long Hallway."
+    },
+    "west": {
+     "to_room": 203649,
+     "description": "To the west lies A Hallway Intersection."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "203652": {
+   "vnum": 203652,
+   "name": "A guard room",
+   "map": {
+    "x": -1,
+    "y": 7,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 203627,
+     "description": "To the south lies A Hallway Corner."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads south.",
+   "placeholder": true
+  }
+ },
+ "mobs": {
+  "3203": {
+   "vnum": 3203,
+   "name": "the stable master",
+   "short_desc": "Brynn the Stable Master",
+   "long_desc": "Brynn the Stable Master stands here, sizing up potential riders.",
+   "description": "A stout, weathered man with calloused hands and a knowing look. Brynn has spent his entire life around horses and exotic mounts. He can tell a rider's skill at a glance.",
+   "level": 25,
+   "alignment": 500,
+   "hp_dice": "5d10+100",
+   "damage_dice": "2d6+5",
+   "gold": 500,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "helper"
+   ],
+   "special": "stable_master",
+   "keywords": [
+    "brynn",
+    "stable",
+    "master",
+    "stablemaster"
+   ],
+   "talk_responses": {
+    "default": "Brynn says, 'Looking for a mount? Type STABLE LIST to see what we have, or STABLE BUY <mount> to purchase one.'",
+    "horse": "Brynn says, 'A fine choice! Our riding horses are 2,000 gold. Reliable and swift.'",
+    "warhorse": "Brynn says, 'War horses are trained for battle — 5,000 gold. They won't throw you when swords clash!'",
+    "nightmare": "Brynn lowers his voice, 'Nightmares... those aren't for sale. Earn the Dark Brotherhood's trust, and they might gift you one.'",
+    "griffin": "Brynn whistles, 'Griffins are wild and proud. I've heard they nest in Shadowspire. Slay the right beast and one might bond to you.'",
+    "clockwork": "Brynn scratches his head, 'Clockwork Steeds? Those come from the Clockwork Foundry. Never need feeding, those mechanical beasts.'"
+   }
+  }
+ },
+ "objects": {},
+ "lifespan": 30,
+ "resets": [
+  {
+   "type": "mob",
+   "vnum": 3203,
+   "room": 3201,
+   "max": 1
+  }
+ ]
 }

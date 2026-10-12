@@ -1,0 +1,1254 @@
+{
+ "number": 502,
+ "name": "Draconian Camp",
+ "builders": "Seeker",
+ "atlas_area": 102,
+ "rooms": {
+  "2000": {
+   "vnum": 2000,
+   "name": "Entrance To The Draconian Encampment",
+   "map": {
+    "x": 28,
+    "y": 76,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9134,
+     "description": "To the east lies The Plains."
+    },
+    "west": {
+     "to_room": 2001,
+     "description": "To the west lies A Trodden Path."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Old trees crowd close,\ntheir roots knotted across the path. Ways lead east and west.",
+   "placeholder": true
+  },
+  "2001": {
+   "vnum": 2001,
+   "name": "A Trodden Path",
+   "map": {
+    "x": 27,
+    "y": 76,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2013,
+     "description": "To the north lies A Trodden Path."
+    },
+    "east": {
+     "to_room": 2000,
+     "description": "To the east lies Entrance To The Draconian Encampment."
+    },
+    "west": {
+     "to_room": 2002,
+     "description": "To the west lies A Trodden Path."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Old trees crowd close,\ntheir roots knotted across the path. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "2002": {
+   "vnum": 2002,
+   "name": "A Trodden Path",
+   "map": {
+    "x": 26,
+    "y": 76,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2012,
+     "description": "To the north lies A Trodden Path."
+    },
+    "east": {
+     "to_room": 2001,
+     "description": "To the east lies A Trodden Path."
+    },
+    "west": {
+     "to_room": 2003,
+     "description": "To the west lies A Trodden Path."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Birdsong\ndrifts down through the branches overhead. Ways lead north, east and\nwest.",
+   "placeholder": true
+  },
+  "2003": {
+   "vnum": 2003,
+   "name": "A Trodden Path",
+   "map": {
+    "x": 25,
+    "y": 76,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2006,
+     "description": "To the north lies A Trodden Path."
+    },
+    "east": {
+     "to_room": 2002,
+     "description": "To the east lies A Trodden Path."
+    },
+    "west": {
+     "to_room": 2055,
+     "description": "To the west lies In the light."
+    },
+    "down": {
+     "to_room": 2004,
+     "description": "To the down lies In The Dark."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Ferns and\nmoss soften the ground beneath a dim green canopy. Ways lead north,\neast, west and down.",
+   "placeholder": true
+  },
+  "2004": {
+   "vnum": 2004,
+   "name": "In The Dark",
+   "map": {
+    "x": 24,
+    "y": 75,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 2003,
+     "description": "To the up lies A Trodden Path."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads up.",
+   "placeholder": true
+  },
+  "2006": {
+   "vnum": 2006,
+   "name": "A Trodden Path",
+   "map": {
+    "x": 25,
+    "y": 77,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2016,
+     "description": "To the north lies A Trodden Path."
+    },
+    "south": {
+     "to_room": 2003,
+     "description": "To the south lies A Trodden Path."
+    },
+    "west": {
+     "to_room": 2007,
+     "description": "To the west lies A Narrow Tunnel."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Fallen needles and leaves\nmuffle every step. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "2007": {
+   "vnum": 2007,
+   "name": "A Narrow Tunnel",
+   "map": {
+    "x": 24,
+    "y": 77,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2006,
+     "description": "To the east lies A Trodden Path."
+    },
+    "west": {
+     "to_room": 2008,
+     "description": "To the west lies A Narrow Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "2008": {
+   "vnum": 2008,
+   "name": "A Narrow Tunnel",
+   "map": {
+    "x": 23,
+    "y": 77,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2007,
+     "description": "To the east lies A Narrow Tunnel."
+    },
+    "west": {
+     "to_room": 2009,
+     "description": "To the west lies A Narrow Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "2009": {
+   "vnum": 2009,
+   "name": "A Narrow Tunnel",
+   "map": {
+    "x": 22,
+    "y": 77,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2008,
+     "description": "To the east lies A Narrow Tunnel."
+    },
+    "west": {
+     "to_room": 2010,
+     "description": "To the west lies A Narrow Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "2010": {
+   "vnum": 2010,
+   "name": "A Narrow Tunnel",
+   "map": {
+    "x": 21,
+    "y": 77,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2009,
+     "description": "To the east lies A Narrow Tunnel."
+    },
+    "west": {
+     "to_room": 2011,
+     "description": "To the west lies End Of The Narrow Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "2011": {
+   "vnum": 2011,
+   "name": "End Of The Narrow Tunnel",
+   "map": {
+    "x": 20,
+    "y": 77,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2010,
+     "description": "To the east lies A Narrow Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "2012": {
+   "vnum": 2012,
+   "name": "A Trodden Path",
+   "map": {
+    "x": 26,
+    "y": 77,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 2013,
+     "description": "To the east lies A Trodden Path."
+    },
+    "south": {
+     "to_room": 2002,
+     "description": "To the south lies A Trodden Path."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Fallen\nneedles and leaves muffle every step. Ways lead east and south.",
+   "placeholder": true
+  },
+  "2013": {
+   "vnum": 2013,
+   "name": "A Trodden Path",
+   "map": {
+    "x": 27,
+    "y": 77,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 2001,
+     "description": "To the south lies A Trodden Path."
+    },
+    "west": {
+     "to_room": 2012,
+     "description": "To the west lies A Trodden Path."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Old trees crowd close,\ntheir roots knotted across the path. Ways lead south and west.",
+   "placeholder": true
+  },
+  "2014": {
+   "vnum": 2014,
+   "name": "A Trodden Path",
+   "map": {
+    "x": 27,
+    "y": 78,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 2054,
+     "description": "To the east lies The Large Clearing."
+    },
+    "west": {
+     "to_room": 2015,
+     "description": "To the west lies A Trodden Path."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead east and west.",
+   "placeholder": true
+  },
+  "2015": {
+   "vnum": 2015,
+   "name": "A Trodden Path",
+   "map": {
+    "x": 26,
+    "y": 78,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2018,
+     "description": "To the north lies A Trodden Path."
+    },
+    "east": {
+     "to_room": 2014,
+     "description": "To the east lies A Trodden Path."
+    },
+    "west": {
+     "to_room": 2016,
+     "description": "To the west lies A Trodden Path."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Shafts of\npale light slant between the trunks. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "2016": {
+   "vnum": 2016,
+   "name": "A Trodden Path",
+   "map": {
+    "x": 25,
+    "y": 78,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2017,
+     "description": "To the north lies A Small Hut."
+    },
+    "east": {
+     "to_room": 2015,
+     "description": "To the east lies A Trodden Path."
+    },
+    "south": {
+     "to_room": 2006,
+     "description": "To the south lies A Trodden Path."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "2017": {
+   "vnum": 2017,
+   "name": "A Small Hut",
+   "map": {
+    "x": 25,
+    "y": 79,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 2016,
+     "description": "To the south lies A Trodden Path."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads south.",
+   "placeholder": true
+  },
+  "2018": {
+   "vnum": 2018,
+   "name": "A Trodden Path",
+   "map": {
+    "x": 26,
+    "y": 80,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2020,
+     "description": "To the north lies A Trodden Path."
+    },
+    "south": {
+     "to_room": 2015,
+     "description": "To the south lies A Trodden Path."
+    },
+    "west": {
+     "to_room": 2019,
+     "description": "To the west lies A Small Hut."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "2019": {
+   "vnum": 2019,
+   "name": "A Small Hut",
+   "map": {
+    "x": 25,
+    "y": 80,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2022,
+     "description": "To the north lies A Trodden Path."
+    },
+    "east": {
+     "to_room": 2018,
+     "description": "To the east lies A Trodden Path."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "2020": {
+   "vnum": 2020,
+   "name": "A Trodden Path",
+   "map": {
+    "x": 26,
+    "y": 81,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 2018,
+     "description": "To the south lies A Trodden Path."
+    },
+    "west": {
+     "to_room": 2022,
+     "description": "To the west lies A Trodden Path."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead south and west.",
+   "placeholder": true
+  },
+  "2021": {
+   "vnum": 2021,
+   "name": "A Trodden Path",
+   "map": {
+    "x": 26,
+    "y": 82,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 2023,
+     "description": "To the west lies A Small Hut."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead. A way leads west.",
+   "placeholder": true
+  },
+  "2022": {
+   "vnum": 2022,
+   "name": "A Trodden Path",
+   "map": {
+    "x": 25,
+    "y": 81,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2023,
+     "description": "To the north lies A Small Hut."
+    },
+    "east": {
+     "to_room": 2020,
+     "description": "To the east lies A Trodden Path."
+    },
+    "south": {
+     "to_room": 2019,
+     "description": "To the south lies A Small Hut."
+    },
+    "west": {
+     "to_room": 2024,
+     "description": "To the west lies A Trodden Path."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Birdsong drifts down\nthrough the branches overhead. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "2023": {
+   "vnum": 2023,
+   "name": "A Small Hut",
+   "map": {
+    "x": 25,
+    "y": 82,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2021,
+     "description": "To the east lies A Trodden Path."
+    },
+    "south": {
+     "to_room": 2022,
+     "description": "To the south lies A Trodden Path."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and south.",
+   "placeholder": true
+  },
+  "2024": {
+   "vnum": 2024,
+   "name": "A Trodden Path",
+   "map": {
+    "x": 24,
+    "y": 81,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2031,
+     "description": "To the north lies A Small Abandoned Hut."
+    },
+    "east": {
+     "to_room": 2022,
+     "description": "To the east lies A Trodden Path."
+    },
+    "south": {
+     "to_room": 2026,
+     "description": "To the south lies A Small Hut."
+    },
+    "west": {
+     "to_room": 2025,
+     "description": "To the west lies A Trodden Path."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "2025": {
+   "vnum": 2025,
+   "name": "A Trodden Path",
+   "map": {
+    "x": 23,
+    "y": 81,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2030,
+     "description": "To the north lies A Small Hut."
+    },
+    "east": {
+     "to_room": 2024,
+     "description": "To the east lies A Trodden Path."
+    },
+    "south": {
+     "to_room": 2027,
+     "description": "To the south lies A Small Abandoned Hut."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Old trees crowd close,\ntheir roots knotted across the path. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "2026": {
+   "vnum": 2026,
+   "name": "A Small Hut",
+   "map": {
+    "x": 24,
+    "y": 80,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2024,
+     "description": "To the north lies A Trodden Path."
+    },
+    "west": {
+     "to_room": 2027,
+     "description": "To the west lies A Small Abandoned Hut."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "2027": {
+   "vnum": 2027,
+   "name": "A Small Abandoned Hut",
+   "map": {
+    "x": 23,
+    "y": 80,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2025,
+     "description": "To the north lies A Trodden Path."
+    },
+    "east": {
+     "to_room": 2026,
+     "description": "To the east lies A Small Hut."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and east.",
+   "placeholder": true
+  },
+  "2028": {
+   "vnum": 2028,
+   "name": "The Chief Guard's Hut",
+   "map": {
+    "x": 22,
+    "y": 80,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2033,
+     "description": "To the north lies A Trodden Path."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "2029": {
+   "vnum": 2029,
+   "name": "A Small Abandoned Hut",
+   "map": {
+    "x": 21,
+    "y": 80,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2034,
+     "description": "To the north lies A Trodden Path."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads north.",
+   "placeholder": true
+  },
+  "2030": {
+   "vnum": 2030,
+   "name": "A Small Hut",
+   "map": {
+    "x": 23,
+    "y": 82,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 2025,
+     "description": "To the south lies A Trodden Path."
+    },
+    "west": {
+     "to_room": 2032,
+     "description": "To the west lies A Small Hut."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "2031": {
+   "vnum": 2031,
+   "name": "A Small Abandoned Hut",
+   "map": {
+    "x": 24,
+    "y": 82,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 2024,
+     "description": "To the south lies A Trodden Path."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "2032": {
+   "vnum": 2032,
+   "name": "A Small Hut",
+   "map": {
+    "x": 22,
+    "y": 82,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2030,
+     "description": "To the east lies A Small Hut."
+    },
+    "south": {
+     "to_room": 2033,
+     "description": "To the south lies A Trodden Path."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "2033": {
+   "vnum": 2033,
+   "name": "A Trodden Path",
+   "map": {
+    "x": 22,
+    "y": 81,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2032,
+     "description": "To the north lies A Small Hut."
+    },
+    "south": {
+     "to_room": 2028,
+     "description": "To the south lies The Chief Guard's Hut."
+    },
+    "west": {
+     "to_room": 2034,
+     "description": "To the west lies A Trodden Path."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "2034": {
+   "vnum": 2034,
+   "name": "A Trodden Path",
+   "map": {
+    "x": 21,
+    "y": 81,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2037,
+     "description": "To the north lies A Trodden Path."
+    },
+    "east": {
+     "to_room": 2033,
+     "description": "To the east lies A Trodden Path."
+    },
+    "south": {
+     "to_room": 2029,
+     "description": "To the south lies A Small Abandoned Hut."
+    },
+    "west": {
+     "to_room": 2035,
+     "description": "To the west lies A Small Hut."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Birdsong\ndrifts down through the branches overhead. Ways lead north, east, south\nand west.",
+   "placeholder": true
+  },
+  "2035": {
+   "vnum": 2035,
+   "name": "A Small Hut",
+   "map": {
+    "x": 20,
+    "y": 81,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2034,
+     "description": "To the east lies A Trodden Path."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "2036": {
+   "vnum": 2036,
+   "name": "A Small Hut",
+   "map": {
+    "x": 20,
+    "y": 82,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2037,
+     "description": "To the east lies A Trodden Path."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads east.",
+   "placeholder": true
+  },
+  "2037": {
+   "vnum": 2037,
+   "name": "A Trodden Path",
+   "map": {
+    "x": 21,
+    "y": 82,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2038,
+     "description": "To the north lies A Trodden Path."
+    },
+    "south": {
+     "to_room": 2034,
+     "description": "To the south lies A Trodden Path."
+    },
+    "west": {
+     "to_room": 2036,
+     "description": "To the west lies A Small Hut."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Old trees crowd\nclose, their roots knotted across the path. Ways lead north, south and\nwest.",
+   "placeholder": true
+  },
+  "2038": {
+   "vnum": 2038,
+   "name": "A Trodden Path",
+   "map": {
+    "x": 21,
+    "y": 83,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2041,
+     "description": "To the north lies The Wandering Caves."
+    },
+    "east": {
+     "to_room": 2039,
+     "description": "To the east lies A Small Hut."
+    },
+    "south": {
+     "to_room": 2037,
+     "description": "To the south lies A Trodden Path."
+    },
+    "west": {
+     "to_room": 2040,
+     "description": "To the west lies A Small Hut."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Fallen\nneedles and leaves muffle every step. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "2039": {
+   "vnum": 2039,
+   "name": "A Small Hut",
+   "map": {
+    "x": 22,
+    "y": 83,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 2038,
+     "description": "To the west lies A Trodden Path."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads west.",
+   "placeholder": true
+  },
+  "2040": {
+   "vnum": 2040,
+   "name": "A Small Hut",
+   "map": {
+    "x": 20,
+    "y": 83,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2038,
+     "description": "To the east lies A Trodden Path."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "2041": {
+   "vnum": 2041,
+   "name": "The Wandering Caves",
+   "map": {
+    "x": 21,
+    "y": 85,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach.",
+   "placeholder": true
+  },
+  "2042": {
+   "vnum": 2042,
+   "name": "The Wandering Caves",
+   "map": {
+    "x": 23,
+    "y": 85,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time.",
+   "placeholder": true
+  },
+  "2043": {
+   "vnum": 2043,
+   "name": "The Wandering Caves",
+   "map": {
+    "x": 25,
+    "y": 85,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time.",
+   "placeholder": true
+  },
+  "2044": {
+   "vnum": 2044,
+   "name": "The Wandering Caves",
+   "map": {
+    "x": 27,
+    "y": 85,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke.",
+   "placeholder": true
+  },
+  "2045": {
+   "vnum": 2045,
+   "name": "The Wandering Caves",
+   "map": {
+    "x": 27,
+    "y": 87,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach.",
+   "placeholder": true
+  },
+  "2046": {
+   "vnum": 2046,
+   "name": "The Wandering Caves",
+   "map": {
+    "x": 25,
+    "y": 87,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach.",
+   "placeholder": true
+  },
+  "2047": {
+   "vnum": 2047,
+   "name": "The Wandering Caves",
+   "map": {
+    "x": 23,
+    "y": 87,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach.",
+   "placeholder": true
+  },
+  "2048": {
+   "vnum": 2048,
+   "name": "The Wandering Caves",
+   "map": {
+    "x": 21,
+    "y": 87,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach.",
+   "placeholder": true
+  },
+  "2049": {
+   "vnum": 2049,
+   "name": "The Wandering Caves",
+   "map": {
+    "x": 21,
+    "y": 89,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke.",
+   "placeholder": true
+  },
+  "2050": {
+   "vnum": 2050,
+   "name": "The Wandering Caves",
+   "map": {
+    "x": 27,
+    "y": 89,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2053,
+     "description": "To the north lies The Draconian Shrine."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads north.",
+   "placeholder": true
+  },
+  "2051": {
+   "vnum": 2051,
+   "name": "The Wandering Caves",
+   "map": {
+    "x": 29,
+    "y": 89,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach.",
+   "placeholder": true
+  },
+  "2052": {
+   "vnum": 2052,
+   "name": "The Wandering Caves",
+   "map": {
+    "x": 31,
+    "y": 89,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach.",
+   "placeholder": true
+  },
+  "2053": {
+   "vnum": 2053,
+   "name": "The Draconian Shrine",
+   "map": {
+    "x": 27,
+    "y": 95,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use.",
+   "placeholder": true
+  },
+  "2054": {
+   "vnum": 2054,
+   "name": "The Large Clearing",
+   "map": {
+    "x": 28,
+    "y": 78,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 2014,
+     "description": "To the west lies A Trodden Path."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Old trees\ncrowd close, their roots knotted across the path. A way leads west.",
+   "placeholder": true
+  },
+  "2055": {
+   "vnum": 2055,
+   "name": "In the light",
+   "map": {
+    "x": 24,
+    "y": 76,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 2003,
+     "description": "To the east lies A Trodden Path."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Birdsong\ndrifts down through the branches overhead. A way leads east.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

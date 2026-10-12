@@ -1,0 +1,2531 @@
+{
+ "number": 501,
+ "name": "Aredrel Dwarven",
+ "builders": "Lavyn",
+ "atlas_area": 101,
+ "rooms": {
+  "24702": {
+   "vnum": 24702,
+   "name": "On The Bridge Across The Ravine",
+   "map": {
+    "x": 36,
+    "y": 64,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24703,
+     "description": "To the east lies The Landfall Before Aredrel Dwarven."
+    },
+    "west": {
+     "to_room": 24701,
+     "description": "To the west lies Before The Bridge Across The Ravine."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24703": {
+   "vnum": 24703,
+   "name": "The Landfall Before Aredrel Dwarven",
+   "map": {
+    "x": 37,
+    "y": 64,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24704,
+     "description": "To the east lies Along The Rocky Path."
+    },
+    "west": {
+     "to_room": 24702,
+     "description": "To the west lies On The Bridge Across The Ravine."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24704": {
+   "vnum": 24704,
+   "name": "Along The Rocky Path",
+   "map": {
+    "x": 38,
+    "y": 64,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24705,
+     "description": "To the east lies Along The Rocky Path."
+    },
+    "west": {
+     "to_room": 24703,
+     "description": "To the west lies The Landfall Before Aredrel Dwarven."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. The land lies\nflat and quiet in every direction. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24705": {
+   "vnum": 24705,
+   "name": "Along The Rocky Path",
+   "map": {
+    "x": 39,
+    "y": 64,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24706,
+     "description": "To the east lies Along The Rocky Path."
+    },
+    "west": {
+     "to_room": 24704,
+     "description": "To the west lies Along The Rocky Path."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24706": {
+   "vnum": 24706,
+   "name": "Along The Rocky Path",
+   "map": {
+    "x": 40,
+    "y": 64,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24707,
+     "description": "To the east lies Before The Gate Of Aredrel Dwarven."
+    },
+    "south": {
+     "to_room": 24790,
+     "description": "To the south lies A Trail Through The Rocky Plains."
+    },
+    "west": {
+     "to_room": 24705,
+     "description": "To the west lies Along The Rocky Path."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. A worn track\ncrosses the open ground. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "24707": {
+   "vnum": 24707,
+   "name": "Before The Gate Of Aredrel Dwarven",
+   "map": {
+    "x": 41,
+    "y": 64,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24708,
+     "description": "To the east lies Aredrel's Gate - Entrance To The Dwarven Village."
+    },
+    "west": {
+     "to_room": 24706,
+     "description": "To the west lies Along The Rocky Path."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. A worn track\ncrosses the open ground. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24708": {
+   "vnum": 24708,
+   "name": "Aredrel's Gate - Entrance To The Dwarven Village",
+   "map": {
+    "x": 42,
+    "y": 64,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24709,
+     "description": "To the north lies Outside The Nothern Watchtower."
+    },
+    "east": {
+     "to_room": 24713,
+     "description": "To the east lies Entrance To The Cave Of Aredrel Dwarven.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 24711,
+     "description": "To the south lies Outside The Southern Watchtower."
+    },
+    "west": {
+     "to_room": 24707,
+     "description": "To the west lies Before The Gate Of Aredrel Dwarven."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "24709": {
+   "vnum": 24709,
+   "name": "Outside The Nothern Watchtower",
+   "map": {
+    "x": 42,
+    "y": 65,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 24708,
+     "description": "To the south lies Aredrel's Gate - Entrance To The Dwarven Village."
+    },
+    "up": {
+     "to_room": 24710,
+     "description": "To the up lies Inside The Northern Watchtower."
+    }
+   },
+   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead south and up.",
+   "placeholder": true
+  },
+  "24710": {
+   "vnum": 24710,
+   "name": "Inside The Northern Watchtower",
+   "map": {
+    "x": 43,
+    "y": 66,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "down": {
+     "to_room": 24709,
+     "description": "To the down lies Outside The Nothern Watchtower."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads down.",
+   "placeholder": true
+  },
+  "24711": {
+   "vnum": 24711,
+   "name": "Outside The Southern Watchtower",
+   "map": {
+    "x": 42,
+    "y": 62,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24708,
+     "description": "To the north lies Aredrel's Gate - Entrance To The Dwarven Village."
+    },
+    "up": {
+     "to_room": 24712,
+     "description": "To the up lies Inside The Southern Watchtower."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. Ways lead north and up.",
+   "placeholder": true
+  },
+  "24712": {
+   "vnum": 24712,
+   "name": "Inside The Southern Watchtower",
+   "map": {
+    "x": 43,
+    "y": 63,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "down": {
+     "to_room": 24711,
+     "description": "To the down lies Outside The Southern Watchtower."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads down.",
+   "placeholder": true
+  },
+  "24713": {
+   "vnum": 24713,
+   "name": "Entrance To The Cave Of Aredrel Dwarven",
+   "map": {
+    "x": 43,
+    "y": 64,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24714,
+     "description": "To the east lies The Main Hallway."
+    },
+    "west": {
+     "to_room": 24708,
+     "description": "To the west lies Aredrel's Gate - Entrance To The Dwarven Village."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24714": {
+   "vnum": 24714,
+   "name": "The Main Hallway",
+   "map": {
+    "x": 44,
+    "y": 64,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24715,
+     "description": "To the east lies The Western Junction Of The Main Hallway."
+    },
+    "west": {
+     "to_room": 24713,
+     "description": "To the west lies Entrance To The Cave Of Aredrel Dwarven."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24715": {
+   "vnum": 24715,
+   "name": "The Western Junction Of The Main Hallway",
+   "map": {
+    "x": 45,
+    "y": 64,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24716,
+     "description": "To the north lies A Bend In The Main Hallway."
+    },
+    "south": {
+     "to_room": 24722,
+     "description": "To the south lies A Bend In The Main Hallway."
+    },
+    "west": {
+     "to_room": 24714,
+     "description": "To the west lies The Main Hallway."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "24716": {
+   "vnum": 24716,
+   "name": "A Bend In The Main Hallway",
+   "map": {
+    "x": 45,
+    "y": 65,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24717,
+     "description": "To the east lies The Northern Junction Of The Main Hallway."
+    },
+    "south": {
+     "to_room": 24715,
+     "description": "To the south lies The Western Junction Of The Main Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "24717": {
+   "vnum": 24717,
+   "name": "The Northern Junction Of The Main Hallway",
+   "map": {
+    "x": 46,
+    "y": 65,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24743,
+     "description": "To the north lies The Northern Hallway."
+    },
+    "east": {
+     "to_room": 24718,
+     "description": "To the east lies A Bend In The Main Hallway."
+    },
+    "west": {
+     "to_room": 24716,
+     "description": "To the west lies A Bend In The Main Hallway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "24718": {
+   "vnum": 24718,
+   "name": "A Bend In The Main Hallway",
+   "map": {
+    "x": 47,
+    "y": 65,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 24719,
+     "description": "To the south lies The Eastern Junction Of The Main Hallway."
+    },
+    "west": {
+     "to_room": 24717,
+     "description": "To the west lies The Northern Junction Of The Main Hallway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead south and west.",
+   "placeholder": true
+  },
+  "24719": {
+   "vnum": 24719,
+   "name": "The Eastern Junction Of The Main Hallway",
+   "map": {
+    "x": 47,
+    "y": 64,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24718,
+     "description": "To the north lies A Bend In The Main Hallway."
+    },
+    "east": {
+     "to_room": 24761,
+     "description": "To the east lies The Eastern Hallway."
+    },
+    "south": {
+     "to_room": 24720,
+     "description": "To the south lies A Bend In The Main Hallway."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "24720": {
+   "vnum": 24720,
+   "name": "A Bend In The Main Hallway",
+   "map": {
+    "x": 47,
+    "y": 63,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24719,
+     "description": "To the north lies The Eastern Junction Of The Main Hallway."
+    },
+    "west": {
+     "to_room": 24721,
+     "description": "To the west lies The Southern Junction Of The Main Hallway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and west.",
+   "placeholder": true
+  },
+  "24721": {
+   "vnum": 24721,
+   "name": "The Southern Junction Of The Main Hallway",
+   "map": {
+    "x": 46,
+    "y": 63,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24720,
+     "description": "To the east lies A Bend In The Main Hallway."
+    },
+    "south": {
+     "to_room": 24723,
+     "description": "To the south lies The Southern Hallway."
+    },
+    "west": {
+     "to_room": 24722,
+     "description": "To the west lies A Bend In The Main Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "24722": {
+   "vnum": 24722,
+   "name": "A Bend In The Main Hallway",
+   "map": {
+    "x": 45,
+    "y": 63,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24715,
+     "description": "To the north lies The Western Junction Of The Main Hallway."
+    },
+    "east": {
+     "to_room": 24721,
+     "description": "To the east lies The Southern Junction Of The Main Hallway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "24723": {
+   "vnum": 24723,
+   "name": "The Southern Hallway",
+   "map": {
+    "x": 46,
+    "y": 62,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24721,
+     "description": "To the north lies The Southern Junction Of The Main Hallway."
+    },
+    "south": {
+     "to_room": 24724,
+     "description": "To the south lies The Southern Hallway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24724": {
+   "vnum": 24724,
+   "name": "The Southern Hallway",
+   "map": {
+    "x": 46,
+    "y": 61,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24723,
+     "description": "To the north lies The Southern Hallway."
+    },
+    "south": {
+     "to_room": 24725,
+     "description": "To the south lies A Bend In The Southern Hallway."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24725": {
+   "vnum": 24725,
+   "name": "A Bend In The Southern Hallway",
+   "map": {
+    "x": 46,
+    "y": 60,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24724,
+     "description": "To the north lies The Southern Hallway."
+    },
+    "east": {
+     "to_room": 24726,
+     "description": "To the east lies A Bend In The Southern Hallway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "24726": {
+   "vnum": 24726,
+   "name": "A Bend In The Southern Hallway",
+   "map": {
+    "x": 47,
+    "y": 60,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 24727,
+     "description": "To the south lies Before The Shopping District."
+    },
+    "west": {
+     "to_room": 24725,
+     "description": "To the west lies A Bend In The Southern Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead south and west.",
+   "placeholder": true
+  },
+  "24727": {
+   "vnum": 24727,
+   "name": "Before The Shopping District",
+   "map": {
+    "x": 47,
+    "y": 59,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24726,
+     "description": "To the north lies A Bend In The Southern Hallway."
+    },
+    "south": {
+     "to_room": 24728,
+     "description": "To the south lies The Middle Of The Shopping District."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24728": {
+   "vnum": 24728,
+   "name": "The Middle Of The Shopping District",
+   "map": {
+    "x": 47,
+    "y": 58,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24727,
+     "description": "To the north lies Before The Shopping District."
+    },
+    "east": {
+     "to_room": 24732,
+     "description": "To the east lies The Eastern Hallway Through The Shopping District."
+    },
+    "south": {
+     "to_room": 24729,
+     "description": "To the south lies The Tavern Inn Of Aredrel."
+    },
+    "west": {
+     "to_room": 24738,
+     "description": "To the west lies The Western Hallway Through The Shopping District."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "24729": {
+   "vnum": 24729,
+   "name": "The Tavern Inn Of Aredrel",
+   "map": {
+    "x": 47,
+    "y": 57,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24728,
+     "description": "To the north lies The Middle Of The Shopping District."
+    },
+    "south": {
+     "to_room": 24730,
+     "description": "To the south lies The Tavern Inn Bar of Aredrel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24730": {
+   "vnum": 24730,
+   "name": "The Tavern Inn Bar of Aredrel",
+   "map": {
+    "x": 47,
+    "y": 56,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24729,
+     "description": "To the north lies The Tavern Inn Of Aredrel."
+    },
+    "up": {
+     "to_room": 24731,
+     "description": "To the up lies The Sleeping Lodge."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and up.",
+   "placeholder": true
+  },
+  "24731": {
+   "vnum": 24731,
+   "name": "The Sleeping Lodge",
+   "map": {
+    "x": 48,
+    "y": 57,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "down": {
+     "to_room": 24730,
+     "description": "To the down lies The Tavern Inn Bar of Aredrel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads down.",
+   "placeholder": true
+  },
+  "24732": {
+   "vnum": 24732,
+   "name": "The Eastern Hallway Through The Shopping District",
+   "map": {
+    "x": 48,
+    "y": 58,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24733,
+     "description": "To the east lies The Eastern Shopping Square."
+    },
+    "west": {
+     "to_room": 24728,
+     "description": "To the west lies The Middle Of The Shopping District."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24733": {
+   "vnum": 24733,
+   "name": "The Eastern Shopping Square",
+   "map": {
+    "x": 49,
+    "y": 58,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24736,
+     "description": "To the north lies The Bakery Of Aredrel."
+    },
+    "east": {
+     "to_room": 24737,
+     "description": "To the east lies The Water Shop of Aredrel."
+    },
+    "south": {
+     "to_room": 24735,
+     "description": "To the south lies The Jewellery Of Aredrel."
+    },
+    "west": {
+     "to_room": 24732,
+     "description": "To the west lies The Eastern Hallway Through The Shopping District."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "24734": {
+   "vnum": 24734,
+   "name": "The Guard Barrack Of Aredrel",
+   "map": {
+    "x": 45,
+    "y": 71,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 24760,
+     "description": "To the south lies A Junction In The Village Hallway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "24735": {
+   "vnum": 24735,
+   "name": "The Jewellery Of Aredrel",
+   "map": {
+    "x": 49,
+    "y": 57,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24733,
+     "description": "To the north lies The Eastern Shopping Square."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads north.",
+   "placeholder": true
+  },
+  "24736": {
+   "vnum": 24736,
+   "name": "The Bakery Of Aredrel",
+   "map": {
+    "x": 49,
+    "y": 59,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 24733,
+     "description": "To the south lies The Eastern Shopping Square."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads south.",
+   "placeholder": true
+  },
+  "24737": {
+   "vnum": 24737,
+   "name": "The Water Shop of Aredrel",
+   "map": {
+    "x": 50,
+    "y": 58,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 24733,
+     "description": "To the west lies The Eastern Shopping Square."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads west.",
+   "placeholder": true
+  },
+  "24738": {
+   "vnum": 24738,
+   "name": "The Western Hallway Through The Shopping District",
+   "map": {
+    "x": 46,
+    "y": 58,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24728,
+     "description": "To the east lies The Middle Of The Shopping District."
+    },
+    "west": {
+     "to_room": 24739,
+     "description": "To the west lies The Western Shopping Square."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24739": {
+   "vnum": 24739,
+   "name": "The Western Shopping Square",
+   "map": {
+    "x": 45,
+    "y": 58,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24741,
+     "description": "To the north lies The Armoury Of Aredrel."
+    },
+    "east": {
+     "to_room": 24738,
+     "description": "To the east lies The Western Hallway Through The Shopping District."
+    },
+    "south": {
+     "to_room": 24740,
+     "description": "To the south lies The Magic Shop Of Aredrel."
+    },
+    "west": {
+     "to_room": 24742,
+     "description": "To the west lies The Weapon Shop Of Aredrel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "24740": {
+   "vnum": 24740,
+   "name": "The Magic Shop Of Aredrel",
+   "map": {
+    "x": 45,
+    "y": 57,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24739,
+     "description": "To the north lies The Western Shopping Square."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads north.",
+   "placeholder": true
+  },
+  "24741": {
+   "vnum": 24741,
+   "name": "The Armoury Of Aredrel",
+   "map": {
+    "x": 45,
+    "y": 59,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 24739,
+     "description": "To the south lies The Western Shopping Square."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads south.",
+   "placeholder": true
+  },
+  "24742": {
+   "vnum": 24742,
+   "name": "The Weapon Shop Of Aredrel",
+   "map": {
+    "x": 44,
+    "y": 58,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24739,
+     "description": "To the east lies The Western Shopping Square."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads east.",
+   "placeholder": true
+  },
+  "24743": {
+   "vnum": 24743,
+   "name": "The Northern Hallway",
+   "map": {
+    "x": 46,
+    "y": 66,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24744,
+     "description": "To the north lies The Northern Hallway."
+    },
+    "south": {
+     "to_room": 24717,
+     "description": "To the south lies The Northern Junction Of The Main Hallway."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24744": {
+   "vnum": 24744,
+   "name": "The Northern Hallway",
+   "map": {
+    "x": 46,
+    "y": 67,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24745,
+     "description": "To the north lies A Bend In The Northern Hallway."
+    },
+    "south": {
+     "to_room": 24743,
+     "description": "To the south lies The Northern Hallway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24745": {
+   "vnum": 24745,
+   "name": "A Bend In The Northern Hallway",
+   "map": {
+    "x": 46,
+    "y": 68,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 24744,
+     "description": "To the south lies The Northern Hallway."
+    },
+    "west": {
+     "to_room": 24746,
+     "description": "To the west lies A Bend In The Northern Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "24746": {
+   "vnum": 24746,
+   "name": "A Bend In The Northern Hallway",
+   "map": {
+    "x": 45,
+    "y": 68,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24747,
+     "description": "To the north lies Before The Village District."
+    },
+    "east": {
+     "to_room": 24745,
+     "description": "To the east lies A Bend In The Northern Hallway."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "24747": {
+   "vnum": 24747,
+   "name": "Before The Village District",
+   "map": {
+    "x": 45,
+    "y": 69,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24760,
+     "description": "To the north lies A Junction In The Village Hallway."
+    },
+    "south": {
+     "to_room": 24746,
+     "description": "To the south lies A Bend In The Northern Hallway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24748": {
+   "vnum": 24748,
+   "name": "A Bend In The Village Hallway",
+   "map": {
+    "x": 44,
+    "y": 70,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24750,
+     "description": "To the north lies Along The Village Hallway."
+    },
+    "east": {
+     "to_room": 24760,
+     "description": "To the east lies A Junction In The Village Hallway."
+    },
+    "west": {
+     "to_room": 24749,
+     "description": "To the west lies An Aredrel Dwarven House.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "24749": {
+   "vnum": 24749,
+   "name": "An Aredrel Dwarven House",
+   "map": {
+    "x": 43,
+    "y": 70,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24748,
+     "description": "To the east lies A Bend In The Village Hallway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads east.",
+   "placeholder": true
+  },
+  "24750": {
+   "vnum": 24750,
+   "name": "Along The Village Hallway",
+   "map": {
+    "x": 44,
+    "y": 71,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24751,
+     "description": "To the north lies A Bend In The Village Hallway."
+    },
+    "south": {
+     "to_room": 24748,
+     "description": "To the south lies A Bend In The Village Hallway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24751": {
+   "vnum": 24751,
+   "name": "A Bend In The Village Hallway",
+   "map": {
+    "x": 44,
+    "y": 72,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24753,
+     "description": "To the east lies Along The Village Hallway."
+    },
+    "south": {
+     "to_room": 24750,
+     "description": "To the south lies Along The Village Hallway."
+    },
+    "west": {
+     "to_room": 24752,
+     "description": "To the west lies An Aredrel Dwarven House.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "24752": {
+   "vnum": 24752,
+   "name": "An Aredrel Dwarven House",
+   "map": {
+    "x": 43,
+    "y": 72,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24751,
+     "description": "To the east lies A Bend In The Village Hallway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "24753": {
+   "vnum": 24753,
+   "name": "Along The Village Hallway",
+   "map": {
+    "x": 45,
+    "y": 72,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24754,
+     "description": "To the north lies The Chamber Of Archives.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 24755,
+     "description": "To the east lies A Bend In The Village Hallway."
+    },
+    "west": {
+     "to_room": 24751,
+     "description": "To the west lies A Bend In The Village Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "24754": {
+   "vnum": 24754,
+   "name": "The Chamber Of Archives",
+   "map": {
+    "x": 45,
+    "y": 73,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 24753,
+     "description": "To the south lies Along The Village Hallway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads south.",
+   "placeholder": true
+  },
+  "24755": {
+   "vnum": 24755,
+   "name": "A Bend In The Village Hallway",
+   "map": {
+    "x": 46,
+    "y": 72,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24756,
+     "description": "To the east lies An Aredrel Dwarven House.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 24757,
+     "description": "To the south lies Along The Village Hallway."
+    },
+    "west": {
+     "to_room": 24753,
+     "description": "To the west lies Along The Village Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "24756": {
+   "vnum": 24756,
+   "name": "An Aredrel Dwarven House",
+   "map": {
+    "x": 47,
+    "y": 72,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 24755,
+     "description": "To the west lies A Bend In The Village Hallway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "24757": {
+   "vnum": 24757,
+   "name": "Along The Village Hallway",
+   "map": {
+    "x": 46,
+    "y": 71,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24755,
+     "description": "To the north lies A Bend In The Village Hallway."
+    },
+    "south": {
+     "to_room": 24758,
+     "description": "To the south lies A Bend In The Village Hallway."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24758": {
+   "vnum": 24758,
+   "name": "A Bend In The Village Hallway",
+   "map": {
+    "x": 46,
+    "y": 70,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24757,
+     "description": "To the north lies Along The Village Hallway."
+    },
+    "east": {
+     "to_room": 24759,
+     "description": "To the east lies An Aredrel Dwarven House.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 24760,
+     "description": "To the west lies A Junction In The Village Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "24759": {
+   "vnum": 24759,
+   "name": "An Aredrel Dwarven House",
+   "map": {
+    "x": 47,
+    "y": 70,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 24758,
+     "description": "To the west lies A Bend In The Village Hallway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "24760": {
+   "vnum": 24760,
+   "name": "A Junction In The Village Hallway",
+   "map": {
+    "x": 45,
+    "y": 70,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24734,
+     "description": "To the north lies The Guard Barrack Of Aredrel.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 24758,
+     "description": "To the east lies A Bend In The Village Hallway."
+    },
+    "south": {
+     "to_room": 24747,
+     "description": "To the south lies Before The Village District."
+    },
+    "west": {
+     "to_room": 24748,
+     "description": "To the west lies A Bend In The Village Hallway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "24761": {
+   "vnum": 24761,
+   "name": "The Eastern Hallway",
+   "map": {
+    "x": 48,
+    "y": 64,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24762,
+     "description": "To the east lies A Bend In The Eastern Hallway."
+    },
+    "west": {
+     "to_room": 24719,
+     "description": "To the west lies The Eastern Junction Of The Main Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24762": {
+   "vnum": 24762,
+   "name": "A Bend In The Eastern Hallway",
+   "map": {
+    "x": 49,
+    "y": 64,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24763,
+     "description": "To the north lies The Eastern Hallway."
+    },
+    "west": {
+     "to_room": 24761,
+     "description": "To the west lies The Eastern Hallway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "24763": {
+   "vnum": 24763,
+   "name": "The Eastern Hallway",
+   "map": {
+    "x": 49,
+    "y": 65,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24764,
+     "description": "To the north lies A Bend In The Eastern Hallway."
+    },
+    "south": {
+     "to_room": 24762,
+     "description": "To the south lies A Bend In The Eastern Hallway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24764": {
+   "vnum": 24764,
+   "name": "A Bend In The Eastern Hallway",
+   "map": {
+    "x": 49,
+    "y": 66,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24765,
+     "description": "To the east lies End Of The Eastern Hallway."
+    },
+    "south": {
+     "to_room": 24763,
+     "description": "To the south lies The Eastern Hallway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and south.",
+   "placeholder": true
+  },
+  "24765": {
+   "vnum": 24765,
+   "name": "End Of The Eastern Hallway",
+   "map": {
+    "x": 50,
+    "y": 66,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 24764,
+     "description": "To the west lies A Bend In The Eastern Hallway."
+    },
+    "down": {
+     "to_room": 24766,
+     "description": "To the down lies Entrance To The Mining District."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead west and down.",
+   "placeholder": true
+  },
+  "24766": {
+   "vnum": 24766,
+   "name": "Entrance To The Mining District",
+   "map": {
+    "x": 57,
+    "y": 72,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24767,
+     "description": "To the east lies The Mining District."
+    },
+    "up": {
+     "to_room": 24765,
+     "description": "To the up lies End Of The Eastern Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and up.",
+   "placeholder": true
+  },
+  "24767": {
+   "vnum": 24767,
+   "name": "The Mining District",
+   "map": {
+    "x": 58,
+    "y": 72,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24768,
+     "description": "To the east lies A Bend In The Mining District."
+    },
+    "west": {
+     "to_room": 24766,
+     "description": "To the west lies Entrance To The Mining District."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24768": {
+   "vnum": 24768,
+   "name": "A Bend In The Mining District",
+   "map": {
+    "x": 59,
+    "y": 72,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24769,
+     "description": "To the north lies The Mining District."
+    },
+    "west": {
+     "to_room": 24767,
+     "description": "To the west lies The Mining District."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "24769": {
+   "vnum": 24769,
+   "name": "The Mining District",
+   "map": {
+    "x": 59,
+    "y": 74,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24770,
+     "description": "To the north lies A Platform Over The Mining Shaft."
+    },
+    "south": {
+     "to_room": 24768,
+     "description": "To the south lies A Bend In The Mining District."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24770": {
+   "vnum": 24770,
+   "name": "A Platform Over The Mining Shaft",
+   "map": {
+    "x": 59,
+    "y": 76,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 24769,
+     "description": "To the south lies The Mining District."
+    },
+    "down": {
+     "to_room": 24771,
+     "description": "To the down lies The Mining Shaft."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead south and down.",
+   "placeholder": true
+  },
+  "24771": {
+   "vnum": 24771,
+   "name": "The Mining Shaft",
+   "map": {
+    "x": 55,
+    "y": 72,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 24770,
+     "description": "To the up lies A Platform Over The Mining Shaft."
+    },
+    "down": {
+     "to_room": 24772,
+     "description": "To the down lies The Mining Shaft."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead up and down.",
+   "placeholder": true
+  },
+  "24772": {
+   "vnum": 24772,
+   "name": "The Mining Shaft",
+   "map": {
+    "x": 54,
+    "y": 71,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 24771,
+     "description": "To the up lies The Mining Shaft."
+    },
+    "down": {
+     "to_room": 24773,
+     "description": "To the down lies The Mining Shaft."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead up and down.",
+   "placeholder": true
+  },
+  "24773": {
+   "vnum": 24773,
+   "name": "The Mining Shaft",
+   "map": {
+    "x": 53,
+    "y": 70,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 24772,
+     "description": "To the up lies The Mining Shaft."
+    },
+    "down": {
+     "to_room": 24774,
+     "description": "To the down lies The Mining Shaft."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead up and down.",
+   "placeholder": true
+  },
+  "24774": {
+   "vnum": 24774,
+   "name": "The Mining Shaft",
+   "map": {
+    "x": 52,
+    "y": 69,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 24773,
+     "description": "To the up lies The Mining Shaft."
+    },
+    "down": {
+     "to_room": 24775,
+     "description": "To the down lies A Platform In The Mining Shaft."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead up and down.",
+   "placeholder": true
+  },
+  "24775": {
+   "vnum": 24775,
+   "name": "A Platform In The Mining Shaft",
+   "map": {
+    "x": 51,
+    "y": 68,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24776,
+     "description": "To the north lies A Chamber Outside The Emerald Cave.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "up": {
+     "to_room": 24774,
+     "description": "To the up lies The Mining Shaft."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and up.",
+   "placeholder": true
+  },
+  "24776": {
+   "vnum": 24776,
+   "name": "A Chamber Outside The Emerald Cave",
+   "map": {
+    "x": 51,
+    "y": 71,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24777,
+     "description": "To the north lies A Crossing Inside The Emerald Cave."
+    },
+    "south": {
+     "to_room": 24775,
+     "description": "To the south lies A Platform In The Mining Shaft."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24777": {
+   "vnum": 24777,
+   "name": "A Crossing Inside The Emerald Cave",
+   "map": {
+    "x": 51,
+    "y": 73,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24778,
+     "description": "To the north lies A Tunnel Inside The Emerald Cave."
+    },
+    "east": {
+     "to_room": 24783,
+     "description": "To the east lies A Tunnel Inside The Emerald Cave."
+    },
+    "south": {
+     "to_room": 24776,
+     "description": "To the south lies A Chamber Outside The Emerald Cave."
+    },
+    "west": {
+     "to_room": 24785,
+     "description": "To the west lies A Tunnel Inside The Emerald Cave."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "24778": {
+   "vnum": 24778,
+   "name": "A Tunnel Inside The Emerald Cave",
+   "map": {
+    "x": 51,
+    "y": 74,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24779,
+     "description": "To the north lies A Bend Inside The Emerald Cave."
+    },
+    "south": {
+     "to_room": 24777,
+     "description": "To the south lies A Crossing Inside The Emerald Cave."
+    },
+    "west": {
+     "to_room": 24787,
+     "description": "To the west lies A Guard Chamber In The Emerald Cave.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "24779": {
+   "vnum": 24779,
+   "name": "A Bend Inside The Emerald Cave",
+   "map": {
+    "x": 51,
+    "y": 75,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24780,
+     "description": "To the east lies A Tunnel Inside The Emerald Cave."
+    },
+    "south": {
+     "to_room": 24778,
+     "description": "To the south lies A Tunnel Inside The Emerald Cave."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east and south.",
+   "placeholder": true
+  },
+  "24780": {
+   "vnum": 24780,
+   "name": "A Tunnel Inside The Emerald Cave",
+   "map": {
+    "x": 52,
+    "y": 75,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24788,
+     "description": "To the north lies A Guard Chamber In The Emerald Cave.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 24781,
+     "description": "To the east lies A Tunnel Inside The Emerald Cave."
+    },
+    "west": {
+     "to_room": 24779,
+     "description": "To the west lies A Bend Inside The Emerald Cave."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "24781": {
+   "vnum": 24781,
+   "name": "A Tunnel Inside The Emerald Cave",
+   "map": {
+    "x": 53,
+    "y": 75,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24782,
+     "description": "To the east lies A Dead End In The Emerald Cave."
+    },
+    "south": {
+     "to_room": 24789,
+     "description": "To the south lies A Guard Chamber In The Emerald Cave.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 24780,
+     "description": "To the west lies A Tunnel Inside The Emerald Cave."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "24782": {
+   "vnum": 24782,
+   "name": "A Dead End In The Emerald Cave",
+   "map": {
+    "x": 54,
+    "y": 75,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 24781,
+     "description": "To the west lies A Tunnel Inside The Emerald Cave."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "24783": {
+   "vnum": 24783,
+   "name": "A Tunnel Inside The Emerald Cave",
+   "map": {
+    "x": 52,
+    "y": 73,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24784,
+     "description": "To the east lies A Tunnel Inside The Emerald Cave."
+    },
+    "south": {
+     "to_room": 24786,
+     "description": "To the south lies A Guard Chamber In The Emerald Cave.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 24777,
+     "description": "To the west lies A Crossing Inside The Emerald Cave."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "24784": {
+   "vnum": 24784,
+   "name": "A Tunnel Inside The Emerald Cave",
+   "map": {
+    "x": 53,
+    "y": 73,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 24783,
+     "description": "To the west lies A Tunnel Inside The Emerald Cave."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "24785": {
+   "vnum": 24785,
+   "name": "A Tunnel Inside The Emerald Cave",
+   "map": {
+    "x": 50,
+    "y": 73,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24777,
+     "description": "To the east lies A Crossing Inside The Emerald Cave."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads east.",
+   "placeholder": true
+  },
+  "24786": {
+   "vnum": 24786,
+   "name": "A Guard Chamber In The Emerald Cave",
+   "map": {
+    "x": 52,
+    "y": 72,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24783,
+     "description": "To the north lies A Tunnel Inside The Emerald Cave."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads north.",
+   "placeholder": true
+  },
+  "24787": {
+   "vnum": 24787,
+   "name": "A Guard Chamber In The Emerald Cave",
+   "map": {
+    "x": 50,
+    "y": 74,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24778,
+     "description": "To the east lies A Tunnel Inside The Emerald Cave."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "24788": {
+   "vnum": 24788,
+   "name": "A Guard Chamber In The Emerald Cave",
+   "map": {
+    "x": 52,
+    "y": 76,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 24780,
+     "description": "To the south lies A Tunnel Inside The Emerald Cave."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "24789": {
+   "vnum": 24789,
+   "name": "A Guard Chamber In The Emerald Cave",
+   "map": {
+    "x": 53,
+    "y": 74,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24781,
+     "description": "To the north lies A Tunnel Inside The Emerald Cave."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads north.",
+   "placeholder": true
+  },
+  "24790": {
+   "vnum": 24790,
+   "name": "A Trail Through The Rocky Plains",
+   "map": {
+    "x": 40,
+    "y": 63,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24706,
+     "description": "To the north lies Along The Rocky Path."
+    },
+    "south": {
+     "to_room": 24791,
+     "description": "To the south lies Outside The Graveyard Of Aredrel Dwarven."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24791": {
+   "vnum": 24791,
+   "name": "Outside The Graveyard Of Aredrel Dwarven",
+   "map": {
+    "x": 40,
+    "y": 62,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24790,
+     "description": "To the north lies A Trail Through The Rocky Plains.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 24796,
+     "description": "To the south lies The Graveyard Of Aredrel Dwarven."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24792": {
+   "vnum": 24792,
+   "name": "The Graveyard Of Aredrel Dwarven",
+   "map": {
+    "x": 39,
+    "y": 61,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24796,
+     "description": "To the east lies The Graveyard Of Aredrel Dwarven."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. A way leads east.",
+   "placeholder": true
+  },
+  "24793": {
+   "vnum": 24793,
+   "name": "The Graveyard Of Aredrel Dwarven",
+   "map": {
+    "x": 41,
+    "y": 61,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 24796,
+     "description": "To the west lies The Graveyard Of Aredrel Dwarven."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. A way leads west.",
+   "placeholder": true
+  },
+  "24794": {
+   "vnum": 24794,
+   "name": "The Graveyard Of Aredrel Dwarven",
+   "map": {
+    "x": 39,
+    "y": 59,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24799,
+     "description": "To the east lies The Graveyard Of Aredrel Dwarven."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. A way leads east.",
+   "placeholder": true
+  },
+  "24795": {
+   "vnum": 24795,
+   "name": "The Graveyard Of Aredrel Dwarven",
+   "map": {
+    "x": 39,
+    "y": 60,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24798,
+     "description": "To the east lies The Graveyard Of Aredrel Dwarven."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. A way leads east.",
+   "placeholder": true
+  },
+  "24796": {
+   "vnum": 24796,
+   "name": "The Graveyard Of Aredrel Dwarven",
+   "map": {
+    "x": 40,
+    "y": 61,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24791,
+     "description": "To the north lies Outside The Graveyard Of Aredrel Dwarven."
+    },
+    "east": {
+     "to_room": 24793,
+     "description": "To the east lies The Graveyard Of Aredrel Dwarven."
+    },
+    "south": {
+     "to_room": 24798,
+     "description": "To the south lies The Graveyard Of Aredrel Dwarven."
+    },
+    "west": {
+     "to_room": 24792,
+     "description": "To the west lies The Graveyard Of Aredrel Dwarven."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "24797": {
+   "vnum": 24797,
+   "name": "The Graveyard Of Aredrel Dwarven",
+   "map": {
+    "x": 41,
+    "y": 60,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 24798,
+     "description": "To the west lies The Graveyard Of Aredrel Dwarven."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. A way leads west.",
+   "placeholder": true
+  },
+  "24798": {
+   "vnum": 24798,
+   "name": "The Graveyard Of Aredrel Dwarven",
+   "map": {
+    "x": 40,
+    "y": 60,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24796,
+     "description": "To the north lies The Graveyard Of Aredrel Dwarven."
+    },
+    "east": {
+     "to_room": 24797,
+     "description": "To the east lies The Graveyard Of Aredrel Dwarven."
+    },
+    "south": {
+     "to_room": 24799,
+     "description": "To the south lies The Graveyard Of Aredrel Dwarven."
+    },
+    "west": {
+     "to_room": 24795,
+     "description": "To the west lies The Graveyard Of Aredrel Dwarven."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "24799": {
+   "vnum": 24799,
+   "name": "The Graveyard Of Aredrel Dwarven",
+   "map": {
+    "x": 40,
+    "y": 59,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24798,
+     "description": "To the north lies The Graveyard Of Aredrel Dwarven."
+    },
+    "east": {
+     "to_room": 224800,
+     "description": "To the east lies The Graveyard Of Aredrel Dwarven."
+    },
+    "west": {
+     "to_room": 24794,
+     "description": "To the west lies The Graveyard Of Aredrel Dwarven."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. Open grassland\nrolls away under a wide sky. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "224800": {
+   "vnum": 224800,
+   "name": "The Graveyard Of Aredrel Dwarven",
+   "map": {
+    "x": 41,
+    "y": 59,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 24799,
+     "description": "To the west lies The Graveyard Of Aredrel Dwarven."
+    },
+    "down": {
+     "to_room": 224801,
+     "description": "To the down lies Entrance To The Lost Crypt."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead west and down.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

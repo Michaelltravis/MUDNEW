@@ -1,0 +1,1171 @@
+{
+ "number": 420,
+ "name": "Fameland",
+ "builders": "Oberon",
+ "atlas_area": 20,
+ "rooms": {
+  "15201": {
+   "vnum": 15201,
+   "name": "The Gate Of Fameland",
+   "map": {
+    "x": -4,
+    "y": 5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1600,
+     "description": "To the north lies The Path of Heroes."
+    },
+    "east": {
+     "to_room": 3000,
+     "description": "To the east lies The Temple Library."
+    },
+    "west": {
+     "to_room": 15202,
+     "description": "To the west lies In The Halls Of Fameland."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "15202": {
+   "vnum": 15202,
+   "name": "In The Halls Of Fameland",
+   "map": {
+    "x": -5,
+    "y": 5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15201,
+     "description": "To the east lies The Gate Of Fameland."
+    },
+    "west": {
+     "to_room": 15203,
+     "description": "To the west lies Intersection To Adventure."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "15203": {
+   "vnum": 15203,
+   "name": "Intersection To Adventure",
+   "map": {
+    "x": -6,
+    "y": 5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15204,
+     "description": "To the north lies The Halls Of Victory."
+    },
+    "east": {
+     "to_room": 15202,
+     "description": "To the east lies In The Halls Of Fameland."
+    },
+    "south": {
+     "to_room": 15232,
+     "description": "To the south lies The Room Of Mercy."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "15204": {
+   "vnum": 15204,
+   "name": "The Halls Of Victory",
+   "map": {
+    "x": -6,
+    "y": 6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15205,
+     "description": "To the north lies The Halls Of Victory."
+    },
+    "south": {
+     "to_room": 15203,
+     "description": "To the south lies Intersection To Adventure."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "15205": {
+   "vnum": 15205,
+   "name": "The Halls Of Victory",
+   "map": {
+    "x": -6,
+    "y": 7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 15204,
+     "description": "To the south lies The Halls Of Victory."
+    },
+    "west": {
+     "to_room": 15206,
+     "description": "To the west lies The Halls Of Victory."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead south and west.",
+   "placeholder": true
+  },
+  "15206": {
+   "vnum": 15206,
+   "name": "The Halls Of Victory",
+   "map": {
+    "x": -7,
+    "y": 7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15205,
+     "description": "To the east lies The Halls Of Victory."
+    },
+    "west": {
+     "to_room": 15207,
+     "description": "To the west lies The Halls Of Victory."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "15207": {
+   "vnum": 15207,
+   "name": "The Halls Of Victory",
+   "map": {
+    "x": -8,
+    "y": 7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15206,
+     "description": "To the east lies The Halls Of Victory."
+    },
+    "south": {
+     "to_room": 15210,
+     "description": "To the south lies Chamber Of The Fallen Ones."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and south.",
+   "placeholder": true
+  },
+  "15209": {
+   "vnum": 15209,
+   "name": "Chamber Of The Fallen Ones",
+   "map": {
+    "x": -7,
+    "y": 6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 15210,
+     "description": "To the west lies Chamber Of The Fallen Ones."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "15210": {
+   "vnum": 15210,
+   "name": "Chamber Of The Fallen Ones",
+   "map": {
+    "x": -8,
+    "y": 6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15207,
+     "description": "To the north lies The Halls Of Victory."
+    },
+    "east": {
+     "to_room": 15209,
+     "description": "To the east lies Chamber Of The Fallen Ones."
+    },
+    "south": {
+     "to_room": 15212,
+     "description": "To the south lies The Chambers Of Sorrow."
+    },
+    "west": {
+     "to_room": 15211,
+     "description": "To the west lies Chamber Of The Fallen Ones."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "15211": {
+   "vnum": 15211,
+   "name": "Chamber Of The Fallen Ones",
+   "map": {
+    "x": -9,
+    "y": 6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15210,
+     "description": "To the east lies Chamber Of The Fallen Ones."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads east.",
+   "placeholder": true
+  },
+  "15212": {
+   "vnum": 15212,
+   "name": "The Chambers Of Sorrow",
+   "map": {
+    "x": -8,
+    "y": 4,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15210,
+     "description": "To the north lies Chamber Of The Fallen Ones."
+    },
+    "south": {
+     "to_room": 15213,
+     "description": "To the south lies The Chambers Of Sorrow."
+    },
+    "west": {
+     "to_room": 15217,
+     "description": "To the west lies The Chambers Of Sorrow."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "15213": {
+   "vnum": 15213,
+   "name": "The Chambers Of Sorrow",
+   "map": {
+    "x": -8,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15212,
+     "description": "To the north lies The Chambers Of Sorrow."
+    },
+    "south": {
+     "to_room": 15214,
+     "description": "To the south lies The Chambers Of Sorrow."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "15214": {
+   "vnum": 15214,
+   "name": "The Chambers Of Sorrow",
+   "map": {
+    "x": -8,
+    "y": 2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15213,
+     "description": "To the north lies The Chambers Of Sorrow."
+    },
+    "west": {
+     "to_room": 15215,
+     "description": "To the west lies The Chambers Of Sorrow."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and west.",
+   "placeholder": true
+  },
+  "15215": {
+   "vnum": 15215,
+   "name": "The Chambers Of Sorrow",
+   "map": {
+    "x": -10,
+    "y": 2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15216,
+     "description": "To the north lies A Small Chamber."
+    },
+    "east": {
+     "to_room": 15214,
+     "description": "To the east lies The Chambers Of Sorrow."
+    },
+    "south": {
+     "to_room": 15218,
+     "description": "To the south lies The Corridors Of Remembrance."
+    },
+    "west": {
+     "to_room": 15235,
+     "description": "To the west lies The Halls Of Eternity."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "15216": {
+   "vnum": 15216,
+   "name": "A Small Chamber",
+   "map": {
+    "x": -10,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15217,
+     "description": "To the north lies The Chambers Of Sorrow."
+    },
+    "south": {
+     "to_room": 15215,
+     "description": "To the south lies The Chambers Of Sorrow."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "15217": {
+   "vnum": 15217,
+   "name": "The Chambers Of Sorrow",
+   "map": {
+    "x": -10,
+    "y": 4,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15212,
+     "description": "To the east lies The Chambers Of Sorrow."
+    },
+    "south": {
+     "to_room": 15216,
+     "description": "To the south lies A Small Chamber."
+    },
+    "west": {
+     "to_room": 15233,
+     "description": "To the west lies The Halls Of Eternity."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "15218": {
+   "vnum": 15218,
+   "name": "The Corridors Of Remembrance",
+   "map": {
+    "x": -10,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15215,
+     "description": "To the north lies The Chambers Of Sorrow."
+    },
+    "south": {
+     "to_room": 15219,
+     "description": "To the south lies The Corridors Of Remembrance."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "15219": {
+   "vnum": 15219,
+   "name": "The Corridors Of Remembrance",
+   "map": {
+    "x": -10,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15218,
+     "description": "To the north lies The Corridors Of Remembrance."
+    },
+    "east": {
+     "to_room": 15220,
+     "description": "To the east lies Chambers Of Heroes."
+    },
+    "west": {
+     "to_room": 15241,
+     "description": "To the west lies The Halls Of Eternity."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "15220": {
+   "vnum": 15220,
+   "name": "Chambers Of Heroes",
+   "map": {
+    "x": -8,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15227,
+     "description": "To the north lies Chambers Of Heroes."
+    },
+    "south": {
+     "to_room": 15221,
+     "description": "To the south lies Chambers Of Heroes."
+    },
+    "west": {
+     "to_room": 15219,
+     "description": "To the west lies The Corridors Of Remembrance."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "15221": {
+   "vnum": 15221,
+   "name": "Chambers Of Heroes",
+   "map": {
+    "x": -8,
+    "y": -2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15220,
+     "description": "To the north lies Chambers Of Heroes."
+    },
+    "east": {
+     "to_room": 15222,
+     "description": "To the east lies The Way Of Heroes."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and east.",
+   "placeholder": true
+  },
+  "15222": {
+   "vnum": 15222,
+   "name": "The Way Of Heroes",
+   "map": {
+    "x": -7,
+    "y": -2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15223,
+     "description": "To the east lies Chambers Of Heroes."
+    },
+    "west": {
+     "to_room": 15221,
+     "description": "To the west lies Chambers Of Heroes."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "15223": {
+   "vnum": 15223,
+   "name": "Chambers Of Heroes",
+   "map": {
+    "x": -6,
+    "y": -2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15224,
+     "description": "To the north lies The Room Of Mercy."
+    },
+    "west": {
+     "to_room": 15222,
+     "description": "To the west lies The Way Of Heroes."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "15224": {
+   "vnum": 15224,
+   "name": "The Room Of Mercy",
+   "map": {
+    "x": -6,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15225,
+     "description": "To the north lies Chambers Of Heroes."
+    },
+    "east": {
+     "to_room": 15228,
+     "description": "To the east lies The Room Of Mercy."
+    },
+    "south": {
+     "to_room": 15223,
+     "description": "To the south lies Chambers Of Heroes."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "15225": {
+   "vnum": 15225,
+   "name": "Chambers Of Heroes",
+   "map": {
+    "x": -6,
+    "y": 0,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 15224,
+     "description": "To the south lies The Room Of Mercy."
+    },
+    "west": {
+     "to_room": 15226,
+     "description": "To the west lies Chambers Of Heroes."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "15226": {
+   "vnum": 15226,
+   "name": "Chambers Of Heroes",
+   "map": {
+    "x": -7,
+    "y": 0,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15225,
+     "description": "To the east lies Chambers Of Heroes."
+    },
+    "west": {
+     "to_room": 15227,
+     "description": "To the west lies Chambers Of Heroes."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "15227": {
+   "vnum": 15227,
+   "name": "Chambers Of Heroes",
+   "map": {
+    "x": -8,
+    "y": 0,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15226,
+     "description": "To the east lies Chambers Of Heroes."
+    },
+    "south": {
+     "to_room": 15220,
+     "description": "To the south lies Chambers Of Heroes."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "15228": {
+   "vnum": 15228,
+   "name": "The Room Of Mercy",
+   "map": {
+    "x": -5,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15229,
+     "description": "To the north lies The Room Of Mercy."
+    },
+    "west": {
+     "to_room": 15224,
+     "description": "To the west lies The Room Of Mercy."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "15229": {
+   "vnum": 15229,
+   "name": "The Room Of Mercy",
+   "map": {
+    "x": -5,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15230,
+     "description": "To the north lies Through The Halls Of Mercy."
+    },
+    "east": {
+     "to_room": 15245,
+     "description": "To the east lies The Honor Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 15228,
+     "description": "To the south lies The Room Of Mercy."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "15230": {
+   "vnum": 15230,
+   "name": "Through The Halls Of Mercy",
+   "map": {
+    "x": -5,
+    "y": 2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15231,
+     "description": "To the north lies Through The Halls Of Mercy."
+    },
+    "east": {
+     "to_room": 15244,
+     "description": "To the east lies The Honor Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 15229,
+     "description": "To the south lies The Room Of Mercy."
+    },
+    "west": {
+     "to_room": 15242,
+     "description": "To the west lies The Honor Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "15231": {
+   "vnum": 15231,
+   "name": "Through The Halls Of Mercy",
+   "map": {
+    "x": -5,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15243,
+     "description": "To the east lies The Honor Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 15230,
+     "description": "To the south lies Through The Halls Of Mercy."
+    },
+    "west": {
+     "to_room": 15232,
+     "description": "To the west lies The Room Of Mercy."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "15232": {
+   "vnum": 15232,
+   "name": "The Room Of Mercy",
+   "map": {
+    "x": -6,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15203,
+     "description": "To the north lies Intersection To Adventure."
+    },
+    "east": {
+     "to_room": 15231,
+     "description": "To the east lies Through The Halls Of Mercy."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and east.",
+   "placeholder": true
+  },
+  "15233": {
+   "vnum": 15233,
+   "name": "The Halls Of Eternity",
+   "map": {
+    "x": -12,
+    "y": 4,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15217,
+     "description": "To the east lies The Chambers Of Sorrow."
+    },
+    "south": {
+     "to_room": 15234,
+     "description": "To the south lies The Halls Of Eternity."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and south.",
+   "placeholder": true
+  },
+  "15234": {
+   "vnum": 15234,
+   "name": "The Halls Of Eternity",
+   "map": {
+    "x": -12,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15233,
+     "description": "To the north lies The Halls Of Eternity."
+    },
+    "south": {
+     "to_room": 15235,
+     "description": "To the south lies The Halls Of Eternity."
+    },
+    "west": {
+     "to_room": 15236,
+     "description": "To the west lies The Halls Of Eternity."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "15235": {
+   "vnum": 15235,
+   "name": "The Halls Of Eternity",
+   "map": {
+    "x": -12,
+    "y": 2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15234,
+     "description": "To the north lies The Halls Of Eternity."
+    },
+    "east": {
+     "to_room": 15215,
+     "description": "To the east lies The Chambers Of Sorrow."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "15236": {
+   "vnum": 15236,
+   "name": "The Halls Of Eternity",
+   "map": {
+    "x": -13,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15234,
+     "description": "To the east lies The Halls Of Eternity."
+    },
+    "south": {
+     "to_room": 15237,
+     "description": "To the south lies The Halls Of Eternity."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and south.",
+   "placeholder": true
+  },
+  "15237": {
+   "vnum": 15237,
+   "name": "The Halls Of Eternity",
+   "map": {
+    "x": -13,
+    "y": 2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15236,
+     "description": "To the north lies The Halls Of Eternity."
+    },
+    "south": {
+     "to_room": 15238,
+     "description": "To the south lies The Halls Of Eternity."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "15238": {
+   "vnum": 15238,
+   "name": "The Halls Of Eternity",
+   "map": {
+    "x": -13,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15237,
+     "description": "To the north lies The Halls Of Eternity."
+    },
+    "south": {
+     "to_room": 15239,
+     "description": "To the south lies The Halls Of Eternity."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "15239": {
+   "vnum": 15239,
+   "name": "The Halls Of Eternity",
+   "map": {
+    "x": -13,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15238,
+     "description": "To the north lies The Halls Of Eternity."
+    },
+    "east": {
+     "to_room": 15240,
+     "description": "To the east lies The Halls Of Eternity."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and east.",
+   "placeholder": true
+  },
+  "15240": {
+   "vnum": 15240,
+   "name": "The Halls Of Eternity",
+   "map": {
+    "x": -12,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15241,
+     "description": "To the east lies The Halls Of Eternity."
+    },
+    "west": {
+     "to_room": 15239,
+     "description": "To the west lies The Halls Of Eternity."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "15241": {
+   "vnum": 15241,
+   "name": "The Halls Of Eternity",
+   "map": {
+    "x": -11,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15219,
+     "description": "To the east lies The Corridors Of Remembrance."
+    },
+    "west": {
+     "to_room": 15240,
+     "description": "To the west lies The Halls Of Eternity."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "15242": {
+   "vnum": 15242,
+   "name": "The Honor Room",
+   "map": {
+    "x": -6,
+    "y": 2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15230,
+     "description": "To the east lies Through The Halls Of Mercy."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "15243": {
+   "vnum": 15243,
+   "name": "The Honor Room",
+   "map": {
+    "x": -4,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 15231,
+     "description": "To the west lies Through The Halls Of Mercy."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "15244": {
+   "vnum": 15244,
+   "name": "The Honor Room",
+   "map": {
+    "x": -4,
+    "y": 2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 15230,
+     "description": "To the west lies Through The Halls Of Mercy."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "15245": {
+   "vnum": 15245,
+   "name": "The Honor Room",
+   "map": {
+    "x": -4,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 15229,
+     "description": "To the west lies The Room Of Mercy."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

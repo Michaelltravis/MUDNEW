@@ -1,2383 +1,3789 @@
 {
-  "number": 51,
-  "name": "Drow City",
-  "lifespan": 30,
-  "rooms": {
-    "5100": {
-      "vnum": 5100,
-      "name": "The City Entrance",
-      "description": "This is the entrance to a small underground city. A great adamantite\ngate lies open to the west allowing entrance into the city. Shadows\ngather in the corners. The ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "no_mob",
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 5101,
-          "description": "A huge gate opens to the west allowing entrance into the city.",
-          "door": {
-            "name": "gate",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "up": {
-          "to_room": 5011,
-          "description": "A passageway opens up into a fairly large cave above."
-        }
-      },
-      "extra_descs": {
-        "": "gate"
-      }
+ "number": 51,
+ "name": "Drow City",
+ "builders": "Rorschach",
+ "atlas_area": 46,
+ "rooms": {
+  "205100": {
+   "vnum": 205100,
+   "name": "At The Adamantium Gates",
+   "map": {
+    "x": -16,
+    "y": -20,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 205101,
+     "description": "To the north lies The City Street Outside The Adamantium gates.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
     },
-    "5101": {
-      "vnum": 5101,
-      "name": "A City Street",
-      "description": "You walk along a highly ornate street going north-south. A large gate\nlies to the east while a building lies to the west. The air is still and\nmusty. Dust motes drift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5123,
-          "description": "A passage leads to A City Street"
-        },
-        "east": {
-          "to_room": 5100,
-          "description": "A passage leads to The City Entrance",
-          "door": {
-            "name": "gate",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "south": {
-          "to_room": 5102,
-          "description": "A passage leads to A City Street"
-        },
-        "west": {
-          "to_room": 5122,
-          "description": "A passage leads to The Slave Chamber"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5106,
-          "max": 2
-        },
-        {
-          "vnum": 5109,
-          "max": 6
-        }
-      ]
-    },
-    "5102": {
-      "vnum": 5102,
-      "name": "A City Street",
-      "description": "You walk along a highly ornate city street going north and west. Dust\nmotes drift in the stale air. The air is still and musty. The air is\nstale and the walls close. Shadows pool in the corners, undisturbed.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5101,
-          "description": "A passage leads to A City Street"
-        },
-        "west": {
-          "to_room": 5103,
-          "description": "A passage leads to A City Street"
-        }
-      }
-    },
-    "5103": {
-      "vnum": 5103,
-      "name": "A City Street",
-      "description": "You walk along a highly ornate city street going east-west. A large\nhouse stands to the south. The ceiling hangs low overhead. Shadows\ngather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5102,
-          "description": "A passage leads to A City Street"
-        },
-        "south": {
-          "to_room": 5104,
-          "description": "A passage leads to The 3rd House"
-        },
-        "west": {
-          "to_room": 5106,
-          "description": "A passage leads to A City Street"
-        }
-      }
-    },
-    "5104": {
-      "vnum": 5104,
-      "name": "The 3rd House",
-      "description": "The area opens inside the 3rd house of the city; it is fairly well\ndecorated by drow standards having a few statues, murals and such. A\ndoor leads to the south. The walls are rough-hewn and cold to the touch.\nThe ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5103,
-          "description": "A passage leads to A City Street"
-        },
-        "south": {
-          "to_room": 5105,
-          "description": "A passage leads to The Throne Room",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5102,
-          "max": 4
-        },
-        {
-          "vnum": 5103,
-          "max": 4
-        },
-        {
-          "vnum": 5104,
-          "max": 4
-        }
-      ]
-    },
-    "5105": {
-      "vnum": 5105,
-      "name": "The Throne Room",
-      "description": "The throne room of the 3rd house is about as decorated as the inner\ncourtyard except with a blood covered altar in the center of the room.\nDust motes drift in the stale air. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5104,
-          "description": "A passage leads to The 3rd House",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5107,
-          "max": 3
-        }
-      ]
-    },
-    "5106": {
-      "vnum": 5106,
-      "name": "A City Street",
-      "description": "You walk along a highly ornate city street going east-west. To the north\nis a large building. The walls are rough-hewn and cold to the touch. The\nair is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5118,
-          "description": "A passage leads to The Warriors' Academy"
-        },
-        "east": {
-          "to_room": 5103,
-          "description": "A passage leads to A City Street"
-        },
-        "west": {
-          "to_room": 5107,
-          "description": "A passage leads to A City Street"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5109,
-          "max": 6
-        }
-      ]
-    },
-    "5107": {
-      "vnum": 5107,
-      "name": "A City Street",
-      "description": "You walk along a highly ornate city street leading north and east. To\nthe south is an extremely large house. The ceiling hangs low overhead.\nThe walls are rough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5110,
-          "description": "A passage leads to The Main Gate"
-        },
-        "east": {
-          "to_room": 5106,
-          "description": "A passage leads to A City Street"
-        },
-        "south": {
-          "to_room": 5108,
-          "description": "A passage leads to The 2nd House"
-        }
-      }
-    },
-    "5108": {
-      "vnum": 5108,
-      "name": "The 2nd House",
-      "description": "The area opens inside the 2nd house of the city. The room is highly\ndecorated with statues of spiders and murals everywhere. The ceiling\nhangs low overhead. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5107,
-          "description": "A passage leads to A City Street"
-        },
-        "west": {
-          "to_room": 5109,
-          "description": "A passage leads to The Throne Room",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5102,
-          "max": 4
-        },
-        {
-          "vnum": 5103,
-          "max": 4
-        },
-        {
-          "vnum": 5104,
-          "max": 4
-        }
-      ]
-    },
-    "5109": {
-      "vnum": 5109,
-      "name": "The Throne Room",
-      "description": "The throne room of the 2nd house is just a little more decorative than\nthe inner courtyard having an altar in the center of the room. Dust\nmotes drift in the stale air. The ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5108,
-          "description": "A passage leads to The 2nd House",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5107,
-          "max": 3
-        }
-      ]
-    },
-    "5110": {
-      "vnum": 5110,
-      "name": "The Main Gate",
-      "description": "This is the entrance to the 1st house of the city. A large gate, almost\nas big and elegant as the one at the entrance to the city, stands here.\nThe walls are rough-hewn and cold to the touch. The air is still and\nmusty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5114,
-          "description": "A passage leads to A City Street"
-        },
-        "south": {
-          "to_room": 5107,
-          "description": "A passage leads to A City Street"
-        },
-        "west": {
-          "to_room": 5111,
-          "description": "A large gate lies to the west.",
-          "door": {
-            "name": "gate",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5110,
-          "max": 2
-        },
-        {
-          "vnum": 5110,
-          "max": 2
-        }
-      ]
-    },
-    "5111": {
-      "vnum": 5111,
-      "name": "The 1st House",
-      "description": "The area opens in the inner courtyard of the 1st and largest house in\nthe city. The room is extremely large and decorative. Mural and\npaintings hang on the walls depicting some battles and a spider queen.\nThe air is still and musty. Dust motes drift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5110,
-          "description": "A passage leads to The Main Gate",
-          "door": {
-            "name": "gate",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "west": {
-          "to_room": 5112,
-          "description": "A passage leads to The Throne Room"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5102,
-          "max": 4
-        },
-        {
-          "vnum": 5103,
-          "max": 4
-        },
-        {
-          "vnum": 5104,
-          "max": 4
-        }
-      ]
-    },
-    "5112": {
-      "vnum": 5112,
-      "name": "The Throne Room",
-      "description": "The throne room of the 1st house is in one word...awesome. It is so\nhorrifying it is almost beautiful. The air is still and musty. Shadows\ngather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5113,
-          "description": "A passage leads to The Main Chamber",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "east": {
-          "to_room": 5111,
-          "description": "A passage leads to The 1st House"
-        }
-      }
-    },
-    "5113": {
-      "vnum": 5113,
-      "name": "The Main Chamber",
-      "description": "This is the council chamber for the Matron Mother herself. A huge table\nand chairs surrounding it sits in the center of the room. The air is\nstill and musty. The walls are rough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5112,
-          "description": "A passage leads to The Throne Room",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5108,
-          "max": 1
-        }
-      ]
-    },
-    "5114": {
-      "vnum": 5114,
-      "name": "A City Street",
-      "description": "You walk along a highly ornate city street leading north-south and east.\nThe air is still and musty. The walls are rough-hewn and cold to the\ntouch.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5115,
-          "description": "A passage leads to A City Street"
-        },
-        "east": {
-          "to_room": 5117,
-          "description": "A passage leads to A City Street"
-        },
-        "south": {
-          "to_room": 5110,
-          "description": "A passage leads to The Main Gate"
-        }
-      }
-    },
-    "5115": {
-      "vnum": 5115,
-      "name": "A City Street",
-      "description": "You walk along a highly ornate city street leading south. A building is\nto the west. Dust motes drift in the stale air. The walls are rough-hewn\nand cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5114,
-          "description": "A passage leads to A City Street"
-        },
-        "west": {
-          "to_room": 5116,
-          "description": "A passage leads to The Clerics' Academy"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5109,
-          "max": 6
-        }
-      ]
-    },
-    "5116": {
-      "vnum": 5116,
-      "name": "The Clerics' Academy",
-      "description": "This is the most lavish of the academies being that it is for the\nclerics. The ceiling hangs low overhead. Shadows gather in the corners.\nThe air is stale and the walls close. Shadows pool in the corners,\nundisturbed.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5115,
-          "description": "A passage leads to A City Street"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5105,
-          "max": 3
-        }
-      ]
-    },
-    "5117": {
-      "vnum": 5117,
-      "name": "A City Street",
-      "description": "You walk along a highly ornate city street going east-west. To the north\nis a giant temple. The ceiling hangs low overhead. The walls are rough-\nhewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5119,
-          "description": "The entrance to the temple of Lloth is blocked by large ornamental gates.",
-          "door": {
-            "name": "gates gate",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "east": {
-          "to_room": 5121,
-          "description": "A passage leads to A City Street"
-        },
-        "west": {
-          "to_room": 5114,
-          "description": "A passage leads to A City Street"
-        }
-      }
-    },
-    "5118": {
-      "vnum": 5118,
-      "name": "The Warriors' Academy",
-      "description": "The Warriors' Academy fills this vast cavern with the sounds of combat\ntraining. Drow fighters practice deadly techniques under the watchful\neyes of weapon masters, their movements fluid and precise in the dim\nfaerie fire light. The ceiling hangs low overhead. Shadows gather in the\ncorners.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5106,
-          "description": "A passage leads to A City Street"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5101,
-          "max": 10
-        },
-        {
-          "vnum": 5105,
-          "max": 3
-        }
-      ]
-    },
-    "5119": {
-      "vnum": 5119,
-      "name": "The Entrance To The Temple Of Lloth",
-      "description": "The temple is the largest building in the city. Even its doors are\nbeyond imagination. Inside of the temple entrance, the walls are made of\ngold and adamantite. Shadows gather in the corners. The air is still and\nmusty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5117,
-          "description": "A passage leads to A City Street",
-          "door": {
-            "name": "gates gate",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "down": {
-          "to_room": 5126,
-          "description": "A passage leads to The Entrance Hall"
-        }
-      }
-    },
-    "5120": {
-      "vnum": 5120,
-      "name": "The Mages' Academy",
-      "description": "The Mages' Academy is fairly well decorated and Visible is that the drow\nprefer magic over physical power greatly. The walls are rough-hewn and\ncold to the touch. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5121,
-          "description": "A passage leads to A City Street"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5105,
-          "max": 3
-        }
-      ]
-    },
-    "5121": {
-      "vnum": 5121,
-      "name": "A City Street",
-      "description": "You walk along a highly ornate city street going eastward. To the north\nis a building. The ceiling hangs low overhead. The air is still and\nmusty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5120,
-          "description": "A passage leads to The Mages' Academy"
-        },
-        "east": {
-          "to_room": 5123,
-          "description": "A passage leads to A City Street"
-        },
-        "west": {
-          "to_room": 5117,
-          "description": "A passage leads to A City Street"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5109,
-          "max": 6
-        }
-      ]
-    },
-    "5122": {
-      "vnum": 5122,
-      "name": "The Slave Chamber",
-      "description": "The room is in shambles. Straw is strewn all about the room as beds for\nthe unfortunate creatures who have fallen prey to drow imperialism. Dust\nmotes drift in the stale air. The walls are rough-hewn and cold to the\ntouch.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5101,
-          "description": "A passage leads to A City Street"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5100,
-          "max": 15
-        },
-        {
-          "vnum": 5100,
-          "max": 15
-        },
-        {
-          "vnum": 5100,
-          "max": 15
-        },
-        {
-          "vnum": 5100,
-          "max": 15
-        },
-        {
-          "vnum": 5100,
-          "max": 15
-        },
-        {
-          "vnum": 5100,
-          "max": 15
-        },
-        {
-          "vnum": 5100,
-          "max": 15
-        },
-        {
-          "vnum": 5100,
-          "max": 15
-        }
-      ]
-    },
-    "5123": {
-      "vnum": 5123,
-      "name": "A City Street",
-      "description": "You walk along a highly ornate city street leading west and south. To\nthe north is a relatively small house. The walls are rough-hewn and cold\nto the touch. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5124,
-          "description": "A passage leads to The 4th House",
-          "door": {
-            "name": "gate",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "south": {
-          "to_room": 5101,
-          "description": "A passage leads to A City Street"
-        },
-        "west": {
-          "to_room": 5121,
-          "description": "A passage leads to A City Street"
-        }
-      }
-    },
-    "5124": {
-      "vnum": 5124,
-      "name": "The 4th House",
-      "description": "The area opens inside the 4th house of the city. Its inner courtyard is\nrather dull by drow standards and rather small as well. The ceiling\nhangs low overhead. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5125,
-          "description": "A passage leads to The Throne Room"
-        },
-        "south": {
-          "to_room": 5123,
-          "description": "A passage leads to A City Street",
-          "door": {
-            "name": "gate",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5102,
-          "max": 4
-        },
-        {
-          "vnum": 5103,
-          "max": 4
-        },
-        {
-          "vnum": 5104,
-          "max": 4
-        }
-      ]
-    },
-    "5125": {
-      "vnum": 5125,
-      "name": "The Throne Room",
-      "description": "The throne room is basically similar to the inner courtyard in regards\nto decor. there is a small throne behind the altar but that is about it.\nDust motes drift in the stale air. Shadows gather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 5124,
-          "description": "A passage leads to The 4th House"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5107,
-          "max": 3
-        }
-      ]
-    },
-    "5126": {
-      "vnum": 5126,
-      "name": "The Entrance Hall",
-      "description": "The area opens in the entrance way to the temple which opens up to the\nnorth into a large hallway going east and west. Small statues os spiders\nline the entrance way's walls. Dust motes drift in the stale air.\nShadows gather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5127,
-          "description": "A passage leads to A Hallway"
-        },
-        "up": {
-          "to_room": 5119,
-          "description": "A passage leads to The Entrance To The Temple Of Lloth"
-        }
-      }
-    },
-    "5127": {
-      "vnum": 5127,
-      "name": "A Hallway",
-      "description": "This is a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west.\nAs you look down the hallway you can make out one or two figures moving\naway from you. To the north is a obsidian stairway. Shadows gather in\nthe corners. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5135,
-          "description": "A passage leads to The Grand Stairway"
-        },
-        "south": {
-          "to_room": 5126,
-          "description": "A passage leads to The Entrance Hall"
-        },
-        "east": {
-          "to_room": 5128,
-          "description": "A passage leads to A Long Hallway"
-        },
-        "west": {
-          "to_room": 5131,
-          "description": "A passage leads to A Long Hallway"
-        }
-      }
-    },
-    "5128": {
-      "vnum": 5128,
-      "name": "A Long Hallway",
-      "description": "This is a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west.\nAs you look down the hallway you can make out one or two figures moving\naway from you. The ceiling hangs low overhead. The walls are rough-hewn\nand cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5129,
-          "description": "A passage leads to A Long Hallway"
-        },
-        "west": {
-          "to_room": 5127,
-          "description": "A passage leads to A Hallway"
-        }
-      }
-    },
-    "5129": {
-      "vnum": 5129,
-      "name": "A Long Hallway",
-      "description": "This is a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west.\nAs you look down the hallway you can make out one or two figures moving\naway from you. To the north is a door. Shadows gather in the corners.\nThe ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5150,
-          "description": "A passage leads to The Weaponsmaster's Chamber",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "east": {
-          "to_room": 5130,
-          "description": "A passage leads to A Long Hallway"
-        },
-        "west": {
-          "to_room": 5128,
-          "description": "A passage leads to A Long Hallway"
-        }
-      }
-    },
-    "5130": {
-      "vnum": 5130,
-      "name": "A Long Hallway",
-      "description": "This is a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west.\nAs you look down the hallway you can make out one or two figures moving\naway from you. The ceiling hangs low overhead. The air is still and\nmusty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5134,
-          "description": "A passage leads to A Long Hallway"
-        },
-        "west": {
-          "to_room": 5129,
-          "description": "A passage leads to A Long Hallway"
-        }
-      }
-    },
-    "5131": {
-      "vnum": 5131,
-      "name": "A Long Hallway",
-      "description": "This is a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west.\nAs you look down the hallway you can make out one or two figures moving\naway from you. The ceiling hangs low overhead. Dust motes drift in the\nstale air.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5127,
-          "description": "A passage leads to A Hallway"
-        },
-        "west": {
-          "to_room": 5132,
-          "description": "A passage leads to A Long Hallway"
-        },
-        "south": {
-          "to_room": 5133
-        }
-      }
-    },
-    "5132": {
-      "vnum": 5132,
-      "name": "A Long Hallway",
-      "description": "This is a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west.\nAs you look down the hallway you can make out one or two figures moving\naway from you. To the south is a door. Shadows gather in the corners.\nThe ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5131,
-          "description": "A passage leads to A Long Hallway"
-        },
-        "south": {
-          "to_room": 5133,
-          "description": "A passage leads to The Warriors' Barracks",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "west": {
-          "to_room": 5134,
-          "description": "A passage leads to A Long Hallway"
-        }
-      }
-    },
-    "5133": {
-      "vnum": 5133,
-      "name": "The Warriors' Barracks",
-      "description": "The room is a complete mess. None of the beds are made, clothes and\nother items have been left all about the room. Well drow warriors never\nwere known for neatness. Shadows gather in the corners. The ceiling\nhangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5131,
-          "description": "A passage leads to A Long Hallway",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5101,
-          "max": 10
-        }
-      ]
-    },
-    "5134": {
-      "vnum": 5134,
-      "name": "A Long Hallway",
-      "description": "This is a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west.\nAs you look down the hallway you can make out one or two figures moving\naway from you. The walls are rough-hewn and cold to the touch. The air\nis still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5132,
-          "description": "A passage leads to A Long Hallway"
-        },
-        "west": {
-          "to_room": 5130,
-          "description": "A passage leads to A Long Hallway"
-        }
-      }
-    },
-    "5135": {
-      "vnum": 5135,
-      "name": "The Grand Stairway",
-      "description": "The area opens at the bottom of a giant obsidian and adamantite\nstairway. The edges are trimmed with gold. The ceiling hangs low\noverhead. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5127,
-          "description": "A passage leads to A Hallway"
-        },
-        "up": {
-          "to_room": 5136,
-          "description": "A passage leads to The Grand Hallway"
-        }
-      }
-    },
-    "5136": {
-      "vnum": 5136,
-      "name": "The Grand Hallway",
-      "description": "This is the middle of a grand hallway. The walls are of the purest\nadamantite with gold trim. Mosaics line the walls. Shadows gather in the\ncorners. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5138,
-          "description": "A passage leads to The Grand Hallway"
-        },
-        "east": {
-          "to_room": 5137,
-          "description": "A passage leads to The Mages' Barracks",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "down": {
-          "to_room": 5135,
-          "description": "A passage leads to The Grand Stairway"
-        }
-      }
-    },
-    "5137": {
-      "vnum": 5137,
-      "name": "The Mages' Barracks",
-      "description": "The mage's living quarters is rather clean with the exception of a few\nused component containers. It is rather well decorated as well. Cots\nline the floor for the mages to sleep on. The only door is to the west.\nThe walls are rough-hewn and cold to the touch. Dust motes drift in the\nstale air.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 5136,
-          "description": "A passage leads to The Grand Hallway",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      }
-    },
-    "5138": {
-      "vnum": 5138,
-      "name": "The Grand Hallway",
-      "description": "The way continues down a grand hallway, heavily decorated with\nadamantite and gold. To the north the hall goes down a flight of stairs\nwhile a door is to the west. Shadows gather in the corners. Dust motes\ndrift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5136,
-          "description": "A passage leads to The Grand Hallway"
-        },
-        "west": {
-          "to_room": 5139,
-          "description": "A passage leads to The Clerics' Barracks",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "down": {
-          "to_room": 5140,
-          "description": "A passage leads to The Grand Stairway"
-        }
-      }
-    },
-    "5139": {
-      "vnum": 5139,
-      "name": "The Clerics' Barracks",
-      "description": "The bed chamber is brightly decorated with spider shaped statues, murals\nand the like. Large beds line the floor making this a comfortable room\nto live in. The air is still and musty. The walls are rough-hewn and\ncold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5138,
-          "description": "A passage leads to The Grand Hallway",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      }
-    },
-    "5140": {
-      "vnum": 5140,
-      "name": "The Grand Stairway",
-      "description": "The area is climbing a set of obsidian stairs surrounded by adamantite\nwalls. To the north are a set of large golden doors. Shadows gather in\nthe corners. The walls are rough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5141,
-          "description": "A passage leads to The Main Chamber",
-          "door": {
-            "name": "doors door golden gold",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "up": {
-          "to_room": 5138,
-          "description": "A passage leads to The Grand Hallway"
-        }
-      }
-    },
-    "5141": {
-      "vnum": 5141,
-      "name": "The Main Chamber",
-      "description": "This is the south side of a large auditorium used for services by the\ndrow priestesses. In the center is a large sacrificial pit and beyond\nthat is an altar. The walls are rough-hewn and cold to the touch. Dust\nmotes drift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5142,
-          "description": "A passage leads to The Eastern Side Of The Main Chamber"
-        },
-        "south": {
-          "to_room": 5140,
-          "description": "A passage leads to The Grand Stairway",
-          "door": {
-            "name": "doors door golden gold",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "west": {
-          "to_room": 5144,
-          "description": "A passage leads to The Western Side Of The Main Chamber"
-        },
-        "north": {
-          "to_room": 5142
-        }
-      }
-    },
-    "5142": {
-      "vnum": 5142,
-      "name": "The Eastern Side Of The Main Chamber",
-      "description": "The area is the eastern side of the chamber overlooking the pit. To the\neast is a door while to the north is an altar. Dust motes drift in the\nstale air. The ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5145,
-          "description": "A passage leads to The Altar"
-        },
-        "east": {
-          "to_room": 5146,
-          "description": "A passage leads to The Slave Cells",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "south": {
-          "to_room": 5141,
-          "description": "A passage leads to The Main Chamber"
-        },
-        "west": {
-          "to_room": 5141
-        }
-      }
-    },
-    "5143": {
-      "vnum": 5143,
-      "name": "The Sacrificial Pit",
-      "description": "As you climb down into the pit, thousands of spiders cover you, tearing\nyour fragile body to shreds. Lloth thanks you for your sacrifice.\nShadows gather in the corners. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "death",
-        "indoors"
-      ],
-      "exits": {
-        "up": {
-          "to_room": 5145
-        }
-      }
-    },
-    "5144": {
-      "vnum": 5144,
-      "name": "The Western Side Of The Main Chamber",
-      "description": "The area is the western side of the main chamber overlooking a\nsacrificial pit. To the north is an altar. The ceiling hangs low\noverhead. Shadows gather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5145,
-          "description": "A passage leads to The Altar"
-        },
-        "south": {
-          "to_room": 5141,
-          "description": "A passage leads to The Main Chamber"
-        },
-        "east": {
-          "to_room": 5141
-        }
-      }
-    },
-    "5145": {
-      "vnum": 5145,
-      "name": "The Altar",
-      "description": "This is front of a highly and freshly bloodstained altar. Engraved on\nthe top of the altar is a giant spider with a human head. Looking down\nfrom the altar you see a large sacrificial pit with thousands of\nswarming spiders looking for their next meal! The walls are rough-hewn\nand cold to the touch. Shadows gather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5148,
-          "description": "A passage leads to The Dias"
-        },
-        "east": {
-          "to_room": 5142,
-          "description": "A passage leads to The Eastern Side Of The Main Chamber"
-        },
-        "west": {
-          "to_room": 5144,
-          "description": "A passage leads to The Western Side Of The Main Chamber"
-        },
-        "down": {
-          "to_room": 5143,
-          "description": "A dark pit gapes below the altar."
-        },
-        "south": {
-          "to_room": 5142
-        }
-      }
-    },
-    "5146": {
-      "vnum": 5146,
-      "name": "The Slave Cells",
-      "description": "This is the main room to the cell chambers for the slaves to be\nsacrificed. You notice there are no guards around. The walls are rough-\nhewn and cold to the touch. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5147,
-          "description": "A passage leads to The Slave Pen",
-          "door": {
-            "name": "cell",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "west": {
-          "to_room": 5142,
-          "description": "A passage leads to The Eastern Side Of The Main Chamber",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      }
-    },
-    "5147": {
-      "vnum": 5147,
-      "name": "The Slave Pen",
-      "description": "Rotten meat and breads lie about the floor while shackles hang from the\nwalls. The room reeks of death. You almost become nauseous and decide to\nleave the room since you were obviously too late to save the slave. The\nwalls are rough-hewn and cold to the touch. The ceiling hangs low\noverhead.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5146,
-          "description": "A passage leads to The Slave Cells",
-          "door": {
-            "name": "cell",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      }
-    },
-    "5148": {
-      "vnum": 5148,
-      "name": "The Dias",
-      "description": "The area opens upon a dias behind the altar. above is a enormous\nillusion of a female drow turning into a giant spider and back again.\nThere is a door to the west. Shadows gather in the corners. Dust motes\ndrift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5145,
-          "description": "A passage leads to The Altar"
-        },
-        "west": {
-          "to_room": 5149,
-          "description": "A passage leads to The Treasury",
-          "door": {
-            "name": "door",
-            "state": "open",
-            "locked": true,
-            "key_vnum": 5115
-          }
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5111,
-          "max": 1
-        }
-      ]
-    },
-    "5149": {
-      "vnum": 5149,
-      "name": "The Treasury",
-      "description": "This is obviously only a temporary storage place for the collected\ntreasure being rather bare. Dust motes drift in the stale air. Shadows\ngather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5148,
-          "description": "A passage leads to The Dias",
-          "door": {
-            "name": "door",
-            "state": "open",
-            "locked": true,
-            "key_vnum": 5115
-          }
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 5116,
-          "max": 1
-        }
-      ]
-    },
-    "5150": {
-      "vnum": 5150,
-      "name": "The Weaponsmaster's Chamber",
-      "description": "This one-person bedchamber is very elegant. The owner must be held in\nhigh regard to get this kind of treatment. The ceiling hangs low\noverhead. The walls are rough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5129,
-          "description": "A passage leads to A Long Hallway",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5106,
-          "max": 2
-        }
-      ]
+    "east": {
+     "to_room": 5178,
+     "description": "To the east lies The Tunnel Of Ornate Arches."
     }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and east.",
+   "placeholder": true
   },
-  "mobs": {
-    "5100": {
-      "vnum": 5100,
-      "name": "goblin",
-      "short_desc": "the goblin slave",
-      "long_desc": "A goblin slave lies here asleep.",
-      "level": 1,
-      "alignment": 350,
-      "hp_dice": "1d10+28",
-      "damage_dice": "1d4+1",
-      "gold": 50,
-      "exp": 60,
-      "armor_class": 97,
-      "flags": [
-        "sentinel",
-        "wimpy"
-      ],
-      "description": "The defenseless goblin begs for mercy.",
-      "inventory": [
-        5122,
-        5103
-      ]
+  "205101": {
+   "vnum": 205101,
+   "name": "The City Street Outside The Adamantium gates",
+   "map": {
+    "x": -16,
+    "y": -17,
+    "z": -6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 5106,
+     "description": "To the east lies City Street."
     },
-    "5101": {
-      "vnum": 5101,
-      "name": "drow",
-      "short_desc": "the Drow commoner",
-      "long_desc": "A drow commoner is here, walking around on guard duty.",
-      "level": 10,
-      "alignment": -1000,
-      "hp_dice": "10d10+136",
-      "damage_dice": "3d6+6",
-      "gold": 5525,
-      "exp": 600,
-      "armor_class": 70,
-      "flags": [
-        "aggressive",
-        "stay_zone",
-        "memory",
-        "helper"
-      ],
-      "description": "I doubt he is the type to give directions.",
-      "equipment": {
-        "wield": 5100
-      },
-      "inventory": [
-        5124,
-        5103
-      ]
+    "south": {
+     "to_room": 205100,
+     "description": "To the south lies At The Adamantium Gates."
     },
-    "5102": {
-      "vnum": 5102,
-      "name": "drow",
-      "short_desc": "the drow warrior",
-      "long_desc": "A drow warrior stands here guarding his home.",
-      "level": 12,
-      "alignment": -1000,
-      "hp_dice": "12d10+160",
-      "damage_dice": "4d6+6",
-      "gold": 8000,
-      "exp": 720,
-      "armor_class": 64,
-      "flags": [
-        "sentinel",
-        "aggressive",
-        "memory",
-        "helper"
-      ],
-      "description": "He looks kind of annoyed!",
-      "equipment": {
-        "wield": 5101
-      },
-      "inventory": [
-        5122
-      ]
-    },
-    "5103": {
-      "vnum": 5103,
-      "name": "drow",
-      "short_desc": "the drow mage",
-      "long_desc": "A drow mage is here protecting his home.",
-      "level": 15,
-      "alignment": -1000,
-      "hp_dice": "15d10+196",
-      "damage_dice": "4d7+8",
-      "gold": 11500,
-      "exp": 900,
-      "armor_class": 55,
-      "flags": [
-        "special",
-        "sentinel",
-        "aggressive",
-        "memory",
-        "helper"
-      ],
-      "description": "The mage prepares to cast a spell... at you!!",
-      "equipment": {
-        "wield": 5102
-      },
-      "inventory": [
-        5100
-      ]
-    },
-    "5104": {
-      "vnum": 5104,
-      "name": "drow",
-      "short_desc": "the drow priestess",
-      "long_desc": "A drow priestess is here shouting orders.",
-      "level": 17,
-      "alignment": -1000,
-      "hp_dice": "17d10+220",
-      "damage_dice": "5d7+7",
-      "gold": 16000,
-      "exp": 1020,
-      "armor_class": 49,
-      "flags": [
-        "special",
-        "sentinel",
-        "aggressive",
-        "memory",
-        "helper"
-      ],
-      "description": "I wouldn't want go get on her bad side!",
-      "equipment": {
-        "wield": 5103
-      },
-      "inventory": [
-        5124
-      ]
-    },
-    "5105": {
-      "vnum": 5105,
-      "name": "drow",
-      "short_desc": "the drow master",
-      "long_desc": "A drow master stares at you angrily.",
-      "level": 21,
-      "alignment": -1000,
-      "hp_dice": "21d10+268",
-      "damage_dice": "6d8+6",
-      "gold": 35000,
-      "exp": 1260,
-      "armor_class": 37,
-      "flags": [
-        "sentinel",
-        "aggressive",
-        "memory",
-        "helper"
-      ],
-      "description": "The drow master is ALWAYS ready for a fight.",
-      "equipment": {
-        "wield": 5104,
-        "hold": 5110
-      },
-      "inventory": [
-        5117
-      ]
-    },
-    "5106": {
-      "vnum": 5106,
-      "name": "drow",
-      "short_desc": "the weaponsmaster",
-      "long_desc": "A drow weaponsmaster is here shadow boxing.",
-      "level": 23,
-      "alignment": -1000,
-      "hp_dice": "23d10+292",
-      "damage_dice": "6d8+9",
-      "gold": 47500,
-      "exp": 1380,
-      "armor_class": 31,
-      "flags": [
-        "sentinel",
-        "aggressive",
-        "memory",
-        "helper"
-      ],
-      "description": "He definitely know his way around in combat.",
-      "equipment": {
-        "wield": 5105,
-        "hands": 5109
-      },
-      "loot_table": [
-        {
-          "vnum": 5117,
-          "chance": 20
-        },
-        {
-          "vnum": 5118,
-          "chance": 20
-        },
-        {
-          "vnum": 5119,
-          "chance": 20
-        },
-        {
-          "vnum": 5120,
-          "chance": 20
-        },
-        {
-          "vnum": 5121,
-          "chance": 20
-        },
-        {
-          "vnum": 5122,
-          "chance": 20
-        },
-        {
-          "vnum": 5123,
-          "chance": 20
-        },
-        {
-          "vnum": 5124,
-          "chance": 20
-        },
-        {
-          "vnum": 5125,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100,
-      "inventory": [
-        5107,
-        5122,
-        5105
-      ]
-    },
-    "5107": {
-      "vnum": 5107,
-      "name": "drow",
-      "short_desc": "the Matron Mother",
-      "long_desc": "The Matron Mother of the house is standing here.",
-      "level": 24,
-      "alignment": -1000,
-      "hp_dice": "24d10+304",
-      "damage_dice": "7d8+6",
-      "gold": 80000,
-      "exp": 1440,
-      "armor_class": 28,
-      "flags": [
-        "special",
-        "sentinel",
-        "aggressive",
-        "memory"
-      ],
-      "description": "She looks really and truly annoyed that you have found your way here.",
-      "equipment": {
-        "wield": 5106,
-        "head": 5111,
-        "arms": 5108
-      },
-      "inventory": [
-        5114
-      ],
-      "loot_table": [
-        {
-          "vnum": 5117,
-          "chance": 20
-        },
-        {
-          "vnum": 5118,
-          "chance": 20
-        },
-        {
-          "vnum": 5119,
-          "chance": 20
-        },
-        {
-          "vnum": 5120,
-          "chance": 20
-        },
-        {
-          "vnum": 5121,
-          "chance": 20
-        },
-        {
-          "vnum": 5122,
-          "chance": 20
-        },
-        {
-          "vnum": 5123,
-          "chance": 20
-        },
-        {
-          "vnum": 5124,
-          "chance": 20
-        },
-        {
-          "vnum": 5125,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100
-    },
-    "5108": {
-      "vnum": 5108,
-      "name": "drow",
-      "short_desc": "the Matron Mother",
-      "long_desc": "The Matron Mother of the first house is waiting for you.",
-      "level": 25,
-      "alignment": -1000,
-      "hp_dice": "25d10+316",
-      "damage_dice": "7d8+8",
-      "gold": 95000,
-      "exp": 1500,
-      "armor_class": 25,
-      "flags": [
-        "special",
-        "sentinel",
-        "aggressive",
-        "memory"
-      ],
-      "description": "She looks like she is about to rip your head of and eat it.",
-      "equipment": {
-        "wield": 5107,
-        "finger1": 5112
-      },
-      "loot_table": [
-        {
-          "vnum": 5117,
-          "chance": 20
-        },
-        {
-          "vnum": 5118,
-          "chance": 20
-        },
-        {
-          "vnum": 5119,
-          "chance": 20
-        },
-        {
-          "vnum": 5120,
-          "chance": 20
-        },
-        {
-          "vnum": 5121,
-          "chance": 20
-        },
-        {
-          "vnum": 5122,
-          "chance": 20
-        },
-        {
-          "vnum": 5123,
-          "chance": 20
-        },
-        {
-          "vnum": 5124,
-          "chance": 20
-        },
-        {
-          "vnum": 5125,
-          "chance": 20
-        },
-        {
-          "vnum": 5151,
-          "chance": 12
-        },
-        {
-          "vnum": 5152,
-          "chance": 12
-        },
-        {
-          "vnum": 5153,
-          "chance": 12
-        },
-        {
-          "vnum": 5154,
-          "chance": 12
-        }
-      ],
-      "loot_chance": 100,
-      "inventory": [
-        5101,
-        5111
-      ]
-    },
-    "5109": {
-      "vnum": 5109,
-      "name": "drider",
-      "short_desc": "the drider",
-      "long_desc": "The drider looks at you viciously while it draws its sword.",
-      "level": 8,
-      "alignment": -1000,
-      "hp_dice": "8d10+112",
-      "damage_dice": "3d5+5",
-      "gold": 2100,
-      "exp": 480,
-      "armor_class": 76,
-      "flags": [
-        "aggressive",
-        "stay_zone",
-        "no_charm",
-        "no_summmon"
-      ],
-      "description": "This half-spider, half-drow creature is a formidable opponent.",
-      "inventory": [
-        5118
-      ]
-    },
-    "5110": {
-      "vnum": 5110,
-      "name": "drider",
-      "short_desc": "the drider",
-      "long_desc": "The drider looks at you viciously while it draws its sword.",
-      "level": 11,
-      "alignment": -1000,
-      "hp_dice": "11d10+148",
-      "damage_dice": "3d6+8",
-      "gold": 3500,
-      "exp": 660,
-      "armor_class": 67,
-      "flags": [
-        "sentinel",
-        "aggressive",
-        "stay_zone",
-        "no_charm",
-        "no_summmon"
-      ],
-      "description": "This half-spider, half-drow creature is a formidable opponent.",
-      "inventory": [
-        5118
-      ]
-    },
-    "5111": {
-      "vnum": 5111,
-      "name": "yochlol",
-      "short_desc": "the yochlol",
-      "long_desc": "A yochlol forms out of a swirling mist...",
-      "level": 23,
-      "alignment": -1000,
-      "hp_dice": "23d10+292",
-      "damage_dice": "6d8+9",
-      "gold": 70000,
-      "exp": 1380,
-      "armor_class": 31,
-      "flags": [
-        "sentinel",
-        "aware",
-        "aggressive",
-        "memory",
-        "no_charm",
-        "no_summmon",
-        "no_bash",
-        "no_blind"
-      ],
-      "description": "The yochlol is not in a good mood.",
-      "equipment": {
-        "wield": 5113,
-        "hold": 5115
-      },
-      "inventory": [
-        5110,
-        5113
-      ]
+    "west": {
+     "to_room": 205150,
+     "description": "To the west lies A Bend In The City Street."
     }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\neast, south and west.",
+   "placeholder": true
   },
-  "objects": {
-    "5100": {
-      "vnum": 5100,
-      "name": "longsword",
-      "short_desc": "a commoner's longsword",
-      "room_desc": "A commoner's longsword made of adamantite has been left here.",
-      "item_type": "weapon",
-      "weight": 12,
-      "value": 1000,
-      "damage_dice": "1d8",
-      "weapon_type": "slash",
-      "type": "treasure"
+  "5102": {
+   "vnum": 5102,
+   "name": "The City Street",
+   "map": {
+    "x": -17,
+    "y": -16,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "You walk along a highly ornate city street going north and west. Dust\nmotes drift in the stale air. The air is still and musty. The air is\nstale and the walls close. Shadows pool in the corners, undisturbed.",
+   "exits": {
+    "north": {
+     "to_room": 5103,
+     "description": "To the north lies The City Street."
     },
-    "5101": {
-      "vnum": 5101,
-      "name": "longsword",
-      "short_desc": "a noble's longsword",
-      "room_desc": "A drow noble's longsword, made of adamantite, lies here.",
-      "item_type": "weapon",
-      "weight": 12,
-      "value": 1500,
-      "damage_dice": "1d8",
-      "weapon_type": "slash",
-      "type": "treasure"
+    "south": {
+     "to_room": 205150,
+     "description": "To the south lies A Bend In The City Street."
     },
-    "5102": {
-      "vnum": 5102,
-      "name": "whip",
-      "short_desc": "a two-headed snake whip",
-      "room_desc": "A whip with two snakes heads lies here.",
-      "item_type": "weapon",
-      "weight": 12,
-      "value": 1750,
-      "damage_dice": "2d6",
-      "weapon_type": "slash",
-      "type": "weapon"
-    },
-    "5103": {
-      "vnum": 5103,
-      "name": "whip",
-      "short_desc": "a three-headed snake whip",
-      "room_desc": "A whip with three snake heads has been left here.",
-      "item_type": "weapon",
-      "weight": 12,
-      "value": 5000,
-      "damage_dice": "2d7",
-      "weapon_type": "slash",
-      "type": "weapon"
-    },
-    "5104": {
-      "vnum": 5104,
-      "name": "whip",
-      "short_desc": "a four-headed snake whip",
-      "room_desc": "A whip with four snake heads has been carelessly left here.",
-      "item_type": "weapon",
-      "weight": 12,
-      "value": 10250,
-      "damage_dice": "2d8",
-      "weapon_type": "slash",
-      "type": "weapon"
-    },
-    "5105": {
-      "vnum": 5105,
-      "name": "longsword",
-      "short_desc": "a black longsword",
-      "room_desc": "A black longsword has been carelessly left here.",
-      "item_type": "weapon",
-      "weight": 12,
-      "value": 10250,
-      "damage_dice": "2d8",
-      "weapon_type": "slash",
-      "type": "treasure"
-    },
-    "5106": {
-      "vnum": 5106,
-      "name": "whip",
-      "short_desc": "a five-headed snake whip",
-      "room_desc": "A whip with 5 snake heads has been carelessly dropped here.",
-      "item_type": "weapon",
-      "weight": 12,
-      "value": 12000,
-      "damage_dice": "3d6",
-      "weapon_type": "slash",
-      "type": "weapon"
-    },
-    "5107": {
-      "vnum": 5107,
-      "name": "whip",
-      "short_desc": "a six-headed snake whip",
-      "room_desc": "A whip with six snake heads has been dropped here very carelessly.",
-      "item_type": "weapon",
-      "weight": 12,
-      "value": 15000,
-      "damage_dice": "4d5",
-      "weapon_type": "slash",
-      "type": "weapon"
-    },
-    "5108": {
-      "vnum": 5108,
-      "name": "bracers",
-      "short_desc": "a pair of bracers",
-      "room_desc": "A pair of iron bracers has been dropped here.",
-      "item_type": "armor",
-      "weight": 3,
-      "value": 2000,
-      "armor_bonus": 8,
-      "type": "armor",
-      "wear_slot": "hands",
-      "armor": 2,
-      "armor_class": 4
-    },
-    "5109": {
-      "vnum": 5109,
-      "name": "gauntlets",
-      "short_desc": "a pair of gauntlets",
-      "room_desc": "A pair of gauntlets is lying on the ground.",
-      "item_type": "treasure",
-      "weight": 2,
-      "value": 10000,
-      "type": "treasure"
-    },
-    "5110": {
-      "vnum": 5110,
-      "name": "wand",
-      "short_desc": "a silvery blue wand",
-      "room_desc": "A silvery blue wand has been dropped in the dirt.",
-      "item_type": "wand",
-      "weight": 1,
-      "value": 4000,
-      "type": "wand"
-    },
-    "5111": {
-      "vnum": 5111,
-      "name": "helmet",
-      "short_desc": "a small helmet",
-      "room_desc": "A small helmet lies up against a rock.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 6000,
-      "armor_bonus": 1,
-      "type": "armor",
-      "wear_slot": "head",
-      "armor": 2,
-      "armor_class": 2
-    },
-    "5112": {
-      "vnum": 5112,
-      "name": "ring",
-      "short_desc": "a small ruby ring",
-      "room_desc": "A small ruby ring lies in the dirt.",
-      "item_type": "treasure",
-      "weight": 1,
-      "value": 20000,
-      "type": "armor",
-      "wear_slot": "finger",
-      "armor": 7,
-      "armor_class": 2
-    },
-    "5113": {
-      "vnum": 5113,
-      "name": "dagger",
-      "short_desc": "a spider shaped dagger",
-      "room_desc": "A dagger with spider leg shaped blades lies on the ground.",
-      "item_type": "weapon",
-      "weight": 8,
-      "value": 12000,
-      "damage_dice": "3d4",
-      "weapon_type": "pierce",
-      "type": "weapon"
-    },
-    "5114": {
-      "vnum": 5114,
-      "name": "hat",
-      "short_desc": "a small bright green hat",
-      "room_desc": "A small bright green hat lies in the dirt.",
-      "item_type": "armor",
-      "weight": 1,
-      "value": 2000,
-      "armor_bonus": 10,
-      "type": "armor",
-      "wear_slot": "head",
-      "armor": 2,
-      "armor_class": 4
-    },
-    "5115": {
-      "vnum": 5115,
-      "name": "key",
-      "short_desc": "an adamantite key",
-      "room_desc": "A key made of a strange metal is lying here.",
-      "item_type": "key",
-      "weight": 1,
-      "value": 0,
-      "type": "key"
-    },
-    "5116": {
-      "vnum": 5116,
-      "name": "gold",
-      "short_desc": "a pile of golden coins",
-      "room_desc": "A large pile of golden coins is lying here.",
-      "item_type": "money",
-      "weight": 10,
-      "value": 17645,
-      "type": "trash"
-    },
-    "5117": {
-      "vnum": 5117,
-      "name": "drow warblade",
-      "short_desc": "a drow warblade",
-      "room_desc": "A drow warblade lies here.",
-      "description": "A dark blade.",
-      "item_type": "weapon",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "wield",
-      "weapon_type": "slash",
-      "damage_dice": "2d6+4",
-      "affects": [
-        {
-          "type": "damroll",
-          "value": 3
-        }
-      ],
-      "set_id": 51,
-      "type": "weapon"
-    },
-    "5118": {
-      "vnum": 5118,
-      "name": "nightward shield",
-      "short_desc": "a nightward shield",
-      "room_desc": "A nightward shield lies here.",
-      "description": "A paladin's shield.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "shield",
-      "armor_bonus": 3,
-      "affects": [
-        {
-          "type": "wis",
-          "value": 1
-        }
-      ],
-      "set_id": 51,
-      "type": "armor",
-      "armor": 3,
-      "armor_class": 2
-    },
-    "5119": {
-      "vnum": 5119,
-      "name": "umbra sigil",
-      "short_desc": "an umbra sigil",
-      "room_desc": "An umbra sigil lies here.",
-      "description": "A deathknight's sigil.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "neck1",
-      "affects": [
-        {
-          "type": "damroll",
-          "value": 3
-        }
-      ],
-      "set_id": 51,
-      "type": "treasure",
-      "armor": 9
-    },
-    "5120": {
-      "vnum": 5120,
-      "name": "shadow priory reliquary",
-      "short_desc": "a shadow priory reliquary",
-      "room_desc": "A shadow priory reliquary lies here.",
-      "description": "A cleric's reliquary.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "hold",
-      "affects": [
-        {
-          "type": "wis",
-          "value": 3
-        }
-      ],
-      "set_id": 51,
-      "type": "treasure",
-      "armor": 5
-    },
-    "5121": {
-      "vnum": 5121,
-      "name": "gloomstone focus",
-      "short_desc": "a gloomstone focus",
-      "room_desc": "A gloomstone focus lies here.",
-      "description": "A mage's focus.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "hold",
-      "affects": [
-        {
-          "type": "int",
-          "value": 3
-        }
-      ],
-      "set_id": 51,
-      "type": "treasure",
-      "armor": 6
-    },
-    "5122": {
-      "vnum": 5122,
-      "name": "whisperstring lute",
-      "short_desc": "a whisperstring lute",
-      "room_desc": "A whisperstring lute lies here.",
-      "description": "A bard's lute.",
-      "item_type": "weapon",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "wield",
-      "weapon_type": "mace",
-      "damage_dice": "1d6+2",
-      "affects": [
-        {
-          "type": "cha",
-          "value": 3
-        }
-      ],
-      "set_id": 51,
-      "type": "treasure"
-    },
-    "5123": {
-      "vnum": 5123,
-      "name": "spiderfang dagger",
-      "short_desc": "a spiderfang dagger",
-      "room_desc": "A spiderfang dagger lies here.",
-      "description": "A rogue's dagger.",
-      "item_type": "weapon",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "wield",
-      "weapon_type": "pierce",
-      "damage_dice": "1d6+3",
-      "affects": [
-        {
-          "type": "dex",
-          "value": 3
-        },
-        {
-          "type": "hitroll",
-          "value": 1
-        }
-      ],
-      "set_id": 51,
-      "type": "weapon"
-    },
-    "5124": {
-      "vnum": 5124,
-      "name": "darkleaf bow",
-      "short_desc": "a darkleaf bow",
-      "room_desc": "A darkleaf bow lies here.",
-      "description": "A ranger's bow.",
-      "item_type": "weapon",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "wield",
-      "weapon_type": "pierce",
-      "damage_dice": "1d6+3",
-      "affects": [
-        {
-          "type": "dex",
-          "value": 3
-        }
-      ],
-      "set_id": 51,
-      "type": "weapon"
-    },
-    "5125": {
-      "vnum": 5125,
-      "name": "shadowveil cloak",
-      "short_desc": "a shadowveil cloak",
-      "room_desc": "A shadowveil cloak lies here.",
-      "description": "A shadowy cloak.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "about",
-      "armor_bonus": 2,
-      "affects": [
-        {
-          "type": "shadow_resist",
-          "value": 5
-        }
-      ],
-      "set_id": 51,
-      "type": "armor",
-      "armor": 1,
-      "armor_class": 3
-    },
-    "5151": {
-      "vnum": 5151,
-      "name": "drow shadow armor",
-      "short_desc": "drow shadow armor",
-      "room_desc": "Dark armor radiating shadow lies here.",
-      "description": "Armor woven from drow silk and shadow.",
-      "item_type": "armor",
-      "weight": 6,
-      "value": 4000,
-      "wear_slot": "body",
-      "armor_class": 6,
-      "affects": [
-        {
-          "type": "dex",
-          "value": 2
-        }
-      ],
-      "set_id": "drow_shadow",
-      "type": "armor",
-      "min_level": 20,
-      "armor": 9
-    },
-    "5152": {
-      "vnum": 5152,
-      "name": "drow shadow cloak",
-      "short_desc": "a drow shadow cloak",
-      "room_desc": "A cloak of living shadow lies here.",
-      "description": "Darkness clings to this cloak.",
-      "item_type": "armor",
-      "weight": 2,
-      "value": 3000,
-      "wear_slot": "about",
-      "armor_class": 3,
-      "affects": [
-        {
-          "type": "shadow_resist",
-          "value": 5
-        }
-      ],
-      "set_id": "drow_shadow",
-      "type": "armor",
-      "min_level": 20,
-      "armor": 4
-    },
-    "5153": {
-      "vnum": 5153,
-      "name": "drow shadow blade",
-      "short_desc": "a drow shadow blade",
-      "room_desc": "A black blade pulses with shadow.",
-      "description": "A wickedly sharp dark blade.",
-      "item_type": "weapon",
-      "weight": 3,
-      "value": 4500,
-      "wear_slot": "wield",
-      "weapon_type": "slash",
-      "damage_dice": "2d6+4",
-      "affects": [
-        {
-          "type": "hitroll",
-          "value": 3
-        }
-      ],
-      "set_id": "drow_shadow",
-      "type": "weapon",
-      "min_level": 20
-    },
-    "5154": {
-      "vnum": 5154,
-      "name": "drow shadow ring",
-      "short_desc": "a drow shadow ring",
-      "room_desc": "A ring of darkness lies here.",
-      "description": "An obsidian ring.",
-      "item_type": "armor",
-      "weight": 0,
-      "value": 3500,
-      "wear_slot": "finger",
-      "armor_class": 1,
-      "affects": [
-        {
-          "type": "poison_resist",
-          "value": 5
-        }
-      ],
-      "set_id": "drow_shadow",
-      "type": "armor",
-      "min_level": 20,
-      "armor": 10
+    "west": {
+     "to_room": 5185,
+     "description": "To the west lies A Small Dwelling In The Stalagmite.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
     }
+   }
+  },
+  "5103": {
+   "vnum": 5103,
+   "name": "The City Street",
+   "map": {
+    "x": -17,
+    "y": -15,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "You walk along a highly ornate city street going east-west. A large\nhouse stands to the south. The ceiling hangs low overhead. Shadows\ngather in the corners.",
+   "exits": {
+    "north": {
+     "to_room": 5114,
+     "description": "To the north lies A Bend In The City Street."
+    },
+    "east": {
+     "to_room": 5186,
+     "description": "To the east lies A Small Dwelling In The Stalagmite.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 5102,
+     "description": "To the south lies The City Street."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 5102,
+     "max": 4
+    },
+    {
+     "vnum": 5103,
+     "max": 4
+    },
+    {
+     "vnum": 5104,
+     "max": 4
+    },
+    {
+     "vnum": 5107,
+     "max": 3
+    }
+   ]
+  },
+  "205104": {
+   "vnum": 205104,
+   "name": "The Main Chamber In The Third House",
+   "map": {
+    "x": -13,
+    "y": -11,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 205105,
+     "description": "To the up lies The Third Throne."
+    },
+    "down": {
+     "to_room": 5181,
+     "description": "To the down lies The Entrance To The Third House."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead up and down.",
+   "placeholder": true
+  },
+  "205105": {
+   "vnum": 205105,
+   "name": "The Third Throne",
+   "map": {
+    "x": -13,
+    "y": -11,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "down": {
+     "to_room": 205104,
+     "description": "To the down lies The Main Chamber In The Third House."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads down.",
+   "placeholder": true
+  },
+  "5106": {
+   "vnum": 5106,
+   "name": "City Street",
+   "map": {
+    "x": -15,
+    "y": -17,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5109,
+     "max": 6
+    }
+   ],
+   "description": "You walk along a highly ornate city street going east-west. To the north\nis a large building. The walls are rough-hewn and cold to the touch. The\nair is still and musty.",
+   "exits": {
+    "east": {
+     "to_room": 5101,
+     "description": "To the east lies A Bend In The City Street."
+    },
+    "south": {
+     "to_room": 5122,
+     "description": "To the south lies A Slave Chamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 205101,
+     "description": "To the west lies The City Street Outside The Adamantium gates."
+    }
+   }
+  },
+  "5107": {
+   "vnum": 5107,
+   "name": "The City Street",
+   "map": {
+    "x": -14,
+    "y": -15,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "You walk along a highly ornate city street leading north and east. To\nthe south is an extremely large house. The ceiling hangs low overhead.\nThe walls are rough-hewn and cold to the touch.",
+   "exits": {
+    "north": {
+     "to_room": 5110,
+     "description": "A passage leads to The Main Gate"
+    },
+    "east": {
+     "to_room": 5118,
+     "description": "To the east lies The Warriors' Academy.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 5123,
+     "description": "To the south lies The City Street."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 5102,
+     "max": 4
+    },
+    {
+     "vnum": 5103,
+     "max": 4
+    },
+    {
+     "vnum": 5104,
+     "max": 4
+    },
+    {
+     "vnum": 5107,
+     "max": 3
+    }
+   ]
+  },
+  "205108": {
+   "vnum": 205108,
+   "name": "The Main Chamber In The Second House",
+   "map": {
+    "x": -15,
+    "y": -11,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 205109,
+     "description": "To the up lies The Second Throne."
+    },
+    "down": {
+     "to_room": 5182,
+     "description": "To the down lies The Entrance To The Second House."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead up and down.",
+   "placeholder": true
+  },
+  "205109": {
+   "vnum": 205109,
+   "name": "The Second Throne",
+   "map": {
+    "x": -15,
+    "y": -12,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "down": {
+     "to_room": 205108,
+     "description": "To the down lies The Main Chamber In The Second House."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads down.",
+   "placeholder": true
+  },
+  "5101": {
+   "vnum": 5101,
+   "name": "A Bend In The City Street",
+   "map": {
+    "x": -14,
+    "y": -17,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5106,
+     "max": 2
+    },
+    {
+     "vnum": 5109,
+     "max": 6
+    }
+   ],
+   "description": "You walk along a highly ornate street going north-south. A large gate\nlies to the east while a building lies to the west. The air is still and\nmusty. Dust motes drift in the stale air.",
+   "exits": {
+    "north": {
+     "to_room": 5123,
+     "description": "A passage leads to A City Street"
+    },
+    "west": {
+     "to_room": 5106,
+     "description": "To the west lies City Street."
+    },
+    "up": {
+     "to_room": 5011,
+     "description": "To the up lies A Giant Cave."
+    }
+   }
+  },
+  "205111": {
+   "vnum": 205111,
+   "name": "The Main Chamber Of The First House",
+   "map": {
+    "x": -17,
+    "y": -12,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 205112,
+     "description": "To the up lies Before The Chamber Of The First Matron Mother."
+    },
+    "down": {
+     "to_room": 5179,
+     "description": "To the down lies The Entrance To The First House."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead up and down.",
+   "placeholder": true
+  },
+  "205112": {
+   "vnum": 205112,
+   "name": "Before The Chamber Of The First Matron Mother",
+   "map": {
+    "x": -17,
+    "y": -12,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 205113,
+     "description": "To the north lies The First Throne.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "down": {
+     "to_room": 205111,
+     "description": "To the down lies The Main Chamber Of The First House."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and down.",
+   "placeholder": true
+  },
+  "205113": {
+   "vnum": 205113,
+   "name": "The First Throne",
+   "map": {
+    "x": -17,
+    "y": -10,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5192,
+     "description": "To the east lies An Ornate Walkway High Above The City.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 205112,
+     "description": "To the south lies Before The Chamber Of The First Matron Mother."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east and south.",
+   "placeholder": true
+  },
+  "5114": {
+   "vnum": 5114,
+   "name": "A Bend In The City Street",
+   "map": {
+    "x": -17,
+    "y": -14,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "You walk along a highly ornate city street leading north-south and east.\nThe air is still and musty. The walls are rough-hewn and cold to the\ntouch.",
+   "exits": {
+    "east": {
+     "to_room": 5117,
+     "description": "A passage leads to A City Street"
+    },
+    "south": {
+     "to_room": 5103,
+     "description": "To the south lies The City Street."
+    },
+    "west": {
+     "to_room": 5189,
+     "description": "To the west lies A Small Dwelling In The Stalagmite.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   }
+  },
+  "205115": {
+   "vnum": 205115,
+   "name": "The City Street Outside The Third House",
+   "map": {
+    "x": -13,
+    "y": -12,
+    "z": -6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 5181,
+     "description": "To the north lies The Entrance To The Third House."
+    },
+    "west": {
+     "to_room": 5195,
+     "description": "To the west lies A Junction In The City Street."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north and\nwest.",
+   "placeholder": true
+  },
+  "5120": {
+   "vnum": 5120,
+   "name": "The Mages' Academy",
+   "map": {
+    "x": -11,
+    "y": -14,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5105,
+     "max": 3
+    }
+   ],
+   "description": "The Mages' Academy is fairly well decorated and Visible is that the drow\nprefer magic over physical power greatly. The walls are rough-hewn and\ncold to the touch. The air is still and musty.",
+   "exits": {
+    "west": {
+     "to_room": 5199,
+     "description": "To the west lies The City Street Outside The Fourth House."
+    }
+   }
+  },
+  "5117": {
+   "vnum": 5117,
+   "name": "The City Street",
+   "map": {
+    "x": -16,
+    "y": -14,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "You walk along a highly ornate city street going east-west. To the north\nis a giant temple. The ceiling hangs low overhead. The walls are rough-\nhewn and cold to the touch.",
+   "exits": {
+    "north": {
+     "to_room": 205120,
+     "description": "To the north lies The Assassins' Academy.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 5121,
+     "description": "A passage leads to A City Street"
+    },
+    "west": {
+     "to_room": 5114,
+     "description": "A passage leads to A City Street"
+    },
+    "south": {
+     "to_room": 5115,
+     "description": "To the south lies A City Street."
+    }
+   }
+  },
+  "5118": {
+   "vnum": 5118,
+   "name": "The Warriors' Academy",
+   "map": {
+    "x": -13,
+    "y": -15,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5101,
+     "max": 10
+    },
+    {
+     "vnum": 5105,
+     "max": 3
+    }
+   ],
+   "description": "The Warriors' Academy fills this vast cavern with the sounds of combat\ntraining. Drow fighters practice deadly techniques under the watchful\neyes of weapon masters, their movements fluid and precise in the dim\nfaerie fire light. The ceiling hangs low overhead. Shadows gather in the\ncorners.",
+   "exits": {
+    "west": {
+     "to_room": 5107,
+     "description": "To the west lies The City Street."
+    }
+   }
+  },
+  "5119": {
+   "vnum": 5119,
+   "name": "Entrance To The Temple Of Lloth",
+   "map": {
+    "x": -14,
+    "y": -10,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The temple is the largest building in the city. Even its doors are\nbeyond imagination. Inside of the temple entrance, the walls are made of\ngold and adamantite. Shadows gather in the corners. The air is still and\nmusty.",
+   "exits": {
+    "west": {
+     "to_room": 5193,
+     "description": "To the west lies An Ornate Walkway High Above The City."
+    },
+    "up": {
+     "to_room": 5126,
+     "description": "To the up lies Entranceway To The Temple Of Lloth."
+    }
+   }
+  },
+  "205120": {
+   "vnum": 205120,
+   "name": "The Assassins' Academy",
+   "map": {
+    "x": -16,
+    "y": -13,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 5117,
+     "description": "To the south lies The City Street."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "5121": {
+   "vnum": 5121,
+   "name": "The City Street",
+   "map": {
+    "x": -15,
+    "y": -14,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5109,
+     "max": 6
+    }
+   ],
+   "description": "You walk along a highly ornate city street going eastward. To the north\nis a building. The ceiling hangs low overhead. The air is still and\nmusty.",
+   "exits": {
+    "east": {
+     "to_room": 5110,
+     "description": "To the east lies The Center Of The Drow City."
+    },
+    "south": {
+     "to_room": 5188,
+     "description": "To the south lies A Small Dwelling In The Stalagmite.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 5117,
+     "description": "A passage leads to A City Street"
+    }
+   }
+  },
+  "5122": {
+   "vnum": 5122,
+   "name": "A Slave Chamber",
+   "map": {
+    "x": -15,
+    "y": -18,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5100,
+     "max": 15
+    },
+    {
+     "vnum": 5100,
+     "max": 15
+    },
+    {
+     "vnum": 5100,
+     "max": 15
+    },
+    {
+     "vnum": 5100,
+     "max": 15
+    },
+    {
+     "vnum": 5100,
+     "max": 15
+    },
+    {
+     "vnum": 5100,
+     "max": 15
+    },
+    {
+     "vnum": 5100,
+     "max": 15
+    },
+    {
+     "vnum": 5100,
+     "max": 15
+    }
+   ],
+   "description": "The room is in shambles. Straw is strewn all about the room as beds for\nthe unfortunate creatures who have fallen prey to drow imperialism. Dust\nmotes drift in the stale air. The walls are rough-hewn and cold to the\ntouch.",
+   "exits": {
+    "north": {
+     "to_room": 5106,
+     "description": "To the north lies City Street."
+    }
+   }
+  },
+  "5123": {
+   "vnum": 5123,
+   "name": "The City Street",
+   "map": {
+    "x": -14,
+    "y": -16,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "You walk along a highly ornate city street leading west and south. To\nthe north is a relatively small house. The walls are rough-hewn and cold\nto the touch. The air is still and musty.",
+   "exits": {
+    "north": {
+     "to_room": 5107,
+     "description": "To the north lies The City Street."
+    },
+    "south": {
+     "to_room": 5101,
+     "description": "A passage leads to A City Street"
+    },
+    "west": {
+     "to_room": 5187,
+     "description": "To the west lies A Small Dwelling In The Stalactite.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 5102,
+     "max": 4
+    },
+    {
+     "vnum": 5103,
+     "max": 4
+    },
+    {
+     "vnum": 5104,
+     "max": 4
+    },
+    {
+     "vnum": 5107,
+     "max": 3
+    }
+   ]
+  },
+  "205124": {
+   "vnum": 205124,
+   "name": "The Main Chamber In The Fourth house",
+   "map": {
+    "x": -12,
+    "y": -13,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 205125,
+     "description": "To the up lies The Fourth Throne."
+    },
+    "down": {
+     "to_room": 5180,
+     "description": "To the down lies The Entrance To The Fourth House."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead up and down.",
+   "placeholder": true
+  },
+  "205125": {
+   "vnum": 205125,
+   "name": "The Fourth Throne",
+   "map": {
+    "x": -12,
+    "y": -13,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "down": {
+     "to_room": 205124,
+     "description": "To the down lies The Main Chamber In The Fourth house."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads down.",
+   "placeholder": true
+  },
+  "5126": {
+   "vnum": 5126,
+   "name": "Entranceway To The Temple Of Lloth",
+   "map": {
+    "x": -14,
+    "y": -11,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The area opens in the entrance way to the temple which opens up to the\nnorth into a large hallway going east and west. Small statues os spiders\nline the entrance way's walls. Dust motes drift in the stale air.\nShadows gather in the corners.",
+   "exits": {
+    "north": {
+     "to_room": 5127,
+     "description": "A passage leads to A Hallway"
+    },
+    "down": {
+     "to_room": 5119,
+     "description": "To the down lies Entrance To The Temple Of Lloth."
+    }
+   }
+  },
+  "5127": {
+   "vnum": 5127,
+   "name": "A Hallway",
+   "map": {
+    "x": -14,
+    "y": -10,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This is a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west.\nAs you look down the hallway you can make out one or two figures moving\naway from you. To the north is a obsidian stairway. Shadows gather in\nthe corners. The air is still and musty.",
+   "exits": {
+    "north": {
+     "to_room": 5135,
+     "description": "A passage leads to The Grand Stairway"
+    },
+    "south": {
+     "to_room": 5126,
+     "description": "A passage leads to The Entrance Hall"
+    },
+    "west": {
+     "to_room": 5131,
+     "description": "A passage leads to A Long Hallway"
+    }
+   }
+  },
+  "5128": {
+   "vnum": 5128,
+   "name": "A Long Hallway",
+   "map": {
+    "x": -20,
+    "y": -10,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This is a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west.\nAs you look down the hallway you can make out one or two figures moving\naway from you. The ceiling hangs low overhead. The walls are rough-hewn\nand cold to the touch.",
+   "exits": {
+    "east": {
+     "to_room": 5129,
+     "description": "A passage leads to A Long Hallway"
+    }
+   }
+  },
+  "5129": {
+   "vnum": 5129,
+   "name": "A Long Hallway",
+   "map": {
+    "x": -19,
+    "y": -10,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This is a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west.\nAs you look down the hallway you can make out one or two figures moving\naway from you. To the north is a door. Shadows gather in the corners.\nThe ceiling hangs low overhead.",
+   "exits": {
+    "east": {
+     "to_room": 5130,
+     "description": "A passage leads to A Long Hallway"
+    },
+    "west": {
+     "to_room": 5128,
+     "description": "A passage leads to A Long Hallway"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 5106,
+     "max": 2
+    }
+   ]
+  },
+  "5130": {
+   "vnum": 5130,
+   "name": "A Long Hallway",
+   "map": {
+    "x": -18,
+    "y": -10,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This is a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west.\nAs you look down the hallway you can make out one or two figures moving\naway from you. The ceiling hangs low overhead. The air is still and\nmusty.",
+   "exits": {
+    "east": {
+     "to_room": 5134,
+     "description": "A passage leads to A Long Hallway"
+    },
+    "west": {
+     "to_room": 5129,
+     "description": "A passage leads to A Long Hallway"
+    }
+   }
+  },
+  "5131": {
+   "vnum": 5131,
+   "name": "A Long Hallway",
+   "map": {
+    "x": -15,
+    "y": -10,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This is a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west.\nAs you look down the hallway you can make out one or two figures moving\naway from you. The ceiling hangs low overhead. Dust motes drift in the\nstale air.",
+   "exits": {
+    "east": {
+     "to_room": 5127,
+     "description": "A passage leads to A Hallway"
+    },
+    "west": {
+     "to_room": 5132,
+     "description": "A passage leads to A Long Hallway"
+    }
+   }
+  },
+  "5132": {
+   "vnum": 5132,
+   "name": "A Long Hallway",
+   "map": {
+    "x": -16,
+    "y": -10,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This is a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west.\nAs you look down the hallway you can make out one or two figures moving\naway from you. To the south is a door. Shadows gather in the corners.\nThe ceiling hangs low overhead.",
+   "exits": {
+    "east": {
+     "to_room": 5131,
+     "description": "A passage leads to A Long Hallway"
+    },
+    "south": {
+     "to_room": 5133,
+     "description": "A passage leads to The Warriors' Barracks",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "west": {
+     "to_room": 5134,
+     "description": "A passage leads to A Long Hallway"
+    }
+   }
+  },
+  "5133": {
+   "vnum": 5133,
+   "name": "The Warrior's Barracks",
+   "map": {
+    "x": -16,
+    "y": -11,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5101,
+     "max": 10
+    }
+   ],
+   "description": "The room is a complete mess. None of the beds are made, clothes and\nother items have been left all about the room. Well drow warriors never\nwere known for neatness. Shadows gather in the corners. The ceiling\nhangs low overhead.",
+   "exits": {
+    "north": {
+     "to_room": 5132,
+     "description": "To the north lies A Long Hallway."
+    }
+   }
+  },
+  "5134": {
+   "vnum": 5134,
+   "name": "A Long Hallway",
+   "map": {
+    "x": -17,
+    "y": -10,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This is a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west.\nAs you look down the hallway you can make out one or two figures moving\naway from you. The walls are rough-hewn and cold to the touch. The air\nis still and musty.",
+   "exits": {
+    "east": {
+     "to_room": 5132,
+     "description": "A passage leads to A Long Hallway"
+    },
+    "west": {
+     "to_room": 5130,
+     "description": "A passage leads to A Long Hallway"
+    }
+   }
+  },
+  "5135": {
+   "vnum": 5135,
+   "name": "The Grand Stairway",
+   "map": {
+    "x": -14,
+    "y": -9,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The area opens at the bottom of a giant obsidian and adamantite\nstairway. The edges are trimmed with gold. The ceiling hangs low\noverhead. The air is still and musty.",
+   "exits": {
+    "south": {
+     "to_room": 5127,
+     "description": "A passage leads to A Hallway"
+    },
+    "up": {
+     "to_room": 5136,
+     "description": "A passage leads to The Grand Hallway"
+    }
+   }
+  },
+  "5136": {
+   "vnum": 5136,
+   "name": "The Grand Hallway",
+   "map": {
+    "x": -14,
+    "y": -9,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This is the middle of a grand hallway. The walls are of the purest\nadamantite with gold trim. Mosaics line the walls. Shadows gather in the\ncorners. The air is still and musty.",
+   "exits": {
+    "north": {
+     "to_room": 5138,
+     "description": "A passage leads to The Grand Hallway"
+    },
+    "east": {
+     "to_room": 5137,
+     "description": "A passage leads to The Mages' Barracks",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "down": {
+     "to_room": 5135,
+     "description": "A passage leads to The Grand Stairway"
+    }
+   }
+  },
+  "5137": {
+   "vnum": 5137,
+   "name": "The Mages' Barracks",
+   "map": {
+    "x": -13,
+    "y": -9,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The mage's living quarters is rather clean with the exception of a few\nused component containers. It is rather well decorated as well. Cots\nline the floor for the mages to sleep on. The only door is to the west.\nThe walls are rough-hewn and cold to the touch. Dust motes drift in the\nstale air.",
+   "exits": {
+    "west": {
+     "to_room": 5136,
+     "description": "A passage leads to The Grand Hallway",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "5138": {
+   "vnum": 5138,
+   "name": "The Grand Hallway",
+   "map": {
+    "x": -14,
+    "y": -8,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The way continues down a grand hallway, heavily decorated with\nadamantite and gold. To the north the hall goes down a flight of stairs\nwhile a door is to the west. Shadows gather in the corners. Dust motes\ndrift in the stale air.",
+   "exits": {
+    "south": {
+     "to_room": 5136,
+     "description": "A passage leads to The Grand Hallway"
+    },
+    "west": {
+     "to_room": 5139,
+     "description": "A passage leads to The Clerics' Barracks",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "up": {
+     "to_room": 5140,
+     "description": "To the up lies The Grand Stairway."
+    }
+   }
+  },
+  "5139": {
+   "vnum": 5139,
+   "name": "The Clerics' Barracks",
+   "map": {
+    "x": -15,
+    "y": -8,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The bed chamber is brightly decorated with spider shaped statues, murals\nand the like. Large beds line the floor making this a comfortable room\nto live in. The air is still and musty. The walls are rough-hewn and\ncold to the touch.",
+   "exits": {
+    "east": {
+     "to_room": 5138,
+     "description": "A passage leads to The Grand Hallway",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "5140": {
+   "vnum": 5140,
+   "name": "The Grand Stairway",
+   "map": {
+    "x": -14,
+    "y": -8,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The area is climbing a set of obsidian stairs surrounded by adamantite\nwalls. To the north are a set of large golden doors. Shadows gather in\nthe corners. The walls are rough-hewn and cold to the touch.",
+   "exits": {
+    "north": {
+     "to_room": 5141,
+     "description": "A passage leads to The Main Chamber",
+     "door": {
+      "name": "doors door golden gold",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "down": {
+     "to_room": 5138,
+     "description": "To the down lies The Grand Hallway."
+    }
+   }
+  },
+  "5141": {
+   "vnum": 5141,
+   "name": "The Grand Temple Of Lloth",
+   "map": {
+    "x": -14,
+    "y": -7,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5142
+    },
+    "east": {
+     "to_room": 5146,
+     "description": "To the east lies Slave Cells.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 5140,
+     "description": "A passage leads to The Grand Stairway",
+     "door": {
+      "name": "doors door golden gold",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "5142": {
+   "vnum": 5142,
+   "name": "The Grand Temple Of Lloth",
+   "map": {
+    "x": -14,
+    "y": -6,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5145,
+     "description": "A passage leads to The Altar"
+    },
+    "south": {
+     "to_room": 5141,
+     "description": "A passage leads to The Main Chamber"
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "5145": {
+   "vnum": 5145,
+   "name": "The Horrible Bloodstained Altar",
+   "map": {
+    "x": -14,
+    "y": -5,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This is front of a highly and freshly bloodstained altar. Engraved on\nthe top of the altar is a giant spider with a human head. Looking down\nfrom the altar you see a large sacrificial pit with thousands of\nswarming spiders looking for their next meal! The walls are rough-hewn\nand cold to the touch. Shadows gather in the corners.",
+   "exits": {
+    "north": {
+     "to_room": 5148,
+     "description": "A passage leads to The Dias"
+    },
+    "south": {
+     "to_room": 5142
+    }
+   }
+  },
+  "5146": {
+   "vnum": 5146,
+   "name": "Slave Cells",
+   "map": {
+    "x": -13,
+    "y": -7,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This is the main room to the cell chambers for the slaves to be\nsacrificed. You notice there are no guards around. The walls are rough-\nhewn and cold to the touch. The air is still and musty.",
+   "exits": {
+    "north": {
+     "to_room": 5147,
+     "description": "A passage leads to The Slave Pen",
+     "door": {
+      "name": "cell",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "west": {
+     "to_room": 5141,
+     "description": "To the west lies The Grand Temple Of Lloth."
+    }
+   }
+  },
+  "5147": {
+   "vnum": 5147,
+   "name": "Slave Pen",
+   "map": {
+    "x": -13,
+    "y": -6,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "Rotten meat and breads lie about the floor while shackles hang from the\nwalls. The room reeks of death. You almost become nauseous and decide to\nleave the room since you were obviously too late to save the slave. The\nwalls are rough-hewn and cold to the touch. The ceiling hangs low\noverhead.",
+   "exits": {
+    "south": {
+     "to_room": 5146,
+     "description": "A passage leads to The Slave Cells",
+     "door": {
+      "name": "cell",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "5148": {
+   "vnum": 5148,
+   "name": "The Bloodstained Dais",
+   "map": {
+    "x": -14,
+    "y": -4,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5111,
+     "max": 1
+    }
+   ],
+   "exits": {
+    "south": {
+     "to_room": 5145,
+     "description": "A passage leads to The Altar"
+    },
+    "west": {
+     "to_room": 5149,
+     "description": "A passage leads to The Treasury",
+     "door": {
+      "name": "door",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 5115
+     }
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "5149": {
+   "vnum": 5149,
+   "name": "The Drow Treasury",
+   "map": {
+    "x": -15,
+    "y": -4,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "obj_resets": [
+    {
+     "vnum": 5116,
+     "max": 1
+    }
+   ],
+   "description": "This is obviously only a temporary storage place for the collected\ntreasure being rather bare. Dust motes drift in the stale air. Shadows\ngather in the corners.",
+   "exits": {
+    "east": {
+     "to_room": 5148,
+     "description": "A passage leads to The Dias",
+     "door": {
+      "name": "door",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 5115
+     }
+    }
+   }
+  },
+  "205150": {
+   "vnum": 205150,
+   "name": "A Bend In The City Street",
+   "map": {
+    "x": -17,
+    "y": -17,
+    "z": -6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 5102,
+     "description": "To the north lies The City Street."
+    },
+    "east": {
+     "to_room": 205101,
+     "description": "To the east lies The City Street Outside The Adamantium gates."
+    },
+    "west": {
+     "to_room": 5184,
+     "description": "To the west lies The Fungus Forest.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth, east and west.",
+   "placeholder": true
+  },
+  "5151": {
+   "vnum": 5151,
+   "name": "A Damp Alcove",
+   "map": {
+    "x": -21,
+    "y": -28,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5152,
+     "description": "To the north lies A Dark Tunnel.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 2222,
+     "description": "To the south lies The Rocky Shore."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "5152": {
+   "vnum": 5152,
+   "name": "A Dark Tunnel",
+   "map": {
+    "x": -21,
+    "y": -27,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5153,
+     "description": "To the east lies A Dark Tunnel."
+    },
+    "south": {
+     "to_room": 5151,
+     "description": "To the south lies A Damp Alcove."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east and south.",
+   "placeholder": true
+  },
+  "5153": {
+   "vnum": 5153,
+   "name": "A Dark Tunnel",
+   "map": {
+    "x": -20,
+    "y": -27,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5154,
+     "description": "To the north lies A Dark Tunnel."
+    },
+    "west": {
+     "to_room": 5152,
+     "description": "To the west lies A Dark Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "5154": {
+   "vnum": 5154,
+   "name": "A Dark Tunnel",
+   "map": {
+    "x": -20,
+    "y": -26,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5155,
+     "description": "To the north lies A Dark Tunnel."
+    },
+    "south": {
+     "to_room": 5153,
+     "description": "To the south lies A Dark Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "5155": {
+   "vnum": 5155,
+   "name": "A Dark Tunnel",
+   "map": {
+    "x": -20,
+    "y": -25,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5156,
+     "description": "To the north lies A Smelly Cave."
+    },
+    "east": {
+     "to_room": 5157,
+     "description": "To the east lies A Sharply Sloping Tunnel.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 5154,
+     "description": "To the south lies A Dark Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "5156": {
+   "vnum": 5156,
+   "name": "A Smelly Cave",
+   "map": {
+    "x": -20,
+    "y": -24,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 5155,
+     "description": "To the south lies A Dark Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "5157": {
+   "vnum": 5157,
+   "name": "A Sharply Sloping Tunnel",
+   "map": {
+    "x": -19,
+    "y": -25,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 5155,
+     "description": "To the west lies A Dark Tunnel."
+    },
+    "down": {
+     "to_room": 5158,
+     "description": "To the down lies A Narrow Ledge."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead west and down.",
+   "placeholder": true
+  },
+  "5158": {
+   "vnum": 5158,
+   "name": "A Narrow Ledge",
+   "map": {
+    "x": -19,
+    "y": -25,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5159,
+     "description": "To the east lies A Narrow Ledge."
+    },
+    "up": {
+     "to_room": 5157,
+     "description": "To the up lies A Sharply Sloping Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and up.",
+   "placeholder": true
+  },
+  "5159": {
+   "vnum": 5159,
+   "name": "A Narrow Ledge",
+   "map": {
+    "x": -18,
+    "y": -25,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 5158,
+     "description": "To the west lies A Narrow Ledge."
+    },
+    "down": {
+     "to_room": 5160,
+     "description": "To the down lies A Wider Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead west and down.",
+   "placeholder": true
+  },
+  "5160": {
+   "vnum": 5160,
+   "name": "A Wider Tunnel",
+   "map": {
+    "x": -18,
+    "y": -25,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5161,
+     "description": "To the north lies A Wide Tunnel."
+    },
+    "up": {
+     "to_room": 5159,
+     "description": "To the up lies A Narrow Ledge."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and up.",
+   "placeholder": true
+  },
+  "5161": {
+   "vnum": 5161,
+   "name": "A Wide Tunnel",
+   "map": {
+    "x": -18,
+    "y": -24,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5162,
+     "description": "To the east lies A Wide Tunnel."
+    },
+    "south": {
+     "to_room": 5160,
+     "description": "To the south lies A Wider Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east and south.",
+   "placeholder": true
+  },
+  "5162": {
+   "vnum": 5162,
+   "name": "A Wide Tunnel",
+   "map": {
+    "x": -17,
+    "y": -24,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5163,
+     "description": "To the north lies A Wide Tunnel."
+    },
+    "west": {
+     "to_room": 5161,
+     "description": "To the west lies A Wide Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "5163": {
+   "vnum": 5163,
+   "name": "A Wide Tunnel",
+   "map": {
+    "x": -17,
+    "y": -23,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 5162,
+     "description": "To the south lies A Wide Tunnel."
+    },
+    "down": {
+     "to_room": 5164,
+     "description": "To the down lies A Wide Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead south and down.",
+   "placeholder": true
+  },
+  "5164": {
+   "vnum": 5164,
+   "name": "A Wide Tunnel",
+   "map": {
+    "x": -17,
+    "y": -23,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5165,
+     "description": "To the east lies A Bend In The Tunnel."
+    },
+    "up": {
+     "to_room": 5163,
+     "description": "To the up lies A Wide Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and up.",
+   "placeholder": true
+  },
+  "5165": {
+   "vnum": 5165,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": -16,
+    "y": -23,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5166,
+     "description": "To the north lies The Large Cave."
+    },
+    "south": {
+     "to_room": 5167,
+     "description": "To the south lies The Secret Tunnel.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 5164,
+     "description": "To the west lies A Wide Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "5166": {
+   "vnum": 5166,
+   "name": "The Large Cave",
+   "map": {
+    "x": -16,
+    "y": -22,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 5165,
+     "description": "To the south lies A Bend In The Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads south.",
+   "placeholder": true
+  },
+  "5167": {
+   "vnum": 5167,
+   "name": "The Secret Tunnel",
+   "map": {
+    "x": -16,
+    "y": -24,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5165,
+     "description": "To the north lies A Bend In The Tunnel."
+    },
+    "east": {
+     "to_room": 5168,
+     "description": "To the east lies A Secret Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and east.",
+   "placeholder": true
+  },
+  "5168": {
+   "vnum": 5168,
+   "name": "A Secret Tunnel",
+   "map": {
+    "x": -15,
+    "y": -24,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5169,
+     "description": "To the east lies A Small Glowing Chamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 5167,
+     "description": "To the west lies The Secret Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "5169": {
+   "vnum": 5169,
+   "name": "A Small Glowing Chamber",
+   "map": {
+    "x": -14,
+    "y": -24,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5170,
+     "description": "To the north lies A Thin Underground Bridge.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 5168,
+     "description": "To the west lies A Secret Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and west.",
+   "placeholder": true
+  },
+  "5170": {
+   "vnum": 5170,
+   "name": "A Thin Underground Bridge",
+   "map": {
+    "x": -14,
+    "y": -23,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5172,
+     "description": "To the north lies A Thin Underground Bridge."
+    },
+    "south": {
+     "to_room": 5169,
+     "description": "To the south lies A Small Glowing Chamber."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "5171": {
+   "vnum": 5171,
+   "name": "A Thin Underground Bridge",
+   "map": {
+    "x": -15,
+    "y": -22,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5172,
+     "description": "To the east lies A Thin Underground Bridge."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads east.",
+   "placeholder": true
+  },
+  "5172": {
+   "vnum": 5172,
+   "name": "A Thin Underground Bridge",
+   "map": {
+    "x": -14,
+    "y": -22,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5173,
+     "description": "To the east lies A Thin Underground Bridge."
+    },
+    "south": {
+     "to_room": 5170,
+     "description": "To the south lies A Thin Underground Bridge."
+    },
+    "west": {
+     "to_room": 5171,
+     "description": "To the west lies A Thin Underground Bridge."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "5173": {
+   "vnum": 5173,
+   "name": "A Thin Underground Bridge",
+   "map": {
+    "x": -13,
+    "y": -22,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5174,
+     "description": "To the north lies A Thin Underground Bridge."
+    },
+    "west": {
+     "to_room": 5172,
+     "description": "To the west lies A Thin Underground Bridge."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "5174": {
+   "vnum": 5174,
+   "name": "A Thin Underground Bridge",
+   "map": {
+    "x": -13,
+    "y": -21,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5175,
+     "description": "To the north lies A Thin Underground Bridge."
+    },
+    "south": {
+     "to_room": 5173,
+     "description": "To the south lies A Thin Underground Bridge."
+    },
+    "west": {
+     "to_room": 5176,
+     "description": "To the west lies A Thin Underground Bridge."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "5175": {
+   "vnum": 5175,
+   "name": "A Thin Underground Bridge",
+   "map": {
+    "x": -13,
+    "y": -20,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 5174,
+     "description": "To the south lies A Thin Underground Bridge."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads south.",
+   "placeholder": true
+  },
+  "5176": {
+   "vnum": 5176,
+   "name": "A Thin Underground Bridge",
+   "map": {
+    "x": -14,
+    "y": -21,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5174,
+     "description": "To the east lies A Thin Underground Bridge."
+    },
+    "west": {
+     "to_room": 5177,
+     "description": "To the west lies The Tunnel Of Ornate Arches.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "5177": {
+   "vnum": 5177,
+   "name": "The Tunnel Of Ornate Arches",
+   "map": {
+    "x": -15,
+    "y": -21,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5178,
+     "description": "To the north lies The Tunnel Of Ornate Arches."
+    },
+    "east": {
+     "to_room": 5176,
+     "description": "To the east lies A Thin Underground Bridge."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and east.",
+   "placeholder": true
+  },
+  "5178": {
+   "vnum": 5178,
+   "name": "The Tunnel Of Ornate Arches",
+   "map": {
+    "x": -15,
+    "y": -20,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 5177,
+     "description": "To the south lies The Tunnel Of Ornate Arches."
+    },
+    "west": {
+     "to_room": 205100,
+     "description": "To the west lies At The Adamantium Gates."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead south and west.",
+   "placeholder": true
+  },
+  "5179": {
+   "vnum": 5179,
+   "name": "The Entrance To The First House",
+   "map": {
+    "x": -17,
+    "y": -12,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5197,
+     "description": "To the east lies The City Street Outside The First House."
+    },
+    "up": {
+     "to_room": 205111,
+     "description": "To the up lies The Main Chamber Of The First House."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and up.",
+   "placeholder": true
+  },
+  "5180": {
+   "vnum": 5180,
+   "name": "The Entrance To The Fourth House",
+   "map": {
+    "x": -12,
+    "y": -13,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 5199,
+     "description": "To the south lies The City Street Outside The Fourth House."
+    },
+    "up": {
+     "to_room": 205124,
+     "description": "To the up lies The Main Chamber In The Fourth house."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead south and up.",
+   "placeholder": true
+  },
+  "5181": {
+   "vnum": 5181,
+   "name": "The Entrance To The Third House",
+   "map": {
+    "x": -13,
+    "y": -11,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 205115,
+     "description": "To the south lies The City Street Outside The Third House."
+    },
+    "up": {
+     "to_room": 205104,
+     "description": "To the up lies The Main Chamber In The Third House."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead south and up.",
+   "placeholder": true
+  },
+  "5182": {
+   "vnum": 5182,
+   "name": "The Entrance To The Second House",
+   "map": {
+    "x": -15,
+    "y": -11,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 5196,
+     "description": "To the south lies The City Street Outside The Second House."
+    },
+    "up": {
+     "to_room": 205108,
+     "description": "To the up lies The Main Chamber In The Second House."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead south and up.",
+   "placeholder": true
+  },
+  "5110": {
+   "vnum": 5110,
+   "name": "The Center Of The Drow City",
+   "map": {
+    "x": -14,
+    "y": -14,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5110,
+     "max": 2
+    },
+    {
+     "vnum": 5110,
+     "max": 2
+    },
+    {
+     "vnum": 5102,
+     "max": 4
+    },
+    {
+     "vnum": 5103,
+     "max": 4
+    },
+    {
+     "vnum": 5104,
+     "max": 4
+    },
+    {
+     "vnum": 5108,
+     "max": 1
+    }
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5194,
+     "description": "To the north lies The City Street."
+    },
+    "east": {
+     "to_room": 5198,
+     "description": "To the east lies The City Street."
+    },
+    "south": {
+     "to_room": 5107,
+     "description": "A passage leads to A City Street"
+    },
+    "west": {
+     "to_room": 5121,
+     "description": "To the west lies The City Street."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "5184": {
+   "vnum": 5184,
+   "name": "The Fungus Forest",
+   "map": {
+    "x": -18,
+    "y": -17,
+    "z": -6
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 205150,
+     "description": "To the east lies A Bend In The City Street."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Shafts of\npale light slant between the trunks. A way leads east.",
+   "placeholder": true
+  },
+  "5185": {
+   "vnum": 5185,
+   "name": "A Small Dwelling In The Stalagmite",
+   "map": {
+    "x": -18,
+    "y": -16,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5102,
+     "description": "To the east lies The City Street."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads east.",
+   "placeholder": true
+  },
+  "5186": {
+   "vnum": 5186,
+   "name": "A Small Dwelling In The Stalagmite",
+   "map": {
+    "x": -16,
+    "y": -15,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 5103,
+     "description": "To the west lies The City Street."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "5187": {
+   "vnum": 5187,
+   "name": "A Small Dwelling In The Stalactite",
+   "map": {
+    "x": -15,
+    "y": -16,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5123,
+     "description": "To the east lies The City Street."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads east.",
+   "placeholder": true
+  },
+  "5188": {
+   "vnum": 5188,
+   "name": "A Small Dwelling In The Stalagmite",
+   "map": {
+    "x": -15,
+    "y": -15,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5121,
+     "description": "To the north lies The City Street."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "5189": {
+   "vnum": 5189,
+   "name": "A Small Dwelling In The Stalagmite",
+   "map": {
+    "x": -18,
+    "y": -14,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5114,
+     "description": "To the east lies A Bend In The City Street."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "5190": {
+   "vnum": 5190,
+   "name": "The Forge",
+   "map": {
+    "x": -15,
+    "y": -13,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5194,
+     "description": "To the east lies The City Street."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads east.",
+   "placeholder": true
+  },
+  "5191": {
+   "vnum": 5191,
+   "name": "The Forge",
+   "map": {
+    "x": -13,
+    "y": -13,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 5194,
+     "description": "To the west lies The City Street."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads west.",
+   "placeholder": true
+  },
+  "5192": {
+   "vnum": 5192,
+   "name": "An Ornate Walkway High Above The City",
+   "map": {
+    "x": -16,
+    "y": -10,
+    "z": -4
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 5193,
+     "description": "To the east lies An Ornate Walkway High Above The City."
+    },
+    "west": {
+     "to_room": 205113,
+     "description": "To the west lies The First Throne."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and west.",
+   "placeholder": true
+  },
+  "5193": {
+   "vnum": 5193,
+   "name": "An Ornate Walkway High Above The City",
+   "map": {
+    "x": -15,
+    "y": -10,
+    "z": -4
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 5119,
+     "description": "To the east lies Entrance To The Temple Of Lloth.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 5192,
+     "description": "To the west lies An Ornate Walkway High Above The City."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "5194": {
+   "vnum": 5194,
+   "name": "The City Street",
+   "map": {
+    "x": -14,
+    "y": -13,
+    "z": -6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 5195,
+     "description": "To the north lies A Junction In The City Street."
+    },
+    "east": {
+     "to_room": 5191,
+     "description": "To the east lies The Forge."
+    },
+    "south": {
+     "to_room": 5110,
+     "description": "To the south lies The Center Of The Drow City."
+    },
+    "west": {
+     "to_room": 5190,
+     "description": "To the west lies The Forge."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "5195": {
+   "vnum": 5195,
+   "name": "A Junction In The City Street",
+   "map": {
+    "x": -14,
+    "y": -12,
+    "z": -6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 205115,
+     "description": "To the east lies The City Street Outside The Third House."
+    },
+    "south": {
+     "to_room": 5194,
+     "description": "To the south lies The City Street."
+    },
+    "west": {
+     "to_room": 5196,
+     "description": "To the west lies The City Street Outside The Second House."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead east, south\nand west.",
+   "placeholder": true
+  },
+  "5196": {
+   "vnum": 5196,
+   "name": "The City Street Outside The Second House",
+   "map": {
+    "x": -15,
+    "y": -12,
+    "z": -6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 5182,
+     "description": "To the north lies The Entrance To The Second House."
+    },
+    "east": {
+     "to_room": 5195,
+     "description": "To the east lies A Junction In The City Street."
+    },
+    "west": {
+     "to_room": 5197,
+     "description": "To the west lies The City Street Outside The First House."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north, east and\nwest.",
+   "placeholder": true
+  },
+  "5197": {
+   "vnum": 5197,
+   "name": "The City Street Outside The First House",
+   "map": {
+    "x": -16,
+    "y": -12,
+    "z": -6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 5196,
+     "description": "To the east lies The City Street Outside The Second House."
+    },
+    "west": {
+     "to_room": 5179,
+     "description": "To the west lies The Entrance To The First House."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "5198": {
+   "vnum": 5198,
+   "name": "The City Street",
+   "map": {
+    "x": -13,
+    "y": -14,
+    "z": -6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 5199,
+     "description": "To the east lies The City Street Outside The Fourth House."
+    },
+    "west": {
+     "to_room": 5110,
+     "description": "To the west lies The Center Of The Drow City."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "5199": {
+   "vnum": 5199,
+   "name": "The City Street Outside The Fourth House",
+   "map": {
+    "x": -12,
+    "y": -14,
+    "z": -6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 5180,
+     "description": "To the north lies The Entrance To The Fourth House.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 5120,
+     "description": "To the east lies The Mages' Academy.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 5198,
+     "description": "To the west lies The City Street."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east and west.",
+   "placeholder": true
+  },
+  "5115": {
+   "vnum": 5115,
+   "name": "A City Street",
+   "description": "You walk along a highly ornate city street leading south. A building is\nto the west. Dust motes drift in the stale air. The walls are rough-hewn\nand cold to the touch.",
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 5116,
+     "description": "A passage leads to The Clerics' Academy"
+    },
+    "north": {
+     "to_room": 5117,
+     "description": "To the north lies The City Street."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 5109,
+     "max": 6
+    }
+   ]
+  },
+  "5116": {
+   "vnum": 5116,
+   "name": "The Clerics' Academy",
+   "description": "This is the most lavish of the academies being that it is for the\nclerics. The ceiling hangs low overhead. Shadows gather in the corners.\nThe air is stale and the walls close. Shadows pool in the corners,\nundisturbed.",
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5115,
+     "description": "A passage leads to A City Street"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 5105,
+     "max": 3
+    }
+   ]
   }
+ },
+ "mobs": {
+  "5100": {
+   "vnum": 5100,
+   "name": "goblin",
+   "short_desc": "the goblin slave",
+   "long_desc": "A goblin slave lies here asleep.",
+   "level": 1,
+   "alignment": 350,
+   "hp_dice": "1d10+28",
+   "damage_dice": "1d4+1",
+   "gold": 50,
+   "exp": 60,
+   "armor_class": 97,
+   "flags": [
+    "sentinel",
+    "wimpy"
+   ],
+   "description": "The defenseless goblin begs for mercy.",
+   "inventory": [
+    5122,
+    5103
+   ]
+  },
+  "5101": {
+   "vnum": 5101,
+   "name": "drow",
+   "short_desc": "the Drow commoner",
+   "long_desc": "A drow commoner is here, walking around on guard duty.",
+   "level": 10,
+   "alignment": -1000,
+   "hp_dice": "10d10+136",
+   "damage_dice": "3d6+6",
+   "gold": 5525,
+   "exp": 600,
+   "armor_class": 70,
+   "flags": [
+    "aggressive",
+    "stay_zone",
+    "memory",
+    "helper"
+   ],
+   "description": "I doubt he is the type to give directions.",
+   "equipment": {
+    "wield": 5100
+   },
+   "inventory": [
+    5124,
+    5103
+   ]
+  },
+  "5102": {
+   "vnum": 5102,
+   "name": "drow",
+   "short_desc": "the drow warrior",
+   "long_desc": "A drow warrior stands here guarding his home.",
+   "level": 12,
+   "alignment": -1000,
+   "hp_dice": "12d10+160",
+   "damage_dice": "4d6+6",
+   "gold": 8000,
+   "exp": 720,
+   "armor_class": 64,
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "memory",
+    "helper"
+   ],
+   "description": "He looks kind of annoyed!",
+   "equipment": {
+    "wield": 5101
+   },
+   "inventory": [
+    5122
+   ]
+  },
+  "5103": {
+   "vnum": 5103,
+   "name": "drow",
+   "short_desc": "the drow mage",
+   "long_desc": "A drow mage is here protecting his home.",
+   "level": 15,
+   "alignment": -1000,
+   "hp_dice": "15d10+196",
+   "damage_dice": "4d7+8",
+   "gold": 11500,
+   "exp": 900,
+   "armor_class": 55,
+   "flags": [
+    "special",
+    "sentinel",
+    "aggressive",
+    "memory",
+    "helper"
+   ],
+   "description": "The mage prepares to cast a spell... at you!!",
+   "equipment": {
+    "wield": 5102
+   },
+   "inventory": [
+    5100
+   ]
+  },
+  "5104": {
+   "vnum": 5104,
+   "name": "drow",
+   "short_desc": "the drow priestess",
+   "long_desc": "A drow priestess is here shouting orders.",
+   "level": 17,
+   "alignment": -1000,
+   "hp_dice": "17d10+220",
+   "damage_dice": "5d7+7",
+   "gold": 16000,
+   "exp": 1020,
+   "armor_class": 49,
+   "flags": [
+    "special",
+    "sentinel",
+    "aggressive",
+    "memory",
+    "helper"
+   ],
+   "description": "I wouldn't want go get on her bad side!",
+   "equipment": {
+    "wield": 5103
+   },
+   "inventory": [
+    5124
+   ]
+  },
+  "5105": {
+   "vnum": 5105,
+   "name": "drow",
+   "short_desc": "the drow master",
+   "long_desc": "A drow master stares at you angrily.",
+   "level": 21,
+   "alignment": -1000,
+   "hp_dice": "21d10+268",
+   "damage_dice": "6d8+6",
+   "gold": 35000,
+   "exp": 1260,
+   "armor_class": 37,
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "memory",
+    "helper"
+   ],
+   "description": "The drow master is ALWAYS ready for a fight.",
+   "equipment": {
+    "wield": 5104,
+    "hold": 5110
+   },
+   "inventory": [
+    5117
+   ]
+  },
+  "5106": {
+   "vnum": 5106,
+   "name": "drow",
+   "short_desc": "the weaponsmaster",
+   "long_desc": "A drow weaponsmaster is here shadow boxing.",
+   "level": 23,
+   "alignment": -1000,
+   "hp_dice": "23d10+292",
+   "damage_dice": "6d8+9",
+   "gold": 47500,
+   "exp": 1380,
+   "armor_class": 31,
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "memory",
+    "helper"
+   ],
+   "description": "He definitely know his way around in combat.",
+   "equipment": {
+    "wield": 5105,
+    "hands": 5109
+   },
+   "loot_table": [
+    {
+     "vnum": 5117,
+     "chance": 20
+    },
+    {
+     "vnum": 5118,
+     "chance": 20
+    },
+    {
+     "vnum": 5119,
+     "chance": 20
+    },
+    {
+     "vnum": 5120,
+     "chance": 20
+    },
+    {
+     "vnum": 5121,
+     "chance": 20
+    },
+    {
+     "vnum": 5122,
+     "chance": 20
+    },
+    {
+     "vnum": 5123,
+     "chance": 20
+    },
+    {
+     "vnum": 5124,
+     "chance": 20
+    },
+    {
+     "vnum": 5125,
+     "chance": 20
+    }
+   ],
+   "loot_chance": 100,
+   "inventory": [
+    5107,
+    5122,
+    5105
+   ]
+  },
+  "5107": {
+   "vnum": 5107,
+   "name": "drow",
+   "short_desc": "the Matron Mother",
+   "long_desc": "The Matron Mother of the house is standing here.",
+   "level": 24,
+   "alignment": -1000,
+   "hp_dice": "24d10+304",
+   "damage_dice": "7d8+6",
+   "gold": 80000,
+   "exp": 1440,
+   "armor_class": 28,
+   "flags": [
+    "special",
+    "sentinel",
+    "aggressive",
+    "memory"
+   ],
+   "description": "She looks really and truly annoyed that you have found your way here.",
+   "equipment": {
+    "wield": 5106,
+    "head": 5111,
+    "arms": 5108
+   },
+   "inventory": [
+    5114
+   ],
+   "loot_table": [
+    {
+     "vnum": 5117,
+     "chance": 20
+    },
+    {
+     "vnum": 5118,
+     "chance": 20
+    },
+    {
+     "vnum": 5119,
+     "chance": 20
+    },
+    {
+     "vnum": 5120,
+     "chance": 20
+    },
+    {
+     "vnum": 5121,
+     "chance": 20
+    },
+    {
+     "vnum": 5122,
+     "chance": 20
+    },
+    {
+     "vnum": 5123,
+     "chance": 20
+    },
+    {
+     "vnum": 5124,
+     "chance": 20
+    },
+    {
+     "vnum": 5125,
+     "chance": 20
+    }
+   ],
+   "loot_chance": 100
+  },
+  "5108": {
+   "vnum": 5108,
+   "name": "drow",
+   "short_desc": "the Matron Mother",
+   "long_desc": "The Matron Mother of the first house is waiting for you.",
+   "level": 25,
+   "alignment": -1000,
+   "hp_dice": "25d10+316",
+   "damage_dice": "7d8+8",
+   "gold": 95000,
+   "exp": 1500,
+   "armor_class": 25,
+   "flags": [
+    "special",
+    "sentinel",
+    "aggressive",
+    "memory"
+   ],
+   "description": "She looks like she is about to rip your head of and eat it.",
+   "equipment": {
+    "wield": 5107,
+    "finger1": 5112
+   },
+   "loot_table": [
+    {
+     "vnum": 5117,
+     "chance": 20
+    },
+    {
+     "vnum": 5118,
+     "chance": 20
+    },
+    {
+     "vnum": 5119,
+     "chance": 20
+    },
+    {
+     "vnum": 5120,
+     "chance": 20
+    },
+    {
+     "vnum": 5121,
+     "chance": 20
+    },
+    {
+     "vnum": 5122,
+     "chance": 20
+    },
+    {
+     "vnum": 5123,
+     "chance": 20
+    },
+    {
+     "vnum": 5124,
+     "chance": 20
+    },
+    {
+     "vnum": 5125,
+     "chance": 20
+    },
+    {
+     "vnum": 5151,
+     "chance": 12
+    },
+    {
+     "vnum": 5152,
+     "chance": 12
+    },
+    {
+     "vnum": 5153,
+     "chance": 12
+    },
+    {
+     "vnum": 5154,
+     "chance": 12
+    }
+   ],
+   "loot_chance": 100,
+   "inventory": [
+    5101,
+    5111
+   ]
+  },
+  "5109": {
+   "vnum": 5109,
+   "name": "drider",
+   "short_desc": "the drider",
+   "long_desc": "The drider looks at you viciously while it draws its sword.",
+   "level": 8,
+   "alignment": -1000,
+   "hp_dice": "8d10+112",
+   "damage_dice": "3d5+5",
+   "gold": 2100,
+   "exp": 480,
+   "armor_class": 76,
+   "flags": [
+    "aggressive",
+    "stay_zone",
+    "no_charm",
+    "no_summmon"
+   ],
+   "description": "This half-spider, half-drow creature is a formidable opponent.",
+   "inventory": [
+    5118
+   ]
+  },
+  "5110": {
+   "vnum": 5110,
+   "name": "drider",
+   "short_desc": "the drider",
+   "long_desc": "The drider looks at you viciously while it draws its sword.",
+   "level": 11,
+   "alignment": -1000,
+   "hp_dice": "11d10+148",
+   "damage_dice": "3d6+8",
+   "gold": 3500,
+   "exp": 660,
+   "armor_class": 67,
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "stay_zone",
+    "no_charm",
+    "no_summmon"
+   ],
+   "description": "This half-spider, half-drow creature is a formidable opponent.",
+   "inventory": [
+    5118
+   ]
+  },
+  "5111": {
+   "vnum": 5111,
+   "name": "yochlol",
+   "short_desc": "the yochlol",
+   "long_desc": "A yochlol forms out of a swirling mist...",
+   "level": 23,
+   "alignment": -1000,
+   "hp_dice": "23d10+292",
+   "damage_dice": "6d8+9",
+   "gold": 70000,
+   "exp": 1380,
+   "armor_class": 31,
+   "flags": [
+    "sentinel",
+    "aware",
+    "aggressive",
+    "memory",
+    "no_charm",
+    "no_summmon",
+    "no_bash",
+    "no_blind"
+   ],
+   "description": "The yochlol is not in a good mood.",
+   "equipment": {
+    "wield": 5113,
+    "hold": 5115
+   },
+   "inventory": [
+    5110,
+    5113
+   ]
+  }
+ },
+ "objects": {
+  "5100": {
+   "vnum": 5100,
+   "name": "longsword",
+   "short_desc": "a commoner's longsword",
+   "room_desc": "A commoner's longsword made of adamantite has been left here.",
+   "item_type": "weapon",
+   "weight": 12,
+   "value": 1000,
+   "damage_dice": "1d8",
+   "weapon_type": "slash",
+   "type": "treasure"
+  },
+  "5101": {
+   "vnum": 5101,
+   "name": "longsword",
+   "short_desc": "a noble's longsword",
+   "room_desc": "A drow noble's longsword, made of adamantite, lies here.",
+   "item_type": "weapon",
+   "weight": 12,
+   "value": 1500,
+   "damage_dice": "1d8",
+   "weapon_type": "slash",
+   "type": "treasure"
+  },
+  "5102": {
+   "vnum": 5102,
+   "name": "whip",
+   "short_desc": "a two-headed snake whip",
+   "room_desc": "A whip with two snakes heads lies here.",
+   "item_type": "weapon",
+   "weight": 12,
+   "value": 1750,
+   "damage_dice": "2d6",
+   "weapon_type": "slash",
+   "type": "weapon"
+  },
+  "5103": {
+   "vnum": 5103,
+   "name": "whip",
+   "short_desc": "a three-headed snake whip",
+   "room_desc": "A whip with three snake heads has been left here.",
+   "item_type": "weapon",
+   "weight": 12,
+   "value": 5000,
+   "damage_dice": "2d7",
+   "weapon_type": "slash",
+   "type": "weapon"
+  },
+  "5104": {
+   "vnum": 5104,
+   "name": "whip",
+   "short_desc": "a four-headed snake whip",
+   "room_desc": "A whip with four snake heads has been carelessly left here.",
+   "item_type": "weapon",
+   "weight": 12,
+   "value": 10250,
+   "damage_dice": "2d8",
+   "weapon_type": "slash",
+   "type": "weapon"
+  },
+  "5105": {
+   "vnum": 5105,
+   "name": "longsword",
+   "short_desc": "a black longsword",
+   "room_desc": "A black longsword has been carelessly left here.",
+   "item_type": "weapon",
+   "weight": 12,
+   "value": 10250,
+   "damage_dice": "2d8",
+   "weapon_type": "slash",
+   "type": "treasure"
+  },
+  "5106": {
+   "vnum": 5106,
+   "name": "whip",
+   "short_desc": "a five-headed snake whip",
+   "room_desc": "A whip with 5 snake heads has been carelessly dropped here.",
+   "item_type": "weapon",
+   "weight": 12,
+   "value": 12000,
+   "damage_dice": "3d6",
+   "weapon_type": "slash",
+   "type": "weapon"
+  },
+  "5107": {
+   "vnum": 5107,
+   "name": "whip",
+   "short_desc": "a six-headed snake whip",
+   "room_desc": "A whip with six snake heads has been dropped here very carelessly.",
+   "item_type": "weapon",
+   "weight": 12,
+   "value": 15000,
+   "damage_dice": "4d5",
+   "weapon_type": "slash",
+   "type": "weapon"
+  },
+  "5108": {
+   "vnum": 5108,
+   "name": "bracers",
+   "short_desc": "a pair of bracers",
+   "room_desc": "A pair of iron bracers has been dropped here.",
+   "item_type": "armor",
+   "weight": 3,
+   "value": 2000,
+   "armor_bonus": 8,
+   "type": "armor",
+   "wear_slot": "hands",
+   "armor": 2,
+   "armor_class": 4
+  },
+  "5109": {
+   "vnum": 5109,
+   "name": "gauntlets",
+   "short_desc": "a pair of gauntlets",
+   "room_desc": "A pair of gauntlets is lying on the ground.",
+   "item_type": "treasure",
+   "weight": 2,
+   "value": 10000,
+   "type": "treasure"
+  },
+  "5110": {
+   "vnum": 5110,
+   "name": "wand",
+   "short_desc": "a silvery blue wand",
+   "room_desc": "A silvery blue wand has been dropped in the dirt.",
+   "item_type": "wand",
+   "weight": 1,
+   "value": 4000,
+   "type": "wand"
+  },
+  "5111": {
+   "vnum": 5111,
+   "name": "helmet",
+   "short_desc": "a small helmet",
+   "room_desc": "A small helmet lies up against a rock.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 6000,
+   "armor_bonus": 1,
+   "type": "armor",
+   "wear_slot": "head",
+   "armor": 2,
+   "armor_class": 2
+  },
+  "5112": {
+   "vnum": 5112,
+   "name": "ring",
+   "short_desc": "a small ruby ring",
+   "room_desc": "A small ruby ring lies in the dirt.",
+   "item_type": "treasure",
+   "weight": 1,
+   "value": 20000,
+   "type": "armor",
+   "wear_slot": "finger",
+   "armor": 7,
+   "armor_class": 2
+  },
+  "5113": {
+   "vnum": 5113,
+   "name": "dagger",
+   "short_desc": "a spider shaped dagger",
+   "room_desc": "A dagger with spider leg shaped blades lies on the ground.",
+   "item_type": "weapon",
+   "weight": 8,
+   "value": 12000,
+   "damage_dice": "3d4",
+   "weapon_type": "pierce",
+   "type": "weapon"
+  },
+  "5114": {
+   "vnum": 5114,
+   "name": "hat",
+   "short_desc": "a small bright green hat",
+   "room_desc": "A small bright green hat lies in the dirt.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 2000,
+   "armor_bonus": 10,
+   "type": "armor",
+   "wear_slot": "head",
+   "armor": 2,
+   "armor_class": 4
+  },
+  "5115": {
+   "vnum": 5115,
+   "name": "key",
+   "short_desc": "an adamantite key",
+   "room_desc": "A key made of a strange metal is lying here.",
+   "item_type": "key",
+   "weight": 1,
+   "value": 0,
+   "type": "key"
+  },
+  "5116": {
+   "vnum": 5116,
+   "name": "gold",
+   "short_desc": "a pile of golden coins",
+   "room_desc": "A large pile of golden coins is lying here.",
+   "item_type": "money",
+   "weight": 10,
+   "value": 17645,
+   "type": "trash"
+  },
+  "5117": {
+   "vnum": 5117,
+   "name": "drow warblade",
+   "short_desc": "a drow warblade",
+   "room_desc": "A drow warblade lies here.",
+   "description": "A dark blade.",
+   "item_type": "weapon",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "wield",
+   "weapon_type": "slash",
+   "damage_dice": "2d6+4",
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 3
+    }
+   ],
+   "set_id": 51,
+   "type": "weapon"
+  },
+  "5118": {
+   "vnum": 5118,
+   "name": "nightward shield",
+   "short_desc": "a nightward shield",
+   "room_desc": "A nightward shield lies here.",
+   "description": "A paladin's shield.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "shield",
+   "armor_bonus": 3,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 1
+    }
+   ],
+   "set_id": 51,
+   "type": "armor",
+   "armor": 3,
+   "armor_class": 2
+  },
+  "5119": {
+   "vnum": 5119,
+   "name": "umbra sigil",
+   "short_desc": "an umbra sigil",
+   "room_desc": "An umbra sigil lies here.",
+   "description": "A deathknight's sigil.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "neck1",
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 3
+    }
+   ],
+   "set_id": 51,
+   "type": "treasure",
+   "armor": 9
+  },
+  "5120": {
+   "vnum": 5120,
+   "name": "shadow priory reliquary",
+   "short_desc": "a shadow priory reliquary",
+   "room_desc": "A shadow priory reliquary lies here.",
+   "description": "A cleric's reliquary.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "hold",
+   "affects": [
+    {
+     "type": "wis",
+     "value": 3
+    }
+   ],
+   "set_id": 51,
+   "type": "treasure",
+   "armor": 5
+  },
+  "5121": {
+   "vnum": 5121,
+   "name": "gloomstone focus",
+   "short_desc": "a gloomstone focus",
+   "room_desc": "A gloomstone focus lies here.",
+   "description": "A mage's focus.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "hold",
+   "affects": [
+    {
+     "type": "int",
+     "value": 3
+    }
+   ],
+   "set_id": 51,
+   "type": "treasure",
+   "armor": 6
+  },
+  "5122": {
+   "vnum": 5122,
+   "name": "whisperstring lute",
+   "short_desc": "a whisperstring lute",
+   "room_desc": "A whisperstring lute lies here.",
+   "description": "A bard's lute.",
+   "item_type": "weapon",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "wield",
+   "weapon_type": "mace",
+   "damage_dice": "1d6+2",
+   "affects": [
+    {
+     "type": "cha",
+     "value": 3
+    }
+   ],
+   "set_id": 51,
+   "type": "treasure"
+  },
+  "5123": {
+   "vnum": 5123,
+   "name": "spiderfang dagger",
+   "short_desc": "a spiderfang dagger",
+   "room_desc": "A spiderfang dagger lies here.",
+   "description": "A rogue's dagger.",
+   "item_type": "weapon",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "wield",
+   "weapon_type": "pierce",
+   "damage_dice": "1d6+3",
+   "affects": [
+    {
+     "type": "dex",
+     "value": 3
+    },
+    {
+     "type": "hitroll",
+     "value": 1
+    }
+   ],
+   "set_id": 51,
+   "type": "weapon"
+  },
+  "5124": {
+   "vnum": 5124,
+   "name": "darkleaf bow",
+   "short_desc": "a darkleaf bow",
+   "room_desc": "A darkleaf bow lies here.",
+   "description": "A ranger's bow.",
+   "item_type": "weapon",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "wield",
+   "weapon_type": "pierce",
+   "damage_dice": "1d6+3",
+   "affects": [
+    {
+     "type": "dex",
+     "value": 3
+    }
+   ],
+   "set_id": 51,
+   "type": "weapon"
+  },
+  "5125": {
+   "vnum": 5125,
+   "name": "shadowveil cloak",
+   "short_desc": "a shadowveil cloak",
+   "room_desc": "A shadowveil cloak lies here.",
+   "description": "A shadowy cloak.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "about",
+   "armor_bonus": 2,
+   "affects": [
+    {
+     "type": "shadow_resist",
+     "value": 5
+    }
+   ],
+   "set_id": 51,
+   "type": "armor",
+   "armor": 1,
+   "armor_class": 3
+  },
+  "5151": {
+   "vnum": 5151,
+   "name": "drow shadow armor",
+   "short_desc": "drow shadow armor",
+   "room_desc": "Dark armor radiating shadow lies here.",
+   "description": "Armor woven from drow silk and shadow.",
+   "item_type": "armor",
+   "weight": 6,
+   "value": 4000,
+   "wear_slot": "body",
+   "armor_class": 6,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    }
+   ],
+   "set_id": "drow_shadow",
+   "type": "armor",
+   "min_level": 20,
+   "armor": 9
+  },
+  "5152": {
+   "vnum": 5152,
+   "name": "drow shadow cloak",
+   "short_desc": "a drow shadow cloak",
+   "room_desc": "A cloak of living shadow lies here.",
+   "description": "Darkness clings to this cloak.",
+   "item_type": "armor",
+   "weight": 2,
+   "value": 3000,
+   "wear_slot": "about",
+   "armor_class": 3,
+   "affects": [
+    {
+     "type": "shadow_resist",
+     "value": 5
+    }
+   ],
+   "set_id": "drow_shadow",
+   "type": "armor",
+   "min_level": 20,
+   "armor": 4
+  },
+  "5153": {
+   "vnum": 5153,
+   "name": "drow shadow blade",
+   "short_desc": "a drow shadow blade",
+   "room_desc": "A black blade pulses with shadow.",
+   "description": "A wickedly sharp dark blade.",
+   "item_type": "weapon",
+   "weight": 3,
+   "value": 4500,
+   "wear_slot": "wield",
+   "weapon_type": "slash",
+   "damage_dice": "2d6+4",
+   "affects": [
+    {
+     "type": "hitroll",
+     "value": 3
+    }
+   ],
+   "set_id": "drow_shadow",
+   "type": "weapon",
+   "min_level": 20
+  },
+  "5154": {
+   "vnum": 5154,
+   "name": "drow shadow ring",
+   "short_desc": "a drow shadow ring",
+   "room_desc": "A ring of darkness lies here.",
+   "description": "An obsidian ring.",
+   "item_type": "armor",
+   "weight": 0,
+   "value": 3500,
+   "wear_slot": "finger",
+   "armor_class": 1,
+   "affects": [
+    {
+     "type": "poison_resist",
+     "value": 5
+    }
+   ],
+   "set_id": "drow_shadow",
+   "type": "armor",
+   "min_level": 20,
+   "armor": 10
+  }
+ },
+ "lifespan": 30
 }

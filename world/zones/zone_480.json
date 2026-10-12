@@ -1,0 +1,2085 @@
+{
+ "number": 480,
+ "name": "Salem's Lot",
+ "builders": "Salem",
+ "atlas_area": 80,
+ "rooms": {
+  "206600": {
+   "vnum": 206600,
+   "name": "Town Line",
+   "map": {
+    "x": 51,
+    "y": 29,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2327,
+     "description": "To the north lies The Dusty Road."
+    },
+    "west": {
+     "to_room": 206601,
+     "description": "To the west lies McKnight's Gap Road."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north and west.",
+   "placeholder": true
+  },
+  "206601": {
+   "vnum": 206601,
+   "name": "McKnight's Gap Road",
+   "map": {
+    "x": 50,
+    "y": 29,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 206602,
+     "description": "To the north lies Souvenir Shop."
+    },
+    "east": {
+     "to_room": 206600,
+     "description": "To the east lies Town Line."
+    },
+    "south": {
+     "to_room": 206603,
+     "description": "To the south lies Hardware Store."
+    },
+    "west": {
+     "to_room": 206605,
+     "description": "To the west lies McKnight's Gap Road."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "206602": {
+   "vnum": 206602,
+   "name": "Souvenir Shop",
+   "map": {
+    "x": 50,
+    "y": 30,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 206601,
+     "description": "To the south lies McKnight's Gap Road."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads south.",
+   "placeholder": true
+  },
+  "206603": {
+   "vnum": 206603,
+   "name": "Hardware Store",
+   "map": {
+    "x": 50,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 206601,
+     "description": "To the north lies McKnight's Gap Road."
+    },
+    "down": {
+     "to_room": 206604,
+     "description": "To the down lies The Cellar."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and down.",
+   "placeholder": true
+  },
+  "206604": {
+   "vnum": 206604,
+   "name": "The Cellar",
+   "map": {
+    "x": 49,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 206603,
+     "description": "To the up lies Hardware Store."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads up.",
+   "placeholder": true
+  },
+  "206605": {
+   "vnum": 206605,
+   "name": "McKnight's Gap Road",
+   "map": {
+    "x": 48,
+    "y": 29,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 206606,
+     "description": "To the north lies East Tudor Street."
+    },
+    "east": {
+     "to_room": 206601,
+     "description": "To the east lies McKnight's Gap Road."
+    },
+    "south": {
+     "to_room": 6630,
+     "description": "To the south lies Town Garden.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 6629,
+     "description": "To the west lies McKnight's Gap Intersection."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north,\neast, south and west.",
+   "placeholder": true
+  },
+  "206606": {
+   "vnum": 206606,
+   "name": "East Tudor Street",
+   "map": {
+    "x": 48,
+    "y": 30,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 206611,
+     "description": "To the north lies East Tudor Street."
+    },
+    "east": {
+     "to_room": 206607,
+     "description": "To the east lies A Deserted Home."
+    },
+    "south": {
+     "to_room": 206605,
+     "description": "To the south lies McKnight's Gap Road."
+    },
+    "west": {
+     "to_room": 206608,
+     "description": "To the west lies On The Porch."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. Ways lead north, east, south\nand west.",
+   "placeholder": true
+  },
+  "206607": {
+   "vnum": 206607,
+   "name": "A Deserted Home",
+   "map": {
+    "x": 49,
+    "y": 30,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 206606,
+     "description": "To the west lies East Tudor Street."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads west.",
+   "placeholder": true
+  },
+  "206608": {
+   "vnum": 206608,
+   "name": "On The Porch",
+   "map": {
+    "x": 47,
+    "y": 30,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 206606,
+     "description": "To the east lies East Tudor Street."
+    },
+    "west": {
+     "to_room": 206609,
+     "description": "To the west lies The Neighbor's House."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "206609": {
+   "vnum": 206609,
+   "name": "The Neighbor's House",
+   "map": {
+    "x": 46,
+    "y": 30,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 206608,
+     "description": "To the east lies On The Porch."
+    },
+    "west": {
+     "to_room": 206610,
+     "description": "To the west lies The Yard."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "206610": {
+   "vnum": 206610,
+   "name": "The Yard",
+   "map": {
+    "x": 45,
+    "y": 30,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 206609,
+     "description": "To the east lies The Neighbor's House."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. A way leads east.",
+   "placeholder": true
+  },
+  "206611": {
+   "vnum": 206611,
+   "name": "East Tudor Street",
+   "map": {
+    "x": 48,
+    "y": 33,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 206612,
+     "description": "To the north lies Summon Square."
+    },
+    "south": {
+     "to_room": 206606,
+     "description": "To the south lies East Tudor Street."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "206612": {
+   "vnum": 206612,
+   "name": "Summon Square",
+   "map": {
+    "x": 48,
+    "y": 36,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6614,
+     "description": "To the north lies The Morgue.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 206613,
+     "description": "To the east lies The Town Church."
+    },
+    "south": {
+     "to_room": 206611,
+     "description": "To the south lies East Tudor Street."
+    },
+    "west": {
+     "to_room": 6618,
+     "description": "To the west lies Tudor Street."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north, east, south\nand west.",
+   "placeholder": true
+  },
+  "206613": {
+   "vnum": 206613,
+   "name": "The Town Church",
+   "map": {
+    "x": 49,
+    "y": 36,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 206612,
+     "description": "To the west lies Summon Square."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "6614": {
+   "vnum": 6614,
+   "name": "The Morgue",
+   "map": {
+    "x": 48,
+    "y": 37,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6617,
+     "description": "To the north lies Autopsy Room."
+    },
+    "east": {
+     "to_room": 6615,
+     "description": "To the east lies The Freezer.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 206612,
+     "description": "To the south lies Summon Square."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "6615": {
+   "vnum": 6615,
+   "name": "The Freezer",
+   "map": {
+    "x": 49,
+    "y": 37,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 6616,
+     "description": "To the east lies Back Freezer."
+    },
+    "west": {
+     "to_room": 6614,
+     "description": "To the west lies The Morgue."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "6616": {
+   "vnum": 6616,
+   "name": "Back Freezer",
+   "map": {
+    "x": 50,
+    "y": 37,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 6615,
+     "description": "To the west lies The Freezer."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "6617": {
+   "vnum": 6617,
+   "name": "Autopsy Room",
+   "map": {
+    "x": 48,
+    "y": 38,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 6614,
+     "description": "To the south lies The Morgue."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads south.",
+   "placeholder": true
+  },
+  "6618": {
+   "vnum": 6618,
+   "name": "Tudor Street",
+   "map": {
+    "x": 46,
+    "y": 36,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 206612,
+     "description": "To the east lies Summon Square."
+    },
+    "south": {
+     "to_room": 6619,
+     "description": "To the south lies One Room School House.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 6620,
+     "description": "To the west lies Tudor Square."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead east, south and\nwest.",
+   "placeholder": true
+  },
+  "6619": {
+   "vnum": 6619,
+   "name": "One Room School House",
+   "map": {
+    "x": 46,
+    "y": 35,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6618,
+     "description": "To the north lies Tudor Street."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "6620": {
+   "vnum": 6620,
+   "name": "Tudor Square",
+   "map": {
+    "x": 43,
+    "y": 36,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6621,
+     "description": "To the north lies Doctor's Office.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 6618,
+     "description": "To the east lies Tudor Street."
+    },
+    "south": {
+     "to_room": 6622,
+     "description": "To the south lies West Tudor Street."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north, east\nand south.",
+   "placeholder": true
+  },
+  "6621": {
+   "vnum": 6621,
+   "name": "Doctor's Office",
+   "map": {
+    "x": 43,
+    "y": 37,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 6620,
+     "description": "To the south lies Tudor Square."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads south.",
+   "placeholder": true
+  },
+  "6622": {
+   "vnum": 6622,
+   "name": "West Tudor Street",
+   "map": {
+    "x": 43,
+    "y": 33,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6620,
+     "description": "To the north lies Tudor Square."
+    },
+    "south": {
+     "to_room": 6628,
+     "description": "To the south lies West Tudor Street."
+    },
+    "up": {
+     "to_room": 6623,
+     "description": "To the up lies The Treehouse."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north, south and up.",
+   "placeholder": true
+  },
+  "6623": {
+   "vnum": 6623,
+   "name": "The Treehouse",
+   "map": {
+    "x": 44,
+    "y": 34,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 6624,
+     "description": "To the east lies On The Vine."
+    },
+    "down": {
+     "to_room": 6622,
+     "description": "To the down lies West Tudor Street."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and down.",
+   "placeholder": true
+  },
+  "6624": {
+   "vnum": 6624,
+   "name": "On The Vine",
+   "map": {
+    "x": 45,
+    "y": 34,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 206610,
+     "description": "To the east lies The Yard."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. A way leads east.",
+   "placeholder": true
+  },
+  "6625": {
+   "vnum": 6625,
+   "name": "School Master's House",
+   "map": {
+    "x": 44,
+    "y": 32,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 6628,
+     "description": "To the west lies West Tudor Street."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "6626": {
+   "vnum": 6626,
+   "name": "Abandoned House",
+   "map": {
+    "x": 42,
+    "y": 32,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6627,
+     "description": "To the north lies A Closet In An Abandoned House.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 6628,
+     "description": "To the east lies West Tudor Street."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "6627": {
+   "vnum": 6627,
+   "name": "A Closet In An Abandoned House",
+   "map": {
+    "x": 42,
+    "y": 33,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 6626,
+     "description": "To the south lies Abandoned House."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "6628": {
+   "vnum": 6628,
+   "name": "West Tudor Street",
+   "map": {
+    "x": 43,
+    "y": 32,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6622,
+     "description": "To the north lies West Tudor Street."
+    },
+    "east": {
+     "to_room": 6625,
+     "description": "To the east lies School Master's House.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 6629,
+     "description": "To the south lies McKnight's Gap Intersection."
+    },
+    "west": {
+     "to_room": 6626,
+     "description": "To the west lies Abandoned House."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north, east, south\nand west.",
+   "placeholder": true
+  },
+  "6629": {
+   "vnum": 6629,
+   "name": "McKnight's Gap Intersection",
+   "map": {
+    "x": 43,
+    "y": 29,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6628,
+     "description": "To the north lies West Tudor Street."
+    },
+    "east": {
+     "to_room": 206605,
+     "description": "To the east lies McKnight's Gap Road."
+    },
+    "south": {
+     "to_room": 6644,
+     "description": "To the south lies In The Covered Bridge."
+    },
+    "west": {
+     "to_room": 6638,
+     "description": "To the west lies The Town Common."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "6630": {
+   "vnum": 6630,
+   "name": "Town Garden",
+   "map": {
+    "x": 48,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 206605,
+     "description": "To the north lies McKnight's Gap Road."
+    },
+    "south": {
+     "to_room": 6631,
+     "description": "To the south lies The Hatch-Schell."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north and south.",
+   "placeholder": true
+  },
+  "6631": {
+   "vnum": 6631,
+   "name": "The Hatch-Schell",
+   "map": {
+    "x": 48,
+    "y": 25,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6630,
+     "description": "To the north lies Town Garden."
+    },
+    "west": {
+     "to_room": 6636,
+     "description": "To the west lies Under The Bridge."
+    },
+    "up": {
+     "to_room": 6632,
+     "description": "To the up lies The Cat Walks."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead north, west\nand up.",
+   "placeholder": true
+  },
+  "6632": {
+   "vnum": 6632,
+   "name": "The Cat Walks",
+   "map": {
+    "x": 49,
+    "y": 26,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6633,
+     "description": "To the east lies The West Walk."
+    },
+    "down": {
+     "to_room": 6631,
+     "description": "To the down lies The Hatch-Schell."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and down.",
+   "placeholder": true
+  },
+  "6633": {
+   "vnum": 6633,
+   "name": "The West Walk",
+   "map": {
+    "x": 50,
+    "y": 26,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6634,
+     "description": "To the east lies Center Stage On The Walk."
+    },
+    "west": {
+     "to_room": 6632,
+     "description": "To the west lies The Cat Walks."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "6634": {
+   "vnum": 6634,
+   "name": "Center Stage On The Walk",
+   "map": {
+    "x": 51,
+    "y": 26,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 6633,
+     "description": "To the west lies The West Walk."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. A way leads west.",
+   "placeholder": true
+  },
+  "6636": {
+   "vnum": 6636,
+   "name": "Under The Bridge",
+   "map": {
+    "x": 42,
+    "y": 25,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6631,
+     "description": "To the east lies The Hatch-Schell."
+    },
+    "west": {
+     "to_room": 6637,
+     "description": "To the west lies The Thicket."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead east and west.",
+   "placeholder": true
+  },
+  "6637": {
+   "vnum": 6637,
+   "name": "The Thicket",
+   "map": {
+    "x": 38,
+    "y": 25,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6638,
+     "description": "To the north lies The Town Common."
+    },
+    "east": {
+     "to_room": 6636,
+     "description": "To the east lies Under The Bridge."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Ferns and\nmoss soften the ground beneath a dim green canopy. Ways lead north and\neast.",
+   "placeholder": true
+  },
+  "6638": {
+   "vnum": 6638,
+   "name": "The Town Common",
+   "map": {
+    "x": 38,
+    "y": 29,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6639,
+     "description": "To the north lies Outside The Do-Drop Inn."
+    },
+    "east": {
+     "to_room": 6629,
+     "description": "To the east lies McKnight's Gap Intersection."
+    },
+    "west": {
+     "to_room": 6642,
+     "description": "To the west lies Look Out Point."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "6639": {
+   "vnum": 6639,
+   "name": "Outside The Do-Drop Inn",
+   "map": {
+    "x": 38,
+    "y": 30,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6640,
+     "description": "To the north lies The Do-Drop Inn."
+    },
+    "south": {
+     "to_room": 6638,
+     "description": "To the south lies The Town Common."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "6640": {
+   "vnum": 6640,
+   "name": "The Do-Drop Inn",
+   "map": {
+    "x": 38,
+    "y": 31,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 6639,
+     "description": "To the south lies Outside The Do-Drop Inn."
+    },
+    "up": {
+     "to_room": 6641,
+     "description": "To the up lies The Flight Deck."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead south and up.",
+   "placeholder": true
+  },
+  "6641": {
+   "vnum": 6641,
+   "name": "The Flight Deck",
+   "map": {
+    "x": 40,
+    "y": 33,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6695,
+     "description": "To the north lies The Griffin Deck."
+    },
+    "east": {
+     "to_room": 6690,
+     "description": "To the east lies The Dragon Deck."
+    },
+    "south": {
+     "to_room": 6685,
+     "description": "To the south lies The Beetle Deck."
+    },
+    "west": {
+     "to_room": 6680,
+     "description": "To the west lies The Pegasi Deck."
+    },
+    "down": {
+     "to_room": 6640,
+     "description": "To the down lies The Do-Drop Inn."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east, south, west and down.",
+   "placeholder": true
+  },
+  "6642": {
+   "vnum": 6642,
+   "name": "Look Out Point",
+   "map": {
+    "x": 37,
+    "y": 29,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6638,
+     "description": "To the east lies The Town Common."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. A way leads east.",
+   "placeholder": true
+  },
+  "6644": {
+   "vnum": 6644,
+   "name": "In The Covered Bridge",
+   "map": {
+    "x": 43,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6629,
+     "description": "To the north lies McKnight's Gap Intersection."
+    },
+    "south": {
+     "to_room": 6645,
+     "description": "To the south lies Lower Tudor St.."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and south.",
+   "placeholder": true
+  },
+  "6645": {
+   "vnum": 6645,
+   "name": "Lower Tudor St.",
+   "map": {
+    "x": 43,
+    "y": 24,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6644,
+     "description": "To the north lies In The Covered Bridge."
+    },
+    "south": {
+     "to_room": 6646,
+     "description": "To the south lies The Corn Field."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "6646": {
+   "vnum": 6646,
+   "name": "The Corn Field",
+   "map": {
+    "x": 43,
+    "y": 23,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6645,
+     "description": "To the north lies Lower Tudor St.."
+    },
+    "east": {
+     "to_room": 6666,
+     "description": "To the east lies The Grazing Field."
+    },
+    "south": {
+     "to_room": 6647,
+     "description": "To the south lies The Corn Field."
+    },
+    "west": {
+     "to_room": 6654,
+     "description": "To the west lies The Grazing Field."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Ferns and\nmoss soften the ground beneath a dim green canopy. Ways lead north,\neast, south and west.",
+   "placeholder": true
+  },
+  "6647": {
+   "vnum": 6647,
+   "name": "The Corn Field",
+   "map": {
+    "x": 43,
+    "y": 21,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6646,
+     "description": "To the north lies The Corn Field."
+    },
+    "east": {
+     "to_room": 6665,
+     "description": "To the east lies The Grazing Field."
+    },
+    "west": {
+     "to_room": 6648,
+     "description": "To the west lies The Corn Field."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Old trees\ncrowd close, their roots knotted across the path. Ways lead north, east\nand west.",
+   "placeholder": true
+  },
+  "6648": {
+   "vnum": 6648,
+   "name": "The Corn Field",
+   "map": {
+    "x": 39,
+    "y": 21,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6654,
+     "description": "To the north lies The Grazing Field."
+    },
+    "east": {
+     "to_room": 6647,
+     "description": "To the east lies The Corn Field."
+    },
+    "south": {
+     "to_room": 6649,
+     "description": "To the south lies The Corn Field."
+    },
+    "west": {
+     "to_room": 6656,
+     "description": "To the west lies The Grazing Field."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Shafts of pale light\nslant between the trunks. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "6649": {
+   "vnum": 6649,
+   "name": "The Corn Field",
+   "map": {
+    "x": 39,
+    "y": 16,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6648,
+     "description": "To the north lies The Corn Field."
+    },
+    "south": {
+     "to_room": 6650,
+     "description": "To the south lies The Corn Field."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north and south.",
+   "placeholder": true
+  },
+  "6650": {
+   "vnum": 6650,
+   "name": "The Corn Field",
+   "map": {
+    "x": 39,
+    "y": 10,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6649,
+     "description": "To the north lies The Corn Field."
+    },
+    "east": {
+     "to_room": 6652,
+     "description": "To the east lies A Red Barn.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 6659,
+     "description": "To the south lies The Grazing Field."
+    },
+    "west": {
+     "to_room": 6657,
+     "description": "To the west lies The Grazing Field."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Old trees\ncrowd close, their roots knotted across the path. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "6651": {
+   "vnum": 6651,
+   "name": "The Pen",
+   "map": {
+    "x": 37,
+    "y": 16,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6656,
+     "description": "To the north lies The Grazing Field.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 6657,
+     "description": "To the south lies The Grazing Field."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "6652": {
+   "vnum": 6652,
+   "name": "A Red Barn",
+   "map": {
+    "x": 41,
+    "y": 10,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 6650,
+     "description": "To the west lies The Corn Field."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads west.",
+   "placeholder": true
+  },
+  "6653": {
+   "vnum": 6653,
+   "name": "The Stable",
+   "map": {
+    "x": 45,
+    "y": 8,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 6661,
+     "description": "To the west lies The Grazing Field."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "6654": {
+   "vnum": 6654,
+   "name": "The Grazing Field",
+   "map": {
+    "x": 39,
+    "y": 23,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6646,
+     "description": "To the east lies The Corn Field."
+    },
+    "south": {
+     "to_room": 6648,
+     "description": "To the south lies The Corn Field."
+    },
+    "west": {
+     "to_room": 6655,
+     "description": "To the west lies The Grazing Field."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "6655": {
+   "vnum": 6655,
+   "name": "The Grazing Field",
+   "map": {
+    "x": 37,
+    "y": 23,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6654,
+     "description": "To the east lies The Grazing Field."
+    },
+    "south": {
+     "to_room": 6656,
+     "description": "To the south lies The Grazing Field."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead east and south.",
+   "placeholder": true
+  },
+  "6656": {
+   "vnum": 6656,
+   "name": "The Grazing Field",
+   "map": {
+    "x": 37,
+    "y": 21,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6655,
+     "description": "To the north lies The Grazing Field."
+    },
+    "east": {
+     "to_room": 6648,
+     "description": "To the east lies The Corn Field."
+    },
+    "south": {
+     "to_room": 6651,
+     "description": "To the south lies The Pen."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. Ways lead north, east and\nsouth.",
+   "placeholder": true
+  },
+  "6657": {
+   "vnum": 6657,
+   "name": "The Grazing Field",
+   "map": {
+    "x": 37,
+    "y": 10,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6651,
+     "description": "To the north lies The Pen.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 6650,
+     "description": "To the east lies The Corn Field."
+    },
+    "south": {
+     "to_room": 6658,
+     "description": "To the south lies The Grazing Field."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "6658": {
+   "vnum": 6658,
+   "name": "The Grazing Field",
+   "map": {
+    "x": 37,
+    "y": 9,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6657,
+     "description": "To the north lies The Grazing Field."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. A way leads north.",
+   "placeholder": true
+  },
+  "6659": {
+   "vnum": 6659,
+   "name": "The Grazing Field",
+   "map": {
+    "x": 39,
+    "y": 9,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6650,
+     "description": "To the north lies The Corn Field."
+    },
+    "east": {
+     "to_room": 6660,
+     "description": "To the east lies The Grazing Field."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead north and east.",
+   "placeholder": true
+  },
+  "6660": {
+   "vnum": 6660,
+   "name": "The Grazing Field",
+   "map": {
+    "x": 43,
+    "y": 9,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6662,
+     "description": "To the east lies The Grazing Field."
+    },
+    "south": {
+     "to_room": 6661,
+     "description": "To the south lies The Grazing Field."
+    },
+    "west": {
+     "to_room": 6659,
+     "description": "To the west lies The Grazing Field."
+    }
+   },
+   "description": "A worn track crosses the open ground. Open grassland rolls away under a\nwide sky. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "6661": {
+   "vnum": 6661,
+   "name": "The Grazing Field",
+   "map": {
+    "x": 43,
+    "y": 8,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6660,
+     "description": "To the north lies The Grazing Field."
+    },
+    "east": {
+     "to_room": 6653,
+     "description": "To the east lies The Stable.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead north and east.",
+   "placeholder": true
+  },
+  "6662": {
+   "vnum": 6662,
+   "name": "The Grazing Field",
+   "map": {
+    "x": 48,
+    "y": 9,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6663,
+     "description": "To the north lies The Grazing Field."
+    },
+    "west": {
+     "to_room": 6660,
+     "description": "To the west lies The Grazing Field."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. Ways lead north and west.",
+   "placeholder": true
+  },
+  "6663": {
+   "vnum": 6663,
+   "name": "The Grazing Field",
+   "map": {
+    "x": 48,
+    "y": 13,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6664,
+     "description": "To the north lies The Grazing Field."
+    },
+    "south": {
+     "to_room": 6662,
+     "description": "To the south lies The Grazing Field."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. Ways lead north and south.",
+   "placeholder": true
+  },
+  "6664": {
+   "vnum": 6664,
+   "name": "The Grazing Field",
+   "map": {
+    "x": 48,
+    "y": 16,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6665,
+     "description": "To the north lies The Grazing Field."
+    },
+    "south": {
+     "to_room": 6663,
+     "description": "To the south lies The Grazing Field."
+    },
+    "west": {
+     "to_room": 6667,
+     "description": "To the west lies Tudor Manor Entryway.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "6665": {
+   "vnum": 6665,
+   "name": "The Grazing Field",
+   "map": {
+    "x": 48,
+    "y": 21,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6666,
+     "description": "To the north lies The Grazing Field."
+    },
+    "south": {
+     "to_room": 6664,
+     "description": "To the south lies The Grazing Field."
+    },
+    "west": {
+     "to_room": 6647,
+     "description": "To the west lies The Corn Field."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "6666": {
+   "vnum": 6666,
+   "name": "The Grazing Field",
+   "map": {
+    "x": 48,
+    "y": 23,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 6665,
+     "description": "To the south lies The Grazing Field."
+    },
+    "west": {
+     "to_room": 6646,
+     "description": "To the west lies The Corn Field."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. The land lies\nflat and quiet in every direction. Ways lead south and west.",
+   "placeholder": true
+  },
+  "6667": {
+   "vnum": 6667,
+   "name": "Tudor Manor Entryway",
+   "map": {
+    "x": 47,
+    "y": 16,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 6664,
+     "description": "To the east lies The Grazing Field."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "6668": {
+   "vnum": 6668,
+   "name": "Manor Living Room",
+   "map": {
+    "x": 43,
+    "y": 16,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6669,
+     "description": "To the north lies Recreation Room."
+    },
+    "east": {
+     "to_room": 6667,
+     "description": "To the east lies Tudor Manor Entryway."
+    },
+    "south": {
+     "to_room": 6670,
+     "description": "To the south lies Manor Dining Room."
+    },
+    "up": {
+     "to_room": 6671,
+     "description": "To the up lies Upstairs Hallway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east, south and up.",
+   "placeholder": true
+  },
+  "6669": {
+   "vnum": 6669,
+   "name": "Recreation Room",
+   "map": {
+    "x": 43,
+    "y": 17,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 6668,
+     "description": "To the south lies Manor Living Room."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "6670": {
+   "vnum": 6670,
+   "name": "Manor Dining Room",
+   "map": {
+    "x": 43,
+    "y": 15,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6668,
+     "description": "To the north lies Manor Living Room."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads north.",
+   "placeholder": true
+  },
+  "6671": {
+   "vnum": 6671,
+   "name": "Upstairs Hallway",
+   "map": {
+    "x": 46,
+    "y": 19,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6674,
+     "description": "To the north lies Upstairs Hallway."
+    },
+    "south": {
+     "to_room": 6672,
+     "description": "To the south lies The Children's Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 6673,
+     "description": "To the west lies The Midwife's Quarters.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "down": {
+     "to_room": 6668,
+     "description": "To the down lies Manor Living Room."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, south, west and down.",
+   "placeholder": true
+  },
+  "6672": {
+   "vnum": 6672,
+   "name": "The Children's Room",
+   "map": {
+    "x": 46,
+    "y": 17,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6671,
+     "description": "To the north lies Upstairs Hallway."
+    },
+    "down": {
+     "to_room": 6676,
+     "description": "To the down lies Secret Stairwell."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and down.",
+   "placeholder": true
+  },
+  "6673": {
+   "vnum": 6673,
+   "name": "The Midwife's Quarters",
+   "map": {
+    "x": 44,
+    "y": 19,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 6671,
+     "description": "To the east lies Upstairs Hallway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads east.",
+   "placeholder": true
+  },
+  "6674": {
+   "vnum": 6674,
+   "name": "Upstairs Hallway",
+   "map": {
+    "x": 46,
+    "y": 20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 6671,
+     "description": "To the south lies Upstairs Hallway."
+    },
+    "west": {
+     "to_room": 6675,
+     "description": "To the west lies The Master Bedroom.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead south and west.",
+   "placeholder": true
+  },
+  "6675": {
+   "vnum": 6675,
+   "name": "The Master Bedroom",
+   "map": {
+    "x": 44,
+    "y": 20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 6674,
+     "description": "To the east lies Upstairs Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads east.",
+   "placeholder": true
+  },
+  "6676": {
+   "vnum": 6676,
+   "name": "Secret Stairwell",
+   "map": {
+    "x": 44,
+    "y": 15,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 6672,
+     "description": "To the up lies The Children's Room."
+    },
+    "down": {
+     "to_room": 6677,
+     "description": "To the down lies Secret Stairwell."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead up and down.",
+   "placeholder": true
+  },
+  "6677": {
+   "vnum": 6677,
+   "name": "Secret Stairwell",
+   "map": {
+    "x": 42,
+    "y": 13,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "down": {
+     "to_room": 6678,
+     "description": "To the down lies The Lord's Vault."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads down.",
+   "placeholder": true
+  },
+  "6678": {
+   "vnum": 6678,
+   "name": "The Lord's Vault",
+   "map": {
+    "x": 40,
+    "y": 11,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6679,
+     "description": "To the north lies The Basement.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads north.",
+   "placeholder": true
+  },
+  "6679": {
+   "vnum": 6679,
+   "name": "The Basement",
+   "map": {
+    "x": 40,
+    "y": 13,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 6678,
+     "description": "To the south lies The Lord's Vault."
+    },
+    "up": {
+     "to_room": 6647,
+     "description": "To the up lies The Corn Field."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead south and up.",
+   "placeholder": true
+  },
+  "6680": {
+   "vnum": 6680,
+   "name": "The Pegasi Deck",
+   "map": {
+    "x": 39,
+    "y": 33,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6641,
+     "description": "To the east lies The Flight Deck."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. A way leads east.",
+   "placeholder": true
+  },
+  "6685": {
+   "vnum": 6685,
+   "name": "The Beetle Deck",
+   "map": {
+    "x": 40,
+    "y": 32,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6641,
+     "description": "To the north lies The Flight Deck."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. A way leads north.",
+   "placeholder": true
+  },
+  "6690": {
+   "vnum": 6690,
+   "name": "The Dragon Deck",
+   "map": {
+    "x": 41,
+    "y": 33,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 6641,
+     "description": "To the west lies The Flight Deck."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. A way leads west.",
+   "placeholder": true
+  },
+  "6695": {
+   "vnum": 6695,
+   "name": "The Griffin Deck",
+   "map": {
+    "x": 40,
+    "y": 34,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 6641,
+     "description": "To the south lies The Flight Deck."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. A way leads south.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

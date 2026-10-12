@@ -1,0 +1,1551 @@
+{
+ "number": 499,
+ "name": "Phaeton's Academy",
+ "builders": "Keats",
+ "atlas_area": 99,
+ "rooms": {
+  "5700": {
+   "vnum": 5700,
+   "name": "Entrance to the Academy",
+   "map": {
+    "x": 4,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15070,
+     "description": "To the north lies The Eastern Gatehouse."
+    },
+    "south": {
+     "to_room": 5701,
+     "description": "To the south lies The Northern Side of the Academy."
+    }
+   },
+   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north and south.",
+   "placeholder": true
+  },
+  "5701": {
+   "vnum": 5701,
+   "name": "The Northern Side of the Academy",
+   "map": {
+    "x": 4,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5700,
+     "description": "To the north lies Entrance to the Academy."
+    },
+    "east": {
+     "to_room": 5716,
+     "description": "To the east lies The North Wing."
+    },
+    "south": {
+     "to_room": 5723,
+     "description": "To the south lies In the Garden."
+    },
+    "west": {
+     "to_room": 5702,
+     "description": "To the west lies The North Wing."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "5702": {
+   "vnum": 5702,
+   "name": "The North Wing",
+   "map": {
+    "x": 3,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5701,
+     "description": "To the east lies The Northern Side of the Academy."
+    },
+    "west": {
+     "to_room": 5703,
+     "description": "To the west lies The Northwest Corner."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "5703": {
+   "vnum": 5703,
+   "name": "The Northwest Corner",
+   "map": {
+    "x": 2,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5702,
+     "description": "To the east lies The North Wing."
+    },
+    "south": {
+     "to_room": 5704,
+     "description": "To the south lies The West Wing."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "5704": {
+   "vnum": 5704,
+   "name": "The West Wing",
+   "map": {
+    "x": 2,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5703,
+     "description": "To the north lies The Northwest Corner."
+    },
+    "south": {
+     "to_room": 5705,
+     "description": "To the south lies The West Wing."
+    },
+    "west": {
+     "to_room": 5717,
+     "description": "To the west lies Lecture room of Heraclitus."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "5705": {
+   "vnum": 5705,
+   "name": "The West Wing",
+   "map": {
+    "x": 2,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5704,
+     "description": "To the north lies The West Wing."
+    },
+    "east": {
+     "to_room": 5726,
+     "description": "To the east lies In the Garden."
+    },
+    "south": {
+     "to_room": 5706,
+     "description": "To the south lies The West Wing."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "5706": {
+   "vnum": 5706,
+   "name": "The West Wing",
+   "map": {
+    "x": 2,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5705,
+     "description": "To the north lies The West Wing."
+    },
+    "south": {
+     "to_room": 5707,
+     "description": "To the south lies The Southwest Corner."
+    },
+    "west": {
+     "to_room": 5718,
+     "description": "To the west lies Lecture room on Stoicism."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "5707": {
+   "vnum": 5707,
+   "name": "The Southwest Corner",
+   "map": {
+    "x": 2,
+    "y": -10,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5706,
+     "description": "To the north lies The West Wing."
+    },
+    "east": {
+     "to_room": 5708,
+     "description": "To the east lies The South Wing."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and east.",
+   "placeholder": true
+  },
+  "5708": {
+   "vnum": 5708,
+   "name": "The South Wing",
+   "map": {
+    "x": 3,
+    "y": -10,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5709,
+     "description": "To the east lies Middle of the South Wing."
+    },
+    "south": {
+     "to_room": 5719,
+     "description": "To the south lies The Dining Hall."
+    },
+    "west": {
+     "to_room": 5707,
+     "description": "To the west lies The Southwest Corner."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "5709": {
+   "vnum": 5709,
+   "name": "Middle of the South Wing",
+   "map": {
+    "x": 4,
+    "y": -10,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5725,
+     "description": "To the north lies In the Garden."
+    },
+    "east": {
+     "to_room": 5710,
+     "description": "To the east lies The South Wing."
+    },
+    "west": {
+     "to_room": 5708,
+     "description": "To the west lies The South Wing."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "5710": {
+   "vnum": 5710,
+   "name": "The South Wing",
+   "map": {
+    "x": 5,
+    "y": -10,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5711,
+     "description": "To the east lies The Southeast Corner."
+    },
+    "south": {
+     "to_room": 5720,
+     "description": "To the south lies The Slave Quarters."
+    },
+    "west": {
+     "to_room": 5709,
+     "description": "To the west lies Middle of the South Wing."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "5711": {
+   "vnum": 5711,
+   "name": "The Southeast Corner",
+   "map": {
+    "x": 6,
+    "y": -10,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5712,
+     "description": "To the north lies The East Wing."
+    },
+    "west": {
+     "to_room": 5710,
+     "description": "To the west lies The South Wing."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and west.",
+   "placeholder": true
+  },
+  "5712": {
+   "vnum": 5712,
+   "name": "The East Wing",
+   "map": {
+    "x": 6,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5713,
+     "description": "To the north lies The East Wing."
+    },
+    "east": {
+     "to_room": 5721,
+     "description": "To the east lies Lecture room on Sophism."
+    },
+    "south": {
+     "to_room": 5711,
+     "description": "To the south lies The Southeast Corner."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "5713": {
+   "vnum": 5713,
+   "name": "The East Wing",
+   "map": {
+    "x": 6,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5714,
+     "description": "To the north lies The East Wing."
+    },
+    "south": {
+     "to_room": 5712,
+     "description": "To the south lies The East Wing."
+    },
+    "west": {
+     "to_room": 5724,
+     "description": "To the west lies In the Garden."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "5714": {
+   "vnum": 5714,
+   "name": "The East Wing",
+   "map": {
+    "x": 6,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5715,
+     "description": "To the north lies The Northeast Corner."
+    },
+    "east": {
+     "to_room": 5722,
+     "description": "To the east lies Lecture Room on Logic."
+    },
+    "south": {
+     "to_room": 5713,
+     "description": "To the south lies The East Wing."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "5715": {
+   "vnum": 5715,
+   "name": "The Northeast Corner",
+   "map": {
+    "x": 6,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 5714,
+     "description": "To the south lies The East Wing."
+    },
+    "west": {
+     "to_room": 5716,
+     "description": "To the west lies The North Wing."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead south and west.",
+   "placeholder": true
+  },
+  "5716": {
+   "vnum": 5716,
+   "name": "The North Wing",
+   "map": {
+    "x": 5,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5715,
+     "description": "To the east lies The Northeast Corner."
+    },
+    "west": {
+     "to_room": 5701,
+     "description": "To the west lies The Northern Side of the Academy."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "5717": {
+   "vnum": 5717,
+   "name": "Lecture room of Heraclitus",
+   "map": {
+    "x": 1,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5704,
+     "description": "To the east lies The West Wing."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "5718": {
+   "vnum": 5718,
+   "name": "Lecture room on Stoicism",
+   "map": {
+    "x": 1,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5706,
+     "description": "To the east lies The West Wing."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "5719": {
+   "vnum": 5719,
+   "name": "The Dining Hall",
+   "map": {
+    "x": 3,
+    "y": -11,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5708,
+     "description": "To the north lies The South Wing."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads north.",
+   "placeholder": true
+  },
+  "5720": {
+   "vnum": 5720,
+   "name": "The Slave Quarters",
+   "map": {
+    "x": 5,
+    "y": -11,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5710,
+     "description": "To the north lies The South Wing."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads north.",
+   "placeholder": true
+  },
+  "5721": {
+   "vnum": 5721,
+   "name": "Lecture room on Sophism",
+   "map": {
+    "x": 7,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 5712,
+     "description": "To the west lies The East Wing."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads west.",
+   "placeholder": true
+  },
+  "5722": {
+   "vnum": 5722,
+   "name": "Lecture Room on Logic",
+   "map": {
+    "x": 8,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 5714,
+     "description": "To the west lies The East Wing."
+    },
+    "down": {
+     "to_room": 5732,
+     "description": "To the down lies The Paradox Closet."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead west and down.",
+   "placeholder": true
+  },
+  "5723": {
+   "vnum": 5723,
+   "name": "In the Garden",
+   "map": {
+    "x": 4,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5701,
+     "description": "To the north lies The Northern Side of the Academy."
+    },
+    "east": {
+     "to_room": 5729,
+     "description": "To the east lies In the Garden."
+    },
+    "south": {
+     "to_room": 5727,
+     "description": "To the south lies In the Garden."
+    },
+    "west": {
+     "to_room": 5728,
+     "description": "To the west lies In the Garden."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "5724": {
+   "vnum": 5724,
+   "name": "In the Garden",
+   "map": {
+    "x": 5,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5729,
+     "description": "To the north lies In the Garden."
+    },
+    "east": {
+     "to_room": 5713,
+     "description": "To the east lies The East Wing."
+    },
+    "south": {
+     "to_room": 5730,
+     "description": "To the south lies In the Garden."
+    },
+    "west": {
+     "to_room": 5727,
+     "description": "To the west lies In the Garden."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "5725": {
+   "vnum": 5725,
+   "name": "In the Garden",
+   "map": {
+    "x": 4,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5765,
+     "description": "To the north lies The Marble Pavillion."
+    },
+    "east": {
+     "to_room": 5730,
+     "description": "To the east lies In the Garden."
+    },
+    "south": {
+     "to_room": 5709,
+     "description": "To the south lies Middle of the South Wing."
+    },
+    "west": {
+     "to_room": 5731,
+     "description": "To the west lies In the Garden."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "5726": {
+   "vnum": 5726,
+   "name": "In the Garden",
+   "map": {
+    "x": 3,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5728,
+     "description": "To the north lies In the Garden."
+    },
+    "east": {
+     "to_room": 5727,
+     "description": "To the east lies In the Garden."
+    },
+    "south": {
+     "to_room": 5731,
+     "description": "To the south lies In the Garden."
+    },
+    "west": {
+     "to_room": 5705,
+     "description": "To the west lies The West Wing."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "5727": {
+   "vnum": 5727,
+   "name": "In the Garden",
+   "map": {
+    "x": 4,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5723,
+     "description": "To the north lies In the Garden."
+    },
+    "east": {
+     "to_room": 5724,
+     "description": "To the east lies In the Garden."
+    },
+    "west": {
+     "to_room": 5726,
+     "description": "To the west lies In the Garden."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "5728": {
+   "vnum": 5728,
+   "name": "In the Garden",
+   "map": {
+    "x": 3,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5723,
+     "description": "To the east lies In the Garden."
+    },
+    "south": {
+     "to_room": 5726,
+     "description": "To the south lies In the Garden."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "5729": {
+   "vnum": 5729,
+   "name": "In the Garden",
+   "map": {
+    "x": 5,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 5724,
+     "description": "To the south lies In the Garden."
+    },
+    "west": {
+     "to_room": 5723,
+     "description": "To the west lies In the Garden."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead south and west.",
+   "placeholder": true
+  },
+  "5730": {
+   "vnum": 5730,
+   "name": "In the Garden",
+   "map": {
+    "x": 5,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5724,
+     "description": "To the north lies In the Garden."
+    },
+    "west": {
+     "to_room": 5725,
+     "description": "To the west lies In the Garden."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "5731": {
+   "vnum": 5731,
+   "name": "In the Garden",
+   "map": {
+    "x": 3,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5726,
+     "description": "To the north lies In the Garden."
+    },
+    "east": {
+     "to_room": 5725,
+     "description": "To the east lies In the Garden."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and east.",
+   "placeholder": true
+  },
+  "5732": {
+   "vnum": 5732,
+   "name": "The Paradox Closet",
+   "map": {
+    "x": 15,
+    "y": -12,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 5733,
+     "description": "To the south lies The Liar's Den."
+    },
+    "up": {
+     "to_room": 5722,
+     "description": "To the up lies Lecture Room on Logic."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and up.",
+   "placeholder": true
+  },
+  "5733": {
+   "vnum": 5733,
+   "name": "The Liar's Den",
+   "map": {
+    "x": 15,
+    "y": -14,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5732,
+     "description": "To the north lies The Paradox Closet.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 5734,
+     "description": "To the south lies The Arrow's Nest.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "5734": {
+   "vnum": 5734,
+   "name": "The Arrow's Nest",
+   "map": {
+    "x": 15,
+    "y": -16,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5733,
+     "description": "To the north lies The Liar's Den."
+    },
+    "south": {
+     "to_room": 5735,
+     "description": "To the south lies The Eternal Race."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "5735": {
+   "vnum": 5735,
+   "name": "The Eternal Race",
+   "map": {
+    "x": 12,
+    "y": -12,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5732,
+     "description": "To the east lies The Paradox Closet.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 5736,
+     "description": "To the south lies Further on the Race Track."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "5736": {
+   "vnum": 5736,
+   "name": "Further on the Race Track",
+   "map": {
+    "x": 12,
+    "y": -14,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5735,
+     "description": "To the north lies The Eternal Race."
+    },
+    "south": {
+     "to_room": 5736,
+     "description": "To the south lies Further on the Race Track."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "5750": {
+   "vnum": 5750,
+   "name": "The Maze under the Garden",
+   "map": {
+    "x": -1,
+    "y": -16,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5752,
+     "description": "To the north lies The Maze under the Garden."
+    },
+    "east": {
+     "to_room": 5750,
+     "description": "To the east lies The Maze under the Garden."
+    },
+    "south": {
+     "to_room": 5751,
+     "description": "To the south lies The Maze under the Garden."
+    },
+    "west": {
+     "to_room": 5750,
+     "description": "To the west lies The Maze under the Garden."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "5751": {
+   "vnum": 5751,
+   "name": "The Maze under the Garden",
+   "map": {
+    "x": -1,
+    "y": -20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5751,
+     "description": "To the north lies The Maze under the Garden."
+    },
+    "east": {
+     "to_room": 5750,
+     "description": "To the east lies The Maze under the Garden."
+    },
+    "south": {
+     "to_room": 5750,
+     "description": "To the south lies The Maze under the Garden."
+    },
+    "west": {
+     "to_room": 5752,
+     "description": "To the west lies The Maze under the Garden."
+    },
+    "up": {
+     "to_room": 5750,
+     "description": "To the up lies The Maze under the Garden."
+    },
+    "down": {
+     "to_room": 5751,
+     "description": "To the down lies The Maze under the Garden."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south, west, up and down.",
+   "placeholder": true
+  },
+  "5752": {
+   "vnum": 5752,
+   "name": "The Maze under the Garden",
+   "map": {
+    "x": -5,
+    "y": -20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5752,
+     "description": "To the north lies The Maze under the Garden."
+    },
+    "east": {
+     "to_room": 5750,
+     "description": "To the east lies The Maze under the Garden."
+    },
+    "south": {
+     "to_room": 5750,
+     "description": "To the south lies The Maze under the Garden."
+    },
+    "west": {
+     "to_room": 5751,
+     "description": "To the west lies The Maze under the Garden."
+    },
+    "up": {
+     "to_room": 5753,
+     "description": "To the up lies The Maze under the Garden."
+    },
+    "down": {
+     "to_room": 5751,
+     "description": "To the down lies The Maze under the Garden."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east, south, west, up and down.",
+   "placeholder": true
+  },
+  "5753": {
+   "vnum": 5753,
+   "name": "The Maze under the Garden",
+   "map": {
+    "x": -7,
+    "y": -12,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5750,
+     "description": "To the east lies The Maze under the Garden."
+    },
+    "south": {
+     "to_room": 5754,
+     "description": "To the south lies The Maze under the Garden."
+    },
+    "west": {
+     "to_room": 5752,
+     "description": "To the west lies The Maze under the Garden."
+    },
+    "up": {
+     "to_room": 5753,
+     "description": "To the up lies The Maze under the Garden."
+    },
+    "down": {
+     "to_room": 5751,
+     "description": "To the down lies The Maze under the Garden."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east, south, west, up and down.",
+   "placeholder": true
+  },
+  "5754": {
+   "vnum": 5754,
+   "name": "The Maze under the Garden",
+   "map": {
+    "x": -7,
+    "y": -15,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5752,
+     "description": "To the east lies The Maze under the Garden."
+    },
+    "south": {
+     "to_room": 5753,
+     "description": "To the south lies The Maze under the Garden."
+    },
+    "west": {
+     "to_room": 5751,
+     "description": "To the west lies The Maze under the Garden."
+    },
+    "up": {
+     "to_room": 5753,
+     "description": "To the up lies The Maze under the Garden."
+    },
+    "down": {
+     "to_room": 5755,
+     "description": "To the down lies The Maze under the Garden."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east, south, west, up\nand down.",
+   "placeholder": true
+  },
+  "5755": {
+   "vnum": 5755,
+   "name": "The Maze under the Garden",
+   "map": {
+    "x": -17,
+    "y": -25,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5750,
+     "description": "To the north lies The Maze under the Garden."
+    },
+    "east": {
+     "to_room": 5756,
+     "description": "To the east lies The Maze under the Garden."
+    },
+    "south": {
+     "to_room": 5750,
+     "description": "To the south lies The Maze under the Garden."
+    },
+    "west": {
+     "to_room": 5754,
+     "description": "To the west lies The Maze under the Garden."
+    },
+    "up": {
+     "to_room": 5762,
+     "description": "To the up lies A Tiny Niche."
+    },
+    "down": {
+     "to_room": 5753,
+     "description": "To the down lies The Maze under the Garden."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south, west, up and down.",
+   "placeholder": true
+  },
+  "5756": {
+   "vnum": 5756,
+   "name": "The Maze under the Garden",
+   "map": {
+    "x": -11,
+    "y": -25,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5754,
+     "description": "To the north lies The Maze under the Garden."
+    },
+    "east": {
+     "to_room": 5752,
+     "description": "To the east lies The Maze under the Garden."
+    },
+    "south": {
+     "to_room": 5756,
+     "description": "To the south lies The Maze under the Garden."
+    },
+    "west": {
+     "to_room": 5753,
+     "description": "To the west lies The Maze under the Garden."
+    },
+    "down": {
+     "to_room": 5757,
+     "description": "To the down lies The Maze under the Garden."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south, west and down.",
+   "placeholder": true
+  },
+  "5757": {
+   "vnum": 5757,
+   "name": "The Maze under the Garden",
+   "map": {
+    "x": -16,
+    "y": -32,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5754,
+     "description": "To the north lies The Maze under the Garden."
+    },
+    "east": {
+     "to_room": 5764,
+     "description": "To the east lies Behind the Secret Panel.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 5755,
+     "description": "To the south lies The Maze under the Garden."
+    },
+    "west": {
+     "to_room": 5758,
+     "description": "To the west lies The Maze under the Garden."
+    },
+    "up": {
+     "to_room": 5751,
+     "description": "To the up lies The Maze under the Garden."
+    },
+    "down": {
+     "to_room": 5753,
+     "description": "To the down lies The Maze under the Garden."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south, west, up and down.",
+   "placeholder": true
+  },
+  "5758": {
+   "vnum": 5758,
+   "name": "The Maze under the Garden",
+   "map": {
+    "x": -24,
+    "y": -32,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5756,
+     "description": "To the north lies The Maze under the Garden."
+    },
+    "east": {
+     "to_room": 5758,
+     "description": "To the east lies The Maze under the Garden."
+    },
+    "south": {
+     "to_room": 5750,
+     "description": "To the south lies The Maze under the Garden."
+    },
+    "west": {
+     "to_room": 5759,
+     "description": "To the west lies The Maze under the Garden."
+    },
+    "up": {
+     "to_room": 5753,
+     "description": "To the up lies The Maze under the Garden."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south, west and up.",
+   "placeholder": true
+  },
+  "5759": {
+   "vnum": 5759,
+   "name": "The Maze under the Garden",
+   "map": {
+    "x": -31,
+    "y": -32,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5760,
+     "description": "To the north lies On the Landing before the Study."
+    },
+    "east": {
+     "to_room": 5756,
+     "description": "To the east lies The Maze under the Garden."
+    },
+    "south": {
+     "to_room": 5753,
+     "description": "To the south lies The Maze under the Garden."
+    },
+    "west": {
+     "to_room": 5757,
+     "description": "To the west lies The Maze under the Garden."
+    },
+    "up": {
+     "to_room": 5757,
+     "description": "To the up lies The Maze under the Garden."
+    },
+    "down": {
+     "to_room": 5750,
+     "description": "To the down lies The Maze under the Garden."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south, west, up and down.",
+   "placeholder": true
+  },
+  "5760": {
+   "vnum": 5760,
+   "name": "On the Landing before the Study",
+   "map": {
+    "x": -31,
+    "y": -24,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 5750,
+     "description": "To the north lies The Maze under the Garden."
+    },
+    "east": {
+     "to_room": 5761,
+     "description": "To the east lies Phaeton's Secret Study.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 5752,
+     "description": "To the south lies The Maze under the Garden."
+    },
+    "west": {
+     "to_room": 5756,
+     "description": "To the west lies The Maze under the Garden."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "5761": {
+   "vnum": 5761,
+   "name": "Phaeton's Secret Study",
+   "map": {
+    "x": -28,
+    "y": -24,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 5760,
+     "description": "To the west lies On the Landing before the Study."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "5762": {
+   "vnum": 5762,
+   "name": "A Tiny Niche",
+   "map": {
+    "x": -14,
+    "y": -20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 5763,
+     "description": "To the west lies The Refuge of Erasmos.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "down": {
+     "to_room": 5755,
+     "description": "To the down lies The Maze under the Garden."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead west and down.",
+   "placeholder": true
+  },
+  "5763": {
+   "vnum": 5763,
+   "name": "The Refuge of Erasmos",
+   "map": {
+    "x": -16,
+    "y": -20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5762,
+     "description": "To the east lies A Tiny Niche."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "5764": {
+   "vnum": 5764,
+   "name": "Behind the Secret Panel",
+   "map": {
+    "x": -13,
+    "y": -32,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use.",
+   "placeholder": true
+  },
+  "5765": {
+   "vnum": 5765,
+   "name": "The Marble Pavillion",
+   "map": {
+    "x": 4,
+    "y": -8,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 5725,
+     "description": "To the south lies In the Garden."
+    },
+    "down": {
+     "to_room": 5750,
+     "description": "To the down lies The Maze under the Garden."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead south and down.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

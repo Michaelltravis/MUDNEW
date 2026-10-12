@@ -1,0 +1,16 @@
+{
+  "piece": "world",
+  "pick": "B",
+  "per_label": { "walk": "B", "forest": "A" },
+  "reasons": [
+    "walk A, frame 0.0s to 0.5s: the title changes from 'A Winding Forest Path' to 'Rocky Outcropping' and the entire scene is replaced in one hard cut (different path shape, different tree layout, character teleported from mid-screen to the right edge); walk B keeps one scene across all six frames (0.0s-1.8s) and the character simply walks east across it from the village edge toward the trees, with the destination grass and trees visible from frame 0.0s.",
+    "walk A, frame 0.5s: the top of the screen shows a block of hard-edged black rectangles where frame 0.9s later shows round tree canopies, i.e. a placeholder/unfinished area is visible during the transition, and the tree layout differs again between 0.5s and 0.9s; walk B has no blank, placeholder or re-laid-out area in any frame.",
+    "walk A, frames 0.9s-2.3s: the character is pinned near the right edge of the frame and the surroundings do not scroll, so the eastward walk never reveals new world; forest A, by contrast, has real depth cues B lacks (canopy shadow over the path, light pooling at the crossroads, rain streaks, soft tree-mass shading) where forest B is a flat, evenly lit tile map with no shadow under any tree."
+  ],
+  "fixes": [
+    { "what": "Remove the hard cut between rooms: when the player reaches an edge, keep the current room drawn and slide/scroll the camera into the next room (or cross-fade with both rooms rendered) instead of swapping the whole scene and relocating the sprite.", "file_hint": "scene-topdown.js" },
+    { "what": "Pre-render the neighbouring room before the crossing so the destination is visible past the edge and no black rectangle/placeholder canopy block appears mid-transition (walk A frame 0.5s).", "file_hint": "world-peek.js" },
+    { "what": "Make the camera follow the character continuously with the world scrolling under it, rather than parking the sprite at the screen edge while the background stays fixed (walk A frames 0.9s-2.3s).", "file_hint": "scene-topdown.js" }
+  ],
+  "confidence": "medium"
+}

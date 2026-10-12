@@ -1,0 +1,844 @@
+{
+ "number": 517,
+ "name": "Garathorm School House",
+ "builders": "Stingray",
+ "atlas_area": 117,
+ "rooms": {
+  "2800": {
+   "vnum": 2800,
+   "name": "Principal's Office",
+   "map": {
+    "x": -12,
+    "y": 2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2801,
+     "description": "To the east lies Inside the School House."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "2801": {
+   "vnum": 2801,
+   "name": "Inside the School House",
+   "map": {
+    "x": -11,
+    "y": 2,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2804,
+     "description": "To the north lies Downstairs Hallway."
+    },
+    "east": {
+     "to_room": 2802,
+     "description": "To the east lies Janitor's Office.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 2832,
+     "description": "To the south lies Entrance of the School House."
+    },
+    "west": {
+     "to_room": 2800,
+     "description": "To the west lies Principal's Office.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "up": {
+     "to_room": 2821,
+     "description": "To the up lies Upstairs Hallway."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north, east,\nsouth, west and up.",
+   "placeholder": true
+  },
+  "2802": {
+   "vnum": 2802,
+   "name": "Janitor's Office",
+   "map": {
+    "x": -10,
+    "y": 2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 2801,
+     "description": "To the west lies Inside the School House."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads west.",
+   "placeholder": true
+  },
+  "2803": {
+   "vnum": 2803,
+   "name": "Counselor's Office",
+   "map": {
+    "x": -10,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 2804,
+     "description": "To the west lies Downstairs Hallway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "2804": {
+   "vnum": 2804,
+   "name": "Downstairs Hallway",
+   "map": {
+    "x": -11,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2807,
+     "description": "To the north lies Downstairs Hallway."
+    },
+    "east": {
+     "to_room": 2803,
+     "description": "To the east lies Counselor's Office."
+    },
+    "south": {
+     "to_room": 2801,
+     "description": "To the south lies Inside the School House."
+    },
+    "west": {
+     "to_room": 2805,
+     "description": "To the west lies Classroom."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "2805": {
+   "vnum": 2805,
+   "name": "Classroom",
+   "map": {
+    "x": -12,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 2804,
+     "description": "To the east lies Downstairs Hallway."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. A way leads east.",
+   "placeholder": true
+  },
+  "2806": {
+   "vnum": 2806,
+   "name": "Outhouse",
+   "map": {
+    "x": -12,
+    "y": 4,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 2807,
+     "description": "To the east lies Downstairs Hallway."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. A way\nleads east.",
+   "placeholder": true
+  },
+  "2807": {
+   "vnum": 2807,
+   "name": "Downstairs Hallway",
+   "map": {
+    "x": -11,
+    "y": 4,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2810,
+     "description": "To the north lies Downstairs Hallway."
+    },
+    "east": {
+     "to_room": 2808,
+     "description": "To the east lies Classroom."
+    },
+    "south": {
+     "to_room": 2804,
+     "description": "To the south lies Downstairs Hallway."
+    },
+    "west": {
+     "to_room": 2806,
+     "description": "To the west lies Outhouse."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "2808": {
+   "vnum": 2808,
+   "name": "Classroom",
+   "map": {
+    "x": -10,
+    "y": 4,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 2807,
+     "description": "To the west lies Downstairs Hallway."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. A way\nleads west.",
+   "placeholder": true
+  },
+  "2809": {
+   "vnum": 2809,
+   "name": "Classroom",
+   "map": {
+    "x": -10,
+    "y": 5,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 2810,
+     "description": "To the west lies Downstairs Hallway."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. A way leads\nwest.",
+   "placeholder": true
+  },
+  "2810": {
+   "vnum": 2810,
+   "name": "Downstairs Hallway",
+   "map": {
+    "x": -11,
+    "y": 5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2813,
+     "description": "To the north lies Downstairs Hallway."
+    },
+    "east": {
+     "to_room": 2809,
+     "description": "To the east lies Classroom."
+    },
+    "south": {
+     "to_room": 2807,
+     "description": "To the south lies Downstairs Hallway."
+    },
+    "west": {
+     "to_room": 2811,
+     "description": "To the west lies Classroom."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "2811": {
+   "vnum": 2811,
+   "name": "Classroom",
+   "map": {
+    "x": -12,
+    "y": 5,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 2810,
+     "description": "To the east lies Downstairs Hallway."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. A way leads\neast.",
+   "placeholder": true
+  },
+  "2812": {
+   "vnum": 2812,
+   "name": "Coach's Office",
+   "map": {
+    "x": -12,
+    "y": 6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2815,
+     "description": "To the north lies Fencing Hall."
+    },
+    "east": {
+     "to_room": 2813,
+     "description": "To the east lies Downstairs Hallway."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "2813": {
+   "vnum": 2813,
+   "name": "Downstairs Hallway",
+   "map": {
+    "x": -11,
+    "y": 6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2816,
+     "description": "To the north lies Downstairs Hallway."
+    },
+    "east": {
+     "to_room": 2814,
+     "description": "To the east lies Classroom."
+    },
+    "south": {
+     "to_room": 2810,
+     "description": "To the south lies Downstairs Hallway."
+    },
+    "west": {
+     "to_room": 2812,
+     "description": "To the west lies Coach's Office."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "2814": {
+   "vnum": 2814,
+   "name": "Classroom",
+   "map": {
+    "x": -10,
+    "y": 6,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 2813,
+     "description": "To the west lies Downstairs Hallway."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. A way leads west.",
+   "placeholder": true
+  },
+  "2815": {
+   "vnum": 2815,
+   "name": "Fencing Hall",
+   "map": {
+    "x": -12,
+    "y": 7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2816,
+     "description": "To the east lies Downstairs Hallway."
+    },
+    "south": {
+     "to_room": 2812,
+     "description": "To the south lies Coach's Office."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and south.",
+   "placeholder": true
+  },
+  "2816": {
+   "vnum": 2816,
+   "name": "Downstairs Hallway",
+   "map": {
+    "x": -11,
+    "y": 7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2817,
+     "description": "To the north lies Behind The School House.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 2813,
+     "description": "To the south lies Downstairs Hallway."
+    },
+    "west": {
+     "to_room": 2815,
+     "description": "To the west lies Fencing Hall."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "2817": {
+   "vnum": 2817,
+   "name": "Behind The School House",
+   "map": {
+    "x": -11,
+    "y": 8,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2819,
+     "description": "To the north lies Dirt Track."
+    },
+    "east": {
+     "to_room": 2818,
+     "description": "To the east lies Horse Stable."
+    },
+    "south": {
+     "to_room": 2816,
+     "description": "To the south lies Downstairs Hallway."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north, east\nand south.",
+   "placeholder": true
+  },
+  "2818": {
+   "vnum": 2818,
+   "name": "Horse Stable",
+   "map": {
+    "x": -10,
+    "y": 8,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2820,
+     "description": "To the north lies Dirt Track."
+    },
+    "west": {
+     "to_room": 2817,
+     "description": "To the west lies Behind The School House."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth and west.",
+   "placeholder": true
+  },
+  "2819": {
+   "vnum": 2819,
+   "name": "Dirt Track",
+   "map": {
+    "x": -11,
+    "y": 9,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2820,
+     "description": "To the east lies Dirt Track."
+    },
+    "south": {
+     "to_room": 2817,
+     "description": "To the south lies Behind The School House."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "2820": {
+   "vnum": 2820,
+   "name": "Dirt Track",
+   "map": {
+    "x": -10,
+    "y": 9,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 2818,
+     "description": "To the south lies Horse Stable."
+    },
+    "west": {
+     "to_room": 2819,
+     "description": "To the west lies Dirt Track."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "2821": {
+   "vnum": 2821,
+   "name": "Upstairs Hallway",
+   "map": {
+    "x": -11,
+    "y": 2,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2824,
+     "description": "To the north lies Upstairs Hallway."
+    },
+    "east": {
+     "to_room": 2822,
+     "description": "To the east lies The Philosophy Classroom."
+    },
+    "down": {
+     "to_room": 2801,
+     "description": "To the down lies Inside the School House."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east and down.",
+   "placeholder": true
+  },
+  "2822": {
+   "vnum": 2822,
+   "name": "The Philosophy Classroom",
+   "map": {
+    "x": -10,
+    "y": 2,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 2821,
+     "description": "To the west lies Upstairs Hallway."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. A way leads west.",
+   "placeholder": true
+  },
+  "2823": {
+   "vnum": 2823,
+   "name": "Classroom",
+   "map": {
+    "x": -10,
+    "y": 3,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 2824,
+     "description": "To the west lies Upstairs Hallway."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. A way leads west.",
+   "placeholder": true
+  },
+  "2824": {
+   "vnum": 2824,
+   "name": "Upstairs Hallway",
+   "map": {
+    "x": -11,
+    "y": 3,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2827,
+     "description": "To the north lies Upstairs Hallway."
+    },
+    "east": {
+     "to_room": 2823,
+     "description": "To the east lies Classroom."
+    },
+    "south": {
+     "to_room": 2821,
+     "description": "To the south lies Upstairs Hallway."
+    },
+    "west": {
+     "to_room": 2825,
+     "description": "To the west lies Woodcrafting Workshop."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "2825": {
+   "vnum": 2825,
+   "name": "Woodcrafting Workshop",
+   "map": {
+    "x": -12,
+    "y": 3,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2824,
+     "description": "To the east lies Upstairs Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads east.",
+   "placeholder": true
+  },
+  "2826": {
+   "vnum": 2826,
+   "name": "Mathematics Classroom",
+   "map": {
+    "x": -12,
+    "y": 4,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2827,
+     "description": "To the east lies Upstairs Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads east.",
+   "placeholder": true
+  },
+  "2827": {
+   "vnum": 2827,
+   "name": "Upstairs Hallway",
+   "map": {
+    "x": -11,
+    "y": 4,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2828,
+     "description": "To the north lies Upstairs Hallway."
+    },
+    "south": {
+     "to_room": 2824,
+     "description": "To the south lies Upstairs Hallway."
+    },
+    "west": {
+     "to_room": 2826,
+     "description": "To the west lies Mathematics Classroom."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "2828": {
+   "vnum": 2828,
+   "name": "Upstairs Hallway",
+   "map": {
+    "x": -11,
+    "y": 5,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2830,
+     "description": "To the north lies Science Classroom."
+    },
+    "east": {
+     "to_room": 2829,
+     "description": "To the east lies History Classroom."
+    },
+    "south": {
+     "to_room": 2827,
+     "description": "To the south lies Upstairs Hallway."
+    },
+    "west": {
+     "to_room": 2831,
+     "description": "To the west lies Classroom."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "2829": {
+   "vnum": 2829,
+   "name": "History Classroom",
+   "map": {
+    "x": -10,
+    "y": 5,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 2828,
+     "description": "To the west lies Upstairs Hallway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "2830": {
+   "vnum": 2830,
+   "name": "Science Classroom",
+   "map": {
+    "x": -11,
+    "y": 6,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 2828,
+     "description": "To the south lies Upstairs Hallway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "2831": {
+   "vnum": 2831,
+   "name": "Classroom",
+   "map": {
+    "x": -12,
+    "y": 5,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 2828,
+     "description": "To the east lies Upstairs Hallway."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. A way leads east.",
+   "placeholder": true
+  },
+  "2832": {
+   "vnum": 2832,
+   "name": "Entrance of the School House",
+   "map": {
+    "x": -11,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2801,
+     "description": "To the north lies Inside the School House.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 9787,
+     "description": "To the south lies Before the Garathorm School House."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

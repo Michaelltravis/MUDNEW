@@ -1,0 +1,323 @@
+{
+ "number": 423,
+ "name": "Hommlet",
+ "builders": "Helver",
+ "atlas_area": 23,
+ "rooms": {
+  "8207": {
+   "vnum": 8207,
+   "name": "Store Room",
+   "map": {
+    "x": 23,
+    "y": 23,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 8205,
+     "description": "To the up lies Modest Farmhouse And Barn."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads up.",
+   "placeholder": true
+  },
+  "8219": {
+   "vnum": 8219,
+   "name": "The Top Of The Stairs",
+   "map": {
+    "x": 21,
+    "y": 30,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8223,
+     "description": "To the north lies Zert's Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 8224,
+     "description": "To the east lies A Private Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 8221,
+     "description": "To the south lies Gundigoot's Quarters.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 8225,
+     "description": "To the west lies Furnok's Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "down": {
+     "to_room": 8215,
+     "description": "To the down lies The Inn Of The Welcome Wench."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south, west and down.",
+   "placeholder": true
+  },
+  "8220": {
+   "vnum": 8220,
+   "name": "The Secret Store Room",
+   "map": {
+    "x": 21,
+    "y": 30,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 8222,
+     "description": "To the south lies The Store Room."
+    },
+    "up": {
+     "to_room": 8215,
+     "description": "To the up lies The Inn Of The Welcome Wench."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead south and up.",
+   "placeholder": true
+  },
+  "8221": {
+   "vnum": 8221,
+   "name": "Gundigoot's Quarters",
+   "map": {
+    "x": 21,
+    "y": 29,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8219,
+     "description": "To the north lies The Top Of The Stairs."
+    },
+    "down": {
+     "to_room": 8217,
+     "description": "To the down lies The Kitchen Of The Welcome Wench."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and down.",
+   "placeholder": true
+  },
+  "8222": {
+   "vnum": 8222,
+   "name": "The Store Room",
+   "map": {
+    "x": 21,
+    "y": 29,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8220,
+     "description": "To the north lies The Secret Store Room."
+    },
+    "up": {
+     "to_room": 8217,
+     "description": "To the up lies The Kitchen Of The Welcome Wench."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and up.",
+   "placeholder": true
+  },
+  "8223": {
+   "vnum": 8223,
+   "name": "Zert's Room",
+   "map": {
+    "x": 21,
+    "y": 31,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 8219,
+     "description": "To the south lies The Top Of The Stairs."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "8224": {
+   "vnum": 8224,
+   "name": "A Private Room",
+   "map": {
+    "x": 22,
+    "y": 30,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 8219,
+     "description": "To the west lies The Top Of The Stairs."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "8225": {
+   "vnum": 8225,
+   "name": "Furnok's Room",
+   "map": {
+    "x": 20,
+    "y": 30,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 8219,
+     "description": "To the east lies The Top Of The Stairs."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads east.",
+   "placeholder": true
+  },
+  "8241": {
+   "vnum": 8241,
+   "name": "The Upper Hall",
+   "map": {
+    "x": 28,
+    "y": 39,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 8243,
+     "description": "To the east lies The Assistant Cleric's Quarters."
+    },
+    "west": {
+     "to_room": 8244,
+     "description": "To the west lies The Chief Priest's Chambers."
+    },
+    "up": {
+     "to_room": 8241,
+     "description": "To the up lies The Upper Hall."
+    },
+    "down": {
+     "to_room": 8239,
+     "description": "To the down lies The Vestry."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east, west, up and down.",
+   "placeholder": true
+  },
+  "8242": {
+   "vnum": 8242,
+   "name": "The Sacred Trophies Gallery",
+   "map": {
+    "x": 26,
+    "y": 39,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 8240,
+     "description": "To the up lies The Study And Audience Chamber."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads up.",
+   "placeholder": true
+  },
+  "8243": {
+   "vnum": 8243,
+   "name": "The Assistant Cleric's Quarters",
+   "map": {
+    "x": 29,
+    "y": 39,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 8241,
+     "description": "To the west lies The Upper Hall."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "8244": {
+   "vnum": 8244,
+   "name": "The Chief Priest's Chambers",
+   "map": {
+    "x": 27,
+    "y": 39,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 8241,
+     "description": "To the east lies The Upper Hall."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads east.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

@@ -1,0 +1,16 @@
+{
+  "piece": "feel",
+  "pick": "A",
+  "per_label": { "fight": "A", "combat": "A" },
+  "reasons": [
+    "fight: A's bottom bar changes from a welcome line at 0.0s to 'You killed a rat' from 1.5s onward and the player's red HP bar visibly shortens across frames, so the outcome reads frame by frame; B's 8 frames are near-identical (knight stands beside the fountain, HP bar full in every frame) with no visible enemy, swing, or state change, so nothing tells you a fight is even happening.",
+    "combat: A shows stacked damage numbers '4 / 6 / 6' floating above the player, a raised-sword swing pose, a white target box on the rat, and a second rat lying flat (dead) at the river, i.e. hit, target, and result are all legible; B shows only a 'corpse of grav...' label over a static knight, HP 207/207 untouched, no enemy sprite, no numbers, no flash.",
+    "combat: A's HUD stays out of the play area (thin bottom bar with HP, weapon, armor, player count) while the action sits in open field; B's bottom bar packs a 1-5 skill row (attack/flee/bash/cleave/kick), three HP/mana/stamina bars and a NORMAL badge, but none of it reflects the moment, no cooldown state, no highlighted action, no threat prompt, so it never tells the player what to do next."
+  ],
+  "fixes": [
+    { "what": "Make the enemy actually appear and telegraph: draw the mob sprite adjacent to the player with a visible wind-up pose or flash 0.3-0.5 s before its hit lands, then a recoil/knockback on impact so successive storyboard frames differ.", "file_hint": "src/web_isometric/platformer/scene-topdown.js" },
+    { "what": "Add legible floating damage numbers (player and enemy), an impact flash on the target and a brief screen/sprite shake on hits and kills, plus a 'You killed X' style result line so who is winning reads without prose.", "file_hint": "src/web_isometric/platformer/fx-abilities.js" },
+    { "what": "Make the skill bar reactive: highlight the ready/suggested ability, grey out on cooldown, pulse the target frame and show a small threat cue ('bash incoming') near the action, not over it.", "file_hint": "src/web_isometric/platformer/ui-arpg.js" }
+  ],
+  "confidence": "high"
+}

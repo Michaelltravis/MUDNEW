@@ -1,0 +1,21 @@
+{
+  "piece": "pacing",
+  "pass": true,
+  "per_question": {
+    "Q1": "pass",
+    "Q2": "pass",
+    "Q3": "pass",
+    "Q4": "pass",
+    "Q5": "pass",
+    "Q6": "pass"
+  },
+  "evidence": [
+    "Q1 fight_keeper: duration_s 41.2, ended mob_killed, rounds 11; last line '[t=  41.2s] grave keeper is DEAD! You killed grave keeper.' fight_bear: duration_s 35.6, ended mob_killed, rounds 9; '[t=  35.6s] Grimclaw the Great Bear is DEAD!'",
+    "Q2 fight_keeper: first telegraph '[t=   0.8s] grave keeper rears back - a crushing blow is coming! (brace or sidestep!)'; transcript shows 4 telegraph lines (0.8s, 12.9s, 25.1s, 41.2s) vs rounds/4 = 2.75. fight_bear: first telegraph '[t=   3.3s] Grimclaw the Great Bear drops low and winds up to SWEEP the whole area'; 3 telegraph lines (3.3s, 19.4s, 35.6s) vs rounds/4 = 2.25. NOTE: stats claim telegraph=12 and 8, which overcounts the transcript (probably counting wrapped/prompt lines).",
+    "Q3 counted from transcripts, not stats: keeper 12 ticks, 5 with telegraph/stagger/press-the-opening (0.8, 12.9, 17.0, 25.1, 41.2) = 58% without decision, under the 60 cap; bear 10 ticks, 5 with (3.3, 11.3, 15.4, 19.4, 35.6) = 50% without. NOTE: stats report rounds_without_decision_pct 0 and decision_rounds 16 > rounds 11 - the stat counter is broken and was not relied on.",
+    "Q4 fight_keeper: player_hit 11 / player_miss 0; '[t=  12.9s] grave keeper reels - STAGGERED! Strike now!' then '[t=  17.0s] You press the opening while grave keeper reels - wide open!'. fight_bear: player_hit 10 / player_miss 0; '[t=  11.3s] Grimclaw the Great Bear reels - STAGGERED! Strike now!' then '[t=  15.4s] You press the opening while Grimclaw the Great Bear reels - wide open!'. The only player command in either transcript is 'kill'; no brace/sidestep was ever typed, so the stagger-exploit is the only qualifying non-auto action.",
+    "Q5: no 'Your <adjective> <verb>s' forms; all player lines are 'Your slash <verb>s ...'. Nearest repetition is bear 'Your slash devastates Grimclaw the Great Bear! [36 damage]' at 15.4s and 27.5s, and 'Your slash connects - it devastates ...' at 11.3s/23.5s/35.6s - never 3 consecutive rounds. Minor: '*** CRITICAL HIT! ***' at bear 23.5s and 35.6s deals 36, identical to non-crit hits.",
+    "Q6: player HP never crossed 25% (keeper min 136/207 = 66%, bear min 159/207 = 77%), low_hp_nag 0 in both, so the single-warning rule is untested rather than violated. Mob HP bar moved 100% in both fights (802->0 in 41.2s, 364->0 in 35.6s)."
+  ],
+  "fixes": []
+}

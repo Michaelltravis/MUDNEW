@@ -84,20 +84,20 @@ gods rest between their divine duties."""
             self.world.rooms[vnum] = room
             
     async def create_midgaard_zone(self):
-        """Create the main city zone - Midgaard."""
+        """Create the main city zone - Garathorm."""
         from world import Zone, Room
         
         zone = Zone(30)
-        zone.name = "The City of Midgaard"
+        zone.name = "The City of Garathorm"
         zone.builders = "Realmers"
         zone.top = 3099
         zone.lifespan = 2  # 30 min (2 ticks × 15 min)
         zone.reset_interval_seconds = zone.lifespan * 900
         
-        # Room 3001: Temple of Midgaard (starting room)
+        # Room 3001: Temple of Garathorm (starting room)
         room = Room(3001)
-        room.name = "The Temple of Midgaard"
-        room.description = """You stand in the grand Temple of Midgaard, a place of healing and
+        room.name = "The Temple of Garathorm"
+        room.description = """You stand in the grand Temple of Garathorm, a place of healing and
 sanctuary for weary adventurers. Towering marble columns rise to a
 vaulted ceiling painted with scenes of ancient heroes. Soft candlelight
 illuminates the altar at the center, where priests tend to the wounded.
@@ -115,7 +115,7 @@ The exit leads south to the main square of the city."""
         room.name = "Temple Square"
         room.description = """The cobblestone square stretches before you, bustling with activity.
 Merchants hawk their wares, children play between the market stalls,
-and guards patrol the perimeter. The Temple of Midgaard rises to the
+and guards patrol the perimeter. The Temple of Garathorm rises to the
 north, its white marble gleaming in the sunlight. A magnificent marble
 fountain gurgles peacefully in the center, its crystal waters sparkling.
 The main road extends east and west, while a narrow alley leads south."""
@@ -150,8 +150,8 @@ north, its windows displaying gleaming swords and armor."""
         
         # Room 3004: East Gate
         room = Room(3004)
-        room.name = "East Gate of Midgaard"
-        room.description = """The massive stone gates of Midgaard loom before you. Two enormous 
+        room.name = "East Gate of Garathorm"
+        room.description = """The massive stone gates of Garathorm loom before you. Two enormous 
 towers flank the archway, and guards in chain mail scrutinize all who
 pass. Beyond the gates, a dirt road leads east into the wilderness,
 toward the Haon Dor forest. The safety of the city lies to the west."""
@@ -182,8 +182,8 @@ reading 'The Prancing Pony Inn' swings gently in the breeze."""
         
         # Room 3006: West Gate
         room = Room(3006)
-        room.name = "West Gate of Midgaard"
-        room.description = """The western gate of Midgaard opens onto a road leading to distant
+        room.name = "West Gate of Garathorm"
+        room.description = """The western gate of Garathorm opens onto a road leading to distant
 mountains. The gate is smaller than its eastern counterpart but no
 less fortified. Merchants with loaded wagons queue to enter the city,
 their goods bound for the markets. To the west, adventure awaits."""
@@ -230,7 +230,7 @@ rest - a hidden door, perhaps?"""
         # Room 3012: Thieves' Guild
         room = Room(3012)
         room.name = "The Thieves' Guild"
-        room.description = """You've discovered the legendary Thieves' Guild of Midgaard. The
+        room.description = """You've discovered the legendary Thieves' Guild of Garathorm. The
 underground chamber is dimly lit by guttering torches. Hooded figures
 converse in hushed tones at tables scattered about the room. A bar
 serves drinks of dubious origin, and a guildmaster sits in shadows."""
@@ -469,7 +469,7 @@ city below. This is a peaceful place where adventurers can rest."""
         # Forest entrance
         room = Room(4001)
         room.name = "The Forest Road"
-        room.description = """The cobblestone road from Midgaard gives way to a dirt path as
+        room.description = """The cobblestone road from Garathorm gives way to a dirt path as
 you enter the ancient Haon Dor forest. Massive oak trees tower 
 overhead, their branches forming a green canopy that filters the 
 sunlight. The air is thick with the scent of earth and growing things.
@@ -1455,12 +1455,24 @@ domain, mortal? Then face the flames of eternity!"''',
         self.world.obj_prototypes.update({int(k): v for k, v in zone.objects.items()})
         
     async def save_zones(self):
-        """Save all zones to disk."""
+        """Save all zones to disk.
+
+        Never overwrites an existing zone file: the default world is a
+        small bootstrap fallback, and clobbering real hand-built zone
+        files (severing all of Garathorm's out-of-town connections) is
+        far worse than skipping a save.
+        """
         zones_dir = os.path.join(self.config.WORLD_DIR, 'zones')
         os.makedirs(zones_dir, exist_ok=True)
-        
+
         for zone_num, zone in self.world.zones.items():
             filepath = os.path.join(zones_dir, f"zone_{zone_num:03d}.json")
+            if os.path.exists(filepath):
+                logger.warning(
+                    f"NOT saving default zone {zone_num} ({zone.name}): "
+                    f"{filepath} already exists and would be overwritten"
+                )
+                continue
             with open(filepath, 'w') as f:
                 json.dump(zone.to_dict(), f, indent=2)
             logger.info(f"Saved zone {zone_num}: {zone.name}")

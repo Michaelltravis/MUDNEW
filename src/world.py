@@ -23,6 +23,39 @@ from weather import Weather
 logger = logging.getLogger('Misthollow.World')
 
 
+def zone_of(room) -> Optional[int]:
+    """The number of the zone a room belongs to: the zone file that holds it. Never worked out
+    from the vnum alone, since a zone may span many hundred-blocks (the atlas's Trade Road runs
+    from 1301 to 19748); only a room not loaded from a zone falls back to vnum // 100."""
+    if room is None:
+        return None
+    zone = getattr(room, 'zone', None)
+    if zone is not None:
+        return zone.number
+    vnum = getattr(room, 'vnum', None)
+    return vnum // 100 if isinstance(vnum, int) else None
+
+
+_RENUMBER = None
+
+
+def renumbered(vnum):
+    """The room that stands in for one of ours the atlas re-lay removed (world/atlas/renumber.json),
+    so a saved place (where a player logged out, their recall point) still lands nearby; any
+    other vnum comes back unchanged."""
+    global _RENUMBER
+    if _RENUMBER is None:
+        try:
+            with open(os.path.join(Config.WORLD_DIR, 'atlas', 'renumber.json')) as f:
+                _RENUMBER = {int(k): v for k, v in json.load(f).get('rooms', {}).items()}
+        except (OSError, ValueError):
+            _RENUMBER = {}
+    try:
+        return _RENUMBER.get(int(vnum), vnum)
+    except (TypeError, ValueError):
+        return vnum
+
+
 class Room:
     """A room in the MUD world."""
     
@@ -37,7 +70,10 @@ class Room:
         self.extra_descs = {}  # keyword -> description
         self.hidden_items = []  # [{vnum, search_difficulty, requires_light, requires_detect_magic, reveal_message}, ...]
         self.puzzles = []  # Puzzle definitions for this room
-        
+        self.map = None  # its place on the zone's map, {x, y, z} (the atlas's; north is +y)
+        self.stated_look = None  # a look its zone states (room_looks.py)
+        self.look, self.look_why = None, None
+
         # Contents
         self.characters = []  # Players and NPCs in room
         self.items = []  # Objects in room
@@ -53,6 +89,8 @@ class Room:
         """Determine if the room is currently dark based on time/flags."""
         if 'dark' in self.flags:
             return True
+        if 'lit' in self.flags:     # lit day and night (a quest's private trial)
+            return False
 
         if not game_time:
             return False
@@ -66,6 +104,18 @@ class Room:
             'flying', 'desert', 'swamp'
         }
         return self.sector_type in outdoor_sectors
+
+    def admits(self, ch) -> bool:
+        """Whether ch may be here: a room only immortals may enter (the God Rooms, `imm_only`) or
+        a room of a land sealed until built takes immortals only; creatures never count as
+        immortal. The flag is looked at first, since asking whether someone is immortal reads
+        their account from disk."""
+        if 'imm_only' not in self.flags and not getattr(self.zone, 'sealed', False):
+            return True
+        try:
+            return bool(getattr(ch, 'is_immortal', False))
+        except Exception:
+            return False
 
     def get_visible_exits(self, player: Optional['Player'] = None) -> Dict[str, dict]:
         """Return exits visible to the player (hidden exits require discovery)."""
@@ -386,6 +436,11 @@ class Room:
 
                     for msg in debuff_messages:
                         await player.send(msg)
+
+                # Detect Evil (spells.py): evil shows to the one who looks for it
+                if ('detect_evil' in (getattr(player, 'affect_flags', None) or set())
+                        and (getattr(char, 'alignment', 0) or 0) <= -350):
+                    await player.send(f"{c['red']}{char.name} is wreathed in a dull red aura.{c['reset']}")
                     
     async def send_to_room(self, message: str, exclude: List = None, wake_sleepers: bool = False):
         """Send a message to everyone in the room (sleeping players don't see messages unless wake_sleepers=True)."""
@@ -414,8 +469,17 @@ class Room:
             # Remove runtime-only references
             if 'room' in ex:
                 ex.pop('room')
+            # the bar across a sealed zone's way in is made at load, never saved
+            if 'door' in ex:
+                import doors
+                door = doors.unsealed_door(e)
+                if door:
+                    ex['door'] = door
+                else:
+                    ex.pop('door')
+            ex.pop('_unsealed_door', None)
             exits[d] = ex
-        return {
+        out = {
             'vnum': self.vnum,
             'name': self.name,
             'description': self.description,
@@ -428,15 +492,27 @@ class Room:
             'mob_resets': self.mob_resets,
             'obj_resets': self.obj_resets,
         }
+        if self.map:
+            out['map'] = dict(self.map)
+        if getattr(self, 'stated_look', None):
+            out['look'] = self.stated_look
+        return out
         
+    # some zones (90, 100, 110, 130, 160) were written with `title` and `terrain`
+    TERRAIN_SECTORS = {'indoors': 'inside', 'underground': 'cave', 'undead': 'dungeon', 'planar': 'mountain',
+                       'water_surface': 'water_swim'}
+
     @classmethod
     def from_dict(cls, data: dict) -> 'Room':
         """Create a room from dictionary data."""
         room = cls(data['vnum'])
-        room.name = data.get('name', 'An Empty Room')
+        room.name = data.get('name') or data.get('title') or 'An Empty Room'
         room.description = data.get('description', '')
-        room.sector_type = data.get('sector_type', 'inside')
+        terrain = data.get('terrain')
+        room.sector_type = data.get('sector_type') or (cls.TERRAIN_SECTORS.get(terrain, terrain) if terrain else 'inside')
         room.flags = set(data.get('flags', []))
+        # how the 3D client draws it, when the zone says so outright (room_looks.py)
+        room.stated_look = data.get('look')
         
         # Process exits and convert flag-based door format to door objects
         room.exits = {}
@@ -484,6 +560,7 @@ class Room:
         room.puzzles = data.get('puzzles', [])
         room.mob_resets = data.get('mob_resets', [])
         room.obj_resets = data.get('obj_resets', [])
+        room.map = data.get('map') or None
         return room
 
 
@@ -505,13 +582,14 @@ class Zone:
         self.rooms: Dict[int, Room] = {}
         self.mobs: Dict[int, dict] = {}  # mob prototypes
         self.objects: Dict[int, dict] = {}  # object prototypes
+        self.sealed = False  # a land still being built: its ways in are barred (doors.seal_zones)
 
         # Initialize weather for this zone
         self.weather = Weather(number)
         
     def to_dict(self) -> dict:
         """Convert zone to dictionary for saving."""
-        return {
+        out = {
             'number': self.number,
             'name': self.name,
             'builders': self.builders,
@@ -522,6 +600,9 @@ class Zone:
             'mobs': self.mobs,
             'objects': self.objects,
         }
+        if self.sealed:
+            out['sealed'] = True
+        return out
         
     @classmethod
     def from_dict(cls, data: dict) -> 'Zone':
@@ -546,6 +627,7 @@ class Zone:
 
         zone.reset_mode = data.get('reset_mode', 2)
         zone.top = data.get('top', 0)
+        zone.sealed = bool(data.get('sealed'))
         
         # Load rooms
         for vnum_str, room_data in data.get('rooms', {}).items():
@@ -593,13 +675,76 @@ class World:
         else:
             logger.warning(f"Zones directory not found: {zones_dir}")
             
-        # If no zones loaded, create default world
+        # If no zones loaded, create default world. Only treat this as a
+        # fresh install when there were no zone files at all — if files
+        # exist but every one failed to load, that's data corruption and
+        # rebuilding (let alone saving) the tiny default world on top of
+        # it would make things worse.
         if not self.zones:
+            zone_files = (
+                [f for f in os.listdir(zones_dir) if f.endswith('.json')]
+                if os.path.exists(zones_dir) else []
+            )
+            if zone_files:
+                logger.error(
+                    f"{len(zone_files)} zone files exist in {zones_dir} but "
+                    f"none loaded — refusing to build the default world over "
+                    f"them. Fix the zone files (or restore them with "
+                    f"'git checkout -- world/zones/') and restart."
+                )
+                raise RuntimeError("Zone files present but none could be loaded")
             logger.info("No zones found, creating default world...")
             await self.create_default_world()
             
         # Link room exits
         self.link_exits()
+        # who lives where, zone by zone (world/population: bosses in their rooms, doors to keys)
+        try:
+            import population
+            population.apply(self)
+        except Exception as e:
+            logger.error(f"population failed: {e}")
+        # Tidy the imported door data (both sides agree) and remember the reset state
+        try:
+            import doors
+            doors.normalize(self)
+            doors.seal_zones(self)          # lands still being built: their ways in barred
+        except Exception as e:
+            logger.error(f"door normalize failed: {e}")
+        # rooms that store their place on the map (the atlas's): say what disagrees with it
+        try:
+            from map_system import check_stored_cells
+            problems = check_stored_cells(self)
+            for p in problems[:20]:
+                logger.warning(f"map: {p}")
+            if len(problems) > 20:
+                logger.warning(f"map: ...and {len(problems) - 20} more")
+        except Exception as e:
+            logger.error(f"map check failed: {e}")
+
+        # Canary check: if zone 30 loaded but looks like the tiny default-world
+        # stub (the old bootstrap bug overwrote real zone files with it), the
+        # big Garathorm - Market Square, the gates, the sewers - is missing.
+        # Try to self-heal from git, then reload once.
+        if not getattr(self, '_world_heal_attempted', False) and self._world_looks_corrupted():
+            self._world_heal_attempted = True
+            logger.error(
+                "WORLD DATA CORRUPTED: zone 30 is the 13-room stub town, not "
+                "Northern Garathorm (Market Square/sewers missing). Attempting "
+                "automatic restore from git..."
+            )
+            if self._restore_world_from_git():
+                logger.error("Restore succeeded - reloading world.")
+                self.zones.clear()
+                self.rooms.clear()
+                self.mob_prototypes.clear()
+                self.obj_prototypes.clear()
+                await self.load()
+                return
+            raise RuntimeError(
+                "World data is the corrupted stub and automatic restore failed. "
+                "Run: git checkout -- world/zones/   then restart the server."
+            )
 
         # Seed puzzles
         try:
@@ -631,8 +776,76 @@ class World:
         except Exception as e:
             logger.warning(f"Failed to register legendary items: {e}")
 
+        # every item's level, from the creatures that wear and drop it (gear_look.py: how the
+        # 3D client draws gear, and the level the tooltips show)
+        try:
+            import gear_look
+            gear_look.build_item_levels(self)
+        except Exception as e:
+            logger.warning(f"Failed to work out item levels: {e}")
+        # what each room looks like in 3D (room_looks.py: a cave looks like a cave)
+        try:
+            import room_looks
+            room_looks.classify(self)
+        except Exception as e:
+            logger.warning(f"Failed to work out room looks: {e}")
+
+        # how many of each set's pieces one hero can wear (sets.py: every tier can be reached)
+        try:
+            import sets
+            sets.build_set_caps(self)
+        except Exception as e:
+            logger.warning(f"Failed to work out set sizes: {e}")
+
+        # the tutorials' directions, from the map as it is ("south twice, then west three times")
+        try:
+            import quests
+            for missing in quests.apply_routes(self):
+                logger.warning(f"quest route not found: {missing}")
+        except Exception as e:
+            logger.warning(f"Failed to work out quest routes: {e}")
+
         logger.info(f"World loaded: {len(self.zones)} zones, {len(self.rooms)} rooms")
         
+    def zone_of_vnum(self, vnum: int) -> int:
+        """The zone a room vnum belongs to: the zone holding that room, or for a vnum not built
+        yet, the zone whose rooms already span it (else vnum // 100)."""
+        room = self.rooms.get(vnum)
+        if room is not None and room.zone is not None:
+            return room.zone.number
+        for number, zone in self.zones.items():
+            if zone.rooms and min(zone.rooms) <= vnum <= max(zone.rooms) and number == vnum // 100:
+                return number
+        return vnum // 100
+
+    def _world_looks_corrupted(self):
+        """True when zone 30 is present but is the default-world stub: the
+        real Northern Garathorm has 70+ rooms including 3054 (Temple Altar)
+        and sewer links; the stub has 13 rooms and neither."""
+        z30 = self.zones.get(30)
+        if not z30:
+            return False
+        return len(z30.rooms) < 30 and 3054 not in self.rooms
+
+    def _restore_world_from_git(self):
+        """Best-effort `git checkout -- world/zones/` to recover clobbered
+        zone files. Returns True when the canary room is back on disk."""
+        import subprocess
+        repo = os.path.dirname(self.config.WORLD_DIR)
+        try:
+            subprocess.run(
+                ['git', 'checkout', '--', 'world/zones/'],
+                cwd=repo, capture_output=True, timeout=30, check=True,
+            )
+        except Exception as e:
+            logger.error(f"git restore failed: {e}")
+            return False
+        try:
+            with open(os.path.join(self.config.WORLD_DIR, 'zones', 'zone_030.json')) as f:
+                return '"3054"' in f.read()
+        except Exception:
+            return False
+
     async def load_zone_file(self, filepath: str):
         """Load a zone from a JSON file."""
         try:
@@ -735,6 +948,7 @@ class World:
                         mob.home_zone = zone.number  # Set home zone for movement restrictions
                         room.characters.append(mob)
                         self.npcs.append(mob)
+                        self._ensure_shop(mob)  # stock shopkeepers with role-appropriate goods
                         
             # Spawn objects
             for obj_reset in room.obj_resets:
@@ -749,14 +963,113 @@ class World:
                     obj = create_object(obj_vnum, self)
                     if obj:
                         room.items.append(obj)
-                        
+
+        # doors go back to how the zone starts (not where a player stands)
+        try:
+            import doors
+            doors.reset_zone(self, zone)
+        except Exception as e:
+            logger.debug(f"door reset failed in zone {getattr(zone, 'number', '?')}: {e}")
+
         zone.age = 0
         zone.last_reset_at = time.time()
         zone.next_reset_at = zone.last_reset_at + zone.reset_interval_seconds
         
+    # role keyword -> item_types the shop sells
+    _SHOP_ROLES = [
+        (('baker', 'bread'), ['food']),
+        (('butcher', 'meat'), ['food']),
+        (('grocer', 'green', 'produce'), ['food', 'drink', 'drinkcon']),
+        (('weaponsmith', 'weapon', 'fletcher', 'bowyer', 'blade'), ['weapon']),
+        (('blacksmith', 'smith'), ['weapon', 'armor']),
+        (('armourer', 'armorer', 'armor', 'leather'), ['armor']),
+        (('tailor', 'clothier', 'robe'), ['armor']),
+        (('wizard', 'mage', 'magic', 'sorcer', 'witch', 'conjurer', 'enchant'), ['scroll', 'potion', 'wand', 'staff']),
+        (('alchemist', 'apothecary', 'potion', 'herbalist'), ['potion', 'drink']),
+        (('jewel', 'gem', 'jeweler'), ['treasure']),
+        (('tavern', 'bartender', 'innkeeper', 'barkeep', 'bar', 'pub'), ['drink', 'drinkcon', 'food']),
+        (('captain', 'guard', 'quartermaster'), ['weapon', 'armor']),
+        (('general', 'merchant', 'trader', 'pawn', 'peddler', 'vendor', 'shopkeep', 'keeper', 'clerk', 'salesman'),
+         ['food', 'drink', 'drinkcon', 'light', 'container', 'other', 'treasure']),
+    ]
+
+    def _shop_role(self, name: str):
+        n = (name or '').lower()
+        for keys, sells in self._SHOP_ROLES:
+            if any(k in n for k in keys):
+                buys = list(dict.fromkeys(sells + ['treasure', 'other']))
+                return sells, buys
+        # sensible default: a general store
+        return (['food', 'drink', 'light', 'container', 'other', 'treasure'], ['treasure', 'other', 'weapon', 'armor'])
+
+    def _ensure_shop(self, mob):
+        """Make sure every shopkeeper carries a proper, role-appropriate stock.
+        Many zone shop_configs are thin (a weaponsmith selling one dagger) or
+        have malformed buy lists; this enriches an existing shop up to a full
+        selection drawn from the world's objects, and creates one outright for
+        any shopkeeper that has none."""
+        if getattr(mob, 'special', '') != 'shopkeeper':
+            return
+        try:
+            from shops import ShopManager
+            from objects import create_object
+            TARGET = 12
+            # lazily index object prototypes by item_type
+            if not hasattr(self, '_obj_by_type'):
+                self._obj_by_type = {}
+                for ov, op in self.obj_prototypes.items():
+                    t = str(op.get('item_type') or op.get('type') or 'other').lower()
+                    self._obj_by_type.setdefault(t, []).append(ov)
+            sells_types, buys_types = self._shop_role(getattr(mob, 'name', ''))
+            zlow = (mob.vnum // 100) * 100
+            zhigh = zlow + 99
+            candidates = []
+            for t in sells_types:
+                pool = self._obj_by_type.get(t, [])
+                local = [v for v in pool if zlow <= v <= zhigh]
+                for v in (local if local else pool):
+                    if v not in candidates:
+                        candidates.append(v)
+            shop = ShopManager.shops.get(mob.vnum)
+            if shop:
+                if getattr(shop, '_autostocked', False):
+                    return   # already enriched once; don't re-stock every reset
+                shop._autostocked = True
+                # repair a malformed/empty buy list (e.g. a vnum where a type belongs)
+                if not shop.buy_types or any(not str(b).isalpha() for b in shop.buy_types):
+                    shop.buy_types = buys_types
+                have = set(getattr(shop, 'sells_vnums', []) or [])
+                for v in candidates:
+                    if len(shop.inventory) >= TARGET:
+                        break
+                    if v in have:
+                        continue
+                    obj = create_object(v, self)
+                    if obj:
+                        shop.inventory.append(obj)
+                        shop.sells_vnums.append(v)
+                        have.add(v)
+                logger.info(f"Stocked shop for {getattr(mob, 'name', '?')} (vnum {mob.vnum}) -> {len(shop.inventory)} items")
+            else:
+                sells = candidates[:TARGET]
+                if sells:
+                    ShopManager.create_shop(mob, {'sells': sells, 'buys': buys_types}, self)
+        except Exception as e:
+            logger.warning(f"_ensure_shop failed for {getattr(mob, 'name', '?')}: {e}")
+
     def get_room(self, vnum: int) -> Optional[Room]:
         """Get a room by vnum."""
         return self.rooms.get(vnum)
+
+    def login_room(self, player) -> Optional[Room]:
+        """Where a player comes into the world: the room they left, while it exists and they may
+        be there; else (a private trial closed while they were away, the God Rooms, a land sealed
+        until built) their recall room, or the temple."""
+        room = self.get_room(getattr(player, 'room_vnum', None) or self.config.STARTING_ROOM)
+        if room is None or not room.admits(player):
+            room = (player.recall_room() if hasattr(player, 'recall_room') else None) \
+                or self.get_room(self.config.STARTING_ROOM)
+        return room
         
     async def add_player(self, player: 'Player'):
         """Add a player to the world."""
@@ -779,6 +1092,31 @@ class World:
                     self.npcs.append(companion)
                     logger.info(f"Spawned companion: {companion.name} for {player.name}")
 
+        # a one-time gift given at load (grants.py): tell them, once they can hear it; a character
+        # made just now (or whose account came after the load) is given theirs here
+        notes = list(player.__dict__.pop('_grant_notes', None) or [])
+        try:
+            import grants
+            notes += grants.apply_grants(player, entering=True)
+        except Exception:
+            logger.exception('grants')
+        if player.__dict__.pop('_grant_save', False):
+            try:
+                await player.save()          # the account a gift made them, remembered
+            except Exception:
+                logger.exception('grant save')
+        if notes:
+            c = Config().COLORS
+            for line in notes:
+                await player.send(f"{c['bright_yellow']}{line}{c['reset']}")
+        if player.__dict__.pop('_grant_gearup', False):
+            try:
+                from commands import CommandHandler
+                report = await CommandHandler.gear_up(player)
+                c = Config().COLORS
+                await player.send(f"{c['bright_yellow']}The gods kit you out for the hardest roads: {', '.join(report)}.{c['reset']}")
+            except Exception:
+                logger.exception('grant gearup')
         logger.info(f"Player entered world: {player.name}")
 
     async def remove_player(self, player: 'Player'):
@@ -801,13 +1139,22 @@ class World:
                         self.npcs.remove(companion)
                     logger.info(f"Removed companion: {companion.name} for {player.name}")
 
-        if player.name.lower() in self.players:
+        # only this very character: a newer session of the same name stays in the world
+        if self.players.get(player.name.lower()) is player:
             del self.players[player.name.lower()]
 
+        left_room = player.room
         if player.room and player in player.room.characters:
             player.room.characters.remove(player)
 
         logger.info(f"Player left world: {player.name}")
+        # bystanders' graphical clients drop the departed player immediately
+        wm = getattr(self, 'web_map', None)
+        if wm and left_room:
+            try:
+                await wm.notify_room(left_room, {'type': 'player_move', 'name': player.name, 'action': 'leave', 'from': getattr(left_room, 'vnum', None)})
+            except Exception:
+                pass
         
     def get_player(self, name: str) -> Optional['Player']:
         """Get an online player by name."""
@@ -816,6 +1163,32 @@ class World:
     async def combat_tick(self):
         """Process combat for all fighting characters."""
         from combat import CombatHandler
+
+        # Round heartbeat: cmd_swing's perfect-strike timing window is judged
+        # against when this round actually began
+        self.last_combat_round = time.time()
+
+        # Intent pre-pass: fighting mobs DECLARE their next special before the
+        # player phase runs, so this round's web push (notify_combat below)
+        # carries the wind-up with a full round left to react. The intent
+        # resolves next round in mob_ai_tick.
+        from mob_ai import declare_intents
+        from environment import check_player_traps, tick as env_tick
+        import action_combat
+        for npc in list(self.npcs):
+            if npc.is_fighting and npc.fighting is not None and not action_combat.on_clock(npc):
+                try:
+                    # a fighting mob can stumble into a player-laid trap
+                    if getattr(npc.room, 'player_traps', None) and __import__('random').random() < 0.30:
+                        await check_player_traps(npc, npc.room)
+                    await declare_intents(npc)
+                except Exception as e:
+                    logger.debug(f"declare_intents failed for {npc.name}: {e}")
+        # burning rooms cook everyone inside
+        try:
+            await env_tick(self)
+        except Exception as e:
+            logger.debug(f"environment tick failed: {e}")
 
         # Process player combat
         for player in list(self.players.values()):
@@ -842,14 +1215,42 @@ class World:
                     player.fighting = None
                     player.position = 'standing'
                     continue
-                await CombatHandler.one_round(player, player.fighting)
+                if action_combat.active(player):
+                    # action mode (action_combat.py): the swings are on the player's own clock;
+                    # the round still brings rituals, pets, a companion, a burning mount
+                    await CombatHandler.round_extras(player, player.fighting)
+                elif not action_combat.round_skips(player):
+                    await CombatHandler.one_round(player, player.fighting)
                 # Send prompt after combat round so player always sees HP
                 if hasattr(player, 'connection') and player.connection:
                     await player.connection.send_prompt()
+                # Push live vitals to graphical web clients every round
+                if getattr(self, 'web_map', None):
+                    try:
+                        await self.web_map.notify_combat(player)
+                    except Exception as e:
+                        logger.debug(f"notify_combat failed for {player.name}: {e}")
 
-        # Process NPC combat
+        # Creatures strike a beat after the heroes (combat v2): the exchange alternates on
+        # screen and in the log instead of every blow landing in the same instant.
+        try:
+            from combat_range import NPC_PHASE_DELAY
+            loop = asyncio.get_running_loop()
+            loop.call_later(NPC_PHASE_DELAY, lambda: asyncio.ensure_future(self._npc_combat_phase()))
+        except Exception as e:
+            logger.debug(f"npc phase scheduling failed, running inline: {e}")
+            await self._npc_combat_phase()
+
+    async def _npc_combat_phase(self):
+        """The creatures' half of a combat round (see combat_tick)."""
+        from combat import CombatHandler
         from mob_ai import mob_ai_tick
+        import action_combat
+        rooms = set()
         for npc in list(self.npcs):
+            # a creature fighting an action-mode player takes its turns on its own clock
+            if npc.is_fighting and action_combat.round_skips(npc):
+                continue
             if npc.is_fighting:
                 # Check if target is still valid
                 if npc.fighting is None or npc.fighting.hp <= 0 or (hasattr(npc.fighting, 'room') and npc.fighting not in npc.room.characters):
@@ -864,7 +1265,21 @@ class World:
                 # Re-check fighting state (AI may have caused flee/death)
                 if not npc.is_fighting or not npc.fighting:
                     continue
-                await CombatHandler.one_round(npc, npc.fighting)
+                try:
+                    await CombatHandler.one_round(npc, npc.fighting)
+                except Exception as e:
+                    logger.debug(f"npc round failed for {getattr(npc, 'name', '?')}: {e}")
+                if getattr(npc, 'room', None) is not None:
+                    rooms.add(npc.room)
+        # the heroes' vitals after the creatures struck, at once (not next round)
+        if getattr(self, 'web_map', None):
+            for room in rooms:
+                for ch in list(getattr(room, 'characters', []) or []):
+                    if hasattr(ch, 'account_name'):
+                        try:
+                            await self.web_map.notify_combat(ch)
+                        except Exception:
+                            pass
                 
     async def affect_tick(self):
         """Process DOT/HOT effects and decrement durations."""

@@ -1,2292 +1,2292 @@
 {
-  "number": 62,
-  "name": "The Orc Enclave",
-  "lifespan": 20,
-  "rooms": {
-    "6200": {
-      "vnum": 6200,
-      "name": "In The Forest",
-      "description": "The trail ends here where the mountains begin abruptly. Looking up, you\nnote that the climb would be rough, hazardous, and probably not worth\nthe effort; the energy barrier continues up the mountain side out of\nsight. The only exit is back to the east. The forest floor is carpeted\nwith fallen leaves. The scent of pine and earth fills the air.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6201,
-          "description": "A trail winds toward In The Forest"
-        }
-      },
-      "extra_descs": {
-        "": "barrier energy"
-      }
-    },
-    "6201": {
-      "vnum": 6201,
-      "name": "In The Forest",
-      "description": "To the west the mountains rise high up, rocky and lifeless. The trail\nThe path continues on heads west to the end of the forest, and back\neast. Each way the strange energy barrier stands just to the north,\ninscrutable, magical, and impenetrable. Ancient trees rise on all sides.\nBranches intertwine overhead, filtering the light.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6202,
-          "description": "A trail winds toward In The Forest"
-        },
-        "west": {
-          "to_room": 6200,
-          "description": "A trail winds toward In The Forest"
-        }
-      },
-      "extra_descs": {
-        "": "barrier energy"
-      }
-    },
-    "6202": {
-      "vnum": 6202,
-      "name": "In The Forest",
-      "description": "This trail runs parallel to the energy barrier to the north, seemingly\nall the way up to the mountains to the west that form the boundries of\nthis valley. Walking along, you scare a small squirrel, which leaps\nthrough the barrier without a second thought! Your hand is still\nrepulsed by the magical field, however. Branches intertwine overhead,\nfiltering the light. The scent of pine and earth fills the air.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6203,
-          "description": "A trail winds toward In The Forest"
-        },
-        "west": {
-          "to_room": 6201,
-          "description": "A trail winds toward In The Forest"
-        }
-      },
-      "extra_descs": {
-        "": "barrier energy"
-      }
-    },
-    "6203": {
-      "vnum": 6203,
-      "name": "In The Forest",
-      "description": "The northern pathway stops abruptly here, halted by some sort of glowing\nenergy barrier running through the woods. A game trail, seemingly well\ntraveled, runs east- west along the magical barrier's length. Very\nstrange. Ancient trees rise on all sides. Bird calls echo through the\ncanopy.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6204,
-          "description": "A trail winds toward In The Forest"
-        },
-        "south": {
-          "to_room": 6139,
-          "description": "A trail winds toward On The Narrow Trail"
-        },
-        "west": {
-          "to_room": 6202,
-          "description": "A trail winds toward In The Forest"
-        }
-      },
-      "extra_descs": {
-        "": "barrier energy"
-      }
-    },
-    "6204": {
-      "vnum": 6204,
-      "name": "In The Forest",
-      "description": "The energy barrier runs through the woods on its east- west course here,\njust north of the trail you are walking on. A faint humming seems to\neminate from the glowing field, pushing the normal sounds of the forest\ninto the background. For a short moment, you wonder if the field is\nkeeping something in, or you out. It makes you wonder... The forest\nfloor is carpeted with fallen leaves. Bird calls echo through the\ncanopy.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6205,
-          "description": "A trail winds toward In The Forest"
-        },
-        "west": {
-          "to_room": 6203,
-          "description": "A trail winds toward In The Forest"
-        }
-      },
-      "extra_descs": {
-        "": "barrier energy"
-      }
-    },
-    "6205": {
-      "vnum": 6205,
-      "name": "In The Forest",
-      "description": "The energy field makes a sudden ninety-degree turn here, running to the\nnorth and west out of sight through the thickening woods. The trail you\nare on curves to skirt the edge of the magical barrier in either\ndirection. Curious... who or what is keeping this field in place, and\nfor what purpose? The forest floor is carpeted with fallen leaves.\nBranches intertwine overhead, filtering the light.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6206,
-          "description": "A trail winds toward In The Forest"
-        },
-        "west": {
-          "to_room": 6204,
-          "description": "A trail winds toward In The Forest"
-        }
-      },
-      "extra_descs": {
-        "": "barrier energy"
-      }
-    },
-    "6206": {
-      "vnum": 6206,
-      "name": "In The Forest",
-      "description": "The woods thicken here, and surpisingly, you see a tree completely cut\nin half by the magical barrier running north-south here. The tree looks\nhealthy and unaffected by the energy field passing right through its\ncenter. Odd... The forest floor is carpeted with fallen leaves. Ancient\ntrees rise on all sides.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6207,
-          "description": "A trail winds toward In The Forest"
-        },
-        "south": {
-          "to_room": 6205,
-          "description": "A trail winds toward In The Forest"
-        }
-      },
-      "extra_descs": {
-        "": "barrier energy"
-      }
-    },
-    "6207": {
-      "vnum": 6207,
-      "name": "In The Forest",
-      "description": "The magical energy barrier runs straight north-south, unaffected by dips\nin the grounds, intervening rocks and trees, everything. From the north,\nyou hear a faint rushing noise above the humming of the field. The trail\nThe area is continues to the north and south, only a few feet away from\nthe barrier it follows. Bird calls echo through the canopy. Branches\nintertwine overhead, filtering the light.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6208,
-          "description": "A trail winds toward In The Forest"
-        },
-        "south": {
-          "to_room": 6206,
-          "description": "A trail winds toward In The Forest"
-        }
-      },
-      "extra_descs": {
-        "": "barrier energy"
-      }
-    },
-    "6208": {
-      "vnum": 6208,
-      "name": "In The Forest",
-      "description": "Here the field changes color, becoming almost transparent. Beyond, you\nthink you can make out a few shapes, but nothing too terribly distinct.\nFrom the north comes the rushing sound of water, and through the trees\nyou believe Visible is a river cutting through the forest. The trail you\nare on leads north-south through the woods, following the energy barrier\nall along its length. Branches intertwine overhead, filtering the light.\nAncient trees rise on all sides.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6209,
-          "description": "A trail winds toward The River's Edge"
-        },
-        "south": {
-          "to_room": 6207,
-          "description": "A trail winds toward In The Forest"
-        },
-        "west": {
-          "to_room": 6210,
-          "description": "A steep trail ascends to Just Passing Through..."
-        }
-      },
-      "extra_descs": {
-        "": "barrier energy"
-      }
-    },
-    "6209": {
-      "vnum": 6209,
-      "name": "The River's Edge",
-      "description": "A river flows through the forest here, its water clean and clear. The\nenergy barrier runs right out into the middle of the river, and then\nmakes another ninety-degree turn to the west. The water seems to have no\nproblem penetrating the magical field, however. The river seems too wide\nand too swift to cross here. It appears the only way to go is back to\nthe south. The forest floor is carpeted with fallen leaves. Bird calls\necho through the canopy.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6208,
-          "description": "A trail winds toward In The Forest"
-        }
-      },
-      "extra_descs": {
-        "": "barrier energy"
-      }
-    },
-    "6210": {
-      "vnum": 6210,
-      "name": "Just Passing Through...",
-      "description": "The energy barrier seems to push against you ineffectively as you shove\nyour way through it. All your hairs stick up on your body from the\nstatic electricity, and electric shocks sting your body from every\nmetallic piece of equipment you are carrying. You think with a final\nshove, you can break through to the other side... The path is steep and\ntreacherous. Bare rock dominates the landscape.",
-      "sector_type": "mountain",
-      "flags": [
-        "no_mob"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6208,
-          "description": "A trail winds toward In The Forest"
-        },
-        "west": {
-          "to_room": 6211,
-          "description": "A trail winds toward The Edge Of The Orc Enclave"
-        }
-      }
-    },
-    "6212": {
-      "vnum": 6212,
-      "name": "A Clearing In The Forest",
-      "description": "Several trails in the forest intersect here in a small clearing. The\ndirt seems matted down, and you see many footprints in the soil. Nearby\nyou hear a bird's chirp abruptly cut off in a loud squawk, and then\nsilence. The paths seem well-traveled, the undergrowth matted down and\nthe foilage hacked away to leave plenty of room or a traveller to pass\nin every cardinal direction, excepting the west path seems fairly\novergrown... You feel watched. Branches intertwine overhead, filtering\nthe light. The forest floor is carpeted with fallen leaves.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6213,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "east": {
-          "to_room": 6211,
-          "description": "A trail winds toward The Edge Of The Orc Enclave"
-        },
-        "south": {
-          "to_room": 6217,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "west": {
-          "to_room": 6228,
-          "description": "A trail winds toward A Forest Trail"
-        }
-      },
-      "extra_descs": {
-        "": "foot footprint footprints print prints"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6203,
-          "max": 10
-        }
-      ]
-    },
-    "6213": {
-      "vnum": 6213,
-      "name": "A Forest Trail",
-      "description": "The northern trail winds through the trees, heading from a forest\nclearings to the south to where there appears to be a river's edge to\nthe north. This trail appears to be well-used and you spot many tracks\nin the earth. Again the hairs on the back of your neck stand up, and you\nwonder if you're being spied upon. Bird calls echo through the canopy.\nThe scent of pine and earth fills the air.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6214,
-          "description": "An open path leads to The River's Edge"
-        },
-        "south": {
-          "to_room": 6212,
-          "description": "A trail winds toward A Clearing In The Forest"
-        }
-      }
-    },
-    "6214": {
-      "vnum": 6214,
-      "name": "The River's Edge",
-      "description": "A beautiful river flows swiftly by, the current looking quite dangerous\nin fact. Out in the center of the river you spot the energy barrier\nenclosure... no way out here. Looking up, you see a bird fly right\nthrough the barrier overhead and wonder as to the force field's nature.\nThis path leads south into the forest, and westwards along the river's\nedge. The open sky stretches overhead. Wildflowers dot the landscape.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6213,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "west": {
-          "to_room": 6215,
-          "description": "An open path leads to The River's Edge"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6203,
-          "max": 10
-        }
-      ]
-    },
-    "6215": {
-      "vnum": 6215,
-      "name": "The River's Edge",
-      "description": "The river flows on its course, unhampered by the energy barrier passing\nright down its center for as far as Visible is in both directions. The\npath you are on travels along the length of the river to the east and\nwest inbetween the water and the forest's edge. Once again you shiver\nand feel that unmistakeable sense that you are being watched.\nDisturbing. The open sky stretches overhead. Tall grass sways in a\ngentle breeze.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6214,
-          "description": "An open path leads to The River's Edge"
-        },
-        "west": {
-          "to_room": 6216,
-          "description": "An open path leads to The River's Edge"
-        }
-      }
-    },
-    "6216": {
-      "vnum": 6216,
-      "name": "The River's Edge",
-      "description": "A large out-cropping of rock blocks this path along the river to the\nwest, and you don't spot any way around it; the woods are too thick to\nthe south, the river too swift to the north, the magical barrier above\nyou. This is a nice area, however, as evidenced by the amount of traffic\nthis path gets. From the marks in the grass, you guess that this is a\nfavored resting spot. The ground is soft underfoot. The open sky\nstretches overhead.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6215,
-          "description": "An open path leads to The River's Edge"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6211,
-          "max": 1
-        }
-      ]
-    },
-    "6217": {
-      "vnum": 6217,
-      "name": "A Forest Trail",
-      "description": "This well-used forest trail leads south. Among the foot-tracks in the\ndirt, you spot a few animal tracks as well, leading you to believe that\nthese trails are used by hunters. Why would they be enclosed in this\nmanner, however? There is a clearing to the north, and the path\ncontinues to the south. Ancient trees rise on all sides. The scent of\npine and earth fills the air.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6212,
-          "description": "A trail winds toward A Clearing In The Forest"
-        },
-        "south": {
-          "to_room": 6219,
-          "description": "A trail winds toward A Forest Trail"
-        }
-      }
-    },
-    "6218": {
-      "vnum": 6218,
-      "name": "A Forest Trail",
-      "description": "This trail leads north-south... obviously a gaming trail. The woods,\nmostly deciduous trees with the accompanying ground foilage, crowd in to\neither side. A shrub nearby shows a fresh cutting wound... looks like a\nsharp object like a knife or machete did the damage. A crackle in the\nleaves spins you around, to see nothing. Something is watching you, you\nfeel it. Where? The scent of pine and earth fills the air. Bird calls\necho through the canopy.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6233,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "south": {
-          "to_room": 6226,
-          "description": "A trail winds toward A Forest Trail"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6200,
-          "max": 3
-        }
-      ]
-    },
-    "6219": {
-      "vnum": 6219,
-      "name": "A Forest Trail",
-      "description": "The trail changes direction here, turning to the north and west. A large\ntree to the south bears an interesting artifact; a rusty arrowhead\nembedded in the wood. It looks as if the arrow had been broken off at\nthe head, the wood scratched at, and the arrowhead left behind.\nOtherwise, there doesn't seem to be much of interest in this particular\nsection of the woods. The forest floor is carpeted with fallen leaves.\nAncient trees rise on all sides.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6217,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "west": {
-          "to_room": 6220,
-          "description": "A trail winds toward A Forest Trail"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6200,
-          "max": 3
-        },
-        {
-          "vnum": 6201,
-          "max": 2
-        }
-      ]
-    },
-    "6220": {
-      "vnum": 6220,
-      "name": "A Forest Trail",
-      "description": "This is a winding east-west path through the thickening forest. The\ngrass along the path is matted down from frequent traffic. The path\ncontinues to the east, and there seems to be a small clearing to the\nwest. A faint noise makes you stand stock still. You could have sworn\nyou heard a voice nearby. Whatever it was, it wasn't speaking common.\nBranches intertwine overhead, filtering the light. Bird calls echo\nthrough the canopy.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6219,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "west": {
-          "to_room": 6221,
-          "description": "A trail winds toward A Small Clearing"
-        }
-      }
-    },
-    "6221": {
-      "vnum": 6221,
-      "name": "A Small Clearing",
-      "description": "In the middle of this small clearing in the forest is a fairly large\nrock sticking up out of the ground. Paths lead away to the east, west,\nand south from here. The trees above block out the sky fairly\neffectively, also blotting out the glowing energy barrier above your\nhead. Ancient trees rise on all sides. Bird calls echo through the\ncanopy.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6220,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "south": {
-          "to_room": 6222,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "west": {
-          "to_room": 6227,
-          "description": "A trail winds toward A Forest Trail"
-        }
-      },
-      "extra_descs": {
-        "": "rock boulder"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6203,
-          "max": 10
-        }
-      ]
-    },
-    "6222": {
-      "vnum": 6222,
-      "name": "A Forest Trail",
-      "description": "A smaller northern path leads away from the main east- west trail here\ntowards a clearing. The main path leads windingly around the trees to\nthe east and west, the woods blocking out whatever may be ahead. Again\nyou get that strange feeling of being watched. The forest floor is\ncarpeted with fallen leaves. Bird calls echo through the canopy.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6221,
-          "description": "A trail winds toward A Small Clearing"
-        },
-        "east": {
-          "to_room": 6223,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "west": {
-          "to_room": 6225,
-          "description": "A trail winds toward A Forest Trail"
-        }
-      }
-    },
-    "6223": {
-      "vnum": 6223,
-      "name": "A Forest Trail",
-      "description": "The trail leads east and west here through the forest. To the west you\nspot an area where a smaller path breaks off from the main track.\nEastwards seems to be another small clearing that seems to be well used;\nthere are many tracks leading in that direction. Ancient trees rise on\nall sides. Branches intertwine overhead, filtering the light.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6224,
-          "description": "A trail winds toward The Dead End"
-        },
-        "west": {
-          "to_room": 6222,
-          "description": "A trail winds toward A Forest Trail"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6203,
-          "max": 10
-        }
-      ]
-    },
-    "6224": {
-      "vnum": 6224,
-      "name": "The Dead End",
-      "description": "The ground has been cleared of vegetation in this small clearing, and\nseveral large, man-made salt licks lie on the ground and stand on poles\nhere. There are many animal tracks in the earth -- the salt licks must\nattract wildlife for miles around. You think this would be a good place\nto hide and wait for dinner if you were a hunter... The scent of pine\nand earth fills the air. Ancient trees rise on all sides.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "west": {
-          "to_room": 6223,
-          "description": "A trail winds toward A Forest Trail"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6200,
-          "max": 3
-        },
-        {
-          "vnum": 6201,
-          "max": 2
-        },
-        {
-          "vnum": 6202,
-          "max": 3
-        }
-      ]
-    },
-    "6225": {
-      "vnum": 6225,
-      "name": "A Forest Trail",
-      "description": "This trail leads east-west through the forest foilage, around the trees\nand up and down the slight rises. The area is quiet and serene, except\nfor the energy barrier keeping you in to the south. For just a moment,\nyou wonder if you're still being watched... Branches intertwine\noverhead, filtering the light. The forest floor is carpeted with fallen\nleaves.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6222,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "west": {
-          "to_room": 6226,
-          "description": "A trail winds toward A Forest Trail"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6203,
-          "max": 10
-        }
-      ]
-    },
-    "6226": {
-      "vnum": 6226,
-      "name": "A Forest Trail",
-      "description": "The trail bends here, leading away to the north and east. Far off the\nthe distance you hear the squawk of a large bird-of-prey searching the\nskies for a meal. The ferns around rustle gently in the light\nbreeze. Somehow, the threatening aura that pervades over the rest of the\narea seems absent here. You feel almost relaxed... The forest floor is\ncarpeted with fallen leaves. Branches intertwine overhead, filtering the\nlight.",
-      "sector_type": "forest",
-      "flags": [
-        "no_mob"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6218,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "east": {
-          "to_room": 6225
-        }
-      }
-    },
-    "6227": {
-      "vnum": 6227,
-      "name": "A Forest Trail",
-      "description": "A bend in the forest trail allows you to go east and north here. To the\neast you spot a small clearing, while northwards this trail seems to\njoin a much larger one leading through the woods. On the ground is half\nof a broken knife handle, made of bone and dried leather, useless now.\nYou wonder if the owner is watching you now -- something certainly is.\nBird calls echo through the canopy. Branches intertwine overhead,\nfiltering the light.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6232,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "east": {
-          "to_room": 6221,
-          "description": "A trail winds toward A Small Clearing"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6202,
-          "max": 3
-        }
-      ]
-    },
-    "6228": {
-      "vnum": 6228,
-      "name": "A Forest Trail",
-      "description": "This path leads from the main clearing to the west to intersect with a\nnorth-south path just to the east. A small sapling on the north side of\nthe trail has a rope tied around one of its top branches; an unused\nsnare evidently. You still feel as if you're being watched in the back\nof your mind, and adrenaline pumps into your brain like a lightning\nfuzz. Ancient trees rise on all sides. The forest floor is carpeted with\nfallen leaves.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6212,
-          "description": "A trail winds toward A Clearing In The Forest"
-        },
-        "west": {
-          "to_room": 6229,
-          "description": "A trail winds toward A Forest Trail"
-        }
-      }
-    },
-    "6229": {
-      "vnum": 6229,
-      "name": "A Forest Trail",
-      "description": "A north-south trail leads through the woods here, with a small side\ntrail leading off to the east. The trees provide adequate cover from the\nsky, but through a few holes in the foilage you spot the magical barrier\nabove, keeping you from escaping by flight. You feel slightly\ncaptured. The scent of pine and earth fills the air. Bird calls echo\nthrough the canopy.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6228,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "south": {
-          "to_room": 6230,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "north": {
-          "to_room": 6235
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6203,
-          "max": 10
-        }
-      ]
-    },
-    "6230": {
-      "vnum": 6230,
-      "name": "A Forest Trail",
-      "description": "Two trails come together here, a large northern path heading away from\ntracks leading to the east and west. The western path seems to be the\nmost traveled, and the east hardly at all. There seems to be less trees\naround here... it seems as if many have been cut down by some sort of\ncrude tools. This land clearing appears to be especially true to the\neast. The forest floor is carpeted with fallen leaves. The scent of pine\nand earth fills the air.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6229,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "east": {
-          "to_room": 6231,
-          "description": "A trail winds toward A Clearing"
-        },
-        "west": {
-          "to_room": 6232,
-          "description": "A trail winds toward A Forest Trail"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6203,
-          "max": 10
-        }
-      ]
-    },
-    "6231": {
-      "vnum": 6231,
-      "name": "A Clearing",
-      "description": "The trees have been cut down around here, and many of the trunks\nhollowed out with sharp stones and lined with treated leather to make\nalmost-waterproof tubs. A foul smelling brown fluid, tannin evidently,\nfills many of these, soaking into various bits and pieces of animal\nhides. Crude, but workable. The forest floor is carpeted with fallen\nleaves. Ancient trees rise on all sides.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "west": {
-          "to_room": 6230,
-          "description": "A trail winds toward A Forest Trail"
-        }
-      }
-    },
-    "6232": {
-      "vnum": 6232,
-      "name": "A Forest Trail",
-      "description": "The trail is widening to the west, where the path leads all the way up\nto the side of the mountains that enclose this valley. Many of the trees\nhave been cut down around here, and it definitely looks as if the forest\nis ending. Eastwards the trail leads on into the thick of the forest. A\nsmall split off trail leads away to the south here. The forest floor is\ncarpeted with fallen leaves. Bird calls echo through the canopy.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6230,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "south": {
-          "to_room": 6227,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "west": {
-          "to_room": 6233,
-          "description": "A trail winds toward A Forest Trail"
-        }
-      }
-    },
-    "6233": {
-      "vnum": 6233,
-      "name": "A Forest Trail",
-      "description": "The ground is growing more rocky here. The trees and other foilage in\nthe forest grow sparse here, finding it hard to find purchase in the\nsoil. The forest ends just to the west, with the trail you are on\nleading right on up to the side of the mountains. A side trail leads\nsouth here, and the trail also leads back into the thick of the forest\nto the east. Bird calls echo through the canopy. Branches intertwine\noverhead, filtering the light.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6232,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "south": {
-          "to_room": 6218,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "west": {
-          "to_room": 6234,
-          "description": "A rocky path climbs toward A Rocky Trail"
-        }
-      }
-    },
-    "6234": {
-      "vnum": 6234,
-      "name": "A Rocky Trail",
-      "description": "The ground is getting very rocky here, causing the trees of the woods to\nbecome more sparse. Several bushes have found purchase in the soil, but\nnot near enough to block free movement in this area. The trail leads on\nup to what appears to be a cave in the side of the mountain to the west,\nand a side trail runs along the forest's edge to the north. To the east,\nthe trail runs deep into the forest out of sight. The wind carries the\nscent of wild herbs. Rocks jut from the grassy slopes.",
-      "sector_type": "hills",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6241,
-          "description": "A rocky path climbs toward A Rocky Trail"
-        },
-        "east": {
-          "to_room": 6233,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "west": {
-          "to_room": 6242,
-          "description": "A steep trail ascends to A Cave Entrance"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6203,
-          "max": 10
-        }
-      ]
-    },
-    "6235": {
-      "vnum": 6235,
-      "name": "A Forest Trail",
-      "description": "The trail you are on bends around a large double- trunked tree and leads\naway to the north and west. The green canopy of leaves overhead make\nthis area fairly dark and ominous, and that creepy 'watched' feeling\nreturns to hit you with full force. Branches intertwine overhead,\nfiltering the light. Bird calls echo through the canopy.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6229,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "west": {
-          "to_room": 6236,
-          "description": "A trail winds toward A Forest Trail"
-        }
-      }
-    },
-    "6236": {
-      "vnum": 6236,
-      "name": "A Forest Trail",
-      "description": "The trail continues here to the east and west, with a small trail\nsplitting off towards a large clearing to the south. Two wooden poles\nwith skulls on top warn you away from the south, and succeed in making\nyou feel quite uncomfortable. Strange... The scent of pine and earth\nfills the air. Ancient trees rise on all sides.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6235,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "south": {
-          "to_room": 6237,
-          "description": "An open path leads to A Large Clearing"
-        },
-        "west": {
-          "to_room": 6238,
-          "description": "A trail winds toward A Forest Trail"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6203,
-          "max": 10
-        }
-      ]
-    },
-    "6237": {
-      "vnum": 6237,
-      "name": "A Large Clearing",
-      "description": "The earth has been upturned many times here, and several white rocks\nstick up from the ground in odd positions. Graveyard. This must be where\nthey bury their dead -- just dig a hole and throw the corpse inside,\nignoring any previous occupants in the ground. How uncivilized... you\nhope you aren't taken care of in this matter when your time comes...\nTall grass sways in a gentle breeze. The air is fresh and clean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6236,
-          "description": "A trail winds toward A Forest Trail"
-        }
-      }
-    },
-    "6238": {
-      "vnum": 6238,
-      "name": "A Forest Trail",
-      "description": "The trail splits here, one fork heading north towards the rushing sounds\nof a river, and west where the forest seems to be thinning out a lot. A\nsudden motion out of the corner of your eye catches your eyes, and you\nturn your head. Nothing, there's nothing there at all. You wonder if\nyou're being stalked. The forest floor is carpeted with fallen leaves.\nThe scent of pine and earth fills the air.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6239,
-          "description": "An open path leads to A River's Edge"
-        },
-        "east": {
-          "to_room": 6236,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "west": {
-          "to_room": 6241,
-          "description": "A rocky path climbs toward A Rocky Trail"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6202,
-          "max": 3
-        }
-      ]
-    },
-    "6239": {
-      "vnum": 6239,
-      "name": "A River's Edge",
-      "description": "The river flows swiftly on its course to the north. The trail you are on\nleads on by the water's edge to the west, and back into the forest to\nthe south. A large boulder is just to the west, blocking all travel in\nthat direction. Out in the center of the river, the 'roof' of the energy\nfield meets the northern 'wall'. The water passes right on through the\nmagical barrier, however... the barrier is obviously porous to some\nmaterials. The open sky stretches overhead. The air is fresh and clean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6238,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "west": {
-          "to_room": 6240,
-          "description": "An open path leads to A River's Edge"
-        }
-      }
-    },
-    "6240": {
-      "vnum": 6240,
-      "name": "A River's Edge",
-      "description": "The river pours down the side of the mountains to the west, originating\nfrom a large hole in the face of one of the sheer rock protuberances.\nThe energy barrier climbs right up the mountain, and seals off any means\nof escape by that means. The trail you are on runs by the side of the\nriver to the east, and a path leads by the forest side to the south. The\nair is fresh and clean. The ground is soft underfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6239,
-          "description": "An open path leads to A River's Edge"
-        },
-        "south": {
-          "to_room": 6241,
-          "description": "A rocky path climbs toward A Rocky Trail"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6203,
-          "max": 10
-        }
-      ]
-    },
-    "6241": {
-      "vnum": 6241,
-      "name": "A Rocky Trail",
-      "description": "The forest is just to the west, with a side trail leading deep inside\nfrom here. The main trail you are on, however, heads north towards the\nriver, and south near where a trail leads up to a cave in the mountain\nside. There doesn't seem to be a whole lot to capture your attention\nhere... Rocks jut from the grassy slopes. The wind carries the scent of\nwild herbs.",
-      "sector_type": "hills",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6240,
-          "description": "An open path leads to A River's Edge"
-        },
-        "east": {
-          "to_room": 6238,
-          "description": "A trail winds toward A Forest Trail"
-        },
-        "south": {
-          "to_room": 6234,
-          "description": "A rocky path climbs toward A Rocky Trail"
-        }
-      }
-    },
-    "6242": {
-      "vnum": 6242,
-      "name": "A Cave Entrance",
-      "description": "The area is half blinded by the differences of the outdoors illumination\nand the pure darkness of the cave. A deep, cloying stench flows out from\nthe cave mouth; the smells of decay, unwashed bodies, and sickness in\none roiling odor. Your stomach turns involuntarily, and you wonder about\ngoing back down the hill to the east, instead of going even further down\nthe western tunnel. The air is thin and cold at this altitude. The path\nis steep and treacherous.",
-      "sector_type": "mountain",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6234,
-          "description": "A rocky path climbs toward A Rocky Trail"
-        },
-        "west": {
-          "to_room": 6243,
-          "description": "A rocky path climbs toward A Tunnel Forking"
-        }
-      }
-    },
-    "6243": {
-      "vnum": 6243,
-      "name": "A Tunnel Forking",
-      "description": "The tunnel forks here, one branch leading north, the other west.\nAdditionally, you can head back outside to the east, which seems like a\nvery good idea to your tortured nasal passages. Your eyes water from the\nstench, and you clench one side hand tightly to keep control of your\nbile. Forcing your eyes open, you notice the warning signs painted\naround the tunnel to the north. Sheep trails wind between the hillocks.\nRocks jut from the grassy slopes.",
-      "sector_type": "hills",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6255,
-          "description": "A rocky path climbs toward A Tunnel"
-        },
-        "east": {
-          "to_room": 6242,
-          "description": "A steep trail ascends to A Cave Entrance"
-        },
-        "west": {
-          "to_room": 6244,
-          "description": "A rocky path climbs toward A Tunnel"
-        }
-      },
-      "extra_descs": {
-        "": "painting sign signs"
-      }
-    },
-    "6244": {
-      "vnum": 6244,
-      "name": "A Tunnel",
-      "description": "The floor is slick with the humidity that boils out of the lower reaches\nof this cave, bringing that most awful smell with it. Again, you\nconsider saving your nose the trip west and down the tunnel, and heading\nback east to the cave entrance. Rocks jut from the grassy slopes. The\nwind carries the scent of wild herbs.",
-      "sector_type": "hills",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6243,
-          "description": "A rocky path climbs toward A Tunnel Forking"
-        },
-        "west": {
-          "to_room": 6245,
-          "description": "A steep trail ascends to A Tunnel"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6209,
-          "max": 3
-        }
-      ]
-    },
-    "6245": {
-      "vnum": 6245,
-      "name": "A Tunnel",
-      "description": "The tunnel takes a deep dip here, and opens up into a largish cave to\nthe west. There seems to be a few faint lights from inside, and you hear\nsome heavy breathing and low grunts from that direction. The cave\nentrance to the east seems far too far away for your comfort... Snow\nclings to shadowed crevices. The path is steep and treacherous.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6244,
-          "description": "A rocky path climbs toward A Tunnel"
-        },
-        "west": {
-          "to_room": 6251,
-          "description": "A rocky path climbs toward A Cave"
-        }
-      }
-    },
-    "6246": {
-      "vnum": 6246,
-      "name": "A Cave",
-      "description": "Heaps of rotting meat and cups of near-drinkable water sit here; the orc\nfood stores. The area opens here and wonder in near-disbelief at how the\norcs could find this stuff palatable. They're orcs; its their nature and\ntheir stomachs you guess. Oddly enough, you don't even care to catalog\nwhat they have available -- there's no chance you're going to take any\nof this... The terrain rolls and dips around. Sheep trails wind between\nthe hillocks.",
-      "sector_type": "hills",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6247,
-          "description": "A rocky path climbs toward A Cave"
-        },
-        "south": {
-          "to_room": 6249,
-          "description": "A rocky path climbs toward A Cave"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6206,
-          "max": 2
-        }
-      ]
-    },
-    "6247": {
-      "vnum": 6247,
-      "name": "A Cave",
-      "description": "A single corpse lies here, well away from a pile of similars to the\neast. There are several sharpened stakes and rocks sitting about\nconveniently. The way the corpse is lying, the stone next to its hand...\nthis is a suicide area! You look down upon the orc and comprehend its\nsuffering in its twisted form. How sad. Rocks jut from the grassy\nslopes. Sheep trails wind between the hillocks.",
-      "sector_type": "hills",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6248,
-          "description": "A rocky path climbs toward A Cave"
-        },
-        "south": {
-          "to_room": 6250,
-          "description": "A rocky path climbs toward A Cave"
-        },
-        "west": {
-          "to_room": 6246,
-          "description": "A rocky path climbs toward A Cave"
-        }
-      }
-    },
-    "6248": {
-      "vnum": 6248,
-      "name": "A Cave",
-      "description": "There are bodies here... corpses. Orcs, the lot of them, every single\none of them horribly disfigured in some senseless way; one whose arms\nwere removed, another who lacks anything that could sensibly be called a\nface. A few twitch feebly with the last remains of life, the rest just\ndecompose. The dim sense of horror budding in your head blossoms as you\nrealize the pile in the corner consists of dead orc children awaiting\nburial. Rocks jut from the grassy slopes. The wind carries the scent of\nwild herbs.",
-      "sector_type": "hills",
-      "flags": [
-        "no_mob",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 6251,
-          "description": "A rocky path climbs toward A Cave"
-        },
-        "west": {
-          "to_room": 6247,
-          "description": "A rocky path climbs toward A Cave"
-        }
-      }
-    },
-    "6249": {
-      "vnum": 6249,
-      "name": "A Cave",
-      "description": "A few sleeping pallets, made of moldy straw and stinking furs are\narranged around a small firepit here. A wooden cup, carved by a crude\ntool and cruder hands sits near the ashes filled with water you consider\nundrinkable. Somewhere to the east you hear an orc child's whining cry,\nand a voice hushes it urgently. Beware, orcs! Adventurers are here! Hide\nyour children! Rocks jut from the grassy slopes. The wind carries the\nscent of wild herbs.",
-      "sector_type": "hills",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6246,
-          "description": "A rocky path climbs toward A Cave"
-        },
-        "east": {
-          "to_room": 6250,
-          "description": "A rocky path climbs toward A Cave"
-        },
-        "south": {
-          "to_room": 6252,
-          "description": "A rocky path climbs toward A Cave"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6205,
-          "max": 3
-        }
-      ]
-    },
-    "6250": {
-      "vnum": 6250,
-      "name": "A Cave",
-      "description": "Several grass sleeping pallets are here, clustered around the remains of\nan old fire. The sloping of the cave's ceiling allow for smoke\nventilation towards the surface in here you note, lucky for the orcs. A\nfew strings of burnt meat still hang over the fire, untended and\nuneaten. On the floor near your feet you spy a small, twisted piece of\nwire... one orc's idea of a treasured ring, no doubt. Kicking the\ntrinket away, you try to push the pity out of your heart for these\nwretches. Sheep trails wind between the hillocks. The view stretches for\nmiles in every direction.",
-      "sector_type": "hills",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6247,
-          "description": "A rocky path climbs toward A Cave"
-        },
-        "east": {
-          "to_room": 6251,
-          "description": "A rocky path climbs toward A Cave"
-        },
-        "south": {
-          "to_room": 6253,
-          "description": "A rocky path climbs toward A Cave"
-        },
-        "west": {
-          "to_room": 6249,
-          "description": "A rocky path climbs toward A Cave"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6205,
-          "max": 3
-        },
-        {
-          "vnum": 6209,
-          "max": 3
-        }
-      ]
-    },
-    "6251": {
-      "vnum": 6251,
-      "name": "A Cave",
-      "description": "The area opens just inside a largish cave, about a hundred feet in\ndiameter. A few dim make-shift lanterns burning animal fat illuminate\nthe area, just enough so Visible is the rotted food on the floor, and a\nfew bodies sprawled throughout the whole area. Your disgust quickly\nturns to horror as you see a horrible creature, half... well, half\nsomething and half orc dash between two stalagmites. Sheep trails wind\nbetween the hillocks. The view stretches for miles in every direction.",
-      "sector_type": "hills",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6248,
-          "description": "A rocky path climbs toward A Cave"
-        },
-        "east": {
-          "to_room": 6245,
-          "description": "A steep trail ascends to A Tunnel"
-        },
-        "south": {
-          "to_room": 6254,
-          "description": "A rocky path climbs toward A Cave"
-        },
-        "west": {
-          "to_room": 6250,
-          "description": "A rocky path climbs toward A Cave"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6206,
-          "max": 2
-        },
-        {
-          "vnum": 6209,
-          "max": 3
-        }
-      ]
-    },
-    "6252": {
-      "vnum": 6252,
-      "name": "A Cave",
-      "description": "This must be the orc chief's area. There's an old prize -- a stolen\ntimeworn human armchair sitting near the south wall as a throne. A\nmammoth sleeping pallet made of piled furs is nearby. Next to that is\nthe pile of orc treasure; a pile of well-polished coppers. You look at\nthe pile of worthless coins and wonder at the image of orcish raiders.\nThese orcs aren't raiders, they are victims. Sheep trails wind between\nthe hillocks. The terrain rolls and dips around.",
-      "sector_type": "hills",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6249,
-          "description": "A rocky path climbs toward A Cave"
-        },
-        "east": {
-          "to_room": 6253,
-          "description": "A rocky path climbs toward A Cave"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6204,
-          "max": 1
-        }
-      ]
-    },
-    "6253": {
-      "vnum": 6253,
-      "name": "A Cave",
-      "description": "Many sleeping pallets are arranged near the walls, each made of heavy\nfur padding for comfort and warmth. Many are covered with blood and\nother, unidentifiable substances. Looking around, your only coherent\nthought is, 'Don't want to know... don't want to know...' The wind\ncarries the scent of wild herbs. Rocks jut from the grassy slopes.",
-      "sector_type": "hills",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6250,
-          "description": "A rocky path climbs toward A Cave"
-        },
-        "east": {
-          "to_room": 6254,
-          "description": "A rocky path climbs toward A Cave"
-        },
-        "west": {
-          "to_room": 6252,
-          "description": "A rocky path climbs toward A Cave"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6205,
-          "max": 3
-        },
-        {
-          "vnum": 6207,
-          "max": 1
-        }
-      ]
-    },
-    "6254": {
-      "vnum": 6254,
-      "name": "A Cave",
-      "description": "This area of the cave is one vast orc sickroom. Mutated and mangled orcs\nlie on the floor, seeming quiet, lifeless. They're not even worth your\ntime, you think, unless you've the mercy to put them out of their\nmisery. You look at the corruption of nature's design and wonder what\nforces are at work here... the barrier, the orcs... What's going on\nhere? The view stretches for miles in every direction. The wind carries\nthe scent of wild herbs.",
-      "sector_type": "hills",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6251,
-          "description": "A rocky path climbs toward A Cave"
-        },
-        "west": {
-          "to_room": 6253,
-          "description": "A rocky path climbs toward A Cave"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6208,
-          "max": 2
-        },
-        {
-          "vnum": 6208,
-          "max": 2
-        }
-      ]
-    },
-    "6255": {
-      "vnum": 6255,
-      "name": "A Tunnel",
-      "description": "This forking off from the mail tunnel seems odd; the walls are strangely\nsmooth, as if they were carved out by forces unknown. The end is abrupt\nand short, but there is a steel door inset in the wall of the west side\nof the tunnel. The smell from the lower tunnel doesn't seem nearly as\nbad here... this might be a good place to rest and catch your breath.\nThe terrain rolls and dips around. Sheep trails wind between the\nhillocks.",
-      "sector_type": "hills",
-      "flags": [
-        "dark",
-        "no_mob",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 6243,
-          "description": "A rocky path climbs toward A Tunnel Forking"
-        },
-        "west": {
-          "to_room": 6256,
-          "description": "A large steel door.  There seems to be no hinges or knob, but there is a small keyhole in the exact center of it.",
-          "door": {
-            "name": "door steel",
-            "state": "open",
-            "locked": true,
-            "key_vnum": 6200
-          }
-        }
-      }
-    },
-    "6256": {
-      "vnum": 6256,
-      "name": "A Tunnel",
-      "description": "This section of man-made tunnel heads north from here, doors on either\nside. A few glowing spots on the ceiling illuminate the area to almost a\ndaylight level. From the north you hear some horrible cries of pain and\nanguish that make you cringe inside and think twice about heading in\nthat direction. Shadows gather in the corners. The ceiling hangs low\noverhead.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6258,
-          "description": "A passage leads to A Tunnel"
-        },
-        "east": {
-          "to_room": 6255,
-          "description": "A rocky path climbs toward A Tunnel",
-          "door": {
-            "name": "door steel",
-            "state": "open",
-            "locked": true,
-            "key_vnum": 6200
-          }
-        },
-        "west": {
-          "to_room": 6257,
-          "description": "This is a normal, wooden door.",
-          "door": {
-            "name": "door wooden",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      }
-    },
-    "6257": {
-      "vnum": 6257,
-      "name": "A Bedroom",
-      "description": "This is a bedroom, catered to someone with a definite sense of taste.\nThere's a chest of drawers made of a solid section of oak tree. In fact,\nmost of the furniture here has that 'natural look' about it. The bed is\nfilled with soft down with an ornate table lamp close by. Nice place.\nThe walls are rough-hewn and cold to the touch. The air is still and\nmusty.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6256,
-          "description": "A normal, wooden door.",
-          "door": {
-            "name": "door wooden",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      }
-    },
-    "6258": {
-      "vnum": 6258,
-      "name": "A Tunnel",
-      "description": "This tunnel opens up into a large room to the north, and to the south,\nleads towards a set of doors. The light is crisp and bright, clearly\nshowing the lack of tool marks on the hewn walls... magic? The room just\nahead is large, and also well-lighted, giving it an almost clinical\natmosphere. Somewhere in the recesses of that room something cries out\nin a horrible crackling voice. Not good. The air is still and musty.\nDust motes drift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6266,
-          "description": "A passage leads to The Laboratory"
-        },
-        "south": {
-          "to_room": 6256,
-          "description": "A passage leads to A Tunnel"
-        }
-      }
-    },
-    "6259": {
-      "vnum": 6259,
-      "name": "The Laboratory",
-      "description": "A full fledge operating table is set up here, outfitted with a full set\nof restraints. A ledge nearby has a whole array of sterile medical\nequipment on it, covered over by a clear lid. There's a drain in the\nfloor with gradients leading to it to carry away the blood. For some\nreason, you don't imagine this as a voluntary operating theatre... The\nwalls are rough-hewn and cold to the touch. The ceiling hangs low\noverhead.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6260,
-          "description": "A passage leads to The Laboratory"
-        },
-        "south": {
-          "to_room": 6262,
-          "description": "A passage leads to The Laboratory"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6210,
-          "max": 1
-        }
-      ]
-    },
-    "6260": {
-      "vnum": 6260,
-      "name": "The Laboratory",
-      "description": "Another table is set up will all sorts of alchemical apparatus here,\nvials and beakers, distillation equipment and et cetera. The stuff looks\nexpensive, but bulky and fragile; not good treasure to cart away with\nyou at all. The ceiling hangs low overhead. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6261,
-          "description": "A steel cell door.",
-          "door": {
-            "name": "door steel",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": 6200
-          }
-        },
-        "south": {
-          "to_room": 6263,
-          "description": "A passage leads to The Laboratory"
-        },
-        "west": {
-          "to_room": 6259,
-          "description": "A passage leads to The Laboratory"
-        }
-      }
-    },
-    "6261": {
-      "vnum": 6261,
-      "name": "A Cage",
-      "description": "This is a small, dirty cage, with only a bucket for wastes, another\nbucket for food, and a dirty towel for a bed. The whole room has a\nterrible stench about it. The ceiling hangs low overhead. Shadows gather\nin the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 6260,
-          "description": "A steel cell door.",
-          "door": {
-            "name": "door steel",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": 6200
-          }
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6212,
-          "max": 4
-        }
-      ]
-    },
-    "6262": {
-      "vnum": 6262,
-      "name": "The Laboratory",
-      "description": "Some small cages sit here, containing many different types of rodents.\nLeaning down to look better, you are very surprised as a tiny, common\ngarden mouse growls at you and tries to rip your face off through the\nbars. There are some bulges on its back, and it doesn't seem to be in a\nvery good mood. It quivers some, not fully in control of its motor\nfunctions. Poor thing. Shadows gather in the corners. The walls are\nrough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6259,
-          "description": "A passage leads to The Laboratory"
-        },
-        "east": {
-          "to_room": 6263,
-          "description": "A passage leads to The Laboratory"
-        },
-        "south": {
-          "to_room": 6265,
-          "description": "A passage leads to The Laboratory"
-        }
-      }
-    },
-    "6263": {
-      "vnum": 6263,
-      "name": "The Laboratory",
-      "description": "A rack stands near the cages on the eastern wall, filled with shackles\nand manacles, bullwhips and worse. They all look well-used. You give a\nshiver, and carry on. Dust motes drift in the stale air. The walls are\nrough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6260,
-          "description": "A passage leads to The Laboratory"
-        },
-        "east": {
-          "to_room": 6264,
-          "description": "A steel cell door.",
-          "door": {
-            "name": "door cell",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": 6200
-          }
-        },
-        "south": {
-          "to_room": 6266,
-          "description": "A passage leads to The Laboratory"
-        },
-        "west": {
-          "to_room": 6262,
-          "description": "A passage leads to The Laboratory"
-        }
-      }
-    },
-    "6264": {
-      "vnum": 6264,
-      "name": "A Cage",
-      "description": "This is a small, dirty cage, with only a bucket for wastes, another\nbucket for food, and a dirty towel for a bed. The whole room has a\nterrible stench about it. The air is still and musty. The walls are\nrough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 6263,
-          "description": "A steel cell door.",
-          "door": {
-            "name": "door steel",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": 6200
-          }
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6212,
-          "max": 4
-        }
-      ]
-    },
-    "6265": {
-      "vnum": 6265,
-      "name": "The Laboratory",
-      "description": "This is the southwest corner of the lab. There's no equipment here,\nmerely several pairs of heavy steel shackles on the southern wall.\nThere's also some a few small bloodstains on the floor beneath the\nshackles. Dust motes drift in the stale air. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6262,
-          "description": "A passage leads to The Laboratory"
-        },
-        "east": {
-          "to_room": 6266,
-          "description": "A passage leads to The Laboratory"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6213,
-          "max": 1
-        }
-      ]
-    },
-    "6266": {
-      "vnum": 6266,
-      "name": "The Laboratory",
-      "description": "This is a fairly roomy laboratory that extends to the north, with cages\nset on the east side of the room. A metal table here is empty, although\nVisible is some outlines in the dust that suggest books had laid here\nonce. The walls are rough-hewn and cold to the touch. Dust motes drift\nin the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6263,
-          "description": "A passage leads to The Laboratory"
-        },
-        "east": {
-          "to_room": 6267,
-          "description": "A steel cell door.",
-          "door": {
-            "name": "cell door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": 6200
-          }
-        },
-        "south": {
-          "to_room": 6258,
-          "description": "A passage leads to A Tunnel"
-        },
-        "west": {
-          "to_room": 6265,
-          "description": "A passage leads to The Laboratory"
-        }
-      }
-    },
-    "6267": {
-      "vnum": 6267,
-      "name": "A Cage",
-      "description": "This is a small, dirty cage, with only a bucket for wastes, another\nbucket for food, and a dirty towel for a bed. The whole room has a\nterrible stench about it. The air is still and musty. Dust motes drift\nin the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 6266,
-          "description": "A steel cell door.",
-          "door": {
-            "name": "door cell",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": 6200
-          }
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6212,
-          "max": 4
-        }
-      ]
-    },
-    "6211": {
-      "name": "The Edge Of The Orc Enclave",
-      "description": "The forest thins here, revealing crude fortifications made from sharpened logs. The ground is trampled and littered with bones. This marks the boundary of orc territory.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6210,
-          "description": "A steep trail ascends to Just Passing Through..."
-        },
-        "west": {
-          "to_room": 6212,
-          "description": "A trail winds toward A Clearing In The Forest"
-        }
-      },
-      "mob_resets": [],
-      "obj_resets": [],
-      "vnum": 6211
-    }
+ "number": 62,
+ "name": "The Orc Enclave",
+ "lifespan": 20,
+ "mobs": {
+  "6200": {
+   "vnum": 6200,
+   "name": "deer",
+   "short_desc": "the deer",
+   "long_desc": "A deer looks at you with fear in its eyes.",
+   "level": 3,
+   "alignment": 0,
+   "hp_dice": "3d10+52",
+   "damage_dice": "1d4+4",
+   "gold": 175,
+   "exp": 180,
+   "armor_class": 91,
+   "flags": [
+    "wimpy"
+   ],
+   "description": "That is one nice looking deer!",
+   "inventory": [
+    6203
+   ]
   },
-  "mobs": {
-    "6200": {
-      "vnum": 6200,
-      "name": "deer",
-      "short_desc": "the deer",
-      "long_desc": "A deer looks at you with fear in its eyes.",
-      "level": 3,
-      "alignment": 0,
-      "hp_dice": "3d10+52",
-      "damage_dice": "1d4+4",
-      "gold": 175,
-      "exp": 180,
-      "armor_class": 91,
-      "flags": [
-        "wimpy"
-      ],
-      "description": "That is one nice looking deer!",
-      "inventory": [
-        6203
-      ]
-    },
-    "6201": {
-      "vnum": 6201,
-      "name": "rabbit",
-      "short_desc": "the rabbit",
-      "long_desc": "A small rabbit nibbles at a leaf here.",
-      "level": 1,
-      "alignment": 0,
-      "hp_dice": "1d10+16",
-      "damage_dice": "1d4",
-      "gold": 12,
-      "exp": 0,
-      "armor_class": 100,
-      "flags": [
-        "wimpy"
-      ],
-      "description": "It is a small, furry rodent with big ears.",
-      "inventory": [
-        6208,
-        6209
-      ]
-    },
-    "6202": {
-      "vnum": 6202,
-      "name": "squirrel",
-      "short_desc": "the squirrel",
-      "long_desc": "A squirrel spots you and runs around a tree!",
-      "level": 1,
-      "alignment": 0,
-      "hp_dice": "1d10+16",
-      "damage_dice": "1d4",
-      "gold": 5,
-      "exp": 0,
-      "armor_class": 100,
-      "flags": [
-        "wimpy"
-      ],
-      "description": "It is a small, brown squirrel.  Kind of like a\nfuzzy high-tension spring.",
-      "inventory": [
-        6213,
-        6202
-      ]
-    },
-    "6203": {
-      "vnum": 6203,
-      "name": "orc",
-      "short_desc": "the orc hunter",
-      "long_desc": "An orc hunter looks at you with hateful eyes.",
-      "level": 7,
-      "alignment": -350,
-      "hp_dice": "7d10+100",
-      "damage_dice": "2d5+6",
-      "gold": 1125,
-      "exp": 420,
-      "armor_class": 79,
-      "flags": [
-        "aggressive",
-        "helper"
-      ],
-      "description": "He looks angry, desperate, and maybe a little sick.\nHis green skin is definitely mottled, and he seems to\nlimp a little bit...",
-      "equipment": {
-        "wield": 6204
-      },
-      "inventory": [
-        6213,
-        6209
-      ]
-    },
-    "6204": {
-      "vnum": 6204,
-      "name": "orc",
-      "short_desc": "the orc chief",
-      "long_desc": "An orc chief growls at you!",
-      "level": 10,
-      "alignment": -600,
-      "hp_dice": "10d10+136",
-      "damage_dice": "2d6+4",
-      "gold": 4508,
-      "exp": 600,
-      "armor_class": 70,
-      "flags": [
-        "sentinel",
-        "aggressive",
-        "memory",
-        "helper"
-      ],
-      "description": "He wears a crown of oak leaves to show he is a leader.  He\ncarries a club to show he is a warrior.  You wonder how good\nhe is at both.",
-      "equipment": {
-        "wield": 6204
-      },
-      "inventory": [
-        6208,
-        6209
-      ]
-    },
-    "6205": {
-      "vnum": 6205,
-      "name": "orc",
-      "short_desc": "the orc woman",
-      "long_desc": "An orc woman stands here, frightened of you.",
-      "level": 5,
-      "alignment": -50,
-      "hp_dice": "5d10+76",
-      "damage_dice": "2d5+3",
-      "gold": 450,
-      "exp": 300,
-      "armor_class": 85,
-      "flags": [
-        "wimpy"
-      ],
-      "description": "As you stare her down, she raises her hands slowly, as if to\nsay, 'Don't kill me'.",
-      "inventory": [
-        6206
-      ]
-    },
-    "6206": {
-      "vnum": 6206,
-      "name": "orc",
-      "short_desc": "the orc child",
-      "long_desc": "An orc child frantically searches for her mother.",
-      "level": 3,
-      "alignment": 50,
-      "hp_dice": "3d10+52",
-      "damage_dice": "1d4+4",
-      "gold": 175,
-      "exp": 180,
-      "armor_class": 91,
-      "flags": [
-        "wimpy"
-      ],
-      "description": "She is raggedy, and seems to be covered with sores.",
-      "inventory": [
-        6210
-      ]
-    },
-    "6207": {
-      "vnum": 6207,
-      "name": "orc",
-      "short_desc": "the orc woman",
-      "long_desc": "A pregnant orc woman tries to stand to flee from you.",
-      "level": 5,
-      "alignment": -50,
-      "hp_dice": "5d10+76",
-      "damage_dice": "2d5+3",
-      "gold": 375,
-      "exp": 300,
-      "armor_class": 85,
-      "flags": [
-        "sentinel",
-        "wimpy"
-      ],
-      "description": "She is too far gone to move very quickly.  You could\nkill her easily.",
-      "inventory": [
-        6214
-      ]
-    },
-    "6208": {
-      "vnum": 6208,
-      "name": "orc",
-      "short_desc": "the mutant orc",
-      "long_desc": "A mutant orc lies here, barely alive.",
-      "level": 6,
-      "alignment": 0,
-      "hp_dice": "6d10+88",
-      "damage_dice": "2d5+5",
-      "gold": 0,
-      "exp": 360,
-      "armor_class": 82,
-      "flags": [],
-      "description": "Its body has been twisted beyond all hope.  It is dying, and\nnothing will stop that.",
-      "inventory": [
-        6206
-      ]
-    },
-    "6209": {
-      "vnum": 6209,
-      "name": "orc",
-      "short_desc": "the mutant orc",
-      "long_desc": "A horribly mutated orc stands here, gibbering.",
-      "level": 6,
-      "alignment": 0,
-      "hp_dice": "6d10+88",
-      "damage_dice": "2d5+5",
-      "gold": 5,
-      "exp": 360,
-      "armor_class": 82,
-      "flags": [],
-      "description": "It doesn't even appear to have registered your arrival... it is\njust talking to itself.  Its body is a twisted wreck of orc, man,\nbeast, and what-not.",
-      "equipment": {
-        "wield": 6204
-      },
-      "inventory": [
-        6205
-      ]
-    },
-    "6210": {
-      "vnum": 6210,
-      "name": "wizard",
-      "short_desc": "Elstar",
-      "long_desc": "An elven wizard is here.  He looks angry.",
-      "level": 15,
-      "alignment": -1000,
-      "hp_dice": "15d10+196",
-      "damage_dice": "2d6+4",
-      "gold": 15500,
-      "exp": 900,
-      "armor_class": 55,
-      "flags": [
-        "sentinel",
-        "aggressive",
-        "memory"
-      ],
-      "description": "He looks at you archly as he wonders why you have\ninvaded his domain.  No matter... it shouldn't be\ntoo hard for him to destroy you, no?",
-      "equipment": {
-        "wield": 6205,
-        "hold": 6203
-      },
-      "loot_table": [
-        {
-          "vnum": 6206,
-          "chance": 20
-        },
-        {
-          "vnum": 6207,
-          "chance": 20
-        },
-        {
-          "vnum": 6208,
-          "chance": 20
-        },
-        {
-          "vnum": 6209,
-          "chance": 20
-        },
-        {
-          "vnum": 6210,
-          "chance": 20
-        },
-        {
-          "vnum": 6211,
-          "chance": 20
-        },
-        {
-          "vnum": 6212,
-          "chance": 20
-        },
-        {
-          "vnum": 6213,
-          "chance": 20
-        },
-        {
-          "vnum": 6214,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100,
-      "inventory": [
-        6205,
-        6208
-      ]
-    },
-    "6211": {
-      "vnum": 6211,
-      "name": "child",
-      "short_desc": "the elven child",
-      "long_desc": "An elven child casts his fishing pole into the river.",
-      "level": 3,
-      "alignment": 600,
-      "hp_dice": "2d4+0",
-      "damage_dice": "1d4+1",
-      "gold": 200,
-      "exp": 62,
-      "armor_class": 60,
-      "flags": [
-        "sentinel"
-      ],
-      "description": "He looks young and innocent.  You wonder what he is doing here.",
-      "inventory": [
-        6200
-      ]
-    },
-    "6212": {
-      "vnum": 6212,
-      "name": "mutant",
-      "short_desc": "the mutant thing",
-      "long_desc": "A mutant... thing rushes at you!",
-      "level": 12,
-      "alignment": -800,
-      "hp_dice": "12d10+160",
-      "damage_dice": "2d6+4",
-      "gold": 7500,
-      "exp": 720,
-      "armor_class": 64,
-      "flags": [
-        "aggressive",
-        "memory"
-      ],
-      "description": "It might've been an orc, once.  Now it is a living terror,\npushing everything out of its way to get at you.",
-      "loot_table": [
-        {
-          "vnum": 6206,
-          "chance": 20
-        },
-        {
-          "vnum": 6207,
-          "chance": 20
-        },
-        {
-          "vnum": 6208,
-          "chance": 20
-        },
-        {
-          "vnum": 6209,
-          "chance": 20
-        },
-        {
-          "vnum": 6210,
-          "chance": 20
-        },
-        {
-          "vnum": 6211,
-          "chance": 20
-        },
-        {
-          "vnum": 6212,
-          "chance": 20
-        },
-        {
-          "vnum": 6213,
-          "chance": 20
-        },
-        {
-          "vnum": 6214,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100,
-      "inventory": [
-        6206,
-        6214
-      ]
-    },
-    "6213": {
-      "vnum": 6213,
-      "name": "mutant",
-      "short_desc": "the mutant thing",
-      "long_desc": "A mutant... thing tries to get you, but cannot move into range!",
-      "level": 12,
-      "alignment": -800,
-      "hp_dice": "12d10+160",
-      "damage_dice": "2d6+4",
-      "gold": 7500,
-      "exp": 720,
-      "armor_class": 64,
-      "flags": [
-        "sentinel",
-        "memory"
-      ],
-      "description": "It might have been an orc, once.  Now it is a living terror,\npushing everything out of its way to get at you.",
-      "equipment": {
-        "hands": 6201,
-        "feet": 6202
-      },
-      "loot_table": [
-        {
-          "vnum": 6206,
-          "chance": 20
-        },
-        {
-          "vnum": 6207,
-          "chance": 20
-        },
-        {
-          "vnum": 6208,
-          "chance": 20
-        },
-        {
-          "vnum": 6209,
-          "chance": 20
-        },
-        {
-          "vnum": 6210,
-          "chance": 20
-        },
-        {
-          "vnum": 6211,
-          "chance": 20
-        },
-        {
-          "vnum": 6212,
-          "chance": 20
-        },
-        {
-          "vnum": 6213,
-          "chance": 20
-        },
-        {
-          "vnum": 6214,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100,
-      "inventory": [
-        6205,
-        6210
-      ]
-    }
+  "6201": {
+   "vnum": 6201,
+   "name": "rabbit",
+   "short_desc": "the rabbit",
+   "long_desc": "A small rabbit nibbles at a leaf here.",
+   "level": 1,
+   "alignment": 0,
+   "hp_dice": "1d10+16",
+   "damage_dice": "1d4",
+   "gold": 12,
+   "exp": 0,
+   "armor_class": 100,
+   "flags": [
+    "wimpy"
+   ],
+   "description": "It is a small, furry rodent with big ears.",
+   "inventory": [
+    6208,
+    6209
+   ]
   },
-  "objects": {
-    "6200": {
-      "vnum": 6200,
-      "name": "key",
-      "short_desc": "a key",
-      "room_desc": "A key sits here.",
-      "item_type": "key",
-      "weight": 1,
-      "value": 20,
-      "type": "key"
+  "6202": {
+   "vnum": 6202,
+   "name": "squirrel",
+   "short_desc": "the squirrel",
+   "long_desc": "A squirrel spots you and runs around a tree!",
+   "level": 1,
+   "alignment": 0,
+   "hp_dice": "1d10+16",
+   "damage_dice": "1d4",
+   "gold": 5,
+   "exp": 0,
+   "armor_class": 100,
+   "flags": [
+    "wimpy"
+   ],
+   "description": "It is a small, brown squirrel.  Kind of like a\nfuzzy high-tension spring.",
+   "inventory": [
+    6213,
+    6202
+   ]
+  },
+  "6203": {
+   "vnum": 6203,
+   "name": "orc",
+   "short_desc": "the orc hunter",
+   "long_desc": "An orc hunter looks at you with hateful eyes.",
+   "level": 7,
+   "alignment": -350,
+   "hp_dice": "7d10+100",
+   "damage_dice": "2d5+6",
+   "gold": 1125,
+   "exp": 420,
+   "armor_class": 79,
+   "flags": [
+    "aggressive",
+    "helper"
+   ],
+   "description": "He looks angry, desperate, and maybe a little sick.\nHis green skin is definitely mottled, and he seems to\nlimp a little bit...",
+   "equipment": {
+    "wield": 6204
+   },
+   "inventory": [
+    6213,
+    6209
+   ]
+  },
+  "6204": {
+   "vnum": 6204,
+   "name": "orc",
+   "short_desc": "the orc chief",
+   "long_desc": "An orc chief growls at you!",
+   "level": 10,
+   "alignment": -600,
+   "hp_dice": "10d10+136",
+   "damage_dice": "2d6+4",
+   "gold": 4508,
+   "exp": 600,
+   "armor_class": 70,
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "memory",
+    "helper"
+   ],
+   "description": "He wears a crown of oak leaves to show he is a leader.  He\ncarries a club to show he is a warrior.  You wonder how good\nhe is at both.",
+   "equipment": {
+    "wield": 6204
+   },
+   "inventory": [
+    6208,
+    6209
+   ]
+  },
+  "6205": {
+   "vnum": 6205,
+   "name": "orc",
+   "short_desc": "the orc woman",
+   "long_desc": "An orc woman stands here, frightened of you.",
+   "level": 5,
+   "alignment": -50,
+   "hp_dice": "5d10+76",
+   "damage_dice": "2d5+3",
+   "gold": 450,
+   "exp": 300,
+   "armor_class": 85,
+   "flags": [
+    "wimpy"
+   ],
+   "description": "As you stare her down, she raises her hands slowly, as if to\nsay, 'Don't kill me'.",
+   "inventory": [
+    6206
+   ]
+  },
+  "6206": {
+   "vnum": 6206,
+   "name": "orc",
+   "short_desc": "the orc child",
+   "long_desc": "An orc child frantically searches for her mother.",
+   "level": 3,
+   "alignment": 50,
+   "hp_dice": "3d10+52",
+   "damage_dice": "1d4+4",
+   "gold": 175,
+   "exp": 180,
+   "armor_class": 91,
+   "flags": [
+    "wimpy"
+   ],
+   "description": "She is raggedy, and seems to be covered with sores.",
+   "inventory": [
+    6210
+   ]
+  },
+  "6207": {
+   "vnum": 6207,
+   "name": "orc",
+   "short_desc": "the orc woman",
+   "long_desc": "A pregnant orc woman tries to stand to flee from you.",
+   "level": 5,
+   "alignment": -50,
+   "hp_dice": "5d10+76",
+   "damage_dice": "2d5+3",
+   "gold": 375,
+   "exp": 300,
+   "armor_class": 85,
+   "flags": [
+    "sentinel",
+    "wimpy"
+   ],
+   "description": "She is too far gone to move very quickly.  You could\nkill her easily.",
+   "inventory": [
+    6214
+   ]
+  },
+  "6208": {
+   "vnum": 6208,
+   "name": "orc",
+   "short_desc": "the mutant orc",
+   "long_desc": "A mutant orc lies here, barely alive.",
+   "level": 6,
+   "alignment": 0,
+   "hp_dice": "6d10+88",
+   "damage_dice": "2d5+5",
+   "gold": 0,
+   "exp": 360,
+   "armor_class": 82,
+   "flags": [],
+   "description": "Its body has been twisted beyond all hope.  It is dying, and\nnothing will stop that.",
+   "inventory": [
+    6206
+   ]
+  },
+  "6209": {
+   "vnum": 6209,
+   "name": "orc",
+   "short_desc": "the mutant orc",
+   "long_desc": "A horribly mutated orc stands here, gibbering.",
+   "level": 6,
+   "alignment": 0,
+   "hp_dice": "6d10+88",
+   "damage_dice": "2d5+5",
+   "gold": 5,
+   "exp": 360,
+   "armor_class": 82,
+   "flags": [],
+   "description": "It doesn't even appear to have registered your arrival... it is\njust talking to itself.  Its body is a twisted wreck of orc, man,\nbeast, and what-not.",
+   "equipment": {
+    "wield": 6204
+   },
+   "inventory": [
+    6205
+   ]
+  },
+  "6210": {
+   "vnum": 6210,
+   "name": "wizard",
+   "short_desc": "Elstar",
+   "long_desc": "An elven wizard is here.  He looks angry.",
+   "level": 15,
+   "alignment": -1000,
+   "hp_dice": "15d10+196",
+   "damage_dice": "2d6+4",
+   "gold": 15500,
+   "exp": 900,
+   "armor_class": 55,
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "memory"
+   ],
+   "description": "He looks at you archly as he wonders why you have\ninvaded his domain.  No matter... it shouldn't be\ntoo hard for him to destroy you, no?",
+   "equipment": {
+    "wield": 6205,
+    "hold": 6203
+   },
+   "loot_table": [
+    {
+     "vnum": 6206,
+     "chance": 20
     },
-    "6201": {
-      "vnum": 6201,
-      "name": "manacles",
-      "short_desc": "a set of manacles",
-      "room_desc": "A set of iron manacles lie here.",
-      "item_type": "armor",
-      "weight": 20,
-      "value": 100,
-      "armor_bonus": 0,
-      "type": "treasure",
-      "armor": 10
+    {
+     "vnum": 6207,
+     "chance": 20
     },
-    "6202": {
-      "vnum": 6202,
-      "name": "shackles",
-      "short_desc": "a set of shackles",
-      "room_desc": "A set of shackles sit here, discarded.",
-      "item_type": "armor",
-      "weight": 20,
-      "value": 100,
-      "armor_bonus": 0,
-      "type": "treasure",
-      "armor": 10
+    {
+     "vnum": 6208,
+     "chance": 20
     },
-    "6203": {
-      "vnum": 6203,
-      "name": "Runestone",
-      "short_desc": "the Runestone",
-      "room_desc": "A small stone with an inscription sits here.",
-      "item_type": "light",
-      "weight": 1,
-      "value": 10000,
-      "light_hours": -1,
-      "type": "note"
+    {
+     "vnum": 6209,
+     "chance": 20
     },
-    "6204": {
-      "vnum": 6204,
-      "name": "club",
-      "short_desc": "a club",
-      "room_desc": "A crude wooden club sits here.",
-      "item_type": "weapon",
-      "weight": 12,
-      "value": 10,
-      "damage_dice": "2d2",
-      "weapon_type": "pound",
-      "type": "weapon"
+    {
+     "vnum": 6210,
+     "chance": 20
     },
-    "6205": {
-      "vnum": 6205,
-      "name": "Starkblade",
-      "short_desc": "Starkblade",
-      "room_desc": "A knife hums with eternal energy here.",
-      "item_type": "weapon",
-      "weight": 1,
-      "value": 100000,
-      "damage_dice": "3d7",
-      "weapon_type": "slash",
-      "type": "weapon"
+    {
+     "vnum": 6211,
+     "chance": 20
     },
-    "6206": {
-      "vnum": 6206,
-      "name": "orc\u2011forged cleaver",
-      "short_desc": "an orc\u2011forged cleaver",
-      "room_desc": "An orc\u2011forged cleaver lies here.",
-      "description": "A brutal blade.",
-      "item_type": "weapon",
-      "weight": 3,
-      "value": 2500,
-      "wear_slot": "wield",
-      "weapon_type": "slash",
-      "damage_dice": "2d6+3",
-      "affects": [
-        {
-          "type": "damroll",
-          "value": 2
-        }
-      ],
-      "set_id": 62,
-      "type": "weapon"
+    {
+     "vnum": 6212,
+     "chance": 20
     },
-    "6207": {
-      "vnum": 6207,
-      "name": "oathkeeper buckler",
-      "short_desc": "an oathkeeper buckler",
-      "room_desc": "An oathkeeper buckler lies here.",
-      "description": "A paladin's shield.",
-      "item_type": "armor",
-      "weight": 3,
-      "value": 2500,
-      "wear_slot": "shield",
-      "armor_bonus": 2,
-      "affects": [
-        {
-          "type": "cha",
-          "value": 1
-        }
-      ],
-      "set_id": 62,
-      "type": "armor",
-      "armor": 3,
-      "armor_class": 1
+    {
+     "vnum": 6213,
+     "chance": 20
     },
-    "6208": {
-      "vnum": 6208,
-      "name": "blood\u2011tethered sigil",
-      "short_desc": "a blood\u2011tethered sigil",
-      "room_desc": "A blood\u2011tethered sigil lies here.",
-      "description": "A deathknight's sigil.",
-      "item_type": "armor",
-      "weight": 3,
-      "value": 2500,
-      "wear_slot": "neck1",
-      "affects": [
-        {
-          "type": "damroll",
-          "value": 2
-        }
-      ],
-      "set_id": 62,
-      "type": "treasure",
-      "armor": 10
-    },
-    "6209": {
-      "vnum": 6209,
-      "name": "war\u2011totem relic",
-      "short_desc": "a war\u2011totem relic",
-      "room_desc": "A war\u2011totem relic lies here.",
-      "description": "A cleric's relic.",
-      "item_type": "armor",
-      "weight": 3,
-      "value": 2500,
-      "wear_slot": "hold",
-      "affects": [
-        {
-          "type": "wis",
-          "value": 2
-        },
-        {
-          "type": "max_mana",
-          "value": 20
-        }
-      ],
-      "set_id": 62,
-      "type": "treasure",
-      "armor": 5
-    },
-    "6210": {
-      "vnum": 6210,
-      "name": "shaman's fetish",
-      "short_desc": "a shaman's fetish",
-      "room_desc": "A shaman's fetish lies here.",
-      "description": "A mage's fetish.",
-      "item_type": "armor",
-      "weight": 3,
-      "value": 2500,
-      "wear_slot": "hold",
-      "affects": [
-        {
-          "type": "int",
-          "value": 2
-        }
-      ],
-      "set_id": 62,
-      "type": "treasure",
-      "armor": 10
-    },
-    "6211": {
-      "vnum": 6211,
-      "name": "battle\u2011drum mallet",
-      "short_desc": "a battle\u2011drum mallet",
-      "room_desc": "A battle\u2011drum mallet lies here.",
-      "description": "A bard's tool.",
-      "item_type": "weapon",
-      "weight": 3,
-      "value": 2500,
-      "wear_slot": "wield",
-      "weapon_type": "mace",
-      "damage_dice": "1d6+1",
-      "affects": [
-        {
-          "type": "cha",
-          "value": 2
-        }
-      ],
-      "set_id": 62,
-      "type": "treasure"
-    },
-    "6212": {
-      "vnum": 6212,
-      "name": "razor\u2011tusk dagger",
-      "short_desc": "a razor\u2011tusk dagger",
-      "room_desc": "A razor\u2011tusk dagger lies here.",
-      "description": "A rogue's dagger.",
-      "item_type": "weapon",
-      "weight": 3,
-      "value": 2500,
-      "wear_slot": "wield",
-      "weapon_type": "pierce",
-      "damage_dice": "1d6+2",
-      "affects": [
-        {
-          "type": "dex",
-          "value": 2
-        }
-      ],
-      "set_id": 62,
-      "type": "weapon"
-    },
-    "6213": {
-      "vnum": 6213,
-      "name": "boar\u2011hunt bow",
-      "short_desc": "a boar\u2011hunt bow",
-      "room_desc": "A boar\u2011hunt bow lies here.",
-      "description": "A ranger's bow.",
-      "item_type": "weapon",
-      "weight": 3,
-      "value": 2500,
-      "wear_slot": "wield",
-      "weapon_type": "pierce",
-      "damage_dice": "1d6+2",
-      "affects": [
-        {
-          "type": "dex",
-          "value": 2
-        }
-      ],
-      "set_id": 62,
-      "type": "weapon"
-    },
-    "6214": {
-      "vnum": 6214,
-      "name": "orcish war belt",
-      "short_desc": "an orcish war belt",
-      "room_desc": "An orcish war belt lies here.",
-      "description": "A heavy belt.",
-      "item_type": "armor",
-      "weight": 3,
-      "value": 2500,
-      "wear_slot": "waist",
-      "affects": [
-        {
-          "type": "str",
-          "value": 1
-        }
-      ],
-      "set_id": 62,
-      "type": "armor",
-      "armor": 1,
-      "armor_class": 3
+    {
+     "vnum": 6214,
+     "chance": 20
     }
+   ],
+   "loot_chance": 100,
+   "inventory": [
+    6205,
+    6208
+   ]
+  },
+  "6211": {
+   "vnum": 6211,
+   "name": "child",
+   "short_desc": "the elven child",
+   "long_desc": "An elven child casts his fishing pole into the river.",
+   "level": 3,
+   "alignment": 600,
+   "hp_dice": "2d4+0",
+   "damage_dice": "1d4+1",
+   "gold": 200,
+   "exp": 62,
+   "armor_class": 60,
+   "flags": [
+    "sentinel"
+   ],
+   "description": "He looks young and innocent.  You wonder what he is doing here.",
+   "inventory": [
+    6200
+   ]
+  },
+  "6212": {
+   "vnum": 6212,
+   "name": "mutant",
+   "short_desc": "the mutant thing",
+   "long_desc": "A mutant... thing rushes at you!",
+   "level": 12,
+   "alignment": -800,
+   "hp_dice": "12d10+160",
+   "damage_dice": "2d6+4",
+   "gold": 7500,
+   "exp": 720,
+   "armor_class": 64,
+   "flags": [
+    "aggressive",
+    "memory"
+   ],
+   "description": "It might've been an orc, once.  Now it is a living terror,\npushing everything out of its way to get at you.",
+   "loot_table": [
+    {
+     "vnum": 6206,
+     "chance": 20
+    },
+    {
+     "vnum": 6207,
+     "chance": 20
+    },
+    {
+     "vnum": 6208,
+     "chance": 20
+    },
+    {
+     "vnum": 6209,
+     "chance": 20
+    },
+    {
+     "vnum": 6210,
+     "chance": 20
+    },
+    {
+     "vnum": 6211,
+     "chance": 20
+    },
+    {
+     "vnum": 6212,
+     "chance": 20
+    },
+    {
+     "vnum": 6213,
+     "chance": 20
+    },
+    {
+     "vnum": 6214,
+     "chance": 20
+    }
+   ],
+   "loot_chance": 100,
+   "inventory": [
+    6206,
+    6214
+   ]
+  },
+  "6213": {
+   "vnum": 6213,
+   "name": "mutant",
+   "short_desc": "the mutant thing",
+   "long_desc": "A mutant... thing tries to get you, but cannot move into range!",
+   "level": 12,
+   "alignment": -800,
+   "hp_dice": "12d10+160",
+   "damage_dice": "2d6+4",
+   "gold": 7500,
+   "exp": 720,
+   "armor_class": 64,
+   "flags": [
+    "sentinel",
+    "memory"
+   ],
+   "description": "It might have been an orc, once.  Now it is a living terror,\npushing everything out of its way to get at you.",
+   "equipment": {
+    "hands": 6201,
+    "feet": 6202
+   },
+   "loot_table": [
+    {
+     "vnum": 6206,
+     "chance": 20
+    },
+    {
+     "vnum": 6207,
+     "chance": 20
+    },
+    {
+     "vnum": 6208,
+     "chance": 20
+    },
+    {
+     "vnum": 6209,
+     "chance": 20
+    },
+    {
+     "vnum": 6210,
+     "chance": 20
+    },
+    {
+     "vnum": 6211,
+     "chance": 20
+    },
+    {
+     "vnum": 6212,
+     "chance": 20
+    },
+    {
+     "vnum": 6213,
+     "chance": 20
+    },
+    {
+     "vnum": 6214,
+     "chance": 20
+    }
+   ],
+   "loot_chance": 100,
+   "inventory": [
+    6205,
+    6210
+   ]
   }
+ },
+ "objects": {
+  "6200": {
+   "vnum": 6200,
+   "name": "key",
+   "short_desc": "a key",
+   "room_desc": "A key sits here.",
+   "item_type": "key",
+   "weight": 1,
+   "value": 20,
+   "type": "key"
+  },
+  "6201": {
+   "vnum": 6201,
+   "name": "manacles",
+   "short_desc": "a set of manacles",
+   "room_desc": "A set of iron manacles lie here.",
+   "item_type": "armor",
+   "weight": 20,
+   "value": 100,
+   "armor_bonus": 0,
+   "type": "treasure",
+   "armor": 10
+  },
+  "6202": {
+   "vnum": 6202,
+   "name": "shackles",
+   "short_desc": "a set of shackles",
+   "room_desc": "A set of shackles sit here, discarded.",
+   "item_type": "armor",
+   "weight": 20,
+   "value": 100,
+   "armor_bonus": 0,
+   "type": "treasure",
+   "armor": 10
+  },
+  "6203": {
+   "vnum": 6203,
+   "name": "Runestone",
+   "short_desc": "the Runestone",
+   "room_desc": "A small stone with an inscription sits here.",
+   "item_type": "light",
+   "weight": 1,
+   "value": 10000,
+   "light_hours": -1,
+   "type": "note"
+  },
+  "6204": {
+   "vnum": 6204,
+   "name": "club",
+   "short_desc": "a club",
+   "room_desc": "A crude wooden club sits here.",
+   "item_type": "weapon",
+   "weight": 12,
+   "value": 10,
+   "damage_dice": "2d2",
+   "weapon_type": "pound",
+   "type": "weapon"
+  },
+  "6205": {
+   "vnum": 6205,
+   "name": "Starkblade",
+   "short_desc": "Starkblade",
+   "room_desc": "A knife hums with eternal energy here.",
+   "item_type": "weapon",
+   "weight": 1,
+   "value": 100000,
+   "damage_dice": "3d7",
+   "weapon_type": "slash",
+   "type": "weapon"
+  },
+  "6206": {
+   "vnum": 6206,
+   "name": "orc‑forged cleaver",
+   "short_desc": "an orc‑forged cleaver",
+   "room_desc": "An orc‑forged cleaver lies here.",
+   "description": "A brutal blade.",
+   "item_type": "weapon",
+   "weight": 3,
+   "value": 2500,
+   "wear_slot": "wield",
+   "weapon_type": "slash",
+   "damage_dice": "2d6+3",
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ],
+   "set_id": 62,
+   "type": "weapon"
+  },
+  "6207": {
+   "vnum": 6207,
+   "name": "oathkeeper buckler",
+   "short_desc": "an oathkeeper buckler",
+   "room_desc": "An oathkeeper buckler lies here.",
+   "description": "A paladin's shield.",
+   "item_type": "armor",
+   "weight": 3,
+   "value": 2500,
+   "wear_slot": "shield",
+   "armor_bonus": 2,
+   "affects": [
+    {
+     "type": "cha",
+     "value": 1
+    }
+   ],
+   "set_id": 62,
+   "type": "armor",
+   "armor": 3,
+   "armor_class": 1
+  },
+  "6208": {
+   "vnum": 6208,
+   "name": "blood‑tethered sigil",
+   "short_desc": "a blood‑tethered sigil",
+   "room_desc": "A blood‑tethered sigil lies here.",
+   "description": "A deathknight's sigil.",
+   "item_type": "armor",
+   "weight": 3,
+   "value": 2500,
+   "wear_slot": "neck1",
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ],
+   "set_id": 62,
+   "type": "treasure",
+   "armor": 10
+  },
+  "6209": {
+   "vnum": 6209,
+   "name": "war‑totem relic",
+   "short_desc": "a war‑totem relic",
+   "room_desc": "A war‑totem relic lies here.",
+   "description": "A cleric's relic.",
+   "item_type": "armor",
+   "weight": 3,
+   "value": 2500,
+   "wear_slot": "hold",
+   "affects": [
+    {
+     "type": "wis",
+     "value": 2
+    },
+    {
+     "type": "max_mana",
+     "value": 20
+    }
+   ],
+   "set_id": 62,
+   "type": "treasure",
+   "armor": 5
+  },
+  "6210": {
+   "vnum": 6210,
+   "name": "shaman's fetish",
+   "short_desc": "a shaman's fetish",
+   "room_desc": "A shaman's fetish lies here.",
+   "description": "A mage's fetish.",
+   "item_type": "armor",
+   "weight": 3,
+   "value": 2500,
+   "wear_slot": "hold",
+   "affects": [
+    {
+     "type": "int",
+     "value": 2
+    }
+   ],
+   "set_id": 62,
+   "type": "treasure",
+   "armor": 10
+  },
+  "6211": {
+   "vnum": 6211,
+   "name": "battle‑drum mallet",
+   "short_desc": "a battle‑drum mallet",
+   "room_desc": "A battle‑drum mallet lies here.",
+   "description": "A bard's tool.",
+   "item_type": "weapon",
+   "weight": 3,
+   "value": 2500,
+   "wear_slot": "wield",
+   "weapon_type": "mace",
+   "damage_dice": "1d6+1",
+   "affects": [
+    {
+     "type": "cha",
+     "value": 2
+    }
+   ],
+   "set_id": 62,
+   "type": "treasure"
+  },
+  "6212": {
+   "vnum": 6212,
+   "name": "razor‑tusk dagger",
+   "short_desc": "a razor‑tusk dagger",
+   "room_desc": "A razor‑tusk dagger lies here.",
+   "description": "A rogue's dagger.",
+   "item_type": "weapon",
+   "weight": 3,
+   "value": 2500,
+   "wear_slot": "wield",
+   "weapon_type": "pierce",
+   "damage_dice": "1d6+2",
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    }
+   ],
+   "set_id": 62,
+   "type": "weapon"
+  },
+  "6213": {
+   "vnum": 6213,
+   "name": "boar‑hunt bow",
+   "short_desc": "a boar‑hunt bow",
+   "room_desc": "A boar‑hunt bow lies here.",
+   "description": "A ranger's bow.",
+   "item_type": "weapon",
+   "weight": 3,
+   "value": 2500,
+   "wear_slot": "wield",
+   "weapon_type": "pierce",
+   "damage_dice": "1d6+2",
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    }
+   ],
+   "set_id": 62,
+   "type": "weapon"
+  },
+  "6214": {
+   "vnum": 6214,
+   "name": "orcish war belt",
+   "short_desc": "an orcish war belt",
+   "room_desc": "An orcish war belt lies here.",
+   "description": "A heavy belt.",
+   "item_type": "armor",
+   "weight": 3,
+   "value": 2500,
+   "wear_slot": "waist",
+   "affects": [
+    {
+     "type": "str",
+     "value": 1
+    }
+   ],
+   "set_id": 62,
+   "type": "armor",
+   "armor": 1,
+   "armor_class": 3
+  }
+ },
+ "rooms": {
+  "6200": {
+   "vnum": 6200,
+   "name": "In The Forest",
+   "description": "The trail ends here where the mountains begin abruptly. Looking up, you\nnote that the climb would be rough, hazardous, and probably not worth\nthe effort; the energy barrier continues up the mountain side out of\nsight. The only exit is back to the east. The forest floor is carpeted\nwith fallen leaves. The scent of pine and earth fills the air.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6201,
+     "description": "A trail winds toward In The Forest"
+    }
+   },
+   "extra_descs": {
+    "": "barrier energy"
+   }
+  },
+  "6201": {
+   "vnum": 6201,
+   "name": "In The Forest",
+   "description": "To the west the mountains rise high up, rocky and lifeless. The trail\nThe path continues on heads west to the end of the forest, and back\neast. Each way the strange energy barrier stands just to the north,\ninscrutable, magical, and impenetrable. Ancient trees rise on all sides.\nBranches intertwine overhead, filtering the light.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6202,
+     "description": "A trail winds toward In The Forest"
+    },
+    "west": {
+     "to_room": 6200,
+     "description": "A trail winds toward In The Forest"
+    }
+   },
+   "extra_descs": {
+    "": "barrier energy"
+   }
+  },
+  "6202": {
+   "vnum": 6202,
+   "name": "In The Forest",
+   "description": "This trail runs parallel to the energy barrier to the north, seemingly\nall the way up to the mountains to the west that form the boundries of\nthis valley. Walking along, you scare a small squirrel, which leaps\nthrough the barrier without a second thought! Your hand is still\nrepulsed by the magical field, however. Branches intertwine overhead,\nfiltering the light. The scent of pine and earth fills the air.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6203,
+     "description": "A trail winds toward In The Forest"
+    },
+    "west": {
+     "to_room": 6201,
+     "description": "A trail winds toward In The Forest"
+    }
+   },
+   "extra_descs": {
+    "": "barrier energy"
+   }
+  },
+  "6203": {
+   "vnum": 6203,
+   "name": "In The Forest",
+   "description": "The northern pathway stops abruptly here, halted by some sort of glowing\nenergy barrier running through the woods. A game trail, seemingly well\ntraveled, runs east- west along the magical barrier's length. Very\nstrange. Ancient trees rise on all sides. Bird calls echo through the\ncanopy.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6204,
+     "description": "A trail winds toward In The Forest"
+    },
+    "west": {
+     "to_room": 6202,
+     "description": "A trail winds toward In The Forest"
+    },
+    "south": {
+     "to_room": 6137,
+     "description": "To the south lies At The End Of The Trail Through The Deep, Dark Forest."
+    }
+   },
+   "extra_descs": {
+    "": "barrier energy"
+   }
+  },
+  "6204": {
+   "vnum": 6204,
+   "name": "In The Forest",
+   "description": "The energy barrier runs through the woods on its east- west course here,\njust north of the trail you are walking on. A faint humming seems to\neminate from the glowing field, pushing the normal sounds of the forest\ninto the background. For a short moment, you wonder if the field is\nkeeping something in, or you out. It makes you wonder... The forest\nfloor is carpeted with fallen leaves. Bird calls echo through the\ncanopy.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6205,
+     "description": "A trail winds toward In The Forest"
+    },
+    "west": {
+     "to_room": 6203,
+     "description": "A trail winds toward In The Forest"
+    }
+   },
+   "extra_descs": {
+    "": "barrier energy"
+   }
+  },
+  "6205": {
+   "vnum": 6205,
+   "name": "In The Forest",
+   "description": "The energy field makes a sudden ninety-degree turn here, running to the\nnorth and west out of sight through the thickening woods. The trail you\nare on curves to skirt the edge of the magical barrier in either\ndirection. Curious... who or what is keeping this field in place, and\nfor what purpose? The forest floor is carpeted with fallen leaves.\nBranches intertwine overhead, filtering the light.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6206,
+     "description": "A trail winds toward In The Forest"
+    },
+    "west": {
+     "to_room": 6204,
+     "description": "A trail winds toward In The Forest"
+    }
+   },
+   "extra_descs": {
+    "": "barrier energy"
+   }
+  },
+  "6206": {
+   "vnum": 6206,
+   "name": "In The Forest",
+   "description": "The woods thicken here, and surpisingly, you see a tree completely cut\nin half by the magical barrier running north-south here. The tree looks\nhealthy and unaffected by the energy field passing right through its\ncenter. Odd... The forest floor is carpeted with fallen leaves. Ancient\ntrees rise on all sides.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6207,
+     "description": "A trail winds toward In The Forest"
+    },
+    "south": {
+     "to_room": 6205,
+     "description": "A trail winds toward In The Forest"
+    }
+   },
+   "extra_descs": {
+    "": "barrier energy"
+   }
+  },
+  "6207": {
+   "vnum": 6207,
+   "name": "In The Forest",
+   "description": "The magical energy barrier runs straight north-south, unaffected by dips\nin the grounds, intervening rocks and trees, everything. From the north,\nyou hear a faint rushing noise above the humming of the field. The trail\nThe area is continues to the north and south, only a few feet away from\nthe barrier it follows. Bird calls echo through the canopy. Branches\nintertwine overhead, filtering the light.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6208,
+     "description": "A trail winds toward In The Forest"
+    },
+    "south": {
+     "to_room": 6206,
+     "description": "A trail winds toward In The Forest"
+    }
+   },
+   "extra_descs": {
+    "": "barrier energy"
+   }
+  },
+  "6208": {
+   "vnum": 6208,
+   "name": "In The Forest",
+   "description": "Here the field changes color, becoming almost transparent. Beyond, you\nthink you can make out a few shapes, but nothing too terribly distinct.\nFrom the north comes the rushing sound of water, and through the trees\nyou believe Visible is a river cutting through the forest. The trail you\nare on leads north-south through the woods, following the energy barrier\nall along its length. Branches intertwine overhead, filtering the light.\nAncient trees rise on all sides.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6209,
+     "description": "A trail winds toward The River's Edge"
+    },
+    "south": {
+     "to_room": 6207,
+     "description": "A trail winds toward In The Forest"
+    },
+    "west": {
+     "to_room": 6210,
+     "description": "A steep trail ascends to Just Passing Through..."
+    }
+   },
+   "extra_descs": {
+    "": "barrier energy"
+   }
+  },
+  "6209": {
+   "vnum": 6209,
+   "name": "The River's Edge",
+   "description": "A river flows through the forest here, its water clean and clear. The\nenergy barrier runs right out into the middle of the river, and then\nmakes another ninety-degree turn to the west. The water seems to have no\nproblem penetrating the magical field, however. The river seems too wide\nand too swift to cross here. It appears the only way to go is back to\nthe south. The forest floor is carpeted with fallen leaves. Bird calls\necho through the canopy.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 6208,
+     "description": "A trail winds toward In The Forest"
+    }
+   },
+   "extra_descs": {
+    "": "barrier energy"
+   }
+  },
+  "6210": {
+   "vnum": 6210,
+   "name": "Just Passing Through...",
+   "description": "The energy barrier seems to push against you ineffectively as you shove\nyour way through it. All your hairs stick up on your body from the\nstatic electricity, and electric shocks sting your body from every\nmetallic piece of equipment you are carrying. You think with a final\nshove, you can break through to the other side... The path is steep and\ntreacherous. Bare rock dominates the landscape.",
+   "sector_type": "mountain",
+   "flags": [
+    "no_mob"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 6208,
+     "description": "A trail winds toward In The Forest"
+    },
+    "west": {
+     "to_room": 6211,
+     "description": "A trail winds toward The Edge Of The Orc Enclave"
+    }
+   }
+  },
+  "6212": {
+   "vnum": 6212,
+   "name": "A Clearing In The Forest",
+   "description": "Several trails in the forest intersect here in a small clearing. The\ndirt seems matted down, and you see many footprints in the soil. Nearby\nyou hear a bird's chirp abruptly cut off in a loud squawk, and then\nsilence. The paths seem well-traveled, the undergrowth matted down and\nthe foilage hacked away to leave plenty of room or a traveller to pass\nin every cardinal direction, excepting the west path seems fairly\novergrown... You feel watched. Branches intertwine overhead, filtering\nthe light. The forest floor is carpeted with fallen leaves.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6213,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "east": {
+     "to_room": 6211,
+     "description": "A trail winds toward The Edge Of The Orc Enclave"
+    },
+    "south": {
+     "to_room": 6217,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "west": {
+     "to_room": 6228,
+     "description": "A trail winds toward A Forest Trail"
+    }
+   },
+   "extra_descs": {
+    "": "foot footprint footprints print prints"
+   },
+   "mob_resets": [
+    {
+     "vnum": 6203,
+     "max": 10
+    }
+   ]
+  },
+  "6213": {
+   "vnum": 6213,
+   "name": "A Forest Trail",
+   "description": "The northern trail winds through the trees, heading from a forest\nclearings to the south to where there appears to be a river's edge to\nthe north. This trail appears to be well-used and you spot many tracks\nin the earth. Again the hairs on the back of your neck stand up, and you\nwonder if you're being spied upon. Bird calls echo through the canopy.\nThe scent of pine and earth fills the air.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6214,
+     "description": "An open path leads to The River's Edge"
+    },
+    "south": {
+     "to_room": 6212,
+     "description": "A trail winds toward A Clearing In The Forest"
+    }
+   }
+  },
+  "6214": {
+   "vnum": 6214,
+   "name": "The River's Edge",
+   "description": "A beautiful river flows swiftly by, the current looking quite dangerous\nin fact. Out in the center of the river you spot the energy barrier\nenclosure... no way out here. Looking up, you see a bird fly right\nthrough the barrier overhead and wonder as to the force field's nature.\nThis path leads south into the forest, and westwards along the river's\nedge. The open sky stretches overhead. Wildflowers dot the landscape.",
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 6213,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "west": {
+     "to_room": 6215,
+     "description": "An open path leads to The River's Edge"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6203,
+     "max": 10
+    }
+   ]
+  },
+  "6215": {
+   "vnum": 6215,
+   "name": "The River's Edge",
+   "description": "The river flows on its course, unhampered by the energy barrier passing\nright down its center for as far as Visible is in both directions. The\npath you are on travels along the length of the river to the east and\nwest inbetween the water and the forest's edge. Once again you shiver\nand feel that unmistakeable sense that you are being watched.\nDisturbing. The open sky stretches overhead. Tall grass sways in a\ngentle breeze.",
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6214,
+     "description": "An open path leads to The River's Edge"
+    },
+    "west": {
+     "to_room": 6216,
+     "description": "An open path leads to The River's Edge"
+    }
+   }
+  },
+  "6216": {
+   "vnum": 6216,
+   "name": "The River's Edge",
+   "description": "A large out-cropping of rock blocks this path along the river to the\nwest, and you don't spot any way around it; the woods are too thick to\nthe south, the river too swift to the north, the magical barrier above\nyou. This is a nice area, however, as evidenced by the amount of traffic\nthis path gets. From the marks in the grass, you guess that this is a\nfavored resting spot. The ground is soft underfoot. The open sky\nstretches overhead.",
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6215,
+     "description": "An open path leads to The River's Edge"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6211,
+     "max": 1
+    }
+   ]
+  },
+  "6217": {
+   "vnum": 6217,
+   "name": "A Forest Trail",
+   "description": "This well-used forest trail leads south. Among the foot-tracks in the\ndirt, you spot a few animal tracks as well, leading you to believe that\nthese trails are used by hunters. Why would they be enclosed in this\nmanner, however? There is a clearing to the north, and the path\ncontinues to the south. Ancient trees rise on all sides. The scent of\npine and earth fills the air.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6212,
+     "description": "A trail winds toward A Clearing In The Forest"
+    },
+    "south": {
+     "to_room": 6219,
+     "description": "A trail winds toward A Forest Trail"
+    }
+   }
+  },
+  "6218": {
+   "vnum": 6218,
+   "name": "A Forest Trail",
+   "description": "This trail leads north-south... obviously a gaming trail. The woods,\nmostly deciduous trees with the accompanying ground foilage, crowd in to\neither side. A shrub nearby shows a fresh cutting wound... looks like a\nsharp object like a knife or machete did the damage. A crackle in the\nleaves spins you around, to see nothing. Something is watching you, you\nfeel it. Where? The scent of pine and earth fills the air. Bird calls\necho through the canopy.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6233,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "south": {
+     "to_room": 6226,
+     "description": "A trail winds toward A Forest Trail"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6200,
+     "max": 3
+    }
+   ]
+  },
+  "6219": {
+   "vnum": 6219,
+   "name": "A Forest Trail",
+   "description": "The trail changes direction here, turning to the north and west. A large\ntree to the south bears an interesting artifact; a rusty arrowhead\nembedded in the wood. It looks as if the arrow had been broken off at\nthe head, the wood scratched at, and the arrowhead left behind.\nOtherwise, there doesn't seem to be much of interest in this particular\nsection of the woods. The forest floor is carpeted with fallen leaves.\nAncient trees rise on all sides.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6217,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "west": {
+     "to_room": 6220,
+     "description": "A trail winds toward A Forest Trail"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6200,
+     "max": 3
+    },
+    {
+     "vnum": 6201,
+     "max": 2
+    }
+   ]
+  },
+  "6220": {
+   "vnum": 6220,
+   "name": "A Forest Trail",
+   "description": "This is a winding east-west path through the thickening forest. The\ngrass along the path is matted down from frequent traffic. The path\ncontinues to the east, and there seems to be a small clearing to the\nwest. A faint noise makes you stand stock still. You could have sworn\nyou heard a voice nearby. Whatever it was, it wasn't speaking common.\nBranches intertwine overhead, filtering the light. Bird calls echo\nthrough the canopy.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6219,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "west": {
+     "to_room": 6221,
+     "description": "A trail winds toward A Small Clearing"
+    }
+   }
+  },
+  "6221": {
+   "vnum": 6221,
+   "name": "A Small Clearing",
+   "description": "In the middle of this small clearing in the forest is a fairly large\nrock sticking up out of the ground. Paths lead away to the east, west,\nand south from here. The trees above block out the sky fairly\neffectively, also blotting out the glowing energy barrier above your\nhead. Ancient trees rise on all sides. Bird calls echo through the\ncanopy.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6220,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "south": {
+     "to_room": 6222,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "west": {
+     "to_room": 6227,
+     "description": "A trail winds toward A Forest Trail"
+    }
+   },
+   "extra_descs": {
+    "": "rock boulder"
+   },
+   "mob_resets": [
+    {
+     "vnum": 6203,
+     "max": 10
+    }
+   ]
+  },
+  "6222": {
+   "vnum": 6222,
+   "name": "A Forest Trail",
+   "description": "A smaller northern path leads away from the main east- west trail here\ntowards a clearing. The main path leads windingly around the trees to\nthe east and west, the woods blocking out whatever may be ahead. Again\nyou get that strange feeling of being watched. The forest floor is\ncarpeted with fallen leaves. Bird calls echo through the canopy.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6221,
+     "description": "A trail winds toward A Small Clearing"
+    },
+    "east": {
+     "to_room": 6223,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "west": {
+     "to_room": 6225,
+     "description": "A trail winds toward A Forest Trail"
+    }
+   }
+  },
+  "6223": {
+   "vnum": 6223,
+   "name": "A Forest Trail",
+   "description": "The trail leads east and west here through the forest. To the west you\nspot an area where a smaller path breaks off from the main track.\nEastwards seems to be another small clearing that seems to be well used;\nthere are many tracks leading in that direction. Ancient trees rise on\nall sides. Branches intertwine overhead, filtering the light.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6224,
+     "description": "A trail winds toward The Dead End"
+    },
+    "west": {
+     "to_room": 6222,
+     "description": "A trail winds toward A Forest Trail"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6203,
+     "max": 10
+    }
+   ]
+  },
+  "6224": {
+   "vnum": 6224,
+   "name": "The Dead End",
+   "description": "The ground has been cleared of vegetation in this small clearing, and\nseveral large, man-made salt licks lie on the ground and stand on poles\nhere. There are many animal tracks in the earth -- the salt licks must\nattract wildlife for miles around. You think this would be a good place\nto hide and wait for dinner if you were a hunter... The scent of pine\nand earth fills the air. Ancient trees rise on all sides.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 6223,
+     "description": "A trail winds toward A Forest Trail"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6200,
+     "max": 3
+    },
+    {
+     "vnum": 6201,
+     "max": 2
+    },
+    {
+     "vnum": 6202,
+     "max": 3
+    }
+   ]
+  },
+  "6225": {
+   "vnum": 6225,
+   "name": "A Forest Trail",
+   "description": "This trail leads east-west through the forest foilage, around the trees\nand up and down the slight rises. The area is quiet and serene, except\nfor the energy barrier keeping you in to the south. For just a moment,\nyou wonder if you're still being watched... Branches intertwine\noverhead, filtering the light. The forest floor is carpeted with fallen\nleaves.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6222,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "west": {
+     "to_room": 6226,
+     "description": "A trail winds toward A Forest Trail"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6203,
+     "max": 10
+    }
+   ]
+  },
+  "6226": {
+   "vnum": 6226,
+   "name": "A Forest Trail",
+   "description": "The trail bends here, leading away to the north and east. Far off the\nthe distance you hear the squawk of a large bird-of-prey searching the\nskies for a meal. The ferns around rustle gently in the light\nbreeze. Somehow, the threatening aura that pervades over the rest of the\narea seems absent here. You feel almost relaxed... The forest floor is\ncarpeted with fallen leaves. Branches intertwine overhead, filtering the\nlight.",
+   "sector_type": "forest",
+   "flags": [
+    "no_mob"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6218,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "east": {
+     "to_room": 6225
+    }
+   }
+  },
+  "6227": {
+   "vnum": 6227,
+   "name": "A Forest Trail",
+   "description": "A bend in the forest trail allows you to go east and north here. To the\neast you spot a small clearing, while northwards this trail seems to\njoin a much larger one leading through the woods. On the ground is half\nof a broken knife handle, made of bone and dried leather, useless now.\nYou wonder if the owner is watching you now -- something certainly is.\nBird calls echo through the canopy. Branches intertwine overhead,\nfiltering the light.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6232,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "east": {
+     "to_room": 6221,
+     "description": "A trail winds toward A Small Clearing"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6202,
+     "max": 3
+    }
+   ]
+  },
+  "6228": {
+   "vnum": 6228,
+   "name": "A Forest Trail",
+   "description": "This path leads from the main clearing to the west to intersect with a\nnorth-south path just to the east. A small sapling on the north side of\nthe trail has a rope tied around one of its top branches; an unused\nsnare evidently. You still feel as if you're being watched in the back\nof your mind, and adrenaline pumps into your brain like a lightning\nfuzz. Ancient trees rise on all sides. The forest floor is carpeted with\nfallen leaves.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6212,
+     "description": "A trail winds toward A Clearing In The Forest"
+    },
+    "west": {
+     "to_room": 6229,
+     "description": "A trail winds toward A Forest Trail"
+    }
+   }
+  },
+  "6229": {
+   "vnum": 6229,
+   "name": "A Forest Trail",
+   "description": "A north-south trail leads through the woods here, with a small side\ntrail leading off to the east. The trees provide adequate cover from the\nsky, but through a few holes in the foilage you spot the magical barrier\nabove, keeping you from escaping by flight. You feel slightly\ncaptured. The scent of pine and earth fills the air. Bird calls echo\nthrough the canopy.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6228,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "south": {
+     "to_room": 6230,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "north": {
+     "to_room": 6235
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6203,
+     "max": 10
+    }
+   ]
+  },
+  "6230": {
+   "vnum": 6230,
+   "name": "A Forest Trail",
+   "description": "Two trails come together here, a large northern path heading away from\ntracks leading to the east and west. The western path seems to be the\nmost traveled, and the east hardly at all. There seems to be less trees\naround here... it seems as if many have been cut down by some sort of\ncrude tools. This land clearing appears to be especially true to the\neast. The forest floor is carpeted with fallen leaves. The scent of pine\nand earth fills the air.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6229,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "east": {
+     "to_room": 6231,
+     "description": "A trail winds toward A Clearing"
+    },
+    "west": {
+     "to_room": 6232,
+     "description": "A trail winds toward A Forest Trail"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6203,
+     "max": 10
+    }
+   ]
+  },
+  "6231": {
+   "vnum": 6231,
+   "name": "A Clearing",
+   "description": "The trees have been cut down around here, and many of the trunks\nhollowed out with sharp stones and lined with treated leather to make\nalmost-waterproof tubs. A foul smelling brown fluid, tannin evidently,\nfills many of these, soaking into various bits and pieces of animal\nhides. Crude, but workable. The forest floor is carpeted with fallen\nleaves. Ancient trees rise on all sides.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 6230,
+     "description": "A trail winds toward A Forest Trail"
+    }
+   }
+  },
+  "6232": {
+   "vnum": 6232,
+   "name": "A Forest Trail",
+   "description": "The trail is widening to the west, where the path leads all the way up\nto the side of the mountains that enclose this valley. Many of the trees\nhave been cut down around here, and it definitely looks as if the forest\nis ending. Eastwards the trail leads on into the thick of the forest. A\nsmall split off trail leads away to the south here. The forest floor is\ncarpeted with fallen leaves. Bird calls echo through the canopy.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6230,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "south": {
+     "to_room": 6227,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "west": {
+     "to_room": 6233,
+     "description": "A trail winds toward A Forest Trail"
+    }
+   }
+  },
+  "6233": {
+   "vnum": 6233,
+   "name": "A Forest Trail",
+   "description": "The ground is growing more rocky here. The trees and other foilage in\nthe forest grow sparse here, finding it hard to find purchase in the\nsoil. The forest ends just to the west, with the trail you are on\nleading right on up to the side of the mountains. A side trail leads\nsouth here, and the trail also leads back into the thick of the forest\nto the east. Bird calls echo through the canopy. Branches intertwine\noverhead, filtering the light.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6232,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "south": {
+     "to_room": 6218,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "west": {
+     "to_room": 6234,
+     "description": "A rocky path climbs toward A Rocky Trail"
+    }
+   }
+  },
+  "6234": {
+   "vnum": 6234,
+   "name": "A Rocky Trail",
+   "description": "The ground is getting very rocky here, causing the trees of the woods to\nbecome more sparse. Several bushes have found purchase in the soil, but\nnot near enough to block free movement in this area. The trail leads on\nup to what appears to be a cave in the side of the mountain to the west,\nand a side trail runs along the forest's edge to the north. To the east,\nthe trail runs deep into the forest out of sight. The wind carries the\nscent of wild herbs. Rocks jut from the grassy slopes.",
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6241,
+     "description": "A rocky path climbs toward A Rocky Trail"
+    },
+    "east": {
+     "to_room": 6233,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "west": {
+     "to_room": 6242,
+     "description": "A steep trail ascends to A Cave Entrance"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6203,
+     "max": 10
+    }
+   ]
+  },
+  "6235": {
+   "vnum": 6235,
+   "name": "A Forest Trail",
+   "description": "The trail you are on bends around a large double- trunked tree and leads\naway to the north and west. The green canopy of leaves overhead make\nthis area fairly dark and ominous, and that creepy 'watched' feeling\nreturns to hit you with full force. Branches intertwine overhead,\nfiltering the light. Bird calls echo through the canopy.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 6229,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "west": {
+     "to_room": 6236,
+     "description": "A trail winds toward A Forest Trail"
+    }
+   }
+  },
+  "6236": {
+   "vnum": 6236,
+   "name": "A Forest Trail",
+   "description": "The trail continues here to the east and west, with a small trail\nsplitting off towards a large clearing to the south. Two wooden poles\nwith skulls on top warn you away from the south, and succeed in making\nyou feel quite uncomfortable. Strange... The scent of pine and earth\nfills the air. Ancient trees rise on all sides.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6235,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "south": {
+     "to_room": 6237,
+     "description": "An open path leads to A Large Clearing"
+    },
+    "west": {
+     "to_room": 6238,
+     "description": "A trail winds toward A Forest Trail"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6203,
+     "max": 10
+    }
+   ]
+  },
+  "6237": {
+   "vnum": 6237,
+   "name": "A Large Clearing",
+   "description": "The earth has been upturned many times here, and several white rocks\nstick up from the ground in odd positions. Graveyard. This must be where\nthey bury their dead -- just dig a hole and throw the corpse inside,\nignoring any previous occupants in the ground. How uncivilized... you\nhope you aren't taken care of in this matter when your time comes...\nTall grass sways in a gentle breeze. The air is fresh and clean.",
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6236,
+     "description": "A trail winds toward A Forest Trail"
+    }
+   }
+  },
+  "6238": {
+   "vnum": 6238,
+   "name": "A Forest Trail",
+   "description": "The trail splits here, one fork heading north towards the rushing sounds\nof a river, and west where the forest seems to be thinning out a lot. A\nsudden motion out of the corner of your eye catches your eyes, and you\nturn your head. Nothing, there's nothing there at all. You wonder if\nyou're being stalked. The forest floor is carpeted with fallen leaves.\nThe scent of pine and earth fills the air.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6239,
+     "description": "An open path leads to A River's Edge"
+    },
+    "east": {
+     "to_room": 6236,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "west": {
+     "to_room": 6241,
+     "description": "A rocky path climbs toward A Rocky Trail"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6202,
+     "max": 3
+    }
+   ]
+  },
+  "6239": {
+   "vnum": 6239,
+   "name": "A River's Edge",
+   "description": "The river flows swiftly on its course to the north. The trail you are on\nleads on by the water's edge to the west, and back into the forest to\nthe south. A large boulder is just to the west, blocking all travel in\nthat direction. Out in the center of the river, the 'roof' of the energy\nfield meets the northern 'wall'. The water passes right on through the\nmagical barrier, however... the barrier is obviously porous to some\nmaterials. The open sky stretches overhead. The air is fresh and clean.",
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 6238,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "west": {
+     "to_room": 6240,
+     "description": "An open path leads to A River's Edge"
+    }
+   }
+  },
+  "6240": {
+   "vnum": 6240,
+   "name": "A River's Edge",
+   "description": "The river pours down the side of the mountains to the west, originating\nfrom a large hole in the face of one of the sheer rock protuberances.\nThe energy barrier climbs right up the mountain, and seals off any means\nof escape by that means. The trail you are on runs by the side of the\nriver to the east, and a path leads by the forest side to the south. The\nair is fresh and clean. The ground is soft underfoot.",
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6239,
+     "description": "An open path leads to A River's Edge"
+    },
+    "south": {
+     "to_room": 6241,
+     "description": "A rocky path climbs toward A Rocky Trail"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6203,
+     "max": 10
+    }
+   ]
+  },
+  "6241": {
+   "vnum": 6241,
+   "name": "A Rocky Trail",
+   "description": "The forest is just to the west, with a side trail leading deep inside\nfrom here. The main trail you are on, however, heads north towards the\nriver, and south near where a trail leads up to a cave in the mountain\nside. There doesn't seem to be a whole lot to capture your attention\nhere... Rocks jut from the grassy slopes. The wind carries the scent of\nwild herbs.",
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6240,
+     "description": "An open path leads to A River's Edge"
+    },
+    "east": {
+     "to_room": 6238,
+     "description": "A trail winds toward A Forest Trail"
+    },
+    "south": {
+     "to_room": 6234,
+     "description": "A rocky path climbs toward A Rocky Trail"
+    }
+   }
+  },
+  "6242": {
+   "vnum": 6242,
+   "name": "A Cave Entrance",
+   "description": "The area is half blinded by the differences of the outdoors illumination\nand the pure darkness of the cave. A deep, cloying stench flows out from\nthe cave mouth; the smells of decay, unwashed bodies, and sickness in\none roiling odor. Your stomach turns involuntarily, and you wonder about\ngoing back down the hill to the east, instead of going even further down\nthe western tunnel. The air is thin and cold at this altitude. The path\nis steep and treacherous.",
+   "sector_type": "mountain",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 6234,
+     "description": "A rocky path climbs toward A Rocky Trail"
+    },
+    "west": {
+     "to_room": 6243,
+     "description": "A rocky path climbs toward A Tunnel Forking"
+    }
+   }
+  },
+  "6243": {
+   "vnum": 6243,
+   "name": "A Tunnel Forking",
+   "description": "The tunnel forks here, one branch leading north, the other west.\nAdditionally, you can head back outside to the east, which seems like a\nvery good idea to your tortured nasal passages. Your eyes water from the\nstench, and you clench one side hand tightly to keep control of your\nbile. Forcing your eyes open, you notice the warning signs painted\naround the tunnel to the north. Sheep trails wind between the hillocks.\nRocks jut from the grassy slopes.",
+   "sector_type": "hills",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6255,
+     "description": "A rocky path climbs toward A Tunnel"
+    },
+    "east": {
+     "to_room": 6242,
+     "description": "A steep trail ascends to A Cave Entrance"
+    },
+    "west": {
+     "to_room": 6244,
+     "description": "A rocky path climbs toward A Tunnel"
+    }
+   },
+   "extra_descs": {
+    "": "painting sign signs"
+   }
+  },
+  "6244": {
+   "vnum": 6244,
+   "name": "A Tunnel",
+   "description": "The floor is slick with the humidity that boils out of the lower reaches\nof this cave, bringing that most awful smell with it. Again, you\nconsider saving your nose the trip west and down the tunnel, and heading\nback east to the cave entrance. Rocks jut from the grassy slopes. The\nwind carries the scent of wild herbs.",
+   "sector_type": "hills",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 6243,
+     "description": "A rocky path climbs toward A Tunnel Forking"
+    },
+    "west": {
+     "to_room": 6245,
+     "description": "A steep trail ascends to A Tunnel"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6209,
+     "max": 3
+    }
+   ]
+  },
+  "6245": {
+   "vnum": 6245,
+   "name": "A Tunnel",
+   "description": "The tunnel takes a deep dip here, and opens up into a largish cave to\nthe west. There seems to be a few faint lights from inside, and you hear\nsome heavy breathing and low grunts from that direction. The cave\nentrance to the east seems far too far away for your comfort... Snow\nclings to shadowed crevices. The path is steep and treacherous.",
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 6244,
+     "description": "A rocky path climbs toward A Tunnel"
+    },
+    "west": {
+     "to_room": 6251,
+     "description": "A rocky path climbs toward A Cave"
+    }
+   }
+  },
+  "6246": {
+   "vnum": 6246,
+   "name": "A Cave",
+   "description": "Heaps of rotting meat and cups of near-drinkable water sit here; the orc\nfood stores. The area opens here and wonder in near-disbelief at how the\norcs could find this stuff palatable. They're orcs; its their nature and\ntheir stomachs you guess. Oddly enough, you don't even care to catalog\nwhat they have available -- there's no chance you're going to take any\nof this... The terrain rolls and dips around. Sheep trails wind between\nthe hillocks.",
+   "sector_type": "hills",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 6247,
+     "description": "A rocky path climbs toward A Cave"
+    },
+    "south": {
+     "to_room": 6249,
+     "description": "A rocky path climbs toward A Cave"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6206,
+     "max": 2
+    }
+   ]
+  },
+  "6247": {
+   "vnum": 6247,
+   "name": "A Cave",
+   "description": "A single corpse lies here, well away from a pile of similars to the\neast. There are several sharpened stakes and rocks sitting about\nconveniently. The way the corpse is lying, the stone next to its hand...\nthis is a suicide area! You look down upon the orc and comprehend its\nsuffering in its twisted form. How sad. Rocks jut from the grassy\nslopes. Sheep trails wind between the hillocks.",
+   "sector_type": "hills",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 6248,
+     "description": "A rocky path climbs toward A Cave"
+    },
+    "south": {
+     "to_room": 6250,
+     "description": "A rocky path climbs toward A Cave"
+    },
+    "west": {
+     "to_room": 6246,
+     "description": "A rocky path climbs toward A Cave"
+    }
+   }
+  },
+  "6248": {
+   "vnum": 6248,
+   "name": "A Cave",
+   "description": "There are bodies here... corpses. Orcs, the lot of them, every single\none of them horribly disfigured in some senseless way; one whose arms\nwere removed, another who lacks anything that could sensibly be called a\nface. A few twitch feebly with the last remains of life, the rest just\ndecompose. The dim sense of horror budding in your head blossoms as you\nrealize the pile in the corner consists of dead orc children awaiting\nburial. Rocks jut from the grassy slopes. The wind carries the scent of\nwild herbs.",
+   "sector_type": "hills",
+   "flags": [
+    "no_mob",
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 6251,
+     "description": "A rocky path climbs toward A Cave"
+    },
+    "west": {
+     "to_room": 6247,
+     "description": "A rocky path climbs toward A Cave"
+    }
+   }
+  },
+  "6249": {
+   "vnum": 6249,
+   "name": "A Cave",
+   "description": "A few sleeping pallets, made of moldy straw and stinking furs are\narranged around a small firepit here. A wooden cup, carved by a crude\ntool and cruder hands sits near the ashes filled with water you consider\nundrinkable. Somewhere to the east you hear an orc child's whining cry,\nand a voice hushes it urgently. Beware, orcs! Adventurers are here! Hide\nyour children! Rocks jut from the grassy slopes. The wind carries the\nscent of wild herbs.",
+   "sector_type": "hills",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6246,
+     "description": "A rocky path climbs toward A Cave"
+    },
+    "east": {
+     "to_room": 6250,
+     "description": "A rocky path climbs toward A Cave"
+    },
+    "south": {
+     "to_room": 6252,
+     "description": "A rocky path climbs toward A Cave"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6205,
+     "max": 3
+    }
+   ]
+  },
+  "6250": {
+   "vnum": 6250,
+   "name": "A Cave",
+   "description": "Several grass sleeping pallets are here, clustered around the remains of\nan old fire. The sloping of the cave's ceiling allow for smoke\nventilation towards the surface in here you note, lucky for the orcs. A\nfew strings of burnt meat still hang over the fire, untended and\nuneaten. On the floor near your feet you spy a small, twisted piece of\nwire... one orc's idea of a treasured ring, no doubt. Kicking the\ntrinket away, you try to push the pity out of your heart for these\nwretches. Sheep trails wind between the hillocks. The view stretches for\nmiles in every direction.",
+   "sector_type": "hills",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6247,
+     "description": "A rocky path climbs toward A Cave"
+    },
+    "east": {
+     "to_room": 6251,
+     "description": "A rocky path climbs toward A Cave"
+    },
+    "south": {
+     "to_room": 6253,
+     "description": "A rocky path climbs toward A Cave"
+    },
+    "west": {
+     "to_room": 6249,
+     "description": "A rocky path climbs toward A Cave"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6205,
+     "max": 3
+    },
+    {
+     "vnum": 6209,
+     "max": 3
+    }
+   ]
+  },
+  "6251": {
+   "vnum": 6251,
+   "name": "A Cave",
+   "description": "The area opens just inside a largish cave, about a hundred feet in\ndiameter. A few dim make-shift lanterns burning animal fat illuminate\nthe area, just enough so Visible is the rotted food on the floor, and a\nfew bodies sprawled throughout the whole area. Your disgust quickly\nturns to horror as you see a horrible creature, half... well, half\nsomething and half orc dash between two stalagmites. Sheep trails wind\nbetween the hillocks. The view stretches for miles in every direction.",
+   "sector_type": "hills",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6248,
+     "description": "A rocky path climbs toward A Cave"
+    },
+    "east": {
+     "to_room": 6245,
+     "description": "A steep trail ascends to A Tunnel"
+    },
+    "south": {
+     "to_room": 6254,
+     "description": "A rocky path climbs toward A Cave"
+    },
+    "west": {
+     "to_room": 6250,
+     "description": "A rocky path climbs toward A Cave"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6206,
+     "max": 2
+    },
+    {
+     "vnum": 6209,
+     "max": 3
+    }
+   ]
+  },
+  "6252": {
+   "vnum": 6252,
+   "name": "A Cave",
+   "description": "This must be the orc chief's area. There's an old prize -- a stolen\ntimeworn human armchair sitting near the south wall as a throne. A\nmammoth sleeping pallet made of piled furs is nearby. Next to that is\nthe pile of orc treasure; a pile of well-polished coppers. You look at\nthe pile of worthless coins and wonder at the image of orcish raiders.\nThese orcs aren't raiders, they are victims. Sheep trails wind between\nthe hillocks. The terrain rolls and dips around.",
+   "sector_type": "hills",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6249,
+     "description": "A rocky path climbs toward A Cave"
+    },
+    "east": {
+     "to_room": 6253,
+     "description": "A rocky path climbs toward A Cave"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6204,
+     "max": 1
+    }
+   ]
+  },
+  "6253": {
+   "vnum": 6253,
+   "name": "A Cave",
+   "description": "Many sleeping pallets are arranged near the walls, each made of heavy\nfur padding for comfort and warmth. Many are covered with blood and\nother, unidentifiable substances. Looking around, your only coherent\nthought is, 'Don't want to know... don't want to know...' The wind\ncarries the scent of wild herbs. Rocks jut from the grassy slopes.",
+   "sector_type": "hills",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6250,
+     "description": "A rocky path climbs toward A Cave"
+    },
+    "east": {
+     "to_room": 6254,
+     "description": "A rocky path climbs toward A Cave"
+    },
+    "west": {
+     "to_room": 6252,
+     "description": "A rocky path climbs toward A Cave"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6205,
+     "max": 3
+    },
+    {
+     "vnum": 6207,
+     "max": 1
+    }
+   ]
+  },
+  "6254": {
+   "vnum": 6254,
+   "name": "A Cave",
+   "description": "This area of the cave is one vast orc sickroom. Mutated and mangled orcs\nlie on the floor, seeming quiet, lifeless. They're not even worth your\ntime, you think, unless you've the mercy to put them out of their\nmisery. You look at the corruption of nature's design and wonder what\nforces are at work here... the barrier, the orcs... What's going on\nhere? The view stretches for miles in every direction. The wind carries\nthe scent of wild herbs.",
+   "sector_type": "hills",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6251,
+     "description": "A rocky path climbs toward A Cave"
+    },
+    "west": {
+     "to_room": 6253,
+     "description": "A rocky path climbs toward A Cave"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6208,
+     "max": 2
+    },
+    {
+     "vnum": 6208,
+     "max": 2
+    }
+   ]
+  },
+  "6255": {
+   "vnum": 6255,
+   "name": "A Tunnel",
+   "description": "This forking off from the mail tunnel seems odd; the walls are strangely\nsmooth, as if they were carved out by forces unknown. The end is abrupt\nand short, but there is a steel door inset in the wall of the west side\nof the tunnel. The smell from the lower tunnel doesn't seem nearly as\nbad here... this might be a good place to rest and catch your breath.\nThe terrain rolls and dips around. Sheep trails wind between the\nhillocks.",
+   "sector_type": "hills",
+   "flags": [
+    "dark",
+    "no_mob",
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 6243,
+     "description": "A rocky path climbs toward A Tunnel Forking"
+    },
+    "west": {
+     "to_room": 6256,
+     "description": "A large steel door.  There seems to be no hinges or knob, but there is a small keyhole in the exact center of it.",
+     "door": {
+      "name": "door steel",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 6200
+     }
+    }
+   }
+  },
+  "6256": {
+   "vnum": 6256,
+   "name": "A Tunnel",
+   "description": "This section of man-made tunnel heads north from here, doors on either\nside. A few glowing spots on the ceiling illuminate the area to almost a\ndaylight level. From the north you hear some horrible cries of pain and\nanguish that make you cringe inside and think twice about heading in\nthat direction. Shadows gather in the corners. The ceiling hangs low\noverhead.",
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6258,
+     "description": "A passage leads to A Tunnel"
+    },
+    "east": {
+     "to_room": 6255,
+     "description": "A rocky path climbs toward A Tunnel",
+     "door": {
+      "name": "door steel",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 6200
+     }
+    },
+    "west": {
+     "to_room": 6257,
+     "description": "This is a normal, wooden door.",
+     "door": {
+      "name": "door wooden",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "6257": {
+   "vnum": 6257,
+   "name": "A Bedroom",
+   "description": "This is a bedroom, catered to someone with a definite sense of taste.\nThere's a chest of drawers made of a solid section of oak tree. In fact,\nmost of the furniture here has that 'natural look' about it. The bed is\nfilled with soft down with an ornate table lamp close by. Nice place.\nThe walls are rough-hewn and cold to the touch. The air is still and\nmusty.",
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 6256,
+     "description": "A normal, wooden door.",
+     "door": {
+      "name": "door wooden",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "6258": {
+   "vnum": 6258,
+   "name": "A Tunnel",
+   "description": "This tunnel opens up into a large room to the north, and to the south,\nleads towards a set of doors. The light is crisp and bright, clearly\nshowing the lack of tool marks on the hewn walls... magic? The room just\nahead is large, and also well-lighted, giving it an almost clinical\natmosphere. Somewhere in the recesses of that room something cries out\nin a horrible crackling voice. Not good. The air is still and musty.\nDust motes drift in the stale air.",
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6266,
+     "description": "A passage leads to The Laboratory"
+    },
+    "south": {
+     "to_room": 6256,
+     "description": "A passage leads to A Tunnel"
+    }
+   }
+  },
+  "6259": {
+   "vnum": 6259,
+   "name": "The Laboratory",
+   "description": "A full fledge operating table is set up here, outfitted with a full set\nof restraints. A ledge nearby has a whole array of sterile medical\nequipment on it, covered over by a clear lid. There's a drain in the\nfloor with gradients leading to it to carry away the blood. For some\nreason, you don't imagine this as a voluntary operating theatre... The\nwalls are rough-hewn and cold to the touch. The ceiling hangs low\noverhead.",
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 6260,
+     "description": "A passage leads to The Laboratory"
+    },
+    "south": {
+     "to_room": 6262,
+     "description": "A passage leads to The Laboratory"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6210,
+     "max": 1
+    }
+   ]
+  },
+  "6260": {
+   "vnum": 6260,
+   "name": "The Laboratory",
+   "description": "Another table is set up will all sorts of alchemical apparatus here,\nvials and beakers, distillation equipment and et cetera. The stuff looks\nexpensive, but bulky and fragile; not good treasure to cart away with\nyou at all. The ceiling hangs low overhead. The air is still and musty.",
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 6261,
+     "description": "A steel cell door.",
+     "door": {
+      "name": "door steel",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": 6200
+     }
+    },
+    "south": {
+     "to_room": 6263,
+     "description": "A passage leads to The Laboratory"
+    },
+    "west": {
+     "to_room": 6259,
+     "description": "A passage leads to The Laboratory"
+    }
+   }
+  },
+  "6261": {
+   "vnum": 6261,
+   "name": "A Cage",
+   "description": "This is a small, dirty cage, with only a bucket for wastes, another\nbucket for food, and a dirty towel for a bed. The whole room has a\nterrible stench about it. The ceiling hangs low overhead. Shadows gather\nin the corners.",
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 6260,
+     "description": "A steel cell door.",
+     "door": {
+      "name": "door steel",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": 6200
+     }
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6212,
+     "max": 4
+    }
+   ]
+  },
+  "6262": {
+   "vnum": 6262,
+   "name": "The Laboratory",
+   "description": "Some small cages sit here, containing many different types of rodents.\nLeaning down to look better, you are very surprised as a tiny, common\ngarden mouse growls at you and tries to rip your face off through the\nbars. There are some bulges on its back, and it doesn't seem to be in a\nvery good mood. It quivers some, not fully in control of its motor\nfunctions. Poor thing. Shadows gather in the corners. The walls are\nrough-hewn and cold to the touch.",
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6259,
+     "description": "A passage leads to The Laboratory"
+    },
+    "east": {
+     "to_room": 6263,
+     "description": "A passage leads to The Laboratory"
+    },
+    "south": {
+     "to_room": 6265,
+     "description": "A passage leads to The Laboratory"
+    }
+   }
+  },
+  "6263": {
+   "vnum": 6263,
+   "name": "The Laboratory",
+   "description": "A rack stands near the cages on the eastern wall, filled with shackles\nand manacles, bullwhips and worse. They all look well-used. You give a\nshiver, and carry on. Dust motes drift in the stale air. The walls are\nrough-hewn and cold to the touch.",
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6260,
+     "description": "A passage leads to The Laboratory"
+    },
+    "east": {
+     "to_room": 6264,
+     "description": "A steel cell door.",
+     "door": {
+      "name": "door cell",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": 6200
+     }
+    },
+    "south": {
+     "to_room": 6266,
+     "description": "A passage leads to The Laboratory"
+    },
+    "west": {
+     "to_room": 6262,
+     "description": "A passage leads to The Laboratory"
+    }
+   }
+  },
+  "6264": {
+   "vnum": 6264,
+   "name": "A Cage",
+   "description": "This is a small, dirty cage, with only a bucket for wastes, another\nbucket for food, and a dirty towel for a bed. The whole room has a\nterrible stench about it. The air is still and musty. The walls are\nrough-hewn and cold to the touch.",
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 6263,
+     "description": "A steel cell door.",
+     "door": {
+      "name": "door steel",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": 6200
+     }
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6212,
+     "max": 4
+    }
+   ]
+  },
+  "6265": {
+   "vnum": 6265,
+   "name": "The Laboratory",
+   "description": "This is the southwest corner of the lab. There's no equipment here,\nmerely several pairs of heavy steel shackles on the southern wall.\nThere's also some a few small bloodstains on the floor beneath the\nshackles. Dust motes drift in the stale air. The air is still and musty.",
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6262,
+     "description": "A passage leads to The Laboratory"
+    },
+    "east": {
+     "to_room": 6266,
+     "description": "A passage leads to The Laboratory"
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6213,
+     "max": 1
+    }
+   ]
+  },
+  "6266": {
+   "vnum": 6266,
+   "name": "The Laboratory",
+   "description": "This is a fairly roomy laboratory that extends to the north, with cages\nset on the east side of the room. A metal table here is empty, although\nVisible is some outlines in the dust that suggest books had laid here\nonce. The walls are rough-hewn and cold to the touch. Dust motes drift\nin the stale air.",
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6263,
+     "description": "A passage leads to The Laboratory"
+    },
+    "east": {
+     "to_room": 6267,
+     "description": "A steel cell door.",
+     "door": {
+      "name": "cell door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": 6200
+     }
+    },
+    "south": {
+     "to_room": 6258,
+     "description": "A passage leads to A Tunnel"
+    },
+    "west": {
+     "to_room": 6265,
+     "description": "A passage leads to The Laboratory"
+    }
+   }
+  },
+  "6267": {
+   "vnum": 6267,
+   "name": "A Cage",
+   "description": "This is a small, dirty cage, with only a bucket for wastes, another\nbucket for food, and a dirty towel for a bed. The whole room has a\nterrible stench about it. The air is still and musty. Dust motes drift\nin the stale air.",
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 6266,
+     "description": "A steel cell door.",
+     "door": {
+      "name": "door cell",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": 6200
+     }
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 6212,
+     "max": 4
+    }
+   ]
+  },
+  "6211": {
+   "name": "The Edge Of The Orc Enclave",
+   "description": "The forest thins here, revealing crude fortifications made from sharpened logs. The ground is trampled and littered with bones. This marks the boundary of orc territory.",
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 6210,
+     "description": "A steep trail ascends to Just Passing Through..."
+    },
+    "west": {
+     "to_room": 6212,
+     "description": "A trail winds toward A Clearing In The Forest"
+    }
+   },
+   "mob_resets": [],
+   "obj_resets": [],
+   "vnum": 6211
+  }
+ }
 }

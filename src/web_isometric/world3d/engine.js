@@ -1,0 +1,228 @@
+// Renderer, scene, lights, camera rig, post-processing and the frame loop.
+// One continuous world: nothing here knows about rooms. Callers add objects and
+// register per-frame callbacks with engine.onTick(fn(dt, t)).
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { orbitOffset, pitchFor, dragOrbit, nearestTurn } from './orbit.js';
+
+// ?q=low|med|high, default high (the Mac mini and any recent laptop handle it)
+export const QUALITY = {
+  low: { name: 'low', dpr: 1, shadows: false, shadowSize: 1024, bloom: false, antialias: false },
+  med: { name: 'med', dpr: 1.25, shadows: true, shadowSize: 1024, bloom: true, antialias: true },
+  high: { name: 'high', dpr: 2, shadows: true, shadowSize: 2048, bloom: true, antialias: true },
+};
+
+// Lighting moods (bg: how much of the fog colour the far background is: 1 outdoors, a haze; dark
+// enclosed). The world is one scene with one sun, so "indoors" is a mood the
+// rig blends to when the hero's room is enclosed (a crypt under an open sky).
+export const MOODS = {
+  day: { sky: 0xcfe2ff, ground: 0x5a4a32, hemi: 1.15, sun: 0xfff1d6, sunI: 2.6, fog: 0xa9bfd0, near: 34, far: 90, exposure: 1.0, bg: 1.0 },
+  forest: { sky: 0xbfe0c8, ground: 0x3a3424, hemi: 1.0, sun: 0xffe6b8, sunI: 2.3, fog: 0x8fae9a, near: 30, far: 80, exposure: 1.0, bg: 1.0 },
+  crypt: { sky: 0x5a6a8a, ground: 0x1a140e, hemi: 0.32, sun: 0x8090c0, sunI: 0.25, fog: 0x0d0f16, near: 18, far: 52, exposure: 1.15, bg: 0.35 },
+  // a lit interior (temple, shop, inn): warm and readable, no strong sun
+  interior: { sky: 0xffe6c4, ground: 0x3a2c1e, hemi: 0.85, sun: 0xffe2b8, sunI: 0.9, fog: 0x1c1712, near: 26, far: 70, exposure: 1.05, bg: 0.35 },
+  dusk: { sky: 0xf0b890, ground: 0x3a2a24, hemi: 0.7, sun: 0xff9a5a, sunI: 1.5, fog: 0x6a5060, near: 30, far: 80, exposure: 1.05, bg: 0.9 },
+  night: { sky: 0x5a6a9a, ground: 0x1a1a22, hemi: 0.58, sun: 0xa8bcff, sunI: 0.75, fog: 0x121a2c, near: 26, far: 70, exposure: 1.25, bg: 0.85 },
+  // the room looks (room_looks.py): rock close and cold, sand hot and hazy, snow bright, ash red
+  cave: { sky: 0xa8b4cc, ground: 0x5a4a3c, hemi: 1.45, sun: 0xb8c4e0, sunI: 0.85, fog: 0x161a22, near: 20, far: 60, exposure: 1.35, bg: 0.35 },
+  desert: { sky: 0xfff0d0, ground: 0x8a6a40, hemi: 1.2, sun: 0xffe8b8, sunI: 2.9, fog: 0xe8d4b0, near: 30, far: 85, exposure: 1.0, bg: 1.0 },
+  snow: { sky: 0xe4eeff, ground: 0x8a96a8, hemi: 1.15, sun: 0xf4f8ff, sunI: 2.2, fog: 0xd8e4f0, near: 26, far: 75, exposure: 0.95, bg: 1.0 },
+  volcanic: { sky: 0x8a4a3a, ground: 0x2a0e06, hemi: 0.6, sun: 0xff8a50, sunI: 1.3, fog: 0x3a1a12, near: 22, far: 64, exposure: 1.1, bg: 0.75 },
+};
+
+export function createEngine(container, opts = {}) {
+  const q = QUALITY[opts.quality] || QUALITY.high;
+  const renderer = new THREE.WebGLRenderer({ antialias: q.antialias, powerPreference: 'high-performance' });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, q.dpr));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.shadowMap.enabled = q.shadows;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  // count draw calls over the whole frame (shadow + scene + bloom passes), not the last pass
+  renderer.info.autoReset = false;
+  container.appendChild(renderer.domElement);
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x07080b);
+  scene.fog = new THREE.Fog(0x0d0f16, 30, 80);
+
+  const hemi = new THREE.HemisphereLight(0xffffff, 0x444444, 1);
+  const sun = new THREE.DirectionalLight(0xffffff, 2);
+  sun.castShadow = q.shadows;
+  sun.shadow.mapSize.set(q.shadowSize, q.shadowSize);
+  Object.assign(sun.shadow.camera, { left: -24, right: 24, top: 24, bottom: -24, near: 1, far: 90 });
+  sun.shadow.bias = -0.0004;
+  sun.shadow.normalBias = 0.04;
+  scene.add(hemi, sun, sun.target);
+
+  // ---- camera rig: orbits the hero (right-drag, orbit.js), smooth follow ----
+  const camera = new THREE.PerspectiveCamera(36, 1, 0.5, 220);
+  // The pitch follows the zoom (owner: "see more of the character's face"): pulled back
+  // it looks down on the room like a map (58°); zoomed in it drops toward the hero's
+  // face (34°). The default sits in between. A right-drag turns the view around the hero
+  // (yaw; 0 = north up) and tilts it (added to the zoom's pitch); it stays where it is left
+  // until snapNorth() (Home, or the minimap's compass).
+  const rig = {
+    target: new THREE.Vector3(),     // what we look at (the hero)
+    focus: new THREE.Vector3(),      // smoothed target
+    pitch: THREE.MathUtils.degToRad(46),
+    lowPitch: 34, highPitch: 58,
+    dist: 19, minDist: 10, maxDist: 34, wantDist: 19,
+    yaw: 0, tilt: 0, snap: null,
+  };
+  function placeCamera(snap) {
+    if (snap) rig.focus.copy(rig.target);
+    const k = THREE.MathUtils.clamp((rig.dist - rig.minDist) / (rig.maxDist - rig.minDist), 0, 1);
+    rig.pitch = pitchFor(THREE.MathUtils.lerp(rig.lowPitch, rig.highPitch, Math.pow(k, 0.8)), rig.tilt);
+    const off = orbitOffset(rig.yaw, rig.pitch, rig.dist);
+    camera.position.set(rig.focus.x + off.x, rig.focus.y + off.y, rig.focus.z + off.z);
+    camera.lookAt(rig.focus.x, rig.focus.y + 1.1, rig.focus.z);
+    // impact shake (fx.js): a small offset for a few frames on heavy blows
+    const sh = rig.shake && rig.shake();
+    if (sh) camera.position.add(sh);
+  }
+  // turn and tilt by a drag of (dx, dy) pixels
+  function orbit(dx, dy) {
+    rig.snap = null;
+    const o = dragOrbit(rig.yaw, rig.tilt, dx, dy);
+    rig.yaw = o.yaw; rig.tilt = o.tilt;
+  }
+  // ease back to north up and the zoom's own pitch (on the wall clock: a hit-stop can't slow it)
+  function snapNorth() {
+    rig.snap = { t0: performance.now(), yaw0: rig.yaw, tilt0: rig.tilt, yaw1: nearestTurn(rig.yaw) };
+  }
+  function easeSnap() {
+    const s = rig.snap;
+    if (!s) return;
+    const k = Math.min(1, (performance.now() - s.t0) / 350), e = 1 - Math.pow(1 - k, 3);
+    rig.yaw = s.yaw0 + (s.yaw1 - s.yaw0) * e;
+    rig.tilt = s.tilt0 * (1 - e);
+    if (k >= 1) { rig.yaw = 0; rig.tilt = 0; rig.snap = null; }
+  }
+  // zoom: proportional to the wheel (a trackpad glides, a notch steps ~15%); a sideways-only
+  // scroll (deltaY 0) does nothing
+  renderer.domElement.addEventListener('wheel', e => {
+    e.preventDefault();
+    if (!e.deltaY) return;
+    const px = THREE.MathUtils.clamp(e.deltaY * (e.deltaMode ? 33 : 1), -100, 100);
+    rig.wantDist = THREE.MathUtils.clamp(rig.wantDist * Math.exp(px * 0.0015), rig.minDist, rig.maxDist);
+  }, { passive: false });
+
+  // ---- post: bloom only on what is really bright (torches, sparks), then tone map ----
+  function makeComposer() {
+    const c = new EffectComposer(renderer);
+    c.addPass(new RenderPass(scene, camera));
+    c.addPass(new UnrealBloomPass(new THREE.Vector2(256, 256), 0.32, 0.45, 0.88));
+    c.addPass(new OutputPass());
+    return c;
+  }
+  let composer = q.bloom ? makeComposer() : null;
+
+  function resize() {
+    const w = container.clientWidth || window.innerWidth, h = container.clientHeight || window.innerHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    if (composer) { composer.setPixelRatio(renderer.getPixelRatio()); composer.setSize(w, h); }
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  // ---- mood blending ----
+  const cur = { ...MOODS.day }, want = { ...MOODS.day };
+  const colors = { sky: new THREE.Color(), ground: new THREE.Color(), sun: new THREE.Color(), fog: new THREE.Color() };
+  let gloomNow = 0;
+  function setMood(m, instant) {
+    Object.assign(want, typeof m === 'string' ? MOODS[m] : m);
+    if (instant) Object.assign(cur, want);
+  }
+  function blendMood(dt) {
+    const k = 1 - Math.exp(-dt * 2.2);
+    for (const key of ['hemi', 'sunI', 'near', 'far', 'exposure', 'bg']) cur[key] += (want[key] - cur[key]) * k;
+    for (const key of ['sky', 'ground', 'sun', 'fog']) {
+      colors[key].set(cur[key]).lerp(new THREE.Color(want[key]), k);
+      cur[key] = colors[key].getHex();
+    }
+    // a boss's gloom (combat.js gloom): the light dies as it weakens
+    gloomNow += ((api.gloom || 0) - gloomNow) * (1 - Math.exp(-dt * 1.5));
+    const dim = 1 - 0.85 * gloomNow;
+    hemi.color.set(cur.sky); hemi.groundColor.set(cur.ground); hemi.intensity = cur.hemi * dim;
+    sun.color.set(cur.sun); sun.intensity = cur.sunI * dim;
+    scene.fog.color.set(cur.fog); scene.fog.near = cur.near * (1 - 0.4 * gloomNow); scene.fog.far = cur.far * (1 - 0.5 * gloomNow);
+    // under open sky the distance fades into the haze itself; enclosed, into the dark
+    scene.background.set(cur.fog).multiplyScalar(cur.bg ?? 0.35);
+    renderer.toneMappingExposure = cur.exposure * (1 - 0.45 * gloomNow);
+  }
+
+  // ---- loop ----
+  // ticks move the world; late ticks run once the camera is placed for this frame (screen
+  // overlays: nameplates, floating text, the see-through circle, prompts, the minimap)
+  const ticks = [], lateTicks = [];
+  const clock = new THREE.Clock();
+  let frames = 0, stopUntil = 0, elapsed = 0;
+  // `fixed`: a step of exactly that long (engine.step: screenshots of effects mid-flight)
+  function frame(fixed) {
+    // hit-stop: a big blow freezes the world for a few frames (time crawls, it never stops)
+    const raw = fixed != null ? fixed : Math.min(clock.getDelta(), 0.05) * api.timeScale;
+    const dt = performance.now() < stopUntil ? raw * 0.06 : raw;
+    const t = (elapsed += dt);
+    for (const fn of ticks) fn(dt, t);
+    rig.dist += (rig.wantDist - rig.dist) * (1 - Math.exp(-dt * 10));
+    rig.focus.lerp(rig.target, 1 - Math.exp(-dt * 9));
+    easeSnap();
+    placeCamera(false);
+    camera.updateMatrixWorld();
+    for (const fn of lateTicks) fn(dt, t);
+    // the sun's shadow box follows the hero so shadows stay sharp everywhere
+    sun.position.set(rig.focus.x - 14, 30, rig.focus.z + 10);
+    sun.target.position.copy(rig.focus);
+    blendMood(dt);
+    renderer.info.reset();
+    if (composer) composer.render(dt); else renderer.render(scene, camera);
+    frames++;
+  }
+  renderer.setAnimationLoop(() => frame());
+
+  // a graphics quality chosen in Settings, at once: the pixel ratio, shadows and bloom change
+  // now; smoothed edges (antialias) are fixed when the page starts. Returns whether a reload
+  // would still change something.
+  function setQuality(name) {
+    const nq = QUALITY[name] || QUALITY.high;
+    if (nq === api.quality) return false;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, nq.dpr));
+    if (renderer.shadowMap.enabled !== nq.shadows) {
+      renderer.shadowMap.enabled = nq.shadows;
+      sun.castShadow = nq.shadows;
+      // materials compile with or without shadows: have them rebuilt
+      scene.traverse(o => { const m = o.material; if (m) (Array.isArray(m) ? m : [m]).forEach(x => { x.needsUpdate = true; }); });
+    }
+    if (sun.shadow.mapSize.x !== nq.shadowSize) {
+      sun.shadow.mapSize.set(nq.shadowSize, nq.shadowSize);
+      if (sun.shadow.map) { sun.shadow.map.dispose(); sun.shadow.map = null; }
+    }
+    if (nq.bloom && !composer) composer = makeComposer();
+    else if (!nq.bloom && composer) { if (composer.dispose) composer.dispose(); composer = null; }
+    api.quality = nq;
+    resize();
+    return nq.antialias !== q.antialias;
+  }
+
+  const api = {
+    THREE, renderer, scene, camera, rig, sun, hemi, quality: q,
+    timeScale: 1,                      // slow motion for the effects gallery
+    onTick: fn => ticks.push(fn),
+    onLateTick: fn => lateTicks.push(fn),
+    orbit, snapNorth, setQuality,
+    hitStop: ms => { stopUntil = Math.max(stopUntil, performance.now() + ms); },
+    setMood, placeCamera,
+    // stop the loop and advance by hand, `n` frames of `dt` each (a slow machine still shows
+    // every moment of an effect); setManual(false) starts the loop again
+    setManual(on) { renderer.setAnimationLoop(on ? null : () => frame()); clock.getDelta(); },
+    step(dt = 1 / 30, n = 1) { for (let i = 0; i < n; i++) frame(dt); },
+    get frames() { return frames; },
+  };
+  return api;
+}

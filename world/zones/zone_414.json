@@ -1,0 +1,808 @@
+{
+ "number": 414,
+ "name": "Strange Garden",
+ "builders": "Finster",
+ "atlas_area": 14,
+ "rooms": {
+  "4500": {
+   "vnum": 4500,
+   "name": "The Garden",
+   "map": {
+    "x": -13,
+    "y": -15,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4501,
+     "description": "To the north lies The Garden."
+    },
+    "east": {
+     "to_room": 4505,
+     "description": "To the east lies The Garden."
+    },
+    "south": {
+     "to_room": 3061,
+     "description": "To the south lies The Great Field Of Garathorm."
+    },
+    "west": {
+     "to_room": 4503,
+     "description": "To the west lies By The Pond."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "4501": {
+   "vnum": 4501,
+   "name": "The Garden",
+   "map": {
+    "x": -13,
+    "y": -13,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4504,
+     "description": "To the north lies By The Pond."
+    },
+    "east": {
+     "to_room": 4502,
+     "description": "To the east lies The Garden."
+    },
+    "south": {
+     "to_room": 4500,
+     "description": "To the south lies The Garden."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. The land lies\nflat and quiet in every direction. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "4502": {
+   "vnum": 4502,
+   "name": "The Garden",
+   "map": {
+    "x": -11,
+    "y": -13,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4512,
+     "description": "To the north lies The Path Around The Greenhouse."
+    },
+    "east": {
+     "to_room": 4506,
+     "description": "To the east lies The Field Of Crab Grass."
+    },
+    "south": {
+     "to_room": 4505,
+     "description": "To the south lies The Garden."
+    },
+    "west": {
+     "to_room": 4501,
+     "description": "To the west lies The Garden."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "4503": {
+   "vnum": 4503,
+   "name": "By The Pond",
+   "map": {
+    "x": -15,
+    "y": -15,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4508,
+     "description": "To the north lies On The Small Island."
+    },
+    "east": {
+     "to_room": 4500,
+     "description": "To the east lies The Garden."
+    },
+    "west": {
+     "to_room": 4509,
+     "description": "To the west lies On The Winding Path."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "4504": {
+   "vnum": 4504,
+   "name": "By The Pond",
+   "map": {
+    "x": -13,
+    "y": -11,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4507,
+     "description": "To the north lies Outside The Greenhouse."
+    },
+    "south": {
+     "to_room": 4501,
+     "description": "To the south lies The Garden."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead north and south.",
+   "placeholder": true
+  },
+  "4505": {
+   "vnum": 4505,
+   "name": "The Garden",
+   "map": {
+    "x": -11,
+    "y": -15,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4502,
+     "description": "To the north lies The Garden."
+    },
+    "west": {
+     "to_room": 4500,
+     "description": "To the west lies The Garden."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead north and west.",
+   "placeholder": true
+  },
+  "4506": {
+   "vnum": 4506,
+   "name": "The Field Of Crab Grass",
+   "map": {
+    "x": -9,
+    "y": -13,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 4502,
+     "description": "To the west lies The Garden."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. A way leads west.",
+   "placeholder": true
+  },
+  "4507": {
+   "vnum": 4507,
+   "name": "Outside The Greenhouse",
+   "map": {
+    "x": -13,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4524,
+     "description": "To the north lies In The Greenhouse."
+    },
+    "east": {
+     "to_room": 4512,
+     "description": "To the east lies The Path Around The Greenhouse."
+    },
+    "south": {
+     "to_room": 4504,
+     "description": "To the south lies By The Pond."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "4508": {
+   "vnum": 4508,
+   "name": "On The Small Island",
+   "map": {
+    "x": -15,
+    "y": -13,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4504,
+     "description": "To the north lies By The Pond."
+    },
+    "south": {
+     "to_room": 4503,
+     "description": "To the south lies By The Pond."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. The land lies\nflat and quiet in every direction. Ways lead north and south.",
+   "placeholder": true
+  },
+  "4509": {
+   "vnum": 4509,
+   "name": "On The Winding Path",
+   "map": {
+    "x": -17,
+    "y": -15,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 4503,
+     "description": "To the east lies By The Pond."
+    },
+    "west": {
+     "to_room": 4507,
+     "description": "To the west lies Outside The Greenhouse."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wind moves through the\ntall grass in long, slow waves. Ways lead east and west.",
+   "placeholder": true
+  },
+  "4510": {
+   "vnum": 4510,
+   "name": "The Path Around The Greenhouse",
+   "map": {
+    "x": -11,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4511,
+     "description": "To the north lies The Path Around The Greenhouse."
+    },
+    "south": {
+     "to_room": 4512,
+     "description": "To the south lies The Path Around The Greenhouse."
+    },
+    "west": {
+     "to_room": 4529,
+     "description": "To the west lies In The Greenhouse."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. Ways lead north, south and\nwest.",
+   "placeholder": true
+  },
+  "4511": {
+   "vnum": 4511,
+   "name": "The Path Around The Greenhouse",
+   "map": {
+    "x": -11,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4516,
+     "description": "To the north lies The Clearing."
+    },
+    "south": {
+     "to_room": 4510,
+     "description": "To the south lies The Path Around The Greenhouse."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. The land lies\nflat and quiet in every direction. Ways lead north and south.",
+   "placeholder": true
+  },
+  "4512": {
+   "vnum": 4512,
+   "name": "The Path Around The Greenhouse",
+   "map": {
+    "x": -11,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4510,
+     "description": "To the north lies The Path Around The Greenhouse."
+    },
+    "south": {
+     "to_room": 4502,
+     "description": "To the south lies The Garden."
+    },
+    "west": {
+     "to_room": 4507,
+     "description": "To the west lies Outside The Greenhouse."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. The land lies\nflat and quiet in every direction. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "4513": {
+   "vnum": 4513,
+   "name": "The Plaza",
+   "map": {
+    "x": -22,
+    "y": -2,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 4515,
+     "description": "To the east lies The Plaza."
+    },
+    "south": {
+     "to_room": 4517,
+     "description": "To the south lies The Hedge Labyrinth."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead east and south.",
+   "placeholder": true
+  },
+  "4515": {
+   "vnum": 4515,
+   "name": "The Plaza",
+   "map": {
+    "x": -11,
+    "y": -2,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4533,
+     "description": "To the north lies The Pavilion."
+    },
+    "south": {
+     "to_room": 4516,
+     "description": "To the south lies The Clearing."
+    },
+    "west": {
+     "to_room": 4513,
+     "description": "To the west lies The Plaza."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. Open grassland\nrolls away under a wide sky. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "4516": {
+   "vnum": 4516,
+   "name": "The Clearing",
+   "map": {
+    "x": -11,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4515,
+     "description": "To the north lies The Plaza."
+    },
+    "east": {
+     "to_room": 4530,
+     "description": "To the east lies The Rockery."
+    },
+    "south": {
+     "to_room": 4511,
+     "description": "To the south lies The Path Around The Greenhouse."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. Open grassland\nrolls away under a wide sky. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "4517": {
+   "vnum": 4517,
+   "name": "The Hedge Labyrinth",
+   "map": {
+    "x": -22,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4513,
+     "description": "To the north lies The Plaza."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads north.",
+   "placeholder": true
+  },
+  "4518": {
+   "vnum": 4518,
+   "name": "The Hedge Labyrinth",
+   "map": {
+    "x": -22,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time.",
+   "placeholder": true
+  },
+  "4519": {
+   "vnum": 4519,
+   "name": "The Hedge Labyrinth",
+   "map": {
+    "x": -22,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch.",
+   "placeholder": true
+  },
+  "4520": {
+   "vnum": 4520,
+   "name": "The Hedge Labyrinth",
+   "map": {
+    "x": -22,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time.",
+   "placeholder": true
+  },
+  "4521": {
+   "vnum": 4521,
+   "name": "The Hedge Labyrinth",
+   "map": {
+    "x": -22,
+    "y": -8,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach.",
+   "placeholder": true
+  },
+  "4522": {
+   "vnum": 4522,
+   "name": "The Hedge Labyrinth",
+   "map": {
+    "x": -22,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke.",
+   "placeholder": true
+  },
+  "4523": {
+   "vnum": 4523,
+   "name": "The Dead End",
+   "map": {
+    "x": -20,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 4522,
+     "description": "To the west lies The Hedge Labyrinth."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. A way leads west.",
+   "placeholder": true
+  },
+  "4524": {
+   "vnum": 4524,
+   "name": "In The Greenhouse",
+   "map": {
+    "x": -13,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4527,
+     "description": "To the north lies In The Greenhouse."
+    },
+    "east": {
+     "to_room": 4529,
+     "description": "To the east lies In The Greenhouse."
+    },
+    "south": {
+     "to_room": 4507,
+     "description": "To the south lies Outside The Greenhouse."
+    },
+    "west": {
+     "to_room": 4525,
+     "description": "To the west lies In The Greenhouse."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "4525": {
+   "vnum": 4525,
+   "name": "In The Greenhouse",
+   "map": {
+    "x": -14,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4526,
+     "description": "To the north lies In The Greenhouse."
+    },
+    "east": {
+     "to_room": 4524,
+     "description": "To the east lies In The Greenhouse."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. Ways lead north and east.",
+   "placeholder": true
+  },
+  "4526": {
+   "vnum": 4526,
+   "name": "In The Greenhouse",
+   "map": {
+    "x": -14,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 4527,
+     "description": "To the east lies In The Greenhouse."
+    },
+    "south": {
+     "to_room": 4525,
+     "description": "To the south lies In The Greenhouse."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead east and south.",
+   "placeholder": true
+  },
+  "4527": {
+   "vnum": 4527,
+   "name": "In The Greenhouse",
+   "map": {
+    "x": -13,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 4528,
+     "description": "To the east lies In The Greenhouse."
+    },
+    "south": {
+     "to_room": 4524,
+     "description": "To the south lies In The Greenhouse."
+    },
+    "west": {
+     "to_room": 4526,
+     "description": "To the west lies In The Greenhouse."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. Ways lead east, south and\nwest.",
+   "placeholder": true
+  },
+  "4528": {
+   "vnum": 4528,
+   "name": "In The Greenhouse",
+   "map": {
+    "x": -12,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 4529,
+     "description": "To the south lies In The Greenhouse."
+    },
+    "west": {
+     "to_room": 4527,
+     "description": "To the west lies In The Greenhouse."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead south and west.",
+   "placeholder": true
+  },
+  "4529": {
+   "vnum": 4529,
+   "name": "In The Greenhouse",
+   "map": {
+    "x": -12,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4528,
+     "description": "To the north lies In The Greenhouse."
+    },
+    "east": {
+     "to_room": 4510,
+     "description": "To the east lies The Path Around The Greenhouse."
+    },
+    "west": {
+     "to_room": 4524,
+     "description": "To the west lies In The Greenhouse."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. Ways lead north, east and\nwest.",
+   "placeholder": true
+  },
+  "4530": {
+   "vnum": 4530,
+   "name": "The Rockery",
+   "map": {
+    "x": -10,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4531,
+     "description": "To the north lies The Garden."
+    },
+    "west": {
+     "to_room": 4516,
+     "description": "To the west lies The Clearing."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead north and west.",
+   "placeholder": true
+  },
+  "4531": {
+   "vnum": 4531,
+   "name": "The Garden",
+   "map": {
+    "x": -10,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4532,
+     "description": "To the north lies The Path Under The Trees."
+    },
+    "south": {
+     "to_room": 4530,
+     "description": "To the south lies The Rockery."
+    },
+    "west": {
+     "to_room": 4533,
+     "description": "To the west lies The Pavilion."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "4532": {
+   "vnum": 4532,
+   "name": "The Path Under The Trees",
+   "map": {
+    "x": -10,
+    "y": 0,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 4534,
+     "description": "To the east lies The Secret Garden."
+    },
+    "south": {
+     "to_room": 4531,
+     "description": "To the south lies The Garden."
+    }
+   },
+   "description": "A worn track crosses the open ground. Open grassland rolls away under a\nwide sky. Ways lead east and south.",
+   "placeholder": true
+  },
+  "4533": {
+   "vnum": 4533,
+   "name": "The Pavilion",
+   "map": {
+    "x": -11,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 4531,
+     "description": "To the east lies The Garden."
+    },
+    "south": {
+     "to_room": 4515,
+     "description": "To the south lies The Plaza."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead east and south.",
+   "placeholder": true
+  },
+  "4534": {
+   "vnum": 4534,
+   "name": "The Secret Garden",
+   "map": {
+    "x": -9,
+    "y": 0,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 4532,
+     "description": "To the west lies The Path Under The Trees."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. A way leads west.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

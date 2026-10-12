@@ -1,0 +1,2880 @@
+{
+ "number": 503,
+ "name": "Durmandel I",
+ "builders": "Jack",
+ "atlas_area": 103,
+ "rooms": {
+  "213000": {
+   "vnum": 213000,
+   "name": "Durgan's Gate",
+   "map": {
+    "x": 43,
+    "y": 93,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 213001,
+     "description": "To the north lies The Main Tunnel."
+    },
+    "south": {
+     "to_room": 9160,
+     "description": "To the south lies Durgar's Gate - The Doors To The Dwarven Kingdom."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. Ways lead north and south.",
+   "placeholder": true
+  },
+  "213001": {
+   "vnum": 213001,
+   "name": "The Main Tunnel",
+   "map": {
+    "x": 43,
+    "y": 94,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 213002,
+     "description": "To the north lies The Main Tunnel."
+    },
+    "south": {
+     "to_room": 213000,
+     "description": "To the south lies Durgan's Gate."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "213002": {
+   "vnum": 213002,
+   "name": "The Main Tunnel",
+   "map": {
+    "x": 43,
+    "y": 95,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 213003,
+     "description": "To the north lies The Main Tunnel."
+    },
+    "south": {
+     "to_room": 213001,
+     "description": "To the south lies The Main Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "213003": {
+   "vnum": 213003,
+   "name": "The Main Tunnel",
+   "map": {
+    "x": 43,
+    "y": 96,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 213004,
+     "description": "To the north lies A Bend In The Tunnel."
+    },
+    "south": {
+     "to_room": 213002,
+     "description": "To the south lies The Main Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "213004": {
+   "vnum": 213004,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 43,
+    "y": 97,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 213005,
+     "description": "To the east lies The Main Tunnel."
+    },
+    "south": {
+     "to_room": 213003,
+     "description": "To the south lies The Main Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "213005": {
+   "vnum": 213005,
+   "name": "The Main Tunnel",
+   "map": {
+    "x": 44,
+    "y": 97,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 213006,
+     "description": "To the east lies The Ambassadors Halls."
+    },
+    "west": {
+     "to_room": 213004,
+     "description": "To the west lies A Bend In The Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "213006": {
+   "vnum": 213006,
+   "name": "The Ambassadors Halls",
+   "map": {
+    "x": 45,
+    "y": 97,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 213007,
+     "description": "To the north lies The Main Tunnel."
+    },
+    "west": {
+     "to_room": 213005,
+     "description": "To the west lies The Main Tunnel."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. The land lies\nflat and quiet in every direction. Ways lead north and west.",
+   "placeholder": true
+  },
+  "213007": {
+   "vnum": 213007,
+   "name": "The Main Tunnel",
+   "map": {
+    "x": 45,
+    "y": 98,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 213008,
+     "description": "To the north lies A Bend In The Tunnel."
+    },
+    "south": {
+     "to_room": 213006,
+     "description": "To the south lies The Ambassadors Halls."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "213008": {
+   "vnum": 213008,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 45,
+    "y": 99,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 213007,
+     "description": "To the south lies The Main Tunnel."
+    },
+    "west": {
+     "to_room": 213009,
+     "description": "To the west lies The Main Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead south and west.",
+   "placeholder": true
+  },
+  "213009": {
+   "vnum": 213009,
+   "name": "The Main Tunnel",
+   "map": {
+    "x": 44,
+    "y": 99,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 213008,
+     "description": "To the east lies A Bend In The Tunnel."
+    },
+    "west": {
+     "to_room": 213010,
+     "description": "To the west lies The Main Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "213010": {
+   "vnum": 213010,
+   "name": "The Main Tunnel",
+   "map": {
+    "x": 43,
+    "y": 99,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 213009,
+     "description": "To the east lies The Main Tunnel."
+    },
+    "west": {
+     "to_room": 213011,
+     "description": "To the west lies A Bend In The Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "213011": {
+   "vnum": 213011,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 42,
+    "y": 99,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 213012,
+     "description": "To the north lies The Main Tunnel."
+    },
+    "east": {
+     "to_room": 213010,
+     "description": "To the east lies The Main Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and east.",
+   "placeholder": true
+  },
+  "213012": {
+   "vnum": 213012,
+   "name": "The Main Tunnel",
+   "map": {
+    "x": 42,
+    "y": 100,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 213013,
+     "description": "To the north lies The Main Tunnel."
+    },
+    "south": {
+     "to_room": 213011,
+     "description": "To the south lies A Bend In The Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "213013": {
+   "vnum": 213013,
+   "name": "The Main Tunnel",
+   "map": {
+    "x": 42,
+    "y": 101,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 213014,
+     "description": "To the north lies The Main Tunnel."
+    },
+    "south": {
+     "to_room": 213012,
+     "description": "To the south lies The Main Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "213014": {
+   "vnum": 213014,
+   "name": "The Main Tunnel",
+   "map": {
+    "x": 42,
+    "y": 102,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 213015,
+     "description": "To the north lies The Gate To The Stronghold."
+    },
+    "south": {
+     "to_room": 213013,
+     "description": "To the south lies The Main Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "213015": {
+   "vnum": 213015,
+   "name": "The Gate To The Stronghold",
+   "map": {
+    "x": 42,
+    "y": 103,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 213016,
+     "description": "To the north lies The Main Tunnel."
+    },
+    "south": {
+     "to_room": 213014,
+     "description": "To the south lies The Main Tunnel."
+    },
+    "west": {
+     "to_room": 13024,
+     "description": "To the west lies The Hall Of Splendor.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wind moves through the\ntall grass in long, slow waves. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "213016": {
+   "vnum": 213016,
+   "name": "The Main Tunnel",
+   "map": {
+    "x": 42,
+    "y": 104,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 213017,
+     "description": "To the north lies The Main Tunnel."
+    },
+    "south": {
+     "to_room": 213015,
+     "description": "To the south lies The Gate To The Stronghold."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "213017": {
+   "vnum": 213017,
+   "name": "The Main Tunnel",
+   "map": {
+    "x": 42,
+    "y": 105,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13018,
+     "description": "To the north lies A Bend In The Tunnel."
+    },
+    "south": {
+     "to_room": 213016,
+     "description": "To the south lies The Main Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13018": {
+   "vnum": 13018,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 42,
+    "y": 106,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13019,
+     "description": "To the east lies A Bend In The Tunnel."
+    },
+    "south": {
+     "to_room": 213017,
+     "description": "To the south lies The Main Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "13019": {
+   "vnum": 13019,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 43,
+    "y": 106,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13020,
+     "description": "To the north lies The Main Tunnel."
+    },
+    "west": {
+     "to_room": 13018,
+     "description": "To the west lies A Bend In The Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "13020": {
+   "vnum": 13020,
+   "name": "The Main Tunnel",
+   "map": {
+    "x": 43,
+    "y": 107,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13021,
+     "description": "To the north lies The Main Tunnel."
+    },
+    "south": {
+     "to_room": 13019,
+     "description": "To the south lies A Bend In The Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13021": {
+   "vnum": 13021,
+   "name": "The Main Tunnel",
+   "map": {
+    "x": 43,
+    "y": 108,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13022,
+     "description": "To the north lies Valin's Gate."
+    },
+    "east": {
+     "to_room": 13023,
+     "description": "To the east lies Guardhouse.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 13020,
+     "description": "To the south lies The Main Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "13022": {
+   "vnum": 13022,
+   "name": "Valin's Gate",
+   "map": {
+    "x": 43,
+    "y": 109,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 13021,
+     "description": "To the south lies The Main Tunnel."
+    }
+   },
+   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. A way leads south.",
+   "placeholder": true
+  },
+  "13023": {
+   "vnum": 13023,
+   "name": "Guardhouse",
+   "map": {
+    "x": 44,
+    "y": 108,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 13021,
+     "description": "To the west lies The Main Tunnel."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. A way leads west.",
+   "placeholder": true
+  },
+  "13024": {
+   "vnum": 13024,
+   "name": "The Hall Of Splendor",
+   "map": {
+    "x": 41,
+    "y": 103,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 213015,
+     "description": "To the east lies The Gate To The Stronghold."
+    },
+    "up": {
+     "to_room": 13025,
+     "description": "To the up lies The Central Plaza."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and up.",
+   "placeholder": true
+  },
+  "13025": {
+   "vnum": 13025,
+   "name": "The Central Plaza",
+   "map": {
+    "x": 42,
+    "y": 102,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13061,
+     "description": "To the north lies North Plaza."
+    },
+    "east": {
+     "to_room": 13063,
+     "description": "To the east lies East Plaza."
+    },
+    "south": {
+     "to_room": 13065,
+     "description": "To the south lies South Plaza."
+    },
+    "west": {
+     "to_room": 13067,
+     "description": "To the west lies West Plaza."
+    },
+    "down": {
+     "to_room": 13024,
+     "description": "To the down lies The Hall Of Splendor."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead north, east, south, west and\ndown.",
+   "placeholder": true
+  },
+  "13026": {
+   "vnum": 13026,
+   "name": "Valin's Road",
+   "map": {
+    "x": 35,
+    "y": 103,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13027,
+     "description": "To the north lies Valin's Road."
+    },
+    "south": {
+     "to_room": 13059,
+     "description": "To the south lies Valin's Road."
+    },
+    "west": {
+     "to_room": 13102,
+     "description": "To the west lies A Nobles House."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. The land lies\nflat and quiet in every direction. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "13027": {
+   "vnum": 13027,
+   "name": "Valin's Road",
+   "map": {
+    "x": 35,
+    "y": 104,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13029,
+     "description": "To the north lies Valin's Road."
+    },
+    "south": {
+     "to_room": 13026,
+     "description": "To the south lies Valin's Road."
+    },
+    "west": {
+     "to_room": 13028,
+     "description": "To the west lies The Baker's Guild."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "13028": {
+   "vnum": 13028,
+   "name": "The Baker's Guild",
+   "map": {
+    "x": 34,
+    "y": 104,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13027,
+     "description": "To the east lies Valin's Road."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "13029": {
+   "vnum": 13029,
+   "name": "Valin's Road",
+   "map": {
+    "x": 35,
+    "y": 106,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13031,
+     "description": "To the north lies Valin's Road."
+    },
+    "east": {
+     "to_room": 13030,
+     "description": "To the east lies The General Store."
+    },
+    "south": {
+     "to_room": 13027,
+     "description": "To the south lies Valin's Road."
+    },
+    "west": {
+     "to_room": 13101,
+     "description": "To the west lies A Nobles House."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "13030": {
+   "vnum": 13030,
+   "name": "The General Store",
+   "map": {
+    "x": 36,
+    "y": 106,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 13029,
+     "description": "To the west lies Valin's Road."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "13031": {
+   "vnum": 13031,
+   "name": "Valin's Road",
+   "map": {
+    "x": 35,
+    "y": 107,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13060,
+     "description": "To the north lies The Grand Stairs."
+    },
+    "south": {
+     "to_room": 13029,
+     "description": "To the south lies Valin's Road."
+    },
+    "west": {
+     "to_room": 13100,
+     "description": "To the west lies A Nobles House."
+    }
+   },
+   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "13032": {
+   "vnum": 13032,
+   "name": "Bolgrim's Way",
+   "map": {
+    "x": 42,
+    "y": 108,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13036,
+     "description": "To the east lies Bolgrim's Way."
+    },
+    "south": {
+     "to_room": 13079,
+     "description": "To the south lies Eryn's Road."
+    },
+    "west": {
+     "to_room": 13034,
+     "description": "To the west lies Bolgrim's Way."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. The land lies\nflat and quiet in every direction. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "13033": {
+   "vnum": 13033,
+   "name": "Bolgrim's Way",
+   "map": {
+    "x": 37,
+    "y": 108,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13034,
+     "description": "To the east lies Bolgrim's Way."
+    },
+    "south": {
+     "to_room": 13110,
+     "description": "To the south lies Buccia's Alley.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 13060,
+     "description": "To the west lies The Grand Stairs."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "13034": {
+   "vnum": 13034,
+   "name": "Bolgrim's Way",
+   "map": {
+    "x": 38,
+    "y": 108,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13035,
+     "description": "To the north lies The House Of Gems."
+    },
+    "east": {
+     "to_room": 13032,
+     "description": "To the east lies Bolgrim's Way."
+    },
+    "west": {
+     "to_room": 13033,
+     "description": "To the west lies Bolgrim's Way."
+    }
+   },
+   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "13035": {
+   "vnum": 13035,
+   "name": "The House Of Gems",
+   "map": {
+    "x": 38,
+    "y": 109,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 13034,
+     "description": "To the south lies Bolgrim's Way."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. A way leads south.",
+   "placeholder": true
+  },
+  "13036": {
+   "vnum": 13036,
+   "name": "Bolgrim's Way",
+   "map": {
+    "x": 43,
+    "y": 108,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13037,
+     "description": "To the east lies Bolgrim's Way."
+    },
+    "south": {
+     "to_room": 13095,
+     "description": "To the south lies Theo's Magical Things."
+    },
+    "west": {
+     "to_room": 13032,
+     "description": "To the west lies Bolgrim's Way."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. A worn track\ncrosses the open ground. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "13037": {
+   "vnum": 13037,
+   "name": "Bolgrim's Way",
+   "map": {
+    "x": 44,
+    "y": 108,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13099,
+     "description": "To the north lies A Private Home.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 13038,
+     "description": "To the east lies Before The Watchtower."
+    },
+    "west": {
+     "to_room": 13036,
+     "description": "To the west lies Bolgrim's Way."
+    }
+   },
+   "description": "A worn track crosses the open ground. Open grassland rolls away under a\nwide sky. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "13038": {
+   "vnum": 13038,
+   "name": "Before The Watchtower",
+   "map": {
+    "x": 45,
+    "y": 108,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13039,
+     "description": "To the east lies A Guard Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 13043,
+     "description": "To the south lies Fain's Highway."
+    },
+    "west": {
+     "to_room": 13037,
+     "description": "To the west lies Bolgrim's Way."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "13039": {
+   "vnum": 13039,
+   "name": "A Guard Room",
+   "map": {
+    "x": 46,
+    "y": 108,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 13038,
+     "description": "To the west lies Before The Watchtower."
+    },
+    "up": {
+     "to_room": 13041,
+     "description": "To the up lies The Iron Staircase."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead west and up.",
+   "placeholder": true
+  },
+  "13041": {
+   "vnum": 13041,
+   "name": "The Iron Staircase",
+   "map": {
+    "x": 47,
+    "y": 109,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 13042,
+     "description": "To the up lies At The Top Of The Watchtower."
+    },
+    "down": {
+     "to_room": 13039,
+     "description": "To the down lies A Guard Room."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead up and down.",
+   "placeholder": true
+  },
+  "13042": {
+   "vnum": 13042,
+   "name": "At The Top Of The Watchtower",
+   "map": {
+    "x": 48,
+    "y": 110,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "down": {
+     "to_room": 13041,
+     "description": "To the down lies The Iron Staircase."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. A way leads down.",
+   "placeholder": true
+  },
+  "13043": {
+   "vnum": 13043,
+   "name": "Fain's Highway",
+   "map": {
+    "x": 45,
+    "y": 107,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13038,
+     "description": "To the north lies Before The Watchtower."
+    },
+    "east": {
+     "to_room": 13098,
+     "description": "To the east lies A Private Home.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 13044,
+     "description": "To the south lies Fain's Highway."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead north, east\nand south.",
+   "placeholder": true
+  },
+  "13044": {
+   "vnum": 13044,
+   "name": "Fain's Highway",
+   "map": {
+    "x": 45,
+    "y": 106,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13043,
+     "description": "To the north lies Fain's Highway."
+    },
+    "south": {
+     "to_room": 13045,
+     "description": "To the south lies Fain's Highway."
+    },
+    "west": {
+     "to_room": 13088,
+     "description": "To the west lies A Dark Alley."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north, south and\nwest.",
+   "placeholder": true
+  },
+  "13045": {
+   "vnum": 13045,
+   "name": "Fain's Highway",
+   "map": {
+    "x": 45,
+    "y": 104,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13044,
+     "description": "To the north lies Fain's Highway."
+    },
+    "east": {
+     "to_room": 13104,
+     "description": "To the east lies An Abandon House."
+    },
+    "south": {
+     "to_room": 13046,
+     "description": "To the south lies Fain's Highway."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north, east and\nsouth.",
+   "placeholder": true
+  },
+  "13046": {
+   "vnum": 13046,
+   "name": "Fain's Highway",
+   "map": {
+    "x": 45,
+    "y": 103,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13045,
+     "description": "To the north lies Fain's Highway."
+    },
+    "east": {
+     "to_room": 13093,
+     "description": "To the east lies The Hall Of Weaponry."
+    },
+    "south": {
+     "to_room": 13047,
+     "description": "To the south lies Fain's Highway."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "13047": {
+   "vnum": 13047,
+   "name": "Fain's Highway",
+   "map": {
+    "x": 45,
+    "y": 102,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13046,
+     "description": "To the north lies Fain's Highway."
+    },
+    "east": {
+     "to_room": 13105,
+     "description": "To the east lies An Abandon House."
+    },
+    "south": {
+     "to_room": 13048,
+     "description": "To the south lies Fain's Highway."
+    },
+    "west": {
+     "to_room": 13069,
+     "description": "To the west lies Durgar's Street."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "13048": {
+   "vnum": 13048,
+   "name": "Fain's Highway",
+   "map": {
+    "x": 45,
+    "y": 100,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13047,
+     "description": "To the north lies Fain's Highway."
+    },
+    "south": {
+     "to_room": 13049,
+     "description": "To the south lies Fain's Highway."
+    },
+    "west": {
+     "to_room": 13094,
+     "description": "To the west lies Helm's Armory."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north, south and\nwest.",
+   "placeholder": true
+  },
+  "13049": {
+   "vnum": 13049,
+   "name": "Fain's Highway",
+   "map": {
+    "x": 45,
+    "y": 99,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13048,
+     "description": "To the north lies Fain's Highway."
+    },
+    "east": {
+     "to_room": 13106,
+     "description": "To the east lies An Abandon House."
+    },
+    "south": {
+     "to_room": 13050,
+     "description": "To the south lies The Mining District."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north, east\nand south.",
+   "placeholder": true
+  },
+  "13050": {
+   "vnum": 13050,
+   "name": "The Mining District",
+   "map": {
+    "x": 45,
+    "y": 98,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13049,
+     "description": "To the north lies Fain's Highway."
+    },
+    "west": {
+     "to_room": 13051,
+     "description": "To the west lies Bard's Street."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\nwest.",
+   "placeholder": true
+  },
+  "13051": {
+   "vnum": 13051,
+   "name": "Bard's Street",
+   "map": {
+    "x": 44,
+    "y": 98,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13050,
+     "description": "To the east lies The Mining District."
+    },
+    "south": {
+     "to_room": 13109,
+     "description": "To the south lies The Corner Store."
+    },
+    "west": {
+     "to_room": 13052,
+     "description": "To the west lies Bard's Street."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east, south\nand west.",
+   "placeholder": true
+  },
+  "13052": {
+   "vnum": 13052,
+   "name": "Bard's Street",
+   "map": {
+    "x": 43,
+    "y": 98,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13051,
+     "description": "To the east lies Bard's Street."
+    },
+    "west": {
+     "to_room": 13053,
+     "description": "To the west lies Bard's Street."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "13053": {
+   "vnum": 13053,
+   "name": "Bard's Street",
+   "map": {
+    "x": 42,
+    "y": 98,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13080,
+     "description": "To the north lies Eryn's Road."
+    },
+    "east": {
+     "to_room": 13052,
+     "description": "To the east lies Bard's Street."
+    },
+    "west": {
+     "to_room": 13054,
+     "description": "To the west lies Bard's Street."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "13054": {
+   "vnum": 13054,
+   "name": "Bard's Street",
+   "map": {
+    "x": 40,
+    "y": 98,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13096,
+     "description": "To the north lies The Mineral Storage.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 13053,
+     "description": "To the east lies Bard's Street."
+    },
+    "west": {
+     "to_room": 13055,
+     "description": "To the west lies Bard's Street."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, east and west.",
+   "placeholder": true
+  },
+  "13055": {
+   "vnum": 13055,
+   "name": "Bard's Street",
+   "map": {
+    "x": 39,
+    "y": 98,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13090,
+     "description": "To the north lies Miner's Hall."
+    },
+    "east": {
+     "to_room": 13054,
+     "description": "To the east lies Bard's Street."
+    },
+    "west": {
+     "to_room": 13056,
+     "description": "To the west lies The Mining District."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "13056": {
+   "vnum": 13056,
+   "name": "The Mining District",
+   "map": {
+    "x": 35,
+    "y": 98,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13057,
+     "description": "To the north lies Valin's Road."
+    },
+    "east": {
+     "to_room": 13055,
+     "description": "To the east lies Bard's Street."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north and\neast.",
+   "placeholder": true
+  },
+  "13057": {
+   "vnum": 13057,
+   "name": "Valin's Road",
+   "map": {
+    "x": 35,
+    "y": 100,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13058,
+     "description": "To the north lies Valin's Road."
+    },
+    "south": {
+     "to_room": 13056,
+     "description": "To the south lies The Mining District."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. Open grassland\nrolls away under a wide sky. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13058": {
+   "vnum": 13058,
+   "name": "Valin's Road",
+   "map": {
+    "x": 35,
+    "y": 101,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13059,
+     "description": "To the north lies Valin's Road."
+    },
+    "south": {
+     "to_room": 13057,
+     "description": "To the south lies Valin's Road."
+    },
+    "west": {
+     "to_room": 13097,
+     "description": "To the west lies The Residence Of Lord Brute.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "13059": {
+   "vnum": 13059,
+   "name": "Valin's Road",
+   "map": {
+    "x": 35,
+    "y": 102,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13026,
+     "description": "To the north lies Valin's Road."
+    },
+    "east": {
+     "to_room": 13072,
+     "description": "To the east lies Durgar's Street."
+    },
+    "south": {
+     "to_room": 13058,
+     "description": "To the south lies Valin's Road."
+    },
+    "west": {
+     "to_room": 13103,
+     "description": "To the west lies A Nobles House.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "13060": {
+   "vnum": 13060,
+   "name": "The Grand Stairs",
+   "map": {
+    "x": 35,
+    "y": 108,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13033,
+     "description": "To the east lies Bolgrim's Way."
+    },
+    "south": {
+     "to_room": 13031,
+     "description": "To the south lies Valin's Road."
+    },
+    "up": {
+     "to_room": 13115,
+     "description": "To the up lies At The End Of A Long Hallway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east, south and up.",
+   "placeholder": true
+  },
+  "13061": {
+   "vnum": 13061,
+   "name": "North Plaza",
+   "map": {
+    "x": 42,
+    "y": 103,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13077,
+     "description": "To the north lies Eryn's Road."
+    },
+    "east": {
+     "to_room": 13062,
+     "description": "To the east lies Northeast Plaza."
+    },
+    "south": {
+     "to_room": 13025,
+     "description": "To the south lies The Central Plaza."
+    },
+    "west": {
+     "to_room": 13068,
+     "description": "To the west lies Northwest Plaza."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "13062": {
+   "vnum": 13062,
+   "name": "Northeast Plaza",
+   "map": {
+    "x": 43,
+    "y": 103,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 13063,
+     "description": "To the south lies East Plaza."
+    },
+    "west": {
+     "to_room": 13061,
+     "description": "To the west lies North Plaza."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead south and west.",
+   "placeholder": true
+  },
+  "13063": {
+   "vnum": 13063,
+   "name": "East Plaza",
+   "map": {
+    "x": 43,
+    "y": 102,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13062,
+     "description": "To the north lies Northeast Plaza."
+    },
+    "east": {
+     "to_room": 13069,
+     "description": "To the east lies Durgar's Street."
+    },
+    "south": {
+     "to_room": 13064,
+     "description": "To the south lies Southeast Plaza."
+    },
+    "west": {
+     "to_room": 13025,
+     "description": "To the west lies The Central Plaza."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. A worn track\ncrosses the open ground. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "13064": {
+   "vnum": 13064,
+   "name": "Southeast Plaza",
+   "map": {
+    "x": 43,
+    "y": 101,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13063,
+     "description": "To the north lies East Plaza."
+    },
+    "west": {
+     "to_room": 13065,
+     "description": "To the west lies South Plaza."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead north and west.",
+   "placeholder": true
+  },
+  "13065": {
+   "vnum": 13065,
+   "name": "South Plaza",
+   "map": {
+    "x": 42,
+    "y": 101,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13025,
+     "description": "To the north lies The Central Plaza."
+    },
+    "east": {
+     "to_room": 13064,
+     "description": "To the east lies Southeast Plaza."
+    },
+    "south": {
+     "to_room": 13080,
+     "description": "To the south lies Eryn's Road."
+    },
+    "west": {
+     "to_room": 13066,
+     "description": "To the west lies Southwest Plaza."
+    }
+   },
+   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "13066": {
+   "vnum": 13066,
+   "name": "Southwest Plaza",
+   "map": {
+    "x": 41,
+    "y": 101,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13067,
+     "description": "To the north lies West Plaza."
+    },
+    "east": {
+     "to_room": 13065,
+     "description": "To the east lies South Plaza."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead north and east.",
+   "placeholder": true
+  },
+  "13067": {
+   "vnum": 13067,
+   "name": "West Plaza",
+   "map": {
+    "x": 41,
+    "y": 102,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13068,
+     "description": "To the north lies Northwest Plaza."
+    },
+    "east": {
+     "to_room": 13025,
+     "description": "To the east lies The Central Plaza."
+    },
+    "south": {
+     "to_room": 13066,
+     "description": "To the south lies Southwest Plaza."
+    },
+    "west": {
+     "to_room": 13072,
+     "description": "To the west lies Durgar's Street."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wind moves through the\ntall grass in long, slow waves. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "13068": {
+   "vnum": 13068,
+   "name": "Northwest Plaza",
+   "map": {
+    "x": 41,
+    "y": 103,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13107,
+     "description": "To the north lies Lord Stern's Mansion.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 13061,
+     "description": "To the east lies North Plaza."
+    },
+    "south": {
+     "to_room": 13067,
+     "description": "To the south lies West Plaza."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. A worn track crosses the\nopen ground. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "13069": {
+   "vnum": 13069,
+   "name": "Durgar's Street",
+   "map": {
+    "x": 44,
+    "y": 102,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13070,
+     "description": "To the north lies The Market Hall."
+    },
+    "east": {
+     "to_room": 13047,
+     "description": "To the east lies Fain's Highway."
+    },
+    "south": {
+     "to_room": 13071,
+     "description": "To the south lies The Old Bell Tavern."
+    },
+    "west": {
+     "to_room": 13063,
+     "description": "To the west lies East Plaza."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "13070": {
+   "vnum": 13070,
+   "name": "The Market Hall",
+   "map": {
+    "x": 44,
+    "y": 103,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13069,
+     "description": "To the south lies Durgar's Street."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "13071": {
+   "vnum": 13071,
+   "name": "The Old Bell Tavern",
+   "map": {
+    "x": 44,
+    "y": 101,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13069,
+     "description": "To the north lies Durgar's Street."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads north.",
+   "placeholder": true
+  },
+  "13072": {
+   "vnum": 13072,
+   "name": "Durgar's Street",
+   "map": {
+    "x": 38,
+    "y": 102,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13073,
+     "description": "To the north lies The Ruby Inn."
+    },
+    "east": {
+     "to_room": 13067,
+     "description": "To the east lies West Plaza."
+    },
+    "south": {
+     "to_room": 13076,
+     "description": "To the south lies Clem's Bank."
+    },
+    "west": {
+     "to_room": 13059,
+     "description": "To the west lies Valin's Road."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "13073": {
+   "vnum": 13073,
+   "name": "The Ruby Inn",
+   "map": {
+    "x": 38,
+    "y": 103,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13072,
+     "description": "To the south lies Durgar's Street."
+    },
+    "west": {
+     "to_room": 13074,
+     "description": "To the west lies Common Room."
+    },
+    "up": {
+     "to_room": 13075,
+     "description": "To the up lies Reception."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead south, west and up.",
+   "placeholder": true
+  },
+  "13074": {
+   "vnum": 13074,
+   "name": "Common Room",
+   "map": {
+    "x": 37,
+    "y": 103,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13073,
+     "description": "To the east lies The Ruby Inn."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads east.",
+   "placeholder": true
+  },
+  "13075": {
+   "vnum": 13075,
+   "name": "Reception",
+   "map": {
+    "x": 39,
+    "y": 104,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "down": {
+     "to_room": 13073,
+     "description": "To the down lies The Ruby Inn."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads down.",
+   "placeholder": true
+  },
+  "13076": {
+   "vnum": 13076,
+   "name": "Clem's Bank",
+   "map": {
+    "x": 38,
+    "y": 101,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13072,
+     "description": "To the north lies Durgar's Street."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. A way leads north.",
+   "placeholder": true
+  },
+  "13077": {
+   "vnum": 13077,
+   "name": "Eryn's Road",
+   "map": {
+    "x": 42,
+    "y": 104,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13078,
+     "description": "To the north lies Eryn's Road."
+    },
+    "east": {
+     "to_room": 13081,
+     "description": "To the east lies The Cityguard's Headquarters."
+    },
+    "south": {
+     "to_room": 13061,
+     "description": "To the south lies North Plaza."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "13078": {
+   "vnum": 13078,
+   "name": "Eryn's Road",
+   "map": {
+    "x": 42,
+    "y": 106,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13079,
+     "description": "To the north lies Eryn's Road."
+    },
+    "east": {
+     "to_room": 13087,
+     "description": "To the east lies A Dark Alley."
+    },
+    "south": {
+     "to_room": 13077,
+     "description": "To the south lies Eryn's Road."
+    },
+    "west": {
+     "to_room": 13084,
+     "description": "To the west lies Guards Barracks."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "13079": {
+   "vnum": 13079,
+   "name": "Eryn's Road",
+   "map": {
+    "x": 42,
+    "y": 107,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13032,
+     "description": "To the north lies Bolgrim's Way."
+    },
+    "south": {
+     "to_room": 13078,
+     "description": "To the south lies Eryn's Road."
+    },
+    "west": {
+     "to_room": 13085,
+     "description": "To the west lies The Prison."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, south and west.",
+   "placeholder": true
+  },
+  "13080": {
+   "vnum": 13080,
+   "name": "Eryn's Road",
+   "map": {
+    "x": 42,
+    "y": 100,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13065,
+     "description": "To the north lies South Plaza."
+    },
+    "east": {
+     "to_room": 13108,
+     "description": "To the east lies The Cartographers."
+    },
+    "south": {
+     "to_room": 13053,
+     "description": "To the south lies Bard's Street."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, east and south.",
+   "placeholder": true
+  },
+  "13081": {
+   "vnum": 13081,
+   "name": "The Cityguard's Headquarters",
+   "map": {
+    "x": 43,
+    "y": 104,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13082,
+     "description": "To the north lies The Officers Room."
+    },
+    "east": {
+     "to_room": 13083,
+     "description": "To the east lies The Sleeping Quarters."
+    },
+    "west": {
+     "to_room": 13077,
+     "description": "To the west lies Eryn's Road."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north, east and\nwest.",
+   "placeholder": true
+  },
+  "13082": {
+   "vnum": 13082,
+   "name": "The Officers Room",
+   "map": {
+    "x": 43,
+    "y": 105,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13081,
+     "description": "To the south lies The Cityguard's Headquarters."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "13083": {
+   "vnum": 13083,
+   "name": "The Sleeping Quarters",
+   "map": {
+    "x": 44,
+    "y": 104,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 13081,
+     "description": "To the west lies The Cityguard's Headquarters."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. A way leads west.",
+   "placeholder": true
+  },
+  "13084": {
+   "vnum": 13084,
+   "name": "Guards Barracks",
+   "map": {
+    "x": 41,
+    "y": 106,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13078,
+     "description": "To the east lies Eryn's Road."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads east.",
+   "placeholder": true
+  },
+  "13085": {
+   "vnum": 13085,
+   "name": "The Prison",
+   "map": {
+    "x": 41,
+    "y": 107,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13079,
+     "description": "To the east lies Eryn's Road."
+    },
+    "west": {
+     "to_room": 13086,
+     "description": "To the west lies The Prison Cell.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13086": {
+   "vnum": 13086,
+   "name": "The Prison Cell",
+   "map": {
+    "x": 40,
+    "y": 107,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13085,
+     "description": "To the east lies The Prison."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "13087": {
+   "vnum": 13087,
+   "name": "A Dark Alley",
+   "map": {
+    "x": 43,
+    "y": 106,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13088,
+     "description": "To the east lies A Dark Alley."
+    },
+    "west": {
+     "to_room": 13078,
+     "description": "To the west lies Eryn's Road."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\neast and west.",
+   "placeholder": true
+  },
+  "13088": {
+   "vnum": 13088,
+   "name": "A Dark Alley",
+   "map": {
+    "x": 44,
+    "y": 106,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13044,
+     "description": "To the east lies Fain's Highway."
+    },
+    "south": {
+     "to_room": 13089,
+     "description": "To the south lies The Shop Of Small And Wondrous Things.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 13087,
+     "description": "To the west lies A Dark Alley."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "13089": {
+   "vnum": 13089,
+   "name": "The Shop Of Small And Wondrous Things",
+   "map": {
+    "x": 44,
+    "y": 105,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13088,
+     "description": "To the north lies A Dark Alley."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "13090": {
+   "vnum": 13090,
+   "name": "Miner's Hall",
+   "map": {
+    "x": 39,
+    "y": 99,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13091,
+     "description": "To the north lies The Shaft.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 13055,
+     "description": "To the south lies Bard's Street."
+    },
+    "west": {
+     "to_room": 13092,
+     "description": "To the west lies The Miner's Office."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "13091": {
+   "vnum": 13091,
+   "name": "The Shaft",
+   "map": {
+    "x": 39,
+    "y": 100,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13090,
+     "description": "To the south lies Miner's Hall."
+    },
+    "down": {
+     "to_room": 13145,
+     "description": "To the down lies The Entrance To The Mines."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead south and down.",
+   "placeholder": true
+  },
+  "13092": {
+   "vnum": 13092,
+   "name": "The Miner's Office",
+   "map": {
+    "x": 38,
+    "y": 99,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13090,
+     "description": "To the east lies Miner's Hall."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "13093": {
+   "vnum": 13093,
+   "name": "The Hall Of Weaponry",
+   "map": {
+    "x": 46,
+    "y": 103,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 13046,
+     "description": "To the west lies Fain's Highway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "13094": {
+   "vnum": 13094,
+   "name": "Helm's Armory",
+   "map": {
+    "x": 44,
+    "y": 100,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13048,
+     "description": "To the east lies Fain's Highway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads east.",
+   "placeholder": true
+  },
+  "13095": {
+   "vnum": 13095,
+   "name": "Theo's Magical Things",
+   "map": {
+    "x": 43,
+    "y": 107,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13036,
+     "description": "To the north lies Bolgrim's Way."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. A way leads north.",
+   "placeholder": true
+  },
+  "13096": {
+   "vnum": 13096,
+   "name": "The Mineral Storage",
+   "map": {
+    "x": 40,
+    "y": 99,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 13054,
+     "description": "To the south lies Bard's Street."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. A way leads south.",
+   "placeholder": true
+  },
+  "13097": {
+   "vnum": 13097,
+   "name": "The Residence Of Lord Brute",
+   "map": {
+    "x": 34,
+    "y": 101,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13058,
+     "description": "To the east lies Valin's Road."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. A way leads east.",
+   "placeholder": true
+  },
+  "13098": {
+   "vnum": 13098,
+   "name": "A Private Home",
+   "map": {
+    "x": 46,
+    "y": 107,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 13043,
+     "description": "To the west lies Fain's Highway."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. A way leads west.",
+   "placeholder": true
+  },
+  "13099": {
+   "vnum": 13099,
+   "name": "A Private Home",
+   "map": {
+    "x": 44,
+    "y": 109,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 13037,
+     "description": "To the south lies Bolgrim's Way."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. A way leads south.",
+   "placeholder": true
+  },
+  "13100": {
+   "vnum": 13100,
+   "name": "A Nobles House",
+   "map": {
+    "x": 34,
+    "y": 107,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13031,
+     "description": "To the east lies Valin's Road.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. A way leads east.",
+   "placeholder": true
+  },
+  "13101": {
+   "vnum": 13101,
+   "name": "A Nobles House",
+   "map": {
+    "x": 34,
+    "y": 106,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13029,
+     "description": "To the east lies Valin's Road.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. A way leads east.",
+   "placeholder": true
+  },
+  "13102": {
+   "vnum": 13102,
+   "name": "A Nobles House",
+   "map": {
+    "x": 34,
+    "y": 103,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13026,
+     "description": "To the east lies Valin's Road.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. A way leads east.",
+   "placeholder": true
+  },
+  "13103": {
+   "vnum": 13103,
+   "name": "A Nobles House",
+   "map": {
+    "x": 34,
+    "y": 102,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13059,
+     "description": "To the east lies Valin's Road."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. A way leads east.",
+   "placeholder": true
+  },
+  "13104": {
+   "vnum": 13104,
+   "name": "An Abandon House",
+   "map": {
+    "x": 46,
+    "y": 104,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 13045,
+     "description": "To the west lies Fain's Highway."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. A way leads west.",
+   "placeholder": true
+  },
+  "13105": {
+   "vnum": 13105,
+   "name": "An Abandon House",
+   "map": {
+    "x": 46,
+    "y": 102,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 13047,
+     "description": "To the west lies Fain's Highway."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. A way leads west.",
+   "placeholder": true
+  },
+  "13106": {
+   "vnum": 13106,
+   "name": "An Abandon House",
+   "map": {
+    "x": 46,
+    "y": 99,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 13049,
+     "description": "To the west lies Fain's Highway."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. A way\nleads west.",
+   "placeholder": true
+  },
+  "13107": {
+   "vnum": 13107,
+   "name": "Lord Stern's Mansion",
+   "map": {
+    "x": 41,
+    "y": 104,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 13068,
+     "description": "To the south lies Northwest Plaza."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. A way leads south.",
+   "placeholder": true
+  },
+  "13108": {
+   "vnum": 13108,
+   "name": "The Cartographers",
+   "map": {
+    "x": 43,
+    "y": 100,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 13080,
+     "description": "To the west lies Eryn's Road."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. A way leads west.",
+   "placeholder": true
+  },
+  "13109": {
+   "vnum": 13109,
+   "name": "The Corner Store",
+   "map": {
+    "x": 44,
+    "y": 97,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13051,
+     "description": "To the north lies Bard's Street."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads north.",
+   "placeholder": true
+  },
+  "13110": {
+   "vnum": 13110,
+   "name": "Buccia's Alley",
+   "map": {
+    "x": 37,
+    "y": 107,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13033,
+     "description": "To the north lies Bolgrim's Way."
+    },
+    "south": {
+     "to_room": 13111,
+     "description": "To the south lies A Slight Bend In The Alleyway."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "13111": {
+   "vnum": 13111,
+   "name": "A Slight Bend In The Alleyway",
+   "map": {
+    "x": 37,
+    "y": 106,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13110,
+     "description": "To the north lies Buccia's Alley."
+    },
+    "east": {
+     "to_room": 13112,
+     "description": "To the east lies Buccia's Alley."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth and east.",
+   "placeholder": true
+  },
+  "13112": {
+   "vnum": 13112,
+   "name": "Buccia's Alley",
+   "map": {
+    "x": 38,
+    "y": 106,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 13113,
+     "description": "To the south lies The Golden Plough."
+    },
+    "west": {
+     "to_room": 13111,
+     "description": "To the west lies A Slight Bend In The Alleyway."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nsouth and west.",
+   "placeholder": true
+  },
+  "13113": {
+   "vnum": 13113,
+   "name": "The Golden Plough",
+   "map": {
+    "x": 38,
+    "y": 105,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13112,
+     "description": "To the north lies Buccia's Alley."
+    },
+    "south": {
+     "to_room": 13114,
+     "description": "To the south lies The Back Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13114": {
+   "vnum": 13114,
+   "name": "The Back Room",
+   "map": {
+    "x": 38,
+    "y": 104,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13113,
+     "description": "To the north lies The Golden Plough."
+    },
+    "down": {
+     "to_room": 13200,
+     "description": "To the down lies Below The Tavern."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and down.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

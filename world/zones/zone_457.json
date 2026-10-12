@@ -1,0 +1,945 @@
+{
+ "number": 457,
+ "name": "Castle Of The Apocalypse I",
+ "builders": "Seeker",
+ "atlas_area": 57,
+ "rooms": {
+  "14164": {
+   "vnum": 14164,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -10,
+    "y": -60,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 14165,
+     "description": "To the east lies Ragged Walkway Atop The Castle."
+    },
+    "south": {
+     "to_room": 14199,
+     "description": "To the south lies Ragged Walkway Atop The Castle."
+    },
+    "down": {
+     "to_room": 14133,
+     "description": "To the down lies Hall Along The Inner Wall."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east, south and down.",
+   "placeholder": true
+  },
+  "14165": {
+   "vnum": 14165,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -9,
+    "y": -60,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 22150,
+     "description": "To the east lies Ragged Walkway Atop The Castle."
+    },
+    "west": {
+     "to_room": 14164,
+     "description": "To the west lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "22150": {
+   "vnum": 22150,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -8,
+    "y": -60,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "deathtrap",
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 14167,
+     "description": "To the east lies Ragged Walkway Atop The Castle."
+    },
+    "west": {
+     "to_room": 14165,
+     "description": "To the west lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "14167": {
+   "vnum": 14167,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -7,
+    "y": -60,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 14168,
+     "description": "To the east lies Ragged Walkway Atop The Castle."
+    },
+    "west": {
+     "to_room": 22150,
+     "description": "To the west lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "14168": {
+   "vnum": 14168,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -6,
+    "y": -60,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 22023,
+     "description": "To the east lies Ragged Walkway Atop The Castle."
+    },
+    "west": {
+     "to_room": 14167,
+     "description": "To the west lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "22023": {
+   "vnum": 22023,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -5,
+    "y": -60,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The passage narrows and the chill deepens. Rust flakes from iron\nfittings, drifting like black snow. A heavy stillness settles here,\npressing against the skin.",
+   "exits": {
+    "east": {
+     "to_room": 14170,
+     "description": "To the east lies Ragged Walkway Atop The Castle."
+    },
+    "west": {
+     "to_room": 14168,
+     "description": "To the west lies Ragged Walkway Atop The Castle."
+    }
+   }
+  },
+  "14170": {
+   "vnum": 14170,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -4,
+    "y": -60,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 14171,
+     "description": "To the east lies Ragged Walkway Atop The Castle."
+    },
+    "west": {
+     "to_room": 22023,
+     "description": "To the west lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "14171": {
+   "vnum": 14171,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -3,
+    "y": -60,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 22151,
+     "description": "To the east lies Ragged Walkway Atop The Castle."
+    },
+    "west": {
+     "to_room": 14170,
+     "description": "To the west lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "22151": {
+   "vnum": 22151,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -2,
+    "y": -60,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "deathtrap",
+    "indoors"
+   ],
+   "description": "You stumble into a deadly crushing walls! There is no escape...",
+   "exits": {
+    "east": {
+     "to_room": 14173,
+     "description": "To the east lies Ragged Walkway Atop The Castle."
+    },
+    "west": {
+     "to_room": 14171,
+     "description": "To the west lies Ragged Walkway Atop The Castle."
+    }
+   }
+  },
+  "14173": {
+   "vnum": 14173,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -1,
+    "y": -60,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 14174,
+     "description": "To the east lies Ragged Walkway Atop The Castle."
+    },
+    "west": {
+     "to_room": 22151,
+     "description": "To the west lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "14174": {
+   "vnum": 14174,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": 0,
+    "y": -60,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 14175,
+     "description": "To the south lies Ragged Walkway Atop The Castle."
+    },
+    "west": {
+     "to_room": 14173,
+     "description": "To the west lies Ragged Walkway Atop The Castle."
+    },
+    "down": {
+     "to_room": 14107,
+     "description": "To the down lies Hall Along The Inner Wall."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead south, west and down.",
+   "placeholder": true
+  },
+  "14175": {
+   "vnum": 14175,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": 0,
+    "y": -61,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 14174,
+     "description": "To the north lies Ragged Walkway Atop The Castle."
+    },
+    "south": {
+     "to_room": 14176,
+     "description": "To the south lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "14176": {
+   "vnum": 14176,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": 0,
+    "y": -62,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 14175,
+     "description": "To the north lies Ragged Walkway Atop The Castle."
+    },
+    "south": {
+     "to_room": 14177,
+     "description": "To the south lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "14177": {
+   "vnum": 14177,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": 0,
+    "y": -63,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 14176,
+     "description": "To the north lies Ragged Walkway Atop The Castle."
+    },
+    "south": {
+     "to_room": 14178,
+     "description": "To the south lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "14178": {
+   "vnum": 14178,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": 0,
+    "y": -64,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 14177,
+     "description": "To the north lies Ragged Walkway Atop The Castle."
+    },
+    "south": {
+     "to_room": 22102,
+     "description": "To the south lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "22102": {
+   "vnum": 22102,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": 0,
+    "y": -65,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The path narrows into a cramped passage of spikes and iron. Shadows\ncling to the walls, flickering with no light. The floor is slick with\ndark residue.",
+   "exits": {
+    "north": {
+     "to_room": 14178,
+     "description": "To the north lies Ragged Walkway Atop The Castle."
+    },
+    "south": {
+     "to_room": 14180,
+     "description": "To the south lies Ragged Walkway Atop The Castle."
+    }
+   }
+  },
+  "14180": {
+   "vnum": 14180,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": 0,
+    "y": -66,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 22102,
+     "description": "To the north lies Ragged Walkway Atop The Castle."
+    },
+    "south": {
+     "to_room": 22024,
+     "description": "To the south lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "22024": {
+   "vnum": 22024,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": 0,
+    "y": -67,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 14180,
+     "description": "To the north lies Ragged Walkway Atop The Castle."
+    },
+    "south": {
+     "to_room": 14182,
+     "description": "To the south lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "14182": {
+   "vnum": 14182,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": 0,
+    "y": -68,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 22024,
+     "description": "To the north lies Ragged Walkway Atop The Castle."
+    },
+    "west": {
+     "to_room": 22156,
+     "description": "To the west lies Ragged Walkway Atop The Castle."
+    },
+    "down": {
+     "to_room": 22008,
+     "description": "To the down lies Hall Along The Inner Wall."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, west and down.",
+   "placeholder": true
+  },
+  "22156": {
+   "vnum": 22156,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -1,
+    "y": -68,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "deathtrap",
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 14182,
+     "description": "To the east lies Ragged Walkway Atop The Castle."
+    },
+    "west": {
+     "to_room": 22180,
+     "description": "To the west lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "22180": {
+   "vnum": 22180,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -2,
+    "y": -68,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "deathtrap",
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 22156,
+     "description": "To the east lies Ragged Walkway Atop The Castle."
+    },
+    "west": {
+     "to_room": 22162,
+     "description": "To the west lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "22162": {
+   "vnum": 22162,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -3,
+    "y": -68,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "deathtrap",
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 22180,
+     "description": "To the east lies Ragged Walkway Atop The Castle."
+    },
+    "west": {
+     "to_room": 22030,
+     "description": "To the west lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "22030": {
+   "vnum": 22030,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -4,
+    "y": -68,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 22162,
+     "description": "To the east lies Ragged Walkway Atop The Castle."
+    },
+    "west": {
+     "to_room": 22031,
+     "description": "To the west lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "22031": {
+   "vnum": 22031,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -5,
+    "y": -68,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 22030,
+     "description": "To the east lies Ragged Walkway Atop The Castle."
+    },
+    "west": {
+     "to_room": 22034,
+     "description": "To the west lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "22034": {
+   "vnum": 22034,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -6,
+    "y": -68,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 22031,
+     "description": "To the east lies Ragged Walkway Atop The Castle."
+    },
+    "west": {
+     "to_room": 22163,
+     "description": "To the west lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "22163": {
+   "vnum": 22163,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -7,
+    "y": -68,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "deathtrap",
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 22034,
+     "description": "To the east lies Ragged Walkway Atop The Castle."
+    },
+    "west": {
+     "to_room": 14190,
+     "description": "To the west lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "14190": {
+   "vnum": 14190,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -8,
+    "y": -68,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 22163,
+     "description": "To the east lies Ragged Walkway Atop The Castle."
+    },
+    "west": {
+     "to_room": 22157,
+     "description": "To the west lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "22157": {
+   "vnum": 22157,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -9,
+    "y": -68,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "deathtrap",
+    "indoors"
+   ],
+   "description": "You stumble into a deadly pendulum hall! There is no escape...",
+   "exits": {
+    "east": {
+     "to_room": 14190,
+     "description": "To the east lies Ragged Walkway Atop The Castle."
+    },
+    "west": {
+     "to_room": 14192,
+     "description": "To the west lies Ragged Walkway Atop The Castle."
+    }
+   }
+  },
+  "14192": {
+   "vnum": 14192,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -10,
+    "y": -68,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 22103,
+     "description": "To the north lies Ragged Walkway Atop The Castle."
+    },
+    "east": {
+     "to_room": 22157,
+     "description": "To the east lies Ragged Walkway Atop The Castle."
+    },
+    "down": {
+     "to_room": 22014,
+     "description": "To the down lies Hall Along The Inner Wall."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east and down.",
+   "placeholder": true
+  },
+  "22103": {
+   "vnum": 22103,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -10,
+    "y": -67,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 14194,
+     "description": "To the north lies Ragged Walkway Atop The Castle."
+    },
+    "south": {
+     "to_room": 14192,
+     "description": "To the south lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "14194": {
+   "vnum": 14194,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -10,
+    "y": -66,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 22152,
+     "description": "To the north lies Ragged Walkway Atop The Castle."
+    },
+    "south": {
+     "to_room": 22103,
+     "description": "To the south lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "22152": {
+   "vnum": 22152,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -10,
+    "y": -65,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "deathtrap",
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 14196,
+     "description": "To the north lies Ragged Walkway Atop The Castle."
+    },
+    "south": {
+     "to_room": 14194,
+     "description": "To the south lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "14196": {
+   "vnum": 14196,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -10,
+    "y": -64,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 14197,
+     "description": "To the north lies Ragged Walkway Atop The Castle."
+    },
+    "south": {
+     "to_room": 22152,
+     "description": "To the south lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "14197": {
+   "vnum": 14197,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -10,
+    "y": -63,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 14198,
+     "description": "To the north lies Ragged Walkway Atop The Castle."
+    },
+    "south": {
+     "to_room": 14196,
+     "description": "To the south lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "14198": {
+   "vnum": 14198,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -10,
+    "y": -62,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 14199,
+     "description": "To the north lies Ragged Walkway Atop The Castle."
+    },
+    "south": {
+     "to_room": 14197,
+     "description": "To the south lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "14199": {
+   "vnum": 14199,
+   "name": "Ragged Walkway Atop The Castle",
+   "map": {
+    "x": -10,
+    "y": -61,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 14164,
+     "description": "To the north lies Ragged Walkway Atop The Castle."
+    },
+    "south": {
+     "to_room": 14198,
+     "description": "To the south lies Ragged Walkway Atop The Castle."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {}
+}

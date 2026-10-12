@@ -1,511 +1,2296 @@
 {
-  "number": 66,
-  "name": "The Northern Wilderness",
-  "lifespan": 30,
-  "rooms": {
-    "6600": {
-      "vnum": 6600,
-      "name": "The North Road - Midgaard Outskirts",
-      "description": "The cobblestones of Midgaard give way to a packed-dirt road heading north\ninto dense forest. A weathered signpost stands at the junction, its arms\npointing in several directions. The city walls loom behind you to the south,\noffering a last glimpse of civilization before the wilderness swallows the path.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 3065,
-          "description": "The road leads back toward Midgaard."
-        },
-        "north": {
-          "to_room": 6601,
-          "description": "The road plunges into the forest."
-        }
-      },
-      "extra_descs": {
-        "signpost sign": "The signpost reads:\n  NORTH - The Northern Wilderness\n  NORTHWEST - Goblin Warrens (DANGER)\n  EAST - The Eastern Highlands\n  SOUTH - Midgaard"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6600,
-          "max": 1
-        }
-      ]
+ "number": 66,
+ "name": "Northern Wilderness",
+ "builders": "Finster",
+ "atlas_area": 73,
+ "rooms": {
+  "4600": {
+   "vnum": 4600,
+   "name": "On The Taiga",
+   "map": {
+    "x": 27,
+    "y": 34,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6606,
+     "description": "To the north lies On The Taiga."
     },
-    "6601": {
-      "vnum": 6601,
-      "name": "A Forest Road",
-      "description": "Tall oaks and elms form a canopy overhead, dappling the road with shifting\npatches of sunlight. Birds call from the branches, and the undergrowth\nrustles with small creatures. The road is well-worn but narrow, with\nwagon ruts cutting deep into the soft earth.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6600,
-          "description": "The road leads south toward Midgaard."
-        },
-        "north": {
-          "to_room": 6602,
-          "description": "The forest road continues north."
-        },
-        "east": {
-          "to_room": 6700,
-          "description": "A rocky trail branches east toward the highlands."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6601,
-          "max": 1
-        }
-      ]
+    "east": {
+     "to_room": 4601,
+     "description": "To the east lies On The Taiga."
     },
-    "6602": {
-      "vnum": 6602,
-      "name": "A Forest Clearing",
-      "description": "The trees pull back from the road here, creating a broad clearing carpeted\nwith wildflowers and clover. A ring of stones marks an old campfire, and\nseveral logs have been dragged around it for seating. This looks like a\nregular rest stop for travelers and merchants.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6601,
-          "description": "The forest road leads south."
-        },
-        "north": {
-          "to_room": 6603,
-          "description": "The road continues into deeper forest."
-        },
-        "west": {
-          "to_room": 6608,
-          "description": "A faint trail leads west into the trees."
-        }
-      },
-      "extra_descs": {
-        "campfire stones ring": "The ashes are cold but recent. Someone camped here within the last few days."
-      },
-      "gathering_nodes": [
-        {
-          "type": "foraging",
-          "resource": "wild herbs",
-          "respawn_minutes": 30
-        }
-      ],
-      "mob_resets": [
-        {
-          "vnum": 6602,
-          "max": 1
-        }
-      ]
-    },
-    "6603": {
-      "vnum": 6603,
-      "name": "Deep Forest Road",
-      "description": "The forest grows ancient here. Massive trees tower overhead, their trunks\nwide enough for two people to hide behind. Moss drapes from every branch,\nand the air is thick with the smell of loam and decay. The road narrows\nto little more than a footpath, barely visible beneath fallen leaves.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6602,
-          "description": "The road widens southward."
-        },
-        "north": {
-          "to_room": 6604,
-          "description": "The path descends toward the sound of water."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6603,
-          "max": 1
-        }
-      ]
-    },
-    "6604": {
-      "vnum": 6604,
-      "name": "The River Crossing",
-      "description": "A broad, shallow river cuts across the path here. Flat stones have been\nlaid across the riverbed to form a crude ford, though water still swirls\nankle-deep over them. The current is gentle but persistent, carrying\nautumn leaves downstream. Fish dart between the rocks in the clear water.",
-      "sector_type": "water_swim",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6603,
-          "description": "The forest path climbs away from the river."
-        },
-        "north": {
-          "to_room": 6605,
-          "description": "The path continues on the far bank."
-        }
-      },
-      "gathering_nodes": [
-        {
-          "type": "fishing",
-          "resource": "river trout",
-          "respawn_minutes": 20
-        }
-      ],
-      "mob_resets": [
-        {
-          "vnum": 6604,
-          "max": 1
-        }
-      ]
-    },
-    "6605": {
-      "vnum": 6605,
-      "name": "Northern Forest - Fork in the Road",
-      "description": "Beyond the river, the forest thins slightly and the path splits. To the\nnorthwest, the trail grows rougher and climbs into rocky hills \u2014 a crude\nsign scratched on a tree reads 'GOBLINS' with an arrow. To the northeast,\nthe path follows the river upstream through birch groves.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6604,
-          "description": "The path leads back to the river crossing."
-        },
-        "west": {
-          "to_room": 6606,
-          "description": "A rough trail climbs toward goblin territory."
-        },
-        "north": {
-          "to_room": 6609,
-          "description": "A birch-lined path follows the river."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6605,
-          "max": 1
-        }
-      ]
-    },
-    "6606": {
-      "vnum": 6606,
-      "name": "Rocky Hill Trail",
-      "description": "The trail steepens sharply as it climbs through increasingly sparse\nforest into rocky terrain. Goblin tracks are visible in the mud \u2014\nsmall, clawed footprints in groups of three or four. The trees give\nway to scrubby bushes and exposed boulders. A foul smell drifts\nfrom somewhere ahead.",
-      "sector_type": "hills",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6605,
-          "description": "The trail descends back to the forest fork."
-        },
-        "north": {
-          "to_room": 6607,
-          "description": "The trail continues toward a dark hillside."
-        }
-      }
-    },
-    "6607": {
-      "vnum": 6607,
-      "name": "Outside the Goblin Warrens",
-      "description": "The trail ends at a jagged crack in a barren hillside. Crude totems of\nbone and feather flank the dark opening, and the stench of goblin\nhabitation is unmistakable. Scratch marks and old bloodstains mark the\nrocks around the entrance. The forest lies safely to the south.",
-      "sector_type": "hills",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6606,
-          "description": "The trail leads back through rocky hills."
-        },
-        "north": {
-          "to_room": 23500,
-          "description": "The dark crack leads into the Goblin Warrens."
-        }
-      }
-    },
-    "6608": {
-      "vnum": 6608,
-      "name": "A Shaded Grove",
-      "description": "A quiet grove of ancient willows, their trailing branches forming a\nnatural curtain around a small mossy clearing. Mushrooms grow in fairy\nrings around the bases of the trees, and the air hums with insects.\nThis place feels peaceful \u2014 almost unnaturally so.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6602,
-          "description": "A faint trail leads back to the clearing."
-        }
-      },
-      "gathering_nodes": [
-        {
-          "type": "foraging",
-          "resource": "woodland mushrooms",
-          "respawn_minutes": 45
-        }
-      ]
-    },
-    "6609": {
-      "vnum": 6609,
-      "name": "Birch Grove Along the River",
-      "description": "Slender white birch trees line both banks of the river here, their papery\nbark peeling in curls. The water babbles over smooth stones, and shafts\nof golden light filter through the canopy. A family of deer watches you\nwarily from the far bank before bounding away.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6605,
-          "description": "The path returns to the forest fork."
-        },
-        "north": {
-          "to_room": 6610,
-          "description": "The river path continues north."
-        }
-      }
-    },
-    "6610": {
-      "vnum": 6610,
-      "name": "The Old Stone Bridge",
-      "description": "An ancient stone bridge arches over the river, its surface worn smooth by\ncountless feet over centuries. Moss fills the cracks between the stones,\nand carved faces \u2014 worn nearly featureless by time \u2014 peer out from the\nbridgework. A merchant's cart lies overturned nearby, its contents long\nsince looted.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6609,
-          "description": "The birch-lined path follows the river south."
-        },
-        "north": {
-          "to_room": 6611,
-          "description": "The road continues into the northern reaches."
-        }
-      }
-    },
-    "6611": {
-      "vnum": 6611,
-      "name": "The Mountain Pass Approach",
-      "description": "The forest falls away entirely here as the road begins climbing into\nbarren foothills. Wind whips across exposed rock, and the temperature\ndrops noticeably. Snow dusts the highest peaks visible to the north.\nA weathered signpost leans drunkenly at the trailside.",
-      "sector_type": "hills",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6610,
-          "description": "The road descends back toward the forest."
-        },
-        "north": {
-          "to_room": 6612,
-          "description": "The mountain pass climbs higher."
-        }
-      },
-      "extra_descs": {
-        "signpost sign": "Barely legible: 'Mountain Pass - Proceed with caution. Bandits reported.'"
-      }
-    },
-    "6612": {
-      "vnum": 6612,
-      "name": "The Mountain Pass",
-      "description": "A narrow pass cuts between two towering peaks, the walls of stone rising\nsheer on either side. The wind howls through this natural corridor,\ncarrying flurries of snow. Rocky outcroppings provide perfect ambush\npoints, and you notice boot prints in the thin layer of frost \u2014 several\nsets, all recent.",
-      "sector_type": "mountain",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6611,
-          "description": "The pass descends southward."
-        },
-        "north": {
-          "to_room": 6613,
-          "description": "The pass opens to a vista beyond."
-        }
-      }
-    },
-    "6613": {
-      "vnum": 6613,
-      "name": "Northern Vista",
-      "description": "The pass opens onto a breathtaking vista of the northern lands. Rolling\nhills stretch to the horizon, dark with pine forests and cut by silver\nrivers. Far to the northeast, a dark structure perches on a distant\nhilltop \u2014 perhaps a monastery of some kind. The wilderness spreads in\nevery direction, wild and untamed.",
-      "sector_type": "mountain",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6612,
-          "description": "The mountain pass leads south."
-        }
-      }
+    "west": {
+     "to_room": 6602,
+     "description": "To the west lies On The Taiga."
     }
+   },
+   "description": "A frozen stream winds through the taiga here, and the path crosses it on\na bridge of three spruce logs lashed together and worn smooth by many\nfeet. The forest is quiet but for the creak of branches under their\nburden of snow. West lies a clearing with an old campfire ring, and the\nwoods continue north and east.",
+   "extra_descs": {}
   },
-  "mobs": {
-    "6600": {
-      "vnum": 6600,
-      "name": "timber wolf",
-      "short_desc": "a timber wolf",
-      "long_desc": "A large timber wolf prowls through the undergrowth, watching you with yellow eyes.",
-      "description": "This wolf is lean and powerful, with thick grey fur and intelligent yellow\neyes. It moves with the easy confidence of a predator in its own territory.",
-      "level": 10,
-      "hp_dice": "4d8+40",
-      "damage_dice": "2d4+2",
-      "exp": 450,
-      "gold": 0,
-      "alignment": -200,
-      "armor_class": 80,
-      "flags": [
-        "aggressive",
-        "stay_zone"
-      ],
-      "inventory": [
-        6600
-      ]
+  "4601": {
+   "vnum": 4601,
+   "name": "On The Taiga",
+   "map": {
+    "x": 29,
+    "y": 34,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4605,
+     "description": "To the north lies On The Taiga."
     },
-    "6601": {
-      "vnum": 6601,
-      "name": "black bear",
-      "short_desc": "a black bear",
-      "long_desc": "A large black bear lumbers through the forest, sniffing the air.",
-      "description": "This bear is massive, easily weighing several hundred pounds. Its thick\nblack fur is matted with burrs and its claws are as long as daggers.",
-      "level": 14,
-      "hp_dice": "6d8+60",
-      "damage_dice": "2d6+3",
-      "exp": 800,
-      "gold": 0,
-      "alignment": 0,
-      "armor_class": 70,
-      "flags": [
-        "stay_zone"
-      ],
-      "inventory": [
-        6600
-      ]
+    "east": {
+     "to_room": 4602,
+     "description": "To the east lies On The Taiga."
     },
-    "6602": {
-      "vnum": 6602,
-      "name": "forest bandit",
-      "short_desc": "a forest bandit",
-      "long_desc": "A rough-looking bandit lurks in the shadows, hand on sword.",
-      "description": "This bandit wears mismatched leather armor and a dark cloak. A jagged\nscar runs across one cheek, and his eyes dart nervously, sizing you up.",
-      "level": 16,
-      "hp_dice": "5d10+50",
-      "damage_dice": "2d5+4",
-      "exp": 1000,
-      "gold": 35,
-      "alignment": -500,
-      "armor_class": 65,
-      "flags": [
-        "aggressive",
-        "stay_zone"
-      ],
-      "inventory": [
-        6600
-      ]
+    "south": {
+     "to_room": 6607,
+     "description": "To the south lies On A Rocky Mountain Trail."
     },
-    "6603": {
-      "vnum": 6603,
-      "name": "bandit captain",
-      "short_desc": "the bandit captain",
-      "long_desc": "A scarred bandit captain surveys his territory with cold eyes.",
-      "description": "The captain of the forest bandits is a battle-hardened warrior wearing\nwell-maintained chainmail beneath his forest-green cloak. He carries a\nfine longsword that was clearly stolen from someone of means.",
-      "level": 20,
-      "hp_dice": "8d10+80",
-      "damage_dice": "3d5+5",
-      "exp": 2000,
-      "gold": 120,
-      "alignment": -600,
-      "armor_class": 50,
-      "flags": [
-        "aggressive",
-        "stay_zone"
-      ],
-      "inventory": [
-        6600
-      ]
-    },
-    "6604": {
-      "vnum": 6604,
-      "name": "traveling merchant",
-      "short_desc": "a traveling merchant",
-      "long_desc": "A stout merchant rests by the roadside, guarding his pack.",
-      "description": "This cheerful merchant carries an enormous pack stuffed with goods. He\nseems to know these roads well and is happy to share directions with\ntravelers \u2014 for the price of a friendly ear.",
-      "level": 8,
-      "hp_dice": "3d8+30",
-      "damage_dice": "1d4+1",
-      "exp": 0,
-      "gold": 200,
-      "alignment": 500,
-      "armor_class": 90,
-      "flags": [
-        "sentinel",
-        "helper"
-      ],
-      "inventory": [
-        6600
-      ]
-    },
-    "6605": {
-      "vnum": 6605,
-      "name": "young deer",
-      "short_desc": "a young deer",
-      "long_desc": "A young deer grazes peacefully among the wildflowers.",
-      "description": "A graceful young deer with soft brown eyes and spotted flanks.",
-      "level": 3,
-      "hp_dice": "2d6+10",
-      "damage_dice": "1d3+0",
-      "exp": 50,
-      "gold": 0,
-      "alignment": 0,
-      "armor_class": 95,
-      "flags": [
-        "wimpy",
-        "stay_zone"
-      ],
-      "inventory": [
-        6600
-      ]
+    "west": {
+     "to_room": 4600,
+     "description": "To the west lies On The Taiga."
     }
+   },
+   "description": "Dark spruces stand close together here, their lower branches dead and\ngrey with beard lichen, and old snow lies in the hollows between their\nroots. South, the trees thin toward a barren, rocky hillside, and a foul\ngoblin stench drifts from that way on the wind. Paths wind away through\nthe forest north, east and west, soft with fallen needles.",
+   "extra_descs": {}
   },
-  "objects": {
-    "6600": {
-      "vnum": 6600,
-      "name": "wolf pelt",
-      "short_desc": "a thick wolf pelt",
-      "description": "A thick grey wolf pelt, soft and well-furred.",
-      "type": "treasure",
-      "weight": 3,
-      "cost": 25
+  "4602": {
+   "vnum": 4602,
+   "name": "On The Taiga",
+   "map": {
+    "x": 31,
+    "y": 34,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6612,
+     "description": "To the north lies On The Taiga."
+    },
+    "west": {
+     "to_room": 4601,
+     "description": "To the west lies On The Taiga."
     }
+   },
+   "description": "The taiga grows dense and dark here, the spruces so tightly packed that\nlittle snow reaches the ground between them. A thick carpet of needles\nmuffles every sound, and the air smells sharply of resin. Claw marks\nscore the bark of one great trunk, high above a man's head. North, the\ntrees thin toward a windy pass between two peaks; west, the forest runs\non.",
+   "extra_descs": {}
   },
-  "resets": [
+  "6602": {
+   "vnum": 6602,
+   "name": "On The Taiga",
+   "map": {
+    "x": 23,
+    "y": 36,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "extra_descs": {},
+   "mob_resets": [
     {
-      "command": "M",
-      "mob_vnum": 6600,
-      "max_exist": 3,
-      "room_vnum": 6603,
-      "comment": "wolf in deep forest"
-    },
-    {
-      "command": "M",
-      "mob_vnum": 6600,
-      "max_exist": 3,
-      "room_vnum": 6609,
-      "comment": "wolf by river"
-    },
-    {
-      "command": "M",
-      "mob_vnum": 6601,
-      "max_exist": 2,
-      "room_vnum": 6608,
-      "comment": "bear in grove"
-    },
-    {
-      "command": "M",
-      "mob_vnum": 6602,
-      "max_exist": 3,
-      "room_vnum": 6612,
-      "comment": "bandit in pass"
-    },
-    {
-      "command": "M",
-      "mob_vnum": 6602,
-      "max_exist": 3,
-      "room_vnum": 6606,
-      "comment": "bandit on hill trail"
-    },
-    {
-      "command": "M",
-      "mob_vnum": 6603,
-      "max_exist": 1,
-      "room_vnum": 6612,
-      "comment": "bandit captain in pass"
-    },
-    {
-      "command": "M",
-      "mob_vnum": 6604,
-      "max_exist": 1,
-      "room_vnum": 6602,
-      "comment": "merchant in clearing"
-    },
-    {
-      "command": "M",
-      "mob_vnum": 6605,
-      "max_exist": 2,
-      "room_vnum": 6609,
-      "comment": "deer by river"
+     "vnum": 6602,
+     "max": 1
     }
-  ]
+   ],
+   "gathering_nodes": [
+    {
+     "type": "foraging",
+     "resource": "wild herbs",
+     "respawn_minutes": 30
+    }
+   ],
+   "flags": [],
+   "description": "Dark spruce and larch draw back here from a small clearing at the edge\nof the taiga, where the ground begins to climb toward the mountains\nlooming to the north. A ring of blackened stones marks an old campfire,\nand a few logs have been dragged around it for seats, their bark rubbed\nsmooth. Snow lies in crusted drifts beneath the trees, trampled flat\naround the fire. The forest runs on east and south, a sea of dark\nneedles under a low grey sky.",
+   "exits": {
+    "north": {
+     "to_room": 4641,
+     "description": "To the north lies In The Mountains."
+    },
+    "east": {
+     "to_room": 6606,
+     "description": "To the east lies On The Taiga."
+    },
+    "south": {
+     "to_room": 4600,
+     "description": "To the south lies On The Taiga."
+    }
+   }
+  },
+  "6606": {
+   "vnum": 6606,
+   "name": "On The Taiga",
+   "map": {
+    "x": 27,
+    "y": 36,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4643,
+     "description": "To the north lies In The Mountains."
+    },
+    "east": {
+     "to_room": 4605,
+     "description": "To the east lies On The Taiga."
+    },
+    "south": {
+     "to_room": 4600,
+     "description": "To the south lies On The Taiga."
+    },
+    "west": {
+     "to_room": 6602,
+     "description": "To the west lies On The Taiga."
+    }
+   },
+   "description": "Tall spruces and a few white-barked birches grow here at the foot of the\nmountains, whose grey slopes climb steeply to the north. West, a path\nleads toward a broad clearing used by travellers as a resting place. The\nforest continues east and south, quiet and dim beneath boughs heavy with\nsnow.",
+   "extra_descs": {}
+  },
+  "4605": {
+   "vnum": 4605,
+   "name": "On The Taiga",
+   "map": {
+    "x": 29,
+    "y": 36,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4609,
+     "description": "To the north lies On The Tundra."
+    },
+    "east": {
+     "to_room": 6612,
+     "description": "To the east lies On The Taiga."
+    },
+    "south": {
+     "to_room": 4601,
+     "description": "To the south lies On The Taiga."
+    },
+    "west": {
+     "to_room": 6606,
+     "description": "To the west lies On The Taiga."
+    }
+   },
+   "description": "The spruce forest grows thinner and more stunted here, as if the trees\nwere shrinking from the cold that pours down from the open land to the\nnorth. Beyond the last trunks the tundra stretches away, white and grey\nand empty. East, the trees crowd toward the mouth of a narrow pass,\nwhile the forest deepens south and west.",
+   "extra_descs": {}
+  },
+  "6612": {
+   "vnum": 6612,
+   "name": "On The Taiga",
+   "map": {
+    "x": 31,
+    "y": 36,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "description": "The taiga thins out here at its northern edge, the spruce shrinking to\nstunted, wind-bent trees no taller than a man. Beyond them the open\ntundra begins, a grey-brown waste of moss and frozen tussocks stretching\naway north and east under a hard white sky. A thin rime of frost covers\nthe ground, printed with several sets of boot tracks that all look\nrecent. South and west the dark forest closes in again, its needles\nhissing in the bitter wind.",
+   "exits": {
+    "north": {
+     "to_room": 4610,
+     "description": "To the north lies On The Tundra."
+    },
+    "east": {
+     "to_room": 4607,
+     "description": "To the east lies On The Tundra."
+    },
+    "south": {
+     "to_room": 4602,
+     "description": "To the south lies On The Taiga."
+    },
+    "west": {
+     "to_room": 4605,
+     "description": "To the west lies On The Taiga."
+    }
+   },
+   "extra_descs": {}
+  },
+  "4607": {
+   "vnum": 4607,
+   "name": "On The Tundra",
+   "map": {
+    "x": 33,
+    "y": 36,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4611,
+     "description": "To the north lies On The Tundra."
+    },
+    "east": {
+     "to_room": 4608,
+     "description": "To the east lies On The Tundra."
+    },
+    "west": {
+     "to_room": 6612,
+     "description": "To the west lies On The Taiga."
+    }
+   },
+   "description": "Here the open tundra meets the mouth of a narrow pass that cuts west\nbetween two towering peaks, and the wind howls out of it carrying\nflurries of snow. The ground is bare and hard, swept clean by the\nendless gale. The tundra stretches away north and east, and the pass\noffers a little shelter among a few stunted spruces.",
+   "extra_descs": {}
+  },
+  "4608": {
+   "vnum": 4608,
+   "name": "On The Tundra",
+   "map": {
+    "x": 35,
+    "y": 36,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4612,
+     "description": "To the north lies On The Tundra."
+    },
+    "west": {
+     "to_room": 4607,
+     "description": "To the west lies On The Tundra."
+    }
+   },
+   "description": "A shallow hollow on the tundra's edge holds a spring that never quite\nfreezes, steaming faintly in the bitter air and ringed with a crust of\nyellow ice. The snow around it is criss-crossed by animal tracks of\nevery size, all leading to the water. Beyond the hollow the land rises\ninto rough, broken hills where no path goes. The way leads north and\nwest across the open tundra.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 606601,
+     "max": 1
+    }
+   ]
+  },
+  "4609": {
+   "vnum": 4609,
+   "name": "On The Tundra",
+   "map": {
+    "x": 29,
+    "y": 39,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4613,
+     "description": "To the north lies On The Tundra."
+    },
+    "east": {
+     "to_room": 4610,
+     "description": "To the east lies On The Tundra."
+    },
+    "south": {
+     "to_room": 4605,
+     "description": "To the south lies On The Taiga."
+    },
+    "west": {
+     "to_room": 4643,
+     "description": "To the west lies In The Mountains."
+    }
+   },
+   "description": "The forest gives out here, and the last few spruces stand alone on the\nopen ground, twisted and bare on their windward side like tattered\nflags. Beyond them the tundra rolls away in low, snow-streaked swells of\nmoss and lichen. South lies the shelter of the taiga, west the land\nclimbs steeply into the mountains, and the open tundra stretches north\nand east.",
+   "extra_descs": {}
+  },
+  "4610": {
+   "vnum": 4610,
+   "name": "On The Tundra",
+   "map": {
+    "x": 31,
+    "y": 39,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4614,
+     "description": "To the north lies On The Tundra."
+    },
+    "east": {
+     "to_room": 4611,
+     "description": "To the east lies On The Tundra."
+    },
+    "south": {
+     "to_room": 6612,
+     "description": "To the south lies On The Taiga."
+    },
+    "west": {
+     "to_room": 4609,
+     "description": "To the west lies On The Tundra."
+    }
+   },
+   "description": "A thin carpet of grey-green reindeer moss covers the ground here,\ncrunching like dry biscuit underfoot. South, the tundra falls toward a\nnarrow pass between two towering peaks, where boot prints in the frost\nlead up from the trees. The open land stretches north, east and west,\nempty and silent but for the wind.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 606602,
+     "max": 1
+    }
+   ]
+  },
+  "4611": {
+   "vnum": 4611,
+   "name": "On The Tundra",
+   "map": {
+    "x": 33,
+    "y": 39,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4615,
+     "description": "To the north lies On The Tundra."
+    },
+    "east": {
+     "to_room": 4612,
+     "description": "To the east lies On The Tundra."
+    },
+    "south": {
+     "to_room": 4607,
+     "description": "To the south lies On The Tundra."
+    },
+    "west": {
+     "to_room": 4610,
+     "description": "To the west lies On The Tundra."
+    }
+   },
+   "description": "A thicket of dwarf willow grows in a shallow dip here, no higher than\nyour knee, its twisted branches knotted into a dense grey mat. The snow\naround it is laced with the tracks of small creatures that shelter\nbeneath. Trails cross the dip in every direction, leading north, east,\nsouth and west across the tundra.",
+   "extra_descs": {}
+  },
+  "4612": {
+   "vnum": 4612,
+   "name": "On The Tundra",
+   "map": {
+    "x": 35,
+    "y": 39,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6603,
+     "description": "To the north lies On The Tundra."
+    },
+    "south": {
+     "to_room": 4608,
+     "description": "To the south lies On The Tundra."
+    },
+    "west": {
+     "to_room": 4611,
+     "description": "To the west lies On The Tundra."
+    }
+   },
+   "description": "The tundra rises in a long, gentle swell here, its crest crusted with\norange and black lichen and studded with frost-heaved stones standing on\nend like teeth. The wind has carved the snow into hard ridges that\ncrunch and squeak underfoot. North, a ring of boulders crowns a nearby\nrise, and the open ground runs on south and west.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 606600,
+     "max": 1
+    }
+   ]
+  },
+  "4613": {
+   "vnum": 4613,
+   "name": "On The Tundra",
+   "map": {
+    "x": 29,
+    "y": 41,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4617,
+     "description": "To the north lies On The Tundra."
+    },
+    "east": {
+     "to_room": 4614,
+     "description": "To the east lies On The Tundra."
+    },
+    "south": {
+     "to_room": 4609,
+     "description": "To the south lies On The Tundra."
+    },
+    "west": {
+     "to_room": 4646,
+     "description": "To the west lies In The Mountains."
+    }
+   },
+   "description": "A great fan of frost-shattered rock spills out from the mountains onto\nthe tundra here, its boulders cracked open and crusted with black\nlichen. Snow has drifted deep behind each stone. West, a rough path\nclimbs onto the mountainside, while the open tundra runs north, east and\nsouth beneath a heavy, leaden sky.",
+   "extra_descs": {}
+  },
+  "4614": {
+   "vnum": 4614,
+   "name": "On The Tundra",
+   "map": {
+    "x": 31,
+    "y": 41,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4618,
+     "description": "To the north lies On The Tundra."
+    },
+    "east": {
+     "to_room": 4615,
+     "description": "To the east lies On The Tundra."
+    },
+    "south": {
+     "to_room": 4610,
+     "description": "To the south lies On The Tundra."
+    },
+    "west": {
+     "to_room": 4613,
+     "description": "To the west lies On The Tundra."
+    }
+   },
+   "description": "A small frozen lake lies in a hollow here, its surface swept clean by\nthe wind into a sheet of dark grey ice. Reeds poke stiffly through at\nits margins, and the ice booms and groans as it settles. On still days\nthe lake mirrors the sky so perfectly that the horizon seems to vanish.\nPaths skirt its shores to the north, east, south and west.",
+   "extra_descs": {}
+  },
+  "4615": {
+   "vnum": 4615,
+   "name": "On The Tundra",
+   "map": {
+    "x": 33,
+    "y": 41,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6605,
+     "description": "To the north lies On The Tundra."
+    },
+    "east": {
+     "to_room": 6603,
+     "description": "To the east lies On The Tundra."
+    },
+    "south": {
+     "to_room": 4611,
+     "description": "To the south lies On The Tundra."
+    },
+    "west": {
+     "to_room": 4614,
+     "description": "To the west lies On The Tundra."
+    }
+   },
+   "description": "A cairn of stacked stones stands on a low hummock here, built roughly in\nthe shape of a man with outstretched arms, as if pointing the way across\nthe featureless white. Its stones are glazed with rime. East, a ring of\ngreat boulders crowns a rise, and the tundra runs north, south and west\nbeneath a sky the colour of pewter.",
+   "extra_descs": {
+    "cairn stones figure man": "The cairn's arms are two long, flat stones balanced across its\nshoulders, one pointing toward the mountains and the other toward the\nglacier. The hunters of this cold country build such figures to tell the\ntraveller that people have passed this way before."
+   }
+  },
+  "6603": {
+   "vnum": 6603,
+   "name": "On The Tundra",
+   "map": {
+    "x": 35,
+    "y": 41,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "mob_resets": [
+    {
+     "vnum": 6603,
+     "max": 1
+    },
+    {
+     "vnum": 606602,
+     "max": 1
+    }
+   ],
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4620,
+     "description": "To the north lies On The Tundra."
+    },
+    "south": {
+     "to_room": 4612,
+     "description": "To the south lies On The Tundra."
+    },
+    "west": {
+     "to_room": 4615,
+     "description": "To the west lies On The Tundra."
+    }
+   },
+   "description": "A ring of great boulders crowns a low rise here, forming a natural fort\nwith a commanding view across the tundra. Inside the ring the snow is\ntrampled to slush, a fire pit holds cold black ashes, and crude shelters\nof hide and spruce boughs lean against the stones. Lookout perches have\nbeen scraped flat atop the tallest boulders. Paths leave the ring north,\nsouth and west.",
+   "extra_descs": {}
+  },
+  "4617": {
+   "vnum": 4617,
+   "name": "On The Tundra",
+   "map": {
+    "x": 29,
+    "y": 43,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4621,
+     "description": "To the north lies On The Tundra."
+    },
+    "east": {
+     "to_room": 4618,
+     "description": "To the east lies On The Tundra."
+    },
+    "south": {
+     "to_room": 4613,
+     "description": "To the south lies On The Tundra."
+    },
+    "west": {
+     "to_room": 4649,
+     "description": "To the west lies In The Mountains."
+    }
+   },
+   "description": "A single enormous boulder squats on the open tundra here, a lump of pink\ngranite utterly unlike the grey rock of the mountains nearby, as though\nsome giant had let it fall. Its lee shelters a patch of bare ground\nwhere moss and crowberry grow thick. The mountains rise close by to the\nwest, and the tundra stretches north, east and south.",
+   "extra_descs": {}
+  },
+  "4618": {
+   "vnum": 4618,
+   "name": "On The Tundra",
+   "map": {
+    "x": 31,
+    "y": 43,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4622,
+     "description": "To the north lies On The Tundra."
+    },
+    "east": {
+     "to_room": 6605,
+     "description": "To the east lies On The Tundra."
+    },
+    "south": {
+     "to_room": 4614,
+     "description": "To the south lies On The Tundra."
+    },
+    "west": {
+     "to_room": 4617,
+     "description": "To the west lies On The Tundra."
+    }
+   },
+   "description": "The ground here is broken into a strange honeycomb of low polygons, each\nringed by a shallow crack where the frost has split the earth. Snow\nfills the cracks, drawing a white net across the brown moss. Ways lead\nnorth, east, south and west, and the pattern stretches away on every\nside as if some vast hand had laid it out.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 606602,
+     "max": 1
+    }
+   ]
+  },
+  "6605": {
+   "vnum": 6605,
+   "name": "On The Tundra",
+   "map": {
+    "x": 33,
+    "y": 43,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "mob_resets": [
+    {
+     "vnum": 6605,
+     "max": 1
+    }
+   ],
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6608,
+     "description": "To the north lies On The Tundra."
+    },
+    "east": {
+     "to_room": 4620,
+     "description": "To the east lies On The Tundra."
+    },
+    "south": {
+     "to_room": 4615,
+     "description": "To the south lies On The Tundra."
+    },
+    "west": {
+     "to_room": 4618,
+     "description": "To the west lies On The Tundra."
+    }
+   },
+   "description": "A sheltered swale lies between two low rises here, and the wind has\nswept much of the snow from its floor, uncovering pale grass and sedge.\nThe ground is pocked with the neat, split prints of deer and nibbled\npatches where they have grazed. The tundra opens north, east, south and\nwest, and the swale's shelter makes the cold a little kinder.",
+   "extra_descs": {}
+  },
+  "4620": {
+   "vnum": 4620,
+   "name": "On The Tundra",
+   "map": {
+    "x": 35,
+    "y": 43,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6611,
+     "description": "To the north lies On The Tundra."
+    },
+    "south": {
+     "to_room": 6603,
+     "description": "To the south lies On The Tundra."
+    },
+    "west": {
+     "to_room": 6605,
+     "description": "To the west lies On The Tundra."
+    }
+   },
+   "description": "A frozen bog fills a broad hollow here, its tussocks of cotton grass\nstanding up from the ice like the heads of drowned men. The ice between\nthem is thin and dark in places, and the smell of peat rises from\nbeneath it. Firmer ground skirts the bog to the north and south, and a\nway leads west across the tundra.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 606600,
+     "max": 1
+    }
+   ]
+  },
+  "4621": {
+   "vnum": 4621,
+   "name": "On The Tundra",
+   "map": {
+    "x": 29,
+    "y": 45,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4627,
+     "description": "To the north lies On The Tundra."
+    },
+    "east": {
+     "to_room": 4622,
+     "description": "To the east lies On The Tundra."
+    },
+    "south": {
+     "to_room": 4617,
+     "description": "To the south lies On The Tundra."
+    }
+   },
+   "description": "A frozen brook winds across the tundra here in a shallow channel, its\nice clouded white and humped with trapped bubbles. Under the ice, dark\nwater can still be seen moving slowly. Tufts of dead sedge rattle along\nits banks in the bitter wind. Beyond the far bank the mountains wall off\nthe land, and the tundra opens north, east and south.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 606601,
+     "max": 1
+    }
+   ]
+  },
+  "4622": {
+   "vnum": 4622,
+   "name": "On The Tundra",
+   "map": {
+    "x": 31,
+    "y": 45,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4628,
+     "description": "To the north lies On The Tundra."
+    },
+    "east": {
+     "to_room": 6608,
+     "description": "To the east lies On The Tundra."
+    },
+    "south": {
+     "to_room": 4618,
+     "description": "To the south lies On The Tundra."
+    },
+    "west": {
+     "to_room": 4621,
+     "description": "To the west lies On The Tundra."
+    }
+   },
+   "description": "A long, low ridge of gravel snakes across the tundra here like the back\nof some buried serpent, left by a river that ran beneath the ice in ages\npast. Cotton grass grows along its flanks in tufts of white fluff that\nshiver in the wind. The ridge makes a good path, and ways lead off\nnorth, east, south and west.",
+   "extra_descs": {}
+  },
+  "6608": {
+   "vnum": 6608,
+   "name": "On The Tundra",
+   "map": {
+    "x": 33,
+    "y": 45,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "gathering_nodes": [
+    {
+     "type": "foraging",
+     "resource": "woodland mushrooms",
+     "respawn_minutes": 45
+    }
+   ],
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4629,
+     "description": "To the north lies On The Tundra."
+    },
+    "east": {
+     "to_room": 6611,
+     "description": "To the east lies On The Tundra."
+    },
+    "south": {
+     "to_room": 6605,
+     "description": "To the south lies On The Tundra."
+    },
+    "west": {
+     "to_room": 4622,
+     "description": "To the west lies On The Tundra."
+    }
+   },
+   "description": "A strange round mound rises from the flat tundra here, a dome of earth\npushed up from beneath by ice, its sides split open by deep cracks. From\nits top you can see for miles: the glacier's white wall, the dark smudge\nof the taiga, and the mountains brooding over all. Ways lead north,\neast, south and west.",
+   "extra_descs": {}
+  },
+  "6611": {
+   "vnum": 6611,
+   "name": "On The Tundra",
+   "map": {
+    "x": 35,
+    "y": 45,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "extra_descs": {},
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4630,
+     "description": "To the north lies On The Tundra."
+    },
+    "south": {
+     "to_room": 4620,
+     "description": "To the south lies On The Tundra."
+    },
+    "west": {
+     "to_room": 6608,
+     "description": "To the west lies On The Tundra."
+    }
+   },
+   "description": "A weathered signpost leans drunkenly here, its paint flaked away and its\nlettering barely legible, the only made thing in sight on the open\ntundra. The ground around it is trampled, and the snow is marked by boot\nprints coming and going. The tundra stretches north toward the glacier's\nfoot, south over low rises, and west across a shallow dip.",
+   "mob_resets": [
+    {
+     "vnum": 606600,
+     "max": 1
+    }
+   ]
+  },
+  "4625": {
+   "vnum": 4625,
+   "name": "On The Tundra",
+   "map": {
+    "x": 27,
+    "y": 47,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4631,
+     "description": "To the north lies The Icy Slope."
+    },
+    "east": {
+     "to_room": 4626,
+     "description": "To the east lies On The Tundra."
+    }
+   },
+   "description": "This is a lonely corner of the tundra, hemmed in by the mountains' spurs\nand the glacier's icy foot, where the wind circles and moans. A tall\npole of grey, weathered spruce stands planted in a pile of stones, hung\nwith strips of faded cloth that flutter in the gusts. North, the ground\nclimbs onto the icy slope, and east the tundra opens out again.",
+   "extra_descs": {}
+  },
+  "4626": {
+   "vnum": 4626,
+   "name": "On The Tundra",
+   "map": {
+    "x": 28,
+    "y": 47,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4631,
+     "description": "To the north lies The Icy Slope."
+    },
+    "east": {
+     "to_room": 4627,
+     "description": "To the east lies On The Tundra."
+    },
+    "west": {
+     "to_room": 4625,
+     "description": "To the west lies On The Tundra."
+    }
+   },
+   "description": "Snow lies in deep drifts here against a low ridge of rock, sculpted by\nthe wind into smooth curves and sharp-edged cornices. Walking is slow,\nthe crust breaking with every step and dropping you knee-deep. North,\nthe icy slope climbs toward the glacier, and the tundra runs east and\nwest along its foot.",
+   "extra_descs": {}
+  },
+  "4627": {
+   "vnum": 4627,
+   "name": "On The Tundra",
+   "map": {
+    "x": 29,
+    "y": 47,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4632,
+     "description": "To the north lies The Icy Slope."
+    },
+    "east": {
+     "to_room": 4628,
+     "description": "To the east lies On The Tundra."
+    },
+    "south": {
+     "to_room": 4621,
+     "description": "To the south lies On The Tundra."
+    },
+    "west": {
+     "to_room": 4626,
+     "description": "To the west lies On The Tundra."
+    }
+   },
+   "description": "The tundra tilts upward here into slopes glazed with ice, and above them\nthe blue-white face of a glacier fills the sky to the north like a\nfrozen wave. Cold air pours down off the ice in a steady, numbing wind\nthat smells of nothing at all. Gravel and broken ice crunch underfoot,\nand ways lead east, west and south across the open ground.",
+   "extra_descs": {}
+  },
+  "4628": {
+   "vnum": 4628,
+   "name": "On The Tundra",
+   "map": {
+    "x": 31,
+    "y": 47,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4633,
+     "description": "To the north lies The Icy Slope."
+    },
+    "east": {
+     "to_room": 4629,
+     "description": "To the east lies On The Tundra."
+    },
+    "south": {
+     "to_room": 4622,
+     "description": "To the south lies On The Tundra."
+    },
+    "west": {
+     "to_room": 4627,
+     "description": "To the west lies On The Tundra."
+    }
+   },
+   "description": "The tundra rises here toward a dark gash in the glacier's face, and a\nbeaten path leads north up the icy slope toward it. The path is marked\nwith small posts of bleached bone, crude and unsettling. Elsewhere the\ntundra lies open, stretching east, south and west in frozen swells of\nmoss and stone. Your breath smokes in the air and freezes on your\ncollar.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 606600,
+     "max": 1
+    },
+    {
+     "vnum": 606602,
+     "max": 1
+    }
+   ]
+  },
+  "4629": {
+   "vnum": 4629,
+   "name": "On The Tundra",
+   "map": {
+    "x": 33,
+    "y": 47,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4634,
+     "description": "To the north lies The Icy Slope."
+    },
+    "east": {
+     "to_room": 4630,
+     "description": "To the east lies On The Tundra."
+    },
+    "south": {
+     "to_room": 6608,
+     "description": "To the south lies On The Tundra."
+    },
+    "west": {
+     "to_room": 4628,
+     "description": "To the west lies On The Tundra."
+    }
+   },
+   "description": "A chain of small frozen pools lies across the tundra here, fed by\nmeltwater from the glacier and frozen now into milky blue discs. The ice\nslope climbs north toward the glacier's foot, and the wind that pours\ndown it carries needles of ice. Ways lead east, south and west over\nhummocks of moss.",
+   "extra_descs": {}
+  },
+  "4630": {
+   "vnum": 4630,
+   "name": "On The Tundra",
+   "map": {
+    "x": 35,
+    "y": 47,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4634,
+     "description": "To the north lies The Icy Slope."
+    },
+    "south": {
+     "to_room": 6611,
+     "description": "To the south lies On The Tundra."
+    },
+    "west": {
+     "to_room": 4629,
+     "description": "To the west lies On The Tundra."
+    }
+   },
+   "description": "Wind-scoured gravel covers the ground here, swept bare of snow and moss\nalike, with only a few dwarf willows creeping flat among the stones. The\nbroken runners of an old sledge lie half buried in the gravel, bleached\ngrey by sun and frost. North rises the icy slope below the glacier, and\nthe tundra runs on south and west.",
+   "extra_descs": {}
+  },
+  "4631": {
+   "vnum": 4631,
+   "name": "The Icy Slope",
+   "map": {
+    "x": 28,
+    "y": 49,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 4632,
+     "description": "To the east lies The Icy Slope."
+    },
+    "south": {
+     "to_room": 4626,
+     "description": "To the south lies On The Tundra."
+    }
+   },
+   "description": "The icy slope steepens here beneath an overhanging cliff of glacier ice,\nblue and translucent, hung with icicles longer than spears. Now and then\none breaks loose and shatters on the slope with a sound like breaking\nglass. The slope runs on east along the glacier's foot, and south it\nfalls away to the tundra.",
+   "extra_descs": {}
+  },
+  "4632": {
+   "vnum": 4632,
+   "name": "The Icy Slope",
+   "map": {
+    "x": 29,
+    "y": 49,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 4633,
+     "description": "To the east lies The Icy Slope."
+    },
+    "south": {
+     "to_room": 4627,
+     "description": "To the south lies On The Tundra."
+    },
+    "west": {
+     "to_room": 4631,
+     "description": "To the west lies The Icy Slope."
+    }
+   },
+   "description": "The ground here is a steep apron of old ice and frozen gravel spilling\nfrom the glacier's foot, and every step threatens to send you sliding.\nThe glacier towers overhead, its face streaked with grit and veined with\ndeep blue. Ways lead east and west across the slope, and south the ice\ngives way to the open tundra below.",
+   "extra_descs": {}
+  },
+  "4633": {
+   "vnum": 4633,
+   "name": "The Icy Slope",
+   "map": {
+    "x": 31,
+    "y": 49,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4635,
+     "description": "To the north lies The Narrow Crack In The Glacier."
+    },
+    "east": {
+     "to_room": 4634,
+     "description": "To the east lies The Icy Slope."
+    },
+    "south": {
+     "to_room": 4628,
+     "description": "To the south lies On The Tundra."
+    },
+    "west": {
+     "to_room": 4632,
+     "description": "To the west lies The Icy Slope."
+    }
+   },
+   "description": "A dark slit splits the face of the glacier here, a narrow crack running\nnorth into the ice, its edges rounded and gleaming. The slope beneath it\nhas been worn into a rough path by many feet, the ice chipped into crude\nsteps. The icy slope runs on east and west, and south it falls away to\nthe tundra.",
+   "extra_descs": {}
+  },
+  "4634": {
+   "vnum": 4634,
+   "name": "The Icy Slope",
+   "map": {
+    "x": 33,
+    "y": 49,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 4630,
+     "description": "To the east lies On The Tundra."
+    },
+    "south": {
+     "to_room": 4629,
+     "description": "To the south lies On The Tundra."
+    },
+    "west": {
+     "to_room": 4633,
+     "description": "To the west lies The Icy Slope."
+    }
+   },
+   "description": "The icy slope levels out here into a broad sheet of wind-polished ice,\nso smooth that it shines like a pewter plate under the clouds. Cracks\nrun through it like the lines on an old man's palm, and now and then one\nof them gives a sharp report like a snapping branch. West, the slope\nclimbs toward the crack in the glacier, and the tundra lies open to the\neast and south.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 606601,
+     "max": 1
+    }
+   ]
+  },
+  "4635": {
+   "vnum": 4635,
+   "name": "The Narrow Crack In The Glacier",
+   "map": {
+    "x": 31,
+    "y": 51,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4637,
+     "description": "To the north lies The Narrow Crack In The Glacier."
+    },
+    "east": {
+     "to_room": 4636,
+     "description": "To the east lies The Narrow Crack In The Glacier."
+    },
+    "south": {
+     "to_room": 4633,
+     "description": "To the south lies The Icy Slope."
+    }
+   },
+   "description": "Walls of blue ice rise sheer on either side of this narrow crack, so\nclose that you could touch both at once, and far overhead runs a thin\nseam of white sky. The light that filters through the ice is a deep,\ncold blue, and the glacier creaks and groans constantly as it shifts.\nThe crack runs on north, a smaller fissure branches off east, and south\nthe way opens onto the icy slope.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 606602,
+     "max": 1
+    }
+   ]
+  },
+  "4636": {
+   "vnum": 4636,
+   "name": "The Narrow Crack In The Glacier",
+   "map": {
+    "x": 32,
+    "y": 51,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 4633,
+     "description": "To the south lies The Icy Slope."
+    },
+    "west": {
+     "to_room": 4635,
+     "description": "To the west lies The Narrow Crack In The Glacier."
+    }
+   },
+   "description": "This side fissure ends in a small hollow of ice, where meltwater has\nfrozen into curtains and pillars that glitter like glass. Somewhere deep\nwithin the ice, water drips, each drop ringing like a tiny bell. The\nfissure runs back west to the main crack, and a slippery chute leads\nsouth out of the ice onto the open slope.",
+   "extra_descs": {}
+  },
+  "4637": {
+   "vnum": 4637,
+   "name": "The Narrow Crack In The Glacier",
+   "map": {
+    "x": 31,
+    "y": 52,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 4635,
+     "description": "To the south lies The Narrow Crack In The Glacier."
+    },
+    "west": {
+     "to_room": 4638,
+     "description": "To the west lies The Narrow Crack In The Glacier."
+    },
+    "north": {
+     "to_room": 23500,
+     "description": "To the north lies Entrance to the Goblin Warrens."
+    }
+   },
+   "description": "The crack widens a little here, and its floor is churned into dirty\nslush by many small, clawed feet. North, the ice gives out onto a bare\nhillside where bone totems flank a jagged opening, and the stink of rot\nand smoke from the Goblin Warrens drifts in on the wind. The crack runs\nback south between its blue walls, and another branch winds west through\nthe ice.",
+   "extra_descs": {}
+  },
+  "4638": {
+   "vnum": 4638,
+   "name": "The Narrow Crack In The Glacier",
+   "map": {
+    "x": 30,
+    "y": 52,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6600,
+     "description": "To the north lies The Narrow Crack In The Glacier."
+    },
+    "east": {
+     "to_room": 4637,
+     "description": "To the east lies The Narrow Crack In The Glacier."
+    },
+    "west": {
+     "to_room": 18000,
+     "description": "To the west lies Edge of the Northern Forest."
+    }
+   },
+   "description": "The ice walls of the crack are lower here, and through a gap to the west\nyou can see dark ranks of pines and oaks marching away beneath a grey\nsky, the edge of the Great Northern Forest. Wind-driven snow hisses\nalong the floor. The crack runs east between its glassy walls and turns\nnorth, deeper into the glacier, where the ice rises higher and bluer.",
+   "extra_descs": {}
+  },
+  "6600": {
+   "vnum": 6600,
+   "name": "The Narrow Crack In The Glacier",
+   "map": {
+    "x": 30,
+    "y": 53,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 6600,
+     "max": 1
+    }
+   ],
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12401,
+     "description": "To the north lies The Narrow Crack In The Glacier."
+    },
+    "south": {
+     "to_room": 4638,
+     "description": "To the south lies The Narrow Crack In The Glacier."
+    },
+    "east": {
+     "to_room": 6700,
+     "description": "To the east lies The Highland Trail."
+    }
+   },
+   "description": "The crack opens here into a small space in the ice where three ways\npart, and a weathered signpost has been driven deep into the frozen\ngravel. North, the crack runs on through the heart of the glacier toward\nthe Winterwood; east, the ice gives way to rocky, windswept ground\nclimbing into the Eastern Highlands. The way back south winds between\nwalls of creaking ice."
+  },
+  "4641": {
+   "vnum": 4641,
+   "name": "In The Mountains",
+   "map": {
+    "x": 23,
+    "y": 39,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4644,
+     "description": "To the north lies In The Valley."
+    },
+    "east": {
+     "to_room": 4642,
+     "description": "To the east lies In The Mountains."
+    },
+    "south": {
+     "to_room": 6602,
+     "description": "To the south lies On The Taiga."
+    }
+   },
+   "description": "A rocky path climbs out of the forest here, leaving the trees behind for\nslopes of scree and wind-stunted juniper. Blazes cut into the last\ntrunks mark the start of the trail. South, the path drops into the taiga\ntoward a clearing where travellers rest; north, it climbs into a\nsheltered valley among the peaks. Another way runs east along the\nmountainside.",
+   "extra_descs": {}
+  },
+  "4642": {
+   "vnum": 4642,
+   "name": "In The Mountains",
+   "map": {
+    "x": 24,
+    "y": 39,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4645,
+     "description": "To the north lies In The Mountains."
+    },
+    "east": {
+     "to_room": 4643,
+     "description": "To the east lies In The Mountains."
+    },
+    "south": {
+     "to_room": 4650,
+     "description": "To the south lies By The Cave Entrance."
+    },
+    "west": {
+     "to_room": 4641,
+     "description": "To the west lies In The Mountains."
+    }
+   },
+   "description": "A cliff rises sheer above this rocky slope, and at its foot, a short way\nsouth, the black mouth of a cave yawns beneath an overhang. Large,\nclawed prints lead in and out of it through the snow. Paths wander\nnorth, east and west across the mountainside among boulders capped with\nwhite.",
+   "extra_descs": {}
+  },
+  "4643": {
+   "vnum": 4643,
+   "name": "In The Mountains",
+   "map": {
+    "x": 27,
+    "y": 39,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4646,
+     "description": "To the north lies In The Mountains."
+    },
+    "east": {
+     "to_room": 4609,
+     "description": "To the east lies On The Tundra."
+    },
+    "south": {
+     "to_room": 6606,
+     "description": "To the south lies On The Taiga."
+    },
+    "west": {
+     "to_room": 4642,
+     "description": "To the west lies In The Mountains."
+    }
+   },
+   "description": "Here the mountains begin, rising from the dark edge of the taiga in\nslopes of bare rock and scrubby juniper. South, the spruces close in\nthickly; east, the open tundra rolls away under the wind. The path\nclimbs north along the mountain's flank, and a rougher track runs west\namong the peaks.",
+   "extra_descs": {}
+  },
+  "4644": {
+   "vnum": 4644,
+   "name": "In The Valley",
+   "map": {
+    "x": 23,
+    "y": 41,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4647,
+     "description": "To the north lies In The Mountains."
+    },
+    "east": {
+     "to_room": 4645,
+     "description": "To the east lies In The Mountains."
+    },
+    "south": {
+     "to_room": 4641,
+     "description": "To the south lies In The Mountains."
+    },
+    "west": {
+     "to_room": 4651,
+     "description": "To the west lies In The Cabin."
+    }
+   },
+   "description": "A small, sheltered valley lies cupped among the peaks here, where the\nwind drops and a little warmth lingers. A log cabin stands at its west\nend, snug against the slope, with a stone chimney and a heavy plank\ndoor. A woodpile is stacked high beneath its eaves, roofed with strips\nof bark. Paths climb out of the valley north, east and south into the\nmountains.",
+   "extra_descs": {}
+  },
+  "4645": {
+   "vnum": 4645,
+   "name": "In The Mountains",
+   "map": {
+    "x": 24,
+    "y": 41,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4648,
+     "description": "To the north lies In The Mountains."
+    },
+    "east": {
+     "to_room": 4646,
+     "description": "To the east lies In The Mountains."
+    },
+    "south": {
+     "to_room": 4642,
+     "description": "To the south lies In The Mountains."
+    },
+    "west": {
+     "to_room": 4644,
+     "description": "To the west lies In The Valley."
+    }
+   },
+   "description": "Paths cross on a broad, stony shoulder among the peaks here, beside a\ntall cairn that has begun to lean with the years. West, the land dips\ninto a sheltered valley where the roof of a log cabin shows among the\nrocks. Other ways lead north toward a chasm, east toward a gully below\nthe summit, and south down a stony slope.",
+   "extra_descs": {}
+  },
+  "4646": {
+   "vnum": 4646,
+   "name": "In The Mountains",
+   "map": {
+    "x": 27,
+    "y": 41,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4649,
+     "description": "To the north lies In The Mountains."
+    },
+    "east": {
+     "to_room": 4613,
+     "description": "To the east lies On The Tundra."
+    },
+    "south": {
+     "to_room": 4643,
+     "description": "To the south lies In The Mountains."
+    },
+    "west": {
+     "to_room": 4645,
+     "description": "To the west lies In The Mountains."
+    },
+    "up": {
+     "to_room": 4652,
+     "description": "To the up lies On The Mountaintop."
+    }
+   },
+   "description": "A steep gully climbs up from this rocky shoulder toward the summit of\nthe mountain, its floor packed with old ice and loose stones. The\nshoulder itself is a meeting place of paths: north and south along the\nmountain's flank, west into the heart of the peaks, and east down to a\nfan of shattered rock on the tundra. The wind keens through the gully\nlike a voice.",
+   "extra_descs": {}
+  },
+  "4647": {
+   "vnum": 4647,
+   "name": "In The Mountains",
+   "map": {
+    "x": 23,
+    "y": 43,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 4648,
+     "description": "To the east lies In The Mountains."
+    },
+    "south": {
+     "to_room": 4644,
+     "description": "To the south lies In The Valley."
+    }
+   },
+   "description": "The path climbs out of the valley beside a frozen waterfall, a great\npillar of blue-white ice clinging to the cliff. Behind the ice, water\ncan still be heard trickling. Rime coats every rock and twig, thick as\nfleece. East, the path runs across a high slope into the peaks; south,\nit drops into the sheltered valley.",
+   "extra_descs": {}
+  },
+  "4648": {
+   "vnum": 4648,
+   "name": "In The Mountains",
+   "map": {
+    "x": 24,
+    "y": 43,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4653,
+     "description": "To the north lies The Ice Bridge."
+    },
+    "east": {
+     "to_room": 4649,
+     "description": "To the east lies In The Mountains."
+    },
+    "south": {
+     "to_room": 4645,
+     "description": "To the south lies In The Mountains."
+    },
+    "west": {
+     "to_room": 4647,
+     "description": "To the west lies In The Mountains."
+    }
+   },
+   "description": "The path comes to the brink of a deep chasm here, and a bridge of solid\nice arches north across the gulf, glittering and blue, the only way\nover. Wind howls up out of the depths, carrying flakes of snow that\nswirl upward instead of down. Paths lead east and south along the\nmountainside, and west toward a frozen waterfall.",
+   "extra_descs": {}
+  },
+  "4649": {
+   "vnum": 4649,
+   "name": "In The Mountains",
+   "map": {
+    "x": 27,
+    "y": 43,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 4617,
+     "description": "To the east lies On The Tundra."
+    },
+    "south": {
+     "to_room": 4646,
+     "description": "To the south lies In The Mountains."
+    },
+    "west": {
+     "to_room": 4648,
+     "description": "To the west lies In The Mountains."
+    }
+   },
+   "description": "The mountainside here looks out over the tundra, which stretches away\neast in a vast pale plain to the glacier's foot. Frost-split boulders\nlie strewn across a steep slope, and the path picks its way between\nthem. The wind tears at you from every side. South, the path follows the\nmountain's flank; west, it climbs deeper into the peaks.",
+   "extra_descs": {}
+  },
+  "4650": {
+   "vnum": 4650,
+   "name": "By The Cave Entrance",
+   "map": {
+    "x": 24,
+    "y": 38,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4642,
+     "description": "To the north lies In The Mountains."
+    },
+    "east": {
+     "to_room": 4662,
+     "description": "To the east lies In The Cave."
+    }
+   },
+   "description": "Just inside the cave mouth, grey daylight still reaches the walls,\nshowing rough stone streaked with mineral stains in rust and green. The\nfloor is dry and dusty, strewn with dead leaves blown in from outside.\nNorth, the entrance opens onto the snowy mountainside; east, the cave\nruns back into darkness, and a musky smell drifts out of it.",
+   "extra_descs": {}
+  },
+  "4651": {
+   "vnum": 4651,
+   "name": "In The Cabin",
+   "map": {
+    "x": 22,
+    "y": 41,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 4644,
+     "description": "To the east lies In The Valley."
+    }
+   },
+   "description": "The cabin is a single snug room of squared logs chinked with moss,\nsmelling of old smoke and pine resin. A fieldstone hearth fills one\nwall, a bunk of lashed poles stands against another, and a plank table\nand stool sit beneath a small shuttered window. The pegs by the door\nhold nothing now, and dust lies thick on the sill. The door leads east,\nout into the valley.",
+   "extra_descs": {}
+  },
+  "4652": {
+   "vnum": 4652,
+   "name": "On The Mountaintop",
+   "map": {
+    "x": 28,
+    "y": 42,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "down": {
+     "to_room": 4646,
+     "description": "To the down lies In The Mountains."
+    }
+   },
+   "description": "You stand on the very summit of the mountain, a narrow crown of frost-\nshattered rock with nothing above but the vast, pale sky. The whole of\nthe wild country lies spread below: the white sweep of the tundra, the\nglacier gleaming like a frozen sea, and the dark forests beyond. A small\ncairn marks the highest point, built by whoever first stood here. The\nonly way is back down the steep gully.",
+   "extra_descs": {}
+  },
+  "4653": {
+   "vnum": 4653,
+   "name": "The Ice Bridge",
+   "map": {
+    "x": 24,
+    "y": 46,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4657,
+     "description": "To the north lies In The Mountains."
+    },
+    "south": {
+     "to_room": 4648,
+     "description": "To the south lies In The Mountains."
+    },
+    "down": {
+     "to_room": 4654,
+     "description": "To the down lies The Bottom Of The Chasm."
+    }
+   },
+   "description": "You stand on a narrow span of ancient ice arching over a dizzying chasm,\nits surface roughened by frozen grit and its edges sculpted into\ndelicate fringes. Beneath your feet the ice is clear enough to show the\ndark depths below, and it creaks ominously with every step. The bridge\nleads north and south to the mountainsides, and beside the span a\nperilous line of ice-glazed ledges winds down into the chasm.",
+   "extra_descs": {
+    "bridge ice span": "Deep inside the ice, like flies in amber, hang dark shapes: stones, a\nbroken spear shaft, the curve of something that might be a horn. The\nbridge has been growing for a very long time."
+   }
+  },
+  "4654": {
+   "vnum": 4654,
+   "name": "The Bottom Of The Chasm",
+   "map": {
+    "x": 23,
+    "y": 45,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4655,
+     "description": "To the north lies The Cave."
+    },
+    "up": {
+     "to_room": 4653,
+     "description": "To the up lies The Ice Bridge."
+    }
+   },
+   "description": "The floor of the chasm is a jumble of ice-glazed boulders, and the walls\nrise so high on either hand that the sky is only a pale stripe far\nabove, crossed by the thin, shining band of the ice bridge. It is\nbitterly cold and utterly still. North, a dark cave opens at the foot of\nthe cliff, its mouth hung with icicles like teeth, and tufts of coarse\nwhite hair cling to the rocks around it. Slick ledges climb back up\ntoward the bridge.",
+   "extra_descs": {}
+  },
+  "4655": {
+   "vnum": 4655,
+   "name": "The Cave",
+   "map": {
+    "x": 23,
+    "y": 46,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 4654,
+     "description": "To the south lies The Bottom Of The Chasm."
+    }
+   },
+   "description": "The cave burrows deep into the chasm wall, its sides furred with frost\nthat glitters faintly in the grey light from the entrance. Deep gouges\nscore the icy floor, and a heap of cracked and gnawed bones fills one\ncorner. A rank, wild stench hangs in the still air, thick enough to\ntaste. The only way out is south, back into the chasm.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 606603,
+     "max": 1
+    }
+   ]
+  },
+  "4656": {
+   "vnum": 4656,
+   "name": "In The Mountains",
+   "map": {
+    "x": 22,
+    "y": 48,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6609,
+     "description": "To the north lies In The Mountains."
+    },
+    "east": {
+     "to_room": 4657,
+     "description": "To the east lies In The Mountains."
+    },
+    "up": {
+     "to_room": 6610,
+     "description": "To the up lies On The Ledge."
+    }
+   },
+   "description": "A torrent roars somewhere above, and its spray drifts down onto this\nrocky shelf, freezing on every surface into a glaze of ice. A steep path\nclimbs up the cliff toward a ledge where the ancient arch of a stone\nbridge can be glimpsed spanning the river. Other paths lead north up a\nsteep slope and east along the chasm's rim.",
+   "extra_descs": {}
+  },
+  "4657": {
+   "vnum": 4657,
+   "name": "In The Mountains",
+   "map": {
+    "x": 24,
+    "y": 48,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4659,
+     "description": "To the north lies In The Mountains."
+    },
+    "south": {
+     "to_room": 4653,
+     "description": "To the south lies The Ice Bridge."
+    },
+    "west": {
+     "to_room": 4656,
+     "description": "To the west lies In The Mountains."
+    }
+   },
+   "description": "Beyond the ice bridge the path climbs onto a windswept ledge on the far\nside of the chasm, scattered with boulders sheathed in rime. Looking\nback south, the bridge gleams like a band of glass across the gulf. The\nsnow here lies deep and almost untrodden, save for a line of huge, heavy\nfootprints. The path continues north up the mountainside and west along\nthe chasm's rim.",
+   "extra_descs": {}
+  },
+  "6609": {
+   "vnum": 6609,
+   "name": "In The Mountains",
+   "map": {
+    "x": 22,
+    "y": 50,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 4659,
+     "description": "To the east lies In The Mountains."
+    },
+    "south": {
+     "to_room": 4656,
+     "description": "To the south lies In The Mountains."
+    }
+   },
+   "description": "The ridge ends at a knot of jagged rocks, frost-shattered into fantastic\nspires and blades. In their shelter lies a small pocket of still air\nwhere the snow has settled soft and smooth, and a few cushions of moss\nshow green where the rocks hold the sun's warmth. The ridge runs back\neast, and a steep path drops south toward the sound of rushing water.",
+   "extra_descs": {}
+  },
+  "4659": {
+   "vnum": 4659,
+   "name": "In The Mountains",
+   "map": {
+    "x": 24,
+    "y": 50,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 4657,
+     "description": "To the south lies In The Mountains."
+    },
+    "west": {
+     "to_room": 6609,
+     "description": "To the west lies In The Mountains."
+    }
+   },
+   "description": "The path climbs to a high, bare ridge where the wind blows so hard that\nyou must lean into it to stay upright. Snow streams off the crest like\nsmoke. From here the land falls away on every side, a wilderness of\nwhite peaks and grey valleys. The way runs south toward the ice bridge\nand west along the ridge.",
+   "extra_descs": {}
+  },
+  "6610": {
+   "vnum": 6610,
+   "name": "On The Ledge",
+   "map": {
+    "x": 24,
+    "y": 52,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "description": "A shelf of grey rock juts from the mountainside here, barely wide enough\nfor two to stand abreast, with a dizzy drop beneath and the wind tearing\nat your cloak. In the cliff to the north a stout wooden door is set into\na doorway cut from the living stone. Carved faces flank it on either\nside, worn almost featureless by centuries of ice and wind. A narrow,\ncrumbling way leads down the rock toward the lower slopes.",
+   "exits": {
+    "north": {
+     "to_room": 6604,
+     "description": "To the north lies The Stone Hallway.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "down": {
+     "to_room": 4656,
+     "description": "To the down lies In The Mountains."
+    }
+   },
+   "extra_descs": {
+    "faces carved carvings doorway": "The faces were once bearded and stern, perhaps dwarves or kings, but\nfrost has eaten away their features until only the hollows of eyes and\nmouths remain. Someone has rubbed soot into one pair of eyes, so that it\nseems to watch you."
+   }
+  },
+  "6604": {
+   "vnum": 6604,
+   "name": "The Stone Hallway",
+   "map": {
+    "x": 24,
+    "y": 54,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "mob_resets": [
+    {
+     "vnum": 6604,
+     "max": 1
+    }
+   ],
+   "gathering_nodes": [
+    {
+     "type": "fishing",
+     "resource": "river trout",
+     "respawn_minutes": 20
+    }
+   ],
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 6610,
+     "description": "To the south lies On The Ledge."
+    }
+   },
+   "description": "This long hallway has been hewn straight into the mountain, its walls\ndressed smooth and carved with the same worn faces that peer from the\nold bridge outside. Iron brackets for lamps line the walls, and stone\nbenches run along each side, polished by long use. The air is still and\nnoticeably warmer than out on the ledge. The only way out is south, back\ntoward the roar of the river.",
+   "extra_descs": {}
+  },
+  "4662": {
+   "vnum": 4662,
+   "name": "In The Cave",
+   "map": {
+    "x": 25,
+    "y": 38,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 6601,
+     "description": "To the east lies In The Cave."
+    },
+    "west": {
+     "to_room": 4650,
+     "description": "To the west lies By The Cave Entrance."
+    }
+   },
+   "description": "The cave narrows into a winding passage here, its walls close enough to\nbrush with both elbows and its ceiling lost in shadow. Tufts of coarse\nblack fur are caught on the jagged rock at shoulder height. Water drips\nsomewhere ahead, and the musky animal smell grows stronger. West, a\nfaint grey glow marks the entrance; east, the darkness deepens.",
+   "extra_descs": {}
+  },
+  "6601": {
+   "vnum": 6601,
+   "name": "In The Cave",
+   "map": {
+    "x": 26,
+    "y": 38,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "mob_resets": [
+    {
+     "vnum": 6601,
+     "max": 1
+    }
+   ],
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 4662,
+     "description": "To the west lies In The Cave."
+    },
+    "down": {
+     "to_room": 4664,
+     "description": "To the down lies In A Large Cavern."
+    }
+   },
+   "description": "The passage opens into a round chamber whose floor is heaped with dry\nleaves and moss dragged in to make a bed, and the walls are scored with\nclaw marks. In the middle of the floor a worn stone stair spirals down\ninto the deeps, but an ancient gate of black iron closes it fast, its\nlock rusted solid and its bars wrought in graceful, leaf-like patterns.\nThe way out leads west.",
+   "extra_descs": {
+    "gate bars iron stair": "The bars are wrought into twining leaves and slender, long-eared faces,\nthe work of no human smith. Far below the gate, a faint pale light seems\nto come and go, as if someone carried a lamp through distant halls."
+   }
+  },
+  "6607": {
+   "vnum": 6607,
+   "name": "On A Rocky Mountain Trail",
+   "map": {
+    "x": 29,
+    "y": 33,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "description": "The trail ends at a jagged crack in a barren hillside. Crude totems of\nbone and feather flank the dark opening, and the stench of goblin\nhabitation is unmistakable. Scratch marks and old bloodstains mark the\nrocks around the entrance. The forest lies safely to the south.",
+   "exits": {
+    "north": {
+     "to_room": 4601,
+     "description": "To the north lies On The Taiga."
+    },
+    "south": {
+     "to_room": 16101,
+     "description": "To the south lies On A Moutain Path."
+    },
+    "down": {
+     "to_room": 9141,
+     "description": "To the down lies On A Rocky Mountain Trail."
+    }
+   }
+  },
+  "16101": {
+   "vnum": 16101,
+   "name": "On A Moutain Path",
+   "map": {
+    "x": 29,
+    "y": 31,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 6607,
+     "description": "To the north lies On A Rocky Mountain Trail."
+    },
+    "up": {
+     "to_room": 6613,
+     "description": "To the up lies Up The Mountain."
+    }
+   },
+   "description": "The path clings to a steep mountainside of rain-dark rock, rising in\ncrooked switchbacks toward a cleft between two great walls of stone.\nMist drifts down from the heights, beading on the heather. North, the\npath drops toward a barren hillside where crude totems of bone flank a\ndark crack, and above, the way climbs on into the mist.",
+   "extra_descs": {}
+  },
+  "6613": {
+   "vnum": 6613,
+   "name": "Up The Mountain",
+   "map": {
+    "x": 30,
+    "y": 32,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "up": {
+     "to_room": 16103,
+     "description": "To the up lies In Between Two Mountain Walls."
+    },
+    "down": {
+     "to_room": 16101,
+     "description": "To the down lies On A Moutain Path."
+    }
+   },
+   "description": "The climb grows steep and wet here, a scramble over slabs of black rock\nslick with mist, where tufts of coarse grass offer the only handholds.\nAbove, two sheer walls of dark stone rise close together, and the way up\nleads between them into the gorge of Mount Ravenmist. Below, the path\nwinds back down the mountainside toward the wilderness. The wind brings\na smell of wet stone and old feathers down from the heights.",
+   "extra_descs": {}
+  }
+ },
+ "mobs": {
+  "6600": {
+   "vnum": 6600,
+   "name": "timber wolf",
+   "short_desc": "a timber wolf",
+   "long_desc": "A large timber wolf prowls through the undergrowth, watching you with yellow eyes.",
+   "description": "This wolf is lean and powerful, with thick grey fur and intelligent yellow\neyes. It moves with the easy confidence of a predator in its own territory.",
+   "level": 10,
+   "hp_dice": "4d8+40",
+   "damage_dice": "2d4+2",
+   "exp": 450,
+   "gold": 0,
+   "alignment": -200,
+   "armor_class": 80,
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "inventory": [
+    6600
+   ]
+  },
+  "6601": {
+   "vnum": 6601,
+   "name": "black bear",
+   "short_desc": "a black bear",
+   "long_desc": "A large black bear lumbers through the forest, sniffing the air.",
+   "description": "This bear is massive, easily weighing several hundred pounds. Its thick\nblack fur is matted with burrs and its claws are as long as daggers.",
+   "level": 14,
+   "hp_dice": "6d8+60",
+   "damage_dice": "2d6+3",
+   "exp": 800,
+   "gold": 0,
+   "alignment": 0,
+   "armor_class": 70,
+   "flags": [
+    "stay_zone"
+   ],
+   "inventory": [
+    6600
+   ]
+  },
+  "6602": {
+   "vnum": 6602,
+   "name": "forest bandit",
+   "short_desc": "a forest bandit",
+   "long_desc": "A rough-looking bandit lurks in the shadows, hand on sword.",
+   "description": "This bandit wears mismatched leather armor and a dark cloak. A jagged\nscar runs across one cheek, and his eyes dart nervously, sizing you up.",
+   "level": 16,
+   "hp_dice": "5d10+50",
+   "damage_dice": "2d5+4",
+   "exp": 1000,
+   "gold": 35,
+   "alignment": -500,
+   "armor_class": 65,
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "inventory": [
+    6600
+   ]
+  },
+  "6603": {
+   "vnum": 6603,
+   "name": "bandit captain",
+   "short_desc": "the bandit captain",
+   "long_desc": "A scarred bandit captain surveys his territory with cold eyes.",
+   "description": "The captain of the forest bandits is a battle-hardened warrior wearing\nwell-maintained chainmail beneath his forest-green cloak. He carries a\nfine longsword that was clearly stolen from someone of means.",
+   "level": 20,
+   "hp_dice": "8d10+80",
+   "damage_dice": "3d5+5",
+   "exp": 2000,
+   "gold": 120,
+   "alignment": -600,
+   "armor_class": 50,
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "inventory": [
+    6600
+   ]
+  },
+  "6604": {
+   "vnum": 6604,
+   "name": "traveling merchant",
+   "short_desc": "a traveling merchant",
+   "long_desc": "A stout merchant rests by the roadside, guarding his pack.",
+   "description": "This cheerful merchant carries an enormous pack stuffed with goods. He\nseems to know these roads well and is happy to share directions with\ntravelers — for the price of a friendly ear.",
+   "level": 8,
+   "hp_dice": "3d8+30",
+   "damage_dice": "1d4+1",
+   "exp": 0,
+   "gold": 200,
+   "alignment": 500,
+   "armor_class": 90,
+   "flags": [
+    "sentinel",
+    "helper"
+   ],
+   "inventory": [
+    6600
+   ]
+  },
+  "6605": {
+   "vnum": 6605,
+   "name": "young deer",
+   "short_desc": "a young deer",
+   "long_desc": "A young deer grazes peacefully among the wildflowers.",
+   "description": "A graceful young deer with soft brown eyes and spotted flanks.",
+   "level": 3,
+   "hp_dice": "2d6+10",
+   "damage_dice": "1d3+0",
+   "exp": 50,
+   "gold": 0,
+   "alignment": 0,
+   "armor_class": 95,
+   "flags": [
+    "wimpy",
+    "stay_zone"
+   ],
+   "inventory": [
+    6600
+   ]
+  },
+  "606600": {
+   "vnum": 606600,
+   "name": "snow hare white",
+   "short_desc": "a white snow hare",
+   "long_desc": "A white snow hare crouches in a hollow of the snow, its long ears twitching.",
+   "description": "Its fur is pure white but for the black tips of its ears, and so thick\nthat it looks twice its true size. Its great hind feet are furred like\nsnowshoes, and its dark eyes bulge, watching for any movement. At the\nfirst sign of danger it bolts away in great zigzag bounds.",
+   "level": 3,
+   "alignment": 0,
+   "hp_dice": "3d8+44",
+   "damage_dice": "1d6+2",
+   "armor_class": 88,
+   "exp": 185,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": []
+  },
+  "606601": {
+   "vnum": 606601,
+   "name": "arctic fox white",
+   "short_desc": "an arctic fox",
+   "long_desc": "An arctic fox trots across the snow, pausing now and then to listen with its head cocked.",
+   "description": "Small and neat, it wears a thick coat of creamy white fur and a bushy\ntail it curls around its face when it sleeps. Its short ears and blunt\nmuzzle are made for the cold, and its eyes are sharp and golden. It\nlistens to the snow, then pounces nose-first on whatever it hears\nscurrying beneath.",
+   "level": 6,
+   "alignment": 0,
+   "hp_dice": "6d8+71",
+   "damage_dice": "2d6+3",
+   "armor_class": 79,
+   "exp": 350,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": []
+  },
+  "606602": {
+   "vnum": 606602,
+   "name": "frost wolf grey silver",
+   "short_desc": "a frost wolf",
+   "long_desc": "A frost wolf lopes through the snow, its pale eyes fixed hungrily on you.",
+   "description": "A big, rangy wolf with a coat of grey and silver that fades to white\nalong its belly, its fur rimed with ice crystals that glitter as it\nmoves. Its breath smokes between bared yellow fangs. It is seldom alone;\nsomewhere nearby, the rest of its pack is surely watching.",
+   "level": 14,
+   "alignment": 0,
+   "hp_dice": "14d8+158",
+   "damage_dice": "4d6+8",
+   "armor_class": 55,
+   "exp": 790,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": []
+  },
+  "606603": {
+   "vnum": 606603,
+   "name": "yeti ape snow beast white",
+   "short_desc": "a hulking yeti",
+   "long_desc": "A hulking yeti, white-furred like a great snow ape, rises from its haunches with a rumbling growl.",
+   "description": "It stands half again as tall as a man, a great ape-like beast covered in\nlong, matted white fur stained yellow about the mouth and hands. Its\nface is bare, grey-black and creased like old leather, with deep-set,\nred-rimmed eyes beneath a heavy brow. Its arms hang nearly to the\nground, and one huge hand grips a long shard of sharpened bone.",
+   "level": 19,
+   "alignment": -250,
+   "hp_dice": "19d8+323",
+   "damage_dice": "5d6+14",
+   "armor_class": 35,
+   "exp": 1065,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 706601,
+     "chance": 30
+    },
+    {
+     "vnum": 706600,
+     "chance": 25
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "6600": {
+   "vnum": 6600,
+   "name": "wolf pelt",
+   "short_desc": "a thick wolf pelt",
+   "description": "A thick grey wolf pelt, soft and well-furred.",
+   "type": "treasure",
+   "weight": 3,
+   "cost": 25
+  },
+  "706600": {
+   "vnum": 706600,
+   "name": "pick ice bone ice-pick",
+   "short_desc": "a bone ice-pick",
+   "room_desc": "A long ice-pick of yellowed bone lies here, its point glinting with frost.",
+   "description": "A great thighbone, split and ground to a cruel point at one end and bound with braided sinew at the other for a grip. Yeti use such picks to hack footholds in the ice and to crack frozen carcasses, and it serves just as well against a living foe.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 18,
+   "damage_dice": "2d6",
+   "weapon_type": "pierce",
+   "weight": 6,
+   "value": 490,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 1
+    }
+   ]
+  },
+  "706601": {
+   "vnum": 706601,
+   "name": "pelt yeti white fur",
+   "short_desc": "a yeti's pelt",
+   "room_desc": "A great shaggy white pelt lies here in a heap, reeking faintly of musk.",
+   "description": "The whole hide of a yeti, its long white fur so dense that no wind can pass through it. Worn about the shoulders it hangs nearly to the ground, heavy and warm as a hearthside, though the musky smell never quite fades.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 19,
+   "wear_slot": "about",
+   "armor": 2,
+   "weight": 3,
+   "value": 410,
+   "affects": [
+    {
+     "type": "hp",
+     "value": 10
+    }
+   ]
+  }
+ },
+ "lifespan": 30,
+ "resets": [
+  {
+   "command": "M",
+   "mob_vnum": 6600,
+   "max_exist": 3,
+   "room_vnum": 6603,
+   "comment": "wolf in deep forest"
+  },
+  {
+   "command": "M",
+   "mob_vnum": 6600,
+   "max_exist": 3,
+   "room_vnum": 6609,
+   "comment": "wolf by river"
+  },
+  {
+   "command": "M",
+   "mob_vnum": 6601,
+   "max_exist": 2,
+   "room_vnum": 6608,
+   "comment": "bear in grove"
+  },
+  {
+   "command": "M",
+   "mob_vnum": 6602,
+   "max_exist": 3,
+   "room_vnum": 6612,
+   "comment": "bandit in pass"
+  },
+  {
+   "command": "M",
+   "mob_vnum": 6602,
+   "max_exist": 3,
+   "room_vnum": 6606,
+   "comment": "bandit on hill trail"
+  },
+  {
+   "command": "M",
+   "mob_vnum": 6603,
+   "max_exist": 1,
+   "room_vnum": 6612,
+   "comment": "bandit captain in pass"
+  },
+  {
+   "command": "M",
+   "mob_vnum": 6604,
+   "max_exist": 1,
+   "room_vnum": 6602,
+   "comment": "merchant in clearing"
+  },
+  {
+   "command": "M",
+   "mob_vnum": 6605,
+   "max_exist": 2,
+   "room_vnum": 6609,
+   "comment": "deer by river"
+  }
+ ]
 }

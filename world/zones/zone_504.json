@@ -1,0 +1,1744 @@
+{
+ "number": 504,
+ "name": "Elvandar",
+ "builders": "Harmless",
+ "atlas_area": 104,
+ "rooms": {
+  "1402": {
+   "vnum": 1402,
+   "name": "Stairs On A Humongous Tree",
+   "map": {
+    "x": 52,
+    "y": -1,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 1403,
+     "description": "To the up lies Stairs On A Humongous Tree."
+    },
+    "down": {
+     "to_room": 1321,
+     "description": "To the down lies At A Great Tree."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead up and down.",
+   "placeholder": true
+  },
+  "1403": {
+   "vnum": 1403,
+   "name": "Stairs On A Humongous Tree",
+   "map": {
+    "x": 53,
+    "y": 0,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 1404,
+     "description": "To the up lies Stairs Under A Large Platform."
+    },
+    "down": {
+     "to_room": 1402,
+     "description": "To the down lies Stairs On A Humongous Tree."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead up and down.",
+   "placeholder": true
+  },
+  "1404": {
+   "vnum": 1404,
+   "name": "Stairs Under A Large Platform",
+   "map": {
+    "x": 54,
+    "y": 1,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 1421,
+     "description": "To the up lies Northwest Corner Of The Common Platform."
+    },
+    "down": {
+     "to_room": 1403,
+     "description": "To the down lies Stairs On A Humongous Tree."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead up and down.",
+   "placeholder": true
+  },
+  "1405": {
+   "vnum": 1405,
+   "name": "Stairs On A Humongous Tree",
+   "map": {
+    "x": 56,
+    "y": -1,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 1406,
+     "description": "To the up lies Stairs On A Humongous Tree."
+    },
+    "down": {
+     "to_room": 1324,
+     "description": "To the down lies At A Great Tree."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead up and down.",
+   "placeholder": true
+  },
+  "1406": {
+   "vnum": 1406,
+   "name": "Stairs On A Humongous Tree",
+   "map": {
+    "x": 57,
+    "y": 0,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 1407,
+     "description": "To the up lies Stairs Under A Large Platform."
+    },
+    "down": {
+     "to_room": 1405,
+     "description": "To the down lies Stairs On A Humongous Tree."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead up and down.",
+   "placeholder": true
+  },
+  "1407": {
+   "vnum": 1407,
+   "name": "Stairs Under A Large Platform",
+   "map": {
+    "x": 58,
+    "y": 1,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 1423,
+     "description": "To the up lies Northeast Corner Of The Common Platform."
+    },
+    "down": {
+     "to_room": 1406,
+     "description": "To the down lies Stairs On A Humongous Tree."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead up and down.",
+   "placeholder": true
+  },
+  "1408": {
+   "vnum": 1408,
+   "name": "Stairs On A Humongous Tree",
+   "map": {
+    "x": 52,
+    "y": -5,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 1409,
+     "description": "To the up lies Stairs On A Humongous Tree."
+    },
+    "down": {
+     "to_room": 1337,
+     "description": "To the down lies At A Great Tree."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead up and down.",
+   "placeholder": true
+  },
+  "1409": {
+   "vnum": 1409,
+   "name": "Stairs On A Humongous Tree",
+   "map": {
+    "x": 53,
+    "y": -4,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 1410,
+     "description": "To the up lies Stairs Under A Large Platform."
+    },
+    "down": {
+     "to_room": 1408,
+     "description": "To the down lies Stairs On A Humongous Tree."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead up and down.",
+   "placeholder": true
+  },
+  "1410": {
+   "vnum": 1410,
+   "name": "Stairs Under A Large Platform",
+   "map": {
+    "x": 54,
+    "y": -3,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 1441,
+     "description": "To the up lies The Southwest Corner Of The Common Platform."
+    },
+    "down": {
+     "to_room": 1409,
+     "description": "To the down lies Stairs On A Humongous Tree."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead up and down.",
+   "placeholder": true
+  },
+  "1411": {
+   "vnum": 1411,
+   "name": "Stairs On A Humongous Tree",
+   "map": {
+    "x": 56,
+    "y": -5,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 1412,
+     "description": "To the up lies Stairs On A Humongous Tree."
+    },
+    "down": {
+     "to_room": 1340,
+     "description": "To the down lies At A Great Tree."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead up and down.",
+   "placeholder": true
+  },
+  "1412": {
+   "vnum": 1412,
+   "name": "Stairs On A Humongous Tree",
+   "map": {
+    "x": 57,
+    "y": -4,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 1413,
+     "description": "To the up lies Stairs Under A Large Platform."
+    },
+    "down": {
+     "to_room": 1411,
+     "description": "To the down lies Stairs On A Humongous Tree."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead up and down.",
+   "placeholder": true
+  },
+  "1413": {
+   "vnum": 1413,
+   "name": "Stairs Under A Large Platform",
+   "map": {
+    "x": 58,
+    "y": -3,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 1443,
+     "description": "To the up lies The Southeast Corner Of The Common Platform."
+    },
+    "down": {
+     "to_room": 1412,
+     "description": "To the down lies Stairs On A Humongous Tree."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead up and down.",
+   "placeholder": true
+  },
+  "1414": {
+   "vnum": 1414,
+   "name": "The Mages Guild",
+   "map": {
+    "x": 61,
+    "y": 6,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1415,
+     "description": "To the east lies The North End Of Moredhel Branch."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads east.",
+   "placeholder": true
+  },
+  "1415": {
+   "vnum": 1415,
+   "name": "The North End Of Moredhel Branch",
+   "map": {
+    "x": 62,
+    "y": 6,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1416,
+     "description": "To the east lies The Clerics Guild."
+    },
+    "south": {
+     "to_room": 1418,
+     "description": "To the south lies On Moredhel Branch."
+    },
+    "west": {
+     "to_room": 1414,
+     "description": "To the west lies The Mages Guild."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead east, south and\nwest.",
+   "placeholder": true
+  },
+  "1416": {
+   "vnum": 1416,
+   "name": "The Clerics Guild",
+   "map": {
+    "x": 63,
+    "y": 6,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 1415,
+     "description": "To the west lies The North End Of Moredhel Branch."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads west.",
+   "placeholder": true
+  },
+  "1417": {
+   "vnum": 1417,
+   "name": "The Thieves Guild",
+   "map": {
+    "x": 61,
+    "y": 5,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1418,
+     "description": "To the east lies On Moredhel Branch."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads east.",
+   "placeholder": true
+  },
+  "1418": {
+   "vnum": 1418,
+   "name": "On Moredhel Branch",
+   "map": {
+    "x": 62,
+    "y": 5,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1415,
+     "description": "To the north lies The North End Of Moredhel Branch."
+    },
+    "east": {
+     "to_room": 1419,
+     "description": "To the east lies The Warrior's Guild."
+    },
+    "south": {
+     "to_room": 1420,
+     "description": "To the south lies The South End Of Moredhel Branch."
+    },
+    "west": {
+     "to_room": 1417,
+     "description": "To the west lies The Thieves Guild."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "1419": {
+   "vnum": 1419,
+   "name": "The Warrior's Guild",
+   "map": {
+    "x": 63,
+    "y": 5,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 1418,
+     "description": "To the west lies On Moredhel Branch."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads west.",
+   "placeholder": true
+  },
+  "1420": {
+   "vnum": 1420,
+   "name": "The South End Of Moredhel Branch",
+   "map": {
+    "x": 62,
+    "y": 4,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1418,
+     "description": "To the north lies On Moredhel Branch."
+    },
+    "south": {
+     "to_room": 1422,
+     "description": "To the south lies North Side Of The Common Platform."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north and south.",
+   "placeholder": true
+  },
+  "1421": {
+   "vnum": 1421,
+   "name": "Northwest Corner Of The Common Platform",
+   "map": {
+    "x": 60,
+    "y": 3,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1422,
+     "description": "To the east lies North Side Of The Common Platform."
+    },
+    "south": {
+     "to_room": 1431,
+     "description": "To the south lies The West Side Of The Common Platform."
+    },
+    "down": {
+     "to_room": 1404,
+     "description": "To the down lies Stairs Under A Large Platform."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\neast, south and down.",
+   "placeholder": true
+  },
+  "1422": {
+   "vnum": 1422,
+   "name": "North Side Of The Common Platform",
+   "map": {
+    "x": 62,
+    "y": 3,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1420,
+     "description": "To the north lies The South End Of Moredhel Branch."
+    },
+    "east": {
+     "to_room": 1423,
+     "description": "To the east lies Northeast Corner Of The Common Platform."
+    },
+    "south": {
+     "to_room": 1432,
+     "description": "To the south lies The Middle Of The Common Platform."
+    },
+    "west": {
+     "to_room": 1421,
+     "description": "To the west lies Northwest Corner Of The Common Platform."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north, east, south\nand west.",
+   "placeholder": true
+  },
+  "1423": {
+   "vnum": 1423,
+   "name": "Northeast Corner Of The Common Platform",
+   "map": {
+    "x": 64,
+    "y": 3,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 1433,
+     "description": "To the south lies The East Side Of The Common Platform."
+    },
+    "west": {
+     "to_room": 1422,
+     "description": "To the west lies North Side Of The Common Platform."
+    },
+    "down": {
+     "to_room": 1407,
+     "description": "To the down lies Stairs Under A Large Platform."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead south, west and\ndown.",
+   "placeholder": true
+  },
+  "1424": {
+   "vnum": 1424,
+   "name": "The Elven Magic Shop",
+   "map": {
+    "x": 57,
+    "y": 2,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 1428,
+     "description": "To the south lies The West End Of West Glamredhel Branch."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads south.",
+   "placeholder": true
+  },
+  "1425": {
+   "vnum": 1425,
+   "name": "The General Store",
+   "map": {
+    "x": 58,
+    "y": 2,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 1429,
+     "description": "To the south lies West Glamredhel Branch."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads south.",
+   "placeholder": true
+  },
+  "1426": {
+   "vnum": 1426,
+   "name": "The Elven Weapon Shop",
+   "map": {
+    "x": 66,
+    "y": 2,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 1435,
+     "description": "To the south lies East Glamredhel Branch."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "1427": {
+   "vnum": 1427,
+   "name": "The Elven Hospital",
+   "map": {
+    "x": 67,
+    "y": 2,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 1436,
+     "description": "To the south lies The East End Of East Glamredhel Branch."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "1428": {
+   "vnum": 1428,
+   "name": "The West End Of West Glamredhel Branch",
+   "map": {
+    "x": 57,
+    "y": 1,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1424,
+     "description": "To the north lies The Elven Magic Shop."
+    },
+    "east": {
+     "to_room": 1429,
+     "description": "To the east lies West Glamredhel Branch."
+    },
+    "south": {
+     "to_room": 1437,
+     "description": "To the south lies The Venison Shop."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east\nand south.",
+   "placeholder": true
+  },
+  "1429": {
+   "vnum": 1429,
+   "name": "West Glamredhel Branch",
+   "map": {
+    "x": 58,
+    "y": 1,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1425,
+     "description": "To the north lies The General Store."
+    },
+    "east": {
+     "to_room": 1430,
+     "description": "To the east lies The East End Of West Glamredhel Branch."
+    },
+    "south": {
+     "to_room": 1438,
+     "description": "To the south lies The Bakery."
+    },
+    "west": {
+     "to_room": 1428,
+     "description": "To the west lies The West End Of West Glamredhel Branch."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "1430": {
+   "vnum": 1430,
+   "name": "The East End Of West Glamredhel Branch",
+   "map": {
+    "x": 59,
+    "y": 1,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1431,
+     "description": "To the east lies The West Side Of The Common Platform."
+    },
+    "west": {
+     "to_room": 1429,
+     "description": "To the west lies West Glamredhel Branch."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "1431": {
+   "vnum": 1431,
+   "name": "The West Side Of The Common Platform",
+   "map": {
+    "x": 60,
+    "y": 1,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1421,
+     "description": "To the north lies Northwest Corner Of The Common Platform."
+    },
+    "east": {
+     "to_room": 1432,
+     "description": "To the east lies The Middle Of The Common Platform."
+    },
+    "south": {
+     "to_room": 1441,
+     "description": "To the south lies The Southwest Corner Of The Common Platform."
+    },
+    "west": {
+     "to_room": 1430,
+     "description": "To the west lies The East End Of West Glamredhel Branch."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "1432": {
+   "vnum": 1432,
+   "name": "The Middle Of The Common Platform",
+   "map": {
+    "x": 62,
+    "y": 1,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1422,
+     "description": "To the north lies North Side Of The Common Platform."
+    },
+    "east": {
+     "to_room": 1433,
+     "description": "To the east lies The East Side Of The Common Platform."
+    },
+    "south": {
+     "to_room": 1442,
+     "description": "To the south lies The South Side Of The Common Platform."
+    },
+    "west": {
+     "to_room": 1431,
+     "description": "To the west lies The West Side Of The Common Platform."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "1433": {
+   "vnum": 1433,
+   "name": "The East Side Of The Common Platform",
+   "map": {
+    "x": 64,
+    "y": 1,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1423,
+     "description": "To the north lies Northeast Corner Of The Common Platform."
+    },
+    "east": {
+     "to_room": 1434,
+     "description": "To the east lies The West End Of East Glamredhel Branch."
+    },
+    "south": {
+     "to_room": 1443,
+     "description": "To the south lies The Southeast Corner Of The Common Platform."
+    },
+    "west": {
+     "to_room": 1432,
+     "description": "To the west lies The Middle Of The Common Platform."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "1434": {
+   "vnum": 1434,
+   "name": "The West End Of East Glamredhel Branch",
+   "map": {
+    "x": 65,
+    "y": 1,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1435,
+     "description": "To the east lies East Glamredhel Branch."
+    },
+    "west": {
+     "to_room": 1433,
+     "description": "To the west lies The East Side Of The Common Platform."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "1435": {
+   "vnum": 1435,
+   "name": "East Glamredhel Branch",
+   "map": {
+    "x": 66,
+    "y": 1,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1426,
+     "description": "To the north lies The Elven Weapon Shop."
+    },
+    "east": {
+     "to_room": 1436,
+     "description": "To the east lies The East End Of East Glamredhel Branch."
+    },
+    "south": {
+     "to_room": 1439,
+     "description": "To the south lies The Elven Armor Shop."
+    },
+    "west": {
+     "to_room": 1434,
+     "description": "To the west lies The West End Of East Glamredhel Branch."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "1436": {
+   "vnum": 1436,
+   "name": "The East End Of East Glamredhel Branch",
+   "map": {
+    "x": 67,
+    "y": 1,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1427,
+     "description": "To the north lies The Elven Hospital."
+    },
+    "south": {
+     "to_room": 1440,
+     "description": "To the south lies The Elven Hospitality Inn."
+    },
+    "west": {
+     "to_room": 1435,
+     "description": "To the west lies East Glamredhel Branch."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north,\nsouth and west.",
+   "placeholder": true
+  },
+  "1437": {
+   "vnum": 1437,
+   "name": "The Venison Shop",
+   "map": {
+    "x": 57,
+    "y": 0,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1428,
+     "description": "To the north lies The West End Of West Glamredhel Branch."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads north.",
+   "placeholder": true
+  },
+  "1438": {
+   "vnum": 1438,
+   "name": "The Bakery",
+   "map": {
+    "x": 58,
+    "y": 0,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1429,
+     "description": "To the north lies West Glamredhel Branch."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads north.",
+   "placeholder": true
+  },
+  "1439": {
+   "vnum": 1439,
+   "name": "The Elven Armor Shop",
+   "map": {
+    "x": 66,
+    "y": 0,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1435,
+     "description": "To the north lies East Glamredhel Branch."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "1440": {
+   "vnum": 1440,
+   "name": "The Elven Hospitality Inn",
+   "map": {
+    "x": 67,
+    "y": 0,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1436,
+     "description": "To the north lies The East End Of East Glamredhel Branch."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads north.",
+   "placeholder": true
+  },
+  "1441": {
+   "vnum": 1441,
+   "name": "The Southwest Corner Of The Common Platform",
+   "map": {
+    "x": 60,
+    "y": -1,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1431,
+     "description": "To the north lies The West Side Of The Common Platform."
+    },
+    "east": {
+     "to_room": 1442,
+     "description": "To the east lies The South Side Of The Common Platform."
+    },
+    "down": {
+     "to_room": 1410,
+     "description": "To the down lies Stairs Under A Large Platform."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north, east\nand down.",
+   "placeholder": true
+  },
+  "1442": {
+   "vnum": 1442,
+   "name": "The South Side Of The Common Platform",
+   "map": {
+    "x": 62,
+    "y": -1,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1432,
+     "description": "To the north lies The Middle Of The Common Platform."
+    },
+    "east": {
+     "to_room": 1443,
+     "description": "To the east lies The Southeast Corner Of The Common Platform."
+    },
+    "south": {
+     "to_room": 1444,
+     "description": "To the south lies The North End Of Eledhel Branch."
+    },
+    "west": {
+     "to_room": 1441,
+     "description": "To the west lies The Southwest Corner Of The Common Platform."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "1443": {
+   "vnum": 1443,
+   "name": "The Southeast Corner Of The Common Platform",
+   "map": {
+    "x": 64,
+    "y": -1,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1433,
+     "description": "To the north lies The East Side Of The Common Platform."
+    },
+    "west": {
+     "to_room": 1442,
+     "description": "To the west lies The South Side Of The Common Platform."
+    },
+    "down": {
+     "to_room": 1413,
+     "description": "To the down lies Stairs Under A Large Platform."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, west and down.",
+   "placeholder": true
+  },
+  "1444": {
+   "vnum": 1444,
+   "name": "The North End Of Eledhel Branch",
+   "map": {
+    "x": 62,
+    "y": -2,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1442,
+     "description": "To the north lies The South Side Of The Common Platform."
+    },
+    "south": {
+     "to_room": 1445,
+     "description": "To the south lies On Eledhel Branch."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north and south.",
+   "placeholder": true
+  },
+  "1445": {
+   "vnum": 1445,
+   "name": "On Eledhel Branch",
+   "map": {
+    "x": 62,
+    "y": -3,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1444,
+     "description": "To the north lies The North End Of Eledhel Branch."
+    },
+    "south": {
+     "to_room": 1447,
+     "description": "To the south lies On Eledhel Branch."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "1446": {
+   "vnum": 1446,
+   "name": "A Guard Room",
+   "map": {
+    "x": 61,
+    "y": -4,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1447,
+     "description": "To the east lies On Eledhel Branch."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads east.",
+   "placeholder": true
+  },
+  "1447": {
+   "vnum": 1447,
+   "name": "On Eledhel Branch",
+   "map": {
+    "x": 62,
+    "y": -4,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1445,
+     "description": "To the north lies On Eledhel Branch."
+    },
+    "east": {
+     "to_room": 1448,
+     "description": "To the east lies A Guard Room."
+    },
+    "south": {
+     "to_room": 1450,
+     "description": "To the south lies On Eledhel Branch."
+    },
+    "west": {
+     "to_room": 1446,
+     "description": "To the west lies A Guard Room."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "1448": {
+   "vnum": 1448,
+   "name": "A Guard Room",
+   "map": {
+    "x": 63,
+    "y": -4,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 1447,
+     "description": "To the west lies On Eledhel Branch."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "1449": {
+   "vnum": 1449,
+   "name": "An Advisor's Office",
+   "map": {
+    "x": 61,
+    "y": -5,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1450,
+     "description": "To the east lies On Eledhel Branch."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads east.",
+   "placeholder": true
+  },
+  "1450": {
+   "vnum": 1450,
+   "name": "On Eledhel Branch",
+   "map": {
+    "x": 62,
+    "y": -5,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1447,
+     "description": "To the north lies On Eledhel Branch."
+    },
+    "east": {
+     "to_room": 1451,
+     "description": "To the east lies An Advisor's Office."
+    },
+    "south": {
+     "to_room": 1453,
+     "description": "To the south lies On Eledhel Branch."
+    },
+    "west": {
+     "to_room": 1449,
+     "description": "To the west lies An Advisor's Office."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north, east, south\nand west.",
+   "placeholder": true
+  },
+  "1451": {
+   "vnum": 1451,
+   "name": "An Advisor's Office",
+   "map": {
+    "x": 63,
+    "y": -5,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 1450,
+     "description": "To the west lies On Eledhel Branch."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads west.",
+   "placeholder": true
+  },
+  "1452": {
+   "vnum": 1452,
+   "name": "A Guard Room",
+   "map": {
+    "x": 61,
+    "y": -7,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1453,
+     "description": "To the east lies On Eledhel Branch."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads east.",
+   "placeholder": true
+  },
+  "1453": {
+   "vnum": 1453,
+   "name": "On Eledhel Branch",
+   "map": {
+    "x": 62,
+    "y": -7,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1447,
+     "description": "To the north lies On Eledhel Branch."
+    },
+    "east": {
+     "to_room": 1454,
+     "description": "To the east lies A Guard Room."
+    },
+    "south": {
+     "to_room": 1456,
+     "description": "To the south lies The Waiting Area Into The Throne Room."
+    },
+    "west": {
+     "to_room": 1452,
+     "description": "To the west lies A Guard Room."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "1454": {
+   "vnum": 1454,
+   "name": "A Guard Room",
+   "map": {
+    "x": 63,
+    "y": -7,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 1453,
+     "description": "To the west lies On Eledhel Branch."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "1455": {
+   "vnum": 1455,
+   "name": "The West Wing Of The Waiting Room",
+   "map": {
+    "x": 61,
+    "y": -8,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1456,
+     "description": "To the east lies The Waiting Area Into The Throne Room."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads east.",
+   "placeholder": true
+  },
+  "1456": {
+   "vnum": 1456,
+   "name": "The Waiting Area Into The Throne Room",
+   "map": {
+    "x": 62,
+    "y": -8,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1453,
+     "description": "To the north lies On Eledhel Branch."
+    },
+    "east": {
+     "to_room": 1457,
+     "description": "To the east lies The East Wing Of The Waiting Room."
+    },
+    "south": {
+     "to_room": 1458,
+     "description": "To the south lies The Throne Room."
+    },
+    "west": {
+     "to_room": 1455,
+     "description": "To the west lies The West Wing Of The Waiting Room."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "1457": {
+   "vnum": 1457,
+   "name": "The East Wing Of The Waiting Room",
+   "map": {
+    "x": 63,
+    "y": -8,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 1456,
+     "description": "To the west lies The Waiting Area Into The Throne Room."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "1458": {
+   "vnum": 1458,
+   "name": "The Throne Room",
+   "map": {
+    "x": 62,
+    "y": -9,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1456,
+     "description": "To the north lies The Waiting Area Into The Throne Room."
+    },
+    "south": {
+     "to_room": 1459,
+     "description": "To the south lies The Private Stairway.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "1459": {
+   "vnum": 1459,
+   "name": "The Private Stairway",
+   "map": {
+    "x": 62,
+    "y": -10,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1458,
+     "description": "To the north lies The Throne Room."
+    },
+    "down": {
+     "to_room": 1466,
+     "description": "To the down lies The Lower Branch."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and down.",
+   "placeholder": true
+  },
+  "1461": {
+   "vnum": 1461,
+   "name": "The Elvardien Laboratory",
+   "map": {
+    "x": 57,
+    "y": -12,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 205101,
+     "description": "To the north lies The City Street Outside The Adamantium gates."
+    },
+    "south": {
+     "to_room": 1462,
+     "description": "To the south lies The Guard's Barracks."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "1462": {
+   "vnum": 1462,
+   "name": "The Guard's Barracks",
+   "map": {
+    "x": 57,
+    "y": -13,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1461,
+     "description": "To the north lies The Elvardien Laboratory."
+    },
+    "south": {
+     "to_room": 1464,
+     "description": "To the south lies The Lower Branch."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "1463": {
+   "vnum": 1463,
+   "name": "The Guard's Barracks",
+   "map": {
+    "x": 55,
+    "y": -14,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1464,
+     "description": "To the east lies The Lower Branch."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "1464": {
+   "vnum": 1464,
+   "name": "The Lower Branch",
+   "map": {
+    "x": 57,
+    "y": -14,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1462,
+     "description": "To the north lies The Guard's Barracks."
+    },
+    "east": {
+     "to_room": 1465,
+     "description": "To the east lies The Guard's Barracks."
+    },
+    "south": {
+     "to_room": 1466,
+     "description": "To the south lies The Lower Branch."
+    },
+    "west": {
+     "to_room": 1463,
+     "description": "To the west lies The Guard's Barracks."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "1465": {
+   "vnum": 1465,
+   "name": "The Guard's Barracks",
+   "map": {
+    "x": 59,
+    "y": -14,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 1464,
+     "description": "To the west lies The Lower Branch."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads west.",
+   "placeholder": true
+  },
+  "1466": {
+   "vnum": 1466,
+   "name": "The Lower Branch",
+   "map": {
+    "x": 57,
+    "y": -15,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1464,
+     "description": "To the north lies The Lower Branch."
+    },
+    "south": {
+     "to_room": 1467,
+     "description": "To the south lies The Lower Branch."
+    },
+    "up": {
+     "to_room": 1459,
+     "description": "To the up lies The Private Stairway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, south and up.",
+   "placeholder": true
+  },
+  "1467": {
+   "vnum": 1467,
+   "name": "The Lower Branch",
+   "map": {
+    "x": 57,
+    "y": -16,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1466,
+     "description": "To the north lies The Lower Branch."
+    },
+    "east": {
+     "to_room": 1471,
+     "description": "To the east lies The Guard's Barracks."
+    },
+    "south": {
+     "to_room": 1468,
+     "description": "To the south lies The Guard's Barracks."
+    },
+    "west": {
+     "to_room": 1470,
+     "description": "To the west lies The Guard's Barracks."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "1468": {
+   "vnum": 1468,
+   "name": "The Guard's Barracks",
+   "map": {
+    "x": 57,
+    "y": -17,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1467,
+     "description": "To the north lies The Lower Branch."
+    },
+    "south": {
+     "to_room": 1469,
+     "description": "To the south lies The Elven Treasury.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "1469": {
+   "vnum": 1469,
+   "name": "The Elven Treasury",
+   "map": {
+    "x": 57,
+    "y": -18,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1468,
+     "description": "To the north lies The Guard's Barracks."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "1470": {
+   "vnum": 1470,
+   "name": "The Guard's Barracks",
+   "map": {
+    "x": 55,
+    "y": -16,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1467,
+     "description": "To the east lies The Lower Branch."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "1471": {
+   "vnum": 1471,
+   "name": "The Guard's Barracks",
+   "map": {
+    "x": 59,
+    "y": -16,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 1467,
+     "description": "To the west lies The Lower Branch."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads west.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

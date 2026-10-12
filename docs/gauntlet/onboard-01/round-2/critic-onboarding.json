@@ -1,0 +1,19 @@
+{
+  "piece": "onboarding",
+  "pick": "A",
+  "per_label": { "start": "A", "first": "A" },
+  "reasons": [
+    "start: A shows a 3x3 grid of nine classes, each with a sprite, a one-line fantasy pitch, starting abilities and a prime stat, so you can compare what you will be. B is a title screen with one generic avatar, a 'Newcomer' name field and PLAY, which is a form. A's weakness is tiny, dense text and a barely visible selected state. The 'Step 2 of 3' header and the ability lists are still much better than B.",
+    "first: A names the first objective three times. The top-left Guide card says 'Talk to Sage Aldric', the right-hand welcome card lists WASD, F and 3 as the three actions, and the red toast says 'Golden ! marks someone with a quest'. The hotbar (attack, flee, bash) and the footer line 'Three buttons now. More unlock at level 6' hint at depth. B's 'How to play' scroll gives generic controls (click, Enter, autosave) and never points at an objective.",
+    "first: A leaves the world visible, but it is cluttered. The toast covers the 'The leylines are res...' banner and the Sage Aldric nameplate. The Daily reward chip, Guide card and welcome card compete in the top-left, top-right and right areas. The map is also dimmed and blurred. B's scroll covers about 60% of its tiny viewport, and the cause-and-effect world is mostly hidden.",
+    "first: typography is mixed. B's pixel-font scroll is clean and legible with high contrast, but it is generic and the viewport is a small letterboxed box. A's body text is small (~10px) and low contrast in the welcome card's footer and the Guide body. A's polished HUD (HP bar, XP, hotbar) still reads as a modern game."
+  ],
+  "fixes": [
+    { "what": "Show one teaching surface at a time. Fold the Guide card, welcome card and red toast into a single prompt, and defer the Daily reward chip until after the first quest step.", "file_hint": "" },
+    { "what": "Stop the red toast from overlapping the zone banner and the NPC nameplate. Anchor hints away from world labels, and add an arrow or ring pointing at Sage Aldric on the map.", "file_hint": "" },
+    { "what": "Raise body text size and contrast in the welcome card footer, the Guide body and the class card ability lines. Make the selected class state unmistakable with a fill or a glow.", "file_hint": "" },
+    { "what": "On the class screen, enlarge the sprites, or add a preview pane showing the selected class with its three starting buttons. Shorten the descriptions so the choice reads as a choice and not a text grid.", "file_hint": "" },
+    { "what": "Don't blur or dim the world while the welcome card is open, so the newcomer can see the room they are about to enter.", "file_hint": "" }
+  ],
+  "confidence": "medium"
+}

@@ -1,0 +1,259 @@
+                                ║
+║                 A true adventurer emerges!                 ║
+║                                                              ║
+║  ★ NEW TITLE:                 Veteran                  ★  ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+
+Congratulations on leveling up! You may have learned new skills or spells.
+
+💡 You've reached level 10! Type 'talents' to see your talent tree — customize
+your playstyle!
+
+  +======================================================+
+  |     ★ NEW ABILITIES UNLOCKED! ★                      |
+  +------------------------------------------------------+
+  |                                                      |
+  |  SKILLS:                                             |
+  |    ⚔ Execute                                    |
+  |      A powerful new technique                        |
+  |                                                      |
+  +======================================================+
+  Use 'skills' or 'spells' to see all your abilities.
+
+
+★ ACHIEVEMENT UNLOCKED ★
+📈 Journeyman
+Reach level 10
++20 achievement points
++250 gold
+New title unlocked: 'the Journeyman'
+
+
+★ ACHIEVEMENT UNLOCKED ★
+🛡️ Deathless
+Reach level 10 without dying
++50 achievement points
+Stat bonus: +2 CON (permanent)
+New title unlocked: 'the Deathless'
+
+You feel a surge of divine energy! Fully restored!
+> score
+╔════════════════════════════════════════════════════════════════╗
+║ Newqpvbz the Adventurer                                      ║
+╠════════════════════════════════════════════════════════════════╣
+║ Race: Human        Class: Warrior      Level: 10     ║
+╠════════════════════════════════════════════════════════════════╣
+║ HP:   75/75    Mana:  131/131   Move:  196/196    ║
+╠════════════════════════════════════════════════════════════════╣
+║ Str: 9      Int:11      Wis:12      Dex:17      Con:13      Cha:10   ║
+╠════════════════════════════════════════════════════════════════╣
+║ Experience: 100        Gold: 500        Practices: 32   ║
+║ To next level: 16428                                   ║
+╠════════════════════════════════════════════════════════════════╣
+║ Armor Class: 58    Hitroll:  +0  Damroll:  +0            ║
+║ Combat: OB  +2  DB +37  PB  0%                     ║
+║ DB:base +42 st +0 sh 
+[t=   0.0s] m                     ║
+[t=   0.0s] ║ DB:base +42 st +0 sh +0 dg +0/+0 wt -5               ║
+[t=   0.0s] ║ PB:base +0 st +0 pa +0 sb +0 wt -2                   ║
+[t=   0.0s] ║ Mood: normal     Wimpy: 0                          ║
+[t=   0.0s] ╠════════════════════════════════════════════════════════════════╣
+[t=   0.0s] ║ Hunger: Satiated      Thirst: Quenched      Stealth: --  PER: 17║
+[t=   0.0s] ╚════════════════════════════════════════════════════════════════╝
+[t=   0.0s] 75/75hp 131/131mp 196/196mv> 
+[t=   0.0s] > kill mage
+[t=   0.0s] You attack mage!
+[t=   0.0s] 💡 As a warrior, you build Rage when dealing and taking damage. Spend it on
+[t=   0.0s] powerful abilities!
+[t=   0.0s] Your slash hits mage! [11 damage]
+[t=   0.0s] mage [█████████░] [198/209]
+[t=   0.0s] 75/75hp 131/131mp 195/196mv [mage: 198/209]> 
+[t=   0.0s] > bash mage
+[t=   0.0s] Your bash tickle mage! [2]
+[t=   0.0s] mage [█████████░] [196/209]
+[t=   0.0s] mage is stunned!
+[t=   0.0s] [Momentum: █░░░░░░░░░ 1/10]
+[t=   0.0s] 75/75hp 131/131mp 195/196mv [Momentum: █░░░░░░░░░ 1/10] [mage: 196/209]> 
+[t=   0.4s] Your slash lands squarely and wounds mage! [22 damage]
+[t=   0.4s] 💥 mage reels — STAGGERED! Strike now!
+[t=   0.4s] mage [████████░░] [174/209]
+[t=   0.4s] 75/75hp 131/131mp 194/196mv [Momentum: █░░░░░░░░░ 1/10] [mage: 174/209]> 
+[t=   0.4s] mage murmurs arcane words and a shimmering aura surrounds them!
+[t=   4.4s] You press the opening while mage reels — wide open!
+[t=   4.4s] Your slash connects — it hits mage! [14 damage]
+[t=   4.4s] mage [███████░░░] [153/209]
+[t=   4.4s] 75/75hp 131/131mp 195/196mv [Momentum: █░░░░░░░░░ 1/10] [mage: 153/209]> 
+[t=   8.4s] ⚠ mage begins an incantation — arcane power crackles around it! (interrupt it!)
+[t=   8.4s] Your slash mauls mage! [25 damage]
+[t=   8.4s] mage [██████░░░░] [128/209]
+[t=   8.4s] 75/75hp 131/131mp 195/196mv [Momentum: █░░░░░░░░░ 1/10] [mage: 128/209]> 
+[t=   8.4s] mage's feeble pounding blow hits you! [2 damage]
+[t=   9.4s] > bash mage
+[t=   9.4s] Your bash tickle mage! [2]
+[t=   9.4s] mage [██████░░░░] [126/209]
+[t=   9.4s] mage is stunned!
+[t=   9.4s] [Momentum: ░░░░░░░░░░ 0/10]
+[t=   9.4s] 73/75hp 131/131mp 195/196mv [mage: 126/209]> 
+[t=  12.5s] Your slash lands squarely and hits mage! [11 damage]
+[t=  12.5s] mage [█████░░░░░] [115/209]
+[t=  12.5s] 73/75hp 131/131mp 194/196mv [mage: 115/209]> 
+[t=  12.5s] mage hurls a crackling fireball at Newqpvbz! [55]
+[t=  12.5s] mage's spell hits you for 55 damage!
+[t=  16.5s] Your slash connects — it hits mage! [11 damage]
+[t=  16.5s] mage [████░░░░░░] [104/209]
+[t=  16.5s] 24/75hp 131/131mp 195/196mv [mage: 104/209]> 
+[t=  16.5s] mage's pounding blow hits you — it nicks you! [7 damage]
+[t=  18.5s] > bash mage
+[t=  18.5s] Your bash barely scratch mage! [3]
+[t=  18.5s] mage [████░░░░░░] [101/209]
+[t=  18.5s] mage is stunned!
+[t=  18.5s] [Momentum: ░░░░░░░░░░ 0/10]
+[t=  18.5s] 18/75hp 131/131mp 196/196mv [mage: 101/209]> 
+[t=  20.5s] ⚠ mage begins an incantation — arcane power crackles around it! (interrupt it!)
+[t=  20.5s] Your health is low! Flee now, or brace for the next heavy blow.
+[t=  20.5s] Your slash hits mage! [14 damage]
+[t=  20.5s] 💥 mage reels — STAGGERED! Strike now!
+[t=  20.5s] mage [████░░░░░░] [87/209]
+[t=  20.5s] 18/75hp 131/131mp 195/196mv [mage: 87/209]> 
+[t=  24.6s] You press the opening while mage reels — wide open!
+[t=  24.6s] Your slash lands squarely and mauls mage! [24 damage]
+[t=  24.6s] mage [██░░░░░░░░] [51/209]
+[t=  24.6s] 19/75hp 131/131mp 195/196mv [mage: 51/209]> 
+[t=  24.6s] mage chants a healing incantation and wounds close! [+36 HP]
+[t=  26.7s] mage arrives from the west.
+[t=  27.7s] > bash mage
+[t=  27.7s] Your bash tickle mage! [1]
+[t=  27.7s] mage [████░░░░░░] [86/209]
+[t=  27.7s] mage is stunned!
+[t=  27.7s] [Momentum: ░░░░░░░░░░ 0/10]
+[t=  27.7s] 20/75hp 131/131mp 196/196mv [mage: 86/209]> 
+[t=  28.6s] Your slash connects — it nicks mage! [8 damage]
+[t=  28.6s] mage [███░░░░░░░] [78/209]
+[t=  28.6s] 20/75hp 131/131mp 195/196mv [mage: 78/209]> 
+[t=  32.6s] Your slash nicks mage! [8 damage]
+[t=  32.6s] mage [███░░░░░░░] [70/209]
+[t=  32.6s] 20/75hp 131/131mp 194/196mv [mage: 70/209]> 
+[t=  32.6s] mage chants a healing incantation and wounds close! [+20 HP]
+[t=  32.6s] mage's pounding blow hits home, a quick one! [7 damage]
+[t=  36.6s] *** CRITICAL HIT! ***
+[t=  36.6s] Your slash lands squarely and maims mage! [42 damage]
+[t=  36.6s] mage [██░░░░░░░░] [48/209]
+[t=  36.6s] 14/75hp 131/131mp 195/196mv [mage: 48/209]> 
+[t=  36.6s] mage's quick pounding blow hits you! [7 damage]
+[t=  37.6s] > bash mage
+[t=  37.6s] Your bash tickle mage! [2]
+[t=  37.6s] mage [██░░░░░░░░] [46/209]
+[t=  37.6s] mage is stunned!
+[t=  37.6s] [Momentum: ░░░░░░░░░░ 0/10]
+[t=  37.6s] Tip: Eat food to prevent starvation penalties.
+[t=  37.6s] 7/75hp 131/131mp 195/196mv [mage: 46/209]> 
+[t=  40.7s] *** CRITICAL HIT! ***
+[t=  40.7s] Your slash connects — it decimates mage! [28 damage]
+[t=  40.7s] mage flees west!
+[t=  40.7s] mage [░░░░░░░░░░] [18/209]
+[t=  40.7s] 8/75hp 131/131mp 195/196mv> 
+[t=  46.7s] > bash mage
+[t=  46.7s] You attack mage!
+[t=  46.7s] Your health is low! Flee now, or brace for the next heavy blow.
+[t=  46.7s] *** CRITICAL HIT! ***
+[t=  46.7s] Your slash maims mage! [42 damage]
+[t=  46.7s] mage [███████░░░] [151/193]
+[t=  46.7s] Your bash barely scratch mage! [3]
+[t=  46.7s] mage [███████░░░] [148/193]
+[t=  46.7s] mage is stunned!
+[t=  46.7s] [Momentum: ░░░░░░░░░░ 0/10]
+[t=  46.7s] 9/75hp 131/131mp 195/196mv [mage: 148/193]> 
+[t=  48.7s] Your slash lands squarely and hits mage! [14 damage]
+[t=  48.7s] 💥 mage reels — STAGGERED! Strike now!
+[t=  48.7s] mage [██████░░░░] [134/193]
+[t=  48.7s] 10/75hp 131/131mp 195/196mv [mage: 134/193]> 
+[t=  48.7s] mage murmurs arcane words and a shimmering aura surrounds them!
+[t=  52.8s] You press the opening while mage reels — wide open!
+[t=  52.8s] Your slash connects — it injures mage! [17 damage]
+[t=  52.8s] mage [█████░░░░░] [109/193]
+[t=  52.8s] 10/75hp 131/131mp 194/196mv [mage: 109/193]> 
+[t=  55.8s] > bash mage
+[t=  55.8s] Your bash barely scratch mage! [4]
+[t=  55.8s] mage [█████░░░░░] [105/193]
+[t=  55.8s] mage is stunned!
+[t=  55.8s] [Momentum: ░░░░░░░░░░ 0/10]
+[t=  55.8s] 11/75hp 131/131mp 196/196mv [mage: 105/193]> 
+[t=  56.8s] Your slash hits mage! [11 damage]
+[t=  56.8s] mage [████░░░░░░] [94/193]
+[t=  56.8s] 11/75hp 131/131mp 195/196mv [mage: 94/193]> 
+[t=  60.3s] mage arrives from the north.
+[t=  60.8s] ⚠ mage begins an incantation — arcane power crackles around it! (interrupt it!)
+[t=  60.8s] *** CRITICAL HIT! ***
+[t=  60.8s] Your slash lands squarely and injures mage! [16 damage]
+[t=  60.8s] mage [████░░░░░░] [78/193]
+[t=  60.8s] 12/75hp 131/131mp 195/196mv [mage: 78/193]> 
+[t=  60.8s] mage's stab hits you — it barely scratches you! [4 damage]
+[t=  64.8s] > bash mage
+[t=  64.8s] Your bash tickle mage! [1]
+[t=  64.8s] mage [███░░░░░░░] [77/193]
+[t=  64.8s] mage is stunned!
+[t=  64.8s] [Momentum: ░░░░░░░░░░ 0/10]
+[t=  64.8s] 9/75hp 131/131mp 196/196mv [mage: 77/193]> 
+[t=  64.9s] Your slash connects — it wounds mage! [21 damage]
+[t=  64.9s] 💥 mage reels — STAGGERED! Strike now!
+[t=  64.9s] mage [██░░░░░░░░] [56/193]
+[t=  64.9s] 9/75hp 131/131mp 195/196mv [mage: 56/193]> 
+[t=  64.9s] mage chants a healing incantation and wounds close! [+29 HP]
+[t=  68.9s] You press the opening while mage reels — wide open!
+[t=  68.9s] Your slash hits mage! [11 damage]
+[t=  68.9s] mage [███░░░░░░░] [69/193]
+[t=  68.9s] 10/75hp 131/131mp 195/196mv [mage: 69/193]> 
+[t=  72.9s] Your slash lands squarely and hits mage! [14 damage]
+[t=  72.9s] mage [██░░░░░░░░] [55/193]
+[t=  72.9s] 10/75hp 131/131mp 194/196mv [mage: 55/193]> 
+[t=  72.9s] mage chants a healing incantation and wounds close! [+41 HP]
+[t=  72.9s] mage's stab hits home, a quick one! [7 damage]
+[t=  72.9s]   ⚔️  Wave 4/5 of invaders in The Frostspire! ⚔️
+[t=  73.9s] > bash mage
+[t=  73.9s] Your bash tickle mage! [1]
+[t=  73.9s] mage [████░░░░░░] [95/193]
+[t=  73.9s] mage is stunned!
+[t=  73.9s] [Momentum: ░░░░░░░░░░ 0/10]
+[t=  73.9s] 9/75hp 131/131mp 196/196mv [mage: 95/193]> 
+[t=  77.0s] Your slash connects — it wounds mage! [21 damage]
+[t=  77.0s] mage [███░░░░░░░] [74/193]
+[t=  77.0s] 9/75hp 131/131mp 195/196mv [mage: 74/193]> 
+[t=  81.0s] Your slash nicks mage! [8 damage]
+[t=  81.0s] mage [███░░░░░░░] [66/193]
+[t=  81.0s] 10/75hp 131/131mp 195/196mv [mage: 66/193]> 
+[t=  81.0s] mage chants a healing incantation and wounds close! [+49 HP]
+[t=  81.0s] mage's quick stab hits you! [7 damage]
+[t=  83.0s] > bash mage
+[t=  83.0s] Your bash barely scratch mage! [3]
+[t=  83.0s] mage [█████░░░░░] [112/193]
+[t=  83.0s] mage is stunned!
+[t=  83.0s] [Momentum: ░░░░░░░░░░ 0/10]
+[t=  83.0s] 3/75hp 131/131mp 195/196mv [mage: 112/193]> 
+[t=  85.0s] Your slash lands squarely and nicks mage! [8 damage]
+[t=  85.0s] mage [█████░░░░░] [104/193]
+[t=  85.0s] 4/75hp 131/131mp 195/196mv [mage: 104/193]> 
+[t=  88.5s] mage arrives from the south.
+[t=  89.1s] ⚠ mage begins an incantation — arcane power crackles around it! (interrupt it!)
+[t=  89.1s] Your slash connects — it hits mage! [14 damage]
+[t=  89.1s] mage [████░░░░░░] [90/193]
+[t=  89.1s] 5/75hp 131/131mp 195/196mv [mage: 90/193]> 
+[t=  89.1s] mage's stab hits you — it barely scratches you! [3 damage]
+[t=  92.1s] > bash mage
+[t=  92.1s] Your bash tickle mage! [1]
+[t=  92.1s] mage [████░░░░░░] [89/193]
+[t=  92.1s] mage is stunned!
+[t=  92.1s] [Momentum: ░░░░░░░░░░ 0/10]
+[t=  92.1s] 2/75hp 131/131mp 195/196mv [mage: 89/193]> 
+[t=  93.1s] Your slash nicks mage! [8 damage]
+[t=  93.1s] mage [████░░░░░░] [81/193]
+[t=  93.1s] 2/75hp 131/131mp 194/196mv [mage: 81/193]> 
+[t=  93.1s] mage launches magic missiles at Newqpvbz! [36]
+[t=  93.1s] mage's spell hits you for 36 damage!
+[t=  93.1s] ★ ACHIEVEMENT UNLOCKED ★
+[t=  93.1s] 💫 Survivor
+[t=  93.1s] Die and return from the dead
+[t=  93.1s] +5 achievement points
+[t=  93.1s] You fall into darkness...
+[t=  93.1s] You feel your soul slipping away...

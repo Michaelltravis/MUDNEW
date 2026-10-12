@@ -5,6 +5,7 @@ Items, equipment, and containers.
 """
 
 import logging
+import re
 from typing import Dict, List, Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -13,6 +14,70 @@ if TYPE_CHECKING:
 from config import Config
 
 logger = logging.getLogger('Misthollow.Objects')
+
+# Map an item's name/short_desc to its wear slot when it has no explicit one.
+# Returns a BASE slot name ('finger'/'neck'/'wrist' included) so the paired-slot
+# logic in cmd_wear can still expand to finger1/finger2 etc. Order matters:
+# legs is checked before feet so "greaves" -> legs, not feet.
+_WEAR_SLOT_PATTERNS = [
+    ('legs',   r'greave|legplate|cuisse|tasset|legging|chausses|\bpants\b|trousers|legguard'),
+    ('head',   r'helm|helmet|\bcap\b|hood|coif|crown|circlet|\bhat\b|cowl|mask|visor|bascinet|sallet|barbute|armet|skullcap'),
+    ('hands',  r'gauntlet|\bglove|mitt|handguard|\bgaunt'),
+    ('feet',   r'\bboot|sabaton|\bshoe|sandal|footguard|footwrap|slipper'),
+    ('about',  r'cloak|cape|mantle|shawl|shroud|surcoat'),
+    ('waist',  r'\bbelt\b|girdle|sash|\bwaist'),
+    ('finger', r'\bring\b|signet|\bband\b'),
+    ('neck',   r'amulet|necklace|pendant|medallion|\bsymbol\b|collar|torc|choker|periapt|talisman|charm'),
+    ('wrist',  r'bracer|bracelet|armband|wristguard|\bwrist'),
+    ('shield', r'shield|buckler|\baegis\b|targe|bulwark'),
+    ('arms',   r'sleeve|vambrace|armguard|pauldron|spaulder|\barms?\b'),
+    ('body',   r'mail|plate|armou?r|robe|vest|tunic|jerkin|breastplate|cuirass|\bchest|shirt|gown|hauberk|brigandine|cassock|doublet|bodysuit'),
+]
+
+
+# Some zones (the endgame ones) give an item's stats as an `effects` dict ({"strength": 4,
+# "armor_class": -22, "haste": true}). They load as affects under the names the game reads
+# (Player.get_equipment_bonus), and the yes/no ones as item flags.
+EFFECT_AFFECTS = {
+    'hitroll': 'hitroll', 'damroll': 'damroll', 'armor_class': 'armor',
+    'strength': 'str', 'dexterity': 'dex', 'intelligence': 'int', 'wisdom': 'wis',
+    'constitution': 'con', 'charisma': 'cha',
+    'hp': 'hp', 'mana': 'mana', 'move': 'move',
+    'hp_regen': 'hp_regen', 'mana_regen': 'mana_regen', 'move_regen': 'move_regen',
+    'backstab': 'backstab', 'stealth': 'sneak',
+    'shadow_resistance': 'shadow_resist', 'life_drain': 'life_drain', 'song_power': 'song_power',
+}
+
+
+def effects_as_affects(effects):
+    """An item's `effects` dict as ([{type, value}...] affects, {flags})."""
+    affects, flags = [], set()
+    for key, value in (effects or {}).items() if isinstance(effects, dict) else ():
+        if isinstance(value, bool):
+            if value:
+                flags.add(key)
+        elif isinstance(value, (int, float)):
+            affects.append({'type': EFFECT_AFFECTS.get(key, key), 'value': int(value)})
+    return affects, flags
+
+
+def infer_wear_slot(item) -> Optional[str]:
+    """Resolve an item's equipment slot, inferring from its name when the item
+    carries no explicit wear_slot (e.g. legacy/preset gear that used wear_pos,
+    or affixed loot). Returns None for things that aren't worn."""
+    slot = getattr(item, 'wear_slot', None)
+    if slot:
+        return slot
+    itype = getattr(item, 'item_type', '') or ''
+    if itype == 'light':
+        return 'light'
+    text = (str(getattr(item, 'name', '') or '') + ' ' + str(getattr(item, 'short_desc', '') or '')).lower()
+    for s, pat in _WEAR_SLOT_PATTERNS:
+        if re.search(pat, text):
+            return s
+    if itype in ('armor', 'worn'):
+        return 'body'   # wearable but unrecognised -> torso as a last resort
+    return None
 
 
 class Object:
@@ -31,6 +96,7 @@ class Object:
         
         # Item properties
         self.item_type = "other"  # weapon, armor, potion, etc.
+        self.fixed = False            # a fixture can't be picked up (from_prototype)
         self.wear_slot = None  # Where it can be worn
         self.set_id = None      # Zone set id
         self.weight = 1
@@ -70,6 +136,7 @@ class Object:
         # Rarity & proc system (legendary.py)
         self.rarity = 'common'  # common, uncommon, rare, epic, legendary
         self.procs = []  # [{type, effect, chance, damage, desc}, ...]
+        self.special_properties = []  # what its zone says it does in a fight (procs.py)
         self.drop_source = None  # Boss name for legendaries
 
         # Lore/Readable text
@@ -157,7 +224,11 @@ class Object:
         obj.room_desc = data.get('room_desc', f"{obj.short_desc} lies here.")
         obj.description = data.get('description', '')
         obj.item_type = data.get('item_type', 'other')
-        obj.wear_slot = data.get('wear_slot')
+        obj.wear_slot = data.get('wear_slot') or data.get('wear_pos')
+        # self-heal wearable items saved without a slot (legacy/preset gear), so
+        # they can be re-worn; to_dict persists this on the next save
+        if not obj.wear_slot and obj.item_type in ('armor', 'worn'):
+            obj.wear_slot = infer_wear_slot(obj)
         obj.set_id = data.get('set_id')
         obj.weight = data.get('weight', 1)
         obj.cost = data.get('cost', data.get('value', 0))
@@ -178,6 +249,15 @@ class Object:
         obj.light_hours = data.get('light_hours', 0)
         obj.affects = data.get('affects', [])
         obj.flags = set(data.get('flags', []))
+        # a copy saved before its zone's `effects` were read: its stats from the prototype
+        if not obj.affects and world is not None:
+            proto = (getattr(world, 'obj_prototypes', {}) or {}).get(obj.vnum)
+            if isinstance(proto, dict) and proto.get('effects'):
+                obj.affects, more = effects_as_affects(proto['effects'])
+                obj.flags |= more
+        if not obj.wear_slot and world is not None and isinstance((getattr(world, 'obj_prototypes', {}) or {}).get(obj.vnum), dict) \
+                and world.obj_prototypes[obj.vnum].get('effects'):
+            obj.wear_slot = infer_wear_slot(obj) or 'hold'
         obj.lore_id = data.get('lore_id')
         obj.lore_title = data.get('lore_title')
         obj.lore_text = data.get('lore_text')
@@ -187,6 +267,14 @@ class Object:
         obj.rarity = data.get('rarity', 'common')
         obj.procs = data.get('procs', [])
         obj.drop_source = data.get('drop_source', None)
+        # what its zone says it does in a fight (procs.py) is read from the prototype; a
+        # legendary's source is where it drops now
+        proto = (getattr(world, 'obj_prototypes', {}) or {}).get(obj.vnum) if world is not None else None
+        obj.special_properties = list(proto.get('special_properties') or []) if isinstance(proto, dict) else []
+        if obj.rarity == 'legendary':
+            from legendary import LEGENDARY_ITEMS
+            if obj.vnum in LEGENDARY_ITEMS:
+                obj.drop_source = LEGENDARY_ITEMS[obj.vnum].get('drop_source', obj.drop_source)
 
         # Load contents recursively
         obj.contents = [cls.from_dict(item_data, world) 
@@ -204,12 +292,19 @@ class Object:
         obj.room_desc = proto.get('room_desc', f"{obj.short_desc} lies here.")
         obj.description = proto.get('description', 'You see nothing special.')
         obj.item_type = proto.get('item_type', proto.get('type', 'other'))
-        obj.wear_slot = proto.get('wear_slot')
+        # a fixture (a fountain, a board, a signpost, the bank's machine) stays where it is
+        obj.fixed = (proto.get('type') == 'furniture' or obj.item_type in ('fountain', 'furniture')
+                     or (proto.get('weight') or 0) >= 1000 or bool(proto.get('no_take')))
+        # preset/area data may use 'wear_pos' instead of 'wear_slot'
+        obj.wear_slot = proto.get('wear_slot') or proto.get('wear_pos')
         # Support wear_flags list (CircleMUD-style) as fallback for wear_slot
         if not obj.wear_slot and proto.get('wear_flags'):
             flags = proto['wear_flags']
             if isinstance(flags, list) and flags:
                 obj.wear_slot = flags[0]  # Use first wear flag as slot
+        # infer from the item name for wearable gear that still has no slot
+        if not obj.wear_slot and obj.item_type in ('armor', 'worn'):
+            obj.wear_slot = infer_wear_slot(obj)
         obj.set_id = proto.get('set_id')
         obj.weight = proto.get('weight', 1)
         obj.cost = proto.get('cost', proto.get('value', 0))
@@ -230,8 +325,13 @@ class Object:
         obj.liquid = proto.get('liquid', 'water')
         obj.spell_effects = proto.get('spell_effects', [])
         obj.light_hours = proto.get('light_hours', 0)
-        obj.affects = proto.get('affects', [])
-        obj.flags = set(proto.get('flags', []))
+        extra, extra_flags = effects_as_affects(proto.get('effects'))
+        obj.affects = list(proto.get('affects', []) or []) + extra
+        obj.flags = set(proto.get('flags', [])) | extra_flags
+        # an endgame trinket with stats and no slot is worn where its name says (an amulet at the
+        # neck), else held (a pearl, a clockwork gear)
+        if (extra or extra_flags) and not obj.wear_slot:
+            obj.wear_slot = infer_wear_slot(obj) or 'hold'
         obj.lore_id = proto.get('lore_id')
         obj.lore_title = proto.get('lore_title')
         obj.lore_text = proto.get('lore_text')
@@ -242,6 +342,7 @@ class Object:
         obj.rarity = proto.get('rarity', 'common')
         obj.procs = proto.get('procs', [])
         obj.drop_source = proto.get('drop_source', None)
+        obj.special_properties = list(proto.get('special_properties') or [])
         obj.pick_difficulty = proto.get('lock_difficulty', proto.get('pick_difficulty', 50))
 
         # Populate contents from 'contains' vnum list
@@ -447,10 +548,10 @@ PRESET_OBJECTS = {
     },
     9010: {
         'vnum': 9010,
-        'name': 'the Midgaard guard blade',
-        'short_desc': 'the Midgaard guard blade',
+        'name': 'the Garathorm guard blade',
+        'short_desc': 'the Garathorm guard blade',
         'room_desc': 'A polished guard blade rests here.',
-        'description': 'A masterwork blade awarded to the most trusted defenders of Midgaard.',
+        'description': 'A masterwork blade awarded to the most trusted defenders of Garathorm.',
         'type': 'weapon',
         'weight': 5,
         'cost': 2000,

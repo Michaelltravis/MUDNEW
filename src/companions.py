@@ -208,7 +208,8 @@ class Companion(Mobile):
         companion.order = data.get('order', 'follow')
         companion.scale_with_owner = data.get('scale_with_owner', True)
         companion.permadeath = data.get('permadeath', False)
-        companion.respawn_room_vnum = data.get('respawn_room_vnum', companion.respawn_room_vnum)
+        from world import renumbered
+        companion.respawn_room_vnum = renumbered(data.get('respawn_room_vnum', companion.respawn_room_vnum))
         return companion
 
     async def die(self, killer=None):
@@ -232,8 +233,12 @@ class Companion(Mobile):
                 if self in self.owner.companions:
                     self.owner.companions.remove(self)
             else:
-                # Respawn at tavern/recall point
+                # Respawn at tavern/recall point (never in a room it may not be in: the
+                # God Rooms, a sealed land; then the owner's recall room, or the temple)
                 respawn_room = self.owner.world.rooms.get(self.respawn_room_vnum)
+                if respawn_room is None or not respawn_room.admits(self):
+                    respawn_room = (self.owner.recall_room() if hasattr(self.owner, 'recall_room')
+                                    else self.owner.world.rooms.get(self.config.STARTING_ROOM))
                 if respawn_room:
                     self.room = respawn_room
                     self.hp = self.max_hp

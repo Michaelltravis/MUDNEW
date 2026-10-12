@@ -1,0 +1,1877 @@
+{
+ "number": 521,
+ "name": "The Winterwood",
+ "builders": "",
+ "atlas_area": 121,
+ "rooms": {
+  "12401": {
+   "vnum": 12401,
+   "name": "The Narrow Crack In The Glacier",
+   "map": {
+    "x": 30,
+    "y": 54,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12403,
+     "description": "To the north lies The Glacier's End."
+    },
+    "south": {
+     "to_room": 6600,
+     "description": "To the south lies The Narrow Crack In The Glacier."
+    }
+   },
+   "description": "The crack runs on through the heart of the glacier, a slot of blue ice\nbarely wide enough for one traveller, its walls leaning together\noverhead into a roof of cloudy ice. Light seeps through the ice in a\ndeep, strange blue, and every breath hangs before your face. North, a\nbrighter whiteness marks the glacier's end; south, the crack winds back\ntoward the mountains of the Northern Wilderness. The ice creaks and\nticks softly around you, as though the glacier were dreaming in its\nsleep.",
+   "extra_descs": {}
+  },
+  "12403": {
+   "vnum": 12403,
+   "name": "The Glacier's End",
+   "map": {
+    "x": 30,
+    "y": 55,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12404,
+     "description": "To the north lies A Path Through the Winterwood."
+    },
+    "south": {
+     "to_room": 12401,
+     "description": "To the south lies The Narrow Crack In The Glacier."
+    }
+   },
+   "description": "Here the glacier ends in a great wall of dirty blue ice, streaked with\ngrit and studded with boulders, and a narrow crack splits it to the\nsouth. Before the ice lies a waste of moraine, heaps of gravel and\nstones dropped by the glacier and frozen together under a crust of snow.\nNorth, beyond the moraine, the first dark pines of the Winterwood rise\nin a silent wall. The cold here is deep and still, and the air smells of\nsnow.",
+   "extra_descs": {
+    "ice wall glacier boulders": "Boulders as large as carts are locked in the ice like flies in amber,\nand deep within it a long dark shape may be the trunk of some tree that\ngrew here before the glacier came. The ice has been carrying them for\nlonger than anyone can say."
+   }
+  },
+  "12404": {
+   "vnum": 12404,
+   "name": "A Path Through the Winterwood",
+   "map": {
+    "x": 30,
+    "y": 56,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 12403,
+     "description": "To the south lies The Glacier's End."
+    },
+    "west": {
+     "to_room": 12405,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path enters the Winterwood among young pines that have crept out\nonto the moraine, their boughs bowed low under loads of snow. South, the\ntrees thin toward the glacier's end; west, the path leads deeper into\nthe forest. The snow is wind-packed and firm, and the passing of\ntravellers shows only as a line of shallow dents. A cold breath comes\noff the ice, stirring the needles with a dry whisper.",
+   "extra_descs": {}
+  },
+  "12405": {
+   "vnum": 12405,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 29,
+    "y": 56,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12406,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "east": {
+     "to_room": 12404,
+     "description": "To the east lies A Path Through the Winterwood."
+    }
+   },
+   "description": "The path bends around a great boulder left behind by the glacier long\nago, now wearing a thick cap of snow and a beard of icicles. Eastward\nthe path returns to the edge of the forest; north, it winds on among\ntaller pines. The trees crowd closer here, and the light grows dim,\nfiltered through layer upon layer of snowy boughs. Your footsteps are\nmuffled almost to silence.",
+   "extra_descs": {}
+  },
+  "12406": {
+   "vnum": 12406,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 29,
+    "y": 57,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 12405,
+     "description": "To the south lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12407,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Tall black pines rise on every side, their trunks bare of branches for\nmany feet before they spread into dark crowns heavy with snow. The path\nruns south past the great capped boulder and west deeper into the trees.\nBetween the trunks the snow lies smooth and unbroken, blue in the\nshadows. Now and then a clump of snow slips from a high branch and lands\nwith a soft thump.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652100,
+     "max": 1
+    }
+   ]
+  },
+  "12407": {
+   "vnum": 12407,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 28,
+    "y": 57,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12406,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12408,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path runs straight here between two ranks of pines, like the aisle\nof some vast and frozen hall. Old blazes hacked into the bark at head\nheight mark the way east and west, the wounds long since healed into\nscars crusted with amber resin. The air smells sharply of pitch and\ncold. High above, the wind combs the crowns of the pines with a sound\nlike distant surf.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652102,
+     "max": 1
+    }
+   ]
+  },
+  "12408": {
+   "vnum": 12408,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 27,
+    "y": 57,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12407,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12409,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "A frozen stream crosses the path, its surface a sheet of grey ice\nbeneath which water can be heard chuckling faintly. Logs have been laid\nside by side across it to make a crude bridge, now glazed with ice and\ntreacherous underfoot. The path runs on east and west from the stream.\nHoarfrost feathers every dead stem along the banks, and the pines lean\nclose over the water.",
+   "extra_descs": {}
+  },
+  "12409": {
+   "vnum": 12409,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 26,
+    "y": 57,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12408,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12410,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path turns at the foot of a lightning-struck pine, split from crown\nto root and charred black, yet somehow still standing. East lies the\nfrozen stream and its bridge of logs; south, the path continues among\nthe trees. Snow has drifted into the split trunk, filling it like mortar\nbetween stones. The neighbouring pines seem to keep their distance from\nthe ruined tree, as if it were cursed.",
+   "extra_descs": {}
+  },
+  "12410": {
+   "vnum": 12410,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 26,
+    "y": 56,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12409,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12411,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path dips into a hollow where the snow lies deep and soft, and each\nstep sinks to the knee. North lies the lightning-split pine; west, the\npath struggles out of the hollow and on through the forest. A ring of\nyoung firs stands buried to the shoulders in drifts, only their dark\ntips showing. A line of wolf tracks crosses the hollow, each print set\nneatly in the one before.",
+   "extra_descs": {}
+  },
+  "12411": {
+   "vnum": 12411,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 25,
+    "y": 56,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12410,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12412,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path runs along a low ridge where the wind has scoured the snow\nthin, and the brown needles of the forest floor show through in patches.\nEast, it drops into the hollow of deep snow; west, it keeps to the\ncrest. The pines on the ridge have been wrung by the wind into strange,\ncrooked shapes. Between their trunks the white land falls away into a\nblue dimness.",
+   "extra_descs": {}
+  },
+  "12412": {
+   "vnum": 12412,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 24,
+    "y": 56,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12413,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "east": {
+     "to_room": 12411,
+     "description": "To the east lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path swings around the roots of a giant pine torn up by some winter\nstorm, its upended root plate standing taller than a man and hung with\nicicles and frozen clods. North, the way continues alongside the fallen\ntrunk; east, it runs back along the ridge. The pit left by the roots has\nfilled with drifted snow. The crown of the tree lies somewhere far off\namong the others, lost from sight.",
+   "extra_descs": {}
+  },
+  "12413": {
+   "vnum": 12413,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 24,
+    "y": 57,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 12412,
+     "description": "To the south lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12414,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path runs beside the long fallen trunk, where the snow has drifted\nagainst it in a smooth, curling bank. South, the way bends around the\ngreat root plate; west, it reaches a clearing where paths meet. Small\ntracks cross and recross the snow here, the neat prints of hares and the\nstraight-stepping line of a fox. Your breath hangs in the still air and\ndrifts slowly away.",
+   "extra_descs": {}
+  },
+  "12414": {
+   "vnum": 12414,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 23,
+    "y": 57,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12415,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "east": {
+     "to_room": 12413,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12448,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Three paths meet in a small clearing among the pines, where the snow\nlies trampled and grey. North, a path leads toward rising, rocky ground;\neast, the way runs beside a fallen trunk; west, a fainter track wanders\noff among the trees toward a scatter of boulders. In the middle of the\nclearing stands a waymark post, carved with the figure of a stag and\ncapped with snow. The surrounding pines are tall and utterly still.",
+   "extra_descs": {
+    "waymark post stag carved": "The stag is carved in a few deep, sure strokes, its antlers spreading up\nthe post. A real antler tine has been fixed into the top, grey and\nweathered, and hunters still tie strips of red cloth below it for luck."
+   }
+  },
+  "12415": {
+   "vnum": 12415,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 23,
+    "y": 58,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12416,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12414,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path climbs gently northward as the ground begins to rise toward a\nridge of rock. South, it returns to the clearing with the waymark post.\nPines grow here from cracks in the boulders, their roots clutching the\nstone like the fingers of old men. Snow lies heaped on every rock and\nbranch, and icicles hang in fringes from the outcrops.",
+   "extra_descs": {}
+  },
+  "12416": {
+   "vnum": 12416,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 23,
+    "y": 59,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12417,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12415,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The rising ground grows steeper, and the path picks its way north\nbetween boulders and the knuckled roots of pines. South, the way slopes\nback toward the clearing. A frozen spring has spilled a fan of white ice\ndown the face of one great boulder, rippled like a curtain caught in a\ndraught. The trees creak and groan in the wind, a sound like ships at\nanchor.",
+   "extra_descs": {}
+  },
+  "12417": {
+   "vnum": 12417,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 23,
+    "y": 60,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12418,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12416,
+     "description": "To the south lies A Path Through The Winterwood."
+    },
+    "up": {
+     "to_room": 12460,
+     "description": "To the up lies A Narrow Mountain Path."
+    }
+   },
+   "description": "The path reaches the foot of a rocky ridge, where a narrow way leads up\ninto a dark cleft in the rock. East, the main path runs on along the\nfoot of the ridge; south, it returns among the boulders. The mouth of\nthe cleft is half choked with drifted snow, and a cold draught sighs out\nof it. Pines lean out over it from the ridge, their roots clinging to\nbare stone.",
+   "extra_descs": {}
+  },
+  "12418": {
+   "vnum": 12418,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 24,
+    "y": 60,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12419,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12417,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path follows the foot of the ridge before turning north into deep\nforest. West, it returns to the snowy mouth of the cleft. Icicles as\nlong as spears hang from an overhang of the ridge, and the snow beneath\nthem is pocked with holes where their drips have fallen. Northward the\ntrees stand dark and dense, a wall of black trunks.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652102,
+     "max": 1
+    }
+   ]
+  },
+  "12419": {
+   "vnum": 12419,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 24,
+    "y": 61,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12420,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12418,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path runs through a stand of ancient pines, their trunks so thick\nthat three men could not link arms around them. Their bark is deeply\nfurrowed and stained with old resin, and their boughs meet high overhead\nin a dark, unbroken canopy. Little snow reaches the ground beneath them,\nand the path is a carpet of brown needles. The way leads north and south\nbetween the giants.",
+   "extra_descs": {}
+  },
+  "12420": {
+   "vnum": 12420,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 24,
+    "y": 62,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12421,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12419,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The ancient pines give way to younger trees, and the snow returns, lying\ndeep and powdery on the path. North, the way leads to a meeting of\npaths; south, it enters the stand of great old pines. Through gaps in\nthe branches the sky shows hard and pale as a sheet of tin. A cold wind\nsighs through the treetops, and loose snow sifts down in glittering\nveils.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652100,
+     "max": 1
+    }
+   ]
+  },
+  "12421": {
+   "vnum": 12421,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 24,
+    "y": 63,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12452,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12420,
+     "description": "To the south lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12422,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Three ways meet here in the deep forest beside a great boulder glazed\nwith ice. East, a narrow path slips between close-set firs; south, the\nway returns through the young pines; west, the main path runs on into\nthe trees. Above the junction the crowns of the pines part to leave a\nragged window on the sky. By night the stars burn cold and close through\nit, and the snow gleams faintly in their light.",
+   "extra_descs": {}
+  },
+  "12422": {
+   "vnum": 12422,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 23,
+    "y": 63,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12423,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "east": {
+     "to_room": 12421,
+     "description": "To the east lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path turns north among dark spruces, whose branches droop under such\nloads of snow that they almost touch the ground. East, it leads back to\nthe junction by the icy boulder. Heaps of snow that have slid from the\nbranches lie in mounds beside the path. The forest is so silent here\nthat the creak of your own boots seems loud.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652101,
+     "max": 1
+    }
+   ]
+  },
+  "12423": {
+   "vnum": 12423,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 23,
+    "y": 64,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 12422,
+     "description": "To the south lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12424,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path passes through a stand of larches, bare of needles for the\nwinter, their thin branches etched black against the pale sky. South, it\nreturns among the spruces; west, it continues through the forest. The\nsnow beneath the larches is bright, catching all the light that the\npines deny. The narrow slots of deer tracks cross the path in a hurried\nline.",
+   "extra_descs": {}
+  },
+  "12424": {
+   "vnum": 12424,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 22,
+    "y": 64,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12425,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "east": {
+     "to_room": 12423,
+     "description": "To the east lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path turns north at the edge of a frozen pond, a round sheet of ice\ndusted with snow and ringed with brittle reeds. East, the way runs back\nthrough the larches. Now and then the ice groans and cracks with the\ncold, a deep sound that seems to come from everywhere at once. Pines\nstand around the pond like a ring of silent watchers.",
+   "extra_descs": {}
+  },
+  "12425": {
+   "vnum": 12425,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 22,
+    "y": 65,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12426,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12424,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path runs along a narrow neck of ground between the frozen pond and\na steep bank studded with stones and roots. North, it leaves the pond\nbehind; south, it returns to the edge of the ice. Dead reeds poke up\nthrough the snow, rattling in the wind. Under the ice, where the snow\nhas blown clear, the dark shapes of sunken logs can be glimpsed.",
+   "extra_descs": {}
+  },
+  "12426": {
+   "vnum": 12426,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 22,
+    "y": 66,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 12425,
+     "description": "To the south lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12427,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path turns west here, climbing away from the pond onto higher ground\namong old pines. South, it returns along the shore. An old hunter's\nlean-to of poles and bark slumps against a pine trunk, half buried in\nsnow and long abandoned, its roof fallen in. The forest grows darker\nahead, and the pines taller.",
+   "extra_descs": {}
+  },
+  "12427": {
+   "vnum": 12427,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 21,
+    "y": 66,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12426,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12428,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path follows a broad ridge through dark pines, east toward the old\nlean-to and west into deeper forest. Wind roars in the treetops, though\nlittle of it reaches the ground, and snow shaken from the branches\ndrifts down like fine flour. The trunks are plastered with ice on one\nside where wind-driven snow has frozen against them. Everything around\nyou creaks and sighs.",
+   "extra_descs": {}
+  },
+  "12428": {
+   "vnum": 12428,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 20,
+    "y": 66,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12427,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12429,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path dips into a shallow ravine, crossing a frozen stream bed on\nstepping stones capped with ice. East and west, the way climbs out of\nthe ravine among the pines. Icicles hang from the walls of the ravine in\nlong ranks like organ pipes, and water can be heard trickling somewhere\nbeneath the ice. The cold in the shadow of the ravine is sharp enough to\nsting the eyes.",
+   "extra_descs": {}
+  },
+  "12429": {
+   "vnum": 12429,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 19,
+    "y": 66,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12430,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "east": {
+     "to_room": 12428,
+     "description": "To the east lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Out of the ravine the path turns north, winding through a stand of pines\ntoward a rise. East, it returns to the ravine and its frozen stream. Old\nstumps, felled by axes long ago, stand in the snow like grave markers,\neach topped with a round white cushion. Someone once logged these woods,\nthough no one now remembers who, or where the timber went.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652102,
+     "max": 1
+    }
+   ]
+  },
+  "12430": {
+   "vnum": 12430,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 19,
+    "y": 67,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 12429,
+     "description": "To the south lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12431,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path crosses the top of a rise among scattered pines that let in the\npale light. South, it returns among the old stumps; west, it runs along\nthe crest. From here you can see between the trunks across a wide\nstretch of snowy forest, black and white to the edge of sight. The wind\nis keener on the rise, and it finds every gap in your clothing.",
+   "extra_descs": {}
+  },
+  "12431": {
+   "vnum": 12431,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 18,
+    "y": 67,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12430,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12432,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path runs along the crest of the rise between pines bent all one way\nby the wind. East and west the way continues along the crest. A snow-\ncovered cairn of rounded stones stands beside the path, built by some\nlong-gone traveller to mark the way. The wind has carved the snow around\nit into rippled waves and sharp little cornices.",
+   "extra_descs": {}
+  },
+  "12432": {
+   "vnum": 12432,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 17,
+    "y": 67,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12431,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12433,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path drops gently into a thicket of young firs, grown so close\ntogether that their branches interweave above the path. East and west,\nthe way pushes on through the thicket, and you must stoop beneath the\nlowest boughs. Snow sifts down through the branches in a fine,\nglittering dust. The air is still and close, and smells of resin.",
+   "extra_descs": {}
+  },
+  "12433": {
+   "vnum": 12433,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 16,
+    "y": 67,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12432,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12434,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path comes out of the fir thicket and turns south beside a great\nboulder split clean in two by frost, with a young pine growing in the\ncrack. East, the way returns through the thicket. Ahead, a steep slope\nof rock rises above the trees, crusted with ice and streaked with frozen\nmeltwater. The snow here is churned by the tracks of many beasts.",
+   "extra_descs": {}
+  },
+  "12434": {
+   "vnum": 12434,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 16,
+    "y": 66,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12433,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12435,
+     "description": "To the west lies A Path Through The Winterwood."
+    },
+    "up": {
+     "to_room": 12456,
+     "description": "To the up lies A Narrow Mountain Path."
+    }
+   },
+   "description": "The path runs along the foot of the steep, rocky slope, where a narrow\nmountain path leads up along a ledge onto the mountainside. North, the\nway returns toward the split boulder; west, the main path continues\nthrough the forest. Boulders lie half buried in drifts at the foot of\nthe slope. Pines cling to the rock above, their roots gripping it like\nclaws.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652100,
+     "max": 1
+    }
+   ]
+  },
+  "12435": {
+   "vnum": 12435,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 15,
+    "y": 66,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12434,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12436,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path threads through a stretch of windthrown pines, trees flattened\nby some great storm and lying in a crisscross tangle. East, it returns\nto the foot of the rocky slope; west, it winds on between the fallen\ntrunks. Upturned roots stand like walls, hung with icicles and frozen\nearth. Snow fills every gap between the trunks, hiding holes deep enough\nto break a leg.",
+   "extra_descs": {}
+  },
+  "12436": {
+   "vnum": 12436,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 14,
+    "y": 66,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12435,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12437,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Beyond the windthrow the path turns south into an older part of the\nforest. East, it returns through the tangle of fallen trunks. The pines\nhere are tall and straight, and around each trunk the snow has sunk into\na deep, hidden well. A careless traveller who stepped off the path could\nplunge into one up to the chest and never climb out.",
+   "extra_descs": {}
+  },
+  "12437": {
+   "vnum": 12437,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 14,
+    "y": 65,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12436,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12438,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path runs on through the old forest, its snow packed hard by the\npassage of feet and hooves. North, it returns to the edge of the\nwindthrow; west, it goes on beneath the pines. Lichen hangs from the\nbranches in long grey beards that stir in the faintest breath of air.\nThe silence is so deep that you can hear the snow settle.",
+   "extra_descs": {}
+  },
+  "12438": {
+   "vnum": 12438,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 13,
+    "y": 65,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12437,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12439,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path runs east and west beneath pines whose trunks are scarred with\nlong claw marks, gouged deep into the bark far above the height of a\nman's head. Some of the marks are old and grey; others are fresh and\nstill weep resin. The snow beneath the trees is churned and trampled.\nSomething large marks its ground here, and it does not care who knows\nit.",
+   "extra_descs": {}
+  },
+  "12439": {
+   "vnum": 12439,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 12,
+    "y": 65,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12438,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12440,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path turns south at the edge of a small clearing, where the snow\nlies smooth and blue under an open sky. East, the way returns beneath\nthe clawed pines. When night falls the stars blaze fiercely over the\nclearing, and the snow glitters back at them with its own cold light. A\nring of black pines stands around the edge like a fence.",
+   "extra_descs": {}
+  },
+  "12440": {
+   "vnum": 12440,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 12,
+    "y": 64,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12439,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12441,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path runs west from the clearing through a stretch of forest where\nmany of the trees are dead, their bark peeled away and their branches\nbare. North, the way returns to the clearing. The dead trees stand\nsilver-grey and gaunt among the living pines, riddled with the holes of\nwoodpeckers. When the wind blows they knock together like bones.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652102,
+     "max": 1
+    }
+   ]
+  },
+  "12441": {
+   "vnum": 12441,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 11,
+    "y": 64,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12440,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12442,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path turns south here and begins a long, gentle descent through the\nforest. East, it returns among the dead trees. The ground falls away\nahead and the pines begin to thin, their trunks more and more bent by\nthe wind. Through gaps between them, a wide white country shows beyond\nthe edge of the wood, empty and glaring under the pale sky.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652101,
+     "max": 1
+    }
+   ]
+  },
+  "12442": {
+   "vnum": 12442,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 11,
+    "y": 63,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12441,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12443,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path slopes gently southward among pines that grow farther and\nfarther apart. North, it climbs back toward the dead trees. The snow on\nthis slope lies deep, drifted by the wind into long ridges with knife-\nsharp crests. A frozen creek runs beside the path, its course marked by\na line of snow-buried willows whose red twigs are the only colour for\nmiles.",
+   "extra_descs": {}
+  },
+  "12443": {
+   "vnum": 12443,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 11,
+    "y": 62,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12442,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12444,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path follows the frozen creek south through a little gully it has\ncarved over the years. North, the way climbs the slope again toward the\ndead trees. The ice of the creek is clear as glass in places, showing\npebbles and strings of trapped silver bubbles beneath. Snow-laden\njunipers crowd the banks, their berries a dusty blue.",
+   "extra_descs": {}
+  },
+  "12444": {
+   "vnum": 12444,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 11,
+    "y": 61,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12443,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12445,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Here the creek bends away into a tangle of willow scrub, and the path\nleaves it, turning west across rolling ground among scattered pines.\nNorth, the way follows the creek back into its gully. A wooden sledge,\nbroken-backed and half buried in snow, lies abandoned beside the path,\nits runners grey with age. The snow is hard-crusted here and squeaks\nunderfoot.",
+   "extra_descs": {}
+  },
+  "12445": {
+   "vnum": 12445,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 10,
+    "y": 61,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12444,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12446,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path runs south through the thinning forest, where the pines stand\napart and lean away from the wind. East, it returns toward the creek and\nthe broken sledge. Snow drives between the trunks in stinging gusts, and\ndrifts have piled against the windward side of every tree. The edge of\nthe forest cannot be far off now.",
+   "extra_descs": {}
+  },
+  "12446": {
+   "vnum": 12446,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 10,
+    "y": 60,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12445,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12447,
+     "description": "To the south lies The End of The Winterwood."
+    }
+   },
+   "description": "The path runs south between the last of the great pines, battered and\nbent by the wind that sweeps in from the open land. North, it returns\ninto the shelter of the forest. Ahead, beyond the trees, the land opens\ninto a white emptiness under a vast pale sky. Snow lies drifted high\nagainst the trunks, carved into smooth, curving shapes.",
+   "extra_descs": {}
+  },
+  "12447": {
+   "vnum": 12447,
+   "name": "The End of The Winterwood",
+   "map": {
+    "x": 10,
+    "y": 59,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12446,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 3901,
+     "description": "To the south lies Entering the Winterlands."
+    }
+   },
+   "description": "Here the Winterwood ends, its last pines standing bent and broken at the\nedge of an open waste of snow. South, the way into the Winterlands is\nclosed by a great barrier of storm-felled pines and drifted snow, piled\nhigher than a man's head and frozen solid. North, the path leads back\ninto the forest. The wind howls across the open land beyond, carrying a\nstinging haze of snow.",
+   "extra_descs": {
+    "barrier pines felled drifts": "The fallen pines lie crisscrossed as if flung down by a giant's hand,\ntheir branches locked together and cemented with ice. No one will pass\nthis way into the Winterlands until a long thaw comes."
+   }
+  },
+  "12448": {
+   "vnum": 12448,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 22,
+    "y": 57,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12414,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12449,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The fainter track leaves the clearing with the waymark post and turns\nsouth among the pines, narrow and little used. East, it returns to the\nclearing. The way winds between boulders and the trunks of old trees,\nand snow lies drifted against the rocks in smooth banks. Somewhere\nahead, the land rises toward a dark outcrop of rock.",
+   "extra_descs": {}
+  },
+  "12449": {
+   "vnum": 12449,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 22,
+    "y": 56,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12448,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12450,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The track runs north and south between scattered boulders, each wearing\na tall white cap of snow. Pines grow among them, their roots wrapped\ntight around the stones. A trickle of meltwater has frozen into a glassy\nribbon across the path, slick as oil. The forest is very quiet here, and\nthe light is grey.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652100,
+     "max": 1
+    }
+   ]
+  },
+  "12450": {
+   "vnum": 12450,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 22,
+    "y": 55,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12449,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12451,
+     "description": "To the west lies A Small Cave."
+    }
+   },
+   "description": "The track ends at the foot of a rocky outcrop, where a small cave opens\nto the west, dark and low. North, the way returns among the boulders.\nThe snow before the cave mouth is trampled and stained, and a rank\nsmell, like old meat, drifts out of the dark. Icicles hang from the lip\nof the outcrop like a row of teeth.",
+   "extra_descs": {}
+  },
+  "12451": {
+   "vnum": 12451,
+   "name": "A Small Cave",
+   "map": {
+    "x": 21,
+    "y": 55,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 12450,
+     "description": "To the east lies A Path Through The Winterwood."
+    }
+   },
+   "description": "This small cave is low and dark, its ceiling so close that a tall man\nmust stoop. The floor is strewn with matted fur and scraped stone, and\nthe walls are scored with deep claw marks. The air is stale and heavy\nwith the reek of a den, and colder even than the snow outside. East, the\ncave mouth opens onto the snowy forest, a dim grey shape against the\ndark.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652103,
+     "max": 1
+    }
+   ]
+  },
+  "12452": {
+   "vnum": 12452,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 25,
+    "y": 63,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12453,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12421,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The narrow path winds between close-set firs whose snowy branches brush\nyour shoulders and shower you with powder. North, it goes on deeper into\nthe wood; west, it returns to the junction by the icy boulder. Few feet\ncome this way, and the snow on the path lies smooth. A small spring\ntrickles from beneath a rock, edged with ice that never quite closes\nover it.",
+   "extra_descs": {}
+  },
+  "12453": {
+   "vnum": 12453,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 25,
+    "y": 64,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12454,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12452,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path climbs gently through a stand of birches, their white bark\npeeling in papery curls and their bare twigs a purple haze against the\nsnow. North, the way continues among them; south, it returns among the\nfirs. The birches stand ghostly pale against the dark pines beyond. Snow\nlies in the forks of their branches like tufts of raw wool.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652102,
+     "max": 1
+    }
+   ]
+  },
+  "12454": {
+   "vnum": 12454,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 25,
+    "y": 65,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12455,
+     "description": "To the east lies The End of a Path."
+    },
+    "south": {
+     "to_room": 12453,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The ground grows rocky here and the trees thin, so that a tall cliff of\ngrey stone can be seen rising beyond them, gleaming with ice. The path\nturns east toward the foot of the cliff and runs back south among the\nbirches. Boulders fallen from the cliff lie half buried in snow. In the\nstillness you can hear a faint trickle of water hidden somewhere beneath\nthe ice.",
+   "extra_descs": {}
+  },
+  "12455": {
+   "vnum": 12455,
+   "name": "The End of a Path",
+   "map": {
+    "x": 26,
+    "y": 65,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 12454,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The path ends at the foot of a sheer cliff, down which a waterfall has\nfrozen into a great cascade of blue-white ice, all pillars and curtains\nand spikes. Behind the ice the water still runs, a faint, secret sound\nlike whispering. There is no way onward, and the only path leads back\nwest through the thinning trees. Frozen spray has glazed every rock and\ntwig nearby, so that the whole place glitters.",
+   "extra_descs": {
+    "waterfall ice cascade frozen": "The frozen fall is as tall as a tower, its folds and pillars glowing\ndeep blue where the ice is thickest. Bubbles hang trapped inside it like\nstrings of pearls, and here and there a thin dark thread shows where\nwater still slides behind the ice."
+   }
+  },
+  "12456": {
+   "vnum": 12456,
+   "name": "A Narrow Mountain Path",
+   "map": {
+    "x": 16,
+    "y": 66,
+    "z": 2
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 12457,
+     "description": "To the south lies A Large Cluster Of Trees."
+    },
+    "down": {
+     "to_room": 12434,
+     "description": "To the down lies A Path Through The Winterwood."
+    }
+   },
+   "description": "A narrow path climbs along a ledge of rock above the forest, with a\nsheer drop on one side and a wall of icy stone on the other. Down below,\nthe path returns to the forest floor; south, it leads onto a high shelf\nwhere a large cluster of great trees grows. Ice glazes the ledge, and\nthe footing is perilous. From here the tops of the pines spread out\nbeneath you like a dark, snow-dusted sea.",
+   "extra_descs": {}
+  },
+  "12457": {
+   "vnum": 12457,
+   "name": "A Large Cluster Of Trees",
+   "map": {
+    "x": 16,
+    "y": 65,
+    "z": 2
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12456,
+     "description": "To the north lies A Narrow Mountain Path."
+    },
+    "east": {
+     "to_room": 12458,
+     "description": "To the east lies A Large Cluster Of Trees."
+    }
+   },
+   "description": "The path enters a great cluster of ancient pines growing on a high shelf\nof the mountainside. North, it returns to the narrow, icy ledge; east,\nit winds on among the trees. These pines are huge and gnarled, their\ntrunks twisted as though wrung by giant hands. The snow among them lies\ndeep and soft, and swallows every sound.",
+   "extra_descs": {}
+  },
+  "12458": {
+   "vnum": 12458,
+   "name": "A Large Cluster Of Trees",
+   "map": {
+    "x": 17,
+    "y": 65,
+    "z": 2
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12459,
+     "description": "To the east lies A Large Cluster Of Trees."
+    },
+    "west": {
+     "to_room": 12457,
+     "description": "To the west lies A Large Cluster Of Trees."
+    }
+   },
+   "description": "The path winds east and west among the great pines of the cluster. A\nmassive pine has fallen across the way, and a passage has been sawn\nthrough its trunk, the cut faces dark with age and ringed with hundreds\nof years of growth. The air smells strongly of resin. Snow has piled\nalong the top of the fallen giant like the crest of a frozen wave.",
+   "extra_descs": {}
+  },
+  "12459": {
+   "vnum": 12459,
+   "name": "A Large Cluster Of Trees",
+   "map": {
+    "x": 18,
+    "y": 65,
+    "z": 2
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12465,
+     "description": "To the east lies A Large Cluster Of Trees."
+    },
+    "south": {
+     "to_room": 12463,
+     "description": "To the south lies A Large Cluster Of Trees."
+    },
+    "west": {
+     "to_room": 12458,
+     "description": "To the west lies A Large Cluster Of Trees."
+    }
+   },
+   "description": "Three ways meet among the giant pines. East, the path continues through\nthe cluster; south, the trees open onto a snowy glade; west, the way\nleads back past the sawn trunk. At the junction stands the hugest pine\nof all, with a hollow at its base large enough for a man to shelter in.\nSnow lies in deep drifts between its roots.",
+   "extra_descs": {}
+  },
+  "12460": {
+   "vnum": 12460,
+   "name": "A Narrow Mountain Path",
+   "map": {
+    "x": 23,
+    "y": 60,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 12461,
+     "description": "To the south lies A Small Cluster Of Trees."
+    },
+    "down": {
+     "to_room": 12417,
+     "description": "To the down lies A Path Through The Winterwood."
+    }
+   },
+   "description": "The narrow path squeezes through a cleft in the ridge, roofed over by a\ngreat fallen slab and a cornice of hard snow, so that you walk in a dim,\nclose tunnel of rock. At its lower mouth the path leads back down to the\nforest below. South, the cleft opens into a small cluster of trees. The\nwalls are rimed with frost, and every breath and footstep echoes back at\nyou.",
+   "extra_descs": {}
+  },
+  "12461": {
+   "vnum": 12461,
+   "name": "A Small Cluster Of Trees",
+   "map": {
+    "x": 23,
+    "y": 59,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12460,
+     "description": "To the north lies A Narrow Mountain Path."
+    },
+    "west": {
+     "to_room": 12462,
+     "description": "To the west lies A Small Cluster Of Trees."
+    }
+   },
+   "description": "A small cluster of firs grows here so densely that their snow-laden\nbranches meet in a roof overhead, shutting out all but a dim green\nlight. North, a path leads back into the rocky cleft; west, the trees\nclose in around a hidden hollow. The air beneath the boughs is still and\nalmost warm after the bite of the wind. The ground is a soft carpet of\nneedles, barely dusted with snow.",
+   "extra_descs": {}
+  },
+  "12462": {
+   "vnum": 12462,
+   "name": "A Small Cluster Of Trees",
+   "map": {
+    "x": 22,
+    "y": 59,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 12461,
+     "description": "To the east lies A Small Cluster Of Trees."
+    }
+   },
+   "description": "The firs close in here around a tight, hidden hollow, walled by crowding\ntrunks and roofed by boughs bent low under their burden of snow. A gap\nbetween the trunks leads back east to the rest of the cluster. A rough\nplatform of lashed poles has been built among the low branches, an old\nhunter's cache, empty now and furred with frost. The silence is so\ncomplete that you can hear your own heart.",
+   "extra_descs": {}
+  },
+  "12463": {
+   "vnum": 12463,
+   "name": "A Large Cluster Of Trees",
+   "map": {
+    "x": 18,
+    "y": 64,
+    "z": 2
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12459,
+     "description": "To the north lies A Large Cluster Of Trees."
+    },
+    "east": {
+     "to_room": 12464,
+     "description": "To the east lies A Large Cluster Of Trees."
+    }
+   },
+   "description": "Here the giant pines draw back around a snowy glade, open to the sky.\nNorth, a path leads back to the hollow pine; east, the way goes on among\nthe trees. Hoofprints wander across the smooth snow, pausing here and\nthere where something has pawed down to the grass. Withered stems poke\nthrough the drifts, and in summer this must be a meadow.",
+   "extra_descs": {}
+  },
+  "12464": {
+   "vnum": 12464,
+   "name": "A Large Cluster Of Trees",
+   "map": {
+    "x": 19,
+    "y": 64,
+    "z": 2
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12465,
+     "description": "To the north lies A Large Cluster Of Trees."
+    },
+    "south": {
+     "to_room": 12471,
+     "description": "To the south lies A Short Cave."
+    },
+    "west": {
+     "to_room": 12463,
+     "description": "To the west lies A Large Cluster Of Trees."
+    }
+   },
+   "description": "The path leads south toward the mouth of a short cave in a rocky bank,\nwhile the way north returns among the giant pines and the way west opens\ninto a snowy glade. Large clawed tracks lead to and from the cave, sunk\ndeep in the snow. The nearby trees are scarred and broken, their lower\nbranches snapped off. A sour, musky smell drifts on the air.",
+   "extra_descs": {}
+  },
+  "12465": {
+   "vnum": 12465,
+   "name": "A Large Cluster Of Trees",
+   "map": {
+    "x": 19,
+    "y": 65,
+    "z": 2
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12466,
+     "description": "To the east lies A Large Cluster Of Trees."
+    },
+    "south": {
+     "to_room": 12464,
+     "description": "To the south lies A Large Cluster Of Trees."
+    },
+    "west": {
+     "to_room": 12459,
+     "description": "To the west lies A Large Cluster Of Trees."
+    }
+   },
+   "description": "The pines here are so large that the path must wind between their roots,\nwhich hump up through the snow like the backs of buried beasts. East,\nthe way runs on toward a rocky outcrop; south, it goes deeper among the\ntrees; west, it returns to the hollow pine. Snow-capped boulders lie\nscattered among the trunks. The light is dim and grey, and very still.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 652101,
+     "max": 1
+    }
+   ]
+  },
+  "12466": {
+   "vnum": 12466,
+   "name": "A Large Cluster Of Trees",
+   "map": {
+    "x": 20,
+    "y": 65,
+    "z": 2
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 12465,
+     "description": "To the west lies A Large Cluster Of Trees."
+    },
+    "up": {
+     "to_room": 12467,
+     "description": "To the up lies A Rocky Northern Outlook."
+    }
+   },
+   "description": "The cluster of pines ends against a rocky outcrop, where a way climbs up\nthe rocks to a lookout above the trees. West, the path leads back among\nthe giant pines. The rocks are crusted with ice and drifted snow, and\nthe wind is stronger here. Footholds have been worn into the stone by\nthose who have gone up before you.",
+   "extra_descs": {}
+  },
+  "12467": {
+   "vnum": 12467,
+   "name": "A Rocky Northern Outlook",
+   "map": {
+    "x": 21,
+    "y": 66,
+    "z": 2
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "down": {
+     "to_room": 12466,
+     "description": "To the down lies A Large Cluster Of Trees."
+    }
+   },
+   "description": "You stand atop a rocky outcrop high above the forest, and the whole\nWinterwood lies spread out below, a vast sea of black pines dusted with\nwhite. Beyond the forest a glacier glitters in the pale light, and far\noff snowy peaks fade into grey haze. By night the stars burn here with a\nfierce, cold brightness, so close it seems you could pluck them. A way\nleads back down the rocks to the trees.",
+   "extra_descs": {}
+  },
+  "12471": {
+   "vnum": 12471,
+   "name": "A Short Cave",
+   "map": {
+    "x": 19,
+    "y": 63,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12464,
+     "description": "To the north lies A Large Cluster Of Trees."
+    }
+   },
+   "description": "This short cave runs only a little way into the rock before ending in a\nrough wall. Its floor is a mess of trampled filth and scraped stone,\ndarkened here and there with old frozen blood. The air reeks of a\nbeast's den, thick and sour, and the walls are scored with claw marks.\nNorth, the cave mouth opens onto the snowy forest, a pale square of\nlight.",
+   "extra_descs": {}
+  }
+ },
+ "mobs": {
+  "652100": {
+   "vnum": 652100,
+   "name": "snow owl bird",
+   "short_desc": "a snow owl",
+   "long_desc": "A snow owl sits hunched on a low bough, its round golden eyes following your every move.",
+   "description": "Its plumage is white as new snow, flecked with black at the wing tips,\nand so thick and soft that the bird looks twice its true size. It turns\nits head almost all the way around to watch you, then blinks once,\nslowly. Talons like hooked needles grip the bough beneath it.",
+   "level": 8,
+   "alignment": 0,
+   "hp_dice": "8d8+91",
+   "damage_dice": "3d6+3",
+   "armor_class": 73,
+   "exp": 460,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": []
+  },
+  "652101": {
+   "vnum": 652101,
+   "name": "white stag deer",
+   "short_desc": "a white stag",
+   "long_desc": "A white stag stands motionless among the pines, its breath smoking in the cold air.",
+   "description": "Its coat is the pure white of fresh snow, and its antlers branch wide\nand pale as frosted twigs, with a dozen tines or more. It holds its head\nhigh and still, nostrils flaring, ready to bound away at the first wrong\nstep. Old scars on its flanks tell of wolves it has outrun.",
+   "level": 10,
+   "alignment": 0,
+   "hp_dice": "10d8+112",
+   "damage_dice": "3d6+6",
+   "armor_class": 67,
+   "exp": 570,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 752100,
+     "chance": 30
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "652102": {
+   "vnum": 652102,
+   "name": "winter wolf",
+   "short_desc": "a winter wolf",
+   "long_desc": "A winter wolf slinks between the trees, pale as the snow and silent as a shadow.",
+   "description": "It is bigger than any wolf of the lowland woods, with a thick coat of\nwhite and silver fur and eyes the pale blue of glacier ice. Frost rimes\nthe fur about its muzzle, and when it bares its teeth its breath hangs\nin a cold cloud. Where there is one, the rest of the pack is seldom far\naway.",
+   "level": 14,
+   "alignment": 0,
+   "hp_dice": "14d8+158",
+   "damage_dice": "4d6+8",
+   "armor_class": 55,
+   "exp": 790,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 752101,
+     "chance": 15
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "652103": {
+   "vnum": 652103,
+   "name": "frost troll",
+   "short_desc": "a frost troll",
+   "long_desc": "A frost troll crouches in the gloom, its blue-white hide glittering with rime.",
+   "description": "Taller than two men and gaunt as a dead tree, it has skin of a corpse-\npale blue crusted with frost that never melts, and long arms ending in\nblack claws. Icicles hang from its matted hair and beard. The cold rolls\noff it like a draught from an open door, carrying a stench of old meat.",
+   "level": 17,
+   "alignment": -600,
+   "hp_dice": "17d8+285",
+   "damage_dice": "5d6+11",
+   "armor_class": 41,
+   "exp": 955,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 752102,
+     "chance": 35
+    },
+    {
+     "vnum": 752103,
+     "chance": 25
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "752100": {
+   "vnum": 752100,
+   "name": "antler white stag",
+   "short_desc": "a white stag's antler",
+   "room_desc": "A pale, many-tined antler lies here.",
+   "description": "A great branching antler, pale as bone and smooth as polished ivory, with eleven sharp tines. Carvers and hunters prize the antlers of the white stags of the Winterwood and pay well for them.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 10,
+   "weight": 1,
+   "value": 325
+  },
+  "752101": {
+   "vnum": 752101,
+   "name": "cloak pelt wolf frost fur",
+   "short_desc": "a frost-wolf pelt cloak",
+   "room_desc": "A thick cloak of silver-white wolf fur lies here.",
+   "description": "The whole pelt of a winter wolf, silver-white and thick enough to turn a blizzard, cured stiff by the cold and tied at the throat by its own forelegs. The wolf's head forms a hood, its jaws framing the wearer's brow.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 14,
+   "wear_slot": "about",
+   "armor": 2,
+   "weight": 3,
+   "value": 310,
+   "affects": [
+    {
+     "type": "con",
+     "value": 1
+    }
+   ]
+  },
+  "752102": {
+   "vnum": 752102,
+   "name": "bow pinewood pine longbow",
+   "short_desc": "a pinewood bow",
+   "room_desc": "A long bow of pale pinewood lies here.",
+   "description": "A hunter's longbow of pale, close-grained pine, backed with sinew and wrapped at the grip with strips of fur. Whoever owned it last came to a bad end, but it still draws smooth and true.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 12,
+   "damage_dice": "2d5",
+   "weapon_type": "pierce",
+   "weight": 6,
+   "value": 340,
+   "affects": [
+    {
+     "type": "hitroll",
+     "value": 1
+    }
+   ]
+  },
+  "752103": {
+   "vnum": 752103,
+   "name": "club root pine rime",
+   "short_desc": "a rime-crusted root club",
+   "room_desc": "A heavy club of twisted pine root lies here, furred with frost.",
+   "description": "A club torn from the root of a great pine, gnarled and heavy, its knotted head studded with stones hammered into the wood. Frost forms on it even beside a fire.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 17,
+   "damage_dice": "2d6",
+   "weapon_type": "pound",
+   "weight": 6,
+   "value": 465,
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 1
+    }
+   ]
+  }
+ }
+}

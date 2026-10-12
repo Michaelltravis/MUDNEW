@@ -1,0 +1,2505 @@
+{
+ "number": 465,
+ "name": "Below Moria",
+ "builders": "Smut",
+ "atlas_area": 65,
+ "rooms": {
+  "20500": {
+   "vnum": 20500,
+   "name": "Bottom Of The Mine Shaft",
+   "map": {
+    "x": 9,
+    "y": 29,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20501,
+     "description": "To the south lies A Narrow Tunnel."
+    },
+    "up": {
+     "to_room": 20533,
+     "description": "To the up lies On The Ladder."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead south and up.",
+   "placeholder": true
+  },
+  "20501": {
+   "vnum": 20501,
+   "name": "A Narrow Tunnel",
+   "map": {
+    "x": 9,
+    "y": 28,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20500,
+     "description": "To the north lies Bottom Of The Mine Shaft."
+    },
+    "south": {
+     "to_room": 20502,
+     "description": "To the south lies The Smooth Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20502": {
+   "vnum": 20502,
+   "name": "The Smooth Tunnel",
+   "map": {
+    "x": 9,
+    "y": 27,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20501,
+     "description": "To the north lies A Narrow Tunnel."
+    },
+    "east": {
+     "to_room": 20504,
+     "description": "To the east lies The Smooth Tunnel."
+    },
+    "west": {
+     "to_room": 20503,
+     "description": "To the west lies The Smooth Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "20503": {
+   "vnum": 20503,
+   "name": "The Smooth Tunnel",
+   "map": {
+    "x": 8,
+    "y": 27,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20502,
+     "description": "To the east lies The Smooth Tunnel."
+    },
+    "south": {
+     "to_room": 20508,
+     "description": "To the south lies The Low Crawlway."
+    },
+    "west": {
+     "to_room": 20506,
+     "description": "To the west lies The Smooth Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "20504": {
+   "vnum": 20504,
+   "name": "The Smooth Tunnel",
+   "map": {
+    "x": 11,
+    "y": 27,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20505,
+     "description": "To the east lies The Smooth Tunnel."
+    },
+    "west": {
+     "to_room": 20502,
+     "description": "To the west lies The Smooth Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "20505": {
+   "vnum": 20505,
+   "name": "The Smooth Tunnel",
+   "map": {
+    "x": 13,
+    "y": 27,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20523,
+     "description": "To the south lies The Dark Tunnel."
+    },
+    "west": {
+     "to_room": 20504,
+     "description": "To the west lies The Smooth Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "20506": {
+   "vnum": 20506,
+   "name": "The Smooth Tunnel",
+   "map": {
+    "x": 7,
+    "y": 27,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20503,
+     "description": "To the east lies The Smooth Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "20508": {
+   "vnum": 20508,
+   "name": "The Low Crawlway",
+   "map": {
+    "x": 8,
+    "y": 25,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20503,
+     "description": "To the north lies The Smooth Tunnel."
+    },
+    "west": {
+     "to_room": 20509,
+     "description": "To the west lies The Even Lower Crawlway."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. Ways lead north and west.",
+   "placeholder": true
+  },
+  "20509": {
+   "vnum": 20509,
+   "name": "The Even Lower Crawlway",
+   "map": {
+    "x": 7,
+    "y": 25,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 20508,
+     "description": "To the east lies The Low Crawlway."
+    },
+    "south": {
+     "to_room": 20510,
+     "description": "To the south lies The Smelly Tunnel."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. Ways lead east and south.",
+   "placeholder": true
+  },
+  "20510": {
+   "vnum": 20510,
+   "name": "The Smelly Tunnel",
+   "map": {
+    "x": 7,
+    "y": 23,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20509,
+     "description": "To the north lies The Even Lower Crawlway."
+    },
+    "east": {
+     "to_room": 20511,
+     "description": "To the east lies The Smelly Junction."
+    },
+    "down": {
+     "to_room": 20534,
+     "description": "To the down lies Crossroads."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and down.",
+   "placeholder": true
+  },
+  "20511": {
+   "vnum": 20511,
+   "name": "The Smelly Junction",
+   "map": {
+    "x": 8,
+    "y": 23,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 20517,
+     "description": "To the east lies The Smelly Tunnel."
+    },
+    "south": {
+     "to_room": 20512,
+     "description": "To the south lies The Smelly Tunnel."
+    },
+    "west": {
+     "to_room": 20510,
+     "description": "To the west lies The Smelly Tunnel."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "20512": {
+   "vnum": 20512,
+   "name": "The Smelly Tunnel",
+   "map": {
+    "x": 8,
+    "y": 21,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20511,
+     "description": "To the north lies The Smelly Junction."
+    },
+    "south": {
+     "to_room": 20513,
+     "description": "To the south lies A Bend In The Smelly Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20513": {
+   "vnum": 20513,
+   "name": "A Bend In The Smelly Tunnel",
+   "map": {
+    "x": 8,
+    "y": 20,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20512,
+     "description": "To the north lies The Smelly Tunnel."
+    },
+    "east": {
+     "to_room": 20514,
+     "description": "To the east lies The Smelly Chimney."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "20514": {
+   "vnum": 20514,
+   "name": "The Smelly Chimney",
+   "map": {
+    "x": 9,
+    "y": 20,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 20515,
+     "description": "To the south lies The Smelly Tunnel."
+    },
+    "west": {
+     "to_room": 20513,
+     "description": "To the west lies A Bend In The Smelly Tunnel."
+    },
+    "up": {
+     "to_room": 4061,
+     "description": "To the up lies The Light Cave."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead south, west and up.",
+   "placeholder": true
+  },
+  "20515": {
+   "vnum": 20515,
+   "name": "The Smelly Tunnel",
+   "map": {
+    "x": 9,
+    "y": 19,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20514,
+     "description": "To the north lies The Smelly Chimney."
+    },
+    "south": {
+     "to_room": 20516,
+     "description": "To the south lies The Wolverines Den."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20516": {
+   "vnum": 20516,
+   "name": "The Wolverines Den",
+   "map": {
+    "x": 9,
+    "y": 18,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20515,
+     "description": "To the north lies The Smelly Tunnel."
+    },
+    "east": {
+     "to_room": 20522,
+     "description": "To the east lies Bottoms Up.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "20517": {
+   "vnum": 20517,
+   "name": "The Smelly Tunnel",
+   "map": {
+    "x": 9,
+    "y": 23,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20518,
+     "description": "To the east lies Sorrels Lair.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 20511,
+     "description": "To the west lies The Smelly Junction."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "20518": {
+   "vnum": 20518,
+   "name": "Sorrels Lair",
+   "map": {
+    "x": 11,
+    "y": 23,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20519,
+     "description": "To the south lies The Wet Tunnel.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 20517,
+     "description": "To the west lies The Smelly Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead south and west.",
+   "placeholder": true
+  },
+  "20519": {
+   "vnum": 20519,
+   "name": "The Wet Tunnel",
+   "map": {
+    "x": 11,
+    "y": 21,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20518,
+     "description": "To the north lies Sorrels Lair."
+    },
+    "south": {
+     "to_room": 20520,
+     "description": "To the south lies The Wet Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20520": {
+   "vnum": 20520,
+   "name": "The Wet Tunnel",
+   "map": {
+    "x": 11,
+    "y": 20,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20519,
+     "description": "To the north lies The Wet Tunnel."
+    },
+    "south": {
+     "to_room": 20521,
+     "description": "To the south lies An Intersection In The Wet Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20521": {
+   "vnum": 20521,
+   "name": "An Intersection In The Wet Tunnel",
+   "map": {
+    "x": 11,
+    "y": 19,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20520,
+     "description": "To the north lies The Wet Tunnel."
+    },
+    "east": {
+     "to_room": 20530,
+     "description": "To the east lies The Light Tunnel."
+    },
+    "south": {
+     "to_room": 20522,
+     "description": "To the south lies Bottoms Up."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "20522": {
+   "vnum": 20522,
+   "name": "Bottoms Up",
+   "map": {
+    "x": 11,
+    "y": 18,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20521,
+     "description": "To the north lies An Intersection In The Wet Tunnel."
+    },
+    "east": {
+     "to_room": 20531,
+     "description": "To the east lies The Drying Room."
+    },
+    "west": {
+     "to_room": 20516,
+     "description": "To the west lies The Wolverines Den."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "20523": {
+   "vnum": 20523,
+   "name": "The Dark Tunnel",
+   "map": {
+    "x": 13,
+    "y": 25,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20505,
+     "description": "To the north lies The Smooth Tunnel."
+    },
+    "south": {
+     "to_room": 20524,
+     "description": "To the south lies A Bend In The Dark Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20524": {
+   "vnum": 20524,
+   "name": "A Bend In The Dark Tunnel",
+   "map": {
+    "x": 13,
+    "y": 23,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20523,
+     "description": "To the north lies The Dark Tunnel."
+    },
+    "east": {
+     "to_room": 20525,
+     "description": "To the east lies The Dark Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and east.",
+   "placeholder": true
+  },
+  "20525": {
+   "vnum": 20525,
+   "name": "The Dark Tunnel",
+   "map": {
+    "x": 15,
+    "y": 23,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20526,
+     "description": "To the south lies End Of The Dark Tunnel."
+    },
+    "west": {
+     "to_room": 20524,
+     "description": "To the west lies A Bend In The Dark Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead south and west.",
+   "placeholder": true
+  },
+  "20526": {
+   "vnum": 20526,
+   "name": "End Of The Dark Tunnel",
+   "map": {
+    "x": 15,
+    "y": 21,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20525,
+     "description": "To the north lies The Dark Tunnel."
+    },
+    "south": {
+     "to_room": 20527,
+     "description": "To the south lies Light At The End Of The Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20527": {
+   "vnum": 20527,
+   "name": "Light At The End Of The Tunnel",
+   "map": {
+    "x": 15,
+    "y": 20,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20526,
+     "description": "To the north lies End Of The Dark Tunnel."
+    },
+    "east": {
+     "to_room": 20528,
+     "description": "To the east lies The Small Cave.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 20529,
+     "description": "To the west lies The Light Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "20528": {
+   "vnum": 20528,
+   "name": "The Small Cave",
+   "map": {
+    "x": 16,
+    "y": 20,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 20527,
+     "description": "To the west lies Light At The End Of The Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "20529": {
+   "vnum": 20529,
+   "name": "The Light Tunnel",
+   "map": {
+    "x": 13,
+    "y": 20,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20527,
+     "description": "To the east lies Light At The End Of The Tunnel."
+    },
+    "south": {
+     "to_room": 20530,
+     "description": "To the south lies The Light Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and south.",
+   "placeholder": true
+  },
+  "20530": {
+   "vnum": 20530,
+   "name": "The Light Tunnel",
+   "map": {
+    "x": 13,
+    "y": 19,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20529,
+     "description": "To the north lies The Light Tunnel."
+    },
+    "west": {
+     "to_room": 20521,
+     "description": "To the west lies An Intersection In The Wet Tunnel."
+    },
+    "down": {
+     "to_room": 20576,
+     "description": "To the down lies At The Bottom Of The Stairs."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, west and down.",
+   "placeholder": true
+  },
+  "20531": {
+   "vnum": 20531,
+   "name": "The Drying Room",
+   "map": {
+    "x": 12,
+    "y": 18,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20532,
+     "description": "To the south lies The Collapse."
+    },
+    "west": {
+     "to_room": 20522,
+     "description": "To the west lies Bottoms Up."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "20532": {
+   "vnum": 20532,
+   "name": "The Collapse",
+   "map": {
+    "x": 12,
+    "y": 17,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20531,
+     "description": "To the north lies The Drying Room."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Bare rock climbs\nsteeply on one side and falls away on the other. A way leads north.",
+   "placeholder": true
+  },
+  "20533": {
+   "vnum": 20533,
+   "name": "On The Ladder",
+   "map": {
+    "x": 10,
+    "y": 27,
+    "z": 2
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "up": {
+     "to_room": 20607,
+     "description": "To the up lies The Tunnels Of Darkness."
+    },
+    "down": {
+     "to_room": 20500,
+     "description": "To the down lies Bottom Of The Mine Shaft."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. A narrow\nledge picks its way along the mountainside. Ways lead up and down.",
+   "placeholder": true
+  },
+  "20534": {
+   "vnum": 20534,
+   "name": "Crossroads",
+   "map": {
+    "x": 8,
+    "y": 23,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20535,
+     "description": "To the north lies The Bone Tunnel."
+    },
+    "east": {
+     "to_room": 20537,
+     "description": "To the east lies The Rocky Tunnel."
+    },
+    "south": {
+     "to_room": 20546,
+     "description": "To the south lies A Short Tunnel."
+    },
+    "west": {
+     "to_room": 20547,
+     "description": "To the west lies The Rocky Tunnel."
+    },
+    "up": {
+     "to_room": 20510,
+     "description": "To the up lies The Smelly Tunnel."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Shafts of pale light\nslant between the trunks. Ways lead north, east, south, west and up.",
+   "placeholder": true
+  },
+  "20535": {
+   "vnum": 20535,
+   "name": "The Bone Tunnel",
+   "map": {
+    "x": 8,
+    "y": 25,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20561,
+     "description": "To the north lies A Bend In The Bone Tunnel."
+    },
+    "east": {
+     "to_room": 20536,
+     "description": "To the east lies A Hidden Cave."
+    },
+    "south": {
+     "to_room": 20534,
+     "description": "To the south lies Crossroads."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "20536": {
+   "vnum": 20536,
+   "name": "A Hidden Cave",
+   "map": {
+    "x": 10,
+    "y": 25,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20537,
+     "description": "To the south lies The Rocky Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads south.",
+   "placeholder": true
+  },
+  "20537": {
+   "vnum": 20537,
+   "name": "The Rocky Tunnel",
+   "map": {
+    "x": 10,
+    "y": 23,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 20534,
+     "description": "To the west lies Crossroads."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "20538": {
+   "vnum": 20538,
+   "name": "The Rocky Tunnel",
+   "map": {
+    "x": 1,
+    "y": 23,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20553,
+     "description": "To the east lies The Rocky Tunnel."
+    },
+    "south": {
+     "to_room": 20539,
+     "description": "To the south lies A Long Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "20539": {
+   "vnum": 20539,
+   "name": "A Long Tunnel",
+   "map": {
+    "x": 1,
+    "y": 21,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20538,
+     "description": "To the north lies The Rocky Tunnel."
+    },
+    "west": {
+     "to_room": 20540,
+     "description": "To the west lies A Long Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and west.",
+   "placeholder": true
+  },
+  "20540": {
+   "vnum": 20540,
+   "name": "A Long Tunnel",
+   "map": {
+    "x": 0,
+    "y": 21,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20539,
+     "description": "To the east lies A Long Tunnel."
+    },
+    "south": {
+     "to_room": 20541,
+     "description": "To the south lies An Intersection In The Long Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "20541": {
+   "vnum": 20541,
+   "name": "An Intersection In The Long Tunnel",
+   "map": {
+    "x": 0,
+    "y": 20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20540,
+     "description": "To the north lies A Long Tunnel."
+    },
+    "south": {
+     "to_room": 20542,
+     "description": "To the south lies The Long Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20542": {
+   "vnum": 20542,
+   "name": "The Long Tunnel",
+   "map": {
+    "x": 0,
+    "y": 19,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20541,
+     "description": "To the north lies An Intersection In The Long Tunnel."
+    },
+    "east": {
+     "to_room": 20543,
+     "description": "To the east lies The Long Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and east.",
+   "placeholder": true
+  },
+  "20543": {
+   "vnum": 20543,
+   "name": "The Long Tunnel",
+   "map": {
+    "x": 1,
+    "y": 19,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20544,
+     "description": "To the east lies A Dead-End."
+    },
+    "west": {
+     "to_room": 20542,
+     "description": "To the west lies The Long Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "20544": {
+   "vnum": 20544,
+   "name": "A Dead-End",
+   "map": {
+    "x": 2,
+    "y": 19,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 20543,
+     "description": "To the west lies The Long Tunnel."
+    },
+    "down": {
+     "to_room": 20564,
+     "description": "To the down lies Into The Labyrinth."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Shafts of\npale light slant between the trunks. Ways lead west and down.",
+   "placeholder": true
+  },
+  "20545": {
+   "vnum": 20545,
+   "name": "A Short Tunnel",
+   "map": {
+    "x": 8,
+    "y": 21,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20546,
+     "description": "To the north lies A Short Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads north.",
+   "placeholder": true
+  },
+  "20546": {
+   "vnum": 20546,
+   "name": "A Short Tunnel",
+   "map": {
+    "x": 8,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20534,
+     "description": "To the north lies Crossroads."
+    },
+    "south": {
+     "to_room": 20545,
+     "description": "To the south lies A Short Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20547": {
+   "vnum": 20547,
+   "name": "The Rocky Tunnel",
+   "map": {
+    "x": 7,
+    "y": 23,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20534,
+     "description": "To the east lies Crossroads."
+    },
+    "south": {
+     "to_room": 20548,
+     "description": "To the south lies A Shored-Up Tunnel."
+    },
+    "west": {
+     "to_room": 20553,
+     "description": "To the west lies The Rocky Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "20548": {
+   "vnum": 20548,
+   "name": "A Shored-Up Tunnel",
+   "map": {
+    "x": 7,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20547,
+     "description": "To the north lies The Rocky Tunnel."
+    },
+    "south": {
+     "to_room": 20551,
+     "description": "To the south lies A Shored-Up Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20549": {
+   "vnum": 20549,
+   "name": "A Shored-Up Tunnel",
+   "map": {
+    "x": 5,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20548,
+     "description": "To the east lies A Shored-Up Tunnel."
+    },
+    "west": {
+     "to_room": 20552,
+     "description": "To the west lies Elland's Chamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "20550": {
+   "vnum": 20550,
+   "name": "A Shored-Up Tunnel",
+   "map": {
+    "x": 5,
+    "y": 20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20549,
+     "description": "To the north lies A Shored-Up Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads north.",
+   "placeholder": true
+  },
+  "20551": {
+   "vnum": 20551,
+   "name": "A Shored-Up Tunnel",
+   "map": {
+    "x": 7,
+    "y": 20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 20550,
+     "description": "To the west lies A Shored-Up Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads west.",
+   "placeholder": true
+  },
+  "20552": {
+   "vnum": 20552,
+   "name": "Elland's Chamber",
+   "map": {
+    "x": 4,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20549,
+     "description": "To the east lies A Shored-Up Tunnel.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 20562,
+     "description": "To the west lies A Store Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "20553": {
+   "vnum": 20553,
+   "name": "The Rocky Tunnel",
+   "map": {
+    "x": 5,
+    "y": 23,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20554,
+     "description": "To the north lies The Tunnel Of Sighs."
+    },
+    "east": {
+     "to_room": 20547,
+     "description": "To the east lies The Rocky Tunnel."
+    },
+    "west": {
+     "to_room": 20538,
+     "description": "To the west lies The Rocky Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "20554": {
+   "vnum": 20554,
+   "name": "The Tunnel Of Sighs",
+   "map": {
+    "x": 5,
+    "y": 25,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20553,
+     "description": "To the south lies The Rocky Tunnel."
+    },
+    "west": {
+     "to_room": 20555,
+     "description": "To the west lies The Tunnel Of Sighs."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "20555": {
+   "vnum": 20555,
+   "name": "The Tunnel Of Sighs",
+   "map": {
+    "x": 4,
+    "y": 25,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20556,
+     "description": "To the north lies The Tunnel Of Sighs."
+    },
+    "east": {
+     "to_room": 20554,
+     "description": "To the east lies The Tunnel Of Sighs."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "20556": {
+   "vnum": 20556,
+   "name": "The Tunnel Of Sighs",
+   "map": {
+    "x": 4,
+    "y": 26,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20557,
+     "description": "To the east lies The Turbulent Cavern."
+    },
+    "south": {
+     "to_room": 20555,
+     "description": "To the south lies The Tunnel Of Sighs."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and south.",
+   "placeholder": true
+  },
+  "20557": {
+   "vnum": 20557,
+   "name": "The Turbulent Cavern",
+   "map": {
+    "x": 5,
+    "y": 26,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 20556,
+     "description": "To the west lies The Tunnel Of Sighs."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "20558": {
+   "vnum": 20558,
+   "name": "A Barren Cavern",
+   "map": {
+    "x": 5,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20563,
+     "description": "To the north lies A Bear Cave.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 20557,
+     "description": "To the south lies The Turbulent Cavern."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20559": {
+   "vnum": 20559,
+   "name": "A Barren Cavern",
+   "map": {
+    "x": 7,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20560,
+     "description": "To the south lies The Bone Tunnel."
+    },
+    "west": {
+     "to_room": 20558,
+     "description": "To the west lies A Barren Cavern."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "20560": {
+   "vnum": 20560,
+   "name": "The Bone Tunnel",
+   "map": {
+    "x": 7,
+    "y": 26,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20559,
+     "description": "To the north lies A Barren Cavern."
+    },
+    "east": {
+     "to_room": 20561,
+     "description": "To the east lies A Bend In The Bone Tunnel."
+    },
+    "west": {
+     "to_room": 20557,
+     "description": "To the west lies The Turbulent Cavern."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "20561": {
+   "vnum": 20561,
+   "name": "A Bend In The Bone Tunnel",
+   "map": {
+    "x": 8,
+    "y": 26,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20535,
+     "description": "To the south lies The Bone Tunnel."
+    },
+    "west": {
+     "to_room": 20560,
+     "description": "To the west lies The Bone Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead south and west.",
+   "placeholder": true
+  },
+  "20562": {
+   "vnum": 20562,
+   "name": "A Store Room",
+   "map": {
+    "x": 3,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20552,
+     "description": "To the east lies Elland's Chamber."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads east.",
+   "placeholder": true
+  },
+  "20563": {
+   "vnum": 20563,
+   "name": "A Bear Cave",
+   "map": {
+    "x": 5,
+    "y": 29,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20558,
+     "description": "To the south lies A Barren Cavern."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads south.",
+   "placeholder": true
+  },
+  "20564": {
+   "vnum": 20564,
+   "name": "Into The Labyrinth",
+   "map": {
+    "x": 5,
+    "y": 20,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20565,
+     "description": "To the east lies Into The Labyrinth."
+    },
+    "up": {
+     "to_room": 20544,
+     "description": "To the up lies A Dead-End."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and up.",
+   "placeholder": true
+  },
+  "20565": {
+   "vnum": 20565,
+   "name": "Into The Labyrinth",
+   "map": {
+    "x": 6,
+    "y": 20,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20568,
+     "description": "To the east lies Before The Ice Bridge."
+    },
+    "south": {
+     "to_room": 20566,
+     "description": "To the south lies Into The Labyrinth."
+    },
+    "west": {
+     "to_room": 20564,
+     "description": "To the west lies Into The Labyrinth."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "20566": {
+   "vnum": 20566,
+   "name": "Into The Labyrinth",
+   "map": {
+    "x": 6,
+    "y": 19,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20565,
+     "description": "To the north lies Into The Labyrinth."
+    },
+    "east": {
+     "to_room": 20567,
+     "description": "To the east lies Into The Labyrinth."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "20567": {
+   "vnum": 20567,
+   "name": "Into The Labyrinth",
+   "map": {
+    "x": 8,
+    "y": 19,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20568,
+     "description": "To the north lies Before The Ice Bridge."
+    },
+    "west": {
+     "to_room": 20566,
+     "description": "To the west lies Into The Labyrinth."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and west.",
+   "placeholder": true
+  },
+  "20568": {
+   "vnum": 20568,
+   "name": "Before The Ice Bridge",
+   "map": {
+    "x": 8,
+    "y": 20,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20569,
+     "description": "To the north lies On The Ice Bridge."
+    },
+    "south": {
+     "to_room": 20567,
+     "description": "To the south lies Into The Labyrinth."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Old trees crowd close,\ntheir roots knotted across the path. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20569": {
+   "vnum": 20569,
+   "name": "On The Ice Bridge",
+   "map": {
+    "x": 8,
+    "y": 21,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20570,
+     "description": "To the north lies Across The Ice Bridge."
+    },
+    "south": {
+     "to_room": 20568,
+     "description": "To the south lies Before The Ice Bridge."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Birdsong\ndrifts down through the branches overhead. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20570": {
+   "vnum": 20570,
+   "name": "Across The Ice Bridge",
+   "map": {
+    "x": 8,
+    "y": 23,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20573,
+     "description": "To the north lies Into The Labyrinth."
+    },
+    "east": {
+     "to_room": 20571,
+     "description": "To the east lies The Crystal Cavern."
+    },
+    "south": {
+     "to_room": 20569,
+     "description": "To the south lies On The Ice Bridge."
+    },
+    "west": {
+     "to_room": 20574,
+     "description": "To the west lies Into The Labyrinth."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Old trees crowd close,\ntheir roots knotted across the path. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "20571": {
+   "vnum": 20571,
+   "name": "The Crystal Cavern",
+   "map": {
+    "x": 10,
+    "y": 23,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20572,
+     "description": "To the north lies Into The Labyrinth."
+    },
+    "west": {
+     "to_room": 20570,
+     "description": "To the west lies Across The Ice Bridge."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "20572": {
+   "vnum": 20572,
+   "name": "Into The Labyrinth",
+   "map": {
+    "x": 10,
+    "y": 25,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20575,
+     "description": "To the east lies The Freezer.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 20571,
+     "description": "To the south lies The Crystal Cavern."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "20573": {
+   "vnum": 20573,
+   "name": "Into The Labyrinth",
+   "map": {
+    "x": 8,
+    "y": 25,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20570,
+     "description": "To the east lies Across The Ice Bridge."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads east.",
+   "placeholder": true
+  },
+  "20574": {
+   "vnum": 20574,
+   "name": "Into The Labyrinth",
+   "map": {
+    "x": 6,
+    "y": 23,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20570,
+     "description": "To the south lies Across The Ice Bridge."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "20575": {
+   "vnum": 20575,
+   "name": "The Freezer",
+   "map": {
+    "x": 11,
+    "y": 25,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 20572,
+     "description": "To the west lies Into The Labyrinth."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Birdsong\ndrifts down through the branches overhead. A way leads west.",
+   "placeholder": true
+  },
+  "20576": {
+   "vnum": 20576,
+   "name": "At The Bottom Of The Stairs",
+   "map": {
+    "x": 17,
+    "y": 20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20577,
+     "description": "To the south lies A Shadowy Tunnel."
+    },
+    "up": {
+     "to_room": 20530,
+     "description": "To the up lies The Light Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead south and up.",
+   "placeholder": true
+  },
+  "20577": {
+   "vnum": 20577,
+   "name": "A Shadowy Tunnel",
+   "map": {
+    "x": 17,
+    "y": 19,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20576,
+     "description": "To the north lies At The Bottom Of The Stairs."
+    },
+    "east": {
+     "to_room": 20579,
+     "description": "To the east lies A Shadowy Tunnel."
+    },
+    "south": {
+     "to_room": 20578,
+     "description": "To the south lies The Air Guardian's Chamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "20578": {
+   "vnum": 20578,
+   "name": "The Air Guardian's Chamber",
+   "map": {
+    "x": 17,
+    "y": 18,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20577,
+     "description": "To the north lies A Shadowy Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "20579": {
+   "vnum": 20579,
+   "name": "A Shadowy Tunnel",
+   "map": {
+    "x": 18,
+    "y": 19,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20580,
+     "description": "To the east lies A Shadowy Tunnel."
+    },
+    "west": {
+     "to_room": 20577,
+     "description": "To the west lies A Shadowy Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "20580": {
+   "vnum": 20580,
+   "name": "A Shadowy Tunnel",
+   "map": {
+    "x": 19,
+    "y": 19,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20581,
+     "description": "To the north lies The Water Guardian's Chamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 20582,
+     "description": "To the south lies A Shadowy Tunnel."
+    },
+    "west": {
+     "to_room": 20579,
+     "description": "To the west lies A Shadowy Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "20581": {
+   "vnum": 20581,
+   "name": "The Water Guardian's Chamber",
+   "map": {
+    "x": 19,
+    "y": 20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20580,
+     "description": "To the south lies A Shadowy Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads south.",
+   "placeholder": true
+  },
+  "20582": {
+   "vnum": 20582,
+   "name": "A Shadowy Tunnel",
+   "map": {
+    "x": 19,
+    "y": 18,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20580,
+     "description": "To the north lies A Shadowy Tunnel."
+    },
+    "east": {
+     "to_room": 20583,
+     "description": "To the east lies A Shadowy Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and east.",
+   "placeholder": true
+  },
+  "20583": {
+   "vnum": 20583,
+   "name": "A Shadowy Tunnel",
+   "map": {
+    "x": 20,
+    "y": 18,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20584,
+     "description": "To the east lies The Earth Guardian's Chamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 20585,
+     "description": "To the south lies A Shadowy Tunnel."
+    },
+    "west": {
+     "to_room": 20582,
+     "description": "To the west lies A Shadowy Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "20584": {
+   "vnum": 20584,
+   "name": "The Earth Guardian's Chamber",
+   "map": {
+    "x": 21,
+    "y": 18,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 20583,
+     "description": "To the west lies A Shadowy Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads west.",
+   "placeholder": true
+  },
+  "20585": {
+   "vnum": 20585,
+   "name": "A Shadowy Tunnel",
+   "map": {
+    "x": 20,
+    "y": 17,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20583,
+     "description": "To the north lies A Shadowy Tunnel."
+    },
+    "east": {
+     "to_room": 20586,
+     "description": "To the east lies The Stone Guardian's Chamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 20587,
+     "description": "To the south lies End Of The Shadowy Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "20586": {
+   "vnum": 20586,
+   "name": "The Stone Guardian's Chamber",
+   "map": {
+    "x": 21,
+    "y": 17,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20588,
+     "description": "To the south lies The Fire Guardian's Chamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 20585,
+     "description": "To the west lies A Shadowy Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead south and west.",
+   "placeholder": true
+  },
+  "20587": {
+   "vnum": 20587,
+   "name": "End Of The Shadowy Tunnel",
+   "map": {
+    "x": 20,
+    "y": 15,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20585,
+     "description": "To the north lies A Shadowy Tunnel."
+    },
+    "east": {
+     "to_room": 20588,
+     "description": "To the east lies The Fire Guardian's Chamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "20588": {
+   "vnum": 20588,
+   "name": "The Fire Guardian's Chamber",
+   "map": {
+    "x": 21,
+    "y": 15,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 20587,
+     "description": "To the west lies End Of The Shadowy Tunnel."
+    },
+    "down": {
+     "to_room": 20589,
+     "description": "To the down lies The Tunnel To Hell."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead west and down.",
+   "placeholder": true
+  },
+  "20589": {
+   "vnum": 20589,
+   "name": "The Tunnel To Hell",
+   "map": {
+    "x": 16,
+    "y": 16,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20590,
+     "description": "To the south lies The Tunnel To Hell."
+    },
+    "up": {
+     "to_room": 20588,
+     "description": "To the up lies The Fire Guardian's Chamber."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead south and up.",
+   "placeholder": true
+  },
+  "20590": {
+   "vnum": 20590,
+   "name": "The Tunnel To Hell",
+   "map": {
+    "x": 16,
+    "y": 15,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20589,
+     "description": "To the north lies The Tunnel To Hell."
+    },
+    "south": {
+     "to_room": 20591,
+     "description": "To the south lies The Tunnel To Hell."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20591": {
+   "vnum": 20591,
+   "name": "The Tunnel To Hell",
+   "map": {
+    "x": 16,
+    "y": 14,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20590,
+     "description": "To the north lies The Tunnel To Hell."
+    },
+    "east": {
+     "to_room": 20592,
+     "description": "To the east lies The Tunnel To Hell."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "20592": {
+   "vnum": 20592,
+   "name": "The Tunnel To Hell",
+   "map": {
+    "x": 17,
+    "y": 14,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20593,
+     "description": "To the east lies The Tunnel To Hell."
+    },
+    "west": {
+     "to_room": 20591,
+     "description": "To the west lies The Tunnel To Hell."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "20593": {
+   "vnum": 20593,
+   "name": "The Tunnel To Hell",
+   "map": {
+    "x": 18,
+    "y": 14,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20594,
+     "description": "To the south lies The Tunnel To Hell."
+    },
+    "west": {
+     "to_room": 20592,
+     "description": "To the west lies The Tunnel To Hell."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "20594": {
+   "vnum": 20594,
+   "name": "The Tunnel To Hell",
+   "map": {
+    "x": 18,
+    "y": 13,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20593,
+     "description": "To the north lies The Tunnel To Hell."
+    },
+    "south": {
+     "to_room": 20595,
+     "description": "To the south lies The Tunnel To Hell."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20595": {
+   "vnum": 20595,
+   "name": "The Tunnel To Hell",
+   "map": {
+    "x": 18,
+    "y": 12,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20594,
+     "description": "To the north lies The Tunnel To Hell."
+    },
+    "east": {
+     "to_room": 20596,
+     "description": "To the east lies The End Of The Tunnel To Hell."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and east.",
+   "placeholder": true
+  },
+  "20596": {
+   "vnum": 20596,
+   "name": "The End Of The Tunnel To Hell",
+   "map": {
+    "x": 19,
+    "y": 12,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20597,
+     "description": "To the east lies The Satanic Chamber."
+    },
+    "west": {
+     "to_room": 20595,
+     "description": "To the west lies The Tunnel To Hell."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "20597": {
+   "vnum": 20597,
+   "name": "The Satanic Chamber",
+   "map": {
+    "x": 20,
+    "y": 12,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 20596,
+     "description": "To the west lies The End Of The Tunnel To Hell."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads west.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

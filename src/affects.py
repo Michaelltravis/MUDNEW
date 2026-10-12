@@ -56,6 +56,7 @@ class AffectManager:
 
     # Affect type constants
     TYPE_MODIFY_STAT = 'modify_stat'
+    TYPE_STAT = TYPE_MODIFY_STAT      # the name the level 31-60 abilities use
     TYPE_FLAG = 'flag'
     TYPE_DOT = 'dot'  # Damage over time
     TYPE_HOT = 'hot'  # Healing over time
@@ -65,7 +66,9 @@ class AffectManager:
         'str', 'int', 'wis', 'dex', 'con', 'cha',
         'hit', 'damage', 'armor_class', 'hitroll', 'damroll',
         'max_hp', 'max_mana', 'max_move',
-        'saving_throw', 'spell_resist', 'damage_reduction'
+        'saving_throw', 'spell_resist', 'damage_reduction',
+        # percentage riders consumed by combat/spell/regen math
+        'crit_chance', 'spell_power', 'heal_power', 'mana_regen',
     }
 
     # Valid flag names
@@ -74,6 +77,7 @@ class AffectManager:
         'sense_life', 'waterwalk', 'fly', 'haste', 'slow',
         'blind', 'poisoned', 'paralyzed', 'stunned', 'feared',
         'silenced', 'regenerating', 'diseased', 'marked',
+        'spirit_link', 'damage_redirect_pet',
         # New defensive flags
         'stoneskin', 'mirror_image', 'displacement', 'mana_shield',
         'ice_armor', 'fire_shield', 'spell_reflect', 'blink',
@@ -82,7 +86,7 @@ class AffectManager:
         'combustion', 'presence_of_mind', 'arcane_power',
         'guardian_spirit', 'beacon_of_light', 'holy_shield',
         'divine_guardian', 'aegis_ward', 'shadowform',
-        'armour_ward', 'briskness', 'shielded'
+        'armour_ward', 'briskness', 'shielded', 'deafened'
     }
 
     @staticmethod
@@ -146,12 +150,19 @@ class AffectManager:
             logger.warning(f"Invalid stat name '{stat_name}' for affect {affect.name}")
             return
 
-        # Modify the stat
-        if hasattr(character, stat_name):
-            current_value = getattr(character, stat_name)
+        # Modify the stat (riders like spell_power start at 0 when absent)
+        if True:
+            current_value = getattr(character, stat_name, 0)
             new_value = current_value + affect.value
             setattr(character, stat_name, new_value)
             logger.debug(f"  Modified {stat_name}: {current_value} -> {new_value}")
+
+    @staticmethod
+    def stat_bonus(character: 'Character', stat_name: str):
+        """How much the character's active stat affects add to one stat right now."""
+        return sum(a.value for a in (getattr(character, 'affects', None) or [])
+                   if a.type == AffectManager.TYPE_MODIFY_STAT and a.applies_to == stat_name
+                   and isinstance(a.value, (int, float)))
 
     @staticmethod
     def _apply_flag(character: 'Character', affect: Affect):
@@ -214,6 +225,38 @@ class AffectManager:
             logger.debug(f"  Removed flag: {flag_name}")
 
     @staticmethod
+    async def _dot_kills(character, amount):
+        """Damage over time may finish a creature: the blow that would leave it at nothing is dealt
+        as a wound from whoever it is fighting, who gets the kill. A player is never killed by
+        it (lingering poison after a fight stops at 1 health). Returns None when the tick goes on
+        as usual, 'dealt' when the wound was dealt here (and the creature lived), 'dead'."""
+        if hasattr(character, 'connection') or amount < character.hp:
+            return None
+        killer = getattr(character, 'fighting', None)
+        if killer is None or getattr(killer, 'hp', 0) <= 0:
+            return None
+        from combat import CombatHandler
+        if await character.take_damage(amount, killer, 'poison'):
+            await CombatHandler.handle_death(killer, character)
+            return 'dead'
+        return 'dealt'
+
+    @staticmethod
+    def _dot_amount(character, affect):
+        """A lingering harm's tick, less what a player's worn gear turns aside of its kind
+        (poison, burning, plague...: combat_range.harm_school; a bleed is a wound, unwarded)."""
+        amount = affect.value
+        if amount > 1 and hasattr(character, 'resistance'):
+            try:
+                import combat_range
+                resist = character.resistance(combat_range.harm_school(affect.name))
+            except Exception:
+                resist = 0
+            if resist:
+                amount = max(1, int(amount * (100 - resist) / 100))
+        return amount
+
+    @staticmethod
     async def tick_affects(character: 'Character', poison_only: bool = False):
         """
         Process affects for one tick, decrementing durations and removing expired affects.
@@ -233,8 +276,14 @@ class AffectManager:
             if poison_only:
                 if affect.type == AffectManager.TYPE_DOT and affect.name == 'poison':
                     # Damage over time
+                    amount = AffectManager._dot_amount(character, affect)
+                    fate = await AffectManager._dot_kills(character, amount)
+                    if fate == 'dead':
+                        return
+                    if fate == 'dealt':
+                        continue
                     old_hp = character.hp
-                    character.hp = max(1, character.hp - affect.value)
+                    character.hp = max(1, character.hp - amount)
                     damage_dealt = old_hp - character.hp
 
                     if damage_dealt > 0:
@@ -257,8 +306,13 @@ class AffectManager:
             # Apply DOT/HOT effects
             if affect.type == AffectManager.TYPE_DOT:
                 # Damage over time
+                amount = AffectManager._dot_amount(character, affect)
+                fate = await AffectManager._dot_kills(character, amount)
+                if fate == 'dead':
+                    return
                 old_hp = character.hp
-                character.hp = max(1, character.hp - affect.value)
+                if fate is None:
+                    character.hp = max(1, character.hp - amount)
                 damage_dealt = old_hp - character.hp
 
                 if damage_dealt > 0:

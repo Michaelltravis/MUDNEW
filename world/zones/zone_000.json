@@ -1,201 +1,196 @@
 {
-  "number": 0,
-  "name": "Limbo - Internal",
-  "lifespan": 10,
-  "rooms": {
-    "0": {
-      "vnum": 0,
-      "name": "The Void",
-      "description": "You don't think that you are not floating in nothing. Visible is a\nstrange portal located above. The cobblestones are worn smooth by\ncountless feet. Buildings crowd together on all sides.",
-      "sector_type": "city",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "up": {
-          "to_room": 3001,
-          "description": "The Temple of Midgaard floats above you."
-        }
-      }
-    },
-    "1": {
-      "vnum": 1,
-      "name": "Limbo",
-      "description": "The void stretches in a formless void, detached from all sensation of\nphysical matter, surrounded by swirling glowing light, which fades into\nthe relative darkness around without any trace of edges or shadow. There\nis a \"No Tipping\" notice pinned to the darkness. Buildings crowd\ntogether on all sides. The sounds of city life echo around.",
-      "sector_type": "city",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {},
-      "mob_resets": [
-        {
-          "vnum": 1,
-          "max": 1
-        }
-      ]
-    },
-    "3": {
-      "vnum": 3,
-      "name": "A Totally Empty Room",
-      "description": "The walls are completely bare... nothing at all in the room. How...\nutterly bizarre and completely weird. There is a strange portal just\nabove, and it almost looks as if there is some sort of room above\nyou. The ceiling hangs low overhead. Dust motes drift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors",
-        "private"
-      ],
-      "exits": {
-        "up": {
-          "to_room": 3048,
-          "description": "You notice that the portal above you looks almost like glass, albeit very dirty glass."
-        }
-      }
-    }
+ "number": 0,
+ "name": "Limbo - Internal",
+ "lifespan": 10,
+ "mobs": {
+  "1": {
+   "vnum": 1,
+   "name": "Puff",
+   "short_desc": "Puff",
+   "long_desc": "Puff the Fractal Dragon is here, contemplating a higher reality.",
+   "level": 26,
+   "alignment": 1000,
+   "hp_dice": "6d10+650",
+   "damage_dice": "3d6+46",
+   "gold": 82500,
+   "exp": 1036,
+   "armor_class": -1,
+   "flags": [
+    "special",
+    "no_charm",
+    "no_summmon",
+    "no_sleep",
+    "no_bash",
+    "no_blind"
+   ],
+   "description": "Is that some type of differential curve involving some strange, and\nunknown calculus that she seems to be made out of?",
+   "inventory": [
+    0,
+    10
+   ]
   },
-  "mobs": {
-    "1": {
-      "vnum": 1,
-      "name": "Puff",
-      "short_desc": "Puff",
-      "long_desc": "Puff the Fractal Dragon is here, contemplating a higher reality.",
-      "level": 26,
-      "alignment": 1000,
-      "hp_dice": "6d10+650",
-      "damage_dice": "3d6+46",
-      "gold": 82500,
-      "exp": 1036,
-      "armor_class": -1,
-      "flags": [
-        "special",
-        "no_charm",
-        "no_summmon",
-        "no_sleep",
-        "no_bash",
-        "no_blind"
-      ],
-      "description": "Is that some type of differential curve involving some strange, and\nunknown calculus that she seems to be made out of?",
-      "inventory": [
-        0,
-        10
-      ]
-    },
-    "10": {
-      "vnum": 10,
-      "name": "clone",
-      "short_desc": "the clone",
-      "long_desc": "A boring old clone is standing here.",
-      "level": 1,
-      "alignment": 0,
-      "hp_dice": "1d10+28",
-      "damage_dice": "1d4+1",
-      "gold": 0,
-      "exp": 60,
-      "armor_class": 97,
-      "flags": [
-        "sentinel"
-      ],
-      "description": "This clone is nothing to look at.  No, really, it is quite boring.",
-      "inventory": [
-        10,
-        1
-      ]
-    },
-    "11": {
-      "vnum": 11,
-      "name": "zombie",
-      "short_desc": "the zombie",
-      "long_desc": "A strange humanoid is here.  How odd, its flesh seems to be falling off!",
-      "level": 1,
-      "alignment": 0,
-      "hp_dice": "1d10+28",
-      "damage_dice": "1d4+1",
-      "gold": 0,
-      "exp": 60,
-      "armor_class": 97,
-      "flags": [
-        "sentinel"
-      ],
-      "description": "This strange humanoid is moving rather slowly, and appears to be\na corpse, a walking corpse!  It must be a zombie or something of\nthe sort.",
-      "inventory": [
-        0,
-        1
-      ]
-    },
-    "19": {
-      "vnum": 19,
-      "name": "aerial",
-      "short_desc": "the aerial servant",
-      "long_desc": "An amorphous shape is floating in the air.",
-      "level": 1,
-      "alignment": 0,
-      "hp_dice": "1d10+28",
-      "damage_dice": "1d4+1",
-      "gold": 0,
-      "exp": 60,
-      "armor_class": 97,
-      "flags": [
-        "sentinel"
-      ],
-      "description": "As you stare at this amorphous shape, it begins to appear to take\nthe shape of a cloud-like humanoid.",
-      "inventory": [
-        1,
-        0
-      ]
-    },
-    "20": {
-      "vnum": 20,
-      "name": "elemental",
-      "short_desc": "the elemental",
-      "long_desc": "An elemental is standing patiently here.",
-      "level": 1,
-      "alignment": 0,
-      "hp_dice": "1d10+28",
-      "damage_dice": "1d4+1",
-      "gold": 0,
-      "exp": 60,
-      "armor_class": 97,
-      "flags": [
-        "sentinel"
-      ],
-      "description": "This creature is the essence of the elements, and appears to be\nwaiting patiently for something to occur.",
-      "inventory": [
-        1
-      ]
-    }
+  "10": {
+   "vnum": 10,
+   "name": "clone",
+   "short_desc": "the clone",
+   "long_desc": "A boring old clone is standing here.",
+   "level": 1,
+   "alignment": 0,
+   "hp_dice": "1d10+28",
+   "damage_dice": "1d4+1",
+   "gold": 0,
+   "exp": 60,
+   "armor_class": 97,
+   "flags": [
+    "sentinel"
+   ],
+   "description": "This clone is nothing to look at.  No, really, it is quite boring.",
+   "inventory": [
+    10,
+    1
+   ]
   },
-  "objects": {
-    "0": {
-      "vnum": 0,
-      "name": "bug",
-      "short_desc": "a bug",
-      "room_desc": "This object is BAD!  If you see it, there must be a bug in the game.  Please",
-      "item_type": "treasure",
-      "weight": 0,
-      "value": 0,
-      "type": "treasure"
-    },
-    "1": {
-      "vnum": 1,
-      "name": "wings",
-      "short_desc": "a pair of wings",
-      "room_desc": "A pair of wings is sitting here.",
-      "item_type": "armor",
-      "weight": 0,
-      "value": 0,
-      "armor_bonus": 6,
-      "type": "treasure",
-      "armor": 3
-    },
-    "10": {
-      "vnum": 10,
-      "name": "waybread",
-      "short_desc": "a waybread",
-      "room_desc": "Some waybread has been put here.",
-      "item_type": "food",
-      "weight": 1,
-      "value": 50,
-      "nutrition": 24,
-      "type": "food",
-      "food_value": 12
-    }
+  "11": {
+   "vnum": 11,
+   "name": "zombie",
+   "short_desc": "the zombie",
+   "long_desc": "A strange humanoid is here.  How odd, its flesh seems to be falling off!",
+   "level": 1,
+   "alignment": 0,
+   "hp_dice": "1d10+28",
+   "damage_dice": "1d4+1",
+   "gold": 0,
+   "exp": 60,
+   "armor_class": 97,
+   "flags": [
+    "sentinel"
+   ],
+   "description": "This strange humanoid is moving rather slowly, and appears to be\na corpse, a walking corpse!  It must be a zombie or something of\nthe sort.",
+   "inventory": [
+    0,
+    1
+   ]
+  },
+  "19": {
+   "vnum": 19,
+   "name": "aerial",
+   "short_desc": "the aerial servant",
+   "long_desc": "An amorphous shape is floating in the air.",
+   "level": 1,
+   "alignment": 0,
+   "hp_dice": "1d10+28",
+   "damage_dice": "1d4+1",
+   "gold": 0,
+   "exp": 60,
+   "armor_class": 97,
+   "flags": [
+    "sentinel"
+   ],
+   "description": "As you stare at this amorphous shape, it begins to appear to take\nthe shape of a cloud-like humanoid.",
+   "inventory": [
+    1,
+    0
+   ]
+  },
+  "20": {
+   "vnum": 20,
+   "name": "elemental",
+   "short_desc": "the elemental",
+   "long_desc": "An elemental is standing patiently here.",
+   "level": 1,
+   "alignment": 0,
+   "hp_dice": "1d10+28",
+   "damage_dice": "1d4+1",
+   "gold": 0,
+   "exp": 60,
+   "armor_class": 97,
+   "flags": [
+    "sentinel"
+   ],
+   "description": "This creature is the essence of the elements, and appears to be\nwaiting patiently for something to occur.",
+   "inventory": [
+    1
+   ]
   }
+ },
+ "objects": {
+  "0": {
+   "vnum": 0,
+   "name": "bug",
+   "short_desc": "a bug",
+   "room_desc": "This object is BAD!  If you see it, there must be a bug in the game.  Please",
+   "item_type": "treasure",
+   "weight": 0,
+   "value": 0,
+   "type": "treasure"
+  },
+  "1": {
+   "vnum": 1,
+   "name": "wings",
+   "short_desc": "a pair of wings",
+   "room_desc": "A pair of wings is sitting here.",
+   "item_type": "armor",
+   "weight": 0,
+   "value": 0,
+   "armor_bonus": 6,
+   "type": "treasure",
+   "armor": 3
+  },
+  "10": {
+   "vnum": 10,
+   "name": "waybread",
+   "short_desc": "a waybread",
+   "room_desc": "Some waybread has been put here.",
+   "item_type": "food",
+   "weight": 1,
+   "value": 50,
+   "nutrition": 24,
+   "type": "food",
+   "food_value": 12
+  }
+ },
+ "rooms": {
+  "0": {
+   "vnum": 0,
+   "name": "The Void",
+   "description": "You don't think that you are not floating in nothing. Visible is a\nstrange portal located above. The cobblestones are worn smooth by\ncountless feet. Buildings crowd together on all sides.",
+   "sector_type": "city",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {}
+  },
+  "1": {
+   "vnum": 1,
+   "name": "Limbo",
+   "description": "The void stretches in a formless void, detached from all sensation of\nphysical matter, surrounded by swirling glowing light, which fades into\nthe relative darkness around without any trace of edges or shadow. There\nis a \"No Tipping\" notice pinned to the darkness. Buildings crowd\ntogether on all sides. The sounds of city life echo around.",
+   "sector_type": "city",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "mob_resets": [
+    {
+     "vnum": 1,
+     "max": 1
+    }
+   ]
+  },
+  "3": {
+   "vnum": 3,
+   "name": "A Totally Empty Room",
+   "description": "The walls are completely bare... nothing at all in the room. How...\nutterly bizarre and completely weird. There is a strange portal just\nabove, and it almost looks as if there is some sort of room above\nyou. The ceiling hangs low overhead. Dust motes drift in the stale air.",
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "private"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 3048,
+     "description": "You notice that the portal above you looks almost like glass, albeit very dirty glass."
+    }
+   }
+  }
+ }
 }

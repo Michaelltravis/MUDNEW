@@ -1,0 +1,460 @@
+{
+ "job": "mountain_north",
+ "rooms": {
+  "8506": "A narrow shelf of grey rock clings to the face of the cliff, scarcely wider than a man's shoulders, with handholds worn smooth by many climbers. Below, the ledge drops back down to the broad plateau where the mountains begin, and the Trade Road beyond it shrinks to a pale thread. Above, the way climbs on up the cliff toward a lip of broken stone where a smudge of smoke often hangs. The wind plucks at your cloak, thin and bitterly cold.",
+  "8507": "Higher up, the ledge gives out and the climb goes on by a crooked chimney in the rock, studded with iron spikes driven into its cracks. The spikes are crusted with rust and bent by hard use, and crude marks hacked into the stone beside them look like orc work. A reek of smoke and rancid fat drifts over the lip of the cliff above, while below, the chimney drops back to the narrow shelf. Far beneath your boots the plateau lies spread out in the thin light.",
+  "8508": "The top of the cliff has been made into a squalid camp. A ring of blackened stones holds a fire pit choked with ash and gnawed bones, and a lean-to of stinking hides sags between poles jammed into cracks in the rock. At the very lip a rickety platform of lashed timbers juts out over the drop, giving a clear view of the plateau and the road far below. A track follows the edge of the cliff east and west, and the spiked chimney leads back down the face.",
+  "8509": "The track runs along the very brink of the cliff, so close to the edge that pebbles skitter away at every step and vanish without a sound. West, the smoke and stink of the orc camp hang over the rocks; east, the path keeps to the edge, hemmed in by a wall of frost-cracked stone on its landward side. Tufts of wiry grass grow in the cracks, combed flat by the endless wind.",
+  "8510": "Here the cliff edge bends away, and the track turns from the drop to climb north into the mountains between two shoulders of bare rock. A lightning-split pine clings to the stone at the turning, its dead limbs bleached silver and its roots clawing at empty air. The way back west follows the brink toward the orc camp, with nothing but cold space between the path and the plateau below.",
+  "8520": "Broken peaks crowd around a stony hollow here, their upper slopes streaked with old snow that never quite melts. A path of trodden scree comes up out of the south from the cliff edge and bends away west along the foot of a crumbling ridge. The air is thin enough to make every breath feel shallow, and somewhere among the rocks a trickle of meltwater ticks and gurgles.",
+  "8521": "A long tongue of scree spills down from the heights here, and the path crosses it on stones that rock and grind underfoot. East, the way runs back toward the stony hollow; north, it climbs a steepening gully choked with boulders the size of huts. Lichen in rusty orange and pale green crusts every surface the wind has not scoured clean.",
+  "8522": "The gully narrows between walls of fractured grey stone, and the wind funnels through it with a low, hollow moan. Old snow lies packed in the deepest shadows, grey with grit and pitted by drips from above. A stunted rowan has rooted itself in a crack, its few red berries bright against the stone. The way climbs north over a jumble of fallen blocks and drops back south toward the scree.",
+  "8523": "The gully tops out on a windy saddle between two peaks, and for a moment the whole range opens around you, ridge beyond ridge fading into blue haze. The path turns east along the saddle toward the rim of a deep cleft, while south it drops back into the gully. Snow cornices overhang the higher ridges, carved by the wind into curls like breaking waves.",
+  "8524": "The saddle ends at the rim of a deep, narrow ravine, and a strange pale glow rises from its depths even in the full light of day. A rough stair of ledges leads down into it, slick with seeping water. The path back west follows the saddle between the peaks. Leaning over the rim, you catch glints and sparkles far below, as if the ravine walls were sewn with countless tiny lamps.",
+  "8525": "At the foot of the ledges the ravine floor is a bed of smooth grey pebbles, and the walls on either hand are seamed with veins of milky crystal. The crystals drink in the daylight and give it back as a soft, steady glow, so that no shadow here is ever truly dark. The ravine runs on north between its shining walls, and the wet ledges climb back up to the saddle above.",
+  "8526": "The ravine walls lean so close that only a ribbon of sky shows far overhead, and here the crystal veins grow so thick that the stone itself seems made of light. A soft white radiance fills the cleft from end to end, throwing your shadow faintly in several directions at once. A thin stream runs down the middle of the floor, and the ravine follows its course north and south.",
+  "8527": "The ravine ends at a steep headwall where the stream spills down from above in a thin, chattering fall. The crystal veins dwindle here to a few faint threads, and a pale moss glows dimly in the spray. Wet handholds lead up the rock beside the fall toward the open mountainside, while the shining cleft stretches back south.",
+  "8528": "Above the ravine the ground opens onto a high, barren shelf where nothing grows but black lichen. North, a colossal spire of dark rock thrusts into the sky like a single fang, dwarfing every peak around it. Behind you the waterfall's chatter rises from the ravine, where wet handholds lead back down into the glow. Gusts come and go with sudden violence, flinging grit across the stone.",
+  "8530": "The Tooth Of The World towers overhead, a fang of black stone so tall that clouds snag on its tip and stream away like torn banners. At its foot a broad stair has been cut down into the living rock, its first steps worn into shallow bowls. East, a heavy door of weathered planks is set into the mountainside, and paths lead north and south across the windswept shelf.",
+  "8532": "The path runs along a knife-edged ridge here, with steep slopes of shattered rock dropping away on either hand into misty hollows. Looking back south, the black bulk of the Tooth fills half the sky; ahead, the ridge carries the path north toward lower, rounder heights. Little cairns of three or four stones mark the safest line along the crest.",
+  "8539": "Here the mountains begin to fall away, and a stony track drops west toward rolling foothills where a lone peak hides a dark cave mouth in its flank. The ridge path climbs back south toward the Tooth, and another way winds east deeper among the heights. Sheep trails thread the lower slopes, and the wind carries the smell of grass up from the hills.",
+  "8568": "A high valley runs between two ridges here, floored with tough grey grass and boulders spotted with lichen. Snowmelt has cut a shallow channel down its length, dry now and paved with rounded stones. Among the boulders stand the walls of a shepherd's hut, roofless and half fallen. The way leads east toward a meeting of trails and west to where the mountains drop toward the foothills.",
+  "8567": "Four trails meet in this windswept hollow, and a tall standing stone marks the crossing, its faces worn smooth by the weather. North, a bald hill rises against the sky, its crown splashed white; south, a well-trodden trail descends along the mountainside. Other paths wander east among the peaks and west down a high, grassy valley.",
+  "8569": "The hill is a bare dome of rock, its crown splashed white with the droppings of carrion birds. A dead pine stands at the summit, stripped of bark and bleached grey, its branches worn smooth where heavy talons grip. The smell of old carrion lingers in the hollows. North, the ground ends abruptly at the lip of a vast chasm, and south the slope runs down to a meeting of trails.",
+  "8562": "The world simply stops here: the ground ends at the brink of a chasm so deep that its floor is lost in blue shadow and drifting mist. A cold updraft breathes from the depths, carrying the faint roar of water far below. Paths follow the rim east and west, and a way south climbs a bald, white-splashed hill.",
+  "8563": "The rim of the chasm curves here, and the path along it crumbles where the edge has broken away in great bites. Across the gulf, sheer cliffs of banded rock catch the light, striped red, grey and ochre like the layers of a cake. The way runs back west along the brink, and a safer path turns south away from the edge into a fold of the mountains.",
+  "8564": "A fold in the mountainside shelters this spot from the wind, and snow lies deep in drifts against a sheer rock face. Set into that face, so cunningly that it is easy to miss, is a stout door of planks painted the grey of the stone around it, leading east into the mountain. Paths lead north toward the chasm's rim and south along the foot of the cliff.",
+  "8570": "Behind the hidden door lies a long, low room hollowed out of the rock, warmer than the mountainside and smelling of tallow and old smoke. Bunks of rough timber line the walls, and a trestle table scarred with knife cuts stands before a hearth whose smoke escapes through a crack in the ceiling. A second door, bound with iron, leads east deeper into the rock, and the way out is west.",
+  "8571": "This small inner chamber is cut with more care than the room beyond, its walls smoothed and its corners squared. A heavy chair carved from a single block of stone sits against the far wall like a throne, and beside it an iron strongbox is bolted to the floor. Maps and lists of names have been scratched into the plaster in a cramped hand. The only door leads back west.",
+  "8565": "The path ends in a cramped hollow walled in by cliffs, where the snow has drifted chest-deep against the rock. Nothing grows here but a few clumps of frost-blackened heather. Rows of short scratches mark the rock at shoulder height, as though someone once counted days here. The only way out is back north along the foot of the cliff, and the silence is so deep you can hear your own heart.",
+  "8561": "A narrow path runs along the chasm's edge, squeezed between the abyss on one hand and a rising slope of loose scree on the other. Here and there a stunted juniper clings to the very brink, its roots gripping the stone like fingers. The path continues east and west along the rim, and the wind rising from below smells of wet rock and moss.",
+  "8560": "A spur of rock juts out over the chasm here, and from its tip a ribbon of white water can be seen glinting at the bottom, impossibly far below. Someone has driven an iron stake into the spur and tied a rope to it, though the rope ends a few feet down in a frayed and ragged stump. The rim path runs on east, and west it bends toward a corner where the chasm turns.",
+  "8559": "The Northern Chasm turns a sharp corner here, its two arms meeting in a vast pit of shadow from which a cold wind rises without ceasing. A path follows the rim east, while another leaves the edge and climbs north among jagged rocks. South, the ground slopes down to a stony shelf near the lip, where a dark hole opens in the rock.",
+  "8553": "The path climbs steeply among jagged teeth of rock, some taller than a house and leaning at drunken angles. Frost has split many of them open, and their broken faces gleam with fresh, sharp edges. South, the path drops back toward the corner of the chasm, and north it squeezes on between the stones toward a sharp bend.",
+  "8554": "The path doubles back on itself around a blind shoulder of rock, so sharply that you must turn sideways to edge past. A sheer drop yawns at the outer side of the bend, and the rock face is polished smooth by countless hands groping for a grip. The way leads east onto open ground, and south back down among the jagged stones.",
+  "8555": "A flat table of rock no bigger than a village green sits among the peaks, carpeted with short, springy turf and tiny white flowers. The wind sweeps across it unhindered, and the view is immense: range upon range of mountains, and far away the dim green of lowland forest. At its edge a steep path drops down into a dark gorge, and the sharp turn lies back west.",
+  "8556": "The gorge is a deep, narrow slot in the mountain, its walls rising so high that the sky is no more than a pale crack overhead. A torrent once ran here, and its bed is a staircase of smooth boulders down which the path picks its way. The way climbs up toward the plateau's light and drops down deeper into shadow.",
+  "8557": "Ferns and dripping moss crowd the walls of the lower gorge, fed by springs that seep from the rock and patter onto the stones. The air is damp and still after the high winds, and every sound echoes back twice. Downward the gorge widens and lets in more light, opening onto greener country, while the boulder stair climbs back up into the gloom.",
+  "8558": "The gorge opens here onto grassy hills at the very foot of the mountains, and the grey wall of the range rises behind like a fortress. Heather and gorse cover the slopes, and a stream from the gorge chuckles away through the grass. A well-worn trail sets off east along the mountainside, and the gorge climbs up into the rock.",
+  "9800": "The trail begins its long climb here, a rutted path of packed earth and stone scratched along the flank of the mountains. Below it the slope falls away in grassy folds to the hills; above, grey cliffs stack one upon another into the clouds. West, the trail drops to the grassy ground before the mountains, and east it rises steadily on.",
+  "9801": "The trail crosses a long slope of scree on a path of flat stones laid by some careful hand long ago, most of them still in place. A rusted iron post leans at the outer edge, all that remains of a railing. The way climbs on east and slopes back west, and now and then loose stones rattle down from the heights above.",
+  "9802": "A side path branches off the mountain trail here, climbing north into the high country toward a meeting of ways. The main trail goes on east, rising toward a peak whose summit is hidden in cloud, and west it drops back toward the foothills. A worn milestone stands at the fork, its carved letters long since erased by frost.",
+  "9803": "The trail reaches its highest point here, skirting just below a summit of shattered rock wrapped in cloud. Freezing mist drifts across the path, beading on your cloak and hair, and the air is so thin that every step is an effort. East, the trail begins its descent toward a valley; west, it runs back down along the mountainside.",
+  "9804": "The trail winds downward in long loops, and with every turn the air grows a little warmer and the rocks give way to tough grass and bilberry. Below, a green valley opens among the mountains, thick with trees and threaded by a stream. The trail descends east toward it and climbs west back toward the cloud-capped peak.",
+  "9805": "Tall pines and silver birches fill the valley floor, and after the bare heights their shade feels close and green. A clear stream runs beside the path over pebbles of every colour, and the air smells of resin and wet earth. The path climbs west out of the trees toward the mountain trail, and east the woods thin toward a patch of open sky.",
+  "9806": "The trees draw back around a quiet clearing where long grass grows over the tumbled stones of some ancient wall. In the middle, set into a ring of mossy masonry, is a square trapdoor of oak bound with black iron, and a way leads down through it into darkness. The woods close in on every side but the west, where a path leads back into the valley.",
+  "8547": "This stony shelf lies a stone's throw from the lip of the Northern Chasm, close enough to feel the cold breath rising from its depths. In the middle of the shelf a black hole opens in the rock, just wide enough for a body to squeeze through, and a draught of damp air sighs up out of it. The way down leads into the hole, and north the ground rises to the corner of the chasm.",
+  "8546": "This is a small, rough cave, its walls glistening with damp and its floor heaped with rubble fallen from the roof. A shaft of grey daylight slants down through a hole above, where the way climbs up to the open mountainside. Two passages leave the cave, one south and one west, both squared off by tools and running away into darkness.",
+  "8543": "The shortcut is a passage hewn through the mountain's roots, just tall enough to walk upright, with a floor of flat stones fitted together like a cellar's. Three ways meet here: north to a small natural cave, south along the straight hewn passage, and west into a narrower bore. A crude arrow scratched in chalk on the wall points north, toward a faint grey light.",
+  "8542": "The passage runs dead straight through the rock here, its walls scored with the parallel grooves of chisels and picks. Water drips from the ceiling and trickles away along a gutter cut beside the floor, the only sound in the darkness besides your breathing. Soot stains above small niches in the wall show where lamps once burned. The tunnel continues north and south.",
+  "8541": "A tall shaft rises here through the rock to a far-off patch of daylight, and a knotted rope hangs down its middle, swaying gently in the draught. The rope's lowest knot dangles just above a floor of fitted stones, where a hewn passage begins and runs north into the dark. Water trickles down the shaft's walls and gathers in a shallow pool beneath the rope.",
+  "8540": "You dangle on a knotted rope halfway down a sheer cleft in the mountainside, your boots scrabbling for purchase on wet rock. Above, the rope runs up to an iron ring hammered into a ledge under a strip of grey sky; below, it vanishes down a shaft into darkness, toward the mouth of a hewn tunnel. The wind sets the rope swaying, and small stones rattle past you into the gloom.",
+  "8538": "A ledge of flat rock juts over a dark cleft here, and an iron ring as thick as a wrist is hammered into the stone at its edge, with a knotted rope tied fast to it and hanging down into the depths. Paths lead away south along a broken slope and west around a shoulder of the mountain. The wind moans across the mouth of the cleft like breath over a jug.",
+  "8535": "Broken slabs of slate lie tilted every which way across this slope, like the roof of some giant's house fallen in. The path threads between them, going north toward a ledge above a dark cleft and south down the slope, while a fainter track wanders off west. Patches of old snow lie in the slabs' shadows, crusted hard and grey.",
+  "8534": "Beneath an overhanging crag streaked with black water stains, the path turns a sharp corner. Icicles hang from the crag's lip in a ragged fringe, dripping steadily onto the stones and freezing again into lumpy pillars. A hollow under the overhang has been used as a shelter, its floor blackened by old fires. The way runs north up a slope of tilted slate and east along the foot of the mountain.",
+  "8533": "A long, level ledge runs across the face of the mountain, wide enough for two to walk abreast, with a sheer wall on one side and a steep drop on the other. Far below, a dark glimmer of water marks a mountain tarn cupped in the rocks. The path follows the ledge east and west, and the wall above is streaked with the tracks of old snowslides.",
+  "8518": "Several paths meet at this bend in the mountainside, where a spring wells up from beneath a slab and spills down the rock in a glittering sheet. The stone around it is slick with ice even on the mildest days. North, a path heads toward the foot of a great cliff; south, another winds down the slope; and west, a ledge runs across the mountain's face.",
+  "8519": "The path ends at the foot of a towering cliff, where an arched doorway has been carved into the rock, framing the first steps of a stair that climbs up into the heart of the mountain. Worn figures of bearded warriors flank the arch, their faces eroded to smooth ovals. The only other way leads south, back down the slope.",
+  "8529": "The stair winds upward inside the rock, each step cut with care and worn into a hollow at its middle by the passage of countless feet. Narrow slits cut through the outer wall let in thin blades of daylight and a whistle of cold wind. Carvings along the walls show ranks of bearded figures climbing toward a great tooth of stone. The stair climbs up toward the open air and winds down toward the mountainside below.",
+  "8517": "Loose, rust-coloured gravel covers this slope, and every footstep sends a little rattling slide ahead of you. Clumps of saxifrage cling to the larger stones, starred with tiny pink flowers. Clouds drift past close enough to touch, wetting the stones as they go. The way climbs north toward a glittering spring and descends south along the mountainside.",
+  "8516": "Tucked between the peaks lies a high meadow, where coarse grass and cushions of moss grow among scattered boulders. A small tarn sits in the middle, dark and perfectly still, mirroring the grey crags and the clouds above them. The way runs north up a gravel slope and west toward a band of cliffs.",
+  "8515": "Here the way squeezes along the foot of a band of cliffs, where the rock overhangs so far that the ground beneath stays dry and dusty even in rain. Old mud nests cling in rows under the overhang, long abandoned and crumbling. The path leads east toward a high meadow with a dark tarn, and south along the foot of the cliffs.",
+  "8514": "A rockslide has swept across the mountainside here, leaving a raw scar of pale stone and splintered rock. The path has been trodden anew across it, a narrow line of footholds between boulders that look ready to move again. North, the way runs beneath a band of overhanging cliffs, and east it heads toward the edge of the heights.",
+  "8513": "The mountainside slopes gently here before plunging over the cliffs beyond, and the wind carries a faint smell of woodsmoke from somewhere below. A low wall of piled stones, built by orcs or by older hands, curves across the slope as a windbreak. The path runs south toward the edge of the cliff and west across the scar of a rockslide.",
+  "8511": "Small cairns line the top of the cliff here, each one capped with a scrap of filthy rag that snaps in the wind like a pennant. East, the smoke of the orc camp rises beside its rickety lookout, and west the path dwindles along the brink toward a lonely point. A rougher way climbs north up the mountainside, away from the drop.",
+  "8512": "The path ends on a jutting prow of rock with nothing beyond it but empty air and a dizzying view. The wind is fierce here, and it has scoured the stone so clean that not even lichen grows. Far below, the plateau and the long grey line of the road lie open for miles. The only way back is east along the brink.",
+  "8536": "A faint track wanders across a slope of coarse grass and frost-shattered stones, where the mountain's bones show through its thin skin of earth. A trickle of water runs in a groove beside the path, freezing at its edges into lace. The track bends here, leading north around a jutting spur and east toward the slope of tilted slates.",
+  "8537": "The path rounds a spur of the mountain on a ledge of crumbling shale, with handholds worn into the rock face. Beyond the spur the land opens into a wide view of peaks and cloud, with snowfields gleaming on the highest summits. East, the ledge leads toward an iron ring above a dark cleft, and south it drops along a grassy slope.",
+  "8544": "The bore is narrower here, and the ceiling dips so low that you must stoop to pass, your shoulders brushing walls of cold, sweating stone. Someone has cut a small mark at head height, a circle split by a single line, perhaps a miner's sign. The passage runs north into the darkness and east toward a meeting of ways.",
+  "8545": "A slanting shaft climbs up from the roof of the passage here, fitted with iron rungs that lead toward a glimmer of daylight and a breath of grassy air. The hewn tunnel bends south into darkness, while an opening east leads into the rough walls of a small natural cave. Roots have found their way down the shaft, hanging like pale strings beside the rungs.",
+  "8548": "Grassy hummocks roll away on every side, dotted with grey boulders and clumps of yellow gorse. Half hidden in a fold of the hill, a narrow hole ringed with iron rungs leads down into the dark beneath the mountains. A sheep track winds north between the hillocks, and the mountains loom close behind, their lower slopes purple with heather.",
+  "8549": "The foothills fold and dip here like a rumpled blanket, and the path runs along the bottom of a shallow green trough. A tiny brook trickles beside it through beds of watercress and rushes. Sheep have cropped the grass short, and tufts of their wool hang on every thorn. The way leads north up a rise crowned by a lone hawthorn and south toward a hidden hole in a fold of the hillside.",
+  "8550": "The path tops a rise where a lone hawthorn grows, bent almost double by the wind, its branches combed out to one side. North, a path runs on through low hills toward the open foothills; south, it drops back into a green trough; and west a fainter track wanders off among the hillocks. From here the mountains stand in a great wall, grey above and green below.",
+  "204075": "A small path, hardly more than a goat track, runs down between steep grassy banks from the main foothills path. Stones poke through the turf like knuckles, and the bracken on either side grows waist-high. North, the path climbs to join a wider way through the foothills; south, it slips toward a dark overhang where it turns beneath the rock.",
+  "204076": "The path turns here beneath a great shelf of rock, running through a short natural tunnel whose walls are smoothed by wind and the brush of passing shoulders. Daylight glows at both ends, grey to the north where the small path climbs back toward the foothills, and brighter to the east where the tunnel lets out onto the mountain trail. The air inside is cool and still, and a soot-blackened niche in the wall shows where travellers have sheltered from the weather.",
+  "8551": "The hills grow steeper and rockier here, and the grass gives way to bracken and outcrops of weathered grey stone. An old dry-stone wall, tumbled in places, wanders across the slope and vanishes over a crest. The track leads north toward the last of the foothills and east toward a lone hawthorn on a rise.",
+  "8552": "The foothills end abruptly at the foot of a sheer mountain wall, a cliff of pale stone that rises without crack or ledge for hundreds of feet. Boulders that have fallen from it lie half sunk in the turf, furred with moss. There is no way on, and the only path leads back south among the hills. Water weeps down the cliff face in dark streaks, and the air here is cold and still.",
+  "8566": "A wide, wind-scoured shelf runs across the mountainside here, strewn with frost-split stones. South, a single enormous boulder sits alone at the end of a spur, and a worn path leads out to it; west, the shelf runs back toward a crossing of trails. A narrower way leads north between two cliffs into a snow-choked hollow.",
+  "8572": "A boulder as big as a cottage sits alone at the end of this spur, dropped here by some ancient ice and left balanced on the very brink of a drop. Beneath its overhang a hollow has been scraped out and walled with piled stones, and a weathered inscription is cut into the boulder's face above it. The view from here is vast and lonely. The only way back is north along the spur.",
+  "8531": "Behind the weathered door a cave runs back into the mountain, its walls rough and blackened by ancient smoke. Whoever once lived here is long gone; the floor is scored with deep claw marks, and a heap of dry bracken and shed fur fills the far corner where some great beast makes its bed. A heavy, musky reek hangs in the still air. The only way out is west, through the door to the windswept shelf beside the Tooth.",
+  "4601": "Dark spruces stand close together here, their lower branches dead and grey with beard lichen, and old snow lies in the hollows between their roots. South, the trees thin toward a barren, rocky hillside, and a foul goblin stench drifts from that way on the wind. Paths wind away through the forest north, east and west, soft with fallen needles.",
+  "4605": "The spruce forest grows thinner and more stunted here, as if the trees were shrinking from the cold that pours down from the open land to the north. Beyond the last trunks the tundra stretches away, white and grey and empty. East, the trees crowd toward the mouth of a narrow pass, while the forest deepens south and west.",
+  "4609": "The forest gives out here, and the last few spruces stand alone on the open ground, twisted and bare on their windward side like tattered flags. Beyond them the tundra rolls away in low, snow-streaked swells of moss and lichen. South lies the shelter of the taiga, west the land climbs steeply into the mountains, and the open tundra stretches north and east.",
+  "4613": "A great fan of frost-shattered rock spills out from the mountains onto the tundra here, its boulders cracked open and crusted with black lichen. Snow has drifted deep behind each stone. West, a rough path climbs onto the mountainside, while the open tundra runs north, east and south beneath a heavy, leaden sky.",
+  "4617": "A single enormous boulder squats on the open tundra here, a lump of pink granite utterly unlike the grey rock of the mountains nearby, as though some giant had let it fall. Its lee shelters a patch of bare ground where moss and crowberry grow thick. The mountains rise close by to the west, and the tundra stretches north, east and south.",
+  "4621": "A frozen brook winds across the tundra here in a shallow channel, its ice clouded white and humped with trapped bubbles. Under the ice, dark water can still be seen moving slowly. Tufts of dead sedge rattle along its banks in the bitter wind. Beyond the far bank the mountains wall off the land, and the tundra opens north, east and south.",
+  "4627": "The tundra tilts upward here into slopes glazed with ice, and above them the blue-white face of a glacier fills the sky to the north like a frozen wave. Cold air pours down off the ice in a steady, numbing wind that smells of nothing at all. Gravel and broken ice crunch underfoot, and ways lead east, west and south across the open ground.",
+  "4632": "The ground here is a steep apron of old ice and frozen gravel spilling from the glacier's foot, and every step threatens to send you sliding. The glacier towers overhead, its face streaked with grit and veined with deep blue. Ways lead east and west across the slope, and south the ice gives way to the open tundra below.",
+  "4633": "A dark slit splits the face of the glacier here, a narrow crack running north into the ice, its edges rounded and gleaming. The slope beneath it has been worn into a rough path by many feet, the ice chipped into crude steps. The icy slope runs on east and west, and south it falls away to the tundra.",
+  "4635": "Walls of blue ice rise sheer on either side of this narrow crack, so close that you could touch both at once, and far overhead runs a thin seam of white sky. The light that filters through the ice is a deep, cold blue, and the glacier creaks and groans constantly as it shifts. The crack runs on north, a smaller fissure branches off east, and south the way opens onto the icy slope.",
+  "4637": "The crack widens a little here, and its floor is churned into dirty slush by many small, clawed feet. North, the ice gives out onto a bare hillside where bone totems flank a jagged opening, and the stink of rot and smoke from the Goblin Warrens drifts in on the wind. The crack runs back south between its blue walls, and another branch winds west through the ice.",
+  "4638": "The ice walls of the crack are lower here, and through a gap to the west you can see dark ranks of pines and oaks marching away beneath a grey sky, the edge of the Great Northern Forest. Wind-driven snow hisses along the floor. The crack runs east between its glassy walls and turns north, deeper into the glacier, where the ice rises higher and bluer.",
+  "6600": "The crack opens here into a small space in the ice where three ways part, and a weathered signpost has been driven deep into the frozen gravel. North, the crack runs on through the heart of the glacier toward the Winterwood; east, the ice gives way to rocky, windswept ground climbing into the Eastern Highlands. The way back south winds between walls of creaking ice.",
+  "4636": "This side fissure ends in a small hollow of ice, where meltwater has frozen into curtains and pillars that glitter like glass. Somewhere deep within the ice, water drips, each drop ringing like a tiny bell. The fissure runs back west to the main crack, and a slippery chute leads south out of the ice onto the open slope.",
+  "4634": "The icy slope levels out here into a broad sheet of wind-polished ice, so smooth that it shines like a pewter plate under the clouds. Cracks run through it like the lines on an old man's palm, and now and then one of them gives a sharp report like a snapping branch. West, the slope climbs toward the crack in the glacier, and the tundra lies open to the east and south.",
+  "4630": "Wind-scoured gravel covers the ground here, swept bare of snow and moss alike, with only a few dwarf willows creeping flat among the stones. The broken runners of an old sledge lie half buried in the gravel, bleached grey by sun and frost. North rises the icy slope below the glacier, and the tundra runs on south and west.",
+  "6611": "A weathered signpost leans drunkenly here, its paint flaked away and its lettering barely legible, the only made thing in sight on the open tundra. The ground around it is trampled, and the snow is marked by boot prints coming and going. The tundra stretches north toward the glacier's foot, south over low rises, and west across a shallow dip.",
+  "4620": "A frozen bog fills a broad hollow here, its tussocks of cotton grass standing up from the ice like the heads of drowned men. The ice between them is thin and dark in places, and the smell of peat rises from beneath it. Firmer ground skirts the bog to the north and south, and a way leads west across the tundra.",
+  "6603": "A ring of great boulders crowns a low rise here, forming a natural fort with a commanding view across the tundra. Inside the ring the snow is trampled to slush, a fire pit holds cold black ashes, and crude shelters of hide and spruce boughs lean against the stones. Lookout perches have been scraped flat atop the tallest boulders. Paths leave the ring north, south and west.",
+  "4612": "The tundra rises in a long, gentle swell here, its crest crusted with orange and black lichen and studded with frost-heaved stones standing on end like teeth. The wind has carved the snow into hard ridges that crunch and squeak underfoot. North, a ring of boulders crowns a nearby rise, and the open ground runs on south and west.",
+  "4608": "A shallow hollow on the tundra's edge holds a spring that never quite freezes, steaming faintly in the bitter air and ringed with a crust of yellow ice. The snow around it is criss-crossed by animal tracks of every size, all leading to the water. Beyond the hollow the land rises into rough, broken hills where no path goes. The way leads north and west across the open tundra.",
+  "4607": "Here the open tundra meets the mouth of a narrow pass that cuts west between two towering peaks, and the wind howls out of it carrying flurries of snow. The ground is bare and hard, swept clean by the endless gale. The tundra stretches away north and east, and the pass offers a little shelter among a few stunted spruces.",
+  "4611": "A thicket of dwarf willow grows in a shallow dip here, no higher than your knee, its twisted branches knotted into a dense grey mat. The snow around it is laced with the tracks of small creatures that shelter beneath. Trails cross the dip in every direction, leading north, east, south and west across the tundra.",
+  "4615": "A cairn of stacked stones stands on a low hummock here, built roughly in the shape of a man with outstretched arms, as if pointing the way across the featureless white. Its stones are glazed with rime. East, a ring of great boulders crowns a rise, and the tundra runs north, south and west beneath a sky the colour of pewter.",
+  "6605": "A sheltered swale lies between two low rises here, and the wind has swept much of the snow from its floor, uncovering pale grass and sedge. The ground is pocked with the neat, split prints of deer and nibbled patches where they have grazed. The tundra opens north, east, south and west, and the swale's shelter makes the cold a little kinder.",
+  "6608": "A strange round mound rises from the flat tundra here, a dome of earth pushed up from beneath by ice, its sides split open by deep cracks. From its top you can see for miles: the glacier's white wall, the dark smudge of the taiga, and the mountains brooding over all. Ways lead north, east, south and west.",
+  "4629": "A chain of small frozen pools lies across the tundra here, fed by meltwater from the glacier and frozen now into milky blue discs. The ice slope climbs north toward the glacier's foot, and the wind that pours down it carries needles of ice. Ways lead east, south and west over hummocks of moss.",
+  "4628": "The tundra rises here toward a dark gash in the glacier's face, and a beaten path leads north up the icy slope toward it. The path is marked with small posts of bleached bone, crude and unsettling. Elsewhere the tundra lies open, stretching east, south and west in frozen swells of moss and stone. Your breath smokes in the air and freezes on your collar.",
+  "4622": "A long, low ridge of gravel snakes across the tundra here like the back of some buried serpent, left by a river that ran beneath the ice in ages past. Cotton grass grows along its flanks in tufts of white fluff that shiver in the wind. The ridge makes a good path, and ways lead off north, east, south and west.",
+  "4618": "The ground here is broken into a strange honeycomb of low polygons, each ringed by a shallow crack where the frost has split the earth. Snow fills the cracks, drawing a white net across the brown moss. Ways lead north, east, south and west, and the pattern stretches away on every side as if some vast hand had laid it out.",
+  "4614": "A small frozen lake lies in a hollow here, its surface swept clean by the wind into a sheet of dark grey ice. Reeds poke stiffly through at its margins, and the ice booms and groans as it settles. On still days the lake mirrors the sky so perfectly that the horizon seems to vanish. Paths skirt its shores to the north, east, south and west.",
+  "4610": "A thin carpet of grey-green reindeer moss covers the ground here, crunching like dry biscuit underfoot. South, the tundra falls toward a narrow pass between two towering peaks, where boot prints in the frost lead up from the trees. The open land stretches north, east and west, empty and silent but for the wind.",
+  "4602": "The taiga grows dense and dark here, the spruces so tightly packed that little snow reaches the ground between them. A thick carpet of needles muffles every sound, and the air smells sharply of resin. Claw marks score the bark of one great trunk, high above a man's head. North, the trees thin toward a windy pass between two peaks; west, the forest runs on.",
+  "4631": "The icy slope steepens here beneath an overhanging cliff of glacier ice, blue and translucent, hung with icicles longer than spears. Now and then one breaks loose and shatters on the slope with a sound like breaking glass. The slope runs on east along the glacier's foot, and south it falls away to the tundra.",
+  "4626": "Snow lies in deep drifts here against a low ridge of rock, sculpted by the wind into smooth curves and sharp-edged cornices. Walking is slow, the crust breaking with every step and dropping you knee-deep. North, the icy slope climbs toward the glacier, and the tundra runs east and west along its foot.",
+  "4625": "This is a lonely corner of the tundra, hemmed in by the mountains' spurs and the glacier's icy foot, where the wind circles and moans. A tall pole of grey, weathered spruce stands planted in a pile of stones, hung with strips of faded cloth that flutter in the gusts. North, the ground climbs onto the icy slope, and east the tundra opens out again.",
+  "4649": "The mountainside here looks out over the tundra, which stretches away east in a vast pale plain to the glacier's foot. Frost-split boulders lie strewn across a steep slope, and the path picks its way between them. The wind tears at you from every side. South, the path follows the mountain's flank; west, it climbs deeper into the peaks.",
+  "4646": "A steep gully climbs up from this rocky shoulder toward the summit of the mountain, its floor packed with old ice and loose stones. The shoulder itself is a meeting place of paths: north and south along the mountain's flank, west into the heart of the peaks, and east down to a fan of shattered rock on the tundra. The wind keens through the gully like a voice.",
+  "4643": "Here the mountains begin, rising from the dark edge of the taiga in slopes of bare rock and scrubby juniper. South, the spruces close in thickly; east, the open tundra rolls away under the wind. The path climbs north along the mountain's flank, and a rougher track runs west among the peaks.",
+  "6606": "Tall spruces and a few white-barked birches grow here at the foot of the mountains, whose grey slopes climb steeply to the north. West, a path leads toward a broad clearing used by travellers as a resting place. The forest continues east and south, quiet and dim beneath boughs heavy with snow.",
+  "4600": "A frozen stream winds through the taiga here, and the path crosses it on a bridge of three spruce logs lashed together and worn smooth by many feet. The forest is quiet but for the creak of branches under their burden of snow. West lies a clearing with an old campfire ring, and the woods continue north and east.",
+  "4641": "A rocky path climbs out of the forest here, leaving the trees behind for slopes of scree and wind-stunted juniper. Blazes cut into the last trunks mark the start of the trail. South, the path drops into the taiga toward a clearing where travellers rest; north, it climbs into a sheltered valley among the peaks. Another way runs east along the mountainside.",
+  "4644": "A small, sheltered valley lies cupped among the peaks here, where the wind drops and a little warmth lingers. A log cabin stands at its west end, snug against the slope, with a stone chimney and a heavy plank door. A woodpile is stacked high beneath its eaves, roofed with strips of bark. Paths climb out of the valley north, east and south into the mountains.",
+  "4647": "The path climbs out of the valley beside a frozen waterfall, a great pillar of blue-white ice clinging to the cliff. Behind the ice, water can still be heard trickling. Rime coats every rock and twig, thick as fleece. East, the path runs across a high slope into the peaks; south, it drops into the sheltered valley.",
+  "4648": "The path comes to the brink of a deep chasm here, and a bridge of solid ice arches north across the gulf, glittering and blue, the only way over. Wind howls up out of the depths, carrying flakes of snow that swirl upward instead of down. Paths lead east and south along the mountainside, and west toward a frozen waterfall.",
+  "4653": "You stand on a narrow span of ancient ice arching over a dizzying chasm, its surface roughened by frozen grit and its edges sculpted into delicate fringes. Beneath your feet the ice is clear enough to show the dark depths below, and it creaks ominously with every step. The bridge leads north and south to the mountainsides, and beside the span a perilous line of ice-glazed ledges winds down into the chasm.",
+  "4657": "Beyond the ice bridge the path climbs onto a windswept ledge on the far side of the chasm, scattered with boulders sheathed in rime. Looking back south, the bridge gleams like a band of glass across the gulf. The snow here lies deep and almost untrodden, save for a line of huge, heavy footprints. The path continues north up the mountainside and west along the chasm's rim.",
+  "4659": "The path climbs to a high, bare ridge where the wind blows so hard that you must lean into it to stay upright. Snow streams off the crest like smoke. From here the land falls away on every side, a wilderness of white peaks and grey valleys. The way runs south toward the ice bridge and west along the ridge.",
+  "6609": "The ridge ends at a knot of jagged rocks, frost-shattered into fantastic spires and blades. In their shelter lies a small pocket of still air where the snow has settled soft and smooth, and a few cushions of moss show green where the rocks hold the sun's warmth. The ridge runs back east, and a steep path drops south toward the sound of rushing water.",
+  "4656": "A torrent roars somewhere above, and its spray drifts down onto this rocky shelf, freezing on every surface into a glaze of ice. A steep path climbs up the cliff toward a ledge where the ancient arch of a stone bridge can be glimpsed spanning the river. Other paths lead north up a steep slope and east along the chasm's rim.",
+  "6604": "This long hallway has been hewn straight into the mountain, its walls dressed smooth and carved with the same worn faces that peer from the old bridge outside. Iron brackets for lamps line the walls, and stone benches run along each side, polished by long use. The air is still and noticeably warmer than out on the ledge. The only way out is south, back toward the roar of the river.",
+  "4654": "The floor of the chasm is a jumble of ice-glazed boulders, and the walls rise so high on either hand that the sky is only a pale stripe far above, crossed by the thin, shining band of the ice bridge. It is bitterly cold and utterly still. North, a dark cave opens at the foot of the cliff, its mouth hung with icicles like teeth, and tufts of coarse white hair cling to the rocks around it. Slick ledges climb back up toward the bridge.",
+  "4655": "The cave burrows deep into the chasm wall, its sides furred with frost that glitters faintly in the grey light from the entrance. Deep gouges score the icy floor, and a heap of cracked and gnawed bones fills one corner. A rank, wild stench hangs in the still air, thick enough to taste. The only way out is south, back into the chasm.",
+  "4645": "Paths cross on a broad, stony shoulder among the peaks here, beside a tall cairn that has begun to lean with the years. West, the land dips into a sheltered valley where the roof of a log cabin shows among the rocks. Other ways lead north toward a chasm, east toward a gully below the summit, and south down a stony slope.",
+  "4642": "A cliff rises sheer above this rocky slope, and at its foot, a short way south, the black mouth of a cave yawns beneath an overhang. Large, clawed prints lead in and out of it through the snow. Paths wander north, east and west across the mountainside among boulders capped with white.",
+  "4650": "Just inside the cave mouth, grey daylight still reaches the walls, showing rough stone streaked with mineral stains in rust and green. The floor is dry and dusty, strewn with dead leaves blown in from outside. North, the entrance opens onto the snowy mountainside; east, the cave runs back into darkness, and a musky smell drifts out of it.",
+  "4662": "The cave narrows into a winding passage here, its walls close enough to brush with both elbows and its ceiling lost in shadow. Tufts of coarse black fur are caught on the jagged rock at shoulder height. Water drips somewhere ahead, and the musky animal smell grows stronger. West, a faint grey glow marks the entrance; east, the darkness deepens.",
+  "6601": "The passage opens into a round chamber whose floor is heaped with dry leaves and moss dragged in to make a bed, and the walls are scored with claw marks. In the middle of the floor a worn stone stair spirals down into the deeps, but an ancient gate of black iron closes it fast, its lock rusted solid and its bars wrought in graceful, leaf-like patterns. The way out leads west.",
+  "4651": "The cabin is a single snug room of squared logs chinked with moss, smelling of old smoke and pine resin. A fieldstone hearth fills one wall, a bunk of lashed poles stands against another, and a plank table and stool sit beneath a small shuttered window. The pegs by the door hold nothing now, and dust lies thick on the sill. The door leads east, out into the valley.",
+  "4652": "You stand on the very summit of the mountain, a narrow crown of frost-shattered rock with nothing above but the vast, pale sky. The whole of the wild country lies spread below: the white sweep of the tundra, the glacier gleaming like a frozen sea, and the dark forests beyond. A small cairn marks the highest point, built by whoever first stood here. The only way is back down the steep gully.",
+  "16101": "The path clings to a steep mountainside of rain-dark rock, rising in crooked switchbacks toward a cleft between two great walls of stone. Mist drifts down from the heights, beading on the heather. North, the path drops toward a barren hillside where crude totems of bone flank a dark crack, and above, the way climbs on into the mist.",
+  "6613": "The climb grows steep and wet here, a scramble over slabs of black rock slick with mist, where tufts of coarse grass offer the only handholds. Above, two sheer walls of dark stone rise close together, and the way up leads between them into the gorge of Mount Ravenmist. Below, the path winds back down the mountainside toward the wilderness. The wind brings a smell of wet stone and old feathers down from the heights."
+ },
+ "extras": {
+  "8508": [
+   {
+    "keywords": "platform timbers lookout poles",
+    "description": "The platform is a crude thing of pine poles lashed together with rawhide, its planks black with grease and creaking at every gust. Rows of notches have been cut along one pole, a tally of something the watchers here have counted on the road below."
+   }
+  ],
+  "8525": [
+   {
+    "keywords": "crystal crystals veins vein",
+    "description": "The veins are a hand's breadth wide in places, a milky white crystal shot through with threads of pale gold. Laid against the stone, your palm feels a faint warmth, and the glow brightens a little beneath your touch."
+   }
+  ],
+  "8530": [
+   {
+    "keywords": "tooth spire fang black stone",
+    "description": "Close to, the Tooth is not smooth at all but ribbed and fluted by ages of wind and ice, its black stone glittering with flecks like frost. Old dwarven runes are cut into its foot, too weathered to read but for one deep sign shaped like a crown."
+   }
+  ],
+  "8567": [
+   {
+    "keywords": "standing stone arrows",
+    "description": "Faint arrows have been scratched into each face of the stone, one for every trail. Beside the arrow that points toward the bald hill, someone has added the rough shape of a bird with its wings spread wide."
+   }
+  ],
+  "8571": [
+   {
+    "keywords": "maps names plaster scratches lists",
+    "description": "The maps show the mountain trails in crude lines, with small marks at the cliff camp, along the chasm's rim and at the road far below. Beside them runs a long column of names, most of them struck through."
+   }
+  ],
+  "9806": [
+   {
+    "keywords": "trapdoor masonry ring",
+    "description": "The ring of masonry is the top of a round stone tower, buried in the earth up to its battlements, and the trapdoor sits where its roof should be. Letters worn almost smooth run around the rim, and the clearest of them spell out a single name: RAND."
+   }
+  ],
+  "8541": [
+   {
+    "keywords": "rope knotted hemp",
+    "description": "The rope is thick hemp, tarred black and knotted at every arm's length, and it is newer than it looks. Someone keeps it in good repair."
+   }
+  ],
+  "8519": [
+   {
+    "keywords": "figures warriors arch carvings runes",
+    "description": "Each figure leans upon a great axe, and their beards are carved in long braids that reach to their belts. Dwarven runes run around the arch above them, worn so shallow that only fingertips can follow them now."
+   }
+  ],
+  "8572": [
+   {
+    "keywords": "inscription words boulder letters",
+    "description": "The letters are cut deep but softened by long weather. They read: Here I sat, and the mountains taught me patience; they have not finished teaching. Beneath the words a small open hand has been carved into the stone."
+   }
+  ],
+  "4615": [
+   {
+    "keywords": "cairn stones figure man",
+    "description": "The cairn's arms are two long, flat stones balanced across its shoulders, one pointing toward the mountains and the other toward the glacier. The hunters of this cold country build such figures to tell the traveller that people have passed this way before."
+   }
+  ],
+  "4653": [
+   {
+    "keywords": "bridge ice span",
+    "description": "Deep inside the ice, like flies in amber, hang dark shapes: stones, a broken spear shaft, the curve of something that might be a horn. The bridge has been growing for a very long time."
+   }
+  ],
+  "6601": [
+   {
+    "keywords": "gate bars iron stair",
+    "description": "The bars are wrought into twining leaves and slender, long-eared faces, the work of no human smith. Far below the gate, a faint pale light seems to come and go, as if someone carried a lamp through distant halls."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "mountain-goat",
+   "keywords": "mountain goat billy shaggy",
+   "short_desc": "a shaggy mountain goat",
+   "long_desc": "A shaggy mountain goat picks its way along the rocks, utterly unbothered by the drop.",
+   "description": "A sturdy billy goat with a coat of long, dirty-white hair that hangs in a fringe over its legs, and a pair of black horns curving back from its brow. Its yellow eyes, with their odd oblong pupils, regard you with mild contempt as it chews. A frayed leather collar hangs loose about its neck, as though it once belonged to some foothill herder.",
+   "kind": "animal",
+   "level": 5,
+   "aggressive": false,
+   "alignment": 0,
+   "rooms": [
+    "On The Cliffside",
+    "At The Edge Of The Cliff",
+    "The Edge Of The Chasm",
+    "At The Edge Of The Chasm",
+    "The Sharp Turn",
+    "The Small Plateau",
+    "In The Gorge",
+    "Mountain Trail",
+    "Near the Mountain's Peak",
+    "The Hermit's Stone"
+   ],
+   "count": 6,
+   "drops": [
+    {
+     "item": "goat-horn-trinket",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "mountain-hawk",
+   "keywords": "hawk bird mountain brown",
+   "short_desc": "a mountain hawk",
+   "long_desc": "A mountain hawk perches on a jut of rock, its fierce gold eyes following your every move.",
+   "description": "It is a big, broad-winged hawk, brown above and barred with cream below, its hooked beak dark as horn. When the wind gusts it half opens its wings and rides the air without effort, then settles again with a ruffle of feathers. Its long tail feathers, banded brown and grey, are the kind fletchers prize.",
+   "kind": "animal",
+   "level": 7,
+   "aggressive": false,
+   "alignment": 0,
+   "rooms": [
+    "Vulture Hill",
+    "Beside The Tooth Of The World",
+    "The Corner Of The Northern Chasm",
+    "Near the Mountain's Peak",
+    "Trail to the Valley",
+    "The Small Plateau",
+    "In The Western Foothills",
+    "Near The Northern Chasm"
+   ],
+   "count": 4,
+   "drops": [
+    {
+     "item": "hawk-feathers",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "rock-spider",
+   "keywords": "rock spider grey giant",
+   "short_desc": "a grey rock spider",
+   "long_desc": "A grey rock spider the size of a hound clings motionless to the wall, nearly invisible against the stone.",
+   "description": "Its body is mottled grey and brown exactly like the rock it lives on, and its eight jointed legs bristle with stiff hairs that let it cling to the smoothest wall. A cluster of small black eyes glitters above a pair of hooked fangs wet with clear venom. Fine silk lines laid along the floor tremble at the slightest touch, warning it of anything that passes.",
+   "kind": "animal",
+   "level": 14,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "In The Shortcut",
+    "Entrance To The Shortcut",
+    "In The Small Cave",
+    "Middle Of The Carved Stairs"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "prospectors-pick",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "cave-bear",
+   "keywords": "cave bear great brown",
+   "short_desc": "a great cave bear",
+   "long_desc": "A great cave bear rears up out of the gloom, swinging its massive head toward you.",
+   "description": "It is far larger than any forest bear, with a high, humped shoulder and a broad, flat-browed skull. Its brown coat is matted and scarred, and its claws, each as long as a dagger, click on the stone when it moves. Its small dark eyes smoulder with slow, sullen anger at being disturbed.",
+   "kind": "animal",
+   "level": 18,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "The Old Cave"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "prospectors-pick",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "snow-hare",
+   "keywords": "snow hare white",
+   "short_desc": "a white snow hare",
+   "long_desc": "A white snow hare crouches in a hollow of the snow, its long ears twitching.",
+   "description": "Its fur is pure white but for the black tips of its ears, and so thick that it looks twice its true size. Its great hind feet are furred like snowshoes, and its dark eyes bulge, watching for any movement. At the first sign of danger it bolts away in great zigzag bounds.",
+   "kind": "animal",
+   "level": 3,
+   "aggressive": false,
+   "alignment": 0,
+   "rooms": [
+    "On The Tundra"
+   ],
+   "count": 4
+  },
+  {
+   "id": "arctic-fox",
+   "keywords": "arctic fox white",
+   "short_desc": "an arctic fox",
+   "long_desc": "An arctic fox trots across the snow, pausing now and then to listen with its head cocked.",
+   "description": "Small and neat, it wears a thick coat of creamy white fur and a bushy tail it curls around its face when it sleeps. Its short ears and blunt muzzle are made for the cold, and its eyes are sharp and golden. It listens to the snow, then pounces nose-first on whatever it hears scurrying beneath.",
+   "kind": "animal",
+   "level": 6,
+   "aggressive": false,
+   "alignment": 0,
+   "rooms": [
+    "On The Tundra",
+    "The Icy Slope",
+    "On The Taiga"
+   ],
+   "count": 3
+  },
+  {
+   "id": "frost-wolf",
+   "keywords": "frost wolf grey silver",
+   "short_desc": "a frost wolf",
+   "long_desc": "A frost wolf lopes through the snow, its pale eyes fixed hungrily on you.",
+   "description": "A big, rangy wolf with a coat of grey and silver that fades to white along its belly, its fur rimed with ice crystals that glitter as it moves. Its breath smokes between bared yellow fangs. It is seldom alone; somewhere nearby, the rest of its pack is surely watching.",
+   "kind": "animal",
+   "level": 14,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "On The Tundra",
+    "The Icy Slope",
+    "The Narrow Crack In The Glacier",
+    "On The Mountaintop"
+   ],
+   "count": 5
+  },
+  {
+   "id": "yeti",
+   "keywords": "yeti ape snow beast white",
+   "short_desc": "a hulking yeti",
+   "long_desc": "A hulking yeti, white-furred like a great snow ape, rises from its haunches with a rumbling growl.",
+   "description": "It stands half again as tall as a man, a great ape-like beast covered in long, matted white fur stained yellow about the mouth and hands. Its face is bare, grey-black and creased like old leather, with deep-set, red-rimmed eyes beneath a heavy brow. Its arms hang nearly to the ground, and one huge hand grips a long shard of sharpened bone.",
+   "kind": "monster",
+   "level": 19,
+   "aggressive": true,
+   "alignment": -250,
+   "rooms": [
+    "The Cave"
+   ],
+   "count": 1,
+   "drops": [
+    {
+     "item": "yeti-pelt",
+     "chance": 30
+    },
+    {
+     "item": "bone-ice-pick",
+     "chance": 25
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "goat-horn-trinket",
+   "keywords": "trinket goat horn charm thong",
+   "short_desc": "a goat-horn trinket",
+   "room_desc": "A small trinket of carved goat horn lies here on a frayed leather thong.",
+   "description": "A thumb-length curl of goat horn, carved with a ring of tiny hoofprints and polished smooth by long wear, hangs from a frayed leather thong. Foothill herders tie such charms to their lead goats to keep them sure-footed on the heights, and the goats that ran wild on the mountain sometimes still wear them.",
+   "kind": "armor",
+   "wear_slot": "neck",
+   "level": 5,
+   "bonus": {
+    "dex": 1
+   }
+  },
+  {
+   "id": "hawk-feathers",
+   "keywords": "feathers hawk sheaf barred",
+   "short_desc": "a sheaf of barred hawk feathers",
+   "room_desc": "A sheaf of brown-and-cream hawk feathers lies here, stirring in the draught.",
+   "description": "A handful of long wing and tail feathers, barred brown and cream, stiff in the shaft and perfectly whole. A fletcher would pay well for them, for arrows fletched with mountain hawk are said to fly true even in a crosswind.",
+   "kind": "treasure",
+   "level": 7
+  },
+  {
+   "id": "prospectors-pick",
+   "keywords": "pick prospector rock hammer",
+   "short_desc": "a prospector's rock pick",
+   "room_desc": "A prospector's rock pick lies here, its haft wrapped in old grey cobweb.",
+   "description": "A short, heavy pick with a squared hammer face on one side of the head and a narrow spike on the other, made for splitting stone to see what lies within. The ash haft is darkened by the grip of some long-gone miner's hands, and strands of old web still cling to it.",
+   "kind": "weapon",
+   "weapon_type": "pierce",
+   "level": 14,
+   "bonus": {
+    "hitroll": 1
+   }
+  },
+  {
+   "id": "bone-ice-pick",
+   "keywords": "pick ice bone ice-pick",
+   "short_desc": "a bone ice-pick",
+   "room_desc": "A long ice-pick of yellowed bone lies here, its point glinting with frost.",
+   "description": "A great thighbone, split and ground to a cruel point at one end and bound with braided sinew at the other for a grip. Yeti use such picks to hack footholds in the ice and to crack frozen carcasses, and it serves just as well against a living foe.",
+   "kind": "weapon",
+   "weapon_type": "pierce",
+   "level": 18,
+   "bonus": {
+    "damroll": 1
+   }
+  },
+  {
+   "id": "yeti-pelt",
+   "keywords": "pelt yeti white fur",
+   "short_desc": "a yeti's pelt",
+   "room_desc": "A great shaggy white pelt lies here in a heap, reeking faintly of musk.",
+   "description": "The whole hide of a yeti, its long white fur so dense that no wind can pass through it. Worn about the shoulders it hangs nearly to the ground, heavy and warm as a hearthside, though the musky smell never quite fades.",
+   "kind": "armor",
+   "wear_slot": "about",
+   "level": 19,
+   "bonus": {
+    "hp": 10
+   }
+  }
+ ]
+}

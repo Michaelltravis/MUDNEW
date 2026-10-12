@@ -1,0 +1,648 @@
+{
+ "number": 415,
+ "name": "Quickstream",
+ "builders": "Keats",
+ "atlas_area": 15,
+ "rooms": {
+  "10501": {
+   "vnum": 10501,
+   "name": "Further On Quickstream",
+   "map": {
+    "x": 8,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10502,
+     "description": "To the east lies Riding Quickstream."
+    },
+    "west": {
+     "to_room": 10500,
+     "description": "To the west lies Entering Quickstream."
+    }
+   },
+   "description": "The current has the boat now, carrying it along between low banks of\nwhite dunes at the pace of a trotting horse, and steering is all the\noars are good for. The water runs smooth and dark down the middle of the\nchannel, but along its edges it breaks into little curling waves. Back\nwest, against the stream, lies the mouth of Quickstream and the calm\nsea; east the channel runs on, faster.",
+   "extra_descs": {}
+  },
+  "10502": {
+   "vnum": 10502,
+   "name": "Riding Quickstream",
+   "map": {
+    "x": 9,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10503,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10501,
+     "description": "To the west lies Further On Quickstream."
+    }
+   },
+   "description": "Quickstream runs like a mill-race here, and the dunes on either bank go\nracing past as the boat rides its broad, humped back. Spray flies from\nthe bow in sheets, and the roar of the water fills your ears. Driftwood\nshoots along beside you, keeping pace. The current hurries on east, and\nwest lies a hard, slow pull back against the stream.",
+   "extra_descs": {}
+  },
+  "10503": {
+   "vnum": 10503,
+   "name": "On Quickstream",
+   "map": {
+    "x": 10,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10504,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10502,
+     "description": "To the west lies Riding Quickstream."
+    }
+   },
+   "description": "A row of standing waves stretches across the stream here, great green\nhumps of water that never move however fast the current pours through\nthem, and the boat bucks over them one after another like a horse taking\nfences. Every landing throws a bucketful of cold spray over the gunwale.\nThe water rushes on east, and west lies the way back, a hard fight\nupstream.",
+   "extra_descs": {}
+  },
+  "10504": {
+   "vnum": 10504,
+   "name": "On Quickstream",
+   "map": {
+    "x": 11,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10505,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10503,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "The stream bends here around a bank of crumbling clay, and the whole\ncurrent piles up against the outer side in a hump of brown water before\nswinging away, dragging the boat with it. Chunks of clay drop from the\nbank and are swallowed with a plop. Downstream to the east the channel\nstraightens; upstream to the west the standing waves heave and glitter.",
+   "extra_descs": {}
+  },
+  "10505": {
+   "vnum": 10505,
+   "name": "On Quickstream",
+   "map": {
+    "x": 12,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10506,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10504,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "A great black rock stands in the middle of the stream here, and the\nwater piles against it in a roaring cushion of white before tearing past\non either side. The boat is flung by so close that you could almost\ntouch its weed-slick flank. East, the current races on; west, upstream,\nthe bend in the clay bank is already almost out of sight.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641501,
+     "max": 1
+    }
+   ]
+  },
+  "10506": {
+   "vnum": 10506,
+   "name": "On Quickstream",
+   "map": {
+    "x": 13,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10507,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10505,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "The roar of Quickstream is deafening here, and its edges are torn into\nwhirlpools that spin and suck and vanish, each one a little funnel of\nglassy water. The boat shudders as the current shoves at it from below.\nSpray hangs over the stream in a fine, drifting rain, and the sun\nstrikes little rainbows from it. The water rushes on east; west lies the\nblack rock in midstream.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641500,
+     "max": 1
+    }
+   ]
+  },
+  "10507": {
+   "vnum": 10507,
+   "name": "On Quickstream",
+   "map": {
+    "x": 14,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10508,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10506,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "The banks open out a little here into low dunes tufted with silver\ngrass, and a line of old marker posts stands along one shore, leaning\nwith the current, each topped with a scrap of faded rag. The stream runs\nfast and smooth, a sheet of dark green glass that hisses along the hull.\nEast, the dunes rise higher where the channel narrows; west, the\nwhirlpools churn.",
+   "extra_descs": {}
+  },
+  "10508": {
+   "vnum": 10508,
+   "name": "On Quickstream",
+   "map": {
+    "x": 15,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10509,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10507,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "Two horns of black rock close in on the stream here, and Quickstream\ncrowds between them, heaped high in the middle and boiling white along\ntheir feet. The roar echoes back from the rock walls, and the air is\ncold with spray. The boat is shot through the gap toward the east as if\nfired from a sling, while west the channel widens between low dunes.",
+   "extra_descs": {}
+  },
+  "10509": {
+   "vnum": 10509,
+   "name": "On Quickstream",
+   "map": {
+    "x": 16,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10510,
+     "description": "To the east lies Into the Southern Ocean."
+    },
+    "west": {
+     "to_room": 10508,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "Below the rocky gap the stream runs broad and swift between the last of\nthe dunes, and the air changes, cool and huge and heavy with the smell\nof the open ocean. Ahead to the east, beyond a line of white breakers,\nthe Southern Ocean spreads away to the horizon. West, the black horns of\nrock guard the narrows, still roaring.",
+   "extra_descs": {}
+  },
+  "10510": {
+   "vnum": 10510,
+   "name": "Into the Southern Ocean",
+   "map": {
+    "x": 17,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10511,
+     "description": "To the east lies On Quickstream in the Southern Ocean."
+    },
+    "west": {
+     "to_room": 10509,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "Quickstream bursts out of its channel here into the open Southern Ocean,\nand where the racing current meets the incoming swell the sea stands up\nin steep, confused peaks that crash together and fling spray high into\nthe air. The boat pitches wildly, shipping water over both gunwales.\nEast, the current runs on as a dark road through the ocean; west lies\nthe mouth of the channel between the dunes.",
+   "extra_descs": {}
+  },
+  "10511": {
+   "vnum": 10511,
+   "name": "On Quickstream in the Southern Ocean",
+   "map": {
+    "x": 18,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10512,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10510,
+     "description": "To the west lies Into the Southern Ocean."
+    }
+   },
+   "description": "Out on the open ocean Quickstream runs on like a river within the sea, a\nbroad band of darker, smoother water edged on both sides by wavering\nlines of foam. Outside those lines the ocean swells roll slow and blue,\nbut inside them the boat speeds along as if pulled on a rope. East, the\ncurrent heads toward a smudge of smoke on the horizon; west, the\nbreakers churn where it left the land.",
+   "extra_descs": {}
+  },
+  "10512": {
+   "vnum": 10512,
+   "name": "On Quickstream",
+   "map": {
+    "x": 20,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 49400,
+     "description": "To the north lies Entering a Volcanic Island."
+    },
+    "east": {
+     "to_room": 10513,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10511,
+     "description": "To the west lies On Quickstream in the Southern Ocean."
+    }
+   },
+   "description": "A volcanic island rises from the sea north of the current here, a dark\ncone wreathed in drifting smoke, its lower slopes shaggy with green and\nits shore a jagged ring of black rock. No boat can reach it, for reefs\nof black lava lie all around it just under the water, and the surf boils\nwhite over them in an unbroken wall. The air smells of sulphur, and fine\ngrey ash speckles the water. Quickstream sweeps on east, and back west\ntoward the open ocean.",
+   "extra_descs": {
+    "island volcano cone reefs smoke": "Now and then the cone gives a low grumble that you feel through the\nplanks more than hear, and a fresh puff of smoke rolls from its crest.\nAlong the reefs the surf has thrown up drifts of grey pumice that bob in\nthe shallows like scum on a cooking pot."
+   }
+  },
+  "10513": {
+   "vnum": 10513,
+   "name": "On Quickstream",
+   "map": {
+    "x": 21,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10514,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10512,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "The water here is warm to the touch and faintly cloudy, stained by ash\ndrifting out from the burning island, and a scum of grey pumice rides\nalong with the current. The sulphur stink lingers on the wind. Now and\nthen a hiss and a gout of steam rise from the sea far off, where some\nhidden vent meets the water. The current carries the boat briskly on\neast, while west the smoking cone stands up out of the sea.",
+   "extra_descs": {}
+  },
+  "10514": {
+   "vnum": 10514,
+   "name": "On Quickstream",
+   "map": {
+    "x": 22,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10515,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10513,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "Quickstream runs fast and straight here across the open ocean, and the\nboat skims along it with a long, hissing wake spreading behind. Spray\nwhips back over the bow, salty and cold, and the wind of your passage\ntugs at your hair. Ahead to the east, a dark headland is lifting out of\nthe sea, while west the current runs back toward the island's drifting\nash.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641500,
+     "max": 1
+    },
+    {
+     "vnum": 641501,
+     "max": 1
+    }
+   ]
+  },
+  "10515": {
+   "vnum": 10515,
+   "name": "On Quickstream",
+   "map": {
+    "x": 23,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10516,
+     "description": "To the east lies Passing by Cape Voogk."
+    },
+    "west": {
+     "to_room": 10514,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "The water darkens to a cold slate-grey here, and the air takes on a bite\nthat numbs the fingers on the oars. Ahead to the east, the black\nheadland of Cape Voogk rises ever higher out of the sea, its cliffs\ncrusted with old snow, and pale shapes of ice drift along its foot.\nQuickstream runs swift and silent, a smooth dark road with the foam\nlines peeling away on either side. West, it runs back toward warmer\nwater.",
+   "extra_descs": {}
+  },
+  "10516": {
+   "vnum": 10516,
+   "name": "Passing by Cape Voogk",
+   "map": {
+    "x": 24,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10517,
+     "description": "To the east lies Heading East On Quickstream."
+    },
+    "west": {
+     "to_room": 10515,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "Quickstream sweeps past the black headland of Cape Voogk here, so close\nthat the boom of the swell against its cliffs drowns out the hiss of the\ncurrent. The cliffs rise sheer and dark, glazed with ice where the spray\nreaches and hung with long icicles, and on the crag at the very tip a\ncairn of stones and whale bones stands against the sky. East, the\ncurrent runs on past the cape; west lies the way back along the stream.",
+   "extra_descs": {
+    "cairn crag cape voogk bones": "The cairn on the crag is built of black stones and great curved whale\nribs, lashed together and frozen solid. From the current it looks like a\nhand raised in warning, and sailors riding Quickstream past the cape\nraise a hand back to it, for luck."
+   }
+  },
+  "10517": {
+   "vnum": 10517,
+   "name": "Heading East On Quickstream",
+   "map": {
+    "x": 25,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10900,
+     "description": "To the north lies The Ocean Stream near the Rim of the World."
+    },
+    "east": {
+     "to_room": 10518,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10516,
+     "description": "To the west lies Passing by Cape Voogk."
+    }
+   },
+   "description": "Beyond the cape Quickstream swings back into open water and runs on\neast, broad and steady. North, a second current splits away from it, a\nnarrow, fast-running stream that sailors say flows toward the very rim\nof the world, but a line of white breakers seethes across its mouth over\nsome hidden bar, and behind them a wall of grey fog closes the way.\nWest, the black cliffs of Cape Voogk are falling behind, and the cold is\neasing.",
+   "extra_descs": {}
+  },
+  "10518": {
+   "vnum": 10518,
+   "name": "On Quickstream",
+   "map": {
+    "x": 26,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10519,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10517,
+     "description": "To the west lies Heading East On Quickstream."
+    }
+   },
+   "description": "The current is still strong here, but its roar has softened to a long,\nsteady hiss, and the swells of the open ocean have grown longer and\nlazier on either side. The water warms again, blue-green and clear, and\nthe boat glides more than it races. Drifts of brown weed caught in the\nstream travel along beside you like companions. The way runs on east,\nand back west toward the cape.",
+   "extra_descs": {}
+  },
+  "10519": {
+   "vnum": 10519,
+   "name": "On Quickstream",
+   "map": {
+    "x": 27,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10520,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10518,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "Quickstream widens and spreads here, its edges blurring into the\nsurrounding sea, and the foam lines that marked it begin to wander and\nbreak apart. The surface is crinkled with countless small ripples that\nglitter like fish scales. The boat is still carried along, though gently\nnow, and you can hear the water lapping at the hull again. East, the\ncurrent loosens further; west, it runs back stronger.",
+   "extra_descs": {}
+  },
+  "10520": {
+   "vnum": 10520,
+   "name": "On Quickstream",
+   "map": {
+    "x": 28,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10521,
+     "description": "To the east lies Quickstream Fading."
+    },
+    "west": {
+     "to_room": 10519,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "The ocean grows quiet around the boat here, and Quickstream is now only\na gentle drift that you feel more than see, a slight lean of the water\ntoward the east. Long, low swells lift and lower you with sleepy\npatience. A great calm is spreading over the sea ahead, where the water\nlies like polished glass. West, the current runs back toward the wider\nstream.",
+   "extra_descs": {}
+  },
+  "10521": {
+   "vnum": 10521,
+   "name": "Quickstream Fading",
+   "map": {
+    "x": 29,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10522,
+     "description": "To the east lies Quickstream Faded."
+    },
+    "west": {
+     "to_room": 10520,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "Here the last strength of Quickstream ebbs away into slow, wandering\neddies that turn the boat lazily about, and weed and foam carried all\nthe way from Mira Retrum spread out and come to rest on the still water.\nThe silence after the roar of the current is almost startling. East, the\nsea lies utterly calm; west, the faint drift of the stream can still be\nfelt.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 641500,
+     "max": 1
+    }
+   ]
+  },
+  "10522": {
+   "vnum": 10522,
+   "name": "Quickstream Faded",
+   "map": {
+    "x": 30,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 10521,
+     "description": "To the west lies Quickstream Fading."
+    }
+   },
+   "description": "Quickstream has faded away entirely here, and the boat floats on a wide,\nstill sea under an enormous sky, without a breath of current to carry it\nanywhere. The water is clear blue and so calm that it mirrors every\ncloud. All around lies the empty ocean, without a sail, a shore or a\nbird in sight. The only way on is to row back west, against the dying\ndrift of the stream.",
+   "extra_descs": {}
+  }
+ },
+ "mobs": {
+  "641500": {
+   "vnum": 641500,
+   "name": "fish flying silver",
+   "short_desc": "a flying fish",
+   "long_desc": "A flying fish bursts from the stream and skims alongside the boat on outspread silver fins.",
+   "description": "It is a slender, blue-backed fish about as long as your forearm, with a\nsilver belly and two enormous fins that spread like the wings of a\ndragonfly, stiff and glassy and finely veined. It shoots out of the\nwater at the speed of the current and glides for long stretches before\nslapping back in. Sailors say they bring luck to any boat they follow,\nand good eating besides.",
+   "level": 7,
+   "alignment": 0,
+   "hp_dice": "7d8+81",
+   "damage_dice": "2d6+5",
+   "armor_class": 76,
+   "exp": 405,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 741500,
+     "chance": 25
+    },
+    {
+     "vnum": 200,
+     "chance": 5
+    },
+    {
+     "vnum": 201,
+     "chance": 5
+    }
+   ]
+  },
+  "641501": {
+   "vnum": 641501,
+   "name": "shark grey stray",
+   "short_desc": "a stray shark",
+   "long_desc": "A stray shark circles the boat, its grey fin slicing back and forth through the water.",
+   "description": "It is a lean grey shark longer than the boat, its back scarred by old\nwounds and its blunt snout probing at anything that trails in the water.\nIt has learned to follow boats down Quickstream for the scraps thrown\noverboard, and lately it has grown bolder and hungrier. A frayed loop of\nred cord hangs snagged among its back teeth, all that remains of some\nsailor's charm.",
+   "level": 11,
+   "alignment": 0,
+   "hp_dice": "11d8+123",
+   "damage_dice": "3d6+7",
+   "armor_class": 64,
+   "exp": 625,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 741500,
+     "chance": 15
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "741500": {
+   "vnum": 741500,
+   "name": "charm fin flying fish",
+   "short_desc": "a flying-fish fin charm",
+   "room_desc": "A stiff, glassy fish fin lies here, spread like a little wing.",
+   "description": "A flying fish's long wing-fin, stiff and glassy and veined like a dragonfly's wing. Sailors thread such fins on a cord and wear them for luck, swearing that whoever does so will skim over any sea that tries to swallow them, and it does seem to make the wearer a little lighter on their feet.",
+   "item_type": "armor",
+   "type": "armor",
+   "min_level": 8,
+   "wear_slot": "neck1",
+   "armor": 1,
+   "weight": 1,
+   "value": 190,
+   "affects": [
+    {
+     "type": "dex",
+     "value": 1
+    }
+   ]
+  }
+ }
+}

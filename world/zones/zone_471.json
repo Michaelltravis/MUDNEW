@@ -1,0 +1,3628 @@
+{
+ "number": 471,
+ "name": "Badlands II",
+ "builders": "Jack",
+ "atlas_area": 71,
+ "rooms": {
+  "8304": {
+   "vnum": 8304,
+   "name": "At The Far End Of The Sundered Bridge",
+   "map": {
+    "x": 26,
+    "y": 58,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8305,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9100,
+     "description": "To the east lies The Badlands."
+    },
+    "south": {
+     "to_room": 19744,
+     "description": "To the south lies On The Great Northern bridge."
+    },
+    "west": {
+     "to_room": 9102,
+     "description": "To the west lies The Badlands."
+    }
+   },
+   "description": "The great stone bridge ends here on a shelf of cracked grey rock, its\nlast parapet stones tumbled and split as if some giant fist had struck\nthem. South, the sundered span leaps back over the roaring gorge toward\nthe Trade Road. A bleak, wind-scoured waste opens out on either hand,\nthe badlands running away east and west under a low iron sky. Northward\nthe ground lifts toward the dark, bare shoulders of the Black Hills.",
+   "extra_descs": {}
+  },
+  "8305": {
+   "vnum": 8305,
+   "name": "The Black Hills",
+   "map": {
+    "x": 26,
+    "y": 59,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8306,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9105,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 8304,
+     "description": "To the south lies At The Far End Of The Sundered Bridge."
+    },
+    "west": {
+     "to_room": 9104,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "The first slopes of the Black Hills begin here, low and stony, the soil\nbetween them dark as soot and grown with nothing but wiry grass. A cold\nwind pours down from the heights and flattens the grass in grey ripples.\nThe hills climb north and spread east and west in dull, rounded humps,\nwhile south the land falls back toward the sundered bridge. Somewhere\nfar off, a crow calls once and is silent.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647100,
+     "max": 1
+    }
+   ]
+  },
+  "8306": {
+   "vnum": 8306,
+   "name": "The Black Hills",
+   "map": {
+    "x": 26,
+    "y": 60,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8307,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9119,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 8305,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9120,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "Black shale crunches underfoot on this barren rise, splintered into thin\nplates that slide and clatter at every step. From the crest the gorge\nbehind you shows as a dark scar across the land, and the Spirit Wood as\na smudge of shadow far ahead. Hills roll on north, east and west, and\nthe slope runs south down toward the bridge country. Nothing grows here\nbut a crust of grey lichen.",
+   "extra_descs": {}
+  },
+  "8307": {
+   "vnum": 8307,
+   "name": "The Black Hills",
+   "map": {
+    "x": 26,
+    "y": 61,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8308,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 8306,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9121,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "A tall cairn of black stones crowns this hilltop, half-collapsed, its\nbuilders long forgotten. The wind keens through the gaps between the\nstones with a thin, hollow note that sets your teeth on edge. A sheep\ntrack drops away west along the ridge and another runs east across the\nsaddle, while the way you came falls south down the shale. Clouds the\ncolour of wet slate hang low overhead.",
+   "extra_descs": {
+    "cairn black stones": "The cairn was once taller than a man, built of flat black stones fitted\nwithout mortar. A hollow at its heart, now open to the weather, holds\nnothing but wind-blown grit and a few green copper stains."
+   }
+  },
+  "8308": {
+   "vnum": 8308,
+   "name": "The Black Hills",
+   "map": {
+    "x": 27,
+    "y": 61,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8309,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9115,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9119,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 8307,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "The hillside here is scarred by an old landslip, a raw bank of black\nearth and boulders that slid down long ago and never healed. Thorny\ngorse has taken hold among the stones, its few yellow flowers the only\ncolour for miles. Paths wind north up the slope and east along the foot\nof the slip, while west and south they drop into the hollows between the\nhills. The air smells of cold stone and rain.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647101,
+     "max": 1
+    }
+   ]
+  },
+  "8309": {
+   "vnum": 8309,
+   "name": "The Black Hills",
+   "map": {
+    "x": 27,
+    "y": 63,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8310,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9114,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 8308,
+     "description": "To the south lies The Black Hills."
+    }
+   },
+   "description": "A narrow gully cuts through the hill, its sides streaked black and rust-\nred where water has leached the iron from the rock. Pools of brackish\nwater stand in the bottom, skinned with an oily film. The gully climbs\nnorth toward higher ground and opens south onto the lower slopes, and a\ngoat path scrambles out of it to the east. Old bleached bones of some\nsmall beast lie wedged among the stones.",
+   "extra_descs": {}
+  },
+  "8310": {
+   "vnum": 8310,
+   "name": "The Black Hills",
+   "map": {
+    "x": 27,
+    "y": 64,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8311,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 8309,
+     "description": "To the south lies The Black Hills."
+    }
+   },
+   "description": "This is one of the highest of the Black Hills, a bald, windswept dome\nwhere the grass has given up and left only bare dark rock. The wind\nnever rests up here, and it pushes at you like an unfriendly hand. Far\nahead a grey line of trees marks the edge of the Spirit Wood, and beside\nit rises a lone hill crowned by a single gaunt shape. The way runs east\nalong the crown and south down into the gully.",
+   "extra_descs": {}
+  },
+  "8311": {
+   "vnum": 8311,
+   "name": "The Black Hills",
+   "map": {
+    "x": 29,
+    "y": 64,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8312,
+     "description": "To the north lies The Hill Of The Hanged Man."
+    },
+    "east": {
+     "to_room": 9112,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9114,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 8310,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "Several paths meet in a stony hollow between the hills, where a boundary\nstone leans at a drunken angle, its carvings worn smooth. North, a\nsteeper path climbs toward a lonely hilltop where a gallows stands stark\nagainst the clouds. The other ways wander east and west along the folds\nof the hills, and south down a scree slope. The ground is trampled and\nmuddy, as if many feet pass this way, though none linger.",
+   "extra_descs": {}
+  },
+  "8312": {
+   "vnum": 8312,
+   "name": "The Hill Of The Hanged Man",
+   "map": {
+    "x": 29,
+    "y": 65,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8313,
+     "description": "To the north lies The Southern Edge Of Spirit Wood."
+    },
+    "south": {
+     "to_room": 8311,
+     "description": "To the south lies The Black Hills."
+    }
+   },
+   "description": "An old gallows of black, weather-split timber crowns this bleak hilltop,\nits crossbeam still bearing a frayed length of rope that turns slowly in\nthe wind. The grass around its foot grows thin and pale, and no bird\nwill settle on the beam. North, the hill falls away to the dark fringe\nof the Spirit Wood, and south a path drops back into the Black Hills.\nEven by day the air here feels cold and watchful.",
+   "extra_descs": {
+    "gallows rope crossbeam": "The gallows is old enough that its uprights have split from top to\nbottom, yet it still stands. The rope on the crossbeam ends in a noose\nworn smooth and dark, and it sways even on the stillest days."
+   },
+   "mob_resets": [
+    {
+     "vnum": 647105,
+     "max": 1
+    }
+   ]
+  },
+  "8313": {
+   "vnum": 8313,
+   "name": "The Southern Edge Of Spirit Wood",
+   "map": {
+    "x": 29,
+    "y": 66,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8314,
+     "description": "To the north lies In Spirit Wood."
+    },
+    "south": {
+     "to_room": 8312,
+     "description": "To the south lies The Hill Of The Hanged Man."
+    }
+   },
+   "description": "Here the open hills give way to the first trees of the Spirit Wood, grey\nand crooked, their bark peeling like dead skin. A chill mist lingers\namong the trunks even at midday, and the light turns thin and\ncolourless. The wood thickens to the north, while to the south the hill\nof the gallows rises bare and dark. A deep hush lies over everything, as\nthough the trees are holding their breath.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647104,
+     "max": 1
+    }
+   ]
+  },
+  "8314": {
+   "vnum": 8314,
+   "name": "In Spirit Wood",
+   "map": {
+    "x": 29,
+    "y": 67,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8315,
+     "description": "To the north lies In Spirit Wood."
+    },
+    "south": {
+     "to_room": 8313,
+     "description": "To the south lies The Southern Edge Of Spirit Wood."
+    }
+   },
+   "description": "The path winds between ancient yews whose branches knit together\noverhead into a low, black roof. Pale fungus glimmers on the rotting\nstumps, giving off a faint and sickly glow. Now and then a cold breath\nof air passes through the trees with no wind to carry it. The trail\ncontinues north deeper into the wood and south toward its edge.",
+   "extra_descs": {}
+  },
+  "8315": {
+   "vnum": 8315,
+   "name": "In Spirit Wood",
+   "map": {
+    "x": 29,
+    "y": 68,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8316,
+     "description": "To the north lies In Spirit Wood."
+    },
+    "south": {
+     "to_room": 8314,
+     "description": "To the south lies In Spirit Wood."
+    }
+   },
+   "description": "Grey moss hangs in long beards from the branches here, stirring gently\nthough the air is still. The ground is soft and spongy, layered with\nyears of fallen needles that swallow the sound of your steps. Faint\nwhispers seem to drift between the trunks, always just too quiet to make\nout. The path leads north and south through the gloom.",
+   "extra_descs": {}
+  },
+  "8316": {
+   "vnum": 8316,
+   "name": "In Spirit Wood",
+   "map": {
+    "x": 29,
+    "y": 69,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8317,
+     "description": "To the north lies In Spirit Wood."
+    },
+    "south": {
+     "to_room": 8315,
+     "description": "To the south lies In Spirit Wood."
+    }
+   },
+   "description": "A ring of pale standing stones, none taller than your knee, encircles a\npatch of bare earth beside the path. Nothing grows inside the ring, and\nfrost clings there even when the rest of the wood is merely damp. The\ntrees press close around it, gnarled and leaning inward. The trail runs\nnorth between the trunks and south back toward the edge of the wood.",
+   "extra_descs": {
+    "ring standing stones": "Each stone is cut with a single shallow mark, a hand with fingers\nspread, worn almost away. Touching one leaves your fingers numb with\ncold for a long while after."
+   },
+   "mob_resets": [
+    {
+     "vnum": 647104,
+     "max": 1
+    }
+   ]
+  },
+  "8317": {
+   "vnum": 8317,
+   "name": "In Spirit Wood",
+   "map": {
+    "x": 29,
+    "y": 70,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8319,
+     "description": "To the north lies In Spirit Wood."
+    },
+    "east": {
+     "to_room": 8320,
+     "description": "To the east lies In Spirit Wood."
+    },
+    "south": {
+     "to_room": 8316,
+     "description": "To the south lies In Spirit Wood."
+    },
+    "west": {
+     "to_room": 8318,
+     "description": "To the west lies In Spirit Wood."
+    }
+   },
+   "description": "Four paths meet beneath a dead oak, a vast and leafless giant whose\nbranches spread like grasping fingers over the crossing. Strips of faded\ncloth are tied to its lowest boughs, prayers or warnings from travellers\nlong gone. Paths lead off north, east and west into the wood, and south\nback toward the hills. The mist gathers thickest here, curling around\nthe roots.",
+   "extra_descs": {}
+  },
+  "8318": {
+   "vnum": 8318,
+   "name": "In Spirit Wood",
+   "map": {
+    "x": 28,
+    "y": 70,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8317,
+     "description": "To the east lies In Spirit Wood."
+    }
+   },
+   "description": "The path ends at the edge of a sunken hollow full of tangled briars and\ndead bracken. In the middle of the hollow stands a lone stone cross,\nleaning and green with lichen, its arms broken. No birds sing here, and\neven the wind seems to avoid the place. The only way out is back east to\nthe crossing beneath the dead oak.",
+   "extra_descs": {
+    "cross stone lichen": "Beneath the lichen, letters run down the shaft of the cross: HERE LIES\nTHE KEEPER OF THE LODGE, WHO WOULD NOT LEAVE. The stone is always cold\nand faintly wet to the touch."
+   }
+  },
+  "8319": {
+   "vnum": 8319,
+   "name": "In Spirit Wood",
+   "map": {
+    "x": 29,
+    "y": 71,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 8317,
+     "description": "To the south lies In Spirit Wood."
+    },
+    "down": {
+     "to_room": 8450,
+     "description": "To the down lies The Tunnel."
+    }
+   },
+   "description": "The path ends in a hollow where the roots of two great trees have heaved\nthe earth apart, laying bare a square stone hatch set in the ground. The\nhatch is bound with rusted iron bands and chained fast, shutting off the\ndark tunnel that leads down beneath it. Cold air seeps up through the\ncracks around its edges, smelling of damp stone and something older. The\nonly open way is back south to the crossing.",
+   "extra_descs": {}
+  },
+  "8320": {
+   "vnum": 8320,
+   "name": "In Spirit Wood",
+   "map": {
+    "x": 30,
+    "y": 70,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8321,
+     "description": "To the north lies The Clearing."
+    },
+    "west": {
+     "to_room": 8317,
+     "description": "To the west lies In Spirit Wood."
+    }
+   },
+   "description": "Ferns as tall as a man crowd the path here, their fronds grey with mist\nand dripping with cold water. Somewhere among them a brook trickles\nunseen. The way bends at this spot, running north toward a lighter patch\nin the trees and west back to the dead oak at the crossing. Webs hang\nthick between the ferns, beaded with droplets like strings of tiny\npearls.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647104,
+     "max": 1
+    }
+   ]
+  },
+  "8321": {
+   "vnum": 8321,
+   "name": "The Clearing",
+   "map": {
+    "x": 30,
+    "y": 72,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8322,
+     "description": "To the north lies Deeper In Spirit Wood."
+    },
+    "east": {
+     "to_room": 8323,
+     "description": "To the east lies A Small Pond."
+    },
+    "south": {
+     "to_room": 8320,
+     "description": "To the south lies In Spirit Wood."
+    },
+    "west": {
+     "to_room": 8324,
+     "description": "To the west lies The Camp."
+    }
+   },
+   "description": "The trees draw back to leave a round clearing open to a grey and\ncheerless sky, carpeted with pale, wiry grass. A blackened ring of fire-\nstones sits at its centre, cold and long unused. Paths leave the\nclearing on every side: north deeper into the wood, east toward the\ngleam of a small pond, west toward an old camp, and south back among the\nferns. The silence here feels heavier than among the trees.",
+   "extra_descs": {}
+  },
+  "8322": {
+   "vnum": 8322,
+   "name": "Deeper In Spirit Wood",
+   "map": {
+    "x": 30,
+    "y": 73,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8325,
+     "description": "To the north lies Deep In Spirit Wood."
+    },
+    "east": {
+     "to_room": 8327,
+     "description": "To the east lies Deep In Spirit Wood."
+    },
+    "south": {
+     "to_room": 8321,
+     "description": "To the south lies The Clearing."
+    },
+    "west": {
+     "to_room": 8326,
+     "description": "To the west lies At The Fallen Tree."
+    }
+   },
+   "description": "The trees grow huge and close here, their trunks black with damp and\ntheir roots coiling over the ground like sleeping serpents. Very little\nlight reaches the forest floor, and what does is grey and cold. Faint\ntrails wind north and east into deeper shadow, west toward a great\nfallen trunk, and south back to the clearing. A low moaning seems to\nrise and fall among the branches, though no wind blows.",
+   "extra_descs": {}
+  },
+  "8323": {
+   "vnum": 8323,
+   "name": "A Small Pond",
+   "map": {
+    "x": 31,
+    "y": 72,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 8321,
+     "description": "To the west lies The Clearing."
+    }
+   },
+   "description": "A small, still pond lies in a hollow among the trees, its water black\nand glassy and ringed with pale reeds. The reflections in it are\nstrangely clear, showing the trees, the grey sky, and sometimes shapes\nthat are not there when you look up. Mist curls across the surface in\nthin, slow wisps. A path leads back west to the clearing.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647107,
+     "max": 1
+    }
+   ]
+  },
+  "8324": {
+   "vnum": 8324,
+   "name": "The Camp",
+   "map": {
+    "x": 29,
+    "y": 72,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8321,
+     "description": "To the east lies The Clearing."
+    }
+   },
+   "description": "An abandoned camp lies under the trees here: a ring of stones around\ncold ashes, a lean-to of rotting branches, and the frayed remains of a\ncanvas awning. Whoever camped here left in a hurry, for a blackened iron\ntripod still stands over the dead fire. The ground is scattered with the\nprints of boots, all leading away. The clearing lies back to the east.",
+   "extra_descs": {}
+  },
+  "8325": {
+   "vnum": 8325,
+   "name": "Deep In Spirit Wood",
+   "map": {
+    "x": 30,
+    "y": 74,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 8322,
+     "description": "To the south lies Deeper In Spirit Wood."
+    }
+   },
+   "description": "The trail dies away among roots and brambles in a dead-end hollow where\nthe trees stand so close that their trunks form a wall. Hundreds of\nsmall bones have been woven into the brambles, and they click faintly\ntogether whenever the mist stirs. The cold here bites through cloth and\nskin alike, and your breath smokes in the gloom. The only way out is\nback south through the dark trees.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647104,
+     "max": 1
+    }
+   ]
+  },
+  "8326": {
+   "vnum": 8326,
+   "name": "At The Fallen Tree",
+   "map": {
+    "x": 29,
+    "y": 73,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8322,
+     "description": "To the east lies Deeper In Spirit Wood."
+    }
+   },
+   "description": "A colossal tree has fallen across the forest floor here, tearing up a\ngreat wheel of roots and earth that stands taller than a house. Its\ntrunk, furred with moss and riddled with holes, blocks the way beyond.\nThe hollow beneath the roots draws the eye, a darkness deeper than the\nshadows around it. The only path leads back east toward the deeper wood.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647107,
+     "max": 1
+    }
+   ]
+  },
+  "8327": {
+   "vnum": 8327,
+   "name": "Deep In Spirit Wood",
+   "map": {
+    "x": 31,
+    "y": 73,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8332,
+     "description": "To the north lies In Spirit Wood."
+    },
+    "east": {
+     "to_room": 8329,
+     "description": "To the east lies Deeper Into Spirit Wood."
+    },
+    "west": {
+     "to_room": 8322,
+     "description": "To the west lies Deeper In Spirit Wood."
+    }
+   },
+   "description": "A sluggish black stream creeps through the roots here, so still and dark\nthat it mirrors the branches above like a sheet of polished jet. Its\nbanks are crusted with pale fungus that crumbles at a touch. A path\nfollows the water east, another climbs north over a rise of roots, and a\nthird leads west into the shadowed heart of the wood. The smell of rot\nhangs thick in the damp air.",
+   "extra_descs": {}
+  },
+  "8329": {
+   "vnum": 8329,
+   "name": "Deeper Into Spirit Wood",
+   "map": {
+    "x": 32,
+    "y": 73,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8330,
+     "description": "To the east lies Deeper Into Spirit Wood."
+    },
+    "west": {
+     "to_room": 8327,
+     "description": "To the west lies Deep In Spirit Wood."
+    }
+   },
+   "description": "A narrow track follows the bank of a dark stream through the trees, the\nwater sliding past without a sound. Gnarled alders lean out over it,\ntheir roots trailing in the current like drowned hair. The track runs\neast toward a faint smell of woodsmoke, and west back toward the heart\nof the wood. Pale lights seem to drift above the water, vanishing\nwhenever you look straight at them.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647107,
+     "max": 1
+    }
+   ]
+  },
+  "8330": {
+   "vnum": 8330,
+   "name": "Deeper Into Spirit Wood",
+   "map": {
+    "x": 33,
+    "y": 73,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8331,
+     "description": "To the east lies At The Forest Lodge."
+    },
+    "west": {
+     "to_room": 8329,
+     "description": "To the west lies Deeper Into Spirit Wood."
+    }
+   },
+   "description": "The trees here bear old axe-marks, and many have been felled, leaving a\nscattering of grey stumps among the living trunks. A cart track, deeply\nrutted and overgrown with moss, leads east toward a building half-hidden\namong the trees. West, the stream-side track winds back into deeper\nshadow. Rows of cut logs lie rotting where they were stacked long ago.",
+   "extra_descs": {}
+  },
+  "8331": {
+   "vnum": 8331,
+   "name": "At The Forest Lodge",
+   "map": {
+    "x": 34,
+    "y": 73,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8335,
+     "description": "To the east lies Inside The Forest Lodge.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 8330,
+     "description": "To the west lies Deeper Into Spirit Wood."
+    }
+   },
+   "description": "A long, low lodge of dark logs stands in a small clearing here, its roof\nof mossy shingles sagging and its chimney leaning. The heavy wooden door\nto the east is shut, its iron latch red with rust. Antlers are nailed\nabove the doorway, bleached white by the weather. West, the cart track\nleads back into the trees of the Spirit Wood.",
+   "extra_descs": {}
+  },
+  "8332": {
+   "vnum": 8332,
+   "name": "In Spirit Wood",
+   "map": {
+    "x": 31,
+    "y": 74,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8333,
+     "description": "To the east lies In Spirit Wood."
+    },
+    "south": {
+     "to_room": 8327,
+     "description": "To the south lies Deep In Spirit Wood."
+    }
+   },
+   "description": "The trees thin a little here, and grey light filters down through a\nragged gap in the canopy. Thistles and nettles grow rank along the path,\ntheir leaves furred with mildew. A crooked wooden post stands at the\nbend, its carved pointer long since rotted away. The path turns east\nalong a low bank and south back down into the deep wood.",
+   "extra_descs": {}
+  },
+  "8333": {
+   "vnum": 8333,
+   "name": "In Spirit Wood",
+   "map": {
+    "x": 32,
+    "y": 74,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8334,
+     "description": "To the north lies The Northern Edge Of Spirit Wood."
+    },
+    "west": {
+     "to_room": 8332,
+     "description": "To the west lies In Spirit Wood."
+    }
+   },
+   "description": "Birches begin to appear among the darker trees, their white trunks\nscarred with black marks like closed eyes. The mist is thinner here, and\nthe air smells faintly of open ground. North, daylight shows between the\ntrunks where the wood comes to an end, and west the path winds back\namong the yews. A broken fence of split rails runs a little way beside\nthe trail, then gives up.",
+   "extra_descs": {}
+  },
+  "8334": {
+   "vnum": 8334,
+   "name": "The Northern Edge Of Spirit Wood",
+   "map": {
+    "x": 32,
+    "y": 75,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8338,
+     "description": "To the north lies The Plains."
+    },
+    "south": {
+     "to_room": 8333,
+     "description": "To the south lies In Spirit Wood."
+    }
+   },
+   "description": "The Spirit Wood ends abruptly at a low bank, and beyond it a wide, grey\ngrassland stretches north beneath an enormous sky. Wind sweeps across\nthe open ground, bringing the smell of dust and dry grass. Behind you\nthe trees stand in a dark, silent wall, the path vanishing south into\ntheir shadow. A weathered stake topped with an animal skull marks the\nplace where the trail leaves the wood.",
+   "extra_descs": {}
+  },
+  "8335": {
+   "vnum": 8335,
+   "name": "Inside The Forest Lodge",
+   "map": {
+    "x": 35,
+    "y": 73,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 8336,
+     "description": "To the east lies Behind The Forest Lodge.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 8331,
+     "description": "To the west lies At The Forest Lodge."
+    },
+    "down": {
+     "to_room": 8337,
+     "description": "To the down lies The Cellar."
+    }
+   },
+   "description": "The lodge is one long room, dim and cold, with a great stone hearth at\none end and heavy trestle tables along the walls. Animal pelts, stiff\nand moth-eaten, hang from the rafters among strings of long-dried herbs.\nA trapdoor in the floor opens on a ladder leading down into the cellar,\nand a back door stands in the east wall. West, the front door leads out\nto the clearing. Everything is coated in fine grey dust, as though no\none has lived here for years.",
+   "extra_descs": {}
+  },
+  "8336": {
+   "vnum": 8336,
+   "name": "Behind The Forest Lodge",
+   "map": {
+    "x": 36,
+    "y": 73,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 8335,
+     "description": "To the west lies Inside The Forest Lodge."
+    }
+   },
+   "description": "Behind the lodge lies a small yard, enclosed by the trees and choked\nwith weeds. A woodpile has collapsed against the wall, and an old\nchopping block still holds a rusted axe-head driven deep into its grain.\nBeyond the yard the Spirit Wood presses close and dark, with no path\nleading into it. The lodge's back door, to the west, is the only way\nout.",
+   "extra_descs": {}
+  },
+  "8337": {
+   "vnum": 8337,
+   "name": "The Cellar",
+   "map": {
+    "x": 34,
+    "y": 72,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 8335,
+     "description": "To the up lies Inside The Forest Lodge."
+    }
+   },
+   "description": "The cellar is a low, earth-walled room that smells of damp and old\ndecay. Broken barrels and empty shelves line the walls, and a few\nshrivelled roots still hang from hooks in the beams. In one corner the\nfloor has been dug up and roughly filled in again, the earth mounded\nlike a grave. A ladder leads up through the trapdoor into the lodge\nabove.",
+   "extra_descs": {
+    "mound earth grave corner": "The earth is loose and dark, as if it was turned not so long ago. A\nwooden spoon has been pushed upright into the top of the mound, like a\nmarker, and the cold that rises from it is far deeper than the cellar's."
+   },
+   "mob_resets": [
+    {
+     "vnum": 647106,
+     "max": 1
+    }
+   ]
+  },
+  "8338": {
+   "vnum": 8338,
+   "name": "The Plains",
+   "map": {
+    "x": 32,
+    "y": 76,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9122,
+     "description": "To the north lies The Plains."
+    },
+    "east": {
+     "to_room": 9126,
+     "description": "To the east lies The Plains."
+    },
+    "south": {
+     "to_room": 8334,
+     "description": "To the south lies The Northern Edge Of Spirit Wood."
+    },
+    "west": {
+     "to_room": 9125,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "Flat, dun-coloured grassland runs away on every side, broken only by\nclumps of thornbush and the odd grey boulder. The grass is short and\nbrittle, cropped close by wind and beasts. Faint tracks lead north, east\nand west across the plains, and south the ground slopes gently down\ntoward the edge of the Spirit Wood. The sky is huge and colourless,\npressing down on the land like a lid.",
+   "extra_descs": {}
+  },
+  "8339": {
+   "vnum": 8339,
+   "name": "The Plains",
+   "map": {
+    "x": 31,
+    "y": 79,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8343,
+     "description": "To the north lies The Mountain Trail."
+    },
+    "east": {
+     "to_room": 9124,
+     "description": "To the east lies The Icy Claw Of Malebranche."
+    },
+    "south": {
+     "to_room": 9133,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 8340,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "The plains begin to rise here toward the mountains, the grass giving way\nto stony ground scattered with lichen-crusted rocks. North, a trail\nheads toward the mountain wall, a dark rampart of cliffs filling the\nhorizon. East, the icy claw glitters coldly above the grass, while the\nopen plain stretches south and west. The wind carries a faint smell of\nsmoke from somewhere unseen.",
+   "extra_descs": {}
+  },
+  "8340": {
+   "vnum": 8340,
+   "name": "The Plains",
+   "map": {
+    "x": 30,
+    "y": 79,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8339,
+     "description": "To the east lies The Plains."
+    },
+    "south": {
+     "to_room": 8341,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 8342,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "Deep in the thorn thicket the light turns dim and grey, and the branches\nknit overhead into a prickly roof. Tufts of coarse fur hang caught on\nthe thorns at the height of a man's waist. A path through the thicket\nleads east back toward open ground, west deeper among the thorns, and\nsouth along a beaten track. A sour animal smell hangs in the still air.",
+   "extra_descs": {}
+  },
+  "8341": {
+   "vnum": 8341,
+   "name": "The Plains",
+   "map": {
+    "x": 30,
+    "y": 78,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8340,
+     "description": "To the north lies The Plains."
+    },
+    "east": {
+     "to_room": 9133,
+     "description": "To the east lies The Plains."
+    },
+    "south": {
+     "to_room": 9131,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 9135,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "Stunted thorn trees crowd together here in a thicket that has crept out\nacross the plains, their branches black and knotted. The ground beneath\nthem is bare and littered with dead thorns. Narrow ways wind through the\nthicket north and west, and out onto the open grass east and south. The\ntrees creak and rattle in the wind like old bones.",
+   "extra_descs": {}
+  },
+  "8342": {
+   "vnum": 8342,
+   "name": "The Plains",
+   "map": {
+    "x": 29,
+    "y": 79,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8340,
+     "description": "To the east lies The Plains."
+    },
+    "south": {
+     "to_room": 9135,
+     "description": "To the south lies The Plains."
+    }
+   },
+   "description": "The thicket grows densest here, the thorn trees so tangled that they\nform a living wall. A hollow has been hacked into their midst, roofed\nwith cut branches and floored with trampled earth. Ways lead east\nthrough the thorns and south toward the edge of the plains. The branches\nhave been scratched with crude marks like claws or tally strokes.",
+   "extra_descs": {}
+  },
+  "8343": {
+   "vnum": 8343,
+   "name": "The Mountain Trail",
+   "map": {
+    "x": 31,
+    "y": 80,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8344,
+     "description": "To the north lies The Mountain Trail."
+    },
+    "south": {
+     "to_room": 8339,
+     "description": "To the south lies The Plains."
+    }
+   },
+   "description": "A stony trail climbs into the foothills, winding between boulders and\nstunted, wind-twisted pines. The plains spread out behind you, grey and\nendless, as the trail runs south back down to them. North it climbs on\ntoward the cliffs. Loose rock clatters down from somewhere above, and\nthe echoes take a long time to die.",
+   "extra_descs": {}
+  },
+  "8344": {
+   "vnum": 8344,
+   "name": "The Mountain Trail",
+   "map": {
+    "x": 31,
+    "y": 81,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8345,
+     "description": "To the east lies The Mountain Trail."
+    },
+    "south": {
+     "to_room": 8343,
+     "description": "To the south lies The Mountain Trail."
+    }
+   },
+   "description": "The trail turns sharply here around a great buttress of dark rock, its\nface scored with the marks of old tools. A cold spring trickles from the\nbase of the cliff into a stone basin, cut long ago to catch the water.\nThe trail continues east along the foot of the mountain and back south\ntoward the plains. Moss grows thick and green around the basin, the only\nsoft thing in sight.",
+   "extra_descs": {}
+  },
+  "8345": {
+   "vnum": 8345,
+   "name": "The Mountain Trail",
+   "map": {
+    "x": 32,
+    "y": 81,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 8344,
+     "description": "To the west lies The Mountain Trail."
+    },
+    "up": {
+     "to_room": 8346,
+     "description": "To the up lies Climbing The Mountain Wall."
+    }
+   },
+   "description": "The trail ends against the sheer face of the mountain wall, a vast cliff\nof black rock that rises until it is lost in cloud. Iron pegs and worn\nhandholds lead up the face, the only way onward. West, the trail runs\nback along the foot of the cliffs. Fallen stones litter the ground here,\nsome of them stained dark.",
+   "extra_descs": {}
+  },
+  "8346": {
+   "vnum": 8346,
+   "name": "Climbing The Mountain Wall",
+   "map": {
+    "x": 33,
+    "y": 82,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "up": {
+     "to_room": 8347,
+     "description": "To the up lies On A Small Landing."
+    },
+    "down": {
+     "to_room": 8345,
+     "description": "To the down lies The Mountain Trail."
+    }
+   },
+   "description": "You cling to the mountain wall with the wind tearing at your clothes and\nnothing beneath your heels but empty air. Rusted iron pegs, hammered\ninto the rock long ago, offer holds that creak alarmingly under your\nweight. The pegs lead up toward a ledge above and down to the trail at\nthe cliff's foot. Far below, the plains lie spread out like a grey and\nfaded map.",
+   "extra_descs": {}
+  },
+  "8347": {
+   "vnum": 8347,
+   "name": "On A Small Landing",
+   "map": {
+    "x": 34,
+    "y": 83,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8356,
+     "description": "To the east lies The Small Crevice."
+    },
+    "up": {
+     "to_room": 8348,
+     "description": "To the up lies The Dark Pillars."
+    },
+    "down": {
+     "to_room": 8346,
+     "description": "To the down lies Climbing The Mountain Wall."
+    }
+   },
+   "description": "A narrow landing juts from the cliff face, barely wide enough to stand\non, its edge crumbling into the void. A dark crack opens in the rock to\nthe east, just large enough to squeeze into. More pegs lead up toward\nthe heights, where black shapes like columns stand against the clouds,\nand down the cliff toward the trail. Wind roars past the landing in\nsudden, buffeting gusts.",
+   "extra_descs": {}
+  },
+  "8348": {
+   "vnum": 8348,
+   "name": "The Dark Pillars",
+   "map": {
+    "x": 36,
+    "y": 85,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8349,
+     "description": "To the east lies On The Mountain Road."
+    },
+    "down": {
+     "to_room": 8347,
+     "description": "To the down lies On A Small Landing."
+    },
+    "west": {
+     "to_room": 9147,
+     "description": "To the west lies Going Up The Winding Mountain-trail."
+    }
+   },
+   "description": "Tall pillars of black basalt rise from a bare plateau here, dozens of\nthem, standing in silent rows like an army of giants turned to stone.\nTheir surfaces are glassy and cold, and nothing grows in their shadows.\nA mountain road leads away east between the last of the pillars, and\nwest a dark opening leads into a winding trail inside the mountain. The\npegs on the cliff lead down to a small landing below.",
+   "extra_descs": {
+    "pillars basalt black": "Each pillar has six flat sides, as if cut by a mason, though no tool\ncould have shaped so many. Close up, faint reflections move in their\nglassy surfaces a moment after you do."
+   }
+  },
+  "8349": {
+   "vnum": 8349,
+   "name": "On The Mountain Road",
+   "map": {
+    "x": 37,
+    "y": 85,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8350,
+     "description": "To the north lies On The Mountain Road."
+    },
+    "west": {
+     "to_room": 8348,
+     "description": "To the west lies The Dark Pillars."
+    }
+   },
+   "description": "A broad road of fitted stones runs across the high plateau, its paving\ncracked and heaved by frost. On either side the ground is bare grey\nrock, without soil or grass. North, the road climbs toward a gap between\ntwo peaks, and west it runs back among the black pillars. Somewhere\nahead, the wind howls through a narrow place.",
+   "extra_descs": {}
+  },
+  "8350": {
+   "vnum": 8350,
+   "name": "On The Mountain Road",
+   "map": {
+    "x": 37,
+    "y": 86,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8353,
+     "description": "To the north lies At The Bridge Of Death."
+    },
+    "south": {
+     "to_room": 8349,
+     "description": "To the south lies On The Mountain Road."
+    }
+   },
+   "description": "The road climbs steadily between rising walls of rock, and the air grows\nthin and bitterly cold. Old cairns mark the way at intervals, each\ntopped with a white stone. North, a deep chasm opens across the road\nahead, and south the road leads back down toward the plateau. Snow lies\nin the cracks of the paving and in the lee of every boulder.",
+   "extra_descs": {}
+  },
+  "8353": {
+   "vnum": 8353,
+   "name": "At The Bridge Of Death",
+   "map": {
+    "x": 37,
+    "y": 87,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8354,
+     "description": "To the north lies Crossing A Narrow Stone Bridge."
+    },
+    "south": {
+     "to_room": 8350,
+     "description": "To the south lies On The Mountain Road."
+    }
+   },
+   "description": "The road ends at the brink of a terrible ravine, so deep that its bottom\nis lost in mist and shadow. Spanning it is a stone bridge no wider than\na man's shoulders, without rail or wall, arching north over the abyss\ntoward the far side. A weathered stone stands at the bridge's head,\ncarved with a skull and a warning. South, the road leads back down\nbetween the peaks.",
+   "extra_descs": {
+    "stone warning skull": "Beneath the carved skull, letters in an old hand read: ONE AT A TIME,\nAND DO NOT LOOK DOWN. Someone has added a long list of names below, each\ncrossed through."
+   }
+  },
+  "8354": {
+   "vnum": 8354,
+   "name": "Crossing A Narrow Stone Bridge",
+   "map": {
+    "x": 37,
+    "y": 88,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8355,
+     "description": "To the north lies On The Far Side Of The Ravine."
+    },
+    "south": {
+     "to_room": 8353,
+     "description": "To the south lies At The Bridge Of Death."
+    }
+   },
+   "description": "You edge along the narrow stone bridge with nothing on either side but a\nsickening drop into mist and darkness. The wind shrieks up out of the\nravine, snatching at you and trying to pull you off your feet. The far\nside lies north, and the bridge's head back south, both seeming\nimpossibly far away. Small stones break from the span beneath your feet\nand fall without a sound.",
+   "extra_descs": {}
+  },
+  "8355": {
+   "vnum": 8355,
+   "name": "On The Far Side Of The Ravine",
+   "map": {
+    "x": 37,
+    "y": 89,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 8354,
+     "description": "To the south lies Crossing A Narrow Stone Bridge."
+    },
+    "up": {
+     "to_room": 8357,
+     "description": "To the up lies Before The Dark Castle."
+    }
+   },
+   "description": "The narrow bridge comes to rest on a ledge of black rock at the far side\nof the ravine. A steep, crooked stair is cut into the cliff above,\nleading up toward a dark mass of walls and towers that loom against the\nclouds. South, the bridge stretches back over the abyss. The stones of\nthe ledge are cold and slick with mist.",
+   "extra_descs": {}
+  },
+  "8356": {
+   "vnum": 8356,
+   "name": "The Small Crevice",
+   "map": {
+    "x": 37,
+    "y": 83,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8427,
+     "description": "To the north lies A Cave Room."
+    },
+    "west": {
+     "to_room": 8347,
+     "description": "To the west lies On A Small Landing."
+    }
+   },
+   "description": "This crevice is a tight crack in the mountain, its rough walls pressing\nin on both sides and its ceiling lost in blackness. The air is still and\nstale, and the only light comes from the landing to the west. North, the\ncrevice narrows to a gap choked with fallen rock and closed by an old\niron grille, beyond which some cave lies in darkness. Scratches in the\nstone near the grille look like the work of fingernails.",
+   "extra_descs": {}
+  },
+  "8357": {
+   "vnum": 8357,
+   "name": "Before The Dark Castle",
+   "map": {
+    "x": 38,
+    "y": 90,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 8358,
+     "description": "To the south lies The Castle Yard."
+    },
+    "down": {
+     "to_room": 8355,
+     "description": "To the down lies On The Far Side Of The Ravine."
+    }
+   },
+   "description": "A grim castle of black stone rises before you, its walls sheer and\nwindowless, its towers lost in low, smoky cloud. The great gate stands\nto the south, a portcullis of iron bars rusted into place and shut fast,\nbarring the way into the castle yard. Below the walls, the crooked stair\nleads down to the ledge above the ravine. No banner flies and no light\nshows, but the place does not feel empty.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647108,
+     "max": 1
+    }
+   ]
+  },
+  "9100": {
+   "vnum": 9100,
+   "name": "The Badlands",
+   "map": {
+    "x": 27,
+    "y": 58,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9105,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9101,
+     "description": "To the east lies The Badlands."
+    },
+    "west": {
+     "to_room": 8304,
+     "description": "To the west lies At The Far End Of The Sundered Bridge."
+    }
+   },
+   "description": "The badlands stretch out bare and cracked here, a wasteland of grey clay\nfurrowed by countless dry gullies. A few dead shrubs cling on in the\nshelter of the ridges. Westward lies the end of the sundered bridge,\neastward the waste continues, and north the ground rises toward the\nBlack Hills. The ground is so dry that every step raises a puff of fine\ndust.",
+   "extra_descs": {}
+  },
+  "9101": {
+   "vnum": 9101,
+   "name": "The Badlands",
+   "map": {
+    "x": 29,
+    "y": 58,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9106,
+     "description": "To the north lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9100,
+     "description": "To the west lies The Badlands."
+    }
+   },
+   "description": "Strange towers of eroded clay rise from the badlands here, sculpted by\nwind and rain into fantastic shapes like melted candles. Between them\nthe ground is a maze of narrow gullies. The way leads north toward the\nhills and west across the waste. The wind whistles through the clay\ntowers with an eerie, mournful sound.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647100,
+     "max": 1
+    }
+   ]
+  },
+  "9102": {
+   "vnum": 9102,
+   "name": "The Badlands",
+   "map": {
+    "x": 25,
+    "y": 58,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9104,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 8304,
+     "description": "To the east lies At The Far End Of The Sundered Bridge."
+    },
+    "west": {
+     "to_room": 9103,
+     "description": "To the west lies The Badlands."
+    }
+   },
+   "description": "The badlands are at their bleakest here, a plain of cracked grey clay\nwhere nothing grows at all. The cracks are wide enough to swallow a\nfoot, and the ground rings hollow underfoot. East lies the end of the\nsundered bridge and west the waste runs on, while north the ground rises\ntoward the hills. The sky hangs low and grey, threatening a rain that\nnever comes.",
+   "extra_descs": {}
+  },
+  "9103": {
+   "vnum": 9103,
+   "name": "The Badlands",
+   "map": {
+    "x": 24,
+    "y": 58,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9102,
+     "description": "To the east lies The Badlands."
+    }
+   },
+   "description": "The badlands end here at the brink of the great gorge, a sheer drop into\na roaring chasm where the river runs far below. There is no way down,\nand the far side is a distant wall of rock. The only path leads back\neast across the cracked clay. Spray from the river rises on the wind,\nleaving a fine wet sheen on the rocks.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647101,
+     "max": 1
+    }
+   ]
+  },
+  "9104": {
+   "vnum": 9104,
+   "name": "The Black Hills",
+   "map": {
+    "x": 25,
+    "y": 59,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9120,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 8305,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9102,
+     "description": "To the south lies The Badlands."
+    }
+   },
+   "description": "The hillside here is cut into rough terraces, perhaps fields once, now\ngone to coarse grass and bramble. Low walls of stacked stones hold up\nthe terraces, bulging and slipping under the weight of earth. Paths lead\nnorth along the hillside, east toward the first slopes of the hills, and\nsouth down to the badlands. The air is heavy with the smell of rain.",
+   "extra_descs": {}
+  },
+  "9105": {
+   "vnum": 9105,
+   "name": "The Black Hills",
+   "map": {
+    "x": 27,
+    "y": 59,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9119,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9106,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9100,
+     "description": "To the south lies The Badlands."
+    },
+    "west": {
+     "to_room": 8305,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "The lower slopes of the Black Hills are scarred here by gullies where\nthe rain has torn the thin soil away from the dark rock. Bare stones jut\nup through the turf like old broken teeth. Ways climb north into the\nhills, run east and west along the slopes, and fall south toward the\nbadlands. The land is quiet but for the wind and the trickle of hidden\nwater.",
+   "extra_descs": {}
+  },
+  "9106": {
+   "vnum": 9106,
+   "name": "The Black Hills",
+   "map": {
+    "x": 29,
+    "y": 59,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9118,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9107,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9101,
+     "description": "To the south lies The Badlands."
+    },
+    "west": {
+     "to_room": 9105,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "Four sheep-tracks meet here beside a crude shrine of stacked stones,\ndaubed with faded ochre signs. A hollow in the shrine is crusted with\nold candle wax and green smears where coins once lay, offerings to\nwhatever watches over these hills. Tracks lead north into the hills,\neast toward the edge of a ravine, west across the slopes, and south down\ntoward the badlands. The wind tugs at a tattered rag tied to the topmost\nstone.",
+   "extra_descs": {}
+  },
+  "9107": {
+   "vnum": 9107,
+   "name": "The Black Hills",
+   "map": {
+    "x": 33,
+    "y": 59,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9108,
+     "description": "To the north lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9106,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "The moorland ends at the brink of a steep drop, where the land falls\naway into a deep, mist-filled ravine. Far across the gulf, the dim\nshapes of mountains rise in ragged ranks. Paths lead north along the\nedge and west back across the moor. The wind rising from the ravine is\nwet and cold and smells of distant snow.",
+   "extra_descs": {}
+  },
+  "9108": {
+   "vnum": 9108,
+   "name": "The Black Hills",
+   "map": {
+    "x": 33,
+    "y": 60,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9109,
+     "description": "To the north lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9107,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9117,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "A shallow stream crosses the moor here over a bed of black stones, its\nwater stained the colour of strong tea. Stepping stones, set long ago,\nlead across it, some of them now tilted or sunk. Paths run north and\nsouth along the stream, and west up a gentle rise. Tufts of bog cotton\nnod white along the banks.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647100,
+     "max": 1
+    }
+   ]
+  },
+  "9109": {
+   "vnum": 9109,
+   "name": "The Black Hills",
+   "map": {
+    "x": 33,
+    "y": 61,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9110,
+     "description": "To the north lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9108,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9116,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "A lone, lightning-blasted thorn tree stands on the moor here, its trunk\nsplit in two and charred black. The wind has bent it until its branches\nall point the same way, like a hand warning you back. Paths lead north\nand south across the open ground, and west into a hollow between the\nhills. Old rooks' nests, long deserted, clot the dead branches.",
+   "extra_descs": {}
+  },
+  "9110": {
+   "vnum": 9110,
+   "name": "The Black Hills",
+   "map": {
+    "x": 33,
+    "y": 62,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9111,
+     "description": "To the north lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9109,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9113,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "The upland here is cut by old peat diggings, square black pits half full\nof brown water. Abandoned turves lie stacked and crumbling beside them.\nPaths wander north and south across the moor, and west toward the higher\nhills. The smell of wet earth and peat smoke hangs over the place,\nthough no fire burns.",
+   "extra_descs": {}
+  },
+  "9111": {
+   "vnum": 9111,
+   "name": "The Black Hills",
+   "map": {
+    "x": 33,
+    "y": 64,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 9110,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9112,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "The hills flatten out into a bleak upland of coarse grass and black,\npeaty pools. A tumbledown wall of dry stones runs across the moor, built\nby hands long gone and now good for nothing but shelter from the wind.\nPaths lead south across the upland and west toward a rocky ridge. The\npools reflect a sky the colour of ashes.",
+   "extra_descs": {}
+  },
+  "9112": {
+   "vnum": 9112,
+   "name": "The Black Hills",
+   "map": {
+    "x": 31,
+    "y": 64,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9111,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9113,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 8311,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "A long ridge of black rock runs along the top of the hills here like the\nspine of some buried beast. From its crest you can see a lonely gallows\non a hilltop, and beyond it the grey sprawl of the Spirit Wood. The\nridge path runs east and west, and a stony way drops south into a\nsheltered hollow. The wind moans through the cracks in the rock.",
+   "extra_descs": {}
+  },
+  "9113": {
+   "vnum": 9113,
+   "name": "The Black Hills",
+   "map": {
+    "x": 31,
+    "y": 63,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9112,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 24700,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9116,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9114,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "A broad, flat-topped hill rises here, its summit strewn with the tumbled\nstones of some ancient wall. From the top you can follow the dark hills\nrolling away on every side, and see a gash where a ravine cuts across\nthem. Paths lead north and south over the summit, west toward the\nvalleys, and east toward a stone gatehouse. Thin, grey grass grows among\nthe fallen stones.",
+   "extra_descs": {}
+  },
+  "9114": {
+   "vnum": 9114,
+   "name": "The Black Hills",
+   "map": {
+    "x": 29,
+    "y": 63,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8311,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9113,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9115,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 8309,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "The hills crowd together here into a maze of narrow valleys and knobbly\nridges, all of the same dark rock. A trickle of water runs down the\nmiddle of the valley floor, feeding a few ragged ferns. Ways lead off\nnorth toward a stony hollow, east and west along the valley, and south\ndown a slope of scree. It would be easy to lose your way among these\nfolds of land.",
+   "extra_descs": {}
+  },
+  "9115": {
+   "vnum": 9115,
+   "name": "The Black Hills",
+   "map": {
+    "x": 29,
+    "y": 61,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9114,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9116,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9118,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 8308,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "A steep, rocky slope rises here, its face pocked with the dark mouths of\nsmall caves and burrows. Loose black scree slides underfoot, and the\nclimbing is hard going. Paths cross the slope north and south, and run\neast and west around its shoulder. A faint, sour smell of animal dens\ndrifts from the cave mouths.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647101,
+     "max": 1
+    }
+   ]
+  },
+  "9116": {
+   "vnum": 9116,
+   "name": "The Black Hills",
+   "map": {
+    "x": 31,
+    "y": 61,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9113,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9109,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9117,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9115,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "A small tarn lies cupped among the hills here, its black water rippling\nin the wind. Heather and bilberry grow thickly around its shores, and a\nfew hardy rowans cling to the rocks. Paths circle the tarn north, south,\neast and west, linking the hollows of the hills. The water is so dark\nthat it seems bottomless.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647100,
+     "max": 1
+    }
+   ]
+  },
+  "9117": {
+   "vnum": 9117,
+   "name": "The Black Hills",
+   "map": {
+    "x": 31,
+    "y": 60,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9116,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9108,
+     "description": "To the east lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9118,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "A long, gentle slope of rough pasture runs down the hillside here,\ncrossed by the remains of an old field wall. Thistles and docks have\ntaken over the pasture, and the wall's stones lie scattered where they\nfell. Paths lead north up toward a tarn, east across the slope, and west\ntoward a grassy saddle. A rusted iron gate hangs from a single post in\nthe wall, opening onto nothing.",
+   "extra_descs": {}
+  },
+  "9118": {
+   "vnum": 9118,
+   "name": "The Black Hills",
+   "map": {
+    "x": 29,
+    "y": 60,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9115,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9117,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9106,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9119,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "This broad, grassy saddle between two hills is dotted with grey\nboulders, some of them split open by frost. Sheep have worn deep paths\nthrough the turf, though the flocks are long gone. Tracks lead north up\ninto the higher hills, east and west along the saddle, and south toward\na crossroads shrine. The grass here is short and springy, starred with\ntiny white flowers.",
+   "extra_descs": {}
+  },
+  "9119": {
+   "vnum": 9119,
+   "name": "The Black Hills",
+   "map": {
+    "x": 27,
+    "y": 60,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8308,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9118,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9105,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 8306,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "A flat shelf of land lies between the hills here, covered with coarse\ngrass and sprinkled with black flints. Ruined sheepfolds stand at\nintervals, their walls fallen into low rings of stone. Paths lead north\ninto the steeper hills, east across the shelf, south toward the lower\nslopes and west up a shale rise. Wind hums through the grass with a low,\nsteady sound.",
+   "extra_descs": {}
+  },
+  "9120": {
+   "vnum": 9120,
+   "name": "The Black Hills",
+   "map": {
+    "x": 25,
+    "y": 60,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9121,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 8306,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9104,
+     "description": "To the south lies The Black Hills."
+    }
+   },
+   "description": "A rough track runs along the hillside here, worn into the soil by\ngenerations of drovers and their herds. A wooden post leans by the way,\nnotched with old marks that once told the distance to somewhere. The\ntrack runs north and south along the hill, and a path climbs east to the\nshale-strewn heights. Black feathers lie scattered in the grass around\nthe post.",
+   "extra_descs": {}
+  },
+  "9121": {
+   "vnum": 9121,
+   "name": "The Black Hills",
+   "map": {
+    "x": 25,
+    "y": 61,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8307,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9120,
+     "description": "To the south lies The Black Hills."
+    }
+   },
+   "description": "The hills give way here to a high, windy field of thin grass edged with\nstones. A fallen standing stone lies half-buried in the turf, its face\ncarved with spirals that the weather has nearly erased. Paths lead east\ntoward a cairn-topped hill and south along the hillside. Far away, the\nland drops toward a broad, grey valley.",
+   "extra_descs": {
+    "standing stone spirals fallen": "The spirals wind inward to a small hollow at the stone's heart, worn\nsmooth as if by countless thumbs. Rainwater gathers there and never\nquite seems to dry."
+   }
+  },
+  "9122": {
+   "vnum": 9122,
+   "name": "The Plains",
+   "map": {
+    "x": 32,
+    "y": 77,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9123,
+     "description": "To the north lies The Plains."
+    },
+    "east": {
+     "to_room": 9127,
+     "description": "To the east lies The Plains."
+    },
+    "south": {
+     "to_room": 8338,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 9132,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "A dry watercourse wanders across the plain here, its bed nothing but\ncracked mud and rounded pebbles. Thistles nod along its banks in the\nendless wind. Open grassland stretches away north and east, west and\nsouth, without a tree or a roof in sight. Far off, a line of jagged\npeaks rises dim and blue beyond the grass.",
+   "extra_descs": {}
+  },
+  "9123": {
+   "vnum": 9123,
+   "name": "The Plains",
+   "map": {
+    "x": 32,
+    "y": 78,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9124,
+     "description": "To the north lies The Icy Claw Of Malebranche."
+    },
+    "east": {
+     "to_room": 9128,
+     "description": "To the east lies The Plains."
+    },
+    "south": {
+     "to_room": 9122,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 9133,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "The ground hardens here, the grass growing in thin tufts between patches\nof bare, frost-split earth. A bitter chill creeps down from the north,\nwhere a great white shape like a crooked claw rises from the plain.\nTracks run east and west across the grass, and south back toward the dry\nwatercourse. Hoarfrost lingers in the hollows long after dawn.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647102,
+     "max": 1
+    }
+   ]
+  },
+  "9124": {
+   "vnum": 9124,
+   "name": "The Icy Claw Of Malebranche",
+   "map": {
+    "x": 32,
+    "y": 79,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9129,
+     "description": "To the east lies The Rickety-Rope Bridge."
+    },
+    "south": {
+     "to_room": 9123,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 8339,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "A huge outcrop of rock juts from the plain here, curved like a talon and\nsheathed in blue-white ice that never seems to melt. Freezing air flows\ndown from it in a slow, invisible river, and the grass around its foot\nis stiff and white with rime. East, a rope bridge sways across a narrow\nravine, while west and south the frozen plain opens out again. The ice\ncreaks and groans faintly, as if the claw were flexing.",
+   "extra_descs": {
+    "claw ice outcrop malebranche": "Deep inside the ice, blurred as if seen through cloudy glass, dark\nshapes hang frozen: twisted roots, a broken spear, and something that\nmight once have been a hand. Your own breath frosts the ice when you\nlean close."
+   }
+  },
+  "9125": {
+   "vnum": 9125,
+   "name": "The Plains",
+   "map": {
+    "x": 31,
+    "y": 76,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9132,
+     "description": "To the north lies The Plains."
+    },
+    "east": {
+     "to_room": 8338,
+     "description": "To the east lies The Plains."
+    },
+    "west": {
+     "to_room": 9130,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "A low mound rises from the plain here, covered with coarse grass and\ncrowned with a ring of upright stones. From its top you can see the dark\nmass of the Spirit Wood against the grey land. The plain runs north and\nwest from the mound, and east toward the path from the wood. Burrows\nhave been dug deep into the mound's flanks, each ringed with a fan of\npale spoil.",
+   "extra_descs": {}
+  },
+  "9126": {
+   "vnum": 9126,
+   "name": "The Plains",
+   "map": {
+    "x": 33,
+    "y": 76,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9127,
+     "description": "To the north lies The Plains."
+    },
+    "west": {
+     "to_room": 8338,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "This corner of the plains is a shallow basin where rainwater collects in\nmuddy pools and the grass grows longer and greener than elsewhere. The\nmud is crossed with paw prints and the sharp slots of hooves. A track\nleads north along the basin's rim, and west across the plain toward the\ntrail from the Spirit Wood. Reeds rattle around the pools in the wind.",
+   "extra_descs": {}
+  },
+  "9127": {
+   "vnum": 9127,
+   "name": "The Plains",
+   "map": {
+    "x": 33,
+    "y": 77,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9128,
+     "description": "To the north lies The Plains."
+    },
+    "south": {
+     "to_room": 9126,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 9122,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "Grey grass ripples away under the wind, and stones lie half-sunk in the\nearth like the backs of drowned beasts. Animal trails wander through the\ngrass, north toward the ravine and south across the open ground. A wider\ntrack leads west toward the middle of the plains. The sky is empty and\ngrey, without even a bird to break it.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647101,
+     "max": 1
+    }
+   ]
+  },
+  "9128": {
+   "vnum": 9128,
+   "name": "The Plains",
+   "map": {
+    "x": 33,
+    "y": 78,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9129,
+     "description": "To the north lies The Rickety-Rope Bridge."
+    },
+    "south": {
+     "to_room": 9127,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 9123,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "The plain runs up to the edge of a narrow ravine here, a deep crack in\nthe earth whose far side lies only a stone's throw away. North, a rope\nbridge sways over the gap. Tracks run south across the grass and west\ntoward the open plain. Tough little shrubs cling to the ravine's lip,\nbent flat by the wind.",
+   "extra_descs": {}
+  },
+  "9129": {
+   "vnum": 9129,
+   "name": "The Rickety-Rope Bridge",
+   "map": {
+    "x": 33,
+    "y": 79,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9168,
+     "description": "To the east lies The Old Gravel Road Crossing The Desolated Plains."
+    },
+    "south": {
+     "to_room": 9128,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 9124,
+     "description": "To the west lies The Icy Claw Of Malebranche."
+    }
+   },
+   "description": "A flimsy bridge of fraying rope and warped planks sways across a deep,\nnarrow ravine, creaking with every gust. Through the gaps between the\nboards you can see the stony floor of the gorge far below, and the drop\ntugs at your stomach. The bridge leads east to an old gravel road and\nback west to the icy claw, while a trampled path follows the near rim of\nthe ravine south. Several planks are missing altogether.",
+   "extra_descs": {}
+  },
+  "9130": {
+   "vnum": 9130,
+   "name": "The Plains",
+   "map": {
+    "x": 30,
+    "y": 76,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9131,
+     "description": "To the north lies The Plains."
+    },
+    "east": {
+     "to_room": 9125,
+     "description": "To the east lies The Plains."
+    }
+   },
+   "description": "This is the edge of the open plains, where the grass grows waist-high\nand grey and hisses ceaselessly in the wind. Hidden hollows and old pits\nmake every step uncertain. Paths have been beaten through the grass\nnorth and east. Beyond the grass the land rolls away, empty and grey, to\na horizon smudged with dust.",
+   "extra_descs": {}
+  },
+  "9131": {
+   "vnum": 9131,
+   "name": "The Plains",
+   "map": {
+    "x": 30,
+    "y": 77,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8341,
+     "description": "To the north lies The Plains."
+    },
+    "east": {
+     "to_room": 9132,
+     "description": "To the east lies The Plains."
+    },
+    "south": {
+     "to_room": 9130,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 9134,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "The grass thins here into a stretch of hard-packed earth trampled by\nmany feet, and the ashes of a recent fire lie in a blackened circle.\nShards of broken pots and gnawed bones are trodden into the dirt around\nit. North, scrubby trees mark the start of a thicket; tracks lead east\nand south across the grass, and west toward a barricade on the horizon.\nThe place stinks of smoke and of something rank and animal.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647102,
+     "max": 1
+    }
+   ]
+  },
+  "9132": {
+   "vnum": 9132,
+   "name": "The Plains",
+   "map": {
+    "x": 31,
+    "y": 77,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9133,
+     "description": "To the north lies The Plains."
+    },
+    "east": {
+     "to_room": 9122,
+     "description": "To the east lies The Plains."
+    },
+    "south": {
+     "to_room": 9125,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 9131,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "The plains here are scarred by a wide burn, the grass reduced to black\nstubble and the earth crusted with ash. The smell of old smoke still\nclings to the ground. Grassland stretches unburned to the north and\neast, south and west, around the edges of the black patch. Charred bones\nof some large beast lie at the heart of the burn.",
+   "extra_descs": {}
+  },
+  "9133": {
+   "vnum": 9133,
+   "name": "The Plains",
+   "map": {
+    "x": 31,
+    "y": 78,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8339,
+     "description": "To the north lies The Plains."
+    },
+    "east": {
+     "to_room": 9123,
+     "description": "To the east lies The Plains."
+    },
+    "south": {
+     "to_room": 9132,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 8341,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "Tufts of grey grass and low, spiny bushes cover the plain, and the earth\nbetween them is cracked into a pattern of dry plates. A ruined\nshepherd's hut of piled stones stands roofless here, its doorway facing\nthe wind. Tracks lead north toward the foothills, east across the plain,\nsouth over the grass and west toward a dark line of trees. Tattered\nstrips of hide flap from a pole beside the hut.",
+   "extra_descs": {}
+  },
+  "9134": {
+   "vnum": 9134,
+   "name": "The Plains",
+   "map": {
+    "x": 29,
+    "y": 77,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9135,
+     "description": "To the north lies The Plains."
+    },
+    "east": {
+     "to_room": 9131,
+     "description": "To the east lies The Plains."
+    },
+    "west": {
+     "to_room": 2000,
+     "description": "To the west lies Entrance To The Draconian Encampment."
+    }
+   },
+   "description": "The plains end here against a crude barricade of sharpened stakes and\nheaped thornbrush that runs across the land as far as you can see.\nBeyond it, to the west, rises the smoke of many fires, but the only gap\nin the barricade is blocked by a heavy timber gate lashed shut with\nrawhide. North and east, the grass stretches back across the open\nplains. Skulls of beasts and men are spiked along the tops of the\nstakes.",
+   "extra_descs": {}
+  },
+  "9135": {
+   "vnum": 9135,
+   "name": "The Plains",
+   "map": {
+    "x": 29,
+    "y": 78,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8342,
+     "description": "To the north lies The Plains."
+    },
+    "east": {
+     "to_room": 8341,
+     "description": "To the east lies The Plains."
+    },
+    "south": {
+     "to_room": 9134,
+     "description": "To the south lies The Plains."
+    }
+   },
+   "description": "The thorn thicket gives way here to open grassland that slopes gently\ndown toward a wide hollow. Wind-blown seeds drift through the air like\ngrey snow. North, the thorns close in again; east, a path skirts the\nthicket's edge; and south, the grass runs on toward a palisade of\nstakes. Hoofprints and broad, clawed footprints are pressed together in\nthe soft ground.",
+   "extra_descs": {}
+  },
+  "9143": {
+   "vnum": 9143,
+   "name": "Crossing The Dark Plains",
+   "map": {
+    "x": 25,
+    "y": 76,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9144,
+     "description": "To the north lies Crossing The Dark Plains."
+    }
+   },
+   "description": "The path across the dark plains ends at a shallow pit in the cavern\nfloor, ringed with stones and filled with ancient ash and charred bones.\nThe darkness is absolute beyond the reach of your light, and the silence\nfeels like a held breath. The little cairns lead back north across the\ncavern toward the winding trail. A cold draught rises from the pit,\ncarrying the smell of old smoke.",
+   "extra_descs": {}
+  },
+  "9144": {
+   "vnum": 9144,
+   "name": "Crossing The Dark Plains",
+   "map": {
+    "x": 23,
+    "y": 78,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9145,
+     "description": "To the north lies Crossing The Dark Plains."
+    },
+    "south": {
+     "to_room": 9143,
+     "description": "To the south lies Crossing The Dark Plains."
+    }
+   },
+   "description": "Out on the dark plains the walls of the cavern have vanished altogether,\nand the darkness presses in on every side. The floor is fine black grit,\ncrisscrossed with old footprints that lead nowhere in particular. The\nline of little cairns runs north toward the passage and south deeper\ninto the cavern. A faint sound like distant breathing rises and falls in\nthe blackness.",
+   "extra_descs": {}
+  },
+  "9145": {
+   "vnum": 9145,
+   "name": "Crossing The Dark Plains",
+   "map": {
+    "x": 25,
+    "y": 82,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9146,
+     "description": "To the north lies Going Up The Winding Mountain-trail."
+    },
+    "south": {
+     "to_room": 9144,
+     "description": "To the south lies Crossing The Dark Plains."
+    }
+   },
+   "description": "The passage opens onto the edge of a vast cavern whose floor stretches\naway flat and featureless into utter darkness, like a plain beneath a\nstarless night. Somewhere high above, the unseen roof drips, and the\ndrops fall a very long way. North, the winding trail begins its climb\nout of the cavern, and south a faint path marked by small stone cairns\nleads across the dark plains. The cold here is deep and still.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647108,
+     "max": 1
+    }
+   ]
+  },
+  "9146": {
+   "vnum": 9146,
+   "name": "Going Up The Winding Mountain-trail",
+   "map": {
+    "x": 29,
+    "y": 84,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9147,
+     "description": "To the north lies Going Up The Winding Mountain-trail."
+    },
+    "south": {
+     "to_room": 9145,
+     "description": "To the south lies Crossing The Dark Plains."
+    }
+   },
+   "description": "The passage climbs in long, tight curves, the floor cut into shallow\nsteps that are slick with seepage. The walls press close and the ceiling\nhangs low, forcing you to stoop in places. North, the trail winds on\ntoward a faint grey light, and south it descends into an immense\ndarkness. Your breathing sounds very loud in the narrow space.",
+   "extra_descs": {}
+  },
+  "9147": {
+   "vnum": 9147,
+   "name": "Going Up The Winding Mountain-trail",
+   "map": {
+    "x": 33,
+    "y": 85,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8348,
+     "description": "To the north lies The Dark Pillars."
+    },
+    "south": {
+     "to_room": 9146,
+     "description": "To the south lies Going Up The Winding Mountain-trail."
+    },
+    "east": {
+     "to_room": 8348,
+     "description": "To the east lies The Dark Pillars."
+    }
+   },
+   "description": "A trail winds through the inside of the mountain along a passage worn\nsmooth by water and feet, its walls glistening black in the faint light.\nDaylight leaks in ahead, where the passage forks and both openings,\nnorth and east, come out among the dark pillars. South, the trail\nspirals back down into darkness. The air smells of wet stone and cold\niron.",
+   "extra_descs": {}
+  },
+  "9156": {
+   "vnum": 9156,
+   "name": "The Frozen Trail",
+   "map": {
+    "x": 41,
+    "y": 89,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9157,
+     "description": "To the north lies The Frozen Trail."
+    },
+    "south": {
+     "to_room": 9167,
+     "description": "To the south lies The Trail Along The Dim Stairs."
+    }
+   },
+   "description": "The tunnel stair opens onto a trail along a bare mountainside, deep in\nold snow and glazed with ice. The wind howls across the slope, flinging\nneedles of frost into your face. The trail climbs north along the\nmountain, and south it ducks back into the dim stairs. Far below, the\nlake lies like a dark mirror among the peaks.",
+   "extra_descs": {}
+  },
+  "9157": {
+   "vnum": 9157,
+   "name": "The Frozen Trail",
+   "map": {
+    "x": 41,
+    "y": 90,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9158,
+     "description": "To the north lies The Frozen Trail."
+    },
+    "south": {
+     "to_room": 9156,
+     "description": "To the south lies The Frozen Trail."
+    }
+   },
+   "description": "The frozen trail edges along a ledge where the snow has been packed into\ntreacherous ice. Icicles as long as spears hang from the overhanging\nrock, dripping in the rare moments of sun. North the trail continues to\nclimb, and south it winds back toward the stair. Every step must be\ntested before you trust your weight to it.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647103,
+     "max": 1
+    }
+   ]
+  },
+  "9158": {
+   "vnum": 9158,
+   "name": "The Frozen Trail",
+   "map": {
+    "x": 41,
+    "y": 91,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 9157,
+     "description": "To the south lies The Frozen Trail."
+    },
+    "up": {
+     "to_room": 9159,
+     "description": "To the up lies The Frozen Trail."
+    }
+   },
+   "description": "The trail comes to the foot of an icy slope too steep to walk, where\nsteps have been cut into the frozen snow and a frayed rope is pegged\nalongside them. The way up climbs toward a high shoulder of the\nmountain. South, the trail runs back along the ledge. The cold here is\nfierce enough to make your fingers ache inside your gloves.",
+   "extra_descs": {}
+  },
+  "9159": {
+   "vnum": 9159,
+   "name": "The Frozen Trail",
+   "map": {
+    "x": 42,
+    "y": 92,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9160,
+     "description": "To the east lies Durgar's Gate - The Doors To The Dwarven Kingdom."
+    },
+    "down": {
+     "to_room": 9158,
+     "description": "To the down lies The Frozen Trail."
+    }
+   },
+   "description": "Atop the icy slope the trail levels out onto a broad shoulder of the\nmountain, swept nearly bare by a fierce, unending wind. East, a road of\ncarved flagstones leads toward a great doorway set in the mountain's\nflank. The cut steps lead down the slope behind you. Rime feathers every\nrock, glittering in the thin light.",
+   "extra_descs": {}
+  },
+  "9160": {
+   "vnum": 9160,
+   "name": "Durgar's Gate - The Doors To The Dwarven Kingdom",
+   "map": {
+    "x": 43,
+    "y": 92,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 213000,
+     "description": "To the north lies Durgan's Gate.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 9159,
+     "description": "To the west lies The Frozen Trail."
+    }
+   },
+   "description": "Two immense doors of dark iron and stone are set into the mountainside\nhere, carved with rows of bearded kings and bound with bands of\ntarnished bronze. This is Durgar's Gate, the way into the dwarven\nkingdom, and its doors lead north into the mountain, though they stand\nshut and barred, their great hinges locked with ice. Runes run around\nthe arch above in a deep-cut band. West, the frozen trail leads back\nalong the shoulder of the mountain.",
+   "extra_descs": {
+    "runes arch band": "The runes are dwarven and cut as deep as a finger. Those who can read\nthem make out a name, Durgar, and a warning that the mountain keeps what\nit is given."
+   }
+  },
+  "9161": {
+   "vnum": 9161,
+   "name": "The Canyon Of Khel-zaram",
+   "map": {
+    "x": 41,
+    "y": 84,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9162,
+     "description": "To the north lies The Canyon Of Khel-zaram."
+    },
+    "south": {
+     "to_room": 9177,
+     "description": "To the south lies The Old Watchtower."
+    }
+   },
+   "description": "The path enters the Canyon of Khel-zaram between walls of banded red and\nochre rock that rise sheer for hundreds of feet. Only a narrow strip of\nsky shows overhead, and the canyon floor lies in cold shadow. North, the\ngorge winds on between the cliffs, and south the path climbs back out to\nthe watchtower. Your voice comes back from the walls in strange, broken\nechoes.",
+   "extra_descs": {}
+  },
+  "9162": {
+   "vnum": 9162,
+   "name": "The Canyon Of Khel-zaram",
+   "map": {
+    "x": 41,
+    "y": 85,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9163,
+     "description": "To the north lies The Canyon Of Khel-zaram."
+    },
+    "south": {
+     "to_room": 9161,
+     "description": "To the south lies The Canyon Of Khel-zaram."
+    }
+   },
+   "description": "Boulders the size of cottages have fallen from the cliffs and lie\njumbled across the canyon floor, leaving only a twisting path between\nthem. Carvings of bearded faces, worn almost smooth, peer out from the\nrock walls at the height of a man. The canyon runs on north between the\ncliffs and back south toward its mouth. A thin trickle of water drips\nsomewhere among the stones.",
+   "extra_descs": {
+    "carvings faces bearded": "The faces are dwarven, broad and solemn, with braided beards that fall\ninto knotwork borders. Each wears a different crown, and each has had\nits eyes chiselled out by some later, angrier hand."
+   }
+  },
+  "9163": {
+   "vnum": 9163,
+   "name": "The Canyon Of Khel-zaram",
+   "map": {
+    "x": 41,
+    "y": 86,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9164,
+     "description": "To the east lies The Vale of Dim Streams."
+    },
+    "south": {
+     "to_room": 9162,
+     "description": "To the south lies The Canyon Of Khel-zaram."
+    }
+   },
+   "description": "The canyon ends against a towering wall of red rock streaked with white\nmineral stains, where a cold spring seeps from a crack and spreads\nacross the floor. Here the path turns east, following the water out\nthrough a gap into a hidden valley. South, the canyon winds back between\nits cliffs. The air is damp and cool, and moss grows thick wherever the\nwater runs.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647103,
+     "max": 1
+    }
+   ]
+  },
+  "9164": {
+   "vnum": 9164,
+   "name": "The Vale of Dim Streams",
+   "map": {
+    "x": 42,
+    "y": 86,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9165,
+     "description": "To the north lies Along The Shores Of Lake Zaram."
+    },
+    "west": {
+     "to_room": 9163,
+     "description": "To the west lies The Canyon Of Khel-zaram."
+    }
+   },
+   "description": "A small, deep valley opens among the mountains, its floor laced with a\ndozen shallow streams that wander and braid through beds of grey\nshingle. Mist hangs low over the water, and the light here is soft and\ndim even at noon. North, the streams gather toward the shore of a still\nmountain lake, while west a gap in the rock leads back into the canyon.\nThe murmur of running water fills the vale.",
+   "extra_descs": {}
+  },
+  "9165": {
+   "vnum": 9165,
+   "name": "Along The Shores Of Lake Zaram",
+   "map": {
+    "x": 42,
+    "y": 87,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 9164,
+     "description": "To the south lies The Vale of Dim Streams."
+    },
+    "west": {
+     "to_room": 9166,
+     "description": "To the west lies The Trail Along The Dim Stairs."
+    }
+   },
+   "description": "The dark waters of Lake Zaram lie still and cold beneath the peaks, so\nclear that pale stones show far beneath the surface. A narrow beach of\nblack pebbles curves along the shore, crunching underfoot. West, a\nflight of rough steps disappears into a cleft in the mountainside, and\nsouth the shore leads back down into the vale of streams. No ripple\nstirs the water, and nothing rises to break it.",
+   "extra_descs": {}
+  },
+  "9166": {
+   "vnum": 9166,
+   "name": "The Trail Along The Dim Stairs",
+   "map": {
+    "x": 41,
+    "y": 87,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9167,
+     "description": "To the north lies The Trail Along The Dim Stairs."
+    },
+    "east": {
+     "to_room": 9165,
+     "description": "To the east lies Along The Shores Of Lake Zaram."
+    }
+   },
+   "description": "A stair of rough-hewn steps enters the mountain through a tunnel barely\nwider than your shoulders. What little light there is filters in from\nthe lake shore to the east, fading to a dim grey glow on the damp walls.\nThe steps go on north into deeper darkness. Water drips steadily from\nthe ceiling, and each drop echoes like a footstep.",
+   "extra_descs": {}
+  },
+  "9167": {
+   "vnum": 9167,
+   "name": "The Trail Along The Dim Stairs",
+   "map": {
+    "x": 41,
+    "y": 88,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9156,
+     "description": "To the north lies The Frozen Trail."
+    },
+    "south": {
+     "to_room": 9166,
+     "description": "To the south lies The Trail Along The Dim Stairs."
+    }
+   },
+   "description": "The dim stairs wind on through the heart of the rock, the steps slick\nwith icy water and worn smooth by countless feet. Iron rings are set\ninto the wall at intervals, rusted into lumps, where torches may once\nhave burned. A breath of freezing air comes down from the north, where\nthe stair rises toward the open mountainside. South, the steps descend\ntoward the lake.",
+   "extra_descs": {}
+  },
+  "9168": {
+   "vnum": 9168,
+   "name": "The Old Gravel Road Crossing The Desolated Plains",
+   "map": {
+    "x": 34,
+    "y": 79,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9169,
+     "description": "To the east lies The Old Gravel Road Crossing The Desolated Plains."
+    },
+    "west": {
+     "to_room": 9129,
+     "description": "To the west lies The Rickety-Rope Bridge."
+    }
+   },
+   "description": "An old road of packed grey gravel begins at the end of the rope bridge\nand strikes out east across a flat, lifeless plain. Its edges are lined\nwith half-buried kerbstones, cut long ago by careful hands. Westward the\nrope bridge creaks over the ravine. Nothing grows beside the road but a\nfew dead stalks rattling in the wind.",
+   "extra_descs": {}
+  },
+  "9169": {
+   "vnum": 9169,
+   "name": "The Old Gravel Road Crossing The Desolated Plains",
+   "map": {
+    "x": 35,
+    "y": 79,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9170,
+     "description": "To the east lies The Old Gravel Road Crossing The Desolated Plains."
+    },
+    "west": {
+     "to_room": 9168,
+     "description": "To the west lies The Old Gravel Road Crossing The Desolated Plains."
+    }
+   },
+   "description": "The desolated plains stretch flat and featureless on both sides of the\nroad, a waste of grey dust and cracked clay without a single blade of\ngrass. The wind lifts the dust in slow, twisting columns that wander\nacross the land and fall apart. The gravel road runs straight as a spear\neast and west. Your footsteps crunch loudly in the vast silence.",
+   "extra_descs": {}
+  },
+  "9170": {
+   "vnum": 9170,
+   "name": "The Old Gravel Road Crossing The Desolated Plains",
+   "map": {
+    "x": 36,
+    "y": 79,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9171,
+     "description": "To the east lies The Old Gravel Road Crossing The Desolated Plains."
+    },
+    "west": {
+     "to_room": 9169,
+     "description": "To the west lies The Old Gravel Road Crossing The Desolated Plains."
+    }
+   },
+   "description": "A milestone stands beside the road here, a squat pillar of granite whose\ncarvings have been scoured away by grit until only a faint pointing hand\nremains. Around it the plain is strewn with white stones like scattered\nteeth. The road goes on east toward distant hills and west toward the\nravine. The sun, when it shows at all, is a pale coin behind the haze.",
+   "extra_descs": {
+    "milestone pillar granite hand": "Only the carved hand survives, its finger pointing along the road toward\nthe hills. Someone has scratched a tally of short lines beneath it,\ndozens of them, as if counting days or the dead."
+   },
+   "mob_resets": [
+    {
+     "vnum": 647102,
+     "max": 1
+    }
+   ]
+  },
+  "9171": {
+   "vnum": 9171,
+   "name": "The Old Gravel Road Crossing The Desolated Plains",
+   "map": {
+    "x": 37,
+    "y": 79,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9172,
+     "description": "To the east lies The Old Gravel Road."
+    },
+    "west": {
+     "to_room": 9170,
+     "description": "To the west lies The Old Gravel Road Crossing The Desolated Plains."
+    }
+   },
+   "description": "The remains of a wagon lie in the ditch beside the road, its wheels\nbroken and its timbers bleached silver by sun and wind. Whatever it once\ncarried was taken long ago. Ahead the road begins to curve east toward\nrising ground, and behind you it runs back west across the empty plain.\nDust has drifted in a soft grey bank against the wreck's side.",
+   "extra_descs": {}
+  },
+  "9172": {
+   "vnum": 9172,
+   "name": "The Old Gravel Road",
+   "map": {
+    "x": 38,
+    "y": 79,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9173,
+     "description": "To the north lies The Old Gravel Road."
+    },
+    "west": {
+     "to_room": 9171,
+     "description": "To the west lies The Old Gravel Road Crossing The Desolated Plains."
+    }
+   },
+   "description": "The gravel road bends sharply here, turning north toward the foothills\nwhere the ground starts to buckle and climb. Banks of loose scree spill\nonto the road from a low cut in the land. Westward it runs back across\nthe desolated plains toward the rope bridge. A cold wind smelling of\nsnow comes down from the heights.",
+   "extra_descs": {}
+  },
+  "9173": {
+   "vnum": 9173,
+   "name": "The Old Gravel Road",
+   "map": {
+    "x": 38,
+    "y": 80,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 9172,
+     "description": "To the south lies The Old Gravel Road."
+    },
+    "up": {
+     "to_room": 9174,
+     "description": "To the up lies The Old Gravel Road."
+    }
+   },
+   "description": "The road reaches the foot of a steep slope and climbs it by rough steps\ncut into the rock, each one worn into a shallow bowl. The way up leads\nto a higher stretch of road along the hillside. South, the road runs\nback to its bend at the edge of the plains. Hardy thornbushes cling to\nthe bank, their branches hung with tufts of grey wool.",
+   "extra_descs": {}
+  },
+  "9174": {
+   "vnum": 9174,
+   "name": "The Old Gravel Road",
+   "map": {
+    "x": 39,
+    "y": 81,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9175,
+     "description": "To the north lies The Old Gravel Road."
+    },
+    "down": {
+     "to_room": 9173,
+     "description": "To the down lies The Old Gravel Road."
+    }
+   },
+   "description": "The road runs along a shelf cut into the hillside, with a sheer drop on\none hand and a wall of crumbling rock on the other. Below, the rough\nsteps lead down toward the plains, which spread away grey and endless\nbeyond the foothills. North, the road continues along the shelf,\nclimbing gently. Loose stones skitter away under your feet and vanish\nover the edge.",
+   "extra_descs": {}
+  },
+  "9175": {
+   "vnum": 9175,
+   "name": "The Old Gravel Road",
+   "map": {
+    "x": 39,
+    "y": 82,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9176,
+     "description": "To the east lies The Old Gravel Road."
+    },
+    "south": {
+     "to_room": 9174,
+     "description": "To the south lies The Old Gravel Road."
+    }
+   },
+   "description": "The shelf widens into a level stretch of road, paved here with big flat\nslabs where the gravel has washed away. Old wheel ruts are worn deep\ninto the stone, filled now with rainwater and dead leaves. The road\nturns east toward a dark tower that rises on a spur above the hills, and\nback south along the hillside. The wind has an edge of ice to it now.",
+   "extra_descs": {}
+  },
+  "9176": {
+   "vnum": 9176,
+   "name": "The Old Gravel Road",
+   "map": {
+    "x": 40,
+    "y": 82,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 9175,
+     "description": "To the west lies The Old Gravel Road."
+    },
+    "up": {
+     "to_room": 9177,
+     "description": "To the up lies The Old Watchtower."
+    }
+   },
+   "description": "The road ends below a rocky spur, and a steep track zigzags up toward\nthe grim old watchtower that crowns it. The tower's walls are dark with\nage, and the empty slits of its windows gaze down at you. West, the\npaved road runs back along the hillside. Thorn and bramble choke the\nfoot of the slope, leaving only the narrow track clear.",
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 647102,
+     "max": 1
+    }
+   ]
+  },
+  "9177": {
+   "vnum": 9177,
+   "name": "The Old Watchtower",
+   "map": {
+    "x": 41,
+    "y": 83,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9161,
+     "description": "To the north lies The Canyon Of Khel-zaram."
+    },
+    "east": {
+     "to_room": 9178,
+     "description": "To the east lies Inside The Old Watchtower."
+    },
+    "down": {
+     "to_room": 9176,
+     "description": "To the down lies The Old Gravel Road."
+    }
+   },
+   "description": "You stand on the windswept summit of the spur, at the foot of an old\nwatchtower built of rough black stone. Its doorway gapes open to the\neast, the door long gone, and arrow slits stare out over the land below.\nNorth, a narrow path leads into the mouth of a deep canyon between\ntowering walls of red rock. The track drops back down toward the road\nbeneath the spur.",
+   "extra_descs": {}
+  },
+  "9178": {
+   "vnum": 9178,
+   "name": "Inside The Old Watchtower",
+   "map": {
+    "x": 42,
+    "y": 83,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 9177,
+     "description": "To the west lies The Old Watchtower."
+    },
+    "up": {
+     "to_room": 9179,
+     "description": "To the up lies The Look-Out."
+    }
+   },
+   "description": "The inside of the watchtower is a single round chamber, its stone floor\nlittered with fallen plaster and old bird droppings. A cold hearth is\nbuilt into one wall, black with soot, and a broken table leans against\nanother. Narrow stairs spiral up inside the wall toward the look-out\nabove. West, the empty doorway lets in a grey square of daylight and a\nwhistle of wind.",
+   "extra_descs": {}
+  },
+  "9179": {
+   "vnum": 9179,
+   "name": "The Look-Out",
+   "map": {
+    "x": 43,
+    "y": 84,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "down": {
+     "to_room": 9178,
+     "description": "To the down lies Inside The Old Watchtower."
+    }
+   },
+   "description": "The topmost chamber of the tower is a cramped room ringed by tall window\nslits, through which the wind moans and whistles. From here the watchers\nof old could see the plains far below, the dark line of the canyon, and\nthe road snaking off across the waste. Names and dates have been\nscratched into the stone sills by long-dead sentries. A narrow stair\nleads down into the chamber beneath.",
+   "extra_descs": {
+    "names dates sills scratches": "Dozens of names crowd the sills, some neat, some little more than\nscratches. The last one, cut deeper than the rest, is followed by a\nsingle word: alone."
+   }
+  },
+  "24700": {
+   "vnum": 24700,
+   "name": "The Black Hills",
+   "map": {
+    "x": 35,
+    "y": 63,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9111,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 24701,
+     "description": "To the east lies Before The Bridge Across The Ravine.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 9109,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9113,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "A squat gatehouse of dressed grey stone blocks the way east, built by\ndwarven hands into a cleft between two hills. Its heavy oaken door,\nbound with iron, stands shut, and the arch above it is carved with a\nhammer and an anvil. Paths wander off north, south and west across the\ndark hills. The stonework is old but sound, and not a single block has\nslipped out of line.",
+   "extra_descs": {
+    "hammer anvil carving arch gatehouse": "The hammer and anvil are cut in the crisp, deep style of dwarven masons,\nand beneath them a line of runes names the gatehouse as the Ravine Ward\nof Aredrel. The door's iron studs are each shaped like a tiny bearded\nface."
+   }
+  },
+  "24701": {
+   "vnum": 24701,
+   "name": "Before The Bridge Across The Ravine",
+   "map": {
+    "x": 36,
+    "y": 63,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24702,
+     "description": "To the east lies On The Bridge Across The Ravine."
+    },
+    "west": {
+     "to_room": 24700,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "Beyond the gatehouse a paved terrace ends at the brink of a vast ravine,\nand a bridge of carved stone leaps out across it toward the far\nmountains. A massive iron gate, bolted and chained, closes the bridge's\nhead to the east, its bars as thick as a man's wrist. West, the door\nleads back through the gatehouse to the hills. Mist boils up out of the\nravine, hiding its depths entirely.",
+   "extra_descs": {}
+  }
+ },
+ "mobs": {
+  "647100": {
+   "vnum": 647100,
+   "name": "carrion crow bird black",
+   "short_desc": "a carrion crow",
+   "long_desc": "A carrion crow hops along the ground, picking at something you would rather not see.",
+   "description": "A big, ragged black crow with a heavy grey beak and dull, knowing eyes.\nIts feathers are matted with dust, and it keeps its head cocked toward\nyou as though weighing how long you might last out here.",
+   "level": 6,
+   "alignment": 0,
+   "hp_dice": "6d8+71",
+   "damage_dice": "2d6+3",
+   "armor_class": 79,
+   "exp": 350,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "inventory": []
+  },
+  "647101": {
+   "vnum": 647101,
+   "name": "jackal badland dog",
+   "short_desc": "a badland jackal",
+   "long_desc": "A lean badland jackal slinks between the rocks, lips curled back from yellow teeth.",
+   "description": "It is a gaunt, sandy-grey dog with oversized ears and ribs that show\nplainly through its mangy coat. It moves in a low, sidelong trot and\nnever quite turns its back on you, and its yellow eyes are bright with\nhunger.",
+   "level": 8,
+   "alignment": 0,
+   "hp_dice": "8d8+91",
+   "damage_dice": "3d6+3",
+   "armor_class": 73,
+   "exp": 460,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": []
+  },
+  "647102": {
+   "vnum": 647102,
+   "name": "gnoll raider hyena",
+   "short_desc": "a gnoll raider",
+   "long_desc": "A gnoll raider prowls here, sniffing the wind and swinging a spiked flail.",
+   "description": "A hulking, hyena-headed gnoll stands taller than a man, its spotted hide\ncovered in scraps of stolen leather and rusted mail. Its muzzle is\nscarred and grinning, and it gives off a rank stink of carrion and\nsmoke. A string of teeth and finger-bones rattles at its neck.",
+   "level": 12,
+   "alignment": -450,
+   "hp_dice": "12d8+156",
+   "damage_dice": "4d6+5",
+   "armor_class": 61,
+   "exp": 680,
+   "gold": 144,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 747100,
+     "chance": 25
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "647103": {
+   "vnum": 647103,
+   "name": "hill troll brute",
+   "short_desc": "a hill troll",
+   "long_desc": "A hill troll squats among the rocks, gnawing on a thighbone.",
+   "description": "The troll is a stooped mountain of grey-green flesh, its warty hide\ncrusted with lichen and dirt. Its arms hang nearly to the ground and end\nin black, cracked claws, and its small eyes peer out from under a heavy\nbrow with dull malice.",
+   "level": 15,
+   "alignment": -500,
+   "hp_dice": "15d8+249",
+   "damage_dice": "4d6+12",
+   "armor_class": 47,
+   "exp": 845,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 747100,
+     "chance": 10
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "647104": {
+   "vnum": 647104,
+   "name": "restless spirit ghost pale",
+   "short_desc": "a restless spirit",
+   "long_desc": "A restless spirit drifts between the trees, its pale face twisted in sorrow.",
+   "description": "It is the grey, half-transparent shape of a man or woman, its features\nblurred like a face seen through rain. Its mouth moves endlessly without\na sound, and a bitter cold comes off it, frosting the leaves wherever it\npasses. A fine grey ash sifts from its hems as it moves.",
+   "level": 13,
+   "alignment": -700,
+   "hp_dice": "13d8+192",
+   "damage_dice": "4d6+6",
+   "armor_class": 58,
+   "exp": 735,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 747103,
+     "chance": 25
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "647105": {
+   "vnum": 647105,
+   "name": "ghost hanged man",
+   "short_desc": "the ghost of the hanged man",
+   "long_desc": "The ghost of the hanged man sways beneath the gallows, a noose still tight about his neck.",
+   "description": "He is a grey, gaunt shape in the rags of an old coat, his head bent at a\ndreadful angle by the rope that still hangs from his neck. His eyes are\nempty hollows, yet they follow you wherever you go. His lips are black,\nand when the wind drops you can hear him whispering the name of the man\nwho hanged him.",
+   "level": 16,
+   "alignment": -800,
+   "hp_dice": "16d8+239",
+   "damage_dice": "5d6+7",
+   "armor_class": 49,
+   "exp": 900,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 747101,
+     "chance": 30
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "647106": {
+   "vnum": 647106,
+   "name": "ghost lodge keeper old man",
+   "short_desc": "the ghost of the lodge-keeper",
+   "long_desc": "The ghost of the lodge-keeper shuffles about his old haunts, holding up a dim lantern.",
+   "description": "A stooped old man in a leather apron and a woodsman's hood, all of him\ngrey and faint as smoke. He lifts his lantern to peer at each visitor in\nturn, and his face crumples with anger when he finds a stranger. Earth\nclings to his hands and knees, as though he dug his own grave.",
+   "level": 14,
+   "alignment": -600,
+   "hp_dice": "14d8+207",
+   "damage_dice": "4d6+8",
+   "armor_class": 55,
+   "exp": 790,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 747102,
+     "chance": 30
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "647107": {
+   "vnum": 647107,
+   "name": "spider web grey giant",
+   "short_desc": "a grey web spider",
+   "long_desc": "A grey web spider the size of a dog clings to a tree trunk, its legs folded tight.",
+   "description": "Its bloated grey body is furred with bristles and marked with a pale\npattern like a skull. Eight black eyes glitter above a pair of dripping\nfangs, and threads of sticky silk trail from its spinnerets wherever it\ncreeps. It has come out of the dark woods of Haon-Dor, or its mother\ndid.",
+   "level": 11,
+   "alignment": 0,
+   "hp_dice": "11d8+123",
+   "damage_dice": "3d6+7",
+   "armor_class": 64,
+   "exp": 625,
+   "gold": 0,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 747104,
+     "chance": 30
+    },
+    {
+     "vnum": 747105,
+     "chance": 20
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  },
+  "647108": {
+   "vnum": 647108,
+   "name": "cultist black robed man",
+   "short_desc": "a black-robed cultist",
+   "long_desc": "A black-robed cultist stands here, chanting softly over a guttering black candle.",
+   "description": "His robe is black wool stitched with a spider in silver thread, and his\nface is painted grey with ash. His hands are stained with wax and old\nblood, and he murmurs the same few words over and over in a tongue you\ndo not know. He bears the mark of the dark temple of Haon-Dor on the\nback of one hand.",
+   "level": 14,
+   "alignment": -650,
+   "hp_dice": "14d8+182",
+   "damage_dice": "4d6+8",
+   "armor_class": 55,
+   "exp": 790,
+   "gold": 168,
+   "flags": [
+    "stay_zone",
+    "aggressive"
+   ],
+   "inventory": [],
+   "loot_table": [
+    {
+     "vnum": 747106,
+     "chance": 25
+    },
+    {
+     "vnum": 202,
+     "chance": 5
+    },
+    {
+     "vnum": 203,
+     "chance": 5
+    },
+    {
+     "vnum": 204,
+     "chance": 5
+    },
+    {
+     "vnum": 205,
+     "chance": 5
+    }
+   ]
+  }
+ },
+ "objects": {
+  "747100": {
+   "vnum": 747100,
+   "name": "flail gnoll spiked chain",
+   "short_desc": "a gnoll's spiked flail",
+   "room_desc": "A crude spiked flail lies here, its chain caked with rust.",
+   "description": "A knotted wooden haft is joined by a length of rusty chain to an iron ball hammered full of crude spikes. It is ugly, heavy and stained with old blood.",
+   "item_type": "weapon",
+   "type": "weapon",
+   "min_level": 12,
+   "damage_dice": "2d5",
+   "weapon_type": "pound",
+   "weight": 6,
+   "value": 340
+  },
+  "747101": {
+   "vnum": 747101,
+   "name": "token rope hangman noose knot",
+   "short_desc": "a hangman's rope token",
+   "room_desc": "A short loop of frayed rope, tied in a hangman's knot, lies here.",
+   "description": "A hand's length of old, dark rope tied in a perfect hangman's knot, worn smooth by the grip of a dead man's neck. It is always cold, and some say it brings luck to anyone bold enough to carry it.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 16,
+   "weight": 1,
+   "value": 505
+  },
+  "747102": {
+   "vnum": 747102,
+   "name": "lantern lodge keeper iron horn",
+   "short_desc": "a lodge-keeper's lantern",
+   "room_desc": "An old iron lantern with horn panes sits here.",
+   "description": "A sturdy iron lantern with panes of scraped horn, its handle wrapped in worn leather. Its flame burns low and steady and never seems to need trimming.",
+   "item_type": "light",
+   "type": "light",
+   "min_level": 14,
+   "light_hours": 48,
+   "weight": 2,
+   "value": 43
+  },
+  "747103": {
+   "vnum": 747103,
+   "name": "ash spirit pouch grey",
+   "short_desc": "a pouch of spirit-ash",
+   "room_desc": "A small pouch spilling fine grey ash lies here.",
+   "description": "A twist of cloth holding a pinch of fine, cold grey ash that never quite settles. Hedge-witches and priests pay well for it.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 13,
+   "weight": 1,
+   "value": 415
+  },
+  "747104": {
+   "vnum": 747104,
+   "name": "silk spider skein grey",
+   "short_desc": "a skein of spider silk",
+   "room_desc": "A skein of grey spider silk lies here, faintly sticky.",
+   "description": "A tangle of grey silk as strong as wire and still a little sticky, wound into a rough skein. Weavers prize it for cloth that turns a blade.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 11,
+   "weight": 1,
+   "value": 355
+  },
+  "747105": {
+   "vnum": 747105,
+   "name": "venom sac spider poison",
+   "short_desc": "a spider's venom sac",
+   "room_desc": "A swollen, glistening venom sac lies here.",
+   "description": "A bulging sac of dark venom cut from a giant spider, its skin tough and shiny. Alchemists and assassins alike will pay for it, though it must be handled with great care.",
+   "item_type": "treasure",
+   "type": "treasure",
+   "min_level": 11,
+   "weight": 1,
+   "value": 355
+  },
+  "747106": {
+   "vnum": 747106,
+   "name": "candle black cultist wax",
+   "short_desc": "a cultist's black candle",
+   "room_desc": "A thick black candle stands here, its wick charred.",
+   "description": "A fat candle of black wax, carved with a spider and a ring of tiny, cramped letters. It burns with a smoky, greenish flame and smells of rot and myrrh.",
+   "item_type": "light",
+   "type": "light",
+   "min_level": 14,
+   "light_hours": 48,
+   "weight": 2,
+   "value": 43
+  }
+ }
+}

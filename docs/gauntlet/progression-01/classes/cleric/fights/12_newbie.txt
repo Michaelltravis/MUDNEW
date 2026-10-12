@@ -1,0 +1,42 @@
+> consider newbie
+
+=== Considering: newbie ===
+A perfect match!
+Threat: Even  |  Level: 5 vs You 5  |  XP: even (100% exp)
+Outcome: Expect a fair fight.
+Tactics: OB/DB/PB You +3/+33/0% | newbie +2/+10/0%
+State: Stance Normal | Move steady | Defenses: baseline
+Health: excellent condition
+
+
+34/43hp 160/160mp 160/160mv> 
+[t=   0.0s] > kill newbie
+[t=   0.0s] You attack newbie!
+[t=   0.0s] Your pounding blow connects — it grazes newbie! [9 damage]
+[t=   0.0s] newbie [█████████░] [102/111]
+[t=   0.0s] [Hint] Your current objective: Speak with Sage Aldric (type "talk aldric"). Type
+[t=   0.0s] 'hint' for directions.
+[t=   0.0s] 34/43hp 160/160mp 159/160mv [newbie: 102/111]> 
+[t=   0.0s] > cast 'holy smite' newbie
+[t=   0.0s] You don't know the spell 'holy'!
+[t=   0.0s] Type 'spells' to see your known spells.
+[t=   0.0s] 34/43hp 160/160mp 159/160mv [newbie: 102/111]> 
+[t=   0.0s] > holy smite newbie
+[t=   0.0s] [holy_fire]
+[t=   0.0s] 🔥 Holy Fire engulfs newbie! [65] + DoT
+[t=   0.0s] 💥 newbie reels — STAGGERED! Strike now!
+[t=   0.0s] 34/43hp 160/160mp 159/160mv [newbie: 37/111]> 
+[t=   0.8s] You press the opening while newbie reels — wide open!
+[t=   0.8s] Your pounding blow hits newbie! [11 damage]
+[t=   0.8s] newbie [█░░░░░░░░░] [21/111]
+[t=   0.8s] 34/43hp 160/160mp 158/160mv [newbie: 21/111]> 
+[t=   4.8s] ⚠ newbie draws back, muscles bunching, and winds up a crushing blow! (brace or
+[t=   4.8s] sidestep!)
+[t=   4.8s] Your pounding blow lands squarely and hits newbie! [13 damage]
+[t=   4.8s] newbie [░░░░░░░░░░] [8/111]
+[t=   4.8s] 35/43hp 160/160mp 159/160mv [newbie: 8/111]> 
+[t=   4.8s] newbie's pounding blow hits home, a light one! [5 damage]
+[t=   8.9s] Your pounding blow connects — it grazes newbie! [9 damage]
+[t=   8.9s] ☠ newbie is DEAD! You killed newbie.
+[t=   8.9s] You gain 366 experience points!
+[t=   8.9s] Bonuses: Streak +66

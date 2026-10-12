@@ -13,7 +13,7 @@ from config import Config
 WAYPOINTS: Dict[str, dict] = {
     # Major cities / hubs
     'midgaard_temple': {
-        'name': 'Temple of Midgaard',
+        'name': 'Temple of Garathorm',
         'vnum': 3001,
         'cost': 10,
     },
@@ -63,7 +63,7 @@ WAYPOINTS: Dict[str, dict] = {
         'cost': 45,
     },
     'sunken_ruins_docks': {
-        'name': "Docks of Midgaard",
+        'name': "Docks of Garathorm",
         'vnum': 13000,
         'cost': 55,
     },

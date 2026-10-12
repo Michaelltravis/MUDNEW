@@ -1,0 +1,2647 @@
+{
+ "classes": {
+  "assassin": [
+   {
+    "id": "backstab",
+    "level": 1,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "mark",
+    "level": 1,
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "expose",
+    "level": 4,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "vital",
+    "level": 5,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "execute_contract",
+    "level": 14,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "feint",
+    "level": 8,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "evasion",
+    "level": 16,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "fade",
+    "level": 10,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "slip_the_veil",
+    "level": 20,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "sneak",
+    "level": 2,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "hide",
+    "level": 3,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "dual_wield",
+    "level": 18,
+    "passive": true,
+    "type": "skill"
+   },
+   {
+    "id": "second_attack",
+    "level": 12,
+    "passive": true,
+    "type": "skill"
+   },
+   {
+    "id": "dodge",
+    "level": 6,
+    "passive": true,
+    "type": "skill"
+   },
+   {
+    "id": "poison",
+    "level": 9,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "shadowstrike",
+    "level": 32,
+    "shape": "dash",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "fan_of_knives",
+    "level": 38,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "rupture",
+    "level": 44,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "shadow_blades_master",
+    "level": 50,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "vendetta_assassin",
+    "level": 56,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "death_mark",
+    "level": 60,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "thousand_shadows",
+    "level": 45,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "cold_blood",
+    "level": null,
+    "shape": "self",
+    "talent": "Lethality",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "death_from_above",
+    "level": null,
+    "shape": "dash",
+    "talent": "Lethality",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "wound_poison",
+    "level": null,
+    "school": "poison",
+    "shape": "ranged",
+    "talent": "Poison",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "envenom",
+    "level": null,
+    "shape": "self",
+    "talent": "Poison",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "shadow_blade",
+    "level": null,
+    "shape": "self",
+    "talent": "Umbra",
+    "target": "self",
+    "type": "skill"
+   }
+  ],
+  "bard": [
+   {
+    "id": "mockery",
+    "level": 1,
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "fascinate",
+    "level": 2,
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "sneak",
+    "level": 8,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "pick_lock",
+    "level": 11,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "lore",
+    "level": 4,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "countersong",
+    "level": 12,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "dodge",
+    "level": 14,
+    "passive": true,
+    "type": "skill"
+   },
+   {
+    "id": "crescendo",
+    "level": 10,
+    "shape": "nova:6",
+    "target": "area",
+    "type": "skill"
+   },
+   {
+    "id": "encore",
+    "level": 18,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "magnum_opus",
+    "level": 60,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "discordant_note",
+    "level": 7,
+    "shape": "cone:7",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "song_of_the_ages",
+    "level": 45,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "charm_person",
+    "level": 13,
+    "school": "sound",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "sleep",
+    "level": 5,
+    "school": "sound",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "invisibility",
+    "level": 19,
+    "school": "sound",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "haste",
+    "level": 22,
+    "school": "sound",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "slow",
+    "level": 15,
+    "school": "sound",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "cure_light",
+    "level": 1,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "detect_magic",
+    "level": 9,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "heroism",
+    "level": 16,
+    "school": "sound",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "fear",
+    "level": 17,
+    "school": "shadow",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "mass_charm",
+    "level": 28,
+    "school": "sound",
+    "shape": "ranged",
+    "target": "area",
+    "type": "spell"
+   },
+   {
+    "id": "bless",
+    "level": 6,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "armor",
+    "level": 3,
+    "school": "sound",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "refrain_of_hope",
+    "level": 32,
+    "school": "sound",
+    "shape": "ranged",
+    "target": "group",
+    "type": "spell"
+   },
+   {
+    "id": "chord_of_disruption",
+    "level": 38,
+    "school": "sound",
+    "shape": "ranged",
+    "target": "area",
+    "type": "spell"
+   },
+   {
+    "id": "epic_tale",
+    "level": 44,
+    "school": "sound",
+    "shape": "ranged",
+    "target": "group",
+    "type": "spell"
+   },
+   {
+    "id": "siren_song",
+    "level": 50,
+    "school": "sound",
+    "shape": "ranged",
+    "target": "area",
+    "type": "spell"
+   },
+   {
+    "id": "requiem",
+    "level": 56,
+    "school": "sound",
+    "shape": "ranged",
+    "target": "area",
+    "type": "spell"
+   },
+   {
+    "id": "song_of_battle",
+    "level": null,
+    "school": "sound",
+    "shape": "ranged",
+    "talent": "Performance",
+    "target": "group",
+    "type": "spell"
+   },
+   {
+    "id": "finale",
+    "level": null,
+    "school": "sound",
+    "shape": "ranged",
+    "talent": "Performance",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "anthem_of_defense",
+    "level": null,
+    "school": "sound",
+    "shape": "ranged",
+    "talent": "Performance",
+    "target": "group",
+    "type": "spell"
+   },
+   {
+    "id": "identify",
+    "level": null,
+    "school": "sound",
+    "shape": "ranged",
+    "talent": "Lore",
+    "target": "object",
+    "type": "spell"
+   },
+   {
+    "id": "legend_lore",
+    "level": null,
+    "school": "sound",
+    "shape": "ranged",
+    "talent": "Lore",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "polymorph",
+    "level": null,
+    "school": "sound",
+    "shape": "ranged",
+    "talent": "Lore",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "mesmerize",
+    "level": null,
+    "school": "sound",
+    "shape": "ranged",
+    "talent": "Trickster",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "mirror_image",
+    "level": null,
+    "school": "sound",
+    "shape": "ranged",
+    "talent": "Trickster",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "grand_illusion",
+    "level": null,
+    "school": "sound",
+    "shape": "ranged",
+    "talent": "Trickster",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "discordant_chord",
+    "level": null,
+    "school": "sound",
+    "shape": "ranged",
+    "talent": "Trickster",
+    "target": "enemy",
+    "type": "spell"
+   }
+  ],
+  "cleric": [
+   {
+    "id": "turn_undead",
+    "level": 5,
+    "shape": "cone:8",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "holy_smite",
+    "level": 1,
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "dodge",
+    "level": 16,
+    "passive": true,
+    "type": "skill"
+   },
+   {
+    "id": "divine_word",
+    "level": 9,
+    "shape": "nova:12",
+    "target": "group",
+    "type": "skill"
+   },
+   {
+    "id": "pyre_of_faith",
+    "level": 18,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "divine_intervention",
+    "level": 60,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "seraphs_vigil",
+    "level": 45,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "cure_light",
+    "level": 1,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "cure_serious",
+    "level": 6,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "cure_critical",
+    "level": 12,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "heal",
+    "level": 22,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "group_heal",
+    "level": 28,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "group",
+    "type": "spell"
+   },
+   {
+    "id": "bless",
+    "level": 2,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "armor",
+    "level": 3,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "sanctuary",
+    "level": 20,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "remove_curse",
+    "level": 13,
+    "school": "shadow",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "remove_poison",
+    "level": 7,
+    "school": "poison",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "create_food",
+    "level": 4,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "create_water",
+    "level": 4,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "summon",
+    "level": 24,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "special",
+    "type": "spell"
+   },
+   {
+    "id": "word_of_recall",
+    "level": 8,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "resurrect",
+    "level": 36,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "special",
+    "type": "spell"
+   },
+   {
+    "id": "harm",
+    "level": 17,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "dispel_evil",
+    "level": 11,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "earthquake",
+    "level": 30,
+    "school": "nature",
+    "shape": "ranged",
+    "target": "area",
+    "type": "spell"
+   },
+   {
+    "id": "flamestrike",
+    "level": 26,
+    "school": "fire",
+    "shape": "blast:3",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "shield_of_faith",
+    "level": 10,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "divine_shield",
+    "level": 27,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "barkskin",
+    "level": 14,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "righteous_fury",
+    "level": 23,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "divine_protection",
+    "level": 34,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "aegis",
+    "level": 25,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "holy_aura",
+    "level": 29,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "protection_from_evil",
+    "level": 15,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "travelling_grace",
+    "level": 32,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "shared_burden",
+    "level": 38,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "group",
+    "type": "spell"
+   },
+   {
+    "id": "cleansing_rite",
+    "level": 44,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "area",
+    "type": "spell"
+   },
+   {
+    "id": "font_of_the_vigil",
+    "level": 50,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "area",
+    "type": "spell"
+   },
+   {
+    "id": "serenity",
+    "level": 56,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "renew",
+    "level": null,
+    "school": "holy",
+    "shape": "ranged",
+    "talent": "Radiance",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "guardian_spirit",
+    "level": null,
+    "school": "holy",
+    "shape": "ranged",
+    "talent": "Radiance",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "divine_hymn",
+    "level": null,
+    "school": "holy",
+    "shape": "ranged",
+    "talent": "Radiance",
+    "target": "group",
+    "type": "spell"
+   },
+   {
+    "id": "inner_focus",
+    "level": null,
+    "school": "holy",
+    "shape": "ranged",
+    "talent": "Vigil",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "power_word_shield",
+    "level": null,
+    "school": "holy",
+    "shape": "ranged",
+    "talent": "Vigil",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "aegis_ward",
+    "level": null,
+    "school": "holy",
+    "shape": "ranged",
+    "talent": "Vigil",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "pain_suppression",
+    "level": null,
+    "school": "holy",
+    "shape": "ranged",
+    "talent": "Vigil",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "dispel_magic",
+    "level": null,
+    "school": "arcane",
+    "shape": "ranged",
+    "talent": "Vigil",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "shadow_word_pain",
+    "level": null,
+    "school": "shadow",
+    "shape": "ranged",
+    "talent": "Penance",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "shadowform",
+    "level": null,
+    "school": "shadow",
+    "shape": "ranged",
+    "talent": "Penance",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "mind_flay",
+    "level": null,
+    "school": "shadow",
+    "shape": "ranged",
+    "talent": "Penance",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "void_eruption",
+    "level": null,
+    "school": "shadow",
+    "shape": "ranged",
+    "talent": "Penance",
+    "target": "area",
+    "type": "spell"
+   }
+  ],
+  "mage": [
+   {
+    "id": "scribe",
+    "level": 18,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "charge_release",
+    "level": 9,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "drink_the_leyline",
+    "level": 14,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "towerbolt",
+    "level": 20,
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "dodge",
+    "level": 16,
+    "passive": true,
+    "type": "skill"
+   },
+   {
+    "id": "singularity",
+    "level": 45,
+    "shape": "blast:6",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "magic_missile",
+    "level": 1,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "burning_hands",
+    "level": 3,
+    "school": "fire",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "chill_touch",
+    "level": 5,
+    "school": "frost",
+    "shape": "melee",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "fireball",
+    "level": 15,
+    "school": "fire",
+    "shape": "blast:3",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "lightning_bolt",
+    "level": 10,
+    "school": "lightning",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "sleep",
+    "level": 7,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "color_spray",
+    "level": 12,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "teleport",
+    "level": 28,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "fly",
+    "level": 17,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "invisibility",
+    "level": 13,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "detect_magic",
+    "level": 4,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "identify",
+    "level": 11,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "object",
+    "type": "spell"
+   },
+   {
+    "id": "enchant_weapon",
+    "level": 23,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "object",
+    "type": "spell"
+   },
+   {
+    "id": "meteor_swarm",
+    "level": 40,
+    "school": "fire",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "chain_lightning",
+    "level": 36,
+    "school": "lightning",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "armor",
+    "level": 1,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "shield",
+    "level": 8,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "stoneskin",
+    "level": 30,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "tower_echoes",
+    "level": 32,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "phase_step",
+    "level": 25,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "mana_shield",
+    "level": 24,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "ice_armor",
+    "level": 22,
+    "school": "frost",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "fire_shield",
+    "level": 27,
+    "school": "fire",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "mirrorward",
+    "level": 34,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "stepwise",
+    "level": 26,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "protection_from_evil",
+    "level": 21,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "protection_from_good",
+    "level": 21,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "quicken",
+    "level": 38,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "group",
+    "type": "spell"
+   },
+   {
+    "id": "resonance_burst",
+    "level": 44,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "rimeheart",
+    "level": 50,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "kindling_focus",
+    "level": 56,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "meteor_storm",
+    "level": 60,
+    "school": "fire",
+    "shape": "ranged",
+    "target": "area",
+    "type": "spell"
+   },
+   {
+    "id": "pyroblast",
+    "level": null,
+    "school": "fire",
+    "shape": "ranged",
+    "talent": "Emberweave",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "combustion",
+    "level": null,
+    "school": "arcane",
+    "shape": "ranged",
+    "talent": "Emberweave",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "phoenix_flames",
+    "level": null,
+    "school": "fire",
+    "shape": "ranged",
+    "talent": "Emberweave",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "ice_lance",
+    "level": null,
+    "school": "frost",
+    "shape": "ranged",
+    "talent": "Rimeward",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "deep_freeze",
+    "level": null,
+    "school": "frost",
+    "shape": "ranged",
+    "talent": "Rimeward",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "ice_barrier",
+    "level": null,
+    "school": "frost",
+    "shape": "ranged",
+    "talent": "Rimeward",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "cold_snap",
+    "level": null,
+    "school": "frost",
+    "shape": "ranged",
+    "talent": "Rimeward",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "presence_of_mind",
+    "level": null,
+    "school": "arcane",
+    "shape": "ranged",
+    "talent": "Mistcalling",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "arcane_power",
+    "level": null,
+    "school": "arcane",
+    "shape": "ranged",
+    "talent": "Mistcalling",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "arcane_missiles",
+    "level": null,
+    "school": "arcane",
+    "shape": "ranged",
+    "talent": "Mistcalling",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "mana_rift",
+    "level": null,
+    "school": "arcane",
+    "shape": "ranged",
+    "talent": "Mistcalling",
+    "target": "enemy",
+    "type": "spell"
+   }
+  ],
+  "necromancer": [
+   {
+    "id": "soul_bolt",
+    "level": 1,
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "soul_siphon",
+    "level": 4,
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "bone_shield",
+    "level": 7,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "soul_reap",
+    "level": 18,
+    "shape": "blast:4",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "lich_ascension",
+    "level": 45,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "chill_touch",
+    "level": 1,
+    "school": "frost",
+    "shape": "melee",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "animate_dead",
+    "level": 9,
+    "school": "necrotic",
+    "shape": "self",
+    "target": "special",
+    "type": "spell"
+   },
+   {
+    "id": "leechcraft",
+    "level": 6,
+    "school": "necrotic",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "enervation",
+    "level": 13,
+    "school": "necrotic",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "mistgrasp",
+    "level": 5,
+    "school": "necrotic",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "sever_cord",
+    "level": 24,
+    "school": "necrotic",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "energy_drain",
+    "level": 20,
+    "school": "necrotic",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "poison",
+    "level": 8,
+    "school": "poison",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "weaken",
+    "level": 3,
+    "school": "necrotic",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "blindness",
+    "level": 10,
+    "school": "shadow",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "fear",
+    "level": 12,
+    "school": "shadow",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "armor",
+    "level": 2,
+    "school": "necrotic",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "shield",
+    "level": 11,
+    "school": "necrotic",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "protection_from_good",
+    "level": 16,
+    "school": "necrotic",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "wraithfire",
+    "level": 15,
+    "school": "fire",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "corpse_shield",
+    "level": 38,
+    "school": "necrotic",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "mistrot",
+    "level": 14,
+    "school": "necrotic",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "summon_gargoyle",
+    "level": 50,
+    "school": "necrotic",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "soul_harvest",
+    "level": 56,
+    "school": "necrotic",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "apocalypse_necro",
+    "level": 60,
+    "school": "necrotic",
+    "shape": "ranged",
+    "target": "area",
+    "type": "spell"
+   },
+   {
+    "id": "dark_transformation",
+    "level": null,
+    "school": "shadow",
+    "shape": "ranged",
+    "talent": "Mistbinding",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "army_of_dead",
+    "level": null,
+    "school": "necrotic",
+    "shape": "ranged",
+    "talent": "Mistbinding",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "curse",
+    "level": null,
+    "school": "shadow",
+    "shape": "ranged",
+    "talent": "Mistbinding",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "festering_strike",
+    "level": null,
+    "school": "necrotic",
+    "shape": "ranged",
+    "talent": "Mistbinding",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "corpse_explosion",
+    "level": null,
+    "school": "necrotic",
+    "shape": "ranged",
+    "talent": "Mistbinding",
+    "target": "area",
+    "type": "spell"
+   },
+   {
+    "id": "mass_animate",
+    "level": null,
+    "school": "necrotic",
+    "shape": "ranged",
+    "talent": "Mistbinding",
+    "target": "special",
+    "type": "spell"
+   },
+   {
+    "id": "raise_abomination",
+    "level": null,
+    "school": "necrotic",
+    "shape": "ranged",
+    "talent": "Mistbinding",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "vampiric_blood",
+    "level": null,
+    "school": "necrotic",
+    "shape": "ranged",
+    "talent": "Sanguine",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "dancing_rune_weapon",
+    "level": null,
+    "school": "necrotic",
+    "shape": "ranged",
+    "talent": "Sanguine",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "dark_mending",
+    "level": null,
+    "school": "shadow",
+    "shape": "ranged",
+    "talent": "Sanguine",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "blood_boil",
+    "level": null,
+    "school": "necrotic",
+    "shape": "ranged",
+    "talent": "Sanguine",
+    "target": "area",
+    "type": "spell"
+   },
+   {
+    "id": "death_pact",
+    "level": null,
+    "school": "necrotic",
+    "shape": "ranged",
+    "talent": "Sanguine",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "siphon_unlife",
+    "level": null,
+    "school": "necrotic",
+    "shape": "ranged",
+    "talent": "Sanguine",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "obliterate",
+    "level": null,
+    "school": "frost",
+    "shape": "ranged",
+    "talent": "Gravecold",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "breath_of_sindragosa",
+    "level": null,
+    "school": "necrotic",
+    "shape": "ranged",
+    "talent": "Gravecold",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "death_strike",
+    "level": null,
+    "school": "necrotic",
+    "shape": "ranged",
+    "talent": "Gravecold",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "remorseless_winter",
+    "level": null,
+    "school": "frost",
+    "shape": "ranged",
+    "talent": "Gravecold",
+    "target": "area",
+    "type": "spell"
+   }
+  ],
+  "paladin": [
+   {
+    "id": "censure",
+    "level": 1,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "rescue",
+    "level": 5,
+    "shape": "ranged",
+    "target": "ally",
+    "type": "skill"
+   },
+   {
+    "id": "bash",
+    "level": 2,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "turn_undead",
+    "level": 7,
+    "shape": "cone:8",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "second_attack",
+    "level": 14,
+    "passive": true,
+    "type": "skill"
+   },
+   {
+    "id": "order_verdict",
+    "level": 4,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "absolution",
+    "level": 8,
+    "shape": "ranged",
+    "target": "ally",
+    "type": "skill"
+   },
+   {
+    "id": "halo_of_reckoning",
+    "level": 16,
+    "shape": "nova:5",
+    "target": "area",
+    "type": "skill"
+   },
+   {
+    "id": "dodge",
+    "level": 18,
+    "passive": true,
+    "type": "skill"
+   },
+   {
+    "id": "parry",
+    "level": 9,
+    "passive": true,
+    "type": "skill"
+   },
+   {
+    "id": "shield_block",
+    "level": 15,
+    "passive": true,
+    "type": "skill"
+   },
+   {
+    "id": "wings_of_dawn",
+    "level": 45,
+    "shape": "nova:6",
+    "target": "area",
+    "type": "skill"
+   },
+   {
+    "id": "cure_light",
+    "level": 1,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "cure_serious",
+    "level": 13,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "bless",
+    "level": 3,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "detect_evil",
+    "level": 6,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "protection_from_evil",
+    "level": 10,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "shield_of_faith",
+    "level": 11,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "divine_shield",
+    "level": 20,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "unfettered",
+    "level": 32,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "hallowed_ground",
+    "level": 38,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "area",
+    "type": "spell"
+   },
+   {
+    "id": "dawnhammer",
+    "level": 44,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "ascendant_hour",
+    "level": 50,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "divine_shield_master",
+    "level": 56,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "verdict_of_the_order",
+    "level": 60,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "holy_shock",
+    "level": null,
+    "school": "lightning",
+    "shape": "ranged",
+    "talent": "Dawnward",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "divine_favor",
+    "level": null,
+    "school": "holy",
+    "shape": "ranged",
+    "talent": "Dawnward",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "beacon_of_light",
+    "level": null,
+    "school": "holy",
+    "shape": "ranged",
+    "talent": "Dawnward",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "lay_on_hands",
+    "level": null,
+    "school": "holy",
+    "shape": "ranged",
+    "talent": "Dawnward",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "holy_shield",
+    "level": null,
+    "school": "holy",
+    "shape": "ranged",
+    "talent": "Bulwark",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "divine_guardian",
+    "level": null,
+    "school": "holy",
+    "shape": "ranged",
+    "talent": "Bulwark",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "crusader_strike",
+    "level": null,
+    "shape": "melee",
+    "talent": "Reckoning",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "avenging_wrath",
+    "level": null,
+    "school": "holy",
+    "shape": "ranged",
+    "talent": "Reckoning",
+    "target": "self",
+    "type": "spell"
+   }
+  ],
+  "ranger": [
+   {
+    "id": "truesight_shot",
+    "level": 1,
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "track",
+    "level": 1,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "sneak",
+    "level": 4,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "hide",
+    "level": 6,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "second_attack",
+    "level": 13,
+    "passive": true,
+    "type": "skill"
+   },
+   {
+    "id": "dual_wield",
+    "level": 18,
+    "passive": true,
+    "type": "skill"
+   },
+   {
+    "id": "dodge",
+    "level": 10,
+    "passive": true,
+    "type": "skill"
+   },
+   {
+    "id": "scan",
+    "level": 2,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "wildbond_strike",
+    "level": 9,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "loosing_storm",
+    "level": 16,
+    "shape": "blast:3.5",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "quarry_mark",
+    "level": 5,
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "tame",
+    "level": 8,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "snare",
+    "level": 11,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "volley",
+    "level": 32,
+    "shape": "blast:5",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "camouflage_master",
+    "level": 38,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "serpent_sting",
+    "level": 44,
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "alpha_pack",
+    "level": 60,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "heartseeker",
+    "level": 45,
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "cure_light",
+    "level": 3,
+    "school": "holy",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "detect_magic",
+    "level": 14,
+    "school": "arcane",
+    "shape": "ranged",
+    "target": "self",
+    "type": "spell"
+   },
+   {
+    "id": "faerie_fire",
+    "level": 7,
+    "school": "fire",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "call_lightning",
+    "level": 22,
+    "school": "lightning",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "barkskin",
+    "level": 15,
+    "school": "nature",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "entangle",
+    "level": 12,
+    "school": "nature",
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "spell"
+   },
+   {
+    "id": "briskness",
+    "level": 20,
+    "school": "nature",
+    "shape": "ranged",
+    "target": "ally",
+    "type": "spell"
+   },
+   {
+    "id": "bestial_wrath",
+    "level": null,
+    "shape": "self",
+    "talent": "Wildbond",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "stampede",
+    "level": null,
+    "shape": "melee",
+    "talent": "Wildbond",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "explosive_trap",
+    "level": null,
+    "shape": "self",
+    "talent": "Pathcraft",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "black_arrow",
+    "level": null,
+    "shape": "ranged",
+    "talent": "Pathcraft",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "camouflage",
+    "level": null,
+    "shape": "self",
+    "talent": "Pathcraft",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "wyvern_sting",
+    "level": null,
+    "shape": "ranged",
+    "talent": "Pathcraft",
+    "target": "enemy",
+    "type": "skill"
+   }
+  ],
+  "thief": [
+   {
+    "id": "backstab",
+    "level": 1,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "sneak",
+    "level": 1,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "hide",
+    "level": 2,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "steal",
+    "level": 4,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "pick_lock",
+    "level": 3,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "detect_traps",
+    "level": 11,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "second_attack",
+    "level": 14,
+    "passive": true,
+    "type": "skill"
+   },
+   {
+    "id": "dodge",
+    "level": 6,
+    "passive": true,
+    "type": "skill"
+   },
+   {
+    "id": "evasion",
+    "level": 16,
+    "passive": true,
+    "type": "skill"
+   },
+   {
+    "id": "pocket_sand",
+    "level": 10,
+    "shape": "ranged",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "low_blow",
+    "level": 12,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "rigged_dice",
+    "level": 20,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "jackpot",
+    "level": 24,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "circle",
+    "level": 8,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "trip",
+    "level": 5,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "caltrops",
+    "level": 18,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "nerve_strike",
+    "level": 32,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "garrote",
+    "level": 44,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "marked_for_death_thief",
+    "level": 56,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "perfect_crime",
+    "level": 60,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "heist",
+    "level": 45,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "shadow_step",
+    "level": null,
+    "shape": "melee",
+    "talent": "Shadowcraft",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "shadow_dance",
+    "level": null,
+    "shape": "self",
+    "talent": "Shadowcraft",
+    "target": "self",
+    "type": "skill"
+   }
+  ],
+  "warrior": [
+   {
+    "id": "strike",
+    "level": 1,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "bash",
+    "level": 1,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "cleave",
+    "level": 4,
+    "shape": "cone:3",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "charge",
+    "level": 10,
+    "shape": "dash",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "rally",
+    "level": 6,
+    "shape": "nova:8",
+    "target": "area",
+    "type": "skill"
+   },
+   {
+    "id": "execute",
+    "level": 14,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "kick",
+    "level": 2,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "rescue",
+    "level": 16,
+    "shape": "ranged",
+    "target": "ally",
+    "type": "skill"
+   },
+   {
+    "id": "second_attack",
+    "level": 12,
+    "passive": true,
+    "type": "skill"
+   },
+   {
+    "id": "third_attack",
+    "level": 26,
+    "passive": true,
+    "type": "skill"
+   },
+   {
+    "id": "parry",
+    "level": 8,
+    "passive": true,
+    "type": "skill"
+   },
+   {
+    "id": "shield_block",
+    "level": 18,
+    "passive": true,
+    "type": "skill"
+   },
+   {
+    "id": "dodge",
+    "level": 20,
+    "passive": true,
+    "type": "skill"
+   },
+   {
+    "id": "rallying_cry",
+    "level": 32,
+    "shape": "nova:12",
+    "target": "group",
+    "type": "skill"
+   },
+   {
+    "id": "shattering_blow",
+    "level": 38,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "commanding_shout",
+    "level": 44,
+    "shape": "melee",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "heroic_leap",
+    "level": 50,
+    "shape": "dash",
+    "target": "enemy",
+    "type": "skill"
+   },
+   {
+    "id": "warpath",
+    "level": 56,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "titans_wrath",
+    "level": 60,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   },
+   {
+    "id": "unbroken_banner",
+    "level": 45,
+    "shape": "self",
+    "target": "self",
+    "type": "skill"
+   }
+  ]
+ },
+ "clips": [
+  "1H_Melee_Attack_Chop",
+  "1H_Melee_Attack_Jump_Chop",
+  "1H_Melee_Attack_Slice_Diagonal",
+  "1H_Melee_Attack_Slice_Horizontal",
+  "1H_Melee_Attack_Stab",
+  "1H_Ranged_Aiming",
+  "1H_Ranged_Shoot",
+  "2H_Melee_Attack_Chop",
+  "2H_Melee_Attack_Slice",
+  "2H_Melee_Attack_Spin",
+  "2H_Melee_Attack_Stab",
+  "2H_Melee_Idle",
+  "2H_Ranged_Aiming",
+  "2H_Ranged_Shoot",
+  "Block",
+  "Block_Attack",
+  "Block_Hit",
+  "Blocking",
+  "Cheer",
+  "Death_A",
+  "Death_A_Pose",
+  "Death_B",
+  "Death_B_Pose",
+  "Death_C_Skeletons",
+  "Dodge_Backward",
+  "Dodge_Forward",
+  "Dodge_Left",
+  "Dodge_Right",
+  "Dualwield_Melee_Attack_Chop",
+  "Dualwield_Melee_Attack_Slice",
+  "Dualwield_Melee_Attack_Stab",
+  "Hit_A",
+  "Hit_B",
+  "Idle",
+  "Idle_B",
+  "Idle_Combat",
+  "Interact",
+  "Lie_Down",
+  "Lie_Idle",
+  "Lie_StandUp",
+  "PickUp",
+  "Running_A",
+  "Running_B",
+  "Running_C",
+  "Running_Strafe_Left",
+  "Running_Strafe_Right",
+  "Sit_Floor_Down",
+  "Sit_Floor_Idle",
+  "Sit_Floor_StandUp",
+  "Skeletons_Awaken_Floor",
+  "Skeletons_Awaken_Standing",
+  "Skeletons_Inactive_Floor_Pose",
+  "Spawn_Ground_Skeletons",
+  "Spellcast_Long",
+  "Spellcast_Raise",
+  "Spellcast_Shoot",
+  "Spellcast_Summon",
+  "Spellcasting",
+  "Taunt",
+  "Throw",
+  "Unarmed_Idle",
+  "Unarmed_Melee_Attack_Kick",
+  "Unarmed_Melee_Attack_Punch_A",
+  "Use_Item",
+  "Walking_A",
+  "Walking_B",
+  "Walking_Backwards",
+  "Walking_C",
+  "Walking_D_Skeletons"
+ ],
+ "extras": {
+  "assassin": [
+   {
+    "id": "thousand_shadows_strike",
+    "shape": "melee",
+    "target": "enemy"
+   }
+  ],
+  "bard": [
+   {
+    "id": "perform",
+    "shape": "self",
+    "target": "self"
+   }
+  ],
+  "cleric": [
+   {
+    "id": "animate",
+    "shape": "self",
+    "target": "self"
+   }
+  ],
+  "mage": [
+   {
+    "id": "singularity_implode",
+    "shape": "nova:8",
+    "target": "area"
+   },
+   {
+    "id": "summon",
+    "shape": "self",
+    "target": "self"
+   }
+  ],
+  "necromancer": [
+   {
+    "id": "animate",
+    "shape": "self",
+    "target": "self"
+   },
+   {
+    "id": "imbue",
+    "shape": "self",
+    "target": "self"
+   },
+   {
+    "id": "raise",
+    "shape": "self",
+    "target": "self"
+   },
+   {
+    "id": "ritual",
+    "shape": "self",
+    "target": "self"
+   },
+   {
+    "id": "soulstone",
+    "shape": "self",
+    "target": "self"
+   }
+  ],
+  "paladin": [
+   {
+    "id": "aura",
+    "shape": "self",
+    "target": "self"
+   },
+   {
+    "id": "layhands",
+    "shape": "ranged",
+    "target": "ally"
+   },
+   {
+    "id": "protect",
+    "shape": "ranged",
+    "target": "ally"
+   }
+  ],
+  "ranger": [
+   {
+    "id": "heartseeker_release",
+    "shape": "melee",
+    "target": "enemy"
+   }
+  ],
+  "thief": [
+   {
+    "id": "eviscerate",
+    "shape": "melee",
+    "target": "enemy"
+   },
+   {
+    "id": "fade",
+    "shape": "self",
+    "target": "self"
+   },
+   {
+    "id": "kidneyshot",
+    "shape": "melee",
+    "target": "enemy"
+   },
+   {
+    "id": "slicedice",
+    "shape": "self",
+    "target": "self"
+   }
+  ],
+  "warrior": [
+   {
+    "id": "mortal_strike",
+    "shape": "melee",
+    "target": "enemy"
+   },
+   {
+    "id": "protect",
+    "shape": "ranged",
+    "target": "ally"
+   }
+  ]
+ }
+}

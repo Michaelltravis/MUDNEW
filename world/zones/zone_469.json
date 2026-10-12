@@ -1,0 +1,2620 @@
+{
+ "number": 469,
+ "name": "High Tower Of Magic II",
+ "builders": "Skylar",
+ "atlas_area": 69,
+ "rooms": {
+  "2599": {
+   "vnum": 2599,
+   "name": "Atop The Stairway",
+   "map": {
+    "x": 20,
+    "y": 40,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This isop the stairway to the upper levels of the high tower. The walls\nemit a faint magical glow which provides enough light to see by. A\nhallway leads west from here, and the stairs lead down. Dust motes drift\nin the stale air. Shadows gather in the corners.",
+   "exits": {
+    "west": {
+     "to_room": 2600,
+     "description": "A passage leads to A Hallway"
+    },
+    "down": {
+     "to_room": 2598,
+     "description": "A passage leads to The End Of The Hallway"
+    }
+   }
+  },
+  "2600": {
+   "vnum": 2600,
+   "name": "A Hallway",
+   "map": {
+    "x": 19,
+    "y": 40,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 2513,
+     "max": 5
+    }
+   ],
+   "description": "This is a long hallway leading east and west. The walls emit a faint\nmagical glow which provides enough light to see by. A silver door can be\nseen to the north. Shadows gather in the corners. The walls are rough-\nhewn and cold to the touch.",
+   "exits": {
+    "north": {
+     "to_room": 2601,
+     "description": "A passage leads to A Store Room",
+     "door": {
+      "name": "door silver",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "east": {
+     "to_room": 2599,
+     "description": "A passage leads to Atop The Stairway"
+    },
+    "west": {
+     "to_room": 2604,
+     "description": "A passage leads to A Hallway"
+    }
+   }
+  },
+  "2601": {
+   "vnum": 2601,
+   "name": "A Store Room",
+   "map": {
+    "x": 19,
+    "y": 41,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "obj_resets": [
+    {
+     "vnum": 2519,
+     "max": 1
+    }
+   ],
+   "description": "This is a large store room. Raw materials are neatly bundled and piled\nhere and here. Many freshly cut staves rods and wands of different sizes\nare here. Visible is a silver door to the west. The ceiling hangs low\noverhead. The air is still and musty.",
+   "exits": {
+    "south": {
+     "to_room": 2600,
+     "description": "A passage leads to A Hallway",
+     "door": {
+      "name": "door silver",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "west": {
+     "to_room": 2602,
+     "description": "A passage leads to The Master Spellbinder's Chamber",
+     "door": {
+      "name": "door silver",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "2602": {
+   "vnum": 2602,
+   "name": "The Master Spellbinder's Chamber",
+   "map": {
+    "x": 18,
+    "y": 41,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 2540,
+     "max": 1
+    }
+   ],
+   "description": "This is the chambers of the Master Spellbinder. Unlike other work shops\nof similar nature, this one is without furnishings or tools. The spell\nbinder obviously needs none for the working of his art. A silver door\ncan be seen to the west. The ceiling hangs low overhead. The air is\nstill and musty.",
+   "exits": {
+    "east": {
+     "to_room": 2601,
+     "description": "A passage leads to A Store Room",
+     "door": {
+      "name": "door silver",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "west": {
+     "to_room": 2603,
+     "description": "A passage leads to The Spellbinder's Cache",
+     "door": {
+      "name": "door silver",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 2524
+     }
+    }
+   }
+  },
+  "2603": {
+   "vnum": 2603,
+   "name": "The Spellbinder's Cache",
+   "map": {
+    "x": 17,
+    "y": 41,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "obj_resets": [
+    {
+     "vnum": 2520,
+     "max": 1
+    },
+    {
+     "vnum": 2521,
+     "max": 1
+    }
+   ],
+   "description": "You have discovered the cache of the Master Spellbinder. There are three\nvery large silver chased cabinets here, other than that, the room is\nbare. A silver door can be seen to the south. Dust motes drift in the\nstale air. The ceiling hangs low overhead.",
+   "exits": {
+    "east": {
+     "to_room": 2602,
+     "description": "A passage leads to The Master Spellbinder's Chamber",
+     "door": {
+      "name": "door silver",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 2524
+     }
+    },
+    "south": {
+     "to_room": 2605,
+     "description": "A passage leads to A Hallway",
+     "door": {
+      "name": "door silver",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 2524
+     }
+    }
+   }
+  },
+  "2604": {
+   "vnum": 2604,
+   "name": "A Hallway",
+   "map": {
+    "x": 18,
+    "y": 40,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a long hallway leading east and west. The walls emit a faint\nmagical glow which provides enough light to see by. The ceiling hangs\nlow overhead. Dust motes drift in the stale air.",
+   "exits": {
+    "east": {
+     "to_room": 2600,
+     "description": "A passage leads to A Hallway"
+    },
+    "west": {
+     "to_room": 2605,
+     "description": "A passage leads to A Hallway"
+    }
+   }
+  },
+  "2605": {
+   "vnum": 2605,
+   "name": "A Hallway",
+   "map": {
+    "x": 17,
+    "y": 40,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a long hallway leading east and west. The walls emit a faint\nmagical glow which provides enough light to see by. A silver door can be\nseen to the north. Dust motes drift in the stale air. The ceiling hangs\nlow overhead.",
+   "exits": {
+    "north": {
+     "to_room": 2603,
+     "description": "A passage leads to The Spellbinder's Cache",
+     "door": {
+      "name": "door silver",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 2524
+     }
+    },
+    "east": {
+     "to_room": 2604,
+     "description": "A passage leads to A Hallway"
+    },
+    "west": {
+     "to_room": 2606,
+     "description": "A passage leads to A Bend In The Hallway"
+    }
+   }
+  },
+  "2606": {
+   "vnum": 2606,
+   "name": "A Bend In The Hallway",
+   "map": {
+    "x": 16,
+    "y": 40,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a bend in the long hallway. The walls emit a faint magical glow\nwhich provides enough light to see by. The hallway continues east and\nsouth. The ceiling hangs low overhead. Shadows gather in the corners.",
+   "exits": {
+    "east": {
+     "to_room": 2605,
+     "description": "A passage leads to A Hallway"
+    },
+    "south": {
+     "to_room": 2607,
+     "description": "A passage leads to A Hallway"
+    }
+   }
+  },
+  "2607": {
+   "vnum": 2607,
+   "name": "A Hallway",
+   "map": {
+    "x": 16,
+    "y": 38,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a long hallway leading north and south. The walls emit a faint\nmagical glow which provides enough light to see by. The walls are rough-\nhewn and cold to the touch. The ceiling hangs low overhead.",
+   "exits": {
+    "north": {
+     "to_room": 2606,
+     "description": "A passage leads to A Bend In The Hallway"
+    },
+    "south": {
+     "to_room": 2608,
+     "description": "A passage leads to A Hallway"
+    }
+   }
+  },
+  "2608": {
+   "vnum": 2608,
+   "name": "A Hallway",
+   "map": {
+    "x": 16,
+    "y": 37,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a long hallway leading north and south. The walls emit a faint\nmagical glow which provides enough light to see by. A rusty old door can\nbe seen to the west. The ceiling hangs low overhead. The air is still\nand musty.",
+   "exits": {
+    "north": {
+     "to_room": 2607,
+     "description": "A passage leads to A Hallway"
+    },
+    "south": {
+     "to_room": 2613,
+     "description": "A passage leads to A Hallway"
+    },
+    "west": {
+     "to_room": 2609,
+     "description": "A passage leads to The Golem Master's Workshop",
+     "door": {
+      "name": "door rusty",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "2609": {
+   "vnum": 2609,
+   "name": "The Golem Master's Workshop",
+   "map": {
+    "x": 15,
+    "y": 37,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 2541,
+     "max": 1
+    },
+    {
+     "vnum": 2542,
+     "max": 1
+    },
+    {
+     "vnum": 2545,
+     "max": 1
+    }
+   ],
+   "description": "This is the golem master's workshop. A few unfinished looking humanoid\nforms of different make are here, some moving, some not. The animated\nforms lunge to attack you. The walls are rough-hewn and cold to the\ntouch. Shadows gather in the corners.",
+   "exits": {
+    "north": {
+     "to_room": 2610,
+     "description": "A passage leads to A Store Room"
+    },
+    "east": {
+     "to_room": 2608,
+     "description": "A passage leads to A Hallway",
+     "door": {
+      "name": "door rusty",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "south": {
+     "to_room": 2611,
+     "description": "A passage leads to The Golem Chamber"
+    },
+    "down": {
+     "to_room": 2612,
+     "description": "A passage leads to It Is Very Dark Here...",
+     "door": {
+      "name": "trapdoor",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "2610": {
+   "vnum": 2610,
+   "name": "A Store Room",
+   "map": {
+    "x": 15,
+    "y": 38,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a small store room. Large chunks of clay, stone, wood and many\nother raw materials are here. The walls are rough-hewn and cold to the\ntouch. Dust motes drift in the stale air.",
+   "exits": {
+    "south": {
+     "to_room": 2609,
+     "description": "A passage leads to The Golem Master's Workshop"
+    }
+   }
+  },
+  "2611": {
+   "vnum": 2611,
+   "name": "The Golem Chamber",
+   "map": {
+    "x": 15,
+    "y": 36,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 2543,
+     "max": 1
+    },
+    {
+     "vnum": 2544,
+     "max": 1
+    },
+    {
+     "vnum": 2546,
+     "max": 1
+    },
+    {
+     "vnum": 2547,
+     "max": 1
+    }
+   ],
+   "description": "This is the golem chamber. Golems made of every imaginable material are\nhere, ranging in size from a hand-span to nearly the ceiling. They all\nseem to be sleeping. Dust motes drift in the stale air. Shadows gather\nin the corners.",
+   "exits": {
+    "north": {
+     "to_room": 2609,
+     "description": "A passage leads to The Golem Master's Workshop"
+    }
+   }
+  },
+  "2612": {
+   "vnum": 2612,
+   "name": "It Is Very Dark Here...",
+   "map": {
+    "x": 14,
+    "y": 36,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors",
+    "no_track"
+   ],
+   "description": "Absolute darkness surrounds you in this sealed chamber. The air crackles\nwith residual magical energy, and you sense ancient wards blocking all\nlight from entering this sanctum. Shadows gather in the corners. The air\nis still and musty.",
+   "exits": {
+    "up": {
+     "to_room": 2609,
+     "description": "A passage leads to The Golem Master's Workshop",
+     "door": {
+      "name": "trapdoor",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "down": {
+     "to_room": 2581,
+     "description": "A passage leads to A Very Hot Room",
+     "door": {
+      "name": "vent",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "2613": {
+   "vnum": 2613,
+   "name": "A Hallway",
+   "map": {
+    "x": 16,
+    "y": 36,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a long hallway leading north and south. The walls emit a faint\nmagical glow which provides enough light to see by. The air is still and\nmusty. Dust motes drift in the stale air.",
+   "exits": {
+    "north": {
+     "to_room": 2608,
+     "description": "A passage leads to A Hallway"
+    },
+    "south": {
+     "to_room": 2614,
+     "description": "A passage leads to A Bend In The Hallway"
+    }
+   }
+  },
+  "2614": {
+   "vnum": 2614,
+   "name": "A Bend In The Hallway",
+   "map": {
+    "x": 16,
+    "y": 35,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a bend in the long hallway. The walls emit a faint magical glow\nwhich provides enough light to see by. The hallway continues north and\neast from here. The ceiling hangs low overhead. Dust motes drift in the\nstale air.",
+   "exits": {
+    "north": {
+     "to_room": 2613,
+     "description": "A passage leads to A Hallway"
+    },
+    "east": {
+     "to_room": 2615,
+     "description": "A passage leads to A Hallway"
+    }
+   }
+  },
+  "2615": {
+   "vnum": 2615,
+   "name": "A Hallway",
+   "map": {
+    "x": 17,
+    "y": 35,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a long hallway leading east and west. The walls emit a faint\nmagical glow which provides enough light to see by. Shadows gather in\nthe corners. The walls are rough-hewn and cold to the touch.",
+   "exits": {
+    "east": {
+     "to_room": 2616,
+     "description": "A passage leads to A Hallway"
+    },
+    "west": {
+     "to_room": 2614,
+     "description": "A passage leads to A Bend In The Hallway"
+    }
+   }
+  },
+  "2616": {
+   "vnum": 2616,
+   "name": "A Hallway",
+   "map": {
+    "x": 18,
+    "y": 35,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a long hallway leading east and west. The walls emit a faint\nmagical glow which provides enough light to see by. An emerald door can\nbe seen to the south. Shadows gather in the corners. The air is still\nand musty.",
+   "exits": {
+    "east": {
+     "to_room": 2619,
+     "description": "A passage leads to A Hallway"
+    },
+    "south": {
+     "to_room": 2617,
+     "description": "A passage leads to The Illusion Master's Chamber",
+     "door": {
+      "name": "door emerald",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "west": {
+     "to_room": 2615,
+     "description": "A passage leads to A Hallway"
+    }
+   }
+  },
+  "2617": {
+   "vnum": 2617,
+   "name": "The Illusion Master's Chamber",
+   "map": {
+    "x": 18,
+    "y": 33,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 2548,
+     "max": 1
+    }
+   ],
+   "description": "This is the chamber of the Master of Illusions. The walls here are ever\nchanging in colour and texture, as if they were reforming before your\nvery eyes. Many splendorous treasures lie all around in heaps and piles,\nor at least they seem to be treasures... Shadows gather in the corners.\nThe ceiling hangs low overhead.",
+   "exits": {
+    "north": {
+     "to_room": 2616,
+     "description": "A passage leads to A Hallway",
+     "door": {
+      "name": "door emerald",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "west": {
+     "to_room": 2618,
+     "description": "A passage leads to A Bedroom"
+    }
+   }
+  },
+  "2618": {
+   "vnum": 2618,
+   "name": "A Bedroom",
+   "map": {
+    "x": 17,
+    "y": 33,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is the bedroom of the Master of Illusions. Strange looking items\nand artifacts float here and there in the air. The ripples of strong\nmagic can be felt everywhere. The room seems much larger than it\nlooks... Shadows gather in the corners. The walls are rough-hewn and\ncold to the touch.",
+   "exits": {
+    "east": {
+     "to_room": 2617,
+     "description": "A passage leads to The Illusion Master's Chamber"
+    }
+   }
+  },
+  "2619": {
+   "vnum": 2619,
+   "name": "A Hallway",
+   "map": {
+    "x": 19,
+    "y": 35,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a long hallway leading east and west. The walls emit a faint\nmagical glow which provides enough light to see by. A glass door can be\nseen to the south. Shadows gather in the corners. Dust motes drift in\nthe stale air.",
+   "exits": {
+    "east": {
+     "to_room": 2621,
+     "description": "A passage leads to A Bend In The Hallway"
+    },
+    "south": {
+     "to_room": 2620,
+     "description": "A passage leads to The Meditation Chamber",
+     "door": {
+      "name": "door glass",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "west": {
+     "to_room": 2616,
+     "description": "A passage leads to A Hallway"
+    }
+   }
+  },
+  "2620": {
+   "vnum": 2620,
+   "name": "The Meditation Chamber",
+   "map": {
+    "x": 19,
+    "y": 34,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_mob",
+    "no_track",
+    "peaceful"
+   ],
+   "description": "This is a meditation chamber. It is very silent here, in fact you can\nnot even hear your own footsteps. You feel very peaceful. The air is\nstill and musty. The ceiling hangs low overhead.",
+   "exits": {
+    "north": {
+     "to_room": 2619,
+     "description": "A passage leads to A Hallway",
+     "door": {
+      "name": "door glass",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "2621": {
+   "vnum": 2621,
+   "name": "A Bend In The Hallway",
+   "map": {
+    "x": 20,
+    "y": 35,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a bend in the long hallway. The walls emit a faint magical glow\nwhich provides enough light to see by. The hallway continues north and\nwest from here. Dust motes drift in the stale air. Shadows gather in the\ncorners.",
+   "exits": {
+    "north": {
+     "to_room": 2622,
+     "description": "A passage leads to A Hallway"
+    },
+    "west": {
+     "to_room": 2619,
+     "description": "A passage leads to A Hallway"
+    }
+   }
+  },
+  "2622": {
+   "vnum": 2622,
+   "name": "A Hallway",
+   "map": {
+    "x": 20,
+    "y": 36,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a long hallway leading north and south. The walls emit a faint\nmagical glow which provides enough light to see by. A blackened door can\nbe seen to the east. The ceiling hangs low overhead. The walls are\nrough-hewn and cold to the touch.",
+   "exits": {
+    "north": {
+     "to_room": 2626,
+     "description": "A passage leads to A Hallway"
+    },
+    "east": {
+     "to_room": 2623,
+     "description": "A passage leads to A Dark Room",
+     "door": {
+      "name": "door black",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "south": {
+     "to_room": 2621,
+     "description": "A passage leads to A Bend In The Hallway"
+    }
+   }
+  },
+  "2623": {
+   "vnum": 2623,
+   "name": "A Dark Room",
+   "map": {
+    "x": 21,
+    "y": 36,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a large dark room. The air here seems quite stale, and a sense\nof extreme dread comes over you. The stench of rotten flesh seems to be\nwafting in from the open doorway to the north. The ceiling hangs low\noverhead. The air is still and musty.",
+   "exits": {
+    "north": {
+     "to_room": 2624,
+     "description": "A passage leads to A Dark Room"
+    },
+    "west": {
+     "to_room": 2622,
+     "description": "A passage leads to A Hallway",
+     "door": {
+      "name": "door black",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "2624": {
+   "vnum": 2624,
+   "name": "A Dark Room",
+   "map": {
+    "x": 21,
+    "y": 37,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a large dark room. The stench here makes you gag and retch.\nThere are body parts and half rotted corpses strewn about with complete\nabandon. Several operating tables with still forms that resemble nothing\nyou have ever seen alive are here. Tortured screams can be heard from\nthe north. Dust motes drift in the stale air. Shadows gather in the\ncorners.",
+   "exits": {
+    "north": {
+     "to_room": 2625,
+     "description": "Gazing northwards, you are filled with deep dread."
+    },
+    "south": {
+     "to_room": 2623,
+     "description": "A passage leads to A Dark Room"
+    }
+   }
+  },
+  "2625": {
+   "vnum": 2625,
+   "name": "The Necromancer's Lair",
+   "map": {
+    "x": 21,
+    "y": 38,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors",
+    "no_track"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 2549,
+     "max": 1
+    },
+    {
+     "vnum": 2550,
+     "max": 4
+    },
+    {
+     "vnum": 2550,
+     "max": 4
+    },
+    {
+     "vnum": 2551,
+     "max": 1
+    }
+   ],
+   "description": "This is the lair of the evil Necromancer. Undead minions of all types,\nhuman and otherwise stand here waiting to do their master's bidding.\nSome glowing arcane sigils have been etched into walls and floor, no\ndoubt to protect the evil master from his own ungodly creations. Dust\nmotes drift in the stale air. Shadows gather in the corners.",
+   "exits": {
+    "south": {
+     "to_room": 2624,
+     "description": "A passage leads to A Dark Room"
+    }
+   }
+  },
+  "2626": {
+   "vnum": 2626,
+   "name": "A Hallway",
+   "map": {
+    "x": 20,
+    "y": 37,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a long hallway leading north and south. The walls emit a faint\nmagical glow which provides enough light to see by. Shadows gather in\nthe corners. The ceiling hangs low overhead.",
+   "exits": {
+    "north": {
+     "to_room": 2627,
+     "description": "A passage leads to A Hallway"
+    },
+    "south": {
+     "to_room": 2622,
+     "description": "A passage leads to A Hallway"
+    }
+   }
+  },
+  "2627": {
+   "vnum": 2627,
+   "name": "A Hallway",
+   "map": {
+    "x": 20,
+    "y": 38,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a long hallway leading north and south. The walls emit a faint\nmagical glow which provides enough light to see by. The ceiling hangs\nlow overhead. Dust motes drift in the stale air.",
+   "exits": {
+    "north": {
+     "to_room": 2628,
+     "description": "A passage leads to The End Of The Hallway"
+    },
+    "south": {
+     "to_room": 2626,
+     "description": "A passage leads to A Hallway"
+    }
+   }
+  },
+  "2628": {
+   "vnum": 2628,
+   "name": "The End Of The Hallway",
+   "map": {
+    "x": 20,
+    "y": 39,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 2539,
+     "max": 5
+    },
+    {
+     "vnum": 2539,
+     "max": 5
+    }
+   ],
+   "description": "This is the end of a long hallway. The walls here glow with a faint\nmagical energy which provides plenty of light. Stairs lead up to the\nnext level here and the hallway continues south. Dust motes drift in the\nstale air. The ceiling hangs low overhead.",
+   "exits": {
+    "south": {
+     "to_room": 2627,
+     "description": "A passage leads to A Hallway"
+    },
+    "up": {
+     "to_room": 2629,
+     "description": "A passage leads to A Corridor"
+    }
+   }
+  },
+  "2629": {
+   "vnum": 2629,
+   "name": "A Corridor",
+   "map": {
+    "x": 20,
+    "y": 40,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is the east end of a long corridor. Obsidian walls engraved with\nancient runes of power stretch out before. Magical energies seem to\ncrackle with power all around and whisper in tongues long forgotten,\nalmost as if the corridor itself were alive. The air is still and musty.\nThe walls are rough-hewn and cold to the touch.",
+   "exits": {
+    "west": {
+     "to_room": 2630,
+     "description": "A passage leads to A Corridor"
+    },
+    "down": {
+     "to_room": 2628,
+     "description": "A passage leads to The End Of The Hallway"
+    }
+   }
+  },
+  "2630": {
+   "vnum": 2630,
+   "name": "A Corridor",
+   "map": {
+    "x": 19,
+    "y": 40,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 2512,
+     "max": 10
+    }
+   ],
+   "description": "This is a long corridor. Obsidian walls engraved with ancient runes of\npower stretch out before. Magical energies seem to crackle with power\nall around and whisper in tongues long forgotten, almost as if the\ncorridor itself were alive. Dust motes drift in the stale air. The walls\nare rough-hewn and cold to the touch.",
+   "exits": {
+    "east": {
+     "to_room": 2629,
+     "description": "A passage leads to A Corridor"
+    },
+    "west": {
+     "to_room": 2631,
+     "description": "A passage leads to A Bend In The Corridor"
+    }
+   }
+  },
+  "2631": {
+   "vnum": 2631,
+   "name": "A Bend In The Corridor",
+   "map": {
+    "x": 18,
+    "y": 40,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a bend in the long corridor. Obsidian walls engraved with\nancient runes of power stretch out before. Magical energies seem to\ncrackle with power all around and whisper in tongues long forgotten,\nalmost as if the corridor itself were alive. Shadows gather in the\ncorners. The air is still and musty.",
+   "exits": {
+    "east": {
+     "to_room": 2630,
+     "description": "A passage leads to A Corridor"
+    },
+    "south": {
+     "to_room": 2632,
+     "description": "A passage leads to A Corridor"
+    }
+   }
+  },
+  "2632": {
+   "vnum": 2632,
+   "name": "A Corridor",
+   "map": {
+    "x": 18,
+    "y": 39,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a long corridor leading north and south. Obsidian walls engraved\nwith ancient runes of power stretch out before. Magical energies seem to\ncrackle with power all around and whisper in tongues long forgotten,\nalmost as if the corridor itself were alive. The walls are rough-hewn\nand cold to the touch. The air is still and musty.",
+   "exits": {
+    "north": {
+     "to_room": 2631,
+     "description": "A passage leads to A Bend In The Corridor"
+    },
+    "south": {
+     "to_room": 2633,
+     "description": "A passage leads to An Intersection"
+    }
+   }
+  },
+  "2633": {
+   "vnum": 2633,
+   "name": "An Intersection",
+   "map": {
+    "x": 18,
+    "y": 38,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 2513,
+     "max": 5
+    }
+   ],
+   "description": "This is an intersection in the corridor. The obsidian walled halls lead\noff in every direction from here, pulsing with the power of their\nancient runes. The walls are rough-hewn and cold to the touch. The\nceiling hangs low overhead.",
+   "exits": {
+    "north": {
+     "to_room": 2632,
+     "description": "A passage leads to A Corridor"
+    },
+    "east": {
+     "to_room": 2634,
+     "description": "A passage leads to A Corridor"
+    },
+    "south": {
+     "to_room": 2646,
+     "description": "A passage leads to A Corridor"
+    },
+    "west": {
+     "to_room": 2636,
+     "description": "A passage leads to A Corridor"
+    }
+   }
+  },
+  "2634": {
+   "vnum": 2634,
+   "name": "A Corridor",
+   "map": {
+    "x": 19,
+    "y": 38,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is the end of a long corridor. Obsidian walls engraved with ancient\nrunes of power stretch out before. A darkened door is to the east.\nTendrils of mist cling to the floor here, they seem to be seeping from\nunder the door. Shadows gather in the corners. The ceiling hangs low\noverhead.",
+   "exits": {
+    "east": {
+     "to_room": 2635,
+     "description": "A passage leads to The Scrying Chamber",
+     "door": {
+      "name": "door black",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "west": {
+     "to_room": 2633,
+     "description": "A passage leads to An Intersection"
+    }
+   }
+  },
+  "2635": {
+   "vnum": 2635,
+   "name": "The Scrying Chamber",
+   "map": {
+    "x": 20,
+    "y": 38,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors",
+    "no_track"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 2552,
+     "max": 3
+    },
+    {
+     "vnum": 2552,
+     "max": 3
+    },
+    {
+     "vnum": 2552,
+     "max": 3
+    }
+   ],
+   "obj_resets": [
+    {
+     "vnum": 2530,
+     "max": 1
+    }
+   ],
+   "description": "This is the scrying chamber of the high tower of sorcerery. It is here\nthat arcane rituals are performed to enable those of the art to look in\nupon denizens throughout the world and spy out their darkest secrets. A\nhuge black cauldron is in the center of the room, bubbling and gurgling,\nit pours forth a constant stream of smokey fog into the air about you.\nHere and there on stands of different sizes are crystal balls and oddly\nshaped mirrors. Shadows gather in the corners. Dust motes drift in the\nstale air.",
+   "exits": {
+    "west": {
+     "to_room": 2634,
+     "description": "A passage leads to A Corridor",
+     "door": {
+      "name": "door black",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "2636": {
+   "vnum": 2636,
+   "name": "A Corridor",
+   "map": {
+    "x": 17,
+    "y": 38,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "You have reached an end in the long corridor. Obsidian walls engraved\nwith ancient runes of power stretch out before. The sound of snoring\ncan barely be heard through the door to the west. The ceiling hangs low\noverhead. Dust motes drift in the stale air.",
+   "exits": {
+    "east": {
+     "to_room": 2633,
+     "description": "A passage leads to An Intersection"
+    },
+    "west": {
+     "to_room": 2637,
+     "description": "A passage leads to The Entrance To The Library",
+     "door": {
+      "name": "door wooden",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "2637": {
+   "vnum": 2637,
+   "name": "The Entrance To The Library",
+   "map": {
+    "x": 16,
+    "y": 38,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 2553,
+     "max": 1
+    }
+   ],
+   "description": "This is the entrance to the great library of magic. A giant desk is\nhere, covered with books parchments and scrolls. Long shelves loaded\nwith row upon row of books stretch out in every direction as far as the\neye can see. The air is still and musty. Dust motes drift in the stale\nair.",
+   "exits": {
+    "east": {
+     "to_room": 2636,
+     "description": "A passage leads to A Corridor",
+     "door": {
+      "name": "door wooden",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "south": {
+     "to_room": 2640,
+     "description": "All you can see are books."
+    },
+    "west": {
+     "to_room": 2638,
+     "description": "All you can see are books."
+    }
+   }
+  },
+  "2638": {
+   "vnum": 2638,
+   "name": "In The Library",
+   "map": {
+    "x": 15,
+    "y": 38,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is the great library of magic. A strong musty smell permeates the\nentire area. Upon shelves which float just out of reach are hundreds of\nbooks, tomes and scrolls of every possible shape size and colour. The\nelusive books seem to wink in and out of existence before your untrained\neyes. It is very quiet here. The ceiling hangs low overhead. The walls\nare rough-hewn and cold to the touch.",
+   "exits": {
+    "east": {
+     "to_room": 2637,
+     "description": "All you can see are books."
+    },
+    "south": {
+     "to_room": 2642,
+     "description": "All you can see are books."
+    },
+    "west": {
+     "to_room": 2643,
+     "description": "All you can see are books."
+    }
+   }
+  },
+  "2639": {
+   "vnum": 2639,
+   "name": "In The Library",
+   "map": {
+    "x": 16,
+    "y": 36,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is the great library of magic. A strong musty smell permeates the\nentire area. Upon shelves which float just out of reach are hundreds of\nbooks, tomes and scrolls of every possible shape size and colour. The\nelusive books seem to wink in and out of existence before your untrained\neyes. It is very quiet here. Dust motes drift in the stale air. Shadows\ngather in the corners.",
+   "exits": {
+    "north": {
+     "to_room": 2640,
+     "description": "All you can see are books."
+    },
+    "west": {
+     "to_room": 2641,
+     "description": "All you can see are books."
+    }
+   }
+  },
+  "2640": {
+   "vnum": 2640,
+   "name": "In The Library",
+   "map": {
+    "x": 16,
+    "y": 37,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is the great library of magic. A strong musty smell permeates the\nentire area. Upon shelves which float just out of reach are hundreds of\nbooks, tomes and scrolls of every possible shape size and colour. The\nelusive books seem to wink in and out of existence before your untrained\neyes. It is very quiet here. Dust motes drift in the stale air. Shadows\ngather in the corners.",
+   "exits": {
+    "north": {
+     "to_room": 2637,
+     "description": "All you can see are books."
+    },
+    "south": {
+     "to_room": 2639,
+     "description": "All you can see are books."
+    },
+    "west": {
+     "to_room": 2642,
+     "description": "All you can see are books."
+    }
+   }
+  },
+  "2641": {
+   "vnum": 2641,
+   "name": "In The Library",
+   "map": {
+    "x": 15,
+    "y": 36,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is the great library of magic. A strong musty smell permeates the\nentire area. Upon shelves which float just out of reach are hundreds of\nbooks, tomes and scrolls of every possible shape size and colour. The\nelusive books seem to wink in and out of existence before your untrained\neyes. It is very quiet here. The ceiling hangs low overhead. The air is\nstill and musty.",
+   "exits": {
+    "north": {
+     "to_room": 2642,
+     "description": "All you can see are books."
+    },
+    "east": {
+     "to_room": 2639,
+     "description": "All you can see are books."
+    }
+   }
+  },
+  "2642": {
+   "vnum": 2642,
+   "name": "In The Library",
+   "map": {
+    "x": 15,
+    "y": 37,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is the great library of magic. A strong musty smell permeates the\nentire area. Upon shelves which float just out of reach are hundreds of\nbooks, tomes and scrolls of every possible shape size and colour. The\nelusive books seem to wink in and out of existence before your untrained\neyes. It is very quiet here. Shadows gather in the corners. The ceiling\nhangs low overhead.",
+   "exits": {
+    "north": {
+     "to_room": 2638,
+     "description": "All you can see are books."
+    },
+    "east": {
+     "to_room": 2640,
+     "description": "All you can see are books."
+    },
+    "south": {
+     "to_room": 2641,
+     "description": "All you can see are books."
+    }
+   }
+  },
+  "2643": {
+   "vnum": 2643,
+   "name": "In The Library",
+   "map": {
+    "x": 14,
+    "y": 38,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is the great library of magic. A strong musty smell permeates the\nentire area. Upon shelves which float just out of reach are hundreds of\nbooks, tomes and scrolls of every possible shape size and colour. The\nelusive books seem to wink in and out of existence before your untrained\neyes. It is very quiet here. The walls are rough-hewn and cold to the\ntouch. The ceiling hangs low overhead.",
+   "exits": {
+    "east": {
+     "to_room": 2638,
+     "description": "All you can see are books."
+    },
+    "west": {
+     "to_room": 2644,
+     "description": "You see a small gap between some shelves."
+    }
+   }
+  },
+  "2644": {
+   "vnum": 2644,
+   "name": "Between The Shelves",
+   "map": {
+    "x": 13,
+    "y": 38,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is the great library of magic. The shelves seem uncomfortably close\nhere, you can barely maneuver between them. The musty smell is still\nstrong, and the elusive books still hover just out of reach. A faint\nflicker of light can barely be made out to the north. Dust motes drift\nin the stale air. The air is still and musty.",
+   "exits": {
+    "north": {
+     "to_room": 2645,
+     "description": "A passage leads to The Reading Room"
+    },
+    "east": {
+     "to_room": 2643,
+     "description": "A passage leads to In The Library"
+    }
+   }
+  },
+  "2645": {
+   "vnum": 2645,
+   "name": "The Reading Room",
+   "map": {
+    "x": 13,
+    "y": 39,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "obj_resets": [
+    {
+     "vnum": 2533,
+     "max": 1
+    }
+   ],
+   "description": "This is a small room completely devoid of furnishings. The only thing\nhere is an enormous tome, lying face open on the floor. The great book\nlooks both heavy and ancient. Its jewel encrusted bindings are well worn\nas the bark of a tree. Spidery writings seem to crawls across the pages,\ntotally incomprehensible to your mortal eye. Something seems to be\nwedged between the pages. The air is still and musty. The walls are\nrough-hewn and cold to the touch.",
+   "exits": {
+    "south": {
+     "to_room": 2644,
+     "description": "A passage leads to Between The Shelves"
+    }
+   }
+  },
+  "2646": {
+   "vnum": 2646,
+   "name": "A Corridor",
+   "map": {
+    "x": 18,
+    "y": 37,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a long corridor leading north and south. Obsidian walls engraved\nwith ancient runes of power stretch out before. Magical energies seem to\ncrackle with power all around and whisper in tongues long forgotten,\nalmost as if the corridor itself were alive. Shadows gather in the\ncorners. The ceiling hangs low overhead.",
+   "exits": {
+    "north": {
+     "to_room": 2633,
+     "description": "A passage leads to An Intersection"
+    },
+    "south": {
+     "to_room": 2647,
+     "description": "A passage leads to The End Of The Corridor"
+    }
+   }
+  },
+  "2647": {
+   "vnum": 2647,
+   "name": "The End Of The Corridor",
+   "map": {
+    "x": 18,
+    "y": 36,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is the end of a long corridor. The obsidian walls come to an abrupt\nhalt at the edge of a golden archway here. The hum of power is so strong\nit nearly numbs your body. The archway lies before, glowing and pulsing\nwith energy. The walls are rough-hewn and cold to the touch. The air is\nstill and musty.",
+   "exits": {
+    "north": {
+     "to_room": 2646,
+     "description": "A passage leads to A Corridor"
+    },
+    "south": {
+     "to_room": 2648,
+     "description": "A passage leads to The Arched Entrance"
+    }
+   }
+  },
+  "2648": {
+   "vnum": 2648,
+   "name": "The Arched Entrance",
+   "map": {
+    "x": 18,
+    "y": 35,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "You feel a slight tingle as you pass through the archway, as if the\nliving magical energies here had infused your body, found it wanting and\nleft. The intense glow from the arch above is almost blinding.\nThrough the light you can barely make out a stairway leading up. Dust\nmotes drift in the stale air. The walls are rough-hewn and cold to the\ntouch.",
+   "exits": {
+    "north": {
+     "to_room": 2647,
+     "description": "A passage leads to The End Of The Corridor"
+    },
+    "up": {
+     "to_room": 2649,
+     "description": "A passage leads to The Landing"
+    }
+   }
+  },
+  "2649": {
+   "vnum": 2649,
+   "name": "The Landing",
+   "map": {
+    "x": 18,
+    "y": 35,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 2513,
+     "max": 5
+    }
+   ],
+   "description": "The area is a small landing in the middle of a long stairway leading up.\nYour senses seem dulled here, no sound or smell can be detected at all,\nand the only thing Visible is in any direction is endless stairway. The\nair is still and musty. Shadows gather in the corners.",
+   "exits": {
+    "up": {
+     "to_room": 2650,
+     "description": "A passage leads to An Intersection"
+    },
+    "down": {
+     "to_room": 2648,
+     "description": "A passage leads to The Arched Entrance"
+    }
+   }
+  },
+  "2650": {
+   "vnum": 2650,
+   "name": "An Intersection",
+   "map": {
+    "x": 18,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is an intersection of several hallways. You feel as if strange\nmystical forces are pushing and pulling at each other from all around\nyou. The sensation of being trapped, in the middle is almost tangible in\nthe air here. A grey tiled hallway leads south, black tiled east, white\ntiled west, and a multi-coloured hallway swirling with patterns that\nremain just barely unrecognizable is to the north. Dust motes drift in\nthe stale air. The walls are rough-hewn and cold to the touch.",
+   "exits": {
+    "north": {
+     "to_room": 2673,
+     "description": "A passage leads to A Wide Hallway"
+    },
+    "east": {
+     "to_room": 2658,
+     "description": "A passage leads to A Dark Hallway"
+    },
+    "south": {
+     "to_room": 2651,
+     "description": "A passage leads to A Grey Tiled Hallway"
+    },
+    "west": {
+     "to_room": 2665,
+     "description": "A passage leads to A Bright Hallway"
+    },
+    "down": {
+     "to_room": 2649,
+     "description": "A passage leads to The Landing"
+    }
+   }
+  },
+  "2651": {
+   "vnum": 2651,
+   "name": "A Grey Tiled Hallway",
+   "map": {
+    "x": 18,
+    "y": 34,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a grey tiled hallway leading north and south. Dim balls of\nenergy float here and there shedding a warm light, and showing the way.\nA feeling of peace and balance comes over you. Shadows gather in the\ncorners. The air is still and musty.",
+   "exits": {
+    "north": {
+     "to_room": 2650,
+     "description": "A passage leads to An Intersection"
+    },
+    "south": {
+     "to_room": 2652,
+     "description": "A passage leads to A Grey Tiled Hallway"
+    }
+   }
+  },
+  "2652": {
+   "vnum": 2652,
+   "name": "A Grey Tiled Hallway",
+   "map": {
+    "x": 18,
+    "y": 33,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a grey tiled hallway leading north and south. Dim balls of\nenergy float here and there shedding a warm light, and showing the way.\nA feeling of peace and balance comes over you. Large, grey metal double\ndoors can be seen to the south. The air is still and musty. Dust motes\ndrift in the stale air.",
+   "exits": {
+    "north": {
+     "to_room": 2651,
+     "description": "A passage leads to A Grey Tiled Hallway"
+    },
+    "south": {
+     "to_room": 2653,
+     "description": "A passage leads to The Antechamber",
+     "door": {
+      "name": "door grey",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "2653": {
+   "vnum": 2653,
+   "name": "The Antechamber",
+   "map": {
+    "x": 18,
+    "y": 32,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 2554,
+     "max": 1
+    }
+   ],
+   "description": "This is the antechamber of the Master Magician of the Grey Light. A\nfeeling of strong magic floats in the air about you, almost as if you\ncould taste the power held within these walls. Once your eyes adjust to\nthe semi-light, you can make out a larger room to the south. The ceiling\nhangs low overhead. Shadows gather in the corners.",
+   "exits": {
+    "north": {
+     "to_room": 2652,
+     "description": "A passage leads to A Grey Tiled Hallway",
+     "door": {
+      "name": "door grey",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "south": {
+     "to_room": 2654,
+     "description": "A passage leads to The Main Chamber"
+    }
+   }
+  },
+  "2654": {
+   "vnum": 2654,
+   "name": "The Main Chamber",
+   "map": {
+    "x": 18,
+    "y": 31,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 2555,
+     "max": 1
+    },
+    {
+     "vnum": 2556,
+     "max": 1
+    }
+   ],
+   "description": "A feeling of tranquility comes over you as you enter the main chamber of\nNeutrality. Some artifacts are hung on the walls here, or set on stands.\nThe room in general looks both comfortable and official. Probably where\nthe Master of Neutrality holds audience. The walls are rough-hewn and\ncold to the touch. Dust motes drift in the stale air.",
+   "exits": {
+    "north": {
+     "to_room": 2653,
+     "description": "A passage leads to The Antechamber"
+    },
+    "east": {
+     "to_room": 2656,
+     "description": "A passage leads to A Closet"
+    },
+    "south": {
+     "to_room": 2657,
+     "description": "A passage leads to A Bedroom"
+    },
+    "west": {
+     "to_room": 2655,
+     "description": "A passage leads to The Study"
+    }
+   }
+  },
+  "2655": {
+   "vnum": 2655,
+   "name": "The Study",
+   "map": {
+    "x": 17,
+    "y": 31,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a large study. Shelves filled with many books or arcane\nknowledge are on every wall. A large oaken desk is in the center, with\nmany parchments and scrolls on it. The most notable thing in the room is\na small set of scales, which floats about eye level. In perfect balance,\nthe scales are no doubt a sign of the Master's neutrality. The ceiling\nhangs low overhead. Shadows gather in the corners.",
+   "exits": {
+    "east": {
+     "to_room": 2654,
+     "description": "A passage leads to The Main Chamber"
+    }
+   }
+  },
+  "2656": {
+   "vnum": 2656,
+   "name": "A Closet",
+   "map": {
+    "x": 19,
+    "y": 31,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a small closet. It is filled with many cloaks, and some other\napparel. The ceiling hangs low overhead. Dust motes drift in the stale\nair.",
+   "exits": {
+    "west": {
+     "to_room": 2654,
+     "description": "A passage leads to The Main Chamber"
+    }
+   }
+  },
+  "2657": {
+   "vnum": 2657,
+   "name": "A Bedroom",
+   "map": {
+    "x": 18,
+    "y": 30,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is the bedroom of the Master Magician of Neutrality. Curtained\nwindows can be seen on the south wall. A large comfortable looking bed\ntakes up most of the room. Dust motes drift in the stale air. The walls\nare rough-hewn and cold to the touch.",
+   "exits": {
+    "north": {
+     "to_room": 2654,
+     "description": "A passage leads to The Main Chamber"
+    }
+   }
+  },
+  "2658": {
+   "vnum": 2658,
+   "name": "A Dark Hallway",
+   "map": {
+    "x": 19,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a long dark hallway leading east and west. Not much can be seen\nin the unnatural darkness here, but you get a deep sense of dread the\nfurther you go. Dust motes drift in the stale air. Shadows gather in the\ncorners.",
+   "exits": {
+    "east": {
+     "to_room": 2659,
+     "description": "A passage leads to A Dark Hallway"
+    },
+    "west": {
+     "to_room": 2650,
+     "description": "A passage leads to An Intersection"
+    }
+   }
+  },
+  "2659": {
+   "vnum": 2659,
+   "name": "A Dark Hallway",
+   "map": {
+    "x": 20,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a long dark hallway leading east and west. Not much can be seen\nin the unnatural darkness here, but you get a deep sense of dread the\nfurther you go. The ceiling hangs low overhead. Shadows gather in the\ncorners.",
+   "exits": {
+    "east": {
+     "to_room": 2660,
+     "description": "A passage leads to The End Of The Hallway"
+    },
+    "west": {
+     "to_room": 2658,
+     "description": "A passage leads to A Dark Hallway"
+    }
+   }
+  },
+  "2660": {
+   "vnum": 2660,
+   "name": "The End Of The Hallway",
+   "map": {
+    "x": 21,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is the end of a long dark hallway. The darkness here is almost\ntangible in its thickness. A deep sense of fear and loathing comes over\nyou. A pair of obsidian doors can be seen to the east. The air is still\nand musty. The ceiling hangs low overhead.",
+   "exits": {
+    "east": {
+     "to_room": 2661,
+     "description": "A passage leads to The Chamber Of Darkness",
+     "door": {
+      "name": "door obsidian",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "west": {
+     "to_room": 2659,
+     "description": "A passage leads to A Dark Hallway"
+    }
+   }
+  },
+  "2661": {
+   "vnum": 2661,
+   "name": "The Chamber Of Darkness",
+   "map": {
+    "x": 22,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors",
+    "no_track"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 2557,
+     "max": 1
+    }
+   ],
+   "description": "This is a vast chamber. The walls fade into darkness, leaving you with a\nvery vague idea of the actual size of the room. Swirling here and there\nin the dark, are patches of pure black which seem to suck in your light\nand leave it that much darker here. The walls are rough-hewn and cold to\nthe touch. The ceiling hangs low overhead.",
+   "exits": {
+    "north": {
+     "to_room": 2662,
+     "description": "A passage leads to It Is Very Dark Here..."
+    },
+    "east": {
+     "to_room": 2664,
+     "description": "A passage leads to The Inner Chamber"
+    },
+    "south": {
+     "to_room": 2663,
+     "description": "A passage leads to A Torture Chamber"
+    },
+    "west": {
+     "to_room": 2660,
+     "description": "A passage leads to The End Of The Hallway",
+     "door": {
+      "name": "door obsidian",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "2662": {
+   "vnum": 2662,
+   "name": "It Is Very Dark Here...",
+   "map": {
+    "x": 22,
+    "y": 36,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors",
+    "no_track"
+   ],
+   "description": "Pitch black engulfs you completely. The tower's magical darkness is so\nprofound that even enchanted lights fail to pierce it. You feel the\nweight of powerful spells maintaining this void. The ceiling hangs low\noverhead. The air is still and musty.",
+   "exits": {
+    "south": {
+     "to_room": 2661,
+     "description": "A passage leads to The Chamber Of Darkness"
+    }
+   }
+  },
+  "2663": {
+   "vnum": 2663,
+   "name": "A Torture Chamber",
+   "map": {
+    "x": 22,
+    "y": 34,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is an ill lit chamber. Instruments of torture hang from a rack on\nthe wall, they seem to quiver with anticipation of a victim as if they\nhad a mind of their own. An operating table is here, though it is bare.\nAn extreme feeling of evil permeates the entire area. The air is still\nand musty. Dust motes drift in the stale air.",
+   "exits": {
+    "north": {
+     "to_room": 2661,
+     "description": "A passage leads to The Chamber Of Darkness"
+    }
+   }
+  },
+  "2664": {
+   "vnum": 2664,
+   "name": "The Inner Chamber",
+   "map": {
+    "x": 23,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors",
+    "no_track"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 2558,
+     "max": 1
+    },
+    {
+     "vnum": 2559,
+     "max": 1
+    }
+   ],
+   "description": "This is a small dark chamber. Upon the walls are glowing sigils of dark\npower, scrawled and traced in an evil language no longer known to most\nof this plane of existence. There is an obsidian altar here which seems\nto glow, but does not shed any light, in fact it seems to be taking\nlight in. The ceiling hangs low overhead. Dust motes drift in the stale\nair.",
+   "exits": {
+    "west": {
+     "to_room": 2661,
+     "description": "A passage leads to The Chamber Of Darkness"
+    }
+   }
+  },
+  "2665": {
+   "vnum": 2665,
+   "name": "A Bright Hallway",
+   "map": {
+    "x": 17,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a long well lit hallway leading east and west. The walls here\nare a milky white colour, and glow with a warm luminescence, as does the\nfloor. A feeling of goodness permeates the area, and you feel unworthy\nto tread upon these sacred floors. Shadows gather in the corners. The\nair is still and musty.",
+   "exits": {
+    "east": {
+     "to_room": 2650,
+     "description": "A passage leads to An Intersection"
+    },
+    "west": {
+     "to_room": 2666,
+     "description": "A passage leads to A Bright Hallway"
+    }
+   }
+  },
+  "2666": {
+   "vnum": 2666,
+   "name": "A Bright Hallway",
+   "map": {
+    "x": 16,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a long well lit hallway leading east and west. The walls here\nare a milky white colour, and glow with a warm luminescence, as does the\nfloor. A feeling of goodness permeates the area, and you feel unworthy\nto tread upon these sacred floors. A huge set of double doors in finely\nworked ivory can be seen to the west. Dust motes drift in the stale air.\nThe air is still and musty.",
+   "exits": {
+    "east": {
+     "to_room": 2665,
+     "description": "A passage leads to A Bright Hallway"
+    },
+    "west": {
+     "to_room": 2667,
+     "description": "A passage leads to An Antechamber",
+     "door": {
+      "name": "door ivory",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "2667": {
+   "vnum": 2667,
+   "name": "An Antechamber",
+   "map": {
+    "x": 15,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 2560,
+     "max": 1
+    }
+   ],
+   "description": "This is a small antechamber. It is well lit here, though the source of\nlight cannot be seen. It is almost as if the room itself exudes a warm\nglow of goodness. A larger chamber can be seen to the west, but you do\nnot feel worthy to pass into it. The ceiling hangs low overhead. Shadows\ngather in the corners.",
+   "exits": {
+    "east": {
+     "to_room": 2666,
+     "description": "A passage leads to A Bright Hallway",
+     "door": {
+      "name": "door ivory",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "west": {
+     "to_room": 2669,
+     "description": "A passage leads to The Chamber Of The White Light"
+    }
+   }
+  },
+  "2669": {
+   "vnum": 2669,
+   "name": "The Chamber Of The White Light",
+   "map": {
+    "x": 14,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 2561,
+     "max": 1
+    },
+    {
+     "vnum": 2562,
+     "max": 1
+    }
+   ],
+   "description": "This is a vast chamber, its walls floor and ceiling are of an unknown\nmetallic material, the brightest white, almost blindingly stark. A\nflickering flame is in the center of the room, seeming to feed off of\ndarkness and cleansing the room of any evil. You feel a slight tug at\nyour being as the flame flickers towards you. The walls are rough-hewn\nand cold to the touch. The ceiling hangs low overhead.",
+   "exits": {
+    "north": {
+     "to_room": 2670,
+     "description": "A passage leads to The Meditation Chamber"
+    },
+    "east": {
+     "to_room": 2667,
+     "description": "A passage leads to An Antechamber"
+    },
+    "south": {
+     "to_room": 2671,
+     "description": "A passage leads to A Study"
+    },
+    "west": {
+     "to_room": 2672,
+     "description": "A passage leads to A Closet"
+    }
+   }
+  },
+  "2670": {
+   "vnum": 2670,
+   "name": "The Meditation Chamber",
+   "map": {
+    "x": 14,
+    "y": 36,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a small meditation chamber. White silk cushions are everywhere,\nlooking very comfortable. You get an easy peaceful feeling of relaxation\nhere, almost making you want to lie down and fall asleep. The ceiling\nhangs low overhead. Dust motes drift in the stale air.",
+   "exits": {
+    "south": {
+     "to_room": 2669,
+     "description": "A passage leads to The Chamber Of The White Light"
+    }
+   }
+  },
+  "2671": {
+   "vnum": 2671,
+   "name": "A Study",
+   "map": {
+    "x": 14,
+    "y": 34,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a spacious study. It is extremely tidy here, to an almost\nantiseptic nature. One would wonder how anyone could study without a\nmess all around them, the master of this chamber obviously can. Dust\nmotes drift in the stale air. The walls are rough-hewn and cold to the\ntouch.",
+   "exits": {
+    "north": {
+     "to_room": 2669,
+     "description": "A passage leads to The Chamber Of The White Light"
+    }
+   }
+  },
+  "2672": {
+   "vnum": 2672,
+   "name": "A Closet",
+   "map": {
+    "x": 13,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a small closet. Cloaks and vests hang from hooks in the wall,\nand a few old boots are all that can be seen here. Rather featureless\nall in all. Shadows gather in the corners. Dust motes drift in the stale\nair.",
+   "exits": {
+    "east": {
+     "to_room": 2669,
+     "description": "A passage leads to The Chamber Of The White Light"
+    }
+   }
+  },
+  "2673": {
+   "vnum": 2673,
+   "name": "A Wide Hallway",
+   "map": {
+    "x": 18,
+    "y": 36,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a large hallway, wide enough to accommodate several people\nstanding abreast. The floor here is a swirl of multicoloured patterns,\nin constant motion. A huge, grey metal door blocks the way north, it\nlooks quite sturdy. The ceiling hangs low overhead. The air is still and\nmusty.",
+   "exits": {
+    "north": {
+     "to_room": 2674,
+     "description": "A passage leads to A Wide Hallway",
+     "door": {
+      "name": "door metal grey",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 2593
+     }
+    },
+    "south": {
+     "to_room": 2650,
+     "description": "A passage leads to An Intersection"
+    }
+   }
+  },
+  "2674": {
+   "vnum": 2674,
+   "name": "A Wide Hallway",
+   "map": {
+    "x": 18,
+    "y": 37,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a large hallway, wide enough to accommodate several people\nstanding abreast. The floor here is a swirl of multicoloured patterns,\nin constant motion. A huge, black obsidian door blocks the way north, it\nlooks quite sturdy. Dust motes drift in the stale air. The air is still\nand musty.",
+   "exits": {
+    "north": {
+     "to_room": 2675,
+     "description": "A passage leads to A Wide Hallway",
+     "door": {
+      "name": "door obsidian black",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 2594
+     }
+    },
+    "south": {
+     "to_room": 2673,
+     "description": "A passage leads to A Wide Hallway",
+     "door": {
+      "name": "door metal grey",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 2593
+     }
+    }
+   }
+  },
+  "2675": {
+   "vnum": 2675,
+   "name": "A Wide Hallway",
+   "map": {
+    "x": 18,
+    "y": 38,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a large hallway, wide enough to accommodate several people\nstanding abreast. The floor here is a swirl of multicoloured patterns,\nin constant motion. A huge, white ivory door blocks the way north, it\nlooks quite sturdy. Dust motes drift in the stale air. The air is still\nand musty.",
+   "exits": {
+    "north": {
+     "to_room": 2676,
+     "description": "A passage leads to The Entranceway",
+     "door": {
+      "name": "door ivory white",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 2595
+     }
+    },
+    "south": {
+     "to_room": 2674,
+     "description": "A passage leads to A Wide Hallway",
+     "door": {
+      "name": "door obsidian black",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 2594
+     }
+    }
+   }
+  },
+  "2676": {
+   "vnum": 2676,
+   "name": "The Entranceway",
+   "map": {
+    "x": 18,
+    "y": 39,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is the entrance to the audience chamber of the Grand Master of\nMagic. Beautiful tapestries displaying the ancient masters of lore are\non the walls, and the floor is covered with a plush multicoloured\ncarpet, which seems to rustle and move at the touch of your boots. Dust\nmotes drift in the stale air. The walls are rough-hewn and cold to the\ntouch.",
+   "exits": {
+    "north": {
+     "to_room": 2677,
+     "description": "A passage leads to The Audience Chamber"
+    },
+    "south": {
+     "to_room": 2675,
+     "description": "A passage leads to A Wide Hallway",
+     "door": {
+      "name": "door white ivory",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 2595
+     }
+    }
+   }
+  },
+  "2677": {
+   "vnum": 2677,
+   "name": "The Audience Chamber",
+   "map": {
+    "x": 18,
+    "y": 40,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "extra_descs": {
+    "": "throne"
+   },
+   "mob_resets": [
+    {
+     "vnum": 2563,
+     "max": 1
+    },
+    {
+     "vnum": 2564,
+     "max": 1
+    }
+   ],
+   "description": "This is a large chamber. Small bolts of energy leap from wall to wall,\ncrackling with power. The floor is a swirl of indeterminable colours and\npatterns ever changing. Bright bursts of colour seem to explode into the\nair and fade again at random times. All this splendor plays about and\ndraws attention to a large throne in the center of the room, it seems to\nbe cut from a single enormous emerald. The ceiling hangs low overhead.\nShadows gather in the corners.",
+   "exits": {
+    "north": {
+     "to_room": 2680,
+     "description": "A passage leads to The Altar"
+    },
+    "east": {
+     "to_room": 2678,
+     "description": "A passage leads to A Dressing Room"
+    },
+    "south": {
+     "to_room": 2676,
+     "description": "A passage leads to The Entranceway"
+    },
+    "west": {
+     "to_room": 2679,
+     "description": "A passage leads to The Library"
+    }
+   }
+  },
+  "2678": {
+   "vnum": 2678,
+   "name": "A Dressing Room",
+   "map": {
+    "x": 19,
+    "y": 40,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a plush dressing room. Fine garments of many styles and some\noutlandish colours hang from a rack suspended in mid air at eye level.\nThe only other interesting feature in the room is a large silver mirror\non a finely crafted gold stand. The ceiling hangs low overhead. Shadows\ngather in the corners.",
+   "exits": {
+    "west": {
+     "to_room": 2677,
+     "description": "A passage leads to The Audience Chamber"
+    }
+   }
+  },
+  "2679": {
+   "vnum": 2679,
+   "name": "The Library",
+   "map": {
+    "x": 17,
+    "y": 40,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "This is a small cosy looking library. A few well made books sit atop\nshelves which span every wall. A large oaken writing table is in the\ncenter of the room with odd papers and parchments on it. The\nillumination here, to your surprise is a quite un-magical oil lamp.\nShadows gather in the corners. Dust motes drift in the stale air.",
+   "exits": {
+    "east": {
+     "to_room": 2677,
+     "description": "A passage leads to The Audience Chamber"
+    }
+   }
+  },
+  "2680": {
+   "vnum": 2680,
+   "name": "The Altar",
+   "map": {
+    "x": 18,
+    "y": 41,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "obj_resets": [
+    {
+     "vnum": 2535,
+     "max": 1
+    }
+   ],
+   "description": "This is a small chapel designed around a beautifully crafted golden\naltar. Many icons to lesser deities line the room, but it is obvious by\none glance at the symbols on the altar, that this room was designed for\nthe worship of Mystra, the goddess of magic. The ceiling hangs low\noverhead. The walls are rough-hewn and cold to the touch.",
+   "exits": {
+    "east": {
+     "to_room": 2681,
+     "description": "A passage leads to The Treasury",
+     "door": {
+      "name": "door secret",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "south": {
+     "to_room": 2677,
+     "description": "A passage leads to The Audience Chamber"
+    },
+    "west": {
+     "to_room": 2682,
+     "description": "A passage leads to A Passage",
+     "door": {
+      "name": "door secret",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "2681": {
+   "vnum": 2681,
+   "name": "The Treasury",
+   "map": {
+    "x": 19,
+    "y": 41,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "obj_resets": [
+    {
+     "vnum": 2537,
+     "max": 1
+    }
+   ],
+   "description": "This is a small chamber, the stale air here is testament to the fact\nthat it has gone undisturbed for many years. The walls are rough-hewn\nand cold to the touch. Dust motes drift in the stale air.",
+   "exits": {
+    "west": {
+     "to_room": 2680,
+     "description": "A passage leads to The Altar",
+     "door": {
+      "name": "door secret",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "2682": {
+   "vnum": 2682,
+   "name": "A Passage",
+   "map": {
+    "x": 17,
+    "y": 41,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors",
+    "no_track"
+   ],
+   "obj_resets": [
+    {
+     "vnum": 2540,
+     "max": 1
+    },
+    {
+     "vnum": 2541,
+     "max": 1
+    },
+    {
+     "vnum": 2542,
+     "max": 1
+    },
+    {
+     "vnum": 2544,
+     "max": 1
+    }
+   ],
+   "description": "This is a small dark passage, which would be unremarkable if not for the\nfact that it ends in a blinding blue light to the west. On hooks set\ninto the wall here there hang several travel worthy cloaks, and a small\nleather backpack. It looks as if someone has prepared this room to be\nused in the event speedy of a evacuation. The walls are rough-hewn and\ncold to the touch. The air is still and musty.",
+   "exits": {
+    "east": {
+     "to_room": 2680,
+     "description": "A passage leads to The Altar",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "west": {
+     "to_room": 2683,
+     "description": "A passage leads to In The Light"
+    }
+   }
+  },
+  "2683": {
+   "vnum": 2683,
+   "name": "In The Light",
+   "map": {
+    "x": 15,
+    "y": 41,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_track"
+   ],
+   "description": "You seem to be floating in a magical energy field, though you cannot see\nthe source of the energy, you can feel its power pushing at you from all\nsides, completely negating the effects of gravity. An imperfection in\nthe uniform blue can be seen overhead, it might be an exit. Dust motes\ndrift in the stale air. The air is still and musty.",
+   "exits": {
+    "up": {
+     "to_room": 3001,
+     "description": "A passage leads to The Temple Of Garathorm"
+    }
+   }
+  }
+ },
+ "mobs": {},
+ "objects": {}
+}

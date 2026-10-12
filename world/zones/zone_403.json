@@ -1,0 +1,1176 @@
+{
+ "number": 403,
+ "name": "Garathorm Wall",
+ "builders": "Seeker",
+ "atlas_area": 3,
+ "rooms": {
+  "2901": {
+   "vnum": 2901,
+   "name": "On The City Wall",
+   "map": {
+    "x": -1,
+    "y": 1,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 2902,
+     "description": "To the east lies On The City Wall."
+    },
+    "west": {
+     "to_room": 203070,
+     "description": "To the west lies On The City Wall."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead east\nand west.",
+   "placeholder": true
+  },
+  "2902": {
+   "vnum": 2902,
+   "name": "On The City Wall",
+   "map": {
+    "x": 0,
+    "y": 1,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 2903,
+     "description": "To the east lies A Turn On The City Wall."
+    },
+    "west": {
+     "to_room": 2901,
+     "description": "To the west lies On The City Wall."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "2903": {
+   "vnum": 2903,
+   "name": "A Turn On The City Wall",
+   "map": {
+    "x": 1,
+    "y": 1,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 2904,
+     "description": "To the south lies On The City Wall."
+    },
+    "west": {
+     "to_room": 2902,
+     "description": "To the west lies On The City Wall."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nsouth and west.",
+   "placeholder": true
+  },
+  "2904": {
+   "vnum": 2904,
+   "name": "On The City Wall",
+   "map": {
+    "x": 1,
+    "y": 0,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2903,
+     "description": "To the north lies A Turn On The City Wall."
+    },
+    "south": {
+     "to_room": 2905,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2905": {
+   "vnum": 2905,
+   "name": "On The City Wall",
+   "map": {
+    "x": 1,
+    "y": -1,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2904,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2906,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth and south.",
+   "placeholder": true
+  },
+  "2906": {
+   "vnum": 2906,
+   "name": "On The City Wall",
+   "map": {
+    "x": 1,
+    "y": -2,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2905,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 203071,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand south.",
+   "placeholder": true
+  },
+  "2907": {
+   "vnum": 2907,
+   "name": "On The City Wall",
+   "map": {
+    "x": 1,
+    "y": -4,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 203071,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2908,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "2908": {
+   "vnum": 2908,
+   "name": "On The City Wall",
+   "map": {
+    "x": 1,
+    "y": -5,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2907,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2909,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2909": {
+   "vnum": 2909,
+   "name": "On The City Wall",
+   "map": {
+    "x": 1,
+    "y": -6,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2908,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2910,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2910": {
+   "vnum": 2910,
+   "name": "On The City Wall",
+   "map": {
+    "x": 1,
+    "y": -7,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2909,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2911,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand south.",
+   "placeholder": true
+  },
+  "2911": {
+   "vnum": 2911,
+   "name": "On The City Wall",
+   "map": {
+    "x": 1,
+    "y": -8,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2910,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2912,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2912": {
+   "vnum": 2912,
+   "name": "On The City Wall",
+   "map": {
+    "x": 1,
+    "y": -9,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2911,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2913,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth and south.",
+   "placeholder": true
+  },
+  "2913": {
+   "vnum": 2913,
+   "name": "On The City Wall",
+   "map": {
+    "x": 1,
+    "y": -10,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2912,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2914,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "2914": {
+   "vnum": 2914,
+   "name": "On The City Wall",
+   "map": {
+    "x": 1,
+    "y": -11,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2913,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2915,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth and south.",
+   "placeholder": true
+  },
+  "2915": {
+   "vnum": 2915,
+   "name": "On The City Wall",
+   "map": {
+    "x": 1,
+    "y": -12,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2914,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2916,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2916": {
+   "vnum": 2916,
+   "name": "On The City Wall",
+   "map": {
+    "x": 1,
+    "y": -13,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2915,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2917,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2917": {
+   "vnum": 2917,
+   "name": "On The City Wall",
+   "map": {
+    "x": 1,
+    "y": -14,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2916,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2918,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "2918": {
+   "vnum": 2918,
+   "name": "On The City Wall",
+   "map": {
+    "x": 1,
+    "y": -15,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2917,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2919,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth and south.",
+   "placeholder": true
+  },
+  "2919": {
+   "vnum": 2919,
+   "name": "On The City Wall",
+   "map": {
+    "x": 1,
+    "y": -16,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2918,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2920,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth and south.",
+   "placeholder": true
+  },
+  "2920": {
+   "vnum": 2920,
+   "name": "On The City Wall",
+   "map": {
+    "x": 1,
+    "y": -17,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2919,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2921,
+     "description": "To the south lies A Turn On The City Wall."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "2921": {
+   "vnum": 2921,
+   "name": "A Turn On The City Wall",
+   "map": {
+    "x": 1,
+    "y": -18,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2920,
+     "description": "To the north lies On The City Wall."
+    },
+    "west": {
+     "to_room": 2922,
+     "description": "To the west lies On The City Wall."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north and\nwest.",
+   "placeholder": true
+  },
+  "2922": {
+   "vnum": 2922,
+   "name": "On The City Wall",
+   "map": {
+    "x": 0,
+    "y": -18,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 2921,
+     "description": "To the east lies A Turn On The City Wall."
+    },
+    "west": {
+     "to_room": 2923,
+     "description": "To the west lies On The City Wall."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\neast and west.",
+   "placeholder": true
+  },
+  "2923": {
+   "vnum": 2923,
+   "name": "On The City Wall",
+   "map": {
+    "x": -1,
+    "y": -18,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 2922,
+     "description": "To the east lies On The City Wall."
+    },
+    "west": {
+     "to_room": 203072,
+     "description": "To the west lies On The City Wall."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and west.",
+   "placeholder": true
+  },
+  "2924": {
+   "vnum": 2924,
+   "name": "On The City Wall",
+   "map": {
+    "x": -3,
+    "y": -18,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 203072,
+     "description": "To the east lies On The City Wall."
+    },
+    "west": {
+     "to_room": 2925,
+     "description": "To the west lies On The City Wall."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead east and west.",
+   "placeholder": true
+  },
+  "2925": {
+   "vnum": 2925,
+   "name": "On The City Wall",
+   "map": {
+    "x": -4,
+    "y": -18,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 2924,
+     "description": "To the east lies On The City Wall."
+    },
+    "west": {
+     "to_room": 2926,
+     "description": "To the west lies A Turn On The City Wall."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "2926": {
+   "vnum": 2926,
+   "name": "A Turn On The City Wall",
+   "map": {
+    "x": -5,
+    "y": -18,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2927,
+     "description": "To the north lies On The City Wall."
+    },
+    "east": {
+     "to_room": 2925,
+     "description": "To the east lies On The City Wall."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north and east.",
+   "placeholder": true
+  },
+  "2927": {
+   "vnum": 2927,
+   "name": "On The City Wall",
+   "map": {
+    "x": -5,
+    "y": -17,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2928,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2926,
+     "description": "To the south lies A Turn On The City Wall."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth and south.",
+   "placeholder": true
+  },
+  "2928": {
+   "vnum": 2928,
+   "name": "On The City Wall",
+   "map": {
+    "x": -5,
+    "y": -16,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2929,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2927,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "2929": {
+   "vnum": 2929,
+   "name": "On The City Wall",
+   "map": {
+    "x": -5,
+    "y": -15,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2930,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2928,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "2930": {
+   "vnum": 2930,
+   "name": "On The City Wall",
+   "map": {
+    "x": -5,
+    "y": -14,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2931,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2929,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2931": {
+   "vnum": 2931,
+   "name": "On The City Wall",
+   "map": {
+    "x": -5,
+    "y": -13,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2932,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2930,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2932": {
+   "vnum": 2932,
+   "name": "On The City Wall",
+   "map": {
+    "x": -5,
+    "y": -12,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2933,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2931,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "2933": {
+   "vnum": 2933,
+   "name": "On The City Wall",
+   "map": {
+    "x": -5,
+    "y": -11,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2934,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2932,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "2934": {
+   "vnum": 2934,
+   "name": "On The City Wall",
+   "map": {
+    "x": -5,
+    "y": -10,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2935,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2933,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2935": {
+   "vnum": 2935,
+   "name": "On The City Wall",
+   "map": {
+    "x": -5,
+    "y": -9,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2936,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2934,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2936": {
+   "vnum": 2936,
+   "name": "On The City Wall",
+   "map": {
+    "x": -5,
+    "y": -8,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2937,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2935,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "2937": {
+   "vnum": 2937,
+   "name": "On The City Wall",
+   "map": {
+    "x": -5,
+    "y": -7,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2938,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2936,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2938": {
+   "vnum": 2938,
+   "name": "On The City Wall",
+   "map": {
+    "x": -5,
+    "y": -6,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2939,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2937,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand south.",
+   "placeholder": true
+  },
+  "2939": {
+   "vnum": 2939,
+   "name": "On The City Wall",
+   "map": {
+    "x": -5,
+    "y": -5,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2940,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2938,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2940": {
+   "vnum": 2940,
+   "name": "On The City Wall",
+   "map": {
+    "x": -5,
+    "y": -4,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 203073,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2939,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "2941": {
+   "vnum": 2941,
+   "name": "On The City Wall",
+   "map": {
+    "x": -5,
+    "y": -2,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2942,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 203073,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2942": {
+   "vnum": 2942,
+   "name": "On The City Wall",
+   "map": {
+    "x": -5,
+    "y": -1,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2943,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2941,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2943": {
+   "vnum": 2943,
+   "name": "On The City Wall",
+   "map": {
+    "x": -5,
+    "y": 0,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2944,
+     "description": "To the north lies A Turn On The City Wall."
+    },
+    "south": {
+     "to_room": 2942,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth and south.",
+   "placeholder": true
+  },
+  "2944": {
+   "vnum": 2944,
+   "name": "A Turn On The City Wall",
+   "map": {
+    "x": -5,
+    "y": 1,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 2945,
+     "description": "To the east lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2943,
+     "description": "To the south lies On The City Wall."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\neast and south.",
+   "placeholder": true
+  },
+  "2945": {
+   "vnum": 2945,
+   "name": "On The City Wall",
+   "map": {
+    "x": -4,
+    "y": 1,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 2946,
+     "description": "To the east lies On The City Wall."
+    },
+    "west": {
+     "to_room": 2944,
+     "description": "To the west lies A Turn On The City Wall."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "2946": {
+   "vnum": 2946,
+   "name": "On The City Wall",
+   "map": {
+    "x": -3,
+    "y": 1,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 203070,
+     "description": "To the east lies On The City Wall."
+    },
+    "west": {
+     "to_room": 2945,
+     "description": "To the west lies On The City Wall."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead east and west.",
+   "placeholder": true
+  },
+  "203070": {
+   "vnum": 203070,
+   "name": "On The City Wall",
+   "map": {
+    "x": -2,
+    "y": 1,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 2901,
+     "description": "To the east lies On The City Wall."
+    },
+    "west": {
+     "to_room": 2946,
+     "description": "To the west lies On The City Wall."
+    },
+    "down": {
+     "to_room": 203059,
+     "description": "To the down lies The Gate Of The Inner City."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead east, west\nand down.",
+   "placeholder": true
+  },
+  "203071": {
+   "vnum": 203071,
+   "name": "On The City Wall",
+   "map": {
+    "x": 1,
+    "y": -3,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2906,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2907,
+     "description": "To the south lies On The City Wall."
+    },
+    "down": {
+     "to_room": 3041,
+     "description": "To the down lies The Gate To The Inner City."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth, south and down.",
+   "placeholder": true
+  },
+  "203072": {
+   "vnum": 203072,
+   "name": "On The City Wall",
+   "map": {
+    "x": -2,
+    "y": -18,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 2923,
+     "description": "To the east lies On The City Wall."
+    },
+    "west": {
+     "to_room": 2924,
+     "description": "To the west lies On The City Wall."
+    },
+    "down": {
+     "to_room": 203075,
+     "description": "To the down lies The Gate Of The Inner City."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead east, west\nand down.",
+   "placeholder": true
+  },
+  "203073": {
+   "vnum": 203073,
+   "name": "On The City Wall",
+   "map": {
+    "x": -5,
+    "y": -3,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2941,
+     "description": "To the north lies On The City Wall."
+    },
+    "south": {
+     "to_room": 2940,
+     "description": "To the south lies On The City Wall."
+    },
+    "down": {
+     "to_room": 3040,
+     "description": "To the down lies Inside the West Gate of Garathorm."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, south\nand down.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {}
+}

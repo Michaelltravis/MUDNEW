@@ -25,7 +25,7 @@ LISTING_FEE_PERCENT = 0.05      # 5% listing fee
 TRANSACTION_TAX_PERCENT = 0.10  # 10% sales tax (gold sink)
 MAX_LISTINGS_PER_PLAYER = 10
 LISTING_DURATION_SECONDS = 48 * 3600  # 48 hours
-AUCTION_HOUSE_ROOM = 3014       # Market Square in Midgaard
+AUCTION_HOUSE_ROOM = 3014       # Market Square in Garathorm
 AUCTIONEER_NAME = "Guildmaster Harlan"
 
 CATEGORIES = {

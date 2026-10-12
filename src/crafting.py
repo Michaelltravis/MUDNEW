@@ -34,7 +34,7 @@ STATION_NAMES = {
     'enchanting_circle': 'a glowing enchanting circle',
 }
 
-# Rooms in Midgaard (zone 030) that contain crafting stations
+# Rooms in Garathorm (zone 030) that contain crafting stations
 STATION_ROOMS = {
     3011: 'forge',             # Weapon Shop
     3020: 'forge',             # The Armory

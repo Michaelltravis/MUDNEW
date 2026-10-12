@@ -1,0 +1,2249 @@
+{
+ "number": 476,
+ "name": "Stone Circle",
+ "builders": "Farrot",
+ "atlas_area": 76,
+ "rooms": {
+  "24600": {
+   "vnum": 24600,
+   "name": "The Crevice Between The Paths",
+   "map": {
+    "x": 0,
+    "y": 38,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24601,
+     "description": "To the north lies In The Entrance To The Manigua Thicket.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 16189,
+     "description": "To the west lies By A Tall Tower Wall."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. Ways lead north and west.",
+   "placeholder": true
+  },
+  "24601": {
+   "vnum": 24601,
+   "name": "In The Entrance To The Manigua Thicket",
+   "map": {
+    "x": 0,
+    "y": 39,
+    "z": 7
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24602,
+     "description": "To the north lies In The Manigua Thicket."
+    },
+    "east": {
+     "to_room": 24602,
+     "description": "To the east lies In The Manigua Thicket."
+    },
+    "south": {
+     "to_room": 24600,
+     "description": "To the south lies The Crevice Between The Paths."
+    },
+    "west": {
+     "to_room": 24602,
+     "description": "To the west lies In The Manigua Thicket."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Fallen needles and leaves\nmuffle every step. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "24602": {
+   "vnum": 24602,
+   "name": "In The Manigua Thicket",
+   "map": {
+    "x": 0,
+    "y": 41,
+    "z": 7
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {},
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Shafts of\npale light slant between the trunks.",
+   "placeholder": true
+  },
+  "24603": {
+   "vnum": 24603,
+   "name": "In The Manigua Thicket",
+   "map": {
+    "x": 2,
+    "y": 41,
+    "z": 7
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {},
+   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step.",
+   "placeholder": true
+  },
+  "24604": {
+   "vnum": 24604,
+   "name": "In The Manigua Thicket",
+   "map": {
+    "x": 2,
+    "y": 43,
+    "z": 7
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {},
+   "description": "Old trees crowd close, their roots knotted across the path. Fallen\nneedles and leaves muffle every step.",
+   "placeholder": true
+  },
+  "24605": {
+   "vnum": 24605,
+   "name": "In The Manigua Thicket",
+   "map": {
+    "x": 0,
+    "y": 43,
+    "z": 7
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {},
+   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead.",
+   "placeholder": true
+  },
+  "24606": {
+   "vnum": 24606,
+   "name": "In The Manigua Thicket",
+   "map": {
+    "x": 0,
+    "y": 45,
+    "z": 7
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {},
+   "description": "Shafts of pale light slant between the trunks. Old trees crowd close,\ntheir roots knotted across the path.",
+   "placeholder": true
+  },
+  "24607": {
+   "vnum": 24607,
+   "name": "The Stone Entrance",
+   "map": {
+    "x": -2,
+    "y": 45,
+    "z": 7
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24612,
+     "description": "To the north lies The Stone Portal."
+    },
+    "east": {
+     "to_room": 24612,
+     "description": "To the east lies The Stone Portal."
+    },
+    "south": {
+     "to_room": 24612,
+     "description": "To the south lies The Stone Portal."
+    },
+    "west": {
+     "to_room": 24612,
+     "description": "To the west lies The Stone Portal."
+    },
+    "up": {
+     "to_room": 24612,
+     "description": "To the up lies The Stone Portal."
+    },
+    "down": {
+     "to_room": 24612,
+     "description": "To the down lies The Stone Portal."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. A worn track\ncrosses the open ground. Ways lead north, east, south, west, up and\ndown.",
+   "placeholder": true
+  },
+  "24608": {
+   "vnum": 24608,
+   "name": "In The Manigua Thicket",
+   "map": {
+    "x": -1,
+    "y": 41,
+    "z": 7
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {},
+   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead.",
+   "placeholder": true
+  },
+  "24609": {
+   "vnum": 24609,
+   "name": "The Clearing In The Thicket",
+   "map": {
+    "x": -3,
+    "y": 41,
+    "z": 7
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24608,
+     "description": "To the east lies In The Manigua Thicket."
+    },
+    "down": {
+     "to_room": 24610,
+     "description": "To the down lies The Lair Of The Thicket Beast."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead east and down.",
+   "placeholder": true
+  },
+  "24610": {
+   "vnum": 24610,
+   "name": "The Lair Of The Thicket Beast",
+   "map": {
+    "x": -4,
+    "y": 40,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 24609,
+     "description": "To the up lies The Clearing In The Thicket."
+    },
+    "down": {
+     "to_room": 24612,
+     "description": "To the down lies The Stone Portal."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead up and down.",
+   "placeholder": true
+  },
+  "24612": {
+   "vnum": 24612,
+   "name": "The Stone Portal",
+   "map": {
+    "x": -6,
+    "y": 38,
+    "z": 7
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24612,
+     "description": "To the north lies The Stone Portal."
+    },
+    "west": {
+     "to_room": 24613,
+     "description": "To the west lies The Avenue."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead north and west.",
+   "placeholder": true
+  },
+  "24613": {
+   "vnum": 24613,
+   "name": "The Avenue",
+   "map": {
+    "x": -8,
+    "y": 38,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 24614,
+     "description": "To the west lies At The Slaughter Stone."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. A way leads west.",
+   "placeholder": true
+  },
+  "24614": {
+   "vnum": 24614,
+   "name": "At The Slaughter Stone",
+   "map": {
+    "x": -9,
+    "y": 38,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24615,
+     "description": "To the north lies The Beginning Of The Stone Circle."
+    },
+    "east": {
+     "to_room": 24613,
+     "description": "To the east lies The Avenue."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north and\neast.",
+   "placeholder": true
+  },
+  "24615": {
+   "vnum": 24615,
+   "name": "The Beginning Of The Stone Circle",
+   "map": {
+    "x": -9,
+    "y": 39,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24616,
+     "description": "To the north lies Around the Stone Circle."
+    },
+    "south": {
+     "to_room": 24614,
+     "description": "To the south lies At The Slaughter Stone."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "24616": {
+   "vnum": 24616,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -9,
+    "y": 40,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24617,
+     "description": "To the north lies Around the Stone Circle."
+    },
+    "south": {
+     "to_room": 24615,
+     "description": "To the south lies The Beginning Of The Stone Circle."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth and south.",
+   "placeholder": true
+  },
+  "24617": {
+   "vnum": 24617,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -9,
+    "y": 41,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24618,
+     "description": "To the north lies Around the Stone Circle."
+    },
+    "south": {
+     "to_room": 24616,
+     "description": "To the south lies Around the Stone Circle."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth and south.",
+   "placeholder": true
+  },
+  "24618": {
+   "vnum": 24618,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -9,
+    "y": 42,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24619,
+     "description": "To the north lies A Sharp Bend In The Stone Circle."
+    },
+    "south": {
+     "to_room": 24617,
+     "description": "To the south lies Around the Stone Circle."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24619": {
+   "vnum": 24619,
+   "name": "A Sharp Bend In The Stone Circle",
+   "map": {
+    "x": -9,
+    "y": 43,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 24618,
+     "description": "To the south lies Around the Stone Circle."
+    },
+    "west": {
+     "to_room": 24620,
+     "description": "To the west lies The First Altar Of The Stones."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead south and\nwest.",
+   "placeholder": true
+  },
+  "24620": {
+   "vnum": 24620,
+   "name": "The First Altar Of The Stones",
+   "map": {
+    "x": -12,
+    "y": 43,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24621,
+     "description": "To the north lies A Sharp Bend In The Stone Circle."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. A way leads north.",
+   "placeholder": true
+  },
+  "24621": {
+   "vnum": 24621,
+   "name": "A Sharp Bend In The Stone Circle",
+   "map": {
+    "x": -12,
+    "y": 44,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 24620,
+     "description": "To the south lies The First Altar Of The Stones."
+    },
+    "west": {
+     "to_room": 24622,
+     "description": "To the west lies Around the Stone Circle."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nsouth and west.",
+   "placeholder": true
+  },
+  "24622": {
+   "vnum": 24622,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -13,
+    "y": 44,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24621,
+     "description": "To the east lies A Sharp Bend In The Stone Circle."
+    },
+    "west": {
+     "to_room": 24623,
+     "description": "To the west lies Around the Stone Circle."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "24623": {
+   "vnum": 24623,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -14,
+    "y": 44,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24622,
+     "description": "To the east lies Around the Stone Circle."
+    },
+    "west": {
+     "to_room": 24624,
+     "description": "To the west lies Around the Stone Circle."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\neast and west.",
+   "placeholder": true
+  },
+  "24624": {
+   "vnum": 24624,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -15,
+    "y": 44,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24623,
+     "description": "To the east lies Around the Stone Circle."
+    },
+    "west": {
+     "to_room": 24625,
+     "description": "To the west lies By The Pit Stones."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "24625": {
+   "vnum": 24625,
+   "name": "By The Pit Stones",
+   "map": {
+    "x": -16,
+    "y": 44,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24624,
+     "description": "To the east lies Around the Stone Circle."
+    },
+    "west": {
+     "to_room": 24626,
+     "description": "To the west lies In The Middle Of The Pit Stones."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24626": {
+   "vnum": 24626,
+   "name": "In The Middle Of The Pit Stones",
+   "map": {
+    "x": -17,
+    "y": 44,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24627,
+     "description": "To the north lies The Quarters Of The High Priest.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 24625,
+     "description": "To the east lies By The Pit Stones."
+    },
+    "west": {
+     "to_room": 24630,
+     "description": "To the west lies By The Pit Stones."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "24627": {
+   "vnum": 24627,
+   "name": "The Quarters Of The High Priest",
+   "map": {
+    "x": -17,
+    "y": 47,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24627,
+     "description": "To the north lies The Quarters Of The High Priest."
+    },
+    "east": {
+     "to_room": 24628,
+     "description": "To the east lies The Vault Of The Stone Priest.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 24626,
+     "description": "To the south lies In The Middle Of The Pit Stones."
+    },
+    "west": {
+     "to_room": 24629,
+     "description": "To the west lies Dark Office Of The Stone Priest.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "24628": {
+   "vnum": 24628,
+   "name": "The Vault Of The Stone Priest",
+   "map": {
+    "x": -15,
+    "y": 47,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 24627,
+     "description": "To the west lies The Quarters Of The High Priest."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads west.",
+   "placeholder": true
+  },
+  "24629": {
+   "vnum": 24629,
+   "name": "Dark Office Of The Stone Priest",
+   "map": {
+    "x": -18,
+    "y": 47,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24627,
+     "description": "To the east lies The Quarters Of The High Priest."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "24630": {
+   "vnum": 24630,
+   "name": "By The Pit Stones",
+   "map": {
+    "x": -20,
+    "y": 44,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24626,
+     "description": "To the east lies In The Middle Of The Pit Stones."
+    },
+    "west": {
+     "to_room": 24631,
+     "description": "To the west lies Around the Stone Circle."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24631": {
+   "vnum": 24631,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -21,
+    "y": 44,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24630,
+     "description": "To the east lies By The Pit Stones."
+    },
+    "west": {
+     "to_room": 24632,
+     "description": "To the west lies A Sharp Bend In The Stone Circle."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "24632": {
+   "vnum": 24632,
+   "name": "A Sharp Bend In The Stone Circle",
+   "map": {
+    "x": -22,
+    "y": 44,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24631,
+     "description": "To the east lies Around the Stone Circle."
+    },
+    "south": {
+     "to_room": 24633,
+     "description": "To the south lies The Second Altar Of The Stones."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and south.",
+   "placeholder": true
+  },
+  "24633": {
+   "vnum": 24633,
+   "name": "The Second Altar Of The Stones",
+   "map": {
+    "x": -22,
+    "y": 42,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 24634,
+     "description": "To the west lies A Sharp Bend In The Stone Circle."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. A way leads\nwest.",
+   "placeholder": true
+  },
+  "24634": {
+   "vnum": 24634,
+   "name": "A Sharp Bend In The Stone Circle",
+   "map": {
+    "x": -23,
+    "y": 42,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24633,
+     "description": "To the east lies The Second Altar Of The Stones."
+    },
+    "south": {
+     "to_room": 24635,
+     "description": "To the south lies Around the Stone Circle."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead east and\nsouth.",
+   "placeholder": true
+  },
+  "24635": {
+   "vnum": 24635,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -23,
+    "y": 41,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24634,
+     "description": "To the north lies A Sharp Bend In The Stone Circle."
+    },
+    "south": {
+     "to_room": 24636,
+     "description": "To the south lies Around the Stone Circle."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "24636": {
+   "vnum": 24636,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -23,
+    "y": 40,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24635,
+     "description": "To the north lies Around the Stone Circle."
+    },
+    "south": {
+     "to_room": 24637,
+     "description": "To the south lies Around the Stone Circle."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24637": {
+   "vnum": 24637,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -23,
+    "y": 39,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24636,
+     "description": "To the north lies Around the Stone Circle."
+    },
+    "south": {
+     "to_room": 24638,
+     "description": "To the south lies Around the Stone Circle."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "24638": {
+   "vnum": 24638,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -23,
+    "y": 38,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24637,
+     "description": "To the north lies Around the Stone Circle."
+    },
+    "south": {
+     "to_room": 24639,
+     "description": "To the south lies Around the Stone Circle."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24639": {
+   "vnum": 24639,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -23,
+    "y": 37,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24638,
+     "description": "To the north lies Around the Stone Circle."
+    },
+    "south": {
+     "to_room": 24640,
+     "description": "To the south lies Around the Stone Circle."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24640": {
+   "vnum": 24640,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -23,
+    "y": 36,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24639,
+     "description": "To the north lies Around the Stone Circle."
+    },
+    "south": {
+     "to_room": 24641,
+     "description": "To the south lies A Sharp Bend In The Stone Circle."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "24641": {
+   "vnum": 24641,
+   "name": "A Sharp Bend In The Stone Circle",
+   "map": {
+    "x": -23,
+    "y": 34,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24640,
+     "description": "To the north lies Around the Stone Circle."
+    },
+    "east": {
+     "to_room": 24642,
+     "description": "To the east lies The Third Altar Of The Stones."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north and east.",
+   "placeholder": true
+  },
+  "24642": {
+   "vnum": 24642,
+   "name": "The Third Altar Of The Stones",
+   "map": {
+    "x": -21,
+    "y": 34,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 24643,
+     "description": "To the south lies A Sharp Bend In The Stone Circle."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. A way leads south.",
+   "placeholder": true
+  },
+  "24643": {
+   "vnum": 24643,
+   "name": "A Sharp Bend In The Stone Circle",
+   "map": {
+    "x": -21,
+    "y": 33,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24642,
+     "description": "To the north lies The Third Altar Of The Stones."
+    },
+    "east": {
+     "to_room": 24644,
+     "description": "To the east lies Around the Stone Circle."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand east.",
+   "placeholder": true
+  },
+  "24644": {
+   "vnum": 24644,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -20,
+    "y": 33,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24645,
+     "description": "To the east lies Around the Stone Circle."
+    },
+    "west": {
+     "to_room": 24643,
+     "description": "To the west lies A Sharp Bend In The Stone Circle."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24645": {
+   "vnum": 24645,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -17,
+    "y": 33,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24646,
+     "description": "To the east lies Around the Stone Circle."
+    },
+    "west": {
+     "to_room": 24644,
+     "description": "To the west lies Around the Stone Circle."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\neast and west.",
+   "placeholder": true
+  },
+  "24646": {
+   "vnum": 24646,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -16,
+    "y": 33,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24689,
+     "description": "To the north lies Chamber Of Elements.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 24647,
+     "description": "To the east lies Around the Stone Circle."
+    },
+    "south": {
+     "to_room": 24691,
+     "description": "To the south lies The Room Of The Sun.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 24645,
+     "description": "To the west lies Around the Stone Circle."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "24647": {
+   "vnum": 24647,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -15,
+    "y": 33,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24692,
+     "description": "To the north lies Chamber Of The White Alchemist.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 24648,
+     "description": "To the east lies Around the Stone Circle."
+    },
+    "south": {
+     "to_room": 24693,
+     "description": "To the south lies Chamber Of The Dark Alchemist.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 24646,
+     "description": "To the west lies Around the Stone Circle."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "24648": {
+   "vnum": 24648,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -14,
+    "y": 33,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24694,
+     "description": "To the north lies Cell Block.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 24649,
+     "description": "To the east lies A Sharp Bend In The Stone Circle."
+    },
+    "south": {
+     "to_room": 24695,
+     "description": "To the south lies Cell Block.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 24647,
+     "description": "To the west lies Around the Stone Circle."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "24649": {
+   "vnum": 24649,
+   "name": "A Sharp Bend In The Stone Circle",
+   "map": {
+    "x": -13,
+    "y": 33,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24650,
+     "description": "To the north lies The Altar Of The Sun."
+    },
+    "west": {
+     "to_room": 24648,
+     "description": "To the west lies Around the Stone Circle."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north and west.",
+   "placeholder": true
+  },
+  "24650": {
+   "vnum": 24650,
+   "name": "The Altar Of The Sun",
+   "map": {
+    "x": -13,
+    "y": 34,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24651,
+     "description": "To the east lies A Sharp Bend In The Stone Circle."
+    },
+    "south": {
+     "to_room": 24649,
+     "description": "To the south lies A Sharp Bend In The Stone Circle."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nsouth.",
+   "placeholder": true
+  },
+  "24651": {
+   "vnum": 24651,
+   "name": "A Sharp Bend In The Stone Circle",
+   "map": {
+    "x": -10,
+    "y": 34,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24652,
+     "description": "To the north lies Around the Stone Circle."
+    },
+    "west": {
+     "to_room": 24650,
+     "description": "To the west lies The Altar Of The Sun."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north and\nwest.",
+   "placeholder": true
+  },
+  "24652": {
+   "vnum": 24652,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -10,
+    "y": 36,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24653,
+     "description": "To the north lies Around the Stone Circle."
+    },
+    "south": {
+     "to_room": 24651,
+     "description": "To the south lies A Sharp Bend In The Stone Circle."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24653": {
+   "vnum": 24653,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -10,
+    "y": 38,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24654,
+     "description": "To the north lies Around the Stone Circle."
+    },
+    "south": {
+     "to_room": 24652,
+     "description": "To the south lies Around the Stone Circle."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth and south.",
+   "placeholder": true
+  },
+  "24654": {
+   "vnum": 24654,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -10,
+    "y": 39,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24655,
+     "description": "To the north lies Around the Stone Circle."
+    },
+    "south": {
+     "to_room": 24653,
+     "description": "To the south lies Around the Stone Circle."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24655": {
+   "vnum": 24655,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -10,
+    "y": 41,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24656,
+     "description": "To the north lies A Sharp Bend In The Stone Circle."
+    },
+    "south": {
+     "to_room": 24654,
+     "description": "To the south lies Around the Stone Circle."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "24656": {
+   "vnum": 24656,
+   "name": "A Sharp Bend In The Stone Circle",
+   "map": {
+    "x": -10,
+    "y": 42,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 24655,
+     "description": "To the south lies Around the Stone Circle."
+    },
+    "west": {
+     "to_room": 24657,
+     "description": "To the west lies The Altar Of Hydroglix."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead south and\nwest.",
+   "placeholder": true
+  },
+  "24657": {
+   "vnum": 24657,
+   "name": "The Altar Of Hydroglix",
+   "map": {
+    "x": -13,
+    "y": 42,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24658,
+     "description": "To the north lies A Sharp Bend In The Stone Circle."
+    },
+    "east": {
+     "to_room": 24656,
+     "description": "To the east lies A Sharp Bend In The Stone Circle."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north and east.",
+   "placeholder": true
+  },
+  "24658": {
+   "vnum": 24658,
+   "name": "A Sharp Bend In The Stone Circle",
+   "map": {
+    "x": -13,
+    "y": 43,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 24657,
+     "description": "To the south lies The Altar Of Hydroglix."
+    },
+    "west": {
+     "to_room": 24659,
+     "description": "To the west lies Around the Stone Circle."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nsouth and west.",
+   "placeholder": true
+  },
+  "24659": {
+   "vnum": 24659,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -14,
+    "y": 43,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24658,
+     "description": "To the east lies A Sharp Bend In The Stone Circle."
+    },
+    "west": {
+     "to_room": 24660,
+     "description": "To the west lies Around the Stone Circle."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24660": {
+   "vnum": 24660,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -15,
+    "y": 43,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24659,
+     "description": "To the east lies Around the Stone Circle."
+    },
+    "west": {
+     "to_room": 24661,
+     "description": "To the west lies Around the Stone Circle."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24661": {
+   "vnum": 24661,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -16,
+    "y": 43,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24660,
+     "description": "To the east lies Around the Stone Circle."
+    },
+    "west": {
+     "to_room": 24662,
+     "description": "To the west lies Around the Stone Circle."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24662": {
+   "vnum": 24662,
+   "name": "Around the Stone Circle",
+   "map": {
+    "x": -17,
+    "y": 43,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24661,
+     "description": "To the east lies Around the Stone Circle."
+    },
+    "west": {
+     "to_room": 24663,
+     "description": "To the west lies A Sharp Bend in the Stone Circle."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24663": {
+   "vnum": 24663,
+   "name": "A Sharp Bend in the Stone Circle",
+   "map": {
+    "x": -20,
+    "y": 43,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24662,
+     "description": "To the east lies Around the Stone Circle."
+    },
+    "south": {
+     "to_room": 24664,
+     "description": "To the south lies The Altar of Zacchariath."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nsouth.",
+   "placeholder": true
+  },
+  "24664": {
+   "vnum": 24664,
+   "name": "The Altar of Zacchariath",
+   "map": {
+    "x": -20,
+    "y": 41,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24663,
+     "description": "To the north lies A Sharp Bend in the Stone Circle."
+    },
+    "west": {
+     "to_room": 24665,
+     "description": "To the west lies A Sharp Bend In The Stone Circle."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north and\nwest.",
+   "placeholder": true
+  },
+  "24665": {
+   "vnum": 24665,
+   "name": "A Sharp Bend In The Stone Circle",
+   "map": {
+    "x": -22,
+    "y": 41,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24664,
+     "description": "To the east lies The Altar of Zacchariath."
+    },
+    "south": {
+     "to_room": 24666,
+     "description": "To the south lies Inside The Stone City."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead east and\nsouth.",
+   "placeholder": true
+  },
+  "24666": {
+   "vnum": 24666,
+   "name": "Inside The Stone City",
+   "map": {
+    "x": -22,
+    "y": 39,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24665,
+     "description": "To the north lies A Sharp Bend In The Stone Circle."
+    },
+    "south": {
+     "to_room": 24667,
+     "description": "To the south lies Inside The Stone City."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth and south.",
+   "placeholder": true
+  },
+  "24667": {
+   "vnum": 24667,
+   "name": "Inside The Stone City",
+   "map": {
+    "x": -22,
+    "y": 38,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24666,
+     "description": "To the north lies Inside The Stone City."
+    },
+    "south": {
+     "to_room": 24668,
+     "description": "To the south lies The Altar Of Power."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "24668": {
+   "vnum": 24668,
+   "name": "The Altar Of Power",
+   "map": {
+    "x": -22,
+    "y": 37,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24667,
+     "description": "To the north lies Inside The Stone City."
+    },
+    "east": {
+     "to_room": 24669,
+     "description": "To the east lies The Altar Of Arms."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\neast.",
+   "placeholder": true
+  },
+  "24669": {
+   "vnum": 24669,
+   "name": "The Altar Of Arms",
+   "map": {
+    "x": -20,
+    "y": 37,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 24670,
+     "description": "To the south lies The Great Altar Of The Eclipse."
+    },
+    "west": {
+     "to_room": 24668,
+     "description": "To the west lies The Altar Of Power."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nsouth and west.",
+   "placeholder": true
+  },
+  "24670": {
+   "vnum": 24670,
+   "name": "The Great Altar Of The Eclipse",
+   "map": {
+    "x": -20,
+    "y": 36,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24669,
+     "description": "To the north lies The Altar Of Arms."
+    },
+    "east": {
+     "to_room": 24671,
+     "description": "To the east lies Inside The Great Stone.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north and\neast.",
+   "placeholder": true
+  },
+  "24671": {
+   "vnum": 24671,
+   "name": "Inside The Great Stone",
+   "map": {
+    "x": -18,
+    "y": 36,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24672,
+     "description": "To the east lies Through The Path."
+    },
+    "west": {
+     "to_room": 24670,
+     "description": "To the west lies The Great Altar Of The Eclipse."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and west.",
+   "placeholder": true
+  },
+  "24672": {
+   "vnum": 24672,
+   "name": "Through The Path",
+   "map": {
+    "x": -16,
+    "y": 36,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24673,
+     "description": "To the east lies Through The Path."
+    },
+    "west": {
+     "to_room": 24671,
+     "description": "To the west lies Inside The Great Stone."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "24673": {
+   "vnum": 24673,
+   "name": "Through The Path",
+   "map": {
+    "x": -13,
+    "y": 36,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24674,
+     "description": "To the north lies Inside The City Of Sacrifice."
+    },
+    "west": {
+     "to_room": 24672,
+     "description": "To the west lies Through The Path."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth and west.",
+   "placeholder": true
+  },
+  "24674": {
+   "vnum": 24674,
+   "name": "Inside The City Of Sacrifice",
+   "map": {
+    "x": -13,
+    "y": 37,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24676,
+     "description": "To the north lies The Plaza."
+    },
+    "east": {
+     "to_room": 24675,
+     "description": "To the east lies The Burrow In The Altar."
+    },
+    "south": {
+     "to_room": 24673,
+     "description": "To the south lies Through The Path."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east and south.",
+   "placeholder": true
+  },
+  "24675": {
+   "vnum": 24675,
+   "name": "The Burrow In The Altar",
+   "map": {
+    "x": -12,
+    "y": 37,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 24674,
+     "description": "To the west lies Inside The City Of Sacrifice."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads west.",
+   "placeholder": true
+  },
+  "24676": {
+   "vnum": 24676,
+   "name": "The Plaza",
+   "map": {
+    "x": -13,
+    "y": 38,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24682,
+     "description": "To the north lies The Arched Entrance."
+    },
+    "east": {
+     "to_room": 24678,
+     "description": "To the east lies The Plaza."
+    },
+    "south": {
+     "to_room": 24674,
+     "description": "To the south lies Inside The City Of Sacrifice."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth, east and south.",
+   "placeholder": true
+  },
+  "24678": {
+   "vnum": 24678,
+   "name": "The Plaza",
+   "map": {
+    "x": -12,
+    "y": 38,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24681,
+     "description": "To the north lies The Golden Fountain."
+    },
+    "east": {
+     "to_room": 24679,
+     "description": "To the east lies Corner Of The Plaza."
+    },
+    "west": {
+     "to_room": 24676,
+     "description": "To the west lies The Plaza."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead north, east\nand west.",
+   "placeholder": true
+  },
+  "24679": {
+   "vnum": 24679,
+   "name": "Corner Of The Plaza",
+   "map": {
+    "x": -11,
+    "y": 38,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24680,
+     "description": "To the north lies Corner Of The Plaza."
+    },
+    "west": {
+     "to_room": 24678,
+     "description": "To the west lies The Plaza."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north and\nwest.",
+   "placeholder": true
+  },
+  "24680": {
+   "vnum": 24680,
+   "name": "Corner Of The Plaza",
+   "map": {
+    "x": -11,
+    "y": 39,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 24679,
+     "description": "To the south lies Corner Of The Plaza."
+    },
+    "west": {
+     "to_room": 24681,
+     "description": "To the west lies The Golden Fountain."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead south and west.",
+   "placeholder": true
+  },
+  "24681": {
+   "vnum": 24681,
+   "name": "The Golden Fountain",
+   "map": {
+    "x": -12,
+    "y": 39,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24684,
+     "description": "To the north lies The Guards Hall.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 24680,
+     "description": "To the east lies Corner Of The Plaza."
+    },
+    "south": {
+     "to_room": 24678,
+     "description": "To the south lies The Plaza."
+    },
+    "west": {
+     "to_room": 24682,
+     "description": "To the west lies The Arched Entrance."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "24682": {
+   "vnum": 24682,
+   "name": "The Arched Entrance",
+   "map": {
+    "x": -13,
+    "y": 39,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24681,
+     "description": "To the east lies The Golden Fountain."
+    },
+    "south": {
+     "to_room": 24676,
+     "description": "To the south lies The Plaza."
+    },
+    "west": {
+     "to_room": 24685,
+     "description": "To the west lies The Circle Of The Altars.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead east, south\nand west.",
+   "placeholder": true
+  },
+  "24683": {
+   "vnum": 24683,
+   "name": "The Chief Guard's Office",
+   "map": {
+    "x": -14,
+    "y": 40,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24684,
+     "description": "To the east lies The Guards Hall."
+    },
+    "south": {
+     "to_room": 24694,
+     "description": "To the south lies Cell Block.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and south.",
+   "placeholder": true
+  },
+  "24684": {
+   "vnum": 24684,
+   "name": "The Guards Hall",
+   "map": {
+    "x": -12,
+    "y": 40,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 24681,
+     "description": "To the south lies The Golden Fountain."
+    },
+    "west": {
+     "to_room": 24683,
+     "description": "To the west lies The Chief Guard's Office.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "24685": {
+   "vnum": 24685,
+   "name": "The Circle Of The Altars",
+   "map": {
+    "x": -16,
+    "y": 39,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24686,
+     "description": "To the north lies The Silver Altar."
+    },
+    "east": {
+     "to_room": 24682,
+     "description": "To the east lies The Arched Entrance."
+    },
+    "south": {
+     "to_room": 24687,
+     "description": "To the south lies The Golden Altar."
+    },
+    "west": {
+     "to_room": 24699,
+     "description": "To the west lies Tunnel Inside The Altar."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "24686": {
+   "vnum": 24686,
+   "name": "The Silver Altar",
+   "map": {
+    "x": -16,
+    "y": 40,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 24685,
+     "description": "To the south lies The Circle Of The Altars."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. A way leads south.",
+   "placeholder": true
+  },
+  "24687": {
+   "vnum": 24687,
+   "name": "The Golden Altar",
+   "map": {
+    "x": -16,
+    "y": 38,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 24685,
+     "description": "To the north lies The Circle Of The Altars."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. A way leads north.",
+   "placeholder": true
+  },
+  "24688": {
+   "vnum": 24688,
+   "name": "The Grand Stone Of Jostoricath",
+   "map": {
+    "x": -21,
+    "y": 39,
+    "z": 7
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {},
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand.",
+   "placeholder": true
+  },
+  "24689": {
+   "vnum": 24689,
+   "name": "Chamber Of Elements",
+   "map": {
+    "x": -16,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 24646,
+     "description": "To the south lies Around the Stone Circle."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads south.",
+   "placeholder": true
+  },
+  "24691": {
+   "vnum": 24691,
+   "name": "The Room Of The Sun",
+   "map": {
+    "x": -16,
+    "y": 31,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24646,
+     "description": "To the north lies Around the Stone Circle."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "24692": {
+   "vnum": 24692,
+   "name": "Chamber Of The White Alchemist",
+   "map": {
+    "x": -15,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 24647,
+     "description": "To the south lies Around the Stone Circle."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads south.",
+   "placeholder": true
+  },
+  "24693": {
+   "vnum": 24693,
+   "name": "Chamber Of The Dark Alchemist",
+   "map": {
+    "x": -15,
+    "y": 31,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24647,
+     "description": "To the north lies Around the Stone Circle."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads north.",
+   "placeholder": true
+  },
+  "24694": {
+   "vnum": 24694,
+   "name": "Cell Block",
+   "map": {
+    "x": -14,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24683,
+     "description": "To the north lies The Chief Guard's Office."
+    },
+    "south": {
+     "to_room": 24648,
+     "description": "To the south lies Around the Stone Circle."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24695": {
+   "vnum": 24695,
+   "name": "Cell Block",
+   "map": {
+    "x": -14,
+    "y": 31,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24648,
+     "description": "To the north lies Around the Stone Circle."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads north.",
+   "placeholder": true
+  },
+  "24699": {
+   "vnum": 24699,
+   "name": "Tunnel Inside The Altar",
+   "map": {
+    "x": -18,
+    "y": 39,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 24688,
+     "description": "To the west lies The Grand Stone Of Jostoricath."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads west.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

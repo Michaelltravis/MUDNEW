@@ -1,0 +1,603 @@
+{
+ "number": 494,
+ "name": "Eden",
+ "builders": "Helver",
+ "atlas_area": 94,
+ "rooms": {
+  "201500": {
+   "vnum": 201500,
+   "name": "The Road To Eden",
+   "map": {
+    "x": 48,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9549,
+     "description": "To the east lies In front of an island pier."
+    },
+    "south": {
+     "to_room": 201501,
+     "description": "To the south lies The Road To Eden."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Fallen needles and leaves\nmuffle every step. Ways lead east and south.",
+   "placeholder": true
+  },
+  "201501": {
+   "vnum": 201501,
+   "name": "The Road To Eden",
+   "map": {
+    "x": 48,
+    "y": -2,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 201500,
+     "description": "To the north lies The Road To Eden."
+    },
+    "south": {
+     "to_room": 201502,
+     "description": "To the south lies The Road To Eden."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead. Ways lead north and south.",
+   "placeholder": true
+  },
+  "201502": {
+   "vnum": 201502,
+   "name": "The Road To Eden",
+   "map": {
+    "x": 48,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 201501,
+     "description": "To the north lies The Road To Eden."
+    },
+    "south": {
+     "to_room": 201503,
+     "description": "To the south lies Outside The Gate To Eden."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Old trees\ncrowd close, their roots knotted across the path. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "201503": {
+   "vnum": 201503,
+   "name": "Outside The Gate To Eden",
+   "map": {
+    "x": 48,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 201502,
+     "description": "To the north lies The Road To Eden."
+    },
+    "south": {
+     "to_room": 201504,
+     "description": "To the south lies Inside The Gate To Eden.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. A worn track crosses the\nopen ground. Ways lead north and south.",
+   "placeholder": true
+  },
+  "201504": {
+   "vnum": 201504,
+   "name": "Inside The Gate To Eden",
+   "map": {
+    "x": 48,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 201503,
+     "description": "To the north lies Outside The Gate To Eden."
+    },
+    "east": {
+     "to_room": 201505,
+     "description": "To the east lies In The Garden."
+    },
+    "south": {
+     "to_room": 201506,
+     "description": "To the south lies The Line Of Fruit Trees."
+    },
+    "west": {
+     "to_room": 201507,
+     "description": "To the west lies In The Garden."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. The land lies\nflat and quiet in every direction. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "201505": {
+   "vnum": 201505,
+   "name": "In The Garden",
+   "map": {
+    "x": 50,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 201508,
+     "description": "To the east lies In The Garden."
+    },
+    "south": {
+     "to_room": 201508,
+     "description": "To the south lies In The Garden."
+    },
+    "west": {
+     "to_room": 201504,
+     "description": "To the west lies Inside The Gate To Eden."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. Ways lead east, south and\nwest.",
+   "placeholder": true
+  },
+  "201506": {
+   "vnum": 201506,
+   "name": "The Line Of Fruit Trees",
+   "map": {
+    "x": 48,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 201504,
+     "description": "To the north lies Inside The Gate To Eden."
+    },
+    "east": {
+     "to_room": 201508,
+     "description": "To the east lies In The Garden."
+    },
+    "south": {
+     "to_room": 201509,
+     "description": "To the south lies The Tree Of The Knowledge Of Good And Evil."
+    },
+    "west": {
+     "to_room": 201510,
+     "description": "To the west lies In The Garden."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north, east, south\nand west.",
+   "placeholder": true
+  },
+  "201507": {
+   "vnum": 201507,
+   "name": "In The Garden",
+   "map": {
+    "x": 46,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 201504,
+     "description": "To the east lies Inside The Gate To Eden."
+    },
+    "south": {
+     "to_room": 201510,
+     "description": "To the south lies In The Garden."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead east and\nsouth.",
+   "placeholder": true
+  },
+  "201508": {
+   "vnum": 201508,
+   "name": "In The Garden",
+   "map": {
+    "x": 50,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 201505,
+     "description": "To the north lies In The Garden."
+    },
+    "east": {
+     "to_room": 201511,
+     "description": "To the east lies In The Garden."
+    },
+    "south": {
+     "to_room": 201511,
+     "description": "To the south lies In The Garden."
+    },
+    "west": {
+     "to_room": 201506,
+     "description": "To the west lies The Line Of Fruit Trees."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "201509": {
+   "vnum": 201509,
+   "name": "The Tree Of The Knowledge Of Good And Evil",
+   "map": {
+    "x": 48,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 201506,
+     "description": "To the north lies The Line Of Fruit Trees."
+    },
+    "east": {
+     "to_room": 201511,
+     "description": "To the east lies In The Garden."
+    },
+    "south": {
+     "to_room": 201520,
+     "description": "To the south lies The Line Of Fruit Trees."
+    },
+    "west": {
+     "to_room": 201519,
+     "description": "To the west lies The Beehives."
+    }
+   },
+   "description": "The ground rises and falls in grassy folds. Gorse and heather cling to\nthe windy rise. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "201510": {
+   "vnum": 201510,
+   "name": "In The Garden",
+   "map": {
+    "x": 46,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 201507,
+     "description": "To the north lies In The Garden."
+    },
+    "east": {
+     "to_room": 201506,
+     "description": "To the east lies The Line Of Fruit Trees."
+    },
+    "south": {
+     "to_room": 201519,
+     "description": "To the south lies The Beehives."
+    },
+    "west": {
+     "to_room": 201518,
+     "description": "To the west lies The Flower Garden."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "201511": {
+   "vnum": 201511,
+   "name": "In The Garden",
+   "map": {
+    "x": 50,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 201508,
+     "description": "To the north lies In The Garden."
+    },
+    "east": {
+     "to_room": 201512,
+     "description": "To the east lies In The Garden."
+    },
+    "south": {
+     "to_room": 201512,
+     "description": "To the south lies In The Garden."
+    },
+    "west": {
+     "to_room": 201509,
+     "description": "To the west lies The Tree Of The Knowledge Of Good And Evil."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "201512": {
+   "vnum": 201512,
+   "name": "In The Garden",
+   "map": {
+    "x": 50,
+    "y": -11,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 201511,
+     "description": "To the north lies In The Garden."
+    },
+    "east": {
+     "to_room": 201513,
+     "description": "To the east lies In The Garden."
+    },
+    "south": {
+     "to_room": 201513,
+     "description": "To the south lies In The Garden."
+    },
+    "west": {
+     "to_room": 201520,
+     "description": "To the west lies The Line Of Fruit Trees."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "201513": {
+   "vnum": 201513,
+   "name": "In The Garden",
+   "map": {
+    "x": 50,
+    "y": -13,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 201512,
+     "description": "To the north lies In The Garden."
+    },
+    "west": {
+     "to_room": 201516,
+     "description": "To the west lies In The Garden."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and west.",
+   "placeholder": true
+  },
+  "201514": {
+   "vnum": 201514,
+   "name": "In The Garden",
+   "map": {
+    "x": 46,
+    "y": -13,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 201515,
+     "description": "To the north lies In The Garden."
+    },
+    "east": {
+     "to_room": 201516,
+     "description": "To the east lies In The Garden."
+    },
+    "west": {
+     "to_room": 201515,
+     "description": "To the west lies In The Garden."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, east and west.",
+   "placeholder": true
+  },
+  "201515": {
+   "vnum": 201515,
+   "name": "In The Garden",
+   "map": {
+    "x": 46,
+    "y": -11,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 201519,
+     "description": "To the north lies The Beehives."
+    },
+    "east": {
+     "to_room": 201520,
+     "description": "To the east lies The Line Of Fruit Trees."
+    },
+    "south": {
+     "to_room": 201514,
+     "description": "To the south lies In The Garden."
+    },
+    "west": {
+     "to_room": 201514,
+     "description": "To the west lies In The Garden."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "201516": {
+   "vnum": 201516,
+   "name": "In The Garden",
+   "map": {
+    "x": 48,
+    "y": -13,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 201520,
+     "description": "To the north lies The Line Of Fruit Trees."
+    },
+    "east": {
+     "to_room": 201513,
+     "description": "To the east lies In The Garden."
+    },
+    "south": {
+     "to_room": 201514,
+     "description": "To the south lies In The Garden."
+    },
+    "west": {
+     "to_room": 201514,
+     "description": "To the west lies In The Garden."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "201517": {
+   "vnum": 201517,
+   "name": "The Flower Garden",
+   "map": {
+    "x": 44,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 201518,
+     "description": "To the north lies The Flower Garden."
+    },
+    "east": {
+     "to_room": 201519,
+     "description": "To the east lies The Beehives."
+    },
+    "west": {
+     "to_room": 201518,
+     "description": "To the west lies The Flower Garden."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, east and west.",
+   "placeholder": true
+  },
+  "201518": {
+   "vnum": 201518,
+   "name": "The Flower Garden",
+   "map": {
+    "x": 44,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 201510,
+     "description": "To the east lies In The Garden."
+    },
+    "south": {
+     "to_room": 201517,
+     "description": "To the south lies The Flower Garden."
+    },
+    "west": {
+     "to_room": 201517,
+     "description": "To the west lies The Flower Garden."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east, south\nand west.",
+   "placeholder": true
+  },
+  "201519": {
+   "vnum": 201519,
+   "name": "The Beehives",
+   "map": {
+    "x": 46,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 201510,
+     "description": "To the north lies In The Garden."
+    },
+    "east": {
+     "to_room": 201509,
+     "description": "To the east lies The Tree Of The Knowledge Of Good And Evil."
+    },
+    "south": {
+     "to_room": 201515,
+     "description": "To the south lies In The Garden."
+    },
+    "west": {
+     "to_room": 201517,
+     "description": "To the west lies The Flower Garden."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north, east, south\nand west.",
+   "placeholder": true
+  },
+  "201520": {
+   "vnum": 201520,
+   "name": "The Line Of Fruit Trees",
+   "map": {
+    "x": 48,
+    "y": -11,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 201509,
+     "description": "To the north lies The Tree Of The Knowledge Of Good And Evil."
+    },
+    "east": {
+     "to_room": 201512,
+     "description": "To the east lies In The Garden."
+    },
+    "south": {
+     "to_room": 201516,
+     "description": "To the south lies In The Garden."
+    },
+    "west": {
+     "to_room": 201515,
+     "description": "To the west lies In The Garden."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

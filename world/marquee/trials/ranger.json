@@ -1,0 +1,106 @@
+{
+  "name": "The Hunting Grounds",
+  "intro": "The arrow you drew in the blind hums, and the Edge of Chaos is gone. You stand at the edge of the old hunting grounds, where the guild's first rangers tracked the last wyverns \u2014 and one is still here.",
+  "rooms": [
+    {
+      "key": "bramble",
+      "name": "The Hunting Grounds - The Bramble Run",
+      "sector": "forest",
+      "description": "A run of thorn and briar so thick it closes overhead. Something large has pushed through here recently. North, a fallen trunk blocks the way to the scree.",
+      "exits": {
+        "north": {
+          "to": "scree",
+          "door": "fallen trunk"
+        }
+      }
+    },
+    {
+      "key": "scree",
+      "name": "The Hunting Grounds - The Wyvern's Scree",
+      "sector": "hills",
+      "description": "A slope of loose stone streaked with old venom-burns. Broken eggshells crunch underfoot. North, a wall of thorns hides the nest.",
+      "exits": {
+        "south": {
+          "to": "bramble",
+          "door": "fallen trunk"
+        },
+        "north": {
+          "to": "nest",
+          "door": "thorn wall"
+        }
+      }
+    },
+    {
+      "key": "nest",
+      "name": "The Hunting Grounds - The Nest",
+      "sector": "mountain",
+      "description": "A crown of rock open to the sky, ringed with bones, and in the middle of it the biggest nest you have ever seen. It is not empty.",
+      "exits": {
+        "south": {
+          "to": "scree",
+          "door": "thorn wall"
+        }
+      }
+    }
+  ],
+  "entrance": "bramble",
+  "waves": [
+    {
+      "room": "bramble",
+      "mobs": [
+        [
+          9744,
+          2
+        ],
+        [
+          9745,
+          1
+        ]
+      ],
+      "text": "Thorn-stalkers come out of the briars, low and fast!"
+    },
+    {
+      "room": "scree",
+      "mobs": [
+        [
+          9744,
+          2
+        ],
+        [
+          9745,
+          1
+        ]
+      ],
+      "text": "More stalkers come down the scree, and a hatchling screams!"
+    },
+    {
+      "room": "scree",
+      "mobs": [
+        [
+          9745,
+          3
+        ]
+      ],
+      "text": "The eggs on the scree hatch all at once!"
+    }
+  ],
+  "gates": [
+    {
+      "after": 0,
+      "room": "bramble",
+      "dir": "north",
+      "text": "You haul yourself over the fallen trunk \u2014 the scree lies ahead."
+    },
+    {
+      "after": 2,
+      "room": "scree",
+      "dir": "north",
+      "text": "The thorn wall parts. The nest is above you, and something in it is moving."
+    }
+  ],
+  "boss": {
+    "vnum": 9746,
+    "room": "nest",
+    "text": "Gloomfang rises from her nest of bones, one huge eye fixed on you. She has seen a thousand hunters. She has eaten most of them."
+  }
+}

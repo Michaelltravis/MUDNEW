@@ -85,7 +85,7 @@ EVOLUTION_TREE = {
     'cleave': {
         50: {
             'iron_wall': ('bulwark_sweep', '0.8x + knockback/aggro all'),
-            'berserker': ('whirlwind', '1.2x all but bleed self 3% HP/round for 2 rounds'),
+            'berserker': ('bloodwhirl', '1.2x all but bleed self 3% HP/round for 2 rounds'),
             'warlord': ('surgical_cleave', '1x + armor shred -5 AC each for 3 rounds'),
         },
         150: {
@@ -129,7 +129,7 @@ EVOLUTION_TREE = {
         },
         300: {
             'iron_wall': ('eternal_guardian', 'Heal 40%, taunt, +35% DR, survive death once in 3 rounds'),
-            'berserker': ('avatar_of_war', '+75% damage 4 rounds, costs 20% HP, immune debuffs, lifesteal 15%'),
+            'berserker': ('war_incarnate', '+75% damage 4 rounds, costs 20% HP, immune debuffs, lifesteal 15%'),
             'warlord': ('supreme_command', 'Heal 20% group, +15% dmg +10% DR group 4 rounds, cleanse 1 debuff'),
         },
     },
@@ -246,13 +246,17 @@ def get_momentum_speed_reduction(player) -> float:
 
 def apply_momentum(player, ability_name: str):
     """Apply momentum gain/reset based on ability used."""
+    import time as _time
     last = getattr(player, 'last_warrior_ability', None)
-    if ability_name == last:
+    now = _time.time()
+    perfect = now < getattr(player, 'perfect_form_until', 0)            # talent: +2, never reset
+    presence = perfect or now < getattr(player, 'warlords_presence_until', 0)   # talent: never reset
+    if ability_name == last and not presence:
         # Same ability twice — reset
         player.momentum = 0
     else:
         # Different ability — gain +1
-        player.momentum = min(10, getattr(player, 'momentum', 0) + 1)
+        player.momentum = min(10, getattr(player, 'momentum', 0) + (2 if perfect else 1))
     player.last_warrior_ability = ability_name
 
     # Check for Unstoppable trigger
@@ -270,12 +274,17 @@ def berserker_self_damage(player, pct: float) -> int:
 
 
 def get_weapon_damage(player) -> int:
-    """Get base weapon damage roll."""
+    """Get base weapon damage roll: the weapon's dice grown with the warrior's level, as an
+    ordinary swing's are (CombatHandler.scale_player_weapon_damage), plus the damage bonus."""
     from combat import CombatHandler
     weapon = player.equipment.get('wield') if hasattr(player, 'equipment') else None
     if weapon and hasattr(weapon, 'damage_dice'):
-        return CombatHandler.roll_dice(weapon.damage_dice) + player.get_damage_bonus()
-    return random.randint(1, 6) + player.get_damage_bonus()
+        dice = CombatHandler.roll_dice(weapon.damage_dice)
+    else:
+        dice = random.randint(1, 6)
+    if CombatHandler.is_player(player):
+        dice = CombatHandler.scale_player_weapon_damage(player, dice)
+    return dice + player.get_damage_bonus()
 
 
 async def apply_damage_to_target(player, target, damage: int, ability_name: str = '') -> bool:
@@ -294,11 +303,13 @@ async def apply_damage_to_target(player, target, damage: int, ability_name: str 
     
     dmg_word = CombatHandler.get_damage_word(damage)
     dmg_color = CombatHandler.get_damage_color(damage)
-    
+    # "Your bash nicks the zombie!", not "nick": the word list is in the first person
+    dmg_verb = CombatHandler.DAMAGE_FORMS.get(dmg_word, (dmg_word + 's', dmg_word))[0]
+
     if hasattr(player, 'send'):
-        await player.send(f"{c['bright_green']}Your {ability_name} {dmg_word} {target.name}! {dmg_color}[{damage}]{c['reset']}")
+        await player.send(f"{c['bright_green']}Your {ability_name} {dmg_verb} {target.name}! {dmg_color}[{damage}]{c['reset']}")
     if hasattr(target, 'send'):
-        await target.send(f"{c['bright_red']}{player.name}'s {ability_name} {dmg_word} you! {dmg_color}[{damage}]{c['reset']}")
+        await target.send(f"{c['bright_red']}{player.name}'s {ability_name} {dmg_verb} you! {dmg_color}[{damage}]{c['reset']}")
     if player.room:
         await player.room.send_to_room(
             f"{c['white']}{player.name}'s {ability_name} hits {target.name}. [{damage}]{c['reset']}",
@@ -512,8 +523,18 @@ async def do_bash(player, args: list):
         await player.send(f"{c['bright_yellow']}*** UNSTOPPABLE! ***{c['reset']}")
     
     increment_usage(player, 'bash')
-    
+
+    # a bash SHATTERS a raised guard (guarded-mob counterplay)
+    from combat import CombatHandler
+    await CombatHandler.break_guard(player, target)
     killed = await apply_damage_to_target(player, target, damage, ability_display.replace('_', ' '))
+    if not killed:
+        # a solid bash can knock them into the room's hazards
+        try:
+            from environment import try_shove
+            await try_shove(player, target, player.room)
+        except Exception:
+            pass
     
     if not killed:
         # Stun
@@ -579,7 +600,7 @@ async def do_cleave(player, args: list):
     dr_bonus = 0
     
     if evo == 'bulwark_sweep': mult = 0.8
-    elif evo == 'whirlwind': mult = 1.2; self_bleed_pct = 0.03
+    elif evo == 'bloodwhirl': mult = 1.2; self_bleed_pct = 0.03
     elif evo == 'surgical_cleave': mult = 1.0; ac_shred = 5
     elif evo == 'iron_tempest': mult = 1.0; dr_bonus = 10
     elif evo == 'blood_cyclone': mult = 1.5; self_bleed_pct = 0.05; lifesteal_pct = 0.20
@@ -769,7 +790,7 @@ async def do_rally(player, args: list):
     elif evo == 'berserker_rage': heal_pct = 0; self_cost_pct = 0.15; damage_buff = 50; damage_buff_rounds = 3
     elif evo == 'inspiring_command': heal_pct = 0.15; group_heal = True; damage_buff = 10; damage_buff_rounds = 3
     elif evo == 'eternal_guardian': heal_pct = 0.40; taunt = True; dr_bonus = 35
-    elif evo == 'avatar_of_war': heal_pct = 0; self_cost_pct = 0.20; damage_buff = 75; damage_buff_rounds = 4
+    elif evo == 'war_incarnate': heal_pct = 0; self_cost_pct = 0.20; damage_buff = 75; damage_buff_rounds = 4
     elif evo == 'supreme_command': heal_pct = 0.20; group_heal = True; damage_buff = 15; damage_buff_rounds = 4; dr_bonus = 10
     
     # Self-cost

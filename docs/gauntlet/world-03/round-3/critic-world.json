@@ -1,0 +1,20 @@
+{
+  "piece": "world",
+  "pick": "A",
+  "per_label": { "walk": "A", "forest": "B" },
+  "reasons": [
+    "Walk: A holds identical framing and scale across all six frames (0.0s to 2.3s) with the plaza, well, house and bushes in fixed relation, so it reads as one space. B cuts between 0.0s and 2.4s. The 0.0s frame is a dense, zoomed forest with a different camera and layout, and 2.4s onward is a different clearing, so the world visibly swaps.",
+    "Walk: neither side clearly shows the destination ahead of the character. A at least shows the east edge (house, dark opening at the right) from 0.0s. B's 2.4s to 8.3s frames barely scroll. The character slides across a near-static screen to the right edge, and a dark wall and a new creature appear at 8.3s, so content pops in at the border.",
+    "Walk: B's frames are murky, with a heavy green fog or vignette over everything and blurry tree blobs and labels. A is clean, with no flashes or blank regions. A's weakness is that the world barely moves, so there is little sense of traversal.",
+    "Forest: B wins on lighting and depth. It has a vignette, darkened canopy edges, light shafts, drifting particles and a wide painted dirt path that curves through the scene, so it reads as a lit place. A is a flat saturated-green tile plane with uniform lighting and thin, tile-like brown paths.",
+    "Forest: A has the crisper, more readable tree silhouettes (hard outlines, clear trunks and canopies). B's dark trees at the bottom and right are mushy, dithered blocks with blocky square artifacts in the top-left canopy. B is moody but low-fidelity in detail."
+  ],
+  "fixes": [
+    { "what": "Remove the layout swap between the first frame and later frames. Keep one camera and scale, and scroll the world under a centered or edge-following character instead of moving the sprite across a static screen.", "file_hint": "" },
+    { "what": "Render the neighbouring area's terrain, path and trees past the screen edge, so the destination is visible before arrival and nothing pops in at the border.", "file_hint": "" },
+    { "what": "Sharpen tree art. Replace blurry or dithered dark canopy blobs with crisp outlined silhouettes, and remove the blocky square artifacts in the top-left canopy.", "file_hint": "" },
+    { "what": "Reduce the global green fog or vignette strength so mid-screen contrast and character and creature readability improve, while keeping the lighting and depth.", "file_hint": "" },
+    { "what": "Add lighting and depth (canopy shadows, a soft path edge, an ambient gradient) to the flat tile ground, without losing crispness.", "file_hint": "" }
+  ],
+  "confidence": "low"
+}

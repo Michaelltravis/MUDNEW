@@ -1,0 +1,169 @@
+{
+  "run": "progression-01",
+  "character": "NewSlzkb",
+  "opener": "bash",
+  "start": {
+    "level": 6,
+    "exp": 3787,
+    "hp": 76,
+    "maxhp": 76
+  },
+  "end": {
+    "level": 6,
+    "exp": 3638,
+    "hp": 40,
+    "maxhp": 76
+  },
+  "fights": [
+    {
+      "vnum": 18645,
+      "target": "newbie",
+      "threat": "Even",
+      "level_before": 6,
+      "level_after": 6,
+      "levelled": false,
+      "exp_before": 3787,
+      "exp_after": 3712,
+      "duration_s": 48.3,
+      "rounds": 21,
+      "ended": "player_died",
+      "bashes": 6,
+      "braces": 0,
+      "opener_used": "bash",
+      "reactions": {
+        "brace": 0,
+        "sidestep": 2,
+        "interrupt": 0
+      },
+      "hp_start": 76,
+      "hp_end": 23,
+      "maxhp": 76,
+      "label": "newbie zone: balcony newbie (L5)",
+      "t_elapsed_s": 59.0
+    },
+    {
+      "vnum": 18639,
+      "target": "spectre",
+      "threat": "absent (every candidate wandered off)",
+      "ended": "absent",
+      "duration_s": 0,
+      "rounds": 0,
+      "level_before": 6,
+      "level_after": null,
+      "levelled": false,
+      "exp_before": null,
+      "exp_after": null,
+      "hp_start": null,
+      "hp_end": null,
+      "maxhp": null,
+      "label": "newbie zone: spectre (L6)",
+      "t_elapsed_s": 68.8
+    },
+    {
+      "vnum": 18629,
+      "target": "minotaur",
+      "threat": "absent (every candidate wandered off)",
+      "ended": "absent",
+      "duration_s": 0,
+      "rounds": 0,
+      "level_before": 6,
+      "level_after": null,
+      "levelled": false,
+      "exp_before": null,
+      "exp_after": null,
+      "hp_start": null,
+      "hp_end": null,
+      "maxhp": null,
+      "label": "newbie zone: minotaur (L7)",
+      "t_elapsed_s": 78.6
+    },
+    {
+      "vnum": 3509,
+      "target": "goblin",
+      "threat": "Easy",
+      "level_before": 6,
+      "level_after": 6,
+      "levelled": false,
+      "exp_before": 3712,
+      "exp_after": 3712,
+      "duration_s": 22.2,
+      "rounds": 11,
+      "ended": "mob_killed",
+      "bashes": 3,
+      "braces": 1,
+      "opener_used": "bash",
+      "reactions": {
+        "brace": 1,
+        "sidestep": 2,
+        "interrupt": 0
+      },
+      "hp_start": 76,
+      "hp_end": 32,
+      "maxhp": 76,
+      "label": "light forest: goblin pack (L4 x2, aggressive)",
+      "t_elapsed_s": 108.6
+    },
+    {
+      "vnum": 3509,
+      "target": "goblin",
+      "threat": "Easy",
+      "level_before": 6,
+      "level_after": 6,
+      "levelled": false,
+      "exp_before": 3638,
+      "exp_after": 3638,
+      "duration_s": 21.4,
+      "rounds": 10,
+      "ended": "mob_killed",
+      "bashes": 3,
+      "braces": 0,
+      "opener_used": "bash",
+      "reactions": {
+        "brace": 0,
+        "sidestep": 1,
+        "interrupt": 0
+      },
+      "hp_start": 76,
+      "hp_end": 54,
+      "maxhp": 76,
+      "label": "light forest: goblin pack again",
+      "t_elapsed_s": 277.1
+    },
+    {
+      "vnum": 18629,
+      "target": "minotaur",
+      "threat": "absent (every candidate wandered off)",
+      "ended": "absent",
+      "duration_s": 0,
+      "rounds": 0,
+      "level_before": 6,
+      "level_after": null,
+      "levelled": false,
+      "exp_before": null,
+      "exp_after": null,
+      "hp_start": null,
+      "hp_end": null,
+      "maxhp": null,
+      "label": "newbie zone: minotaur again (L7)",
+      "t_elapsed_s": 286.9
+    }
+  ],
+  "rests": [
+    {
+      "after": "light forest: goblin pack (L4 x2, aggressive)",
+      "seconds": 134.9
+    }
+  ],
+  "deaths": 1,
+  "level_reached": 6,
+  "time_to_level": {
+    "2": 59.0,
+    "3": 59.0,
+    "4": 59.0,
+    "5": 59.0,
+    "6": 59.0
+  },
+  "total_s": 287.9,
+  "active_fight_s": 91.9,
+  "rest_s": 134.9
+}

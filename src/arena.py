@@ -217,6 +217,7 @@ class ArenaManager:
                 f"  {c['white']}arena join{c['reset']}         — Queue for random matchmaking\n"
                 f"  {c['white']}arena stats{c['reset']}        — View your PvP record\n"
                 f"  {c['white']}arena top{c['reset']}          — Leaderboard (top 10)\n"
+                f"  {c['white']}arena rewards{c['reset']}      — Spend arena points (titles, consumables)\n"
             )
             return
 
@@ -230,8 +231,70 @@ class ArenaManager:
             await cls._show_leaderboard(player)
         elif sub == 'leave':
             await cls._queue_leave(player)
+        elif sub in ('rewards', 'shop', 'store'):
+            await cls._show_rewards(player)
+        elif sub == 'buy' and len(args) > 1:
+            await cls._buy_reward(player, args[1].lower())
         else:
             await player.send(f"{c['yellow']}Unknown arena command. Type 'arena' for help.{c['reset']}")
+
+    # Arena-point rewards: titles are cosmetic, consumables use stock vnums,
+    # so no new prototypes are needed. Gives arena points a purpose.
+    ARENA_REWARDS = {
+        'duelist':   {'name': "Title: the Duelist",        'cost': 200, 'type': 'title', 'value': 'the Duelist'},
+        'gladiator': {'name': "Title: the Gladiator",      'cost': 500, 'type': 'title', 'value': 'the Gladiator'},
+        'champion':  {'name': "Title: Champion of the Arena", 'cost': 1200, 'type': 'title', 'value': 'Champion of the Arena'},
+        'heal':      {'name': "Greater Healing Potion x3", 'cost': 60,  'type': 'item',  'value': 3134, 'qty': 3},
+        'mana':      {'name': "Greater Mana Potion x3",    'cost': 60,  'type': 'item',  'value': 3135, 'qty': 3},
+    }
+
+    @classmethod
+    async def _show_rewards(cls, player):
+        from config import Config
+        c = Config().COLORS
+        pts = getattr(player, 'arena_points', 0)
+        await player.send(f"\n{c['bright_cyan']}═══ Arena Quartermaster ═══{c['reset']}")
+        await player.send(f"{c['yellow']}You have {pts} arena point{'s' if pts != 1 else ''}.{c['reset']}\n")
+        for key, r in cls.ARENA_REWARDS.items():
+            afford = c['bright_green'] if pts >= r['cost'] else c['red']
+            await player.send(f"  {c['white']}{key:<10}{c['reset']} {r['name']:<32} {afford}{r['cost']} pts{c['reset']}")
+        await player.send(f"\n{c['cyan']}Buy with 'arena buy <name>' (e.g. 'arena buy gladiator').{c['reset']}")
+
+    @classmethod
+    async def _buy_reward(cls, player, key):
+        from config import Config
+        c = Config().COLORS
+        r = cls.ARENA_REWARDS.get(key)
+        if not r:
+            await player.send(f"{c['red']}No such reward. Type 'arena rewards' to browse.{c['reset']}")
+            return
+        pts = getattr(player, 'arena_points', 0)
+        if pts < r['cost']:
+            await player.send(f"{c['red']}You need {r['cost']} arena points ({pts}/{r['cost']}).{c['reset']}")
+            return
+        if r['type'] == 'title':
+            titles = getattr(player, 'available_titles', None)
+            if titles is None:
+                titles = []; player.available_titles = titles
+            if r['value'] in titles:
+                await player.send(f"{c['yellow']}You already own that title.{c['reset']}")
+                return
+            titles.append(r['value'])
+            await player.send(f"{c['bright_yellow']}Title unlocked: '{r['value']}'! Set it with 'title {r['value']}'.{c['reset']}")
+        elif r['type'] == 'item':
+            from objects import create_object, create_preset_object
+            qty = r.get('qty', 1)
+            made = 0
+            for _ in range(qty):
+                obj = create_object(r['value'], getattr(player, 'world', None)) or create_preset_object(r['value'])
+                if obj:
+                    player.inventory.append(obj); made += 1
+            if not made:
+                await player.send(f"{c['red']}The quartermaster's stock is out. (No charge.){c['reset']}")
+                return
+            await player.send(f"{c['bright_green']}You receive {r['name']}.{c['reset']}")
+        player.arena_points = pts - r['cost']
+        await player.send(f"{c['cyan']}Arena points remaining: {player.arena_points}.{c['reset']}")
 
     @classmethod
     async def _queue_join(cls, player):

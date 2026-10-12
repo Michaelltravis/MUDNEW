@@ -1,0 +1,83 @@
+{
+ "number": 418,
+ "name": "Garathorm Vineyard",
+ "builders": "Traveller",
+ "atlas_area": 18,
+ "rooms": {
+  "209005": {
+   "vnum": 209005,
+   "name": "The bedroom",
+   "map": {
+    "x": -7,
+    "y": 14,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "down": {
+     "to_room": 209004,
+     "description": "To the down lies In the Kitchen."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads down.",
+   "placeholder": true
+  },
+  "209007": {
+   "vnum": 209007,
+   "name": "In the wine cellar",
+   "map": {
+    "x": -6,
+    "y": 15,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 209008,
+     "description": "To the west lies The wine storage room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "up": {
+     "to_room": 209006,
+     "description": "To the up lies Inside a large building."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead west and up.",
+   "placeholder": true
+  },
+  "209008": {
+   "vnum": 209008,
+   "name": "The wine storage room",
+   "map": {
+    "x": -8,
+    "y": 15,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 209007,
+     "description": "To the east lies In the wine cellar."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads east.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

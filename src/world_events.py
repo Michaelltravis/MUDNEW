@@ -317,8 +317,10 @@ class InvasionEvent(WorldEvent):
 
     async def start(self):
         # Pick a random zone with rooms
+        # (not a land sealed until built, nor the God Rooms: nobody could answer the call)
         zones_with_rooms = [z for z in self.world.zones.values()
-                            if z.rooms and z.number not in (0,)]
+                            if z.rooms and z.number not in (0,) and not getattr(z, 'sealed', False)
+                            and not all('imm_only' in r.flags for r in z.rooms.values())]
         if not zones_with_rooms:
             self.active = False
             return
@@ -430,7 +432,8 @@ class WorldBossEvent(WorldEvent):
 
         # Pick a room — prefer outdoor or large rooms
         rooms = [r for r in self.world.rooms.values()
-                 if r.vnum > 0 and 'no_mob' not in r.flags and 'peaceful' not in r.flags]
+                 if r.vnum > 0 and 'no_mob' not in r.flags and 'peaceful' not in r.flags
+                 and 'imm_only' not in r.flags and not getattr(r.zone, 'sealed', False)]
         if not rooms:
             self.active = False
             return
@@ -516,7 +519,9 @@ class WorldBossEvent(WorldEvent):
             if char == self.boss:
                 continue
             if hasattr(char, 'connection'):  # player
-                await char.take_damage(aoe_damage, self.boss)
+                # a lich's blast is death magic, a dragon's fire; anything else a blow
+                await char.take_damage(aoe_damage, self.boss, {'necromancer': 'necrotic', 'firebreath': 'fire'}.get(
+                    getattr(self.boss, 'special', None), 'physical'))
 
     async def end(self):
         if self.boss and self.boss.hp > 0:
@@ -716,7 +721,7 @@ class WeatherEventWorld(WorldEvent):
                     await player.send(
                         f"{c['bright_yellow']}⚡ Lightning strikes near you! [{damage} damage]{c['reset']}"
                     )
-                    await player.take_damage(damage, None)
+                    await player.take_damage(damage, None, 'lightning')
 
             elif self.weather_type == "blizzard":
                 # Frostbite tick
@@ -725,7 +730,7 @@ class WeatherEventWorld(WorldEvent):
                     await player.send(
                         f"{c['bright_cyan']}❄️ The biting cold saps your strength! [{damage} damage]{c['reset']}"
                     )
-                    await player.take_damage(damage, None)
+                    await player.take_damage(damage, None, 'frost')
 
     async def end(self):
         end_msgs = {

@@ -1,0 +1,186 @@
+                                 ║
+║                 A true adventurer emerges!                 ║
+║                                                              ║
+║  ★ NEW TITLE:                 Veteran                  ★  ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+
+Congratulations on leveling up! You may have learned new skills or spells.
+
+💡 You've reached level 10! Type 'talents' to see your talent tree — customize
+your playstyle!
+
+  +======================================================+
+  |     ★ NEW ABILITIES UNLOCKED! ★                      |
+  +------------------------------------------------------+
+  |                                                      |
+  |  SKILLS:                                             |
+  |    ⚔ Execute                                    |
+  |      A powerful new technique                        |
+  |                                                      |
+  +======================================================+
+  Use 'skills' or 'spells' to see all your abilities.
+
+
+★ ACHIEVEMENT UNLOCKED ★
+📈 Journeyman
+Reach level 10
++20 achievement points
++250 gold
+New title unlocked: 'the Journeyman'
+
+
+★ ACHIEVEMENT UNLOCKED ★
+🛡️ Deathless
+Reach level 10 without dying
++50 achievement points
+Stat bonus: +2 CON (permanent)
+New title unlocked: 'the Deathless'
+
+You feel a surge of divine energy! Fully restored!
+> score
+╔════════════════════════════════════════════════════════════════╗
+║ Newdedqp the Adventurer                                      ║
+╠════════════════════════════════════════════════════════════════╣
+║ Race: Human        Class: Warrior      Level: 10     ║
+╠════════════════════════════════════════════════════════════════╣
+║ HP:  116/116   Mana:  124/124   Move:  191/191    ║
+╠════════════════════════════════════════════════════════════════╣
+║ Str:14      Int:10      Wis:10      Dex:15      Con:15      Cha: 9   ║
+╠════════════════════════════════════════════════════════════════╣
+║ Experience: 100        Gold: 500        Practices: 23   ║
+║ To next level: 16428                                   ║
+╠════════════════════════════════════════════════════════════════╣
+║ Armor Class: 68    Hitroll:  +0  Damroll:  +0            ║
+║ Combat: OB  +3  DB +27  PB  0%                     ║
+║ DB:base +32 st +0 sh
+[t=   0.0s] ═════════════════╣
+[t=   0.0s] ║ Armor Class: 68    Hitroll:  +0  Damroll:  +0            ║
+[t=   0.0s] ║ Combat: OB  +3  DB +27  PB  0%                     ║
+[t=   0.0s] ║ DB:base +32 st +0 sh +0 dg +0/+0 wt -5               ║
+[t=   0.0s] ║ PB:base +0 st +0 pa +0 sb +0 wt -2                   ║
+[t=   0.0s] ║ Mood: normal     Wimpy: 0                          ║
+[t=   0.0s] ╠════════════════════════════════════════════════════════════════╣
+[t=   0.0s] ║ Hunger: Satiated      Thirst: Thirsty       Stealth: --  PER: 15║
+[t=   0.0s] ╚════════════════════════════════════════════════════════════════╝
+[t=   0.0s] 116/116hp 124/124mp 191/191mv> 
+[t=   0.0s] > kill mage
+[t=   0.0s] You attack mage!
+[t=   0.0s] 💡 As a warrior, you build Rage when dealing and taking damage. Spend it on
+[t=   0.0s] powerful abilities!
+[t=   0.0s] Your slash decimates mage! [27 damage]
+[t=   0.0s] mage [████████░░] [169/196]
+[t=   0.0s] 116/116hp 124/124mp 190/191mv [mage: 169/196]> 
+[t=   0.0s] > bash mage
+[t=   0.0s] Your bash nick mage! [8]
+[t=   0.0s] mage [████████░░] [161/196]
+[t=   0.0s] mage is stunned!
+[t=   0.0s] [Momentum: █░░░░░░░░░ 1/10]
+[t=   0.0s] 116/116hp 124/124mp 190/191mv [Momentum: █░░░░░░░░░ 1/10] [mage: 161/196]> 
+[t=   3.7s] Your slash lands squarely and mauls mage! [25 damage]
+[t=   3.7s] 💥 mage reels — STAGGERED! Strike now!
+[t=   3.7s] mage [██████░░░░] [136/196]
+[t=   3.7s] 116/116hp 124/124mp 190/191mv [Momentum: █░░░░░░░░░ 1/10] [mage: 136/196]> 
+[t=   3.7s] mage murmurs arcane words and a shimmering aura surrounds them!
+[t=   7.7s] *** CRITICAL HIT! ***
+[t=   7.7s] You press the opening while mage reels — wide open!
+[t=   7.7s] Your slash connects — it MUTILATES mage! [56 damage]
+[t=   7.7s] mage [██░░░░░░░░] [52/196]
+[t=   7.7s] 116/116hp 124/124mp 190/191mv [Momentum: █░░░░░░░░░ 1/10] [mage: 52/196]> 
+[t=   7.7s] mage chants a healing incantation and wounds close! [+40 HP]
+[t=   9.7s] > bash mage
+[t=   9.7s] Your bash barely scratch mage! [3]
+[t=   9.7s] mage [████░░░░░░] [89/196]
+[t=   9.7s] mage is stunned!
+[t=   9.7s] [Momentum: ░░░░░░░░░░ 0/10]
+[t=   9.7s] 116/116hp 124/124mp 190/191mv [mage: 89/196]> 
+[t=  11.7s] Your slash decimates mage! [27 damage]
+[t=  11.7s] mage [███░░░░░░░] [62/196]
+[t=  11.7s] 116/116hp 124/124mp 189/191mv [mage: 62/196]> 
+[t=  15.8s] *** CRITICAL HIT! ***
+[t=  15.8s] Your slash lands squarely and devastates mage! [40 damage]
+[t=  15.8s] mage flees west!
+[t=  15.8s] mage [█░░░░░░░░░] [22/196]
+[t=  15.8s] 116/116hp 124/124mp 190/191mv> 
+[t=  18.8s] > bash mage
+[t=  18.8s] You attack mage!
+[t=  18.8s] Your slash connects — it wounds mage! [20 damage]
+[t=  18.8s] mage [████████░░] [172/192]
+[t=  18.8s] Your bash nick mage! [7]
+[t=  18.8s] mage [████████░░] [165/192]
+[t=  18.8s] mage is stunned!
+[t=  18.8s] [Momentum: ░░░░░░░░░░ 0/10]
+[t=  18.8s] 116/116hp 124/124mp 190/191mv [mage: 165/192]> 
+[t=  19.8s] *** CRITICAL HIT! ***
+[t=  19.8s] Your slash maims mage! [48 damage]
+[t=  19.8s] 💥 mage reels — STAGGERED! Strike now!
+[t=  19.8s] mage [██████░░░░] [117/192]
+[t=  19.8s] 116/116hp 124/124mp 189/191mv [mage: 117/192]> 
+[t=  19.8s] mage murmurs arcane words and a shimmering aura surrounds them!
+[t=  23.8s] You press the opening while mage reels — wide open!
+[t=  23.8s] Your slash lands squarely and hits mage! [11 damage]
+[t=  23.8s] mage [█████░░░░░] [101/192]
+[t=  23.8s] 116/116hp 124/124mp 190/191mv [mage: 101/192]> 
+[t=  27.8s] > bash mage
+[t=  27.8s] Your bash nick mage! [8]
+[t=  27.9s] mage [████░░░░░░] [93/192]
+[t=  27.9s] mage is stunned!
+[t=  27.9s] [Momentum: ░░░░░░░░░░ 0/10]
+[t=  27.9s] 116/116hp 124/124mp 191/191mv [mage: 93/192]> 
+[t=  27.9s] ⚠ mage begins an incantation — arcane power crackles around it! (interrupt it!)
+[t=  27.9s] Your slash connects — it wounds mage! [20 damage]
+[t=  27.9s] mage [███░░░░░░░] [73/192]
+[t=  27.9s] 116/116hp 124/124mp 190/191mv [mage: 73/192]> 
+[t=  31.9s] Your slash mauls mage! [24 damage]
+[t=  31.9s] mage [██░░░░░░░░] [49/192]
+[t=  31.9s] 116/116hp 124/124mp 189/191mv [mage: 49/192]> 
+[t=  31.9s] mage hurls a crackling fireball at Newdedqp! [24]
+[t=  31.9s] mage's spell hits you for 24 damage!
+[t=  31.9s] mage's wounding pounding blow hits you! [20 damage]
+[t=  36.0s] Your slash lands squarely and decimates mage! [27 damage]
+[t=  36.0s] 💥 mage reels — STAGGERED! Strike now!
+[t=  36.0s] mage flees south!
+[t=  36.0s] mage [█░░░░░░░░░] [22/192]
+[t=  36.0s] 81/116hp 124/124mp 190/191mv> 
+[t=  37.0s] > bash mage
+[t=  37.0s] Bash whom?
+[t=  37.0s] 81/116hp 124/124mp 190/191mv> 
+[t=  46.0s] > bash mage
+[t=  46.0s] Bash whom?
+[t=  46.0s] 83/116hp 124/124mp 191/191mv> 
+[t=  55.0s] > bash mage
+[t=  55.0s] Bash whom?
+[t=  55.0s] 85/116hp 124/124mp 191/191mv> 
+[t=  62.2s] A floorboard creaks somewhere in the building.
+[t=  64.2s] > bash mage
+[t=  64.2s] Bash whom?
+[t=  64.2s] 87/116hp 124/124mp 191/191mv> 
+[t=  73.2s] > bash mage
+[t=  73.2s] Bash whom?
+[t=  73.2s] 89/116hp 124/124mp 191/191mv> 
+[t=  82.2s] > bash mage
+[t=  82.2s] Bash whom?
+[t=  82.2s] 90/116hp 124/124mp 191/191mv> 
+[t=  91.2s] > bash mage
+[t=  91.2s] Bash whom?
+[t=  91.2s] 92/116hp 124/124mp 191/191mv> 
+[t= 100.2s] > bash mage
+[t= 100.2s] Bash whom?
+[t= 100.2s] 110/116hp 124/124mp 191/191mv> 
+[t= 109.3s] > bash mage
+[t= 109.3s] Bash whom?
+[t= 109.3s] 112/116hp 124/124mp 191/191mv> 
+[t= 118.3s] > bash mage
+[t= 118.3s] Bash whom?
+[t= 118.3s] 114/116hp 124/124mp 191/191mv> 
+[t= 122.8s] The building settles with a soft groan.
+[t= 127.8s] > bash mage
+[t= 127.8s] Bash whom?
+[t= 127.8s] 115/116hp 124/124mp 191/191mv> 
+[t= 136.8s] > bash mage
+[t= 136.8s] Bash whom?
+[t= 136.8s] 116/116hp 124/124mp 191/191mv> 
+[t= 145.8s] > bash mage
+[t= 145.8s] Bash whom?
+[t= 145.8s] 116/116hp 124/124mp 191/191mv> 

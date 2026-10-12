@@ -1,0 +1,2579 @@
+{
+ "number": 454,
+ "name": "Caverns of the Pale Man",
+ "builders": "Kaan",
+ "atlas_area": 54,
+ "rooms": {
+  "107300": {
+   "vnum": 107300,
+   "name": "Entry into the Darkness",
+   "map": {
+    "x": 22,
+    "y": -18,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107301,
+     "description": "To the east lies Descending Into the Depths."
+    },
+    "up": {
+     "to_room": 49432,
+     "description": "To the up lies The Nasty Lake."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and up.",
+   "placeholder": true
+  },
+  "107301": {
+   "vnum": 107301,
+   "name": "Descending Into the Depths",
+   "map": {
+    "x": 23,
+    "y": -18,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107302,
+     "description": "To the east lies The Air Gets Cold."
+    },
+    "west": {
+     "to_room": 107300,
+     "description": "To the west lies Entry into the Darkness."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "107302": {
+   "vnum": 107302,
+   "name": "The Air Gets Cold",
+   "map": {
+    "x": 24,
+    "y": -18,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107303,
+     "description": "To the east lies Deeper and Deeper."
+    },
+    "west": {
+     "to_room": 107301,
+     "description": "To the west lies Descending Into the Depths."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "107303": {
+   "vnum": 107303,
+   "name": "Deeper and Deeper",
+   "map": {
+    "x": 25,
+    "y": -18,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107304,
+     "description": "To the east lies Hundreds of Feet Below the Surface."
+    },
+    "west": {
+     "to_room": 107302,
+     "description": "To the west lies The Air Gets Cold."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "107304": {
+   "vnum": 107304,
+   "name": "Hundreds of Feet Below the Surface",
+   "map": {
+    "x": 26,
+    "y": -18,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107305,
+     "description": "To the east lies The Floor Levels."
+    },
+    "west": {
+     "to_room": 107303,
+     "description": "To the west lies Deeper and Deeper."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "107305": {
+   "vnum": 107305,
+   "name": "The Floor Levels",
+   "map": {
+    "x": 27,
+    "y": -18,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 107306,
+     "description": "To the south lies A Smooth Passage."
+    },
+    "west": {
+     "to_room": 107304,
+     "description": "To the west lies Hundreds of Feet Below the Surface."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "107306": {
+   "vnum": 107306,
+   "name": "A Smooth Passage",
+   "map": {
+    "x": 27,
+    "y": -19,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107305,
+     "description": "To the north lies The Floor Levels."
+    },
+    "south": {
+     "to_room": 107309,
+     "description": "To the south lies A Curve in the Passage."
+    },
+    "west": {
+     "to_room": 107307,
+     "description": "To the west lies A Secret Chamber."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "107307": {
+   "vnum": 107307,
+   "name": "A Secret Chamber",
+   "map": {
+    "x": 26,
+    "y": -19,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107306,
+     "description": "To the east lies A Smooth Passage."
+    },
+    "west": {
+     "to_room": 107308,
+     "description": "To the west lies Chamber of Fear."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "107308": {
+   "vnum": 107308,
+   "name": "Chamber of Fear",
+   "map": {
+    "x": 25,
+    "y": -19,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107307,
+     "description": "To the east lies A Secret Chamber."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads east.",
+   "placeholder": true
+  },
+  "107309": {
+   "vnum": 107309,
+   "name": "A Curve in the Passage",
+   "map": {
+    "x": 27,
+    "y": -20,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107306,
+     "description": "To the north lies A Smooth Passage."
+    },
+    "east": {
+     "to_room": 107310,
+     "description": "To the east lies Near an Alcove."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and east.",
+   "placeholder": true
+  },
+  "107310": {
+   "vnum": 107310,
+   "name": "Near an Alcove",
+   "map": {
+    "x": 28,
+    "y": -20,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107311,
+     "description": "To the north lies An Alcove."
+    },
+    "east": {
+     "to_room": 107312,
+     "description": "To the east lies The Passage Widens."
+    },
+    "west": {
+     "to_room": 107309,
+     "description": "To the west lies A Curve in the Passage."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "107311": {
+   "vnum": 107311,
+   "name": "An Alcove",
+   "map": {
+    "x": 28,
+    "y": -19,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 107310,
+     "description": "To the south lies Near an Alcove."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "107312": {
+   "vnum": 107312,
+   "name": "The Passage Widens",
+   "map": {
+    "x": 29,
+    "y": -20,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107313,
+     "description": "To the east lies An Enormous Cavern."
+    },
+    "west": {
+     "to_room": 107310,
+     "description": "To the west lies Near an Alcove."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "107313": {
+   "vnum": 107313,
+   "name": "An Enormous Cavern",
+   "map": {
+    "x": 30,
+    "y": -20,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107314,
+     "description": "To the north lies An Enormous Cavern."
+    },
+    "east": {
+     "to_room": 107316,
+     "description": "To the east lies An Enormous Cavern."
+    },
+    "south": {
+     "to_room": 107317,
+     "description": "To the south lies An Enormous Cavern."
+    },
+    "west": {
+     "to_room": 107312,
+     "description": "To the west lies The Passage Widens."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "107314": {
+   "vnum": 107314,
+   "name": "An Enormous Cavern",
+   "map": {
+    "x": 30,
+    "y": -19,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107315,
+     "description": "To the east lies An Enormous Cavern."
+    },
+    "south": {
+     "to_room": 107313,
+     "description": "To the south lies An Enormous Cavern."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and south.",
+   "placeholder": true
+  },
+  "107315": {
+   "vnum": 107315,
+   "name": "An Enormous Cavern",
+   "map": {
+    "x": 31,
+    "y": -19,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107328,
+     "description": "To the north lies An Enormous Cavern."
+    },
+    "east": {
+     "to_room": 107321,
+     "description": "To the east lies An Enormous Cavern."
+    },
+    "south": {
+     "to_room": 107316,
+     "description": "To the south lies An Enormous Cavern."
+    },
+    "west": {
+     "to_room": 107314,
+     "description": "To the west lies An Enormous Cavern."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "107316": {
+   "vnum": 107316,
+   "name": "An Enormous Cavern",
+   "map": {
+    "x": 31,
+    "y": -20,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107315,
+     "description": "To the north lies An Enormous Cavern."
+    },
+    "east": {
+     "to_room": 107320,
+     "description": "To the east lies An Enormous Cavern."
+    },
+    "south": {
+     "to_room": 107318,
+     "description": "To the south lies An Enormous Cavern."
+    },
+    "west": {
+     "to_room": 107313,
+     "description": "To the west lies An Enormous Cavern."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "107317": {
+   "vnum": 107317,
+   "name": "An Enormous Cavern",
+   "map": {
+    "x": 30,
+    "y": -21,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107313,
+     "description": "To the north lies An Enormous Cavern."
+    },
+    "east": {
+     "to_room": 107318,
+     "description": "To the east lies An Enormous Cavern."
+    },
+    "south": {
+     "to_room": 107325,
+     "description": "To the south lies Narrow Crack in the Walls."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "107318": {
+   "vnum": 107318,
+   "name": "An Enormous Cavern",
+   "map": {
+    "x": 31,
+    "y": -21,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107316,
+     "description": "To the north lies An Enormous Cavern."
+    },
+    "east": {
+     "to_room": 107319,
+     "description": "To the east lies An Enormous Cavern."
+    },
+    "west": {
+     "to_room": 107317,
+     "description": "To the west lies An Enormous Cavern."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "107319": {
+   "vnum": 107319,
+   "name": "An Enormous Cavern",
+   "map": {
+    "x": 32,
+    "y": -21,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107320,
+     "description": "To the north lies An Enormous Cavern."
+    },
+    "east": {
+     "to_room": 107324,
+     "description": "To the east lies An Enormous Cavern."
+    },
+    "west": {
+     "to_room": 107318,
+     "description": "To the west lies An Enormous Cavern."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "107320": {
+   "vnum": 107320,
+   "name": "An Enormous Cavern",
+   "map": {
+    "x": 32,
+    "y": -20,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107321,
+     "description": "To the north lies An Enormous Cavern."
+    },
+    "east": {
+     "to_room": 107323,
+     "description": "To the east lies An Enormous Cavern."
+    },
+    "south": {
+     "to_room": 107319,
+     "description": "To the south lies An Enormous Cavern."
+    },
+    "west": {
+     "to_room": 107316,
+     "description": "To the west lies An Enormous Cavern."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "107321": {
+   "vnum": 107321,
+   "name": "An Enormous Cavern",
+   "map": {
+    "x": 32,
+    "y": -19,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107327,
+     "description": "To the north lies An Enormous Cavern."
+    },
+    "east": {
+     "to_room": 107322,
+     "description": "To the east lies An Enormous Cavern."
+    },
+    "south": {
+     "to_room": 107320,
+     "description": "To the south lies An Enormous Cavern."
+    },
+    "west": {
+     "to_room": 107315,
+     "description": "To the west lies An Enormous Cavern."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "107322": {
+   "vnum": 107322,
+   "name": "An Enormous Cavern",
+   "map": {
+    "x": 33,
+    "y": -19,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107370,
+     "description": "To the east lies Vaulted Chamber."
+    },
+    "south": {
+     "to_room": 107323,
+     "description": "To the south lies An Enormous Cavern."
+    },
+    "west": {
+     "to_room": 107321,
+     "description": "To the west lies An Enormous Cavern."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "107323": {
+   "vnum": 107323,
+   "name": "An Enormous Cavern",
+   "map": {
+    "x": 33,
+    "y": -20,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107322,
+     "description": "To the north lies An Enormous Cavern."
+    },
+    "south": {
+     "to_room": 107324,
+     "description": "To the south lies An Enormous Cavern."
+    },
+    "west": {
+     "to_room": 107320,
+     "description": "To the west lies An Enormous Cavern."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "107324": {
+   "vnum": 107324,
+   "name": "An Enormous Cavern",
+   "map": {
+    "x": 33,
+    "y": -21,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107323,
+     "description": "To the north lies An Enormous Cavern."
+    },
+    "west": {
+     "to_room": 107319,
+     "description": "To the west lies An Enormous Cavern."
+    },
+    "up": {
+     "to_room": 107352,
+     "description": "To the up lies A Steep Climb."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, west and up.",
+   "placeholder": true
+  },
+  "107325": {
+   "vnum": 107325,
+   "name": "Narrow Crack in the Walls",
+   "map": {
+    "x": 30,
+    "y": -22,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107317,
+     "description": "To the north lies An Enormous Cavern."
+    },
+    "west": {
+     "to_room": 107326,
+     "description": "To the west lies Horror Chamber."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and west.",
+   "placeholder": true
+  },
+  "107326": {
+   "vnum": 107326,
+   "name": "Horror Chamber",
+   "map": {
+    "x": 29,
+    "y": -22,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107325,
+     "description": "To the east lies Narrow Crack in the Walls."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads east.",
+   "placeholder": true
+  },
+  "107327": {
+   "vnum": 107327,
+   "name": "An Enormous Cavern",
+   "map": {
+    "x": 32,
+    "y": -18,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 107321,
+     "description": "To the south lies An Enormous Cavern."
+    },
+    "west": {
+     "to_room": 107328,
+     "description": "To the west lies An Enormous Cavern."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead south and west.",
+   "placeholder": true
+  },
+  "107328": {
+   "vnum": 107328,
+   "name": "An Enormous Cavern",
+   "map": {
+    "x": 31,
+    "y": -18,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107329,
+     "description": "To the north lies A Wide Passage."
+    },
+    "east": {
+     "to_room": 107327,
+     "description": "To the east lies An Enormous Cavern."
+    },
+    "south": {
+     "to_room": 107315,
+     "description": "To the south lies An Enormous Cavern."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "107329": {
+   "vnum": 107329,
+   "name": "A Wide Passage",
+   "map": {
+    "x": 31,
+    "y": -17,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107330,
+     "description": "To the north lies Three-Way Split."
+    },
+    "south": {
+     "to_room": 107328,
+     "description": "To the south lies An Enormous Cavern."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "107330": {
+   "vnum": 107330,
+   "name": "Three-Way Split",
+   "map": {
+    "x": 31,
+    "y": -16,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107338,
+     "description": "To the north lies A Wide Passage."
+    },
+    "east": {
+     "to_room": 107331,
+     "description": "To the east lies Noisy Tunnel."
+    },
+    "south": {
+     "to_room": 107329,
+     "description": "To the south lies A Wide Passage."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "107331": {
+   "vnum": 107331,
+   "name": "Noisy Tunnel",
+   "map": {
+    "x": 32,
+    "y": -16,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107332,
+     "description": "To the east lies A Thousand Small Voices."
+    },
+    "west": {
+     "to_room": 107330,
+     "description": "To the west lies Three-Way Split."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "107332": {
+   "vnum": 107332,
+   "name": "A Thousand Small Voices",
+   "map": {
+    "x": 33,
+    "y": -16,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107333,
+     "description": "To the east lies An Enormous Din."
+    },
+    "west": {
+     "to_room": 107331,
+     "description": "To the west lies Noisy Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "107333": {
+   "vnum": 107333,
+   "name": "An Enormous Din",
+   "map": {
+    "x": 34,
+    "y": -16,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107335,
+     "description": "To the east lies Loud as Hell."
+    },
+    "south": {
+     "to_room": 107334,
+     "description": "To the south lies A Private Chamber."
+    },
+    "west": {
+     "to_room": 107332,
+     "description": "To the west lies A Thousand Small Voices."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "107334": {
+   "vnum": 107334,
+   "name": "A Private Chamber",
+   "map": {
+    "x": 34,
+    "y": -17,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107333,
+     "description": "To the north lies An Enormous Din."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "107335": {
+   "vnum": 107335,
+   "name": "Loud as Hell",
+   "map": {
+    "x": 35,
+    "y": -16,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107337,
+     "description": "To the north lies A Private Chamber."
+    },
+    "east": {
+     "to_room": 107336,
+     "description": "To the east lies A Large Room."
+    },
+    "west": {
+     "to_room": 107333,
+     "description": "To the west lies An Enormous Din."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "107336": {
+   "vnum": 107336,
+   "name": "A Large Room",
+   "map": {
+    "x": 36,
+    "y": -16,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 107335,
+     "description": "To the west lies Loud as Hell."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "107337": {
+   "vnum": 107337,
+   "name": "A Private Chamber",
+   "map": {
+    "x": 35,
+    "y": -15,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 107335,
+     "description": "To the south lies Loud as Hell."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads south.",
+   "placeholder": true
+  },
+  "107338": {
+   "vnum": 107338,
+   "name": "A Wide Passage",
+   "map": {
+    "x": 31,
+    "y": -15,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107339,
+     "description": "To the north lies A Wide Passage."
+    },
+    "south": {
+     "to_room": 107330,
+     "description": "To the south lies Three-Way Split."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "107339": {
+   "vnum": 107339,
+   "name": "A Wide Passage",
+   "map": {
+    "x": 31,
+    "y": -14,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107340,
+     "description": "To the north lies Entrance to the Dens."
+    },
+    "south": {
+     "to_room": 107338,
+     "description": "To the south lies A Wide Passage."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "107340": {
+   "vnum": 107340,
+   "name": "Entrance to the Dens",
+   "map": {
+    "x": 31,
+    "y": -13,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107341,
+     "description": "To the east lies Den of the Bugbears."
+    },
+    "south": {
+     "to_room": 107339,
+     "description": "To the south lies A Wide Passage."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "107341": {
+   "vnum": 107341,
+   "name": "Den of the Bugbears",
+   "map": {
+    "x": 32,
+    "y": -13,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107342,
+     "description": "To the east lies Den of the Bugbears."
+    },
+    "west": {
+     "to_room": 107340,
+     "description": "To the west lies Entrance to the Dens."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "107342": {
+   "vnum": 107342,
+   "name": "Den of the Bugbears",
+   "map": {
+    "x": 33,
+    "y": -13,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107343,
+     "description": "To the north lies Den of the Bugbears."
+    },
+    "west": {
+     "to_room": 107341,
+     "description": "To the west lies Den of the Bugbears."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "107343": {
+   "vnum": 107343,
+   "name": "Den of the Bugbears",
+   "map": {
+    "x": 33,
+    "y": -12,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107344,
+     "description": "To the north lies Main Room in the Den."
+    },
+    "south": {
+     "to_room": 107342,
+     "description": "To the south lies Den of the Bugbears."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "107344": {
+   "vnum": 107344,
+   "name": "Main Room in the Den",
+   "map": {
+    "x": 33,
+    "y": -11,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107347,
+     "description": "To the north lies Den of the Bugbears."
+    },
+    "east": {
+     "to_room": 107345,
+     "description": "To the east lies Den of the Bugbears."
+    },
+    "south": {
+     "to_room": 107343,
+     "description": "To the south lies Den of the Bugbears."
+    },
+    "west": {
+     "to_room": 107349,
+     "description": "To the west lies Den of the Bugbears."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "107345": {
+   "vnum": 107345,
+   "name": "Den of the Bugbears",
+   "map": {
+    "x": 34,
+    "y": -11,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107346,
+     "description": "To the north lies Den of the Bugbears."
+    },
+    "west": {
+     "to_room": 107344,
+     "description": "To the west lies Main Room in the Den."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "107346": {
+   "vnum": 107346,
+   "name": "Den of the Bugbears",
+   "map": {
+    "x": 34,
+    "y": -10,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 107345,
+     "description": "To the south lies Den of the Bugbears."
+    },
+    "west": {
+     "to_room": 107347,
+     "description": "To the west lies Den of the Bugbears."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "107347": {
+   "vnum": 107347,
+   "name": "Den of the Bugbears",
+   "map": {
+    "x": 33,
+    "y": -10,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107346,
+     "description": "To the east lies Den of the Bugbears."
+    },
+    "south": {
+     "to_room": 107344,
+     "description": "To the south lies Main Room in the Den."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "107348": {
+   "vnum": 107348,
+   "name": "Den of the Bugbears",
+   "map": {
+    "x": 32,
+    "y": -10,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 107349,
+     "description": "To the south lies Den of the Bugbears."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "107349": {
+   "vnum": 107349,
+   "name": "Den of the Bugbears",
+   "map": {
+    "x": 32,
+    "y": -11,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107348,
+     "description": "To the north lies Den of the Bugbears."
+    },
+    "east": {
+     "to_room": 107344,
+     "description": "To the east lies Main Room in the Den."
+    },
+    "south": {
+     "to_room": 107351,
+     "description": "To the south lies Den of the Bugbears."
+    },
+    "west": {
+     "to_room": 107350,
+     "description": "To the west lies Den of the Bugbears."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "107350": {
+   "vnum": 107350,
+   "name": "Den of the Bugbears",
+   "map": {
+    "x": 31,
+    "y": -11,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107349,
+     "description": "To the east lies Den of the Bugbears."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "107351": {
+   "vnum": 107351,
+   "name": "Den of the Bugbears",
+   "map": {
+    "x": 32,
+    "y": -12,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107349,
+     "description": "To the north lies Den of the Bugbears."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads north.",
+   "placeholder": true
+  },
+  "107352": {
+   "vnum": 107352,
+   "name": "A Steep Climb",
+   "map": {
+    "x": 33,
+    "y": -21,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 107353,
+     "description": "To the up lies Up Toward a Fresh Scent."
+    },
+    "down": {
+     "to_room": 107324,
+     "description": "To the down lies An Enormous Cavern."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead up and down.",
+   "placeholder": true
+  },
+  "107353": {
+   "vnum": 107353,
+   "name": "Up Toward a Fresh Scent",
+   "map": {
+    "x": 33,
+    "y": -21,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 107354,
+     "description": "To the up lies Small Cavernway."
+    },
+    "down": {
+     "to_room": 107352,
+     "description": "To the down lies A Steep Climb."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead up and down.",
+   "placeholder": true
+  },
+  "107354": {
+   "vnum": 107354,
+   "name": "Small Cavernway",
+   "map": {
+    "x": 33,
+    "y": -21,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107355,
+     "description": "To the east lies Along the Tributary."
+    },
+    "west": {
+     "to_room": 107360,
+     "description": "To the west lies The Lake's Edge."
+    },
+    "down": {
+     "to_room": 107353,
+     "description": "To the down lies Up Toward a Fresh Scent."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east, west and down.",
+   "placeholder": true
+  },
+  "107355": {
+   "vnum": 107355,
+   "name": "Along the Tributary",
+   "map": {
+    "x": 34,
+    "y": -21,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107356,
+     "description": "To the east lies Along the Tributary."
+    },
+    "west": {
+     "to_room": 107354,
+     "description": "To the west lies Small Cavernway."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "107356": {
+   "vnum": 107356,
+   "name": "Along the Tributary",
+   "map": {
+    "x": 35,
+    "y": -21,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107357,
+     "description": "To the east lies The Water Flows Under."
+    },
+    "west": {
+     "to_room": 107355,
+     "description": "To the west lies Along the Tributary."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "107357": {
+   "vnum": 107357,
+   "name": "The Water Flows Under",
+   "map": {
+    "x": 36,
+    "y": -21,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107358,
+     "description": "To the north lies A Tiny Crack."
+    },
+    "west": {
+     "to_room": 107356,
+     "description": "To the west lies Along the Tributary."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "107358": {
+   "vnum": 107358,
+   "name": "A Tiny Crack",
+   "map": {
+    "x": 36,
+    "y": -20,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107359,
+     "description": "To the north lies Death's Kiss."
+    },
+    "south": {
+     "to_room": 107357,
+     "description": "To the south lies The Water Flows Under."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "107359": {
+   "vnum": 107359,
+   "name": "Death's Kiss",
+   "map": {
+    "x": 36,
+    "y": -19,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 107358,
+     "description": "To the south lies A Tiny Crack."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "107360": {
+   "vnum": 107360,
+   "name": "The Lake's Edge",
+   "map": {
+    "x": 32,
+    "y": -21,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107354,
+     "description": "To the east lies Small Cavernway."
+    },
+    "south": {
+     "to_room": 107368,
+     "description": "To the south lies The Lake's Edge."
+    },
+    "west": {
+     "to_room": 107361,
+     "description": "To the west lies Moldy Passage."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "107361": {
+   "vnum": 107361,
+   "name": "Moldy Passage",
+   "map": {
+    "x": 31,
+    "y": -21,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107360,
+     "description": "To the east lies The Lake's Edge."
+    },
+    "west": {
+     "to_room": 107362,
+     "description": "To the west lies Moldy Passage."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "107362": {
+   "vnum": 107362,
+   "name": "Moldy Passage",
+   "map": {
+    "x": 30,
+    "y": -21,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107361,
+     "description": "To the east lies Moldy Passage."
+    },
+    "south": {
+     "to_room": 107363,
+     "description": "To the south lies Mold Cavern."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "107363": {
+   "vnum": 107363,
+   "name": "Mold Cavern",
+   "map": {
+    "x": 30,
+    "y": -22,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107362,
+     "description": "To the north lies Moldy Passage."
+    },
+    "south": {
+     "to_room": 107367,
+     "description": "To the south lies Mold Cavern."
+    },
+    "west": {
+     "to_room": 107364,
+     "description": "To the west lies Mold Cavern."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "107364": {
+   "vnum": 107364,
+   "name": "Mold Cavern",
+   "map": {
+    "x": 29,
+    "y": -22,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107363,
+     "description": "To the east lies Mold Cavern."
+    },
+    "south": {
+     "to_room": 107366,
+     "description": "To the south lies Mold Cavern."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east and south.",
+   "placeholder": true
+  },
+  "107365": {
+   "vnum": 107365,
+   "name": "Cold Storage",
+   "map": {
+    "x": 28,
+    "y": -23,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107366,
+     "description": "To the east lies Mold Cavern."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads east.",
+   "placeholder": true
+  },
+  "107366": {
+   "vnum": 107366,
+   "name": "Mold Cavern",
+   "map": {
+    "x": 29,
+    "y": -23,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107364,
+     "description": "To the north lies Mold Cavern."
+    },
+    "east": {
+     "to_room": 107367,
+     "description": "To the east lies Mold Cavern."
+    },
+    "west": {
+     "to_room": 107365,
+     "description": "To the west lies Cold Storage."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "107367": {
+   "vnum": 107367,
+   "name": "Mold Cavern",
+   "map": {
+    "x": 30,
+    "y": -23,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107363,
+     "description": "To the north lies Mold Cavern."
+    },
+    "west": {
+     "to_room": 107366,
+     "description": "To the west lies Mold Cavern."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "107368": {
+   "vnum": 107368,
+   "name": "The Lake's Edge",
+   "map": {
+    "x": 32,
+    "y": -22,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107360,
+     "description": "To the north lies The Lake's Edge."
+    },
+    "south": {
+     "to_room": 107369,
+     "description": "To the south lies The Lake's Edge."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "107369": {
+   "vnum": 107369,
+   "name": "The Lake's Edge",
+   "map": {
+    "x": 32,
+    "y": -23,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107368,
+     "description": "To the north lies The Lake's Edge."
+    },
+    "down": {
+     "to_room": 107399,
+     "description": "To the down lies The Aboleth's Lair."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and down.",
+   "placeholder": true
+  },
+  "107370": {
+   "vnum": 107370,
+   "name": "Vaulted Chamber",
+   "map": {
+    "x": 34,
+    "y": -19,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107371,
+     "description": "To the east lies Vaulted Chamber."
+    },
+    "west": {
+     "to_room": 107322,
+     "description": "To the west lies An Enormous Cavern."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "107371": {
+   "vnum": 107371,
+   "name": "Vaulted Chamber",
+   "map": {
+    "x": 35,
+    "y": -19,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107372,
+     "description": "To the east lies Top of the Shaft."
+    },
+    "west": {
+     "to_room": 107370,
+     "description": "To the west lies Vaulted Chamber."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "107372": {
+   "vnum": 107372,
+   "name": "Top of the Shaft",
+   "map": {
+    "x": 36,
+    "y": -19,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 107371,
+     "description": "To the west lies Vaulted Chamber."
+    },
+    "down": {
+     "to_room": 107373,
+     "description": "To the down lies In the Shaft."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead west and down.",
+   "placeholder": true
+  },
+  "107373": {
+   "vnum": 107373,
+   "name": "In the Shaft",
+   "map": {
+    "x": 36,
+    "y": -19,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 107372,
+     "description": "To the up lies Top of the Shaft."
+    },
+    "down": {
+     "to_room": 107374,
+     "description": "To the down lies Bottom of the Shaft."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead up and down.",
+   "placeholder": true
+  },
+  "107374": {
+   "vnum": 107374,
+   "name": "Bottom of the Shaft",
+   "map": {
+    "x": 36,
+    "y": -19,
+    "z": -7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107375,
+     "description": "To the east lies Vaulted Chamber."
+    },
+    "up": {
+     "to_room": 107373,
+     "description": "To the up lies In the Shaft."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and up.",
+   "placeholder": true
+  },
+  "107375": {
+   "vnum": 107375,
+   "name": "Vaulted Chamber",
+   "map": {
+    "x": 37,
+    "y": -19,
+    "z": -7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107376,
+     "description": "To the east lies Archway."
+    },
+    "west": {
+     "to_room": 107374,
+     "description": "To the west lies Bottom of the Shaft."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "107376": {
+   "vnum": 107376,
+   "name": "Archway",
+   "map": {
+    "x": 38,
+    "y": -19,
+    "z": -7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107377,
+     "description": "To the north lies Wide Carpeted Caveway."
+    },
+    "east": {
+     "to_room": 107388,
+     "description": "To the east lies The Cavern Widens."
+    },
+    "west": {
+     "to_room": 107375,
+     "description": "To the west lies Vaulted Chamber."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "107377": {
+   "vnum": 107377,
+   "name": "Wide Carpeted Caveway",
+   "map": {
+    "x": 38,
+    "y": -18,
+    "z": -7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107378,
+     "description": "To the north lies Wide Carpeted Caveway."
+    },
+    "south": {
+     "to_room": 107376,
+     "description": "To the south lies Archway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "107378": {
+   "vnum": 107378,
+   "name": "Wide Carpeted Caveway",
+   "map": {
+    "x": 38,
+    "y": -17,
+    "z": -7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107379,
+     "description": "To the north lies Wide Carpeted Caveway."
+    },
+    "south": {
+     "to_room": 107377,
+     "description": "To the south lies Wide Carpeted Caveway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "107379": {
+   "vnum": 107379,
+   "name": "Wide Carpeted Caveway",
+   "map": {
+    "x": 38,
+    "y": -16,
+    "z": -7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107380,
+     "description": "To the north lies Before the Chamber."
+    },
+    "south": {
+     "to_room": 107378,
+     "description": "To the south lies Wide Carpeted Caveway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "107380": {
+   "vnum": 107380,
+   "name": "Before the Chamber",
+   "map": {
+    "x": 38,
+    "y": -15,
+    "z": -7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107383,
+     "description": "To the east lies Entering the Chamber."
+    },
+    "south": {
+     "to_room": 107379,
+     "description": "To the south lies Wide Carpeted Caveway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "107381": {
+   "vnum": 107381,
+   "name": "Waiting Chamber",
+   "map": {
+    "x": 39,
+    "y": -14,
+    "z": -7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 107383,
+     "description": "To the south lies Entering the Chamber."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "107382": {
+   "vnum": 107382,
+   "name": "Side Chamber",
+   "map": {
+    "x": 40,
+    "y": -14,
+    "z": -7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 107384,
+     "description": "To the south lies Chamber of the Pale Man."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "107383": {
+   "vnum": 107383,
+   "name": "Entering the Chamber",
+   "map": {
+    "x": 39,
+    "y": -15,
+    "z": -7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107381,
+     "description": "To the north lies Waiting Chamber."
+    },
+    "east": {
+     "to_room": 107384,
+     "description": "To the east lies Chamber of the Pale Man."
+    },
+    "south": {
+     "to_room": 107386,
+     "description": "To the south lies Waiting Chamber."
+    },
+    "west": {
+     "to_room": 107380,
+     "description": "To the west lies Before the Chamber."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "107384": {
+   "vnum": 107384,
+   "name": "Chamber of the Pale Man",
+   "map": {
+    "x": 40,
+    "y": -15,
+    "z": -7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107382,
+     "description": "To the north lies Side Chamber."
+    },
+    "east": {
+     "to_room": 107385,
+     "description": "To the east lies Throne Room."
+    },
+    "south": {
+     "to_room": 107387,
+     "description": "To the south lies Side Chamber."
+    },
+    "west": {
+     "to_room": 107383,
+     "description": "To the west lies Entering the Chamber."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "107385": {
+   "vnum": 107385,
+   "name": "Throne Room",
+   "map": {
+    "x": 41,
+    "y": -15,
+    "z": -7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 107384,
+     "description": "To the west lies Chamber of the Pale Man."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads west.",
+   "placeholder": true
+  },
+  "107386": {
+   "vnum": 107386,
+   "name": "Waiting Chamber",
+   "map": {
+    "x": 39,
+    "y": -16,
+    "z": -7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107383,
+     "description": "To the north lies Entering the Chamber."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "107387": {
+   "vnum": 107387,
+   "name": "Side Chamber",
+   "map": {
+    "x": 40,
+    "y": -16,
+    "z": -7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107384,
+     "description": "To the north lies Chamber of the Pale Man."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads north.",
+   "placeholder": true
+  },
+  "107388": {
+   "vnum": 107388,
+   "name": "The Cavern Widens",
+   "map": {
+    "x": 39,
+    "y": -19,
+    "z": -7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107390,
+     "description": "To the east lies Deep Well."
+    },
+    "south": {
+     "to_room": 107389,
+     "description": "To the south lies A Grim Chamber."
+    },
+    "west": {
+     "to_room": 107376,
+     "description": "To the west lies Archway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "107389": {
+   "vnum": 107389,
+   "name": "A Grim Chamber",
+   "map": {
+    "x": 39,
+    "y": -20,
+    "z": -7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107388,
+     "description": "To the north lies The Cavern Widens."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads north.",
+   "placeholder": true
+  },
+  "107390": {
+   "vnum": 107390,
+   "name": "Deep Well",
+   "map": {
+    "x": 40,
+    "y": -19,
+    "z": -7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 107388,
+     "description": "To the west lies The Cavern Widens."
+    },
+    "down": {
+     "to_room": 107391,
+     "description": "To the down lies In the Well."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead west and down.",
+   "placeholder": true
+  },
+  "107391": {
+   "vnum": 107391,
+   "name": "In the Well",
+   "map": {
+    "x": 40,
+    "y": -19,
+    "z": -8
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 107390,
+     "description": "To the up lies Deep Well."
+    },
+    "down": {
+     "to_room": 107392,
+     "description": "To the down lies Well's Base."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead up and down.",
+   "placeholder": true
+  },
+  "107392": {
+   "vnum": 107392,
+   "name": "Well's Base",
+   "map": {
+    "x": 40,
+    "y": -19,
+    "z": -9
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107393,
+     "description": "To the east lies Crosschamber."
+    },
+    "up": {
+     "to_room": 107391,
+     "description": "To the up lies In the Well."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and up.",
+   "placeholder": true
+  },
+  "107393": {
+   "vnum": 107393,
+   "name": "Crosschamber",
+   "map": {
+    "x": 41,
+    "y": -19,
+    "z": -9
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107394,
+     "description": "To the east lies Near a Glow."
+    },
+    "south": {
+     "to_room": 107396,
+     "description": "To the south lies Side Tunnel."
+    },
+    "west": {
+     "to_room": 107392,
+     "description": "To the west lies Well's Base."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "107394": {
+   "vnum": 107394,
+   "name": "Near a Glow",
+   "map": {
+    "x": 42,
+    "y": -19,
+    "z": -9
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 107395,
+     "description": "To the east lies The Dragon's Hoarde."
+    },
+    "west": {
+     "to_room": 107393,
+     "description": "To the west lies Crosschamber."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "107395": {
+   "vnum": 107395,
+   "name": "The Dragon's Hoarde",
+   "map": {
+    "x": 43,
+    "y": -19,
+    "z": -9
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 107394,
+     "description": "To the west lies Near a Glow."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads west.",
+   "placeholder": true
+  },
+  "107396": {
+   "vnum": 107396,
+   "name": "Side Tunnel",
+   "map": {
+    "x": 41,
+    "y": -20,
+    "z": -9
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107393,
+     "description": "To the north lies Crosschamber."
+    },
+    "south": {
+     "to_room": 107397,
+     "description": "To the south lies Side Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "107397": {
+   "vnum": 107397,
+   "name": "Side Tunnel",
+   "map": {
+    "x": 41,
+    "y": -21,
+    "z": -9
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 107396,
+     "description": "To the north lies Side Tunnel."
+    },
+    "east": {
+     "to_room": 107398,
+     "description": "To the east lies Deep Room."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and east.",
+   "placeholder": true
+  },
+  "107398": {
+   "vnum": 107398,
+   "name": "Deep Room",
+   "map": {
+    "x": 42,
+    "y": -21,
+    "z": -9
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 107397,
+     "description": "To the west lies Side Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "107399": {
+   "vnum": 107399,
+   "name": "The Aboleth's Lair",
+   "map": {
+    "x": 31,
+    "y": -24,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 107369,
+     "description": "To the up lies The Lake's Edge."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads up.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

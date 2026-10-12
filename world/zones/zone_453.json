@@ -1,0 +1,1103 @@
+{
+ "number": 453,
+ "name": "Crater",
+ "builders": "Grimace",
+ "atlas_area": 53,
+ "rooms": {
+  "49400": {
+   "vnum": 49400,
+   "name": "Entering a Volcanic Island",
+   "map": {
+    "x": 19,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 49401,
+     "description": "To the north lies On the Rough Path."
+    },
+    "east": {
+     "to_room": 10755,
+     "description": "To the east lies The Southern Mira Retrum."
+    }
+   },
+   "description": "From the crest the land below spreads out like a map. Rocks break\nthrough the thin soil of the slope. Ways lead north and east.",
+   "placeholder": true
+  },
+  "49401": {
+   "vnum": 49401,
+   "name": "On the Rough Path",
+   "map": {
+    "x": 19,
+    "y": -20,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49402,
+     "description": "To the north lies On the Rim."
+    },
+    "south": {
+     "to_room": 49400,
+     "description": "To the south lies Entering a Volcanic Island."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "49402": {
+   "vnum": 49402,
+   "name": "On the Rim",
+   "map": {
+    "x": 19,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49457,
+     "description": "To the north lies On the Rim."
+    },
+    "east": {
+     "to_room": 49414,
+     "description": "To the east lies On the Rim."
+    },
+    "south": {
+     "to_room": 49401,
+     "description": "To the south lies On the Rough Path."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "49403": {
+   "vnum": 49403,
+   "name": "On the Rim",
+   "map": {
+    "x": 19,
+    "y": -17,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49404,
+     "description": "To the north lies On the Rim."
+    },
+    "south": {
+     "to_room": 49457,
+     "description": "To the south lies On the Rim."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "49404": {
+   "vnum": 49404,
+   "name": "On the Rim",
+   "map": {
+    "x": 19,
+    "y": -16,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49405,
+     "description": "To the north lies On the Rim."
+    },
+    "south": {
+     "to_room": 49403,
+     "description": "To the south lies On the Rim."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "49405": {
+   "vnum": 49405,
+   "name": "On the Rim",
+   "map": {
+    "x": 19,
+    "y": -15,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 49406,
+     "description": "To the east lies On the Rim."
+    },
+    "south": {
+     "to_room": 49404,
+     "description": "To the south lies On the Rim."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "49406": {
+   "vnum": 49406,
+   "name": "On the Rim",
+   "map": {
+    "x": 20,
+    "y": -15,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 49407,
+     "description": "To the east lies On the Rim."
+    },
+    "south": {
+     "to_room": 49415,
+     "description": "To the south lies On the Crater Floor."
+    },
+    "west": {
+     "to_room": 49405,
+     "description": "To the west lies On the Rim."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "49407": {
+   "vnum": 49407,
+   "name": "On the Rim",
+   "map": {
+    "x": 21,
+    "y": -15,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 49454,
+     "description": "To the east lies On the Rim."
+    },
+    "south": {
+     "to_room": 49416,
+     "description": "To the south lies On the Crater Floor."
+    },
+    "west": {
+     "to_room": 49406,
+     "description": "To the west lies On the Rim."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "49408": {
+   "vnum": 49408,
+   "name": "On the Rim",
+   "map": {
+    "x": 23,
+    "y": -15,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 49409,
+     "description": "To the south lies On the Rim."
+    },
+    "west": {
+     "to_room": 49454,
+     "description": "To the west lies On the Rim."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead south and west.",
+   "placeholder": true
+  },
+  "49409": {
+   "vnum": 49409,
+   "name": "On the Rim",
+   "map": {
+    "x": 23,
+    "y": -16,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49408,
+     "description": "To the north lies On the Rim."
+    },
+    "south": {
+     "to_room": 49410,
+     "description": "To the south lies On the Rim."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "49410": {
+   "vnum": 49410,
+   "name": "On the Rim",
+   "map": {
+    "x": 23,
+    "y": -17,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49409,
+     "description": "To the north lies On the Rim."
+    },
+    "south": {
+     "to_room": 49456,
+     "description": "To the south lies On the Rim."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "49411": {
+   "vnum": 49411,
+   "name": "On the Rim",
+   "map": {
+    "x": 23,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49456,
+     "description": "To the north lies On the Rim."
+    },
+    "west": {
+     "to_room": 49455,
+     "description": "To the west lies On the Rim."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "49412": {
+   "vnum": 49412,
+   "name": "On the Rim",
+   "map": {
+    "x": 21,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 49455,
+     "description": "To the east lies On the Rim."
+    },
+    "south": {
+     "to_room": 49413,
+     "description": "To the south lies The Kobold Shaman's Perch."
+    },
+    "west": {
+     "to_room": 49414,
+     "description": "To the west lies On the Rim."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "49413": {
+   "vnum": 49413,
+   "name": "The Kobold Shaman's Perch",
+   "map": {
+    "x": 21,
+    "y": -20,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49412,
+     "description": "To the north lies On the Rim."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads north.",
+   "placeholder": true
+  },
+  "49414": {
+   "vnum": 49414,
+   "name": "On the Rim",
+   "map": {
+    "x": 20,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 49412,
+     "description": "To the east lies On the Rim."
+    },
+    "west": {
+     "to_room": 49402,
+     "description": "To the west lies On the Rim."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "49415": {
+   "vnum": 49415,
+   "name": "On the Crater Floor",
+   "map": {
+    "x": 20,
+    "y": -16,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49406,
+     "description": "To the north lies On the Rim."
+    },
+    "east": {
+     "to_room": 49416,
+     "description": "To the east lies On the Crater Floor."
+    },
+    "south": {
+     "to_room": 49418,
+     "description": "To the south lies On the Crater Floor."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "49416": {
+   "vnum": 49416,
+   "name": "On the Crater Floor",
+   "map": {
+    "x": 21,
+    "y": -16,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49407,
+     "description": "To the north lies On the Rim."
+    },
+    "east": {
+     "to_room": 49417,
+     "description": "To the east lies On the Crater Floor."
+    },
+    "south": {
+     "to_room": 49449,
+     "description": "To the south lies On the Crater Floor."
+    },
+    "west": {
+     "to_room": 49415,
+     "description": "To the west lies On the Crater Floor."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "49417": {
+   "vnum": 49417,
+   "name": "On the Crater Floor",
+   "map": {
+    "x": 22,
+    "y": -16,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49454,
+     "description": "To the north lies On the Rim."
+    },
+    "south": {
+     "to_room": 49450,
+     "description": "To the south lies On the Crater Floor."
+    },
+    "west": {
+     "to_room": 49416,
+     "description": "To the west lies On the Crater Floor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "49418": {
+   "vnum": 49418,
+   "name": "On the Crater Floor",
+   "map": {
+    "x": 20,
+    "y": -17,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49415,
+     "description": "To the north lies On the Crater Floor."
+    },
+    "east": {
+     "to_room": 49449,
+     "description": "To the east lies On the Crater Floor."
+    },
+    "south": {
+     "to_room": 49451,
+     "description": "To the south lies On the Crater Floor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "49419": {
+   "vnum": 49419,
+   "name": "In the Tube",
+   "map": {
+    "x": 21,
+    "y": -17,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49420,
+     "description": "To the north lies In the Tube."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads north.",
+   "placeholder": true
+  },
+  "49420": {
+   "vnum": 49420,
+   "name": "In the Tube",
+   "map": {
+    "x": 21,
+    "y": -16,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 49419,
+     "description": "To the south lies In the Tube."
+    },
+    "west": {
+     "to_room": 49421,
+     "description": "To the west lies In the Tube."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "49421": {
+   "vnum": 49421,
+   "name": "In the Tube",
+   "map": {
+    "x": 20,
+    "y": -16,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49422,
+     "description": "To the north lies The Hatchery."
+    },
+    "east": {
+     "to_room": 49420,
+     "description": "To the east lies In the Tube."
+    },
+    "south": {
+     "to_room": 49423,
+     "description": "To the south lies In a Tube."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "49422": {
+   "vnum": 49422,
+   "name": "The Hatchery",
+   "map": {
+    "x": 20,
+    "y": -15,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 49421,
+     "description": "To the south lies In the Tube."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "49423": {
+   "vnum": 49423,
+   "name": "In a Tube",
+   "map": {
+    "x": 20,
+    "y": -17,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49421,
+     "description": "To the north lies In the Tube."
+    },
+    "down": {
+     "to_room": 49424,
+     "description": "To the down lies In a Tube."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and down.",
+   "placeholder": true
+  },
+  "49424": {
+   "vnum": 49424,
+   "name": "In a Tube",
+   "map": {
+    "x": 20,
+    "y": -17,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 49427,
+     "description": "To the south lies In the Tube."
+    },
+    "west": {
+     "to_room": 49425,
+     "description": "To the west lies In a Tube."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "49425": {
+   "vnum": 49425,
+   "name": "In a Tube",
+   "map": {
+    "x": 19,
+    "y": -17,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 49424,
+     "description": "To the east lies In a Tube."
+    },
+    "south": {
+     "to_room": 49426,
+     "description": "To the south lies The Hatchery."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "49426": {
+   "vnum": 49426,
+   "name": "The Hatchery",
+   "map": {
+    "x": 19,
+    "y": -18,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49425,
+     "description": "To the north lies In a Tube."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads north.",
+   "placeholder": true
+  },
+  "49427": {
+   "vnum": 49427,
+   "name": "In the Tube",
+   "map": {
+    "x": 20,
+    "y": -18,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49424,
+     "description": "To the north lies In a Tube."
+    },
+    "down": {
+     "to_room": 49428,
+     "description": "To the down lies In the Tube."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and down.",
+   "placeholder": true
+  },
+  "49428": {
+   "vnum": 49428,
+   "name": "In the Tube",
+   "map": {
+    "x": 18,
+    "y": -22,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 49429,
+     "description": "To the east lies In the Tube."
+    },
+    "west": {
+     "to_room": 49430,
+     "description": "To the west lies In the Tube."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "49429": {
+   "vnum": 49429,
+   "name": "In the Tube",
+   "map": {
+    "x": 19,
+    "y": -22,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 49432,
+     "description": "To the east lies The Nasty Lake."
+    },
+    "west": {
+     "to_room": 49428,
+     "description": "To the west lies In the Tube."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "49430": {
+   "vnum": 49430,
+   "name": "In the Tube",
+   "map": {
+    "x": 17,
+    "y": -22,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 49428,
+     "description": "To the east lies In the Tube."
+    },
+    "down": {
+     "to_room": 49431,
+     "description": "To the down lies A Small Chamber."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and down.",
+   "placeholder": true
+  },
+  "49431": {
+   "vnum": 49431,
+   "name": "A Small Chamber",
+   "map": {
+    "x": 16,
+    "y": -23,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 49430,
+     "description": "To the up lies In the Tube."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads up.",
+   "placeholder": true
+  },
+  "49432": {
+   "vnum": 49432,
+   "name": "The Nasty Lake",
+   "map": {
+    "x": 21,
+    "y": -22,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49413,
+     "description": "To the north lies The Kobold Shaman's Perch."
+    },
+    "down": {
+     "to_room": 107300,
+     "description": "To the down lies Entry into the Darkness."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and down.",
+   "placeholder": true
+  },
+  "49449": {
+   "vnum": 49449,
+   "name": "On the Crater Floor",
+   "map": {
+    "x": 21,
+    "y": -17,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49416,
+     "description": "To the north lies On the Crater Floor."
+    },
+    "east": {
+     "to_room": 49450,
+     "description": "To the east lies On the Crater Floor."
+    },
+    "south": {
+     "to_room": 49452,
+     "description": "To the south lies On the Crater Floor."
+    },
+    "west": {
+     "to_room": 49418,
+     "description": "To the west lies On the Crater Floor."
+    },
+    "down": {
+     "to_room": 49419,
+     "description": "To the down lies In the Tube."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east, south, west and\ndown.",
+   "placeholder": true
+  },
+  "49450": {
+   "vnum": 49450,
+   "name": "On the Crater Floor",
+   "map": {
+    "x": 22,
+    "y": -17,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49417,
+     "description": "To the north lies On the Crater Floor."
+    },
+    "south": {
+     "to_room": 49453,
+     "description": "To the south lies On the Crater Floor."
+    },
+    "west": {
+     "to_room": 49449,
+     "description": "To the west lies On the Crater Floor."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "49451": {
+   "vnum": 49451,
+   "name": "On the Crater Floor",
+   "map": {
+    "x": 20,
+    "y": -18,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49418,
+     "description": "To the north lies On the Crater Floor."
+    },
+    "east": {
+     "to_room": 49452,
+     "description": "To the east lies On the Crater Floor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and east.",
+   "placeholder": true
+  },
+  "49452": {
+   "vnum": 49452,
+   "name": "On the Crater Floor",
+   "map": {
+    "x": 21,
+    "y": -18,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49449,
+     "description": "To the north lies On the Crater Floor."
+    },
+    "east": {
+     "to_room": 49453,
+     "description": "To the east lies On the Crater Floor."
+    },
+    "west": {
+     "to_room": 49451,
+     "description": "To the west lies On the Crater Floor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "49453": {
+   "vnum": 49453,
+   "name": "On the Crater Floor",
+   "map": {
+    "x": 22,
+    "y": -18,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49450,
+     "description": "To the north lies On the Crater Floor."
+    },
+    "west": {
+     "to_room": 49452,
+     "description": "To the west lies On the Crater Floor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "49454": {
+   "vnum": 49454,
+   "name": "On the Rim",
+   "map": {
+    "x": 22,
+    "y": -15,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 49408,
+     "description": "To the east lies On the Rim."
+    },
+    "south": {
+     "to_room": 49417,
+     "description": "To the south lies On the Crater Floor."
+    },
+    "west": {
+     "to_room": 49407,
+     "description": "To the west lies On the Rim."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "49455": {
+   "vnum": 49455,
+   "name": "On the Rim",
+   "map": {
+    "x": 22,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 49411,
+     "description": "To the east lies On the Rim."
+    },
+    "west": {
+     "to_room": 49412,
+     "description": "To the west lies On the Rim."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "49456": {
+   "vnum": 49456,
+   "name": "On the Rim",
+   "map": {
+    "x": 23,
+    "y": -18,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49410,
+     "description": "To the north lies On the Rim."
+    },
+    "south": {
+     "to_room": 49411,
+     "description": "To the south lies On the Rim."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "49457": {
+   "vnum": 49457,
+   "name": "On the Rim",
+   "map": {
+    "x": 19,
+    "y": -18,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 49403,
+     "description": "To the north lies On the Rim."
+    },
+    "south": {
+     "to_room": 49402,
+     "description": "To the south lies On the Rim."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and south.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

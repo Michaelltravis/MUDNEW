@@ -1,0 +1,1126 @@
+{
+ "number": 424,
+ "name": "Castle Catacombs",
+ "builders": "Oberon",
+ "atlas_area": 24,
+ "rooms": {
+  "15308": {
+   "vnum": 15308,
+   "name": "A Small Intersection",
+   "map": {
+    "x": 4,
+    "y": 24,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15312,
+     "description": "To the east lies In An Old Archway."
+    },
+    "west": {
+     "to_room": 15310,
+     "description": "To the west lies An Odd Room."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "15309": {
+   "vnum": 15309,
+   "name": "A Slippery Room",
+   "map": {
+    "x": 0,
+    "y": 24,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 15314,
+     "description": "To the south lies In Front Of A Pink Tomb."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "15310": {
+   "vnum": 15310,
+   "name": "An Odd Room",
+   "map": {
+    "x": 2,
+    "y": 24,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 15315,
+     "description": "To the south lies A Sleepy Room."
+    },
+    "west": {
+     "to_room": 15309,
+     "description": "To the west lies A Slippery Room."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "15311": {
+   "vnum": 15311,
+   "name": "The Secret Room",
+   "map": {
+    "x": 4,
+    "y": 20,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15316,
+     "description": "To the north lies A Small Passage."
+    },
+    "south": {
+     "to_room": 15323,
+     "description": "To the south lies An Odd Passageway."
+    },
+    "up": {
+     "to_room": 15301,
+     "description": "To the up lies The Holy Altar."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, south and up.",
+   "placeholder": true
+  },
+  "15312": {
+   "vnum": 15312,
+   "name": "In An Old Archway",
+   "map": {
+    "x": 6,
+    "y": 24,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15313,
+     "description": "To the east lies A Small Study Room."
+    },
+    "south": {
+     "to_room": 15317,
+     "description": "To the south lies A Smelly Room."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and south.",
+   "placeholder": true
+  },
+  "15313": {
+   "vnum": 15313,
+   "name": "A Small Study Room",
+   "map": {
+    "x": 8,
+    "y": 24,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 15318,
+     "description": "To the south lies In Front Of A Golden Tomb."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "15314": {
+   "vnum": 15314,
+   "name": "In Front Of A Pink Tomb",
+   "map": {
+    "x": 0,
+    "y": 22,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15315,
+     "description": "To the east lies A Sleepy Room."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads east.",
+   "placeholder": true
+  },
+  "15315": {
+   "vnum": 15315,
+   "name": "A Sleepy Room",
+   "map": {
+    "x": 2,
+    "y": 22,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15316,
+     "description": "To the east lies A Small Passage."
+    },
+    "south": {
+     "to_room": 15320,
+     "description": "To the south lies A Dusty Room."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east and south.",
+   "placeholder": true
+  },
+  "15316": {
+   "vnum": 15316,
+   "name": "A Small Passage",
+   "map": {
+    "x": 4,
+    "y": 22,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15308,
+     "description": "To the north lies A Small Intersection."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads north.",
+   "placeholder": true
+  },
+  "15317": {
+   "vnum": 15317,
+   "name": "A Smelly Room",
+   "map": {
+    "x": 6,
+    "y": 22,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 15319,
+     "description": "To the south lies A Strange Passageway."
+    },
+    "west": {
+     "to_room": 15316,
+     "description": "To the west lies A Small Passage."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead south and west.",
+   "placeholder": true
+  },
+  "15318": {
+   "vnum": 15318,
+   "name": "In Front Of A Golden Tomb",
+   "map": {
+    "x": 8,
+    "y": 22,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 15317,
+     "description": "To the west lies A Smelly Room."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "15319": {
+   "vnum": 15319,
+   "name": "A Strange Passageway",
+   "map": {
+    "x": 6,
+    "y": 20,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 15311,
+     "description": "To the west lies The Secret Room."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads west.",
+   "placeholder": true
+  },
+  "15320": {
+   "vnum": 15320,
+   "name": "A Dusty Room",
+   "map": {
+    "x": 2,
+    "y": 20,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15311,
+     "description": "To the east lies The Secret Room."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "15321": {
+   "vnum": 15321,
+   "name": "A Noisy Room",
+   "map": {
+    "x": 0,
+    "y": 18,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 15330,
+     "description": "To the south lies In Front Of A Shadowy Tomb."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads south.",
+   "placeholder": true
+  },
+  "15322": {
+   "vnum": 15322,
+   "name": "A Large Intersection",
+   "map": {
+    "x": 2,
+    "y": 18,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15320,
+     "description": "To the north lies A Dusty Room."
+    },
+    "east": {
+     "to_room": 15323,
+     "description": "To the east lies An Odd Passageway."
+    },
+    "west": {
+     "to_room": 15321,
+     "description": "To the west lies A Noisy Room."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "15323": {
+   "vnum": 15323,
+   "name": "An Odd Passageway",
+   "map": {
+    "x": 4,
+    "y": 18,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 15328,
+     "description": "To the south lies A Small Intersection."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads south.",
+   "placeholder": true
+  },
+  "15324": {
+   "vnum": 15324,
+   "name": "A Smelly Room",
+   "map": {
+    "x": 6,
+    "y": 18,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15319,
+     "description": "To the north lies A Strange Passageway."
+    },
+    "west": {
+     "to_room": 15323,
+     "description": "To the west lies An Odd Passageway."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "15325": {
+   "vnum": 15325,
+   "name": "In Front Of A White Marble Tomb",
+   "map": {
+    "x": 8,
+    "y": 18,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 15324,
+     "description": "To the west lies A Smelly Room."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "15326": {
+   "vnum": 15326,
+   "name": "A Small Windy Room",
+   "map": {
+    "x": 8,
+    "y": 16,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15325,
+     "description": "To the north lies In Front Of A White Marble Tomb."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads north.",
+   "placeholder": true
+  },
+  "15327": {
+   "vnum": 15327,
+   "name": "A Windy Room",
+   "map": {
+    "x": 6,
+    "y": 16,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15324,
+     "description": "To the north lies A Smelly Room."
+    },
+    "east": {
+     "to_room": 15326,
+     "description": "To the east lies A Small Windy Room."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and east.",
+   "placeholder": true
+  },
+  "15328": {
+   "vnum": 15328,
+   "name": "A Small Intersection",
+   "map": {
+    "x": 4,
+    "y": 16,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15327,
+     "description": "To the east lies A Windy Room."
+    },
+    "south": {
+     "to_room": 15331,
+     "description": "To the south lies A Cross Point Between The Rooms."
+    },
+    "west": {
+     "to_room": 15329,
+     "description": "To the west lies A Sleepy Room."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "15329": {
+   "vnum": 15329,
+   "name": "A Sleepy Room",
+   "map": {
+    "x": 2,
+    "y": 16,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15322,
+     "description": "To the north lies A Large Intersection."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads north.",
+   "placeholder": true
+  },
+  "15330": {
+   "vnum": 15330,
+   "name": "In Front Of A Shadowy Tomb",
+   "map": {
+    "x": 0,
+    "y": 16,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15329,
+     "description": "To the east lies A Sleepy Room."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads east.",
+   "placeholder": true
+  },
+  "15331": {
+   "vnum": 15331,
+   "name": "A Cross Point Between The Rooms",
+   "map": {
+    "x": 4,
+    "y": 14,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 15332,
+     "description": "To the south lies A Slippery Intersection."
+    },
+    "west": {
+     "to_room": 15329,
+     "description": "To the west lies A Sleepy Room."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead south and west.",
+   "placeholder": true
+  },
+  "15332": {
+   "vnum": 15332,
+   "name": "A Slippery Intersection",
+   "map": {
+    "x": 4,
+    "y": 12,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15333,
+     "description": "To the east lies A Well Furnished Room."
+    },
+    "west": {
+     "to_room": 15341,
+     "description": "To the west lies A Dirty Room."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "15333": {
+   "vnum": 15333,
+   "name": "A Well Furnished Room",
+   "map": {
+    "x": 6,
+    "y": 12,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15331,
+     "description": "To the north lies A Cross Point Between The Rooms."
+    },
+    "east": {
+     "to_room": 15334,
+     "description": "To the east lies A Boring Room."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "15334": {
+   "vnum": 15334,
+   "name": "A Boring Room",
+   "map": {
+    "x": 8,
+    "y": 12,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 15335,
+     "description": "To the south lies In Front Of A Brass Tomb."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads south.",
+   "placeholder": true
+  },
+  "15335": {
+   "vnum": 15335,
+   "name": "In Front Of A Brass Tomb",
+   "map": {
+    "x": 8,
+    "y": 10,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 15336,
+     "description": "To the west lies A Hot Room."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads west.",
+   "placeholder": true
+  },
+  "15336": {
+   "vnum": 15336,
+   "name": "A Hot Room",
+   "map": {
+    "x": 6,
+    "y": 10,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15333,
+     "description": "To the north lies A Well Furnished Room."
+    },
+    "west": {
+     "to_room": 15337,
+     "description": "To the west lies A Very Hot Intersection."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "15337": {
+   "vnum": 15337,
+   "name": "A Very Hot Intersection",
+   "map": {
+    "x": 4,
+    "y": 10,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15332,
+     "description": "To the north lies A Slippery Intersection."
+    },
+    "south": {
+     "to_room": 15342,
+     "description": "To the south lies Inside A Large Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "15338": {
+   "vnum": 15338,
+   "name": "Inside A Bloody Room",
+   "map": {
+    "x": 2,
+    "y": 10,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15341,
+     "description": "To the north lies A Dirty Room."
+    },
+    "east": {
+     "to_room": 15337,
+     "description": "To the east lies A Very Hot Intersection."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "15339": {
+   "vnum": 15339,
+   "name": "In Front Of A Red Tomb",
+   "map": {
+    "x": 0,
+    "y": 10,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15338,
+     "description": "To the east lies Inside A Bloody Room."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads east.",
+   "placeholder": true
+  },
+  "15340": {
+   "vnum": 15340,
+   "name": "A Cold Room",
+   "map": {
+    "x": 0,
+    "y": 12,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 15339,
+     "description": "To the south lies In Front Of A Red Tomb."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "15341": {
+   "vnum": 15341,
+   "name": "A Dirty Room",
+   "map": {
+    "x": 2,
+    "y": 12,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 15340,
+     "description": "To the west lies A Cold Room."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "15342": {
+   "vnum": 15342,
+   "name": "Inside A Large Tunnel",
+   "map": {
+    "x": 4,
+    "y": 9,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15337,
+     "description": "To the north lies A Very Hot Intersection."
+    },
+    "west": {
+     "to_room": 15343,
+     "description": "To the west lies Along A Long Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "15343": {
+   "vnum": 15343,
+   "name": "Along A Long Tunnel",
+   "map": {
+    "x": 3,
+    "y": 9,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15342,
+     "description": "To the east lies Inside A Large Tunnel."
+    },
+    "west": {
+     "to_room": 15344,
+     "description": "To the west lies The End Of A Long Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "15344": {
+   "vnum": 15344,
+   "name": "The End Of A Long Tunnel",
+   "map": {
+    "x": 2,
+    "y": 9,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15343,
+     "description": "To the east lies Along A Long Tunnel."
+    },
+    "down": {
+     "to_room": 15345,
+     "description": "To the down lies Some Slippery Stairs."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and down.",
+   "placeholder": true
+  },
+  "15345": {
+   "vnum": 15345,
+   "name": "Some Slippery Stairs",
+   "map": {
+    "x": 2,
+    "y": 9,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 15344,
+     "description": "To the up lies The End Of A Long Tunnel."
+    },
+    "down": {
+     "to_room": 15346,
+     "description": "To the down lies Some Slippery Stairs."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead up and down.",
+   "placeholder": true
+  },
+  "15346": {
+   "vnum": 15346,
+   "name": "Some Slippery Stairs",
+   "map": {
+    "x": 2,
+    "y": 9,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 15345,
+     "description": "To the up lies Some Slippery Stairs."
+    },
+    "down": {
+     "to_room": 15347,
+     "description": "To the down lies Some Slippery Stairs."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead up and down.",
+   "placeholder": true
+  },
+  "15347": {
+   "vnum": 15347,
+   "name": "Some Slippery Stairs",
+   "map": {
+    "x": 2,
+    "y": 9,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15348,
+     "description": "To the east lies A Wet Tunnel."
+    },
+    "up": {
+     "to_room": 15346,
+     "description": "To the up lies Some Slippery Stairs."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and up.",
+   "placeholder": true
+  },
+  "15348": {
+   "vnum": 15348,
+   "name": "A Wet Tunnel",
+   "map": {
+    "x": 3,
+    "y": 9,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15349,
+     "description": "To the east lies Along A Wet Tunnel."
+    },
+    "west": {
+     "to_room": 15347,
+     "description": "To the west lies Some Slippery Stairs."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "15349": {
+   "vnum": 15349,
+   "name": "Along A Wet Tunnel",
+   "map": {
+    "x": 4,
+    "y": 9,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 15350,
+     "description": "To the south lies A Turning Point Along The Wet Tunnel."
+    },
+    "west": {
+     "to_room": 15348,
+     "description": "To the west lies A Wet Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead south and west.",
+   "placeholder": true
+  },
+  "15350": {
+   "vnum": 15350,
+   "name": "A Turning Point Along The Wet Tunnel",
+   "map": {
+    "x": 4,
+    "y": 8,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15349,
+     "description": "To the north lies Along A Wet Tunnel."
+    },
+    "east": {
+     "to_room": 15351,
+     "description": "To the east lies In The Depths Of A Wet Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "15351": {
+   "vnum": 15351,
+   "name": "In The Depths Of A Wet Tunnel",
+   "map": {
+    "x": 5,
+    "y": 8,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15352,
+     "description": "To the east lies Lost In A Wet Tunnel."
+    },
+    "west": {
+     "to_room": 15350,
+     "description": "To the west lies A Turning Point Along The Wet Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "15352": {
+   "vnum": 15352,
+   "name": "Lost In A Wet Tunnel",
+   "map": {
+    "x": 6,
+    "y": 8,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15353,
+     "description": "To the east lies In The Depths Of A Wet Tunnel."
+    },
+    "west": {
+     "to_room": 15351,
+     "description": "To the west lies In The Depths Of A Wet Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "15353": {
+   "vnum": 15353,
+   "name": "In The Depths Of A Wet Tunnel",
+   "map": {
+    "x": 7,
+    "y": 8,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 15354,
+     "description": "To the south lies In Front Of The Underground River."
+    },
+    "west": {
+     "to_room": 15352,
+     "description": "To the west lies Lost In A Wet Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead south and west.",
+   "placeholder": true
+  },
+  "15354": {
+   "vnum": 15354,
+   "name": "In Front Of The Underground River",
+   "map": {
+    "x": 7,
+    "y": 7,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15353,
+     "description": "To the north lies In The Depths Of A Wet Tunnel."
+    },
+    "south": {
+     "to_room": 5003,
+     "description": "To the south lies Riding The Rapids."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

@@ -1,0 +1,1432 @@
+{
+ "number": 439,
+ "name": "Mount Olympus",
+ "builders": "Bigcheese",
+ "atlas_area": 39,
+ "rooms": {
+  "1000": {
+   "vnum": 1000,
+   "name": "At The Base of The White Marble Stairs",
+   "map": {
+    "x": -9,
+    "y": -64,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 1053,
+     "description": "To the west lies Traversing The Great Valley."
+    },
+    "up": {
+     "to_room": 1001,
+     "description": "To the up lies Climbing The White Marble Stairs."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead west and up.",
+   "placeholder": true
+  },
+  "1001": {
+   "vnum": 1001,
+   "name": "Climbing The White Marble Stairs",
+   "map": {
+    "x": -8,
+    "y": -63,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 1002,
+     "description": "To the up lies Climbing The White Marble Stairs."
+    },
+    "down": {
+     "to_room": 1000,
+     "description": "To the down lies At The Base of The White Marble Stairs."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead up and down.",
+   "placeholder": true
+  },
+  "1002": {
+   "vnum": 1002,
+   "name": "Climbing The White Marble Stairs",
+   "map": {
+    "x": -7,
+    "y": -62,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 1003,
+     "description": "To the up lies Climbing The White Marble Stairs."
+    },
+    "down": {
+     "to_room": 1001,
+     "description": "To the down lies Climbing The White Marble Stairs."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead up and down.",
+   "placeholder": true
+  },
+  "1003": {
+   "vnum": 1003,
+   "name": "Climbing The White Marble Stairs",
+   "map": {
+    "x": -6,
+    "y": -61,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 1004,
+     "description": "To the up lies Climbing The White Marble Stairs."
+    },
+    "down": {
+     "to_room": 1002,
+     "description": "To the down lies Climbing The White Marble Stairs."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead up and down.",
+   "placeholder": true
+  },
+  "1004": {
+   "vnum": 1004,
+   "name": "Climbing The White Marble Stairs",
+   "map": {
+    "x": -5,
+    "y": -60,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 1005,
+     "description": "To the up lies The Gods' Labyrinth."
+    },
+    "down": {
+     "to_room": 1003,
+     "description": "To the down lies Climbing The White Marble Stairs."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead up and down.",
+   "placeholder": true
+  },
+  "1005": {
+   "vnum": 1005,
+   "name": "The Gods' Labyrinth",
+   "map": {
+    "x": -1,
+    "y": -56,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use.",
+   "placeholder": true
+  },
+  "1006": {
+   "vnum": 1006,
+   "name": "The Gods' Labyrinth",
+   "map": {
+    "x": -1,
+    "y": -59,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch.",
+   "placeholder": true
+  },
+  "1007": {
+   "vnum": 1007,
+   "name": "The Gods' Labyrinth",
+   "map": {
+    "x": -1,
+    "y": -61,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time.",
+   "placeholder": true
+  },
+  "1008": {
+   "vnum": 1008,
+   "name": "The Gods' Labyrinth",
+   "map": {
+    "x": 1,
+    "y": -61,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach.",
+   "placeholder": true
+  },
+  "1009": {
+   "vnum": 1009,
+   "name": "The Gods' Labyrinth",
+   "map": {
+    "x": 3,
+    "y": -61,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch.",
+   "placeholder": true
+  },
+  "1010": {
+   "vnum": 1010,
+   "name": "The Gods' Labyrinth",
+   "map": {
+    "x": 5,
+    "y": -61,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time.",
+   "placeholder": true
+  },
+  "1011": {
+   "vnum": 1011,
+   "name": "The Gods' Labyrinth",
+   "map": {
+    "x": 5,
+    "y": -59,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use.",
+   "placeholder": true
+  },
+  "1012": {
+   "vnum": 1012,
+   "name": "The Gods' Labyrinth",
+   "map": {
+    "x": 5,
+    "y": -57,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time.",
+   "placeholder": true
+  },
+  "1013": {
+   "vnum": 1013,
+   "name": "The Gods' Labyrinth",
+   "map": {
+    "x": 5,
+    "y": -55,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke.",
+   "placeholder": true
+  },
+  "1014": {
+   "vnum": 1014,
+   "name": "The Gods' Labyrinth",
+   "map": {
+    "x": 5,
+    "y": -53,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1015,
+     "description": "To the north lies Walking the White Marble Streets."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads north.",
+   "placeholder": true
+  },
+  "1015": {
+   "vnum": 1015,
+   "name": "Walking the White Marble Streets",
+   "map": {
+    "x": 5,
+    "y": -52,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1016,
+     "description": "To the north lies Walking The White Marble Streets."
+    },
+    "south": {
+     "to_room": 1014,
+     "description": "To the south lies The Gods' Labyrinth."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand south.",
+   "placeholder": true
+  },
+  "1016": {
+   "vnum": 1016,
+   "name": "Walking The White Marble Streets",
+   "map": {
+    "x": 5,
+    "y": -51,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1019,
+     "description": "To the east lies Walking the White Marble Streets."
+    },
+    "south": {
+     "to_room": 1015,
+     "description": "To the south lies Walking the White Marble Streets."
+    },
+    "west": {
+     "to_room": 1018,
+     "description": "To the west lies Inside a Demigod's Abode."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "1018": {
+   "vnum": 1018,
+   "name": "Inside a Demigod's Abode",
+   "map": {
+    "x": 4,
+    "y": -51,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1016,
+     "description": "To the east lies Walking The White Marble Streets."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads east.",
+   "placeholder": true
+  },
+  "1019": {
+   "vnum": 1019,
+   "name": "Walking the White Marble Streets",
+   "map": {
+    "x": 6,
+    "y": -51,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1020,
+     "description": "To the north lies Walking the White Marble Streets."
+    },
+    "west": {
+     "to_room": 1016,
+     "description": "To the west lies Walking The White Marble Streets."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand west.",
+   "placeholder": true
+  },
+  "1020": {
+   "vnum": 1020,
+   "name": "Walking the White Marble Streets",
+   "map": {
+    "x": 6,
+    "y": -49,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1023,
+     "description": "To the north lies Entrance to the Gods' Cathedral."
+    },
+    "east": {
+     "to_room": 1021,
+     "description": "To the east lies Inside a Demigod's Abode."
+    },
+    "south": {
+     "to_room": 1019,
+     "description": "To the south lies Walking the White Marble Streets."
+    },
+    "west": {
+     "to_room": 1022,
+     "description": "To the west lies Inside an Angel's House."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "1021": {
+   "vnum": 1021,
+   "name": "Inside a Demigod's Abode",
+   "map": {
+    "x": 7,
+    "y": -49,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 1020,
+     "description": "To the west lies Walking the White Marble Streets."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. A way leads west.",
+   "placeholder": true
+  },
+  "1022": {
+   "vnum": 1022,
+   "name": "Inside an Angel's House",
+   "map": {
+    "x": 5,
+    "y": -49,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1020,
+     "description": "To the east lies Walking the White Marble Streets."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. A way leads east.",
+   "placeholder": true
+  },
+  "1023": {
+   "vnum": 1023,
+   "name": "Entrance to the Gods' Cathedral",
+   "map": {
+    "x": 6,
+    "y": -48,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1024,
+     "description": "To the north lies Inside The Gods Cathedral."
+    },
+    "south": {
+     "to_room": 1020,
+     "description": "To the south lies Walking the White Marble Streets."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "1024": {
+   "vnum": 1024,
+   "name": "Inside The Gods Cathedral",
+   "map": {
+    "x": 6,
+    "y": -47,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 1023,
+     "description": "To the south lies Entrance to the Gods' Cathedral."
+    },
+    "up": {
+     "to_room": 1025,
+     "description": "To the up lies On Top of The Gods Table."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead south and up.",
+   "placeholder": true
+  },
+  "1025": {
+   "vnum": 1025,
+   "name": "On Top of The Gods Table",
+   "map": {
+    "x": 7,
+    "y": -49,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1026,
+     "description": "To the east lies Upon Hermes Throne."
+    },
+    "down": {
+     "to_room": 1024,
+     "description": "To the down lies Inside The Gods Cathedral."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and down.",
+   "placeholder": true
+  },
+  "1026": {
+   "vnum": 1026,
+   "name": "Upon Hermes Throne",
+   "map": {
+    "x": 8,
+    "y": -49,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1027,
+     "description": "To the north lies Upon Apollo's Throne."
+    },
+    "west": {
+     "to_room": 1025,
+     "description": "To the west lies On Top of The Gods Table."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north and\nwest.",
+   "placeholder": true
+  },
+  "1027": {
+   "vnum": 1027,
+   "name": "Upon Apollo's Throne",
+   "map": {
+    "x": 8,
+    "y": -48,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 1026,
+     "description": "To the south lies Upon Hermes Throne."
+    },
+    "west": {
+     "to_room": 1028,
+     "description": "To the west lies Crossing the Gods' Table."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nsouth and west.",
+   "placeholder": true
+  },
+  "1028": {
+   "vnum": 1028,
+   "name": "Crossing the Gods' Table",
+   "map": {
+    "x": 6,
+    "y": -48,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 1029,
+     "description": "To the west lies Upon Aphrodite's Throne."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads west.",
+   "placeholder": true
+  },
+  "1029": {
+   "vnum": 1029,
+   "name": "Upon Aphrodite's Throne",
+   "map": {
+    "x": 4,
+    "y": -48,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1030,
+     "description": "To the north lies Upon Artemis's Throne."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. A way leads north.",
+   "placeholder": true
+  },
+  "1030": {
+   "vnum": 1030,
+   "name": "Upon Artemis's Throne",
+   "map": {
+    "x": 4,
+    "y": -46,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1031,
+     "description": "To the east lies Crossing The Gods' Table."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. A way leads east.",
+   "placeholder": true
+  },
+  "1031": {
+   "vnum": 1031,
+   "name": "Crossing The Gods' Table",
+   "map": {
+    "x": 6,
+    "y": -46,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1032,
+     "description": "To the east lies Upon Dionysus's Throne."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. A way\nleads east.",
+   "placeholder": true
+  },
+  "1032": {
+   "vnum": 1032,
+   "name": "Upon Dionysus's Throne",
+   "map": {
+    "x": 8,
+    "y": -46,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1033,
+     "description": "To the north lies Upon Hephaestus's Throne."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. A way leads north.",
+   "placeholder": true
+  },
+  "1033": {
+   "vnum": 1033,
+   "name": "Upon Hephaestus's Throne",
+   "map": {
+    "x": 8,
+    "y": -44,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 1034,
+     "description": "To the west lies Crossing the Gods' Table."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. A way leads west.",
+   "placeholder": true
+  },
+  "1034": {
+   "vnum": 1034,
+   "name": "Crossing the Gods' Table",
+   "map": {
+    "x": 6,
+    "y": -44,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 1035,
+     "description": "To the west lies Before Athena's Throne."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads west.",
+   "placeholder": true
+  },
+  "1035": {
+   "vnum": 1035,
+   "name": "Before Athena's Throne",
+   "map": {
+    "x": 4,
+    "y": -44,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1036,
+     "description": "To the north lies Upon Demeter's Throne."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "1036": {
+   "vnum": 1036,
+   "name": "Upon Demeter's Throne",
+   "map": {
+    "x": 4,
+    "y": -42,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1037,
+     "description": "To the east lies Crossing the Gods' Table."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads east.",
+   "placeholder": true
+  },
+  "1037": {
+   "vnum": 1037,
+   "name": "Crossing the Gods' Table",
+   "map": {
+    "x": 6,
+    "y": -42,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1038,
+     "description": "To the east lies Upon Ares' Throne."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads east.",
+   "placeholder": true
+  },
+  "1038": {
+   "vnum": 1038,
+   "name": "Upon Ares' Throne",
+   "map": {
+    "x": 8,
+    "y": -42,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1039,
+     "description": "To the north lies Upon Poseidon's Throne."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads north.",
+   "placeholder": true
+  },
+  "1039": {
+   "vnum": 1039,
+   "name": "Upon Poseidon's Throne",
+   "map": {
+    "x": 8,
+    "y": -40,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 1040,
+     "description": "To the west lies At the Head of The Gods' Table."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads west.",
+   "placeholder": true
+  },
+  "1040": {
+   "vnum": 1040,
+   "name": "At the Head of The Gods' Table",
+   "map": {
+    "x": 6,
+    "y": -40,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1042,
+     "description": "To the north lies Upon Zeus's Mighty Throne."
+    },
+    "west": {
+     "to_room": 1041,
+     "description": "To the west lies Upon Hera's Throne."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "1041": {
+   "vnum": 1041,
+   "name": "Upon Hera's Throne",
+   "map": {
+    "x": 5,
+    "y": -40,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1040,
+     "description": "To the east lies At the Head of The Gods' Table."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "1042": {
+   "vnum": 1042,
+   "name": "Upon Zeus's Mighty Throne",
+   "map": {
+    "x": 6,
+    "y": -38,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1043,
+     "description": "To the north lies The Tomb of Kronos, Lord of the Titans."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads north.",
+   "placeholder": true
+  },
+  "1043": {
+   "vnum": 1043,
+   "name": "The Tomb of Kronos, Lord of the Titans",
+   "map": {
+    "x": 6,
+    "y": -36,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke.",
+   "placeholder": true
+  },
+  "1044": {
+   "vnum": 1044,
+   "name": "Entering the Great Valley",
+   "map": {
+    "x": -12,
+    "y": -63,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 14850,
+     "description": "To the north lies Outside The Great Forest Of MiNar."
+    },
+    "south": {
+     "to_room": 1045,
+     "description": "To the south lies Traversing The Great Valley."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. A narrow\nledge picks its way along the mountainside. Ways lead north and south.",
+   "placeholder": true
+  },
+  "1045": {
+   "vnum": 1045,
+   "name": "Traversing The Great Valley",
+   "map": {
+    "x": -12,
+    "y": -64,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1044,
+     "description": "To the north lies Entering the Great Valley."
+    },
+    "south": {
+     "to_room": 1046,
+     "description": "To the south lies Traversing The Great Valley."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. Wind\nhowls through a cleft in the stone. Ways lead north and south.",
+   "placeholder": true
+  },
+  "1046": {
+   "vnum": 1046,
+   "name": "Traversing The Great Valley",
+   "map": {
+    "x": -12,
+    "y": -65,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1045,
+     "description": "To the north lies Traversing The Great Valley."
+    },
+    "south": {
+     "to_room": 1048,
+     "description": "To the south lies Traversing The Great Valley."
+    },
+    "west": {
+     "to_room": 1047,
+     "description": "To the west lies Traversing The Great Valley."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. Snow lingers in the shadowed\nhollows of the rock. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "1047": {
+   "vnum": 1047,
+   "name": "Traversing The Great Valley",
+   "map": {
+    "x": -13,
+    "y": -65,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1046,
+     "description": "To the east lies Traversing The Great Valley."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. A\nnarrow ledge picks its way along the mountainside. A way leads east.",
+   "placeholder": true
+  },
+  "1048": {
+   "vnum": 1048,
+   "name": "Traversing The Great Valley",
+   "map": {
+    "x": -12,
+    "y": -66,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1046,
+     "description": "To the north lies Traversing The Great Valley."
+    },
+    "east": {
+     "to_room": 1050,
+     "description": "To the east lies Traversing The Great Valley."
+    },
+    "south": {
+     "to_room": 1049,
+     "description": "To the south lies Traversing The Great Valley."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Snow lingers in the\nshadowed hollows of the rock. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "1049": {
+   "vnum": 1049,
+   "name": "Traversing The Great Valley",
+   "map": {
+    "x": -12,
+    "y": -67,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1048,
+     "description": "To the north lies Traversing The Great Valley."
+    },
+    "east": {
+     "to_room": 1055,
+     "description": "To the east lies Traversing The Great Valley."
+    },
+    "south": {
+     "to_room": 1056,
+     "description": "To the south lies Traversing The Great Valley."
+    },
+    "west": {
+     "to_room": 1057,
+     "description": "To the west lies Traversing The Great Valley."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "1050": {
+   "vnum": 1050,
+   "name": "Traversing The Great Valley",
+   "map": {
+    "x": -11,
+    "y": -66,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1051,
+     "description": "To the north lies Traversing The Great Valley."
+    },
+    "west": {
+     "to_room": 1048,
+     "description": "To the west lies Traversing The Great Valley."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Wind howls through\na cleft in the stone. Ways lead north and west.",
+   "placeholder": true
+  },
+  "1051": {
+   "vnum": 1051,
+   "name": "Traversing The Great Valley",
+   "map": {
+    "x": -11,
+    "y": -65,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1052,
+     "description": "To the east lies Traversing The Great Valley."
+    },
+    "south": {
+     "to_room": 1050,
+     "description": "To the south lies Traversing The Great Valley."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. Ways lead east and south.",
+   "placeholder": true
+  },
+  "1052": {
+   "vnum": 1052,
+   "name": "Traversing The Great Valley",
+   "map": {
+    "x": -10,
+    "y": -65,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1053,
+     "description": "To the north lies Traversing The Great Valley."
+    },
+    "south": {
+     "to_room": 1054,
+     "description": "To the south lies Traversing The Great Valley."
+    },
+    "west": {
+     "to_room": 1051,
+     "description": "To the west lies Traversing The Great Valley."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. Bare rock\nclimbs steeply on one side and falls away on the other. Ways lead north,\nsouth and west.",
+   "placeholder": true
+  },
+  "1053": {
+   "vnum": 1053,
+   "name": "Traversing The Great Valley",
+   "map": {
+    "x": -10,
+    "y": -64,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1000,
+     "description": "To the east lies At The Base of The White Marble Stairs."
+    },
+    "south": {
+     "to_room": 1052,
+     "description": "To the south lies Traversing The Great Valley."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Snow lingers in the\nshadowed hollows of the rock. Ways lead east and south.",
+   "placeholder": true
+  },
+  "1054": {
+   "vnum": 1054,
+   "name": "Traversing The Great Valley",
+   "map": {
+    "x": -10,
+    "y": -66,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1052,
+     "description": "To the north lies Traversing The Great Valley."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. A way leads north.",
+   "placeholder": true
+  },
+  "1055": {
+   "vnum": 1055,
+   "name": "Traversing The Great Valley",
+   "map": {
+    "x": -11,
+    "y": -67,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 1049,
+     "description": "To the west lies Traversing The Great Valley."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. A way leads west.",
+   "placeholder": true
+  },
+  "1056": {
+   "vnum": 1056,
+   "name": "Traversing The Great Valley",
+   "map": {
+    "x": -12,
+    "y": -68,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1049,
+     "description": "To the north lies Traversing The Great Valley."
+    },
+    "east": {
+     "to_room": 1059,
+     "description": "To the east lies Traversing The Great Valley."
+    },
+    "south": {
+     "to_room": 1058,
+     "description": "To the south lies Traversing The Great Valley."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. The\nair is thin and cold, and loose scree shifts underfoot. Ways lead north,\neast and south.",
+   "placeholder": true
+  },
+  "1057": {
+   "vnum": 1057,
+   "name": "Traversing The Great Valley",
+   "map": {
+    "x": -13,
+    "y": -67,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1062,
+     "description": "To the north lies Traversing The Great Valley."
+    },
+    "east": {
+     "to_room": 1049,
+     "description": "To the east lies Traversing The Great Valley."
+    }
+   },
+   "description": "Snow lingers in the shadowed hollows of the rock. The air is thin and\ncold, and loose scree shifts underfoot. Ways lead north and east.",
+   "placeholder": true
+  },
+  "1058": {
+   "vnum": 1058,
+   "name": "Traversing The Great Valley",
+   "map": {
+    "x": -12,
+    "y": -69,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1056,
+     "description": "To the north lies Traversing The Great Valley."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. The air is thin and\ncold, and loose scree shifts underfoot. A way leads north.",
+   "placeholder": true
+  },
+  "1059": {
+   "vnum": 1059,
+   "name": "Traversing The Great Valley",
+   "map": {
+    "x": -11,
+    "y": -68,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1060,
+     "description": "To the east lies Traversing The Great Valley."
+    },
+    "west": {
+     "to_room": 1056,
+     "description": "To the west lies Traversing The Great Valley."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. Ways lead east and west.",
+   "placeholder": true
+  },
+  "1060": {
+   "vnum": 1060,
+   "name": "Traversing The Great Valley",
+   "map": {
+    "x": -10,
+    "y": -68,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1061,
+     "description": "To the north lies Traversing The Great Valley."
+    },
+    "west": {
+     "to_room": 1059,
+     "description": "To the west lies Traversing The Great Valley."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. Snow lingers\nin the shadowed hollows of the rock. Ways lead north and west.",
+   "placeholder": true
+  },
+  "1061": {
+   "vnum": 1061,
+   "name": "Traversing The Great Valley",
+   "map": {
+    "x": -10,
+    "y": -67,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 1060,
+     "description": "To the south lies Traversing The Great Valley."
+    }
+   },
+   "description": "Snow lingers in the shadowed hollows of the rock. A narrow ledge picks\nits way along the mountainside. A way leads south.",
+   "placeholder": true
+  },
+  "1062": {
+   "vnum": 1062,
+   "name": "Traversing The Great Valley",
+   "map": {
+    "x": -13,
+    "y": -66,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 1057,
+     "description": "To the south lies Traversing The Great Valley."
+    },
+    "west": {
+     "to_room": 1063,
+     "description": "To the west lies Traversing The Great Valley."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. The\nair is thin and cold, and loose scree shifts underfoot. Ways lead south\nand west.",
+   "placeholder": true
+  },
+  "1063": {
+   "vnum": 1063,
+   "name": "Traversing The Great Valley",
+   "map": {
+    "x": -14,
+    "y": -66,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1064,
+     "description": "To the north lies Traversing The Great Valley."
+    },
+    "east": {
+     "to_room": 1062,
+     "description": "To the east lies Traversing The Great Valley."
+    },
+    "south": {
+     "to_room": 1065,
+     "description": "To the south lies Traversing The Great Valley."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. Snow lingers\nin the shadowed hollows of the rock. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "1064": {
+   "vnum": 1064,
+   "name": "Traversing The Great Valley",
+   "map": {
+    "x": -14,
+    "y": -65,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 1063,
+     "description": "To the south lies Traversing The Great Valley."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. Bare rock\nclimbs steeply on one side and falls away on the other. A way leads\nsouth.",
+   "placeholder": true
+  },
+  "1065": {
+   "vnum": 1065,
+   "name": "Traversing The Great Valley",
+   "map": {
+    "x": -14,
+    "y": -67,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1063,
+     "description": "To the north lies Traversing The Great Valley."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. A\nnarrow ledge picks its way along the mountainside. A way leads north.",
+   "placeholder": true
+  },
+  "1099": {
+   "vnum": 1099,
+   "name": "The Gods' Labyrinth",
+   "map": {
+    "x": 2,
+    "y": -55,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

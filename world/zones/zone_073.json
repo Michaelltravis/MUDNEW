@@ -1,377 +1,377 @@
 {
-  "number": 73,
-  "name": "The Mindflayer's Lair",
-  "lifespan": 25,
-  "rooms": {
-    "7350": {
-      "vnum": 7350,
-      "name": "The Outer Warrens",
-      "description": "The tunnel opens into a wider passage slick with moisture and something\nfar more sinister. Strange symbols are carved into the walls, glowing\nfaintly with sickly purple light. The air itself feels wrong here, as\nif reality is slightly bent. Scratching sounds echo from deeper within.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors",
-        "dark"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 7351,
-          "description": "The passage continues into darkness."
-        },
-        "south": {
-          "to_room": 7344,
-          "description": "The sewer pool lies to the south."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 7301,
-          "max": 2
-        },
-        {
-          "vnum": 7302,
-          "max": 1
-        }
-      ]
-    },
-    "7351": {
-      "vnum": 7351,
-      "name": "The Feeding Chamber",
-      "description": "Bones litter the floor of this circular chamber - humanoid bones, picked\nclean of all flesh. The walls pulse with a faint bioluminescence, and\nalcoves carved into the stone hold more grisly remains. Something has\nbeen feeding here for a very long time. The stench is overwhelming.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors",
-        "dark"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 7350,
-          "description": "The outer warrens lie to the south."
-        },
-        "east": {
-          "to_room": 7352,
-          "description": "An ornate archway leads to the inner sanctum."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 7302,
-          "max": 2
-        },
-        {
-          "vnum": 7303,
-          "max": 1
-        }
-      ]
-    },
-    "7352": {
-      "vnum": 7352,
-      "name": "The Mindflayer's Sanctum",
-      "description": "You have entered the heart of the horror. This vast chamber thrums with\npsionic energy that makes your skull ache. A throne of fused bone and\nmetal dominates the center, surrounded by pools of dark, viscous fluid.\nTentacled shapes writhe in your peripheral vision. The Master waits.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors",
-        "dark",
-        "no_magic",
-        "no_teleport"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 7351,
-          "description": "The feeding chamber lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 7303,
-          "max": 2
-        },
-        {
-          "vnum": 7304,
-          "max": 1
-        }
-      ]
-    }
+ "number": 73,
+ "name": "The Mindflayer's Lair",
+ "lifespan": 25,
+ "mobs": {
+  "7301": {
+   "vnum": 7301,
+   "name": "basilisk",
+   "short_desc": "a basilisk",
+   "long_desc": "A serpentine creature with deadly eyes lurks here.",
+   "description": "This reptilian horror has scales like rusted iron and eyes that gleam with petrifying malice. Its gaze seems to bore into your very soul, and you feel your muscles stiffen just from being near it.",
+   "level": 18,
+   "alignment": -500,
+   "hp_dice": "18d10+200",
+   "damage_dice": "3d8+12",
+   "gold": 150,
+   "exp": 2500,
+   "armor_class": -20,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "special_attacks": [
+    "petrify_gaze"
+   ],
+   "inventory": [
+    7310,
+    7304
+   ]
   },
-  "mobs": {
-    "7301": {
-      "vnum": 7301,
-      "name": "basilisk",
-      "short_desc": "a basilisk",
-      "long_desc": "A serpentine creature with deadly eyes lurks here.",
-      "description": "This reptilian horror has scales like rusted iron and eyes that gleam with petrifying malice. Its gaze seems to bore into your very soul, and you feel your muscles stiffen just from being near it.",
-      "level": 18,
-      "alignment": -500,
-      "hp_dice": "18d10+200",
-      "damage_dice": "3d8+12",
-      "gold": 150,
-      "exp": 2500,
-      "armor_class": -20,
-      "flags": [
-        "aggressive",
-        "sentinel"
-      ],
-      "special_attacks": [
-        "petrify_gaze"
-      ],
-      "inventory": [
-        7310,
-        7304
-      ]
-    },
-    "7302": {
-      "vnum": 7302,
-      "name": "flayer",
-      "short_desc": "a flayer",
-      "long_desc": "A gaunt humanoid with elongated fingers crouches here.",
-      "description": "This emaciated creature has grey, rubbery skin stretched tight over an angular frame. Its fingers end in razor-sharp claws, and its eyeless face seems to sense your presence through some unnatural means.",
-      "level": 20,
-      "alignment": -700,
-      "hp_dice": "20d10+250",
-      "damage_dice": "4d6+15",
-      "gold": 200,
-      "exp": 3000,
-      "armor_class": -30,
-      "flags": [
-        "aggressive",
-        "aware"
-      ],
-      "special_attacks": [
-        "psychic_scream"
-      ],
-      "inventory": [
-        7309,
-        7303
-      ]
-    },
-    "7303": {
-      "vnum": 7303,
-      "name": "mind flayer",
-      "short_desc": "a mind flayer",
-      "long_desc": "A tentacled horror floats menacingly before you.",
-      "description": "This aberration defies natural law. Its bulbous head is dominated by four writhing tentacles where a mouth should be. Pupilless white eyes regard you with cold, alien intelligence. Psionic energy crackles around its elongated fingers.",
-      "level": 24,
-      "alignment": -900,
-      "hp_dice": "24d10+350",
-      "damage_dice": "4d8+20",
-      "gold": 400,
-      "exp": 5000,
-      "armor_class": -50,
-      "flags": [
-        "aggressive",
-        "aware",
-        "no_charm",
-        "no_sleep"
-      ],
-      "special_attacks": [
-        "mind_blast",
-        "extract_brain"
-      ],
-      "inventory": [
-        7301,
-        7310
-      ]
-    },
-    "7304": {
-      "vnum": 7304,
-      "name": "master mindflayer",
-      "short_desc": "the Master Mindflayer",
-      "long_desc": "The Master Mindflayer towers here, radiating psionic terror!",
-      "description": "This ancient mind flayer is twice the size of its lesser kin. Its purple-black skin pulses with barely contained psionic energy, and its tentacles writhe with eager anticipation. Centuries of consuming intellects have made it impossibly powerful. Its presence alone makes your thoughts feel like they're being siphoned away.",
-      "level": 30,
-      "alignment": -1000,
-      "hp_dice": "30d12+600",
-      "damage_dice": "5d10+30",
-      "gold": 2000,
-      "exp": 15000,
-      "armor_class": -80,
-      "flags": [
-        "aggressive",
-        "aware",
-        "no_charm",
-        "no_sleep",
-        "no_summon",
-        "sentinel",
-        "boss"
-      ],
-      "special_attacks": [
-        "mind_blast",
-        "dominate",
-        "psychic_crush"
-      ],
-      "special": "boss",
-      "is_boss": true,
-      "boss_mechanics": [
-        "psionic_storm"
-      ],
-      "boss_config": {
-        "enrage_time": 120,
-        "enrage_multiplier": 1.6,
-        "ability_interval": 5.0,
-        "phases": [
-          {
-            "threshold": 50,
-            "message": "\u001b[35mThe Master Mindflayer's eyes glow with terrible psychic power!\u001b[0m"
-          }
-        ],
-        "abilities": [
-          {
-            "name": "Mind Blast",
-            "telegraph": "\u001b[35mThe Master Mindflayer focuses psychic energy!\u001b[0m",
-            "cast_time": 2,
-            "cooldown": 12,
-            "damage_dice": "4d6+10",
-            "aoe": true,
-            "dodge": false,
-            "interruptible": true
-          },
-          {
-            "name": "Psychic Lance",
-            "telegraph": "The Mindflayer targets your mind!",
-            "cast_time": 1,
-            "cooldown": 8,
-            "damage_dice": "4d8+8"
-          },
-          {
-            "name": "Mind Control",
-            "telegraph": "\u001b[35mThe Master Mindflayer attempts to dominate a mind!\u001b[0m",
-            "cast_time": 3,
-            "cooldown": 25,
-            "damage": 0,
-            "interruptible": true,
-            "on_success_message": "A party member turns against the group briefly!",
-            "min_phase": 1
-          },
-          {
-            "name": "Psychic Storm",
-            "telegraph": "\u001b[35mPsychic energy erupts from the Mindflayer!\u001b[0m",
-            "cast_time": 3,
-            "cooldown": 15,
-            "damage_dice": "5d8+12",
-            "aoe": true,
-            "dodge": false,
-            "interruptible": true,
-            "vulnerable_after": 4,
-            "min_phase": 1
-          }
-        ]
-      },
-      "boss": true,
-      "boss_id": "master_mindflayer",
-      "inventory": [
-        7311
-      ]
-    }
+  "7302": {
+   "vnum": 7302,
+   "name": "flayer",
+   "short_desc": "a flayer",
+   "long_desc": "A gaunt humanoid with elongated fingers crouches here.",
+   "description": "This emaciated creature has grey, rubbery skin stretched tight over an angular frame. Its fingers end in razor-sharp claws, and its eyeless face seems to sense your presence through some unnatural means.",
+   "level": 20,
+   "alignment": -700,
+   "hp_dice": "20d10+250",
+   "damage_dice": "4d6+15",
+   "gold": 200,
+   "exp": 3000,
+   "armor_class": -30,
+   "flags": [
+    "aggressive",
+    "aware"
+   ],
+   "special_attacks": [
+    "psychic_scream"
+   ],
+   "inventory": [
+    7309,
+    7303
+   ]
   },
-  "objects": {
-    "7300": {
-      "vnum": 7300,
-      "name": "psionic blade",
-      "short_desc": "a shimmering psionic blade",
-      "room_desc": "A blade of pure psychic energy hums on the ground.",
-      "type": "weapon",
-      "item_type": "weapon",
-      "weight": 5,
-      "value": 5000,
-      "damage_dice": "3d8+8",
-      "weapon_type": "exotic"
-    },
-    "7301": {
-      "vnum": 7301,
-      "name": "mindflayer robes",
-      "short_desc": "robes of the mindflayer",
-      "room_desc": "Dark purple robes emanate psychic energy.",
-      "type": "armor",
-      "item_type": "armor",
-      "weight": 8,
-      "value": 4000,
-      "armor": 14,
-      "wear_slot": "body"
-    },
-    "7302": {
-      "vnum": 7302,
-      "name": "tentacle crown",
-      "short_desc": "a crown of writhing tentacles",
-      "room_desc": "A horrific crown of tentacles writhes on the floor.",
-      "type": "armor",
-      "item_type": "armor",
-      "weight": 3,
-      "value": 6000,
-      "armor": 10,
-      "wear_slot": "head"
-    },
-    "7303": {
-      "vnum": 7303,
-      "name": "potion of psionic resistance",
-      "short_desc": "a potion of psionic resistance",
-      "room_desc": "A glowing purple potion sits here.",
-      "type": "potion",
-      "item_type": "potion",
-      "weight": 1,
-      "value": 800
-    },
-    "7304": {
-      "vnum": 7304,
-      "name": "brain jar",
-      "short_desc": "a jar containing a preserved brain",
-      "room_desc": "A jar with a floating brain sits here.",
-      "type": "treasure",
-      "item_type": "treasure",
-      "weight": 4,
-      "value": 3000
-    },
-    "7305": {
-      "vnum": 7305,
-      "name": "elder brain fragment",
-      "short_desc": "a fragment of the elder brain",
-      "room_desc": "A pulsing fragment of brain tissue lies here.",
-      "type": "treasure",
-      "item_type": "treasure",
-      "weight": 2,
-      "value": 10000
-    },
-    "7306": {
-      "vnum": 7306,
-      "name": "thrall collar",
-      "short_desc": "a psychic thrall collar",
-      "room_desc": "A metal collar crackles with psychic energy.",
-      "type": "armor",
-      "item_type": "armor",
-      "weight": 2,
-      "value": 2500,
-      "armor": 6,
-      "wear_slot": "neck"
-    },
-    "7307": {
-      "vnum": 7307,
-      "name": "cerebral shield",
-      "short_desc": "a shield of mental fortitude",
-      "room_desc": "A translucent shield pulses with thought energy.",
-      "type": "armor",
-      "item_type": "armor",
-      "weight": 10,
-      "value": 4500,
-      "armor": 16,
-      "wear_slot": "shield"
-    },
-    "7308": {
-      "vnum": 7308,
-      "name": "illithid key",
-      "short_desc": "a strange organic key",
-      "room_desc": "A fleshy, organic key lies here.",
-      "type": "key",
-      "item_type": "key",
-      "weight": 1,
-      "value": 0
-    },
-    "7309": {
-      "vnum": 7309,
-      "name": "potion of healing",
-      "short_desc": "a potion of healing",
-      "room_desc": "A red potion sits here.",
-      "type": "potion",
-      "item_type": "potion",
-      "weight": 1,
-      "value": 500
-    }
+  "7303": {
+   "vnum": 7303,
+   "name": "mind flayer",
+   "short_desc": "a mind flayer",
+   "long_desc": "A tentacled horror floats menacingly before you.",
+   "description": "This aberration defies natural law. Its bulbous head is dominated by four writhing tentacles where a mouth should be. Pupilless white eyes regard you with cold, alien intelligence. Psionic energy crackles around its elongated fingers.",
+   "level": 24,
+   "alignment": -900,
+   "hp_dice": "24d10+350",
+   "damage_dice": "4d8+20",
+   "gold": 400,
+   "exp": 5000,
+   "armor_class": -50,
+   "flags": [
+    "aggressive",
+    "aware",
+    "no_charm",
+    "no_sleep"
+   ],
+   "special_attacks": [
+    "mind_blast",
+    "extract_brain"
+   ],
+   "inventory": [
+    7301,
+    7310
+   ]
+  },
+  "7304": {
+   "vnum": 7304,
+   "name": "master mindflayer",
+   "short_desc": "the Master Mindflayer",
+   "long_desc": "The Master Mindflayer towers here, radiating psionic terror!",
+   "description": "This ancient mind flayer is twice the size of its lesser kin. Its purple-black skin pulses with barely contained psionic energy, and its tentacles writhe with eager anticipation. Centuries of consuming intellects have made it impossibly powerful. Its presence alone makes your thoughts feel like they're being siphoned away.",
+   "level": 30,
+   "alignment": -1000,
+   "hp_dice": "30d12+600",
+   "damage_dice": "5d10+30",
+   "gold": 2000,
+   "exp": 15000,
+   "armor_class": -80,
+   "flags": [
+    "aggressive",
+    "aware",
+    "no_charm",
+    "no_sleep",
+    "no_summon",
+    "sentinel",
+    "boss"
+   ],
+   "special_attacks": [
+    "mind_blast",
+    "dominate",
+    "psychic_crush"
+   ],
+   "special": "boss",
+   "is_boss": true,
+   "boss_mechanics": [
+    "psionic_storm"
+   ],
+   "boss_config": {
+    "enrage_time": 120,
+    "enrage_multiplier": 1.6,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "\u001b[35mThe Master Mindflayer's eyes glow with terrible psychic power!\u001b[0m"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Mind Blast",
+      "telegraph": "\u001b[35mThe Master Mindflayer focuses psychic energy!\u001b[0m",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "4d6+10",
+      "aoe": true,
+      "dodge": false,
+      "interruptible": true
+     },
+     {
+      "name": "Psychic Lance",
+      "telegraph": "The Mindflayer targets your mind!",
+      "cast_time": 1,
+      "cooldown": 8,
+      "damage_dice": "4d8+8"
+     },
+     {
+      "name": "Mind Control",
+      "telegraph": "\u001b[35mThe Master Mindflayer attempts to dominate a mind!\u001b[0m",
+      "cast_time": 3,
+      "cooldown": 25,
+      "damage": 0,
+      "interruptible": true,
+      "on_success_message": "A party member turns against the group briefly!",
+      "min_phase": 1
+     },
+     {
+      "name": "Psychic Storm",
+      "telegraph": "\u001b[35mPsychic energy erupts from the Mindflayer!\u001b[0m",
+      "cast_time": 3,
+      "cooldown": 15,
+      "damage_dice": "5d8+12",
+      "aoe": true,
+      "dodge": false,
+      "interruptible": true,
+      "vulnerable_after": 4,
+      "min_phase": 1
+     }
+    ]
+   },
+   "boss": true,
+   "boss_id": "master_mindflayer",
+   "inventory": [
+    7311
+   ]
   }
+ },
+ "objects": {
+  "7300": {
+   "vnum": 7300,
+   "name": "psionic blade",
+   "short_desc": "a shimmering psionic blade",
+   "room_desc": "A blade of pure psychic energy hums on the ground.",
+   "type": "weapon",
+   "item_type": "weapon",
+   "weight": 5,
+   "value": 5000,
+   "damage_dice": "3d8+8",
+   "weapon_type": "exotic"
+  },
+  "7301": {
+   "vnum": 7301,
+   "name": "mindflayer robes",
+   "short_desc": "robes of the mindflayer",
+   "room_desc": "Dark purple robes emanate psychic energy.",
+   "type": "armor",
+   "item_type": "armor",
+   "weight": 8,
+   "value": 4000,
+   "armor": 14,
+   "wear_slot": "body"
+  },
+  "7302": {
+   "vnum": 7302,
+   "name": "tentacle crown",
+   "short_desc": "a crown of writhing tentacles",
+   "room_desc": "A horrific crown of tentacles writhes on the floor.",
+   "type": "armor",
+   "item_type": "armor",
+   "weight": 3,
+   "value": 6000,
+   "armor": 10,
+   "wear_slot": "head"
+  },
+  "7303": {
+   "vnum": 7303,
+   "name": "potion of psionic resistance",
+   "short_desc": "a potion of psionic resistance",
+   "room_desc": "A glowing purple potion sits here.",
+   "type": "potion",
+   "item_type": "potion",
+   "weight": 1,
+   "value": 800
+  },
+  "7304": {
+   "vnum": 7304,
+   "name": "brain jar",
+   "short_desc": "a jar containing a preserved brain",
+   "room_desc": "A jar with a floating brain sits here.",
+   "type": "treasure",
+   "item_type": "treasure",
+   "weight": 4,
+   "value": 3000
+  },
+  "7305": {
+   "vnum": 7305,
+   "name": "elder brain fragment",
+   "short_desc": "a fragment of the elder brain",
+   "room_desc": "A pulsing fragment of brain tissue lies here.",
+   "type": "treasure",
+   "item_type": "treasure",
+   "weight": 2,
+   "value": 10000
+  },
+  "7306": {
+   "vnum": 7306,
+   "name": "thrall collar",
+   "short_desc": "a psychic thrall collar",
+   "room_desc": "A metal collar crackles with psychic energy.",
+   "type": "armor",
+   "item_type": "armor",
+   "weight": 2,
+   "value": 2500,
+   "armor": 6,
+   "wear_slot": "neck"
+  },
+  "7307": {
+   "vnum": 7307,
+   "name": "cerebral shield",
+   "short_desc": "a shield of mental fortitude",
+   "room_desc": "A translucent shield pulses with thought energy.",
+   "type": "armor",
+   "item_type": "armor",
+   "weight": 10,
+   "value": 4500,
+   "armor": 16,
+   "wear_slot": "shield"
+  },
+  "7308": {
+   "vnum": 7308,
+   "name": "illithid key",
+   "short_desc": "a strange organic key",
+   "room_desc": "A fleshy, organic key lies here.",
+   "type": "key",
+   "item_type": "key",
+   "weight": 1,
+   "value": 0
+  },
+  "7309": {
+   "vnum": 7309,
+   "name": "potion of healing",
+   "short_desc": "a potion of healing",
+   "room_desc": "A red potion sits here.",
+   "type": "potion",
+   "item_type": "potion",
+   "weight": 1,
+   "value": 500
+  }
+ },
+ "rooms": {
+  "7350": {
+   "vnum": 7350,
+   "name": "The Outer Warrens",
+   "description": "The tunnel opens into a wider passage slick with moisture and something\nfar more sinister. Strange symbols are carved into the walls, glowing\nfaintly with sickly purple light. The air itself feels wrong here, as\nif reality is slightly bent. Scratching sounds echo from deeper within.",
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "dark"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 7351,
+     "description": "The passage continues into darkness."
+    },
+    "east": {
+     "to_room": 7344,
+     "description": "To the east lies The South End Of The Pool."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 7301,
+     "max": 2
+    },
+    {
+     "vnum": 7302,
+     "max": 1
+    }
+   ]
+  },
+  "7351": {
+   "vnum": 7351,
+   "name": "The Feeding Chamber",
+   "description": "Bones litter the floor of this circular chamber - humanoid bones, picked\nclean of all flesh. The walls pulse with a faint bioluminescence, and\nalcoves carved into the stone hold more grisly remains. Something has\nbeen feeding here for a very long time. The stench is overwhelming.",
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "dark"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 7350,
+     "description": "The outer warrens lie to the south."
+    },
+    "east": {
+     "to_room": 7352,
+     "description": "An ornate archway leads to the inner sanctum."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 7302,
+     "max": 2
+    },
+    {
+     "vnum": 7303,
+     "max": 1
+    }
+   ]
+  },
+  "7352": {
+   "vnum": 7352,
+   "name": "The Mindflayer's Sanctum",
+   "description": "You have entered the heart of the horror. This vast chamber thrums with\npsionic energy that makes your skull ache. A throne of fused bone and\nmetal dominates the center, surrounded by pools of dark, viscous fluid.\nTentacled shapes writhe in your peripheral vision. The Master waits.",
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "dark",
+    "no_magic",
+    "no_teleport"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 7351,
+     "description": "The feeding chamber lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 7303,
+     "max": 2
+    },
+    {
+     "vnum": 7304,
+     "max": 1
+    }
+   ]
+  }
+ }
 }

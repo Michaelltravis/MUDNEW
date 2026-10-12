@@ -1,0 +1,103 @@
+> consider mage
+
+=== Considering: mage ===
+mage might put up a fight.
+Threat: Moderate  |  Level: 12 vs You 10  |  XP: yellow (+15% exp)
+Outcome: Be ready to heal or flee.
+Tactics: OB/DB/PB You -2/-20/0% | mage +7/+34/0%
+State: Stance Normal | Move steady | Defenses: baseline
+Health: excellent condition
+Warning: Flees when wounded
+
+
+73/73hp 146/146mp 178/178mv [Momentum: ████░░░░░░ 4/10]> 
+[t=   0.0s] > kill mage
+[t=   0.0s] You attack mage!
+[t=   0.0s] Your blow lands squarely and injures mage! [18 damage]
+[t=   0.0s] mage [█████████░] [209/227]
+[t=   0.0s] 73/73hp 146/146mp 177/178mv [Momentum: ████░░░░░░ 4/10] [mage: 209/227]> 
+[t=   0.0s] > bash mage
+[t=   0.0s] Your bash scratch mage! [5]
+[t=   0.0s] mage [████████░░] [204/227]
+[t=   0.0s] mage is stunned!
+[t=   0.0s] [Momentum: █████░░░░░ 5/10]
+[t=   0.0s] 73/73hp 146/146mp 177/178mv [Momentum: █████░░░░░ 5/10] [mage: 204/227]> 
+[t=   0.9s] Your blow connects — it hits mage! [11 damage]
+[t=   0.9s] 💥 mage reels — STAGGERED! Strike now!
+[t=   0.9s] mage [████████░░] [193/227]
+[t=   0.9s] 73/73hp 146/146mp 176/178mv [Momentum: █████░░░░░ 5/10] [mage: 193/227]> 
+[t=   0.9s] mage murmurs arcane words and a shimmering aura surrounds them!
+[t=   3.9s] > swing
+[t=   3.9s] You read the rhythm — your next strike will land PERFECTLY!
+[t=   3.9s] 73/73hp 146/146mp 178/178mv [Momentum: █████░░░░░ 5/10] [mage: 193/227]> 
+[t=   4.9s] Your attack goes wide!
+[t=   4.9s] 73/73hp 146/146mp 177/178mv [Momentum: █████░░░░░ 5/10] [mage: 193/227]> 
+[t=   8.0s] > swing
+[t=   8.0s] You're already poised for a perfect strike.
+[t=   8.0s] 73/73hp 146/146mp 178/178mv [Momentum: █████░░░░░ 5/10] [mage: 193/227]> 
+[t=   9.0s] ★ PERFECT STRIKE!
+[t=   9.0s] Your blow hits mage! [13 damage]
+[t=   9.0s] mage [███████░░░] [180/227]
+[t=   9.0s] 73/73hp 146/146mp 177/178mv [Momentum: █████░░░░░ 5/10] [mage: 180/227]> 
+[t=   9.0s] mage's pounding blow hits you — it grazes you! [9 damage]
+[t=  10.0s] > cleave mage
+[t=  10.0s] Your cleave barely scratch mage! [3]
+[t=  10.0s] mage [███████░░░] [177/227]
+[t=  10.0s] [Momentum: ██████░░░░ 6/10]
+[t=  10.0s] 64/73hp 146/146mp 177/178mv [Momentum: ██████░░░░ 6/10] [mage: 177/227]> 
+[t=  13.0s] > swing
+[t=  13.0s] You read the rhythm — your next strike will land PERFECTLY!
+[t=  13.0s] 65/73hp 146/146mp 178/178mv [Momentum: ██████░░░░ 6/10] [mage: 177/227]> 
+[t=  13.0s] ⚠ mage begins an incantation — arcane power crackles around it! (interrupt it!)
+[t=  13.0s] ★ PERFECT STRIKE!
+[t=  13.0s] Your blow lands squarely and mauls mage! [24 damage]
+[t=  13.0s] mage [██████░░░░] [153/227]
+[t=  13.0s] 65/73hp 146/146mp 177/178mv [Momentum: ██████░░░░ 6/10] [mage: 153/227]> 
+[t=  13.0s] mage's pounding blow hits home, a glancing one! [3 damage]
+[t=  13.0s] > interrupt
+[t=  13.0s] You lunge in but fail to break the Fireball!
+[t=  13.0s] 62/73hp 146/146mp 177/178mv [Momentum: ██████░░░░ 6/10] [mage: 153/227]> 
+[t=  16.0s] > swing
+[t=  16.0s] You read the rhythm — your next strike will land PERFECTLY!
+[t=  16.0s] 62/73hp 146/146mp 177/178mv [Momentum: ██████░░░░ 6/10] [mage: 153/227]> 
+[t=  17.1s] ★ PERFECT STRIKE!
+[t=  17.1s] Your blow connects — it wounds mage! [19 damage]
+[t=  17.1s] 💥 mage reels — STAGGERED! Strike now!
+[t=  17.1s] mage [█████░░░░░] [134/227]
+[t=  17.1s] 63/73hp 146/146mp 177/178mv [Momentum: ██████░░░░ 6/10] [mage: 134/227]> 
+[t=  19.1s] > bash mage
+[t=  19.1s] Your bash scratch mage! [6]
+[t=  19.1s] mage [█████░░░░░] [125/227]
+[t=  19.1s] mage is stunned!
+[t=  19.1s] [Momentum: ███████░░░ 7/10]
+[t=  19.1s] 63/73hp 146/146mp 177/178mv [Momentum: ███████░░░ 7/10] [mage: 125/227]> 
+[t=  21.1s] Your attack misses mage.
+[t=  21.1s] 63/73hp 146/146mp 176/178mv [Momentum: ███████░░░ 7/10] [mage: 125/227]> 
+[t=  24.1s] > swing
+[t=  24.1s] You read the rhythm — your next strike will land PERFECTLY!
+[t=  24.1s] 64/73hp 146/146mp 178/178mv [Momentum: ███████░░░ 7/10] [mage: 125/227]> 
+[t=  25.1s] ⚠ mage begins an incantation — arcane power crackles around it! (interrupt it!)
+[t=  25.1s] ★ PERFECT STRIKE!
+[t=  25.1s] Your blow wounds mage! [20 damage]
+[t=  25.2s] mage [████░░░░░░] [105/227]
+[t=  25.2s] 64/73hp 146/146mp 177/178mv [Momentum: ███████░░░ 7/10] [mage: 105/227]> 
+[t=  25.2s] mage's light pounding blow hits you! [5 damage]
+[t=  25.2s] > interrupt
+[t=  25.2s] You lunge in but fail to break the Fireball!
+[t=  25.2s] 59/73hp 146/146mp 177/178mv [Momentum: ███████░░░ 7/10] [mage: 105/227]> 
+[t=  28.2s] > swing
+[t=  28.2s] You read the rhythm — your next strike will land PERFECTLY!
+[t=  28.2s] 60/73hp 146/146mp 178/178mv [Momentum: ███████░░░ 7/10] [mage: 105/227]> 
+[t=  28.2s] > cleave mage
+[t=  28.2s] Your cleave tickle mage! [1]
+[t=  28.2s] mage [████░░░░░░] [104/227]
+[t=  28.2s] [Momentum: ████████░░ 8/10]
+[t=  28.2s] 60/73hp 146/146mp 178/178mv [Momentum: ████████░░ 8/10] [mage: 104/227]> 
+[t=  29.2s] You swing at mage but miss!
+[t=  29.2s] 60/73hp 146/146mp 177/178mv [Momentum: ████████░░ 8/10] [mage: 104/227]> 
+[t=  29.2s] mage hurls a crackling fireball at Newwseut! [82]
+[t=  29.2s] mage's spell hits you for 82 damage!
+[t=  29.2s] Death claims you!
+[t=  29.2s] You feel your soul slipping away...
+[t=  29.2s] You lose 1 experience points.
+[t=  29.2s] You drop 23 gold coins.

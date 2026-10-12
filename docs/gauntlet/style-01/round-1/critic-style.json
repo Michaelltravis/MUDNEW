@@ -1,0 +1,33 @@
+{
+  "piece": "style",
+  "pick": "B",
+  "per_label": {
+    "city": "A",
+    "forest": "B",
+    "dungeon": "B",
+    "cave": "B",
+    "water": "B",
+    "combat": "B",
+    "fight": "B"
+  },
+  "reasons": [
+    "Lighting and mood: B has per-biome light falloff and depth in forest (canopy shadow and vignette over the path), dungeon (cold fog with a bright pool under the hero), cave (near-black edges with a purple glow) and water (dark reef masses sinking into the blue). A is the same flat, evenly lit tile sheet in every label; the cave in A is a flat black void and the water is a single flat blue sheet.",
+    "Combat readability: in combat and fight, B shows a named enemy frame with HP, an 'INCOMING CRUSHING BLOW 0.3s' timer, a red telegraph ring on the floor, a '! CRUSHING BLOW' banner, a red screen flash at 1.0s/4.0s, floating -4/-14 numbers and a final 'STAGGERED!' result, all without reading prose. A's fight storyboard is 8 nearly identical frames of a tiny hero next to a rat with only a small '6' and a 'You killed a rat' bar text.",
+    "Where A wins (city): A's houses, trees, cobble and UI are one consistent pixel style and the blonde sword hero and NPCs read at a glance; B's city is a smeared, upscaled cobble texture, the hero is a dark grey smudge with no face, the two NPCs are unreadable silhouettes, and the dungeon gravestones are flat cubes with smiley faces that break the painted look. B wins on atmosphere and combat, not on character or prop craft."
+  ],
+  "fixes": [
+    {
+      "what": "Add a lighting pass: ambient tint per biome plus radial light falloff around the hero, torches and lamps, and a dark vignette at screen edges; the cave should be lit by a point light, not a flat black fill.",
+      "file_hint": "src/web_isometric/platformer/painter.js"
+    },
+    {
+      "what": "Give each biome a distinct palette and ground treatment (cold blue-grey dungeon fog, deep teal water with drifting highlights, dappled forest shadow) instead of the one saturated green grass and flat blue water everywhere.",
+      "file_hint": "src/web_isometric/platformer/themes-zones.js"
+    },
+    {
+      "what": "Add on-screen combat feedback: an enemy frame with HP and name, a floor telegraph ring plus wind-up timer before a big hit, a screen flash on damage taken, large floating damage numbers and an outcome banner (stagger/kill) so the fight reads without the log text.",
+      "file_hint": "src/web_isometric/platformer/ui.js"
+    }
+  ],
+  "confidence": "medium"
+}

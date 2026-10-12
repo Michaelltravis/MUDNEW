@@ -1,0 +1,106 @@
+{
+  "name": "The Dawnless Chapel",
+  "intro": "The embers flare and the Mountain Pass is gone. You stand in a chapel three hundred years ago, on the morning the sun did not rise \u2014 and the Eclipse is already inside.",
+  "rooms": [
+    {
+      "key": "narthex",
+      "name": "The Dawnless Chapel - The Ruined Narthex",
+      "sector": "dungeon",
+      "description": "The chapel's entrance hall lies in ruin, its holy water fonts cracked and dry. North, the great doors into the nave are barred from within.",
+      "exits": {
+        "north": {
+          "to": "nave",
+          "door": "narthex doors"
+        }
+      }
+    },
+    {
+      "key": "nave",
+      "name": "The Dawnless Chapel - The Nave of Night",
+      "sector": "inside",
+      "description": "Rows of overturned pews fill a nave lit only by the dark. Every window shows the same black sun. North, a rail closes off the altar.",
+      "exits": {
+        "south": {
+          "to": "narthex",
+          "door": "narthex doors"
+        },
+        "north": {
+          "to": "altar",
+          "door": "altar rail"
+        }
+      }
+    },
+    {
+      "key": "altar",
+      "name": "The Dawnless Chapel - The Altar of the Eclipse",
+      "sector": "inside",
+      "description": "The altar has been turned to face the wrong way. Above it, where the order's dawn window should be, there is only a disc of perfect black.",
+      "exits": {
+        "south": {
+          "to": "nave",
+          "door": "altar rail"
+        }
+      }
+    }
+  ],
+  "entrance": "narthex",
+  "waves": [
+    {
+      "room": "narthex",
+      "mobs": [
+        [
+          9754,
+          2
+        ],
+        [
+          9755,
+          1
+        ]
+      ],
+      "text": "Dawnless zealots rise from the rubble, blades drawn!"
+    },
+    {
+      "room": "nave",
+      "mobs": [
+        [
+          9754,
+          2
+        ],
+        [
+          9755,
+          1
+        ]
+      ],
+      "text": "The shadows in the nave stand up and take shape!"
+    },
+    {
+      "room": "nave",
+      "mobs": [
+        [
+          9755,
+          3
+        ]
+      ],
+      "text": "Eclipse shades pour down from the dark windows!"
+    }
+  ],
+  "gates": [
+    {
+      "after": 0,
+      "room": "narthex",
+      "dir": "north",
+      "text": "The bar falls from the nave doors."
+    },
+    {
+      "after": 2,
+      "room": "nave",
+      "dir": "north",
+      "text": "The altar rail swings open. Something rises behind it."
+    }
+  ],
+  "boss": {
+    "vnum": 9756,
+    "room": "altar",
+    "text": "Morvane the Eclipsed rises before the altar, a black sun burning in his chest. 'The dawn is a lie your order tells its children,' he says. 'Let me show you the truth.'"
+  }
+}

@@ -64,207 +64,23 @@ PROC_TYPES = {
     'on_defend': 'When hit',
 }
 
-async def trigger_on_hit_procs(attacker, defender, damage: int, weapon=None):
-    """Called from combat when attacker lands a hit. Checks weapon + all equipped items."""
-    if not hasattr(attacker, 'equipment'):
-        return 0
-    
-    extra_damage = 0
-    c = Config().COLORS
-    
-    items_to_check = []
-    if weapon:
-        items_to_check.append(weapon)
-    for slot, item in attacker.equipment.items():
-        if item and item != weapon and hasattr(item, 'procs'):
-            items_to_check.append(item)
-    
-    for item in items_to_check:
-        procs = getattr(item, 'procs', [])
-        if not procs:
-            continue
-        for proc in procs:
-            if proc.get('type') != 'on_hit':
-                continue
-            chance = proc.get('chance', 10)
-            if random.randint(1, 100) > chance:
-                continue
-            
-            effect = proc.get('effect', '')
-            proc_dmg = proc.get('damage', 0)
-            
-            if effect == 'phantom_drown':
-                actual = random.randint(proc_dmg // 2, proc_dmg)
-                extra_damage += actual
-                if hasattr(attacker, 'send'):
-                    await attacker.send(f"{c['bright_cyan']}🌊 Phantom water fills {defender.name}'s lungs — they choke and stagger! [{actual}]{c['reset']}")
-                if hasattr(defender, 'send'):
-                    await defender.send(f"{c['bright_cyan']}🌊 You hear the roar of a drowned ocean — water that isn't there floods your throat! [{actual}]{c['reset']}")
-                await defender.take_damage(actual, attacker)
+# The procs themselves live in procs.py (one engine for legendaries, zone items and sets);
+# these names stay for older callers.
 
-            elif effect == 'gravity_crush':
-                actual = random.randint(proc_dmg // 2, proc_dmg)
-                extra_damage += actual
-                if hasattr(attacker, 'send'):
-                    await attacker.send(f"{c['bright_magenta']}◉ Gravity inverts around {defender.name} — their bones groan under impossible weight! [{actual}]{c['reset']}")
-                if hasattr(defender, 'send'):
-                    await defender.send(f"{c['bright_magenta']}◉ The world crushes inward — gravity itself rejects you! [{actual}]{c['reset']}")
-                await defender.take_damage(actual, attacker)
 
-            elif effect == 'memory_wound':
-                actual = random.randint(proc_dmg // 2, proc_dmg)
-                extra_damage += actual
-                if hasattr(attacker, 'send'):
-                    await attacker.send(f"{c['bright_yellow']}✧ The blade cuts through {defender.name}'s memories — old wounds reopen! [{actual}]{c['reset']}")
-                if hasattr(defender, 'send'):
-                    await defender.send(f"{c['bright_yellow']}✧ Every scar you've ever earned splits open at once! [{actual}]{c['reset']}")
-                await defender.take_damage(actual, attacker)
-
-            elif effect == 'echo_shatter':
-                actual = random.randint(proc_dmg // 2, proc_dmg)
-                extra_damage += actual
-                if hasattr(attacker, 'send'):
-                    await attacker.send(f"{c['bright_white']}🔔 A single perfect note shatters the air around {defender.name}! [{actual}]{c['reset']}")
-                if hasattr(defender, 'send'):
-                    await defender.send(f"{c['bright_white']}🔔 A sound beyond hearing splits your skull from the inside! [{actual}]{c['reset']}")
-                await defender.take_damage(actual, attacker)
-                # Echo chains to one nearby enemy
-                if attacker.room:
-                    for char in attacker.room.characters:
-                        if char != attacker and char != defender and char.is_alive and not hasattr(char, 'connection'):
-                            chain_dmg = actual // 2
-                            if chain_dmg > 0:
-                                if hasattr(attacker, 'send'):
-                                    await attacker.send(f"{c['bright_white']}🔔 The echo rebounds into {char.name}! [{chain_dmg}]{c['reset']}")
-                                await char.take_damage(chain_dmg, attacker)
-                            break
-
-            elif effect == 'rust_devour':
-                actual = random.randint(proc_dmg // 2, proc_dmg)
-                extra_damage += actual
-                if hasattr(attacker, 'send'):
-                    await attacker.send(f"{c['yellow']}🦠 Rust crawls across {defender.name}'s flesh like a living infection! [{actual}]{c['reset']}")
-                if hasattr(defender, 'send'):
-                    await defender.send(f"{c['yellow']}🦠 Your skin oxidizes and flakes — you're rusting alive! [{actual}]{c['reset']}")
-                await defender.take_damage(actual, attacker)
-
-            elif effect == 'glass_splinter':
-                actual = random.randint(proc_dmg // 2, proc_dmg)
-                extra_damage += actual
-                if hasattr(attacker, 'send'):
-                    await attacker.send(f"{c['bright_cyan']}🔷 Glass shards erupt from {defender.name}'s own reflection! [{actual}]{c['reset']}")
-                if hasattr(defender, 'send'):
-                    await defender.send(f"{c['bright_cyan']}🔷 Your reflection shatters outward — glass bites into your flesh! [{actual}]{c['reset']}")
-                await defender.take_damage(actual, attacker)
-                # AoE splash from shards
-                if attacker.room:
-                    for char in attacker.room.characters:
-                        if char != attacker and char != defender and char.is_alive and not hasattr(char, 'connection'):
-                            splash = actual // 3
-                            if splash > 0:
-                                await char.take_damage(splash, attacker)
-
-            elif effect == 'hunger_drain':
-                actual = random.randint(proc_dmg // 2, proc_dmg)
-                extra_damage += actual
-                heal = actual
-                attacker.hp = min(attacker.max_hp, attacker.hp + heal)
-                if hasattr(attacker, 'send'):
-                    await attacker.send(f"{c['bright_red']}👁 The blade feeds — {defender.name}'s vitality pours into you! (+{heal} HP) [{actual}]{c['reset']}")
-                if hasattr(defender, 'send'):
-                    await defender.send(f"{c['bright_red']}👁 Something hollow and starving reaches through the wound and pulls! [{actual}]{c['reset']}")
-                await defender.take_damage(actual, attacker)
-
-            elif effect == 'clockwork_unwind':
-                actual = random.randint(proc_dmg // 2, proc_dmg)
-                extra_damage += actual
-                if hasattr(attacker, 'send'):
-                    await attacker.send(f"{c['yellow']}⚙ Gears grind — {defender.name}'s movements stutter and unwind! [{actual}]{c['reset']}")
-                if hasattr(defender, 'send'):
-                    await defender.send(f"{c['yellow']}⚙ Your joints lock, your muscles seize — time runs backward through your body! [{actual}]{c['reset']}")
-                await defender.take_damage(actual, attacker)
-
-            elif effect == 'root_pierce':
-                actual = random.randint(proc_dmg // 2, proc_dmg)
-                extra_damage += actual
-                if hasattr(attacker, 'send'):
-                    await attacker.send(f"{c['green']}🌿 Barbed roots erupt from the wound and burrow deeper into {defender.name}! [{actual}]{c['reset']}")
-                await defender.take_damage(actual, attacker)
-
-            elif effect == 'void_cut':
-                actual = random.randint(proc_dmg // 2, proc_dmg)
-                extra_damage += actual
-                if hasattr(attacker, 'send'):
-                    await attacker.send(f"{c['bright_magenta']}⊘ The blade cuts a seam in reality — {defender.name} bleeds into the void! [{actual}]{c['reset']}")
-                if hasattr(defender, 'send'):
-                    await defender.send(f"{c['bright_magenta']}⊘ A wound opens that leads nowhere — your essence leaks into emptiness! [{actual}]{c['reset']}")
-                await defender.take_damage(actual, attacker)
-
-            elif effect == 'dream_fracture':
-                actual = random.randint(proc_dmg // 2, proc_dmg)
-                extra_damage += actual
-                if hasattr(attacker, 'send'):
-                    await attacker.send(f"{c['bright_magenta']}💤 {defender.name} flickers — caught between waking and dreaming! [{actual}]{c['reset']}")
-                if hasattr(defender, 'send'):
-                    await defender.send(f"{c['bright_magenta']}💤 Reality dissolves — are you awake? Were you ever? [{actual}]{c['reset']}")
-                await defender.take_damage(actual, attacker)
-
-    return extra_damage
+async def trigger_on_hit_procs(attacker, defender, damage: int = 0, weapon=None):
+    import procs
+    return await procs.on_hit(attacker, defender, weapon)
 
 
 async def trigger_on_kill_procs(killer, victim):
-    """Called when killer defeats victim. Check all equipped items."""
-    if not hasattr(killer, 'equipment'):
-        return
-    c = Config().COLORS
-    
-    for slot, item in killer.equipment.items():
-        if not item:
-            continue
-        procs = getattr(item, 'procs', [])
-        for proc in procs:
-            if proc.get('type') != 'on_kill':
-                continue
-            effect = proc.get('effect', '')
-            if effect == 'restore_hp':
-                pct = proc.get('percent', 10)
-                heal = int(killer.max_hp * pct / 100)
-                killer.hp = min(killer.max_hp, killer.hp + heal)
-                if hasattr(killer, 'send'):
-                    await killer.send(f"{c['bright_green']}💚 {item.short_desc} restores {heal} HP on the kill!{c['reset']}")
-            elif effect == 'restore_mana':
-                pct = proc.get('percent', 5)
-                restore = int(killer.max_mana * pct / 100)
-                killer.mana = min(killer.max_mana, killer.mana + restore)
-                if hasattr(killer, 'send'):
-                    await killer.send(f"{c['bright_cyan']}💙 {item.short_desc} restores {restore} mana!{c['reset']}")
-            elif effect == 'absorb_echo':
-                pct = proc.get('percent', 5)
-                heal = int(killer.max_hp * pct / 100)
-                restore = int(killer.max_mana * pct / 100)
-                killer.hp = min(killer.max_hp, killer.hp + heal)
-                killer.mana = min(killer.max_mana, killer.mana + restore)
-                if hasattr(killer, 'send'):
-                    await killer.send(f"{c['bright_white']}🌀 {item.short_desc} absorbs the dying echo — +{heal} HP, +{restore} mana!{c['reset']}")
+    import procs
+    await procs.on_kill(killer, victim)
 
 
 def get_equip_bonuses(player) -> dict:
-    """Calculate total equip-proc bonuses from all equipped legendary/epic items.
-    Returns dict like {'damage_pct': 5, 'all_stats': 3, ...}."""
-    bonuses = {}
-    if not hasattr(player, 'equipment'):
-        return bonuses
-    for slot, item in player.equipment.items():
-        if not item:
-            continue
-        procs = getattr(item, 'procs', [])
-        for proc in procs:
-            if proc.get('type') != 'on_equip':
-                continue
-            effect = proc.get('effect', '')
-            value = proc.get('value', 0)
-            bonuses[effect] = bonuses.get(effect, 0) + value
-    return bonuses
+    import procs
+    return procs.equip_totals([it for it in (getattr(player, 'equipment', None) or {}).values() if it])
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -557,70 +373,45 @@ LEGENDARY_ITEMS = {
 # BOSS → LEGENDARY DROP TABLE
 # ═══════════════════════════════════════════════════════════════
 
-BOSS_LEGENDARY_DROPS = {
-    'the drowned apostle': (99001, 3),
-    'drowned apostle': (99001, 3),
-    'the shattered cantor': (99002, 4),
-    'shattered cantor': (99002, 4),
-    'the mercurial alchemist': (99003, 3),
-    'mercurial alchemist': (99003, 3),
-    'the hollow matriarch': (99004, 5),
-    'hollow matriarch': (99004, 5),
-    'the paradox archivist': (99005, 4),
-    'paradox archivist': (99005, 4),
-    'the unborn architect': (99006, 3),
-    'unborn architect': (99006, 3),
-    'the rust sovereign': (99007, 3),
-    'rust sovereign': (99007, 3),
-    'the liminal cartographer': (99008, 4),
-    'liminal cartographer': (99008, 4),
-    'the nameless registrar': (99009, 3),
-    'nameless registrar': (99009, 3),
-    'the paradox engine': (99010, 2),
-    'paradox engine': (99010, 2),
-    'the amber chrysalis': (99011, 3),
-    'amber chrysalis': (99011, 3),
-    'the severed witness': (99012, 5),
-    'severed witness': (99012, 5),
-    'the frayed weaver': (99013, 4),
-    'frayed weaver': (99013, 4),
-    'the sunken castellan': (99014, 4),
-    'sunken castellan': (99014, 4),
-    'the amnesiac king': (99015, 3),
-    'amnesiac king': (99015, 3),
-    'the horologist\'s remnant': (99016, 4),
-    'horologist\'s remnant': (99016, 4),
-    'the voidsmiths\' absence': (99017, 4),
-    'voidsmiths\' absence': (99017, 4),
-    'the mycorrhizal titan': (99018, 4),
-    'mycorrhizal titan': (99018, 4),
-    'the frequency collector': (99019, 5),
-    'frequency collector': (99019, 5),
-    'the cosmo-surgeon': (99020, 4),
-    'cosmo-surgeon': (99020, 4),
+# Each legendary drops from one real boss of fitting level (its vnum), at its chance per kill.
+# Any other boss of level 40 or more has a 1% chance at a random one.
+LEGENDARY_BOSSES = {
+    99001: (5200, 'the mighty beholder', 4),
+    99002: (9772, 'the Carillon Engine', 4),
+    99003: (16025, 'Kaleidos the Prismatic Dragon', 3),
+    99004: (22072, 'Famine', 4),
+    99005: (9716, 'Vaelith the Star-Eater', 4),
+    99006: (9786, 'the Faceless One', 4),
+    99007: (9702, 'the Cinder Smith', 4),
+    99008: (9742, 'the Roc Matriarch', 4),
+    99009: (9756, 'Morvane the Eclipsed', 4),
+    99010: (9712, 'the Echo of the Archmage', 3),
+    99011: (9766, "Xal'thar the First Lich", 3),
+    99012: (9736, 'Auditor Mordessa', 5),
+    99013: (14030, 'Verdraxx the Green Dragon', 4),
+    99014: (9706, 'Gorrund the Siegebreaker', 4),
+    99015: (9776, 'the Mute King', 3),
+    99016: (9732, 'the Keeper of Keys', 4),
+    99017: (9762, 'the Soulbinder', 4),
+    99018: (27010, 'the Oakfather', 5),
+    99019: (9722, 'the Gilded Hierophant', 5),
+    99020: (9726, 'Serathiel the Fallen', 4),
 }
+BOSS_LEGENDARY_DROPS = {boss: (vnum, chance) for vnum, (boss, _, chance) in LEGENDARY_BOSSES.items()}
+for _v, (_boss, _name, _chance) in LEGENDARY_BOSSES.items():
+    LEGENDARY_ITEMS[_v]['drop_source'] = _name[0].upper() + _name[1:]
+
 
 def get_legendary_drop_for_boss(mob) -> Optional[int]:
-    """Check if a boss mob should drop a legendary. Returns vnum or None."""
-    if not getattr(mob, 'is_boss', False):
+    """A legendary a boss drops this time (its own at its chance), or None."""
+    if not (getattr(mob, 'is_boss', False) or 'boss' in (getattr(mob, 'flags', None) or ())):
         return None
-    
-    name = getattr(mob, 'name', '').lower().strip()
-    
-    if name in BOSS_LEGENDARY_DROPS:
-        vnum, chance = BOSS_LEGENDARY_DROPS[name]
-        if random.randint(1, 100) <= chance:
-            return vnum
-    
-    short = getattr(mob, 'short_desc', '').lower().strip()
-    if short in BOSS_LEGENDARY_DROPS:
-        vnum, chance = BOSS_LEGENDARY_DROPS[short]
-        if random.randint(1, 100) <= chance:
-            return vnum
-    
-    if random.randint(1, 100) <= 1:
+    own = BOSS_LEGENDARY_DROPS.get(getattr(mob, 'vnum', None))
+    if own:
+        vnum, chance = own
+        return vnum if random.randint(1, 100) <= chance else None
+    if (getattr(mob, 'level', 0) or 0) >= 40 and random.randint(1, 100) <= 1:
         return random.choice(list(LEGENDARY_ITEMS.keys()))
-    
     return None
 
 
@@ -693,12 +484,12 @@ def format_inspect(item, config=None) -> list:
             if isinstance(aff, dict):
                 lines.append(f"{c['bright_magenta']}  Affects {aff.get('type', '?')}: {aff.get('value', 0):+d}{c['reset']}")
     
-    procs = getattr(item, 'procs', [])
-    if procs:
+    import procs
+    extra = procs.item_lines(item)
+    if extra:
         lines.append(f"{c['bright_cyan']}{'─' * 55}{c['reset']}")
-        for proc in procs:
-            desc_text = proc.get('desc', f"{PROC_TYPES.get(proc.get('type', ''), 'Effect')}: {proc.get('effect', 'unknown')}")
-            lines.append(f"{c['bright_yellow']}  ⚡ {desc_text}{c['reset']}")
+        for text in extra:
+            lines.append(f"{c['bright_yellow']}  {'⚡ ' if not text.startswith(('Set:', '  ')) else ''}{text}{c['reset']}")
     
     lore = getattr(item, 'lore_text', '')
     if lore:

@@ -231,8 +231,9 @@ NAMED_SETS = {
         },
         "bonuses": {
             2: {"int": 3, "damroll": 2},                # +spell power
-            4: {"shadow_resist": 20, "max_hp": 50},     # +drain life (flavor)
+            4: {"shadow_resist": 20, "max_hp": 50},     # +drain life
         },
+        "procs": {4: [{"type": "on_hit", "effect": "grave_drain", "chance": 8}]},
     },
     "chaos_weave": {
         "name": "Chaos Weave",
@@ -246,8 +247,9 @@ NAMED_SETS = {
         },
         "bonuses": {
             2: {"spell_resist": 10, "fire_resist": 10, "cold_resist": 10},  # +all resist
-            4: {"damroll": 4, "hitroll": 4},             # +random proc (flat bonus)
+            4: {"damroll": 4, "hitroll": 4},             # +random proc
         },
+        "procs": {4: [{"type": "on_hit", "effect": "chaos_bolt", "chance": 10}]},
     },
 
     # ── Endgame sets (50-60) ────────────────────────────────────────────
@@ -265,6 +267,7 @@ NAMED_SETS = {
             2: {"str": 3, "dex": 3, "con": 3, "int": 3, "wis": 3},  # +all stats
             4: {"damroll": 8, "hitroll": 8, "max_hp": 80},           # +devastating
         },
+        "procs": {4: [{"type": "on_hit", "effect": "apocalypse_ruin", "chance": 8}]},
     },
     "frostlords_mantle": {
         "name": "Frostlord's Mantle",
@@ -280,6 +283,7 @@ NAMED_SETS = {
             2: {"cold_resist": 25, "damroll": 3},       # +cold power
             4: {"max_hp": 80, "armor_class": 5, "cold_resist": 15},  # +frost aura
         },
+        "procs": {4: [{"type": "on_defend", "effect": "frost_aura", "chance": 20}]},
     },
 }
 
@@ -297,10 +301,95 @@ def get_named_set_bonus(set_id: str, pieces: int) -> dict:
     return bonuses
 
 
+# How many pieces of each set one hero can wear at once (its pieces' slots: two rings, two
+# necklaces, two bracers, one of everything else), filled at world load. A tier that asks for
+# more than that unlocks at that many instead, so every tier can be reached.
+SET_CAPS = {}
+PAIRED_SLOTS = {'finger', 'neck', 'wrist'}
+
+
+def _slot_kind(slot):
+    slot = str(slot or '')
+    return slot.rstrip('12') if slot.rstrip('12') in PAIRED_SLOTS else slot
+
+
+def build_set_caps(world):
+    """set id -> the most of its pieces one hero can wear (SET_CAPS)."""
+    from objects import infer_wear_slot
+    slots = {}
+    for vnum, proto in (getattr(world, 'obj_prototypes', {}) or {}).items():
+        if not isinstance(proto, dict) or proto.get('set_id') in (None, ''):
+            continue
+        sid = proto['set_id']
+        sid = int(sid) if isinstance(sid, str) and sid.isdigit() else sid
+        slot = proto.get('wear_slot') or (proto.get('wear_flags') if isinstance(proto.get('wear_flags'), str) else None)
+        if not slot:
+            class _P:
+                pass
+            probe = _P()
+            probe.wear_slot, probe.item_type = None, proto.get('item_type', '')
+            probe.name, probe.short_desc = proto.get('name', ''), proto.get('short_desc', '')
+            slot = infer_wear_slot(probe) or ('wield' if proto.get('item_type') == 'weapon' else None)
+        if slot:
+            kind = _slot_kind(slot)
+            slots.setdefault(sid, {})[kind] = slots.setdefault(sid, {}).get(kind, 0) + 1
+    caps = {sid: sum(min(n, 2 if kind in PAIRED_SLOTS else 1) for kind, n in by.items()) for sid, by in slots.items()}
+    SET_CAPS.clear()
+    SET_CAPS.update(caps)
+    return caps
+
+
+def tier_need(set_id, threshold):
+    """Pieces a tier really asks for: its number, or every piece one hero can wear."""
+    cap = SET_CAPS.get(set_id)
+    return min(threshold, cap) if cap else threshold
+
+
+def set_name(set_id):
+    if isinstance(set_id, str) and set_id in NAMED_SETS:
+        return NAMED_SETS[set_id]['name']
+    cat = ZONE_CATEGORIES.get(set_id)
+    return f"{cat.replace('_', ' ').title()} Set (zone {set_id})" if cat else f"Set {set_id}"
+
+
+def set_tiers(set_id):
+    """[(pieces needed, {stat: value}, 'always' | 'in_zone', [procs])] for a set, lowest first."""
+    out = []
+    if isinstance(set_id, str) and set_id in NAMED_SETS:
+        cfg = NAMED_SETS[set_id]
+        for thr in sorted(set(cfg.get('bonuses', {})) | set(cfg.get('procs', {}))):
+            out.append((tier_need(set_id, thr), cfg.get('bonuses', {}).get(thr, {}), 'always', cfg.get('procs', {}).get(thr, [])))
+        return out
+    table = CATEGORY_BONUSES.get(ZONE_CATEGORIES.get(set_id), {})
+    for where in ('always', 'in_zone'):
+        for thr in sorted(table.get(where, {})):
+            out.append((tier_need(set_id, thr), table[where][thr], where, []))
+    return out
+
+
+def describe_bonus(stats):
+    """'+2 dex, armour +10' for a tier's stats."""
+    parts = []
+    for stat, val in stats.items():
+        if stat == 'armor_class':
+            parts.append(f"armour +{val * 5}")
+        else:
+            parts.append(f"+{val} {stat.replace('_', ' ')}")
+    return ', '.join(parts)
+
+
 def get_set_bonus(set_id, pieces: int, in_zone: bool):
     # Handle named sets (string IDs)
     if isinstance(set_id, str) and not set_id.isdigit():
-        return get_named_set_bonus(set_id, pieces)
+        config = NAMED_SETS.get(set_id)
+        if not config:
+            return {}
+        bonuses = {}
+        for threshold, table in config.get('bonuses', {}).items():
+            if pieces >= tier_need(set_id, threshold):
+                for stat, val in table.items():
+                    bonuses[stat] = bonuses.get(stat, 0) + val
+        return bonuses
 
     set_id = int(set_id) if isinstance(set_id, str) else set_id
     category = ZONE_CATEGORIES.get(set_id)
@@ -310,7 +399,7 @@ def get_set_bonus(set_id, pieces: int, in_zone: bool):
     table = config.get('in_zone' if in_zone else 'always', {})
     bonuses = {}
     for threshold in (2,4,6):
-        if pieces >= threshold and threshold in table:
+        if threshold in table and pieces >= tier_need(set_id, threshold):
             for stat, val in table[threshold].items():
                 bonuses[stat] = bonuses.get(stat, 0) + val
     return bonuses

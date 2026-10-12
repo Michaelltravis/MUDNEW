@@ -165,8 +165,8 @@ HELP_TOPICS = {'auction': {'category': 'command',
             'description': 'Launch a devastating attack from hiding.\n'
                            '\n'
                            'TRAINING:\n'
-                           '- Use PRACTICE at your class trainer.\n'
-                           '- Max 85% skill cap.',
+                           '- Grows as you use it, up to 85%.\n'
+                           '- Your guild\'s trainer teaches the rest.',
             'syntax': 'ambush',
             'title': 'Ambush'},
  'animate': {'category': 'command',
@@ -487,8 +487,8 @@ HELP_TOPICS = {'auction': {'category': 'command',
                  'description': "Shout to buff party's strength and constitution.\n"
                                 '\n'
                                 'TRAINING:\n'
-                                '- Use PRACTICE at your class trainer.\n'
-                                '- Max 85% skill cap.',
+                                '- Grows as you use it, up to 85%.\n'
+                                '- Your guild\'s trainer teaches the rest.',
                  'syntax': 'battleshout',
                  'title': 'Battleshout'},
  'bestial_wrath': {'category': 'command',
@@ -681,7 +681,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
             'description': 'Cleave — Hit all enemies in room. 10s cooldown. 0.8x damage each.\n\n'
                            'Evolutions (at 50/150/300 uses):\n'
                            '  Iron Wall: bulwark_sweep → iron_tempest → aegis_storm\n'
-                           '  Berserker: whirlwind → blood_cyclone → deathstorm\n'
+                           '  Berserker: bloodwhirl → blood_cyclone → deathstorm\n'
                            '  Warlord: surgical_cleave → anatomical_rend → grand_strategy',
             'syntax': 'cleave',
             'title': 'Cleave'},
@@ -700,7 +700,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
            'description': 'Rally — Self-buff/recovery. 15s cooldown. Heal 15% max HP.\n\n'
                           'Evolutions (at 50/150/300 uses):\n'
                           '  Iron Wall: stand_your_ground → immovable_object → eternal_guardian\n'
-                          '  Berserker: blood_frenzy → berserker_rage → avatar_of_war\n'
+                          '  Berserker: blood_frenzy → berserker_rage → war_incarnate\n'
                           '  Warlord: battle_orders → inspiring_command → supreme_command',
            'syntax': 'rally',
            'title': 'Rally'},
@@ -1009,6 +1009,14 @@ HELP_TOPICS = {'auction': {'category': 'command',
              'description': 'Dismiss a pet or companion. Usage: dismiss <pet name>',
              'syntax': 'dismiss <pet name>',
              'title': 'Dismiss'},
+ 'ride': {'category': 'command',
+          'description': 'Ride several rooms in one go while mounted: ride n n 3e, or ride nnee. '
+                         'Up to 10 steps; you rein in at a closed door, water you cannot cross, '
+                         'a fight, or a hostile creature in your way. A mount also makes you '
+                         'travel faster in 3D (+15% to +60% by mount, more with haste) and '
+                         'halves what moving costs you.',
+          'syntax': 'ride <directions>',
+          'title': 'Ride'},
  'dismount': {'category': 'command',
               'description': 'Dismount your current mount.',
               'syntax': 'dismount',
@@ -1710,7 +1718,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
                'syntax': 'holysmite',
                'title': 'Holysmite'},
  'house': {'category': 'command',
-           'description': 'Player Housing System — own a home in the Midgaard Housing District!\n\n'
+           'description': 'Player Housing System — own a home in the Garathorm Housing District!\n\n'
                           'COMMANDS:\n'
                           '  house list              — View all plots (available and owned)\n'
                           '  house buy               — Purchase the plot you\'re standing on\n'
@@ -1828,16 +1836,124 @@ HELP_TOPICS = {'auction': {'category': 'command',
           'syntax': 'info',
           'title': 'Info'},
  'interrupt': {'category': 'command',
-               'description': 'Attempt to interrupt a boss cast with bash or kick.',
+               'description': 'Break an enemy wind-up before it lands.\n'
+                              '\n'
+                              'When a foe begins an interruptible cast or hex (watch for the\n'
+                              '⚠ telegraph line), INTERRUPT slams into them to stop it cold.\n'
+                              '\n'
+                              'MECHANICS:\n'
+                              '- Works on any declared cast/hex marked interruptible\n'
+                              '- Chance scales with your kick skill\n'
+                              '- Cooldown: 20s on success, 8s on a miss\n'
+                              '- Also works on boss telegraphed casts\n'
+                              '\n'
+                              'See also: BRACE, SIDESTEP',
                'syntax': 'interrupt',
                'title': 'Interrupt'},
+ 'barricade': {'category': 'command',
+               'description': 'Brace a closed door so nothing opens it for a while.\n'
+                              '\n'
+                              'The classic escape: slam the door on your pursuers and pile\n'
+                              'everything you can find against it (~90s hold, costs 15 move).\n'
+                              'A mighty BASH can still break through.\n'
+                              '\n'
+                              'See also: SEAL, BASH <direction>',
+               'syntax': 'barricade <direction>',
+               'title': 'Barricade'},
+ 'seal': {'category': 'command',
+          'description': 'Seal a closed door with arcane sigils (casters, 20 mana).\n'
+                         '\n'
+                         'Holds ~2 minutes against anything short of a mighty bash.\n'
+                         'Mages, necromancers, clerics and paladins know the rites.\n'
+                         '\n'
+                         'See also: BARRICADE, BASH <direction>',
+          'syntax': 'seal <direction>',
+          'title': 'Seal'},
+ 'caltrops': {'category': 'command',
+              'description': 'Thief: scatter caltrops across the ground.\n'
+                             '\n'
+                             'The next hostile through here is hobbled and hurt. Lasts ~5\n'
+                             'minutes or until sprung. Prepare a fight, or cover an escape.\n'
+                             '\n'
+                             'See also: SNARE, SEARCH, DISARM',
+              'syntax': 'caltrops',
+              'title': 'Caltrops'},
+ 'snare': {'category': 'command',
+           'description': 'Ranger: rig a spring-snare across the approach.\n'
+                          '\n'
+                          'The next hostile through here is yanked off its feet and held\n'
+                          'for two rounds. Lasts ~5 minutes or until sprung.\n'
+                          '\n'
+                          'See also: CALTROPS, SEARCH, DISARM',
+           'syntax': 'snare',
+           'title': 'Snare'},
+ 'swing': {'category': 'command',
+           'description': 'Time your attack to the combat rhythm.\n'
+                          '\n'
+                          'Call SWING in the final stretch of the round (the gold window\n'
+                          'on the round bar) and your next attack lands PERFECTLY:\n'
+                          '\n'
+                          'MECHANICS:\n'
+                          '- Perfect strike: +30% damage and double poise damage\n'
+                          '- Mistime it and you are off-balance for the rest of the round\n'
+                          '- Fill an enemy\'s poise and they are STAGGERED: they lose a\n'
+                          '  round and take +50% damage while reeling\n'
+                          '\n'
+                          'See also: EVADE, BRACE, SIDESTEP',
+           'syntax': 'swing',
+           'title': 'Swing (perfect timing)'},
+ 'evade': {'category': 'command',
+           'description': 'Slip out of a marked danger zone before an area attack lands.\n'
+                          '\n'
+                          'When a hulking foe winds up a sweeping area attack, get clear\n'
+                          'and EVADE just before it lands to avoid it entirely.\n'
+                          '\n'
+                          'MECHANICS:\n'
+                          '- Only works against declared AREA attacks (⚠ sweeping blows)\n'
+                          '- Call it in the last moments of the wind-up, not too early\n'
+                          '- You forfeit your own attack that round (all-in on movement)\n'
+                          '- Web client: simply WALK out of the red zone — it evades for you\n'
+                          '\n'
+                          'See also: SWING, BRACE, SIDESTEP',
+           'syntax': 'evade',
+           'title': 'Evade'},
+ 'brace': {'category': 'command',
+           'description': 'Plant your feet against an incoming declared attack.\n'
+                          '\n'
+                          'When a foe winds up a heavy blow or AoE (watch for the ⚠\n'
+                          'telegraph line), BRACE to weather it.\n'
+                          '\n'
+                          'MECHANICS:\n'
+                          '- Halves the damage of the declared heavy/AoE hit\n'
+                          '- Resists its stun, fear or paralysis\n'
+                          '- Costs 10 move · Cooldown: 12s\n'
+                          '- You keep attacking normally while braced\n'
+                          '\n'
+                          'See also: SIDESTEP, INTERRUPT',
+           'syntax': 'brace',
+           'title': 'Brace'},
+ 'sidestep': {'category': 'command',
+              'description': 'Read an enemy wind-up and slip it entirely.\n'
+                             '\n'
+                             'When a foe winds up a heavy blow or AoE (watch for the ⚠\n'
+                             'telegraph line), SIDESTEP to attempt a full evasion.\n'
+                             '\n'
+                             'MECHANICS:\n'
+                             '- Success scales with your dodge skill and DEX\n'
+                             '- On success the declared hit misses you completely\n'
+                             '- You forfeit your own attack that round (all-in on evasion)\n'
+                             '- Cooldown: 16s\n'
+                             '\n'
+                             'See also: BRACE, INTERRUPT',
+              'syntax': 'sidestep',
+              'title': 'Sidestep'},
  'intimidate': {'category': 'skill',
                 'classes': ['warrior'],
                 'description': 'A class skill. Use it to gain tactical advantages in combat or utility.\n'
                                '\n'
                                'TRAINING:\n'
-                               '- Use PRACTICE at your class trainer.\n'
-                               '- Max 85% skill cap.',
+                               '- Grows as you use it, up to 85%.\n'
+                               '- Your guild\'s trainer teaches the rest.',
                 'syntax': 'intimidate',
                 'title': 'Intimidate'},
  'inventory': {'category': 'command', 'description': 'Show inventory.', 'syntax': 'inventory', 'title': 'Inventory'},
@@ -1966,8 +2082,8 @@ HELP_TOPICS = {'auction': {'category': 'command',
           'description': 'Review discovered lore.\n'
                          '\n'
                          'TRAINING:\n'
-                         '- Use PRACTICE at your class trainer.\n'
-                         '- Max 85% skill cap.',
+                         '- Grows as you use it, up to 85%.\n'
+                         '- Your guild\'s trainer teaches the rest.',
           'syntax': 'lore',
           'title': 'Lore'},
  'mage': {'category': 'class',
@@ -2154,18 +2270,27 @@ HELP_TOPICS = {'auction': {'category': 'command',
  'motd': {'category': 'command', 'description': 'Display the Message of the Day.', 'syntax': 'motd', 'title': 'Motd'},
  'mount': {'category': 'command',
            'description': 'Mount a creature you own.\n\n'
-                          'With no arguments, lists your owned mounts.\n'
+                          'With no arguments, lists your owned mounts. MOUNT LAST mounts the one\n'
+                          'you last rode (else your fastest). In the 3D client press R (or the\n'
+                          'horseshoe in the menu, or right-click yourself) to mount or dismount.\n'
                           'Mounts increase movement speed and may provide combat bonuses.\n\n'
-                          'MOUNT TYPES:\n'
-                          '  Horse           - +50% speed, 2,000 gold (stables)\n'
-                          '  War Horse       - +50% speed, +2 damroll, stays mounted in combat, 5,000 gold\n'
-                          '  Nightmare       - +75% speed, fire aura damage, Dark Brotherhood faction reward\n'
-                          '  Griffin         - +100% speed, can fly over impassable terrain, rare Shadowspire drop\n'
-                          '  Clockwork Steed - +75% speed, never tires, rare Clockwork Foundry drop\n\n'
-                          'You are automatically dismounted when entering combat unless riding a\n'
-                          'War Horse or Nightmare. Use FEED to keep mount loyalty up.\n\n'
-                          'See also: dismount, stable, feed, mounts',
-           'syntax': 'mount [name]',
+                          'Riding makes you travel faster (the 3D hero runs faster) and halves\n'
+                          'what moving costs you; a hungry mount carries you slower. Haste stacks.\n\n'
+                          'MOUNT TYPES (travel speed):\n'
+                          '  Donkey / Pony   - +15% / +20%, 600 / 900 gold (stables)\n'
+                          '  Horse           - +35%, 2,000 gold (stables)\n'
+                          '  War Horse       - +30%, +2 damroll, stays mounted in combat, 5,000 gold\n'
+                          '  Nightmare       - +50%, fire aura, Dark Brotherhood exalted\n'
+                          '  Moonstag        - +45%, Elven Court exalted\n'
+                          '  Stoneboar       - +30%, +1 damroll, fights with you, Dwarven Kingdom exalted\n'
+                          '  Guard Warhorse  - +30%, +3 damroll, fights with you, Garathorm Guard exalted\n'
+                          '  Merchant Camel  - +25%, never tires, Merchant League exalted\n'
+                          '  Griffin         - +60%, flies over rough ground, won from the Roc Matriarch\n'
+                          '  Clockwork Steed - +50%, never tires, won from the Carillon Engine\n\n'
+                          'You are automatically dismounted when entering combat unless your mount\n'
+                          'fights with you. Use FEED to keep loyalty up; RIDE to speedwalk.\n\n'
+                          'See also: dismount, stable, feed, mounts, ride',
+           'syntax': 'mount [name | last]',
            'title': 'Mount'},
  'mounts': {'category': 'command',
             'description': 'List your owned mounts. Same as typing "mount" with no arguments.',
@@ -2230,7 +2355,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
                                 '- 14. Protection From Good\n'
                                 '\n'
                                 'TRAINING:\n'
-                                '- Use PRACTICE at your class trainer.',
+                                '- Grows as you use it, up to 85%; your guild\'s trainer teaches the rest.',
                  'title': 'Necromancer (Legacy)'},
  'necromancer': {'category': 'class',
                  'description': 'The Necromancer class.\n'
@@ -2406,8 +2531,15 @@ HELP_TOPICS = {'auction': {'category': 'command',
           'syntax': 'pour <from> <to> OR pour <from> out',
           'title': 'Pour'},
  'practice': {'category': 'command',
-              'description': 'Practice skills/spells - must be at a guild master for your class.',
-              'syntax': 'practice',
+              'description': 'Your abilities and how well you know them.\n\n'
+                             'You learn an ability by reaching its level (at 50%), and it grows as you use '
+                             'it, up to 85% (Mastered). Past that, your guild\'s trainer teaches it to 100%, '
+                             '5% at a time, for gold (or a practice session left over from before).\n\n'
+                             'practice            your abilities, and when the rest arrive\n'
+                             'practice <ability>  train it with your guild\'s trainer (from 85%)\n\n'
+                             'A spell known well fizzles less, and every ability hits (or heals) harder '
+                             'the better you know it.',
+              'syntax': 'practice [ability]',
               'title': 'Practice'},
  'predators_mark': {'category': 'command',
                     'description': 'Mark a target for increased damage and tracking.',
@@ -2580,7 +2712,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
                                '  rep                  - Shortcut alias\n'
                                '\n'
                                'FACTIONS:\n'
-                               '  Midgaard Guard    - City protectors (kill bandits/undead, guard quests)\n'
+                               '  Garathorm Guard    - City protectors (kill bandits/undead, guard quests)\n'
                                '  Thieves Guild     - Underground syndicate (pickpocket, steal, shady quests)\n'
                                '  Arcane Circle     - Mage scholars (identify items, kill magical creatures)\n'
                                "  Nature's Wardens  - Druids/rangers (kill undead, protect animals, forage)\n"
@@ -2597,7 +2729,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
                                '  Exalted  - Unique mount/pet, powerful item\n'
                                '\n'
                                'OPPOSING FACTIONS:\n'
-                               '  Thieves Guild vs Midgaard Guard\n'
+                               '  Thieves Guild vs Garathorm Guard\n'
                                "  Dark Brotherhood vs Nature's Wardens\n"
                                '  Gaining rep with one loses rep with its rival.\n',
                 'syntax': 'reputation',
@@ -2690,8 +2822,8 @@ HELP_TOPICS = {'auction': {'category': 'command',
           'description': 'Scan for creatures in adjacent rooms.\n'
                          '\n'
                          'TRAINING:\n'
-                         '- Use PRACTICE at your class trainer.\n'
-                         '- Max 85% skill cap.',
+                         '- Grows as you use it, up to 85%.\n'
+                         '- Your guild\'s trainer teaches the rest.',
           'syntax': 'scan',
           'title': 'Scan'},
  'score': {'category': 'command', 'description': 'Show player stats.', 'syntax': 'score', 'title': 'Score'},
@@ -2700,8 +2832,8 @@ HELP_TOPICS = {'auction': {'category': 'command',
             'description': 'A class skill. Use it to gain tactical advantages in combat or utility.\n'
                            '\n'
                            'TRAINING:\n'
-                           '- Use PRACTICE at your class trainer.\n'
-                           '- Max 85% skill cap.',
+                           '- Grows as you use it, up to 85%.\n'
+                           '- Your guild\'s trainer teaches the rest.',
             'syntax': 'scribe',
             'title': 'Scribe'},
  'seal_of_command': {'category': 'command',
@@ -2721,8 +2853,8 @@ HELP_TOPICS = {'auction': {'category': 'command',
                    'description': 'A class skill. Use it to gain tactical advantages in combat or utility.\n'
                                   '\n'
                                   'TRAINING:\n'
-                                  '- Use PRACTICE at your class trainer.\n'
-                                  '- Max 85% skill cap.',
+                                  '- Grows as you use it, up to 85%.\n'
+                                  '- Your guild\'s trainer teaches the rest.',
                    'syntax': 'second_attack',
                    'title': 'Second Attack'},
  'sell': {'category': 'command',
@@ -2974,13 +3106,14 @@ HELP_TOPICS = {'auction': {'category': 'command',
            'syntax': 'split <amount>',
            'title': 'Split'},
  'stable': {'category': 'command',
-            'description': 'Access the Midgaard Royal Stables.\n\n'
+            'description': 'Access the Garathorm Royal Stables.\n\n'
                            'COMMANDS:\n'
                            '  stable list       - View available mounts and prices\n'
                            '  stable buy <mount> - Purchase a mount\n'
                            '  stable store      - Safely stable your current mount\n\n'
-                           'The stables are located south of the East Gate of Midgaard (room 3201).\n'
-                           'Brynn the Stable Master can answer questions about different mounts.\n\n'
+                           'The stables are at the Stable Entrance, in the Stable & Temple quarter\n'
+                           'north-east of the Temple. Brynn the Stable Master there can answer\n'
+                           'questions about different mounts.\n\n'
                            'PURCHASABLE MOUNTS:\n'
                            '  Horse        - 2,000 gold (+50% speed)\n'
                            '  War Horse    - 5,000 gold (+50% speed, +2 damroll, combat-ready)\n\n'
@@ -3035,7 +3168,13 @@ HELP_TOPICS = {'auction': {'category': 'command',
                           'WIS: healing potency, spell resilience, tracking/taming.\n'
                           'CHA: bard inspiration, social checks, vendor reactions.\n'
                           '\n'
-                          'Many skills add a small bonus from their primary stat.',
+                          'Many skills add a small bonus from their primary stat.\n'
+                          '\n'
+                          'Worn gear adds to your stats, health, mana and moves while\n'
+                          'worn. It may also ward against a kind of harm (fire, cold,\n'
+                          'lightning, poison, disease, shadow, holy, arcane, nature,\n'
+                          'sound; at most 75%), add to saving throws, resist spells or\n'
+                          "quicken you. 'score' lists what your gear wards against.",
            'syntax': 'stats',
            'title': 'Stats'},
  'stop': {'category': 'command',
@@ -3086,8 +3225,8 @@ HELP_TOPICS = {'auction': {'category': 'command',
           'description': 'Tame a wild creature. Usage: tame <creature>\n'
                          '\n'
                          'TRAINING:\n'
-                         '- Use PRACTICE at your class trainer.\n'
-                         '- Max 85% skill cap.',
+                         '- Grows as you use it, up to 85%.\n'
+                         '- Your guild\'s trainer teaches the rest.',
           'syntax': 'tame',
           'title': 'Tame'},
  'target': {'category': 'command', 'description': 'Set your combat target.', 'syntax': 'target', 'title': 'Target'},
@@ -3137,8 +3276,8 @@ HELP_TOPICS = {'auction': {'category': 'command',
                   'description': 'A class skill. Use it to gain tactical advantages in combat or utility.\n'
                                  '\n'
                                  'TRAINING:\n'
-                                 '- Use PRACTICE at your class trainer.\n'
-                                 '- Max 85% skill cap.',
+                                 '- Grows as you use it, up to 85%.\n'
+                                 '- Your guild\'s trainer teaches the rest.',
                   'syntax': 'third_attack',
                   'title': 'Third Attack'},
  'tick': {'category': 'command',
@@ -4654,7 +4793,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
                               'EVOLUTION EXAMPLES:\n'
                               '  strike → brutal_strike → savage_strike → deathwish_strike\n'
                               '  charge → reckless_charge → death_from_above → extinction_event\n'
-                              '  rally → blood_frenzy → berserker_rage → avatar_of_war\n'
+                              '  rally → blood_frenzy → berserker_rage → war_incarnate\n'
                               '  execute → overkill → massacre → annihilation',
                'title': 'Berserker'},
  'warlord': {'category': 'guide',
@@ -4679,7 +4818,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
                              '  craft list        — Show recipes available at current station\n'
                              '  craft <recipe_id> — Craft an item (must be at correct station)\n'
                              '  recipes [discipline] — Show all your known recipes\n\n'
-                             'CRAFTING STATIONS (found in Midgaard shops):\n'
+                             'CRAFTING STATIONS (found in Garathorm shops):\n'
                              '  Forge (Weapon Shop / Armory) — Blacksmithing\n'
                              '  Alchemy Table (Magic Shop) — Alchemy\n'
                              '  Workbench (General Store) — Leatherworking\n'
@@ -5299,6 +5438,15 @@ HELP_CATEGORIES = {'class': ['assassin', 'bard', 'cleric', 'mage', 'necromancer'
 try:
     from prestige import PRESTIGE_HELP_ENTRIES
     HELP_TOPICS.update(PRESTIGE_HELP_ENTRIES)
+except Exception:
+    pass
+
+# Merge auto-generated ability help (spells, skills, talents). This is the
+# authoritative, in-sync source for every ability and overwrites any older
+# hand-maintained spell/skill entries that have since been renamed/reworked.
+try:
+    from help_abilities import build_ability_help
+    HELP_TOPICS.update(build_ability_help())
 except Exception:
     pass
 

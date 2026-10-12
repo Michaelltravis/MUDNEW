@@ -1,0 +1,722 @@
+{
+ "number": 461,
+ "name": "Tombs of Atuan",
+ "builders": "Keats",
+ "atlas_area": 61,
+ "rooms": {
+  "10800": {
+   "vnum": 10800,
+   "name": "The Tombs of Atuan",
+   "map": {
+    "x": 17,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time.",
+   "placeholder": true
+  },
+  "10801": {
+   "vnum": 10801,
+   "name": "The Tombs of Atuan",
+   "map": {
+    "x": 17,
+    "y": 0,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use.",
+   "placeholder": true
+  },
+  "10802": {
+   "vnum": 10802,
+   "name": "The Tombs of Atuan",
+   "map": {
+    "x": 17,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke.",
+   "placeholder": true
+  },
+  "10803": {
+   "vnum": 10803,
+   "name": "The Tombs of Atuan",
+   "map": {
+    "x": 17,
+    "y": -2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach.",
+   "placeholder": true
+  },
+  "10804": {
+   "vnum": 10804,
+   "name": "The Tombs of Atuan",
+   "map": {
+    "x": 17,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch.",
+   "placeholder": true
+  },
+  "10805": {
+   "vnum": 10805,
+   "name": "The Tombs of Atuan",
+   "map": {
+    "x": 17,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch.",
+   "placeholder": true
+  },
+  "10806": {
+   "vnum": 10806,
+   "name": "The Tombs of Atuan",
+   "map": {
+    "x": 17,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time.",
+   "placeholder": true
+  },
+  "10807": {
+   "vnum": 10807,
+   "name": "The Tombs of Atuan",
+   "map": {
+    "x": 17,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke.",
+   "placeholder": true
+  },
+  "10808": {
+   "vnum": 10808,
+   "name": "The Tombs of Atuan",
+   "map": {
+    "x": 17,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach.",
+   "placeholder": true
+  },
+  "10809": {
+   "vnum": 10809,
+   "name": "The Tombs of Atuan",
+   "map": {
+    "x": 17,
+    "y": -8,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time.",
+   "placeholder": true
+  },
+  "10810": {
+   "vnum": 10810,
+   "name": "The Painted Room",
+   "map": {
+    "x": 14,
+    "y": -8,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 10813,
+     "description": "To the west lies The Curving Road to Distrust.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads west.",
+   "placeholder": true
+  },
+  "10811": {
+   "vnum": 10811,
+   "name": "Entrance to the Undertombs",
+   "map": {
+    "x": 19,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 8688,
+     "description": "To the up lies At The Centre Of The Ruins."
+    },
+    "down": {
+     "to_room": 10800,
+     "description": "To the down lies The Tombs of Atuan."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead up and down.",
+   "placeholder": true
+  },
+  "10812": {
+   "vnum": 10812,
+   "name": "The Panopticum of Petrified Souls",
+   "map": {
+    "x": 0,
+    "y": 5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch.",
+   "placeholder": true
+  },
+  "10813": {
+   "vnum": 10813,
+   "name": "The Curving Road to Distrust",
+   "map": {
+    "x": 10,
+    "y": -8,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10814,
+     "description": "To the north lies The Curving Road to Distrust."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads north.",
+   "placeholder": true
+  },
+  "10814": {
+   "vnum": 10814,
+   "name": "The Curving Road to Distrust",
+   "map": {
+    "x": 10,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 10815,
+     "description": "To the east lies The Curving Road to Distrust."
+    },
+    "south": {
+     "to_room": 10813,
+     "description": "To the south lies The Curving Road to Distrust."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east and south.",
+   "placeholder": true
+  },
+  "10815": {
+   "vnum": 10815,
+   "name": "The Curving Road to Distrust",
+   "map": {
+    "x": 11,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10816,
+     "description": "To the north lies The Curving Road to Distrust."
+    },
+    "west": {
+     "to_room": 10814,
+     "description": "To the west lies The Curving Road to Distrust."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "10816": {
+   "vnum": 10816,
+   "name": "The Curving Road to Distrust",
+   "map": {
+    "x": 11,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10817,
+     "description": "To the north lies The Dead End of Distrust."
+    },
+    "south": {
+     "to_room": 10815,
+     "description": "To the south lies The Curving Road to Distrust."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "10817": {
+   "vnum": 10817,
+   "name": "The Dead End of Distrust",
+   "map": {
+    "x": 11,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 10816,
+     "description": "To the south lies The Curving Road to Distrust."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads south.",
+   "placeholder": true
+  },
+  "10820": {
+   "vnum": 10820,
+   "name": "The Ridge of Death",
+   "map": {
+    "x": 7,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch.",
+   "placeholder": true
+  },
+  "10821": {
+   "vnum": 10821,
+   "name": "The Ridge of Death",
+   "map": {
+    "x": 7,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use.",
+   "placeholder": true
+  },
+  "10822": {
+   "vnum": 10822,
+   "name": "The Ridge of Death",
+   "map": {
+    "x": 7,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke.",
+   "placeholder": true
+  },
+  "10823": {
+   "vnum": 10823,
+   "name": "The Ridge of Death",
+   "map": {
+    "x": 7,
+    "y": -2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time.",
+   "placeholder": true
+  },
+  "10824": {
+   "vnum": 10824,
+   "name": "The Ridge of Death",
+   "map": {
+    "x": 7,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke.",
+   "placeholder": true
+  },
+  "10825": {
+   "vnum": 10825,
+   "name": "The Ridge of Death",
+   "map": {
+    "x": 7,
+    "y": 0,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time.",
+   "placeholder": true
+  },
+  "10826": {
+   "vnum": 10826,
+   "name": "The Ridge of Death",
+   "map": {
+    "x": 7,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch.",
+   "placeholder": true
+  },
+  "10827": {
+   "vnum": 10827,
+   "name": "The Landing opposite the Chasm",
+   "map": {
+    "x": 7,
+    "y": 5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 10828,
+     "description": "To the up lies Ascension to Pride."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads up.",
+   "placeholder": true
+  },
+  "10828": {
+   "vnum": 10828,
+   "name": "Ascension to Pride",
+   "map": {
+    "x": 8,
+    "y": 6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 10829,
+     "description": "To the up lies Ascension to Pride."
+    },
+    "down": {
+     "to_room": 10827,
+     "description": "To the down lies The Landing opposite the Chasm."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead up and down.",
+   "placeholder": true
+  },
+  "10829": {
+   "vnum": 10829,
+   "name": "Ascension to Pride",
+   "map": {
+    "x": 9,
+    "y": 7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10831,
+     "description": "To the north lies Before the Throne of Acrasia."
+    },
+    "down": {
+     "to_room": 10828,
+     "description": "To the down lies Ascension to Pride."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and down.",
+   "placeholder": true
+  },
+  "10831": {
+   "vnum": 10831,
+   "name": "Before the Throne of Acrasia",
+   "map": {
+    "x": 9,
+    "y": 8,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 10829,
+     "description": "To the south lies Ascension to Pride."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "10832": {
+   "vnum": 10832,
+   "name": "Descent to Despair",
+   "map": {
+    "x": -1,
+    "y": 8,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 10835,
+     "description": "To the west lies the Altar of Pride."
+    },
+    "down": {
+     "to_room": 10833,
+     "description": "To the down lies Descent to Despair."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead west and down.",
+   "placeholder": true
+  },
+  "10833": {
+   "vnum": 10833,
+   "name": "Descent to Despair",
+   "map": {
+    "x": -2,
+    "y": 7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 10836,
+     "description": "To the south lies Descent to Despair."
+    },
+    "up": {
+     "to_room": 10832,
+     "description": "To the up lies Descent to Despair."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead south and up.",
+   "placeholder": true
+  },
+  "10834": {
+   "vnum": 10834,
+   "name": "The Snare of Despair",
+   "map": {
+    "x": -2,
+    "y": 5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 10837,
+     "description": "To the west lies Descent to Despair."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "10835": {
+   "vnum": 10835,
+   "name": "the Altar of Pride",
+   "map": {
+    "x": 3,
+    "y": 8,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10832,
+     "description": "To the north lies Descent to Despair."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads north.",
+   "placeholder": true
+  },
+  "10836": {
+   "vnum": 10836,
+   "name": "Descent to Despair",
+   "map": {
+    "x": -2,
+    "y": 6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10833,
+     "description": "To the north lies Descent to Despair."
+    },
+    "down": {
+     "to_room": 10837,
+     "description": "To the down lies Descent to Despair."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and down.",
+   "placeholder": true
+  },
+  "10837": {
+   "vnum": 10837,
+   "name": "Descent to Despair",
+   "map": {
+    "x": -3,
+    "y": 5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 10834,
+     "description": "To the east lies The Snare of Despair."
+    },
+    "up": {
+     "to_room": 10836,
+     "description": "To the up lies Descent to Despair."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and up.",
+   "placeholder": true
+  },
+  "10850": {
+   "vnum": 10850,
+   "name": "The Treasure Room",
+   "map": {
+    "x": 2,
+    "y": 5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 10909,
+     "description": "To the east lies At the Mound among the Ruins."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

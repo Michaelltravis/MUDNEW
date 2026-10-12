@@ -1,0 +1,71 @@
+> consider mage
+
+=== Considering: mage ===
+mage might put up a fight.
+Threat: Moderate  |  Level: 12 vs You 10  |  XP: yellow (+15% exp)
+Outcome: Be ready to heal or flee.
+Tactics: OB/DB/PB You +3/+30/0% | mage +7/+44/0%
+State: Stance Normal | Move steady | Defenses: baseline
+Health: wounded
+Warning: Flees when wounded
+
+
+49/53hp 132/132mp 186/186mv> 
+[t=   0.0s] > kill mage
+[t=   0.0s] You attack mage!
+[t=   0.0s] *** CRITICAL HIT! ***
+[t=   0.0s] Your blow decimates mage! [32 damage]
+[t=   0.0s] mage [██░░░░░░░░] [51/219]
+[t=   0.0s] 49/53hp 132/132mp 185/186mv [mage: 51/219]> > bash mage
+[t=   0.0s] Your bash scratch mage! [5]
+[t=   0.0s] mage [██░░░░░░░░] [46/219]
+[t=   0.0s] mage is stunned!
+[t=   0.0s] [Momentum: █░░░░░░░░░ 1/10]
+[t=   0.0s] 49/53hp 132/132mp 185/186mv [Momentum: █░░░░░░░░░ 1/10] [mage: 46/219]> 
+[t=   2.9s] ⚠ mage begins an incantation — arcane power crackles around it! (interrupt it!)
+[t=   2.9s] *** CRITICAL HIT! ***
+[t=   2.9s] Your blow lands squarely and wounds mage! [20 damage]
+[t=   2.9s] mage [█░░░░░░░░░] [26/219]
+[t=   2.9s] 49/53hp 132/132mp 184/186mv [Momentum: █░░░░░░░░░ 1/10]> 
+[t=   2.9s] > interrupt
+[t=   2.9s] You're not fighting anyone!
+[t=   2.9s] 53/53hp 132/132mp 186/186mv> 
+[t=   5.9s] > swing
+[t=   5.9s] You're not fighting anyone!
+[t=   5.9s] 53/53hp 132/132mp 186/186mv> 
+[t=   9.9s] > cleave mage
+[t=   9.9s] You attack mage!
+[t=   9.9s] Your blow connects — it hits mage! [13 damage]
+[t=   9.9s] mage [█░░░░░░░░░] [23/219]
+[t=   9.9s] Your cleave tickle mage! [2]
+[t=   9.9s] 💥 mage reels — STAGGERED! Strike now!
+[t=   9.9s] mage [░░░░░░░░░░] [21/219]
+[t=   9.9s] [Momentum: █░░░░░░░░░ 1/10]
+[t=   9.9s] 53/53hp 132/132mp 185/186mv [Momentum: █░░░░░░░░░ 1/10]> 
+[t=  12.9s] > swing
+[t=  12.9s] You're not fighting anyone!
+[t=  12.9s] 53/53hp 132/132mp 185/186mv [Momentum: █░░░░░░░░░ 1/10]> 
+[t=  15.9s] > swing
+[t=  15.9s] You're not fighting anyone!
+[t=  15.9s] 53/53hp 132/132mp 186/186mv [Momentum: █░░░░░░░░░ 1/10]> 
+[t=  18.9s] > swing
+[t=  18.9s] You're not fighting anyone!
+[t=  18.9s] 53/53hp 132/132mp 186/186mv [Momentum: █░░░░░░░░░ 1/10]> 
+[t=  18.9s] > bash mage
+[t=  18.9s] You attack mage!
+[t=  18.9s] Your blow injures mage! [16 damage]
+[t=  18.9s] mage [░░░░░░░░░░] [5/219]
+[t=  18.9s] 53/53hp 132/132mp 185/186mv [Momentum: █░░░░░░░░░ 1/10]> 
+[t=  21.9s] > swing
+[t=  21.9s] You're not fighting anyone!
+[t=  21.9s] 53/53hp 132/132mp 185/186mv [Momentum: █░░░░░░░░░ 1/10]> 
+[t=  24.9s] > swing
+[t=  24.9s] You're not fighting anyone!
+[t=  24.9s] 53/53hp 132/132mp 186/186mv [Momentum: █░░░░░░░░░ 1/10]> 
+[t=  27.9s] > swing
+[t=  27.9s] You're not fighting anyone!
+[t=  27.9s] 53/53hp 132/132mp 186/186mv [Momentum: █░░░░░░░░░ 1/10]> 
+[t=  27.9s] > cleave mage
+[t=  27.9s] You attack mage!
+[t=  27.9s] Your blow lands squarely and grazes mage! [10 damage]
+[t=  27.9s] ☠ mage is DEAD! You killed mage.

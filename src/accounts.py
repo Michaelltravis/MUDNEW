@@ -7,11 +7,14 @@ Manages player accounts with multi-character support.
 import os
 import json
 import hashlib
+import hmac
 import secrets
 import smtplib
 from email.message import EmailMessage
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional, TYPE_CHECKING
+
+import security
 
 if TYPE_CHECKING:
     from player import Player
@@ -41,16 +44,21 @@ class Account:
     
     @staticmethod
     def hash_password(password: str) -> str:
-        """Hash a password for storage."""
-        return hashlib.sha256(password.encode()).hexdigest()
+        """Hash a password for storage (salted PBKDF2, security.py)."""
+        return security.hash_password(password)
     
-    def check_password(self, password: str) -> bool:
-        """Verify a password against the stored hash."""
-        return self.password_hash == self.hash_password(password)
+    async def check_password(self, password: str) -> bool:
+        """Verify a password against the stored hash; an old-style hash is upgraded."""
+        ok, rehash = await security.verify_async(self.password_hash, password)
+        if ok and rehash:
+            self.password_hash = await security.hash_async(password)
+            self.save()
+        return ok
     
-    def set_password(self, password: str):
-        """Set a new password."""
-        self.password_hash = self.hash_password(password)
+    async def set_password(self, password: str):
+        """Set a new password. Every device signed in with the old one is forgotten."""
+        self.password_hash = await security.hash_async(password)
+        security.forget_all(*self.characters)
     
     def add_character(self, char_name: str) -> bool:
         """Add a character to this account."""
@@ -126,21 +134,21 @@ class AccountManager:
     """Manages account operations."""
     
     @staticmethod
-    def create_account(account_name: str, password: str) -> Optional[Account]:
+    async def create_account(account_name: str, password: str) -> Optional[Account]:
         """Create a new account."""
         if Account.exists(account_name):
             return None
         
         account = Account(account_name)
-        account.set_password(password)
+        await account.set_password(password)
         account.save()
         return account
     
     @staticmethod
-    def authenticate(account_name: str, password: str) -> Optional[Account]:
+    async def authenticate(account_name: str, password: str) -> Optional[Account]:
         """Authenticate and return account if valid."""
         account = Account.load(account_name)
-        if account and account.check_password(password):
+        if account and await account.check_password(password):
             account.last_login = datetime.now().isoformat()
             account.save()
             return account
@@ -157,14 +165,15 @@ class AccountManager:
 
     @staticmethod
     def generate_reset_token(account: Account) -> str:
-        """Generate and store a password reset token."""
+        """Generate a password reset token; only its hash is kept."""
         token = secrets.token_urlsafe(16)
         now = datetime.now().isoformat()
         # Prune old tokens
         from config import Config
         cutoff = datetime.now() - timedelta(hours=Config.PASSWORD_RESET_TTL_HOURS)
-        account.reset_tokens = [t for t in account.reset_tokens if datetime.fromisoformat(t.get('created_at', now)) > cutoff]
-        account.reset_tokens.append({'token': token, 'created_at': now})
+        account.reset_tokens = [t for t in account.reset_tokens
+                                if t.get('hash') and datetime.fromisoformat(t.get('created_at', now)) > cutoff]
+        account.reset_tokens.append({'hash': hashlib.sha256(token.encode()).hexdigest(), 'created_at': now})
         account.save()
         return token
 
@@ -205,13 +214,14 @@ class AccountManager:
             return False
 
     @staticmethod
-    def reset_with_token(account_name: str, token: str, new_password: str) -> bool:
+    async def reset_with_token(account_name: str, token: str, new_password: str) -> bool:
         """Reset password using a valid token."""
         account = Account.load(account_name)
         if not account:
             return False
-        if len(new_password) < 4:
+        if security.weak(new_password):
             return False
+        want = hashlib.sha256((token or '').encode()).hexdigest()
         # Validate token
         now = datetime.now()
         from config import Config
@@ -225,14 +235,14 @@ class AccountManager:
             if created < cutoff:
                 account.reset_tokens.remove(t)
                 continue
-            if t.get('token') == token:
+            if hmac.compare_digest(t.get('hash', ''), want):
                 valid = True
                 account.reset_tokens.remove(t)
                 break
         if not valid:
             account.save()
             return False
-        account.set_password(new_password)
+        await account.set_password(new_password)
         account.save()
         return True
 
@@ -266,7 +276,7 @@ class AccountManager:
         return char_info
     
     @staticmethod
-    def link_character_to_account(player: 'Player', account: Account) -> bool:
+    async def link_character_to_account(player: 'Player', account: Account) -> bool:
         """Link an existing character to an account."""
         if player.name in account.characters:
             return True  # Already linked
@@ -276,22 +286,24 @@ class AccountManager:
         
         # Update player file with account reference
         player.account_name = account.account_name
-        player.save()
+        await player.save()
         account.save()
         return True
     
     @staticmethod
-    def migrate_legacy_player(char_name: str, password: str) -> Optional[Account]:
-        """Migrate a legacy player file to account system."""
+    async def migrate_legacy_player(char_name: str, password: str, player: 'Player' = None) -> Optional[Account]:
+        """Migrate a legacy player file to account system. `player` is the loaded
+        character when the caller already has it (it is about to enter the game: saving a
+        second copy would be overwritten by it)."""
         from player import Player
         
         # Load the player
-        player = Player.load(char_name)
+        player = player or Player.load(char_name)
         if not player:
             return None
         
         # Check password against player file
-        if not player.check_password(password):
+        if not await player.check_password(password):
             return None
         
         # Create account with same name as character
@@ -299,20 +311,20 @@ class AccountManager:
         if Account.exists(account_name):
             # Account already exists - just link
             account = Account.load(account_name)
-            if account and account.check_password(password):
-                AccountManager.link_character_to_account(player, account)
+            if account and await account.check_password(password):
+                await AccountManager.link_character_to_account(player, account)
                 return account
             return None
         
         # Create new account
         account = Account(account_name)
-        account.set_password(password)
+        await account.set_password(password)
         account.add_character(player.name)
         account.save()
         
         # Update player with account reference
         player.account_name = account_name
-        player.save()
+        await player.save()
         
         return account
     

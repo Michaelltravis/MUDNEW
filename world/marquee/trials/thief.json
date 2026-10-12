@@ -1,0 +1,106 @@
+{
+  "name": "The Vault of Ages",
+  "intro": "The vault door of Nereus swings open on a stair that was not there a moment ago. At the bottom, lamplight, the scratch of a quill, and the smell of more money than anyone has ever seen.",
+  "rooms": [
+    {
+      "key": "counting",
+      "name": "The Vault of Ages - The Counting House",
+      "sector": "inside",
+      "description": "Long tables heaped with coins run the length of the hall, every stack counted and labelled. North, an iron grille bars the way to the ledger hall.",
+      "exits": {
+        "north": {
+          "to": "ledgers",
+          "door": "iron grille"
+        }
+      }
+    },
+    {
+      "key": "ledgers",
+      "name": "The Vault of Ages - The Hall of Ledgers",
+      "sector": "inside",
+      "description": "Shelves of ledgers climb into the dark, every page a debt. Pages flutter loose from them as you pass. North, the great vault door is shut.",
+      "exits": {
+        "south": {
+          "to": "counting",
+          "door": "iron grille"
+        },
+        "north": {
+          "to": "vault",
+          "door": "vault door"
+        }
+      }
+    },
+    {
+      "key": "vault",
+      "name": "The Vault of Ages - The Vault Itself",
+      "sector": "inside",
+      "description": "The vault: a cave of gold under a sky of hanging lamps. At its heart, at a desk piled with ledgers, the Auditor is waiting for you.",
+      "exits": {
+        "south": {
+          "to": "ledgers",
+          "door": "vault door"
+        }
+      }
+    }
+  ],
+  "entrance": "counting",
+  "waves": [
+    {
+      "room": "counting",
+      "mobs": [
+        [
+          9734,
+          2
+        ],
+        [
+          9735,
+          1
+        ]
+      ],
+      "text": "Gilded guards step out from between the stacks of coin!"
+    },
+    {
+      "room": "ledgers",
+      "mobs": [
+        [
+          9734,
+          2
+        ],
+        [
+          9735,
+          1
+        ]
+      ],
+      "text": "The guard comes running, and the ledgers spit pages of cold fire!"
+    },
+    {
+      "room": "ledgers",
+      "mobs": [
+        [
+          9735,
+          3
+        ]
+      ],
+      "text": "Every ledger on the shelves bursts open at once!"
+    }
+  ],
+  "gates": [
+    {
+      "after": 0,
+      "room": "counting",
+      "dir": "north",
+      "text": "The iron grille clanks up into the ceiling."
+    },
+    {
+      "after": 2,
+      "room": "ledgers",
+      "dir": "north",
+      "text": "Tumblers fall one by one \u2014 the vault door swings open."
+    }
+  ],
+  "boss": {
+    "vnum": 9736,
+    "room": "vault",
+    "text": "Auditor Mordessa looks up from her ledger. 'Ah. The thief. You are expected \u2014 page four hundred and nine.' She dips her quill. 'Let us settle your account.'"
+  }
+}

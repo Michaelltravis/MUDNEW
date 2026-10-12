@@ -1,0 +1,2027 @@
+{
+ "number": 449,
+ "name": "Leper Island",
+ "builders": "Kaan",
+ "atlas_area": 49,
+ "rooms": {
+  "106200": {
+   "vnum": 106200,
+   "name": "Footpath Through Leper's Village",
+   "map": {
+    "x": -17,
+    "y": -24,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106232,
+     "description": "To the north lies Trail Into the Jungle."
+    },
+    "east": {
+     "to_room": 106201,
+     "description": "To the east lies Footpath Through Leper's Village."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and east.",
+   "placeholder": true
+  },
+  "106201": {
+   "vnum": 106201,
+   "name": "Footpath Through Leper's Village",
+   "map": {
+    "x": -16,
+    "y": -24,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106202,
+     "description": "To the north lies A Hut of Rough Timber."
+    },
+    "east": {
+     "to_room": 106212,
+     "description": "To the east lies Footpath Through Leper's Village."
+    },
+    "south": {
+     "to_room": 106204,
+     "description": "To the south lies Footpath Through Leper's Village."
+    },
+    "west": {
+     "to_room": 106200,
+     "description": "To the west lies Footpath Through Leper's Village."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "106202": {
+   "vnum": 106202,
+   "name": "A Hut of Rough Timber",
+   "map": {
+    "x": -16,
+    "y": -23,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 106201,
+     "description": "To the south lies Footpath Through Leper's Village."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads south.",
+   "placeholder": true
+  },
+  "106203": {
+   "vnum": 106203,
+   "name": "A Modest Hut Made From Thatch and Mud",
+   "map": {
+    "x": -17,
+    "y": -25,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 106204,
+     "description": "To the east lies Footpath Through Leper's Village."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads east.",
+   "placeholder": true
+  },
+  "106204": {
+   "vnum": 106204,
+   "name": "Footpath Through Leper's Village",
+   "map": {
+    "x": -16,
+    "y": -25,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106201,
+     "description": "To the north lies Footpath Through Leper's Village."
+    },
+    "south": {
+     "to_room": 106205,
+     "description": "To the south lies Footpath Through Leper's Village."
+    },
+    "west": {
+     "to_room": 106203,
+     "description": "To the west lies A Modest Hut Made From Thatch and Mud."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "106205": {
+   "vnum": 106205,
+   "name": "Footpath Through Leper's Village",
+   "map": {
+    "x": -16,
+    "y": -26,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106204,
+     "description": "To the north lies Footpath Through Leper's Village."
+    },
+    "east": {
+     "to_room": 106210,
+     "description": "To the east lies Chicken Coop."
+    },
+    "south": {
+     "to_room": 106206,
+     "description": "To the south lies Footpath Through Leper's Village."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "106206": {
+   "vnum": 106206,
+   "name": "Footpath Through Leper's Village",
+   "map": {
+    "x": -16,
+    "y": -27,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106205,
+     "description": "To the north lies Footpath Through Leper's Village."
+    },
+    "east": {
+     "to_room": 106209,
+     "description": "To the east lies Pig Pen."
+    },
+    "south": {
+     "to_room": 106208,
+     "description": "To the south lies A Hut Made from Clay and Thatch."
+    },
+    "west": {
+     "to_room": 106207,
+     "description": "To the west lies A Small Clay Hut."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "106207": {
+   "vnum": 106207,
+   "name": "A Small Clay Hut",
+   "map": {
+    "x": -17,
+    "y": -27,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 106206,
+     "description": "To the east lies Footpath Through Leper's Village."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "106208": {
+   "vnum": 106208,
+   "name": "A Hut Made from Clay and Thatch",
+   "map": {
+    "x": -16,
+    "y": -28,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106206,
+     "description": "To the north lies Footpath Through Leper's Village."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads north.",
+   "placeholder": true
+  },
+  "106209": {
+   "vnum": 106209,
+   "name": "Pig Pen",
+   "map": {
+    "x": -15,
+    "y": -27,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 106206,
+     "description": "To the west lies Footpath Through Leper's Village."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads west.",
+   "placeholder": true
+  },
+  "106210": {
+   "vnum": 106210,
+   "name": "Chicken Coop",
+   "map": {
+    "x": -15,
+    "y": -26,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 106205,
+     "description": "To the west lies Footpath Through Leper's Village."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "106211": {
+   "vnum": 106211,
+   "name": "A Small Thatch Hut",
+   "map": {
+    "x": -14,
+    "y": -25,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106212,
+     "description": "To the north lies Footpath Through Leper's Village."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads north.",
+   "placeholder": true
+  },
+  "106212": {
+   "vnum": 106212,
+   "name": "Footpath Through Leper's Village",
+   "map": {
+    "x": -14,
+    "y": -24,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106213,
+     "description": "To the north lies Footpath Through Leper's Village."
+    },
+    "east": {
+     "to_room": 106216,
+     "description": "To the east lies Footpath Through Leper's Village."
+    },
+    "south": {
+     "to_room": 106211,
+     "description": "To the south lies A Small Thatch Hut."
+    },
+    "west": {
+     "to_room": 106201,
+     "description": "To the west lies Footpath Through Leper's Village."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "106213": {
+   "vnum": 106213,
+   "name": "Footpath Through Leper's Village",
+   "map": {
+    "x": -14,
+    "y": -23,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106214,
+     "description": "To the north lies Garden."
+    },
+    "south": {
+     "to_room": 106212,
+     "description": "To the south lies Footpath Through Leper's Village."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "106214": {
+   "vnum": 106214,
+   "name": "Garden",
+   "map": {
+    "x": -14,
+    "y": -22,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 106213,
+     "description": "To the south lies Footpath Through Leper's Village."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads south.",
+   "placeholder": true
+  },
+  "106215": {
+   "vnum": 106215,
+   "name": "A Tidy Hut",
+   "map": {
+    "x": -13,
+    "y": -23,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 106216,
+     "description": "To the south lies Footpath Through Leper's Village."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads south.",
+   "placeholder": true
+  },
+  "106216": {
+   "vnum": 106216,
+   "name": "Footpath Through Leper's Village",
+   "map": {
+    "x": -13,
+    "y": -24,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106215,
+     "description": "To the north lies A Tidy Hut."
+    },
+    "east": {
+     "to_room": 106219,
+     "description": "To the east lies Footpath Through Leper's Village."
+    },
+    "south": {
+     "to_room": 106217,
+     "description": "To the south lies Leper Memorial."
+    },
+    "west": {
+     "to_room": 106212,
+     "description": "To the west lies Footpath Through Leper's Village."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "106217": {
+   "vnum": 106217,
+   "name": "Leper Memorial",
+   "map": {
+    "x": -13,
+    "y": -25,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106216,
+     "description": "To the north lies Footpath Through Leper's Village."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "106218": {
+   "vnum": 106218,
+   "name": "A Well-kept Hut Made From Clay",
+   "map": {
+    "x": -12,
+    "y": -25,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106219,
+     "description": "To the north lies Footpath Through Leper's Village."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "106219": {
+   "vnum": 106219,
+   "name": "Footpath Through Leper's Village",
+   "map": {
+    "x": -12,
+    "y": -24,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106220,
+     "description": "To the north lies Chapel."
+    },
+    "east": {
+     "to_room": 106221,
+     "description": "To the east lies Trail Into the Jungle."
+    },
+    "south": {
+     "to_room": 106218,
+     "description": "To the south lies A Well-kept Hut Made From Clay."
+    },
+    "west": {
+     "to_room": 106216,
+     "description": "To the west lies Footpath Through Leper's Village."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "106220": {
+   "vnum": 106220,
+   "name": "Chapel",
+   "map": {
+    "x": -12,
+    "y": -23,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 106219,
+     "description": "To the south lies Footpath Through Leper's Village."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads south.",
+   "placeholder": true
+  },
+  "106221": {
+   "vnum": 106221,
+   "name": "Trail Into the Jungle",
+   "map": {
+    "x": -11,
+    "y": -24,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106222,
+     "description": "To the north lies Trail Through the Jungle."
+    },
+    "west": {
+     "to_room": 106219,
+     "description": "To the west lies Footpath Through Leper's Village."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "106222": {
+   "vnum": 106222,
+   "name": "Trail Through the Jungle",
+   "map": {
+    "x": -11,
+    "y": -23,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106223,
+     "description": "To the north lies Trail Through the Jungle."
+    },
+    "south": {
+     "to_room": 106221,
+     "description": "To the south lies Trail Into the Jungle."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "106223": {
+   "vnum": 106223,
+   "name": "Trail Through the Jungle",
+   "map": {
+    "x": -11,
+    "y": -21,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106224,
+     "description": "To the north lies Trail Through the Jungle."
+    },
+    "south": {
+     "to_room": 106222,
+     "description": "To the south lies Trail Through the Jungle."
+    },
+    "west": {
+     "to_room": 106286,
+     "description": "To the west lies A Leaf Shrouded Section of the Jungle."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "106224": {
+   "vnum": 106224,
+   "name": "Trail Through the Jungle",
+   "map": {
+    "x": -11,
+    "y": -20,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 106225,
+     "description": "To the east lies Trail Through the Jungle."
+    },
+    "south": {
+     "to_room": 106223,
+     "description": "To the south lies Trail Through the Jungle."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and south.",
+   "placeholder": true
+  },
+  "106225": {
+   "vnum": 106225,
+   "name": "Trail Through the Jungle",
+   "map": {
+    "x": -10,
+    "y": -20,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106226,
+     "description": "To the north lies Trail Through the Jungle."
+    },
+    "west": {
+     "to_room": 106224,
+     "description": "To the west lies Trail Through the Jungle."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and west.",
+   "placeholder": true
+  },
+  "106226": {
+   "vnum": 106226,
+   "name": "Trail Through the Jungle",
+   "map": {
+    "x": -10,
+    "y": -19,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106227,
+     "description": "To the north lies Trail Through the Jungle."
+    },
+    "south": {
+     "to_room": 106225,
+     "description": "To the south lies Trail Through the Jungle."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "106227": {
+   "vnum": 106227,
+   "name": "Trail Through the Jungle",
+   "map": {
+    "x": -10,
+    "y": -18,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106228,
+     "description": "To the north lies Pond."
+    },
+    "south": {
+     "to_room": 106226,
+     "description": "To the south lies Trail Through the Jungle."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "106228": {
+   "vnum": 106228,
+   "name": "Pond",
+   "map": {
+    "x": -10,
+    "y": -17,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106229,
+     "description": "To the north lies Pond."
+    },
+    "east": {
+     "to_room": 106230,
+     "description": "To the east lies Pond."
+    },
+    "south": {
+     "to_room": 106227,
+     "description": "To the south lies Trail Through the Jungle."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "106229": {
+   "vnum": 106229,
+   "name": "Pond",
+   "map": {
+    "x": -10,
+    "y": -16,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 106231,
+     "description": "To the east lies Pond."
+    },
+    "south": {
+     "to_room": 106228,
+     "description": "To the south lies Pond."
+    },
+    "down": {
+     "to_room": 106268,
+     "description": "To the down lies Narrow Gulley."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east, south and down.",
+   "placeholder": true
+  },
+  "106230": {
+   "vnum": 106230,
+   "name": "Pond",
+   "map": {
+    "x": -9,
+    "y": -17,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106231,
+     "description": "To the north lies Pond."
+    },
+    "west": {
+     "to_room": 106228,
+     "description": "To the west lies Pond."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and west.",
+   "placeholder": true
+  },
+  "106231": {
+   "vnum": 106231,
+   "name": "Pond",
+   "map": {
+    "x": -9,
+    "y": -16,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 106230,
+     "description": "To the south lies Pond."
+    },
+    "west": {
+     "to_room": 106229,
+     "description": "To the west lies Pond."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead south and west.",
+   "placeholder": true
+  },
+  "106232": {
+   "vnum": 106232,
+   "name": "Trail Into the Jungle",
+   "map": {
+    "x": -17,
+    "y": -20,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106238,
+     "description": "To the north lies Trail Through the Jungle."
+    },
+    "south": {
+     "to_room": 106200,
+     "description": "To the south lies Footpath Through Leper's Village."
+    },
+    "west": {
+     "to_room": 106233,
+     "description": "To the west lies Well-used Trail Through the Jungle."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "106233": {
+   "vnum": 106233,
+   "name": "Well-used Trail Through the Jungle",
+   "map": {
+    "x": -18,
+    "y": -20,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 106232,
+     "description": "To the east lies Trail Into the Jungle."
+    },
+    "south": {
+     "to_room": 106234,
+     "description": "To the south lies Well-used Trail Through the Jungle."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and south.",
+   "placeholder": true
+  },
+  "106234": {
+   "vnum": 106234,
+   "name": "Well-used Trail Through the Jungle",
+   "map": {
+    "x": -18,
+    "y": -21,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106233,
+     "description": "To the north lies Well-used Trail Through the Jungle."
+    },
+    "south": {
+     "to_room": 106235,
+     "description": "To the south lies Well-used Trail Through the Jungle."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "106235": {
+   "vnum": 106235,
+   "name": "Well-used Trail Through the Jungle",
+   "map": {
+    "x": -18,
+    "y": -22,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106234,
+     "description": "To the north lies Well-used Trail Through the Jungle."
+    },
+    "west": {
+     "to_room": 106236,
+     "description": "To the west lies Well-used Trail Through the Jungle."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "106236": {
+   "vnum": 106236,
+   "name": "Well-used Trail Through the Jungle",
+   "map": {
+    "x": -19,
+    "y": -22,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 106235,
+     "description": "To the east lies Well-used Trail Through the Jungle."
+    },
+    "west": {
+     "to_room": 106237,
+     "description": "To the west lies Lookout Post."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "106237": {
+   "vnum": 106237,
+   "name": "Lookout Post",
+   "map": {
+    "x": -20,
+    "y": -22,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 106236,
+     "description": "To the east lies Well-used Trail Through the Jungle."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads east.",
+   "placeholder": true
+  },
+  "106238": {
+   "vnum": 106238,
+   "name": "Trail Through the Jungle",
+   "map": {
+    "x": -17,
+    "y": -19,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106239,
+     "description": "To the north lies Trail Through the Jungle."
+    },
+    "south": {
+     "to_room": 106232,
+     "description": "To the south lies Trail Into the Jungle."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "106239": {
+   "vnum": 106239,
+   "name": "Trail Through the Jungle",
+   "map": {
+    "x": -17,
+    "y": -18,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106240,
+     "description": "To the north lies Trail Through the Jungle."
+    },
+    "east": {
+     "to_room": 106275,
+     "description": "To the east lies In Thick Bracken."
+    },
+    "south": {
+     "to_room": 106238,
+     "description": "To the south lies Trail Through the Jungle."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "106240": {
+   "vnum": 106240,
+   "name": "Trail Through the Jungle",
+   "map": {
+    "x": -17,
+    "y": -17,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106241,
+     "description": "To the north lies Trail Through the Jungle."
+    },
+    "south": {
+     "to_room": 106239,
+     "description": "To the south lies Trail Through the Jungle."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "106241": {
+   "vnum": 106241,
+   "name": "Trail Through the Jungle",
+   "map": {
+    "x": -17,
+    "y": -16,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 106240,
+     "description": "To the south lies Trail Through the Jungle."
+    },
+    "west": {
+     "to_room": 106242,
+     "description": "To the west lies Trail Through the Jungle."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead south and west.",
+   "placeholder": true
+  },
+  "106242": {
+   "vnum": 106242,
+   "name": "Trail Through the Jungle",
+   "map": {
+    "x": -18,
+    "y": -16,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106243,
+     "description": "To the north lies Trail Through the Jungle."
+    },
+    "east": {
+     "to_room": 106241,
+     "description": "To the east lies Trail Through the Jungle."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "106243": {
+   "vnum": 106243,
+   "name": "Trail Through the Jungle",
+   "map": {
+    "x": -18,
+    "y": -15,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106244,
+     "description": "To the north lies Trail Through the Jungle."
+    },
+    "south": {
+     "to_room": 106242,
+     "description": "To the south lies Trail Through the Jungle."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "106244": {
+   "vnum": 106244,
+   "name": "Trail Through the Jungle",
+   "map": {
+    "x": -18,
+    "y": -14,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106245,
+     "description": "To the north lies Trail Through the Jungle."
+    },
+    "south": {
+     "to_room": 106243,
+     "description": "To the south lies Trail Through the Jungle."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "106245": {
+   "vnum": 106245,
+   "name": "Trail Through the Jungle",
+   "map": {
+    "x": -18,
+    "y": -13,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106246,
+     "description": "To the north lies Trail Through the Jungle."
+    },
+    "south": {
+     "to_room": 106244,
+     "description": "To the south lies Trail Through the Jungle."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "106246": {
+   "vnum": 106246,
+   "name": "Trail Through the Jungle",
+   "map": {
+    "x": -18,
+    "y": -12,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106249,
+     "description": "To the north lies Encampment."
+    },
+    "south": {
+     "to_room": 106245,
+     "description": "To the south lies Trail Through the Jungle."
+    },
+    "west": {
+     "to_room": 106247,
+     "description": "To the west lies At a Tepid Pond's Shore."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "106247": {
+   "vnum": 106247,
+   "name": "At a Tepid Pond's Shore",
+   "map": {
+    "x": -19,
+    "y": -12,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 106246,
+     "description": "To the east lies Trail Through the Jungle."
+    },
+    "west": {
+     "to_room": 106248,
+     "description": "To the west lies A Tepid Pond."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "106248": {
+   "vnum": 106248,
+   "name": "A Tepid Pond",
+   "map": {
+    "x": -20,
+    "y": -12,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 106247,
+     "description": "To the east lies At a Tepid Pond's Shore."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads east.",
+   "placeholder": true
+  },
+  "106249": {
+   "vnum": 106249,
+   "name": "Encampment",
+   "map": {
+    "x": -18,
+    "y": -11,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106250,
+     "description": "To the north lies Encampment."
+    },
+    "south": {
+     "to_room": 106246,
+     "description": "To the south lies Trail Through the Jungle."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "106250": {
+   "vnum": 106250,
+   "name": "Encampment",
+   "map": {
+    "x": -18,
+    "y": -10,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106251,
+     "description": "To the north lies Open Dirt Area."
+    },
+    "east": {
+     "to_room": 106252,
+     "description": "To the east lies Dirt Area."
+    },
+    "south": {
+     "to_room": 106249,
+     "description": "To the south lies Encampment."
+    },
+    "west": {
+     "to_room": 106262,
+     "description": "To the west lies Cliff's Edge."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "106251": {
+   "vnum": 106251,
+   "name": "Open Dirt Area",
+   "map": {
+    "x": -18,
+    "y": -9,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106257,
+     "description": "To the north lies The Base of the Volcano."
+    },
+    "east": {
+     "to_room": 106255,
+     "description": "To the east lies Community Hut."
+    },
+    "south": {
+     "to_room": 106250,
+     "description": "To the south lies Encampment."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "106252": {
+   "vnum": 106252,
+   "name": "Dirt Area",
+   "map": {
+    "x": -17,
+    "y": -10,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 106254,
+     "description": "To the east lies Grubby Animal Pen."
+    },
+    "south": {
+     "to_room": 106253,
+     "description": "To the south lies Community Gathering Area."
+    },
+    "west": {
+     "to_room": 106250,
+     "description": "To the west lies Encampment."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "106253": {
+   "vnum": 106253,
+   "name": "Community Gathering Area",
+   "map": {
+    "x": -17,
+    "y": -11,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106252,
+     "description": "To the north lies Dirt Area."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads north.",
+   "placeholder": true
+  },
+  "106254": {
+   "vnum": 106254,
+   "name": "Grubby Animal Pen",
+   "map": {
+    "x": -16,
+    "y": -10,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 106252,
+     "description": "To the west lies Dirt Area."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads west.",
+   "placeholder": true
+  },
+  "106255": {
+   "vnum": 106255,
+   "name": "Community Hut",
+   "map": {
+    "x": -17,
+    "y": -9,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 106251,
+     "description": "To the west lies Open Dirt Area."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads west.",
+   "placeholder": true
+  },
+  "106256": {
+   "vnum": 106256,
+   "name": "The House of Death",
+   "map": {
+    "x": -17,
+    "y": -8,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 106257,
+     "description": "To the west lies The Base of the Volcano."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads west.",
+   "placeholder": true
+  },
+  "106257": {
+   "vnum": 106257,
+   "name": "The Base of the Volcano",
+   "map": {
+    "x": -18,
+    "y": -8,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 106256,
+     "description": "To the east lies The House of Death."
+    },
+    "south": {
+     "to_room": 106251,
+     "description": "To the south lies Open Dirt Area."
+    },
+    "up": {
+     "to_room": 106258,
+     "description": "To the up lies Trail to the Volcano's Crest."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east, south and up.",
+   "placeholder": true
+  },
+  "106258": {
+   "vnum": 106258,
+   "name": "Trail to the Volcano's Crest",
+   "map": {
+    "x": -18,
+    "y": -8,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 106259,
+     "description": "To the up lies Trail to the Volcano's Crest."
+    },
+    "down": {
+     "to_room": 106257,
+     "description": "To the down lies The Base of the Volcano."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead up and down.",
+   "placeholder": true
+  },
+  "106259": {
+   "vnum": 106259,
+   "name": "Trail to the Volcano's Crest",
+   "map": {
+    "x": -18,
+    "y": -8,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 106260,
+     "description": "To the up lies Smoking Crest of the Volcano."
+    },
+    "down": {
+     "to_room": 106258,
+     "description": "To the down lies Trail to the Volcano's Crest."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead up and down.",
+   "placeholder": true
+  },
+  "106260": {
+   "vnum": 106260,
+   "name": "Smoking Crest of the Volcano",
+   "map": {
+    "x": -18,
+    "y": -8,
+    "z": 4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "down": {
+     "to_room": 106259,
+     "description": "To the down lies Trail to the Volcano's Crest."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads down.",
+   "placeholder": true
+  },
+  "106261": {
+   "vnum": 106261,
+   "name": "Cliff's Edge",
+   "map": {
+    "x": -19,
+    "y": -9,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 106262,
+     "description": "To the south lies Cliff's Edge."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "106262": {
+   "vnum": 106262,
+   "name": "Cliff's Edge",
+   "map": {
+    "x": -19,
+    "y": -10,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106261,
+     "description": "To the north lies Cliff's Edge."
+    },
+    "east": {
+     "to_room": 106250,
+     "description": "To the east lies Encampment."
+    },
+    "south": {
+     "to_room": 106263,
+     "description": "To the south lies Cliff's Edge."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "106263": {
+   "vnum": 106263,
+   "name": "Cliff's Edge",
+   "map": {
+    "x": -19,
+    "y": -11,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106262,
+     "description": "To the north lies Cliff's Edge."
+    },
+    "down": {
+     "to_room": 106264,
+     "description": "To the down lies Cliff."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and down.",
+   "placeholder": true
+  },
+  "106264": {
+   "vnum": 106264,
+   "name": "Cliff",
+   "map": {
+    "x": -19,
+    "y": -11,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 106263,
+     "description": "To the up lies Cliff's Edge."
+    },
+    "down": {
+     "to_room": 106265,
+     "description": "To the down lies White Sand Beach."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead up and down.",
+   "placeholder": true
+  },
+  "106268": {
+   "vnum": 106268,
+   "name": "Narrow Gulley",
+   "map": {
+    "x": -10,
+    "y": -16,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 106269,
+     "description": "To the east lies Narrow Gully."
+    },
+    "up": {
+     "to_room": 106229,
+     "description": "To the up lies Pond."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and up.",
+   "placeholder": true
+  },
+  "106269": {
+   "vnum": 106269,
+   "name": "Narrow Gully",
+   "map": {
+    "x": -9,
+    "y": -16,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 106268,
+     "description": "To the west lies Narrow Gulley."
+    },
+    "down": {
+     "to_room": 106270,
+     "description": "To the down lies Narrow Gully."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead west and down.",
+   "placeholder": true
+  },
+  "106270": {
+   "vnum": 106270,
+   "name": "Narrow Gully",
+   "map": {
+    "x": -9,
+    "y": -16,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 106269,
+     "description": "To the up lies Narrow Gully."
+    },
+    "down": {
+     "to_room": 106271,
+     "description": "To the down lies White Sand Beach."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead up and down.",
+   "placeholder": true
+  },
+  "106275": {
+   "vnum": 106275,
+   "name": "In Thick Bracken",
+   "map": {
+    "x": -16,
+    "y": -18,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 106276,
+     "description": "To the east lies A Tangle of Vines."
+    },
+    "west": {
+     "to_room": 106239,
+     "description": "To the west lies Trail Through the Jungle."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "106276": {
+   "vnum": 106276,
+   "name": "A Tangle of Vines",
+   "map": {
+    "x": -15,
+    "y": -18,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 106277,
+     "description": "To the south lies Near an Old, Wet, Fallen Tree."
+    },
+    "west": {
+     "to_room": 106275,
+     "description": "To the west lies In Thick Bracken."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "106277": {
+   "vnum": 106277,
+   "name": "Near an Old, Wet, Fallen Tree",
+   "map": {
+    "x": -15,
+    "y": -19,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106276,
+     "description": "To the north lies A Tangle of Vines."
+    },
+    "south": {
+     "to_room": 106283,
+     "description": "To the south lies Outside a Hollow Tree."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "106278": {
+   "vnum": 106278,
+   "name": "Through a Tangle of Jungle Brush",
+   "map": {
+    "x": -14,
+    "y": -20,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 106279,
+     "description": "To the east lies Near a Large Tree."
+    },
+    "west": {
+     "to_room": 106283,
+     "description": "To the west lies Outside a Hollow Tree."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "106279": {
+   "vnum": 106279,
+   "name": "Near a Large Tree",
+   "map": {
+    "x": -13,
+    "y": -20,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106280,
+     "description": "To the north lies Through a Growth of Tall Weeds."
+    },
+    "south": {
+     "to_room": 106281,
+     "description": "To the south lies Branch Clustered Area."
+    },
+    "west": {
+     "to_room": 106278,
+     "description": "To the west lies Through a Tangle of Jungle Brush."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "106280": {
+   "vnum": 106280,
+   "name": "Through a Growth of Tall Weeds",
+   "map": {
+    "x": -13,
+    "y": -19,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106282,
+     "description": "To the north lies Near a Large Hole."
+    },
+    "south": {
+     "to_room": 106279,
+     "description": "To the south lies Near a Large Tree."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "106281": {
+   "vnum": 106281,
+   "name": "Branch Clustered Area",
+   "map": {
+    "x": -13,
+    "y": -21,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106279,
+     "description": "To the north lies Near a Large Tree."
+    },
+    "east": {
+     "to_room": 106286,
+     "description": "To the east lies A Leaf Shrouded Section of the Jungle."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and east.",
+   "placeholder": true
+  },
+  "106282": {
+   "vnum": 106282,
+   "name": "Near a Large Hole",
+   "map": {
+    "x": -13,
+    "y": -18,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 106285,
+     "description": "To the east lies In a Lion's Den."
+    },
+    "south": {
+     "to_room": 106280,
+     "description": "To the south lies Through a Growth of Tall Weeds."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and south.",
+   "placeholder": true
+  },
+  "106283": {
+   "vnum": 106283,
+   "name": "Outside a Hollow Tree",
+   "map": {
+    "x": -15,
+    "y": -20,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106277,
+     "description": "To the north lies Near an Old, Wet, Fallen Tree."
+    },
+    "east": {
+     "to_room": 106278,
+     "description": "To the east lies Through a Tangle of Jungle Brush."
+    },
+    "south": {
+     "to_room": 106284,
+     "description": "To the south lies Inside a Hollow Tree."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "106284": {
+   "vnum": 106284,
+   "name": "Inside a Hollow Tree",
+   "map": {
+    "x": -15,
+    "y": -21,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106283,
+     "description": "To the north lies Outside a Hollow Tree."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads north.",
+   "placeholder": true
+  },
+  "106285": {
+   "vnum": 106285,
+   "name": "In a Lion's Den",
+   "map": {
+    "x": -12,
+    "y": -18,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 106282,
+     "description": "To the west lies Near a Large Hole."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "106286": {
+   "vnum": 106286,
+   "name": "A Leaf Shrouded Section of the Jungle",
+   "map": {
+    "x": -12,
+    "y": -21,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 106223,
+     "description": "To the east lies Trail Through the Jungle."
+    },
+    "west": {
+     "to_room": 106281,
+     "description": "To the west lies Branch Clustered Area."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east and west.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

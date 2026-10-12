@@ -1,0 +1,2495 @@
+{
+ "number": 495,
+ "name": "Island Of The Dead",
+ "builders": "Muse",
+ "atlas_area": 95,
+ "rooms": {
+  "3700": {
+   "vnum": 3700,
+   "name": "Landfall On The Island Of The Dead",
+   "map": {
+    "x": 48,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3701,
+     "description": "To the east lies Along The Southern Island Shore."
+    },
+    "south": {
+     "to_room": 9515,
+     "description": "To the south lies On a strong east-west current."
+    },
+    "west": {
+     "to_room": 3713,
+     "description": "To the west lies Along The Southern Island Shore."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "3701": {
+   "vnum": 3701,
+   "name": "Along The Southern Island Shore",
+   "map": {
+    "x": 49,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3702,
+     "description": "To the east lies Along The Southern Island Shore."
+    },
+    "west": {
+     "to_room": 3700,
+     "description": "To the west lies Landfall On The Island Of The Dead."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. A worn track crosses the\nopen ground. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3702": {
+   "vnum": 3702,
+   "name": "Along The Southern Island Shore",
+   "map": {
+    "x": 50,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3703,
+     "description": "To the east lies Along The Southern Island Shore."
+    },
+    "west": {
+     "to_room": 3701,
+     "description": "To the west lies Along The Southern Island Shore."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wind moves through the\ntall grass in long, slow waves. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3703": {
+   "vnum": 3703,
+   "name": "Along The Southern Island Shore",
+   "map": {
+    "x": 51,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3704,
+     "description": "To the east lies Following The Curving Shore."
+    },
+    "west": {
+     "to_room": 3702,
+     "description": "To the west lies Along The Southern Island Shore."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. A worn track crosses the\nopen ground. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3704": {
+   "vnum": 3704,
+   "name": "Following The Curving Shore",
+   "map": {
+    "x": 52,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3705,
+     "description": "To the north lies Along The Eastern Island Shore."
+    },
+    "west": {
+     "to_room": 3703,
+     "description": "To the west lies Along The Southern Island Shore."
+    }
+   },
+   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north and west.",
+   "placeholder": true
+  },
+  "3705": {
+   "vnum": 3705,
+   "name": "Along The Eastern Island Shore",
+   "map": {
+    "x": 52,
+    "y": -8,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3706,
+     "description": "To the north lies Along The Eastern Island Shore."
+    },
+    "south": {
+     "to_room": 3704,
+     "description": "To the south lies Following The Curving Shore."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3706": {
+   "vnum": 3706,
+   "name": "Along The Eastern Island Shore",
+   "map": {
+    "x": 52,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3707,
+     "description": "To the north lies Along The Eastern Island Shore."
+    },
+    "south": {
+     "to_room": 3705,
+     "description": "To the south lies Along The Eastern Island Shore."
+    }
+   },
+   "description": "A worn track crosses the open ground. Open grassland rolls away under a\nwide sky. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3707": {
+   "vnum": 3707,
+   "name": "Along The Eastern Island Shore",
+   "map": {
+    "x": 52,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3708,
+     "description": "To the north lies Along The Eastern Island Shore."
+    },
+    "south": {
+     "to_room": 3706,
+     "description": "To the south lies Along The Eastern Island Shore."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3708": {
+   "vnum": 3708,
+   "name": "Along The Eastern Island Shore",
+   "map": {
+    "x": 52,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3709,
+     "description": "To the north lies Along The Eastern Island Shore."
+    },
+    "south": {
+     "to_room": 3707,
+     "description": "To the south lies Along The Eastern Island Shore."
+    }
+   },
+   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3709": {
+   "vnum": 3709,
+   "name": "Along The Eastern Island Shore",
+   "map": {
+    "x": 52,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3710,
+     "description": "To the north lies Along The Eastern Island Shore."
+    },
+    "south": {
+     "to_room": 3708,
+     "description": "To the south lies Along The Eastern Island Shore."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3710": {
+   "vnum": 3710,
+   "name": "Along The Eastern Island Shore",
+   "map": {
+    "x": 52,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3711,
+     "description": "To the north lies Following The Curving Shore."
+    },
+    "south": {
+     "to_room": 3709,
+     "description": "To the south lies Along The Eastern Island Shore."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3711": {
+   "vnum": 3711,
+   "name": "Following The Curving Shore",
+   "map": {
+    "x": 52,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 3710,
+     "description": "To the south lies Along The Eastern Island Shore."
+    },
+    "west": {
+     "to_room": 3712,
+     "description": "To the west lies Along The Northern Island Shore."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead south and west.",
+   "placeholder": true
+  },
+  "3712": {
+   "vnum": 3712,
+   "name": "Along The Northern Island Shore",
+   "map": {
+    "x": 51,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3711,
+     "description": "To the east lies Following The Curving Shore."
+    },
+    "south": {
+     "to_room": 3725,
+     "description": "To the south lies Following A Stream In The Dense Forest."
+    }
+   },
+   "description": "A worn track crosses the open ground. The land lies flat and quiet in\nevery direction. Ways lead east and south.",
+   "placeholder": true
+  },
+  "3713": {
+   "vnum": 3713,
+   "name": "Along The Southern Island Shore",
+   "map": {
+    "x": 47,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3700,
+     "description": "To the east lies Landfall On The Island Of The Dead."
+    },
+    "west": {
+     "to_room": 3714,
+     "description": "To the west lies Along The Southern Island Shore."
+    }
+   },
+   "description": "A worn track crosses the open ground. Wildflowers dot the meadow, and\ninsects hum among them. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3714": {
+   "vnum": 3714,
+   "name": "Along The Southern Island Shore",
+   "map": {
+    "x": 46,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3713,
+     "description": "To the east lies Along The Southern Island Shore."
+    },
+    "west": {
+     "to_room": 3715,
+     "description": "To the west lies Along The Southern Island Shore."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3715": {
+   "vnum": 3715,
+   "name": "Along The Southern Island Shore",
+   "map": {
+    "x": 45,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3714,
+     "description": "To the east lies Along The Southern Island Shore."
+    },
+    "west": {
+     "to_room": 3716,
+     "description": "To the west lies Following The Curving Shore."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. A worn track\ncrosses the open ground. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3716": {
+   "vnum": 3716,
+   "name": "Following The Curving Shore",
+   "map": {
+    "x": 44,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3717,
+     "description": "To the north lies Along The Western Island Shore."
+    },
+    "east": {
+     "to_room": 3715,
+     "description": "To the east lies Along The Southern Island Shore."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and east.",
+   "placeholder": true
+  },
+  "3717": {
+   "vnum": 3717,
+   "name": "Along The Western Island Shore",
+   "map": {
+    "x": 44,
+    "y": -8,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3718,
+     "description": "To the north lies Along The Western Island Shore."
+    },
+    "south": {
+     "to_room": 3716,
+     "description": "To the south lies Following The Curving Shore."
+    }
+   },
+   "description": "A worn track crosses the open ground. Open grassland rolls away under a\nwide sky. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3718": {
+   "vnum": 3718,
+   "name": "Along The Western Island Shore",
+   "map": {
+    "x": 44,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3719,
+     "description": "To the north lies Along The Western Island Shore."
+    },
+    "south": {
+     "to_room": 3717,
+     "description": "To the south lies Along The Western Island Shore."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3719": {
+   "vnum": 3719,
+   "name": "Along The Western Island Shore",
+   "map": {
+    "x": 44,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3720,
+     "description": "To the north lies Along The Western Island Shore."
+    },
+    "south": {
+     "to_room": 3718,
+     "description": "To the south lies Along The Western Island Shore."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3720": {
+   "vnum": 3720,
+   "name": "Along The Western Island Shore",
+   "map": {
+    "x": 44,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3721,
+     "description": "To the north lies Along The Western Island Shore."
+    },
+    "south": {
+     "to_room": 3719,
+     "description": "To the south lies Along The Western Island Shore."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3721": {
+   "vnum": 3721,
+   "name": "Along The Western Island Shore",
+   "map": {
+    "x": 44,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3722,
+     "description": "To the north lies Along The Western Island Shore."
+    },
+    "south": {
+     "to_room": 3720,
+     "description": "To the south lies Along The Western Island Shore."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3722": {
+   "vnum": 3722,
+   "name": "Along The Western Island Shore",
+   "map": {
+    "x": 44,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3723,
+     "description": "To the north lies Following The Curving Shore."
+    },
+    "south": {
+     "to_room": 3721,
+     "description": "To the south lies Along The Western Island Shore."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wind moves through the\ntall grass in long, slow waves. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3723": {
+   "vnum": 3723,
+   "name": "Following The Curving Shore",
+   "map": {
+    "x": 44,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3724,
+     "description": "To the east lies Along The Northern Island Shore."
+    },
+    "south": {
+     "to_room": 3722,
+     "description": "To the south lies Along The Western Island Shore."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. Open grassland\nrolls away under a wide sky. Ways lead east and south.",
+   "placeholder": true
+  },
+  "3724": {
+   "vnum": 3724,
+   "name": "Along The Northern Island Shore",
+   "map": {
+    "x": 45,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 3733,
+     "description": "To the south lies On A Path In The Dense Forest."
+    },
+    "west": {
+     "to_room": 3723,
+     "description": "To the west lies Following The Curving Shore."
+    }
+   },
+   "description": "A worn track crosses the open ground. Wildflowers dot the meadow, and\ninsects hum among them. Ways lead south and west.",
+   "placeholder": true
+  },
+  "3725": {
+   "vnum": 3725,
+   "name": "Following A Stream In The Dense Forest",
+   "map": {
+    "x": 51,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3712,
+     "description": "To the north lies Along The Northern Island Shore."
+    },
+    "south": {
+     "to_room": 3726,
+     "description": "To the south lies Following A Stream In The Dense Forest."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Shafts of\npale light slant between the trunks. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3726": {
+   "vnum": 3726,
+   "name": "Following A Stream In The Dense Forest",
+   "map": {
+    "x": 51,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3725,
+     "description": "To the north lies Following A Stream In The Dense Forest."
+    },
+    "south": {
+     "to_room": 3727,
+     "description": "To the south lies Following A Stream In The Dense Forest."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3727": {
+   "vnum": 3727,
+   "name": "Following A Stream In The Dense Forest",
+   "map": {
+    "x": 51,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3726,
+     "description": "To the north lies Following A Stream In The Dense Forest."
+    },
+    "south": {
+     "to_room": 3728,
+     "description": "To the south lies Crossing A Stream In The Dense Forest."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Old trees crowd\nclose, their roots knotted across the path. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3728": {
+   "vnum": 3728,
+   "name": "Crossing A Stream In The Dense Forest",
+   "map": {
+    "x": 51,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3727,
+     "description": "To the north lies Following A Stream In The Dense Forest."
+    },
+    "south": {
+     "to_room": 3729,
+     "description": "To the south lies Following A Stream In The Dense Forest."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Fallen needles and leaves\nmuffle every step. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3729": {
+   "vnum": 3729,
+   "name": "Following A Stream In The Dense Forest",
+   "map": {
+    "x": 51,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3728,
+     "description": "To the north lies Crossing A Stream In The Dense Forest."
+    },
+    "south": {
+     "to_room": 3730,
+     "description": "To the south lies At A Turn On The Forest Path."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Fallen\nneedles and leaves muffle every step. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3730": {
+   "vnum": 3730,
+   "name": "At A Turn On The Forest Path",
+   "map": {
+    "x": 51,
+    "y": -8,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3729,
+     "description": "To the north lies Following A Stream In The Dense Forest."
+    },
+    "west": {
+     "to_room": 3731,
+     "description": "To the west lies On A Path In The Dense Forest."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead north and west.",
+   "placeholder": true
+  },
+  "3731": {
+   "vnum": 3731,
+   "name": "On A Path In The Dense Forest",
+   "map": {
+    "x": 50,
+    "y": -8,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3730,
+     "description": "To the east lies At A Turn On The Forest Path."
+    },
+    "west": {
+     "to_room": 3732,
+     "description": "To the west lies A Small Clearing."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Birdsong drifts down\nthrough the branches overhead. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3732": {
+   "vnum": 3732,
+   "name": "A Small Clearing",
+   "map": {
+    "x": 49,
+    "y": -8,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3731,
+     "description": "To the east lies On A Path In The Dense Forest."
+    },
+    "west": {
+     "to_room": 3741,
+     "description": "To the west lies Standing Before The Ruined Necropolis."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Fallen\nneedles and leaves muffle every step. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3733": {
+   "vnum": 3733,
+   "name": "On A Path In The Dense Forest",
+   "map": {
+    "x": 45,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3724,
+     "description": "To the north lies Along The Northern Island Shore."
+    },
+    "south": {
+     "to_room": 3734,
+     "description": "To the south lies On A Path In The Dense Forest."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Old trees\ncrowd close, their roots knotted across the path. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "3734": {
+   "vnum": 3734,
+   "name": "On A Path In The Dense Forest",
+   "map": {
+    "x": 45,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3733,
+     "description": "To the north lies On A Path In The Dense Forest."
+    },
+    "south": {
+     "to_room": 3735,
+     "description": "To the south lies On A Path In The Dense Forest."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Birdsong\ndrifts down through the branches overhead. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3735": {
+   "vnum": 3735,
+   "name": "On A Path In The Dense Forest",
+   "map": {
+    "x": 45,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3734,
+     "description": "To the north lies On A Path In The Dense Forest."
+    },
+    "south": {
+     "to_room": 3736,
+     "description": "To the south lies On A Path In The Dense Forest."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3736": {
+   "vnum": 3736,
+   "name": "On A Path In The Dense Forest",
+   "map": {
+    "x": 45,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3735,
+     "description": "To the north lies On A Path In The Dense Forest."
+    },
+    "south": {
+     "to_room": 3737,
+     "description": "To the south lies On A Path In The Dense Forest."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Fallen needles and leaves\nmuffle every step. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3737": {
+   "vnum": 3737,
+   "name": "On A Path In The Dense Forest",
+   "map": {
+    "x": 45,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3736,
+     "description": "To the north lies On A Path In The Dense Forest."
+    },
+    "south": {
+     "to_room": 3738,
+     "description": "To the south lies At A Turn On The Forest Path."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3738": {
+   "vnum": 3738,
+   "name": "At A Turn On The Forest Path",
+   "map": {
+    "x": 45,
+    "y": -8,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3737,
+     "description": "To the north lies On A Path In The Dense Forest."
+    },
+    "east": {
+     "to_room": 3739,
+     "description": "To the east lies On A Path In The Dense Forest."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead north and east.",
+   "placeholder": true
+  },
+  "3739": {
+   "vnum": 3739,
+   "name": "On A Path In The Dense Forest",
+   "map": {
+    "x": 46,
+    "y": -8,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3740,
+     "description": "To the east lies A Small Clearing."
+    },
+    "west": {
+     "to_room": 3738,
+     "description": "To the west lies At A Turn On The Forest Path."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3740": {
+   "vnum": 3740,
+   "name": "A Small Clearing",
+   "map": {
+    "x": 47,
+    "y": -8,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3741,
+     "description": "To the east lies Standing Before The Ruined Necropolis."
+    },
+    "west": {
+     "to_room": 3739,
+     "description": "To the west lies On A Path In The Dense Forest."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Old trees crowd close,\ntheir roots knotted across the path. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3741": {
+   "vnum": 3741,
+   "name": "Standing Before The Ruined Necropolis",
+   "map": {
+    "x": 48,
+    "y": -8,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3742,
+     "description": "To the north lies Entrance To The Ruined Temple.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 3732,
+     "description": "To the east lies A Small Clearing."
+    },
+    "west": {
+     "to_room": 3740,
+     "description": "To the west lies A Small Clearing."
+    },
+    "down": {
+     "to_room": 3771,
+     "description": "To the down lies Path To The Underworld."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Fallen needles and leaves\nmuffle every step. Ways lead north, east, west and down.",
+   "placeholder": true
+  },
+  "3742": {
+   "vnum": 3742,
+   "name": "Entrance To The Ruined Temple",
+   "map": {
+    "x": 48,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3747,
+     "description": "To the north lies A Small Antechamber."
+    },
+    "east": {
+     "to_room": 3748,
+     "description": "To the east lies An Antechamber."
+    },
+    "south": {
+     "to_room": 3741,
+     "description": "To the south lies Standing Before The Ruined Necropolis."
+    },
+    "west": {
+     "to_room": 3743,
+     "description": "To the west lies An Antechamber."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "3743": {
+   "vnum": 3743,
+   "name": "An Antechamber",
+   "map": {
+    "x": 47,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3744,
+     "description": "To the north lies A Turning Corridor."
+    },
+    "east": {
+     "to_room": 3742,
+     "description": "To the east lies Entrance To The Ruined Temple."
+    },
+    "west": {
+     "to_room": 3746,
+     "description": "To the west lies A Corner Chamber."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "3744": {
+   "vnum": 3744,
+   "name": "A Turning Corridor",
+   "map": {
+    "x": 47,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 3743,
+     "description": "To the south lies An Antechamber."
+    },
+    "west": {
+     "to_room": 3745,
+     "description": "To the west lies A Turning Corridor."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "3745": {
+   "vnum": 3745,
+   "name": "A Turning Corridor",
+   "map": {
+    "x": 46,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3744,
+     "description": "To the east lies A Turning Corridor."
+    },
+    "south": {
+     "to_room": 3746,
+     "description": "To the south lies A Corner Chamber."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "3746": {
+   "vnum": 3746,
+   "name": "A Corner Chamber",
+   "map": {
+    "x": 46,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3745,
+     "description": "To the north lies A Turning Corridor.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 3743,
+     "description": "To the east lies An Antechamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and east.",
+   "placeholder": true
+  },
+  "3747": {
+   "vnum": 3747,
+   "name": "A Small Antechamber",
+   "map": {
+    "x": 48,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 3742,
+     "description": "To the south lies Entrance To The Ruined Temple."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "3748": {
+   "vnum": 3748,
+   "name": "An Antechamber",
+   "map": {
+    "x": 49,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3749,
+     "description": "To the east lies A Corner Chamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 3742,
+     "description": "To the west lies Entrance To The Ruined Temple."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3749": {
+   "vnum": 3749,
+   "name": "A Corner Chamber",
+   "map": {
+    "x": 50,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3750,
+     "description": "To the north lies A Winding Corridor.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 3748,
+     "description": "To the west lies An Antechamber."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "3750": {
+   "vnum": 3750,
+   "name": "A Winding Corridor",
+   "map": {
+    "x": 50,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 3749,
+     "description": "To the south lies A Corner Chamber."
+    },
+    "west": {
+     "to_room": 3751,
+     "description": "To the west lies A Winding Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead south and west.",
+   "placeholder": true
+  },
+  "3751": {
+   "vnum": 3751,
+   "name": "A Winding Corridor",
+   "map": {
+    "x": 49,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3752,
+     "description": "To the north lies A Winding Corridor."
+    },
+    "east": {
+     "to_room": 3750,
+     "description": "To the east lies A Winding Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and east.",
+   "placeholder": true
+  },
+  "3752": {
+   "vnum": 3752,
+   "name": "A Winding Corridor",
+   "map": {
+    "x": 49,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3753,
+     "description": "To the east lies A Winding Corridor."
+    },
+    "south": {
+     "to_room": 3751,
+     "description": "To the south lies A Winding Corridor."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and south.",
+   "placeholder": true
+  },
+  "3753": {
+   "vnum": 3753,
+   "name": "A Winding Corridor",
+   "map": {
+    "x": 50,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3754,
+     "description": "To the north lies A Winding Corridor."
+    },
+    "west": {
+     "to_room": 3752,
+     "description": "To the west lies A Winding Corridor."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and west.",
+   "placeholder": true
+  },
+  "3754": {
+   "vnum": 3754,
+   "name": "A Winding Corridor",
+   "map": {
+    "x": 50,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3755,
+     "description": "To the north lies A Corner Chamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 3753,
+     "description": "To the south lies A Winding Corridor."
+    },
+    "west": {
+     "to_room": 3756,
+     "description": "To the west lies A Small Chamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "3755": {
+   "vnum": 3755,
+   "name": "A Corner Chamber",
+   "map": {
+    "x": 50,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 3754,
+     "description": "To the south lies A Winding Corridor."
+    },
+    "west": {
+     "to_room": 3757,
+     "description": "To the west lies A Straight Corridor.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead south and west.",
+   "placeholder": true
+  },
+  "3756": {
+   "vnum": 3756,
+   "name": "A Small Chamber",
+   "map": {
+    "x": 49,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3754,
+     "description": "To the east lies A Winding Corridor."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads east.",
+   "placeholder": true
+  },
+  "3757": {
+   "vnum": 3757,
+   "name": "A Straight Corridor",
+   "map": {
+    "x": 49,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3755,
+     "description": "To the east lies A Corner Chamber."
+    },
+    "west": {
+     "to_room": 3758,
+     "description": "To the west lies A Straight Corridor."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3758": {
+   "vnum": 3758,
+   "name": "A Straight Corridor",
+   "map": {
+    "x": 48,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3757,
+     "description": "To the east lies A Straight Corridor."
+    },
+    "west": {
+     "to_room": 3759,
+     "description": "To the west lies A Straight Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3759": {
+   "vnum": 3759,
+   "name": "A Straight Corridor",
+   "map": {
+    "x": 47,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3758,
+     "description": "To the east lies A Straight Corridor."
+    },
+    "west": {
+     "to_room": 3760,
+     "description": "To the west lies A Corner Chamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3760": {
+   "vnum": 3760,
+   "name": "A Corner Chamber",
+   "map": {
+    "x": 46,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3759,
+     "description": "To the east lies A Straight Corridor."
+    },
+    "south": {
+     "to_room": 3761,
+     "description": "To the south lies A Short Corridor.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and south.",
+   "placeholder": true
+  },
+  "3761": {
+   "vnum": 3761,
+   "name": "A Short Corridor",
+   "map": {
+    "x": 46,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3760,
+     "description": "To the north lies A Corner Chamber."
+    },
+    "south": {
+     "to_room": 3762,
+     "description": "To the south lies A Short Corridor."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3762": {
+   "vnum": 3762,
+   "name": "A Short Corridor",
+   "map": {
+    "x": 46,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3761,
+     "description": "To the north lies A Short Corridor."
+    },
+    "east": {
+     "to_room": 3763,
+     "description": "To the east lies The Oracle's Chamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and east.",
+   "placeholder": true
+  },
+  "3763": {
+   "vnum": 3763,
+   "name": "The Oracle's Chamber",
+   "map": {
+    "x": 47,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3764,
+     "description": "To the north lies A Twisting Corridor.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 3762,
+     "description": "To the west lies A Short Corridor."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and west.",
+   "placeholder": true
+  },
+  "3764": {
+   "vnum": 3764,
+   "name": "A Twisting Corridor",
+   "map": {
+    "x": 47,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3765,
+     "description": "To the north lies A Twisting Corridor."
+    },
+    "south": {
+     "to_room": 3763,
+     "description": "To the south lies The Oracle's Chamber."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3765": {
+   "vnum": 3765,
+   "name": "A Twisting Corridor",
+   "map": {
+    "x": 47,
+    "y": -2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3766,
+     "description": "To the east lies A Twisting Corridor."
+    },
+    "south": {
+     "to_room": 3764,
+     "description": "To the south lies A Twisting Corridor."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east and south.",
+   "placeholder": true
+  },
+  "3766": {
+   "vnum": 3766,
+   "name": "A Twisting Corridor",
+   "map": {
+    "x": 48,
+    "y": -2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 3767,
+     "description": "To the south lies Aphrodite's Altar Chamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 3765,
+     "description": "To the west lies A Twisting Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead south and west.",
+   "placeholder": true
+  },
+  "3767": {
+   "vnum": 3767,
+   "name": "Aphrodite's Altar Chamber",
+   "map": {
+    "x": 48,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3766,
+     "description": "To the north lies A Twisting Corridor."
+    },
+    "south": {
+     "to_room": 3768,
+     "description": "To the south lies At The Altar To Aphrodite."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3768": {
+   "vnum": 3768,
+   "name": "At The Altar To Aphrodite",
+   "map": {
+    "x": 48,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3767,
+     "description": "To the north lies Aphrodite's Altar Chamber."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads north.",
+   "placeholder": true
+  },
+  "3771": {
+   "vnum": 3771,
+   "name": "Path To The Underworld",
+   "map": {
+    "x": 49,
+    "y": -11,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3772,
+     "description": "To the north lies Before The River Styx."
+    },
+    "up": {
+     "to_room": 3741,
+     "description": "To the up lies Standing Before The Ruined Necropolis."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and up.",
+   "placeholder": true
+  },
+  "3772": {
+   "vnum": 3772,
+   "name": "Before The River Styx",
+   "map": {
+    "x": 49,
+    "y": -10,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3774,
+     "description": "To the north lies Before The Gates Of Hades."
+    },
+    "south": {
+     "to_room": 3771,
+     "description": "To the south lies Path To The Underworld."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3773": {
+   "vnum": 3773,
+   "name": "Crossing The River Styx",
+   "map": {
+    "x": 48,
+    "y": -8,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 3772,
+     "description": "To the south lies Before The River Styx."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Shallow water laps around\nstones and reeds. A way leads south.",
+   "placeholder": true
+  },
+  "3774": {
+   "vnum": 3774,
+   "name": "Before The Gates Of Hades",
+   "map": {
+    "x": 48,
+    "y": -6,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3775,
+     "description": "To the north lies At The Gates Of Hades."
+    },
+    "south": {
+     "to_room": 3773,
+     "description": "To the south lies Crossing The River Styx."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3775": {
+   "vnum": 3775,
+   "name": "At The Gates Of Hades",
+   "map": {
+    "x": 48,
+    "y": -5,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3776,
+     "description": "To the north lies In The Underworld.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 3774,
+     "description": "To the south lies Before The Gates Of Hades."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3776": {
+   "vnum": 3776,
+   "name": "In The Underworld",
+   "map": {
+    "x": 48,
+    "y": -4,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3777,
+     "description": "To the north lies Before The Gates To Tartarus."
+    },
+    "south": {
+     "to_room": 3775,
+     "description": "To the south lies At The Gates Of Hades."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3777": {
+   "vnum": 3777,
+   "name": "Before The Gates To Tartarus",
+   "map": {
+    "x": 48,
+    "y": -3,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3782,
+     "description": "To the north lies A White Gate."
+    },
+    "east": {
+     "to_room": 3778,
+     "description": "To the east lies The Waiting Room Of The Doomed."
+    },
+    "south": {
+     "to_room": 3776,
+     "description": "To the south lies In The Underworld."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "3778": {
+   "vnum": 3778,
+   "name": "The Waiting Room Of The Doomed",
+   "map": {
+    "x": 49,
+    "y": -3,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3779,
+     "description": "To the north lies A Judge's Chamber."
+    },
+    "east": {
+     "to_room": 3780,
+     "description": "To the east lies A Judge's Chamber."
+    },
+    "south": {
+     "to_room": 3781,
+     "description": "To the south lies A Judge's Chamber."
+    },
+    "west": {
+     "to_room": 3777,
+     "description": "To the west lies Before The Gates To Tartarus."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "3779": {
+   "vnum": 3779,
+   "name": "A Judge's Chamber",
+   "map": {
+    "x": 49,
+    "y": -2,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 3778,
+     "description": "To the south lies The Waiting Room Of The Doomed."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads south.",
+   "placeholder": true
+  },
+  "3780": {
+   "vnum": 3780,
+   "name": "A Judge's Chamber",
+   "map": {
+    "x": 50,
+    "y": -3,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 3778,
+     "description": "To the west lies The Waiting Room Of The Doomed."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads west.",
+   "placeholder": true
+  },
+  "3781": {
+   "vnum": 3781,
+   "name": "A Judge's Chamber",
+   "map": {
+    "x": 49,
+    "y": -4,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3778,
+     "description": "To the north lies The Waiting Room Of The Doomed."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "3782": {
+   "vnum": 3782,
+   "name": "A White Gate",
+   "map": {
+    "x": 48,
+    "y": -2,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3783,
+     "description": "To the north lies A Gray Gate.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 3777,
+     "description": "To the south lies Before The Gates To Tartarus."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3783": {
+   "vnum": 3783,
+   "name": "A Gray Gate",
+   "map": {
+    "x": 48,
+    "y": -1,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3784,
+     "description": "To the north lies A Black Gate.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 3782,
+     "description": "To the south lies A White Gate."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3784": {
+   "vnum": 3784,
+   "name": "A Black Gate",
+   "map": {
+    "x": 48,
+    "y": 0,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3785,
+     "description": "To the north lies The Path to Tartarus.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 3783,
+     "description": "To the south lies A Gray Gate."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3785": {
+   "vnum": 3785,
+   "name": "The Path to Tartarus",
+   "map": {
+    "x": 48,
+    "y": 1,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 3784,
+     "description": "To the south lies A Black Gate."
+    },
+    "down": {
+     "to_room": 3786,
+     "description": "To the down lies Bottom of a Hill in Tartarus."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead south and down.",
+   "placeholder": true
+  },
+  "3786": {
+   "vnum": 3786,
+   "name": "Bottom of a Hill in Tartarus",
+   "map": {
+    "x": 45,
+    "y": -2,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 3787,
+     "description": "To the south lies Beside The River Lethe."
+    },
+    "up": {
+     "to_room": 3785,
+     "description": "To the up lies The Path to Tartarus."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead south and up.",
+   "placeholder": true
+  },
+  "3787": {
+   "vnum": 3787,
+   "name": "Beside The River Lethe",
+   "map": {
+    "x": 45,
+    "y": -3,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3786,
+     "description": "To the north lies Bottom of a Hill in Tartarus."
+    },
+    "south": {
+     "to_room": 3788,
+     "description": "To the south lies Along A Garden Path."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3788": {
+   "vnum": 3788,
+   "name": "Along A Garden Path",
+   "map": {
+    "x": 45,
+    "y": -4,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3787,
+     "description": "To the north lies Beside The River Lethe."
+    },
+    "east": {
+     "to_room": 3790,
+     "description": "To the east lies The Garden Of Everlasting Peace.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 3791,
+     "description": "To the south lies Facing a Fury."
+    },
+    "west": {
+     "to_room": 3789,
+     "description": "To the west lies The Garden Of Everlasting Peace.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "3789": {
+   "vnum": 3789,
+   "name": "The Garden Of Everlasting Peace",
+   "map": {
+    "x": 44,
+    "y": -4,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3788,
+     "description": "To the east lies Along A Garden Path."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads east.",
+   "placeholder": true
+  },
+  "3790": {
+   "vnum": 3790,
+   "name": "The Garden Of Everlasting Peace",
+   "map": {
+    "x": 46,
+    "y": -4,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 3788,
+     "description": "To the west lies Along A Garden Path."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads west.",
+   "placeholder": true
+  },
+  "3791": {
+   "vnum": 3791,
+   "name": "Facing a Fury",
+   "map": {
+    "x": 45,
+    "y": -5,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3788,
+     "description": "To the north lies Along A Garden Path."
+    },
+    "south": {
+     "to_room": 3792,
+     "description": "To the south lies Trials Of The Underworld - Facing A Fury."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3792": {
+   "vnum": 3792,
+   "name": "Trials Of The Underworld - Facing A Fury",
+   "map": {
+    "x": 45,
+    "y": -6,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3791,
+     "description": "To the north lies Facing a Fury."
+    },
+    "south": {
+     "to_room": 3793,
+     "description": "To the south lies Trials Of The Underworld - Facing A Fury."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3793": {
+   "vnum": 3793,
+   "name": "Trials Of The Underworld - Facing A Fury",
+   "map": {
+    "x": 45,
+    "y": -7,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3792,
+     "description": "To the north lies Trials Of The Underworld - Facing A Fury."
+    },
+    "south": {
+     "to_room": 3794,
+     "description": "To the south lies A Fiery Door."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3794": {
+   "vnum": 3794,
+   "name": "A Fiery Door",
+   "map": {
+    "x": 45,
+    "y": -8,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3793,
+     "description": "To the north lies Trials Of The Underworld - Facing A Fury."
+    },
+    "south": {
+     "to_room": 3795,
+     "description": "To the south lies An Icy Door.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3795": {
+   "vnum": 3795,
+   "name": "An Icy Door",
+   "map": {
+    "x": 45,
+    "y": -9,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3794,
+     "description": "To the north lies A Fiery Door."
+    },
+    "south": {
+     "to_room": 3796,
+     "description": "To the south lies A Misty Door.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3796": {
+   "vnum": 3796,
+   "name": "A Misty Door",
+   "map": {
+    "x": 45,
+    "y": -10,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3795,
+     "description": "To the north lies An Icy Door."
+    },
+    "south": {
+     "to_room": 3797,
+     "description": "To the south lies The Throne Room Of Hades.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3797": {
+   "vnum": 3797,
+   "name": "The Throne Room Of Hades",
+   "map": {
+    "x": 45,
+    "y": -11,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3796,
+     "description": "To the north lies A Misty Door."
+    },
+    "east": {
+     "to_room": 3799,
+     "description": "To the east lies Before An Onyx Throne."
+    },
+    "west": {
+     "to_room": 3798,
+     "description": "To the west lies Before An Onyx Throne."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "3798": {
+   "vnum": 3798,
+   "name": "Before An Onyx Throne",
+   "map": {
+    "x": 44,
+    "y": -11,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3797,
+     "description": "To the east lies The Throne Room Of Hades."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "3799": {
+   "vnum": 3799,
+   "name": "Before An Onyx Throne",
+   "map": {
+    "x": 46,
+    "y": -11,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 3797,
+     "description": "To the west lies The Throne Room Of Hades."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads west.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

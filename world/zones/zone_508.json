@@ -1,0 +1,814 @@
+{
+ "number": 508,
+ "name": "Durmandel II",
+ "builders": "Jack",
+ "atlas_area": 108,
+ "rooms": {
+  "13040": {
+   "vnum": 13040,
+   "name": "The Grand Hall Of Records",
+   "map": {
+    "x": 35,
+    "y": 108,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13117,
+     "description": "To the east lies A Long Corridor."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads east.",
+   "placeholder": true
+  },
+  "13115": {
+   "vnum": 13115,
+   "name": "At The End Of A Long Hallway",
+   "map": {
+    "x": 36,
+    "y": 106,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13116,
+     "description": "To the north lies A Long Corridor."
+    },
+    "down": {
+     "to_room": 13060,
+     "description": "To the down lies The Grand Stairs."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and down.",
+   "placeholder": true
+  },
+  "13116": {
+   "vnum": 13116,
+   "name": "A Long Corridor",
+   "map": {
+    "x": 36,
+    "y": 107,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13117,
+     "description": "To the north lies A Long Corridor."
+    },
+    "south": {
+     "to_room": 13115,
+     "description": "To the south lies At The End Of A Long Hallway."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13117": {
+   "vnum": 13117,
+   "name": "A Long Corridor",
+   "map": {
+    "x": 36,
+    "y": 108,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13118,
+     "description": "To the north lies The Throne Hall."
+    },
+    "east": {
+     "to_room": 13123,
+     "description": "To the east lies The Chapel."
+    },
+    "south": {
+     "to_room": 13116,
+     "description": "To the south lies A Long Corridor."
+    },
+    "west": {
+     "to_room": 13040,
+     "description": "To the west lies The Grand Hall Of Records."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "13118": {
+   "vnum": 13118,
+   "name": "The Throne Hall",
+   "map": {
+    "x": 36,
+    "y": 111,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13137,
+     "description": "To the east lies At The Bottom Of The Stairway."
+    },
+    "south": {
+     "to_room": 13117,
+     "description": "To the south lies A Long Corridor."
+    },
+    "west": {
+     "to_room": 13119,
+     "description": "To the west lies The Royal Hall."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "13119": {
+   "vnum": 13119,
+   "name": "The Royal Hall",
+   "map": {
+    "x": 35,
+    "y": 111,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13120,
+     "description": "To the north lies The Royal Hall."
+    },
+    "east": {
+     "to_room": 13118,
+     "description": "To the east lies The Throne Hall."
+    },
+    "west": {
+     "to_room": 13122,
+     "description": "To the west lies The Queen's Bed Chamber."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "13120": {
+   "vnum": 13120,
+   "name": "The Royal Hall",
+   "map": {
+    "x": 35,
+    "y": 112,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13119,
+     "description": "To the south lies The Royal Hall."
+    },
+    "west": {
+     "to_room": 13121,
+     "description": "To the west lies The King's Bed Chamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "13121": {
+   "vnum": 13121,
+   "name": "The King's Bed Chamber",
+   "map": {
+    "x": 34,
+    "y": 112,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13120,
+     "description": "To the east lies The Royal Hall."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads east.",
+   "placeholder": true
+  },
+  "13122": {
+   "vnum": 13122,
+   "name": "The Queen's Bed Chamber",
+   "map": {
+    "x": 34,
+    "y": 111,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13119,
+     "description": "To the east lies The Royal Hall."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads east.",
+   "placeholder": true
+  },
+  "13123": {
+   "vnum": 13123,
+   "name": "The Chapel",
+   "map": {
+    "x": 39,
+    "y": 108,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13124,
+     "description": "To the east lies The Embalming Chamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 13117,
+     "description": "To the west lies A Long Corridor."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13124": {
+   "vnum": 13124,
+   "name": "The Embalming Chamber",
+   "map": {
+    "x": 42,
+    "y": 108,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13125,
+     "description": "To the north lies The Burial Chamber."
+    },
+    "west": {
+     "to_room": 13123,
+     "description": "To the west lies The Chapel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "13125": {
+   "vnum": 13125,
+   "name": "The Burial Chamber",
+   "map": {
+    "x": 42,
+    "y": 109,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13126,
+     "description": "To the north lies The Burial Chamber."
+    },
+    "south": {
+     "to_room": 13124,
+     "description": "To the south lies The Embalming Chamber."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13126": {
+   "vnum": 13126,
+   "name": "The Burial Chamber",
+   "map": {
+    "x": 42,
+    "y": 110,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13127,
+     "description": "To the north lies The Hall Of Heroes.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 13125,
+     "description": "To the south lies The Burial Chamber."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13127": {
+   "vnum": 13127,
+   "name": "The Hall Of Heroes",
+   "map": {
+    "x": 42,
+    "y": 111,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13133,
+     "description": "To the north lies somewhere.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 13128,
+     "description": "To the east lies The Hall Of Heroes."
+    },
+    "south": {
+     "to_room": 13126,
+     "description": "To the south lies The Burial Chamber."
+    },
+    "west": {
+     "to_room": 13129,
+     "description": "To the west lies The Hall Of Heroes."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "13128": {
+   "vnum": 13128,
+   "name": "The Hall Of Heroes",
+   "map": {
+    "x": 43,
+    "y": 111,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13134,
+     "description": "To the north lies A Burial Mound."
+    },
+    "east": {
+     "to_room": 13135,
+     "description": "To the east lies A Burial Mound."
+    },
+    "south": {
+     "to_room": 13136,
+     "description": "To the south lies A Burial Mound."
+    },
+    "west": {
+     "to_room": 13127,
+     "description": "To the west lies The Hall Of Heroes."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "13129": {
+   "vnum": 13129,
+   "name": "The Hall Of Heroes",
+   "map": {
+    "x": 41,
+    "y": 111,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13132,
+     "description": "To the north lies A Burial Mound."
+    },
+    "east": {
+     "to_room": 13127,
+     "description": "To the east lies The Hall Of Heroes."
+    },
+    "south": {
+     "to_room": 13130,
+     "description": "To the south lies A Burial Mound."
+    },
+    "west": {
+     "to_room": 13131,
+     "description": "To the west lies A Burial Mound."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "13130": {
+   "vnum": 13130,
+   "name": "A Burial Mound",
+   "map": {
+    "x": 41,
+    "y": 110,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13129,
+     "description": "To the north lies The Hall Of Heroes."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. A way leads north.",
+   "placeholder": true
+  },
+  "13131": {
+   "vnum": 13131,
+   "name": "A Burial Mound",
+   "map": {
+    "x": 40,
+    "y": 111,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13129,
+     "description": "To the east lies The Hall Of Heroes."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. A way\nleads east.",
+   "placeholder": true
+  },
+  "13132": {
+   "vnum": 13132,
+   "name": "A Burial Mound",
+   "map": {
+    "x": 41,
+    "y": 112,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 13129,
+     "description": "To the south lies The Hall Of Heroes."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. A way leads south.",
+   "placeholder": true
+  },
+  "13133": {
+   "vnum": 13133,
+   "name": "A Nameless Place",
+   "map": {
+    "x": 42,
+    "y": 112,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 13127,
+     "description": "To the south lies The Hall Of Heroes."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. A way\nleads south.",
+   "placeholder": true
+  },
+  "13134": {
+   "vnum": 13134,
+   "name": "A Burial Mound",
+   "map": {
+    "x": 43,
+    "y": 112,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 13128,
+     "description": "To the south lies The Hall Of Heroes."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. A way\nleads south.",
+   "placeholder": true
+  },
+  "13135": {
+   "vnum": 13135,
+   "name": "A Burial Mound",
+   "map": {
+    "x": 44,
+    "y": 111,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 13128,
+     "description": "To the west lies The Hall Of Heroes."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. A way leads\nwest.",
+   "placeholder": true
+  },
+  "13136": {
+   "vnum": 13136,
+   "name": "A Burial Mound",
+   "map": {
+    "x": 43,
+    "y": 110,
+    "z": 2
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13128,
+     "description": "To the north lies The Hall Of Heroes."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. A way leads\nnorth.",
+   "placeholder": true
+  },
+  "13137": {
+   "vnum": 13137,
+   "name": "At The Bottom Of The Stairway",
+   "map": {
+    "x": 37,
+    "y": 111,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13198,
+     "description": "To the east lies The Grand Stairway."
+    },
+    "west": {
+     "to_room": 13118,
+     "description": "To the west lies The Throne Hall."
+    },
+    "up": {
+     "to_room": 13138,
+     "description": "To the up lies A Narrow Stairway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east, west and up.",
+   "placeholder": true
+  },
+  "13138": {
+   "vnum": 13138,
+   "name": "A Narrow Stairway",
+   "map": {
+    "x": 38,
+    "y": 112,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 13139,
+     "description": "To the up lies A Narrow Stairway."
+    },
+    "down": {
+     "to_room": 13137,
+     "description": "To the down lies At The Bottom Of The Stairway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead up and down.",
+   "placeholder": true
+  },
+  "13139": {
+   "vnum": 13139,
+   "name": "A Narrow Stairway",
+   "map": {
+    "x": 39,
+    "y": 113,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 13140,
+     "description": "To the up lies A Narrow Stairway."
+    },
+    "down": {
+     "to_room": 13138,
+     "description": "To the down lies A Narrow Stairway."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead up and down.",
+   "placeholder": true
+  },
+  "13140": {
+   "vnum": 13140,
+   "name": "A Narrow Stairway",
+   "map": {
+    "x": 40,
+    "y": 114,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 13141,
+     "description": "To the up lies The Look-Out."
+    },
+    "down": {
+     "to_room": 13139,
+     "description": "To the down lies A Narrow Stairway."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead up and down.",
+   "placeholder": true
+  },
+  "13141": {
+   "vnum": 13141,
+   "name": "The Look-Out",
+   "map": {
+    "x": 41,
+    "y": 115,
+    "z": 2
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 13142,
+     "description": "To the west lies A Rocky Ledge."
+    },
+    "down": {
+     "to_room": 13140,
+     "description": "To the down lies A Narrow Stairway."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead west and down.",
+   "placeholder": true
+  },
+  "13142": {
+   "vnum": 13142,
+   "name": "A Rocky Ledge",
+   "map": {
+    "x": 40,
+    "y": 115,
+    "z": 2
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13141,
+     "description": "To the east lies The Look-Out."
+    },
+    "west": {
+     "to_room": 13143,
+     "description": "To the west lies A Rocky Ledge."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13143": {
+   "vnum": 13143,
+   "name": "A Rocky Ledge",
+   "map": {
+    "x": 39,
+    "y": 115,
+    "z": 2
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13142,
+     "description": "To the east lies A Rocky Ledge."
+    },
+    "west": {
+     "to_room": 13144,
+     "description": "To the west lies The Gryphon's Nest."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Shafts of pale light\nslant between the trunks. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13144": {
+   "vnum": 13144,
+   "name": "The Gryphon's Nest",
+   "map": {
+    "x": 38,
+    "y": 115,
+    "z": 2
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13143,
+     "description": "To the east lies A Rocky Ledge."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Birdsong\ndrifts down through the branches overhead. A way leads east.",
+   "placeholder": true
+  },
+  "13198": {
+   "vnum": 13198,
+   "name": "The Grand Stairway",
+   "map": {
+    "x": 39,
+    "y": 111,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 13137,
+     "description": "To the west lies At The Bottom Of The Stairway.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "down": {
+     "to_room": 13199,
+     "description": "To the down lies The Grand Stairway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead west and down.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

@@ -1,0 +1,27 @@
+{
+  "name": "The Last Bastion",
+  "intro": "The banner's cloth snaps taut, and the Dragon's Gate is gone. Smoke. Horns. You stand on the Outer Wall of the Last Bastion on the day of the siege — and the ladders are already against the stones.",
+  "rooms": [
+    {"key": "wall", "name": "The Last Bastion - The Outer Wall", "sector": "dungeon",
+     "description": "Smoke rolls along the battlements of the Last Bastion. Siege ladders scrape against the parapet and torn pennants of the old company hang from the merlons. North, a portcullis bars the stair down to the breach.",
+     "exits": {"north": {"to": "breach", "door": "portcullis"}}},
+    {"key": "breach", "name": "The Last Bastion - The Breach", "sector": "hills",
+     "description": "Here the wall came down: a slope of broken stone and burning timbers where the besiegers poured in. Hounds bay somewhere in the smoke. North, the iron gate of the keep stands shut.",
+     "exits": {"south": {"to": "wall", "door": "portcullis"}, "north": {"to": "keep", "door": "gate keep"}}},
+    {"key": "keep", "name": "The Last Bastion - The Keep", "sector": "inside",
+     "description": "The great hall of the keep, its tables overturned into barricades. At the far end, beneath the empty pole where the Unbroken Banner once hung, the Siegebreaker waits.",
+     "exits": {"south": {"to": "breach", "door": "gate keep"}}}
+  ],
+  "entrance": "wall",
+  "waves": [
+    {"room": "wall", "mobs": [[9704, 2], [9705, 1]], "text": "Siegemen haul themselves over the parapet, a hound snarling at their heels!"},
+    {"room": "breach", "mobs": [[9704, 2], [9705, 1]], "text": "The besiegers come scrambling up the rubble of the breach!"},
+    {"room": "breach", "mobs": [[9705, 3]], "text": "Horns sound — the siege hounds are loosed through the breach!"}
+  ],
+  "gates": [
+    {"after": 0, "room": "wall", "dir": "north", "text": "The portcullis grinds up — the way down to the breach is open."},
+    {"after": 2, "room": "breach", "dir": "north", "text": "The iron gate of the keep swings open. Something huge waits inside."}
+  ],
+  "boss": {"vnum": 9706, "room": "keep",
+           "text": "Gorrund the Siegebreaker hefts a ram-headed maul and laughs. 'The banner again? I broke it once. I will break it on your back.'"}
+}
