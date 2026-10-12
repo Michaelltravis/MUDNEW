@@ -1193,28 +1193,11 @@ def build_zonemap(world, zone_num: int) -> Optional[dict]:
     rooms = {v: r for v, r in world.rooms.items() if r.zone is not None and r.zone.number == zone_num}
     if not zone or not rooms:
         return None
-    coords = compute_room_coords(rooms, min(rooms), fixed=stored_cells(rooms))
-
-    # islands: level 0 first, then 1, -1, 2, -2 ... each to the right of the last
-    levels: Dict[int, List[int]] = {}
-    for v, (x, y, z) in coords.items():
-        levels.setdefault(z, []).append(v)
-    cells: Dict[int, Tuple[int, int]] = {}
-    taken: Set[Tuple[int, int]] = set()
-    left = 0
-    for z in sorted(levels, key=lambda lv: (abs(lv), -lv)):
-        vs = levels[z]
-        minx = min(coords[v][0] for v in vs)
-        miny = min(coords[v][1] for v in vs)
-        right = left
-        for v in vs:   # coords keeps placement order, so the first claimant keeps a cell
-            cell = (coords[v][0] - minx + left, coords[v][1] - miny)
-            if cell in taken:
-                cell = _nearest_free(cell, taken)
-            cells[v] = cell
-            taken.add(cell)
-            right = max(right, cell[0])
-        left = right + 3
+    # two layouts: the atlas's own placement and one laid out from the exits alone; each is
+    # relaxed (rooms that lead to each other moved side by side) and the one with fewer gaps
+    # to hop is kept (the owner: "I'd love for the rooms to be seamless")
+    coords, cells = min((_lay_out(rooms, fixed) for fixed in (stored_cells(rooms), {})),
+                        key=lambda cc: _gaps(rooms, cc[1]))
 
     out_rooms = []
     links = set()
@@ -1259,6 +1242,126 @@ def build_zonemap(world, zone_num: int) -> Optional[dict]:
         'size': [w, h], 'rooms': out_rooms, 'links': sorted(z for z in links if z is not None),
     }
     return data
+
+
+def _lay_out(rooms, fixed):
+    """(coords, cells) for a zone: levels as islands side by side, then relaxed."""
+    coords = compute_room_coords(rooms, min(rooms), fixed=fixed)
+    # islands: level 0 first, then 1, -1, 2, -2 ... each to the right of the last
+    levels: Dict[int, List[int]] = {}
+    for v, (x, y, z) in coords.items():
+        levels.setdefault(z, []).append(v)
+    cells: Dict[int, Tuple[int, int]] = {}
+    taken: Set[Tuple[int, int]] = set()
+    left = 0
+    for z in sorted(levels, key=lambda lv: (abs(lv), -lv)):
+        vs = levels[z]
+        minx = min(coords[v][0] for v in vs)
+        miny = min(coords[v][1] for v in vs)
+        right = left
+        for v in vs:   # coords keeps placement order, so the first claimant keeps a cell
+            cell = (coords[v][0] - minx + left, coords[v][1] - miny)
+            if cell in taken:
+                cell = _nearest_free(cell, taken)
+            cells[v] = cell
+            taken.add(cell)
+            right = max(right, cell[0])
+        left = right + 3
+    return coords, relax_cells(cells, rooms)
+
+
+def _gaps(rooms, cells) -> int:
+    """How many walkable joins (exits both ways) are not side by side: passages to hop."""
+    n = 0
+    for v, js in _joins(rooms, cells).items():
+        for d, t in js:
+            dx, dy = DIR_OFFSETS[d][:2]
+            if (cells[t][0] - cells[v][0], cells[t][1] - cells[v][1]) != (dx, dy):
+                n += 1
+    return n
+
+
+def _joins(rooms, cells):
+    """Each room's walkable joins: (direction, neighbour) for a cardinal exit whose neighbour
+    leads straight back (so the two could share an opening if they sat side by side)."""
+    out = {}
+    for v, room in rooms.items():
+        lst = []
+        for d in CARDINALS:
+            ed = (room.exits or {}).get(d)
+            if not isinstance(ed, dict) or ed.get('hidden'):
+                continue
+            t = _get_exit_target_vnum(ed)
+            if t is None or t == v or t not in cells or t not in rooms:
+                continue
+            back = (rooms[t].exits or {}).get(REVERSE_DIR[d])
+            if isinstance(back, dict) and not back.get('hidden') and _get_exit_target_vnum(back) == v:
+                lst.append((d, t))
+        out[v] = lst
+    return out
+
+
+def relax_cells(cells: Dict[int, Tuple[int, int]], rooms, passes: int = 8) -> Dict[int, Tuple[int, int]]:
+    """Re-lay a zone's rooms so that rooms leading to each other sit side by side (then /play
+    walks across instead of hopping a passage: the owner, "I'd love for the rooms to be
+    seamless"). A room moves, or swaps cells with another, into the cell beside a room it
+    leads to whenever that joins more exits than it breaks; repeated until nothing improves.
+    Only ever gains: a join already made is never traded for nothing."""
+    pos = dict(cells)
+    at = {c: v for v, c in pos.items()}
+    joins = _joins(rooms, pos)
+    step = {d: DIR_OFFSETS[d][:2] for d in CARDINALS}
+
+    def made(v, c, where):
+        # joins of v that hold if v stood at c (others at `where`)
+        n = 0
+        for d, t in joins.get(v, ()):
+            tc = c if t == v else where(t)
+            if tc is not None and (tc[0] - c[0], tc[1] - c[1]) == step[d]:
+                n += 1
+        return n
+
+    for _ in range(passes):
+        moved = 0
+        for v in sorted(pos):
+            here = pos[v]
+            js = joins.get(v)
+            if not js:
+                continue
+            cur_where = lambda t: pos.get(t)
+            base_v = made(v, here, cur_where)
+            if base_v == len(js):
+                continue
+            best = None
+            for d, t in js:
+                tc = pos[t]
+                c = (tc[0] - step[d][0], tc[1] - step[d][1])
+                if c == here:
+                    continue
+                other = at.get(c)
+                if other is None:
+                    w = lambda x: pos.get(x)
+                    gain = made(v, c, w) - base_v
+                else:
+                    def w(x, other=other, c=c):
+                        return here if x == other else c if x == v else pos.get(x)
+                    gain = (made(v, c, w) + made(other, here, w)) - (base_v + made(other, c, cur_where))
+                    # a pair counted from both sides when v and other are linked: fine, both sides move together
+                if gain > 0 and (best is None or gain > best[0]):
+                    best = (gain, c, other)
+            if best:
+                _, c, other = best
+                if other is None:
+                    del at[here]
+                else:
+                    pos[other] = here
+                    at[here] = other
+                pos[v] = c
+                at[c] = v
+                moved += 1
+        if not moved:
+            break
+    return pos
 
 
 def _nearest_free(cell: Tuple[int, int], taken: Set[Tuple[int, int]]) -> Tuple[int, int]:

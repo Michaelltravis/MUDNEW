@@ -84,7 +84,7 @@ class AmbientManager:
         d, r, mob = random.choice(heard)
         text = random.choice(PRESENCE[_kind(mob)]).format(where=where(d))
         return {'text': text, 'sound': 'amb_steps', 'key': 'presence', 'dir': d, 'room': getattr(r, 'vnum', None),
-                'mob': _mob_id(mob), 'name': getattr(mob, 'name', '')}
+                'mob': _mob_id(mob), 'name': getattr(mob, 'short_desc', '') or getattr(mob, 'name', '')}
 
     @classmethod
     def pick(cls, player, world) -> Optional[dict]:
@@ -180,4 +180,4 @@ class AmbientManager:
                 text = random.choice(PRESENCE[_kind(mob)]).format(where=where(back))
                 await web_map.notify_event(p, {'type': 'ambient', 'text': text, 'sound': 'amb_steps', 'key': 'presence',
                                                'dir': back, 'room': getattr(new_room, 'vnum', None),
-                                               'mob': _mob_id(mob), 'name': getattr(mob, 'name', ''), 'moving': True})
+                                               'mob': _mob_id(mob), 'name': getattr(mob, 'short_desc', '') or getattr(mob, 'name', ''), 'moving': True})

@@ -199,6 +199,17 @@ async function waitFor(page, fn, arg, secs = 60) {
     await page.evaluate(me => MH.sendCommand(`restore ${me}`, false), me);
   }
 
+  if (MODE === 'seam') {
+    // a stretch of the Trade Road's woods (the owner's screenshot): rooms that lead to each other
+    // sit side by side, so the way on is walked, not hopped
+    check(await goto(1828), 'at the edge of the woods (1828)');
+    await sleep(3000);
+    const kinds = await page.evaluate(() => Object.values(MH3D.heroRoom().data.exits).map(e => e.kind));
+    console.log('exits here:', JSON.stringify(kinds));
+    check(kinds.filter(k => k === 'open').length >= kinds.filter(k => k === 'passage').length, `most ways on are walked across (${kinds})`);
+    await page.screenshot({ path: path.join(OUT, 'seam-woods.png') });
+  }
+
   if (MODE === 'dnd') {
     // drag and drop gear: two rings onto both fingers, a helm off onto the pack, rings lit only
     // on the fingers while dragged
