@@ -50,9 +50,10 @@ async function runDemo() {
   if (params.get('gallery')) {
     const { showGallery, showMobGallery } = await import('./gallery.js');
     const g = params.get('gallery');
-    const { showBeastGallery, showAbilityGallery, showIconGallery, showSoundGallery, showGearGallery } = await import('./gallery.js');
+    const { showBeastGallery, showAbilityGallery, showIconGallery, showSoundGallery, showGearGallery, KIN_SAMPLES } = await import('./gallery.js');
     const extra = ['town', 'furniture', 'graveyard'].includes(g) ? await loadKit(g) : null;
     const at = g === 'mobs' ? await showMobGallery(engine) : g === 'beasts' ? await showBeastGallery(engine, kits)
+      : g === 'kin' ? await showBeastGallery(engine, kits, KIN_SAMPLES)
       : g === 'abilities' ? await showAbilityGallery(engine)
       : g === 'gear' ? await showGearGallery(engine)
       : g === 'icons' ? (await showIconGallery()) || new THREE.Vector3()

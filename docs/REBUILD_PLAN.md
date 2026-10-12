@@ -1552,3 +1552,31 @@ The 15 connector zones, the wilderness, roads and seas that join everything else
 
   The 3D client's creature looks (`node --test tests/web/looks.test.mjs`) give every new creature
   a body.
+
+### Every creature its own body, step 1: the creature kit for wildlife (Push 30) (owner: "start on push 1 then continue with push 2")
+A creature's 3D body is now built from parts in code, so every kind of creature looks like itself
+and no two kinds look the same.
+- **`world3d/kinrecipe.js`** (pure, no three.js) turns a creature into a recipe:
+  - a skeleton (`quad` for four-legged beasts, `bird`, `fish` for swimmers);
+  - its parts: heads (pointed, blunt, long, snout), ears, horns (antlers, horns, curled, tusks,
+    a spike), tails, manes, beaks, crests, wings (feathered or leathery), fins, flukes and
+    flippers;
+  - its proportions, a coat with belly and accent shades, and markings (saddle, stripes, spots,
+    socks, a blaze, wing bars, a cap, a collar, countershading).
+
+  The words of its name decide what they can: "stag" gives antlers, "boar" tusks, "shaggy"
+  thick fur, "lean" a thinner body, "black" or "arctic" a coat; a raven is black and a gull white
+  without saying so. A seed from its prototype number fills in the rest, so the same creature
+  always looks the same.
+- **`looks.js`** attaches the recipe to the look for every creature whose bestiary body is one
+  of the kit's skeletons. **`kin.js`** builds it (flat-shaded primitives, about the cost of the
+  rats and spiders) and animates it through proc.js's `ProcActor`:
+  - beasts trot, hop (hares) or sprawl (lizards), lunge, horned ones lowering their heads;
+  - birds flap when they move, and penguins waddle;
+  - swimmers sweep their tails.
+
+  A body's size is its height, or most of its length when it is long and low.
+- **Settings › Creatures:** Unique (the kit) or Classic (the shared models).
+- `/play?demo&gallery=kin[&only=wolf,stag]` lays out sample creatures from the world.
+- **175 kinds** of wildlife are on kit bodies (133 beasts, 30 birds, 12 swimmers), every one
+  distinct (`tests/web/looks.test.mjs` checks the whole world).

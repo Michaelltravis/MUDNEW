@@ -69,9 +69,18 @@ const SAMPLES = ['the green gelatinous blob', 'the giant hornet', 'the goat herd
   'the large, grey wolf', 'the giant earth beetle', 'a sewer crocodile', 'the dragon turtle', 'a hell hound', 'the ancient tree',
   'the myconoid', 'a ghostly mermaid', { short: 'the Sewer King', long: 'A massive rat-man standing here.', boss: true }];
 
-export async function showBeastGallery(engine, kits) {
+// the creature kit (kin.js): world creatures on their own bodies, /play?gallery=kin
+export const KIN_SAMPLES = ['a lean grey wolf', 'a black dire wolf', 'a tawny prairie wolf', 'a frost wolf', 'a badland jackal',
+  'a red fox', 'an arctic fox', 'a feral hound', 'a mountain lion', 'a white stag', 'a great red stag', 'a golden stag',
+  'a dun wild horse', 'a shaggy aurochs bull', 'a shaggy mountain goat', 'a bristly wild boar', 'a grizzled badger',
+  'a big brown bear', 'a moss-backed owlbear', 'a great cave bear', 'a brown field hare', 'a white snow hare', 'a sewer rat',
+  'a giant lizard', 'a grey heron', 'a grey harbour gull', 'a carrion crow', 'a giant raven', 'a snow owl', 'a mountain hawk',
+  'a crested penguin', 'a vampire bat', 'a chicken', 'a blue shark', 'a great hammerhead shark', 'a grey seal',
+  'a killer whale', 'a flying fish', 'a speckled trout'];
+
+export async function showBeastGallery(engine, kits, samples = SAMPLES) {
   const only = new URLSearchParams(location.search).get('only');
-  const list = [{ short: 'the knight (hero)' }, ...SAMPLES.map(s => typeof s === 'string' ? { short: s } : s)]
+  const list = [{ short: 'the knight (hero)' }, ...samples.map(s => typeof s === 'string' ? { short: s } : s)]
     .filter(m => !only || only.split(',').some(o => m.short.toLowerCase().includes(o)));
   const cols = 10, step = 3.2, rows = Math.ceil(list.length / cols);
   const floor = new THREE.Mesh(new THREE.PlaneGeometry(cols * step + 6, rows * step * 1.4 + 6), new THREE.MeshStandardMaterial({ color: 0x6f7a5a, roughness: 1 }));

@@ -682,7 +682,12 @@ export function createHud() {
     const q = ls.get('mh3d_quality') || 'high', u = ls.get('mh3d_ui') || 'auto';
     els.settings.querySelectorAll('[data-set="quality"] button').forEach(b => b.classList.toggle('on', b.dataset.v === q));
     els.settings.querySelectorAll('[data-set="ui"] button').forEach(b => b.classList.toggle('on', b.dataset.v === u));
+    const kb = ls.get('mh3d_bodies') === 'classic' ? 'classic' : 'kin';
+    els.settings.querySelectorAll('[data-set="bodies"] button').forEach(b => b.classList.toggle('on', b.dataset.v === kb));
   };
+  els.settings.querySelectorAll('[data-set="bodies"] button').forEach(b => b.addEventListener('click', () => {
+    ls.set('mh3d_bodies', b.dataset.v); syncSettings();
+  }));
   els.settings.querySelectorAll('[data-set="quality"] button').forEach(b => b.addEventListener('click', () => {
     ls.set('mh3d_quality', b.dataset.v); syncSettings();
     MH.bus.emit('hud.quality', b.dataset.v);

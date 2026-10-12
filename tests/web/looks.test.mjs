@@ -119,3 +119,30 @@ test('the build-out creatures get fitting bodies: seals, clams, gnolls, badgers'
   const g = look('a gnoll raider', { name: 'gnoll raider' });
   assert.ok(!g.beast && g.tint === 0xb0905a, 'a gnoll is hyena-hued folk');
 });
+
+test('the creature kit gives every kind of creature in the world a body of its own', async () => {
+  const { kinSignature } = await import('../../src/web_isometric/world3d/kinrecipe.js');
+  const seen = new Map(), dups = [];
+  let kin = 0;
+  for (const m of loadMobs()) {
+    const l = creatureLook(m);
+    if (!l.beast || !l.beast.kin) continue;
+    kin++;
+    const s = kinSignature(l.beast.kin);
+    if (seen.has(s) && seen.get(s) !== m.short) dups.push(`${seen.get(s)} = ${m.short}`);
+    else seen.set(s, m.short);
+    assert.ok(['quad', 'bird', 'fish'].includes(l.beast.kin.plan) || l.beast.kin.plan, `${m.short} has a plan`);
+  }
+  assert.ok(kin >= 150, `most wildlife is on kit bodies (${kin})`);
+  assert.deepEqual(dups, [], 'no two kinds of creature share a body');
+});
+
+test('a creature keeps its words: colour, antlers, tusks, a seal on flippers', async () => {
+  const k = s => creatureLook({ short: s, name: s.split(' ').pop(), pv: 7 }).beast.kin;
+  assert.equal(k('a white stag').horns, 'antlers');
+  assert.equal(k('a bristly wild boar').horns, 'tusks');
+  assert.equal(k('a black dire wolf').c.main >> 16 < 0x50, true, 'black is dark');
+  assert.equal(k('a grey seal').tail, 'flippers');
+  assert.equal(k('a giant raven').plan, 'bird');
+  assert.ok(k('a giant raven').c.main >> 16 < 0x40, 'a raven is black without saying so');
+});

@@ -19,6 +19,7 @@
 //   {model, tint, scale, loadout, still, flat, fly, why}  a KayKit adventurer or skeleton (flat: one
 //                                                         colour all over, stone or metal)
 // `why` says which rule chose it (for tools/qc_bestiary.mjs).
+import { kinRecipe } from './kinrecipe.js';
 import { BESTIARY } from './bestiary.js';
 
 // words that only ever name people
@@ -200,6 +201,22 @@ function undead(m, all) {
 const GHOSTLY = /\b(ghostly|spectral|phantom|phantasmal)\b/;
 
 export function creatureLook(m) {
+  return withKin(lookOf(m), m);
+}
+
+// a creature body the kit builds gets its own recipe (kinrecipe.js): from all its words, and
+// seeded by its prototype so every kind of creature keeps one body of its own
+function withKin(look, m) {
+  const b = look.beast;
+  if (!b || b.prop) return look;
+  const body = b.mob || (b.proc ? `proc:${b.proc}` : null);
+  const d = describe(m);
+  const all = `${d.all} ${String(m.long || '').toLowerCase()}`;
+  const kin = body ? kinRecipe(body, all, m.pv != null ? +m.pv : hashStr(d.all), b.tint != null ? b.tint : null) : null;
+  return kin ? { ...look, beast: { ...b, kin } } : look;
+}
+
+function lookOf(m) {
   const d = describe(m);
   let look = choose(m, d);
   // a person by default or by trade whose room line names a creature, a construct or the dead

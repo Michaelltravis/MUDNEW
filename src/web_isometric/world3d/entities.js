@@ -7,6 +7,7 @@ import { spawnCharacter, spawnMob } from './assets.js';
 import { spawnDressed, dress } from './equip.js';
 import { creatureLook, hashStr, npcDress } from './looks.js';
 import { makeProc, makeProp } from './proc.js';
+import { makeKin } from './kin.js';
 import { isHostile, conOf } from './targeting.js';
 
 export const CLASS_MODEL = {
@@ -19,10 +20,17 @@ export function classModel(cls) {
   return { model, tint };
 }
 
+// creature bodies: each kind its own from the kit (default), or the classic shared models
+export function kinBodies() {
+  try { return localStorage.getItem('mh3d_bodies') !== 'classic'; } catch (_) { return true; }
+}
+
 // the body for a look (looks.js): a creature model, a procedural body, a kit prop or a person
 export function spawnLook(look, { kits = null, seed = 0 } = {}) {
   const b = look.beast;
   if (!b) return spawnCharacter(look.model, { tint: look.tint, scale: look.scale, loadout: look.loadout, flat: look.flat });
+  // its own body from the creature kit (kin.js), unless the player chose the classic models
+  if (b.kin && kinBodies()) return Promise.resolve(makeKin(b.kin, { height: b.h }));
   if (b.proc) return Promise.resolve(makeProc(b.proc, { height: b.h, tint: b.tint, seed }));
   if (b.prop) {
     const model = kits && kits[b.prop[0]] && kits[b.prop[0]].get(b.prop[1]);

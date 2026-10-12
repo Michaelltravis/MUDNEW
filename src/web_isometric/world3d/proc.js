@@ -26,7 +26,7 @@ function stateOf(name) {
   return 'idle';
 }
 
-class ProcActor {
+export class ProcActor {
   constructor(root, body, animate) {
     this.root = root;
     this.body = body;           // the part that bobs / falls over
