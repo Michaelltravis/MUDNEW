@@ -1,0 +1,394 @@
+{
+ "job": "desert_plains",
+ "rooms": {
+  "203211": "The river runs fast and brown here, just outside the walls of Garathorm, and it shoulders your boat back toward the city at every stroke. West, the water slides under the grey stone of the wall through a low arch guarded by iron bars. The banks are low shelves of pale, sun-cracked rock, scattered with dry thorn and drifts of grit blown in from the waste beyond. Upstream, the river comes on out of the east between bleached boulders.",
+  "203212": "Your boat labours against a strong brown current that carries silt and the odd twist of dead brush down toward the city. A sandbar humps out of the water near one bank, crusted white where the sun has dried it. Beyond the low rock shelves the land is dust and scrub as far as the eye can follow, shimmering with heat. The river leads east toward far grey heights, and west back toward the walls.",
+  "203213": "A weathered post leans out of the shallows near the bank, the frayed stub of an old ferry rope still knotted around its top. The current boils around it and drags at your hull, brown with the silt of distant country. A dry wash cuts down through the bank here, its mouth choked with pale stones rolled smooth in some long-ago flood. Open water leads east against the current, or west with it.",
+  "3214": "Red and ochre cliffs begin to crowd the river here, their faces carved by the wind into ribs and hollows. The water is quick and opaque, the colour of strong tea, and it slaps at your boat with small hard waves. Tufts of salt-grass cling to the foot of the rocks wherever the spray can reach them. Ahead, east, the banks grow higher; behind you, west, they open out toward the plain.",
+  "3215": "High on the cliff face above the water, someone long ago carved the figure of a robed traveller with one arm raised toward the mountain. Wind and blown sand have softened it until the face is gone. Below it the river runs deep and fast, folding over hidden rocks in smooth brown humps that rock your boat. The channel continues east and west between sun-bleached walls.",
+  "3216": "The mountain fills the sky ahead now, a great shoulder of bare rock that throws its shadow across the river. The water runs colder here and faster, and a dull roar carries down from somewhere upstream. Boulders the size of houses lie tumbled along both banks, split by heat and frost. Your boat can push on east toward the noise or drift back west into the sunlight.",
+  "3217": "Here the river bursts from a black tunnel mouth in the mountainside, and the water just ahead is white with rapids. Spray drifts back over your boat, cold even under the hot sun, and the rocks around the opening are slick and dark with it. The roar of the water echoes out of the dark like something breathing. The tunnel leads east into the mountain's heart; the open river runs west, away toward the distant city walls.",
+  "1861": "Just inside the mouth of a cave high on the mountain, the rock walls arch close overhead, blackened by the soot of old campfires. Daylight spills in from the opening behind you, where a steep path drops back down the wooded slope. A chill draught breathes out of the dark to the south, carrying the smell of wet stone and the faint grind of shifting rubble. A ring of fire-cracked stones sits on the gritty floor.",
+  "1860": "The path climbs steeply here through twisted pines that grip the rock with bare, knotted roots. Above, the trees give out against a face of grey stone, and a dark cave mouth gapes just a short scramble up the slope. The air is thin and sharp with resin, and loose scree slithers away underfoot at every step. Far below, through the branches, a thread of woodsmoke rises from the Rangers Camp, where the path leads back down.",
+  "205072": "Your boat drifts on black, still water beneath a low ceiling of stone hung with pale fingers of dripping lime. Each drop rings on the surface, and the sound runs away into the dark. To the south a narrow tunnel opens above a shelf of dry rock at the water's edge. The lake stretches back west into blackness, while a slow current begins to tug the boat east, where the water narrows into a river.",
+  "205073": "The lake narrows into a river that slides through a tunnel of wet, glittering rock, and the current takes your boat in its grip. The walls pass close enough to touch, banded white and rust where minerals have bled from the stone. The darkness is complete beyond whatever light you carry, and the air smells of cold iron. The water hurries east; west, it widens back into the lake.",
+  "205074": "A roar grows ahead, deep enough to feel through the planks of your boat, and the current quickens into a smooth, sliding rush. A grey smear of daylight shows far down the tunnel to the east, hazed by rising mist. The ceiling drips steadily, and pale threads of root hang through cracks in the stone. Turning back west against the current takes hard work at the oars.",
+  "5075": "The river shoots out of the mountain into blinding daylight and pours over a lip of smooth stone, and your boat teeters at the very brink. Below, the water falls away in a white column, roaring into a gorge of sun-bleached rock. Spray hangs in the air and throws a broken rainbow across the cliffs. The only ways are the long drop down or a desperate pull back west into the tunnel.",
+  "5076": "You are falling with the water, tumbling through a roaring white chaos of spray and noise. The cliff streams past in a blur of wet stone and clinging green moss. Somewhere far beneath, the pool at the foot of the falls churns and waits. There is nothing to do but hold on to whatever is left of your boat and go down with the river.",
+  "5077": "The falls thunder into a deep green pool at the head of a narrow gorge, and your boat spins in the churning water at their foot. Sheer walls of pale, sun-bleached rock rise on both sides, far too smooth to climb, and the waterfall itself cannot be fought. Only a strip of hot blue sky shows overhead. The current gathers itself and runs east down the gorge.",
+  "5078": "Fast brown water races between the walls of the gorge, slapping against ledges and spinning your boat through narrow chutes. The cliffs are striped in buff and rust, scoured smooth to the height of a tall man by old floods, and dry tufts of grass cling to cracks above the flood line. Hot sunlight strikes the water only at midday, when the shadows shrink to nothing. The thunder of the falls echoes from the west, and the river hurries on east.",
+  "5079": "The gorge begins to widen here, and its walls step back in broken terraces of bleached stone. A shingle bar splits the current, its pebbles baked white by the sun, and your boat scrapes over its tail amid chattering brown ripples. Driftwood lies jammed high in a crevice, left there by some forgotten flood. Ahead, east, the river runs out between high banks; behind, west, the gorge narrows toward the falls.",
+  "5080": "Earthen banks rise steeply on either side, higher than a mounted rider, their faces riddled with burrows and the dangling roots of the scrub that grows along the top. The river is still deep and quick, dark brown with silt, and it bumps your boat along with steady force. Above the banks, a hot dry wind lifts the dust into the air. The water runs on east, and back west into the gorge.",
+  "5081": "The current eases here, and the water clears enough to show a bed of rounded stones beneath your boat. The banks are still high and steep, cut in layers of red clay and pale sand like the pages of a book. Nesting holes pock the upper layers, and grass fringes the rim against a wide sky. Downstream, east, the river spreads wider; upstream, west, it quickens toward the gorge.",
+  "5082": "The banks fall away and the river spreads wide and shallow across a bed of sand and pebbles. Reeds stand in green ranks along both edges, rustling in the warm wind, and the water is clear enough to show every ripple's shadow on the bottom. Your boat glides easily now. The open river continues east, while west the banks climb high again.",
+  "5083": "Broad and slow, the river meanders across open country, its surface wrinkled by the breeze into a thousand glints of light. Low islands of reed and mud dot the water, and a line of willows marks the far bank. The air carries the first faint tang of salt from somewhere ahead. Your boat can follow the current east or work back west.",
+  "5084": "The river is very wide here, and its water has turned faintly brackish, tasting of salt on the spray. Clumps of sea-pink and samphire grow on the mudbanks, and the wind blows in cool and damp from the open sea that lies somewhere beyond the flats. Old mooring stakes stand crooked in the shallows. The current carries your boat on east toward the Sea of Storms, or you can pull back west.",
+  "5003": "Your boat bucks and spins through a run of rapids that roar between walls of black, wet rock, and spray soaks everything. In the darkness the water is felt more than seen, heaving and dropping beneath the hull. On the south wall a low crawlway opens just above the waterline, barely wide enough for a body to squeeze through. The torrent races on east toward a meeting of tunnels, and back west lies the narrowing passage.",
+  "3206": "Here the river slips through an opening low in the city wall and into a long vaulted culvert of old brick. A narrow towpath ledge runs along one side above the dark water. Grey daylight leaks in from the east, where the arch under the bridge hangs with ragged seaweed. The walls sweat and drip, and the ledge leads on west into the gloom.",
+  "3207": "An iron grating set into the vault lets down thin bars of light, and through it drift the muffled sounds of the city above: cartwheels, a shout, a slammed shutter. Below it the brick ledge is slick with green slime. The river runs smooth and quiet beside you, carrying a scum of straw and leaves. The culvert continues east toward the bridge and west into darkness.",
+  "3208": "A small niche is cut into the wall above the towpath, holding a crude stone figure of a river spirit, its lap crusted with old candle wax. Opposite, a side drain spills a thin stream into the river with a constant chuckle. The bricks here are older and darker, laid in a herringbone pattern by some forgotten mason. The ledge runs east and west along the water.",
+  "3209": "The vault drops lower here, so that a tall traveller must stoop along the ledge. Pale roots have forced their way through the mortar overhead and hang down like threads, dripping onto the water. The noises of the city have faded behind, and only the river's soft rush fills the tunnel. A breath of fresher air, smelling of reeds and mud, comes from the west.",
+  "203210": "The culvert ends in a broad arch of mossy stone, its rusted grille long since wrenched up and left hanging. Green daylight pours in from the west, where the river runs out to meet another current among the reeds. The towpath here is crumbling, and ferns sprout from every crack in the walls. Back east the tunnel stretches away under the city, dark and dripping.",
+  "8907": "Two currents meet here and swirl together around your boat, one cool and clear, the other carrying the darker water that runs out of the culvert to the east. Eddies spin lazily along the seam between them. Reeds and yellow flag iris crowd both banks, and beyond them rough meadow rolls away under a wide sky. The Northern Branch Of The River opens to the west.",
+  "8906": "The water of this branch runs clear and cold over a bed of gravel, and your boat slips along with only a whisper against the hull. Alders lean out from the banks, trailing their lower twigs in the current. A fallen trunk lies half-sunk along one edge, furred with green moss. The branch winds on west, and east it joins the other river.",
+  "8905": "On one bank stand the stone footings of an old water mill, its wheel long gone and its sluice choked with drifted branches. The branch runs clear and brisk past the ruin, rippling over a shallow sill of flat stones that scrape gently under your boat. Meadowsweet and nettles crowd the bank above. The water leads on west, and back east toward the meeting of the rivers.",
+  "8904": "Here the branch swings in a long curve, and the current presses your boat toward a steep bank of crumbling earth. A squat marker stone stands at the water's edge, carved with the tower sigil of Garathorm and green with lichen. Willows trail their leaves in the water, and the open meadows beyond them stir in the wind. The river turns south toward the place where it splits, and runs east toward the old mill.",
+  "8903": "A long spit of gravel and reed divides the water here, and your boat rides the seam where two currents part. The northern arm runs quick and bright between willows, while the southern arm spreads out slow and dark under a skin of duckweed. Tracks of many small feet pattern the mud at the tip of the spit. The banks beyond are rough pasture, open to the wind.",
+  "8908": "The river all but stops here, lying deep and glassy between banks of soft black mud. Water lilies spread their pads across the surface, and your boat pushes through them with a slow, wet rustle. The air is warm and still, thick with the smell of mint and rotting leaves. Only a faint drift carries you south toward the bend, while north the water quickens toward the split.",
+  "8909": "The river turns sharply here, carving a tall bank of raw earth on the outside of the bend where roots hang bare above the water. On the inner side a little beach of pale sand slopes gently into the shallows. The current swings your boat around in a slow arc. Upstream lies the slow water to the north, and the bend carries on west.",
+  "8910": "An ancient crack willow grows half in the river here, its split trunk leaning so far out that its crown nearly touches the far bank. Water gurgles through the hollow at its base. The current eddies in a broad brown pool where leaves turn in slow circles around your boat. The river winds away north, and back east around the bend.",
+  "8911": "A rickety fishing platform of grey planks juts from the bank on a few leaning posts, built by some patient soul and long since abandoned. The water beneath your boat is deep and slow, with long weeds streaming in the current like green hair. Grassy slopes rise on both sides toward a line of distant trees. The river bends away west, and south it curls back around the old willow.",
+  "8912": "This is a straight, easy reach where the river runs smooth between open meadows. A broken fence of split rails comes down to the water on one side, and the bank there is churned into hoof-pocked mud where cattle come to drink. The sky is wide and full of moving cloud. Your boat drifts west with the current or can be paddled back east.",
+  "8913": "The river loops around a shoulder of higher ground crowned with a stand of beeches, and their roots form a gnarled stair down to the water. Clear water runs over stones of every colour, and your boat grinds gently on a gravel bar before sliding free. The meadows are left behind here, and the trees begin to close in. The bend leads north under the beeches, and east back to the open reach.",
+  "8914": "Woods press close on both banks now, oak and ash with a tangled understorey of hazel, and the light on the water turns green and dappled. A faint, steady rumble drifts on the air from somewhere downstream. The current has quickened, and your boat begins to move with purpose. The river runs on west toward the sound, and back south around the beech-crowned bend.",
+  "8915": "The rumble has become a roar, and a fine mist drifts back upstream to bead on your clothes and the gunwales of your boat. The river runs fast and smooth toward a ragged line where the water seems simply to end, and beyond it hangs a haze of white spray above treetops far below. Ferns and moss grow thick on the wet rocks of the banks. The edge lies just west; the calmer reach lies back east.",
+  "8916": "The river slides over a broad lip of mossy stone and drops in a thundering white curtain to a lake far below. Your boat hangs at the very edge, held by an eddy behind a jutting rock. To one side the water has worn a smooth, steep chute through the stone, the one way down a boat might survive. Upstream, the river runs back east under the trees.",
+  "8917": "The waterfall crashes into the lake right beside your boat, and the water here heaves and boils in a never-ending churn of foam. Spray drenches everything and fills the air with a constant roar. Through the curtain of falling water to the east, a dark opening shows in the cliff behind. The lake spreads out calmer to the north, south and west, ringed by tall pines.",
+  "8923": "This quiet reach of the lake lies in the shelter of a mossy cliff, out of the worst of the spray. Water lilies float in a broad green raft, their white blossoms closed tight in the shade. The water is clear and deep enough that your boat seems to hang above the pale stones on the bottom. The thunder of the falls comes from the south, and open water stretches west.",
+  "8922": "A tall outcrop of grey rock rises straight out of the water here, its ledges tufted with heather and stunted birch. The lake lies dark and still at its foot, so deep that the bottom is lost to sight beneath your boat. Pines crowd the far shore, their reflections unbroken on the calm surface. The water leads east toward the lilies and south toward the lake's outflow.",
+  "8921": "Here the lake begins to drain away, its water drawn slowly toward a gap in the trees where a river leaves it, dark beneath overhanging boughs. Your boat turns idly in the gentle pull. Behind, the falls throw up a white haze above the water. The open lake lies north, east and south, and the Dark River slides away west into the forest's shadow.",
+  "8920": "A shelving beach of grey sand edges the lake here, strewn with bleached driftwood and marked by the tracks of beasts come down to drink. The water is shallow and warm, and reeds rise in thick clumps around your boat. A sunken log lies just beneath the surface, slick with green weed. Deeper water lies north and east.",
+  "8919": "Boulders lie scattered through the shallows here, worn round by the endless pounding of the falls nearby. Mist drifts across the water in slow veils, and when the sun breaks through it a faint rainbow arches over the lake. Your boat bumps gently against a mossy stone. The churning water beneath the falls lies north, and sandy shallows lie west.",
+  "8924": "The river leaves the lake and slips beneath a roof of black-barked trees, and at once the light fails and the air turns cool. The water is stained as dark as strong ale by fallen leaves, and your boat seems to float on nothing at all. Long grey beards of lichen hang from the branches overhead. Behind you, east, the lake glimmers in the daylight; ahead, west, the river winds into the gloom.",
+  "8925": "Huge, twisted roots reach out of the banks and down into the black water like the fingers of drowned giants. The canopy is so thick that only a thin crack of grey sky shows above the river's course. The silence is heavy, broken only by the drip of water from the leaves and the soft creak of your boat. The river winds on west, and back east toward the lake.",
+  "8926": "Here the Dark River divides around a low, wooded island, one arm curving away north and the other south. The current hesitates at the parting, and your boat drifts in a slow circle on the black water. Through the trees of the island the mossy roof of a cabin can just be seen. The way back east leads toward the lake.",
+  "8936": "The island's shore lies close at hand to the west, where a patch of trampled grass makes a landing among the roots. A narrow trail runs from it toward a small cabin half hidden in the trees. An old iron ring is driven into a stump at the water's edge, just right for mooring your boat. The river runs dark and slow along the shore, curving north around the island and south toward the place where it splits.",
+  "8935": "The river bends hard around the head of the island, and the current shoves your boat toward a bank of tangled bramble and fallen trees. A great drowned oak lies across half the channel, its bare limbs rising from the water like the ribs of a wreck. The forest is very dark here and smells of wet earth and fungus. The channel leads west past the fallen giant, and south along the island's shore.",
+  "8934": "This stretch of the river is narrow and deep, walled in by banks of black mud where the roots of yew trees knot together. Clusters of pale toadstools grow along a rotting log at the water's edge, glowing faintly in the gloom. The current is sluggish, and your boat moves only as fast as the oars can push it. The river runs east toward the drowned oak and west into a further bend.",
+  "8933": "The river doubles back on itself here around the far side of the island, and your boat turns slowly in a deep, dark pool at the bend. An old rowing boat lies rotting on the bank, its planks sprung and green with moss, half swallowed by ferns. Somewhere overhead the wind moves in the treetops, though hardly a breath reaches the water. The bend leads east and south.",
+  "8932": "A side channel breaks away west through a gap in the trees here, drawing off part of the black water with a soft, sucking gurgle. The main stream runs on north and south along the island's far side. Across the water, the island's trees stand close and dark, and the smell of old woodsmoke drifts from among them. Your boat rocks in the cross-currents where the waters divide.",
+  "8931": "Tall ferns lean out over the water here, and the banks are hidden beneath them so that the river seems to flow through a green tunnel. The water is very still, and every drip from the leaves sends rings spreading across the surface around your boat. A pale stone carved with a spiral sits half-buried in the bank among the ferns. The river runs north and south.",
+  "8930": "The river turns sharply around the island's lower end, where a bar of black silt has built up on the inside of the bend. Sticks and dead leaves have piled against it into a tangled dam, and the water spills over in a soft rush that rocks your boat. The trees lean so close that their branches knit together overhead. The river bends away north and east.",
+  "8929": "The water here runs between steep banks of exposed roots and stones, and the current picks up a little, chuckling over a shallow sill. Your boat scrapes over the sill and slides on. A single silver birch stands out pale against the dark trees, its bark scored with old carved initials. The river's course leads east toward a muddy landing and west around the island's lower bend.",
+  "8927": "A muddy landing opens on the bank here, where the undergrowth comes right down to the water in a wall of bramble, elder and nettle. A path of sorts pushes south into the thicket, little more than a gap in the leaves. The river bends here, running north to where it splits around the island and west along the island's lower shore. Your boat bumps against a half-sunk log.",
+  "8928": "The thicket closes in on every side, a dense green maze of bramble, elder and waist-high nettles that snag at clothes and skin. Overhead the dark trees of the river forest blot out all but a few coins of light. A trampled hollow in the middle shows where some large beast has bedded down, and its musky smell lingers. The only way out is the narrow gap leading north to the landing.",
+  "8939": "The side channel runs narrow and quick between walls of dark holly, carrying your boat away from the island at a steady pace. The water is clearer here, and long ribbons of weed wave beneath the surface. Somewhere ahead the sound of a louder, faster river can be heard through the trees. The channel leads west, and back east toward the island.",
+  "8940": "The channel turns sharply around a steep bank where a badger sett has been dug deep among the roots of an old oak, its spoil heaps fresh and pale. The water runs fast around the outside of the bend, and you have to fend your boat off a fallen branch. The forest begins to thin a little, letting grey light through. The channel curves south, and back east toward the island.",
+  "8941": "Here the channel bends once more, broadening as it goes, and swirls of muddy brown from somewhere ahead begin to mingle with the dark water around your boat. The banks are lower, fringed with sedge and purple loosestrife. The roar of a big river is close now, beyond a screen of alder. The water leads west toward it and north back along the channel.",
+  "8942": "The Dark River pours its black water into a broad, swift river here, and the two run side by side for a while, dark and brown, before the stronger current swallows the weaker. Your boat bucks in the tumbling seam between them. High banks rise beyond, crowned with the trees of Haon-Dor. The swift river can be joined to the north or to the west, and the quieter channel runs back east.",
+  "8937": "The island is a small rise of rough grass and wildflowers, ringed by dark trees whose roots drink from the river on every side. A trail worn through the grass runs from the landing on the east shore to a low log cabin standing to the south. Overhead the canopy opens just enough to show a patch of sky. An old chopping block, scarred by countless blows, stands in the grass.",
+  "8938": "The cabin is a single cramped room of rough-hewn logs, chinked with moss and clay, and it smells of damp ashes and old pipe smoke. A fieldstone hearth fills one wall, its chimney stained black, and a plank bed and a heavy table built from split logs take up most of the floor. Light falls in through a small window of scraped horn. The doorway leads north, back out onto the island.",
+  "8918": "Behind the falling water lies a hollow in the cliff, a low cave whose walls glisten with spray and are furred with bright green moss. The light here is strange and shifting, filtered through the roaring white curtain that hides the opening. The floor is a ledge of smooth, wet stone that slopes back into darkness and ends against solid rock. The only way out is west, through the water, back to the lake.",
+  "1859": "The lower slopes of the mountain are clothed in birch and rowan, their pale trunks leaning on a hillside littered with mossy boulders. A rough path switches back and forth across the slope, climbing toward darker pines and bare grey rock above. Below, between the trees, the Rangers Camp lies close at hand among the birches. The air is cool and smells of earth and fallen leaves.",
+  "8176": "A lone hawthorn stands here on the open grass, bent almost double by years of wind, every twisted branch streaming the same way. The turf around it is short and springy, starred with daisies and yellow tormentil. Far across the plain the towers of Garathorm rise grey above the swaying grass. The plains roll on east and south under a big, restless sky.",
+  "8175": "The grass dips here into a shallow hollow where rainwater has gathered in a reedy pond, its margins trampled into mud by hoofprints. Clouds slide across its surface, mirrored in the still water. Rushes and marsh marigolds crowd the wet ground, giving way to dry grass on the rise. Open country leads south and west.",
+  "8178": "An old cart track crosses the grass here, two deep ruts worn into the earth and long since grown over with plantain and clover. Scarlet poppies nod along its edges in the breeze. The track seems to lead nowhere in particular, fading out among the tussocks. The plains stretch north toward a reedy hollow, south toward the road, and west across rolling grass.",
+  "8177": "The dusty road lies just to the south here, and a dry ditch runs alongside it, choked with cornflowers and chicory. Fine dust from passing carts has settled on the grass, dulling its green to grey. A crooked old fence post stands alone in the meadow, its fence long gone. The grassland rolls away north and west.",
+  "8147": "Young trees have crept out of the forest onto the grassland here, a scattering of birch saplings and hazel shrubs among the long grass. The road runs close by to the north, and southward the saplings thicken into a light wood. Someone has woven a hunter's blind of cut branches beside a hazel clump, now brown and sagging. Open grass leads east toward the city and west toward the edge of the forest.",
+  "8190": "The grey walls of Garathorm rise close at hand, and roads pass on two sides of this patch of grass: one just to the north, running to the western gate, and another to the east, leaving the city by its southern gate. An old well with a stone curb and a rusted iron winch stands in the trampled grass. Wheel ruts and hoofprints crisscross the ground near the roads. The plains stretch away south and west, green and windy.",
+  "3224": "The road leaves the Southern Gatehouse of Garathorm just to the north and strikes out across the open plains, its cobbles soon giving way to packed earth and dust. Deep wheel ruts and the prints of hooves and boots mark its surface. On either side the grass runs off east and west, waving in the wind. The road runs straight on south.",
+  "8136": "The grass here has been scythed in long swathes, and a stack of hay stands under a thatched cap on a frame of poles, smelling sweet in the sun. Stubble crunches underfoot between the cut rows. A worn path leads from the stack toward the city gate. The road lies just west, and the plains open out north, east and south, rolling gently under drifting cloud.",
+  "8135": "This is common grazing ground close to the city, the grass cropped short and dotted with clumps of nettle and dock where the herds have passed. A worn footpath slants across it toward the gatehouse road to the west. Rooks' nests crown a distant line of elms. The common runs on east and south.",
+  "8137": "A narrow brook wanders across the plain here in a channel no wider than a stride, crossed by a single grey plank worn smooth by many feet. Watercress grows thick in the clear water, and forget-me-nots edge the banks. The grass is lush and green along the stream and paler beyond. Open land lies in every direction, north, east, south and west.",
+  "8140": "A tall standing stone rises from the grass here, grey and grained like old bone, leaning a little as if listening to the wind. The turf around its foot has never been ploughed, and harebells grow in its shelter. From here the plains spread wide in all directions, broken only by the shadows of passing clouds. Ways lead north, east, south and west through the grass.",
+  "8144": "The plain ends abruptly here at the lip of a steep gully, its sides overgrown with impenetrable bramble and blackthorn. Far below, a trickle of water glints among the stones. The wind is strong at the edge, combing the grass flat and whistling through the thorns. The only ways on lead north and west, back across the grassland.",
+  "8143": "A broad patch of the plain here was burned not long ago, perhaps by a lightning strike, and the ground is still black and sooty underfoot. Bright green shoots and fireweed are already pushing up through the ashes. The smell of charred grass lingers whenever the wind drops. The burned ground gives way to green grass north, east and west.",
+  "8142": "The ground here rises in sandy hummocks riddled with the holes of a large warren, the earth around each burrow kicked out in pale fans. The grass is cropped close to the roots, and tiny paths run between the holes. A sharp wind blows across the open ground, carrying the scent of thyme. The warren gives way to open grass north, east and west.",
+  "8139": "A gentle rise lifts the ground a little here, enough to see far across the swaying sea of grass. The towers of Garathorm stand to one side, and on the other the dark line of the forest marks the edge of the plains. Cloud shadows race across the land, chased by the wind. The grassland leads away north, east, south and west.",
+  "8138": "The wreck of an old farm cart lies here in the long grass, one wheel gone and its bed split open, with tall sorrel growing up through the boards. The road lies only a short walk to the west. Yarrow and knapweed cover the ground, and the air hums with the warm smell of summer grass. The plains stretch north, east and south.",
+  "8141": "Thistles grow tall and thick across this stretch of the plain, their purple heads releasing drifts of silvery down whenever the wind gusts. A sheep track winds between them, the only easy way through, and tufts of wool cling to the spiny leaves. The road runs close by to the west. Open grass lies north and east.",
+  "3226": "The road begins to roughen here as it runs south toward wilder country, its ruts deeper and its verges wild with gorse and broom. Behind it, to the north, the walls of Garathorm have shrunk to a grey line above the grass. A weathered signpost stands at the roadside, its arm pointing on to Wilderness Way. The plains spread east and west on either hand.",
+  "3225": "The road runs straight and dusty through the heart of the plains, a pale ribbon between tall banks of grass. A squat milestone stands at the verge, its carving worn but still legible. Wildflowers crowd the roadside, and the wind brings the smell of distant woodsmoke. The road leads north back to the city gate and south into open country, while the grass spreads east and west.",
+  "8145": "The grass runs up to the edge of the forest here, where the first trees of Miden'nir stand in a ragged line to the west. A thin trail of smoke rises above the treetops beyond them, and the wind carries a whiff of burning. Clumps of gorse grow at the forest's margin, bright with yellow flowers. The open plains lie north, east and south.",
+  "8146": "Bracken and foxgloves spread out of the woods here onto the edge of the plain, and the grass grows rank and tussocky. A narrow track, trodden by deer, leads west in under the dark eaves of the forest. The road lies a short walk to the east. Northward the grassland follows the edge of the trees.",
+  "3513": "The plains give way here to the first trees of Miden'nir, tall oaks and beeches whose roots heave the ground into ridges beneath a carpet of leaf mould. Light still streams in from the open grass to the east, but westward the trunks crowd closer and the shadows deepen toward the deep forest. A fallen beech lies along the margin, its bark peeling in long strips. The edge of the woods runs on north.",
+  "3512": "Here the forest of Miden'nir thins out at its eastern margin, and between the trunks the open plains shine bright with sunlight. The undergrowth has been trampled flat in places, and a crude stake hung with knotted cords and small bones has been driven into the ground beneath an oak. The air smells of old smoke and something rank. The woods grow thicker and greener to the west, while the forest's edge runs on south.",
+  "3504": "Though the open grassland lies only a stone's throw to the north, the ground here is already wooded, a light stand of silver birch and young oak with grass growing thick between the trunks. Sunlight dapples the ground, and the air is warm and still. A faint smell of woodsmoke drifts through the branches from somewhere deeper in. A trail leads south between the trees toward the forest of Miden'nir.",
+  "8148": "The grass grows long and wild on this last stretch of the plains, where the dusty road ends just to the north. A small path leaves the grass to the south and plunges into the dark woods of Miden'nir, and beyond the trees the jagged line of the mountains cuts across the sky. Gusts of wind push the grass flat in silver waves. Open plain stretches east toward the city.",
+  "8179": "Close to the road's end here, the plains grow rough and stony, and a tumbled cairn of fieldstones rises waist-high from the grass, raised long ago for some purpose no one remembers. The road runs just south, toward the head of a forest trail. Beyond the grass the dark mass of the forest fills the horizon. Rough grass leads north and east.",
+  "8180": "A ring of grey fieldstones lies half-sunk in the turf here, the hearth of some long-gone herders' camp, its centre still faintly darker than the grass around it. Clover and white yarrow grow thickly over the ground. The breeze carries the scent of hay from somewhere across the plain. The grass rolls north toward a lone thorn tree, and on east and south.",
+  "4332": "A small, rounded hill rises here out of the forest, its crown bare of trees and covered in short grass and wild thyme. From the top you can see the dense woods spreading on every side under a wide sky. A small path leads north into the trees, and to the south the ground falls away toward a wooden bridge. The wind blows freely across the summit, bending the grass.",
+  "4331": "A narrow wooden bridge spans a rocky stream here, its planks grey and warped, its rails polished smooth by countless hands. The water rushes white over the stones below, flashing under an open strip of sky. A small hill rises beyond the bridge to the north, and to the south a path disappears among the trees. Moss grows thick on the bridge's timbers wherever the spray reaches them.",
+  "4330": "The path winds through a wood of old pines whose needles carpet the ground in a soft brown layer that muffles every step. The trees begin to thin to the south, where the light grows strangely bright and open, and the wind carries a chill. The sound of rushing water drifts from the bridge to the north. Resin scents the cool air.",
+  "4300": "The forest ends abruptly at the brink of a sheer cliff, and the wind howls up out of the empty space where the land falls away. Far below, broken country of rock and scrub fades into haze. Narrow steps are cut down the cliff face, but a barricade of boulders and lashed timbers, grown over with thorn, blocks the way down. To the south a small stone hut perches on a spur of rock above the void, and the path leads back north into the pines.",
+  "4301": "The hut is a single round room of dry-stacked stone, so small that a tall traveller could touch both walls with outstretched arms. A narrow window in the far side looks out on nothing but empty air and, very far below, the haze of the lowlands, and the wind moans through every chink in the stones. A stone bench runs around the wall beneath a roof of slate. The only door leads north, back to the cliff edge.",
+  "2703": "The living forest ends here, and beyond lies the abandoned forest: a grey expanse of dead and dying trees, their bark peeling, their branches bare and black against the sky. Behind you to the north, green trees stand in a close ring around a huge old tree. A path of dark, ashy earth leads south between the dead trunks. The air is silent and smells faintly of rot.",
+  "2705": "The path of black, ashy earth forks here among the dead trees, one branch winding east and another bending south through thickets of withered bramble. Every tree in sight is dead, grey and leafless, and some have fallen across one another in great tangles. Above the bare branches the sky is a dull, heavy grey. The edge of the living forest lies back north.",
+  "2713": "The path turns here at the foot of a great oak that was split by lightning long ago, its two halves leaning apart like the jaws of a trap. The wood inside is charred black. Dead heather crackles underfoot, brittle as old paper, and a cold wind sighs through the bare twigs. The path leads south and west.",
+  "2714": "A ditch of stagnant black water runs beside the path here, its surface skinned with oily rainbows and dead leaves. The path squeezes between the ditch and a wall of thornbushes that have grown wild and tangled. A sour smell rises from the water. The way leads north toward a lightning-blasted oak, and east deeper into the dead wood.",
+  "2720": "The remains of an old stone wall run alongside the path here, its stones tumbled and furred with black moss, perhaps once the boundary of some field or estate. Through gaps in the dead trees, the dark towers of a castle can be glimpsed in the distance. Grey toadstools grow in a ring on the bare earth. The path bends north and west.",
+  "2728": "The path splits once more among the grey trunks, and a narrow side track wanders off east into a thicket. The ground here is soft and black, and every footprint fills slowly with dark water. Old nests of sticks crown the highest dead branches. The main path runs on north toward the dark towers, and back south along the old wall.",
+  "2731": "The dead trees close in here, and the path ends in a small clearing hemmed by thorn, with gaps leading east and west. The towers of a castle loom very near now above the bare branches, their windows dark. A tall gibbet of black timber stands in the clearing, its chains rusted and empty. The path runs back south.",
+  "2732": "The dark path ends here before the gate of a grim stone castle, whose walls rise sheer and black from the dead earth. The gate stands open to the north, a deep archway leading into shadow. Heavy iron studs cover its weathered doors, and a carved stone crest above the arch has been chiselled away. The only other way is west, back along the path.",
+  "2701": "This is the entrance hall of the Castle Of Caboon, a high, cold chamber of black stone where every sound echoes. Faded banners hang in rags from iron poles along the walls, and the flagstones are thick with dust and drifted leaves. To the north, a pair of tall inner doors is barred with a beam of oak and bound with chains, sealing off whatever lies beyond. The open archway leads back south to the dead end.",
+  "2730": "The path peters out here against a wall of blackthorn so dense that not even a hand could pass through it. The thorns are long and cruel, and scraps of cloth hang from them where others have tried. The dead trees lean in overhead, creaking in the wind. The only way out is back east.",
+  "2729": "The side track ends at the edge of a steep pit, a sinkhole in the black earth whose sides are slick with mud and whose bottom is lost in stagnant water. Dead roots stick out of its walls like grasping fingers. A cold breath rises from the water, smelling of rot. There is nowhere to go but back west to the path.",
+  "2711": "The path here runs through a stand of dead birches, their white bark peeled and blackened so that they look like bones standing upright in the earth. Pale fungus grows in brackets up their trunks. A cold mist hangs low over the ground, curling around your ankles. The path leads north to the fork, and west into a thicket.",
+  "2712": "The path ends among the roots of a huge dead yew, its hollow trunk split open wide enough to show a dark, empty cavity inside. Thorn and dead bracken close in around it on every side. A smell of old smoke clings to the hollow, as if someone once sheltered there. The only way back is east.",
+  "10587": "Leaving the deep, dark forest behind to the east, the trail plunges into a tunnel of living green, its walls woven from vines and creepers so dense that no sky can be seen. The air is hot and thick, heavy with the smell of damp leaves and blossom. Sweat beads on your skin within a few steps. The trail continues west through the green gloom.",
+  "10586": "Heavy blossoms of crimson and gold hang from the creepers that roof the trail here, and their sweet, cloying scent makes the head swim. The ground underfoot is soft with rotting leaves and pale roots. Water drips steadily from above, warm as bathwater. The trail leads east toward the forest and west deeper into the green.",
+  "10585": "The trail turns sharply here around the trunk of a vast tree whose buttress roots stand taller than a man, forming walls of grey, ridged wood on either side. Steam rises gently from the leaf litter in the heavy heat. Moss hangs in dripping curtains from every surface. The way leads east and south along the narrow green tunnel.",
+  "10584": "The walls of vines press very close here, and the trail is so narrow that leaves brush both shoulders at once. A faint breeze stirs from the west, bringing a breath of salt that cuts through the heavy, flower-scented air. The ground slopes gently underfoot. The trail runs north and west.",
+  "10583": "Here the green tunnel gives way to walls of earth and dark stone, overhung by a matted roof of roots and creepers. The air is still warm and damp, but the salt smell is stronger now, and the low, rhythmic boom of surf carries from somewhere beyond the rock. Sand gritting underfoot hints at the shore ahead. The trail continues west, and back east into the vines.",
+  "10582": "The passage tilts steeply here, a slope of packed sand and loose stones descending beneath a low, rocky overhang hung with salt-crusted roots. The roar of the sea grows loud, and cool, briny air rushes up to meet you, a welcome relief after the stifling heat. Footholds have been scraped into the sand by others going before. The slope leads down toward the ocean shore, and the trail climbs back east into the green.",
+  "203520": "Here the lighter woods give way to something older and darker, and the trail shrinks to a thread between ancient trunks. Behind you to the east, the faint trail still shows among ferns and green light, but westward the trees stand shoulder to shoulder, their crowns knitting into a black roof. The air turns cool and still, and somewhere beyond the trees a river murmurs in the dark. Each step forward feels like a step out of the day."
+ },
+ "extras": {
+  "3215": [
+   {
+    "keywords": "figure traveller carving cliff",
+    "description": "The figure is twice the height of a man, cut in shallow relief into the cliff. Its raised arm points upstream toward the mountain, and beneath its feet a row of worn marks may once have been letters."
+   }
+  ],
+  "3208": [
+   {
+    "keywords": "niche figure spirit shrine",
+    "description": "The figure is no taller than a forearm, rough-carved from river stone, with robes scored like fish scales and a calm, blank face. Bent pins have been pressed into the old wax in its lap, offerings for luck from those who work the culvert."
+   }
+  ],
+  "8904": [
+   {
+    "keywords": "marker stone sigil",
+    "description": "A knee-high block of grey stone, its top worn round by weather. The carving shows a walled tower above three wavy lines, the old sign that these waters belong to the city of Garathorm."
+   }
+  ],
+  "8931": [
+   {
+    "keywords": "pale stone spiral",
+    "description": "The stone is smooth and pale, about the size of a crouching sheep, and the spiral cut into it winds inward seven times. Moss fills the groove, but the line is still sharp, as if whoever cut it meant it to last."
+   }
+  ],
+  "8938": [
+   {
+    "keywords": "hearth lintel tally marks",
+    "description": "Someone has scratched rows of tally marks into the lintel stone above the hearth, dozens of them in neat groups of five. They look like the count of days in a long and lonely stay."
+   }
+  ],
+  "8140": [
+   {
+    "keywords": "standing stone",
+    "description": "The stone stands half again the height of a man. Faint rings are cut into its weathered face, one inside another, and the lichen grows thickest in their grooves."
+   }
+  ],
+  "3226": [
+   {
+    "keywords": "signpost post arm",
+    "description": "The post is a split log with a single arm nailed to it. The letters burned into the arm read Wilderness Way, and someone has cut a small, crude arrow beneath them."
+   }
+  ],
+  "3225": [
+   {
+    "keywords": "milestone stone",
+    "description": "A block of grey granite with a rounded top, half sunk in the verge. Its weathered face reads Garathorm, one mile, with the city's tower sigil cut beneath."
+   }
+  ],
+  "3512": [
+   {
+    "keywords": "stake cords bones",
+    "description": "A sharpened stake taller than a man, with strings of knotted cord hanging from its tip. Tiny bones and teeth are threaded on the cords, and they click together in the wind like a warning."
+   }
+  ],
+  "4300": [
+   {
+    "keywords": "barricade steps boulders timbers",
+    "description": "Fallen boulders have been wedged together with rough-hewn timbers and lashed tight with rope gone grey with age. Briars have grown all through the barricade, and a crude mark daubed in red ochre on the topmost stone warns travellers away from the steps below."
+   }
+  ],
+  "2731": [
+   {
+    "keywords": "gibbet chains cage",
+    "description": "The gibbet is a post of tarred timber with an iron cage hanging from its arm on rusted chains. The cage is empty, but its bars are bent outward, as if whatever was held there forced its way free."
+   }
+  ],
+  "2701": [
+   {
+    "keywords": "doors inner beam chains",
+    "description": "The doors are twice the height of a man, carved with a pattern of painted vines now flaking away. A great oak beam rests across them in iron brackets, and heavy chains are looped through the handles and locked with a rusted padlock the size of a fist."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "river-crab",
+   "keywords": "crab river mud-brown",
+   "short_desc": "a mud-brown river crab",
+   "long_desc": "A mud-brown river crab clings to a stone in the current, claws raised.",
+   "description": "The crab is as broad as a buckler, its shell the colour of river silt and crusted with tiny pale barnacles. One claw is much larger than the other and bears a jagged edge that could snap a finger. Its eyes swivel on short stalks, following every movement.",
+   "kind": "animal",
+   "level": 7,
+   "aggressive": false,
+   "alignment": 0,
+   "rooms": [
+    "In A River Gorge",
+    "On A High Banked River",
+    "On A Wide River"
+   ],
+   "count": 4
+  },
+  {
+   "id": "giant-frog",
+   "keywords": "frog giant river",
+   "short_desc": "a giant river frog",
+   "long_desc": "A giant river frog squats half-submerged among the weeds, its throat pulsing.",
+   "description": "The frog is the size of a large dog, mottled green and black, with cold golden eyes set high on its flat head. Its wide mouth could swallow a goose whole, and river folk say it will gulp down anything that glints. A rank smell of pond mud clings to its slick skin.",
+   "kind": "animal",
+   "level": 9,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "The Lake",
+    "The Dark River",
+    "Split Of The Dark River",
+    "In The River Bend",
+    "In The Bend Of The River"
+   ],
+   "count": 5,
+   "drops": [
+    {
+     "item": "river-stone-charm",
+     "chance": 15
+    }
+   ]
+  },
+  {
+   "id": "grey-heron",
+   "keywords": "heron grey bird",
+   "short_desc": "a grey heron",
+   "long_desc": "A grey heron stands motionless in the shallows, watching the water.",
+   "description": "Tall and gaunt, the heron stands on legs as thin as reeds, its grey plumage edged with black and a long dark plume trailing from its crown. Its dagger of a beak is poised above the water, and its yellow eye misses nothing. When it strikes, it strikes faster than thought.",
+   "kind": "animal",
+   "level": 5,
+   "aggressive": false,
+   "alignment": 0,
+   "rooms": [
+    "The Meeting Of Rivers",
+    "The Northern Branch Of The River",
+    "The Split Of The River",
+    "The Slow Part Of The River",
+    "In The Riverbend"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "heron-feather",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "kobold-scavenger",
+   "keywords": "kobold scavenger",
+   "short_desc": "a kobold scavenger",
+   "long_desc": "A kobold scavenger crouches over a heap of salvage, sorting it with quick claws.",
+   "description": "The kobold is a scrawny, dog-faced little creature no taller than a child, with rust-red scales, a ratlike tail and small horns curling back from its brow. It is hung about with a jangling collection of stolen buckles, cord and bits of broken lamps. Its yellow eyes dart greedily to anything you carry.",
+   "kind": "humanoid",
+   "level": 10,
+   "aggressive": true,
+   "alignment": -300,
+   "rooms": [
+    "At The Cave",
+    "Behind The Waterfall",
+    "Climbing The Mountain"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "spelunker-lantern",
+     "chance": 20
+    },
+    {
+     "item": "glowing-fungus-caps",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "goblin-scout",
+   "keywords": "goblin scout",
+   "short_desc": "a goblin scout",
+   "long_desc": "A goblin scout from a roving band crouches low, watching the path with narrowed eyes.",
+   "description": "This lean goblin is smaller and quicker than the brutes of the war-camps, its green skin smeared with soot and mud to hide it in the gloom. It wears a jerkin of patched leather hung with snares, and a notched dagger is thrust through its belt. Its long ears twitch at every sound.",
+   "kind": "humanoid",
+   "level": 11,
+   "aggressive": true,
+   "alignment": -400,
+   "rooms": [
+    "The Dark Path",
+    "A Dead End",
+    "The Dead End",
+    "The Edge Of The Abandoned Forest",
+    "On The Verge Of Darkness",
+    "On a Sultry Trail",
+    "At The Edge Of The Forest"
+   ],
+   "count": 5,
+   "drops": [
+    {
+     "item": "goblin-notched-dagger",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "brown-hare",
+   "keywords": "hare brown",
+   "short_desc": "a brown hare",
+   "long_desc": "A brown hare sits up in the grass, its long ears turning to catch the wind.",
+   "description": "The hare is lean and long-legged, its tawny coat flecked with black and its ears tipped with dark fur. Its large amber eyes are set far to the sides of its head, so that it seems to watch everything at once. At the first sign of danger it will be away across the plain in great zigzag bounds.",
+   "kind": "animal",
+   "level": 2,
+   "aggressive": false,
+   "alignment": 0,
+   "rooms": [
+    "The Plains",
+    "The Small Hill"
+   ],
+   "count": 6
+  }
+ ],
+ "items": [
+  {
+   "id": "spelunker-lantern",
+   "keywords": "lantern spelunker brass hooded",
+   "short_desc": "a spelunker's hooded lantern",
+   "room_desc": "A dented brass lantern with a hinged hood lies here on its side.",
+   "description": "A squat brass lantern with a hinged iron hood that can be closed to a slit, the kind cave-delvers hang from their belts. Its glass is scratched and its handle is wrapped in greasy cord, but the wick is good and the oil well is deep.",
+   "kind": "light",
+   "level": 10
+  },
+  {
+   "id": "glowing-fungus-caps",
+   "keywords": "fungus caps glowing mushroom",
+   "short_desc": "a handful of glowing fungus caps",
+   "room_desc": "A handful of pale fungus caps glows softly on the ground.",
+   "description": "These small, pale mushroom caps give off a soft blue-green glow, bright enough to read by in a dark place. They smell of earth and wet stone, and those who have eaten them say they taste faintly of hazelnuts.",
+   "kind": "food",
+   "level": 8
+  },
+  {
+   "id": "river-stone-charm",
+   "keywords": "charm stone river smooth cord",
+   "short_desc": "a river-smoothed stone charm",
+   "room_desc": "A smooth grey stone threaded on a leather cord lies here.",
+   "description": "A flat, egg-shaped pebble polished by the river until it feels like silk, bored through and threaded on a thong of plaited leather. A tiny wave has been scratched into one face. River folk say such stones keep a clear head in deep water.",
+   "kind": "armor",
+   "level": 9,
+   "wear_slot": "neck",
+   "bonus": {
+    "wis": 1
+   }
+  },
+  {
+   "id": "heron-feather",
+   "keywords": "feather heron grey plume",
+   "short_desc": "a long grey heron feather",
+   "room_desc": "A long grey heron feather lies here, lifting slightly in the air.",
+   "description": "A flight feather as long as a forearm, soft grey shading to black at the tip. Fletchers and hatters in Garathorm pay well for an unbroken feather like this one.",
+   "kind": "treasure",
+   "level": 5
+  },
+  {
+   "id": "goblin-notched-dagger",
+   "keywords": "dagger notched goblin blade",
+   "short_desc": "a goblin's notched dagger",
+   "room_desc": "A crude dagger with a notched, blackened blade lies here.",
+   "description": "A crude dagger of black iron, hammered out on some goblin forge. Its edge is notched like a saw from hard use, and the grip is wrapped in strips of greasy hide. It is ugly, but it is sharp.",
+   "kind": "weapon",
+   "level": 11,
+   "weapon_type": "pierce",
+   "bonus": {
+    "hitroll": 1
+   }
+  }
+ ]
+}
