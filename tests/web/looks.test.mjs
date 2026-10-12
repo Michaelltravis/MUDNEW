@@ -109,3 +109,13 @@ test('every creature in the world gets a body that exists, and no creature is dr
     }
   }
 });
+
+test('the build-out creatures get fitting bodies: seals, clams, gnolls, badgers', () => {
+  assert.equal(body(look('a grey seal')), 'whale');
+  assert.ok(look('a grey seal').beast.h < 2, 'a seal is a small whale, not a leviathan');
+  assert.ok(!look('a seal hunter').beast, 'the seal hunter is a person');
+  assert.equal(body(look('a giant clam')), 'slime', 'a giant clam is a shell, not a giant');
+  assert.equal(body(look('a grizzled badger')), 'farm_pig');
+  const g = look('a gnoll raider', { name: 'gnoll raider' });
+  assert.ok(!g.beast && g.tint === 0xb0905a, 'a gnoll is hyena-hued folk');
+});

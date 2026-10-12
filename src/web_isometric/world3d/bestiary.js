@@ -24,6 +24,7 @@ export const BESTIARY = [
   [/\b(black|white) (knights?|queens?|kings?)\b/, { person: 'knight', loadout: ['1H_Sword', 'Badge_Shield', 'Knight_Helmet', 'Knight_Cape'], material: true, flat: true }],
   // people-shaped folk with their own skin
   [/\b(lizardfolk|lizardman|lizardmen|lizard man|lizard men|lizard-man|troglodytes?|kuo-toa|bullywugs?)\b/, { person: 'barbarian', loadout: ['1H_Axe', 'Barbarian_Round_Shield'], tint: 0x8ab070 }],
+  [/\b(gnolls?)\b/, { person: 'barbarian', loadout: ['1H_Axe'], tint: 0xb0905a }],   // hyena-headed folk, sandy hide
   [/\b(merman|mermen|mermaids?|merfolk|merrow|tritons?|nereids?)\b/, { person: 'rogue', loadout: ['Knife'], tint: 0x8ac8c0 }],
   [/\b(hag|hags|crone|crones)\b/, { person: 'mage', loadout: ['1H_Wand', 'Mage_Hat'], tint: 0x9ab080 }],
   [/\b(pixie|pixies|sprite|sprites|fairy|fairies|faerie|nixie|brownie)\b/, { person: 'mage', loadout: ['1H_Wand'], tint: 0xd8f0c0, scale: 0.42, fly: 0.9 }],
@@ -62,6 +63,7 @@ export const BESTIARY = [
   [/\b(wererats?|ratman|ratmen|rat-man)\b/, { proc: 'rat', h: 1.0, tint: 0x6a5a50 }],
   [/\b(werewolf|werewolves|lycanthropes?|wolfman|wolf-man)\b/, { mob: 'wolf', h: 1.45, tint: 0x5a5048 }],
   [/\b(rat|rats|mouse|mice|rodent|vermin|giant rat)\b/, { proc: 'rat', h: 0.42 }],
+  [/\bbadgers?\b/, { mob: 'farm_pig', h: 0.5, tint: 0x55585c }],   // low, stocky and grey, not a rat
   [/\b(squirrel|chipmunk|weasel|ferret|stoat|badger|otter|mole|hedgehog|porcupine|raccoon|skunk|beaver|marmot|vole|shrew|mongoose|wolverine)\b/, { proc: 'rat', h: 0.45, tint: 0x9a6a44 }],
   [/\b(sea serpent|sea serpents|sea snake)\b/, { proc: 'snake', h: 1.4, tint: 0x3a7a8a }],
   [/\bdragon turtle\b/, { mob: 'yellowdragon', h: 2.6, tint: 0x4a8a6a }],
@@ -103,6 +105,8 @@ export const BESTIARY = [
   [/\b(bird|birds|crow|crows|raven|ravens|sparrow|robin|songbird|pigeon|dove|owl|magpie|jay|finch|gull|seagull|parrot|bluebird|blackbird)\b/, { mob: 'bird', h: 0.45, fly: 1.3 }],
   [/\b(penguin|puffin)\b/, { mob: 'penguin', h: 0.7 }],
   [/\bpiranha\b/, { mob: 'piranha', h: 0.55 }],
+  [/\b(seals?|walrus|walruses|sea lions?|sealions?)\b/, { mob: 'whale', h: 1.1, tint: 0x7a8088 }],   // a small grey whale's body
+  [/\b(clams?|oysters?|mussels?|scallops?)\b/, { proc: 'slime', h: 0.8, tint: 0xe0d6c4 }],   // a pale shell dome
   [/\b(shark|barracuda)\b/, { mob: 'piranha', h: 1.2, tint: 0x8a96a8 }],
   [/\b(whale|leviathan|orca)\b/, { mob: 'whale', h: 2.4 }],
   [/\b(ixitxachitl|manta|ray)\b/, { mob: 'fish', h: 0.9, tint: 0x5a4a6a }],
