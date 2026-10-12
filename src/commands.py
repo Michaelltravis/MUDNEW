@@ -16390,6 +16390,7 @@ class CommandHandler:
             if player.room:
                 await player.room.send_to_room(
                     f"{player.name} mounts {mount.name}.", exclude=[player])
+            await cls._riding_changed(player)
             return
 
         # Try to tame from room
@@ -16428,6 +16429,20 @@ class CommandHandler:
         if player.room:
             await player.room.send_to_room(
                 f"{player.name} dismounts from {mount_name}.", exclude=[player])
+        await cls._riding_changed(player)
+
+    @classmethod
+    async def _riding_changed(cls, player):
+        """Mounted or not: the 3D clients redraw the rider (and their speed) now, not at the next move."""
+        wm = getattr(getattr(player, 'world', None), 'web_map', None)
+        if wm is not None:
+            try:
+                await wm.notify_player(player)
+                for other in list(getattr(player.room, 'characters', None) or []):
+                    if other is not player and hasattr(other, 'account_name'):
+                        await wm.notify_player(other)
+            except Exception:
+                logger.debug('riding notify failed', exc_info=True)
 
     @classmethod
     async def cmd_stable(cls, player: 'Player', args: List[str]):

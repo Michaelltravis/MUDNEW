@@ -147,3 +147,25 @@ export function buildLooksGallery(engine, kits) {
   window.MH3D_gallery = { rooms, world };
   return new THREE.Vector3(rooms[0].x, 0, rooms[0].z);
 }
+
+// /play?demo&gallery=steeds: a knight on each kind of mount (steed.js), walking on the spot
+export const STEED_SAMPLES = ['horse', 'warhorse', 'nightmare', 'griffin', 'clockwork_steed', 'moonstag', 'stoneboar', 'merchant_camel', 'shadowpanther', 'dire_warg'];
+export async function buildSteedGallery(engine, kits) {
+  const { mountRider } = await import('./steed.js');
+  const world = new World(engine, kits);
+  world.addRoom({ vnum: 992000, sector: 'field', name: 'The Paddock', description: 'Open grass.', exits: {} }, 0, 0);
+  world.addRoom({ vnum: 992001, sector: 'field', name: 'The Paddock', description: 'Open grass.', exits: {} }, 1, 0);
+  const riders = [];
+  for (let i = 0; i < STEED_SAMPLES.length; i++) {
+    const a = await spawnCharacter('knight');
+    a.root.position.set(4 + (i % 5) * 4.4, 0, 4 + Math.floor(i / 5) * 6);
+    a.root.rotation.y = 0.5;
+    const riding = mountRider(a, STEED_SAMPLES[i], null);
+    a.play('Sit_Floor_Idle', 0);
+    engine.scene.add(a.root);
+    riders.push({ a, riding, key: STEED_SAMPLES[i] });
+  }
+  window.MH3D_gallery = { riders: riders.map(r => ({ key: r.key, x: r.a.root.position.x, z: r.a.root.position.z })), world };
+  engine.onTick(dt => { for (const r of riders) { r.a.play('Sit_Floor_Idle', 0.2); r.a.update(dt); r.riding.steed.update(dt, true, 1.4); } world.update(dt, 0, engine.rig.target); });
+  return new THREE.Vector3(12.8, 0, 7);
+}

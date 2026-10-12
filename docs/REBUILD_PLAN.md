@@ -1709,3 +1709,38 @@ says a cave, the room should look like a cave. Let's think how to fix this going
     `buildout.py` validates and merges it.
   - The browser probe's `looks` mode walks into a cave, a sewer, a desert and a crawlway.
 - **To change a room's look:** add it to `world/looks.json` (`rooms` or `zones`, with a `_why`).
+
+### Faster travel on mounts, and the hero drawn riding (Push 34)
+Owner: "let's find a way to increase character speed? Maybe that's mounts since that's built in."
+- **Travel speed** (`mounts.travel_speed`): the mount you ride, scaled by its loyalty (half at 0),
+  plus haste (+15%), gear that quickens travel (the Threshold Walkers) and the Pursuit of Justice
+  talent, capped at +80%.
+  - Mounts: donkey +15%, pony +20%, horse +35%, warhorse +30%, nightmare +50%, griffin +60%,
+    clockwork steed +50%, and the faction mounts.
+  - The map payload sends `speed`, for you and for players near you (with the mount they ride).
+- **In 3D:**
+  - The hero's run is multiplied by the speed (`controller.js speedMul`).
+  - A mounted hero sits on a steed built from the creature kit (`steed.js`, table in
+    `steedlogic.js`): a horse's build and coat, the nightmare black with burning hooves, a
+    griffin a winged lion, the clockwork steed brass, a stag, boar, camel, panther, warg and the
+    rest. It has a saddle and blanket (barding for war mounts), a seated rider and clopping hooves.
+  - Other players are drawn on theirs. `/play?demo&gallery=steeds` shows them.
+  - Mounting or dismounting pushes a fresh payload, so the change shows at once.
+- **Telnet:**
+  - A mount's saving on what moving costs is kept to the fraction, so a horse halves the cost even
+    on 1-cost ground (the old `max(1, …)` floor ate it).
+  - `ride n n 3e` (or `ride nnee`) speedwalks up to ten rooms, reining in at closed doors, water you
+    can't cross, a fight or a hostile creature.
+- **Mount fixes:**
+  - Loyalty decays while ridden (a point every other minute), with a warning when hungry; feeding
+    restores it.
+  - All 14 faction mounts that factions.py names but the templates lacked now exist.
+  - The griffin is won from the Roc Matriarch, and the clockwork steed from the Carillon Engine.
+  - The stable shows real speeds. Help covers mount and ride.
+- **Tests:**
+  - `tests/test_mounts.py`: speeds, cap, payload, faction mounts, move cost, loyalty, ride and
+    boss drops.
+  - `tests/web/steeds.test.mjs`: every server mount has a buildable steed, and the speed and seat
+    wiring.
+  - The browser probe's `mount` mode buys a horse, mounts it (a steed under the hero, 1.35× the
+    run) and dismounts.

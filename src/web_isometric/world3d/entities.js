@@ -4,6 +4,7 @@
 // Which body each creature gets is decided in looks.js.
 import * as THREE from 'three';
 import { spawnCharacter, spawnMob } from './assets.js';
+import { mountRider } from './steed.js';
 import { spawnDressed, dress } from './equip.js';
 import { creatureLook, hashStr, npcDress } from './looks.js';
 import { makeProc, makeProp } from './proc.js';
@@ -147,6 +148,8 @@ export class Entities {
       if (!e) { this.create(key, w); continue; }
       e.data = w.data;
       if (e.kind === 'player' && e.actor && w.data.look) dress(e.actor, w.data.look, w.data.char_class);
+      // another player on their mount (steed.js)
+      if (e.kind === 'player' && e.actor) { e.riding = mountRider(e.actor, w.data.mount || null, e.riding || null); e.plateY = 0; }
       // a dressed person whose gear changed (disarmed, or picked something up)
       if (e.kind === 'mob' && e.actor && e.actor.gear && w.data.look) {
         const npc = npcDress(w.data, e.look);
@@ -205,6 +208,7 @@ export class Entities {
       e.root.position.copy(at);
       e.root.rotation.y = (hashStr(key) % 628) / 100;
       actor.play(isHostile(w) ? 'Idle_Combat' : actor.idle || 'Idle', 0, e.still ? 0 : 0.85 + (hashStr(key) % 30) / 100);
+      if (isPlayer && w.data.mount) { e.riding = mountRider(actor, w.data.mount, null); actor.play('Sit_Floor_Idle', 0); }
       this.engine.scene.add(e.root);
     }).catch(() => {});
   }
@@ -272,16 +276,17 @@ export class Entities {
       // the further behind, the faster they run)
       if (e.goal) {
         const p = e.root.position, dx = e.goal.x - p.x, dz = e.goal.z - p.z, d = Math.hypot(dx, dz);
-        if (d < 0.1) { e.goal = null; if (e.actor) e.actor.play(isHostile(e) ? 'Idle_Combat' : e.actor.idle || 'Idle', 0.18, e.still ? 0 : 1); }
+        if (d < 0.1) { e.goal = null; if (e.actor) e.actor.play(e.riding ? 'Sit_Floor_Idle' : isHostile(e) ? 'Idle_Combat' : e.actor.idle || 'Idle', 0.18, e.still ? 0 : 1); }
         else {
-          const speed = e.kind === 'player' ? Math.min(9, Math.max(3.2, d * 4)) : 3.2;
+          const speed = e.kind === 'player' ? Math.min(9 * (e.data.speed || 1), Math.max(3.2, d * 4)) : 3.2;
           const step = Math.min(d, speed * dt);
           p.x += dx / d * step; p.z += dz / d * step;
           e.root.rotation.y = Math.atan2(dx, dz);
-          if (e.actor) e.actor.play(speed > 4.5 ? 'Running_A' : 'Walking_A', 0.15, 1.1);
+          if (e.actor) e.actor.play(e.riding ? 'Sit_Floor_Idle' : speed > 4.5 ? 'Running_A' : 'Walking_A', 0.15, 1.1);
         }
       }
       if (e.actor) e.actor.update(dt);
+      if (e.riding) e.riding.steed.update(dt, !!e.goal, 1.5);
       if (e.fly) e.root.position.y = e.fly + Math.sin(t * 2.1 + (hashStr(e.key) % 9)) * 0.12;
     }
   }

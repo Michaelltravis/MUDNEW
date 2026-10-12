@@ -25,6 +25,8 @@ export class Controller {
     this.lock = 0;                       // seconds of attack wind-down
     this.enabled = true;
     this.onArrive = null;
+    this.speedMul = 1;                   // how much faster than on foot (a mount, haste: the payload's speed)
+    this.mounted = false;                // riding: the body sits; the steed walks (steed.js)
     const down = e => {
       if (e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
       const k = e.key.toLowerCase();
@@ -169,7 +171,7 @@ export class Controller {
       this.actor.stopOnce(0.1);
     }
     const w = this.enabled && !MH.state.uiFrozen && this.lock === 0 ? this.wish() : new THREE.Vector2();
-    const top = this.keys.has('shift') ? WALK : RUN;
+    const top = (this.keys.has('shift') ? WALK : RUN) * (this.speedMul || 1);
     const want = w.clone().multiplyScalar(top);
     const dv = want.clone().sub(this.vel);
     const rate = (want.lengthSq() > this.vel.lengthSq() ? ACCEL : DECEL) * dt;
@@ -190,8 +192,9 @@ export class Controller {
       this.yaw += d * Math.min(1, dt * 14);
     }
     this.overlay(dt);
-    if (this.lock === 0) {
-      if (speed > 3.2) this.actor.play('Running_A', 0.15, speed / RUN * 1.05);
+    if (this.lock === 0 && this.mounted) this.actor.play('Sit_Floor_Idle', 0.2);
+    else if (this.lock === 0) {
+      if (speed > 3.2) this.actor.play('Running_A', 0.15, speed / (RUN * (this.speedMul || 1)) * 1.05 * Math.sqrt(this.speedMul || 1));
       else if (speed > 0.25) this.actor.play('Walking_A', 0.15, Math.max(0.6, speed / WALK));
       else this.actor.play(this.actor.idle || 'Idle', 0.25);
     }

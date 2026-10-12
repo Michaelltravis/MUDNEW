@@ -25,6 +25,7 @@
 //           short description and room line).
 //   gear: two browsers (Gauntlet, Gauntletb) in the temple: each hero wears its own look; when
 //           Gauntlet wields a greatblade, Gauntletb sees it re-dressed within seconds.
+//   mount: buy a horse and mount it: the hero sits a steed and runs faster; dismount: on foot.
 //   looks: a cave, a sewer, a desert and a crawlway under Moria draw as what they are (room_looks.py).
 //   abilityfx: in the crypt with a spectre, a few of the character's own abilities each start
 //           their own recipe on the key press (abilityfx.js) and the server's event plays the
@@ -489,6 +490,34 @@ async function waitFor(page, fn, arg, secs = 60) {
     check(await waitFor(page, () => MH3D.heroRoom() && MH3D.heroRoom().vnum === 18600 && !MH3D.hop(), null, 90),
       'east from the Great Field walks into the Newbie Zone');
     await page.screenshot({ path: path.join(OUT, 'atlas-newbie.png') });
+    check(errors.length === 0, `no page errors (${errors.slice(0, 2).join(' | ')})`);
+  }
+
+  if (MODE === 'mount') {
+    // riding (steed.js): bought and mounted, the hero sits a steed and runs faster; dismounted,
+    // back on foot at walking pace
+    check(await goto(3014), 'in a street of Garathorm (3014)');
+    await page.evaluate(() => { MH.sendCommand('dismount', false); MH.sendCommand('stable buy horse', false); });
+    await sleep(1500);
+    await page.evaluate(() => MH.sendCommand('mount horse', false));
+    check(await waitFor(page, () => MH3D.ctl.mounted && MH3D.ctl.speedMul > 1.2, null, 30), 'mounted: the hero sits a horse');
+    const riding = await page.evaluate(() => ({ steed: !!MH3D.hero.root.children.find(c => /^steed_/.test(c.name)), mul: MH3D.ctl.speedMul }));
+    check(riding.steed && Math.abs(riding.mul - 1.35) < 0.08, `a steed is drawn under the hero, and the run is ${riding.mul}x`);
+    await page.screenshot({ path: path.join(OUT, 'mount-riding.png') });
+    // run east for a moment, mounted, and see how far it gets
+    const runFor = async () => page.evaluate(async () => {
+      const p0 = MH3D.hero.root.position.clone();
+      MH3D.ctl.keys.add('d');
+      await new Promise(r => setTimeout(r, 1200));
+      MH3D.ctl.keys.delete('d');
+      return Math.hypot(MH3D.hero.root.position.x - p0.x, MH3D.hero.root.position.z - p0.z) / Math.max(0.2, MH3D.ctl.vel.length() || 1);
+    });
+    const topRiding = await page.evaluate(() => MH3D.ctl.speedMul * 5.2);
+    await runFor();
+    await page.evaluate(() => MH.sendCommand('dismount', false));
+    check(await waitFor(page, () => !MH3D.ctl.mounted && MH3D.ctl.speedMul === 1, null, 30), 'dismounted: on foot again');
+    const onFoot = await page.evaluate(() => ({ steed: !!MH3D.hero.root.children.find(c => /^steed_/.test(c.name)), top: MH3D.ctl.speedMul * 5.2 }));
+    check(!onFoot.steed && topRiding > onFoot.top * 1.2, `riding runs faster than on foot (${topRiding.toFixed(1)} m/s against ${onFoot.top.toFixed(1)})`);
     check(errors.length === 0, `no page errors (${errors.slice(0, 2).join(' | ')})`);
   }
 

@@ -31,6 +31,7 @@ import { ActionClock } from './actionclock.js';
 import { musicFor, bedFor, surfaceFor } from './soundtable.js';
 import { interiorKind } from './terrain-town.js';
 import { GroundLoot } from './loot.js';
+import { mountRider } from './steed.js';
 import { groundItems } from './lootlogic.js';
 import { ReactionPrompt, threatens, REACTIONS } from './reactions.js';
 import { createWorldMap } from './hud/worldmap.js';
@@ -60,6 +61,7 @@ async function runDemo() {
       : g === 'icons' ? (await showIconGallery()) || new THREE.Vector3()
       : g === 'sounds' ? (await showSoundGallery()) || new THREE.Vector3()
       : g === 'rooms' ? (await import('./demo.js')).buildLooksGallery(engine, kits)
+      : g === 'steeds' ? await (await import('./demo.js')).buildSteedGallery(engine, kits)
       : showGallery(engine, extra || (g === 'nature' ? kits.nature : kits.dungeon), Number(params.get('scale')) || 1);
     engine.rig.target.copy(at); engine.placeCamera(true);
     // the rooms gallery lights its torches around wherever the camera looks, as the game does
@@ -264,6 +266,7 @@ async function runGame() {
     if (payload.player) { hud.setPlayer(payload.player); ents.heroLevel = payload.player.level || 1; }
     // what the hero wears (gear_look.py): re-dressed when it changes
     if (hero && payload.player && payload.player.look) dress(hero, payload.player.look, payload.player.char_class);
+    if (hero && payload.player) ride(payload.player);
     if ('group' in payload) hud.party.update(payload.group);
     if (payload.player && 'quest' in payload.player) hud.quest.update(payload.player.quest);
     if (!payload.player || !payload.player.vnum) return;
@@ -289,6 +292,16 @@ async function runGame() {
   MH.bus.on('target.set', t => hud.setTarget(t));
   MH.bus.on('target.clear', () => hud.setTarget(null));
 
+  // ---- riding (steed.js): the hero sits their mount, and goes as fast as the server says ----
+  let riding = null;
+  function ride(p) {
+    if (!hero || !ctl) return;
+    const key = p.mount ? p.mount.key || 'horse' : null;
+    riding = mountRider(hero, key, riding);
+    ctl.mounted = !!riding;
+    ctl.speedMul = Math.max(1, Math.min(1.8, Number(p.speed) || 1));
+  }
+
   // ---- start: the first map payload after login ----
   async function start(payload) {
     const v = payload.player.vnum;
@@ -300,6 +313,7 @@ async function runGame() {
     hero = await spawnDressed(payload.player.look, payload.player.char_class);
     engine.scene.add(hero.root);
     ctl = new Controller(engine, hero, blockedFor);
+    ride(payload.player);
     ctl.avoidDefault = avoidStairs();
     sync = new Sync({
       heroRoomVnum: () => heroRoom && heroRoom.vnum,
@@ -1021,11 +1035,12 @@ async function runGame() {
     const v = hop || climb || slide ? 0 : ctl.vel.length();
     if (v < 0.6) { stride = Math.min(stride, 0.4); return; }
     stride += v * dt;
-    const len = v > 3.2 ? 1.6 : 0.95;
+    const len = riding ? 1.25 : v > 3.2 ? 1.6 : 0.95;
     if (stride < len) return;
     stride = 0;
     const wet = heroRoom && zone.tile(heroRoom, p.x, p.z) === WATER_TILE;
-    sound.play(wet ? 'step_water' : stepSurface, { vol: v > 3.2 ? 1 : 0.7 });
+    // a mount's hooves clop; feet patter
+    sound.play(wet ? 'step_water' : riding ? 'wood' : stepSurface, { vol: riding ? 0.4 : v > 3.2 ? 1 : 0.7 });
   }
 
   // ---- the frame ----
@@ -1052,6 +1067,7 @@ async function runGame() {
     footsteps(dt, p);
     zone.update(dt, t, p, ctl.vel);
     hero.update(dt);
+    if (riding) riding.steed.update(dt, ctl.vel.lengthSq() > 0.06, ctl.vel.length() / 2.4);
     if (travel && (ctl.keys.size || MH.state.inCombat)) travel = null;
     // stepping on or off stairs, sliding and hopping count as moving: only standing still
     // after you have arrived wakes the stairs beside you
