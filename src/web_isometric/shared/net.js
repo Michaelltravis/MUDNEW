@@ -340,7 +340,7 @@
         else if (payload.type === 'combat_update') handleCombatUpdate(payload);
         else if (payload.type === 'mob_move') MH.bus.emit('mob.move', payload);
         else if (payload.type === 'player_move') { MH.bus.emit('player.move', payload); if (payload.name && payload.name !== MH.state.playerName && payload.action !== 'move') MH.bus.emit('ambient.echo', `${payload.name} ${payload.action === 'leave' ? 'leaves' : 'arrives'}.`); }
-        else if (payload.type === 'ambient') MH.bus.emit('ambient.echo', payload.text || '');
+        else if (payload.type === 'ambient') MH.bus.emit('ambient.murmur', payload);   // a sound and a cue (world3d/hud/ambient.js)
         else if (payload.type === 'loot_roll') MH.bus.emit('loot.roll', payload);
         else if (payload.type === 'loot_result') MH.bus.emit('loot.result', payload);
         else if (payload.type === 'move_result') MH.bus.emit('move.result', payload);

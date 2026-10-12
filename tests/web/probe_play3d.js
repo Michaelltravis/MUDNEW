@@ -199,13 +199,48 @@ async function waitFor(page, fn, arg, secs = 60) {
     await page.evaluate(me => MH.sendCommand(`restore ${me}`, false), me);
   }
 
+  if (MODE === 'ambient') {
+    // the world's murmurs as sound and cue, never chat: beside the weaponsmith the hammer rings;
+    // in the castle's Entrance Chambers no town sound, and the gate guardians north are heard
+    await page.evaluate(() => {
+      window.__snd = [];
+      const real = MH3D.sound.play.bind(MH3D.sound);
+      MH3D.sound.play = (n, o) => { window.__snd.push([n, o && o.at ? [Math.round(o.at.x), Math.round(o.at.z)] : null]); return real(n, o); };
+    });
+    const logText = () => page.evaluate(() => document.getElementById('log').textContent);
+    check(await goto(3011), 'in the Weapon Shop (3011)');
+    const before = await logText();
+    for (let i = 0; i < 14; i++) { await page.evaluate(() => MH.sendCommand('ambient now', false)); await sleep(350); }
+    const snd = await page.evaluate(() => window.__snd.map(s => s[0]));
+    console.log('sounds at the smithy:', JSON.stringify(snd));
+    check(snd.some(n => n === 'amb_anvil'), 'the hammer rings beside the smith');
+    check(snd.every(n => !/^amb_/.test(n) || ['amb_anvil', 'amb_crowd', 'amb_coins', 'amb_creak'].includes(n)), 'only the sounds of a smithy and a shop');
+    const after = await logText();
+    check(!/hammer|haggle|anvil|forge/i.test(after.slice(before.length)), 'and nothing of it in the chat');
+    check(await goto(14102), 'in the castle Entrance Chambers (14102)');
+    await page.evaluate(() => { window.__snd.length = 0; });
+    let cue = false;
+    for (let i = 0; i < 16 && !cue; i++) {
+      await page.evaluate(() => MH.sendCommand('ambient now', false));
+      await sleep(400);
+      cue = await page.evaluate(() => !document.getElementById('amb-cue').classList.contains('hidden'));
+    }
+    const castle = await page.evaluate(() => window.__snd.map(s => s[0]));
+    console.log('sounds in the castle:', JSON.stringify(castle));
+    check(!castle.some(n => ['amb_anvil', 'amb_crowd', 'amb_coins', 'amb_cart', 'amb_bell'].includes(n)), 'no town sounds in the castle');
+    const label = await page.evaluate(() => document.querySelector('#amb-cue .lab').textContent + ' · ' + document.querySelector('#amb-cue .sub').textContent);
+    check(cue && /guardian/i.test(label), `the gate guardians north are heard: a cue "${label}"`);
+    await page.screenshot({ path: path.join(OUT, 'ambient-cue.png') });
+  }
+
   if (MODE === 'bars') {
     // extra action bars: one shows at first; an ability dragged onto it is kept (a 40-slot
     // webbar); Alt+1 uses it; the grip moves it and the place is remembered; it turns; Settings
     // shows three
     check(await goto(3001), 'in the Temple of Garathorm (3001)');
     const orig = await page.evaluate(() => (MH.state.player && MH.state.player.bar) || []);
-    check(await waitFor(page, () => document.querySelectorAll('#xbars .xbar:not(.off)').length === 1, null, 20), 'one extra bar shows at first');
+    check(await waitFor(page, () => [...document.querySelectorAll('#xbars .xbar')].filter(e => getComputedStyle(e).display !== 'none').length === 1, null, 20),
+      'one extra bar shows at first (the others are not drawn)');
     const id = await page.evaluate(() => { const el = document.querySelector('#slots .bar-row.main .slot[data-id]'); return el && el.dataset.id; });
     await page.evaluate(() => { window.__ab = []; MH.bus.on('hud.ability', a => window.__ab.push(a.id)); window.__sent.length = 0; });
     await page.dragAndDrop('#slots .bar-row.main .slot[data-id]', '#xbars .xbar[data-bar="0"] .slot[data-i="16"]');

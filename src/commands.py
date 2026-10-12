@@ -1130,6 +1130,31 @@ class CommandHandler:
     WEB_BAR_SLOTS = 40          # /play's action bars (world3d/abilities.js SLOTS)
 
     @classmethod
+    async def cmd_ambient(cls, player: 'Player', args: List[str]):
+        """Immortal: how the world murmurs here (ambient.py). "ambient" shows this room's place
+        tags and the lines that fit; "ambient now" sends one at once (to /play: a sound and a cue)."""
+        if not player.is_immortal:
+            await player.send("Huh?")
+            return
+        from ambient import AmbientManager
+        from ambient_lines import LINES
+        from ambient_place import fits
+        if args and args[0].lower() == 'now':
+            m = AmbientManager.pick(player, player.world)
+            if m:
+                await AmbientManager.deliver(player, player.world, m)
+            else:
+                await player.send("Nothing murmurs here.")
+            return
+        tags = AmbientManager.tags_for(player, player.world)
+        keys = [k for k in LINES if fits(k, tags)]
+        await player.send(f"Place: {', '.join(sorted(tags)) or '(none)'}")
+        await player.send(f"Lines from: {', '.join(keys) or '(none)'}")
+        heard = AmbientManager.presence_line(player, player.world)
+        if heard:
+            await player.send(f"Heard next door: {heard['name']} ({heard['dir']})")
+
+    @classmethod
     async def cmd_webbar(cls, player: 'Player', args: List[str]):
         """Internal, for the 3D web client (/play): "webbar <id|-> ..." keeps the action bar as
         the player arranged it, with the character (WEB_BAR_SLOTS slots: the main bar's keys 1-8

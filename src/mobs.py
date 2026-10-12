@@ -1053,6 +1053,12 @@ class Mobile(Character):
                 'dir': opposite, 'vnum': getattr(new_room, 'vnum', None)})
         except Exception:
             pass
+        # heard next door (a patrol passing): a cue for /play players one room away
+        try:
+            from ambient import AmbientManager
+            await AmbientManager.creature_moved(self.world, self, new_room)
+        except Exception:
+            pass
         
     async def special_ai(self):
         """Handle special mob behaviors."""

@@ -73,6 +73,21 @@ export const SOUNDS = {
   latch:        { file: 'latch', vol: 0.5, pos: true },
   lock:         { file: 'lock', vol: 0.55, pos: true },
   creak:        { file: 'creak', vol: 0.4, pos: true },
+  // ---- the world's murmurs (ambient.js; the server's ambient_lines.py names them): placed
+  // where they come from, on the ambience bus ----
+  amb_anvil:    { file: 'clang', vol: 0.22, rate: 0.06, gap: 1, bus: 'amb', pos: true },
+  amb_bell:     { file: 'bell', vol: 0.3, rate: 0.03, gap: 2, bus: 'amb', pos: true },
+  amb_creak:    { file: 'creak', vol: 0.25, rate: 0.08, gap: 1, bus: 'amb', pos: true },
+  amb_door:     { file: 'door_close', vol: 0.28, rate: 0.12, gap: 1, bus: 'amb', pos: true },
+  amb_coins:    { file: 'coins', vol: 0.25, gap: 1, bus: 'amb', pos: true },
+  amb_chain:    { file: 'clang_heavy', vol: 0.14, rate: 0.25, gap: 1, bus: 'amb', pos: true },
+  amb_cart:     { layers: ['amb_cart_wood', 'amb_cart_roll'] },
+  amb_cart_wood: { file: 'wood', vol: 0.2, rate: 0.15, gap: 1, bus: 'amb', pos: true },
+  amb_cart_roll: { synth: 'rumble', vol: 0.5, gap: 1, bus: 'amb', pos: true },
+  amb_crowd:    { synth: 'murmur', vol: 0.7, gap: 1, bus: 'amb', pos: true },
+  amb_drip:     { synth: 'drip', vol: 0.6, gap: 0.5, bus: 'amb', pos: true },
+  amb_wind:     { synth: 'gust', vol: 0.7, gap: 1, bus: 'amb', pos: true },
+  amb_steps:    { synth: 'steps', vol: 0.8, gap: 1, bus: 'amb', pos: true },
   hop:          { synth: 'hop', vol: 0.4 },
   teleport:     { synth: 'teleport', vol: 0.5 },
   // ---- the interface ----

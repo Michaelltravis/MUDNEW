@@ -100,6 +100,12 @@ export const SYNTHS = {
   hop: (c, o) => Math.max(tone(c, o, { f: 300, f2: 620, dur: 0.18, vol: 0.08 }), hiss(c, o, { dur: 0.2, vol: 0.1, f: 900, f2: 2400 })),
   teleport: (c, o) => Math.max(...[523, 784, 1047, 1568].map((f, i) => tone(c, o, { f, dur: 0.5, vol: 0.05, delay: i * 0.05, attack: 0.05 })), hiss(c, o, { dur: 0.6, vol: 0.08, f: 600, f2: 4000, q: 2 })),
   fanfare: (c, o, { tier = 1 }) => Math.max(...(tier >= 2 ? [392, 523, 659, 784, 1047] : [261, 329, 392, 523]).map((f, i) => tone(c, o, { f, type: 'triangle', dur: 0.3, vol: 0.12, delay: i * 0.12, attack: 0.02 }))),
+  // the world's murmurs (ambient.js): a crowd's babble, a drip, a gust, heavy steps
+  murmur: (c, o) => Math.max(...[0, 0.22, 0.5, 0.8, 1.05].map((d, i) => hiss(c, o, { dur: 0.45 + (i % 2) * 0.2, vol: 0.05, f: 380 + ((i * 137) % 5) * 90, f2: 520 + i * 40, q: 4, delay: d }))),
+  drip: (c, o) => Math.max(tone(c, o, { f: 1700, f2: 700, dur: 0.09, vol: 0.09 }), tone(c, o, { f: 1300, f2: 600, dur: 0.07, vol: 0.05, delay: 0.55 })),
+  gust: (c, o) => Math.max(hiss(c, o, { dur: 2.2, vol: 0.08, f: 260, f2: 720, q: 0.7 }), hiss(c, o, { dur: 1.6, vol: 0.04, type: 'highpass', f: 1800, f2: 900, delay: 0.4 })),
+  steps: (c, o) => Math.max(...[0, 0.5, 1.0, 1.5].map(d => tone(c, o, { f: 92, f2: 52, type: 'triangle', dur: 0.14, vol: 0.13, delay: d }))),
+  rumble: (c, o) => Math.max(hiss(c, o, { dur: 1.2, vol: 0.07, type: 'lowpass', f: 220, f2: 120 }), tone(c, o, { f: 55, f2: 40, dur: 1.1, vol: 0.06 })),
   chime: (c, o, { tier = 1 }) => Math.max(tone(c, o, { f: tier >= 2 ? 1047 : 880, type: 'triangle', dur: 0.6, vol: 0.09 }), tone(c, o, { f: tier >= 2 ? 1568 : 1320, type: 'triangle', dur: 0.8, vol: 0.07, delay: 0.12 })),
 };
 

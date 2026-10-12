@@ -1771,3 +1771,29 @@ Owner: "let's find a way to increase character speed? Maybe that's mounts since 
 - **XTC:** a one-time gift (`world/grants.json`) gives a griffin and a horse, charts the whole map
   (but the God Rooms and sealed lands) and every travel waypoint. `givemount` lets an immortal
   give anyone a mount.
+
+### Push 35 — play-testing fixes, more bars, the world's murmurs (owner, 2026-10-12)
+- **Riding:** R (or the menu's horseshoe, the riding chip, or right-clicking yourself) gets you up
+  or down. `mount last` remounts the mount last ridden. Gifts (`world/grants.json`) are given part
+  by part, and an `immortal` gift makes the account an admin one (Deckard); a /play character
+  without an account gets one of its own.
+- **Deaths always finish:** if the rewards fail part-way, the creature still leaves a corpse and
+  the room. Proc kills go through `handle_death`.
+- **Shops:** the misaligned CircleMUD import is undone (`shops.repair_config`). A raft costs 480,
+  merchants never refuse a sale for want of coin, and `sell 2.sword` works.
+- **Death traps** are drawn as a ledge round a burning abyss (`deathtrap.js`). The hero stops at
+  the edge (press E to go on), and the minimap shows them red.
+- **Character creation:** choices glow on hover rather than lifting, so the menu no longer jumps.
+- **More bars:** three extra bars of 8 (Alt+1–8, Alt+Shift+1–8, click), which float and can be
+  dragged, turned and locked. Layout is kept per character on the device (`barlayout.js`,
+  `hud/bars.js`); `webbar` holds 40 slots.
+- **Ambient murmurs fit the place:**
+  - `ambient_place.py` reads a room's tags: castle, smithy, market, tavern, street, building, its
+    look, and the sky.
+  - `ambient_lines.py` gives each line the tags it needs, so there are no merchants or smiths in
+    a castle.
+  - Creatures really next door are heard from where they are.
+  - /play gets a sound from that direction and a cue (an edge arrow and a minimap ping) instead of
+    a chat line; captions are optional. Telnet keeps the text.
+  - One system now (`ambient_events.py` is gone). Use `ambient` / `ambient now` (immortal) to
+    inspect a room.

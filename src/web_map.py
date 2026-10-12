@@ -375,6 +375,12 @@ class WebMapServer:
         for client in dead_clients:
             self.clients.discard(client)
 
+    def has_play(self, player) -> bool:
+        """Has this player the 3D client (/play) attached? Its ambient murmurs then come as
+        sounds and cues on the map socket (ambient.py), not as chat lines."""
+        n = str(getattr(player, 'name', '') or '').lower()
+        return bool(n) and any(c.player_name and c.player_name.lower() == n for c in self.clients)
+
     async def notify_event(self, player, event: dict):
         """Push a small structured event (ambient echo, npc chatter...) to a
         player's connected web clients."""

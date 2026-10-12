@@ -35,6 +35,7 @@ import { mountRider, makeRaft } from './steed.js';
 import { groundItems } from './lootlogic.js';
 import { ReactionPrompt, threatens, REACTIONS } from './reactions.js';
 import { createWorldMap } from './hud/worldmap.js';
+import { createAmbient } from './hud/ambient.js';
 
 const $ = s => document.querySelector(s);
 const WATER_TILE = 4;   // zone.js / terrain.js tile kinds
@@ -250,6 +251,14 @@ async function runGame() {
     update: (p, yaw, cam) => { mmSmall.update(p, yaw, cam); if (!bigEl.classList.contains('hidden')) mmBig.update(p, yaw, cam); },
   };
   const prompt = createPrompt($('#prompt'));
+  // the world's murmurs: sounds from where they come, creatures heard next door as cues (hud/ambient.js)
+  const ambient = createAmbient({
+    sound, hero: () => hero && hero.root.position, camYaw: () => engine.rig.yaw,
+    centreOf: v => { const r = zone && zone.rooms.get(v); return r ? zone.centre(r) : null; },
+    minimaps: [mmSmall, mmBig], root: $('#amb-cue'), caption: $('#amb-caption'),
+    captions: () => { try { return localStorage.getItem('mh3d_ambcap') === 'on'; } catch (_) { return false; } },
+  });
+  MH.bus.on('ambient.murmur', m => ambient.on(m));
   const castbar = createCastbar($('#castbar'));
   const ctxMenu = createContextMenu($('#ctx-menu'));
   let zone = null, hero = null, ctl = null, sync = null, heroRoom = null;
@@ -1142,5 +1151,6 @@ async function runGame() {
     ents.layoutPlates(p);
     prompt.update(engine.camera, canvas);
     mm.update(p, ctl.yaw, engine.rig.yaw);
+    ambient.update();
   });
 }

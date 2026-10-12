@@ -15,323 +15,169 @@ if TYPE_CHECKING:
 
 logger = logging.getLogger('Misthollow.Ambient')
 
-# Ambient messages by sector type
-SECTOR_AMBIENTS = {
-    'city': [
-        "A merchant calls out, hawking their wares in the distance.",
-        "You hear the clatter of cart wheels on cobblestones.",
-        "A dog barks somewhere in the city.",
-        "The smell of fresh bread wafts from a nearby bakery.",
-        "A guard's patrol passes by in the distance.",
-        "Children's laughter echoes from a nearby alley.",
-        "A town crier announces the hour.",
-        "You hear the rhythmic hammering of a blacksmith at work.",
-        "A cat darts across the street and disappears into shadows.",
-        "Two merchants argue over prices nearby.",
-    ],
-    'inside': [
-        "Dust motes dance in a shaft of light.",
-        "A floorboard creaks somewhere in the building.",
-        "You hear muffled voices through the walls.",
-        "A candle flickers, casting dancing shadows.",
-        "The building settles with a soft groan.",
-        "A mouse scurries along the baseboard.",
-    ],
-    'forest': [
-        "Leaves rustle in the breeze above you.",
-        "A bird calls out from the treetops.",
-        "Something small scurries through the underbrush.",
-        "Sunlight filters through the canopy, dappling the forest floor.",
-        "You hear the distant sound of running water.",
-        "An owl hoots somewhere in the trees.",
-        "A squirrel chatters angrily at your presence.",
-        "The forest seems to breathe around you.",
-        "Branches creak and sway overhead.",
-        "You catch a glimpse of a deer through the trees.",
-    ],
-    'field': [
-        "Tall grass sways in the wind.",
-        "A hawk circles lazily overhead.",
-        "Insects buzz and hum around you.",
-        "The wind carries the scent of wildflowers.",
-        "A rabbit darts across your path and disappears.",
-        "The sun beats down on the open plain.",
-        "Clouds drift across the vast sky above.",
-    ],
-    'hills': [
-        "The wind whistles across the rocky terrain.",
-        "Small stones clatter down a nearby slope.",
-        "You spot a mountain goat perched on a distant ridge.",
-        "The air is thin but refreshing up here.",
-        "An eagle cries out as it soars above.",
-    ],
-    'mountain': [
-        "The cold wind bites at exposed skin.",
-        "Snow crunches underfoot.",
-        "An avalanche rumbles in the distance.",
-        "The air is thin and each breath comes harder.",
-        "Ice crystals glitter on nearby rocks.",
-        "You can see for miles from this height.",
-    ],
-    'swamp': [
-        "Something splashes in the murky water nearby.",
-        "Mosquitoes buzz around your head incessantly.",
-        "A frog croaks from somewhere in the muck.",
-        "Bubbles rise from the stagnant water.",
-        "The smell of decay hangs heavy in the air.",
-        "Your feet squelch in the soft ground.",
-        "A snake slithers through the reeds.",
-    ],
-    'water_swim': [
-        "Fish dart away as you move through the water.",
-        "Ripples spread across the water's surface.",
-        "Water plants sway in the gentle current.",
-        "A frog leaps from a nearby lily pad.",
-    ],
-    'underground': [
-        "Water drips from the ceiling somewhere ahead.",
-        "Your footsteps echo off the stone walls.",
-        "You hear a distant rumble deep in the earth.",
-        "A cold draft brushes past you.",
-        "Shadows dance at the edge of your torchlight.",
-        "Something skitters away in the darkness.",
-        "The weight of the earth presses down above you.",
-    ],
-    'desert': [
-        "Heat shimmers off the sand in the distance.",
-        "A scorpion scuttles behind a rock.",
-        "The wind kicks up a small dust devil.",
-        "You lick parched lips as the sun beats down.",
-        "A vulture circles lazily overhead.",
-        "The sand shifts beneath your feet.",
-    ],
-}
+from ambient_lines import LINES, WEIGHT, PRESENCE
+from ambient_place import place_tags, fits, neighbours
 
-# Time-of-day specific messages
-TIME_AMBIENTS = {
-    'dawn': [
-        "The first rays of sunlight peek over the horizon.",
-        "Dew glistens on everything as the world awakens.",
-        "Birds begin their morning chorus.",
-        "The air is cool and fresh with the promise of a new day.",
-    ],
-    'morning': [
-        "The morning sun climbs higher in the sky.",
-        "The world is bright and full of possibility.",
-    ],
-    'noon': [
-        "The sun hangs directly overhead, casting short shadows.",
-        "The heat of midday settles over everything.",
-    ],
-    'afternoon': [
-        "Shadows begin to lengthen as the afternoon wears on.",
-        "The heat of the day begins to fade.",
-    ],
-    'dusk': [
-        "The sky blazes with oranges and reds as the sun sets.",
-        "Long shadows stretch across the land.",
-        "Nocturnal creatures begin to stir.",
-    ],
-    'night': [
-        "Stars twinkle in the vast darkness overhead.",
-        "The moon casts silver light across the land.",
-        "Night sounds fill the air around you.",
-        "The darkness seems to press in around you.",
-    ],
-}
+# where a sound comes from, in words (presence lines)
+WHERE = {'up': 'above you', 'down': 'below you'}
 
-# Weather-specific messages
-WEATHER_AMBIENTS = {
-    'raining': [
-        "Rain patters steadily on everything around you.",
-        "Thunder rumbles in the distance.",
-        "You wipe rain from your face.",
-        "Puddles are forming on the ground.",
-    ],
-    'stormy': [
-        "Lightning flashes across the sky!",
-        "Thunder crashes, making you jump.",
-        "The wind howls and rain lashes at you.",
-        "The storm rages around you.",
-    ],
-    'snowing': [
-        "Snowflakes drift down from the grey sky.",
-        "The world is hushed under a blanket of white.",
-        "Your breath fogs in the cold air.",
-    ],
-    'foggy': [
-        "Fog swirls around you, limiting visibility.",
-        "Sounds seem muffled in the thick mist.",
-        "Shapes loom out of the fog unexpectedly.",
-    ],
-}
 
-# Combat/danger zone messages
-DANGER_AMBIENTS = [
-    "You sense something watching you from the shadows.",
-    "A chill runs down your spine for no apparent reason.",
-    "Your instincts scream that danger is near.",
-    "You hear something moving in the darkness ahead.",
-    "An uneasy feeling settles in your gut.",
-]
+def where(direction: str) -> str:
+    return WHERE.get(direction, f"to the {direction}")
 
-# Peaceful zone messages
-PEACEFUL_AMBIENTS = [
-    "A sense of calm washes over you in this place.",
-    "You feel safe here, at least for now.",
-    "The tensions of adventure seem far away.",
-]
+
+def _kind(mob) -> str:
+    """How a creature next door sounds: dead, big, a person, or a beast."""
+    try:
+        from procs import is_undead
+        if is_undead(mob):
+            return 'undead'
+    except Exception:
+        pass
+    flags = set(getattr(mob, 'flags', None) or ())
+    if 'boss' in flags or getattr(mob, 'is_boss', False) or (getattr(mob, 'level', 0) or 0) >= 40:
+        return 'heavy'
+    if getattr(mob, 'equipment', None) or str(getattr(mob, 'race', '') or '').lower() in ('human', 'elf', 'dwarf', 'halfling', 'gnome', 'orc', 'half-orc'):
+        return 'person'
+    return 'beast'
+
+
+def _mob_id(mob):
+    try:
+        from map_system import _mob_uid
+        return _mob_uid(mob)
+    except Exception:
+        return None
 
 
 class AmbientManager:
-    """Manages ambient messages for the world."""
-    
+    """Manages ambient messages for the world: lines that fit the place (ambient_place.py), and
+    creatures really next door heard before they are seen. A telnet player reads them; a /play
+    player hears them and sees a cue (an `ambient` event on the map socket), with no chat line."""
+
     # Track last ambient time per player to avoid spam
     _last_ambient = {}  # player_name -> timestamp
-    
+    _last_presence = {}  # player_name -> timestamp (patrols passing nearby)
+
     @classmethod
-    def get_ambient_message(cls, player: 'Player', world: 'World') -> Optional[str]:
-        """Get an appropriate ambient message for the player's current situation."""
+    def tags_for(cls, player, world) -> set:
+        room = player.room
+        game_time = getattr(world, 'game_time', None)
+        hour = getattr(game_time, 'hour', None) if game_time else None
+        weather = getattr(getattr(room, 'zone', None), 'weather', None)
+        return place_tags(room, world, hour, weather)
+
+    @classmethod
+    def presence_line(cls, player, world) -> Optional[dict]:
+        """A hostile creature one room away, heard: {text, sound, key:'presence', dir, room, mob, name}."""
+        room = player.room
+        heard = []
+        for d, r in neighbours(room, world):
+            for ch in getattr(r, 'characters', None) or []:
+                if hasattr(ch, 'connection') or getattr(ch, 'fighting', None):
+                    continue
+                if 'aggressive' not in (getattr(ch, 'flags', None) or ()):
+                    continue
+                heard.append((d, r, ch))
+        if not heard:
+            return None
+        d, r, mob = random.choice(heard)
+        text = random.choice(PRESENCE[_kind(mob)]).format(where=where(d))
+        return {'text': text, 'sound': 'amb_steps', 'key': 'presence', 'dir': d, 'room': getattr(r, 'vnum', None),
+                'mob': _mob_id(mob), 'name': getattr(mob, 'name', '')}
+
+    @classmethod
+    def pick(cls, player, world) -> Optional[dict]:
+        """A murmur that fits where the player is: {text, sound, key} (or a presence)."""
         if not player.room:
             return None
-            
-        messages = []
-        weights = []
-        
-        # Get sector-based messages
-        sector = player.room.sector_type or 'inside'
-        
-        # Map some sectors to our defined ones
-        sector_map = {
-            'water_noswim': 'water_swim',
-            'flying': 'field',
-        }
-        mapped_sector = sector_map.get(sector, sector)
-        
-        if mapped_sector in SECTOR_AMBIENTS:
-            messages.extend(SECTOR_AMBIENTS[mapped_sector])
-            weights.extend([1.0] * len(SECTOR_AMBIENTS[mapped_sector]))
-        
-        # Add time-based messages
-        if hasattr(world, 'game_time') and world.game_time:
-            hour = world.game_time.hour
-            if 5 <= hour < 7:
-                time_key = 'dawn'
-            elif 7 <= hour < 12:
-                time_key = 'morning'
-            elif 12 <= hour < 14:
-                time_key = 'noon'
-            elif 14 <= hour < 18:
-                time_key = 'afternoon'
-            elif 18 <= hour < 21:
-                time_key = 'dusk'
-            else:
-                time_key = 'night'
-            
-            if time_key in TIME_AMBIENTS:
-                messages.extend(TIME_AMBIENTS[time_key])
-                weights.extend([0.5] * len(TIME_AMBIENTS[time_key]))  # Lower weight
-        
-        # Add weather-based messages (outdoor only)
-        outdoor_sectors = {'field', 'forest', 'hills', 'mountain', 'water_swim', 
-                          'water_noswim', 'flying', 'desert', 'swamp'}
-        if sector in outdoor_sectors and player.room.zone:
-            weather = player.room.zone.weather
-            if weather:
-                precip = getattr(weather, 'precipitation', 0)
-                if isinstance(precip, str):
-                    precip = int(precip) if precip.isdigit() else 0
-                if precip > 0:
-                    if precip > 2:
-                        weather_key = 'stormy'
-                    else:
-                        weather_key = 'raining'
-                    if weather_key in WEATHER_AMBIENTS:
-                        messages.extend(WEATHER_AMBIENTS[weather_key])
-                        weights.extend([0.8] * len(WEATHER_AMBIENTS[weather_key]))
-        
-        # Add danger zone messages if aggressive mobs nearby
-        has_aggressive = any(
-            'aggressive' in getattr(npc, 'flags', set()) 
-            for npc in player.room.characters 
-            if npc != player and hasattr(npc, 'flags')
-        )
-        if has_aggressive:
-            messages.extend(DANGER_AMBIENTS)
-            weights.extend([1.5] * len(DANGER_AMBIENTS))  # Higher weight
-        
-        # Add peaceful messages if in sanctuary
-        if 'peaceful' in player.room.flags or 'sanctuary' in player.room.flags:
-            messages.extend(PEACEFUL_AMBIENTS)
-            weights.extend([0.8] * len(PEACEFUL_AMBIENTS))
-        
-        if not messages:
-            return None
-        
-        # Weighted random selection
-        total = sum(weights)
-        r = random.random() * total
-        cumulative = 0
-        for msg, weight in zip(messages, weights):
-            cumulative += weight
-            if r <= cumulative:
-                return msg
-        
-        return random.choice(messages)
-    
+        heard = cls.presence_line(player, world)
+        if heard and random.random() < 0.5:
+            return heard
+        tags = cls.tags_for(player, world)
+        pool, weights = [], []
+        for key, lines in LINES.items():
+            if not fits(key, tags):
+                continue
+            w = max(WEIGHT.get(t, 1.0) for t in key.split('+'))
+            for text, sound in lines:
+                pool.append({'text': text, 'sound': sound, 'key': key})
+                weights.append(w)
+        if not pool:
+            return heard
+        return random.choices(pool, weights)[0]
+
     @classmethod
-    async def maybe_send_ambient(cls, player: 'Player', world: 'World', 
+    def get_ambient_message(cls, player: 'Player', world: 'World') -> Optional[str]:
+        """The text of a murmur that fits where the player is (older callers)."""
+        m = cls.pick(player, world)
+        return m['text'] if m else None
+
+    @classmethod
+    async def deliver(cls, player, world, m: dict):
+        """To /play: an `ambient` event (a sound from where it comes, a cue on the HUD), no chat
+        line. To telnet: the line."""
+        web_map = getattr(world, 'web_map', None)
+        if web_map is not None and web_map.has_play(player):
+            await web_map.notify_event(player, {'type': 'ambient', **m})
+            return
+        c = player.config.COLORS
+        await player.send(f"\r\n{c['white']}{m['text']}{c['reset']}\r\n")
+
+    @classmethod
+    async def maybe_send_ambient(cls, player: 'Player', world: 'World',
                                   chance: float = 0.03) -> bool:
-        """
-        Maybe send an ambient message to a player.
-        
-        Args:
-            player: The player to potentially send a message to
-            world: The game world
-            chance: Probability of sending a message (default 3%)
-            
-        Returns:
-            True if a message was sent, False otherwise
-        """
+        """Maybe send an ambient murmur to a player (never in a fight, at most one each 30 s)."""
         import time
-        
-        # Don't send if player is in combat
-        if player.is_fighting:
+        if player.is_fighting or getattr(player, 'position', '') == 'sleeping':
             return False
-        
-        # Rate limit: minimum 30 seconds between ambient messages
         now = time.time()
-        last = cls._last_ambient.get(player.name, 0)
-        if now - last < 30:
+        if now - cls._last_ambient.get(player.name, 0) < 30:
             return False
-        
-        # Random chance check
         if random.random() > chance:
             return False
-        
-        # Get and send message
-        message = cls.get_ambient_message(player, world)
-        if message:
-            c = player.config.COLORS
-            await player.send(f"\r\n{c['white']}{message}{c['reset']}\r\n")
-            # float the same whisper in the graphical client
-            web_map = getattr(world, 'web_map', None)
-            if web_map:
-                try:
-                    await web_map.notify_event(player, {'type': 'ambient', 'text': message})
-                except Exception:
-                    pass
-            cls._last_ambient[player.name] = now
-            return True
-        
-        return False
-    
+        m = cls.pick(player, world)
+        if not m:
+            return False
+        try:
+            await cls.deliver(player, world, m)
+        except Exception:
+            logger.debug('ambient delivery failed', exc_info=True)
+            return False
+        cls._last_ambient[player.name] = now
+        return True
+
     @classmethod
     async def ambient_tick(cls, world: 'World'):
-        """
-        Process ambient messages for all players.
-        Called periodically (e.g., every few seconds).
-        """
-        for player in world.players.values():
+        """Process ambient messages for all players (every 10 s from the main loop)."""
+        for player in list(world.players.values()):
             # frequent enough to feel alive, rate-limited to 30s per player
             await cls.maybe_send_ambient(player, world, chance=0.12)
+
+    @classmethod
+    async def creature_moved(cls, world, mob, new_room):
+        """A wandering creature came into `new_room`: /play players one room away hear it (a
+        patrol passing: a cue on the minimap and at the screen's edge, no chat line). Those in
+        the room itself see it arrive."""
+        import time
+        web_map = getattr(world, 'web_map', None)
+        if web_map is None or new_room is None:
+            return
+        flags = set(getattr(mob, 'flags', None) or ())
+        if not ({'aggressive', 'boss'} & flags or getattr(mob, 'is_boss', False)):
+            return
+        now = time.time()
+        for d, r in neighbours(new_room, world):
+            for p in list(getattr(r, 'characters', None) or []):
+                if not hasattr(p, 'connection') or not web_map.has_play(p):
+                    continue
+                if now - cls._last_presence.get(p.name, 0) < 8:
+                    continue
+                back = next((dd for dd, rr in neighbours(r, world) if rr is new_room), None)
+                if back is None:
+                    continue
+                cls._last_presence[p.name] = now
+                text = random.choice(PRESENCE[_kind(mob)]).format(where=where(back))
+                await web_map.notify_event(p, {'type': 'ambient', 'text': text, 'sound': 'amb_steps', 'key': 'presence',
+                                               'dir': back, 'room': getattr(new_room, 'vnum', None),
+                                               'mob': _mob_id(mob), 'name': getattr(mob, 'name', ''), 'moving': True})

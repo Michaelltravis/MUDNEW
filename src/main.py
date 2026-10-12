@@ -229,29 +229,11 @@ class Misthollow:
                     await self.world.minor_regen_tick()
                     minor_regen_tick = 0
                 
-                # Ambient message tick (every 10 seconds, 3% chance per player)
+                # Ambient murmurs (every 10 seconds; ambient.py rate-limits each player)
                 if ambient_tick >= self.config.TICKS_PER_SECOND * 10:
                     from ambient import AmbientManager
                     await AmbientManager.ambient_tick(self.world)
-                    # Also fire ambient_events system for richer sector-based events
-                    try:
-                        from ambient_events import AmbientEventManager
-                        import random
-                        game_time = getattr(self.world, 'game_time', None)
-                        for p in list(self.world.players.values()):
-                            if not p.room or getattr(p, 'position', 'standing') in ('sleeping', 'fighting'):
-                                continue
-                            if getattr(p, 'fighting', None):
-                                continue
-                            if random.random() > 0.05:  # 5% chance per check
-                                continue
-                            weather = p.room.zone.weather if hasattr(p.room, 'zone') and p.room.zone else None
-                            event = AmbientEventManager.get_event_for_room(p.room, game_time, weather)
-                            if event:
-                                c = p.config.COLORS
-                                await p.send(f"\r\n{c['cyan']}{event}{c['reset']}")
-                    except Exception:
-                        pass
+                    # (one system: ambient.py picks lines that fit the place, ambient_lines.py)
                     ambient_tick = 0
                 
                 # NPC schedule tick (every game hour change - handled in time_tick)

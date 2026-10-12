@@ -706,7 +706,13 @@ export function createHud() {
     const kb = ls.get('mh3d_bodies') === 'classic' ? 'classic' : 'kin';
     els.settings.querySelectorAll('[data-set="bodies"] button').forEach(b => b.classList.toggle('on', b.dataset.v === kb));
     els.settings.querySelectorAll('[data-set="xbars"] button').forEach(b => b.classList.toggle('on', +b.dataset.v === bars.count));
+    const cap = ls.get('mh3d_ambcap') === 'on' ? 'on' : 'off';
+    els.settings.querySelectorAll('[data-set="ambcap"] button').forEach(b => b.classList.toggle('on', b.dataset.v === cap));
   };
+  // the world's murmurs as a line of text too (hud/ambient.js)
+  els.settings.querySelectorAll('[data-set="ambcap"] button').forEach(b => b.addEventListener('click', () => {
+    ls.set('mh3d_ambcap', b.dataset.v); syncSettings();
+  }));
   // how many extra bars show (bars.js; kept per character on this device)
   els.settings.querySelectorAll('[data-set="xbars"] button').forEach(b => b.addEventListener('click', () => {
     bars.setCount(+b.dataset.v); syncSettings();

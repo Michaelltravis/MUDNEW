@@ -14,6 +14,7 @@ const CW = 22, CH = 14;      // css px per cell (keeps the 24:15 room shape)
 
 // `cell` scales the rooms (the big map, M, draws them larger)
 export function createMinimap(root, onPick, onNorth = null, { cell = 1 } = {}) {
+  const pings = [], PING_MS = 4000;
   const CWc = CW * cell, CHc = CH * cell;
   const cv = root.querySelector('canvas');
   const ctx = cv.getContext('2d');
@@ -69,6 +70,23 @@ export function createMinimap(root, onPick, onNorth = null, { cell = 1 } = {}) {
       }
     }
     ctx.globalAlpha = 1;
+    // pings (ambient.js): something heard in a room, a ring that swells and fades
+    const nowP = performance.now();
+    for (let i = pings.length - 1; i >= 0; i--) {
+      const p = pings[i], age = (nowP - p.at) / PING_MS;
+      if (age >= 1) { pings.splice(i, 1); continue; }
+      const pr = zone.rooms.get(p.vnum);
+      if (!pr) continue;
+      const [x, y] = toScreen(pr.cx, pr.cy);
+      ctx.globalAlpha = 1 - age;
+      ctx.strokeStyle = p.kind === 'danger' ? '#ff5a3c' : '#f3d999';
+      ctx.lineWidth = 2.2 * S;
+      for (const k of [0, 0.5]) {
+        const a = (age * 2 + k) % 1;
+        ctx.beginPath(); ctx.arc(x + cw / 2, y + ch / 2, (4 + a * 14) * S, 0, Math.PI * 2); ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+    }
     // your guild's trainer: a gold star
     const gr = guild && zone.rooms.get(guild.vnum);
     if (gr) {
@@ -120,6 +138,8 @@ export function createMinimap(root, onPick, onNorth = null, { cell = 1 } = {}) {
   });
 
   return {
+    // something heard in a room (ambient.js): 'danger' red, else gold
+    ping(vnum, kind = 'danger') { pings.push({ vnum, kind, at: performance.now() }); dirty = true; },
     setZone(z) {
       zone = z; dirty = true;
       root.querySelector('.mm-zone').textContent = z ? z.name : '';
@@ -149,6 +169,7 @@ export function createMinimap(root, onPick, onNorth = null, { cell = 1 } = {}) {
         north.classList.toggle('turned', turned);
       }
       hero = { x: pos.x, z: pos.z, yaw, cam: camYaw };
+      if (pings.length) dirty = true;
       const now = performance.now();
       if (dirty && now - last > 80) { draw(); dirty = false; last = now; }
     },
