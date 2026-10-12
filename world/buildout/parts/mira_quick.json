@@ -1,0 +1,451 @@
+{
+ "job": "mira_quick",
+ "rooms": {
+  "10600": "A long boathouse of tarred timber stands on the shore here, built so close under the bluff that its back wall is bare rock beaded with damp. Its seaward end lies wide open, and a slipway of greased logs runs west into the bright water of Mira Retrum, whose glitter throws rippling light across the rafters. At the back, a steep stair of planks climbs up through a hatch toward the slope and the plains above. Nets hang drying overhead, and the shed runs on south past racks of long oars.",
+  "10601": "The far end of the boathouse is given over to caulking and mending, and a cold tar cauldron squats here on a hearth of blackened stones. A second slipway runs west into the water of Mira Retrum, its logs worn smooth and pale by many keels. Beside the open end, a weathered board nailed to a post bears a long column of carved names. North, the shed leads back past the oar racks to the foot of the stair.",
+  "10603": "Your boat rocks in the shallows just off the boathouse, where the water is so clear that every pebble on the bottom stands out sharp in bands of wavering sunlight. East, a worn slipway climbs out of the sea into the open end of the shed. Above its tarred roof the pale sandstone bluff rises in ledges tufted with sea-pinks. The water runs north along the shore and west toward Leper Island, glittering all the way.",
+  "10602": "Sheltered by the bluff, the water here lies so calm that the tarred boathouse to the east is mirrored upside down in it, slipway and all. Brown and golden weed sways on the stones below, combed out by the slow pull of the tide. Across the open water to the west, Leper Island lifts pale cliffs and dark jungle from the sea, and a thin thread of smoke rises from its peak. The shallows run on south along the shore.",
+  "10604": "Leper Island looms close here, a wall of pale, wave-gnawed cliffs crowned with dark jungle. North, the sea runs straight into the mouth of a vast sea cave, where a tongue of white sand gleams in the shadow beneath the arch. The swell booms hollowly somewhere inside and sighs out again with a cool breath of wet stone. Open water leads east toward the mainland boathouse, south into the wide sea, and west along the foot of the cliffs.",
+  "106271": "A beach of fine white sand slopes up out of the water inside a vast sea cave, its arched roof alive with light thrown up off the waves. South, the cave mouth frames a bright half-moon of open sea. At the back a narrow gully climbs up into the island, but it is choked with thorn and barred by a fence of lashed driftwood stakes. The beach runs on north into the cool gloom of the cave.",
+  "106272": "Deeper in the cave the sand is cool and firm, rippled by the tide into long ridges that crunch underfoot. Far overhead, a crack in the roof lets fall a single blade of daylight that strikes the beach like a pillar of white fire, leaving the walls in blue dusk. Each surge of the sea outside rolls in as a slow, hollow breath. The beach continues north around a bend in the rock and south toward the bright mouth of the cave.",
+  "106273": "Here the cave bends, and the white sand narrows to a strip between walls of pale stone fluted by ages of waves. A crust of dried weed and broken shells along one wall marks where storm tides reach, higher than a tall man's head. West, a low arch opens into a second hidden stretch of beach, lit by a faint green glow. South, the sand runs back toward the cave mouth and the sound of the sea.",
+  "106267": "This hidden beach lies in a broad, low chamber of the cave, its white sand sloping to a still green pool that the sea feeds through some drowned passage. In the middle of the sand stands a flat-topped stone, worn smooth, with a weathered board propped against it. Niches have been scraped into the walls at shoulder height, each blackened by the smoke of old candles. North, the beach runs on beneath a dark chimney in the rock, and east an arch leads back to the bend in the cave.",
+  "106265": "A high, narrow chamber rises over this patch of white sand, and a natural chimney climbs up through the rock toward the cliff above, with a glimmer of grey daylight far at its top. A ladder of rope and driftwood rungs once hung down the shaft, but its lower half has rotted away, and a fall of boulders now chokes the bottom. South lies the hidden beach with its still green pool, and north the sand runs on into a smaller recess.",
+  "106266": "The cave ends in a small round grotto where the white sand slopes into a pool of astonishing blue. The sea enters only from below, through a drowned arch, and the daylight it carries makes the water glow as if lit from within, throwing trembling blue reflections over the walls. Tiny shells lie heaped in the hollows of the sand like spilled sugar. The only way out is back south, beneath the chimney.",
+  "10621": "Here the water runs over a shelf of brown rock just beneath the surface, its weed streaming out like long hair in the slow current. Close at hand, the mainland's sandstone bluffs rise in tiers of buff and rust, and a thin fall of fresh water spills from a cleft to patter on the rocks below. North, the cliffs of Leper Island hem in the sea; south and west, the water opens wide and blue.",
+  "10641": "Off the mainland's bluffs the bottom drops away abruptly, and the bright green of the shallows gives way to a deep, cold blue. A loose raft of yellow-brown weed lies spread on the surface here, buoyed by countless berry-like bladders that glisten in the sun. North, the brown reef shows as a dark stain under the water, while the sea rolls on south and west in long, lazy swells.",
+  "10661": "Here the mainland's bluffs dwindle into a long slope of dunes tufted with pale grass, and the sea's edge becomes a ribbon of white sand. The water is a clear turquoise over a bottom of rippled sand, and so warm that a faint haze shimmers above it. From somewhere south comes the soft, endless boom of surf on the outer bar. Deeper water lies north beneath the bluffs, and open sea west.",
+  "10677": "Shallow, sun-warmed water lies over a meadow of eelgrass here, its green blades leaning one way and then the other as each small swell passes. The smell of warm weed and salt hangs heavy in the still air, and the mainland dunes shiver in the heat. South, a long bar of white sand shows beyond the shallows, crested with dunes, while open sea lies north and west.",
+  "10685": "A long white bar of sand lies close alongside, its dunes crowned with marram grass that hisses and bends in the wind. Beyond it, out of sight, the Southern Ocean pounds the outer beach, and now and then a burst of spray shows white above the crest. Inside the bar the water is still and glassy, green over pale sand. The sheltered channel runs west along the bar, and north lie the eelgrass shallows.",
+  "10686": "Inside the bar the water is a sheet of pale jade, so shallow that the ripple marks on the bottom show clearly through it. On the bar itself a single dead tree, grey and leafless, leans away from the ocean as though it has been trying to walk off the sand for a hundred years. The calm channel runs east and west along the bar, and deeper water lies north.",
+  "10678": "Little swells come at the boat from two sides here, one rolling in off the open sea and one rebounding from the bar, so that the water heaps and slaps in a restless chop. The colour beneath you shifts from green to blue and back as sandbanks and hollows pass under the keel. South lies the sheltered water along the bar, east the warm eelgrass shallows, and north and west the open sea.",
+  "10662": "A broad shoal of white shell sand lies a few feet below the keel here, and the water above it glows a vivid, almost unreal turquoise. Fragments of shell glint on the bottom like scattered coins, and at the shoal's edges the colour drops into deep blue as sharply as a line drawn with a rule. The mainland dunes lie east, the white bar beyond the water south, and the wider sea north and west.",
+  "10642": "A double row of old fishing stakes marches across the water here, grey poles driven into the bottom long ago for a weir, most of them now leaning or snapped off at the waterline. Weed hangs from them in green beards, and their tops are whitened by roosting birds. Open water lies all around: east toward the bluffs, south toward the turquoise shoal, and north and west into the wider sea.",
+  "10622": "A breeze funnels between Leper Island and the mainland here, ruffling the sea into dark patches that race across it like the shadows of running cats. Every so often a short wave slaps the bow and flings a cold spatter of spray into your face. The old fishing stakes stand in their crooked rows to the south, the reef lies east, and open water stretches north and west.",
+  "10605": "The cliffs of Leper Island rise sheer from the water beside the boat, pale stone banded with grey and hung with vines that trail almost to the sea. Waves suck and gurgle in a row of small caves along their foot, and the air in their shadow is cool and smells of wet rock and green leaves. East lies the great cave's mouth with its white beach, while the water runs on west along the island and south into the open sea.",
+  "10606": "Leper Island ends here in a ragged point of tumbled boulders, and a stack of pale rock stands alone a stone's throw off it, its top streaked white beneath an untidy crown of old nests. Past the point the sea opens out, and the far shore of the plains shows as a long, low line of grassy bluffs. The water runs east beneath the island's cliffs, west along the plains' shore, and south into the deep.",
+  "10623": "Out here the sea moves in a long, slow heave that lifts the boat and lowers it again like a sleeper's breathing. Looking back, Leper Island can be seen whole: a green hump of jungle rising to a bald grey cone, from whose crest a feather of smoke leans with the wind. Open water stretches every way, north toward the island's rocky point, east toward the mainland, and south and west across the sea.",
+  "10643": "The water here is clear as glass, and on the pale sand far below the boat lies a huge iron anchor, its flukes furred with orange growth and a length of rotten cable snaking from its ring. Ripples cast a moving net of light across it, so that it almost seems to stir. The sea runs on north toward Leper Island, east to the fishing stakes, and south and west across open water.",
+  "10663": "The sun's glare lies on the water here in a broad, blinding road of light, and it is hard to look anywhere but down into the shade beside the hull. There the sea is a clean, deep green, threaded with drifting motes of weed. The turquoise shoal glows to the east; south lies the choppy water near the bar, and north and west the open sea rolls on.",
+  "10679": "From here the white bar is close enough to make out the wrack and bleached driftwood along its inner beach, and above its dunes hangs a haze of fine spray from the ocean surf beyond. The sound of that surf comes as a low, unending thunder that you feel through the planks. The water near the boat is quiet and smells of weed. South lies the channel along the bar, with open water east, west and north.",
+  "10687": "Here a hooked spit of white sand curls out from the bar, and behind it a narrow tidal creek winds away among the dunes, its banks crusted with salt. The water inside the hook is dead calm and as warm as a bath. West, the bar is broken by a gap where ocean swells roll through; east, the sheltered channel runs on along the sand, and north lies open water.",
+  "10688": "Here the white bar is broken by a wide gap, and through it the swells of the Southern Ocean roll in long and green, lifting the boat high and setting it gently down. On the tip of the bar stands a cairn of white stones crowned with an old ship's figurehead, a carved woman gazing out to sea. South, the gap leads out onto the Southern Ocean, while the calmer water of Mira Retrum lies north, east and west.",
+  "10680": "The ocean swell that enters through the gap in the bar spreads out here into broad, smooth undulations, so that the whole sea looks like rumpled silk. The water is a deep, clean blue, and a cool breath rises off it with the smell of the open ocean. South, the white cairn and its figurehead mark the gap, and open water runs north, east and west.",
+  "10664": "A drift of grey pumice floats on the water here, hundreds of stones as light as cork that knock against the hull with a dry, hollow clatter. They must have come a long way, from some burning island far beyond the bar, and their pocked faces are already furred with green. Otherwise the sea is empty and blue: the glare lies east, the ocean swell rolls in from the south, and open water runs north and west.",
+  "10644": "Beneath the boat the bottom is a garden of red weed and pale, branching sea fans, all swaying together in the slow surge like poppies in a summer wind. The sunlight reaching down to them is green and full of drifting specks. East, the great anchor lies on its bed of sand; west, a tall marker pole stands up out of the sea, and open water runs north and south.",
+  "10624": "The wind dies away here, and the sea lies so flat and glassy that every cloud floats upside down on its surface, until the boat seems to hang in the middle of the sky. The only sounds are the drip from your oars and a faint, far piping of birds. North, the grassy bluffs of the plains draw nearer, while open water lies east, south and west.",
+  "10607": "The shore of the plains bends close here, a low bluff of red earth topped with waving grass, and a little beach of coarse sand lies at its foot, strewn with weed. The coast curves so sharply that the ways north and west both follow it to the same stretch of water. East, the rocky point of Leper Island juts into the sea, and south lies open water.",
+  "10608": "The plains' shore wanders in and out here in a chain of little coves, each with its own scrap of pale sand and its own fringe of rushes where fresh water seeps from the bluff. Whether you steer north or west, the winding coast leads on to the same cove ahead. The water is brown-green and smells of wet earth, and the dry whirr of insects drifts down from the grass. East and south lies the open sea.",
+  "10609": "A lone pine stands on the bluff above this stretch of shore, its crown combed flat by the wind and leaning out over the water as if to see what lies beyond the sea. Here the coast swings round in a long curve, so that both the way north and the way west lead along it toward the next headland. South, the black ribs of a wreck stand up from a sandbar; east, the little coves wind back toward Leper Island.",
+  "10610": "Long streaks of yellow pollen lie on the water here, blown out from the flowering grass of the plains, and they swirl into lazy spirals wherever an oar dips. The air carries the warm, dusty sweetness of hay over the salt. The shore lies close by, a grassy bluff cut by a dry gully, while the sea leads east toward the lone pine, west along the coast and south into open water.",
+  "10627": "Great shadows of cloud drift across the sea here, so that the water darkens to slate and brightens to sapphire again as they pass over the boat. Within each shadow the air turns suddenly cool. East, the black ribs of the wreck stand up from their sandbar; north lies the pollen-streaked water under the bluffs, and the sea runs on south and west.",
+  "10626": "A long sandbar breaks the surface here, pale and ribbed by the waves, and stranded on its crest lie the black ribs of an old ship, standing up from the sand like the bones of some great beast. Weed and barnacles crust the timbers, and the swell gurgles in and out among them. North, a lone pine marks the shore of the plains, and open water lies east, south and west.",
+  "10625": "The swell stirs fine white sand from the shallows here, and the water is clouded to a strange milky green that hides the bottom completely. Now and then an oar touches sand that you cannot see. West, the wreck's black ribs rise from their sandbar; north, the coves of the plains' shore lie close, and the sea opens east and south toward a tall marker pole.",
+  "10645": "A tall pole of grey timber stands up out of the sea here, driven deep into some hidden rock and braced with rusted iron bands. Its top is carved into the shape of a leaping fish, and the paint still clinging to it shows that it was once bright blue and gold. The water swirls past its foot in small, busy eddies. Open sea lies on every side, with the garden of red weed east and the milky shallows north.",
+  "10665": "A long line of creamy foam wanders across the sea here, marking where the water drawn in through the gap in the bar meets the slack water of the inner sea. Feathers, seed husks and scraps of weed have gathered along it like the tideline on a beach. North stands the carved marker pole and east lies the pumice drift, while the sea runs on south toward the bar and west into open water.",
+  "10681": "The wind blows steadily across the bar here, lifting plumes of fine white sand from the dune crests and sprinkling them over the water, where they sink in glittering threads. The sea is a rich blue, ruffled and lively. South, the bar opens toward the ocean; east and west the inner sea runs along the dunes, and north lies open water.",
+  "10689": "The ocean's breath is strong here at the gap in the bar, and the boat rides up and down on swells that have travelled from beyond the edge of any map. South, the gap opens wide onto the Southern Ocean, its water dark and endless. East, the white cairn with its figurehead stands on the tip of the bar, and west the bar runs on toward a great bleached skeleton lying on the sand. Northward lie the quieter waters of the inner sea.",
+  "10694": "Beyond the bar the sea changes entirely: the water turns a deep, cold indigo, and the swells come marching in long ranks, each one lifting the boat high enough to show the white line of Mira Retrum's beaches before dropping it into a blue valley. North, the gap in the bar leads back to calmer water. The ocean runs on east and south, and to the west it stretches away unbroken, as though there were no end to it at all.",
+  "10693": "The swells here are long and heavy, and spray blows off their crests in white streamers whenever the wind freshens. Looking back, the figurehead on her cairn can just be seen guarding the gap in the bar to the north. East, the ocean rolls on forever, swell after identical swell, while the water runs south into deeper blue and west along the outside of the bar.",
+  "10695": "Far from any shore now, the boat climbs each swell and slides down its back into a trough so deep that for a moment only the sky can be seen. The bar of Mira Retrum has dwindled behind to a thin white thread on the horizon. East, the ocean stretches away without a mark on it, unchanging however far you go; the swells run on south and west, and the way north leads back toward the bar.",
+  "10697": "Strands of torn kelp, thick as a man's wrist and longer than the boat, roll in the troughs here, carried from some unknown coast. The air has turned noticeably colder, and the swells come in heavy and slow, grey along their backs. The ocean is so featureless that steering north or east brings you back to the same stretch of rolling water, while to the west the swells run on toward a colder sea.",
+  "10699": "A cold current sets in from the south here, and the water turns grey and smells of snow, with a few small lumps of ice turning slowly in the swell. South, that current runs on toward the Southern Mira Retrum, where white bergs glimmer far off in the haze. To the west a bank of fog lies on the sea like a wall of wet wool, swallowing the horizon, and the open ocean rolls away north and east.",
+  "10698": "Nothing breaks the circle of the horizon here but the slow procession of the swells, and the loneliness of the open ocean presses close around the boat. A single long grey feather floats past on the water, turning gently. The air is cold and clean, with a bite that speaks of ice not far off; the ocean runs north and east, and south toward a colder current.",
+  "10696": "Two sets of swells cross each other here, one from the ocean's far reaches and one rebounding from some distant coast, heaping the water into sudden, lurching peaks. Spray bursts over the bow without warning. To the west the ocean runs on and on without change, as if it would never end, while the way north leads back toward the bar and the swells roll east and south.",
+  "10700": "Fog closes in on every side, thick and white and dripping, until the bow of the boat is the farthest thing you can see. North, south, east and west look exactly alike, and every way you steer seems to bring you back into the same grey murk. Only now and then a great swell heaves up out of the fog, and riding up over its crest might carry you clear, back to the open Southern Ocean.",
+  "10701": "The fog is so thick here that it beads on your skin and drips from your hair, and the water beneath the boat is black and utterly still. Sounds die within a few feet: the creak of a plank, the splash of an oar. Whether you turn north or south, east or west, the grey wall moves with you, and there is no telling where the open ocean lies.",
+  "10703": "Somewhere above the fog a pale smudge of light hangs where the sun must be, but it seems to slide about the sky as the boat turns, and soon you cannot be sure of it at all. Strands of drifting weed, the same strands you have surely passed before, curl around the hull. The water runs north and south, east and west into identical grey nothing.",
+  "10702": "A slow, silent eddy turns the boat in a lazy circle here, and the fog swirls in its wake like smoke stirred by a hand. Once, far off, there comes a hollow boom, as of surf on some unseen rock, but it does not come again. North and south lead into the same blank greyness, and so do east and west, with nothing to choose between them.",
+  "10690": "The bleached skeleton of a great whale lies along the crest of the bar here, its ribs arching over the sand like the beams of a roofless hall and its skull half buried in a dune. Wind sings faintly through the bones. Inside the bar the water is calm and green; east lies the gap where the ocean swells come in, and west the bar runs on, low and white. Open water lies north.",
+  "10682": "A heat shimmer hangs over the bar here, so that its dunes seem to float a hand's breadth above the sea, and the great whale's skeleton on the sand to the south wavers like a reflection in a pool. The water is warm and slack and smells of sun-baked weed. Small ripples lap at the hull with a sleepy, steady sound, and open sea lies north, east and west.",
+  "10666": "A great mat of floating weed lies spread across the sea here, so thick and green that it looks like a meadow you could walk on, and the boat pushes into it with a soft, dragging hiss. Air bladders pop under the hull, and the smell of salt and rot hangs heavy. Clear water lies beyond its ragged edges on every side, north and south, east and west.",
+  "10646": "Here the sea is deep, and looking down over the side you can watch shafts of sunlight slant into the blue and draw together far below, like the spokes of a great wheel meeting at a hub you cannot see. The surface is quiet, broken only by the faint, rhythmic slap of water on the hull. North, the wreck's ribs stand on their sandbar; the marker pole rises east, and open water runs south and west.",
+  "10647": "The water shoals over a great bank of cockle shells here, millions of them, white and pink and grey, so that the sea above has the pale gleam of mother-of-pearl. When the swell draws back, the shells shift and whisper against one another below the keel. West, a dark skerry topped with a stone cairn rises from the sea, and open water lies north, east and south.",
+  "10667": "A narrow band of short, steep wavelets runs across the sea here where two slow drifts meet and jostle, and the boat jerks and twists as it crosses, water chuckling loudly under the bow. On either side of the band the surface lies smooth again. North lies the pale shell bank, east the great mat of floating weed, and the sea runs on south and west.",
+  "10683": "The water is shallow and astonishingly clear here, and the boat's own shadow glides over the white sand below, ringed with a halo of rippling light. The sand is printed with the wandering trails of small things that crawl by night. South, the bar lies low beside the water; west opens a quiet bay, and the sea runs north and east.",
+  "10691": "The bar is so low here that the ocean pours over it in storms, and broad fans of white sand have spilled out into the inner sea, where the water over them is barely deep enough to float the boat and glows a pale gold. Driftwood and torn weed lie stranded along the crest. East, the whale's great ribs arch over the sand, and west the bar runs on toward a dark headland. North lies deeper water.",
+  "10692": "Here the white bar comes to an end against a low headland of black, pitted rock, its ledges riddled with tide pools that flash like mirrors when the sun strikes them. The swell surges among the rocks with a deep, sucking gurgle. North lies a quiet bay heaped with silver driftwood, and east the bar runs back toward the whale's bones.",
+  "10684": "The slow drift of the whole inner sea seems to end in this quiet bay, and its curving shore is heaped high with driftwood bleached silver by the sun, whole trees among it with their roots in the air. The water is calm and warm, littered with weed and floating husks, and the air smells of sun-dried wood. North and east the open sea leads away, and south the bay ends at a headland of black rock.",
+  "10668": "Long, glassy slicks wind across the sea here like paths through a field, smooth lanes the breeze cannot ruffle, while the water between them shivers and sparkles. The boat seems to want to follow them. North, a dark skerry stands up from the sea, and south lies the quiet driftwood bay; to the west a faint smell of sulphur hangs over the water, and east the sea runs on.",
+  "10648": "A skerry of dark rock rises from the sea here, its flanks streaked white and its crown topped by a squat cairn of piled stones. The sharp, fishy reek of an old roost carries across the water, and the swell breaks lazily over a shelf at the rock's foot. East lies the shell bank, and open sea stretches north, south and west.",
+  "10628": "An old barrel buoy, tarred black and bearded with weed, rides here on a rusted chain, nodding and bowing with every swell as though in greeting. Its iron hoops weep long red stains down the staves. South, a dark skerry topped with a cairn stands up from the sea; the shore of the plains lies north, and open water runs east and west.",
+  "10611": "The sea here is stained a clear tea-brown by fresh water spreading out from the falls along the shore, and a sharp seam marks where it meets the blue salt water. The surface carries the cool, earthy smell of a stream. West, the white thread of the falls drops down the bluff; east lie the pollen streaks, and south the sea opens toward an old buoy.",
+  "10612": "A stream pours over the lip of the bluff here in a white ribbon of falling water, crashing into a pool among the boulders at the sea's edge with a steady, hollow roar. Spray drifts out over the boat in a cool, rainbow-tinted mist, and ferns cling to the wet rock all around the fall. The shore runs on east and west, and the open sea lies south.",
+  "10629": "Cold water wells up from the depths here in a broad, slowly turning patch, smooth and dark green, and the air above it is suddenly chill enough to raise gooseflesh. It smells of the deep and of old, cold stone. North, the roar of the falls carries faintly across the water; east bobs the barrel buoy, and the sea runs on south and west.",
+  "10649": "Out in the middle of Mira Retrum the shores have sunk away into haze on every side, and only the skerry and its cairn, a little way east, break the endless shine of the water. The swell is slow and low, and the silence is so deep that the creak of the boat seems loud. Open water runs north, south and west, as empty as the sky.",
+  "10669": "Strings of silver bubbles rise from the bottom here and burst on the surface with soft little pops, and the water around the boat is as warm as a bath and smells faintly of rotten eggs. Far below, a pale crust of yellow and white rims the vents where the bubbles escape. The sea runs north and east, south toward a quiet bay, and west toward a rock where the swell breaks white.",
+  "10670": "A single black rock lies just awash here, and every swell that reaches it breaks in a white, seething smother before draining away in a hundred hissing rills. Boats give it a wide berth, and a few splintered planks are wedged in a crack on its flank. East lies the warm, bubbling water; south the sea drifts toward the quiet bay, and north and west it stretches away open.",
+  "10650": "On the sandy bottom beneath the boat lies a small fishing skiff, settled on her side and swathed in waving weed, her mast snapped and her oars long gone. Paint still shows on her bow where a name was lettered, but she lies too deep for it to be read. West, a great stone head rises from the sea; south lies a rock awash in foam, and open water runs north and east.",
+  "10630": "A fresh breeze off the plains whips the sea into short, bright waves here, and their crests break into little white horses that run alongside the boat and vanish. Spray stings your eyes and dries to salt on your lips. North, a ruined tower stands on the bluffs; the cold green upwelling lies east, and the sea runs south and west.",
+  "10613": "High on the bluff above this stretch of shore stands the stump of an old watchtower, its stones the same rust-red as the cliff, its top broken and its arrow slits staring out to sea. A rusted iron ring for mooring boats is still set in a boulder at the water's edge. The falls roar faintly to the east, while west the shore runs on and south lies the open sea.",
+  "10614": "Here the stumps of a drowned wood stand up out of the shallows by the hundred, black and smooth as horn, some no higher than a knee and some taller than a man. The sea moves among them with a soft, sucking sound, and weed has wound itself around every one. It is said that this was dry meadow and forest before the sea came in. The shore runs east and west, and the open sea lies south.",
+  "10631": "A dense bed of dark weed covers the bottom here, so that the water looks as black as ink and the boat seems to float above a bottomless pit. Only when the sun strikes straight down can you make out long fronds stirring in the gloom. North, the drowned stumps stand in the shallows; south, a great stone head rises from the sea, and the water runs on east and west.",
+  "10651": "A colossal stone head rises from the sea here, crowned and bearded, the head of some forgotten king whose body stands lost in the green depths below. His face is worn almost smooth by wind and water, his eyes are blind hollows, and weed hangs from his chin like a second beard of green. Swells slap against his cheeks and fall back, and open sea runs north, east, south and west.",
+  "10671": "The water here is speckled with drifting seeds and sea-beans, smooth brown and red and mottled, carried from shores no one in Garathorm has ever seen. They gather in little rafts and spin slowly in the eddies around the boat. North, the stone king's crowned head shows above the water; east the swell breaks white on a lone rock, and the sea drifts south toward the quiet bay and west toward a dead tree standing in the water.",
+  "10672": "A whole dead tree stands upright in the sea here, drowned where it grew, its grey trunk rising from the water and its bare branches spread against the sky like the fingers of an open hand. The bark is long gone and the wood is polished silver. To the west the water turns abruptly to a deep, startling blue; north and east the sea runs open, and south it drifts toward a quiet bay.",
+  "10652": "Squared blocks of pale stone lie scattered on the bottom here, half buried in sand, as if a wall or a tower had tumbled into the sea long ago. Fishermen say that on still evenings a bell can be heard ringing somewhere beneath the water, slow and muffled, from a town that was drowned when the sea came in. East, the stone king gazes blindly out of the waves, and the sea runs north, south and west.",
+  "10632": "A knob of rock no bigger than a cottage roof breaks the surface here, and on it the fishermen of the coast have built a tiny shrine of driftwood and stone with a roof of shells. Faded ribbons flutter from its eaves. West, a line of stones shows under the water like a sunken road; north lies the shore of the plains, and open water runs east and south.",
+  "10615": "The bluffs above this stretch of shore are purple with wild thyme, and the breeze carries its warm, sharp scent out over the water. Below them the sea runs clear and pale over a floor of smooth pebbles, speckled grey and green and rust. East, the drowned stumps crowd the shallows; west the shore runs on toward rocky ledges, and south lies the open sea.",
+  "10616": "Flat ledges of red sandstone run out from the foot of the bluff here, and the swell washes over them and drains away, leaving a hundred tide pools brimming and flashing in the sun. The rock is slick with green weed and studded with limpet shells. The shore runs east and west, and south a line of sunken stones leads out across the sea.",
+  "10633": "A causeway of great fitted stones runs beneath the water here, so near the surface that the boat seems to float down a drowned road, its paving still straight and true and edged with kerbs. It runs from the shore of the plains out toward the middle of the sea and is lost in the deeps. East, the little shrine stands on its rock, and open water lies north, south and west.",
+  "10653": "Far off across the water, a cloud of white sea birds wheels and plunges over a patch of broken, glittering sea, and their thin cries carry faintly on the wind. Close at hand the water is calm, bottle-green and empty. North, the drowned causeway runs beneath the surface; south lies water of a startling blue, and the sea opens east and west.",
+  "10673": "The sandy shallows end here at the rim of a great round hole in the sea floor, and the water above it is a deep, startling blue, so dark at its heart that it looks like a well sunk straight down into the night. A chill rises from it. East stands the dead tree, drowned where it grew; south the sea drifts toward a quiet bay, and north and west the shallows run on.",
+  "10674": "There is no shade anywhere out here, and the sun beats down on the water until it glares like hot brass and the gunwales grow too warm to touch. Salt dries in a white crust on everything the spray has wetted. East lies the deep blue hole; to the south the drift runs toward the quiet bay, and north and west the open sea shimmers away.",
+  "10654": "Tall stalks of kelp rise from the deep here and spread their golden-brown fronds across the surface in a floating forest, which sways and parts around the bow with a rubbery rustle. Looking down between them, the stalks drop away like taut ropes into green twilight. East, the sea runs calm and bottle-green, and open water lies north, south and west.",
+  "10634": "The water is a thick, soupy green here, clouded by some bloom too fine to see, and it leaves a faint, greasy sheen on the oars and a smell like cut grass. The bottom is hidden entirely. East, the drowned causeway runs on beneath the surface; north a great arch of red rock stands at the shore, and the sea runs south toward a forest of kelp and west into haze.",
+  "10617": "A great arch of red sandstone stands out from the bluff into the sea here, tall enough to sail a boat beneath, and the swell runs through it with a hollow boom that echoes along the shore. Grass grows shaggy along its crown, and long beards of weed drip from its underside. The shore runs east toward the tide-pool ledges and west toward a ruined jetty, and the open sea lies south.",
+  "10618": "A jetty of tumbled stones runs out from the shore here, its far end collapsed into the sea and its old mooring posts worn to stumps. On the bluff above stand the roofless shells of a few stone cottages, their doorways empty and their gardens gone to thistle. The shore runs east toward a great arch and west toward lower ground, and the sea opens south.",
+  "10635": "A haze lies over the western water here, and through it the far shore plays tricks: low reed banks float above the horizon, doubled upside down in the air, and the ruined cottages on the bluff seem to stretch tall and thin. Close by, the sea is quiet and pale blue. North lies the broken jetty, east the green bloom, south a little islet of white sand, and west more haze.",
+  "10655": "A tiny islet of white sand rises from the sea here, no bigger than a threshing floor, with a tuft of grey salt-bush clinging to its crown and a fringe of broken shells around its edge. The water around it is turquoise and so clear that its sandy flanks can be traced far down. The kelp forest lies east, and the sea runs north, south and west.",
+  "10675": "Just under the surface lies a great ring of piled stones, a fish trap built by hands long gone to pen the fish when the tide fell. Weed has knitted the stones together, and the water inside the ring is a shade calmer than outside. North rises the little islet of white sand; east lies open, glaring water, and the sea drifts south toward a quiet bay and west toward the reeds.",
+  "10676": "The reed beds of the far shore crowd close here, a whispering wall of tall brown stems with feathery heads that nod and bow in every breeze. The water is shallow and cloudy with fine silt, and the oars come up streaked with mud. South, the sea drifts away along the reeds toward a quiet bay, and open water lies north and east.",
+  "10656": "The bottom here is shaped into great ridges of sand, like dunes lying under the water, each crested with a line of brighter ripples, and the sea above them shades from pale to deep and back again as you pass. Bits of shell roll slowly down their flanks with each surge. East rises the islet of white sand, south the reeds come close, and the sea runs on north and west.",
+  "10636": "Wisps of mist rise from the water here and drift like smoke, gathering into a low, soft bank that hides the far shore and muffles every sound. The air is cool and damp on your face, and moisture beads on the gunwales. North the shore of the plains sinks lower, east the haze shimmers over the water, and south and west the sea fades into the mist.",
+  "10619": "Here the bluffs of the plains sink into low banks of yellow clay, riddled with the round holes of burrows and slumping into the sea in muddy fans. Clumps of rushes grow along the water's edge, the first of the reed beds that fill the far end of the sea. East, the shore climbs again toward the ruined jetty; west it bends into a broad, shallow corner, and south lies open water.",
+  "10620": "The sea ends here in a wide, shallow corner, hemmed in by banks of clay on one hand and endless reed beds on the other, and the water lies so still and brown that the reeds stand doubled in it. A silence hangs over the place, broken only by the dry rattle of stems. Open water leads back east along the shore of the plains and south into the sea's lonely far reaches.",
+  "10637": "These are the loneliest reaches of Mira Retrum, where the water is a dull pewter and the horizon is lost in haze. From somewhere to the west comes a low and endless hiss, like wind in a field of barley, though the air here is still. North lies a shallow corner among the reeds, east the drifting mist, and south the sea runs on.",
+  "10657": "A faint, steady pull has crept into the sea here, and bits of weed and foam drift past the boat all in the same direction, as though the water itself had somewhere to be. The surface is streaked with long, wavering lines where it slides. North and west the lonely water stretches into haze; east lie the sunken sand ridges, and south the sea drifts toward the reeds.",
+  "10658": "The sea is restless here, puckered into small, swirling eddies that spin the boat gently about whenever you rest the oars. Long streamers of foam are all drawn the same way, toward a hissing line of white water beyond the haze. Reed beds edge the sea to the south, and open water lies north, east and west.",
+  "10638": "East of here the calm of Mira Retrum breaks: the water begins to slide and hurry, ruffled into lines of standing ripples, and a deep, rushing murmur rises where Quickstream sets out for the ocean. The boat strains toward it like a dog on a leash. North lies the still corner among the reeds, south the swirling eddies, and west the last lonely reaches of the sea.",
+  "10500": "Here the slack water of Mira Retrum gathers itself and begins to run, smooth and swift and glassy, sliding away east between low banks of white sand toward the open ocean. The boat lurches as the current takes it, and the hiss of moving water grows to a steady rush. South, beyond a line of standing ripples, the calm sea lies drowsing in the sun.",
+  "10639": "A floating island of reeds, torn loose from the marshes by some storm, turns slowly here, its matted roots trailing beneath it and its feathery heads still nodding as if nothing had happened. The water is brown-green and smells of marsh. North lies the reedy corner of the sea; east the water begins to run toward Quickstream, and south and west the reed beds close in.",
+  "10659": "A fowler's hide stands in the shallows here, a little hut of bound reeds raised on stilts above the water, its door hanging open and its thatch half blown away. The reeds rise thick and tall around it, rustling. East the eddies swirl, south and west lie the reed-fringed shallows, and north a channel of open water winds away among the beds.",
+  "10660": "The sea runs out here in a broad flat of shining mud, studded with the black stumps of old posts and threaded by little channels that wind away into the reeds. The smell of mud and rotting stems hangs over everything, and the water is barely deep enough to float the boat. North and east lies water a little deeper; south, the shallows follow the reeds toward a quiet bay.",
+  "10640": "This is the farthest corner of Mira Retrum, walled on two sides by reed beds so tall and dense that nothing can be seen beyond them but sky. The water is still and dark, flecked with fallen seed, and the loneliness here is so deep that the slap of a wavelet makes you start. Open water leads back east, and south the shallows run toward a mudflat.",
+  "10501": "The current has the boat now, carrying it along between low banks of white dunes at the pace of a trotting horse, and steering is all the oars are good for. The water runs smooth and dark down the middle of the channel, but along its edges it breaks into little curling waves. Back west, against the stream, lies the mouth of Quickstream and the calm sea; east the channel runs on, faster.",
+  "10502": "Quickstream runs like a mill-race here, and the dunes on either bank go racing past as the boat rides its broad, humped back. Spray flies from the bow in sheets, and the roar of the water fills your ears. Driftwood shoots along beside you, keeping pace. The current hurries on east, and west lies a hard, slow pull back against the stream.",
+  "10503": "A row of standing waves stretches across the stream here, great green humps of water that never move however fast the current pours through them, and the boat bucks over them one after another like a horse taking fences. Every landing throws a bucketful of cold spray over the gunwale. The water rushes on east, and west lies the way back, a hard fight upstream.",
+  "10504": "The stream bends here around a bank of crumbling clay, and the whole current piles up against the outer side in a hump of brown water before swinging away, dragging the boat with it. Chunks of clay drop from the bank and are swallowed with a plop. Downstream to the east the channel straightens; upstream to the west the standing waves heave and glitter.",
+  "10505": "A great black rock stands in the middle of the stream here, and the water piles against it in a roaring cushion of white before tearing past on either side. The boat is flung by so close that you could almost touch its weed-slick flank. East, the current races on; west, upstream, the bend in the clay bank is already almost out of sight.",
+  "10506": "The roar of Quickstream is deafening here, and its edges are torn into whirlpools that spin and suck and vanish, each one a little funnel of glassy water. The boat shudders as the current shoves at it from below. Spray hangs over the stream in a fine, drifting rain, and the sun strikes little rainbows from it. The water rushes on east; west lies the black rock in midstream.",
+  "10507": "The banks open out a little here into low dunes tufted with silver grass, and a line of old marker posts stands along one shore, leaning with the current, each topped with a scrap of faded rag. The stream runs fast and smooth, a sheet of dark green glass that hisses along the hull. East, the dunes rise higher where the channel narrows; west, the whirlpools churn.",
+  "10508": "Two horns of black rock close in on the stream here, and Quickstream crowds between them, heaped high in the middle and boiling white along their feet. The roar echoes back from the rock walls, and the air is cold with spray. The boat is shot through the gap toward the east as if fired from a sling, while west the channel widens between low dunes.",
+  "10509": "Below the rocky gap the stream runs broad and swift between the last of the dunes, and the air changes, cool and huge and heavy with the smell of the open ocean. Ahead to the east, beyond a line of white breakers, the Southern Ocean spreads away to the horizon. West, the black horns of rock guard the narrows, still roaring.",
+  "10510": "Quickstream bursts out of its channel here into the open Southern Ocean, and where the racing current meets the incoming swell the sea stands up in steep, confused peaks that crash together and fling spray high into the air. The boat pitches wildly, shipping water over both gunwales. East, the current runs on as a dark road through the ocean; west lies the mouth of the channel between the dunes.",
+  "10511": "Out on the open ocean Quickstream runs on like a river within the sea, a broad band of darker, smoother water edged on both sides by wavering lines of foam. Outside those lines the ocean swells roll slow and blue, but inside them the boat speeds along as if pulled on a rope. East, the current heads toward a smudge of smoke on the horizon; west, the breakers churn where it left the land.",
+  "10512": "A volcanic island rises from the sea north of the current here, a dark cone wreathed in drifting smoke, its lower slopes shaggy with green and its shore a jagged ring of black rock. No boat can reach it, for reefs of black lava lie all around it just under the water, and the surf boils white over them in an unbroken wall. The air smells of sulphur, and fine grey ash speckles the water. Quickstream sweeps on east, and back west toward the open ocean.",
+  "10513": "The water here is warm to the touch and faintly cloudy, stained by ash drifting out from the burning island, and a scum of grey pumice rides along with the current. The sulphur stink lingers on the wind. Now and then a hiss and a gout of steam rise from the sea far off, where some hidden vent meets the water. The current carries the boat briskly on east, while west the smoking cone stands up out of the sea.",
+  "10514": "Quickstream runs fast and straight here across the open ocean, and the boat skims along it with a long, hissing wake spreading behind. Spray whips back over the bow, salty and cold, and the wind of your passage tugs at your hair. Ahead to the east, a dark headland is lifting out of the sea, while west the current runs back toward the island's drifting ash.",
+  "10515": "The water darkens to a cold slate-grey here, and the air takes on a bite that numbs the fingers on the oars. Ahead to the east, the black headland of Cape Voogk rises ever higher out of the sea, its cliffs crusted with old snow, and pale shapes of ice drift along its foot. Quickstream runs swift and silent, a smooth dark road with the foam lines peeling away on either side. West, it runs back toward warmer water.",
+  "10516": "Quickstream sweeps past the black headland of Cape Voogk here, so close that the boom of the swell against its cliffs drowns out the hiss of the current. The cliffs rise sheer and dark, glazed with ice where the spray reaches and hung with long icicles, and on the crag at the very tip a cairn of stones and whale bones stands against the sky. East, the current runs on past the cape; west lies the way back along the stream.",
+  "10517": "Beyond the cape Quickstream swings back into open water and runs on east, broad and steady. North, a second current splits away from it, a narrow, fast-running stream that sailors say flows toward the very rim of the world, but a line of white breakers seethes across its mouth over some hidden bar, and behind them a wall of grey fog closes the way. West, the black cliffs of Cape Voogk are falling behind, and the cold is easing.",
+  "10518": "The current is still strong here, but its roar has softened to a long, steady hiss, and the swells of the open ocean have grown longer and lazier on either side. The water warms again, blue-green and clear, and the boat glides more than it races. Drifts of brown weed caught in the stream travel along beside you like companions. The way runs on east, and back west toward the cape.",
+  "10519": "Quickstream widens and spreads here, its edges blurring into the surrounding sea, and the foam lines that marked it begin to wander and break apart. The surface is crinkled with countless small ripples that glitter like fish scales. The boat is still carried along, though gently now, and you can hear the water lapping at the hull again. East, the current loosens further; west, it runs back stronger.",
+  "10520": "The ocean grows quiet around the boat here, and Quickstream is now only a gentle drift that you feel more than see, a slight lean of the water toward the east. Long, low swells lift and lower you with sleepy patience. A great calm is spreading over the sea ahead, where the water lies like polished glass. West, the current runs back toward the wider stream.",
+  "10521": "Here the last strength of Quickstream ebbs away into slow, wandering eddies that turn the boat lazily about, and weed and foam carried all the way from Mira Retrum spread out and come to rest on the still water. The silence after the roar of the current is almost startling. East, the sea lies utterly calm; west, the faint drift of the stream can still be felt.",
+  "10522": "Quickstream has faded away entirely here, and the boat floats on a wide, still sea under an enormous sky, without a breath of current to carry it anywhere. The water is clear blue and so calm that it mirrors every cloud. All around lies the empty ocean, without a sail, a shore or a bird in sight. The only way on is to row back west, against the dying drift of the stream."
+ },
+ "extras": {
+  "10601": [
+   {
+    "keywords": "board names post carved",
+    "description": "Each name is a boat that put out from this shed and never came home: the Tern, the Good Margery, the Sister Ash and dozens more, cut by many different hands over many years. Beside the newest, someone has pinned a little wreath of dried sea-pinks."
+   }
+  ],
+  "106271": [
+   {
+    "keywords": "fence stakes driftwood gully thorn",
+    "description": "The stakes are bleached driftwood lashed with tarred rope, their sharpened points turned outward, and thorny brush has been packed between them until nothing bigger than a lizard could pass. A strip of red cloth knotted to the tallest stake has faded almost to pink, the old sign of a sickness that must not be carried away."
+   }
+  ],
+  "106267": [
+   {
+    "keywords": "board stone flat weathered",
+    "description": "Words burned into the board with a hot iron have faded, but they can still be read: LEAVE WHAT YOU BRING UPON THE STONE, FRIEND, AND GO IN PEACE. WE WILL COME DOWN WHEN YOU ARE GONE. Beneath them, in smaller and shakier letters, someone has added: BLESS YOU."
+   }
+  ],
+  "10642": [
+   {
+    "keywords": "stakes weir poles",
+    "description": "The stakes were cut from black oak and pointed with axes, and a few still hold the rotten wattle of the old weir between them. Fishermen say the weir is older than the walls of Garathorm, and that no one has emptied it since the night its builders rowed out and never came back."
+   }
+  ],
+  "10643": [
+   {
+    "keywords": "anchor iron flukes ring",
+    "description": "The anchor is taller than a man and far too large for any boat that sails Mira Retrum now. Letters were cast into its shank, but the growth has crusted over all of them except the first, a squared, old-fashioned G."
+   }
+  ],
+  "10688": [
+   {
+    "keywords": "figurehead cairn woman carved",
+    "description": "The figurehead is a woman carved in oak, her hair streaming back as if in a gale and one hand pressed to her heart. Her paint has weathered to a ghostly grey, but her eyes of blue glass still catch the light, and fishermen touch their caps to her as they pass through the gap."
+   }
+  ],
+  "10626": [
+   {
+    "keywords": "wreck ribs ship timbers stern",
+    "description": "Enough of the stern survives to show that she was a broad, two-masted trader, far bigger than any fishing boat. A name was once painted across her transom, but the sea has scoured away all but the last few letters, ALYON, as of some ship out of Port Halyon that came to grief a long way from home."
+   }
+  ],
+  "10645": [
+   {
+    "keywords": "pole fish carved marker",
+    "description": "The fish is carved with care, every scale cut separately and its mouth open as if gasping. Fishermen of Mira Retrum set such poles over rocks that lurk just under the surface, and they still touch an oar to this one for luck as they pass."
+   }
+  ],
+  "10690": [
+   {
+    "keywords": "skeleton whale bones ribs skull jawbone",
+    "description": "Each rib is longer than a cart, scoured smooth and white by sand and wind. Someone has cut a ring of small, careful marks into the great jawbone, and the children of fishermen dare one another to sleep a night beneath it."
+   }
+  ],
+  "10648": [
+   {
+    "keywords": "cairn skerry stones",
+    "description": "The cairn is built of flat stones set without mortar, and a hollow at its heart holds coins gone green with age, a bent fishhook and a child's carved wooden boat. Whoever leaves something here, the fishermen say, will always find the way home across Mira Retrum."
+   }
+  ],
+  "10651": [
+   {
+    "keywords": "head statue king crown stone",
+    "description": "The crown is a plain circlet set with square studs, and letters run around it in a script no one on the coast can read. Sailors rub the king's nose for luck when the sea is calm enough to come alongside, and it has been worn bright and smooth by their hands."
+   }
+  ],
+  "10633": [
+   {
+    "keywords": "causeway stones road paving",
+    "description": "The paving stones are each as long as a bed and fitted so closely that a knife blade would not slip between them. Deep ruts worn by wheels run along the middle, and here and there a stone is carved with the same sign, a crown above a wave."
+   }
+  ],
+  "10673": [
+   {
+    "keywords": "hole blue well rim",
+    "description": "Peering down, you can see sand from the rim pouring over the edge in slow, silent falls, and far below, ledges of white rock stepping down into darkness. No fisherman will drop a line here, for they say that what takes the hook is never what gets hauled up."
+   }
+  ],
+  "10618": [
+   {
+    "keywords": "cottages shells ruins doorways",
+    "description": "The cottages were built of the same rust-red stone as the bluff and roofed once with turf. Over the doorway of the largest someone has carved a fish and a date too worn to read, and inside, a hearthstone is still blackened by fires that went out long ago."
+   }
+  ],
+  "10512": [
+   {
+    "keywords": "island volcano cone reefs smoke",
+    "description": "Now and then the cone gives a low grumble that you feel through the planks more than hear, and a fresh puff of smoke rolls from its crest. Along the reefs the surf has thrown up drifts of grey pumice that bob in the shallows like scum on a cooking pot."
+   }
+  ],
+  "10516": [
+   {
+    "keywords": "cairn crag cape voogk bones",
+    "description": "The cairn on the crag is built of black stones and great curved whale ribs, lashed together and frozen solid. From the current it looks like a hand raised in warning, and sailors riding Quickstream past the cape raise a hand back to it, for luck."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "grey-backed-gull",
+   "keywords": "gull grey-backed bird seabird",
+   "short_desc": "a grey-backed gull",
+   "long_desc": "A grey-backed gull bobs on the swell here, eyeing you with a pale, greedy eye.",
+   "description": "It is a big, heavy-bodied sea bird with a slate-grey back, a snowy breast and a hooked yellow bill marked with a red spot near the tip. It rides the water as easily as a cork, ready to snatch anything that looks like food, including whatever you happen to be holding. Its harsh, laughing cry carries a long way over the water.",
+   "kind": "animal",
+   "level": 1,
+   "aggressive": false,
+   "alignment": 0,
+   "rooms": [
+    "On Mira Retrum"
+   ],
+   "count": 5
+  },
+  {
+   "id": "moon-jellyfish",
+   "keywords": "jellyfish jelly moon pale",
+   "short_desc": "a pale moon jellyfish",
+   "long_desc": "A pale moon jellyfish pulses slowly just beneath the surface, trailing fine threads.",
+   "description": "Its bell is as wide as a shield and clear as cloudy glass, with four pale violet rings glowing at its heart like the reflection of a moon. A fringe of fine threads hangs beneath it, almost invisible in the water, and anything they brush comes away with a burning red welt. It drifts wherever the swell carries it, opening and closing with a slow, patient rhythm.",
+   "kind": "animal",
+   "level": 3,
+   "aggressive": false,
+   "alignment": 0,
+   "sectors": [
+    "water_noswim"
+   ],
+   "count": 5
+  },
+  {
+   "id": "sand-crab",
+   "keywords": "crab sand pale",
+   "short_desc": "a sand crab",
+   "long_desc": "A sand crab scuttles sideways here, its claws raised and clicking.",
+   "description": "Its shell is the colour of white sand speckled with grey, and on the oldest of them it is as broad as a platter. Stalked black eyes swivel to follow you, and its two claws, one much bigger than the other, open and shut with a dry click. When frightened, it can bury itself in sand faster than you can blink.",
+   "kind": "animal",
+   "level": 2,
+   "aggressive": false,
+   "alignment": 0,
+   "rooms": [
+    "White Sand Beach",
+    "Beach on Leper Island",
+    "On the Ocean Shore"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "crab-shell-buckler",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "grey-seal",
+   "keywords": "seal grey playful",
+   "short_desc": "a playful grey seal",
+   "long_desc": "A playful grey seal pops its head out of the water, whiskers dripping, and watches you with great dark eyes.",
+   "description": "It is a sleek, mottled grey beast as long as a man, with a round, dog-like head, a bristling moustache of whiskers and huge dark eyes full of mischief. It rolls and dives around the boat and surfaces on the other side with a snort, as if it has played a fine joke. For all its play its teeth are sharp, and in the water it is far stronger than you are.",
+   "kind": "animal",
+   "level": 5,
+   "aggressive": false,
+   "alignment": 0,
+   "rooms": [
+    "On Mira Retrum",
+    "The Southern Ocean"
+   ],
+   "count": 3
+  },
+  {
+   "id": "giant-clam",
+   "keywords": "clam giant shell",
+   "short_desc": "a giant clam",
+   "long_desc": "A giant clam lies half-open on the bottom beneath the boat, its fluted lips rippling blue and green.",
+   "description": "The clam is wider than a cartwheel, its two heavy, wavy-edged shells crusted with weed and barnacles. Between them its mantle shimmers in blues, greens and golds like a peacock's tail, and it snaps shut with crushing force on anything that pokes inside. Divers on the coast dream of the pearls such clams are said to keep.",
+   "kind": "animal",
+   "level": 7,
+   "aggressive": false,
+   "alignment": 0,
+   "rooms": [
+    "On Mira Retrum"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "sea-pearl",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "sunburnt-fisherman",
+   "keywords": "fisherman man sunburnt fisher",
+   "short_desc": "a sunburnt fisherman",
+   "long_desc": "A sunburnt fisherman sits in a small tarred skiff here, paying out a line over the side.",
+   "description": "He is a wiry, leathery man of middle years, burnt as brown as a hazelnut, with salt crusted in his beard and a battered straw hat pulled low against the glare. A great spiral conch hangs from a cord at his shoulder for calling across the water when the mist comes down, and a bundle of dried weed sits by his knee to chew on. He nods to you politely, but his eyes never leave his line for long.",
+   "kind": "humanoid",
+   "level": 4,
+   "aggressive": false,
+   "alignment": 300,
+   "rooms": [
+    "On Mira Retrum"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "conch-horn",
+     "chance": 25
+    },
+    {
+     "item": "dried-seaweed",
+     "chance": 35
+    }
+   ]
+  },
+  {
+   "id": "flying-fish",
+   "keywords": "fish flying silver",
+   "short_desc": "a flying fish",
+   "long_desc": "A flying fish bursts from the stream and skims alongside the boat on outspread silver fins.",
+   "description": "It is a slender, blue-backed fish about as long as your forearm, with a silver belly and two enormous fins that spread like the wings of a dragonfly, stiff and glassy and finely veined. It shoots out of the water at the speed of the current and glides for long stretches before slapping back in. Sailors say they bring luck to any boat they follow, and good eating besides.",
+   "kind": "animal",
+   "level": 7,
+   "aggressive": false,
+   "alignment": 0,
+   "sectors": [
+    "water_swim"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "flying-fish-fin-charm",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "stray-shark",
+   "keywords": "shark grey stray",
+   "short_desc": "a stray shark",
+   "long_desc": "A stray shark circles the boat, its grey fin slicing back and forth through the water.",
+   "description": "It is a lean grey shark longer than the boat, its back scarred by old wounds and its blunt snout probing at anything that trails in the water. It has learned to follow boats down Quickstream for the scraps thrown overboard, and lately it has grown bolder and hungrier. A frayed loop of red cord hangs snagged among its back teeth, all that remains of some sailor's charm.",
+   "kind": "animal",
+   "level": 11,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "On Quickstream",
+    "Into the Southern Ocean",
+    "On Quickstream in the Southern Ocean",
+    "Passing by Cape Voogk",
+    "Heading East On Quickstream"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "flying-fish-fin-charm",
+     "chance": 15
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "sea-pearl",
+   "keywords": "pearl sea lustrous",
+   "short_desc": "a lustrous sea pearl",
+   "room_desc": "A lustrous sea pearl lies here, glowing softly.",
+   "description": "A pearl as big as a hazelnut, perfectly round, with a soft, creamy lustre that shifts to pink and silver as it turns. Merchants in Garathorm pay well for pearls from the warm shallows of Mira Retrum.",
+   "kind": "treasure",
+   "level": 7
+  },
+  {
+   "id": "conch-horn",
+   "keywords": "conch shell horn spiral",
+   "short_desc": "a conch shell horn",
+   "room_desc": "A great spiral conch shell lies here, its tip worn into a mouthpiece.",
+   "description": "A heavy spiral shell, cream outside and flushed a glossy pink within, its pointed tip ground away and smoothed into a mouthpiece. Blown hard, it sounds a deep, mournful note that carries for miles across the water, and fishermen use it to find one another in the mist.",
+   "kind": "treasure",
+   "level": 4
+  },
+  {
+   "id": "crab-shell-buckler",
+   "keywords": "buckler crab shell shield",
+   "short_desc": "a crab-shell buckler",
+   "room_desc": "A small round buckler made from a crab's shell lies here.",
+   "description": "The broad, speckled carapace of an old sand crab, scraped clean and dried hard, with a leather grip laced through holes bored in its rim. It is light and a little brittle at the edges, but surprisingly good at turning a blow.",
+   "kind": "armor",
+   "wear_slot": "shield",
+   "level": 3
+  },
+  {
+   "id": "dried-seaweed",
+   "keywords": "seaweed dried weed bundle",
+   "short_desc": "a bundle of dried seaweed",
+   "room_desc": "A bundle of dried seaweed, tied with twine, lies here.",
+   "description": "Dark, crinkled strips of sea-wrack dried in the sun and tied with twine. It is salty and tough and takes a great deal of chewing, but it keeps for months and fills an empty belly on a long day at sea.",
+   "kind": "food",
+   "level": 2
+  },
+  {
+   "id": "flying-fish-fin-charm",
+   "keywords": "charm fin flying fish",
+   "short_desc": "a flying-fish fin charm",
+   "room_desc": "A stiff, glassy fish fin lies here, spread like a little wing.",
+   "description": "A flying fish's long wing-fin, stiff and glassy and veined like a dragonfly's wing. Sailors thread such fins on a cord and wear them for luck, swearing that whoever does so will skim over any sea that tries to swallow them, and it does seem to make the wearer a little lighter on their feet.",
+   "kind": "armor",
+   "wear_slot": "neck",
+   "level": 8,
+   "bonus": {
+    "dex": 1
+   }
+  }
+ ]
+}
