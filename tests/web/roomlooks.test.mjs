@@ -92,3 +92,27 @@ test('every look has its terrain branch, mood and minimap colour', () => {
   assert.ok(/mood = rock \? 'cave'/.test(main), 'the hero in a cave gets the cave mood');
   for (const look of ['mine', 'crypt', 'sewer', 'snow', 'shore', 'volcanic']) assert.ok(new RegExp(`\\b${look}: '#`).test(mini), `minimap ${look}`);
 });
+
+test('outdoor rooms that open onto each other share their whole side; a building keeps its doorway', () => {
+  const base = { vnum: 4242, name: 'A Wood', description: '', sector_type: 'forest', zone: 1, flags: [] };
+  const lay = (exits, look = 'forest') => MH.generateRoomTopDown({ vnum: base.vnum, name: base.name, description: '', sector: look, look, flags: [], zone: 1, exits });
+  const L = lay({ east: { to_room: 1, kind: 'open', nlook: 'field' }, west: { to_room: 2, kind: 'open', nlook: 'inside' } });
+  let eastOpen = 0, westOpen = 0;
+  for (let y = 1; y < H - 1; y++) { if (L.grid[y * W + W - 1] === FLOOR) eastOpen++; if (L.grid[y * W] === FLOOR) westOpen++; }
+  assert.equal(eastOpen, H - 2, 'the side onto the field is open its whole length');
+  assert.ok(westOpen <= 5, `the side onto a building keeps its doorway (${westOpen})`);
+  const P = lay({ east: { to_room: 1, kind: 'passage', nlook: 'field' } });
+  let pOpen = 0; for (let y = 1; y < H - 1; y++) if (P.grid[y * W + W - 1] === FLOOR) pOpen++;
+  assert.ok(pOpen <= 5, 'a passage (not side by side) keeps its doorway');
+});
+
+test('a water room is water from bank to bank, and you cross it', () => {
+  for (const look of ['water_swim', 'water_noswim']) {
+    const L = MH.generateRoomTopDown({ vnum: 777, name: 'On Mira Retrum', description: 'The river runs wide.', sector: look, look, flags: [], zone: 1,
+      exits: { north: { to_room: 1 }, east: { to_room: 2, kind: 'open', nlook: look }, down: { to_room: 3 } } });
+    let water = 0, floor = 0;
+    for (let y = 1; y < H - 1; y++) for (let x = 1; x < W - 1; x++) { const t = L.grid[y * W + x]; if (t === WATER) water++; if (t === FLOOR) floor++; }
+    assert.ok(L.swim, `${look}: water you move across`);
+    assert.ok(water > (W - 2) * (H - 2) * 0.8, `${look}: mostly open water (${water})`);
+  }
+});

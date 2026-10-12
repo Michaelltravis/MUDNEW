@@ -31,7 +31,7 @@ import { ActionClock } from './actionclock.js';
 import { musicFor, bedFor, surfaceFor } from './soundtable.js';
 import { interiorKind } from './terrain-town.js';
 import { GroundLoot } from './loot.js';
-import { mountRider } from './steed.js';
+import { mountRider, makeRaft } from './steed.js';
 import { groundItems } from './lootlogic.js';
 import { ReactionPrompt, threatens, REACTIONS } from './reactions.js';
 import { createWorldMap } from './hud/worldmap.js';
@@ -293,7 +293,7 @@ async function runGame() {
   MH.bus.on('target.clear', () => hud.setTarget(null));
 
   // ---- riding (steed.js): the hero sits their mount, and goes as fast as the server says ----
-  let riding = null;
+  let riding = null, raft = null, onWater = false;
   function ride(p) {
     if (!hero || !ctl) return;
     const key = p.mount ? p.mount.key || 'horse' : null;
@@ -371,6 +371,10 @@ async function runGame() {
       gate.enterRoom(heroSpots, { x: p.x - room.ox, z: p.z - room.oz });
     }
     const L = zone.layoutOf(room);
+    // on open water the hero is on a raft (unless a mount carries them)
+    onWater = L.theme === 'water_swim' || L.theme === 'water_noswim';
+    if (onWater && !raft) raft = makeRaft();
+    if (raft) { if (onWater && !riding) hero.root.add(raft); else hero.root.remove(raft); }
     const look = { theme: L.theme, zoneKey: L.zoneKey, dark: L.dark, snowy: L.snowy, icy: L.icy,
       interior: L.theme === 'inside' ? interiorKind(L) : null };
     sound.setZoneMusic(musicFor(look));
@@ -1067,6 +1071,7 @@ async function runGame() {
     footsteps(dt, p);
     zone.update(dt, t, p, ctl.vel);
     hero.update(dt);
+    if (raft && raft.parent) raft.userData.bob(t);
     if (riding) { const moving = ctl.vel.lengthSq() > 0.06; riding.steed.update(dt, moving, ctl.vel.length() / 2.4); riding.pose(t, moving); }
     if (travel && (ctl.keys.size || MH.state.inCombat)) travel = null;
     // stepping on or off stairs, sliding and hopping count as moving: only standing still

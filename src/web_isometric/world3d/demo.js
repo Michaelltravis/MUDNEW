@@ -127,20 +127,28 @@ export const LOOK_SAMPLES = [
   { look: 'swamp', sector: 'swamp', name: 'The Sucking Mire', description: 'Dead trees stand in the black water of the swamp.' },
   { look: 'forest', sector: 'forest', name: 'A Forest Path', description: 'Tall oaks shade the path.' },
   { look: 'inside', sector: 'inside', name: 'The Great Hall', description: 'A plain stone hall.' },
+  { look: 'mountain', sector: 'mountain', name: 'A High Mountain Pass', description: 'Cliffs rise on every side of the pass, and scree slides underfoot.' },
+  { look: 'water_swim', sector: 'water_swim', name: 'On Mira Retrum', description: 'The river runs wide and slow between grassy banks.' },
+  { look: 'water_noswim', sector: 'water_noswim', name: 'On Mira Retrum', description: 'Deep water, too deep to wade.' },
 ];
 export function buildLooksGallery(engine, kits) {
   const world = new World(engine, kits);
   const COLS = 4;
   const vnumAt = (cx, cy) => 991000 + cy * COLS + cx;
   const rooms = [];
+  // every room's cell, known up front, so each fills the empty country beyond its edges; and
+  // its neighbours opened onto as the game's open exits are (outdoor neighbours share a side)
+  const cells = new Map(LOOK_SAMPLES.map((r, i) => [`${i % COLS},${Math.floor(i / COLS)}`, r]));
+  const look = (cx, cy) => (cells.get(`${cx},${cy}`) || {}).look;
   LOOK_SAMPLES.forEach((r, i) => {
     const cx = i % COLS, cy = Math.floor(i / COLS);
     const exits = {};
-    if (cx > 0) exits.west = { to_room: vnumAt(cx - 1, cy) };
-    if (cx < COLS - 1 && i + 1 < LOOK_SAMPLES.length) exits.east = { to_room: vnumAt(cx + 1, cy) };
-    if (cy > 0) exits.north = { to_room: vnumAt(cx, cy - 1) };
-    if (i + COLS < LOOK_SAMPLES.length) exits.south = { to_room: vnumAt(cx, cy + 1) };
-    const built = world.addRoom({ ...r, vnum: vnumAt(cx, cy), exits }, cx, cy);
+    const open = (tx, ty) => ({ to_room: vnumAt(tx, ty), kind: 'open', nlook: look(tx, ty) });
+    if (cx > 0) exits.west = open(cx - 1, cy);
+    if (cx < COLS - 1 && i + 1 < LOOK_SAMPLES.length) exits.east = open(cx + 1, cy);
+    if (cy > 0) exits.north = open(cx, cy - 1);
+    if (i + COLS < LOOK_SAMPLES.length) exits.south = open(cx, cy + 1);
+    const built = world.addRoom({ ...r, vnum: vnumAt(cx, cy), exits }, cx, cy, cells);
     const c = world.centre(world.byVnum.get(vnumAt(cx, cy)));
     rooms.push({ look: r.look, theme: built.theme, x: c.x, z: c.z, name: r.name });
   });

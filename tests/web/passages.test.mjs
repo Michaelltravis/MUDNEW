@@ -41,7 +41,7 @@ const layoutOf = r => {
   return MH.generateRoomTopDown({ vnum: r.vnum, name: r.name, description: r.description || '', sector: r.sector_type,
     flags: r.flags || [], zone: r.zone, exits });
 };
-const floorAt = (L, x, z) => L.grid[Math.floor(z) * W + Math.floor(x)] === FLOOR;
+const floorAt = (L, x, z) => { const t = L.grid[Math.floor(z) * W + Math.floor(x)]; return t === FLOOR || (t === 4 && !!L.swim); };
 function reachable(L, from, to) {
   const seen = new Set();
   const q = [[Math.floor(from.x), Math.floor(from.z)]];

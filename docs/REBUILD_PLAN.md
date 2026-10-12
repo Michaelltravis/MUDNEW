@@ -1744,3 +1744,30 @@ Owner: "let's find a way to increase character speed? Maybe that's mounts since 
     wiring.
   - The browser probe's `mount` mode buys a horse, mounts it (a steed under the hero, 1.35× the
     run) and dismounts.
+
+### Forests, mountains, water, and rooms that join up (Push 33, follow-ups)
+- **Reading:** a room named as open country is drawn as that country whatever it was typed:
+  - plains, forest, mountain (from strong words for rooms typed indoors);
+  - a path through woods is forest, and a mountain road is mountain;
+  - a cave's ledge stays a cave;
+  - a named forest or mountain isn't swapped by its description, unless the description says
+    snow.
+- **Mountains** draw as cliffs (tall weathered rock on the border and rubble), scree, boulders and
+  a few hardy pines, with no grass or flowers.
+- **Forests** have trunks standing through the room, not only round its edge.
+- **Water rooms** (605 of them) are water from bank to bank. They were meadows, or a meadow with a
+  blocking pond.
+  - You cross open water (the server already asks for a boat or raft), and the hero rides a raft.
+  - Banks keep a few trees and rocks, and water rooms open onto each other.
+- **Seamless country:**
+  - **Open joins:** two outdoor rooms side by side that open onto each other share their whole
+    side (no ring or treeline between them), water joined to water and land to land.
+  - **Filler:** where the zone map has no room, the room draws its country half-way into the
+    empty cell: a ground skirt in its own palette, with that country's trees, cliffs, dunes or
+    water.
+  - **Haze:** outdoors, the far background is the haze colour, not a dark void.
+  - **Cost:** filler trees thin out with distance. A 13-room view in the demo is about 90 draw
+    calls and 0.65M triangles.
+- **XTC:** a one-time gift (`world/grants.json`) gives a griffin and a horse, charts the whole map
+  (but the God Rooms and sealed lands) and every travel waypoint. `givemount` lets an immortal
+  give anyone a mount.

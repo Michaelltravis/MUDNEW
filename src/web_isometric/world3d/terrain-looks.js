@@ -313,7 +313,37 @@ export function outdoorEdge(theme, kits) {
   if (theme === 'volcanic') return { trees: ['DeadTree_1', 'DeadTree_2'].map(k => tinted(N.get(k), 0x2a2420, 'scorch')), treeP: 0.12, rock: k => tinted(N.get(k), 0x3a302c, 'basalt'), bush: null };
   if (theme === 'shore') return { trees: [], treeP: 0, rock: k => N.get(k), bush: null };
   if (theme === 'desert') return { trees: [], treeP: 0, rock: k => tinted(N.get(k), 0xffc890, 'sandstone'), bush: null };
+  if (theme === 'water_swim' || theme === 'water_noswim') return { trees: ['CommonTree_1', 'CommonTree_3', 'Pine_1'].map(k => N.get(k)), treeP: 0.18, rock: k => N.get(k), bush: null, banks: true };
+  if (theme === 'mountain') return { trees: ['Pine_1', 'Pine_2'].map(k => tinted(N.get(k), 0x8aa08a, 'alpine')), treeP: 0.12, rock: k => tinted(N.get(k), MOUNTAIN_ROCK, 'mtnrock'), bush: null, cliffs: true };
   return null;
+}
+
+// a mountain's rock: the kit's dark mossy rock lifted to a weathered grey-brown
+const MOUNTAIN_ROCK = new THREE.Color(1.35, 1.28, 1.22);
+
+// a mountain: its walls are cliffs (every BLOCK cell a boulder pile, tall at the room's edge and
+// lower inside, under open sky), with a hardy pine here and there in the clefts
+export function mountainCliffs(c) {
+  const { layout, ox, oz, kits, b, rng, occ } = c;
+  const { W, H, grid } = layout;
+  const N = kits.nature;
+  const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? BLOCK : grid[y * W + x];
+  const rocks = [1, 2, 3].map(i => tinted(N.get(`Rock_Medium_${i}`), MOUNTAIN_ROCK, 'mtnrock')).filter(Boolean);
+  const pines = ['Pine_1', 'Pine_2'].map(k => tinted(N.get(k), 0x8aa08a, 'alpine')).filter(Boolean);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    if (at(x, y) !== BLOCK) continue;
+    const edge = x === 0 || y === 0 || x === W - 1 || y === H - 1;
+    const px = ox + x + 0.5 + (rng() - 0.5) * 0.4, pz = oz + y + 0.5 + (rng() - 0.5) * 0.4;
+    if (!edge && pines.length && rng() < 0.18) {
+      b.add(occ(pines[Math.floor(rng() * pines.length)]), trs(px, 0, pz, rng() * 6.28, 0.45 + rng() * 0.25));
+      continue;
+    }
+    const rock = rocks[Math.floor(rng() * rocks.length)];
+    if (!rock) continue;
+    const want = edge ? 2.6 + rng() * 2.0 : 0.9 + rng() * 1.1;
+    const s = want / heightOf(rock);
+    b.add(occ(rock), trs(px, -0.1, pz, rng() * 6.28, s * (0.9 + rng() * 0.35), s, s * (0.9 + rng() * 0.35)));
+  }
 }
 
 // scattered on the open ground of an outdoor look (instead of grass and flowers)
@@ -333,6 +363,10 @@ export function outdoorDress(c, theme) {
     } else if (theme === 'shore') {
       if (r < 0.05) b.add(N.get(rng() < 0.5 ? 'Pebble_Round_1' : 'Pebble_Round_3'), trs(px, 0, pz, yaw, 1.4), { shadow: false });
       else if (!ln(x, y) && r < 0.065) driftwood(solid, px, pz, yaw, rng);
+    } else if (theme === 'mountain') {
+      // scree and the odd boulder
+      if (r < 0.07) b.add(tinted(N.get(rng() < 0.5 ? 'Pebble_Round_1' : 'Pebble_Round_3'), MOUNTAIN_ROCK, 'mtnpeb'), trs(px, 0, pz, yaw, 1.2 + rng()), { shadow: false });
+      else if (!ln(x, y) && r < 0.085) b.add(tinted(N.get('Rock_Medium_' + (1 + Math.floor(rng() * 3))), MOUNTAIN_ROCK, 'mtnrock'), trs(px, 0, pz, yaw, 0.3 + rng() * 0.2));
     } else if (theme === 'snow') {
       if (r < 0.03) b.add(tinted(N.get('Rock_Medium_1'), 0xe8eef4, 'snowrock'), trs(px, 0, pz, yaw, 0.25), { shadow: false });
     } else if (theme === 'volcanic') {
@@ -384,4 +418,7 @@ export const LOOK_GROUND = {
   snow: { a: 0xd8e2ec, b: 0xf2f6fa, path: 0xb4c0ca, wet: 0x9cc4dc },
   shore: { a: 0xd4c08a, b: 0xe6d6a6, path: 0xc0a874, wet: 0x5a8a98 },
   volcanic: { a: 0x2a2422, b: 0x40342c, path: 0x56443a, wet: 0x4a1a08 },
+  // a water room's banks, and the sandy bed seen through the shallows
+  water_swim: { a: 0x6f8a4a, b: 0x8aa060, path: 0x8a7a58, wet: 0x2e5a6a },
+  water_noswim: { a: 0x6a8448, b: 0x86985c, path: 0x8a7a58, wet: 0x22485a },
 };

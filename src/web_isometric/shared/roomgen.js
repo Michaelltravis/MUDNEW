@@ -208,7 +208,7 @@
   const FLOOR = 0, BLOCK = 1, WATER = 4;
   MH.TD = { W, H, T, FLOOR, BLOCK, WATER };
 
-  function floodReachable(grid, sx, sy) {
+  function floodReachable(grid, sx, sy, swim = false) {
     const seen = new Uint8Array(W * H);
     const q = [[sx, sy]];
     seen[sy * W + sx] = 1;
@@ -218,7 +218,7 @@
         const nx = x + dx, ny = y + dy;
         if (nx < 0 || ny < 0 || nx >= W || ny >= H) continue;
         const i = ny * W + nx;
-        if (seen[i] || grid[i] === BLOCK || grid[i] === WATER) continue;
+        if (seen[i] || grid[i] === BLOCK || (grid[i] === WATER && !swim)) continue;
         seen[i] = 1;
         q.push([nx, ny]);
       }
@@ -249,7 +249,9 @@
     const exits = roomData.exits || {};
     const has = dir => Object.prototype.hasOwnProperty.call(exits, dir);
     const flags = roomData.flags || [];
-    const swim = sector === 'underwater' || sector === 'water_swim';
+    // a water room is open water you cross (in a boat, or swimming: the server says who may enter)
+    const waterRoom = sector === 'water_swim' || sector === 'water_noswim';
+    const swim = sector === 'underwater' || waterRoom;
 
     const grid = new Uint8Array(W * H); // FLOOR
     const at = (x, y) => grid[y * W + x];
@@ -269,6 +271,27 @@
     if (has('south')) { gaps.south = { x0: midX - GX, x1: midX + GX }; for (let x = midX - GX; x <= midX + GX; x++) set(x, H - 1, FLOOR); }
     if (has('west'))  { gaps.west  = { y0: midY - GY, y1: midY + GY }; for (let y = midY - GY; y <= midY + GY; y++) set(0, y, FLOOR); }
     if (has('east'))  { gaps.east  = { y0: midY - GY, y1: midY + GY }; for (let y = midY - GY; y <= midY + GY; y++) set(W - 1, y, FLOOR); }
+    // Two outdoor rooms side by side that open onto each other (exit kind 'open', no door) share
+    // their whole side: no ring and no treeline band between them, so the country runs on
+    // (the client passes each exit's kind and the neighbour's look)
+    const OUTDOOR_LOOKS = new Set(['forest', 'darkforest', 'field', 'hills', 'mountain', 'desert', 'snow', 'swamp', 'shore', 'volcanic',
+      'water_swim', 'water_noswim']);
+    const WATERS = new Set(['water_swim', 'water_noswim']);
+    const wide = {};
+    for (const d of ['north', 'south', 'east', 'west']) {
+      const e = exits[d];
+      if (!e || e.kind !== 'open' || e.door || !OUTDOOR_LOOKS.has(sector) || !OUTDOOR_LOOKS.has(MH.themeForSector(e.nlook || ''))) continue;
+      // water opens onto water; land onto land (a shore between them is the bank, below)
+      if (WATERS.has(sector) !== WATERS.has(MH.themeForSector(e.nlook || ''))) continue;
+      wide[d] = true;
+      if (d === 'north' || d === 'south') {
+        gaps[d] = { x0: 1, x1: W - 2 };
+        for (let x = 1; x < W - 1; x++) set(x, d === 'north' ? 0 : H - 1, FLOOR);
+      } else {
+        gaps[d] = { y0: 1, y1: H - 2 };
+        for (let y = 1; y < H - 1; y++) set(d === 'west' ? 0 : W - 1, y, FLOOR);
+      }
+    }
 
     // ---- Phase 3: biome-shaped rooms ------------------------------------
     // Every room used to be the same rectangle. Now the border grows into the
@@ -301,12 +324,12 @@
       const walk = () => { let d = 1 + Math.floor(rng() * maxD); return () => { d += Math.floor(rng() * 3) - 1; d = Math.max(0, Math.min(maxD, d)); return d; }; };
       const dn = walk(), ds = walk(), dw = walk(), de = walk();
       for (let x = 1; x < W - 1; x++) {
-        const d1 = dn(); for (let y = 1; y <= d1; y++) carve(x, y, BLOCK);
-        const d2 = ds(); for (let y = H - 2; y >= H - 1 - d2; y--) carve(x, y, BLOCK);
+        const d1 = dn(); if (!wide.north) for (let y = 1; y <= d1; y++) carve(x, y, BLOCK);
+        const d2 = ds(); if (!wide.south) for (let y = H - 2; y >= H - 1 - d2; y--) carve(x, y, BLOCK);
       }
       for (let y = 1; y < H - 1; y++) {
-        const d1 = dw(); for (let x = 1; x <= d1; x++) carve(x, y, BLOCK);
-        const d2 = de(); for (let x = W - 2; x >= W - 1 - d2; x--) carve(x, y, BLOCK);
+        const d1 = dw(); if (!wide.west) for (let x = 1; x <= d1; x++) carve(x, y, BLOCK);
+        const d2 = de(); if (!wide.east) for (let x = W - 2; x >= W - 1 - d2; x--) carve(x, y, BLOCK);
       }
     } else if (SHAPE === 'cavern' && !swim) {
       // cellular-automata rubble: caves stop being tidy rectangles
@@ -406,14 +429,9 @@
       name, x: 9 + ((i * 7) % (W - 18)), y: H - 5,
     }));
 
-    // water pond blocks passage in non-swimmable water rooms
-    if (sector === 'water_noswim') {
-      const cx = midX + Math.floor(rng() * 4) - 2, cy = midY + Math.floor(rng() * 2) - 1;
-      for (let y = cy - 2; y <= cy + 2; y++) {
-        for (let x = cx - 3; x <= cx + 3; x++) {
-          if (x > 1 && x < W - 2 && y > 1 && y < H - 2) set(x, y, WATER);
-        }
-      }
+    // a water room is water from bank to bank: every open tile, and its ways out onto more water
+    if (waterRoom) {
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (at(x, y) === FLOOR) set(x, y, WATER);
     }
 
     // points of interest that must stay mutually reachable
@@ -450,13 +468,14 @@
       for (let dy = -1; dy <= 1; dy++) {
         for (let dx = -1; dx <= 1; dx++) {
           const xx = x + dx, yy = y + dy;
-          if (xx > 0 && yy > 0 && xx < W - 1 && yy < H - 1 && at(xx, yy) !== FLOOR) set(xx, yy, FLOOR);
+          // (in a water room, open water is the way: only what blocks is cleared, to water)
+          if (xx > 0 && yy > 0 && xx < W - 1 && yy < H - 1 && at(xx, yy) !== FLOOR && !(waterRoom && at(xx, yy) === WATER)) set(xx, yy, waterRoom ? WATER : FLOOR);
         }
       }
     });
 
     const allReachable = () => {
-      const seen = floodReachable(grid, midX, midY);
+      const seen = floodReachable(grid, midX, midY, swim);
       return pois.every(([x, y]) => seen[y * W + x]);
     };
     if (!allReachable()) {
@@ -493,13 +512,13 @@
     }
 
     // deterministic spawn slots on reachable floor
-    const seen = floodReachable(grid, midX, midY);
+    const seen = floodReachable(grid, midX, midY, swim);
     const spawnSlots = [];
     let guard = 0;
     while (spawnSlots.length < 8 && guard++ < 300) {
       const sx = 2 + Math.floor(rng() * (W - 4));
       const sy = 2 + Math.floor(rng() * (H - 4));
-      if (at(sx, sy) === FLOOR && seen[sy * W + sx]) {
+      if ((at(sx, sy) === FLOOR || (swim && at(sx, sy) === WATER)) && seen[sy * W + sx]) {
         spawnSlots.push({ x: sx * T + T / 2, y: sy * T + T / 2 });
       }
     }
@@ -545,7 +564,7 @@
       name: roomData.name || '',
       gravestones: roomData.gravestones,
       W, H, T, grid, gaps,
-      stairsUp, stairsDown, portals, obstacles, props, spawnSlots, entries,
+      stairsUp, stairsDown, portals, obstacles, props, spawnSlots, entries, wide,
       mossy: proseFx.mossy, snowy: proseFx.snowy,
       exits, swim,
       dark: flags.includes('dark'),

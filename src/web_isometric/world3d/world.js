@@ -24,10 +24,13 @@ export class World {
     this._lightClock = 0;
   }
 
-  addRoom(roomData, cx, cy) {
+  // `cells` (optional): the cells that will hold rooms ("cx,cy" -> anything), so a room fills the
+  // empty country beyond its edges (terrain.js fillerLand) as the game's zones do
+  addRoom(roomData, cx, cy, cells = null) {
     const layout = MH.generateRoomTopDown(roomData);
     const ox = cx * ROOM_W, oz = cy * ROOM_H;
-    const built = buildRoom(layout, ox, oz, this.kits);
+    const ref = cells ? { cx, cy, zoneRef: { cells }, data: { exits: {} }, doors: {} } : undefined;
+    const built = buildRoom(layout, ox, oz, this.kits, ref);
     const room = { ...built, cx, cy, vnum: layout.vnum, name: roomData.name || '', indoor: isIndoor(layout.theme), theme: layout.theme };
     this.rooms.set(`${cx},${cy}`, room);
     this.byVnum.set(room.vnum, room);

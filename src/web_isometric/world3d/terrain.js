@@ -5,7 +5,7 @@ import * as THREE from 'three';
 import { Batcher, trs } from './assets.js';
 import { cutout } from './cutout.js';
 import { townStreet, furnish, interiorKind, interiorFloorKey, graveyard, isGraveyard } from './terrain-town.js';
-import { underground, dressHall, outdoorEdge, outdoorDress, LOOK_GROUND, UNDERGROUND } from './terrain-looks.js';
+import { underground, dressHall, outdoorEdge, outdoorDress, mountainCliffs, LOOK_GROUND, UNDERGROUND } from './terrain-looks.js';
 
 export const ROOM_W = 24, ROOM_H = 15;
 const FLOOR = 0, BLOCK = 1, WATER = 4;
@@ -213,7 +213,7 @@ export function buildRoom(layout, ox, oz, kits, room) {
     const treeP = edge ? edge.treeP : theme === 'forest' ? 0.78 : theme === 'swamp' ? 0.3 : 0.22;
     const bare = !!edge;   // no bushes, ferns or grass
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
-      if (at(x, y) !== BLOCK) continue;
+      if (at(x, y) !== BLOCK || (edge && edge.cliffs)) continue;     // a mountain's cliffs: below
       const dd = depth[y * W + x];
       const jx = (rng() - 0.5) * 0.6, jz = (rng() - 0.5) * 0.6;
       const px = ox + x + 0.5 + jx, pz = oz + y + 0.5 + jz, yaw = rng() * Math.PI * 2;
@@ -244,6 +244,7 @@ export function buildRoom(layout, ox, oz, kits, room) {
       b.add(asOccluder(edge && key.startsWith('Rock') ? edge.rock(key) : N.get(key)), trs(cx, 0, cz, rng() * Math.PI * 2, key === 'Bush_Common' ? s * 1.6 : s));
     }
     // ground clutter on open floor (not on the paths): a look's own (terrain-looks.js), or grass
+    if (edge && edge.cliffs) mountainCliffs(ctx());
     if (bare || theme === 'desert') outdoorDress(ctx(), theme);
     else {
       for (let y = 1; y < H - 1; y++) for (let x = 1; x < W - 1; x++) {
@@ -260,6 +261,8 @@ export function buildRoom(layout, ox, oz, kits, room) {
     }
   }
 
+  // the country beyond the room's edge where the zone map has no room: no void
+  if (!PAVED.has(theme) && !UNDERGROUND.has(theme) && room && room.zoneRef) fillerLand(ctx(), theme);
   if (!PAVED.has(theme) && kits.graveyard && isGraveyard(layout)) graveyard(ctx());
   b.build(group);
   const doors = room ? exitFeatures(group, layout, ox, oz, room, kits, owned) : {};
@@ -327,6 +330,102 @@ function waterSurface(layout, ox, oz, group) {
   wq.forEach(([x, y], i) => wm.setMatrixAt(i, trs(ox + x + 0.5, -0.12, oz + y + 0.5, 0, 1.02)));
   wm.receiveShadow = true;
   group.add(wm);
+}
+
+// ---- filler: the country beyond a room's edge where the zone map has no room ----
+// Half-way into each empty neighbouring cell (so two rooms facing one empty cell fill it between
+// them), and the corner between two empty sides: a ground skirt in the room's palette (the same
+// world-space noise, so it joins the room's ground) with that country's trees, rocks or water.
+// Scenery only: the cell stays blocked (zone.js), so nothing here needs collision.
+const FILL = {
+  forest: { trees: 0.2, bushes: 0.05, rocks: 0.01, grass: 0.06 },
+  darkforest: { trees: 0.2, bushes: 0.05, rocks: 0.01, grass: 0.05 },
+  field: { trees: 0.025, bushes: 0.035, rocks: 0.008, grass: 0.1 },
+  hills: { trees: 0.04, bushes: 0.04, rocks: 0.03, grass: 0.08 },
+  mountain: { trees: 0.02, bushes: 0, rocks: 0.13, grass: 0, cliff: true },
+  desert: { trees: 0, bushes: 0, rocks: 0.02, grass: 0 },
+  snow: { trees: 0.09, bushes: 0, rocks: 0.03, grass: 0 },
+  swamp: { trees: 0.06, bushes: 0.03, rocks: 0, grass: 0.1 },
+  volcanic: { trees: 0.03, bushes: 0, rocks: 0.07, grass: 0 },
+  shore: { water: true },
+  water_swim: { water: true },
+  water_noswim: { water: true },
+  default: { trees: 0.03, bushes: 0.04, rocks: 0.01, grass: 0.08 },
+};
+function fillerLand(c, theme) {
+  const { layout, ox, oz, kits, b, rng, occ, owned, group, room } = c;
+  const { W, H } = layout;
+  const N = kits.nature;
+  const cells = room.zoneRef.cells;
+  const empty = (dx, dy) => !cells.get(`${room.cx + dx},${room.cy + dy}`);
+  const spec = FILL[theme] || FILL.default;
+  const pal = GROUND[theme] || GROUND.default;
+  const edge = outdoorEdge(theme, kits);
+  const trees = (edge ? edge.trees : theme === 'swamp' ? ['DeadTree_1', 'DeadTree_2'].map(k => N.get(k))
+    : ['CommonTree_1', 'CommonTree_2', 'CommonTree_3', 'Pine_1', 'Pine_2'].map(k => N.get(k))).filter(Boolean);
+  const rockOf = k => edge && edge.rock ? edge.rock(k) : N.get(k);
+  const HW = W / 2, HH = H / 2;
+  // the patches to fill, in world metres: [x0, z0, w, d, outward axis ('x'|'z'), outward sign]
+  const patches = [];
+  if (empty(0, -1)) patches.push([ox, oz - HH, W, HH, 'z', -1]);
+  if (empty(0, 1)) patches.push([ox, oz + H, W, HH, 'z', 1]);
+  if (empty(-1, 0)) patches.push([ox - HW, oz, HW, H, 'x', -1]);
+  if (empty(1, 0)) patches.push([ox + W, oz, HW, H, 'x', 1]);
+  for (const [dx, dy] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) {
+    if (empty(dx, dy) && empty(dx, 0) && empty(0, dy)) {
+      patches.push([dx < 0 ? ox - HW : ox + W, dy < 0 ? oz - HH : oz + H, HW, HH, 'c', 0]);
+    }
+  }
+  if (!patches.length) return;
+  const cA = new THREE.Color(pal.a), cB = new THREE.Color(pal.b), col = new THREE.Color();
+  for (const [x0, z0, w, d, axis, sign] of patches) {
+    if (spec.water) {
+      const m = new THREE.Mesh(WATER_GEO, WATER_MAT);
+      m.scale.set(w, 1, d); m.position.set(x0 + w / 2, -0.12, z0 + d / 2);
+      group.add(m);
+      continue;
+    }
+    // the ground skirt (a mountain's rises away from the room)
+    const geo = new THREE.PlaneGeometry(w, d, Math.ceil(w), Math.ceil(d));
+    geo.rotateX(-Math.PI / 2);
+    geo.translate(x0 + w / 2, 0, z0 + d / 2);
+    const pos = geo.attributes.position, arr = new Float32Array(pos.count * 3);
+    for (let i = 0; i < pos.count; i++) {
+      const wx = pos.getX(i), wz = pos.getZ(i);
+      const n = fbm(wx * 0.18, wz * 0.18);
+      col.copy(cA).lerp(cB, THREE.MathUtils.smoothstep(n, 0.3, 0.75)).multiplyScalar(0.92);
+      arr[i * 3] = col.r; arr[i * 3 + 1] = col.g; arr[i * 3 + 2] = col.b;
+      const out = axis === 'z' ? (sign < 0 ? (z0 + d - wz) / d : (wz - z0) / d) : axis === 'x' ? (sign < 0 ? (x0 + w - wx) / w : (wx - x0) / w) : 1;
+      pos.setY(i, (n - 0.5) * 0.12 - 0.02 + (spec.cliff ? out * out * 2.5 : 0));
+    }
+    geo.setAttribute('color', new THREE.BufferAttribute(arr, 3));
+    geo.computeVertexNormals();
+    owned.push(geo);
+    const ground = new THREE.Mesh(geo, GROUND_MAT);
+    ground.receiveShadow = true;
+    group.add(ground);
+    // what grows there, on a jittered grid so it doesn't clump
+    const area = w * d, step = 1.0;
+    for (let gz = z0 + 0.5; gz < z0 + d; gz += step) for (let gx = x0 + 0.5; gx < x0 + w; gx += step) {
+      const px = gx + (rng() - 0.5) * 0.9, pz = gz + (rng() - 0.5) * 0.9, yaw = rng() * 6.28;
+      const out = axis === 'z' ? (sign < 0 ? (z0 + d - pz) / d : (pz - z0) / d) : axis === 'x' ? (sign < 0 ? (x0 + w - px) / w : (px - x0) / w) : 1;
+      const y = spec.cliff ? out * out * 2.5 : 0;
+      const r = rng();
+      // thinner the further out (beyond the fog's reach it is only a haze anyway)
+      let acc = (spec.trees || 0) * (1 - 0.65 * Math.min(1, out));
+      if (r < acc && trees.length) { b.add(occ(trees[Math.floor(rng() * trees.length)]), trs(px, y, pz, yaw, 0.55 + rng() * 0.35), { shadow: false }); continue; }
+      acc += spec.rocks || 0;
+      if (r < acc) {
+        const big = spec.cliff ? 1.4 + rng() * 1.6 + out * 1.5 : 0.35 + rng() * 0.35;
+        b.add(occ(rockOf(`Rock_Medium_${1 + Math.floor(rng() * 3)}`)), trs(px, y - 0.1, pz, yaw, big), { shadow: false });
+        continue;
+      }
+      acc += spec.bushes || 0;
+      if (r < acc) { b.add(N.get(rng() < 0.75 ? 'Bush_Common' : 'Bush_Common_Flowers'), trs(px, y, pz, yaw, 0.7 + rng() * 0.4), { shadow: false }); continue; }
+      acc += spec.grass || 0;
+      if (r < acc) b.add(N.get(rng() < 0.7 ? 'Grass_Common_Short' : 'Grass_Wispy_Tall'), trs(px, y, pz, yaw, 0.7 + rng() * 0.4), { shadow: false });
+    }
+  }
 }
 
 // ---- exits: doors in their doorways, glowing markers on passages, stairs and trapdoors ----

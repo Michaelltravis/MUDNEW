@@ -11,7 +11,7 @@ export const ARRIVE = 1.6;         // you land this far beside the stairs that l
 export const COOLDOWN_MS = 1200;   // no passage fires this soon after landing
 export const IDLE_ARM_MS = 250;    // ...or once you have stood still this long next to it
 export const HOP_TIMEOUT_MS = 6000;
-const FLOOR = 0;
+const FLOOR = 0, WATER = 4;
 const CARD = { north: [0, -1], south: [0, 1], east: [1, 0], west: [-1, 0] };
 
 // up/down exits are named by the direction you travel; the side of the room you come out on
@@ -38,7 +38,8 @@ export function isSpotPassage(dir) { return !CARD[dir]; }
 
 const floorAt = (L, W, H, x, z) => {
   const tx = Math.floor(x), tz = Math.floor(z);
-  return tx >= 0 && tz >= 0 && tx < W && tz < H && L.grid[tz * W + tx] === FLOOR;
+  const t = tx >= 0 && tz >= 0 && tx < W && tz < H ? L.grid[tz * W + tx] : 1;
+  return t === FLOOR || (t === WATER && !!L.swim);     // open water in a water room is the way
 };
 
 // where the hero lands in a room entered on its `side` ('down' = beside the stairs going back

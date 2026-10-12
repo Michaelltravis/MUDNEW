@@ -59,7 +59,11 @@ export class Zone {
     if (!room.layout) {
       const r = room.data;
       const exits = {};
-      for (const [d, e] of Object.entries(r.exits)) exits[d] = { to_room: e.to };
+      // each exit's kind and the look beyond it (two open-joined outdoor rooms share their side)
+      for (const [d, e] of Object.entries(r.exits)) {
+        const nb = this.rooms.get(e.to);
+        exits[d] = { to_room: e.to, kind: e.kind, door: !!e.door, nlook: nb ? (nb.data.look || nb.data.sector) : null };
+      }
       room.layout = MH.generateRoomTopDown({
         vnum: r.vnum, name: r.name, description: r.description, sector: r.sector, look: r.look,
         flags: r.flags, zone: this.num, exits,

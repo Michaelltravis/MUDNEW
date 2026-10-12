@@ -15,21 +15,22 @@ export const QUALITY = {
   high: { name: 'high', dpr: 2, shadows: true, shadowSize: 2048, bloom: true, antialias: true },
 };
 
-// Lighting moods. The world is one scene with one sun, so "indoors" is a mood the
+// Lighting moods (bg: how much of the fog colour the far background is: 1 outdoors, a haze; dark
+// enclosed). The world is one scene with one sun, so "indoors" is a mood the
 // rig blends to when the hero's room is enclosed (a crypt under an open sky).
 export const MOODS = {
-  day: { sky: 0xcfe2ff, ground: 0x5a4a32, hemi: 1.15, sun: 0xfff1d6, sunI: 2.6, fog: 0xa9bfd0, near: 34, far: 90, exposure: 1.0 },
-  forest: { sky: 0xbfe0c8, ground: 0x3a3424, hemi: 1.0, sun: 0xffe6b8, sunI: 2.3, fog: 0x8fae9a, near: 30, far: 80, exposure: 1.0 },
-  crypt: { sky: 0x5a6a8a, ground: 0x1a140e, hemi: 0.32, sun: 0x8090c0, sunI: 0.25, fog: 0x0d0f16, near: 18, far: 52, exposure: 1.15 },
+  day: { sky: 0xcfe2ff, ground: 0x5a4a32, hemi: 1.15, sun: 0xfff1d6, sunI: 2.6, fog: 0xa9bfd0, near: 34, far: 90, exposure: 1.0, bg: 1.0 },
+  forest: { sky: 0xbfe0c8, ground: 0x3a3424, hemi: 1.0, sun: 0xffe6b8, sunI: 2.3, fog: 0x8fae9a, near: 30, far: 80, exposure: 1.0, bg: 1.0 },
+  crypt: { sky: 0x5a6a8a, ground: 0x1a140e, hemi: 0.32, sun: 0x8090c0, sunI: 0.25, fog: 0x0d0f16, near: 18, far: 52, exposure: 1.15, bg: 0.35 },
   // a lit interior (temple, shop, inn): warm and readable, no strong sun
-  interior: { sky: 0xffe6c4, ground: 0x3a2c1e, hemi: 0.85, sun: 0xffe2b8, sunI: 0.9, fog: 0x1c1712, near: 26, far: 70, exposure: 1.05 },
-  dusk: { sky: 0xf0b890, ground: 0x3a2a24, hemi: 0.7, sun: 0xff9a5a, sunI: 1.5, fog: 0x6a5060, near: 30, far: 80, exposure: 1.05 },
-  night: { sky: 0x5a6a9a, ground: 0x1a1a22, hemi: 0.58, sun: 0xa8bcff, sunI: 0.75, fog: 0x121a2c, near: 26, far: 70, exposure: 1.25 },
+  interior: { sky: 0xffe6c4, ground: 0x3a2c1e, hemi: 0.85, sun: 0xffe2b8, sunI: 0.9, fog: 0x1c1712, near: 26, far: 70, exposure: 1.05, bg: 0.35 },
+  dusk: { sky: 0xf0b890, ground: 0x3a2a24, hemi: 0.7, sun: 0xff9a5a, sunI: 1.5, fog: 0x6a5060, near: 30, far: 80, exposure: 1.05, bg: 0.9 },
+  night: { sky: 0x5a6a9a, ground: 0x1a1a22, hemi: 0.58, sun: 0xa8bcff, sunI: 0.75, fog: 0x121a2c, near: 26, far: 70, exposure: 1.25, bg: 0.85 },
   // the room looks (room_looks.py): rock close and cold, sand hot and hazy, snow bright, ash red
-  cave: { sky: 0xa8b4cc, ground: 0x5a4a3c, hemi: 1.45, sun: 0xb8c4e0, sunI: 0.85, fog: 0x161a22, near: 20, far: 60, exposure: 1.35 },
-  desert: { sky: 0xfff0d0, ground: 0x8a6a40, hemi: 1.2, sun: 0xffe8b8, sunI: 2.9, fog: 0xe8d4b0, near: 30, far: 85, exposure: 1.0 },
-  snow: { sky: 0xe4eeff, ground: 0x8a96a8, hemi: 1.15, sun: 0xf4f8ff, sunI: 2.2, fog: 0xd8e4f0, near: 26, far: 75, exposure: 0.95 },
-  volcanic: { sky: 0x8a4a3a, ground: 0x2a0e06, hemi: 0.6, sun: 0xff8a50, sunI: 1.3, fog: 0x3a1a12, near: 22, far: 64, exposure: 1.1 },
+  cave: { sky: 0xa8b4cc, ground: 0x5a4a3c, hemi: 1.45, sun: 0xb8c4e0, sunI: 0.85, fog: 0x161a22, near: 20, far: 60, exposure: 1.35, bg: 0.35 },
+  desert: { sky: 0xfff0d0, ground: 0x8a6a40, hemi: 1.2, sun: 0xffe8b8, sunI: 2.9, fog: 0xe8d4b0, near: 30, far: 85, exposure: 1.0, bg: 1.0 },
+  snow: { sky: 0xe4eeff, ground: 0x8a96a8, hemi: 1.15, sun: 0xf4f8ff, sunI: 2.2, fog: 0xd8e4f0, near: 26, far: 75, exposure: 0.95, bg: 1.0 },
+  volcanic: { sky: 0x8a4a3a, ground: 0x2a0e06, hemi: 0.6, sun: 0xff8a50, sunI: 1.3, fog: 0x3a1a12, near: 22, far: 64, exposure: 1.1, bg: 0.75 },
 };
 
 export function createEngine(container, opts = {}) {
@@ -139,7 +140,7 @@ export function createEngine(container, opts = {}) {
   }
   function blendMood(dt) {
     const k = 1 - Math.exp(-dt * 2.2);
-    for (const key of ['hemi', 'sunI', 'near', 'far', 'exposure']) cur[key] += (want[key] - cur[key]) * k;
+    for (const key of ['hemi', 'sunI', 'near', 'far', 'exposure', 'bg']) cur[key] += (want[key] - cur[key]) * k;
     for (const key of ['sky', 'ground', 'sun', 'fog']) {
       colors[key].set(cur[key]).lerp(new THREE.Color(want[key]), k);
       cur[key] = colors[key].getHex();
@@ -147,7 +148,8 @@ export function createEngine(container, opts = {}) {
     hemi.color.set(cur.sky); hemi.groundColor.set(cur.ground); hemi.intensity = cur.hemi;
     sun.color.set(cur.sun); sun.intensity = cur.sunI;
     scene.fog.color.set(cur.fog); scene.fog.near = cur.near; scene.fog.far = cur.far;
-    scene.background.set(cur.fog).multiplyScalar(0.35);
+    // under open sky the distance fades into the haze itself; enclosed, into the dark
+    scene.background.set(cur.fog).multiplyScalar(cur.bg ?? 0.35);
     renderer.toneMappingExposure = cur.exposure;
   }
 

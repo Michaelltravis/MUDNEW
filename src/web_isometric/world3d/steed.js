@@ -172,8 +172,31 @@ export function mountRider(rider, key, prev = null) {
     hipsH = (v.y - box.min.y) / Math.max(1e-3, rider.root.scale.y || 1);
   }
   const lift = Math.max(0, steed.saddleY - hipsH + riderH * 0.01);
-  const lifted = rider.root.children.filter(c => !String(c.name).startsWith('steed_')).map(c => [c, c.position.y]);
+  const lifted = rider.root.children.filter(c => !/^(steed_|raft$)/.test(String(c.name))).map(c => [c, c.position.y]);
   for (const [c, y] of lifted) c.position.y = y + lift;
   rider.root.add(steed.root);
   return { key, steed, lifted, bones, scale: riderH, pose: () => ridePose({ bones }, rider.root) };
+}
+
+// A raft under the hero on open water (a water room: the server lets only those with a boat or a
+// raft in): a few lashed logs, riding a little low, bobbing.
+export function makeRaft() {
+  const root = new THREE.Group();
+  root.name = 'raft';
+  const wood = new THREE.MeshStandardMaterial({ color: 0x7a5634, roughness: 0.9 });
+  const rope = new THREE.MeshStandardMaterial({ color: 0xc8b48a, roughness: 1 });
+  for (let i = -2; i <= 2; i++) {
+    const log = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, 1.9, 7), wood);
+    log.rotation.x = Math.PI / 2;
+    log.position.set(i * 0.27, -0.02, 0);
+    log.castShadow = true;
+    root.add(log);
+  }
+  for (const z of [-0.6, 0.6]) {
+    const tie = new THREE.Mesh(new THREE.BoxGeometry(1.45, 0.05, 0.08), rope);
+    tie.position.set(0, 0.11, z);
+    root.add(tie);
+  }
+  root.userData.bob = t => { root.position.y = -0.06 + Math.sin(t * 1.6) * 0.03; root.rotation.z = Math.sin(t * 1.1) * 0.03; };
+  return root;
 }

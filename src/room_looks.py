@@ -126,12 +126,17 @@ def _neighbours(room, rooms):
 
 FOREST_WORDS = r'\b(forests?|woods|woodlands?|groves?|copse|thickets?|jungle|wildwood|greenwood|glades?|clearing|trees)\b'
 FOREST_RE = re.compile(FOREST_WORDS, re.I)
+MOUNTAIN_WORDS = (r'\b(mountains?|mountainside|peaks?|summit|cliffs?|cliff\'s edge|crags?|ledges?|ravine|gorge|'
+                  r'canyon|scree|slopes?|rocky|boulders?|the pass|mountain pass|precipice)\b')
+MOUNTAIN_RE = re.compile(MOUNTAIN_WORDS, re.I)
+# an indoor-typed room takes only the plain words (a ledge or a slope indoors is likely underground)
+MOUNTAIN_STRONG = r'\b(mountains?|mountainside|peaks?|summit|cliffs?|cliff\'s edge)\b'
 
 # a room typed as indoors whose name is open country ("The Plains", "A Mountain Trail"): drawn as
 # the country it names, not as a furnished house (sector-named looks: field, forest, hills,
 # mountain; a road in a town is a street)
 OPEN_COUNTRY = [
-    ('mountain', r'\b(mountains?|mountainside|peaks?|summit|cliffs?|crags?|cliff\'s edge)\b'),
+    ('mountain', MOUNTAIN_STRONG),
     ('hills', r'\b(hills?|hillside|highlands?|downs|ridges?|foothills)\b'),
     ('forest', FOREST_WORDS),
     ('field', r'\b(plains?|meadows?|fields?|grasslands?|prairie|steppes?|pastures?|farmland|heath|moors?|savannah?)\b'),
@@ -148,16 +153,26 @@ def open_country(room):
     room was typed (a wood on a hillside, in a town's park), but never under water."""
     sector = getattr(room, 'sector_type', '') or 'inside'
     if sector not in INDOOR_SECTORS:
-        if sector not in WATER_SECTORS and sector != 'forest' and FOREST_RE.search(room.name or '') \
-                and not INTERIOR_RE.search(room.name or ''):
+        name = room.name or ''
+        if sector in WATER_SECTORS or INTERIOR_RE.search(name):
+            return None
+        if sector != 'forest' and FOREST_RE.search(name):
             return 'forest'
+        # mountain country typed as field, hills or forest (a mountain road, a ledge above a
+        # ravine); a town's mountain wall stays in town
+        if sector not in ('mountain', 'city') and MOUNTAIN_RE.search(name):
+            return 'mountain'
         return None
     name = room.name or ''
+    # an indoor room whose own description is underground (a ledge in a cavern) is underground
+    if description_look(room.description) in UNDERGROUND:
+        return None
     # a road names where it goes ("The Path By The Cathedral"): still a road (through a forest, a
     # forest); anything else that names a building is that building
     road = dict(OPEN_RES)['road'].search(name)
     if road and not re.search(r'\b(tavern|inn|shop|store)\b', name, re.I):
-        return 'forest' if FOREST_RE.search(name) else 'city' if STREET_RE.search(name) else 'field'
+        return ('forest' if FOREST_RE.search(name) else 'mountain' if re.search(MOUNTAIN_STRONG, name, re.I)
+                else 'city' if STREET_RE.search(name) else 'field')
     if INTERIOR_RE.search(name):
         return None
     for look, rx in OPEN_RES:
@@ -177,8 +192,8 @@ def _own_look(room):
     why = 'name'
     if not look:
         look = open_country(room)
-        # a forest stays a forest whatever its description says, unless it is snowbound
-        if look == 'forest' and description_look(room.description) == 'snow':
+        # a forest or a mountain stays one whatever its description says, unless it is snowbound
+        if look in ('forest', 'mountain') and description_look(room.description) == 'snow':
             look = 'snow'          # (still read from its name: a snowbound wood)
     if not look and sector == 'forest' and FOREST_RE.search(room.name or ''):
         # a forest typed as one and named as one: no description turns it into a swamp or a shore

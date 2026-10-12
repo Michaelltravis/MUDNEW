@@ -73,6 +73,9 @@ async def main():
     check(plains and all(r.look not in ('inside', 'dungeon') for r in plains), 'no room called The Plains is drawn as a building')
     indoor_country = [(r.vnum, r.name) for r in rooms.values() if r.look == 'inside' and rl.open_country(r)]
     check(not indoor_country, f'no room named as open country is drawn indoors ({indoor_country[:4]})')
+    mtn = [(r.vnum, r.name, r.look) for r in rooms.values() if r.sector_type in ('field', 'hills', 'forest')
+           and rl.MOUNTAIN_RE.search(r.name or '') and not rl.FOREST_RE.search(r.name or '') and r.look in ('field', 'hills', 'forest')]
+    check(not mtn, f'no room named as mountain country is drawn as field, hills or forest ({mtn[:4]})')
     water = [r for r in rooms.values() if r.sector_type in rl.WATER_SECTORS]
     check(all(r.look == r.sector_type for r in water), 'water stays water')
 
