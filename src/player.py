@@ -793,6 +793,7 @@ class Player(Character):
         # Faction reputation
         self.reputation = {}
         self.faction_rewards = {}
+        self.grants_received = []   # one-time gifts already given (grants.py)
         try:
             from factions import FactionManager
             FactionManager.ensure_player_reputation(self)
@@ -1323,6 +1324,7 @@ class Player(Character):
             'house_storage': [item.to_dict() for item in self.house_storage],
             'reputation': self.reputation,
             'faction_rewards': self.faction_rewards,
+            'grants_received': list(getattr(self, 'grants_received', []) or []),
             'discovered_waypoints': list(self.discovered_waypoints),
             'travel_cooldown_until': self.travel_cooldown_until,
             'rested_xp': self.rested_xp,
@@ -1553,6 +1555,13 @@ class Player(Character):
             if active_mount_data:
                 from mounts import MountManager
                 player.mount = MountManager.load_mount(active_mount_data)
+            # a one-time gift waiting for them (world/grants.json), told when they enter the world
+            player.grants_received = list(data.get('grants_received', []) or [])
+            try:
+                import grants
+                player._grant_notes = grants.apply_grants(player)
+            except Exception:
+                logger.exception('grants')
             # Restore combat companion
             combat_comp_data = data.get('combat_companion')
             if combat_comp_data:

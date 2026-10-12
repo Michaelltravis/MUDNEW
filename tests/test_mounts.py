@@ -132,6 +132,25 @@ async def main():
         check(won == key and MountManager.get_owned_mount_data(h, key), f'beating the boss can win its {key}')
         again = await boss_mount_drop(h, boss)
         check(again is None, 'but only once')
+    # ---- a one-time gift (world/grants.json), and givemount
+    import grants
+    g = hero('Gifted')
+    gifts = {'gifted': {'mounts': ['griffin', 'horse', 'no_such_beast'], 'ride': 'griffin'}}
+    lines = grants.apply_grants(g, gifts)
+    check(MountManager.get_owned_mount_data(g, 'griffin') and MountManager.get_owned_mount_data(g, 'horse')
+          and g.mount and g.mount.key == 'griffin', f'a gift gives its mounts and puts them on one ({lines})')
+    check(not any('no_such_beast' in l for l in lines), 'an unknown mount is skipped')
+    again = grants.apply_grants(g, gifts)
+    check(again == [] and len(g.owned_mounts) == 2, 'and is given only once')
+    check('xtc' in grants.load_grants() and 'griffin' in grants.load_grants()['xtc']['mounts'], 'XTC has a griffin waiting')
+    imm = hero('Imm')
+    real = Player.is_immortal
+    Player.is_immortal = property(lambda self: True)
+    try:
+        await CommandHandler.cmd_givemount(imm, ['rider', 'nightmare'])
+    finally:
+        Player.is_immortal = real
+    check(h.mount and h.mount.key == 'nightmare' and MountManager.get_owned_mount_data(h, 'nightmare'), 'givemount gives and mounts')
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
     sys.exit(1 if failures else 0)
 

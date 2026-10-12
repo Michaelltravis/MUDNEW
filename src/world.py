@@ -1086,6 +1086,12 @@ class World:
                     self.npcs.append(companion)
                     logger.info(f"Spawned companion: {companion.name} for {player.name}")
 
+        # a one-time gift given at load (grants.py): tell them, once they can hear it
+        notes = player.__dict__.pop('_grant_notes', None)
+        if notes:
+            c = Config().COLORS
+            for line in notes:
+                await player.send(f"{c['bright_yellow']}{line}{c['reset']}")
         logger.info(f"Player entered world: {player.name}")
 
     async def remove_player(self, player: 'Player'):

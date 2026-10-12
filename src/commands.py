@@ -17202,6 +17202,37 @@ class CommandHandler:
                     ch.position = 'standing'
 
     @classmethod
+    async def cmd_givemount(cls, player: 'Player', args: List[str]):
+        """Immortal: give an online player a mount and put them on it. Usage: givemount <player> <mount>"""
+        c = player.config.COLORS
+        if not player.is_immortal:
+            await player.send("Huh?")
+            return
+        from mounts import MOUNT_TEMPLATES, MountManager
+        if len(args) < 2:
+            await player.send(f"Usage: givemount <player> <mount>  (mounts: {', '.join(sorted(MOUNT_TEMPLATES))})")
+            return
+        target = player.world.players.get(args[0].lower())
+        key = args[1].lower()
+        if not target:
+            await player.send(f"{c['red']}No one called {args[0]} is online.{c['reset']}")
+            return
+        if key not in MOUNT_TEMPLATES:
+            await player.send(f"{c['red']}No mount '{key}'. Mounts: {', '.join(sorted(MOUNT_TEMPLATES))}{c['reset']}")
+            return
+        if not MountManager.get_owned_mount_data(target, key):
+            target.owned_mounts.append({'key': key, 'loyalty': 100})
+        target.mount = MountManager.create_mount(key)
+        await target.send(f"{c['bright_yellow']}You are given {target.mount.name}, and you mount it.{c['reset']}")
+        if target is not player:
+            await player.send(f"{c['green']}{target.name} now rides {target.mount.name}.{c['reset']}")
+        await cls._riding_changed(target)
+        try:
+            await target.save()
+        except Exception:
+            logger.exception('givemount save')
+
+    @classmethod
     async def cmd_gearup(cls, player: 'Player', args: List[str]):
         """Kit a player out for endgame testing (immortal only).
 
