@@ -197,10 +197,10 @@ def describe(proc):
     head = DESCRIBE.get(proc.get('type'), 'Effect')
     if proc.get('type') == 'on_hit':
         what = {'drain': 'drains life', 'chain': 'chains to a second foe', 'splash': 'splashes every foe',
-                'cloud': 'engulfs every foe', 'slow': 'slows', 'root': 'roots', 'stun': 'staggers'}.get(spec.get('kind'), 'strikes')
+                'cloud': 'engulfs every foe', 'slow': 'slows', 'root': 'roots', 'stun': 'staggers'}.get(spec.get('kind'))
         school = 'a random school' if spec.get('chaos') else spec.get('school', 'physical')
         vs = ' against the undead' if spec.get('undead') else ''
-        return f"{head} ({proc.get('chance', DERIVED_CHANCE)}%): {name} — {school} damage, {what}{vs}"
+        return f"{head} ({proc.get('chance', DERIVED_CHANCE)}%): {name} — {school} damage{', ' + what if what else ''}{vs}"
     return f"{head}: {name}"
 
 
