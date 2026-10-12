@@ -1726,7 +1726,64 @@ class CombatHandler:
 
     @classmethod
     async def handle_death(cls, killer: 'Character', victim: 'Character'):
-        """Handle a combat death."""
+        """Handle a combat death. Whatever goes wrong in the rewards, a slain creature still dies:
+        it once stood on at 0 hp, with no corpse, when something after the "is DEAD!" failed."""
+        try:
+            await cls._handle_death(killer, victim)
+        except Exception:
+            logger.exception(f"handle_death: {getattr(killer, 'name', '?')} killing {getattr(victim, 'name', '?')}")
+            try:
+                await cls._death_fallback(killer, victim)
+            except Exception:
+                logger.exception('death fallback')
+
+    @classmethod
+    async def _death_fallback(cls, killer, victim):
+        """The least a death must do when handle_death failed part-way: a creature leaves a corpse
+        with what it carried, the fight ends, and it is gone from the room and the world."""
+        if hasattr(victim, 'connection') or getattr(victim, 'hp', 1) > 0:
+            return
+        room = victim.room
+        if room is None or victim not in room.characters:
+            return
+        if not any(getattr(o, 'name', '') == f"corpse of {victim.name}" for o in room.items):
+            from objects import Object
+            corpse = Object(0, getattr(killer, 'world', None))
+            corpse.name = f"corpse of {victim.name}"
+            corpse.short_desc = f"the corpse of {victim.name}"
+            corpse.room_desc = f"The corpse of {victim.name} lies here."
+            corpse.item_type = 'container'
+            corpse.capacity = 1000
+            corpse.container_flags = ['closeable']
+            corpse.state = 'open'
+            corpse.gold = max(0, getattr(victim, 'gold', 0) or 0)
+            corpse.contents = list(getattr(victim, 'inventory', None) or [])
+            if hasattr(victim, 'inventory'):
+                victim.inventory.clear()
+            corpse.decay_timer = 50
+            room.items.append(corpse)
+        try:
+            await cls.end_combat(killer, victim)
+        except Exception:
+            logger.exception('death fallback: end_combat')
+        for ch in list(room.characters):
+            if getattr(ch, 'fighting', None) is victim:
+                ch.fighting = None
+                if getattr(ch, 'position', '') == 'fighting':
+                    ch.position = 'standing'
+        if victim in room.characters:
+            room.characters.remove(victim)
+        world = getattr(killer, 'world', None)
+        if world is not None and victim in getattr(world, 'npcs', []):
+            world.npcs.remove(victim)
+        web_map = getattr(world, 'web_map', None) if world else None
+        if web_map:
+            for ch in list(room.characters):
+                if hasattr(ch, 'connection'):
+                    await web_map.notify_combat(ch)
+
+    @classmethod
+    async def _handle_death(cls, killer: 'Character', victim: 'Character'):
         # Guard against double-death processing
         if getattr(victim, '_death_processed', False):
             return

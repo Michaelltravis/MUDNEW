@@ -49,3 +49,24 @@ test('the hero runs as fast as the server says, and sits while riding', () => {
   assert.match(main, /mountRider\(hero, key/, 'main seats the hero on their steed');
   assert.match(ents, /mountRider\(e\.actor, w\.data\.mount/, 'other players ride theirs too');
 });
+
+test('you get up and down from /play: R, the menu horseshoe, the riding chip, the hero menu', async () => {
+  const read = f => fs.readFileSync(path.join(ROOT, 'src/web_isometric/world3d', f), 'utf8');
+  const hud = read('hud/hud.js'), html = read('play.html');
+  assert.match(hud, /k === 'r' \|\| k === 'R'\) \{ rideToggle\(\)/, 'R toggles riding');
+  assert.match(hud, /if \(p\.mount\) send\('dismount'\)/, 'mounted: R dismounts');
+  assert.match(hud, /send\('mount last'\)/, 'on foot with a mount: R mounts the last one ridden');
+  assert.match(hud, /You own no mount/, 'owning none: it says where to get one');
+  assert.match(html, /data-act="ride" data-icon="horseshoe"[^>]*data-key="R"/, 'a menu button for it');
+  assert.match(hud, /\[data-act="ride"\]'\)\.addEventListener\('click', \(\) => rideToggle\(\)\)/, 'the button rides or dismounts');
+  assert.match(html, /id="riding"/, 'a chip by the portrait while riding');
+  assert.match(hud, /paintRiding\(p\)/, 'painted from the payload');
+  const { verbsFor } = await import('../../src/web_isometric/world3d/hud/verbs.js');
+  const labels = m => m.items.map(i => i.label);
+  const up = verbsFor({ kind: 'self' }, { mount: { key: 'griffin', name: 'a griffin' } });
+  assert.ok(up.items.some(i => i.cmd === 'dismount'), `riding: the hero menu offers Dismount (${labels(up)})`);
+  const down = verbsFor({ kind: 'self' }, { mounts: [{ key: 'griffin', name: 'a griffin' }, { key: 'horse', name: 'a horse' }] });
+  assert.ok(down.items.some(i => i.cmd === 'mount griffin') && down.items.some(i => i.cmd === 'mount horse'), 'on foot: Mount each one owned');
+  const none = verbsFor({ kind: 'self' }, {});
+  assert.ok(!none.items.some(i => /^(dis)?mount/.test(i.cmd || '')), 'owning none: neither');
+});

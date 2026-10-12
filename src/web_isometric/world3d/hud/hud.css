@@ -88,6 +88,12 @@ button { font: inherit; color: inherit; }
 #player-frame { left: 14px; top: 14px; display: flex; gap: 14px; align-items: center; padding: 11px 16px 11px 12px; min-width: 318px;
   transform: scale(var(--ui)); transform-origin: top left; }
 #player-frame .who { flex: 1; min-width: 200px; }
+#riding { display: flex; align-items: center; gap: 5px; margin-top: 6px; padding: 2px 9px 2px 4px; border-radius: 10px; cursor: pointer;
+  border: 1px solid var(--edge-dim); background: rgba(0,0,0,.35); font: 600 11.5px var(--label); color: var(--ink-dim); }
+#riding img { width: 16px; height: 16px; }
+#riding b { color: var(--gold-hi); font-weight: 700; }
+#riding:hover { color: var(--ink); border-color: var(--edge); }
+#riding.hidden { display: none; }
 #player-frame .pf-top { display: flex; align-items: baseline; gap: 8px; }
 #player-frame .name { font: 700 19px var(--title); color: var(--gold-hi); letter-spacing: .05em; text-shadow: 0 1px 0 #000, 0 0 12px rgba(243,210,140,.25); }
 #player-frame .cls { font: 500 13px var(--label); color: var(--ink-dim); text-transform: lowercase; letter-spacing: .04em; }

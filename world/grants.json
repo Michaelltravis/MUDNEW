@@ -1,5 +1,5 @@
 {
-  "_about": "One-time gifts to named characters, given on their next login (src/grants.py). Keys are character names; each gift is given once (editing an entry gives the new gift once more). Mounts: the keys in src/mounts.py MOUNT_TEMPLATES.",
+  "_about": "One-time gifts to named characters, given on their next login (src/grants.py). Keys are character names; each part of a gift is given once (editing an entry gives only the parts added or changed). Mounts: the keys in src/mounts.py MOUNT_TEMPLATES. immortal: the character's account becomes an admin (immortal) one.",
   "xtc": {
     "mounts": [
       "griffin",
@@ -11,5 +11,9 @@
     "waypoints_all": true,
     "room": 14804,
     "gearup": true
+  },
+  "deckard": {
+    "immortal": true,
+    "why": "the owner's immortal (asked for by name, 2026-10-12)"
   }
 }

@@ -13,7 +13,8 @@ const keyword = name => {
 };
 
 // hit: {kind: 'mob'|'player'|'self'|'door'|'ground', ent?, door?: {dir, info}, point?}
-// ctx: {skills: [{id, label, spell}] (targetable bar abilities), posture, inCombat}
+// ctx: {skills: [{id, label, spell}] (targetable bar abilities), posture, inCombat,
+//       mount: {key, name} ridden or null, mounts: [{key, name}] owned}
 export function verbsFor(hit, ctx = {}) {
   if (!hit) return { title: '', items: [] };
   if (hit.kind === 'mob') {
@@ -82,6 +83,9 @@ export function verbsFor(hit, ctx = {}) {
       if (p !== 'sleeping') items.push({ label: 'Sleep', cmd: 'sleep' });
       items.push({ label: 'Recall to town', cmd: 'recall' });
     } else items.push({ label: 'Flee', cmd: 'flee' });
+    // up and down off your mount (R does the same)
+    if (ctx.mount) items.push({ label: `Dismount ${ctx.mount.name || ''} (R)`.replace('  ', ' '), cmd: 'dismount' });
+    else if (!ctx.inCombat) for (const m of (ctx.mounts || []).slice(0, 4)) items.push({ label: `Mount ${m.name}`, cmd: `mount ${m.key}` });
     if (ctx.inGroup) items.push({ label: 'Leave group', cmd: 'group leave' });
     return { title: 'You', items };
   }

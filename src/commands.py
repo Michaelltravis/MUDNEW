@@ -16346,10 +16346,24 @@ class CommandHandler:
 
     @classmethod
     async def cmd_mount(cls, player: 'Player', args: List[str]):
-        """Mount an owned mount. Usage: mount [name]"""
+        """Mount an owned mount. Usage: mount [name] | mount last (the one you last rode, else
+        your fastest: the R key in /play)"""
         from mounts import MountManager
 
         c = player.config.COLORS
+        if args and args[0].lower() == 'last':
+            if player.mount:
+                await player.send(f"{c['yellow']}You are already riding {player.mount.name}.{c['reset']}")
+                return
+            owned = [m if isinstance(m, str) else m.get('key') for m in (player.owned_mounts or [])]
+            owned = [k for k in owned if k and MountManager.get_mount_template(k)]
+            if not owned:
+                await player.send(f"{c['yellow']}You don't own any mounts. Visit a stable to buy one!{c['reset']}")
+                return
+            last = getattr(player, 'last_mount', None)
+            if last not in owned:
+                last = max(owned, key=lambda k: (MountManager.create_mount(k).travel, k))
+            args = [last]
 
         if player.is_fighting:
             await player.send(f"{c['red']}You can't mount while fighting!{c['reset']}")
@@ -16386,6 +16400,7 @@ class CommandHandler:
                 await player.send(f"{c['red']}Can't mount that.{c['reset']}")
                 return
             player.mount = mount
+            player.last_mount = mount.key
             await player.send(f"{c['bright_green']}You mount {mount.name}.{c['reset']}")
             if player.room:
                 await player.room.send_to_room(
@@ -16424,6 +16439,7 @@ class CommandHandler:
             if isinstance(m, dict) and m.get('key') == player.mount.key:
                 m['loyalty'] = player.mount.loyalty
                 break
+        player.last_mount = player.mount.key
         player.mount = None
         await player.send(f"{c['green']}You dismount from {mount_name}.{c['reset']}")
         if player.room:

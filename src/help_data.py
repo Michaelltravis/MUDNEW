@@ -2270,7 +2270,9 @@ HELP_TOPICS = {'auction': {'category': 'command',
  'motd': {'category': 'command', 'description': 'Display the Message of the Day.', 'syntax': 'motd', 'title': 'Motd'},
  'mount': {'category': 'command',
            'description': 'Mount a creature you own.\n\n'
-                          'With no arguments, lists your owned mounts.\n'
+                          'With no arguments, lists your owned mounts. MOUNT LAST mounts the one\n'
+                          'you last rode (else your fastest). In the 3D client press R (or the\n'
+                          'horseshoe in the menu, or right-click yourself) to mount or dismount.\n'
                           'Mounts increase movement speed and may provide combat bonuses.\n\n'
                           'Riding makes you travel faster (the 3D hero runs faster) and halves\n'
                           'what moving costs you; a hungry mount carries you slower. Haste stacks.\n\n'
@@ -2288,7 +2290,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
                           'You are automatically dismounted when entering combat unless your mount\n'
                           'fights with you. Use FEED to keep loyalty up; RIDE to speedwalk.\n\n'
                           'See also: dismount, stable, feed, mounts, ride',
-           'syntax': 'mount [name]',
+           'syntax': 'mount [name | last]',
            'title': 'Mount'},
  'mounts': {'category': 'command',
             'description': 'List your owned mounts. Same as typing "mount" with no arguments.',

@@ -612,6 +612,7 @@ class Player(Character):
         # Mount System
         self.mount = None  # Currently mounted creature (Mount dataclass or None)
         self.owned_mounts = []  # List of owned mount dicts [{key, loyalty}, ...]
+        self.last_mount = None  # the mount last ridden (`mount last`, the R key in /play)
 
         # Companion System
         self.companions = []
@@ -1299,6 +1300,7 @@ class Player(Character):
             'last_hunger_hour': self.last_hunger_hour,
             'last_thirst_hour': self.last_thirst_hour,
             'owned_mounts': self.owned_mounts,
+            'last_mount': getattr(self, 'last_mount', None),
             'active_mount': self.mount.to_dict() if self.mount else None,
             'combat_companion': self.combat_companion.to_dict() if self.combat_companion else None,
             'last_companion_upkeep_day': self.last_companion_upkeep_day,
@@ -1550,6 +1552,7 @@ class Player(Character):
             player.last_hunger_hour = data.get('last_hunger_hour', 0)
             player.last_thirst_hour = data.get('last_thirst_hour', 0)
             player.owned_mounts = data.get('owned_mounts', [])
+            player.last_mount = data.get('last_mount')
             # Restore active mount
             active_mount_data = data.get('active_mount')
             if active_mount_data:

@@ -864,7 +864,7 @@ async function runGame() {
     lastMenuAt = { x, y };
     const p = MH.state.player || {};
     const { title, items } = verbsFor(hit, { skills: hud.targetSkills(), posture: p.position, inCombat: MH.state.inCombat,
-      room: heroRoom && heroRoom.vnum, inGroup: hud.party.inGroup });
+      room: heroRoom && heroRoom.vnum, inGroup: hud.party.inGroup, mount: p.mount || null, mounts: p.mounts || [] });
     if (!items.length) return;
     ctxMenu.show(x, y, title, items.map(it => ({ label: it.label, run: (it.cmd || it.act) ? () => runVerb(hit, it) : null })));
   }

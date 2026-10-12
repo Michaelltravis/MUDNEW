@@ -318,6 +318,7 @@ async def _land(attacker, defender, item, proc, spec):
     hp0 = getattr(defender, 'hp', 0)
     await defender.take_damage(amount, attacker, school)
     dealt = max(0, hp0 - getattr(defender, 'hp', hp0))
+    await _fell(attacker, defender)
     if kind == 'drain' and dealt > 0 and getattr(attacker, 'hp', 0) > 0:
         attacker.hp = min(attacker.max_hp, attacker.hp + dealt)
     if kind in ('chain', 'splash', 'cloud'):
@@ -335,7 +336,17 @@ async def _land(attacker, defender, item, proc, spec):
                                     f"{spec['name']} reaches {other.name}! [{part}]{c['reset']}")
             _emit(room, attacker, other, spec, school)
             await other.take_damage(part, attacker, school)
+            await _fell(attacker, other)
     return dealt
+
+
+async def _fell(killer, victim):
+    """A proc's damage killed `victim`: it dies as any blow's victim does (a corpse, the xp, the
+    loot). Without this a creature a proc finished stood on at 0 hp, with no corpse."""
+    if getattr(victim, 'hp', 1) > 0 or getattr(victim, '_death_processed', False):
+        return
+    from combat import CombatHandler
+    await CombatHandler.handle_death(killer, victim)
 
 
 def _foes(attacker):
@@ -415,12 +426,14 @@ async def on_defend(player, attacker, amount, damage_type):
                 await player.send(f"{c['bright_cyan']}Your gear turns the blow back on {attacker.name}! [{back}]{c['reset']}")
                 _emit(player.room, player, attacker, spec, 'physical')
                 await attacker.take_damage(back, player, 'thorns')
+                await _fell(player, attacker)
             elif eff == 'frost_aura':
                 cold = random.randint(4, 6 + getattr(player, 'level', 1) // 3)
                 attacker.slowed_until = max(getattr(attacker, 'slowed_until', 0) or 0, now + 3)
                 await player.send(f"{c['bright_cyan']}Your frost aura bites {attacker.name}! [{cold}]{c['reset']}")
                 _emit(player.room, player, attacker, spec, 'frost')
                 await attacker.take_damage(cold, player, 'frost')
+                await _fell(player, attacker)
         except Exception:
             logger.exception('defend proc %s failed', eff)
 

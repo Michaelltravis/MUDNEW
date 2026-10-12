@@ -50,6 +50,16 @@ export const PICTO = {
       c.restore();
     }
   },
+  horseshoe(c) {
+    // a horseshoe, open end down, its nail holes dark (the ride / dismount button)
+    c.lineWidth = 16; c.lineCap = 'butt'; c.strokeStyle = c.fillStyle;
+    c.beginPath(); c.arc(0, -6, 30, Math.PI * 0.82, Math.PI * 2.18); c.stroke();
+    c.fillRect(-36, 8, 14, 30); c.fillRect(22, 8, 14, 30);
+    c.save(); c.globalCompositeOperation = 'destination-out';
+    for (const a of [1.05, 1.35, 1.65, 1.95]) disc(c, Math.cos(Math.PI * a) * 30, -6 + Math.sin(Math.PI * a) * 30, 3);
+    for (const s of [-1, 1]) disc(c, s * 29, 22, 3);
+    c.restore();
+  },
   boot(c) { fillPath(c, [[-14, -40], [10, -40], [10, 6], [34, 14], [38, 30], [-16, 30], [-18, 10]]); c.fillRect(-18, 32, 58, 7); },
   fist(c) {
     c.beginPath(); c.roundRect(-26, -18, 52, 44, 12); c.fill();

@@ -166,6 +166,59 @@ async def main():
     from prestige import get_max_level
     check(k.level == get_max_level(k) and getattr(k.equipment.get('wield'), 'rarity', '') == 'legendary' and k.mount,
           f'a gearup gift levels, gears and mounts them on entering the world (level {k.level})')
+    # ---- given part by part: an edit gives only what's new (never re-mounts you)
+    pp = hero('Parts')
+    grants.apply_grants(pp, {'parts': {'mounts': ['griffin'], 'ride': 'griffin'}})
+    await CommandHandler.cmd_dismount(pp, [])
+    lines = grants.apply_grants(pp, {'parts': {'mounts': ['griffin'], 'ride': 'griffin', 'gold': 7}})
+    check(pp.mount is None and lines == ['You are given 7 gold.'], f'adding gold to a gift gives the gold, and leaves them on foot ({lines})')
+    old = hero('Oldgift')
+    gift = {'mounts': ['horse'], 'ride': 'horse'}
+    old.grants_received = [grants.grant_key('Oldgift', gift)]
+    check(grants.apply_grants(old, {'oldgift': gift}) == [] and old.mount is None, 'a gift given whole before is had in every part')
+    check(grants.apply_grants(old, {'oldgift': dict(gift, gold=5)}) == ['You are given 5 gold.'], 'and only a new part is given after')
+    xg = grants.load_grants()['xtc']
+    xr = hero('Xtc')
+    xr.grants_received = [grants.grant_key('Xtc', xg)]
+    check(grants.apply_grants(xr) == [] and xr.mount is None, "XTC's gift, had whole, gives nothing more (no griffin again)")
+
+    # ---- an immortal gift makes the account an admin one (Deckard)
+    from accounts import Account
+    import accounts
+    real_dir = accounts.ACCOUNTS_DIR
+    accounts.ACCOUNTS_DIR = tempfile.mkdtemp()
+    try:
+        dk = hero('Deckard')
+        check(grants.load_grants()['deckard'].get('immortal') is True, 'Deckard is to be immortal')
+        check(grants.apply_grants(dk) == [] and not dk.grants_received, 'with no account yet, nothing is given (or spent)')
+        a = Account('deckard'); a.characters = ['Deckard']; a.save()
+        dk.account_name = 'deckard'
+        lines = grants.apply_grants(dk)
+        check(Account.load('deckard').is_admin and dk.is_immortal and any('immortal' in l for l in lines), f'with one, the account is an admin one ({lines})')
+        check(grants.apply_grants(dk) == [], 'once')
+    finally:
+        accounts.ACCOUNTS_DIR = real_dir
+
+    # ---- mount last: R in /play
+    r = hero('Rlast')
+    await CommandHandler.cmd_mount(r, ['last'])
+    check(r.mount is None and 'own any mounts' in ' '.join(r.connection.sent[-1:]), 'owning none, mount last says so')
+    r.owned_mounts = [{'key': 'horse', 'loyalty': 100}, {'key': 'griffin', 'loyalty': 100}]
+    await CommandHandler.cmd_mount(r, ['last'])
+    check(r.mount and r.mount.key == 'griffin', 'never ridden: mount last takes the fastest')
+    await CommandHandler.cmd_dismount(r, [])
+    await CommandHandler.cmd_mount(r, ['horse'])
+    await CommandHandler.cmd_dismount(r, [])
+    check(r.mount is None and r.last_mount == 'horse', 'dismount gets you down, and it remembers the horse')
+    await CommandHandler.cmd_mount(r, ['last'])
+    check(r.mount and r.mount.key == 'horse', 'mount last: back on the horse')
+    await r.save()
+    check(Player.load('Rlast').last_mount == 'horse', 'the save keeps the mount last ridden')
+    r.explored_rooms = {r.room.vnum}
+    pl = build_map_payload(r).get('player') or {}
+    check(sorted(m['key'] for m in pl.get('mounts', [])) == ['griffin', 'horse'] and pl.get('mount', {}).get('key') == 'horse',
+          f"the payload lists the mounts owned and the one ridden ({pl.get('mounts')})")
+
     imm = hero('Imm')
     real = Player.is_immortal
     Player.is_immortal = property(lambda self: True)

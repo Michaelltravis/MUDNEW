@@ -216,6 +216,7 @@ export function createHud() {
     renderBuffs(Array.isArray(p.affects) ? p.affects : []);
     inventory.update(p);
     character.update(p);
+    paintRiding(p);
     st.cooldowns = p.cooldowns || {};
     st.cdAt = performance.now();
     buildBar(p);
@@ -680,6 +681,7 @@ export function createHud() {
   els.menu.querySelector('[data-act="map"]').addEventListener('click', () => MH.bus.emit('hud.map'));
   els.menu.querySelector('[data-act="who"]').addEventListener('click', () => who.toggle(undefined, me()));
   els.menu.querySelector('[data-act="help"]').addEventListener('click', () => help.toggle());
+  els.menu.querySelector('[data-act="ride"]').addEventListener('click', () => rideToggle());
   for (const [name, win] of Object.entries(PROGRESS)) els.menu.querySelector(`[data-act="${name}"]`).addEventListener('click', () => win.toggle());
   const syncSettings = () => {
     const q = ls.get('mh3d_quality') || 'high', u = ls.get('mh3d_ui') || 'auto';
@@ -787,6 +789,23 @@ export function createHud() {
     if (MH.state.isLoggedIn && /\b(?:you (?:get|receive|take|loot|sell|buy)|there (?:was|were))\b[^\n]*\b(?:gold|coins?)\b/i.test(text || '')) sound.play('coins');
   });
 
+  // ---- riding: R (or the menu's horseshoe, or the chip by your portrait) gets you up or down ----
+  function rideToggle() {
+    const p = MH.state.player || {};
+    if (p.mount) send('dismount');
+    else if ((p.mounts || []).length) send('mount last');
+    else { toast('You own no mount: visit a stable (U)'); return; }
+    setTimeout(() => MH.refreshState && MH.refreshState(), 400);
+  }
+  $('#riding').addEventListener('click', rideToggle);
+  function paintRiding(p) {
+    const ridingEl = $('#riding'), m = p && p.mount;
+    ridingEl.classList.toggle('hidden', !m);
+    if (!m) return;
+    const html = `<img alt="" src="${uiIcon('horseshoe', { size: 32 })}"><span>Riding <b>${esc(m.name)}</b> · R to dismount</span>`;
+    if (ridingEl.innerHTML !== html) ridingEl.innerHTML = html;
+  }
+
   // ---- keys (when not typing) ----
   window.addEventListener('keydown', e => {
     if (e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;
@@ -817,6 +836,7 @@ export function createHud() {
     if (k === 'o' || k === 'O') { els.settings.classList.toggle('hidden'); e.preventDefault(); return; }
     if (k === 'p' || k === 'P') { who.toggle(undefined, me()); e.preventDefault(); return; }
     if (k === 'h' || k === 'H') { help.toggle(); e.preventDefault(); return; }
+    if (k === 'r' || k === 'R') { rideToggle(); e.preventDefault(); return; }
     const PKEYS = { n: 'talents', y: 'almanac', t: 'travel', u: 'stable', b: 'services', g: 'legend' };
     if (PKEYS[k.toLowerCase()]) { PROGRESS[PKEYS[k.toLowerCase()]].toggle(); e.preventDefault(); }
   });

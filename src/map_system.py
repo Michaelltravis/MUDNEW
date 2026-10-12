@@ -684,6 +684,21 @@ def _mount_info(player):
     }
 
 
+def _owned_mounts(player):
+    """The mounts the player owns, [{key, name}] (the hero's right-click menu in /play)."""
+    try:
+        from mounts import MountManager
+    except Exception:
+        return []
+    out = []
+    for m in getattr(player, 'owned_mounts', None) or []:
+        key = m if isinstance(m, str) else (m or {}).get('key')
+        tmpl = MountManager.get_mount_template(key) if key else None
+        if tmpl:
+            out.append({'key': key, 'name': tmpl.get('name', key)})
+    return out
+
+
 def _speed(player):
     """How fast the player travels, a multiple of walking pace (mounts.travel_speed)."""
     try:
@@ -1792,6 +1807,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'aura': _worn_aura(player),
             'look': _look(player),
             'mount': _mount_info(player),
+            'mounts': _owned_mounts(player),
             'speed': _speed(player),          # the 3D hero runs this much faster (Push 34)
             'position': getattr(player, 'position', 'standing'),
             'autoloot': bool(getattr(player, 'autoloot', False)),

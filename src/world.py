@@ -1086,8 +1086,14 @@ class World:
                     self.npcs.append(companion)
                     logger.info(f"Spawned companion: {companion.name} for {player.name}")
 
-        # a one-time gift given at load (grants.py): tell them, once they can hear it
-        notes = player.__dict__.pop('_grant_notes', None)
+        # a one-time gift given at load (grants.py): tell them, once they can hear it; a character
+        # made just now (or whose account came after the load) is given theirs here
+        notes = list(player.__dict__.pop('_grant_notes', None) or [])
+        try:
+            import grants
+            notes += grants.apply_grants(player)
+        except Exception:
+            logger.exception('grants')
         if notes:
             c = Config().COLORS
             for line in notes:

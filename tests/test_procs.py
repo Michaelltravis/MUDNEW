@@ -98,6 +98,36 @@ async def main():
         await procs.on_hit(h, a, h.equipment['wield'])
     check(a.hp == cd_hp, 'a proc waits out its cooldown before it fires again')
 
+    # ---- a proc's killing blow is a death like any other (it once left the creature standing
+    # at 0 hp with no corpse: the gate guardian at the Castle of the Apocalypse)
+    k = hero('Finisher')
+    k.equipment['wield'] = create_legendary(99002, world)
+    v1, v2 = foe(name='a gate guardian'), foe(name='a second guardian')
+    fight(k, v1)
+    v2.fighting = k
+    v1.hp, v2.hp = 1, 1
+    with Always():
+        await procs.on_hit(k, v1, k.equipment['wield'])
+    for v, what in ((v1, 'the target'), (v2, 'a foe the chain reaches')):
+        check(v.hp <= 0 and v not in room.characters, f'{what} a proc kills leaves the room')
+        check(any(getattr(o, 'name', '') == f'corpse of {v.name}' for o in room.items), f'{what} leaves a corpse')
+    # a death whose rewards fail part-way still ends: corpse, out of the room, fight over
+    from combat import CombatHandler
+    v3 = foe(name='a stubborn guardian')
+    fight(k, v3)
+    real_gain = Player.gain_exp
+    async def broken(self, *a, **kw):
+        raise RuntimeError('rewards broke')
+    Player.gain_exp = broken
+    logging.disable(logging.CRITICAL)
+    try:
+        await v3.take_damage(v3.hp + 10, k)
+    finally:
+        Player.gain_exp = real_gain
+        logging.disable(logging.WARNING)
+    check(v3 not in room.characters and k.fighting is None, 'a death whose rewards fail still takes the creature away and ends the fight')
+    check(any(getattr(o, 'name', '') == 'corpse of a stubborn guardian' for o in room.items), 'and leaves its corpse')
+
     # every weapon blow can proc: the main swing, an extra swing, the off-hand
     fired = []
     real_on_hit = procs.on_hit

@@ -52,6 +52,7 @@ async function waitFor(page, fn, arg, secs = 60) {
 (async () => {
   const browser = await chromium.launch({ args: ['--use-gl=swiftshader', '--enable-webgl', '--ignore-gpu-blocklist', '--enable-unsafe-swiftshader'] });
   const page = await (await browser.newContext({ viewport: { width: 960, height: 540 } })).newPage();
+  page.setDefaultTimeout(120000);
   const errors = [];
   page.on('pageerror', e => errors.push(String(e).slice(0, 300)));
   if (MODE === 'stairs') {
@@ -152,6 +153,78 @@ async function waitFor(page, fn, arg, secs = 60) {
     // leave it as the zone keeps it
     await page.evaluate(() => { for (const c of ['oload 2500', 'unlock north', 'open north', 'drop key', 'drop key', 'drop key', 'purge']) MH.sendCommand(c, false); });
     await sleep(2000);
+  }
+
+  if (MODE === 'guardian') {
+    // two gate guardians of one name at the castle door: one dies, it goes (and leaves a corpse)
+    check(await goto(22001), 'on the Pathway To The Lost Castle (22001)');
+    await page.evaluate(() => MH.sendCommand('mpeace', false));
+    const ents = () => page.evaluate(() => [...MH3D.ents.list.values()].filter(e => e.kind === 'mob')
+      .map(e => ({ key: e.key, name: e.data.name, hp: e.data.hp, maxHp: e.data.maxHp, vnum: e.vnum })));
+    console.log('before', JSON.stringify(await ents()));
+    await page.evaluate(() => MH.sendCommand('slay guardian', false));
+    await sleep(4000);
+    const after = await ents();
+    console.log('after', JSON.stringify(after));
+    check(after.filter(e => /guardian/.test(e.name)).length === 1, 'one guardian left');
+    const items = await page.evaluate(() => (MH.state && MH.state.nearby || []).flatMap(r => (r.items || []).map(i => i.name)));
+    console.log('items', JSON.stringify(items));
+    await page.screenshot({ path: path.join(OUT, 'guardian.png') });
+  }
+
+  if (MODE === 'guardfight') {
+    // a real fight with the gate guardians (worn down first): each one that dies leaves the view
+    check(await goto(22001), 'on the Pathway To The Lost Castle (22001)');
+    const me = CFG.character.name.toLowerCase();
+    await page.evaluate(me => { for (const c of [`set ${me} maxhp 200000`, `set ${me} hp 200000`, 'set 1.guardian hp 400', 'set 2.guardian hp 400']) MH.sendCommand(c, false); }, me);
+    await sleep(1500);
+    const mobs = () => page.evaluate(() => [...MH3D.ents.list.values()].filter(e => e.kind === 'mob' && e.vnum === 22001)
+      .map(e => ({ key: e.key, name: e.data.name, hp: e.data.hp, maxHp: e.data.maxHp })));
+    console.log('start', JSON.stringify(await mobs()));
+    await page.evaluate(() => MH.sendCommand('kill guardian', false));
+    for (let i = 0; i < 40; i++) {
+      await page.keyboard.press('f');
+      await sleep(1000);
+      const left = await mobs();
+      if (i % 5 === 0) console.log(i, JSON.stringify(left));
+      if (!left.some(m => /gate guardian/.test(m.name))) break;
+    }
+    await sleep(3000);
+    const end = await mobs();
+    console.log('end', JSON.stringify(end));
+    const tgt = await page.evaluate(() => { const f = document.getElementById('target-frame') || document.querySelector('.target-frame'); return f && !f.classList.contains('hidden') ? f.textContent.replace(/\s+/g, ' ') : null; });
+    console.log('target frame', tgt);
+    check(!end.some(m => /gate guardian/.test(m.name)), 'both guardians gone from view once dead');
+    await page.screenshot({ path: path.join(OUT, 'guardfight.png') });
+    await page.evaluate(me => MH.sendCommand(`restore ${me}`, false), me);
+  }
+
+  if (MODE === 'castle') {
+    // the Castle of the Apocalypse's front door (22001 south, closed) from the Tunnel of Sticks
+    check(await goto(22001), 'on the Pathway To The Lost Castle (22001)');
+    await page.evaluate(() => MH.sendCommand('close south', false));
+    await waitFor(page, () => MH3D.heroRoom().doors.south && MH3D.heroRoom().doors.south.closed, null, 20);
+    const info = await page.evaluate(() => {
+      const r = MH3D.heroRoom();
+      return { exits: r.data.exits, door: r.doors.south, built: !!(r.built && r.built.doors && r.built.doors.south) };
+    });
+    console.log(JSON.stringify(info));
+    await page.screenshot({ path: path.join(OUT, 'castle-door.png') });
+    // walk at the door
+    await page.keyboard.down('s');
+    await sleep(2500);
+    await page.keyboard.up('s');
+    const text = await page.evaluate(() => !document.getElementById('prompt').classList.contains('hidden') && document.querySelector('#prompt span').textContent);
+    check(/open/i.test(text || ''), `walking at it prompts: "${text}"`);
+    await page.screenshot({ path: path.join(OUT, 'castle-prompt.png') });
+    await page.keyboard.press('e');
+    const opened = await waitFor(page, () => MH3D.heroRoom().doors.south && !MH3D.heroRoom().doors.south.closed, null, 20);
+    check(opened, 'E opens it');
+    await page.keyboard.down('s');
+    const inside = await waitFor(page, () => MH3D.heroRoom().vnum === 14102, null, 15);
+    await page.keyboard.up('s');
+    check(inside, `walking on goes in (${await page.evaluate(() => MH3D.heroRoom().vnum)})`);
+    await page.screenshot({ path: path.join(OUT, 'castle-in.png') });
   }
 
   if (MODE === 'camera') {
