@@ -18499,6 +18499,8 @@ class CommandHandler:
         
         await target.send(f"{c['bright_magenta']}You feel yourself yanked through space!{c['reset']}")
         await target_room.show_to(target)
+        if hasattr(target, 'sync_room'):
+            await target.sync_room()      # their 3D client follows them
         await target_room.send_to_room(
             f"{c['bright_magenta']}{target.name} appears in a flash of light!{c['reset']}",
             exclude=[target]

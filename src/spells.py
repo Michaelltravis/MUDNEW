@@ -3564,6 +3564,8 @@ class SpellHandler:
                 caster.room = temple
                 temple.characters.append(caster)
                 await caster.do_look([])
+                if hasattr(caster, 'sync_room'):
+                    await caster.sync_room()          # the 3D client follows
                 
         elif special == 'teleport':
             # Random teleport (dangerous!), but never into a room the caster may not be in
@@ -3577,6 +3579,8 @@ class SpellHandler:
                 new_room.characters.append(caster)
                 await caster.send(f"{c['bright_cyan']}You materialize in a new location!{c['reset']}")
                 await caster.do_look([])
+                if hasattr(caster, 'sync_room'):
+                    await caster.sync_room()          # the 3D client follows
                 
         elif special == 'fear':
             # Make target flee
@@ -3918,6 +3922,8 @@ class SpellHandler:
 
             await target_player.send(f"{c['bright_yellow']}You are summoned!{c['reset']}")
             await target_player.do_look([])
+            if hasattr(target_player, 'sync_room'):
+                await target_player.sync_room()
 
             await caster.room.send_to_room(
                 f"{target_player.name} appears in a flash of light!",

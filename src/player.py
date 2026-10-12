@@ -1765,6 +1765,22 @@ class Player(Character):
         """Execute a player command."""
         from commands import CommandHandler
         await CommandHandler.execute(self, cmd, args)
+        await self.sync_room()
+
+    async def sync_room(self):
+        """After anything that may have moved this player (a teleport, a portal, recall,
+        being summoned...): if the 3D client last saw them elsewhere, chart the room and
+        send it the new one. Walks already do this; this catches every other way."""
+        room = getattr(self, 'room', None)
+        wm = getattr(getattr(self, 'world', None), 'web_map', None)
+        if room is None or wm is None or getattr(self, '_web_last_vnum', None) == room.vnum:
+            return
+        try:
+            if getattr(self, 'explored_rooms', None) is not None:
+                self.explored_rooms.add(room.vnum)
+            await wm.notify_player(self)
+        except Exception:
+            logger.debug('sync_room failed', exc_info=True)
         
     async def do_look(self, args: List[str]):
         """Look at the room or an object."""
