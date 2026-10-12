@@ -32,6 +32,7 @@ import textwrap
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (ATLAS_DIR, OUT_DIR, PRE_RELAY_REV, ROOT, SECTOR, UNDER, ZONES_DIR, likeness,  # noqa: E402
                     load_atlas, load_overrides, load_world)
+import buildout  # noqa: E402
 import connect  # noqa: E402
 
 OPP = {'north': 'south', 'south': 'north', 'east': 'west', 'west': 'east', 'up': 'down', 'down': 'up'}
@@ -417,6 +418,8 @@ def build(write=False):
         if r.pop('_needs_placeholder', False) or not (r.get('description') or '').strip():
             r['description'] = placeholder(r, r.get('sector_type', 'inside'), v, None)
             r['placeholder'] = True
+    # the build-out: hand-written rooms, creatures and items (world/buildout, tools/atlas/buildout.py)
+    built = buildout.apply(new_zones, new_rooms, write=write)
     for v, r in new_rooms.items():
         z = r.pop('_zone')
         r.pop('_annex', None)
@@ -432,6 +435,7 @@ def build(write=False):
         'placeholders': sum(1 for r in new_rooms.values() if r.get('placeholder')),
         'connections added': len(added), 'still cut off': len(cut), 'renumbered': len(renumber),
         'hookups': len(hooked), 'annex ways': len(attach_ways), **notes,
+        **{f'build-out {k}': n for k, n in built.items()},
     }
     if write:
         old_files = set(glob.glob(os.path.join(ZONES_DIR, 'zone_*.json')))

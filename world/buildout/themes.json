@@ -1,0 +1,126 @@
+{
+ "_about": "The build-out's bible: what each connector zone is, its mood, the levels of what lives there, and ideas for its creatures and items. Writers work from these (tools/atlas/briefs.py); nothing here is read by the game.",
+ "world": "The realm is Misthollow. Its heart is Garathorm, a walled city (Garathorm Inner City) whose Temple is where every journey starts. Roads run out from its gates across plains, forests and hills to New Thalos and old Thalos in the east, Port Halyon on the Sea of Storms, the Dwarven Kingdom under the mountains, Haon-Dor's dark wood, and lands still uncharted (sealed until built). The tone is classic fantasy with a weathered, lived-in feel: old roads, older ruins, honest folk, and things in the dark.",
+ "zones": {
+  "408": {
+   "name": "Trade Road",
+   "levels": [3, 30],
+   "theme": "The web of roads that binds Garathorm to the realm, and the country they cross. Next to the city lie Garathorm's outer streets (Danozi Avenue, Pasocaoa Boulevard, Stonewalk Way, Esh Road, Shokogya Street and the Trade Road itself): a busy merchant town outside the walls, named for the traders from the east who built it, with homes, a brewery and a leatherworker. The King's Road runs past the Great Field and Welmar's Castle into the Radiant Forest, a wood of pale gold leaves where the light seems to linger (the Path of Light runs through it), and on into the Old Forest and the gloomier Trail of Shadows toward the elven lands of Elvandar and the King's Forest. North and east the Birch Woods and the Meadow Thrithing, a long grass meadow, lead down to the shore of the Long Lake and a rangers' camp. The open Plains and the Never Ending Plains roll away past a ruined road and the Gate of Kashmir. The Caravan Road and the Old Temple Road run through the farm village of Hommlet, its Church of Helver and its craftsmen; the Dusty Road runs through a small village near Salem's Lot; a muddy path leads to the Dead Marshes; the Black Woods are dark and close; vineyards lie by the Great Field.",
+   "mood": "Busy and safe by the city (carts, travellers, the watch), pastoral on the plains and meadows, golden and calm in the Radiant Forest, wild and uneasy in the Old Forest, the Trail of Shadows and the Black Woods.",
+   "creatures": "Low levels (3-10) by the city and on the plains: stray dogs, pickpockets, field hares, wild boar. Middling (10-20) in the forests and meadows: wolves, highwaymen, giant spiders, bears. Higher (20-30) in the Black Woods, on the Trail of Shadows and far out on the Never Ending Plains: dire wolves, outlaw captains, wraiths, a wandering ogre. Nothing hostile in the outer streets.",
+   "items": "Things travellers and bandits carry: a highwayman's short sword, a waymark charm, a ranger's cloak, wolf pelts to sell, trail rations."
+  },
+  "50": {
+   "name": "Great Eastern Desert",
+   "levels": [5, 28],
+   "theme": "Despite the name, this stretch is the desert's hidden water: a river that runs out of the eastern sands into a gorge, rapids, a river bend and a lake, then under the mountain as the Dark River through caves, tunnels and an underground lake. Deep inside are fungus patches and a Fungus Temple of the myconids, a cave-in, a wind-swept ledge and a mysterious lair. It joins the Trade Road, Garathorm, New Thalos, the Sea of Storms, the Plains, Drow City, the Dragon's Domain and the sunken ruins of Atal'narath.",
+   "mood": "Sun-bleached rock and fast brown water outside; cool, dripping, echoing dark inside; strange and fungal at its heart.",
+   "creatures": "River and cave life (5-15): river crabs, cave bats, giant frogs, blind cave fish shoals, kobold scavengers. Deeper (15-28): myconid sentries (the myconids are already here), cave trolls, rock lurkers.",
+   "items": "Glowing fungus caps, a river-smoothed stone charm, a spelunker's lantern, a myconid spore-pouch."
+  },
+  "60": {
+   "name": "Plains",
+   "levels": [1, 38],
+   "theme": "The country west of Garathorm: open plains, the deep dark forest of Miden'nir with its narrow trails, junctions and dead ends, a swift river running to a delta, a beach head and a pier, and the island of Minos with its seven Trials. It already has many of our creatures (goblins, rabbits, squirrels, foxes, wolves, wyverns).",
+   "mood": "Open and windy on the plains, dense and shadowed under the trees, salt and reeds at the delta, solemn at the Trials of Minos.",
+   "creatures": "Top up only: river otters, herons and marsh snakes at the delta and river (3-10), a goblin scout band in the deep forest (8-14).",
+   "items": "A heron feather, a goblin's notched dagger, an otter-skin pouch."
+  },
+  "40": {
+   "name": "Mountain Range",
+   "levels": [3, 25],
+   "theme": "Moria's surface and the foothills around it: mountain trails, cliffs and chasms, an illuminated ravine, western foothills and a copse of trees, and a warren of tunnels and caves underneath (the Golden Cave, the Light Cave, the Large Cave, a maze, a shortcut, a secret tunnel and chamber, the Hill Giant Cave). It already has kobolds, orcs, snakes, hobgoblins, a mountain lion and a hill giant.",
+   "mood": "Thin cold air and long views above; close, dripping, echoing dark below.",
+   "creatures": "Top up only: mountain goats and hawks on the trails (3-8), a cave bear and rock spiders in the caves (12-20).",
+   "items": "A miner's pick, goat-horn trinket, a hawk-feather fletching kit."
+  },
+  "435": {
+   "name": "MiNar I",
+   "levels": [5, 15],
+   "theme": "The Great Forest of MiNar, a vast old-growth wilderness, with the Grasslands around it and the country just outside its eaves; Wilderness Way crosses it, and an obscure path or two. In its depths: Farrot's Nest, the Warrior's Grove, a big tree, the lounge of two retired adventurers (Mortis and Sojat) and the Rahn Mercenary Camp where swords are hired. It joins the Plains, the Tunnel of Sticks and Mira Retrum II.",
+   "mood": "Enormous, quiet and green under the canopy, every stretch subtly different (mossy, fern-choked, sun-dappled, root-tangled, misty); the grasslands are wide, windy and bright.",
+   "creatures": "Forest life (5-15): stags and does, boar, timber wolves, owlbears, giant forest spiders, woodland sprites; on the grasslands: wild horses, prairie wolves, hawks; at the mercenary camp: Rahn mercenaries (not hostile).",
+   "items": "Antler-handled knife, mercenary's leather jerkin, owlbear claw, a sprig of MiNar heartwood."
+  },
+  "61": {
+   "name": "Haon-Dor (Dark)",
+   "levels": [8, 20],
+   "theme": "The dark heart of Haon-Dor: a spider queen's den, a great web, a tree, an underground hallway and a cultist temple. Its rooms are already written; it needs only a few items for the spiders and cultists it holds (Isha the dark elf, the elder druid, the queen spider).",
+   "mood": "Sticky webs, rot and whispering darkness.",
+   "creatures": "None new.",
+   "items": "Spider silk, a venom sac, a cultist's black candle, the queen spider's fang."
+  },
+  "120": {
+   "name": "Sea of Storms",
+   "levels": [3, 34],
+   "theme": "The great eastern sea and the coast around Port Halyon. The open Sea of Storms and its ocean currents (cross-currents, a sharp turn, around an island), the shoreline, a canal and the docks; Port Halyon's waterfront (River Avenue, Wharf Avenue, a warehouse and its basement, the Capitol's records rooms and the dock master's office); a stretch of the Great Eastern Desert with a small oasis, a nomad camp and camels; and, above the port, a darker quarter: Vice Hill, the Tarry Tunnels (a waiting room, an outlay, a screening room, a torture chamber), the Trail of Terror and the Temple of Terror (blindingly lit halls, a hall of wax, the high priest's office), the Building of Fear (creepy halls, a wailing tower, a trophy room), and the ruins of Dim Carcosa with its black building, the green stairs of faith and rooms of death. It already has the people of Port Halyon (citizens, gladiators, gateguards, dervishes).",
+   "mood": "Salt wind, gulls and rope on the waterfront; heaving grey water at sea; heat and glare in the desert; dread, wax and incense in the terror quarter; ancient silence in Carcosa.",
+   "creatures": "Top up: gulls, crabs and sea snakes on the shore and docks (3-10), sharks and a sea serpent at sea (15-30), dune scorpions and desert raiders in the desert (10-20), cultists of terror and wax effigies in the terror quarter (20-30), shades in Carcosa (25-34).",
+   "items": "Sailor's knife, sharkskin boots, a cultist's terror mask, a Carcosan coin, a nomad's water flask."
+  },
+  "441": {
+   "name": "King's Forest",
+   "levels": [6, 16],
+   "theme": "A small hilly wood off the King's Road: a rocky path, a barrow mound, a stone ledge, a cave, an old well and a badger's burrow, and someone's hiding place.",
+   "mood": "Quiet, old and a little eerie around the barrow.",
+   "creatures": "Badgers and foxes (6-10), a barrow wight (14-16), a poacher in hiding (10-12).",
+   "items": "A barrow-blade, a poacher's snare, a tarnished grave-ring."
+  },
+  "448": {
+   "name": "Mira Retrum I",
+   "levels": [1, 8],
+   "theme": "A wide, calm inland sea south of the Plains, bordered by white sand beaches and the Southern Ocean beyond, with Leper Island's beach offshore and the mouth of Quickstream. Mostly open water: a boat or a raft is needed.",
+   "mood": "Bright, shallow, gentle; sunlit swells, drifting weed and sea birds; lonely far out.",
+   "creatures": "Easy sea life (1-8): gulls, jellyfish, sand crabs on the beaches, a playful seal, a giant clam.",
+   "items": "A pearl, a conch shell horn, a crab-shell buckler, dried seaweed."
+  },
+  "66": {
+   "name": "Northern Wilderness",
+   "levels": [3, 20],
+   "theme": "The cold north beyond the Trade Road: open tundra and taiga, mountains, a narrow crack in a glacier, icy slopes, an ice bridge, a cave and a cabin. It joins the Goblin Warrens, the Great Northern Forest, the Winterwood, the Eastern Highlands, Mount Ravenmist and the sealed Cave Elf Kingdom. It already has bandits, deer, wolves, a bear and a travelling merchant.",
+   "mood": "Bitter wind, endless white and grey, the creak of ice.",
+   "creatures": "Top up: snow hares and arctic foxes (3-8), a frost wolf pack and a yeti (12-20).",
+   "items": "Fur-lined boots, a yeti's pelt, a bone ice-pick."
+  },
+  "451": {
+   "name": "Mira Retrum II",
+   "levels": [6, 16],
+   "theme": "The colder southern and south-eastern reaches of Mira Retrum, among drifting icebergs and narrow straits, around Cape Voogk to a quiet bay beyond an ice wall and an ocean cave; it touches the shore of the Great Forest of MiNar and the sealed Submerged Temple. A boat or a raft is needed.",
+   "mood": "Grey, cold and vast; ice groaning, mist on the water, seals barking from floes.",
+   "creatures": "Seals and penguins on the floes (6-9), ice crabs, a killer whale and frost sea-serpent further out (12-16).",
+   "items": "Walrus-ivory charm, sealskin cloak, a frost-pearl."
+  },
+  "472": {
+   "name": "Mount Ravenmist",
+   "levels": [15, 25],
+   "theme": "A tall, mist-wrapped mountain north of the realm: long mountain paths, the Crescent Cliffs, a tall tower wall (the Outcast Fortress is near), a dark cave, the mountain top and a great view. It joins the Northern Wilderness, the Outcast Fortress, the Dwarven Kingdom and sealed lands (the World of Chaos, the Fire Grotto, a stone circle).",
+   "mood": "Ravens wheeling in grey mist, wet black rock, sudden dizzy views when the mist parts.",
+   "creatures": "Giant ravens, mountain trolls, rock wyverns, outcast scouts (15-25).",
+   "items": "A raven-feather cloak, a troll-hide belt, an outcast's crossbow."
+  },
+  "415": {
+   "name": "Quickstream",
+   "levels": [5, 12],
+   "theme": "A fast ocean current that runs out of Mira Retrum into the Southern Ocean, past Cape Voogk, and fades away to the east. You ride it in a boat; it carries you along.",
+   "mood": "Speed, spray and the roar of moving water; then calm as it fades.",
+   "creatures": "Flying fish and a stray shark following boats (5-12).",
+   "items": "A flying-fish fin charm."
+  },
+  "521": {
+   "name": "The Winterwood",
+   "levels": [7, 17],
+   "theme": "A snowbound pine forest beyond the Northern Wilderness, running to a glacier's end and the sealed Winterlands: paths through the trees, clusters of trees, small caves, a narrow mountain path and a rocky northern outlook.",
+   "mood": "Hushed snow, black pine, cold stars; beautiful and dangerous.",
+   "creatures": "Snow owls and white stags (7-11), winter wolves and a frost troll (13-17).",
+   "items": "A white stag's antler, a frost-wolf pelt cloak, a pinewood bow."
+  },
+  "471": {
+   "name": "Badlands II",
+   "levels": [6, 16],
+   "theme": "Bleak, broken country east of the Trade Road: the Black Hills, desolate plains crossed by the Old Gravel Road, the haunted Spirit Wood with a forest lodge, the Canyon of Khel-zaram, the Hill of the Hanged Man, the Bridge of Death and a sundered bridge, a rickety rope bridge over a ravine, the icy claw of Malebranche, the dark pillars, and Durgar's Gate, the doors to the Dwarven Kingdom of Aredrel. The dark castle of Ostragoth and a draconian camp lie beyond (sealed).",
+   "mood": "Grey, wind-scoured and grim; ghosts in the Spirit Wood; vertigo on the bridges.",
+   "creatures": "Carrion crows and badland jackals (6-10), gnolls and a hill troll on the plains (10-14), restless spirits and a hanged man's ghost in the Spirit Wood (12-16).",
+   "items": "A gnoll's flail, a hangman's rope token, a lodge-keeper's lantern, spirit-ash."
+  }
+ }
+}
