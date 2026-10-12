@@ -347,6 +347,8 @@ def apply(new_zones, new_rooms, write=False):
                 continue
             r['description'] = textwrap.fill(' '.join(text.split()), 72)
             r.pop('placeholder', None)
+            # what was looked at in the old text goes with it (the writer's own extras follow)
+            r['extra_descs'] = {}
             summary['rooms written'] += 1
         for k, xs in (part.get('extras') or {}).items():
             r = new_rooms.get(int(k))
