@@ -3566,8 +3566,9 @@ class SpellHandler:
                 await caster.do_look([])
                 
         elif special == 'teleport':
-            # Random teleport (dangerous!)
-            rooms = list(caster.world.rooms.values())
+            # Random teleport (dangerous!), but never into a room the caster may not be in
+            # (the God Rooms, a land sealed until built)
+            rooms = [r for r in caster.world.rooms.values() if r.admits(caster)]
             if rooms:
                 new_room = random.choice(rooms)
                 if caster.room:
@@ -3892,6 +3893,10 @@ class SpellHandler:
             # Check if target can be summoned (no summon protection, not in combat)
             if target_player.is_fighting:
                 await caster.send(f"{c['red']}{target_player.name} is fighting and cannot be summoned!{c['reset']}")
+                return
+            # nor into a room they may not be in (the God Rooms, a sealed land)
+            if not caster.room or not caster.room.admits(target_player):
+                await caster.send(f"{c['red']}A divine force will not let {target_player.name} be brought here.{c['reset']}")
                 return
 
             # Move player

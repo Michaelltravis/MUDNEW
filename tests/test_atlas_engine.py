@@ -180,6 +180,93 @@ async def main():
         check(3203 in swimmer, f'one that lives on it does ({swimmer})')
     finally:
         Config.WATER_NEEDS_BOAT = True
+
+    # ---- the God Rooms take immortals only (and nobody mortal is put where they may not be)
+    import random as _random
+    from spells import SpellHandler
+    from quests import route_dirs
+    temple, god = world.rooms[3001], world.rooms[1200]
+    gods = [world.rooms[v] for v in (1200, 1201, 1203, 1204)]
+    check(all('imm_only' in r.flags for r in gods), 'the God Rooms are for immortals only')
+
+    def put(ch, room):
+        if ch.room is not None and ch in ch.room.characters:
+            ch.room.characters.remove(ch)
+        ch.room = room
+        room.characters.append(ch)
+    put(hero, temple)
+    await CommandHandler.cmd_move(hero, 'up')
+    check(hero.room is temple and 'divine force' in said(hero), f'a mortal is turned back at the stairs ({said(hero, 1)[:80]})')
+    lead = Player.create_new(name='Godtest', password=None, race='human', char_class='cleric',
+                             stats={s: 13 for s in ('str', 'int', 'wis', 'dex', 'con', 'cha')}, world=world)
+    lead.connection = Conn()
+    lead.position = 'standing'
+    lead.move = lead.max_move = 500
+    lead._test_imm = True
+    put(lead, temple)
+    hero.following = lead
+    await CommandHandler.cmd_move(lead, 'up')
+    check(lead.room is god, 'an immortal walks up into the God Rooms')
+    check(hero.room is temple and 'keeps you from following' in said(hero), 'a mortal following them stays behind')
+    hero.following = None
+    # summoning a mortal up there fails; the teleport spell never lands there, nor in a sealed land
+    world.players['sealtest'] = hero
+    try:
+        await SpellHandler.handle_special_spell(lead, 'Sealtest', {'special': 'summon_player'})
+        check(hero.room is temple and 'divine force' in said(lead), f'a mortal cannot be summoned into them ({said(lead, 1)[:80]})')
+    finally:
+        world.players.pop('sealtest', None)
+    seen = []
+    real_choice = _random.choice
+
+    def pick(seq):
+        seen.append(seq)
+        return real_choice(seq)
+    _random.choice = pick
+    try:
+        await SpellHandler.handle_special_spell(hero, None, {'special': 'teleport'})
+    finally:
+        _random.choice = real_choice
+    pool = next((s for s in seen if s and hasattr(s[0], 'vnum')), [])
+    check(pool and not any('imm_only' in r.flags or getattr(r.zone, 'sealed', False) for r in pool)
+          and len(pool) < len(world.rooms), f'the teleport spell never lands in the God Rooms or a sealed land ({len(pool)} rooms)')
+    # a mortal saved up there, or with a recall point there, comes back at the temple
+    put(hero, world.rooms[3005])
+    hero.room_vnum, hero.recall_point = 1204, 1204
+    check(world.login_room(hero) is temple and hero.recall_room() is temple, 'logging in or recalling there sends a mortal to the temple')
+    await CommandHandler.cmd_recall(hero, [])
+    check(hero.room is temple, 'and recall takes them there')
+    put(hero, god)
+    await CommandHandler.cmd_recall(hero, ['set'])
+    check(hero.recall_point == 1204 and 'cannot set your recall point' in said(hero), 'a mortal cannot bind there')
+    hero.recall_point = 3001
+    lead.room_vnum = 1204
+    check(world.login_room(lead) is world.rooms[1204], 'an immortal comes back where they left')
+    put(hero, temple)
+    # creatures keep out; mortals' directions never go through
+    from bosses import create_mob_from_prototype
+    proto = next(p for p in world.mob_prototypes.values() if not p.get('boss_config') and 'sentinel' not in str(p.get('flags')))
+    mob = create_mob_from_prototype(dict(proto), world)
+    mob.flags = set(f for f in mob.flags if f != 'sentinel')
+    mob.home_zone, mob.home_room = None, world.rooms[1204]
+    offered = []
+
+    def offer(seq):
+        offered.append(sorted(r.vnum for _, r in seq))
+        return real_choice(seq)
+    put(mob, world.rooms[1204])
+    real_randint = _random.randint
+    _random.randint, _random.choice = (lambda a, b: a), offer
+    try:
+        await mob.wander_ai()
+    finally:
+        _random.randint, _random.choice = real_randint, real_choice
+    if mob in mob.room.characters:
+        mob.room.characters.remove(mob)
+    check(offered and not any(v in (1200, 1201, 1203, 1204) for v in offered[0]),
+          f'a wandering creature never steps into a God Room ({offered[:1]})')
+    way = route_dirs(world, 3001, 1826) or []
+    check(way and way[0] != 'up' and len(way) > 4, f'directions never lead mortals through them ({len(way)} steps to the Long Lake)')
     Player.is_immortal = real_immortal
     check(Config().WATER_NEEDS_BOAT is True, 'the water rule is on with the re-laid world')
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")

@@ -25,6 +25,7 @@ def zone_of(room):
 
 
 WATER_SECTORS = ('water_swim', 'water_noswim', 'water_surface')
+KEEP_OUT = {'no_mob', 'imm_only'}     # rooms creatures never step into (no creatures; the God Rooms)
 
 logger = logging.getLogger('Misthollow.Mobs')
 
@@ -501,7 +502,7 @@ class Mobile(Character):
             if 'sentinel' not in self.flags and self.room and track_target.room and track_target.room != self.room:
                 # If target is in adjacent room, move there
                 for direction, exit_data in self.room.exits.items():
-                    if exit_data and exit_data.get('room') == track_target.room:
+                    if exit_data and exit_data.get('room') == track_target.room and not (KEEP_OUT & track_target.room.flags):
                         old_room = self.room
                         await old_room.send_to_room(f"{self.name} slips {direction}, tracking a scent.")
                         if self in old_room.characters:
@@ -734,8 +735,8 @@ class Mobile(Character):
                         else:
                             continue  # Regular mobs blocked by closed doors
                 
-                # Don't enter no_mob rooms
-                if 'no_mob' in next_room.flags:
+                # Don't enter no_mob rooms (nor the God Rooms)
+                if KEEP_OUT & next_room.flags:
                     continue
                 
                 # Check zone boundaries (unless boss)
@@ -774,8 +775,8 @@ class Mobile(Character):
             if target_zone != self.home_zone:
                 return False
         
-        # Don't enter no_mob rooms
-        if 'no_mob' in target_room.flags:
+        # Don't enter no_mob rooms (nor the God Rooms)
+        if KEEP_OUT & target_room.flags:
             return False
         
         # Check for closed doors
@@ -973,8 +974,8 @@ class Mobile(Character):
                     if door.get('state') == 'closed':
                         continue
                 target_room = exit_data['room']
-                # Don't wander into no_mob rooms
-                if 'no_mob' in target_room.flags:
+                # Don't wander into no_mob rooms (nor the God Rooms)
+                if KEEP_OUT & target_room.flags:
                     continue
                 # Don't wander out of home zone (unless no home zone set)
                 if self.home_zone is not None:
@@ -1344,7 +1345,7 @@ class Mobile(Character):
         for d, e in self.room.exits.items():
             if not e or not e.get('room'):
                 continue
-            if 'no_mob' in e['room'].flags:
+            if KEEP_OUT & e['room'].flags:
                 continue
             # Don't flee through closed doors
             if 'door' in e and e['door'].get('state') == 'closed':

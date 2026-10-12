@@ -1717,7 +1717,7 @@ def route_dirs(world, start: int, goal: int) -> Optional[List[str]]:
             if not isinstance(ex, dict) or ex.get('hidden') or doors.is_seal(ex.get('door')):
                 continue
             t = ex.get('to_room')
-            if t not in rooms or t in prev:
+            if t not in rooms or t in prev or 'imm_only' in rooms[t].flags:    # (not through the God Rooms)
                 continue
             if Config.WATER_NEEDS_BOAT and rooms[t].sector_type in wet and room.sector_type not in wet:
                 continue

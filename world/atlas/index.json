@@ -170,9 +170,9 @@
    "zone": 12,
    "atlas_area": 33,
    "status": "similar",
-   "state": "open",
+   "state": "immortals only",
    "rooms": 4,
-   "steps_from_temple": 1,
+   "steps_from_temple": null,
    "terrain": [
     [
      "inside",
@@ -237,7 +237,7 @@
    "status": "ours (off the atlas)",
    "state": "open",
    "rooms": 41,
-   "steps_from_temple": 32,
+   "steps_from_temple": 33,
    "terrain": [
     [
      "inside",
@@ -1157,7 +1157,7 @@
    "status": "matched",
    "state": "open",
    "rooms": 100,
-   "steps_from_temple": 21,
+   "steps_from_temple": 24,
    "terrain": [
     [
      "inside",
@@ -1281,7 +1281,7 @@
    "status": "matched",
    "state": "open",
    "rooms": 49,
-   "steps_from_temple": 30,
+   "steps_from_temple": 31,
    "terrain": [
     [
      "city",
@@ -1325,7 +1325,7 @@
    "status": "matched",
    "state": "open",
    "rooms": 59,
-   "steps_from_temple": 33,
+   "steps_from_temple": 34,
    "terrain": [
     [
      "inside",
@@ -1391,7 +1391,7 @@
    "status": "ours (off the atlas)",
    "state": "open",
    "rooms": 285,
-   "steps_from_temple": 21,
+   "steps_from_temple": 22,
    "terrain": [
     [
      "inside",
@@ -2576,7 +2576,7 @@
    "status": "ours (off the atlas)",
    "state": "open",
    "rooms": 5,
-   "steps_from_temple": 36,
+   "steps_from_temple": 37,
    "terrain": [
     [
      "flying",
@@ -2799,7 +2799,7 @@
    "status": "matched",
    "state": "open (connector)",
    "rooms": 350,
-   "steps_from_temple": 3,
+   "steps_from_temple": 26,
    "terrain": [
     [
      "inside",
@@ -3511,7 +3511,7 @@
    "status": "ours (off the atlas)",
    "state": "open",
    "rooms": 26,
-   "steps_from_temple": 37,
+   "steps_from_temple": 38,
    "terrain": [
     [
      "planar",
@@ -4287,7 +4287,7 @@
    "status": "ours (off the atlas)",
    "state": "open",
    "rooms": 19,
-   "steps_from_temple": 51,
+   "steps_from_temple": 52,
    "terrain": [
     [
      "forest",
@@ -6391,7 +6391,7 @@
    "status": "atlas-only",
    "state": "sealed until built",
    "rooms": 44,
-   "steps_from_temple": 21,
+   "steps_from_temple": 24,
    "terrain": [
     [
      "inside",
@@ -11966,7 +11966,7 @@
    "status": "atlas-only",
    "state": "sealed until built",
    "rooms": 86,
-   "steps_from_temple": 29,
+   "steps_from_temple": 53,
    "terrain": [
     [
      "city",
@@ -12120,7 +12120,7 @@
    "status": "atlas-only",
    "state": "sealed until built",
    "rooms": 21,
-   "steps_from_temple": 40,
+   "steps_from_temple": 68,
    "terrain": [
     [
      "city",
@@ -12201,7 +12201,7 @@
    "status": "atlas-only",
    "state": "sealed until built",
    "rooms": 98,
-   "steps_from_temple": 34,
+   "steps_from_temple": 62,
    "terrain": [
     [
      "inside",
@@ -12367,7 +12367,7 @@
    "status": "atlas-only",
    "state": "sealed until built",
    "rooms": 22,
-   "steps_from_temple": 32,
+   "steps_from_temple": 60,
    "terrain": [
     [
      "inside",
@@ -15278,10 +15278,8 @@
  ],
  "queue": [
   30,
-  12,
   403,
   408,
-  120,
   50,
   250,
   72,
@@ -15296,19 +15294,20 @@
   435,
   140,
   442,
-  51,
   54,
+  51,
   61,
   73,
+  120,
   62,
   110,
   441,
   448,
   9,
-  15,
   33,
-  53,
+  15,
   63,
+  53,
   210,
   25,
   64,
@@ -15338,6 +15337,7 @@
   290,
   295,
   300,
+  12,
   420,
   429,
   482,
@@ -15353,26 +15353,26 @@
   423,
   445,
   488,
-  491,
   419,
-  496,
   416,
   449,
-  495,
   461,
-  494,
   464,
   439,
   436,
   474,
+  491,
   480,
   452,
   504,
   479,
+  496,
   519,
   475,
+  495,
   453,
   478,
+  494,
   455,
   501,
   476,

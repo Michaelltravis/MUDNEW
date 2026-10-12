@@ -113,24 +113,32 @@ async def main():
     probs = [p for p in ms.check_stored_cells(world) if 'share the cell' in p]
     check(not probs, f'no two rooms share a cell on a zone map ({probs[:2]})')
 
-    # ---- reachable from the temple, and back
+    # ---- reachable from the temple, and back: by mortals over the rooms they may walk (never
+    #      through the God Rooms), and by immortals into the God Rooms too
     sealed = {z.number for z in world.zones.values() if getattr(z, 'sealed', False)}
-    open_rooms = {v for v, r in W.items() if r.zone is not None and r.zone.number not in sealed and r.zone.number not in (0, 97)}
+    all_open = {v for v, r in W.items() if r.zone is not None and r.zone.number not in sealed and r.zone.number not in (0, 97)}
+    gods = {v for v in all_open if 'imm_only' in W[v].flags}
+    open_rooms = all_open - gods
     deadly = {v for v in open_rooms if W[v].flags & {'deathtrap', 'death'}}
 
-    def fwd(v):
-        return [ex['to_room'] for ex in W[v].exits.values() if isinstance(ex, dict) and ex.get('to_room') in open_rooms
-                and not doors.is_seal(ex.get('door'))]
-    rev = collections.defaultdict(set)
-    for v in open_rooms:
-        for t in fwd(v):
-            rev[t].add(v)
-    reach = bfs(3001, fwd)
-    back = bfs(3001, lambda v: rev[v])
+    def walker(rooms):
+        def fwd(v):
+            return [ex['to_room'] for ex in W[v].exits.values() if isinstance(ex, dict) and ex.get('to_room') in rooms
+                    and not doors.is_seal(ex.get('door'))]
+        rev = collections.defaultdict(set)
+        for v in rooms:
+            for t in fwd(v):
+                rev[t].add(v)
+        return fwd, bfs(3001, fwd), bfs(3001, lambda v: rev[v])
+    fwd, reach, back = walker(open_rooms)
+    _, reach_all, back_all = walker(all_open)
     cut = sorted((open_rooms - reach) - deadly)
     trapped = sorted((reach - back) - deadly)
     check(not cut, f'every open room can be reached from the temple ({len(cut)} cannot: {cut[:6]})')
     check(not trapped, f'and walked back from ({len(trapped)} cannot: {trapped[:6]})')
+    zone12 = {v for v, r in W.items() if r.zone is not None and r.zone.number == 12}
+    check(zone12 and zone12 == gods, f'the God Rooms, and only they, are for immortals only ({sorted(zone12 ^ gods)[:5]})')
+    check(gods <= reach_all and gods <= back_all, f'an immortal reaches the God Rooms and walks back ({sorted(gods - (reach_all & back_all))})')
     barred = [(v, d) for v, r in W.items() for d, ex in r.exits.items()
               if isinstance(ex, dict) and ex.get('room') is not None and ex['room'].zone is not None
               and ex['room'].zone.number in sealed and r.zone is not None and r.zone.number not in sealed
@@ -184,8 +192,10 @@ async def main():
     check(not named, f'every room the code, quests and tests name still exists ({named[:4]})')
 
     # ---- a saved place in a room that is gone lands in its stand-in, which is open and reached
+    #      (a stand-in in the God Rooms by an immortal: login sends a mortal to their recall room)
     from world import renumbered
-    bad_stand = sorted(int(k) for k, t in renum.items() if t not in reach or int(k) in W)
+    bad_stand = sorted(int(k) for k, t in renum.items()
+                       if (t not in reach and not (t in gods and t in reach_all)) or int(k) in W)
     check(not bad_stand, f'every gone room has a stand-in you can walk to ({bad_stand[:5]})')
     check(renumbered(3500) == renum['3500'] and renumbered(3001) == 3001 and renumbered(None) is None,
           'renumbered() gives the stand-in for a gone room and leaves the rest alone')

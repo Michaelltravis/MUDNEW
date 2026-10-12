@@ -14,6 +14,7 @@
    },
    "sector_type": "inside",
    "flags": [
+    "imm_only",
     "indoors"
    ],
    "obj_resets": [
@@ -58,6 +59,7 @@
    },
    "sector_type": "inside",
    "flags": [
+    "imm_only",
     "indoors"
    ],
    "mob_resets": [
@@ -92,6 +94,7 @@
    },
    "sector_type": "inside",
    "flags": [
+    "imm_only",
     "indoors",
     "private"
    ],
@@ -128,6 +131,7 @@
    },
    "sector_type": "inside",
    "flags": [
+    "imm_only",
     "indoors",
     "no_magic",
     "peaceful",

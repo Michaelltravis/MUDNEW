@@ -685,11 +685,13 @@ _DIST = {}
 
 
 def steps(world, a, b):
-    """Rooms walked from a to b by the shortest way (exits as the world has them; doors ignored)."""
+    """Rooms walked from a to b by the shortest way a mortal may walk (exits as the world has them;
+    doors ignored, but not the bar of a land sealed until built, nor the God Rooms)."""
     if a is None or b is None or a == b:
         return 0
     if a not in _DIST:
         from collections import deque
+        import doors
         seen = {a: 0}
         todo = deque([a])
         while todo:
@@ -697,7 +699,9 @@ def steps(world, a, b):
             room = world.rooms.get(v)
             for ex in (getattr(room, 'exits', None) or {}).values():
                 to = ex.get('to_room') if isinstance(ex, dict) else getattr(ex, 'to_room', None)
-                if to is not None and to not in seen and to in world.rooms:
+                if isinstance(ex, dict) and doors.is_seal(ex.get('door')):
+                    continue
+                if to is not None and to not in seen and to in world.rooms and 'imm_only' not in world.rooms[to].flags:
                     seen[to] = seen[v] + 1
                     todo.append(to)
         _DIST[a] = seen

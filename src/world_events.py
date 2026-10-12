@@ -317,8 +317,10 @@ class InvasionEvent(WorldEvent):
 
     async def start(self):
         # Pick a random zone with rooms
+        # (not a land sealed until built, nor the God Rooms: nobody could answer the call)
         zones_with_rooms = [z for z in self.world.zones.values()
-                            if z.rooms and z.number not in (0,)]
+                            if z.rooms and z.number not in (0,) and not getattr(z, 'sealed', False)
+                            and not all('imm_only' in r.flags for r in z.rooms.values())]
         if not zones_with_rooms:
             self.active = False
             return
@@ -430,7 +432,8 @@ class WorldBossEvent(WorldEvent):
 
         # Pick a room — prefer outdoor or large rooms
         rooms = [r for r in self.world.rooms.values()
-                 if r.vnum > 0 and 'no_mob' not in r.flags and 'peaceful' not in r.flags]
+                 if r.vnum > 0 and 'no_mob' not in r.flags and 'peaceful' not in r.flags
+                 and 'imm_only' not in r.flags and not getattr(r.zone, 'sealed', False)]
         if not rooms:
             self.active = False
             return

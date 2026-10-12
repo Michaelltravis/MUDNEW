@@ -2418,8 +2418,8 @@ class CombatHandler:
                 await player.send(f"{c['yellow']}You need {remaining}s before you can flee again.{c['reset']}")
             return
 
-        # Check for available exits
-        available_exits = [d for d, e in player.room.exits.items() if e and e.get('room')]
+        # Check for available exits (not into a room closed to you, nor through a sealed land's bar)
+        available_exits = [d for d, e in player.room.exits.items() if e and e.get('room') and cls._may_take(player, e)]
 
         if not available_exits:
             await player.send(f"{c['red']}There's nowhere to flee to!{c['reset']}")
@@ -2465,6 +2465,18 @@ class CombatHandler:
         else:
             await player.send(f"{c['red']}You fail to flee ({flee_risk} risk)!{c['reset']}")
 
+    @staticmethod
+    def _may_take(player, exit_data) -> bool:
+        """An exit a fleeing or escaping player may take, as walking would allow it: not into a
+        room only immortals may enter (the God Rooms), nor through the bar of a sealed land."""
+        import doors
+        room = exit_data.get('room')
+        if room is None:
+            return False
+        if doors.is_seal(exit_data.get('door')) and not getattr(player, 'is_immortal', False):
+            return False
+        return not ('imm_only' in room.flags and not room.admits(player))
+
     @classmethod
     async def attempt_escape(cls, player: 'Player', direction: str):
         """Attempt a directed escape from combat."""
@@ -2479,7 +2491,7 @@ class CombatHandler:
             return False
 
         exit_data = player.room.exits.get(direction)
-        if not exit_data or not exit_data.get('room'):
+        if not exit_data or not exit_data.get('room') or not cls._may_take(player, exit_data):
             await player.send(f"{c['red']}You can't escape that way!{c['reset']}")
             return False
 

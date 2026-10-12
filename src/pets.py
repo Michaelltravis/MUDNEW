@@ -470,6 +470,10 @@ class Pet(Mobile):
             return
         
         target_room = exit_data['room']
+        if not target_room.admits(self):       # the God Rooms, a sealed land
+            if hasattr(self.owner, 'send'):
+                await self.owner.send(f"{c['yellow']}{self.name} won't go that way.{c['reset']}")
+            return
         old_room = self.room
         
         # Leave current room
@@ -553,8 +557,8 @@ class Pet(Mobile):
                 await self.owner.send(f"{c['red']}{self.name} has nowhere to flee!{c['reset']}")
             return
         
-        # Pick random exit
-        available_exits = [d for d, e in self.room.exits.items() if e and e.get('room')]
+        # Pick random exit (not into a room it may not be in: the God Rooms, a sealed land)
+        available_exits = [d for d, e in self.room.exits.items() if e and e.get('room') and e['room'].admits(self)]
         if not available_exits:
             if hasattr(self.owner, 'send'):
                 await self.owner.send(f"{c['red']}{self.name} has nowhere to flee!{c['reset']}")

@@ -1457,3 +1457,55 @@ from git (`PRE_RELAY_REV`), so it reproduces byte for byte.
   - The zone bosses (`tools/balance/bosses.py`) came out identical, line for line: a lone
     hero's median worst fight is 49%, with 35 deaths in 360.
   - Nothing was retuned.
+
+### The God Rooms for immortals only (Push 28) (owner: "God rooms should be immortal only")
+The God Rooms (zone 12) stand up the stairs from the temple, and the atlas gives them one-way
+ways out to Port Halyon and the Long Lake shore, so mortals could use them as a shortcut. Now
+only immortals may be in them, and the same rule keeps mortals out of the lands sealed until
+built, however they try to get there.
+- **The mark is the world build's:** `tools/atlas/build_world.py` writes `imm_only` on every room
+  of `IMM_ONLY_ZONES` (12), so a rebuild keeps it. The connection pass runs a second time over
+  the rooms mortals may walk, so nothing they need lies only through the God Rooms (it adds
+  nothing today; it guards rebuilds).
+- **One rule, `Room.admits(ch)`:** a room only immortals may enter, or a room of a sealed land,
+  takes immortals only; creatures never count as immortal. `Player.recall_room()` is your
+  recall point while you may be there, else the temple.
+- **Every way in asks it:**
+  - walking (a mortal at the stairs: "A divine force prevents you from entering.");
+  - following an immortal (the follower stays behind: "A divine force keeps you from
+    following ...");
+  - the teleport spell (it never lands in the God Rooms or a sealed land; before, 44% of casts
+    landed in a sealed land);
+  - summoning (refused into a room the summoned may not be in);
+  - binding your recall point; `recall`, autorecall and death go to `recall_room()`;
+  - logging in (`World.login_room`: a mortal saved in the God Rooms, or in a sealed land after
+    a teleport, comes back at their recall room or the temple);
+  - a companion's respawn room;
+  - fleeing and escaping (only ways walking would allow);
+  - pets ordered to move or flee;
+  - creatures wandering, hunting, fleeing or tracking (`imm_only` counts as `no_mob`);
+  - world bosses and invasions (never in the God Rooms or a sealed land).
+- **Left as they are:**
+  - An immortal's own pets and companions go where their owner goes.
+  - Immortal commands (`goto`, `transfer`, `at`) work as before.
+  - The stairs stay on the 3D map and in the exits ("▲ Up · God Rooms"), like the barred
+    gates of the sealed lands, and immortals keep the God Rooms' ways out as their shortcuts.
+- **What walks as mortals do:**
+  - the tutorial directions (`quests.route_dirs`), whose routes all came out the same;
+  - the index's steps from the temple: the Sea of Storms is 26 steps away, not 3. The God
+    Rooms are listed as "immortals only", after the open zones in the build-out queue;
+  - the quest simulator's walk, which now also stops at the bars of the sealed lands;
+  - the world check: mortals reach every open room and walk back without the God Rooms;
+    immortals reach the God Rooms too.
+- **Tests:**
+  - `test_atlas_engine.py`: a mortal is turned back at the stairs, an immortal goes up, and a
+    mortal following them stays behind. Summoning a mortal up is refused. Teleport never lands
+    there or in a sealed land. Logging in or recalling there sends a mortal to the temple, and
+    binding there is refused. A wandering creature never steps in. Directions never lead
+    through.
+  - `test_world_atlas.py` checks the mark and both walks.
+  - `test_webmove` (live): the God Rooms' map marks them, and the immortal test hero goes up
+    and back.
+- **Balance:** the quest simulator (all nine classes alone at 45-60, three runs each) came out
+  the same as in Push 27, row for row: no quest's walk went through the God Rooms or a sealed
+  land. Nothing was retuned.

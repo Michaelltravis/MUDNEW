@@ -103,6 +103,18 @@ class Room:
         }
         return self.sector_type in outdoor_sectors
 
+    def admits(self, ch) -> bool:
+        """Whether ch may be here: a room only immortals may enter (the God Rooms, `imm_only`) or
+        a room of a land sealed until built takes immortals only; creatures never count as
+        immortal. The flag is looked at first, since asking whether someone is immortal reads
+        their account from disk."""
+        if 'imm_only' not in self.flags and not getattr(self.zone, 'sealed', False):
+            return True
+        try:
+            return bool(getattr(ch, 'is_immortal', False))
+        except Exception:
+            return False
+
     def get_visible_exits(self, player: Optional['Player'] = None) -> Dict[str, dict]:
         """Return exits visible to the player (hidden exits require discovery)."""
         visible = {}
@@ -1023,6 +1035,16 @@ class World:
     def get_room(self, vnum: int) -> Optional[Room]:
         """Get a room by vnum."""
         return self.rooms.get(vnum)
+
+    def login_room(self, player) -> Optional[Room]:
+        """Where a player comes into the world: the room they left, while it exists and they may
+        be there; else (a private trial closed while they were away, the God Rooms, a land sealed
+        until built) their recall room, or the temple."""
+        room = self.get_room(getattr(player, 'room_vnum', None) or self.config.STARTING_ROOM)
+        if room is None or not room.admits(player):
+            room = (player.recall_room() if hasattr(player, 'recall_room') else None) \
+                or self.get_room(self.config.STARTING_ROOM)
+        return room
         
     async def add_player(self, player: 'Player'):
         """Add a player to the world."""

@@ -44,6 +44,7 @@ CARRY = ('flags', 'extra_descs', 'mob_resets', 'obj_resets', 'special', 'room_ef
 LISTS = ('mob_resets', 'obj_resets', 'hidden_items', 'puzzles', 'gathering_nodes')
 ZONE_FIELDS = ('lifespan', 'reset_time', 'reset_mode', 'reset_interval', 'level_range', 'level_min', 'level_max',
                'description', 'zone_mechanics', 'author')
+IMM_ONLY_ZONES = (12,)      # the God Rooms: immortals only (the owner's call)
 
 
 def garathorm(text):
@@ -392,7 +393,14 @@ def build(write=False):
                             rs[rk] = renumber.get(rs[rk], rs[rk])
                     tgt['resets'].append(rs)
 
-    # ---- the connection pass over open rooms
+    # ---- rooms only immortals may be in
+    for v, r in new_rooms.items():
+        if r.get('_zone') in IMM_ONLY_ZONES:
+            r['flags'] = sorted(set(r.get('flags') or []) | {'imm_only'})
+
+    # ---- the connection pass over open rooms: first over all of them (the God Rooms get their
+    #      way in), then over what mortals may walk, so nothing they need lies only through a
+    #      room closed to them
     sealed_zones = {z for z, d in new_zones.items() if d.get('sealed')}
     for v, r in new_rooms.items():
         r['_zone'] = r.get('_zone')
@@ -400,6 +408,9 @@ def build(write=False):
     old = {x: {'exits': {d: {'to_room': t} for d, t in list(r['_exits'].items()) + list(r['_named_exits'].items())}}
            for x, r in R.items()}
     added, cut = connect.connect(new_rooms, open_vnums, old, renumber)
+    mortal = {v for v in open_vnums if 'imm_only' not in (new_rooms[v].get('flags') or [])}
+    added_m, cut_m = connect.connect(new_rooms, mortal, old, renumber)
+    added, cut = added + added_m, set(cut) | set(cut_m)
 
     # ---- placeholders, Garathorm, files
     for v, r in new_rooms.items():

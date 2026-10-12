@@ -185,6 +185,17 @@ async def main():
             check(bool(zone_exits) and all(ee.get('toName') and 'zoneName' in ee for ee in zone_exits),
                   f'zone exits carry toName/zoneName ({len(zone_exits)})')
 
+            # the God Rooms are for immortals only; the test hero is one, so it passes (a mortal's
+            # refusal is checked offline, tests/test_atlas_engine.py)
+            gz = get_json('/zonemap?zone=12')
+            check(gz['rooms'] and all('imm_only' in (r.get('flags') or []) for r in gz['rooms']),
+                  f'the God Rooms are marked for immortals only ({len(gz["rooms"])} rooms)')
+            await tn.cmd('goto 3001', 1.0)
+            res, _, _ = await result_after('webmove 3001 1200')
+            check(res and res['ok'] and res['room'] == 1200, f'an immortal goes up into them ({res and res.get("reason")!r})')
+            res, _, _ = await result_after('webmove 1200 3001')
+            check(res and res['ok'] and res['room'] == 3001, 'and comes back down')
+
             await tn.cmd('goto 3001', 1.0)
             await tn.cmd('sleep', 0.6)
             res, _, _ = await result_after(f'webmove 3001 {e["to"]}')

@@ -487,8 +487,9 @@ class CommandHandler:
                     await player.send(f"{c['red']}Only {allowed_display} may enter.{c['reset']}")
                     return
 
-        # Immortal-only rooms
-        if 'imm_only' in getattr(target_room, 'flags', set()) and not player.is_immortal:
+        # Immortal-only rooms (the God Rooms). A land sealed until built is barred at its gates
+        # above, and anyone inside one may always walk out, so only the flag is asked here.
+        if 'imm_only' in getattr(target_room, 'flags', set()) and not target_room.admits(player):
             await player.send(f"{c['red']}A divine force prevents you from entering.{c['reset']}")
             return
 
@@ -830,6 +831,10 @@ class CommandHandler:
                     if getattr(char, 'fighting', None) or getattr(char, 'position', 'standing') not in ('standing', 'fighting'):
                         if getattr(char, 'fighting', None):
                             await char.send(f"{c['yellow']}You can't follow {player.name} while you're fighting!{c['reset']}")
+                        continue
+                    # nor where the follower may not be (the God Rooms, a sealed land)
+                    if not target_room.admits(char):
+                        await char.send(f"{c['yellow']}A divine force keeps you from following {player.name}.{c['reset']}")
                         continue
                     # Check if follower can move
                     if char.move >= 1:
@@ -16082,7 +16087,7 @@ class CommandHandler:
                 return
 
             # Can't set recall in certain rooms
-            if 'no_recall' in player.room.flags:
+            if 'no_recall' in player.room.flags or not player.room.admits(player):
                 await player.send(f"{c['red']}You cannot set your recall point here!{c['reset']}")
                 return
 
@@ -16101,17 +16106,11 @@ class CommandHandler:
             await player.send(f"{c['red']}Powerful magic prevents you from recalling!{c['reset']}")
             return
 
-        # Get recall point (default to temple at 3001)
-        recall_vnum = getattr(player, 'recall_point', 3001)
-
-        # Find recall room
-        recall_room = player.world.rooms.get(recall_vnum)
+        # Your recall point, or the temple if it is gone or a place you may not be
+        recall_room = player.recall_room()
         if not recall_room:
-            # Fallback to temple if custom recall point doesn't exist
-            recall_room = player.world.rooms.get(3001)
-            if not recall_room:
-                await player.send(f"{c['red']}Your recall point no longer exists!{c['reset']}")
-                return
+            await player.send(f"{c['red']}Your recall point no longer exists!{c['reset']}")
+            return
 
         # Already at recall point?
         if player.room == recall_room:

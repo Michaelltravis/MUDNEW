@@ -2371,7 +2371,19 @@ class Player(Character):
         max_lvl = get_max_level(self)
         while self.exp >= self.exp_to_level() and self.level < max_lvl:
             await self.level_up()
-            
+
+    def recall_room(self):
+        """Where recall, death and a lost saved place send you: your recall point while it
+        still exists and you may be there (not the God Rooms or a sealed land, unless you're
+        immortal), otherwise the temple."""
+        world = getattr(self, 'world', None)
+        if world is None:
+            return None
+        room = world.get_room(getattr(self, 'recall_point', None) or 0)
+        if room is None or not room.admits(self):
+            room = world.get_room(self.config.STARTING_ROOM)
+        return room
+
     def exp_to_level(self) -> int:
         """Calculate experience needed for next level.
         
@@ -2947,10 +2959,7 @@ class Player(Character):
                 self.position = 'standing'
 
                 # Recall (same as cmd_recall but without the fighting check)
-                recall_vnum = getattr(self, 'recall_point', 3001)
-                recall_room = self.world.rooms.get(recall_vnum)
-                if not recall_room:
-                    recall_room = self.world.rooms.get(3001)
+                recall_room = self.recall_room()
 
                 if recall_room and self.room != recall_room:
                     old_room = self.room
@@ -3092,10 +3101,7 @@ class Player(Character):
         if self.room and self in self.room.characters:
             self.room.characters.remove(self)
         
-        recall_vnum = getattr(self, 'recall_point', self.config.STARTING_ROOM)
-        temple = self.world.get_room(recall_vnum)
-        if not temple:
-            temple = self.world.get_room(self.config.STARTING_ROOM)
+        temple = self.recall_room()
         if temple:
             self.room = temple
             temple.characters.append(self)
