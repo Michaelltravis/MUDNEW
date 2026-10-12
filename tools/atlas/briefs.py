@@ -25,10 +25,10 @@ BUILDOUT = os.path.join(ROOT, 'world', 'buildout')
 
 # job -> (zones, part, parts, designs the zones' creatures and items)
 JOBS = {
-    'trade_a': ([408], 1, 4, True), 'trade_b': ([408], 2, 4, False),
-    'trade_c': ([408], 3, 4, False), 'trade_d': ([408], 4, 4, False),
-    'minar_a': ([435], 1, 3, True), 'minar_b': ([435], 2, 3, False), 'minar_c': ([435], 3, 3, False),
-    'sea_a': ([120], 1, 2, True), 'sea_b': ([120], 2, 2, False),
+    'trade_a': ([408], 1, 4, True), 'trade_b': ([408], 2, 4, True),
+    'trade_c': ([408], 3, 4, True), 'trade_d': ([408], 4, 4, True),
+    'minar_a': ([435], 1, 3, True), 'minar_b': ([435], 2, 3, True), 'minar_c': ([435], 3, 3, True),
+    'sea_a': ([120], 1, 2, True), 'sea_b': ([120], 2, 2, True),
     'desert_plains': ([50, 60], 1, 1, True),
     'mountain_north': ([40, 66], 1, 1, True),
     'mira_quick': ([448, 415], 1, 1, True),
@@ -68,7 +68,7 @@ STYLE = """\
 """
 
 DESIGN = """\
-## Creatures and items (you design them for {zones})
+## Creatures and items (you design them for your stretch of {zones})
 Write them into the same file (`creatures`, `items`). Numbers (health, damage, armour, value)
 are worked out by the build from each one's level and kind; you give the words and the facts.
 
@@ -85,9 +85,9 @@ Creature:
 - `level` within the zone's levels; lower nearer the temple, higher in the wild and dark places.
 - `sectors` (terrains it keeps to) and/or `rooms` (room names it keeps to): where it is placed.
   Water creatures only on water; land creatures only on land.
-- `count`: how many stand in the zone. Wild country: about one creature for every five rooms
-  you write, spread over 4 to 6 kinds; none or only harmless folk in streets and towns. Where
-  the zone already has creatures (listed below), only top up the stretches you are writing.
+- `count`: how many stand in your rooms (your creatures are placed only in the rooms you
+  write). Wild country: about one creature for every five rooms, spread over 4 to 6 kinds;
+  none or only harmless folk in streets and towns.
 - `aggressive`: true only for predators, outlaws, undead and monsters; never for townsfolk.
 - The 3D client gives each creature a body from the plain words in its name: say clearly what
   it is with a common noun (wolf, bear, boar, stag, hare, spider, crab, seal, shark, raven,
@@ -105,7 +105,7 @@ Item:
   food, potion or light.
 - Optional `bonus`, one small one at most: {{"str": 1}} (or dex, con, int, wis, cha), or
   {{"hitroll": 1}} / {{"damroll": 1}} (up to 2), or {{"hp": 10}} (up to 15).
-- 3 to 5 items per zone, each dropped by at least one of your creatures (`drops`, chance 10-35).
+- 3 to 5 items, each dropped by at least one of your creatures (`drops`, chance 10-35).
 """
 
 ROOMS_ONLY = """\
@@ -193,7 +193,26 @@ def entrance(zone, rooms, zones):
     return min(v for v, r in rooms.items() if r['_zone'] == zone)
 
 
+MANIFEST = os.path.join(BUILDOUT, 'jobs.json')
+
+
+def manifest():
+    if os.path.exists(MANIFEST):
+        with open(MANIFEST, encoding='utf-8') as f:
+            return {k: v for k, v in json.load(f).items() if not k.startswith('_')}
+    return {}
+
+
 def job_rooms(job, zones, rooms):
+    """The rooms a job writes: as fixed in world/buildout/jobs.json when it was handed out (writing
+    a room clears its placeholder, so they can't be worked out again afterwards)."""
+    known = manifest()
+    if job in known:
+        return list(known[job])
+    return _job_rooms(job, zones, rooms)
+
+
+def _job_rooms(job, zones, rooms):
     zs, part, parts, design = JOBS[job]
     out = []
     for z in zs:
@@ -272,6 +291,19 @@ def brief(job, zones, rooms, mobs, objs, themes):
         L.append('')
     L.append(STYLE)
     L.append(DESIGN.format(zones=names) if design else ROOMS_ONLY)
+    others = []
+    for path in sorted(glob.glob(os.path.join(BUILDOUT, 'parts', '*.json'))):
+        other = os.path.splitext(os.path.basename(path))[0]
+        if other == job or '.p' in other or other not in JOBS or not set(JOBS[other][0]) & set(zs):
+            continue
+        with open(path, encoding='utf-8') as f:
+            got = json.load(f)
+        for c in got.get('creatures') or []:
+            others.append(f"{c.get('short_desc')} (level {c.get('level')}, {other})")
+    if design and others:
+        L.append('**Already made for this zone by the writers of its other stretches** (yours stand only '
+                 'in your rooms; make your own kinds for what your stretch holds, and don\'t repeat these unless '
+                 'the same beast plainly lives here too): ' + '; '.join(others) + '\n')
     L.append(OUTPUT.format(out=out, job=job, n=len(vs),
                            design=',\n "creatures": [...],\n "items": [...]' if design else ''))
     L.append(f"## Your rooms ({len(vs)}, in walking order)\n")
@@ -302,6 +334,13 @@ def main():
                 dst[int(p['vnum'])] = p
     with open(os.path.join(BUILDOUT, 'themes.json'), encoding='utf-8') as f:
         themes = json.load(f)
+    known = manifest()
+    fresh = {job: _job_rooms(job, zones, rooms) for job in JOBS if job not in known}
+    if fresh and '--list' not in sys.argv:
+        with open(MANIFEST, 'w', encoding='utf-8') as f:
+            json.dump({'_about': 'The rooms each build-out job writes (tools/atlas/briefs.py), fixed when handed out.',
+                       **known, **fresh}, f, indent=1)
+            f.write('\n')
     total = 0
     for job in JOBS:
         text, vs = brief(job, zones, rooms, mobs, objs, themes)

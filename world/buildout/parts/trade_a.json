@@ -1,0 +1,490 @@
+{
+ "job": "trade_a",
+ "rooms": {
+  "9702": "The Trade Road begins here in the shadow of Garathorm's inner wall, where the great gate of the Inner City stands open to the south. Merchants' houses of timber and pale stone lean over the cobbles, their upper storeys hung with painted signs lettered in half a dozen trading tongues. Esh Road branches off east past a row of counting-houses, and Shokogya Street runs west beneath striped awnings. Northward the Trade Road climbs gently toward the outer gate, its stones rutted by countless cartwheels.",
+  "9781": "Warehouses with wide double doors line this stretch of the Trade Road, their loading beams and hoist ropes jutting out over the street. The cobbles are stained dark with spilled oil and wine from years of unloading, and the air smells of tar, pepper and horses. To the north the squat towers of the Northern Gatehouse rise above the rooftops, while the road runs south toward the gate of the inner city.",
+  "9765": "Two squat towers of grey stone flank the road here, joined above the arch by a covered walk where the watch hangs its lanterns. The iron-studded gates stand folded back against the walls, and letters cut into the lintel have been worn almost smooth by the weather. Beyond the arch the road runs north out of the town toward the open plains, passing the gutted shell of a house by the wayside. South, the Trade Road leads back among warehouses and shops toward the heart of Garathorm.",
+  "209000": "A low wall of fieldstone marks the edge of the wine yard, broken here by a wooden gate that hangs open on leather hinges. Beyond it rows of vines march away over a gentle slope, each one tied to its stake and trimmed with care. East, the open grass of the Great Field rolls away under a wide sky, and a cart track leads west into the vineyard between the rows. The air carries the faint sweetness of ripening grapes.",
+  "209001": "The small road through the wine yard is little more than two wheel ruts with a strip of clover growing between them. Vines crowd close on both sides, their broad leaves filmed with dust, and a row of straw beehives stands at the end of one row. A path turns north between the stakes into the wine field, while the track carries on west toward a farmhouse and back east to the gate.",
+  "209009": "Here the vines grow thickest, row upon row of gnarled black stocks bowed under clusters of dark grapes. The soil between them is pale and stony, raked clean of weeds and warm to the touch where the sun has lain on it. A scarecrow in a tattered red coat leans over the rows on its pole, arms spread wide. The rows run on north to the far end of the field, and a gap between the stakes leads south to the cart track.",
+  "209010": "The vineyard ends against an old hawthorn hedge, so thick and thorny that no cart could ever push through it. A stone trough from some long-abandoned press sits at the foot of the last row, green with moss and half filled with rainwater. From this rise the whole wine yard can be seen sloping gently away, its rows combed as straight as the threads on a loom. The only way out lies south, back among the vines.",
+  "209002": "The cart track bends past a tumbledown shed where pruning hooks once hung, and the vines give way to a scrubby patch of herbs gone wild. Thyme and rosemary crush underfoot and sweeten the air with every step. West, the roof of a farmhouse and a larger building beside it show above a line of pear trees, and the track runs back east between the vine rows.",
+  "209003": "A packed-earth yard spreads before a whitewashed farmhouse with a mossy slate roof and blue shutters. To the north stands a much larger building of dressed stone, its wide doors open and smelling of crushed grapes and old oak. A stout door leads west into the farmhouse kitchen, where a chimney breathes a thin thread of smoke. East, the cart track runs back out among the vines, and a well with a wooden windlass stands in the middle of the yard.",
+  "209006": "This is the vineyard's pressing house, a long hall of whitewashed stone under heavy roof beams. A great wooden wine press with a screw as thick as a man's waist fills one end, its trough stained purple by years of vintages. Steps lead down toward the wine cellar, but a stout iron grate has been locked across them and the stair beyond is black and cold. The doorway south opens onto the farmyard and the daylight.",
+  "209004": "The farmhouse kitchen is low and warm, its rafters hung with bunches of drying herbs and long plaits of onions. A broad hearth fills one wall, an iron pot-crane swung back over cold ashes, and a scrubbed table runs down the middle of the room. A narrow stair climbs up toward the bedroom, but the door at its head is barred and nailed shut. The kitchen door opens east onto the farmyard.",
+  "8200": "The King's Road runs wide and well paved here, lined with tall, narrow houses of plastered timber whose window boxes spill with flowers. West, the road leads on toward the moat and graceful towers of Welmar's Castle, and east it carries on out of the castle town. A gap between the houses opens south onto the plains. A crooked lane wanders off north among the chimneys, only to bend round on itself and bring you back to this same spot.",
+  "8201": "Here the King's Road narrows between the last houses of the castle town, and the paving gives way to older, rounder cobbles. A horse trough of carved stone stands against one wall beneath a bronze spout shaped like a lion's head. East, the road passes under the long timber roof of a covered market, its shadowed mouth hung with lanterns. West, the road leads back toward the castle and the busier streets.",
+  "8268": "The King's Road runs beneath a long market roof here, a gallery of oak posts and rafters blackened by lamp smoke. Empty stalls with folding wooden shutters line both walls, each painted with a faded trade sign: a loaf, a boot, a fish, a key. Lanterns on iron hooks shed a yellow light over flagstones worn into shallow grooves by cartwheels. The covered way continues east, and its open mouth lets in the daylight from the west.",
+  "8269": "The timber gallery gives way to a vaulted passage of dressed stone, where the road runs beneath the old toll house of the castle town. A barred window in one wall looks into the empty toll room, and the ledge below it is worn smooth by generations of coins. Water drips from the vault into a channel cut along the floor, and the air is cool and smells of wet stone. The passage runs on east and back west into the market.",
+  "8270": "This is the deep arch of an old gate through the castle town's outer wall, so long that lamps burn in niches along its sides. Grooves for a portcullis score the stonework overhead, though the portcullis itself is long gone, and the walls are carved with the initials of bored guards. Daylight and the smell of grass come in through the arch to the east, where the road meets a crossing in open country. West, the passage leads back beneath the toll house.",
+  "8271": "Four ways meet here in open, grassy country beneath a wide sky. The King's Road runs on east toward the edge of a forest whose leaves shine a pale, lingering gold, and back west through the arch of the castle town's wall. An old road, grass-grown between its stones, heads north toward a squat roofed building. South, a track toward the rolling foothills is closed by a rusted iron gate chained between two stone posts, and brambles choke the way beyond.",
+  "8272": "The old road passes straight through a roofed hall of rough stone, an ancient waystation built over the way so that drovers could shelter their beasts from the weather. Its roof of stone slabs still holds, though daylight leaks between them in thin bright lines. Iron rings for tethering are set into both walls, and a stone manger runs the length of one side. The road leaves the hall north through a sagging doorway and south toward the crossroads.",
+  "8273": "Out in the open again, the old road bends around a lone standing stone taller than a man, its face patterned with lichen in rings of grey and orange. Thistles and tall grass have crept across the paving, and only the line of the kerbstones shows where the road once ran. It turns east toward a stream and a roofed bridge, and runs back south into the shelter of the old waystation.",
+  "8274": "The old road crosses a stream here inside a covered bridge, a long box of weathered planks under a shingled roof. Light falls in stripes through the gaps between the boards, and water chuckles somewhere beneath the floor. Carters have carved their marks and the names of sweethearts into the beams along the walls. The bridge opens east onto the road beyond and west toward the standing stone.",
+  "8275": "The old road runs straight and level across rough pasture, its stones heaved and tilted by the roots of an elder bush growing in the verge. A milestone leans beside the way, its numbers long since weathered away. East, the road goes on toward a bend and the first farm fences of a village, and to the west the roofed bridge squats over its stream. The wind hisses through dry seed-heads on either side.",
+  "8202": "The old road bends gently here, and someone has taken care of it: the potholes are packed with gravel and the ditches on either side are freshly dug. A split-rail fence runs along a pasture where the grass is cropped short, and the smell of woodsmoke drifts from somewhere ahead. The road curves on east toward the village and runs back west across the open pasture.",
+  "8203": "At this second bend the old road swings north toward Hommlet, whose thatched roofs and church tower show above a hedge of hazel. A wayside shrine stands at the turning, a little roofed box on a post holding a carved wooden figure with a sheaf of wheat in its arms. Someone has tucked fresh wildflowers along the shrine's ledge. West, the road runs back along the pasture fence.",
+  "8204": "A painted board on a post welcomes travellers to Hommlet in neat letters, and the road becomes a proper village lane of packed earth and gravel. North stands a modest farmhouse joined to its barn under a single long roof of thatch. The lane continues east between hedges toward a bend, and back south the old road leaves the village behind. The verges here are scratched bare by roaming hens.",
+  "8205": "House and barn share one roof here, divided only by a low wooden partition, so that the warmth of the stalls seeps into the living room. The floor is beaten earth strewn with clean straw, and a plain table and benches stand near a hearth of fieldstone. A trapdoor in the floor leads down to the store room, but it has been nailed shut and weighted with a heavy grain chest. The door south opens onto the village lane.",
+  "8206": "The village lane bends here around the corner of a dry-stone wall topped with moss and yellow stonecrop. North, behind a neat gate, stands a large and prosperous farmhouse with glazed windows and a slate roof, a rare luxury so far from Garathorm. East the lane meets the broad Caravan Road, rutted deep by the wheels of trading wagons, and west it leads back to the village entrance.",
+  "8208": "This farmhouse is plainly the home of a family that has done well: the floor is of polished boards, the walls are plastered and limewashed, and real glass glints in the windows. A carved dresser displays rows of painted plates, and a long oak table could seat a dozen hungry farmhands. A tall clock ticks solemnly beside the hearth. The front door leads south to the lane.",
+  "8209": "The Caravan Road runs through the heart of Hommlet here, broad enough for two wagons to pass, its surface packed hard and scored with ruts. A well-kept farm lies east behind whitewashed fences, and another prosperous farmhouse stands south across a little garden of beans and cabbages. North, the road opens into the village square, and west a lane bends away between hedges.",
+  "8210": "Hommlet's village square is a broad green trodden bare in the middle, where an ancient elm spreads its branches over a stone drinking trough. West stands the Inn Of The Welcome Wench, a rambling building of timber and stone with a swinging sign and smoke rising from two chimneys. East, the Old Temple Road leads in beneath a long covered walk of timber, and the Caravan Road crosses the square north and south. A notice board beside the trough is crowded with village news.",
+  "8213": "North of the square the Caravan Road is lined with the village's workshops and public buildings. East, a weaver's shop has its shutters painted with a loom and shuttle, and west stands the village hall, a tall timber building with a bell hanging in a little cote on its roof. The road continues north toward the river and runs south into the village square.",
+  "8226": "Here the Caravan Road runs between cottages with deep thatch and tidy kitchen gardens, and a pump with a long iron handle stands on a flagstone by the verge. West, a cottage with a tailor's shears painted on its door leans over the road. North, the road dips toward the river and a stone bridge, and south it leads back past the workshops to the village square.",
+  "8229": "A sturdy bridge of three stone arches carries the Caravan Road over the river, its parapets worn smooth by the elbows of idlers. Below, the water runs broad and brown between reedy banks, and further along the bank the great wheel of the mill turns slowly in its race. North, the road passes under the timber roof where it meets the River Road, and south it climbs back into the village.",
+  "8232": "The Caravan Road and the River Road meet beneath a great market roof of oak shingles, raised on stout posts and walled with planks against the wind off the river. A merchant's beam-scale hangs from the central tie-beam, and lanterns on chains light the trodden flagstones even at midday. Wide openings lead east and west along the River Road, north toward the church and south onto the bridge.",
+  "8233": "The Church of Helver dominates this part of the road, a long building of honey-coloured stone with a square tower and tall arched windows. A lychgate with a mossy shingle roof opens east onto the path to its great hall, and the churchyard lawn is neatly scythed. North, the road carries on out of the village, and south it runs under the market roof at the meeting of the roads.",
+  "8231": "The last houses of Hommlet fall behind here, and the churchyard wall runs beside the road, its coping furred with moss and overhung by dark yews. Beyond the wall, old gravestones lean at odd angles in the long grass. A worn mounting block stands by the verge for riders setting out. The road heads north out of the village between open fields, and back south toward the church gate.",
+  "8300": "Apple orchards line both sides of the Caravan Road here, their gnarled old trees propped with forked poles where the branches sag. A low press-shed with a mossy roof stands among the trees, and the air smells faintly of cider. The road is paved with flat stones set in neat courses, the work of careful hands. It runs north between the orchards and south back toward the village.",
+  "8301": "Hay meadows spread away from the road on either hand, dotted with tall ricks thatched against the rain. A stone culvert carries a ditch beneath the road, and the water gurgles through it into a reed-lined channel. Poppies and cornflowers grow thick along the ditch bank. The Caravan Road runs straight on north, and south it passes into the shade of the orchards.",
+  "8302": "A spring rises beside the road here and has been piped into a long stone basin, where travellers and their beasts can drink. Someone has carved a cup and a horseshoe into the stone above the spout. The fields grow rougher from here on, with gorse creeping in from the verges, and a crossroads with a tall signpost lies just to the north. South, the road runs back among the hay meadows of Hommlet.",
+  "8303": "A tall signpost stands where four roads cross, its arms pointing every which way and its post studded with the nails of old notices. The Caravan Road runs on north toward the dark line of distant woods, and south back to Hommlet. West, a dirt road wanders off toward the faint blue shapes of mountains. To the east a short paved road ends abruptly at a carved archway set into the side of a grassy hill.",
+  "8488": "Just beyond the crossroads a drovers' pond lies beside the road, a broad muddy pool with a cobbled ramp where herds are watered. The ground all around is churned by countless hooves and dried into hard ridges. The Caravan Road climbs gently north into emptier country, and the signpost at the crossing can be seen a short way back to the south.",
+  "8489": "A long dry-stone wall keeps company with the road here, snaking over the rolling downs as far as the eye can follow. The turf beyond it is cropped short by sheep, and a shepherd's hut with a roof of sods stands empty in a fold of the land. Tufts of wool cling to the wall's rough stones. The road runs on north and back south toward the drovers' pond.",
+  "8490": "A stout milestone of red sandstone stands at the roadside, carved on both faces with distances and the sign of a wagon wheel. The Caravan Road is paved with heavy flags here, cambered so that rain runs off into deep ditches on either side. Open grassland stretches away under a huge sky, broken only by a few wind-bent thorn trees. The road carries on north and runs back south toward Hommlet.",
+  "8491": "The road crosses a stretch of boggy ground on a raised causeway of packed stone, with black water lying among the reeds on either side. Cotton grass nods in the wind, and the air smells of peat and rot. Wooden posts painted white at their tops mark the edges of the causeway for travellers caught out in fog. The way continues north and back south onto firmer ground.",
+  "8492": "On a low rise beside the road stands an old gibbet of weathered timber, its iron cage empty and creaking in the wind. It was raised long ago as a warning to robbers, and the grass beneath it grows rank and dark. The Caravan Road hurries past, running north over the rise and south toward the causeway and the bog.",
+  "8493": "The blackened ruin of a roadside inn stands here, nothing left of it but a tall stone chimney and a ring of charred beams sunk in nettles. A painted sign still hangs from a bracket on the chimney, too scorched to read. Whatever happened here, no one has come back to rebuild. The road runs north past the ruin and back south toward the gibbet on its rise.",
+  "8494": "A trader's wagon lies wrecked in the ditch here, tipped on its side with two wheels smashed and its canvas cover rotted to rags. Brambles have grown up through its floorboards, and it was stripped of anything worth taking long ago. The paving of the road is cracked and patched in places, and weeds push up between the stones. The Caravan Road goes on north and back south past the burned inn.",
+  "8495": "A long, grass-covered barrow lies beside the road, a mound as long as a barn with a dark stone doorway at one end sealed by a great slab. The road builders gave it a wide berth, and travellers still hurry past it. Heather grows thick on the slopes of the barrow, and the wind seems colder here. The way leads north and south along the old caravan route.",
+  "8496": "The road crests a low ridge here, and from the top the land can be seen falling away toward an unbroken mass of dark forest far ahead: the Black Woods. Gorse blazes yellow along the verges, and the wind hums through the heather. Behind, the country rolls back toward the distant smoke of Hommlet. The road continues north off the ridge and south toward the barrow.",
+  "8497": "A ruined watchtower stands beside the road, a stump of round stone wall with an iron beacon basket rusting on top of it. Once a fire lit here would have warned Hommlet of trouble on the road. The paving is overgrown with moss now, and tall bracken presses in from the verges. North, the road nears the edge of the forest, and south it climbs back toward the ridge.",
+  "8498": "The Caravan Road turns west here to skirt the forest, and a tall cairn of piled stones marks the turning. Travellers add a stone for luck as they pass, and the heap now stands taller than a rider on horseback. Dark trees stand close beyond a strip of rough grass, and the smell of leaf mould drifts from them. South, the road runs back across the open downs.",
+  "8499": "The paving gives out here, and the Caravan Road becomes a rutted track running west into the outskirts of the woods. Birch and young oak crowd the verges, and the light is already dimmer beneath their spreading branches. A broken cart axle has been driven into the ground as a post, with a strip of red cloth knotted round it as a marker. East, the road runs back to the cairn at the turning.",
+  "19705": "Young trees grow thick here at the edge of the woods, hazel and birch and holly, with bracken waist-high between them. Old stumps show where woodcutters once worked, though their axe marks are grey with age. The ground is soft with leaf litter and crossed by the slots of deer. A trail leads north into the deepening trees, and east the rutted end of the Caravan Road opens onto daylight.",
+  "19706": "The trees grow taller and closer together here, and the bracken gives way to bramble and moss. A woodcutter's shelter of lashed poles stands collapsed beside the trail, its roof of branches long since fallen in. Somewhere water drips steadily from the leaves. The trail continues north into thicker woods where the shadows deepen, and runs south toward the edge of the forest.",
+  "19713": "Oak and hornbeam grow thickly here, their branches knotted together into a roof that lets through only a dim green light. The trail forks at an old oak with a hollow trunk large enough to shelter in. One way runs east along the foot of a steep bank, while to the west an overgrown path wanders off among the brambles. The trail also leads back south toward the outskirts of the woods.",
+  "19714": "The trail ends at the foot of a steep bank, where the roots of the trees have broken through the earth like the rungs of a ladder. Using them, you could climb up the slope to the higher ground above. The air here is damp and still, and toadstools grow in clusters on the fallen logs. West, the trail returns to the hollow oak.",
+  "19715": "From the top of the bank the trail runs on through close-set trees, their trunks pale with lichen. Behind, a scramble of roots leads down the slope to the lower trail. North, the path plunges into darker woods where the trees grow denser and the light fails. A cold breath of air comes from that way, smelling of pine and wet earth.",
+  "19722": "The dense woods close in here, firs and old yews growing so close that their branches interlace over the trail. Little light reaches the ground, which is bare and brown with fallen needles. The trail turns west deeper into the gloom, and runs back south toward the top of the bank. There is no sound but the slow creak of branches overhead.",
+  "19723": "A fallen fir lies across the trail here, and the path ducks beneath its trunk where feet have worn the earth into a hollow. Long beards of grey moss hang from the branches, stirring in a draught you cannot feel. The darkness makes it hard to judge how far anything is. The trail continues west and back east through the dense trees.",
+  "19724": "The trail bends here at the edge of a small, sunless hollow where water has gathered in a black pool. Strange pale fungi crowd the roots around its rim, glowing faintly in the gloom. North, the trees grow blacker still, their bark dark as soot: the beginning of the Black Woods. East, the trail leads back beneath the fallen fir.",
+  "19738": "The trees of the Black Woods rise like charred pillars here, their bark black and furrowed and their crowns lost in darkness. The trail stops at the foot of a rocky step, where a cleft in the stone offers footholds to climb up to the higher ground. The air is heavy and smells of rot. South, the trail leads back to the hollow with its black pool.",
+  "19739": "Above the rocky step the trail runs along a spine of bare stone, where the black trees grip the rock with roots like clutching fingers. The canopy is so thick that it is hard to tell whether it is day or night. A cleft in the rock leads back down to the lower trail, and the path winds on east between the trunks. Old claw marks score the bark of the nearest tree at the height of a tall man.",
+  "19740": "The trail runs level here through a stand of ancient black oaks, their trunks so broad that three people could not link arms around one. Mistletoe hangs in pale clumps from the high branches, and the ground is spongy with centuries of rotted leaves. Somewhere far off a branch cracks, and the sound echoes for a long time. The way continues east toward a bend and back west to the spine of stone.",
+  "19748": "The trail turns sharply here around a huge boulder furred with black moss and half buried in the forest floor. Someone has scratched a crude arrow on its face pointing the way north, and beneath it a second mark like a skull. A thin, cold wind blows from that direction, carrying the sound of rushing water far below. West, the trail runs back among the old oaks.",
+  "19741": "The black trees thin a little here, and a grey light filters down through gaps in the canopy. The trail climbs over a tangle of exposed roots, slick with moisture, and grey rock begins to break through the soil. North, the trees open onto a wide clearing, and the roar of falling water grows louder from that way. South, the trail returns to the boulder at the bend.",
+  "19742": "The Black Woods end abruptly at a wide clearing of coarse grass and scattered stones, open to a sky the colour of slate. A short way off the ground stops at the lip of a sheer cliff, and a river thunders unseen in the gorge far below. The blackened rings of old campfires mark the grass, and a path leads east along the cliff top toward the head of a great bridge. South, the trail returns into the dark trees.",
+  "19743": "Two massive stone pillars, carved with the worn shapes of kings or gods, guard the head of a great bridge that leaps out across the gorge. The bridge runs north over the abyss toward the badlands beyond, its parapets broken in many places. Wind howls out of the chasm, carrying a fine spray from the river. West, a path leads back along the cliff top to the clearing.",
+  "19744": "The great bridge spans the gorge on a single soaring arch of grey stone under a wide, cold sky, and the river roars white through the chasm far beneath your feet. Midway across, the span is split by a jagged crack, crossed by heavy timbers lashed together, and the whole structure seems to tremble in the wind. North lies the far end of the sundered bridge and the broken lands beyond. South, the carved pillars mark the way back into the Black Woods.",
+  "19708": "An overgrown path pushes through brambles and nettles here, so choked that it is hard to believe anyone has walked it in years. Thorny tendrils catch at clothing, and the trees lean close overhead. Here and there a cut stem shows that someone has hacked a way through, not long ago. The path struggles on west, and east it leads back to the hollow oak on the woodland trail.",
+  "19709": "The path turns north here beside the ruin of a low stone wall, half swallowed by ivy and moss. It may once have been a sheepfold or the corner of a cottage, but the woods reclaimed it long ago. A spindly rowan grows out of the middle of the ruin, hung with bright berries. East, the path pushes back through the brambles toward the main trail.",
+  "19710": "The overgrown path ends in a tiny glade where a ring of pale toadstools grows in the grass. Wild garlic scents the air, and a single thread of sunlight falls through a gap in the leaves to light the ring. The brambles close in on every side but one, and the only way out is south, back past the ruined wall.",
+  "9142": "A carved archway opens into the side of the hill, and the paved road runs on inside it as a broad tunnel of fine masonry, lit only by the daylight from the arch. After some distance the stonework simply stops, and the road ends against a face of raw rock scarred with old chisel marks. Letters carved over the inner side of the arch break off in mid-sentence. Whoever began this road never finished it, and the only way out is back west to the crossroads.",
+  "9136": "A dirt road strikes off across rough heath here, its surface pale with dust and pocked with hoofprints. West, the road vanishes into the open doors of an enormous old barn that straddles the way like a gatehouse. Gorse and broom grow thick on either side, and far beyond them rise the grey shoulders of mountains. East, the road returns to the signpost at the crossing.",
+  "9137": "The dirt road runs straight through a vast tithe barn, in at one pair of great doors and out at the other, so that carts can pass through without unloading. Massive cruck beams arch overhead like the ribs of an upturned ship, and light slants in through narrow slits in the stone walls. Chaff and dust lie thick on the floor, and the sweet, dusty scent of old hay hangs everywhere. The far doors open west onto the road, and the near ones east toward the heath.",
+  "9138": "Beyond the barn the dirt road enters a long covered way built of logs and roofed with turf, raised to keep winter drifts off the road as it climbs toward the hills. Light falls through gaps between the logs in pale bars, and the air inside is cold and smells of resin and damp earth. Dark streaks on the timbers show where meltwater runs each spring. The covered way runs on west toward a rocky spur and back east to the barn.",
+  "9139": "The road burrows through a spur of rock here in a short, rough tunnel, its walls hacked out by hand and blackened by the smoke of old torches. Rusted iron brackets jut from the walls at intervals, and daylight glimmers faintly at either end. Water trickles down one wall and runs off along a gutter cut beside the road. The tunnel opens west onto a rockier road and east into the covered way.",
+  "9140": "Here the road becomes a gallery cut into the side of the mountain, roofed by the overhanging rock and walled on its outer side with heavy masonry. Narrow openings in that wall let in a cold, thin light and a wind that whistles as it passes. Fallen stones lie heaped along the inner wall where the roof has shed them. The gallery climbs west toward a steeper trail and runs back east into the tunnel.",
+  "9141": "The gallery ends in a cramped cleft roofed over by great fallen slabs, where the road dwindles to a trail of broken rock. Rough steps hacked into the stone climb up through a gap between the slabs toward the open mountainside. The walls are daubed with crude marks in red ochre, and a foul, animal stink drifts in from above. East, the gallery leads back along the face of the mountain.",
+  "8236": "The great hall of the Church of Helver is long and high, its roof held up by dark oak beams carved with sheaves of wheat and climbing vines. Rows of plain wooden pews face a carved screen at the far end, and sunlight falls through tall windows of greenish glass onto a floor of worn flagstones. A doorway in the screen leads north into a small antechamber, and the great doors open west onto the Caravan Road.",
+  "8237": "This small, square chamber is panelled in dark wood and lit by a single bronze lamp hanging on a chain. Three doors open from it: a tall carved door north into the sanctuary, a plain one east into the vestry, and a heavy iron-banded door west into the study where the priests receive visitors. An archway leads south back into the great hall. A faint smell of incense hangs in the still air.",
+  "8238": "The sanctuary is the holiest place in Hommlet, a hushed room of pale stone under a vaulted ceiling painted with golden wheat on a deep blue ground. A great altar of white marble stands upon three steps, carved with a sheaf and a rising sun, the signs of Helver. Tall candles burn in iron stands around it, and their light trembles on the walls. The only door leads south, back into the antechamber.",
+  "8239": "Tall wardrobes of carved oak line the walls of this narrow room, where the priests of Helver robe themselves for worship. A washstand with a copper basin stands beneath a small window, and a clean scent of lavender and starch hangs about the room. A narrow stair climbs up toward the upper hall, but a locked oak door bars it at the top. The door west opens back into the antechamber.",
+  "8240": "Here the priests of Helver hear the troubles of the villagers, in a comfortable room with a broad desk, high-backed chairs and shelves of leather-bound books. A tapestry of a harvest festival hangs on one wall, and a small hearth keeps the room warm. In a corner, steps lead down toward the gallery of sacred trophies, but they end at an iron-bound door that is locked fast. The door east leads back to the antechamber.",
+  "8234": "The River Road runs along the bank here, with the water sliding past just beyond a low wall of stone. North stands the trading post, a big timber building with a wide porch and hitching rails, its sign showing a pair of clasped hands. The road continues east past the last houses of the village, and west it passes under the market roof where it meets the Caravan Road.",
+  "8250": "The trading post is a single great room of rough timber, with a long counter across one end and empty shelves behind it rising to the rafters. The floor is scuffed by the boots of every trader who passes through Hommlet, and the room smells of leather, tallow and pipe smoke. A door north leads to the stable, another west to the traders' room, and the wide front doors open south onto the River Road.",
+  "8256": "The stable behind the trading post is long and low, with a row of roomy stalls along one wall and hay racks fixed above the mangers. The cobbled floor slopes toward a drain, and the air is thick with the warm smells of horse, hay and leather. Wooden pegs for saddles and harness line the opposite wall. The only door leads south into the trading post.",
+  "8255": "This snug chamber is where traders strike their bargains in private, around a heavy round table scarred by the edges of countless coins. Cushioned benches line the walls, and a small barred window lets in a little grey light. A slate fixed to the wall is chalked with the latest prices for wool, salt, iron and barley. The door east opens back into the trading post.",
+  "8251": "The River Road ends here in a small yard of beaten earth where three homes stand close together. North is a teamster's cottage with a wagon shed beside it, and east a dairy farmer's house with a cool stone dairy built against its wall. South stands the mill, its great wheel turning in the race beside the river. West, the road runs back along the riverbank toward the village.",
+  "8252": "The teamster's cottage is plain and cluttered, its single room smelling of axle grease, horses and stale beer. Empty harness pegs line the wall by the door, and a narrow cot is pushed against the opposite wall. Above it someone has drawn a map of the roads in charcoal on the plaster, with distances scrawled along each line. Its one door lets out south onto the yard.",
+  "8253": "The dairy farmer's house is cool and spotless, its stone floor scrubbed pale and its walls lined with slatted wooden racks for ripening cheeses. A great stone sink sits beneath the window, beside a scoured wooden butter churn as tall as a child. The whole house smells of milk, butter and cut grass. The door west opens back onto the yard at the end of the River Road.",
+  "8254": "The mill and the miller's home share one roof here, and the whole building trembles gently with the turning of the great wheel outside. Through an open archway the millstones grind in their wooden casing, filling the air with a fine white dust that settles on everything. The living quarters are warm and floury, with a table, a dresser and a cradle by the fire. A door north lets out onto the yard where the River Road ends.",
+  "8235": "West of the market roof the River Road is lined with the better sort of shops, their fronts freshly painted and their doorsteps scrubbed. South, a narrow stone building with barred windows and a brass sign of a balance marks the money changer's shop, which stands with its back to the river. The road runs on west to its end among the craftsmen's homes, and east beneath the great shingled roof where the two roads meet.",
+  "8245": "A stout counter divides this narrow shop, topped by a brass grille through which coins pass to and fro. Behind it an iron-bound strongbox is bolted to the floor, and a pair of fine scales stands under a bell of glass. Charts of coinage from distant lands are pinned to the panelled walls, showing the faces of kings and strange beasts. The only door, heavy and studded with iron, opens north onto the River Road.",
+  "8246": "The River Road ends in a little square of cobbles where the village's craftsmen live and work. North, a tall house with a workshop of fresh-cut timber smells of sawdust and varnish, and south a potter's cottage has a squat brick kiln smoking behind it. West stands the brewery, a big stone building fragrant with malt and hops. East, the road leads back toward the money changer's and the market roof.",
+  "8247": "The cabinet maker's house is half home and half workshop, and fragrant curls of wood shaving drift into every corner of both. A heavy workbench with an iron vice runs beneath the window, and racks of seasoning planks lean against the wall. The living quarters are furnished with the master's own work, a dresser with doors carved like lace and a settle with roses on its back. A wide door leads south onto the little square.",
+  "8249": "The potter's cottage is warm from the kiln built against its back wall, and a fine red dust lies over every surface. A kick-wheel stands in the middle of the floor, its seat polished by years of use, beside a trough of wet clay covered with damp sacking. Smears of glaze decorate the doorframe where the potter wipes his hands. A low door leads north onto the cobbles at the end of the road.",
+  "8248": "The brewery is a lofty hall of stone filled with the thick, sweet smell of boiling malt. Great copper vats sit on brick hearths along one wall, and fat oak casks are racked to the rafters along the other. The floor is wet and sticky underfoot, and steam drifts through the light from the high windows. The door east opens onto the square at the end of the River Road.",
+  "8230": "The tailor's cottage is crowded with the tools of the trade: a long cutting table scored with chalk lines, a wooden dummy wearing a half-made coat, and pigeonholes stuffed with remnants of every colour. A bright window lets the light fall full on the table, and the room smells of wool and beeswax. Pins glint between the floorboards where years of them have fallen. The door east opens onto the Caravan Road.",
+  "8227": "A great wooden loom fills most of the weaver's shop, its warp threads strung tight and a length of half-finished blue cloth wound on its beam. Skeins of dyed yarn hang from poles across the ceiling, madder red, woad blue and weld yellow, and the whole shop reeks cheerfully of lanolin and dye. A spinning wheel waits by the hearth. The shop door gives west onto the Caravan Road.",
+  "8228": "Hommlet's village hall is a single tall room under a roof of open timbers, where the villagers gather to settle disputes, hold feasts and hear the news. Long trestle tables are stacked against the walls, and a raised platform at one end holds the elder's chair and a table draped in green cloth. A bell rope from the cote on the roof dangles beside the door, its end worn smooth by many hands. Tall double doors open east onto the Caravan Road.",
+  "8214": "The Old Temple Road begins here beneath a long covered walk of timber, roofed with shingles and open between its posts like a cloister. Lanterns hang from the crossbeams, and the boards underfoot ring hollow. North, the glow and smell of hot iron spill from the wide doorway of a smithy, while to the south a gap between the posts gives onto a footpath leading off into the trees. The covered walk runs on east, and west it opens onto the village square.",
+  "8257": "The smithy is hot and dim, lit by the red glow of a forge whose great leather bellows hang from a beam beside it. An anvil worn bright on its face stands on a stump of oak, and racks of tongs and hammers line the sooty walls. Horseshoes are nailed above the door for luck, their points turned upward. The doorway south leads back out to the covered walk of the Old Temple Road.",
+  "8258": "The covered walk of the Old Temple Road is wider here, and benches have been built between its posts where travellers can rest out of the weather. North, a gate in a high wall of whitewashed stone leads into the village elder's compound, and south a wheelwright's shop has a cartwheel painted on its door. Light falls in bars between the posts across the worn boards. The walk runs on east and back west toward the smithy and the square.",
+  "8261": "The village elder's compound is entered through a long, dim hall hung with the faded banners of Hommlet's oldest families. A carved chair of black oak stands at the head of the hall beside a brass-bound chest where the village records are kept. Rushes cover the floor, and a fire of apple wood crackles in a deep hearth. The door south leads back out to the covered walk.",
+  "8262": "Here the covered walk passes between the homes of two builders, each a boast of its owner's craft. North stands a house of beautifully dressed stone with carved lintels, the stonemason's, and south a timber-framed house with an overhanging upper storey, the carpenter's. The posts of the walk here are carved with leaves and faces, the fruit of a long and friendly rivalry. The walk continues east and back west.",
+  "8265": "The stonemason's house is cool and solid, its walls of close-fitted ashlar and its floor laid in a chequer of red and grey flags. The mantel over the hearth is a single slab carved with a twisting vine, and every window has a carved stone sill. A heavy stone bench by the window is pitted with chisel marks and dusted white. The door south opens onto the covered walk.",
+  "8266": "Beyond the builders' houses the covered walk grows older and plainer, its posts grey with age and its roof patched with newer boards. Gaps between the posts look out over garden plots and a reedy duck pond. Pilgrims of long ago pressed coins into the cracks of the posts for luck, and their green edges still show. The walk continues east toward a crossing and back west past the builders' houses.",
+  "8276": "The covered walk runs between high hawthorn hedges here at the edge of the village, and its boards give way to packed earth trodden hard. A wooden collecting box for the upkeep of the walk is fixed to one post, its slot worn smooth. Light filters dimly through the hedges, heavy with the scent of may blossom. The walk leads on east to a crossing and back west into the village.",
+  "8277": "The covered walk ends in a square, roofed pavilion where three ways meet, its timber pillars painted long ago in red and gold now faded to rust and straw. A worn stone set in the middle of the floor marks where the old temple road once began. North, a doorway leads into a long shelter built over a road across the plains, and south an archway opens onto an overgrown path winding into the woods. West, the walk leads back toward Hommlet.",
+  "8278": "This long shelter of weathered timber was built over the road where it sets out across the plains, a place for travellers to wait out the rain. Its far doors are nailed shut and blocked by a heap of fallen roof beams, so the road beyond can only be glimpsed through gaps in the planking: grass, rolling away for miles. A row of rotting benches lines one wall. Your way lies back south, to the pavilion.",
+  "8624": "South of the pavilion the old temple road becomes an overgrown path, its paving stones heaved apart by roots and buried under moss. Bracken and young ash crowd in from both sides, and the canopy closes overhead. Animal trails branch off east and south, narrow ways pressed through the undergrowth by deer and boar. North, the painted archway of the pavilion shows through the leaves.",
+  "8625": "Several game trails meet here in a little clearing trampled flat, where the earth is pocked with hoofprints and the bark of a young beech has been rubbed raw by antlers. A narrow path climbs north between hazel thickets, game trails wander off east and south through the bracken, and the old overgrown path lies to the west. The light is green and dappled, and the wood smells of crushed fern.",
+  "8632": "The narrow path squeezes between two great hazel thickets, so close that their branches brush both shoulders at once. The ground rises gently, and the soil is sandy and dry underfoot. Empty nutshells crunch underfoot where squirrels have feasted. An animal trail breaks off east through a gap in the thicket, while the narrow path continues north and returns south to the trampled clearing.",
+  "8633": "The narrow path turns east here along the lip of a sandy bank riddled with old burrows. Silver birches grow along the bank, their papery bark peeling in curls. Through a gap in the trees a dark mass of enormous grey trees can be seen somewhere beyond, looming over the rest of the wood. The path runs on east and back south through the hazels.",
+  "8634": "The path runs through a stand of tall beeches here, their smooth grey trunks rising like pillars to a canopy of copper leaves. The ground beneath them is bare but for a thick carpet of beech mast that crackles underfoot. A fallen beech lies rotting nearby, sprouting shelves of orange fungus. The path bends north toward darker trees and runs back west along the sandy bank.",
+  "8635": "The narrow path reaches a fork here, where the beeches give way to older, darker trees whose branches are hung with grey lichen like old lace. North, the path leads toward a huge grove whose towering grey trees rise above the rest of the forest, and an unnatural hush seems to flow from that way. A trail branches west into a tangle of undergrowth, and the path runs back south among the beeches.",
+  "8637": "A wall of giant grey trees stands before you, the edge of a grove so vast and dark that the woods around it seem small. Their trunks are smooth as stone, and the shadows between them are thick even though the light out here is ordinary daylight. A faint path leads north between two of the greatest trunks into the gloom, and a sense of watchful power hangs in the air. South, the narrow path offers a way back to friendlier woods.",
+  "8636": "The trail peters out in a tangle of blackthorn and dog rose, so dense that there is no going further. An old hunter's hide of woven branches is built into the thicket, its peephole looking out over a little glade where deer come to graze. Sloes hang dark and bitter on the blackthorn. The only way back is east, to the fork in the narrow path.",
+  "8631": "The animal trail runs along the top of a steep, rocky slope here, where the ground falls away sharply through a tangle of roots and boulders. A goat track zigzags down the slope to a ledge of grey stone, beyond which the trees of another forest stretch away into the haze. The wind rising from below smells of pine resin. Westward the trail meets the narrow path through the hazels, and south it wanders back among the bracken.",
+  "8630": "This animal path is a well-worn groove through the undergrowth, so deeply trodden that the roots on either side stand out like steps. A mud wallow beside it is churned and pitted, and the rank stink of boar hangs over it. The trail runs north toward a rocky slope and west toward a trampled clearing. A path leads east along the rim of a ravine, and a wider trail heads away south.",
+  "8640": "The path follows the rim of a narrow ravine here, where a stream tumbles over mossy rocks far below the ferny edge. Alders lean out over the drop, their roots clinging to the crumbling bank. The rush of the water fills the air with a cool, constant noise. East, a small wooden bridge crosses the ravine, and the path also runs south along its rim and west back to the animal trail.",
+  "8641": "A small bridge of split logs, railed with knotted rope, spans the ravine here and sways a little with every step. Far below, the stream foams white between the rocks, and ferns drip from the walls of the gorge. Moss has grown thick on the logs, and they are slick with spray. The bridge leads east to a broad forest trail and west back to the ravine path.",
+  "8643": "Beyond the ravine a broad forest trail winds among oaks and sweet chestnuts, and here and there a tree with leaves of pale gold glows among the green. Spiny chestnut husks lie split open along the path. Trails part three ways here, north over a gentle rise, east toward the King's Road and south deeper into the wood, while the log bridge lies back to the west.",
+  "8642": "The trail crests a low rise crowned by a ring of silver birches, and from here the trees beyond are noticeably brighter, many of them hung with leaves of a soft, glowing gold. Sunlight clings to those branches long after it has left the others. The trail slopes away east toward the golden trees and runs back south to the fork beyond the bridge.",
+  "8644": "Golden leaves drift across the trail here, blown from the trees of the Radiant Forest that crowd ever closer. The light has a warm, honeyed quality, as though the afternoon had decided to stay. Even the moss on the stones is tinged with gold. East, the trail meets the broad paved way of the King's Road, while other paths lead south into the wood and west toward the log bridge.",
+  "8620": "The King's Road runs through the Radiant Forest here on wide, pale paving stones, kept clear of roots by the king's foresters. The trees on either side are tall and slender, their leaves a pale gold that seems to drink the light and give it back, so that even the shadows are soft and warm. East, the trees thin toward the edge of the forest, and west the road runs on deeper among the shining trunks.",
+  "8621": "Here the Radiant Forest comes to an end, its last golden trees standing like sentinels at the edge of open, sun-baked farmland. A weathered boundary stone carved with a crown marks the limit of the royal woodland. Beyond it the paving of the King's Road gives way to a pale dirt road that runs off east, raising little puffs of dust in the breeze. West, the road leads back beneath the shining leaves.",
+  "2300": "The Dusty Road earns its name at once: a broad track of pale, powdery earth that coats boots and hems in fine grey dust. Low stone walls line both sides, enclosing fields of stubble and tall sunflowers. Cart ruts have baked as hard as pottery in the sun. West, the golden trees of the Radiant Forest stand like a bright wall, and the road runs on east under an open sky.",
+  "2301": "A dead oak stands beside the road here, white and leafless, its bare branches reaching out over the dust like the arms of a beggar. A rope swing hangs from its lowest limb, stirring gently in the hot wind. Little whirls of dust spin up across the fields and collapse. The road runs straight on east between dry ditches, and west toward the shining edge of the forest.",
+  "2302": "The Dusty Road turns north here at a corner marked by a stunted thorn tree, its branches hung with faded rags tied there for luck. A hedge of wild roses runs along the bend, and dust lies in soft drifts against its roots. North, the road heads toward the smoke of a small village, and west it runs back toward the forest. The sky feels huge and empty after the shelter of the trees.",
+  "2303": "The road bends east here around a field of tall maize whose dry leaves rattle in every breath of wind. An old well stands at the roadside under a sagging wooden hood, its mouth boarded over and weighted with stones. Small bare footprints run and skip across the dust. The road runs east toward the first cottages and back south to the corner by the thorn tree.",
+  "2304": "The road runs straight toward a cluster of thatched roofs and whitewashed walls a little way east. In a paddock beside it, washing lines strung between posts flap with sheets and shirts. Far beyond the rooftops a darker smudge of woodland marks the country around Salem's Lot, brooding even in the sunshine. West, the road bends back past the boarded well.",
+  "2305": "A low gate of grey wood stands open across the road at the edge of the village, hung between two posts carved with simple suns. Braids of garlic and sprigs of rowan are nailed above it, a custom kept here without anyone quite saying why. The dust of the road has been swept back from the gateway in neat curves. East, the Dusty Road runs on between the first cottages, and west it leaves the village for the open fields.",
+  "2306": "The Dusty Road runs between two small houses here, each with a stout door, iron-bolted shutters and a tiny herb garden before it. Their doors open straight onto the road, north and south, and their thresholds are scrubbed white. Hollyhocks lean against the whitewashed walls. East, the road widens into the village's little square, and west it leads out to the gate.",
+  "2307": "This small house is a single room under a low, smoke-darkened ceiling, with a box bed built into one wall and a hearth of rounded river stones in another. A rag rug softens the earthen floor, and a table and two stools stand beneath the only window. A heavy bar leans beside the door, ready to drop into iron brackets at nightfall. The door south leads back out to the Dusty Road.",
+  "2309": "The town square is little more than a widening of the road around an old stone pillar topped with a carved sun, its base ringed by a bench polished by years of gossip. Low cottages with brightly painted doors face it on every side. A side street runs north between gardens and a short path leads south toward a larger house, while the Dusty Road carries on east out of the village and west toward its gate.",
+  "2312": "This narrow side street is little more than a grassy lane between walls of stacked flint. Two small cottages open off it, one north and one east, each with a knocker shaped like a horseshoe on its door. West, a wicket gate leads into a vegetable garden, and south the lane returns to the town square. A rain barrel stands at the corner, green with moss.",
+  "2314": "This cottage is tiny but spotless, its walls limewashed so often that the corners have gone soft and round. A high-backed settle stands by the hearth, where an iron fireback is cast with a pattern of oak leaves. Bunches of rowan berries hang over the window, and the shutters are fitted with heavy iron bolts. Its low door gives south onto the side street.",
+  "2313": "This house is a little larger than its neighbours, with a partition of woven hurdles screening the sleeping corner from the rest. A long table scarred by years of knife work runs beneath the window, and a dresser leans slightly where one foot is propped on a flat stone. The hearth is wide and deep, with an iron crane and a bread oven built into its side. A plank door leads west onto the side street.",
+  "2315": "Neat beds of cabbages, leeks, beans on poles and fat orange pumpkins fill this walled garden, each one edged with boards and weeded with care. Garlic grows in a long row against the sunny wall, far more of it than one small village could ever eat. The sun lies warm on the beds, and the soil smells rich and dark. A wicket gate in the wall leads east onto the side street.",
+  "2316": "The last cottage of the village stands here, with a lean-to woodshed and a chopping block scarred by many winters. Wood smoke curls from its chimney into the still air. A rough wooden sign beside the road warns travellers to be within walls by nightfall. Beyond it the Dusty Road runs out east across open fields toward darker country, and west it returns to the little town square.",
+  "2317": "Beyond the village the Dusty Road runs on across a wide, bare heath, the dust darker here and gritty underfoot. Stunted pines lean away from the wind, and the fields give way to gorse and heather. The breeze carries a faint chill, though the sun is bright. East, the road winds on toward the distant woods, and west the thatched roofs of the village sit snug behind their walls."
+ },
+ "extras": {
+  "9765": [
+   {
+    "keywords": "letters lintel inscription arch",
+    "description": "You can just make out the old carving: LET ALL WHO TRADE HONESTLY PASS FREELY. Beneath it someone has scratched a tally of tolls, as if to argue the point."
+   }
+  ],
+  "8273": [
+   {
+    "keywords": "standing stone lichen spirals",
+    "description": "The stone is older than the road, and the road builders bent their way around it rather than move it. Faint spirals are cut into its face beneath the lichen, worn almost smooth by rain."
+   }
+  ],
+  "8203": [
+   {
+    "keywords": "shrine wayside figure carving",
+    "description": "The little figure is crudely carved but lovingly painted: a robed farmer holding a sheaf of wheat to his chest. The villagers say it is Helver, who keeps Hommlet's fields and the travellers bound for them."
+   }
+  ],
+  "8210": [
+   {
+    "keywords": "notice board notices",
+    "description": "Pinned notices offer a reward for a lost brown cow, call for strong hands at the mill, and warn that robbers have been seen on the Caravan Road toward the Black Woods."
+   }
+  ],
+  "8303": [
+   {
+    "keywords": "signpost arms post",
+    "description": "Three of the arms read HOMMLET, MOUNTAINS and BLACK WOODS in fading paint. The fourth, pointing at the hill, has been painted over so often that it is blank, and someone has chalked NOWHERE across it."
+   }
+  ],
+  "8490": [
+   {
+    "keywords": "milestone sandstone wheel",
+    "description": "One face reads HOMMLET IV and the other BLACK WOODS IX. Beneath the carved wagon wheel some traveller has scratched a short warning: KEEP TOGETHER."
+   }
+  ],
+  "8495": [
+   {
+    "keywords": "barrow mound slab doorway",
+    "description": "The slab across the doorway is carved with a worn figure of a sleeping warrior, his arms folded over a sword. Small stones have been piled at its foot, as if to keep whatever lies within asleep."
+   }
+  ],
+  "19748": [
+   {
+    "keywords": "boulder marks arrow skull",
+    "description": "The arrow is old and weathered, but the skull beside it looks recent, scratched deep with the point of a knife. Outlaws use such marks to warn one another, or to mark the ground they claim."
+   }
+  ],
+  "19743": [
+   {
+    "keywords": "pillars carvings figures",
+    "description": "The figures on the pillars are so weathered that their faces are gone, but one holds a key and the other a sword. Between them, on the first stone of the bridge, someone has cut a deep line across the paving."
+   }
+  ],
+  "19710": [
+   {
+    "keywords": "toadstools ring glade",
+    "description": "The toadstools form an almost perfect circle, and the grass inside it is greener and softer than the grass without. Country folk say it is unlucky to step inside such a ring, and luckier still to step out again."
+   }
+  ],
+  "9142": [
+   {
+    "keywords": "letters carving arch inscription",
+    "description": "The letters are deep and handsome: THIS ROAD LEADS TO. There the carving ends, and the next stone has been left smooth."
+   }
+  ],
+  "8238": [
+   {
+    "keywords": "altar marble sheaf sun",
+    "description": "Words are carved along the front of the altar: AS THE SEED, SO THE HARVEST. The marble is worn smooth at one corner where generations of worshippers have touched it for luck."
+   }
+  ],
+  "8252": [
+   {
+    "keywords": "map charcoal roads plaster",
+    "description": "The map shows Hommlet in the middle, with lines running off toward Garathorm, the mountains and the Black Woods. Beside the Black Woods the teamster has drawn a heavy cross and written NOT FOR ANY PRICE."
+   }
+  ],
+  "8245": [
+   {
+    "keywords": "charts coinage coins",
+    "description": "The charts show the coins of Garathorm, New Thalos and Port Halyon side by side, with their weights and their worth in silver. A few are marked with a red cross, the sign of a known forgery."
+   }
+  ],
+  "8262": [
+   {
+    "keywords": "posts carvings faces",
+    "description": "Each post is carved with a different face: a laughing man, a scowling woman, a sleepy ox. One is plainly a caricature of the carpenter, and the next, in return, of the stonemason."
+   }
+  ],
+  "2309": [
+   {
+    "keywords": "pillar sun carving bench",
+    "description": "The sun carved atop the pillar has a face, round-cheeked and smiling, worn soft by the weather. A ring of fresh chalk circles the pillar's base, as though someone redraws it every evening."
+   }
+  ],
+  "2316": [
+   {
+    "keywords": "sign wooden warning",
+    "description": "The sign is painted in careful letters: TRAVELLERS, BE WITHIN WALLS BY DARK. Underneath, in a shakier hand, someone has added: AND OPEN TO NO ONE AFTER."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "field-hare",
+   "keywords": "hare field brown",
+   "short_desc": "a brown field hare",
+   "long_desc": "A brown field hare sits up in the grass, its long ears turning at every sound.",
+   "description": "A long-legged hare with a coat of brindled brown and a pale belly, its black-tipped ears never still. It sits up on its haunches to watch you with one wide amber eye, ready to bolt across the open ground at the first wrong move.",
+   "kind": "animal",
+   "level": 3,
+   "aggressive": false,
+   "alignment": 0,
+   "sectors": [
+    "field"
+   ],
+   "rooms": [
+    "The Meadow Thrithing"
+   ],
+   "count": 6
+  },
+  {
+   "id": "wild-boar",
+   "keywords": "boar wild pig tusker",
+   "short_desc": "a bristly wild boar",
+   "long_desc": "A bristly wild boar roots in the earth here, grunting to itself.",
+   "description": "A heavy-shouldered boar with a coat of coarse grey-black bristles and a stiff crest along its spine. Yellowed tusks curl up from its lower jaw, caked with earth from rooting, and its small eyes regard you with surly suspicion. It will leave you alone if you leave it alone.",
+   "kind": "animal",
+   "level": 8,
+   "aggressive": false,
+   "alignment": 0,
+   "sectors": [
+    "field"
+   ],
+   "rooms": [
+    "The Outskirts Of The Woods",
+    "An Overgrown Path",
+    "The Overgrown Path",
+    "The Animal Path",
+    "At The Edge Of The Woods",
+    "The Edge of the Forest"
+   ],
+   "count": 5
+  },
+  {
+   "id": "grey-wolf",
+   "keywords": "wolf grey lean",
+   "short_desc": "a lean grey wolf",
+   "long_desc": "A lean grey wolf slinks between the trees, watching you with pale, hungry eyes.",
+   "description": "The wolf is rangy and long in the leg, its grey coat darkening to black along the spine and torn in places by old fights. It carries its head low, lips drawn back from yellow fangs, and its pale eyes never leave you. Where there is one, there are usually others.",
+   "kind": "animal",
+   "level": 13,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "A Trail Through The Thick Woods",
+    "The Narrow Path",
+    "The Forest Trail",
+    "The Trail",
+    "The Ravine Path",
+    "In The Old Forest",
+    "The Birch Woods",
+    "A Trail Through A Light Forest",
+    "At The Edge Of The Woods",
+    "The Meadow Thrithing"
+   ],
+   "count": 7,
+   "drops": [
+    {
+     "item": "wolf-pelt",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "highwayman",
+   "keywords": "highwayman bandit robber masked",
+   "short_desc": "a masked highwayman",
+   "long_desc": "A masked highwayman steps out to bar the road, one hand resting on his sword.",
+   "description": "A wiry man in a patched riding coat and a broad-brimmed hat, with a strip of black cloth tied across his face below the eyes. His boots are better than his coat, his short sword is notched from use, and he looks you over the way a moneylender weighs a purse.",
+   "kind": "humanoid",
+   "level": 16,
+   "aggressive": true,
+   "alignment": -400,
+   "rooms": [
+    "The King's Road",
+    "An Old Road",
+    "On A Dirt Road",
+    "On A Small Road In The Old Forest",
+    "The Ruined Road",
+    "The Ruined Highway",
+    "Road Through The Plains",
+    "On The Muddy Path"
+   ],
+   "count": 6,
+   "drops": [
+    {
+     "item": "highwayman-blade",
+     "chance": 20
+    },
+    {
+     "item": "trail-rations",
+     "chance": 30
+    },
+    {
+     "item": "waymark-charm",
+     "chance": 12
+    }
+   ]
+  },
+  {
+   "id": "dire-wolf",
+   "keywords": "wolf dire black huge",
+   "short_desc": "a black dire wolf",
+   "long_desc": "A black dire wolf pads out of the gloom, its hackles raised and its jaws dripping.",
+   "description": "This wolf is as big as a pony, with a shaggy black coat, a heavy ruff about its neck and jaws that could close around a man's thigh. Old scars seam its muzzle, and its eyes burn a dull yellow in the gloom. It moves with the unhurried confidence of something that has never lost a fight.",
+   "kind": "animal",
+   "level": 24,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "A Dark Trail Through The Dense Woods",
+    "A Trail Through The Black Woods",
+    "A Bend In The Trail",
+    "On The Trail Of Shadows",
+    "The Never Ending Plains"
+   ],
+   "count": 5,
+   "drops": [
+    {
+     "item": "wolf-pelt",
+     "chance": 35
+    }
+   ]
+  },
+  {
+   "id": "outlaw-captain",
+   "keywords": "outlaw captain bandit scarred",
+   "short_desc": "a scarred outlaw captain",
+   "long_desc": "A scarred outlaw captain stands here, coolly sizing you up for ransom.",
+   "description": "A tall, hard-faced man with a scar running from brow to jaw, wearing a battered steel cap and a ranger's green cloak that was surely never his. He carries himself like an old soldier, and the outlaws of the deep woods take his orders without question. His sword hand never strays far from the hilt.",
+   "kind": "humanoid",
+   "level": 28,
+   "aggressive": true,
+   "alignment": -600,
+   "rooms": [
+    "A Large Clearing Near The Cliff",
+    "Before The Great Northern Bridge",
+    "On The Trail Of Shadows",
+    "In The Ruined City"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "ranger-cloak",
+     "chance": 30
+    },
+    {
+     "item": "waymark-charm",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "travelling-merchant",
+   "keywords": "merchant trader travelling",
+   "short_desc": "a travelling merchant",
+   "long_desc": "A travelling merchant pauses here to shift the heavy pack on his back.",
+   "description": "A stout, sunburned man in a dusty coat with a great many pockets, a heavy pack of wares strapped to his back. He has the easy smile of someone who has walked every road between Garathorm and the hills, and a story for each mile of them.",
+   "kind": "humanoid",
+   "level": 6,
+   "aggressive": false,
+   "alignment": 300,
+   "rooms": [
+    "Trade Road",
+    "On The Caravan Road",
+    "Danozi Avenue",
+    "Pasocaoa Boulevard",
+    "Esh Road"
+   ],
+   "count": 4
+  }
+ ],
+ "items": [
+  {
+   "id": "highwayman-blade",
+   "keywords": "sword short notched highwayman",
+   "short_desc": "a highwayman's short sword",
+   "room_desc": "A short sword with a notched but well-honed edge lies here.",
+   "description": "A plain, sturdy short sword with a grip of leather gone dark with sweat. The edge is notched in several places but honed bright between the nicks, and a pair of crossed keys has been scratched into the crossguard.",
+   "kind": "weapon",
+   "level": 16,
+   "weapon_type": "slash",
+   "bonus": {
+    "hitroll": 1
+   }
+  },
+  {
+   "id": "wolf-pelt",
+   "keywords": "pelt wolf fur hide",
+   "short_desc": "a thick wolf pelt",
+   "room_desc": "A thick wolf pelt lies here, rolled up with the fur turned inward.",
+   "description": "A wolf's pelt, roughly skinned and rolled with the fur inward to keep it clean. The fur is dense and coarse, grey shading to black along the back, and any furrier in Hommlet or Garathorm would pay well for it.",
+   "kind": "treasure",
+   "level": 13
+  },
+  {
+   "id": "waymark-charm",
+   "keywords": "charm waymark pebble cord amulet",
+   "short_desc": "a waymark charm",
+   "room_desc": "A small carved pebble on a leather cord lies here.",
+   "description": "A smooth grey pebble carved into the shape of a tiny milestone and threaded on a leather cord. Travellers wear such charms to keep from losing their way, and this one is polished by much anxious rubbing.",
+   "kind": "armor",
+   "level": 12,
+   "wear_slot": "neck",
+   "bonus": {
+    "wis": 1
+   }
+  },
+  {
+   "id": "ranger-cloak",
+   "keywords": "cloak ranger green hooded",
+   "short_desc": "a weathered ranger's cloak",
+   "room_desc": "A hooded green cloak, stained by weather and travel, lies here in a heap.",
+   "description": "A long hooded cloak of tightly woven wool, dyed in the mottled greens and browns of forest shade. It sheds rain like a duck's back, and a small silver leaf pinned at the throat marks it as the gear of the rangers who keep watch by the Long Lake.",
+   "kind": "armor",
+   "level": 24,
+   "wear_slot": "about",
+   "bonus": {
+    "dex": 1
+   }
+  },
+  {
+   "id": "trail-rations",
+   "keywords": "rations trail food packet oilcloth",
+   "short_desc": "a packet of trail rations",
+   "room_desc": "A small oilcloth packet of trail rations lies here.",
+   "description": "Hard biscuit, a twist of salted meat and a handful of dried apple rings, wrapped tight in oilcloth and tied with string. It is no feast, but it will keep a traveller walking for another day.",
+   "kind": "food",
+   "level": 5
+  }
+ ]
+}

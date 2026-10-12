@@ -202,8 +202,8 @@ def check_design(part, zs, w):
             elif not 1 <= int(d.get('chance', 0)) <= 50:
                 probs.append(f'creature {cid}: drop chance must be 1-50')
             dropped.add(d.get('item'))
-        if not where(c, zs, w):
-            probs.append(f'creature {cid}: no room in the zone matches its sectors/rooms')
+        if not where(c, zs, w, only=set(int(k) for k in (part.get('rooms') or {}) if str(k).isdigit())):
+            probs.append(f'creature {cid}: none of your rooms matches its sectors/rooms')
     seen_items = set()
     for i in its:
         iid = i.get('id') if isinstance(i, dict) else None
@@ -230,13 +230,13 @@ def check_design(part, zs, w):
     return probs
 
 
-def where(c, zs, w):
-    """The rooms a creature may stand in: its zone's open rooms of its sectors or names, on the
-    water only if it lives there, never where creatures may not go."""
+def where(c, zs, w, only=None):
+    """The rooms a creature may stand in: of the rooms its writer wrote (`only`), those of its
+    sectors or names, never where creatures may not go."""
     secs, names = set(c.get('sectors') or []), set(c.get('rooms') or [])
     out = []
     for v, r in w.rooms.items():
-        if r['_zone'] not in zs:
+        if r['_zone'] not in zs or (only is not None and v not in only):
             continue
         flags = set(r.get('flags') or [])
         if flags & {'no_mob', 'imm_only', 'deathtrap', 'death', 'peaceful'}:
@@ -365,10 +365,10 @@ def apply(new_zones, new_rooms, write=False):
         zs = briefs.JOBS[job][0]
         creatures = part.get('creatures') or []
         items = {i['id']: i for i in part.get('items') or []}
+        mine = {int(k) for k in (part.get('rooms') or {}) if str(k).isdigit()}
         homes = {}
         for c in creatures:
-            spots = where(c, zs, w)
-            homes[c['id']] = spots
+            homes[c['id']] = where(c, zs, w, only=mine)
         item_zone = {}
         for c in creatures:
             for d in c.get('drops') or []:
@@ -378,7 +378,7 @@ def apply(new_zones, new_rooms, write=False):
         item_vnum = {}
         for iid, i in items.items():
             z = item_zone.get(iid, zs[0])
-            v = _vnum(registry, 'objects', f'{z}:{iid}', z, taken)
+            v = _vnum(registry, 'objects', f'{job}:{iid}', z, taken)
             taken.add(v)
             item_vnum[iid] = v
             proto = {'vnum': v, 'name': ' '.join(str(i['keywords']).split()), 'short_desc': i['short_desc'],
@@ -390,7 +390,7 @@ def apply(new_zones, new_rooms, write=False):
             if not spots:
                 continue
             z = collections.Counter(new_rooms[v]['_zone'] for v in spots).most_common(1)[0][0]
-            v = _vnum(registry, 'mobs', f'{z}:{c["id"]}', z, taken)
+            v = _vnum(registry, 'mobs', f'{job}:{c["id"]}', z, taken)
             taken.add(v)
             kind = c['kind']
             flags = ['stay_zone']
@@ -432,7 +432,7 @@ def apply(new_zones, new_rooms, write=False):
             summary['creatures placed'] += placed
     if write:
         with open(REGISTRY, 'w', encoding='utf-8') as f:
-            json.dump({'_about': 'Vnums given to the build-out\'s creatures and items (zone:id), kept so a rebuild never renumbers them.',
+            json.dump({'_about': 'Vnums given to the build-out\'s creatures and items (job:id), kept so a rebuild never renumbers them.',
                        **{k: dict(sorted(v.items())) for k, v in registry.items() if k != '_about'}}, f, indent=1)
             f.write('\n')
     return dict(summary)
