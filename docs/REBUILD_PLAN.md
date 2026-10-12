@@ -1509,3 +1509,46 @@ built, however they try to get there.
 - **Balance:** the quest simulator (all nine classes alone at 45-60, three runs each) came out
   the same as in Push 27, row for row: no quest's walk went through the God Rooms or a sealed
   land. Nothing was retuned.
+
+### The connector zones built out (Push 29) (owner: "Start building out the connector zones next": every room by hand, new creatures and items, all 15 at once)
+The 15 connector zones, the wilderness, roads and seas that join everything else, are written.
+- **Every room by hand.** The 2,104 placeholder rooms each have their own description, written
+  one at a time from a brief. Another 34 rooms are rewritten: Port Halyon no longer reads as old
+  Rome, and road rooms no longer carry a house's interior. That makes 2,138 rooms, plus 215
+  extra descriptions for landmarks. Rooms that share a name ("The Plains", "On Mira Retrum")
+  each read differently.
+- **How the writing was done** (`tools/atlas/briefs.py`, `world/buildout/themes.json`):
+  - 16 jobs of 34-157 rooms each; a big zone is split into stretches of walking order.
+  - Each brief carries the zone's theme, mood and levels, the style rules, and every room with
+    its terrain, its ways out and the rooms they reach.
+  - `world/buildout/jobs.json` fixes each job's rooms.
+- **The writers' check** (`tools/atlas/buildout.py --check`):
+  - 45-100 words and 3-5 sentences;
+  - compass words only for real ways out (place names like "the Great Eastern Desert" excepted);
+  - no sentence twice;
+  - creatures and items complete.
+- **Folded into the world by the build** (`buildout.apply`, called by `build_world.py`):
+  - The writing lives in `world/buildout/parts/<job>.json`. Rebuilding the world keeps it.
+  - Descriptions are wrapped at 72 columns. A rewritten room drops the old extras that came with
+    its old text.
+- **112 kinds of creature and 84 items:**
+  - Each job designed the creatures of its own stretch (4-8 kinds), and they stand only in the
+    rooms that job wrote: 415 placed.
+  - Their numbers come from their level and kind, fitted to the world's own creatures: health
+    20 + 14L + 0.15L² (animals 0.9x, monsters 1.2x, undead 1.1x), a blow 1.5 + 1.45L, armour
+    97 - 3L, experience 55L + 20. Humanoids carry 12L gold.
+  - Items get modest gear numbers for their level (weapons about 4 + 0.15L a blow; armour a few
+    points; at most one small bonus). Each is dropped by one of its writer's creatures at
+    10-35%, besides the usual loot.
+  - Townsfolk are harmless; only predators, outlaws, undead and monsters attack.
+  - Vnums: creatures 600000 + zone·100, items 700000 + zone·100, kept per job in
+    `world/buildout/vnums.json`.
+- **The index** counts 4,683 rooms still to write, all outside the connectors.
+- **Tests:** `tests/test_buildout.py` checks that:
+  - every connector room is written, and every part passes the writers' check;
+  - creature numbers follow their level;
+  - no creature stands where creatures may not be, or on both water and land;
+  - every item is dropped.
+
+  The 3D client's creature looks (`node --test tests/web/looks.test.mjs`) give every new creature
+  a body.
