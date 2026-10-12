@@ -301,6 +301,26 @@ class Mobile(Character):
         if not equipment_data and proto.get('auto_equip', True):
             mob.auto_equip(proto)
 
+        # What the zone gave it to carry (keys, coins, gear: dropped when it dies) and the drops
+        # its zone wrote for it (each at its chance). Both lay unread until Push 32, so nothing a
+        # zone handed a creature ever dropped. A shopkeeper's wares are its shop, not its pockets.
+        if not getattr(mob, '_proto_loaded', False):
+            mob._proto_loaded = True
+            from objects import create_object, create_preset_object
+            if not (proto.get('shop_config') and mob.special == 'shopkeeper'):
+                for entry in proto.get('inventory') or []:
+                    vnum = entry.get('vnum') if isinstance(entry, dict) else entry
+                    try:
+                        vnum = int(vnum)
+                    except (TypeError, ValueError):
+                        continue
+                    obj = create_object(vnum, world) or create_preset_object(vnum)
+                    if obj and getattr(obj, 'item_type', '') not in ('fountain', 'furniture'):
+                        mob.inventory.append(obj)
+            if proto.get('loot_table'):
+                mob.loot_table = list(proto['loot_table'])
+                mob.loot_chance = proto.get('loot_chance', 20)
+
         # Ensure loot table exists for NPCs
         if not mob.loot_table:
             tier = mob.get_level_tier(mob.level)

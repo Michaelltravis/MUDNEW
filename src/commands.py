@@ -17144,6 +17144,120 @@ class CommandHandler:
                     ch.position = 'standing'
 
     @classmethod
+    async def cmd_gearup(cls, player: 'Player', args: List[str]):
+        """Kit a player out for endgame testing (immortal only).
+
+        Usage: gearup <player>
+        Raises them to their highest level, fills every slot with the best gear in the world for
+        it, puts on a whole named set and a legendary weapon, gives 50,000 gold and the fastest
+        mount (mounted), and saves. Safe to run again.
+        """
+        c = player.config.COLORS
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        name = (args[0] if args else player.name).lower()
+        target = player.world.players.get(name)
+        if not target:
+            await player.send(f"{c['yellow']}{name.title()} is not online.{c['reset']}")
+            return
+        from objects import create_object, infer_wear_slot
+        from prestige import get_max_level
+        import gear_look
+        from sets import NAMED_SETS
+        from legendary import LEGENDARY_ITEMS, create_legendary
+        from mounts import MOUNT_TEMPLATES, MountManager
+        report = []
+        # the highest level they may reach, through the game's own level-up (skills unlock)
+        top = get_max_level(target)
+        levelled = 0
+        while target.level < top:
+            await target.level_up()
+            levelled += 1
+        if levelled:
+            report.append(f"level {target.level} (+{levelled})")
+        # the best piece the world has for every slot
+        if not gear_look.ITEM_LEVELS:
+            gear_look.build_item_levels(player.world)
+        pairs = {'finger': ['finger1', 'finger2'], 'neck': ['neck1', 'neck2'], 'wrist': ['wrist1', 'wrist2']}
+
+        def avg(d):
+            import re
+            mm = re.match(r'\s*(\d+)d(\d+)\s*([+-]\s*\d+)?', str(d or ''))
+            return int(mm.group(1)) * (int(mm.group(2)) + 1) / 2 + int((mm.group(3) or '0').replace(' ', '')) if mm else 0
+        best = {}
+        for vnum, proto in player.world.obj_prototypes.items():
+            if not isinstance(proto, dict):
+                continue
+            kind = proto.get('item_type') or proto.get('type')
+            flags = set(proto.get('flags') or [])
+            if kind not in ('armor', 'weapon', 'worn', 'treasure', 'light') or flags & {'cursed', 'quest', 'no_take'}:
+                continue
+            obj = create_object(vnum, player.world)
+            if not obj:
+                continue
+            slot = 'wield' if kind == 'weapon' else infer_wear_slot(obj)
+            if not slot or (kind == 'treasure' and not proto.get('wear_slot')):
+                continue
+            score = (gear_look.item_level(obj), avg(getattr(obj, 'damage_dice', '')) + getattr(obj, 'armor', 0),
+                     len(getattr(obj, 'affects', []) or []))
+            for s in pairs.get(slot, [slot]):
+                best.setdefault(s, []).append((score, vnum))
+        chosen = {}
+        for s, cands in best.items():
+            cands.sort(reverse=True)
+            used = set(chosen.values())
+            pick = next((v for _, v in cands if v not in used or s.endswith('2')), None)
+            if pick is not None:
+                chosen[s] = pick
+        # a whole named set over the slots it covers: the strongest one
+        set_key = max(NAMED_SETS, key=lambda k: max((NAMED_SETS[k].get('level_range') or (0, 0))))
+        for v in NAMED_SETS[set_key]['pieces']:
+            obj = create_object(int(v), player.world)
+            if obj:
+                slot = 'wield' if obj.item_type == 'weapon' else infer_wear_slot(obj)
+                for s in pairs.get(slot, [slot]):
+                    if chosen.get(s) not in [int(x) for x in NAMED_SETS[set_key]['pieces']]:
+                        chosen[s] = int(v)
+                        break
+        # off with the old, on with the new
+        for s, item in list(target.equipment.items()):
+            if item:
+                target.inventory.append(item)
+        target.equipment.clear()
+        for s, v in chosen.items():
+            if s == 'dual_wield':
+                continue
+            obj = create_object(v, player.world)
+            if obj:
+                target.equipment[s] = obj
+        # a legendary weapon in the hand: the strongest that strikes on a hit
+        legend = max((v for v, d in LEGENDARY_ITEMS.items()
+                      if (d.get('item_type') or d.get('type')) == 'weapon' and any(p.get('type') == 'on_hit' for p in d.get('procs', []))),
+                     key=lambda v: (avg(LEGENDARY_ITEMS[v].get('damage_dice')), v), default=None)
+        if legend:
+            leg = create_legendary(legend, player.world)
+            if leg:
+                if target.equipment.get('wield'):
+                    target.inventory.append(target.equipment['wield'])
+                target.equipment['wield'] = leg
+                report.append(f"legendary {leg.short_desc}")
+        report.append(f"{len(target.equipment)} slots filled, the {NAMED_SETS[set_key].get('name', set_key)} set")
+        target.gold += 50000
+        report.append('50,000 gold')
+        # the fastest mount, owned and ridden
+        fast = max(MOUNT_TEMPLATES, key=lambda k: MOUNT_TEMPLATES[k].get('speed_bonus', 0))
+        if not any((m if isinstance(m, str) else m.get('key')) == fast for m in target.owned_mounts):
+            target.owned_mounts.append({'key': fast, 'loyalty': 100})
+        target.mount = MountManager.create_mount(fast, loyalty=100)
+        report.append(f"riding {MOUNT_TEMPLATES[fast]['name']}")
+        target.hp, target.mana, target.move = target.max_hp, target.max_mana, target.max_move
+        await target.save()
+        await player.send(f"{c['bright_green']}{target.name} geared up: {', '.join(report)}.{c['reset']}")
+        if target is not player:
+            await target.send(f"{c['bright_yellow']}The gods kit you out for the hardest roads: {', '.join(report)}.{c['reset']}")
+
+    @classmethod
     async def cmd_restore(cls, player: 'Player', args: List[str]):
         """Fully restore HP/mana/move for self or a target (immortal only).
         
