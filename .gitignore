@@ -65,3 +65,8 @@ tools/art3d/.cache/
 
 # sound toolchain (tools/audio): the downloaded source packs and music
 tools/audio/.cache/
+
+# the build-out's writing is kept (the Python template's `parts/` above is not ours), but not a
+# writer's pieces before tools/atlas/buildout.py --merge folds them in
+!world/buildout/parts/
+world/buildout/parts/*.p[0-9]*.json
