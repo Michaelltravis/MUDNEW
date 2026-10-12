@@ -7,7 +7,8 @@ look once at load, the first rule that answers:
 
   1. what is stated: a `look` in the room's zone data (the build-out and new zones write one),
      or world/looks.json (hand overrides by room or by zone, each with its reason);
-  2. its name, by the ordered word table LOOK_WORDS;
+  2. its name, by the ordered word table LOOK_WORDS; or, for a room typed indoors whose name is
+     open country (The Plains, A Mountain Trail), that country (OPEN_COUNTRY);
   3. its description, by the same table (two mentions, or one telling phrase);
   4. its zone's default in world/looks.json;
   5. its neighbours: a room with no word of its own takes the look most of its looked
@@ -123,6 +124,42 @@ def _neighbours(room, rooms):
             yield other
 
 
+# a room typed as indoors whose name is open country ("The Plains", "A Mountain Trail"): drawn as
+# the country it names, not as a furnished house (sector-named looks: field, forest, hills,
+# mountain; a road in a town is a street)
+OPEN_COUNTRY = [
+    ('mountain', r'\b(mountains?|mountainside|peaks?|summit|cliffs?|crags?|cliff\'s edge)\b'),
+    ('hills', r'\b(hills?|hillside|highlands?|downs|ridges?|foothills)\b'),
+    ('forest', r'\b(forests?|woods|woodlands?|groves?|copse)\b'),
+    ('field', r'\b(plains?|meadows?|fields?|grasslands?|prairie|steppes?|pastures?|farmland|heath|moors?|savannah?)\b'),
+    ('road', r'\b(roads?|trails?|paths?|highway|crossroads|track)\b'),
+]
+OPEN_RES = [(look, re.compile(pat, re.I)) for look, pat in OPEN_COUNTRY]
+STREET_RE = re.compile(r'\b(street|avenue|lane|square|alley|plaza|market|wall road|gate)\b', re.I)
+INDOOR_SECTORS = {'inside', 'dungeon'}
+
+
+def open_country(room):
+    """The open country an indoor-typed room's name says it is (None: it doesn't, or it reads as a
+    building: a tavern on a mountain road is still a tavern)."""
+    if (getattr(room, 'sector_type', '') or 'inside') not in INDOOR_SECTORS:
+        return None
+    name = room.name or ''
+    # a road names where it goes ("The Path By The Cathedral"): still a road; anything else that
+    # names a building is that building
+    road = dict(OPEN_RES)['road'].search(name)
+    if road and not re.search(r'\b(tavern|inn|shop|store)\b', name, re.I):
+        return 'city' if STREET_RE.search(name) else 'field'
+    if INTERIOR_RE.search(name):
+        return None
+    for look, rx in OPEN_RES:
+        if rx.search(name):
+            if look == 'road':
+                return 'city' if STREET_RE.search(name) else 'field'
+            return look
+    return None
+
+
 def _own_look(room):
     """(look, why) from the room's own words, or (None, None)."""
     sector = getattr(room, 'sector_type', '') or ''
@@ -130,6 +167,8 @@ def _own_look(room):
         return None, None
     look = words_look(room.name)
     why = 'name'
+    if not look:
+        look = open_country(room)
     if not look:
         look, why = description_look(room.description), 'description'
     if not look:

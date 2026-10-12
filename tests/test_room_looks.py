@@ -69,6 +69,10 @@ async def main():
     check(look_of('Deeper and Deeper') == 'cave', "the Pale Man's caverns are caves throughout")
     taverns = [r for r in rooms.values() if r.sector_type == 'inside' and 'tavern' in r.name.lower()]
     check(taverns and all(r.look not in rl.UNDERGROUND for r in taverns), 'no tavern turns into a cave')
+    plains = [r for r in rooms.values() if r.name == 'The Plains']
+    check(plains and all(r.look not in ('inside', 'dungeon') for r in plains), 'no room called The Plains is drawn as a building')
+    indoor_country = [(r.vnum, r.name) for r in rooms.values() if r.look == 'inside' and rl.open_country(r)]
+    check(not indoor_country, f'no room named as open country is drawn indoors ({indoor_country[:4]})')
     water = [r for r in rooms.values() if r.sector_type in rl.WATER_SECTORS]
     check(all(r.look == r.sector_type for r in water), 'water stays water')
 
