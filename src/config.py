@@ -26,6 +26,11 @@ class Config:
     MAP_HOST = '0.0.0.0'
     MAP_PUBLIC_HOST = '72.35.132.11'
     MAP_VIEW_SIZE = 11
+
+    # Admin dashboard: this machine only unless the owner opts in (set MISTHOLLOW_ADMIN_HOST,
+    # e.g. to 0.0.0.0). Its API always needs the admin token: see README, "Admin dashboard".
+    ADMIN_DASHBOARD_PORT = 4002
+    ADMIN_DASHBOARD_HOST = os.environ.get('MISTHOLLOW_ADMIN_HOST', '127.0.0.1')
     
     # Game Settings
     STARTING_ROOM = 3001  # Temple of Garathorm equivalent

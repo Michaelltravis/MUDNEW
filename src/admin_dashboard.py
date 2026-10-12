@@ -2,10 +2,12 @@
 Misthollow Admin Dashboard
 Web-based admin interface on port 4002.
 
-Local only by default (127.0.0.1; MISTHOLLOW_ADMIN_HOST overrides), and every API call needs
-the key in lib/admin_key (made on first start) in an X-Admin-Key header: the page asks for it
-once. Requests must name this machine in their Host header (no DNS rebinding), and a POST
-from another site's page is refused.
+Local only by default (Config.ADMIN_DASHBOARD_HOST, 127.0.0.1; MISTHOLLOW_ADMIN_HOST overrides),
+and every API call needs the admin token in an "Authorization: Bearer <token>" header (the
+older X-Admin-Key header still works): the page asks for it once. The token is
+MISTHOLLOW_ADMIN_TOKEN when that is set, else the key in lib/admin_key (made on first start,
+not in git). With no token the API refuses everything. Requests must name this machine in
+their Host header (no DNS rebinding), and a POST from another site's page is refused.
 """
 
 import hmac
@@ -28,6 +30,9 @@ _REDACT = [(re.compile(r'([?&](?:t|token)=)[^&\s\']+'), r'\1…'),
 
 
 def _load_key() -> str:
+    key = os.environ.get('MISTHOLLOW_ADMIN_TOKEN', '').strip()
+    if key:
+        return key
     try:
         with open(KEY_FILE) as f:
             key = f.read().strip()
@@ -50,11 +55,11 @@ def redact(text: str) -> str:
 
 
 class AdminDashboard:
-    def __init__(self, world, port=4002, host=None):
+    def __init__(self, world, port=4002, host=None, key=None):
         self.world = world
         self.port = port
         self.host = host or os.environ.get('MISTHOLLOW_ADMIN_HOST', '127.0.0.1')
-        self.key = _load_key()
+        self.key = _load_key() if key is None else key
         # the names this dashboard answers to (Host header); more via MISTHOLLOW_ADMIN_HOSTS
         self.hosts = {'127.0.0.1', 'localhost', '::1', '[::1]', self.host}
         self.hosts |= {h.strip() for h in os.environ.get('MISTHOLLOW_ADMIN_HOSTS', '').split(',') if h.strip()}
@@ -76,8 +81,14 @@ class AdminDashboard:
         if host not in self.hosts:
             return web.Response(status=421, text='Misdirected request')
         if request.path.startswith('/api/'):
-            if not hmac.compare_digest(request.headers.get('X-Admin-Key', '').encode(), self.key.encode()):
-                return web.json_response({'error': 'key required'}, status=401)
+            if not self.key:
+                return web.json_response({'error': 'no admin token configured'}, status=403)
+            auth = request.headers.get('Authorization', '')
+            given = auth[7:].strip() if auth[:7].lower() == 'bearer ' else request.headers.get('X-Admin-Key', '')
+            if not given:
+                return web.json_response({'error': 'token required'}, status=401)
+            if not hmac.compare_digest(given.encode(), self.key.encode()):
+                return web.json_response({'error': 'wrong token'}, status=403)
             if request.method == 'POST':
                 origin = request.headers.get('Origin')
                 if origin and origin.split('://', 1)[-1] != request.host:
@@ -94,7 +105,8 @@ class AdminDashboard:
         await runner.setup()
         site = web.TCPSite(runner, self.host, self.port)
         await site.start()
-        print(f"Admin dashboard on http://{self.host}:{self.port} (key: lib/admin_key)")
+        source = 'MISTHOLLOW_ADMIN_TOKEN' if os.environ.get('MISTHOLLOW_ADMIN_TOKEN', '').strip() else 'lib/admin_key'
+        print(f"Admin dashboard on http://{self.host}:{self.port} (token: {source})")
 
     def get_uptime(self):
         delta = timedelta(seconds=int(time.time() - self.start_time))
@@ -140,9 +152,9 @@ class AdminDashboard:
     <h1>🎮 Misthollow Admin Dashboard</h1>
 
     <div id="keybox" class="card hidden">
-        <h2>Admin key</h2>
-        <p>Paste the key from <b>lib/admin_key</b> on the server. This browser remembers it.</p>
-        <input type="password" id="key-input" placeholder="admin key" autocomplete="off">
+        <h2>Admin token</h2>
+        <p>Paste the admin token (<b>MISTHOLLOW_ADMIN_TOKEN</b>, or the key in <b>lib/admin_key</b> on the server). This browser remembers it.</p>
+        <input type="password" id="key-input" placeholder="admin token" autocomplete="off">
         <button id="key-save">Unlock</button>
     </div>
 
@@ -183,8 +195,8 @@ class AdminDashboard:
         function locked(on) { $('keybox').classList.toggle('hidden', !on); $('board').classList.toggle('hidden', on); }
 
         async function api(path, opts = {}) {
-            const res = await fetch(path, { ...opts, headers: { ...(opts.headers || {}), 'X-Admin-Key': getKey() } });
-            if (res.status === 401) { locked(true); throw new Error('locked'); }
+            const res = await fetch(path, { ...opts, headers: { ...(opts.headers || {}), 'Authorization': 'Bearer ' + getKey() } });
+            if (res.status === 401 || (res.status === 403 && !opts.method)) { locked(true); throw new Error('locked'); }
             return res.json();
         }
 
@@ -247,8 +259,11 @@ class AdminDashboard:
         return web.Response(text=html, content_type='text/html')
 
     async def api_stats(self, request):
-        import resource
-        mem = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024 / 1024  # MB on macOS
+        try:
+            import resource
+            mem = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024 / 1024  # MB on macOS
+        except ImportError:  # no resource module on Windows
+            mem = 0.0
 
         players = self._players()
         active_combats = sum(1 for p in players if getattr(p, 'fighting', None))

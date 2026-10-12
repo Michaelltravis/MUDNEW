@@ -237,6 +237,32 @@ Edit `src/config.py` to customize:
 - Spell costs and effects
 - Combat parameters
 
+### Admin dashboard (port 4002)
+
+The dashboard (server status, player list, recent logs, broadcast) listens on `127.0.0.1`
+only, and every `/api/*` call needs the admin token in an `Authorization: Bearer <token>`
+header. The page at `http://localhost:4002` asks for the token once.
+
+Setting the token, either way:
+
+- **Environment variable** (wins when set): start the server with `MISTHOLLOW_ADMIN_TOKEN`
+  set to a long random string, e.g. `python3 -c "import secrets; print(secrets.token_urlsafe(32))"`.
+  Under launchd, put it in the job's `EnvironmentVariables`. Do not commit it.
+- **Key file**: with no variable set, the server makes a random key on first start and keeps
+  it in `lib/admin_key` (not in git, readable by the owner only). Read it with
+  `cat lib/admin_key`; delete the file and restart to get a new one.
+
+```bash
+curl -H "Authorization: Bearer $(cat lib/admin_key)" http://127.0.0.1:4002/api/players
+```
+
+To reach it from another machine, prefer an SSH tunnel (`ssh -L 4002:127.0.0.1:4002 <server>`)
+and leave the bind alone. Opting in to a wider bind is `MISTHOLLOW_ADMIN_HOST=0.0.0.0` (the
+default lives in `src/config.py`, `ADMIN_DASHBOARD_HOST`), plus `MISTHOLLOW_ADMIN_HOSTS` for
+the host names it should answer to. Do not route port 4002 through the public proxy.
+
+Test: `python3 tests/test_admin_dashboard.py` (offline, needs only `aiohttp`).
+
 ## Extending the MUD
 
 ### Adding New Zones

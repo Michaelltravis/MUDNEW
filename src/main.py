@@ -100,7 +100,8 @@ class Misthollow:
         # Start admin dashboard
         try:
             from admin_dashboard import AdminDashboard
-            self.admin_dashboard = AdminDashboard(self.world, port=4002)
+            self.admin_dashboard = AdminDashboard(self.world, port=self.config.ADMIN_DASHBOARD_PORT,
+                                                  host=self.config.ADMIN_DASHBOARD_HOST)
             await self.admin_dashboard.start()
         except Exception as e:
             logger.warning(f"Admin dashboard failed to start: {e}")
