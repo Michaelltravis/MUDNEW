@@ -1,0 +1,57 @@
+"""Who lives where, zone by zone (world/population/zone_<n>.json), applied when the world loads,
+after the zone files and before the first reset, so a rebuild of world/zones keeps it.
+
+    {"zone": 220,
+     "bosses": [{"vnum": 22070, "room": 14151, "why": "..."}],      # spawn here, and only here
+     "doors":  [{"room": 14150, "dir": "south", "key": 22051, "name": "inner gate"}]}   # locked to a key
+
+A boss placed here spawns in its room and nowhere else in the world (its other resets go). A door
+listed is closed and locked, opened by the key named (doors.py key_vnum).
+"""
+import glob
+import json
+import logging
+import os
+
+logger = logging.getLogger('Misthollow')
+POP_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'world', 'population')
+
+
+def load(pop_dir=POP_DIR) -> dict:
+    out = {}
+    for f in sorted(glob.glob(os.path.join(pop_dir, 'zone_*.json'))):
+        try:
+            with open(f, encoding='utf-8') as fh:
+                d = json.load(fh)
+            out[int(d.get('zone'))] = d
+        except Exception as e:
+            logger.warning(f"population: {os.path.basename(f)}: {e}")
+    return out
+
+
+def apply(world, data=None) -> list:
+    """Place the bosses and lock the doors; returns what could not be done."""
+    problems = []
+    for z, d in (data if data is not None else load()).items():
+        for b in d.get('bosses') or []:
+            vnum, room = int(b['vnum']), world.rooms.get(int(b['room']))
+            if room is None or vnum not in world.mob_prototypes:
+                problems.append(f"zone {z}: boss {vnum} or room {b.get('room')} missing")
+                continue
+            for r in world.rooms.values():
+                if r.mob_resets:
+                    r.mob_resets = [m for m in r.mob_resets if int(m.get('vnum', -1)) != vnum]
+            room.mob_resets.append({'vnum': vnum, 'max': 1})
+        for dd in d.get('doors') or []:
+            room = world.rooms.get(int(dd['room']))
+            ex = (room.exits or {}).get(dd['dir']) if room else None
+            if not isinstance(ex, dict):
+                problems.append(f"zone {z}: no exit {dd.get('dir')} in room {dd.get('room')}")
+                continue
+            door = ex.get('door') if isinstance(ex.get('door'), dict) else {}
+            door.update({'name': dd.get('name') or door.get('name') or 'door', 'state': 'closed', 'locked': True,
+                         'key_vnum': int(dd['key'])})
+            ex['door'] = door
+    for p in problems:
+        logger.warning(f"population: {p}")
+    return problems

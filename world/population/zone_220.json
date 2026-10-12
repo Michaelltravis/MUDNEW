@@ -1,0 +1,14 @@
+{
+  "_about": "Who lives where in the Castle of the Apocalypse II, and which doors their keys open (src/population.py, applied when the world loads, so a rebuild of world/zones keeps it). The owner, 2026-10-12: Kirgan the Destroyer holds the key to the guardian's chamber; Pestilence is in the room right after the door from the Inner Hall; War at the end of the guardian chambers; Famine in the other guardian chambers on the far side (14163); Death the final boss.",
+  "zone": 220,
+  "bosses": [
+    {"vnum": 22100, "room": 22100, "why": "Kirgan the Destroyer, in the Guard Room off the inner corridor: he carries the inner gate key (his loot, every time)"},
+    {"vnum": 22070, "room": 14151, "why": "Pestilence, in the first Guardian Chamber, through the Inner Hall's locked door"},
+    {"vnum": 22071, "room": 14158, "why": "War, at The End Of The Guardian Chambers (the east wing)"},
+    {"vnum": 22072, "room": 14163, "why": "Famine, in the guardian chambers on the far (west) side"},
+    {"vnum": 22073, "room": 14153, "why": "Death, the final boss, at The Gates To Hell"}
+  ],
+  "doors": [
+    {"room": 14150, "dir": "south", "key": 22051, "name": "inner gate", "why": "the Inner Hall's door into the Guardian Chambers opens to Kirgan's key"}
+  ]
+}

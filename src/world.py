@@ -698,6 +698,12 @@ class World:
             
         # Link room exits
         self.link_exits()
+        # who lives where, zone by zone (world/population: bosses in their rooms, doors to keys)
+        try:
+            import population
+            population.apply(self)
+        except Exception as e:
+            logger.error(f"population failed: {e}")
         # Tidy the imported door data (both sides agree) and remember the reset state
         try:
             import doors
