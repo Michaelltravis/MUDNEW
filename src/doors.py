@@ -145,11 +145,14 @@ def _next_rev():
 
 def apply(room, d, push=True, mirror=(), **changes):
     """Change a door on this side and the mirrored fields (plus any named in `mirror`) on
-    the far side; a value of None removes the field on both sides. Returns the door dict."""
+    the far side; a value of None removes the field on both sides. Returns the door dict.
+    The bar across a sealed zone's way in never changes (seal_zones lifts it)."""
     ex = (getattr(room, 'exits', None) or {}).get(d)
     door = ex.get('door') if ex else None
     if not isinstance(door, dict):
         return None
+    if is_seal(door):
+        return door
     rev = _next_rev()
     for key, val in changes.items():
         if val is None:
@@ -246,7 +249,10 @@ def carried_keys(player):
 
 
 def has_key(door, keys):
-    """A lock without a key can be worked by anyone (the CircleMUD rule this world uses)."""
+    """A lock without a key can be worked by anyone (the CircleMUD rule this world uses); no
+    key works the bar across a sealed zone."""
+    if is_seal(door):
+        return False
     k = key_vnum(door)
     return True if k is None else k in (keys or ())
 
@@ -271,7 +277,7 @@ def view(door, keys, player):
          'locked': bool(door.get('locked')), 'broken': bool(door.get('broken')),
          'keyless': key_vnum(door) is None, 'has_key': has_key(door, keys),
          'can_pick': can_pick(player, door), 'rev': door.get('rev', 0)}
-    if door.get('sealed_until', 0) > now or door.get('magically_blocked'):
+    if door.get('sealed_until', 0) > now or door.get('magically_blocked') or is_seal(door):
         v['sealed'] = True
     if door.get('barricaded_until', 0) > now:
         v['barricaded'] = True
@@ -280,6 +286,58 @@ def view(door, keys, player):
         if kn:
             v['key_name'] = kn
     return v
+
+
+# ---------------------------------------------------------------- sealed zones
+SEAL_NAME = 'gate barred'
+
+
+def is_seal(door):
+    """True for the bar across a sealed zone's way in."""
+    return isinstance(door, dict) and door.get('sealed_zone') is not None
+
+
+def seal_message(door):
+    """What stops someone at a sealed zone's edge (None for any other door)."""
+    if not is_seal(door):
+        return None
+    zone = (getattr(WORLD, 'zones', None) or {}).get(door['sealed_zone'])
+    name = getattr(zone, 'name', None) or 'that land'
+    return f"The way into {name} is barred; that land is still being charted."
+
+
+def seal_zones(world):
+    """Bar every way into a sealed zone from outside it. A zone file marks a zone
+    `"sealed": true` until it is built out; the bar is a closed, locked, pickproof gate made at
+    load and never saved (Room.to_dict writes the way as it was), so a zone opens by losing its
+    mark. A real door on that way is kept aside and comes back when the zone opens. Run again
+    after a zone's mark changes."""
+    for room in world.rooms.values():
+        here = getattr(room, 'zone', None)
+        for d, ex in (getattr(room, 'exits', None) or {}).items():
+            if not isinstance(ex, dict):
+                continue
+            target = ex.get('room')
+            tz = getattr(target, 'zone', None)
+            barred = tz is not None and tz is not here and bool(getattr(tz, 'sealed', False))
+            if barred and not is_seal(ex.get('door')):
+                ex['_unsealed_door'] = ex.get('door')
+                ex['door'] = {'name': SEAL_NAME, 'state': 'closed', 'locked': True, 'pickproof': True,
+                              'sealed_zone': tz.number}
+            elif not barred and is_seal(ex.get('door')):
+                before = ex.pop('_unsealed_door', None)
+                if isinstance(before, dict):
+                    ex['door'] = before
+                else:
+                    ex.pop('door', None)
+
+
+def unsealed_door(ex):
+    """The door to save for a way (the bar of a sealed zone is never saved)."""
+    door = ex.get('door')
+    if is_seal(door):
+        return ex.get('_unsealed_door')
+    return door
 
 
 # ---------------------------------------------------------------- load and reset

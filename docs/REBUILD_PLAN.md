@@ -1322,3 +1322,45 @@ The re-lay comes in Pushes 26-27, once the owner has reviewed the proposals.
   - hookups and annexes land on free sides, never twice, and every zone of ours has a way in;
   - the Newbie Zone stays on the Great Field;
   - the index covers every zone and room.
+
+### The world on the Bedlam atlas, step 2: the engine made ready (Push 26) (owner: "just make sure rooms connect as needed")
+The owner approved everything the index proposed. This push readies the engine on today's world;
+the world itself is re-laid in the next push.
+- **A room's zone is the zone file that holds it** (`world.zone_of`), never its vnum's
+  hundred-block: the atlas's zones span many (the Trade Road runs from 1301 to 19748).
+  - Creatures staying in their zone, faction guards' home zone, `rlist`/`olist`/`mlist`/`zreset`,
+    the local map and the who list's area all ask it.
+  - `redit` of a vnum not built yet uses `world.zone_of_vnum`.
+- **Rooms can store their place on the map** (`room.map`: the atlas's x, y and level).
+  - It is saved and loaded with the room.
+  - The 3D zone map (`compute_room_coords` with fixed cells) and the world map (`world_cells`)
+    honour it; each zone's sheet is set where its cross-zone links put it.
+  - Rooms without one are laid out from their placed neighbours, as before.
+  - A load-time check logs two rooms on one cell and exits that point against the map.
+- **Sealed zones:** a zone file can mark a zone `"sealed": true` (a land still being built).
+  - At load, every way into it from outside gets a barred gate: closed, locked and pickproof,
+    and never saved.
+  - It turns walkers back: "The way into … is barred; that land is still being charted."
+  - Opening, unlocking, picking, bashing, `knock` and the web door buttons do nothing, and no
+    door change gets through. Creatures don't walk closed doors.
+  - An immortal walks through to build it.
+  - Lifting the mark opens it again (a real door on that way comes back).
+- **Water will need a boat or a raft** (built now, switched on with the re-laid world):
+  - Going out on the water takes a carried or held boat (rafts, canoes, the hollow log, the
+    boots that walk on water), or flight. Afloat, you move freely; coming ashore never needs one.
+  - Without one: "You need a boat or a raft to go out on the water. (Rafts and canoes are sold
+    at the quay in the city.)" Captain Stolar at the levee and the sailor sell them, as does New
+    Thalos's shipwright, and a hollow log lies at Haon-Dor's fallen tree.
+  - Creatures keep to land unless they live in the water.
+  - **Why it waits:** on today's world it would put 580 rooms behind a boat. A ford on the only
+    way north (the river crossing in our Northern Wilderness) would cut off Arachnos and the
+    whole chain to the endgame zones, and some rooms are coded as water by mistake (Haon-Dor's
+    spider web). The re-lay removes that ford, fixes those rooms, and proves every place that
+    matters can be reached with a raft bought on the way (`Config.WATER_NEEDS_BOAT`).
+- **Tests:** `tests/test_atlas_engine.py`:
+  - `zone_of`;
+  - stored places in the zone map and the world map, the load check, and save and load;
+  - a sealed zone: turned back, nothing opens it, never saved, an immortal passes, unsealing
+    opens it;
+  - water: no boat no water, a raft takes you out, ashore is free, flying passes, land
+    creatures stay ashore and river ones don't.

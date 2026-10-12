@@ -935,7 +935,8 @@ class Connection:
                 room_vnum = info.get('room', 3001)
                 if room_vnum and self.world:
                     try:
-                        zone_vnum = room_vnum // 100
+                        from world import zone_of
+                        zone_vnum = zone_of(self.world.rooms.get(room_vnum)) or room_vnum // 100
                         if zone_vnum in self.world.zones:
                             area = self.world.zones[zone_vnum].name[:14]
                     except:

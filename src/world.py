@@ -23,6 +23,19 @@ from weather import Weather
 logger = logging.getLogger('Misthollow.World')
 
 
+def zone_of(room) -> Optional[int]:
+    """The number of the zone a room belongs to: the zone file that holds it. Never worked out
+    from the vnum alone, since a zone may span many hundred-blocks (the atlas's Trade Road runs
+    from 1301 to 19748); only a room not loaded from a zone falls back to vnum // 100."""
+    if room is None:
+        return None
+    zone = getattr(room, 'zone', None)
+    if zone is not None:
+        return zone.number
+    vnum = getattr(room, 'vnum', None)
+    return vnum // 100 if isinstance(vnum, int) else None
+
+
 class Room:
     """A room in the MUD world."""
     
@@ -37,7 +50,8 @@ class Room:
         self.extra_descs = {}  # keyword -> description
         self.hidden_items = []  # [{vnum, search_difficulty, requires_light, requires_detect_magic, reveal_message}, ...]
         self.puzzles = []  # Puzzle definitions for this room
-        
+        self.map = None  # its place on the zone's map, {x, y, z} (the atlas's; north is +y)
+
         # Contents
         self.characters = []  # Players and NPCs in room
         self.items = []  # Objects in room
@@ -421,8 +435,17 @@ class Room:
             # Remove runtime-only references
             if 'room' in ex:
                 ex.pop('room')
+            # the bar across a sealed zone's way in is made at load, never saved
+            if 'door' in ex:
+                import doors
+                door = doors.unsealed_door(e)
+                if door:
+                    ex['door'] = door
+                else:
+                    ex.pop('door')
+            ex.pop('_unsealed_door', None)
             exits[d] = ex
-        return {
+        out = {
             'vnum': self.vnum,
             'name': self.name,
             'description': self.description,
@@ -435,6 +458,9 @@ class Room:
             'mob_resets': self.mob_resets,
             'obj_resets': self.obj_resets,
         }
+        if self.map:
+            out['map'] = dict(self.map)
+        return out
         
     # some zones (90, 100, 110, 130, 160) were written with `title` and `terrain`
     TERRAIN_SECTORS = {'indoors': 'inside', 'underground': 'cave', 'undead': 'dungeon', 'planar': 'mountain',
@@ -496,6 +522,7 @@ class Room:
         room.puzzles = data.get('puzzles', [])
         room.mob_resets = data.get('mob_resets', [])
         room.obj_resets = data.get('obj_resets', [])
+        room.map = data.get('map') or None
         return room
 
 
@@ -517,13 +544,14 @@ class Zone:
         self.rooms: Dict[int, Room] = {}
         self.mobs: Dict[int, dict] = {}  # mob prototypes
         self.objects: Dict[int, dict] = {}  # object prototypes
+        self.sealed = False  # a land still being built: its ways in are barred (doors.seal_zones)
 
         # Initialize weather for this zone
         self.weather = Weather(number)
         
     def to_dict(self) -> dict:
         """Convert zone to dictionary for saving."""
-        return {
+        out = {
             'number': self.number,
             'name': self.name,
             'builders': self.builders,
@@ -534,6 +562,9 @@ class Zone:
             'mobs': self.mobs,
             'objects': self.objects,
         }
+        if self.sealed:
+            out['sealed'] = True
+        return out
         
     @classmethod
     def from_dict(cls, data: dict) -> 'Zone':
@@ -558,6 +589,7 @@ class Zone:
 
         zone.reset_mode = data.get('reset_mode', 2)
         zone.top = data.get('top', 0)
+        zone.sealed = bool(data.get('sealed'))
         
         # Load rooms
         for vnum_str, room_data in data.get('rooms', {}).items():
@@ -632,8 +664,19 @@ class World:
         try:
             import doors
             doors.normalize(self)
+            doors.seal_zones(self)          # lands still being built: their ways in barred
         except Exception as e:
             logger.error(f"door normalize failed: {e}")
+        # rooms that store their place on the map (the atlas's): say what disagrees with it
+        try:
+            from map_system import check_stored_cells
+            problems = check_stored_cells(self)
+            for p in problems[:20]:
+                logger.warning(f"map: {p}")
+            if len(problems) > 20:
+                logger.warning(f"map: ...and {len(problems) - 20} more")
+        except Exception as e:
+            logger.error(f"map check failed: {e}")
 
         # Canary check: if zone 30 loaded but looks like the tiny default-world
         # stub (the old bootstrap bug overwrote real zone files with it), the
@@ -699,6 +742,17 @@ class World:
 
         logger.info(f"World loaded: {len(self.zones)} zones, {len(self.rooms)} rooms")
         
+    def zone_of_vnum(self, vnum: int) -> int:
+        """The zone a room vnum belongs to: the zone holding that room, or for a vnum not built
+        yet, the zone whose rooms already span it (else vnum // 100)."""
+        room = self.rooms.get(vnum)
+        if room is not None and room.zone is not None:
+            return room.zone.number
+        for number, zone in self.zones.items():
+            if zone.rooms and min(zone.rooms) <= vnum <= max(zone.rooms) and number == vnum // 100:
+                return number
+        return vnum // 100
+
     def _world_looks_corrupted(self):
         """True when zone 30 is present but is the default-world stub: the
         real Northern Midgaard has 70+ rooms including 3054 (Temple Altar)

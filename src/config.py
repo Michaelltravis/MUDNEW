@@ -152,6 +152,11 @@ class Config:
                           # a spell's school (combat_range.spell_school): every school a ward absorbs
                           'frost', 'necrotic', 'poison', 'nature', 'sound', 'disease'}
 
+    # Going out on the water takes a boat or a raft, and creatures keep off it unless they live
+    # there. Switched on with the world re-laid on the atlas, once every place that matters is
+    # checked to be reachable with a raft bought on the way (tests/test_world_atlas.py).
+    WATER_NEEDS_BOAT = False
+
     # Shield-style evasion bonuses
     SHIELD_EVASION_BONUSES = {
         'shielded': 4,

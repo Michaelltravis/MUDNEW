@@ -17,6 +17,15 @@ from player import Character
 from affects import AffectManager
 from regeneration import RegenerationCalculator
 
+
+def zone_of(room):
+    """The zone a room belongs to (world.zone_of: its zone file, not its vnum)."""
+    from world import zone_of as _zone_of
+    return _zone_of(room)
+
+
+WATER_SECTORS = ('water_swim', 'water_noswim', 'water_surface')
+
 logger = logging.getLogger('Misthollow.Mobs')
 
 # Equipment tables (vnums from zone_030_circlemud.json)
@@ -680,7 +689,7 @@ class Mobile(Character):
             return []
         
         # Don't chase outside our zone (unless we're a boss)
-        target_zone = target.room.vnum // 100
+        target_zone = zone_of(target.room)
         if self.home_zone is not None and target_zone != self.home_zone:
             if 'boss' not in self.flags:
                 return []
@@ -731,7 +740,7 @@ class Mobile(Character):
                 
                 # Check zone boundaries (unless boss)
                 if self.home_zone is not None and 'boss' not in self.flags:
-                    room_zone = next_room.vnum // 100
+                    room_zone = zone_of(next_room)
                     if room_zone != self.home_zone:
                         continue
                 
@@ -761,7 +770,7 @@ class Mobile(Character):
         
         # Don't hunt outside home zone (unless no home zone set)
         if self.home_zone is not None:
-            target_zone = target_room.vnum // 100
+            target_zone = zone_of(target_room)
             if target_zone != self.home_zone:
                 return False
         
@@ -936,6 +945,15 @@ class Mobile(Character):
         from combat import CombatHandler
         await CombatHandler.start_combat(self, target)
         
+    def _lives_in_water(self) -> bool:
+        """A creature of the water (flagged aquatic or swimming, or set in a water room): it may
+        wander the water, where the rest keep to land."""
+        flags = set(getattr(self, 'flags', None) or ())
+        if flags & {'aquatic', 'swim', 'water', 'fish'}:
+            return True
+        home = getattr(self, 'home_room', None)
+        return getattr(home, 'sector_type', '') in WATER_SECTORS
+
     async def wander_ai(self):
         """Randomly move to adjacent rooms."""
         if not self.room or not self.room.exits:
@@ -960,9 +978,13 @@ class Mobile(Character):
                     continue
                 # Don't wander out of home zone (unless no home zone set)
                 if self.home_zone is not None:
-                    target_zone = target_room.vnum // 100  # Calculate zone from room vnum
+                    target_zone = zone_of(target_room)
                     if target_zone != self.home_zone:
                         continue
+                # nor out onto the water, unless it lives there
+                if (Config.WATER_NEEDS_BOAT and getattr(target_room, 'sector_type', '') in WATER_SECTORS
+                        and not self._lives_in_water()):
+                    continue
                 valid_exits.append((direction, target_room))
                     
         if not valid_exits:

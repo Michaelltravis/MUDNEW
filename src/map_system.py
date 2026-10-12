@@ -190,10 +190,13 @@ def _get_exit_target_vnum(exit_data) -> Optional[int]:
     return None
 
 
-def compute_room_coords(rooms: Dict[int, object], start_vnum: Optional[int], player=None) -> Dict[int, Tuple[int, int, int]]:
+def compute_room_coords(rooms: Dict[int, object], start_vnum: Optional[int], player=None,
+                        fixed: Optional[Dict[int, Tuple[int, int, int]]] = None) -> Dict[int, Tuple[int, int, int]]:
     """Assign coordinates to rooms using BFS based on exits.
 
-    Handles multiple components by offsetting each component on the X axis.
+    Rooms with a stored place (`fixed`: the atlas's, `room.map`) take it first; the rest are
+    laid out from their placed neighbours. Handles multiple components by offsetting each
+    component on the X axis.
     """
     coords: Dict[int, Tuple[int, int, int]] = {}
     if not rooms:
@@ -226,10 +229,13 @@ def compute_room_coords(rooms: Dict[int, object], start_vnum: Optional[int], pla
         return coord
 
     def bfs(seed_vnum: int, seed_coord: Tuple[int, int, int]):
-        from collections import deque
         _place(seed_vnum, seed_coord, (0, 0, 0))
         unvisited.discard(seed_vnum)
-        queue = deque([seed_vnum])
+        expand([seed_vnum])
+
+    def expand(seeds):
+        from collections import deque
+        queue = deque(seeds)
         while queue:
             vnum = queue.popleft()
             room = rooms[vnum]
@@ -257,6 +263,18 @@ def compute_room_coords(rooms: Dict[int, object], start_vnum: Optional[int], pla
                 else:
                     queue.append(to_vnum)
 
+    # stored places first, then the rooms without one grow out from them
+    if fixed:
+        placed = []
+        for vnum in sorted(v for v in fixed if v in rooms):
+            _place(vnum, tuple(fixed[vnum]), (1, 0, 0))
+            unvisited.discard(vnum)
+            placed.append(vnum)
+        expand(placed)
+        xs = [c[0] for c in coords.values()]
+        if xs:
+            offset_x = max(xs) + 3
+
     # Start with player's component if available
     if start_vnum in unvisited:
         bfs(start_vnum, (0, 0, 0))
@@ -277,6 +295,96 @@ def compute_room_coords(rooms: Dict[int, object], start_vnum: Optional[int], pla
             offset_x = max(xs) + 3
 
     return coords
+
+
+def stored_cells(rooms: Dict[int, object]) -> Dict[int, Tuple[int, int, int]]:
+    """The map places rooms carry (`room.map`, the atlas's x/y/level), as layout cells. The atlas
+    draws north as +y and the game as -y, so y turns over."""
+    out = {}
+    for v, r in rooms.items():
+        m = getattr(r, 'map', None)
+        if isinstance(m, dict) and 'x' in m and 'y' in m:
+            try:
+                out[v] = (int(m['x']), -int(m['y']), int(m.get('z', 0) or 0))
+            except (TypeError, ValueError):
+                continue
+    return out
+
+
+def world_cells(world) -> Dict[int, Tuple[int, int, int]]:
+    """Stored places on one world map. Each zone's places are its own (the atlas charts every
+    zone on its own sheet), so each zone gets an origin: the temple's zone sits at the origin,
+    and a zone reached through a cross-zone exit is set so that the room the exit leads to lies
+    one step that way from the room it leaves (zones without a link to a placed zone keep no
+    stored places and are laid out as before)."""
+    from collections import deque
+    by_zone: Dict[int, Dict[int, Tuple[int, int, int]]] = {}
+    for v, r in world.rooms.items():
+        if r.zone is not None and getattr(r, 'map', None):
+            c = stored_cells({v: r}).get(v)
+            if c:
+                by_zone.setdefault(r.zone.number, {})[v] = c
+    if not by_zone:
+        return {}
+    temple = world.rooms.get(3001)
+    first = temple.zone.number if temple is not None and temple.zone is not None and temple.zone.number in by_zone \
+        else min(by_zone)
+    origin = {first: (0, 0, 0)}
+    queue = deque([first])
+    while queue:
+        za = queue.popleft()
+        ox, oy, oz = origin[za]
+        for v, (x, y, z) in by_zone[za].items():
+            room = world.rooms[v]
+            for d, ed in (room.exits or {}).items():
+                if d not in DIR_OFFSETS or not isinstance(ed, dict):
+                    continue
+                to = _get_exit_target_vnum(ed)
+                target = world.rooms.get(to)
+                zb = target.zone.number if target is not None and target.zone is not None else None
+                if zb is None or zb == za or zb in origin or zb not in by_zone or to not in by_zone[zb]:
+                    continue
+                dx, dy, dz = DIR_OFFSETS[d]
+                tx, ty, tz = by_zone[zb][to]
+                origin[zb] = (ox + x + dx - tx, oy + y + dy - ty, oz + z + dz - tz)
+                queue.append(zb)
+    out = {}
+    for z, cells in by_zone.items():
+        if z in origin:
+            ox, oy, oz = origin[z]
+            for v, (x, y, zz) in cells.items():
+                out[v] = (x + ox, y + oy, zz + oz)
+    return out
+
+
+def check_stored_cells(world) -> List[str]:
+    """What the stored map places get wrong, zone by zone: two rooms on one cell, or a compass
+    exit pointing away from where its room sits (it will show as a passage, not an open way).
+    Logged at load; empty while no room stores a place."""
+    problems = []
+    by_zone: Dict[int, Dict[int, object]] = {}
+    for v, r in world.rooms.items():
+        if getattr(r, 'map', None) and r.zone is not None:
+            by_zone.setdefault(r.zone.number, {})[v] = r
+    for z, rooms in sorted(by_zone.items()):
+        cells = stored_cells(rooms)
+        seen: Dict[Tuple[int, int, int], int] = {}
+        for v, c in sorted(cells.items()):
+            if c in seen:
+                problems.append(f'zone {z}: rooms {seen[c]} and {v} share the cell {c}')
+            else:
+                seen[c] = v
+        for v, r in rooms.items():
+            for d, ed in (r.exits or {}).items():
+                if d not in CARDINALS or not isinstance(ed, dict):
+                    continue
+                to = _get_exit_target_vnum(ed)
+                if to in cells and v in cells and cells[to][2] == cells[v][2]:
+                    dx, dy, _ = DIR_OFFSETS[d]
+                    vx, vy = cells[to][0] - cells[v][0], cells[to][1] - cells[v][1]
+                    if (vx > 0) - (vx < 0) != dx or (vy > 0) - (vy < 0) != dy:
+                        problems.append(f'zone {z}: {v} {d} -> {to} points away from where {to} sits')
+    return problems
 
 
 def get_frontier_coords(coords: Dict[int, Tuple[int, int, int]], rooms: Dict[int, object], explored: Set[int], player=None) -> list:
@@ -1042,7 +1150,7 @@ def build_zonemap(world, zone_num: int) -> Optional[dict]:
     rooms = {v: r for v, r in world.rooms.items() if r.zone is not None and r.zone.number == zone_num}
     if not zone or not rooms:
         return None
-    coords = compute_room_coords(rooms, min(rooms))
+    coords = compute_room_coords(rooms, min(rooms), fixed=stored_cells(rooms))
 
     # islands: level 0 first, then 1, -1, 2, -2 ... each to the right of the last
     levels: Dict[int, List[int]] = {}
@@ -1146,7 +1254,7 @@ def build_atlas(world) -> dict:
     if _ATLAS_CACHE is not None:
         return _ATLAS_CACHE
 
-    coords = compute_room_coords(world.rooms, 3001)
+    coords = compute_room_coords(world.rooms, 3001, fixed=world_cells(world))
     zone_colors = [
         '#6366f1', '#8b5cf6', '#a855f7', '#d946ef', '#ec4899',
         '#f43f5e', '#ef4444', '#f97316', '#f59e0b', '#eab308',

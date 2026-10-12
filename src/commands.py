@@ -18,6 +18,9 @@ import json
 
 logger = logging.getLogger('Misthollow.Commands')
 
+# rooms out on the water (a boat or a raft takes you there)
+WATER_SECTORS = ('water_swim', 'water_noswim', 'water_surface')
+
 
 class CommandHandler:
     """Handles all player commands."""
@@ -444,7 +447,14 @@ class CommandHandler:
             door_name = doors.label(door)
             is_closed = door.get('state') == 'closed' or door.get('closed', False)
             is_locked = door.get('locked', False)
-            
+            sealed = doors.seal_message(door)
+            if sealed and not getattr(player, 'is_immortal', False):
+                await player.send(f"{c['yellow']}{sealed}{c['reset']}")
+                return
+            if sealed:          # a builder walks through to work on it
+                await player.send(f"{c['cyan']}(You pass the bar: this land is sealed to mortals.){c['reset']}")
+                is_closed = False
+
             if is_closed:
                 if is_locked:
                     await player.send(f"{c['red']}The {door_name} is closed and locked.{c['reset']}")
@@ -480,6 +490,16 @@ class CommandHandler:
         # Immortal-only rooms
         if 'imm_only' in getattr(target_room, 'flags', set()) and not player.is_immortal:
             await player.send(f"{c['red']}A divine force prevents you from entering.{c['reset']}")
+            return
+
+        # Out onto the water only in a boat or on a raft (carried or held), or flying; once
+        # afloat you move about the water freely, and coming ashore is never stopped
+        if (getattr(player.config, 'WATER_NEEDS_BOAT', False)
+                and getattr(target_room, 'sector_type', '') in WATER_SECTORS
+                and getattr(player.room, 'sector_type', '') not in WATER_SECTORS
+                and not cls._can_float(player)):
+            await player.send(f"{c['cyan']}You need a boat or a raft to go out on the water. "
+                              f"(Rafts and canoes are sold at the quay in the city.){c['reset']}")
             return
 
         # Reputation-based gate for faction-controlled areas
@@ -924,6 +944,22 @@ class CommandHandler:
                                 f"The quest board in Temple Square lists all known adventures!'{c['reset']}"
                             )
                 break
+
+    @classmethod
+    def _can_float(cls, player) -> bool:
+        """A boat or a raft carried or held (anything of item type boat: the canoe, the hollow
+        log, the boots that walk on water), flight, or an immortal's will."""
+        if getattr(player, 'is_immortal', False):
+            return True
+        flags = getattr(player, 'affect_flags', None) or set()
+        if 'fly' in flags or 'flying' in flags:
+            return True
+        mount = getattr(player, 'mount', None)
+        if mount is not None and getattr(mount, 'can_fly', False):
+            return True
+        eq = getattr(player, 'equipment', None) or {}
+        items = list(getattr(player, 'inventory', None) or []) + [i for i in (eq.values() if isinstance(eq, dict) else []) if i]
+        return any(getattr(i, 'item_type', None) == 'boat' for i in items)
 
     @classmethod
     def _calculate_move_cost(cls, player: 'Player', target_room: 'Room') -> int:
@@ -2539,7 +2575,8 @@ class CommandHandler:
         }
 
         # Get the appropriate map for this zone
-        zone_num = player.room.vnum // 100
+        from world import zone_of
+        zone_num = zone_of(player.room)
         map_template = zone_maps.get(zone_num)
 
         if not map_template:
@@ -3635,7 +3672,7 @@ class CommandHandler:
             await player.send(f"{c['yellow']}Usage: redit <vnum>{c['reset']}")
             return
 
-        zone_num = vnum // 100
+        zone_num = player.world.zone_of_vnum(vnum)
         zone = player.world.zones.get(zone_num)
         if not zone:
             await player.send(f"{c['red']}Zone {zone_num} not found.{c['reset']}")
@@ -5033,6 +5070,10 @@ class CommandHandler:
             await player.send(f"{c['yellow']}There's no door {d}.{c['reset']}")
         elif err == 'noname':
             await player.send(f"{c['red']}You don't see a '{' '.join(args)}' to {verb} here.{c['reset']}")
+        elif doors.is_seal(door):
+            # the bar across a land still being charted: nothing opens, picks or breaks it
+            await player.send(f"{c['yellow']}{doors.seal_message(door)}{c['reset']}")
+            return None
         return None if err else (d, exit_data, door)
 
     @classmethod
@@ -5071,6 +5112,10 @@ class CommandHandler:
         d, exit_data, door = cls._door_at(player, [direction])
         if not door:
             await player.send(f"{c['yellow']}There's no door to bash {d or 'there'}.{c['reset']}")
+            return
+        import doors
+        if doors.is_seal(door):
+            await player.send(f"{c['yellow']}{doors.seal_message(door)}{c['reset']}")
             return
         if door.get('state') != 'closed':
             await player.send(f"{c['yellow']}The door is already open.{c['reset']}")
@@ -17605,12 +17650,13 @@ class CommandHandler:
                 await player.send(f"{c['red']}Invalid zone number.{c['reset']}")
                 return
         else:
-            # Get current zone from room vnum
+            # the zone the room is in
             if not player.room:
                 await player.send(f"{c['red']}You're not in a room!{c['reset']}")
                 return
-            zone_num = player.room.vnum // 100
-            
+            from world import zone_of
+            zone_num = zone_of(player.room)
+
         zone = player.world.zones.get(zone_num)
         if not zone:
             await player.send(f"{c['red']}Zone {zone_num} does not exist.{c['reset']}")
@@ -17892,17 +17938,21 @@ class CommandHandler:
             if not player.room:
                 await player.send(f"{c['red']}You're not in a room!{c['reset']}")
                 return
-            zone_num = player.room.vnum // 100
-        
-        # Get objects in that zone range
+            from world import zone_of
+            zone_num = zone_of(player.room)
+
+        # the zone's own objects (a zone off the old hundred-blocks keeps its own list), else the
+        # vnums of its hundred-block
         min_vnum = zone_num * 100
         max_vnum = min_vnum + 99
-        
+        zone = player.world.zones.get(zone_num)
+        own = {int(v) for v in (zone.objects if zone else {})}
+
         await player.send(f"{c['bright_cyan']}=== Objects in Zone {zone_num} (vnums {min_vnum}-{max_vnum}) ==={c['reset']}")
-        
+
         count = 0
         for vnum, proto in sorted(player.world.obj_prototypes.items()):
-            if min_vnum <= vnum <= max_vnum:
+            if vnum in own or (not own and min_vnum <= vnum <= max_vnum):
                 name = proto.get('name', proto.get('short_desc', 'unknown'))
                 obj_type = proto.get('type', 'other')
                 await player.send(f"  {c['yellow']}{vnum:5}{c['reset']} - {c['white']}{name}{c['reset']} ({obj_type})")
@@ -17938,17 +17988,20 @@ class CommandHandler:
             if not player.room:
                 await player.send(f"{c['red']}You're not in a room!{c['reset']}")
                 return
-            zone_num = player.room.vnum // 100
-        
-        # Get mobs in that zone range
+            from world import zone_of
+            zone_num = zone_of(player.room)
+
+        # the zone's own creatures, else the vnums of its hundred-block
         min_vnum = zone_num * 100
         max_vnum = min_vnum + 99
-        
+        zone = player.world.zones.get(zone_num)
+        own = {int(v) for v in (zone.mobs if zone else {})}
+
         await player.send(f"{c['bright_cyan']}=== Mobs in Zone {zone_num} (vnums {min_vnum}-{max_vnum}) ==={c['reset']}")
-        
+
         count = 0
         for vnum, proto in sorted(player.world.mob_prototypes.items()):
-            if min_vnum <= vnum <= max_vnum:
+            if vnum in own or (not own and min_vnum <= vnum <= max_vnum):
                 name = proto.get('name', proto.get('short_desc', 'unknown'))
                 level = proto.get('level', 1)
                 await player.send(f"  {c['yellow']}{vnum:5}{c['reset']} - [{c['green']}{level:2}{c['reset']}] {c['white']}{name}{c['reset']}")
@@ -17984,13 +18037,14 @@ class CommandHandler:
             if not player.room:
                 await player.send(f"{c['red']}You're not in a room!{c['reset']}")
                 return
-            zone_num = player.room.vnum // 100
-        
+            from world import zone_of
+            zone_num = zone_of(player.room)
+
         zone = player.world.zones.get(zone_num)
         if not zone:
             await player.send(f"{c['red']}Zone {zone_num} does not exist.{c['reset']}")
             return
-        
+
         await player.send(f"{c['bright_cyan']}=== Rooms in Zone {zone_num}: {zone.name} ==={c['reset']}")
         
         count = 0

@@ -809,7 +809,7 @@ def spawn_faction_npcs(world):
         mob = Mobile.from_prototype(proto, world)
         mob.room = room
         mob.home_room = room
-        mob.home_zone = room_vnum // 100
+        mob.home_zone = room.zone.number if getattr(room, 'zone', None) else room_vnum // 100
         room.characters.append(mob)
         spawned += 1
         logger.info(f"Spawned faction NPC: {mob.name} in room {room_vnum}")
