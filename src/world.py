@@ -1030,7 +1030,7 @@ class World:
                     return   # already enriched once; don't re-stock every reset
                 shop._autostocked = True
                 # repair a malformed/empty buy list (e.g. a vnum where a type belongs)
-                if not shop.buy_types or any(str(b).isdigit() for b in shop.buy_types):
+                if not shop.buy_types or any(not str(b).isalpha() for b in shop.buy_types):
                     shop.buy_types = buys_types
                 have = set(getattr(shop, 'sells_vnums', []) or [])
                 for v in candidates:

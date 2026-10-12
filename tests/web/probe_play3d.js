@@ -210,10 +210,16 @@ async function waitFor(page, fn, arg, secs = 60) {
     });
     console.log(JSON.stringify(info));
     await page.screenshot({ path: path.join(OUT, 'castle-door.png') });
-    // walk at the door
-    await page.keyboard.down('s');
+    // stand at the door
+    const spot = await page.evaluate(() => {
+      const r = MH3D.heroRoom(), L = MH3D.zone().layoutOf(r);
+      const g = L.gaps && L.gaps.south;
+      const p = MH3D.hero.root.position;
+      p.set(r.ox + (g ? (g.x0 + g.x1 + 1) / 2 : 12), 0, r.oz + 15 - 1.6);
+      return { gap: g, at: [p.x - r.ox, p.z - r.oz], passages: MH3D.zone().passageSpots(r) };
+    });
+    console.log('spot', JSON.stringify(spot));
     await sleep(2500);
-    await page.keyboard.up('s');
     const text = await page.evaluate(() => !document.getElementById('prompt').classList.contains('hidden') && document.querySelector('#prompt span').textContent);
     check(/open/i.test(text || ''), `walking at it prompts: "${text}"`);
     await page.screenshot({ path: path.join(OUT, 'castle-prompt.png') });

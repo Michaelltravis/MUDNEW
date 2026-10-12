@@ -17,6 +17,52 @@ from config import Config
 logger = logging.getLogger('Misthollow.Shops')
 
 
+def _num(x):
+    try:
+        return float(x)
+    except (TypeError, ValueError):
+        return None
+
+
+def repair_config(shop_config: Dict) -> Dict:
+    """Undo the old shop import's misalignment. Many zones' shops were read a field off: the 2nd
+    and 3rd products landed in markup and markdown (a 400-gold raft listed at 1,224,400), the
+    buy profit in the list of what it buys ('1.2'), and the real buy types were lost. Products go
+    back in the stock, a profit that slid into `buys` becomes the markup, and a shop left with
+    no buy types gets its role's (World._ensure_shop)."""
+    cfg = dict(shop_config or {})
+    sells = [int(v) for v in (cfg.get('sells') or []) if _num(v) is not None]
+    buys = list(cfg.get('buys') or [])
+    markup, markdown = _num(cfg.get('markup', 1.5)), _num(cfg.get('markdown', 0.4))
+    broken = markup is None or not 0.5 <= markup <= 10 or markdown is None or not 0 < markdown <= 1.5
+    if broken:
+        for x in (markup, markdown):
+            if x is not None and x >= 100 and x == int(x):
+                sells.append(int(x))
+        profits = [_num(b) for b in buys if _num(b) is not None and 0 < _num(b) < 10]
+        sells += [int(_num(b)) for b in buys if _num(b) is not None and _num(b) >= 100]
+        markup = min(3.0, max(1.0, profits[0])) if profits else 1.5
+        markdown = 0.4
+    cfg['sells'] = list(dict.fromkeys(sells))
+    cfg['markup'], cfg['markdown'] = markup, markdown
+    # what it buys is item types, words: anything else is a mis-read field
+    cfg['buys'] = [b for b in buys if isinstance(b, str) and b.isalpha()]
+    return cfg
+
+
+def carried(player, name: str):
+    """What the player carries by `name`: "sword", or "2.sword" for the second (the /play shop
+    window numbers by whole words; a part of a word still finds one when no word matches)."""
+    name = str(name or '').strip().lower()
+    n = 1
+    if '.' in name and name.split('.', 1)[0].isdigit():
+        n, name = int(name.split('.', 1)[0]), name.split('.', 1)[1]
+    inv = list(getattr(player, 'inventory', None) or [])
+    words = [it for it in inv if name in str(getattr(it, 'name', '')).lower().split()]
+    found = words or [it for it in inv if name in str(getattr(it, 'name', '')).lower()]
+    return found[n - 1] if 0 < n <= len(found) else None
+
+
 class ShopKeeper:
     """Merchant NPC that buys and sells items."""
 
@@ -24,6 +70,7 @@ class ShopKeeper:
         self.mob = mob
         self.config = Config()
 
+        shop_config = repair_config(shop_config)
         # What types of items this shop deals with
         self.buy_types = shop_config.get('buys', ['weapon', 'armor', 'treasure'])
 
@@ -217,12 +264,7 @@ class ShopKeeper:
         if not await self.check_reputation_access(player):
             return False
 
-        # Find item in player's inventory
-        item = None
-        for it in player.inventory:
-            if item_name.lower() in it.name.lower():
-                item = it
-                break
+        item = carried(player, item_name)
 
         if not item:
             await player.send(f"{c['red']}You don't have that item.{c['reset']}")
@@ -235,10 +277,10 @@ class ShopKeeper:
 
         price = self.get_buy_price(item, player)
 
-        # Check if shop has enough gold
+        # a merchant never turns you away for want of coin: they send to their guild's
+        # coffers for more (the owner: "ensure there's money so the merchants can transact")
         if self.gold < price:
-            await player.send(f"{c['yellow']}{self.mob.name} says, 'I don't have enough gold to buy that right now.'{c['reset']}")
-            return False
+            self.gold += max(price * 2, 10000)
 
         # Complete transaction
         player.gold += price
@@ -262,12 +304,7 @@ class ShopKeeper:
         if not await self.check_reputation_access(player):
             return
 
-        # Find item in player's inventory
-        item = None
-        for it in player.inventory:
-            if item_name.lower() in it.name.lower():
-                item = it
-                break
+        item = carried(player, item_name)
 
         if not item:
             await player.send(f"{c['red']}You don't have that item.{c['reset']}")
