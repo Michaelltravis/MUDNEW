@@ -35,7 +35,26 @@ JOBS = {
     'mira_south': ([451], 1, 1, True),
     'raven_winter': ([472, 521], 1, 1, True),
     'badlands_kings': ([471, 441, 61], 1, 1, True),
+    # connector rooms whose carried text describes another place (Port Halyon still reading as
+    # Rome; a road carrying a shop's interior): rewritten to fit their atlas names
+    'fixups': ([60, 40, 66, 120, 408], 1, 1, False),
 }
+FIXUPS = [3516, 4002, 6602, 6610, 6612, 12003, 12005, 12006, 12007, 12010, 12015, 12018, 12019, 12022, 12023,
+          12024, 12029, 12031, 12035, 12036, 12039, 12043, 12044, 12049, 12050, 12051, 12062, 12063, 15061,
+          15062, 15065, 15067, 15068, 15071]
+
+FIXUP_INTRO = """\
+## These rooms are rewrites
+Each of these rooms already has a description, but it was carried over from a different place
+when the world was re-laid on the atlas: Port Halyon's rooms still read as old Rome (an emperor,
+the Coliseum, Roman citizens), and some road and wilderness rooms carry a house's or a shop's
+interior. Write each one afresh to fit its name, terrain, exits and neighbours. Keep what the
+room is for when its "usually here" list shows it (a general store stays a general store, a
+bakery a bakery, a mage's workshop a workshop, an office an office), and keep the striking
+features that still fit (a pit full of the dead by the road, a burned-out shop beside it). Port
+Halyon is a harbour city on the Sea of Storms run by its dock master and harbour council: no
+emperor, no Rome, no Coliseum. The current text of each room is shown as "now".
+"""
 COMPASS = ('north', 'east', 'south', 'west', 'up', 'down')
 WATER = ('water_swim', 'water_noswim', 'water_surface', 'underwater')
 
@@ -213,6 +232,8 @@ def job_rooms(job, zones, rooms):
 
 
 def _job_rooms(job, zones, rooms):
+    if job == 'fixups':
+        return list(FIXUPS)
     zs, part, parts, design = JOBS[job]
     out = []
     for z in zs:
@@ -290,6 +311,8 @@ def brief(job, zones, rooms, mobs, objs, themes):
             L.append('\n**Creatures already in the zone:** ' + ', '.join(f'{n} x{c}' for n, c in here.most_common(25)))
         L.append('')
     L.append(STYLE)
+    if job == 'fixups':
+        L.append(FIXUP_INTRO)
     L.append(DESIGN.format(zones=names) if design else ROOMS_ONLY)
     others = []
     for path in sorted(glob.glob(os.path.join(BUILDOUT, 'parts', '*.json'))):
@@ -309,6 +332,8 @@ def brief(job, zones, rooms, mobs, objs, themes):
     L.append(f"## Your rooms ({len(vs)}, in walking order)\n")
     for v in vs:
         L.append(room_line(v, rooms, zones, mobs, objs))
+        if job == 'fixups':
+            L.append('  now: ' + ' '.join((rooms[v].get('description') or '').split()))
     written = sorted({t for v in vs for d, t, e in exits_of(rooms[v])
                       if t in rooms and not rooms[t].get('placeholder') and (rooms[t].get('description') or '').strip()})
     if written:
