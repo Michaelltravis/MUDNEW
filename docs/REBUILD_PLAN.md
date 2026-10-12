@@ -1580,3 +1580,36 @@ and no two kinds look the same.
 - `/play?demo&gallery=kin[&only=wolf,stag]` lays out sample creatures from the world.
 - **175 kinds** of wildlife are on kit bodies (133 beasts, 30 birds, 12 swimmers), every one
   distinct (`tests/web/looks.test.mjs` checks the whole world).
+
+### Every creature its own body, step 2: the rest of the bestiary (Push 31)
+The creature kit covers nearly every non-person creature: **404 kinds, every one distinct**.
+- **Six more skeletons** in `kin.js` and `kinrecipe.js`:
+  - **biped:** brutes and trolls (stooped, long arms, warts, a long nose), giants and ogres
+    (clubs; one eye for a cyclops, tusks for an ogre), goblins and kobolds (big ears, a snout and
+    a tail), and fiends (horns, a demon's tail, leathery wings). Also a minotaur's bull head, an
+    ettin's two heads, a balor's whip, and an earth elemental's rock.
+  - **crawler:** spiders (eight legs, glowing eyes, fangs), beetles and insects (six legs,
+    feelers, wings that buzz or broad moth wings, wasp bands and stings), crabs and lobsters
+    (claws), scorpions (claws and a curled stinger), and turtles (a plated shell).
+  - **serpent:** snakes, with a cobra's hood, a viper's wedge head and diamonds, a python's bulk
+    and blotches, a hydra's several heads, a sea serpent's frill, a couatl's feathers, a worm's
+    toothed maw, and a centipede's legs and mandibles.
+  - **dragon:** four legs or a wyvern's two, wings, horns, a spiked back and a spade tail. A
+    dracolich is bone with glowing eyes; a whelp is young and big-headed; a dragon turtle has a
+    shell.
+  - **spirit:** a ghost's sheet, a shade's dark hood, a banshee's hair, flame, ice shards, water
+    and wind rings for elementals, a wisp, disembodied hands, glowing eyes, and trailing wisps.
+  - **blob:** slimes and oozes, frogs (they hop and gape), jellyfish (a bell and tentacles),
+    clams (they open and close on a pearl), and a gelatinous cube.
+
+  Species colours apply when no colour word is given: hornets yellow, trolls green, imps red.
+- **Left on their models:** props that come alive, trees, mushrooms, skulls, the floating eyes
+  and the tentacled horrors (36 in all).
+- **Drawing cost:** a body's still parts are merged, and its plain colours baked into one
+  vertex-coloured material per moving part. Its glowing and see-through parts are copies of its
+  own, so a hit flash lights only that creature. About 10 draw calls a creature, half the
+  triangles of the classic models.
+- **Tests:** `tests/web/looks.test.mjs` checks the whole world stays distinct and that the
+  newer skeletons follow their words (an ogre's two eyes, a cyclops' one, a minotaur's bull
+  head, a cobra's hood, a hydra's three heads, a wyvern's two legs, a fire elemental's flame, a
+  frog). The browser probe and `/play?demo&gallery=kin` show them in place.

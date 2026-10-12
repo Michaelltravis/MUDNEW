@@ -76,7 +76,14 @@ export const KIN_SAMPLES = ['a lean grey wolf', 'a black dire wolf', 'a tawny pr
   'a big brown bear', 'a moss-backed owlbear', 'a great cave bear', 'a brown field hare', 'a white snow hare', 'a sewer rat',
   'a giant lizard', 'a grey heron', 'a grey harbour gull', 'a carrion crow', 'a giant raven', 'a snow owl', 'a mountain hawk',
   'a crested penguin', 'a vampire bat', 'a chicken', 'a blue shark', 'a great hammerhead shark', 'a grey seal',
-  'a killer whale', 'a flying fish', 'a speckled trout'];
+  'a killer whale', 'a flying fish', 'a speckled trout',
+  'a hill troll', 'a frost troll', 'a wandering ogre', 'a hill giant', 'the minotaur', 'an ettin', 'a goblin scout', 'a kobold scavenger',
+  'a red demon', 'a cackling imp', 'the pit fiend', 'a yeti', 'an earth elemental',
+  'a giant web spider', 'a grey rock spider', 'a scarab beetle', 'a black scorpion', 'a green shore crab', 'a snapping turtle',
+  'a giant hornet', 'a dusk moth', 'a banded sea snake', 'a spitting cobra', 'a horned viper', 'a swamp hydra', 'a giant worm',
+  'a giant centipede', 'a great sea serpent', 'a red dragon', 'a rock wyvern', 'the dracolich', 'a green dragon whelp',
+  'a hollow-eyed shade', 'a restless spirit', 'a fire elemental', 'an ice elemental', 'the djinn', 'a wailing banshee', 'a will-o-wisp',
+  'a green slime', 'a grey ooze', 'a giant river frog', 'a pale moon jellyfish', 'a giant clam', 'a gelatinous cube'];
 
 export async function showBeastGallery(engine, kits, samples = SAMPLES) {
   const only = new URLSearchParams(location.search).get('only');

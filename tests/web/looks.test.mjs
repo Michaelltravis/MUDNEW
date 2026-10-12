@@ -133,7 +133,7 @@ test('the creature kit gives every kind of creature in the world a body of its o
     else seen.set(s, m.short);
     assert.ok(['quad', 'bird', 'fish'].includes(l.beast.kin.plan) || l.beast.kin.plan, `${m.short} has a plan`);
   }
-  assert.ok(kin >= 150, `most wildlife is on kit bodies (${kin})`);
+  assert.ok(kin >= 380, `nearly every non-person creature is on a kit body (${kin})`);
   assert.deepEqual(dups, [], 'no two kinds of creature share a body');
 });
 
@@ -145,4 +145,17 @@ test('a creature keeps its words: colour, antlers, tusks, a seal on flippers', a
   assert.equal(k('a grey seal').tail, 'flippers');
   assert.equal(k('a giant raven').plan, 'bird');
   assert.ok(k('a giant raven').c.main >> 16 < 0x40, 'a raven is black without saying so');
+});
+
+test('the newer skeletons follow the words too: ogres, minotaurs, scorpions, cobras, hydras, wyverns, elementals, frogs', () => {
+  const k = s => creatureLook({ short: s, name: s.split(' ').pop(), pv: 11 }).beast.kin;
+  assert.equal(k('a wandering ogre').eyes, 2);
+  assert.equal(k('a cyclops').eyes, 1);
+  assert.equal(k('the minotaur').head, 'bull');
+  assert.equal(k('a black scorpion').kind, 'scorpion');
+  assert.equal(k('a spitting cobra').head, 'hood');
+  assert.equal(k('a swamp hydra').heads, 3);
+  assert.equal(k('a rock wyvern').legs, 2);
+  assert.equal(k('a fire elemental').form, 'flame');
+  assert.equal(k('a giant river frog').form, 'frog');
 });
