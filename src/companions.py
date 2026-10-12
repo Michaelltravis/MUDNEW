@@ -208,7 +208,8 @@ class Companion(Mobile):
         companion.order = data.get('order', 'follow')
         companion.scale_with_owner = data.get('scale_with_owner', True)
         companion.permadeath = data.get('permadeath', False)
-        companion.respawn_room_vnum = data.get('respawn_room_vnum', companion.respawn_room_vnum)
+        from world import renumbered
+        companion.respawn_room_vnum = renumbered(data.get('respawn_room_vnum', companion.respawn_room_vnum))
         return companion
 
     async def die(self, killer=None):

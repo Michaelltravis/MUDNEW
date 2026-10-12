@@ -1414,6 +1414,10 @@ from git (`PRE_RELAY_REV`), so it reproduces byte for byte.
 - **The tutorials' directions come from the map** at load (`quests.apply_routes`: "From the
   Temple, go south three times, then west 11 times"), so they stay right however the world
   changes. The sage's compass hints and `help stable` follow the new layout.
+- **Saved places follow their rooms.** A character who logged out, set their recall point or
+  left their storage in one of the 432 rooms the re-lay removed comes back in the room that
+  stands in for it (`world.renumbered`, from `world/atlas/renumber.json`), not at the temple.
+  Companions' respawn rooms follow too. The 20 house plots kept their rooms.
 - **Midgaard is Garathorm in all player-facing text** (80 places in code, quests and help). Code
   identifiers (faction keys, achievement and quest ids) stay, and the Garathorm Native
   achievement accepts the new name.
@@ -1435,7 +1439,8 @@ from git (`PRE_RELAY_REV`), so it reproduces byte for byte.
     - sealed ways are barred;
     - every shop, trainer, stable, travel point and quest place is reached;
     - a raft is reachable on foot;
-    - every room the code names exists.
+    - every room the code names exists;
+    - every removed room has a stand-in you can walk to.
   - `test_atlas_engine.py` runs on the atlas places.
   - `test_webmove` no longer pins the old temple's stairs.
   - `probe_play3d.js atlas` walks the temple, the Great Field on the Trade Road, the forest and

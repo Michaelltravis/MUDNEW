@@ -36,6 +36,26 @@ def zone_of(room) -> Optional[int]:
     return vnum // 100 if isinstance(vnum, int) else None
 
 
+_RENUMBER = None
+
+
+def renumbered(vnum):
+    """The room that stands in for one of ours the atlas re-lay removed (world/atlas/renumber.json),
+    so a saved place (where a player logged out, their recall point) still lands nearby; any
+    other vnum comes back unchanged."""
+    global _RENUMBER
+    if _RENUMBER is None:
+        try:
+            with open(os.path.join(Config.WORLD_DIR, 'atlas', 'renumber.json')) as f:
+                _RENUMBER = {int(k): v for k, v in json.load(f).get('rooms', {}).items()}
+        except (OSError, ValueError):
+            _RENUMBER = {}
+    try:
+        return _RENUMBER.get(int(vnum), vnum)
+    except (TypeError, ValueError):
+        return vnum
+
+
 class Room:
     """A room in the MUD world."""
     

@@ -1420,9 +1420,10 @@ class Player(Character):
         try:
             with open(filepath, 'r') as f:
                 data = json.load(f)
-                
+            from world import renumbered
+
             player = cls(world)
-            
+
             # Load all attributes
             player.name = data['name']
             player.password_hash = data['password_hash']
@@ -1444,7 +1445,7 @@ class Player(Character):
             player.damroll = data.get('damroll', 0)
             player.practices = data.get('practices', 0)
             player.trains = data.get('trains', 0)
-            player.room_vnum = data.get('room_vnum', Config.STARTING_ROOM)
+            player.room_vnum = renumbered(data.get('room_vnum', Config.STARTING_ROOM))
             player.skills = data.get('skills', {})
             player.spells = data.get('spells', {})
             # Combat reinvention: migrate renamed ability keys so existing
@@ -1518,7 +1519,7 @@ class Player(Character):
             player.stance = data.get('stance', 'normal')
             player.wimpy = data.get('wimpy', 0)
             player.autoexit = data.get('autoexit', True)
-            player.recall_point = data.get('recall_point', 3001)
+            player.recall_point = renumbered(data.get('recall_point', 3001))
             player.marquee = data.get('marquee')
             player.marquee_help = data.get('marquee_help')
             player.marquee_cd = data.get('marquee_cd') or {}
@@ -1551,7 +1552,7 @@ class Player(Character):
             player.storage = [Object.from_dict(item_data, world)
                             for item_data in data.get('storage', [])
                             if item_data]
-            player.storage_location = data.get('storage_location', None)
+            player.storage_location = renumbered(data.get('storage_location', None))
 
             # Load achievements
             player.achievements = data.get('achievements', {})

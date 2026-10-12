@@ -182,6 +182,13 @@ async def main():
                 if n in gone and n not in W:
                     named.append(f'{os.path.relpath(f, ROOT)}:{i} {n}')
     check(not named, f'every room the code, quests and tests name still exists ({named[:4]})')
+
+    # ---- a saved place in a room that is gone lands in its stand-in, which is open and reached
+    from world import renumbered
+    bad_stand = sorted(int(k) for k, t in renum.items() if t not in reach or int(k) in W)
+    check(not bad_stand, f'every gone room has a stand-in you can walk to ({bad_stand[:5]})')
+    check(renumbered(3500) == renum['3500'] and renumbered(3001) == 3001 and renumbered(None) is None,
+          'renumbered() gives the stand-in for a gone room and leaves the rest alone')
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
     sys.exit(1 if failures else 0)
 
