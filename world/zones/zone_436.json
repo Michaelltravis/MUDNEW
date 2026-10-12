@@ -1,0 +1,2473 @@
+{
+ "number": 436,
+ "name": "Baron Kalveh's Fief",
+ "builders": "Kaan, Keats",
+ "atlas_area": 36,
+ "rooms": {
+  "105800": {
+   "vnum": 105800,
+   "name": "The Kalveh Gatehouse",
+   "map": {
+    "x": 1,
+    "y": -60,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 14840,
+     "description": "To the north lies Outside The Great Forest Of MiNar."
+    },
+    "south": {
+     "to_room": 105801,
+     "description": "To the south lies Gravel Road."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. Ways lead north and south.",
+   "placeholder": true
+  },
+  "105801": {
+   "vnum": 105801,
+   "name": "Gravel Road",
+   "map": {
+    "x": 1,
+    "y": -61,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 105800,
+     "description": "To the north lies The Kalveh Gatehouse."
+    },
+    "south": {
+     "to_room": 105802,
+     "description": "To the south lies Gravel Road."
+    }
+   },
+   "description": "A worn track crosses the open ground. Wildflowers dot the meadow, and\ninsects hum among them. Ways lead north and south.",
+   "placeholder": true
+  },
+  "105802": {
+   "vnum": 105802,
+   "name": "Gravel Road",
+   "map": {
+    "x": 1,
+    "y": -62,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 105801,
+     "description": "To the north lies Gravel Road."
+    },
+    "south": {
+     "to_room": 105803,
+     "description": "To the south lies Gravel Road."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead north and south.",
+   "placeholder": true
+  },
+  "105803": {
+   "vnum": 105803,
+   "name": "Gravel Road",
+   "map": {
+    "x": 1,
+    "y": -63,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 105802,
+     "description": "To the north lies Gravel Road."
+    },
+    "south": {
+     "to_room": 105804,
+     "description": "To the south lies Gravel Road at the Settlement."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. A worn track\ncrosses the open ground. Ways lead north and south.",
+   "placeholder": true
+  },
+  "105804": {
+   "vnum": 105804,
+   "name": "Gravel Road at the Settlement",
+   "map": {
+    "x": 1,
+    "y": -64,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 105803,
+     "description": "To the north lies Gravel Road."
+    },
+    "east": {
+     "to_room": 105819,
+     "description": "To the east lies Towne Road."
+    },
+    "south": {
+     "to_room": 105805,
+     "description": "To the south lies Gravel Road."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north,\neast and south.",
+   "placeholder": true
+  },
+  "105805": {
+   "vnum": 105805,
+   "name": "Gravel Road",
+   "map": {
+    "x": 1,
+    "y": -66,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 105804,
+     "description": "To the north lies Gravel Road at the Settlement."
+    },
+    "south": {
+     "to_room": 105806,
+     "description": "To the south lies Gravel Road."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. Ways lead north and south.",
+   "placeholder": true
+  },
+  "105806": {
+   "vnum": 105806,
+   "name": "Gravel Road",
+   "map": {
+    "x": 1,
+    "y": -68,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 105805,
+     "description": "To the north lies Gravel Road."
+    },
+    "south": {
+     "to_room": 105807,
+     "description": "To the south lies Gravel Road."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wind moves through the\ntall grass in long, slow waves. Ways lead north and south.",
+   "placeholder": true
+  },
+  "105807": {
+   "vnum": 105807,
+   "name": "Gravel Road",
+   "map": {
+    "x": 1,
+    "y": -70,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 105806,
+     "description": "To the north lies Gravel Road."
+    },
+    "east": {
+     "to_room": 105808,
+     "description": "To the east lies Gravel Road."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. A worn track\ncrosses the open ground. Ways lead north and east.",
+   "placeholder": true
+  },
+  "105808": {
+   "vnum": 105808,
+   "name": "Gravel Road",
+   "map": {
+    "x": 2,
+    "y": -70,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 105809,
+     "description": "To the south lies Bend in the Gravel Road."
+    },
+    "west": {
+     "to_room": 105807,
+     "description": "To the west lies Gravel Road."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. The land lies\nflat and quiet in every direction. Ways lead south and west.",
+   "placeholder": true
+  },
+  "105809": {
+   "vnum": 105809,
+   "name": "Bend in the Gravel Road",
+   "map": {
+    "x": 2,
+    "y": -71,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 105808,
+     "description": "To the north lies Gravel Road."
+    },
+    "east": {
+     "to_room": 105810,
+     "description": "To the east lies Bend in the Gravel Road."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. Ways lead north and east.",
+   "placeholder": true
+  },
+  "105810": {
+   "vnum": 105810,
+   "name": "Bend in the Gravel Road",
+   "map": {
+    "x": 3,
+    "y": -71,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 105811,
+     "description": "To the south lies Before a Large Barn."
+    },
+    "west": {
+     "to_room": 105809,
+     "description": "To the west lies Bend in the Gravel Road."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. The land lies\nflat and quiet in every direction. Ways lead south and west.",
+   "placeholder": true
+  },
+  "105811": {
+   "vnum": 105811,
+   "name": "Before a Large Barn",
+   "map": {
+    "x": 3,
+    "y": -72,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 105810,
+     "description": "To the north lies Bend in the Gravel Road."
+    },
+    "east": {
+     "to_room": 105812,
+     "description": "To the east lies West of the Tower."
+    },
+    "south": {
+     "to_room": 105815,
+     "description": "To the south lies Scrupulously Clean Barn."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north, east\nand south.",
+   "placeholder": true
+  },
+  "105812": {
+   "vnum": 105812,
+   "name": "West of the Tower",
+   "map": {
+    "x": 4,
+    "y": -72,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 105813,
+     "description": "To the east lies Before the Tower."
+    },
+    "west": {
+     "to_room": 105811,
+     "description": "To the west lies Before a Large Barn."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "105813": {
+   "vnum": 105813,
+   "name": "Before the Tower",
+   "map": {
+    "x": 5,
+    "y": -72,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 105814,
+     "description": "To the east lies The Tower Entry Gate."
+    },
+    "west": {
+     "to_room": 105812,
+     "description": "To the west lies West of the Tower."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\neast and west.",
+   "placeholder": true
+  },
+  "105814": {
+   "vnum": 105814,
+   "name": "The Tower Entry Gate",
+   "map": {
+    "x": 6,
+    "y": -72,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 105856,
+     "description": "To the east lies Entryway Into the Main Hall.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 105813,
+     "description": "To the west lies Before the Tower."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead east and west.",
+   "placeholder": true
+  },
+  "105815": {
+   "vnum": 105815,
+   "name": "Scrupulously Clean Barn",
+   "map": {
+    "x": 3,
+    "y": -73,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105811,
+     "description": "To the north lies Before a Large Barn."
+    },
+    "south": {
+     "to_room": 105816,
+     "description": "To the south lies The Pastures."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "105816": {
+   "vnum": 105816,
+   "name": "The Pastures",
+   "map": {
+    "x": 3,
+    "y": -74,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105815,
+     "description": "To the north lies Scrupulously Clean Barn.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 105817,
+     "description": "To the east lies The Pastures."
+    },
+    "west": {
+     "to_room": 105818,
+     "description": "To the west lies The Pastures."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "105817": {
+   "vnum": 105817,
+   "name": "The Pastures",
+   "map": {
+    "x": 4,
+    "y": -74,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 105816,
+     "description": "To the west lies The Pastures."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads west.",
+   "placeholder": true
+  },
+  "105818": {
+   "vnum": 105818,
+   "name": "The Pastures",
+   "map": {
+    "x": 2,
+    "y": -74,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105816,
+     "description": "To the east lies The Pastures."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "105819": {
+   "vnum": 105819,
+   "name": "Towne Road",
+   "map": {
+    "x": 3,
+    "y": -64,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 105820,
+     "description": "To the east lies Intersection on Towne Road."
+    },
+    "west": {
+     "to_room": 105804,
+     "description": "To the west lies Gravel Road at the Settlement."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "105820": {
+   "vnum": 105820,
+   "name": "Intersection on Towne Road",
+   "map": {
+    "x": 4,
+    "y": -64,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 105821,
+     "description": "To the north lies Towne Road."
+    },
+    "east": {
+     "to_room": 105838,
+     "description": "To the east lies Towne Road."
+    },
+    "south": {
+     "to_room": 105825,
+     "description": "To the south lies Towne Road."
+    },
+    "west": {
+     "to_room": 105819,
+     "description": "To the west lies Towne Road."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "105821": {
+   "vnum": 105821,
+   "name": "Towne Road",
+   "map": {
+    "x": 4,
+    "y": -62,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 105822,
+     "description": "To the north lies Towne Road."
+    },
+    "east": {
+     "to_room": 105837,
+     "description": "To the east lies Cozy Home.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 105820,
+     "description": "To the south lies Intersection on Towne Road."
+    },
+    "west": {
+     "to_room": 105832,
+     "description": "To the west lies Quiet Home.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "105822": {
+   "vnum": 105822,
+   "name": "Towne Road",
+   "map": {
+    "x": 4,
+    "y": -61,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 105823,
+     "description": "To the north lies Cul-de-sac."
+    },
+    "east": {
+     "to_room": 105836,
+     "description": "To the east lies Small Log Home.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 105821,
+     "description": "To the south lies Towne Road."
+    },
+    "west": {
+     "to_room": 105833,
+     "description": "To the west lies Simple Home.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "105823": {
+   "vnum": 105823,
+   "name": "Cul-de-sac",
+   "map": {
+    "x": 4,
+    "y": -60,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 105824,
+     "description": "To the north lies Simple Home.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 105835,
+     "description": "To the east lies Thatch-Roofed Home.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 105822,
+     "description": "To the south lies Towne Road."
+    },
+    "west": {
+     "to_room": 105834,
+     "description": "To the west lies Small Home.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "105824": {
+   "vnum": 105824,
+   "name": "Simple Home",
+   "map": {
+    "x": 4,
+    "y": -59,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 105823,
+     "description": "To the south lies Cul-de-sac."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "105825": {
+   "vnum": 105825,
+   "name": "Towne Road",
+   "map": {
+    "x": 4,
+    "y": -66,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105820,
+     "description": "To the north lies Intersection on Towne Road."
+    },
+    "east": {
+     "to_room": 105831,
+     "description": "To the east lies Freshly-Painted Home.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 105826,
+     "description": "To the south lies Schoolhouse Square."
+    },
+    "west": {
+     "to_room": 105830,
+     "description": "To the west lies Empty Home."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105826": {
+   "vnum": 105826,
+   "name": "Schoolhouse Square",
+   "map": {
+    "x": 4,
+    "y": -67,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 105825,
+     "description": "To the north lies Towne Road."
+    },
+    "east": {
+     "to_room": 105829,
+     "description": "To the east lies Tidy Home.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 105827,
+     "description": "To the south lies Ye Olde School."
+    },
+    "west": {
+     "to_room": 105828,
+     "description": "To the west lies Small Home.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "105827": {
+   "vnum": 105827,
+   "name": "Ye Olde School",
+   "map": {
+    "x": 4,
+    "y": -68,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105826,
+     "description": "To the north lies Schoolhouse Square."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads north.",
+   "placeholder": true
+  },
+  "105828": {
+   "vnum": 105828,
+   "name": "Small Home",
+   "map": {
+    "x": 3,
+    "y": -67,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105826,
+     "description": "To the east lies Schoolhouse Square."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "105829": {
+   "vnum": 105829,
+   "name": "Tidy Home",
+   "map": {
+    "x": 5,
+    "y": -67,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 105826,
+     "description": "To the west lies Schoolhouse Square."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads west.",
+   "placeholder": true
+  },
+  "105830": {
+   "vnum": 105830,
+   "name": "Empty Home",
+   "map": {
+    "x": 3,
+    "y": -66,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105825,
+     "description": "To the east lies Towne Road."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "105831": {
+   "vnum": 105831,
+   "name": "Freshly-Painted Home",
+   "map": {
+    "x": 5,
+    "y": -66,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 105825,
+     "description": "To the west lies Towne Road."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "105832": {
+   "vnum": 105832,
+   "name": "Quiet Home",
+   "map": {
+    "x": 3,
+    "y": -62,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105821,
+     "description": "To the east lies Towne Road."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "105833": {
+   "vnum": 105833,
+   "name": "Simple Home",
+   "map": {
+    "x": 3,
+    "y": -61,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105822,
+     "description": "To the east lies Towne Road."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads east.",
+   "placeholder": true
+  },
+  "105834": {
+   "vnum": 105834,
+   "name": "Small Home",
+   "map": {
+    "x": 3,
+    "y": -60,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105823,
+     "description": "To the east lies Cul-de-sac."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "105835": {
+   "vnum": 105835,
+   "name": "Thatch-Roofed Home",
+   "map": {
+    "x": 5,
+    "y": -60,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 105823,
+     "description": "To the west lies Cul-de-sac."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads west.",
+   "placeholder": true
+  },
+  "105836": {
+   "vnum": 105836,
+   "name": "Small Log Home",
+   "map": {
+    "x": 5,
+    "y": -61,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 105822,
+     "description": "To the west lies Towne Road."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "105837": {
+   "vnum": 105837,
+   "name": "Cozy Home",
+   "map": {
+    "x": 5,
+    "y": -62,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 105821,
+     "description": "To the west lies Towne Road."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads west.",
+   "placeholder": true
+  },
+  "105838": {
+   "vnum": 105838,
+   "name": "Towne Road",
+   "map": {
+    "x": 5,
+    "y": -64,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105882,
+     "description": "To the east lies Towne Road."
+    },
+    "west": {
+     "to_room": 105820,
+     "description": "To the west lies Intersection on Towne Road."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "105839": {
+   "vnum": 105839,
+   "name": "Town Square",
+   "map": {
+    "x": 8,
+    "y": -64,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 105840,
+     "description": "To the north lies Towne Road."
+    },
+    "east": {
+     "to_room": 105847,
+     "description": "To the east lies A Colorful Park."
+    },
+    "south": {
+     "to_room": 105850,
+     "description": "To the south lies Towne Road."
+    },
+    "west": {
+     "to_room": 105882,
+     "description": "To the west lies Towne Road."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "105840": {
+   "vnum": 105840,
+   "name": "Towne Road",
+   "map": {
+    "x": 8,
+    "y": -62,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105841,
+     "description": "To the north lies Northern Square."
+    },
+    "east": {
+     "to_room": 105845,
+     "description": "To the east lies Salaylia's Diner."
+    },
+    "south": {
+     "to_room": 105839,
+     "description": "To the south lies Town Square."
+    },
+    "west": {
+     "to_room": 105846,
+     "description": "To the west lies The Herbalist."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105841": {
+   "vnum": 105841,
+   "name": "Northern Square",
+   "map": {
+    "x": 8,
+    "y": -61,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105842,
+     "description": "To the north lies The Apothecary."
+    },
+    "east": {
+     "to_room": 105843,
+     "description": "To the east lies The Town Clinic."
+    },
+    "south": {
+     "to_room": 105840,
+     "description": "To the south lies Towne Road."
+    },
+    "west": {
+     "to_room": 105844,
+     "description": "To the west lies Smithy."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "105842": {
+   "vnum": 105842,
+   "name": "The Apothecary",
+   "map": {
+    "x": 8,
+    "y": -60,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 105841,
+     "description": "To the south lies Northern Square."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "105843": {
+   "vnum": 105843,
+   "name": "The Town Clinic",
+   "map": {
+    "x": 9,
+    "y": -61,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 105841,
+     "description": "To the west lies Northern Square."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads west.",
+   "placeholder": true
+  },
+  "105844": {
+   "vnum": 105844,
+   "name": "Smithy",
+   "map": {
+    "x": 7,
+    "y": -61,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105841,
+     "description": "To the east lies Northern Square."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads east.",
+   "placeholder": true
+  },
+  "105845": {
+   "vnum": 105845,
+   "name": "Salaylia's Diner",
+   "map": {
+    "x": 9,
+    "y": -62,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 105840,
+     "description": "To the west lies Towne Road."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads west.",
+   "placeholder": true
+  },
+  "105846": {
+   "vnum": 105846,
+   "name": "The Herbalist",
+   "map": {
+    "x": 7,
+    "y": -62,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105840,
+     "description": "To the east lies Towne Road."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "105847": {
+   "vnum": 105847,
+   "name": "A Colorful Park",
+   "map": {
+    "x": 9,
+    "y": -64,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3400,
+     "description": "To the north lies A Shady Path."
+    },
+    "east": {
+     "to_room": 105848,
+     "description": "To the east lies The Towne Hall."
+    },
+    "west": {
+     "to_room": 105839,
+     "description": "To the west lies Town Square."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Shafts of\npale light slant between the trunks. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "105848": {
+   "vnum": 105848,
+   "name": "The Towne Hall",
+   "map": {
+    "x": 10,
+    "y": -64,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 105847,
+     "description": "To the west lies A Colorful Park."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "105849": {
+   "vnum": 105849,
+   "name": "The Tailor's",
+   "map": {
+    "x": 7,
+    "y": -66,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105850,
+     "description": "To the east lies Towne Road."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads east.",
+   "placeholder": true
+  },
+  "105850": {
+   "vnum": 105850,
+   "name": "Towne Road",
+   "map": {
+    "x": 8,
+    "y": -66,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105839,
+     "description": "To the north lies Town Square."
+    },
+    "east": {
+     "to_room": 105851,
+     "description": "To the east lies House of Worship."
+    },
+    "south": {
+     "to_room": 105853,
+     "description": "To the south lies Southern Square."
+    },
+    "west": {
+     "to_room": 105849,
+     "description": "To the west lies The Tailor's."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105851": {
+   "vnum": 105851,
+   "name": "House of Worship",
+   "map": {
+    "x": 9,
+    "y": -66,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 105850,
+     "description": "To the west lies Towne Road."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "105852": {
+   "vnum": 105852,
+   "name": "The General Store",
+   "map": {
+    "x": 7,
+    "y": -67,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105853,
+     "description": "To the east lies Southern Square."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads east.",
+   "placeholder": true
+  },
+  "105853": {
+   "vnum": 105853,
+   "name": "Southern Square",
+   "map": {
+    "x": 8,
+    "y": -67,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 105850,
+     "description": "To the north lies Towne Road."
+    },
+    "east": {
+     "to_room": 105854,
+     "description": "To the east lies The Distillery."
+    },
+    "south": {
+     "to_room": 105855,
+     "description": "To the south lies Town Gardens."
+    },
+    "west": {
+     "to_room": 105852,
+     "description": "To the west lies The General Store."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "105854": {
+   "vnum": 105854,
+   "name": "The Distillery",
+   "map": {
+    "x": 9,
+    "y": -67,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 105853,
+     "description": "To the west lies Southern Square."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "105855": {
+   "vnum": 105855,
+   "name": "Town Gardens",
+   "map": {
+    "x": 8,
+    "y": -68,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105853,
+     "description": "To the north lies Southern Square."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "105856": {
+   "vnum": 105856,
+   "name": "Entryway Into the Main Hall",
+   "map": {
+    "x": 7,
+    "y": -72,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105857,
+     "description": "To the east lies Main Hall."
+    },
+    "west": {
+     "to_room": 105814,
+     "description": "To the west lies The Tower Entry Gate."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "105857": {
+   "vnum": 105857,
+   "name": "Main Hall",
+   "map": {
+    "x": 8,
+    "y": -72,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105861,
+     "description": "To the north lies The Feasting Hall.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 105858,
+     "description": "To the east lies Audience Chamber."
+    },
+    "west": {
+     "to_room": 105856,
+     "description": "To the west lies Entryway Into the Main Hall."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "105858": {
+   "vnum": 105858,
+   "name": "Audience Chamber",
+   "map": {
+    "x": 9,
+    "y": -72,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105860,
+     "description": "To the north lies The Feasting Hall."
+    },
+    "east": {
+     "to_room": 105859,
+     "description": "To the east lies Behind the Gilded Chair.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 105862,
+     "description": "To the south lies Private Meeting Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 105857,
+     "description": "To the west lies Main Hall."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105859": {
+   "vnum": 105859,
+   "name": "Behind the Gilded Chair",
+   "map": {
+    "x": 10,
+    "y": -72,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 105858,
+     "description": "To the west lies Audience Chamber."
+    },
+    "up": {
+     "to_room": 105863,
+     "description": "To the up lies Secret Staircase."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead west and up.",
+   "placeholder": true
+  },
+  "105860": {
+   "vnum": 105860,
+   "name": "The Feasting Hall",
+   "map": {
+    "x": 9,
+    "y": -71,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 105858,
+     "description": "To the south lies Audience Chamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 105861,
+     "description": "To the west lies The Feasting Hall."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "105861": {
+   "vnum": 105861,
+   "name": "The Feasting Hall",
+   "map": {
+    "x": 8,
+    "y": -71,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105860,
+     "description": "To the east lies The Feasting Hall."
+    },
+    "south": {
+     "to_room": 105857,
+     "description": "To the south lies Main Hall."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "105862": {
+   "vnum": 105862,
+   "name": "Private Meeting Room",
+   "map": {
+    "x": 9,
+    "y": -73,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105858,
+     "description": "To the north lies Audience Chamber."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads north.",
+   "placeholder": true
+  },
+  "105863": {
+   "vnum": 105863,
+   "name": "Secret Staircase",
+   "map": {
+    "x": 10,
+    "y": -72,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 105864,
+     "description": "To the up lies Stone and Mortar Hallway."
+    },
+    "down": {
+     "to_room": 105859,
+     "description": "To the down lies Behind the Gilded Chair."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead up and down.",
+   "placeholder": true
+  },
+  "105864": {
+   "vnum": 105864,
+   "name": "Stone and Mortar Hallway",
+   "map": {
+    "x": 10,
+    "y": -72,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 105870,
+     "description": "To the south lies Necromocis' Private Chambers.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 105865,
+     "description": "To the west lies Stone and Mortar Hallway."
+    },
+    "down": {
+     "to_room": 105863,
+     "description": "To the down lies Secret Staircase."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead south, west and down.",
+   "placeholder": true
+  },
+  "105865": {
+   "vnum": 105865,
+   "name": "Stone and Mortar Hallway",
+   "map": {
+    "x": 9,
+    "y": -72,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105867,
+     "description": "To the north lies Gilzaan's Private Chambers.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 105864,
+     "description": "To the east lies Stone and Mortar Hallway."
+    },
+    "west": {
+     "to_room": 105866,
+     "description": "To the west lies End of the Hall."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "105866": {
+   "vnum": 105866,
+   "name": "End of the Hall",
+   "map": {
+    "x": 8,
+    "y": -72,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105865,
+     "description": "To the east lies Stone and Mortar Hallway."
+    },
+    "west": {
+     "to_room": 105871,
+     "description": "To the west lies Sitting Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "105867": {
+   "vnum": 105867,
+   "name": "Gilzaan's Private Chambers",
+   "map": {
+    "x": 9,
+    "y": -71,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 105865,
+     "description": "To the south lies Stone and Mortar Hallway."
+    },
+    "west": {
+     "to_room": 105868,
+     "description": "To the west lies Gilzaan's Private Chambers."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead south and west.",
+   "placeholder": true
+  },
+  "105868": {
+   "vnum": 105868,
+   "name": "Gilzaan's Private Chambers",
+   "map": {
+    "x": 8,
+    "y": -71,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105867,
+     "description": "To the east lies Gilzaan's Private Chambers."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "105869": {
+   "vnum": 105869,
+   "name": "Necromocis' Private Chambers",
+   "map": {
+    "x": 9,
+    "y": -73,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105870,
+     "description": "To the east lies Necromocis' Private Chambers."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads east.",
+   "placeholder": true
+  },
+  "105870": {
+   "vnum": 105870,
+   "name": "Necromocis' Private Chambers",
+   "map": {
+    "x": 10,
+    "y": -73,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105864,
+     "description": "To the north lies Stone and Mortar Hallway."
+    },
+    "west": {
+     "to_room": 105869,
+     "description": "To the west lies Necromocis' Private Chambers."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and west.",
+   "placeholder": true
+  },
+  "105871": {
+   "vnum": 105871,
+   "name": "Sitting Room",
+   "map": {
+    "x": 7,
+    "y": -72,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105874,
+     "description": "To the north lies Bathing Area."
+    },
+    "east": {
+     "to_room": 105866,
+     "description": "To the east lies End of the Hall."
+    },
+    "south": {
+     "to_room": 105872,
+     "description": "To the south lies Kalveh's Private Chambers."
+    },
+    "up": {
+     "to_room": 105875,
+     "description": "To the up lies Runed Staircase."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south and up.",
+   "placeholder": true
+  },
+  "105872": {
+   "vnum": 105872,
+   "name": "Kalveh's Private Chambers",
+   "map": {
+    "x": 7,
+    "y": -73,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105871,
+     "description": "To the north lies Sitting Room."
+    },
+    "east": {
+     "to_room": 105873,
+     "description": "To the east lies Kalveh's Private Chambers."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and east.",
+   "placeholder": true
+  },
+  "105873": {
+   "vnum": 105873,
+   "name": "Kalveh's Private Chambers",
+   "map": {
+    "x": 8,
+    "y": -73,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 105872,
+     "description": "To the west lies Kalveh's Private Chambers."
+    },
+    "down": {
+     "to_room": 105883,
+     "description": "To the down lies Secret Staircase."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead west and down.",
+   "placeholder": true
+  },
+  "105874": {
+   "vnum": 105874,
+   "name": "Bathing Area",
+   "map": {
+    "x": 7,
+    "y": -71,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 105871,
+     "description": "To the south lies Sitting Room."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "105875": {
+   "vnum": 105875,
+   "name": "Runed Staircase",
+   "map": {
+    "x": 7,
+    "y": -72,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 105876,
+     "description": "To the up lies The Kalveh Laboratory."
+    },
+    "down": {
+     "to_room": 105871,
+     "description": "To the down lies Sitting Room."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead up and down.",
+   "placeholder": true
+  },
+  "105876": {
+   "vnum": 105876,
+   "name": "The Kalveh Laboratory",
+   "map": {
+    "x": 7,
+    "y": -72,
+    "z": 4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105877,
+     "description": "To the east lies The Kalveh Laboratory."
+    },
+    "south": {
+     "to_room": 105878,
+     "description": "To the south lies A Candle-Lit Study."
+    },
+    "down": {
+     "to_room": 105875,
+     "description": "To the down lies Runed Staircase."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east, south and down.",
+   "placeholder": true
+  },
+  "105877": {
+   "vnum": 105877,
+   "name": "The Kalveh Laboratory",
+   "map": {
+    "x": 8,
+    "y": -72,
+    "z": 4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 105881,
+     "description": "To the south lies Artifact Room."
+    },
+    "west": {
+     "to_room": 105876,
+     "description": "To the west lies The Kalveh Laboratory."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "105878": {
+   "vnum": 105878,
+   "name": "A Candle-Lit Study",
+   "map": {
+    "x": 7,
+    "y": -73,
+    "z": 4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105876,
+     "description": "To the north lies The Kalveh Laboratory."
+    },
+    "south": {
+     "to_room": 105879,
+     "description": "To the south lies A Packed Library."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "105879": {
+   "vnum": 105879,
+   "name": "A Packed Library",
+   "map": {
+    "x": 7,
+    "y": -74,
+    "z": 4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105878,
+     "description": "To the north lies A Candle-Lit Study."
+    },
+    "east": {
+     "to_room": 105880,
+     "description": "To the east lies The Kalveh Observatory."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and east.",
+   "placeholder": true
+  },
+  "105880": {
+   "vnum": 105880,
+   "name": "The Kalveh Observatory",
+   "map": {
+    "x": 8,
+    "y": -74,
+    "z": 4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 105879,
+     "description": "To the west lies A Packed Library."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "105881": {
+   "vnum": 105881,
+   "name": "Artifact Room",
+   "map": {
+    "x": 8,
+    "y": -73,
+    "z": 4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105877,
+     "description": "To the north lies The Kalveh Laboratory."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "105882": {
+   "vnum": 105882,
+   "name": "Towne Road",
+   "map": {
+    "x": 7,
+    "y": -64,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105839,
+     "description": "To the east lies Town Square."
+    },
+    "west": {
+     "to_room": 105838,
+     "description": "To the west lies Towne Road."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "105883": {
+   "vnum": 105883,
+   "name": "Secret Staircase",
+   "map": {
+    "x": 16,
+    "y": -68,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 105873,
+     "description": "To the up lies Kalveh's Private Chambers."
+    },
+    "down": {
+     "to_room": 105884,
+     "description": "To the down lies Secret Staircase."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead up and down.",
+   "placeholder": true
+  },
+  "105884": {
+   "vnum": 105884,
+   "name": "Secret Staircase",
+   "map": {
+    "x": 15,
+    "y": -69,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105885,
+     "description": "To the north lies Passage to a Twilight Chamber."
+    },
+    "up": {
+     "to_room": 105883,
+     "description": "To the up lies Secret Staircase."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and up.",
+   "placeholder": true
+  },
+  "105885": {
+   "vnum": 105885,
+   "name": "Passage to a Twilight Chamber",
+   "map": {
+    "x": 15,
+    "y": -68,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105886,
+     "description": "To the north lies The Twilight Chamber."
+    },
+    "south": {
+     "to_room": 105884,
+     "description": "To the south lies Secret Staircase."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "105886": {
+   "vnum": 105886,
+   "name": "The Twilight Chamber",
+   "map": {
+    "x": 15,
+    "y": -67,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105891,
+     "description": "To the north lies The Twilight Chamber."
+    },
+    "east": {
+     "to_room": 105889,
+     "description": "To the east lies The Twilight Chamber."
+    },
+    "south": {
+     "to_room": 105885,
+     "description": "To the south lies Passage to a Twilight Chamber."
+    },
+    "west": {
+     "to_room": 105887,
+     "description": "To the west lies The Twilight Chamber."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105887": {
+   "vnum": 105887,
+   "name": "The Twilight Chamber",
+   "map": {
+    "x": 14,
+    "y": -67,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105888,
+     "description": "To the north lies The Twilight Chamber."
+    },
+    "east": {
+     "to_room": 105886,
+     "description": "To the east lies The Twilight Chamber."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "105888": {
+   "vnum": 105888,
+   "name": "The Twilight Chamber",
+   "map": {
+    "x": 14,
+    "y": -66,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105892,
+     "description": "To the north lies The Twilight Chamber."
+    },
+    "east": {
+     "to_room": 105891,
+     "description": "To the east lies The Twilight Chamber."
+    },
+    "south": {
+     "to_room": 105887,
+     "description": "To the south lies The Twilight Chamber."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "105889": {
+   "vnum": 105889,
+   "name": "The Twilight Chamber",
+   "map": {
+    "x": 16,
+    "y": -67,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105890,
+     "description": "To the north lies The Twilight Chamber."
+    },
+    "west": {
+     "to_room": 105886,
+     "description": "To the west lies The Twilight Chamber."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "105890": {
+   "vnum": 105890,
+   "name": "The Twilight Chamber",
+   "map": {
+    "x": 16,
+    "y": -66,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105894,
+     "description": "To the north lies The Twilight Chamber."
+    },
+    "south": {
+     "to_room": 105889,
+     "description": "To the south lies The Twilight Chamber."
+    },
+    "west": {
+     "to_room": 105891,
+     "description": "To the west lies The Twilight Chamber."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "105891": {
+   "vnum": 105891,
+   "name": "The Twilight Chamber",
+   "map": {
+    "x": 15,
+    "y": -66,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105893,
+     "description": "To the north lies The Twilight Chamber."
+    },
+    "east": {
+     "to_room": 105890,
+     "description": "To the east lies The Twilight Chamber."
+    },
+    "south": {
+     "to_room": 105886,
+     "description": "To the south lies The Twilight Chamber."
+    },
+    "west": {
+     "to_room": 105888,
+     "description": "To the west lies The Twilight Chamber."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105892": {
+   "vnum": 105892,
+   "name": "The Twilight Chamber",
+   "map": {
+    "x": 14,
+    "y": -65,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105893,
+     "description": "To the east lies The Twilight Chamber."
+    },
+    "south": {
+     "to_room": 105888,
+     "description": "To the south lies The Twilight Chamber."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and south.",
+   "placeholder": true
+  },
+  "105893": {
+   "vnum": 105893,
+   "name": "The Twilight Chamber",
+   "map": {
+    "x": 15,
+    "y": -65,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105894,
+     "description": "To the east lies The Twilight Chamber."
+    },
+    "south": {
+     "to_room": 105891,
+     "description": "To the south lies The Twilight Chamber."
+    },
+    "west": {
+     "to_room": 105892,
+     "description": "To the west lies The Twilight Chamber."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "105894": {
+   "vnum": 105894,
+   "name": "The Twilight Chamber",
+   "map": {
+    "x": 16,
+    "y": -65,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 105890,
+     "description": "To the south lies The Twilight Chamber."
+    },
+    "west": {
+     "to_room": 105893,
+     "description": "To the west lies The Twilight Chamber."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

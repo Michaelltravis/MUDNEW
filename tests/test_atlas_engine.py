@@ -56,29 +56,32 @@ async def main():
         zone = None
     check(zone_of(Bare()) == 40 and zone_of(None) is None, 'a room outside any zone falls back too')
 
-    # ---- stored map places
+    # ---- stored map places (the atlas's, on every room of the re-laid world)
     t, f = world.rooms[3001], world.rooms[3005]
-    t.map, f.map = {'x': 4, 'y': 2, 'z': 0}, {'x': 4, 'y': 1, 'z': 0}
+    check(bool(t.map) and bool(f.map), 'the temple and its fountain carry their places on the map')
+    base = set(ms.check_stored_cells(world))           # what the world itself reports (the atlas's long ways)
+    saved = (dict(t.map), dict(f.map))
     ms._ZONEMAP_CACHE.clear()
-    zm = ms.build_zonemap(world, 30)
+    zm = ms.build_zonemap(world, zone_of(t))
     cell = {r['vnum']: r['cell'] for r in zm['rooms']}
-    check(cell[3005][0] == cell[3001][0] and cell[3005][1] == cell[3001][1] + 1,
-          f'stored places are honoured: the fountain one cell south of the temple ({cell[3001]}, {cell[3005]})')
-    check(len({tuple(c) for c in cell.values()}) == len(cell), 'every room of the zone still has its own cell')
-    check(ms.check_stored_cells(world) == [], 'the stored places agree with the exits')
-    f.map = {'x': 4, 'y': 2, 'z': 0}
-    probs = ms.check_stored_cells(world)
+    dx, dy = f.map['x'] - t.map['x'], -(f.map['y'] - t.map['y'])      # the game draws north as -y
+    check(cell[3005][0] - cell[3001][0] == dx and cell[3005][1] - cell[3001][1] == dy,
+          f'stored places are honoured: the fountain sits where the atlas draws it from the temple ({cell[3001]}, {cell[3005]})')
+    check(len({tuple(c) for c in cell.values()}) == len(cell), 'every room of the zone has its own cell')
+    check(not [p for p in base if 'share the cell' in p], 'no two rooms share a cell')
+    f.map = dict(t.map)
+    probs = [p for p in ms.check_stored_cells(world) if p not in base]
     check(any('share the cell' in p for p in probs), f'two rooms on one cell are reported ({probs[:1]})')
-    f.map = {'x': 4, 'y': 3, 'z': 0}
-    probs = ms.check_stored_cells(world)
+    f.map = {'x': t.map['x'], 'y': t.map['y'] + 1, 'z': t.map.get('z', 0)}
+    probs = [p for p in ms.check_stored_cells(world) if p not in base]
     check(any('points away' in p for p in probs), f'an exit pointing against the map is reported ({probs[:1]})')
-    f.map = {'x': 4, 'y': 1, 'z': 0}
+    t.map, f.map = saved
     d = t.to_dict()
     from world import Room
-    check(d.get('map') == {'x': 4, 'y': 2, 'z': 0} and Room.from_dict(d).map == d['map'], 'the place is saved and loaded with the room')
+    check(d.get('map') == t.map and Room.from_dict(d).map == d['map'], 'the place is saved and loaded with the room')
     cells = ms.world_cells(world)
-    check(cells.get(3001) and cells[3005][1] == cells[3001][1] + 1, 'the world map uses the stored places too')
-    t.map = f.map = None
+    check(cells.get(3001) and (cells[3005][0] - cells[3001][0], cells[3005][1] - cells[3001][1]) == (dx, dy),
+          'the world map uses the stored places too')
     ms._ZONEMAP_CACHE.clear()
 
     # ---- sealed zones
@@ -176,9 +179,9 @@ async def main():
         swimmer = await options()
         check(3203 in swimmer, f'one that lives on it does ({swimmer})')
     finally:
-        Config.WATER_NEEDS_BOAT = False
+        Config.WATER_NEEDS_BOAT = True
     Player.is_immortal = real_immortal
-    check(Config.WATER_NEEDS_BOAT is False, 'the water rule waits for the re-laid world (off for now)')
+    check(Config().WATER_NEEDS_BOAT is True, 'the water rule is on with the re-laid world')
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
     sys.exit(1 if failures else 0)
 

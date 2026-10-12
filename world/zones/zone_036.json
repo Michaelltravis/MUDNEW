@@ -1,2303 +1,2303 @@
 {
-  "number": 36,
-  "name": "The Chessboard of Midgaard",
-  "lifespan": 10,
-  "rooms": {
-    "3600": {
-      "vnum": 3600,
-      "name": "The Great Chessboard Of Midgaard",
-      "description": "The area opens in the archway of the Chessboard of Midgaard. The giant\nwooden gate is rusted open. A narrow dirt path leads eastwards into the\nthick grass and the chessboard opens up to the west. The smell of smoke\nand humanity hangs in the air. The cobblestones are worn smooth by\ncountless feet.",
-      "sector_type": "city",
-      "flags": [
-        "no_mob"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 3066,
-          "description": "A dirt path leads away through the great field north of Midgaard."
-        },
-        "west": {
-          "to_room": 3632,
-          "description": "The huge chessboard opens up to the west."
-        }
-      },
-      "extra_descs": {
-        "chessboard squares": "Each square is a full pace across, black basalt and white marble. From the corner of your eye, the far pieces seem to have moved."
-      }
-    },
-    "3601": {
-      "vnum": 3601,
-      "name": "A White Square",
-      "description": "This area is a white marble square. This is usually the home of the\nBlack Queen's Rook. Vendors and pedestrians bustle past. The sounds of\ncity life echo around.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 3602,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3609,
-          "description": "A black square lies to the south."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3602,
-          "max": 2
-        }
-      ]
-    },
-    "3602": {
-      "vnum": 3602,
-      "name": "A Black Square",
-      "description": "This area is a black marble square. This is usually the home of the\nBlack Queen's Knight. The smell of smoke and humanity hangs in the air.\nThe cobblestones are worn smooth by countless feet.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 3603,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3610,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3601,
-          "description": "A white square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3604,
-          "max": 2
-        }
-      ]
-    },
-    "3603": {
-      "vnum": 3603,
-      "name": "A White Square",
-      "description": "This area is a white marble square. This is usually the home of the\nBlack Queen's Bishop. The sounds of city life echo around. Buildings\ncrowd together on all sides.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 3604,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3611,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3602,
-          "description": "A black square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3606,
-          "max": 2
-        }
-      ]
-    },
-    "3604": {
-      "vnum": 3604,
-      "name": "A Black Square",
-      "description": "This area is a black marble square. This is usually the home of the\nBlack Queen. The smell of smoke and humanity hangs in the air. Vendors\nand pedestrians bustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 3605,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3612,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3603,
-          "description": "A white square lies to the west."
-        },
-        "down": {
-          "to_room": 3665,
-          "description": "A passage leads to The Black Treasury",
-          "door": {
-            "name": "marble square",
-            "state": "open",
-            "locked": true,
-            "key_vnum": 3614
-          }
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3608,
-          "max": 1
-        }
-      ]
-    },
-    "3605": {
-      "vnum": 3605,
-      "name": "A White Square",
-      "description": "This area is a white marble square. This is usually the home of the\nBlack King. The smell of smoke and humanity hangs in the air. Buildings\ncrowd together on all sides.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 3606,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3613,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3604,
-          "description": "A black square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3610,
-          "max": 1
-        }
-      ]
-    },
-    "3606": {
-      "vnum": 3606,
-      "name": "A Black Square",
-      "description": "This area is a black marble square. This is usually the home of the\nBlack King's Bishop. Buildings crowd together on all sides. The smell of\nsmoke and humanity hangs in the air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 3607,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3614,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3605,
-          "description": "A white square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3606,
-          "max": 2
-        }
-      ]
-    },
-    "3607": {
-      "vnum": 3607,
-      "name": "A White Square",
-      "description": "This area is a white marble square. This is usually the home of the\nBlack King's Knight. The sounds of city life echo around. The\ncobblestones are worn smooth by countless feet.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 3608,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3615,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3606,
-          "description": "A black square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3604,
-          "max": 2
-        }
-      ]
-    },
-    "3608": {
-      "vnum": 3608,
-      "name": "A Black Square",
-      "description": "This area is a black marble square. This is usually the home of the\nBlack King's Rook. Buildings crowd together on all sides. The sounds of\ncity life echo around.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 3616,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3607,
-          "description": "A white square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3602,
-          "max": 2
-        }
-      ]
-    },
-    "3609": {
-      "vnum": 3609,
-      "name": "A Black Square",
-      "description": "This area is a black marble square. This is usually the home of one of\nthe Black Queen's Pawns. The cobblestones are worn smooth by countless\nfeet. The smell of smoke and humanity hangs in the air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3601,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3610,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3617,
-          "description": "A white square lies to the south."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3600,
-          "max": 8
-        }
-      ]
-    },
-    "3610": {
-      "vnum": 3610,
-      "name": "A White Square",
-      "description": "This area is a white marble square. This is usually the home of one of\nthe Black Queen's Pawns. The cobblestones are worn smooth by countless\nfeet. The smell of smoke and humanity hangs in the air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3602,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3611,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3618,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3609,
-          "description": "A black square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3600,
-          "max": 8
-        }
-      ]
-    },
-    "3611": {
-      "vnum": 3611,
-      "name": "A Black Square",
-      "description": "This area is a black marble square. This is usually the home of one of\nthe Black Queen's Pawns. Buildings crowd together on all sides. The\nsounds of city life echo around.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3603,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3612,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3619,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3610,
-          "description": "A white square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3600,
-          "max": 8
-        }
-      ]
-    },
-    "3612": {
-      "vnum": 3612,
-      "name": "A White Square",
-      "description": "This area is a white marble square. This is usually the home of one of\nthe Black Queen's Pawns. The smell of smoke and humanity hangs in the\nair. Vendors and pedestrians bustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3604,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3613,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3620,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3611,
-          "description": "A black square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3600,
-          "max": 8
-        }
-      ]
-    },
-    "3613": {
-      "vnum": 3613,
-      "name": "A Black Square",
-      "description": "This area is a black marble square. This is usually the home of one of\nthe Black King's Pawns. Buildings crowd together on all sides. The\ncobblestones are worn smooth by countless feet.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3605,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3614,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3621,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3612,
-          "description": "A white square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3600,
-          "max": 8
-        }
-      ]
-    },
-    "3614": {
-      "vnum": 3614,
-      "name": "A White Square",
-      "description": "This area is a white marble square. This is usually the home of one of\nthe Black King's Pawns. The smell of smoke and humanity hangs in the\nair. The cobblestones are worn smooth by countless feet.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3606,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3615,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3622,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3613,
-          "description": "A black square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3600,
-          "max": 8
-        }
-      ]
-    },
-    "3615": {
-      "vnum": 3615,
-      "name": "A Black Square",
-      "description": "This area is a black marble square. This is usually the home of one of\nthe Black King's Pawns. The sounds of city life echo around. Vendors and\npedestrians bustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3607,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3616,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3623,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3614,
-          "description": "A white square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3600,
-          "max": 8
-        }
-      ]
-    },
-    "3616": {
-      "vnum": 3616,
-      "name": "A White Square",
-      "description": "This area is a white marble square. This is usually the home of one of\nthe Black King's Pawns. The sounds of city life echo around. Vendors and\npedestrians bustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3608,
-          "description": "A black square lies to the north."
-        },
-        "south": {
-          "to_room": 3624,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3615,
-          "description": "A black square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3600,
-          "max": 8
-        }
-      ]
-    },
-    "3617": {
-      "vnum": 3617,
-      "name": "A White Square",
-      "description": "The area opens upon a gleaming white marble square. The polished stone\nreflects an ethereal glow, and the air shimmers with magical energy.\nAcross the board, Visible is towering chess pieces locked in eternal\nbattle. Buildings crowd together on all sides. Vendors and pedestrians\nbustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3609,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3618,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3625,
-          "description": "A black square lies to the south."
-        }
-      }
-    },
-    "3618": {
-      "vnum": 3618,
-      "name": "A Black Square",
-      "description": "This black obsidian square absorbs the light around it. The dark stone\nfeels cold beneath your feet, and shadows seem to pool at the edges.\nGiant chess pieces loom in the distance. The sounds of city life echo\naround. The cobblestones are worn smooth by countless feet.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3610,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3619,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3626,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3617,
-          "description": "A white square lies to the west."
-        }
-      }
-    },
-    "3619": {
-      "vnum": 3619,
-      "name": "A White Square",
-      "description": "Pristine white marble stretches beneath you, almost blinding in its\nbrightness. The square pulses with faint magical luminescence, part of\nthe grand chessboard's enchantment. Buildings crowd together on all\nsides. The smell of smoke and humanity hangs in the air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3611,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3620,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3627,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3618,
-          "description": "A black square lies to the west."
-        }
-      }
-    },
-    "3620": {
-      "vnum": 3620,
-      "name": "A Black Square",
-      "description": "Deep black stone forms this square, polished to a mirror-like finish.\nThe obsidian feels unnaturally cold, and you can hear the distant\ngrinding of massive chess pieces moving across the board. Buildings\ncrowd together on all sides. The cobblestones are worn smooth by\ncountless feet.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3612,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3621,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3628,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3619,
-          "description": "A white square lies to the west."
-        }
-      }
-    },
-    "3621": {
-      "vnum": 3621,
-      "name": "A White Square",
-      "description": "This white square gleams like fresh snow under an invisible sun. Magical\nrunes are etched along its edges, part of the ancient game's binding\nspell. The cobblestones are worn smooth by countless feet. The sounds of\ncity life echo around.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3613,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3622,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3629,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3620,
-          "description": "A black square lies to the west."
-        }
-      }
-    },
-    "3622": {
-      "vnum": 3622,
-      "name": "A Black Square",
-      "description": "Jet-black obsidian forms this square, darker than night. The stone seems\nto whisper with ancient magic, and your footsteps echo strangely across\nits surface. Vendors and pedestrians bustle past. The sounds of city\nlife echo around.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3614,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3623,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3630,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3621,
-          "description": "A white square lies to the west."
-        }
-      }
-    },
-    "3623": {
-      "vnum": 3623,
-      "name": "A White Square",
-      "description": "Brilliant white marble radiates a subtle warmth. This square sits at a\nstrategic position on the mystical chessboard, and you sense powerful\npieces have stood here. The smell of smoke and humanity hangs in the\nair. The cobblestones are worn smooth by countless feet.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3615,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3624,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3631,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3622,
-          "description": "A black square lies to the west."
-        }
-      }
-    },
-    "3624": {
-      "vnum": 3624,
-      "name": "A Black Square",
-      "description": "This area is a black marble square. Visible is a rusty gate to the\nsouth. The sounds of city life echo around. The cobblestones are worn\nsmooth by countless feet.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3616,
-          "description": "A white square lies to the north."
-        },
-        "south": {
-          "to_room": 3632,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3623,
-          "description": "A white square lies to the west."
-        }
-      }
-    },
-    "3625": {
-      "vnum": 3625,
-      "name": "A Black Square",
-      "description": "Darkness pools on this black square, the obsidian drinking in all light.\nFaint energy pulses beneath your feet, part of the board's eternal\nenchantment. The smell of smoke and humanity hangs in the air. Vendors\nand pedestrians bustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3617,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3626,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3633,
-          "description": "A white square lies to the south."
-        }
-      }
-    },
-    "3626": {
-      "vnum": 3626,
-      "name": "A White Square",
-      "description": "Ivory-white stone gleams beneath you, immaculately smooth. The square\nfeels charged with anticipation, as if waiting for the next move in an\nendless game. The cobblestones are worn smooth by countless feet.\nBuildings crowd together on all sides.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3618,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3627,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3634,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3625,
-          "description": "A black square lies to the west."
-        }
-      }
-    },
-    "3627": {
-      "vnum": 3627,
-      "name": "A Black Square",
-      "description": "This black square feels heavier than the others, as if weighted with\nimportance. The obsidian is flawless, reflecting distorted images of the\ntowering chess pieces. Vendors and pedestrians bustle past. The smell of\nsmoke and humanity hangs in the air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3619,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3628,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3635,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3626,
-          "description": "A white square lies to the west."
-        }
-      }
-    },
-    "3628": {
-      "vnum": 3628,
-      "name": "A White Square",
-      "description": "Pure white marble forms this square, unblemished and bright. Magical\nenergy crackles faintly at the edges where white meets black across the\nboard. The sounds of city life echo around. Vendors and pedestrians\nbustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3620,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3629,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3636,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3627,
-          "description": "A black square lies to the west."
-        }
-      }
-    },
-    "3629": {
-      "vnum": 3629,
-      "name": "A Black Square",
-      "description": "Coal-black stone stretches beneath you, cold and unyielding. The square\nseems to absorb sound as well as light, creating an eerie pocket of\nsilence. Buildings crowd together on all sides. Vendors and pedestrians\nbustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3621,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3630,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3637,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3628,
-          "description": "A white square lies to the west."
-        }
-      }
-    },
-    "3630": {
-      "vnum": 3630,
-      "name": "A White Square",
-      "description": "This white square practically glows with inner light. The marble feels\nancient beyond measure, worn smooth by centuries of magical combat\nabove. Vendors and pedestrians bustle past. The sounds of city life echo\naround.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3622,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3631,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3638,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3629,
-          "description": "A black square lies to the west."
-        }
-      }
-    },
-    "3631": {
-      "vnum": 3631,
-      "name": "A Black Square",
-      "description": "This area is a black marble square. There is a rusty gate a short\ndistance to the east. Buildings crowd together on all sides. The\ncobblestones are worn smooth by countless feet.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3623,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3632,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3639,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3630,
-          "description": "A white square lies to the west."
-        }
-      }
-    },
-    "3632": {
-      "vnum": 3632,
-      "name": "A White Square",
-      "description": "This area is a white marble square. There is a large rusty gate to the\neast. Buildings crowd together on all sides. The smell of smoke and\nhumanity hangs in the air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3624,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3600,
-          "description": "The gate to the chessboard is just to the east."
-        },
-        "south": {
-          "to_room": 3640,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3631,
-          "description": "A black square lies to the west."
-        }
-      }
-    },
-    "3633": {
-      "vnum": 3633,
-      "name": "A White Square",
-      "description": "Gleaming white marble forms this square near the board's edge. The stone\nis cool to the touch, and you can sense the boundary of the magical\nplaying field nearby. The sounds of city life echo around. The\ncobblestones are worn smooth by countless feet.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3625,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3634,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3641,
-          "description": "A black square lies to the south."
-        }
-      }
-    },
-    "3634": {
-      "vnum": 3634,
-      "name": "A Black Square",
-      "description": "Obsidian black as a moonless night forms this square. Strange\nreflections dance across its surface, showing glimpses of moves long\npast in this eternal game. The smell of smoke and humanity hangs in the\nair. Buildings crowd together on all sides.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3626,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3635,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3642,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3633,
-          "description": "A white square lies to the west."
-        }
-      }
-    },
-    "3635": {
-      "vnum": 3635,
-      "name": "A White Square",
-      "description": "Brilliant white stone radiates subtle power. This square occupies a\ntactical position, and faint scorch marks suggest it's seen magical\ncombat. The sounds of city life echo around. Vendors and pedestrians\nbustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3627,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3636,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3643,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3634,
-          "description": "A black square lies to the west."
-        }
-      }
-    },
-    "3636": {
-      "vnum": 3636,
-      "name": "A Black Square",
-      "description": "Deep black obsidian forms this square, its surface polished to\nperfection. The stone seems to hum with barely contained magical energy.\nThe cobblestones are worn smooth by countless feet. The smell of smoke\nand humanity hangs in the air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3628,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3637,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3644,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3635,
-          "description": "A white square lies to the west."
-        }
-      }
-    },
-    "3637": {
-      "vnum": 3637,
-      "name": "A White Square",
-      "description": "This white square shimmers with protective enchantments. The marble\nfeels solid and reassuring, a bastion of light against the surrounding\ndarkness. Buildings crowd together on all sides. Vendors and pedestrians\nbustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3629,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3638,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3645,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3636,
-          "description": "A black square lies to the west."
-        }
-      }
-    },
-    "3638": {
-      "vnum": 3638,
-      "name": "A Black Square",
-      "description": "Darkness incarnate forms this black square. The obsidian is so perfectly\nblack it's difficult to gauge depth, creating a subtle sense of vertigo.\nThe sounds of city life echo around. The smell of smoke and humanity\nhangs in the air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3630,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3639,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3646,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3637,
-          "description": "A white square lies to the west."
-        }
-      }
-    },
-    "3639": {
-      "vnum": 3639,
-      "name": "A White Square",
-      "description": "Pristine white marble stretches in a perfect square. Ancient runes\ncarved into its edges glow faintly, maintaining the board's magical\nintegrity. The sounds of city life echo around. Vendors and\npedestrians bustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3631,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3640,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3647,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3638,
-          "description": "A black square lies to the west."
-        }
-      }
-    },
-    "3640": {
-      "vnum": 3640,
-      "name": "A Black Square",
-      "description": "This area is a black marble square. There is a rusty gate to the north.\nThe smell of smoke and humanity hangs in the air. The sounds of city\nlife echo around.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3632,
-          "description": "A white square lies to the north."
-        },
-        "south": {
-          "to_room": 3648,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3639,
-          "description": "A white square lies to the west."
-        }
-      }
-    },
-    "3641": {
-      "vnum": 3641,
-      "name": "A Black Square",
-      "description": "This black square feels different from the others - colder, darker, more\nominous. The obsidian seems to pull at you slightly, as if gravity is\nstronger here. Buildings crowd together on all sides. The cobblestones\nare worn smooth by countless feet.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3633,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3642,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3649,
-          "description": "A white square lies to the south."
-        }
-      }
-    },
-    "3642": {
-      "vnum": 3642,
-      "name": "A White Square",
-      "description": "Radiant white marble forms this square, almost painful to look at in its\nbrightness. The stone vibrates with barely perceptible magical energy.\nVendors and pedestrians bustle past. The cobblestones are worn smooth by\ncountless feet.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3634,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3643,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3650,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3641,
-          "description": "A black square lies to the west."
-        }
-      }
-    },
-    "3643": {
-      "vnum": 3643,
-      "name": "A Black Square",
-      "description": "Black as the void between stars, this obsidian square seems to exist\nslightly out of phase with reality. Your footsteps make no sound upon\nit. Vendors and pedestrians bustle past. The smell of smoke and humanity\nhangs in the air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3635,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3644,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3651,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3642,
-          "description": "A white square lies to the west."
-        }
-      }
-    },
-    "3644": {
-      "vnum": 3644,
-      "name": "A White Square",
-      "description": "This white square gleams like polished bone. The marble is ancient yet\neternal, part of a game that transcends normal time and space. Buildings\ncrowd together on all sides. The sounds of city life echo around.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3636,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3645,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3652,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3643,
-          "description": "A black square lies to the west."
-        }
-      }
-    },
-    "3645": {
-      "vnum": 3645,
-      "name": "A Black Square",
-      "description": "Jet-black stone forms this square, its surface mirror-smooth. Dark\nreflections show distorted versions of yourself, twisted by the board's\nmagic. The smell of smoke and humanity hangs in the air. The\ncobblestones are worn smooth by countless feet.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3637,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3646,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3653,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3644,
-          "description": "A white square lies to the west."
-        }
-      }
-    },
-    "3646": {
-      "vnum": 3646,
-      "name": "A White Square",
-      "description": "Pure white marble radiates a comforting warmth. This square feels safe,\nprotected by the same magic that maintains the entire chessboard realm.\nThe sounds of city life echo around. The cobblestones are worn\nsmooth by countless feet.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3638,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3647,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3654,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3645,
-          "description": "A black square lies to the west."
-        }
-      }
-    },
-    "3647": {
-      "vnum": 3647,
-      "name": "A Black Square",
-      "description": "Obsidian darker than shadows forms this square. The black stone seems to\nswallow light and sound, creating a pocket of profound silence and\ndarkness. The smell of smoke and humanity hangs in the air. Vendors and\npedestrians bustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3639,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3648,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3655,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3646,
-          "description": "A white square lies to the west."
-        }
-      }
-    },
-    "3648": {
-      "vnum": 3648,
-      "name": "A White Square",
-      "description": "This white square marks the edge of the board. The marble transitions\ninto nothingness beyond, where the magical playing field ends and\nreality resumes. The smell of smoke and humanity hangs in the air.\nVendors and pedestrians bustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3640,
-          "description": "A black square lies to the north."
-        },
-        "south": {
-          "to_room": 3656,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3647,
-          "description": "A black square lies to the west."
-        }
-      }
-    },
-    "3649": {
-      "vnum": 3649,
-      "name": "A White Square",
-      "description": "This area is a white marble square. This is usually the home of one of\nthe White Queen's Pawns. Buildings crowd together on all sides. Vendors\nand pedestrians bustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3641,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3650,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3657,
-          "description": "A black square lies to the south."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3601,
-          "max": 8
-        }
-      ]
-    },
-    "3650": {
-      "vnum": 3650,
-      "name": "A Black Square",
-      "description": "This area is a black marble square. This is usually the home of one of\nthe White Queen's Pawns. The sounds of city life echo around. Vendors\nand pedestrians bustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3642,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3651,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3658,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3649,
-          "description": "A white square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3601,
-          "max": 8
-        }
-      ]
-    },
-    "3651": {
-      "vnum": 3651,
-      "name": "A White Square",
-      "description": "This area is a white marble square. This is usually the home of one of\nthe White Queen's Pawns. The sounds of city life echo around. Vendors\nand pedestrians bustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3643,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3652,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3659,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3650,
-          "description": "A black square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3601,
-          "max": 8
-        }
-      ]
-    },
-    "3652": {
-      "vnum": 3652,
-      "name": "A Black Square",
-      "description": "This area is a black marble square. This is usually the home of one of\nthe White Queen's Pawns. The cobblestones are worn smooth by countless\nfeet. Buildings crowd together on all sides.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3644,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3653,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3660,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3651,
-          "description": "A white square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3601,
-          "max": 8
-        }
-      ]
-    },
-    "3653": {
-      "vnum": 3653,
-      "name": "A White Square",
-      "description": "This area is a white marble square. This is usually the home of one of\nthe White King's Pawns. Vendors and pedestrians bustle past. Buildings\ncrowd together on all sides.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3645,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3654,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3661,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3652,
-          "description": "A black square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3601,
-          "max": 8
-        }
-      ]
-    },
-    "3654": {
-      "vnum": 3654,
-      "name": "A Black Square",
-      "description": "This area is a black marble square. This is usually the home of one of\nthe White King's Pawns. The smell of smoke and humanity hangs in the\nair. Vendors and pedestrians bustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3646,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3655,
-          "description": "A white square lies to the east."
-        },
-        "south": {
-          "to_room": 3662,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3653,
-          "description": "A white square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3601,
-          "max": 8
-        }
-      ]
-    },
-    "3655": {
-      "vnum": 3655,
-      "name": "A White Square",
-      "description": "This area is a white marble square. This is usually the home of one of\nthe White King's Pawns. The cobblestones are worn smooth by countless\nfeet. The smell of smoke and humanity hangs in the air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3647,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3656,
-          "description": "A black square lies to the east."
-        },
-        "south": {
-          "to_room": 3663,
-          "description": "A black square lies to the south."
-        },
-        "west": {
-          "to_room": 3654,
-          "description": "A black square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3601,
-          "max": 8
-        }
-      ]
-    },
-    "3656": {
-      "vnum": 3656,
-      "name": "A Black Square",
-      "description": "This area is a black marble square. This is usually the home of one of\nthe White King's Pawns. The cobblestones are worn smooth by countless\nfeet. Vendors and pedestrians bustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3648,
-          "description": "A white square lies to the north."
-        },
-        "south": {
-          "to_room": 3664,
-          "description": "A white square lies to the south."
-        },
-        "west": {
-          "to_room": 3655,
-          "description": "A white square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3601,
-          "max": 8
-        }
-      ]
-    },
-    "3657": {
-      "vnum": 3657,
-      "name": "A Black Square",
-      "description": "This area is a black marble square. This is usually the home of the\nWhite Queen's Rook. The cobblestones are worn smooth by countless feet.\nThe smell of smoke and humanity hangs in the air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3649,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3658,
-          "description": "A white square lies to the east."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3603,
-          "max": 2
-        }
-      ]
-    },
-    "3658": {
-      "vnum": 3658,
-      "name": "A White Square",
-      "description": "This area is a white marble square. This is usually the home of the\nWhite Queen's Knight. The cobblestones are worn smooth by countless\nfeet. Buildings crowd together on all sides.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3650,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3659,
-          "description": "A black square lies to the east."
-        },
-        "west": {
-          "to_room": 3657,
-          "description": "A black square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3605,
-          "max": 2
-        }
-      ]
-    },
-    "3659": {
-      "vnum": 3659,
-      "name": "A Black Square",
-      "description": "This area is a black marble square. This is usually the home of the\nWhite Queen's Bishop. Vendors and pedestrians bustle past. The smell of\nsmoke and humanity hangs in the air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3651,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3660,
-          "description": "A white square lies to the east."
-        },
-        "west": {
-          "to_room": 3658,
-          "description": "A white square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3607,
-          "max": 2
-        }
-      ]
-    },
-    "3660": {
-      "vnum": 3660,
-      "name": "A White Square",
-      "description": "This area is a white marble square. This is usually the home of the\nWhite Queen. The smell of smoke and humanity hangs in the air. Buildings\ncrowd together on all sides.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3652,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3661,
-          "description": "A black square lies to the east."
-        },
-        "west": {
-          "to_room": 3659,
-          "description": "A black square lies to the west."
-        },
-        "down": {
-          "to_room": 3666,
-          "description": "A passage leads to The White Treasury",
-          "door": {
-            "name": "marble square",
-            "state": "open",
-            "locked": true,
-            "key_vnum": 3615
-          }
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3609,
-          "max": 1
-        }
-      ]
-    },
-    "3661": {
-      "vnum": 3661,
-      "name": "A Black Square",
-      "description": "This area is a black marble square. This is usually the home of the\nWhite King. Buildings crowd together on all sides. Vendors and\npedestrians bustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3653,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3662,
-          "description": "A white square lies to the east."
-        },
-        "west": {
-          "to_room": 3660,
-          "description": "A white square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3611,
-          "max": 1
-        }
-      ]
-    },
-    "3662": {
-      "vnum": 3662,
-      "name": "A White Square",
-      "description": "This area is a white marble square. This is usually the home of the\nWhite King's Bishop. The sounds of city life echo around. Vendors and\npedestrians bustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3654,
-          "description": "A black square lies to the north."
-        },
-        "east": {
-          "to_room": 3663,
-          "description": "A black square lies to the east."
-        },
-        "west": {
-          "to_room": 3661,
-          "description": "A black square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3607,
-          "max": 2
-        }
-      ]
-    },
-    "3663": {
-      "vnum": 3663,
-      "name": "A Black Square",
-      "description": "This area is a black marble square. This is usually the home of the\nWhite King's Knight. The sounds of city life echo around. The\ncobblestones are worn smooth by countless feet.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3655,
-          "description": "A white square lies to the north."
-        },
-        "east": {
-          "to_room": 3664,
-          "description": "A white square lies to the east."
-        },
-        "west": {
-          "to_room": 3662,
-          "description": "A white square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3605,
-          "max": 2
-        }
-      ]
-    },
-    "3664": {
-      "vnum": 3664,
-      "name": "A White Square",
-      "description": "This area is a white marble square. This is usually the home of the\nWhite King's Rook. The cobblestones are worn smooth by countless feet.\nBuildings crowd together on all sides.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3656,
-          "description": "A black square lies to the north."
-        },
-        "west": {
-          "to_room": 3663,
-          "description": "A black square lies to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 3603,
-          "max": 2
-        }
-      ]
-    },
-    "3665": {
-      "vnum": 3665,
-      "name": "The Black Treasury",
-      "description": "This is the treasury of the Black Court. Hopefully no one has looted the\nCrown's treasure. Dust motes drift in the stale air. The air is still\nand musty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors",
-        "private"
-      ],
-      "exits": {
-        "up": {
-          "to_room": 3604,
-          "description": "A small staircase rises above you.",
-          "door": {
-            "name": "marble square",
-            "state": "open",
-            "locked": true,
-            "key_vnum": 3614
-          }
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 3616,
-          "max": 1
-        }
-      ]
-    },
-    "3666": {
-      "vnum": 3666,
-      "name": "The White Treasury",
-      "description": "This is the treasury of the White Court. Hopefully no one has looted the\nCrown's treasure. The ceiling hangs low overhead. The walls are rough-\nhewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors",
-        "private"
-      ],
-      "exits": {
-        "up": {
-          "to_room": 3660,
-          "description": "A small staircase rises above you.",
-          "door": {
-            "name": "marble square",
-            "state": "open",
-            "locked": true,
-            "key_vnum": 3615
-          }
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 3617,
-          "max": 1
-        }
-      ]
-    }
+ "number": 36,
+ "name": "The Chessboard of Garathorm",
+ "lifespan": 10,
+ "mobs": {
+  "3600": {
+   "vnum": 3600,
+   "name": "black",
+   "short_desc": "the Pawn of the Black Court",
+   "long_desc": "You see a pawn standing here waiting for orders.",
+   "level": 4,
+   "alignment": -400,
+   "hp_dice": "2d6+15",
+   "damage_dice": "1d4+1",
+   "gold": 750,
+   "exp": 60,
+   "armor_class": 90,
+   "flags": [
+    "sentinel",
+    "scavenger",
+    "stay_zone",
+    "wimpy"
+   ],
+   "description": "The Black Pawn looks quite like a small knight without his powerful steed.\nHis armor is shiny and black.  He stands ready to give his life for the\nCrown.",
+   "equipment": {
+    "body": 3600,
+    "wield": 3602
+   },
+   "inventory": [
+    3612
+   ]
   },
-  "mobs": {
-    "3600": {
-      "vnum": 3600,
-      "name": "black",
-      "short_desc": "the Pawn of the Black Court",
-      "long_desc": "You see a pawn standing here waiting for orders.",
-      "level": 4,
-      "alignment": -400,
-      "hp_dice": "2d6+15",
-      "damage_dice": "1d4+1",
-      "gold": 750,
-      "exp": 60,
-      "armor_class": 90,
-      "flags": [
-        "sentinel",
-        "scavenger",
-        "stay_zone",
-        "wimpy"
-      ],
-      "description": "The Black Pawn looks quite like a small knight without his powerful steed.\nHis armor is shiny and black.  He stands ready to give his life for the\nCrown.",
-      "equipment": {
-        "body": 3600,
-        "wield": 3602
-      },
-      "inventory": [
-        3612
-      ]
-    },
-    "3601": {
-      "vnum": 3601,
-      "name": "white",
-      "short_desc": "the Pawn of the White Court",
-      "long_desc": "You see a pawn standing here waiting for orders.",
-      "level": 4,
-      "alignment": 400,
-      "hp_dice": "2d6+15",
-      "damage_dice": "1d4+1",
-      "gold": 750,
-      "exp": 60,
-      "armor_class": 90,
-      "flags": [
-        "sentinel",
-        "scavenger",
-        "stay_zone",
-        "wimpy"
-      ],
-      "description": "The White Pawn looks quite like a small knight without his powerful steed.\nHis armor is spotless and white.  He stands ready to give his life for the\nCrown.",
-      "equipment": {
-        "body": 3601,
-        "wield": 3603
-      },
-      "inventory": [
-        3614
-      ]
-    },
-    "3602": {
-      "vnum": 3602,
-      "name": "black",
-      "short_desc": "the Black Rook",
-      "long_desc": "In the corner you see a large, black, stone castle on wheels.",
-      "level": 6,
-      "alignment": -600,
-      "hp_dice": "3d6+25",
-      "damage_dice": "1d6+2",
-      "gold": 45000,
-      "exp": 100,
-      "armor_class": 80,
-      "flags": [
-        "sentinel",
-        "no_sleep",
-        "no_bash",
-        "no_blind"
-      ],
-      "description": "The Black Rook is a very large man-made tomb on wheels.  Just\nfrom the looks of it, it will probably be YOUR tomb.",
-      "equipment": {
-        "body": 3604
-      },
-      "inventory": [
-        3606
-      ]
-    },
-    "3603": {
-      "vnum": 3603,
-      "name": "white",
-      "short_desc": "the White Rook",
-      "long_desc": "In the corner you see a large, white, stone castle on wheels.",
-      "level": 6,
-      "alignment": 600,
-      "hp_dice": "3d6+25",
-      "damage_dice": "1d6+2",
-      "gold": 45000,
-      "exp": 100,
-      "armor_class": 80,
-      "flags": [
-        "sentinel",
-        "no_sleep",
-        "no_bash",
-        "no_blind"
-      ],
-      "description": "The White Rook is a very large man-made tomb on wheels.  Just\nfrom the looks of it, it will probably be YOUR tomb.",
-      "equipment": {
-        "body": 3605
-      },
-      "inventory": [
-        3600
-      ]
-    },
-    "3604": {
-      "vnum": 3604,
-      "name": "black",
-      "short_desc": "the Black Knight",
-      "long_desc": "Here stands a magnificent knight of the dark realm.",
-      "level": 7,
-      "alignment": -400,
-      "hp_dice": "3d8+30",
-      "damage_dice": "1d6+3",
-      "gold": 12750,
-      "exp": 130,
-      "armor_class": 75,
-      "flags": [
-        "sentinel",
-        "aggressive"
-      ],
-      "description": "The Black Knight is here, riding his ebony black war horse.  His eyes\nflash behind his visor in vengence.",
-      "equipment": {
-        "wield": 3606
-      },
-      "inventory": [
-        3604,
-        3612
-      ]
-    },
-    "3605": {
-      "vnum": 3605,
-      "name": "white",
-      "short_desc": "the White Knight",
-      "long_desc": "Here stands a magnificent knight of the light realm.",
-      "level": 7,
-      "alignment": 400,
-      "hp_dice": "3d8+30",
-      "damage_dice": "1d6+3",
-      "gold": 12750,
-      "exp": 130,
-      "armor_class": 75,
-      "flags": [
-        "sentinel",
-        "aggressive"
-      ],
-      "description": "The White Knight is here, riding his ivory white war horse.  His eyes\ngleam behind his visor in joy.",
-      "equipment": {
-        "wield": 3607
-      },
-      "inventory": [
-        3605
-      ]
-    },
-    "3606": {
-      "vnum": 3606,
-      "name": "black",
-      "short_desc": "the Black Bishop",
-      "long_desc": "A dark priest stands here.",
-      "level": 8,
-      "alignment": -500,
-      "hp_dice": "4d8+40",
-      "damage_dice": "1d8+3",
-      "gold": 23750,
-      "exp": 160,
-      "armor_class": 65,
-      "flags": [
-        "sentinel"
-      ],
-      "description": "The Black Bishop seems willing to help you straight into your grave so\nhe can bless you properly.",
-      "equipment": {
-        "hold": 3608
-      },
-      "inventory": [
-        3600
-      ]
-    },
-    "3607": {
-      "vnum": 3607,
-      "name": "white",
-      "short_desc": "the White Bishop",
-      "long_desc": "A light priest stands here.",
-      "level": 8,
-      "alignment": 500,
-      "hp_dice": "4d8+40",
-      "damage_dice": "1d8+3",
-      "gold": 23750,
-      "exp": 160,
-      "armor_class": 65,
-      "flags": [
-        "sentinel"
-      ],
-      "description": "The White Bishop seems willing to help you in any possible so that he can\nattain a higher spirituality.",
-      "equipment": {
-        "hold": 3609
-      },
-      "inventory": [
-        3617
-      ]
-    },
-    "3608": {
-      "vnum": 3608,
-      "name": "black",
-      "short_desc": "the Black Queen",
-      "long_desc": "The Black Queen stands here.",
-      "level": 9,
-      "alignment": -750,
-      "hp_dice": "4d10+50",
-      "damage_dice": "2d4+3",
-      "gold": 25000,
-      "exp": 200,
-      "armor_class": 60,
-      "flags": [
-        "sentinel",
-        "scavenger",
-        "aggressive",
-        "memory"
-      ],
-      "description": "The Black Queen is a strikingly beautiful woman with pale skin and a\nmass of dark hair that crowns her head like a black cloud.  If looks\ncould kill, you would already be dead.",
-      "equipment": {
-        "head": 3610
-      },
-      "inventory": [
-        3608
-      ]
-    },
-    "3609": {
-      "vnum": 3609,
-      "name": "white",
-      "short_desc": "the White Queen",
-      "long_desc": "The White Queen stands here.",
-      "level": 9,
-      "alignment": 750,
-      "hp_dice": "4d10+50",
-      "damage_dice": "2d4+3",
-      "gold": 25000,
-      "exp": 200,
-      "armor_class": 60,
-      "flags": [
-        "sentinel",
-        "scavenger",
-        "aggressive",
-        "memory"
-      ],
-      "description": "The White Queen is a stunningly beautiful woman with dark skin and a mass\nof light hair that frames her head like the sun.  This is surely love at\nfirst sight for you.",
-      "equipment": {
-        "head": 3611
-      },
-      "inventory": [
-        3612,
-        3613
-      ]
-    },
-    "3610": {
-      "vnum": 3610,
-      "name": "black",
-      "short_desc": "the Black King",
-      "long_desc": "The Black King stands here.",
-      "level": 10,
-      "alignment": -999,
-      "hp_dice": "5d10+60",
-      "damage_dice": "2d4+4",
-      "gold": 40000,
-      "exp": 250,
-      "armor_class": 55,
-      "flags": [
-        "sentinel",
-        "scavenger",
-        "aware",
-        "aggressive",
-        "memory"
-      ],
-      "description": "The Black King is a menacing figure.  You can easily understand why he\nis the king and you are not.",
-      "equipment": {
-        "hold": 3612
-      },
-      "inventory": [
-        3614
-      ]
-    },
-    "3611": {
-      "vnum": 3611,
-      "name": "white",
-      "short_desc": "the White King",
-      "long_desc": "The White King stands here.",
-      "level": 10,
-      "alignment": 999,
-      "hp_dice": "5d10+60",
-      "damage_dice": "2d4+4",
-      "gold": 40000,
-      "exp": 250,
-      "armor_class": 55,
-      "flags": [
-        "sentinel",
-        "scavenger",
-        "aware",
-        "aggressive",
-        "memory"
-      ],
-      "description": "The White King is a stately figure.  You can easily understand why he\nis the king and you are not.",
-      "equipment": {
-        "hold": 3613
-      },
-      "inventory": [
-        3615
-      ]
-    }
+  "3601": {
+   "vnum": 3601,
+   "name": "white",
+   "short_desc": "the Pawn of the White Court",
+   "long_desc": "You see a pawn standing here waiting for orders.",
+   "level": 4,
+   "alignment": 400,
+   "hp_dice": "2d6+15",
+   "damage_dice": "1d4+1",
+   "gold": 750,
+   "exp": 60,
+   "armor_class": 90,
+   "flags": [
+    "sentinel",
+    "scavenger",
+    "stay_zone",
+    "wimpy"
+   ],
+   "description": "The White Pawn looks quite like a small knight without his powerful steed.\nHis armor is spotless and white.  He stands ready to give his life for the\nCrown.",
+   "equipment": {
+    "body": 3601,
+    "wield": 3603
+   },
+   "inventory": [
+    3614
+   ]
   },
-  "objects": {
-    "3600": {
-      "vnum": 3600,
-      "name": "armour",
-      "short_desc": "some Black Pawn Armour",
-      "room_desc": "A pile of black armour is here.",
-      "item_type": "armor",
-      "weight": 13,
-      "value": 300,
-      "armor_bonus": 1,
-      "type": "armor",
-      "wear_slot": "body",
-      "armor": 4,
-      "armor_class": 3
-    },
-    "3601": {
-      "vnum": 3601,
-      "name": "armour",
-      "short_desc": "some White Pawn Armour",
-      "room_desc": "A pile of white armour is here.",
-      "item_type": "armor",
-      "weight": 13,
-      "value": 300,
-      "armor_bonus": 1,
-      "type": "armor",
-      "wear_slot": "body",
-      "armor": 4,
-      "armor_class": 2
-    },
-    "3602": {
-      "vnum": 3602,
-      "name": "sword",
-      "short_desc": "a Black Pawn's Sword",
-      "room_desc": "The sword of a Black Pawn lies here.",
-      "item_type": "weapon",
-      "weight": 10,
-      "value": 100,
-      "damage_dice": "3d4",
-      "weapon_type": "slash",
-      "type": "weapon"
-    },
-    "3603": {
-      "vnum": 3603,
-      "name": "sword",
-      "short_desc": "a White Pawn's Sword",
-      "room_desc": "The sword of a White Pawn lies here.",
-      "item_type": "weapon",
-      "weight": 10,
-      "value": 100,
-      "damage_dice": "3d4",
-      "weapon_type": "slash",
-      "type": "weapon"
-    },
-    "3604": {
-      "vnum": 3604,
-      "name": "armour",
-      "short_desc": "some Black Rook Armour",
-      "room_desc": "Some armour made from the remains of a black rook lies heaped on the floor.",
-      "item_type": "armor",
-      "weight": 60,
-      "value": 17000,
-      "armor_bonus": 2,
-      "type": "armor",
-      "wear_slot": "body",
-      "armor": 4,
-      "armor_class": 1
-    },
-    "3605": {
-      "vnum": 3605,
-      "name": "armour",
-      "short_desc": "some White Rook Armour",
-      "room_desc": "Some armour made from the remains of a white rook lies heaped on the floor.",
-      "item_type": "armor",
-      "weight": 60,
-      "value": 17000,
-      "armor_bonus": 2,
-      "type": "armor",
-      "wear_slot": "body",
-      "armor": 4,
-      "armor_class": 3
-    },
-    "3606": {
-      "vnum": 3606,
-      "name": "lance",
-      "short_desc": "the Lance of the Black Knight",
-      "room_desc": "The Lance of the Black Knight lies here, waiting to rust.",
-      "item_type": "weapon",
-      "weight": 18,
-      "value": 10000,
-      "damage_dice": "3d6",
-      "weapon_type": "crush",
-      "type": "weapon"
-    },
-    "3607": {
-      "vnum": 3607,
-      "name": "lance",
-      "short_desc": "the Lance of the White Knight",
-      "room_desc": "The Lance of the White Knight lies here, waiting to rust.",
-      "item_type": "weapon",
-      "weight": 18,
-      "value": 10000,
-      "damage_dice": "3d6",
-      "weapon_type": "crush",
-      "type": "weapon"
-    },
-    "3608": {
-      "vnum": 3608,
-      "name": "staff",
-      "short_desc": "the Staff of the Black Bishop",
-      "room_desc": "The Black Bishop's Staff is lying here.",
-      "item_type": "staff",
-      "weight": 3,
-      "value": 20000,
-      "type": "weapon",
-      "weapon_type": "pound",
-      "damage_dice": "1d6"
-    },
-    "3609": {
-      "vnum": 3609,
-      "name": "staff",
-      "short_desc": "the Staff of the White Bishop",
-      "room_desc": "The White Bishop's Staff is lying here.",
-      "item_type": "staff",
-      "weight": 3,
-      "value": 20000,
-      "type": "weapon",
-      "weapon_type": "pound",
-      "damage_dice": "1d6"
-    },
-    "3610": {
-      "vnum": 3610,
-      "name": "crown",
-      "short_desc": "the Crown of the Black Queen",
-      "room_desc": "The Crown of the Black Queen lies here, looking neglected.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 3000,
-      "armor_bonus": 2,
-      "type": "armor",
-      "wear_slot": "head",
-      "armor": 2,
-      "armor_class": 1
-    },
-    "3611": {
-      "vnum": 3611,
-      "name": "crown",
-      "short_desc": "the Crown of the White Queen",
-      "room_desc": "The Crown of the White Queen lies here, looking neglected.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 3000,
-      "armor_bonus": 2,
-      "type": "armor",
-      "wear_slot": "head",
-      "armor": 2,
-      "armor_class": 3
-    },
-    "3612": {
-      "vnum": 3612,
-      "name": "sceptre",
-      "short_desc": "the Black King's Sceptre",
-      "room_desc": "The Sceptre of the Black King lies here, collecting dust.",
-      "item_type": "treasure",
-      "weight": 200,
-      "value": 85000,
-      "type": "treasure"
-    },
-    "3613": {
-      "vnum": 3613,
-      "name": "sceptre",
-      "short_desc": "the White King's Sceptre",
-      "room_desc": "The Sceptre of the White King lies here, collecting dust.",
-      "item_type": "treasure",
-      "weight": 300,
-      "value": 85000,
-      "type": "treasure"
-    },
-    "3614": {
-      "vnum": 3614,
-      "name": "key",
-      "short_desc": "The Key to the Black Treasury",
-      "room_desc": "There is a sinister black key lying here.",
-      "item_type": "key",
-      "weight": 1,
-      "value": 1000,
-      "type": "key"
-    },
-    "3615": {
-      "vnum": 3615,
-      "name": "key",
-      "short_desc": "the Key to the White Treasury",
-      "room_desc": "There is a bright white key lying here.",
-      "item_type": "key",
-      "weight": 1,
-      "value": 1000,
-      "type": "key"
-    },
-    "3616": {
-      "vnum": 3616,
-      "name": "coins",
-      "short_desc": "the Black Royal Treasure",
-      "room_desc": "There are a LOT of coins here.",
-      "item_type": "money",
-      "weight": 10,
-      "value": 10000,
-      "type": "treasure"
-    },
-    "3617": {
-      "vnum": 3617,
-      "name": "coins",
-      "short_desc": "the White Royal Treasure",
-      "room_desc": "There are a LOT of coins here.",
-      "item_type": "money",
-      "weight": 10,
-      "value": 10000,
-      "type": "treasure"
-    }
+  "3602": {
+   "vnum": 3602,
+   "name": "black",
+   "short_desc": "the Black Rook",
+   "long_desc": "In the corner you see a large, black, stone castle on wheels.",
+   "level": 6,
+   "alignment": -600,
+   "hp_dice": "3d6+25",
+   "damage_dice": "1d6+2",
+   "gold": 45000,
+   "exp": 100,
+   "armor_class": 80,
+   "flags": [
+    "sentinel",
+    "no_sleep",
+    "no_bash",
+    "no_blind"
+   ],
+   "description": "The Black Rook is a very large man-made tomb on wheels.  Just\nfrom the looks of it, it will probably be YOUR tomb.",
+   "equipment": {
+    "body": 3604
+   },
+   "inventory": [
+    3606
+   ]
+  },
+  "3603": {
+   "vnum": 3603,
+   "name": "white",
+   "short_desc": "the White Rook",
+   "long_desc": "In the corner you see a large, white, stone castle on wheels.",
+   "level": 6,
+   "alignment": 600,
+   "hp_dice": "3d6+25",
+   "damage_dice": "1d6+2",
+   "gold": 45000,
+   "exp": 100,
+   "armor_class": 80,
+   "flags": [
+    "sentinel",
+    "no_sleep",
+    "no_bash",
+    "no_blind"
+   ],
+   "description": "The White Rook is a very large man-made tomb on wheels.  Just\nfrom the looks of it, it will probably be YOUR tomb.",
+   "equipment": {
+    "body": 3605
+   },
+   "inventory": [
+    3600
+   ]
+  },
+  "3604": {
+   "vnum": 3604,
+   "name": "black",
+   "short_desc": "the Black Knight",
+   "long_desc": "Here stands a magnificent knight of the dark realm.",
+   "level": 7,
+   "alignment": -400,
+   "hp_dice": "3d8+30",
+   "damage_dice": "1d6+3",
+   "gold": 12750,
+   "exp": 130,
+   "armor_class": 75,
+   "flags": [
+    "sentinel",
+    "aggressive"
+   ],
+   "description": "The Black Knight is here, riding his ebony black war horse.  His eyes\nflash behind his visor in vengence.",
+   "equipment": {
+    "wield": 3606
+   },
+   "inventory": [
+    3604,
+    3612
+   ]
+  },
+  "3605": {
+   "vnum": 3605,
+   "name": "white",
+   "short_desc": "the White Knight",
+   "long_desc": "Here stands a magnificent knight of the light realm.",
+   "level": 7,
+   "alignment": 400,
+   "hp_dice": "3d8+30",
+   "damage_dice": "1d6+3",
+   "gold": 12750,
+   "exp": 130,
+   "armor_class": 75,
+   "flags": [
+    "sentinel",
+    "aggressive"
+   ],
+   "description": "The White Knight is here, riding his ivory white war horse.  His eyes\ngleam behind his visor in joy.",
+   "equipment": {
+    "wield": 3607
+   },
+   "inventory": [
+    3605
+   ]
+  },
+  "3606": {
+   "vnum": 3606,
+   "name": "black",
+   "short_desc": "the Black Bishop",
+   "long_desc": "A dark priest stands here.",
+   "level": 8,
+   "alignment": -500,
+   "hp_dice": "4d8+40",
+   "damage_dice": "1d8+3",
+   "gold": 23750,
+   "exp": 160,
+   "armor_class": 65,
+   "flags": [
+    "sentinel"
+   ],
+   "description": "The Black Bishop seems willing to help you straight into your grave so\nhe can bless you properly.",
+   "equipment": {
+    "hold": 3608
+   },
+   "inventory": [
+    3600
+   ]
+  },
+  "3607": {
+   "vnum": 3607,
+   "name": "white",
+   "short_desc": "the White Bishop",
+   "long_desc": "A light priest stands here.",
+   "level": 8,
+   "alignment": 500,
+   "hp_dice": "4d8+40",
+   "damage_dice": "1d8+3",
+   "gold": 23750,
+   "exp": 160,
+   "armor_class": 65,
+   "flags": [
+    "sentinel"
+   ],
+   "description": "The White Bishop seems willing to help you in any possible so that he can\nattain a higher spirituality.",
+   "equipment": {
+    "hold": 3609
+   },
+   "inventory": [
+    3617
+   ]
+  },
+  "3608": {
+   "vnum": 3608,
+   "name": "black",
+   "short_desc": "the Black Queen",
+   "long_desc": "The Black Queen stands here.",
+   "level": 9,
+   "alignment": -750,
+   "hp_dice": "4d10+50",
+   "damage_dice": "2d4+3",
+   "gold": 25000,
+   "exp": 200,
+   "armor_class": 60,
+   "flags": [
+    "sentinel",
+    "scavenger",
+    "aggressive",
+    "memory"
+   ],
+   "description": "The Black Queen is a strikingly beautiful woman with pale skin and a\nmass of dark hair that crowns her head like a black cloud.  If looks\ncould kill, you would already be dead.",
+   "equipment": {
+    "head": 3610
+   },
+   "inventory": [
+    3608
+   ]
+  },
+  "3609": {
+   "vnum": 3609,
+   "name": "white",
+   "short_desc": "the White Queen",
+   "long_desc": "The White Queen stands here.",
+   "level": 9,
+   "alignment": 750,
+   "hp_dice": "4d10+50",
+   "damage_dice": "2d4+3",
+   "gold": 25000,
+   "exp": 200,
+   "armor_class": 60,
+   "flags": [
+    "sentinel",
+    "scavenger",
+    "aggressive",
+    "memory"
+   ],
+   "description": "The White Queen is a stunningly beautiful woman with dark skin and a mass\nof light hair that frames her head like the sun.  This is surely love at\nfirst sight for you.",
+   "equipment": {
+    "head": 3611
+   },
+   "inventory": [
+    3612,
+    3613
+   ]
+  },
+  "3610": {
+   "vnum": 3610,
+   "name": "black",
+   "short_desc": "the Black King",
+   "long_desc": "The Black King stands here.",
+   "level": 10,
+   "alignment": -999,
+   "hp_dice": "5d10+60",
+   "damage_dice": "2d4+4",
+   "gold": 40000,
+   "exp": 250,
+   "armor_class": 55,
+   "flags": [
+    "sentinel",
+    "scavenger",
+    "aware",
+    "aggressive",
+    "memory"
+   ],
+   "description": "The Black King is a menacing figure.  You can easily understand why he\nis the king and you are not.",
+   "equipment": {
+    "hold": 3612
+   },
+   "inventory": [
+    3614
+   ]
+  },
+  "3611": {
+   "vnum": 3611,
+   "name": "white",
+   "short_desc": "the White King",
+   "long_desc": "The White King stands here.",
+   "level": 10,
+   "alignment": 999,
+   "hp_dice": "5d10+60",
+   "damage_dice": "2d4+4",
+   "gold": 40000,
+   "exp": 250,
+   "armor_class": 55,
+   "flags": [
+    "sentinel",
+    "scavenger",
+    "aware",
+    "aggressive",
+    "memory"
+   ],
+   "description": "The White King is a stately figure.  You can easily understand why he\nis the king and you are not.",
+   "equipment": {
+    "hold": 3613
+   },
+   "inventory": [
+    3615
+   ]
   }
+ },
+ "objects": {
+  "3600": {
+   "vnum": 3600,
+   "name": "armour",
+   "short_desc": "some Black Pawn Armour",
+   "room_desc": "A pile of black armour is here.",
+   "item_type": "armor",
+   "weight": 13,
+   "value": 300,
+   "armor_bonus": 1,
+   "type": "armor",
+   "wear_slot": "body",
+   "armor": 4,
+   "armor_class": 3
+  },
+  "3601": {
+   "vnum": 3601,
+   "name": "armour",
+   "short_desc": "some White Pawn Armour",
+   "room_desc": "A pile of white armour is here.",
+   "item_type": "armor",
+   "weight": 13,
+   "value": 300,
+   "armor_bonus": 1,
+   "type": "armor",
+   "wear_slot": "body",
+   "armor": 4,
+   "armor_class": 2
+  },
+  "3602": {
+   "vnum": 3602,
+   "name": "sword",
+   "short_desc": "a Black Pawn's Sword",
+   "room_desc": "The sword of a Black Pawn lies here.",
+   "item_type": "weapon",
+   "weight": 10,
+   "value": 100,
+   "damage_dice": "3d4",
+   "weapon_type": "slash",
+   "type": "weapon"
+  },
+  "3603": {
+   "vnum": 3603,
+   "name": "sword",
+   "short_desc": "a White Pawn's Sword",
+   "room_desc": "The sword of a White Pawn lies here.",
+   "item_type": "weapon",
+   "weight": 10,
+   "value": 100,
+   "damage_dice": "3d4",
+   "weapon_type": "slash",
+   "type": "weapon"
+  },
+  "3604": {
+   "vnum": 3604,
+   "name": "armour",
+   "short_desc": "some Black Rook Armour",
+   "room_desc": "Some armour made from the remains of a black rook lies heaped on the floor.",
+   "item_type": "armor",
+   "weight": 60,
+   "value": 17000,
+   "armor_bonus": 2,
+   "type": "armor",
+   "wear_slot": "body",
+   "armor": 4,
+   "armor_class": 1
+  },
+  "3605": {
+   "vnum": 3605,
+   "name": "armour",
+   "short_desc": "some White Rook Armour",
+   "room_desc": "Some armour made from the remains of a white rook lies heaped on the floor.",
+   "item_type": "armor",
+   "weight": 60,
+   "value": 17000,
+   "armor_bonus": 2,
+   "type": "armor",
+   "wear_slot": "body",
+   "armor": 4,
+   "armor_class": 3
+  },
+  "3606": {
+   "vnum": 3606,
+   "name": "lance",
+   "short_desc": "the Lance of the Black Knight",
+   "room_desc": "The Lance of the Black Knight lies here, waiting to rust.",
+   "item_type": "weapon",
+   "weight": 18,
+   "value": 10000,
+   "damage_dice": "3d6",
+   "weapon_type": "crush",
+   "type": "weapon"
+  },
+  "3607": {
+   "vnum": 3607,
+   "name": "lance",
+   "short_desc": "the Lance of the White Knight",
+   "room_desc": "The Lance of the White Knight lies here, waiting to rust.",
+   "item_type": "weapon",
+   "weight": 18,
+   "value": 10000,
+   "damage_dice": "3d6",
+   "weapon_type": "crush",
+   "type": "weapon"
+  },
+  "3608": {
+   "vnum": 3608,
+   "name": "staff",
+   "short_desc": "the Staff of the Black Bishop",
+   "room_desc": "The Black Bishop's Staff is lying here.",
+   "item_type": "staff",
+   "weight": 3,
+   "value": 20000,
+   "type": "weapon",
+   "weapon_type": "pound",
+   "damage_dice": "1d6"
+  },
+  "3609": {
+   "vnum": 3609,
+   "name": "staff",
+   "short_desc": "the Staff of the White Bishop",
+   "room_desc": "The White Bishop's Staff is lying here.",
+   "item_type": "staff",
+   "weight": 3,
+   "value": 20000,
+   "type": "weapon",
+   "weapon_type": "pound",
+   "damage_dice": "1d6"
+  },
+  "3610": {
+   "vnum": 3610,
+   "name": "crown",
+   "short_desc": "the Crown of the Black Queen",
+   "room_desc": "The Crown of the Black Queen lies here, looking neglected.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 3000,
+   "armor_bonus": 2,
+   "type": "armor",
+   "wear_slot": "head",
+   "armor": 2,
+   "armor_class": 1
+  },
+  "3611": {
+   "vnum": 3611,
+   "name": "crown",
+   "short_desc": "the Crown of the White Queen",
+   "room_desc": "The Crown of the White Queen lies here, looking neglected.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 3000,
+   "armor_bonus": 2,
+   "type": "armor",
+   "wear_slot": "head",
+   "armor": 2,
+   "armor_class": 3
+  },
+  "3612": {
+   "vnum": 3612,
+   "name": "sceptre",
+   "short_desc": "the Black King's Sceptre",
+   "room_desc": "The Sceptre of the Black King lies here, collecting dust.",
+   "item_type": "treasure",
+   "weight": 200,
+   "value": 85000,
+   "type": "treasure"
+  },
+  "3613": {
+   "vnum": 3613,
+   "name": "sceptre",
+   "short_desc": "the White King's Sceptre",
+   "room_desc": "The Sceptre of the White King lies here, collecting dust.",
+   "item_type": "treasure",
+   "weight": 300,
+   "value": 85000,
+   "type": "treasure"
+  },
+  "3614": {
+   "vnum": 3614,
+   "name": "key",
+   "short_desc": "The Key to the Black Treasury",
+   "room_desc": "There is a sinister black key lying here.",
+   "item_type": "key",
+   "weight": 1,
+   "value": 1000,
+   "type": "key"
+  },
+  "3615": {
+   "vnum": 3615,
+   "name": "key",
+   "short_desc": "the Key to the White Treasury",
+   "room_desc": "There is a bright white key lying here.",
+   "item_type": "key",
+   "weight": 1,
+   "value": 1000,
+   "type": "key"
+  },
+  "3616": {
+   "vnum": 3616,
+   "name": "coins",
+   "short_desc": "the Black Royal Treasure",
+   "room_desc": "There are a LOT of coins here.",
+   "item_type": "money",
+   "weight": 10,
+   "value": 10000,
+   "type": "treasure"
+  },
+  "3617": {
+   "vnum": 3617,
+   "name": "coins",
+   "short_desc": "the White Royal Treasure",
+   "room_desc": "There are a LOT of coins here.",
+   "item_type": "money",
+   "weight": 10,
+   "value": 10000,
+   "type": "treasure"
+  }
+ },
+ "rooms": {
+  "3600": {
+   "vnum": 3600,
+   "name": "The Great Chessboard Of Garathorm",
+   "description": "The area opens in the archway of the Chessboard of Garathorm. The giant\nwooden gate is rusted open. A narrow dirt path leads eastwards into the\nthick grass and the chessboard opens up to the west. The smell of smoke\nand humanity hangs in the air. The cobblestones are worn smooth by\ncountless feet.",
+   "sector_type": "city",
+   "flags": [
+    "no_mob"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 3632,
+     "description": "The huge chessboard opens up to the west."
+    },
+    "east": {
+     "to_room": 3060,
+     "description": "To the east lies The Great Field Of Garathorm."
+    }
+   },
+   "extra_descs": {
+    "chessboard squares": "Each square is a full pace across, black basalt and white marble. From the corner of your eye, the far pieces seem to have moved."
+   }
+  },
+  "3601": {
+   "vnum": 3601,
+   "name": "A White Square",
+   "description": "This area is a white marble square. This is usually the home of the\nBlack Queen's Rook. Vendors and pedestrians bustle past. The sounds of\ncity life echo around.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3602,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3609,
+     "description": "A black square lies to the south."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3602,
+     "max": 2
+    }
+   ]
+  },
+  "3602": {
+   "vnum": 3602,
+   "name": "A Black Square",
+   "description": "This area is a black marble square. This is usually the home of the\nBlack Queen's Knight. The smell of smoke and humanity hangs in the air.\nThe cobblestones are worn smooth by countless feet.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3603,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3610,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3601,
+     "description": "A white square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3604,
+     "max": 2
+    }
+   ]
+  },
+  "3603": {
+   "vnum": 3603,
+   "name": "A White Square",
+   "description": "This area is a white marble square. This is usually the home of the\nBlack Queen's Bishop. The sounds of city life echo around. Buildings\ncrowd together on all sides.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3604,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3611,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3602,
+     "description": "A black square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3606,
+     "max": 2
+    }
+   ]
+  },
+  "3604": {
+   "vnum": 3604,
+   "name": "A Black Square",
+   "description": "This area is a black marble square. This is usually the home of the\nBlack Queen. The smell of smoke and humanity hangs in the air. Vendors\nand pedestrians bustle past.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3605,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3612,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3603,
+     "description": "A white square lies to the west."
+    },
+    "down": {
+     "to_room": 3665,
+     "description": "A passage leads to The Black Treasury",
+     "door": {
+      "name": "marble square",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 3614
+     }
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3608,
+     "max": 1
+    }
+   ]
+  },
+  "3605": {
+   "vnum": 3605,
+   "name": "A White Square",
+   "description": "This area is a white marble square. This is usually the home of the\nBlack King. The smell of smoke and humanity hangs in the air. Buildings\ncrowd together on all sides.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3606,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3613,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3604,
+     "description": "A black square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3610,
+     "max": 1
+    }
+   ]
+  },
+  "3606": {
+   "vnum": 3606,
+   "name": "A Black Square",
+   "description": "This area is a black marble square. This is usually the home of the\nBlack King's Bishop. Buildings crowd together on all sides. The smell of\nsmoke and humanity hangs in the air.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3607,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3614,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3605,
+     "description": "A white square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3606,
+     "max": 2
+    }
+   ]
+  },
+  "3607": {
+   "vnum": 3607,
+   "name": "A White Square",
+   "description": "This area is a white marble square. This is usually the home of the\nBlack King's Knight. The sounds of city life echo around. The\ncobblestones are worn smooth by countless feet.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3608,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3615,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3606,
+     "description": "A black square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3604,
+     "max": 2
+    }
+   ]
+  },
+  "3608": {
+   "vnum": 3608,
+   "name": "A Black Square",
+   "description": "This area is a black marble square. This is usually the home of the\nBlack King's Rook. Buildings crowd together on all sides. The sounds of\ncity life echo around.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 3616,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3607,
+     "description": "A white square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3602,
+     "max": 2
+    }
+   ]
+  },
+  "3609": {
+   "vnum": 3609,
+   "name": "A Black Square",
+   "description": "This area is a black marble square. This is usually the home of one of\nthe Black Queen's Pawns. The cobblestones are worn smooth by countless\nfeet. The smell of smoke and humanity hangs in the air.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3601,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3610,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3617,
+     "description": "A white square lies to the south."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3600,
+     "max": 8
+    }
+   ]
+  },
+  "3610": {
+   "vnum": 3610,
+   "name": "A White Square",
+   "description": "This area is a white marble square. This is usually the home of one of\nthe Black Queen's Pawns. The cobblestones are worn smooth by countless\nfeet. The smell of smoke and humanity hangs in the air.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3602,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3611,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3618,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3609,
+     "description": "A black square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3600,
+     "max": 8
+    }
+   ]
+  },
+  "3611": {
+   "vnum": 3611,
+   "name": "A Black Square",
+   "description": "This area is a black marble square. This is usually the home of one of\nthe Black Queen's Pawns. Buildings crowd together on all sides. The\nsounds of city life echo around.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3603,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3612,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3619,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3610,
+     "description": "A white square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3600,
+     "max": 8
+    }
+   ]
+  },
+  "3612": {
+   "vnum": 3612,
+   "name": "A White Square",
+   "description": "This area is a white marble square. This is usually the home of one of\nthe Black Queen's Pawns. The smell of smoke and humanity hangs in the\nair. Vendors and pedestrians bustle past.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3604,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3613,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3620,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3611,
+     "description": "A black square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3600,
+     "max": 8
+    }
+   ]
+  },
+  "3613": {
+   "vnum": 3613,
+   "name": "A Black Square",
+   "description": "This area is a black marble square. This is usually the home of one of\nthe Black King's Pawns. Buildings crowd together on all sides. The\ncobblestones are worn smooth by countless feet.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3605,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3614,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3621,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3612,
+     "description": "A white square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3600,
+     "max": 8
+    }
+   ]
+  },
+  "3614": {
+   "vnum": 3614,
+   "name": "A White Square",
+   "description": "This area is a white marble square. This is usually the home of one of\nthe Black King's Pawns. The smell of smoke and humanity hangs in the\nair. The cobblestones are worn smooth by countless feet.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3606,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3615,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3622,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3613,
+     "description": "A black square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3600,
+     "max": 8
+    }
+   ]
+  },
+  "3615": {
+   "vnum": 3615,
+   "name": "A Black Square",
+   "description": "This area is a black marble square. This is usually the home of one of\nthe Black King's Pawns. The sounds of city life echo around. Vendors and\npedestrians bustle past.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3607,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3616,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3623,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3614,
+     "description": "A white square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3600,
+     "max": 8
+    }
+   ]
+  },
+  "3616": {
+   "vnum": 3616,
+   "name": "A White Square",
+   "description": "This area is a white marble square. This is usually the home of one of\nthe Black King's Pawns. The sounds of city life echo around. Vendors and\npedestrians bustle past.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3608,
+     "description": "A black square lies to the north."
+    },
+    "south": {
+     "to_room": 3624,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3615,
+     "description": "A black square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3600,
+     "max": 8
+    }
+   ]
+  },
+  "3617": {
+   "vnum": 3617,
+   "name": "A White Square",
+   "description": "The area opens upon a gleaming white marble square. The polished stone\nreflects an ethereal glow, and the air shimmers with magical energy.\nAcross the board, Visible is towering chess pieces locked in eternal\nbattle. Buildings crowd together on all sides. Vendors and pedestrians\nbustle past.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3609,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3618,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3625,
+     "description": "A black square lies to the south."
+    }
+   }
+  },
+  "3618": {
+   "vnum": 3618,
+   "name": "A Black Square",
+   "description": "This black obsidian square absorbs the light around it. The dark stone\nfeels cold beneath your feet, and shadows seem to pool at the edges.\nGiant chess pieces loom in the distance. The sounds of city life echo\naround. The cobblestones are worn smooth by countless feet.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3610,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3619,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3626,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3617,
+     "description": "A white square lies to the west."
+    }
+   }
+  },
+  "3619": {
+   "vnum": 3619,
+   "name": "A White Square",
+   "description": "Pristine white marble stretches beneath you, almost blinding in its\nbrightness. The square pulses with faint magical luminescence, part of\nthe grand chessboard's enchantment. Buildings crowd together on all\nsides. The smell of smoke and humanity hangs in the air.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3611,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3620,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3627,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3618,
+     "description": "A black square lies to the west."
+    }
+   }
+  },
+  "3620": {
+   "vnum": 3620,
+   "name": "A Black Square",
+   "description": "Deep black stone forms this square, polished to a mirror-like finish.\nThe obsidian feels unnaturally cold, and you can hear the distant\ngrinding of massive chess pieces moving across the board. Buildings\ncrowd together on all sides. The cobblestones are worn smooth by\ncountless feet.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3612,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3621,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3628,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3619,
+     "description": "A white square lies to the west."
+    }
+   }
+  },
+  "3621": {
+   "vnum": 3621,
+   "name": "A White Square",
+   "description": "This white square gleams like fresh snow under an invisible sun. Magical\nrunes are etched along its edges, part of the ancient game's binding\nspell. The cobblestones are worn smooth by countless feet. The sounds of\ncity life echo around.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3613,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3622,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3629,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3620,
+     "description": "A black square lies to the west."
+    }
+   }
+  },
+  "3622": {
+   "vnum": 3622,
+   "name": "A Black Square",
+   "description": "Jet-black obsidian forms this square, darker than night. The stone seems\nto whisper with ancient magic, and your footsteps echo strangely across\nits surface. Vendors and pedestrians bustle past. The sounds of city\nlife echo around.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3614,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3623,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3630,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3621,
+     "description": "A white square lies to the west."
+    }
+   }
+  },
+  "3623": {
+   "vnum": 3623,
+   "name": "A White Square",
+   "description": "Brilliant white marble radiates a subtle warmth. This square sits at a\nstrategic position on the mystical chessboard, and you sense powerful\npieces have stood here. The smell of smoke and humanity hangs in the\nair. The cobblestones are worn smooth by countless feet.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3615,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3624,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3631,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3622,
+     "description": "A black square lies to the west."
+    }
+   }
+  },
+  "3624": {
+   "vnum": 3624,
+   "name": "A Black Square",
+   "description": "This area is a black marble square. Visible is a rusty gate to the\nsouth. The sounds of city life echo around. The cobblestones are worn\nsmooth by countless feet.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3616,
+     "description": "A white square lies to the north."
+    },
+    "south": {
+     "to_room": 3632,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3623,
+     "description": "A white square lies to the west."
+    }
+   }
+  },
+  "3625": {
+   "vnum": 3625,
+   "name": "A Black Square",
+   "description": "Darkness pools on this black square, the obsidian drinking in all light.\nFaint energy pulses beneath your feet, part of the board's eternal\nenchantment. The smell of smoke and humanity hangs in the air. Vendors\nand pedestrians bustle past.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3617,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3626,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3633,
+     "description": "A white square lies to the south."
+    }
+   }
+  },
+  "3626": {
+   "vnum": 3626,
+   "name": "A White Square",
+   "description": "Ivory-white stone gleams beneath you, immaculately smooth. The square\nfeels charged with anticipation, as if waiting for the next move in an\nendless game. The cobblestones are worn smooth by countless feet.\nBuildings crowd together on all sides.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3618,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3627,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3634,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3625,
+     "description": "A black square lies to the west."
+    }
+   }
+  },
+  "3627": {
+   "vnum": 3627,
+   "name": "A Black Square",
+   "description": "This black square feels heavier than the others, as if weighted with\nimportance. The obsidian is flawless, reflecting distorted images of the\ntowering chess pieces. Vendors and pedestrians bustle past. The smell of\nsmoke and humanity hangs in the air.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3619,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3628,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3635,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3626,
+     "description": "A white square lies to the west."
+    }
+   }
+  },
+  "3628": {
+   "vnum": 3628,
+   "name": "A White Square",
+   "description": "Pure white marble forms this square, unblemished and bright. Magical\nenergy crackles faintly at the edges where white meets black across the\nboard. The sounds of city life echo around. Vendors and pedestrians\nbustle past.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3620,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3629,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3636,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3627,
+     "description": "A black square lies to the west."
+    }
+   }
+  },
+  "3629": {
+   "vnum": 3629,
+   "name": "A Black Square",
+   "description": "Coal-black stone stretches beneath you, cold and unyielding. The square\nseems to absorb sound as well as light, creating an eerie pocket of\nsilence. Buildings crowd together on all sides. Vendors and pedestrians\nbustle past.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3621,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3630,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3637,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3628,
+     "description": "A white square lies to the west."
+    }
+   }
+  },
+  "3630": {
+   "vnum": 3630,
+   "name": "A White Square",
+   "description": "This white square practically glows with inner light. The marble feels\nancient beyond measure, worn smooth by centuries of magical combat\nabove. Vendors and pedestrians bustle past. The sounds of city life echo\naround.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3622,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3631,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3638,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3629,
+     "description": "A black square lies to the west."
+    }
+   }
+  },
+  "3631": {
+   "vnum": 3631,
+   "name": "A Black Square",
+   "description": "This area is a black marble square. There is a rusty gate a short\ndistance to the east. Buildings crowd together on all sides. The\ncobblestones are worn smooth by countless feet.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3623,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3632,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3639,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3630,
+     "description": "A white square lies to the west."
+    }
+   }
+  },
+  "3632": {
+   "vnum": 3632,
+   "name": "A White Square",
+   "description": "This area is a white marble square. There is a large rusty gate to the\neast. Buildings crowd together on all sides. The smell of smoke and\nhumanity hangs in the air.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3624,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3600,
+     "description": "The gate to the chessboard is just to the east."
+    },
+    "south": {
+     "to_room": 3640,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3631,
+     "description": "A black square lies to the west."
+    }
+   }
+  },
+  "3633": {
+   "vnum": 3633,
+   "name": "A White Square",
+   "description": "Gleaming white marble forms this square near the board's edge. The stone\nis cool to the touch, and you can sense the boundary of the magical\nplaying field nearby. The sounds of city life echo around. The\ncobblestones are worn smooth by countless feet.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3625,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3634,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3641,
+     "description": "A black square lies to the south."
+    }
+   }
+  },
+  "3634": {
+   "vnum": 3634,
+   "name": "A Black Square",
+   "description": "Obsidian black as a moonless night forms this square. Strange\nreflections dance across its surface, showing glimpses of moves long\npast in this eternal game. The smell of smoke and humanity hangs in the\nair. Buildings crowd together on all sides.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3626,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3635,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3642,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3633,
+     "description": "A white square lies to the west."
+    }
+   }
+  },
+  "3635": {
+   "vnum": 3635,
+   "name": "A White Square",
+   "description": "Brilliant white stone radiates subtle power. This square occupies a\ntactical position, and faint scorch marks suggest it's seen magical\ncombat. The sounds of city life echo around. Vendors and pedestrians\nbustle past.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3627,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3636,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3643,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3634,
+     "description": "A black square lies to the west."
+    }
+   }
+  },
+  "3636": {
+   "vnum": 3636,
+   "name": "A Black Square",
+   "description": "Deep black obsidian forms this square, its surface polished to\nperfection. The stone seems to hum with barely contained magical energy.\nThe cobblestones are worn smooth by countless feet. The smell of smoke\nand humanity hangs in the air.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3628,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3637,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3644,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3635,
+     "description": "A white square lies to the west."
+    }
+   }
+  },
+  "3637": {
+   "vnum": 3637,
+   "name": "A White Square",
+   "description": "This white square shimmers with protective enchantments. The marble\nfeels solid and reassuring, a bastion of light against the surrounding\ndarkness. Buildings crowd together on all sides. Vendors and pedestrians\nbustle past.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3629,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3638,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3645,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3636,
+     "description": "A black square lies to the west."
+    }
+   }
+  },
+  "3638": {
+   "vnum": 3638,
+   "name": "A Black Square",
+   "description": "Darkness incarnate forms this black square. The obsidian is so perfectly\nblack it's difficult to gauge depth, creating a subtle sense of vertigo.\nThe sounds of city life echo around. The smell of smoke and humanity\nhangs in the air.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3630,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3639,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3646,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3637,
+     "description": "A white square lies to the west."
+    }
+   }
+  },
+  "3639": {
+   "vnum": 3639,
+   "name": "A White Square",
+   "description": "Pristine white marble stretches in a perfect square. Ancient runes\ncarved into its edges glow faintly, maintaining the board's magical\nintegrity. The sounds of city life echo around. Vendors and\npedestrians bustle past.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3631,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3640,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3647,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3638,
+     "description": "A black square lies to the west."
+    }
+   }
+  },
+  "3640": {
+   "vnum": 3640,
+   "name": "A Black Square",
+   "description": "This area is a black marble square. There is a rusty gate to the north.\nThe smell of smoke and humanity hangs in the air. The sounds of city\nlife echo around.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3632,
+     "description": "A white square lies to the north."
+    },
+    "south": {
+     "to_room": 3648,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3639,
+     "description": "A white square lies to the west."
+    }
+   }
+  },
+  "3641": {
+   "vnum": 3641,
+   "name": "A Black Square",
+   "description": "This black square feels different from the others - colder, darker, more\nominous. The obsidian seems to pull at you slightly, as if gravity is\nstronger here. Buildings crowd together on all sides. The cobblestones\nare worn smooth by countless feet.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3633,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3642,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3649,
+     "description": "A white square lies to the south."
+    }
+   }
+  },
+  "3642": {
+   "vnum": 3642,
+   "name": "A White Square",
+   "description": "Radiant white marble forms this square, almost painful to look at in its\nbrightness. The stone vibrates with barely perceptible magical energy.\nVendors and pedestrians bustle past. The cobblestones are worn smooth by\ncountless feet.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3634,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3643,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3650,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3641,
+     "description": "A black square lies to the west."
+    }
+   }
+  },
+  "3643": {
+   "vnum": 3643,
+   "name": "A Black Square",
+   "description": "Black as the void between stars, this obsidian square seems to exist\nslightly out of phase with reality. Your footsteps make no sound upon\nit. Vendors and pedestrians bustle past. The smell of smoke and humanity\nhangs in the air.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3635,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3644,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3651,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3642,
+     "description": "A white square lies to the west."
+    }
+   }
+  },
+  "3644": {
+   "vnum": 3644,
+   "name": "A White Square",
+   "description": "This white square gleams like polished bone. The marble is ancient yet\neternal, part of a game that transcends normal time and space. Buildings\ncrowd together on all sides. The sounds of city life echo around.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3636,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3645,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3652,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3643,
+     "description": "A black square lies to the west."
+    }
+   }
+  },
+  "3645": {
+   "vnum": 3645,
+   "name": "A Black Square",
+   "description": "Jet-black stone forms this square, its surface mirror-smooth. Dark\nreflections show distorted versions of yourself, twisted by the board's\nmagic. The smell of smoke and humanity hangs in the air. The\ncobblestones are worn smooth by countless feet.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3637,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3646,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3653,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3644,
+     "description": "A white square lies to the west."
+    }
+   }
+  },
+  "3646": {
+   "vnum": 3646,
+   "name": "A White Square",
+   "description": "Pure white marble radiates a comforting warmth. This square feels safe,\nprotected by the same magic that maintains the entire chessboard realm.\nThe sounds of city life echo around. The cobblestones are worn\nsmooth by countless feet.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3638,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3647,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3654,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3645,
+     "description": "A black square lies to the west."
+    }
+   }
+  },
+  "3647": {
+   "vnum": 3647,
+   "name": "A Black Square",
+   "description": "Obsidian darker than shadows forms this square. The black stone seems to\nswallow light and sound, creating a pocket of profound silence and\ndarkness. The smell of smoke and humanity hangs in the air. Vendors and\npedestrians bustle past.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3639,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3648,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3655,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3646,
+     "description": "A white square lies to the west."
+    }
+   }
+  },
+  "3648": {
+   "vnum": 3648,
+   "name": "A White Square",
+   "description": "This white square marks the edge of the board. The marble transitions\ninto nothingness beyond, where the magical playing field ends and\nreality resumes. The smell of smoke and humanity hangs in the air.\nVendors and pedestrians bustle past.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3640,
+     "description": "A black square lies to the north."
+    },
+    "south": {
+     "to_room": 3656,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3647,
+     "description": "A black square lies to the west."
+    }
+   }
+  },
+  "3649": {
+   "vnum": 3649,
+   "name": "A White Square",
+   "description": "This area is a white marble square. This is usually the home of one of\nthe White Queen's Pawns. Buildings crowd together on all sides. Vendors\nand pedestrians bustle past.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3641,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3650,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3657,
+     "description": "A black square lies to the south."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3601,
+     "max": 8
+    }
+   ]
+  },
+  "3650": {
+   "vnum": 3650,
+   "name": "A Black Square",
+   "description": "This area is a black marble square. This is usually the home of one of\nthe White Queen's Pawns. The sounds of city life echo around. Vendors\nand pedestrians bustle past.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3642,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3651,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3658,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3649,
+     "description": "A white square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3601,
+     "max": 8
+    }
+   ]
+  },
+  "3651": {
+   "vnum": 3651,
+   "name": "A White Square",
+   "description": "This area is a white marble square. This is usually the home of one of\nthe White Queen's Pawns. The sounds of city life echo around. Vendors\nand pedestrians bustle past.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3643,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3652,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3659,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3650,
+     "description": "A black square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3601,
+     "max": 8
+    }
+   ]
+  },
+  "3652": {
+   "vnum": 3652,
+   "name": "A Black Square",
+   "description": "This area is a black marble square. This is usually the home of one of\nthe White Queen's Pawns. The cobblestones are worn smooth by countless\nfeet. Buildings crowd together on all sides.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3644,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3653,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3660,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3651,
+     "description": "A white square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3601,
+     "max": 8
+    }
+   ]
+  },
+  "3653": {
+   "vnum": 3653,
+   "name": "A White Square",
+   "description": "This area is a white marble square. This is usually the home of one of\nthe White King's Pawns. Vendors and pedestrians bustle past. Buildings\ncrowd together on all sides.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3645,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3654,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3661,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3652,
+     "description": "A black square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3601,
+     "max": 8
+    }
+   ]
+  },
+  "3654": {
+   "vnum": 3654,
+   "name": "A Black Square",
+   "description": "This area is a black marble square. This is usually the home of one of\nthe White King's Pawns. The smell of smoke and humanity hangs in the\nair. Vendors and pedestrians bustle past.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3646,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3655,
+     "description": "A white square lies to the east."
+    },
+    "south": {
+     "to_room": 3662,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3653,
+     "description": "A white square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3601,
+     "max": 8
+    }
+   ]
+  },
+  "3655": {
+   "vnum": 3655,
+   "name": "A White Square",
+   "description": "This area is a white marble square. This is usually the home of one of\nthe White King's Pawns. The cobblestones are worn smooth by countless\nfeet. The smell of smoke and humanity hangs in the air.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3647,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3656,
+     "description": "A black square lies to the east."
+    },
+    "south": {
+     "to_room": 3663,
+     "description": "A black square lies to the south."
+    },
+    "west": {
+     "to_room": 3654,
+     "description": "A black square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3601,
+     "max": 8
+    }
+   ]
+  },
+  "3656": {
+   "vnum": 3656,
+   "name": "A Black Square",
+   "description": "This area is a black marble square. This is usually the home of one of\nthe White King's Pawns. The cobblestones are worn smooth by countless\nfeet. Vendors and pedestrians bustle past.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3648,
+     "description": "A white square lies to the north."
+    },
+    "south": {
+     "to_room": 3664,
+     "description": "A white square lies to the south."
+    },
+    "west": {
+     "to_room": 3655,
+     "description": "A white square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3601,
+     "max": 8
+    }
+   ]
+  },
+  "3657": {
+   "vnum": 3657,
+   "name": "A Black Square",
+   "description": "This area is a black marble square. This is usually the home of the\nWhite Queen's Rook. The cobblestones are worn smooth by countless feet.\nThe smell of smoke and humanity hangs in the air.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3649,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3658,
+     "description": "A white square lies to the east."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3603,
+     "max": 2
+    }
+   ]
+  },
+  "3658": {
+   "vnum": 3658,
+   "name": "A White Square",
+   "description": "This area is a white marble square. This is usually the home of the\nWhite Queen's Knight. The cobblestones are worn smooth by countless\nfeet. Buildings crowd together on all sides.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3650,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3659,
+     "description": "A black square lies to the east."
+    },
+    "west": {
+     "to_room": 3657,
+     "description": "A black square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3605,
+     "max": 2
+    }
+   ]
+  },
+  "3659": {
+   "vnum": 3659,
+   "name": "A Black Square",
+   "description": "This area is a black marble square. This is usually the home of the\nWhite Queen's Bishop. Vendors and pedestrians bustle past. The smell of\nsmoke and humanity hangs in the air.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3651,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3660,
+     "description": "A white square lies to the east."
+    },
+    "west": {
+     "to_room": 3658,
+     "description": "A white square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3607,
+     "max": 2
+    }
+   ]
+  },
+  "3660": {
+   "vnum": 3660,
+   "name": "A White Square",
+   "description": "This area is a white marble square. This is usually the home of the\nWhite Queen. The smell of smoke and humanity hangs in the air. Buildings\ncrowd together on all sides.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3652,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3661,
+     "description": "A black square lies to the east."
+    },
+    "west": {
+     "to_room": 3659,
+     "description": "A black square lies to the west."
+    },
+    "down": {
+     "to_room": 3666,
+     "description": "A passage leads to The White Treasury",
+     "door": {
+      "name": "marble square",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 3615
+     }
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3609,
+     "max": 1
+    }
+   ]
+  },
+  "3661": {
+   "vnum": 3661,
+   "name": "A Black Square",
+   "description": "This area is a black marble square. This is usually the home of the\nWhite King. Buildings crowd together on all sides. Vendors and\npedestrians bustle past.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3653,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3662,
+     "description": "A white square lies to the east."
+    },
+    "west": {
+     "to_room": 3660,
+     "description": "A white square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3611,
+     "max": 1
+    }
+   ]
+  },
+  "3662": {
+   "vnum": 3662,
+   "name": "A White Square",
+   "description": "This area is a white marble square. This is usually the home of the\nWhite King's Bishop. The sounds of city life echo around. Vendors and\npedestrians bustle past.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3654,
+     "description": "A black square lies to the north."
+    },
+    "east": {
+     "to_room": 3663,
+     "description": "A black square lies to the east."
+    },
+    "west": {
+     "to_room": 3661,
+     "description": "A black square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3607,
+     "max": 2
+    }
+   ]
+  },
+  "3663": {
+   "vnum": 3663,
+   "name": "A Black Square",
+   "description": "This area is a black marble square. This is usually the home of the\nWhite King's Knight. The sounds of city life echo around. The\ncobblestones are worn smooth by countless feet.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3655,
+     "description": "A white square lies to the north."
+    },
+    "east": {
+     "to_room": 3664,
+     "description": "A white square lies to the east."
+    },
+    "west": {
+     "to_room": 3662,
+     "description": "A white square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3605,
+     "max": 2
+    }
+   ]
+  },
+  "3664": {
+   "vnum": 3664,
+   "name": "A White Square",
+   "description": "This area is a white marble square. This is usually the home of the\nWhite King's Rook. The cobblestones are worn smooth by countless feet.\nBuildings crowd together on all sides.",
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3656,
+     "description": "A black square lies to the north."
+    },
+    "west": {
+     "to_room": 3663,
+     "description": "A black square lies to the west."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 3603,
+     "max": 2
+    }
+   ]
+  },
+  "3665": {
+   "vnum": 3665,
+   "name": "The Black Treasury",
+   "description": "This is the treasury of the Black Court. Hopefully no one has looted the\nCrown's treasure. Dust motes drift in the stale air. The air is still\nand musty.",
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors",
+    "private"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 3604,
+     "description": "A small staircase rises above you.",
+     "door": {
+      "name": "marble square",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 3614
+     }
+    }
+   },
+   "obj_resets": [
+    {
+     "vnum": 3616,
+     "max": 1
+    }
+   ]
+  },
+  "3666": {
+   "vnum": 3666,
+   "name": "The White Treasury",
+   "description": "This is the treasury of the White Court. Hopefully no one has looted the\nCrown's treasure. The ceiling hangs low overhead. The walls are rough-\nhewn and cold to the touch.",
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors",
+    "private"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 3660,
+     "description": "A small staircase rises above you.",
+     "door": {
+      "name": "marble square",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 3615
+     }
+    }
+   },
+   "obj_resets": [
+    {
+     "vnum": 3617,
+     "max": 1
+    }
+   ]
+  }
+ }
 }

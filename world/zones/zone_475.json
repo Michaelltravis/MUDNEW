@@ -1,0 +1,2471 @@
+{
+ "number": 475,
+ "name": "World Of Chaos",
+ "builders": "Kein",
+ "atlas_area": 75,
+ "rooms": {
+  "16200": {
+   "vnum": 16200,
+   "name": "Outside A Large Cabin",
+   "map": {
+    "x": -6,
+    "y": 36,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16123,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "south": {
+     "to_room": 16202,
+     "description": "To the south lies The Front Door Hall.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The ground rises and falls in grassy folds. Rocks break through the thin\nsoil of the slope. Ways lead east and south.",
+   "placeholder": true
+  },
+  "16201": {
+   "vnum": 16201,
+   "name": "In A Dimly Lit Library",
+   "map": {
+    "x": -7,
+    "y": 35,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 16202,
+     "description": "To the east lies The Front Door Hall."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads east.",
+   "placeholder": true
+  },
+  "16202": {
+   "vnum": 16202,
+   "name": "The Front Door Hall",
+   "map": {
+    "x": -6,
+    "y": 35,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 16200,
+     "description": "To the north lies Outside A Large Cabin."
+    },
+    "east": {
+     "to_room": 16203,
+     "description": "To the east lies In The Livingroom.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 16205,
+     "description": "To the south lies The South Part Of The Hall."
+    },
+    "west": {
+     "to_room": 16201,
+     "description": "To the west lies In A Dimly Lit Library.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16203": {
+   "vnum": 16203,
+   "name": "In The Livingroom",
+   "map": {
+    "x": -5,
+    "y": 35,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 16202,
+     "description": "To the west lies The Front Door Hall."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads west.",
+   "placeholder": true
+  },
+  "16204": {
+   "vnum": 16204,
+   "name": "The Kitchen",
+   "map": {
+    "x": -7,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 16205,
+     "description": "To the east lies The South Part Of The Hall."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "16205": {
+   "vnum": 16205,
+   "name": "The South Part Of The Hall",
+   "map": {
+    "x": -6,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 16202,
+     "description": "To the north lies The Front Door Hall."
+    },
+    "east": {
+     "to_room": 16206,
+     "description": "To the east lies In The Bedroom.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 16207,
+     "description": "To the south lies In A Room Filled With Mirrors.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 16204,
+     "description": "To the west lies The Kitchen.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16206": {
+   "vnum": 16206,
+   "name": "In The Bedroom",
+   "map": {
+    "x": -5,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 16205,
+     "description": "To the west lies The South Part Of The Hall."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "16207": {
+   "vnum": 16207,
+   "name": "In A Room Filled With Mirrors",
+   "map": {
+    "x": -6,
+    "y": 32,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 16205,
+     "description": "To the north lies The South Part Of The Hall."
+    },
+    "south": {
+     "to_room": 16208,
+     "description": "To the south lies In A Room Filled With Mirrors."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "16208": {
+   "vnum": 16208,
+   "name": "In A Room Filled With Mirrors",
+   "map": {
+    "x": -6,
+    "y": 29,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 16210,
+     "description": "To the north lies The South Part Of The Hall.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 16208,
+     "description": "To the south lies In A Room Filled With Mirrors."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "16209": {
+   "vnum": 16209,
+   "name": "The Kitchen",
+   "map": {
+    "x": -2,
+    "y": 32,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 16210,
+     "description": "To the east lies The South Part Of The Hall."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "16210": {
+   "vnum": 16210,
+   "name": "The South Part Of The Hall",
+   "map": {
+    "x": -1,
+    "y": 32,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 16213,
+     "description": "To the north lies The Front Door Hall."
+    },
+    "east": {
+     "to_room": 16211,
+     "description": "To the east lies In The Bedroom.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 16208,
+     "description": "To the south lies In A Room Filled With Mirrors."
+    },
+    "west": {
+     "to_room": 16209,
+     "description": "To the west lies The Kitchen.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16211": {
+   "vnum": 16211,
+   "name": "In The Bedroom",
+   "map": {
+    "x": 0,
+    "y": 32,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 16210,
+     "description": "To the west lies The South Part Of The Hall."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads west.",
+   "placeholder": true
+  },
+  "16212": {
+   "vnum": 16212,
+   "name": "In A Dimly Lit Library",
+   "map": {
+    "x": -2,
+    "y": 33,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 16213,
+     "description": "To the east lies The Front Door Hall."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "16213": {
+   "vnum": 16213,
+   "name": "The Front Door Hall",
+   "map": {
+    "x": -1,
+    "y": 33,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 16215,
+     "description": "To the north lies Outside A Large Cabin.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 16214,
+     "description": "To the east lies In The Livingroom.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 16210,
+     "description": "To the south lies The South Part Of The Hall."
+    },
+    "west": {
+     "to_room": 16212,
+     "description": "To the west lies In A Dimly Lit Library.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16214": {
+   "vnum": 16214,
+   "name": "In The Livingroom",
+   "map": {
+    "x": 0,
+    "y": 33,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 16213,
+     "description": "To the west lies The Front Door Hall."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads west.",
+   "placeholder": true
+  },
+  "16215": {
+   "vnum": 16215,
+   "name": "Outside A Large Cabin",
+   "map": {
+    "x": -1,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 16216,
+     "description": "To the north lies On A Path Of Bones."
+    },
+    "south": {
+     "to_room": 16213,
+     "description": "To the south lies The Front Door Hall."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "16216": {
+   "vnum": 16216,
+   "name": "On A Path Of Bones",
+   "map": {
+    "x": -1,
+    "y": 35,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16217,
+     "description": "To the east lies On A Path Of Bones."
+    },
+    "south": {
+     "to_room": 16215,
+     "description": "To the south lies Outside A Large Cabin."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and south.",
+   "placeholder": true
+  },
+  "16217": {
+   "vnum": 16217,
+   "name": "On A Path Of Bones",
+   "map": {
+    "x": 0,
+    "y": 35,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16218,
+     "description": "To the east lies On A Path Of Bones."
+    },
+    "west": {
+     "to_room": 16216,
+     "description": "To the west lies On A Path Of Bones."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "16218": {
+   "vnum": 16218,
+   "name": "On A Path Of Bones",
+   "map": {
+    "x": 1,
+    "y": 35,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16219,
+     "description": "To the east lies On A Path Of Bones."
+    },
+    "west": {
+     "to_room": 16217,
+     "description": "To the west lies On A Path Of Bones."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\neast and west.",
+   "placeholder": true
+  },
+  "16219": {
+   "vnum": 16219,
+   "name": "On A Path Of Bones",
+   "map": {
+    "x": 2,
+    "y": 35,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16220,
+     "description": "To the east lies Junction Of Bone."
+    },
+    "west": {
+     "to_room": 16218,
+     "description": "To the west lies On A Path Of Bones."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\neast and west.",
+   "placeholder": true
+  },
+  "16220": {
+   "vnum": 16220,
+   "name": "Junction Of Bone",
+   "map": {
+    "x": 3,
+    "y": 35,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16221,
+     "description": "To the north lies On A Path Of Bones."
+    },
+    "south": {
+     "to_room": 16230,
+     "description": "To the south lies A Break In The Path."
+    },
+    "west": {
+     "to_room": 16219,
+     "description": "To the west lies On A Path Of Bones."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north, south\nand west.",
+   "placeholder": true
+  },
+  "16221": {
+   "vnum": 16221,
+   "name": "On A Path Of Bones",
+   "map": {
+    "x": 3,
+    "y": 36,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16222,
+     "description": "To the north lies Junction Of Bone."
+    },
+    "south": {
+     "to_room": 16220,
+     "description": "To the south lies Junction Of Bone."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north and south.",
+   "placeholder": true
+  },
+  "16222": {
+   "vnum": 16222,
+   "name": "Junction Of Bone",
+   "map": {
+    "x": 3,
+    "y": 37,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16229,
+     "description": "To the north lies On A Path Of Bones."
+    },
+    "south": {
+     "to_room": 16221,
+     "description": "To the south lies On A Path Of Bones."
+    },
+    "west": {
+     "to_room": 16223,
+     "description": "To the west lies On A Path Of Bones."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, south\nand west.",
+   "placeholder": true
+  },
+  "16223": {
+   "vnum": 16223,
+   "name": "On A Path Of Bones",
+   "map": {
+    "x": 2,
+    "y": 37,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16222,
+     "description": "To the east lies Junction Of Bone."
+    },
+    "west": {
+     "to_room": 16224,
+     "description": "To the west lies A Baffling Sight."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16224": {
+   "vnum": 16224,
+   "name": "A Baffling Sight",
+   "map": {
+    "x": 1,
+    "y": 37,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16223,
+     "description": "To the east lies On A Path Of Bones."
+    },
+    "west": {
+     "to_room": 16225,
+     "description": "To the west lies On A Path Of Bones."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\neast and west.",
+   "placeholder": true
+  },
+  "16225": {
+   "vnum": 16225,
+   "name": "On A Path Of Bones",
+   "map": {
+    "x": 0,
+    "y": 37,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16226,
+     "description": "To the north lies On A Path Of Bones."
+    },
+    "east": {
+     "to_room": 16224,
+     "description": "To the east lies A Baffling Sight."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\neast.",
+   "placeholder": true
+  },
+  "16226": {
+   "vnum": 16226,
+   "name": "On A Path Of Bones",
+   "map": {
+    "x": 0,
+    "y": 38,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16227,
+     "description": "To the east lies On A Path Of Bones."
+    },
+    "south": {
+     "to_room": 16225,
+     "description": "To the south lies On A Path Of Bones."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\neast and south.",
+   "placeholder": true
+  },
+  "16227": {
+   "vnum": 16227,
+   "name": "On A Path Of Bones",
+   "map": {
+    "x": 1,
+    "y": 38,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16228,
+     "description": "To the east lies On A Path Of Bones."
+    },
+    "west": {
+     "to_room": 16226,
+     "description": "To the west lies On A Path Of Bones."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16228": {
+   "vnum": 16228,
+   "name": "On A Path Of Bones",
+   "map": {
+    "x": 2,
+    "y": 38,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16229,
+     "description": "To the east lies On A Path Of Bones."
+    },
+    "west": {
+     "to_room": 16227,
+     "description": "To the west lies On A Path Of Bones."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "16229": {
+   "vnum": 16229,
+   "name": "On A Path Of Bones",
+   "map": {
+    "x": 3,
+    "y": 38,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 16222,
+     "description": "To the south lies Junction Of Bone."
+    },
+    "west": {
+     "to_room": 16228,
+     "description": "To the west lies On A Path Of Bones."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead south and\nwest.",
+   "placeholder": true
+  },
+  "16230": {
+   "vnum": 16230,
+   "name": "A Break In The Path",
+   "map": {
+    "x": 3,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16220,
+     "description": "To the north lies Junction Of Bone."
+    },
+    "south": {
+     "to_room": 16231,
+     "description": "To the south lies Path Of Bones."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "16231": {
+   "vnum": 16231,
+   "name": "Path Of Bones",
+   "map": {
+    "x": 3,
+    "y": 33,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16230,
+     "description": "To the north lies A Break In The Path."
+    },
+    "east": {
+     "to_room": 16232,
+     "description": "To the east lies On A Path Of Bones."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand east.",
+   "placeholder": true
+  },
+  "16232": {
+   "vnum": 16232,
+   "name": "On A Path Of Bones",
+   "map": {
+    "x": 4,
+    "y": 33,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16233,
+     "description": "To the east lies On A Path Of Bones."
+    },
+    "west": {
+     "to_room": 16231,
+     "description": "To the west lies Path Of Bones."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "16233": {
+   "vnum": 16233,
+   "name": "On A Path Of Bones",
+   "map": {
+    "x": 5,
+    "y": 33,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16234,
+     "description": "To the east lies On A Path Of Bones."
+    },
+    "west": {
+     "to_room": 16232,
+     "description": "To the west lies On A Path Of Bones."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead east\nand west.",
+   "placeholder": true
+  },
+  "16234": {
+   "vnum": 16234,
+   "name": "On A Path Of Bones",
+   "map": {
+    "x": 6,
+    "y": 33,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 16235,
+     "description": "To the south lies On A Path Of Bones."
+    },
+    "west": {
+     "to_room": 16233,
+     "description": "To the west lies On A Path Of Bones."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead south and west.",
+   "placeholder": true
+  },
+  "16235": {
+   "vnum": 16235,
+   "name": "On A Path Of Bones",
+   "map": {
+    "x": 6,
+    "y": 32,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16234,
+     "description": "To the north lies On A Path Of Bones."
+    },
+    "east": {
+     "to_room": 16236,
+     "description": "To the east lies A Break In The Path."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north and east.",
+   "placeholder": true
+  },
+  "16236": {
+   "vnum": 16236,
+   "name": "A Break In The Path",
+   "map": {
+    "x": 7,
+    "y": 32,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16237,
+     "description": "To the east lies On A Path Of Bones."
+    },
+    "west": {
+     "to_room": 16235,
+     "description": "To the west lies On A Path Of Bones."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "16237": {
+   "vnum": 16237,
+   "name": "On A Path Of Bones",
+   "map": {
+    "x": 8,
+    "y": 32,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16238,
+     "description": "To the north lies On A Path Of Bones."
+    },
+    "west": {
+     "to_room": 16236,
+     "description": "To the west lies A Break In The Path."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\nwest.",
+   "placeholder": true
+  },
+  "16238": {
+   "vnum": 16238,
+   "name": "On A Path Of Bones",
+   "map": {
+    "x": 8,
+    "y": 33,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16239,
+     "description": "To the north lies On A Path Of Bones."
+    },
+    "south": {
+     "to_room": 16237,
+     "description": "To the south lies On A Path Of Bones."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "16239": {
+   "vnum": 16239,
+   "name": "On A Path Of Bones",
+   "map": {
+    "x": 8,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16240,
+     "description": "To the east lies Outside A Deformed Gate."
+    },
+    "south": {
+     "to_room": 16238,
+     "description": "To the south lies On A Path Of Bones."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and south.",
+   "placeholder": true
+  },
+  "16240": {
+   "vnum": 16240,
+   "name": "Outside A Deformed Gate",
+   "map": {
+    "x": 9,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16241,
+     "description": "To the east lies Inside The Deformed Gate.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 16239,
+     "description": "To the west lies On A Path Of Bones."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16241": {
+   "vnum": 16241,
+   "name": "Inside The Deformed Gate",
+   "map": {
+    "x": 10,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 16250,
+     "description": "To the north lies Along The Wall Of The Building."
+    },
+    "east": {
+     "to_room": 16251,
+     "description": "To the east lies Hall Of Pillars."
+    },
+    "south": {
+     "to_room": 16242,
+     "description": "To the south lies Along The Wall Of The Building."
+    },
+    "west": {
+     "to_room": 16240,
+     "description": "To the west lies Outside A Deformed Gate."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16242": {
+   "vnum": 16242,
+   "name": "Along The Wall Of The Building",
+   "map": {
+    "x": 10,
+    "y": 33,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 16241,
+     "description": "To the north lies Inside The Deformed Gate."
+    },
+    "east": {
+     "to_room": 16243,
+     "description": "To the east lies By A Door In The Wall."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and east.",
+   "placeholder": true
+  },
+  "16243": {
+   "vnum": 16243,
+   "name": "By A Door In The Wall",
+   "map": {
+    "x": 11,
+    "y": 33,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 16251,
+     "description": "To the north lies Hall Of Pillars."
+    },
+    "east": {
+     "to_room": 16244,
+     "description": "To the east lies Along The Wall Of The Building."
+    },
+    "south": {
+     "to_room": 16254,
+     "description": "To the south lies By A Mindboggling, Winding Staircase.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 16242,
+     "description": "To the west lies Along The Wall Of The Building."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16244": {
+   "vnum": 16244,
+   "name": "Along The Wall Of The Building",
+   "map": {
+    "x": 12,
+    "y": 33,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 16252,
+     "description": "To the north lies Hall Of Pillars."
+    },
+    "east": {
+     "to_room": 16245,
+     "description": "To the east lies Along The Wall Of The Building."
+    },
+    "west": {
+     "to_room": 16243,
+     "description": "To the west lies By A Door In The Wall."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "16245": {
+   "vnum": 16245,
+   "name": "Along The Wall Of The Building",
+   "map": {
+    "x": 13,
+    "y": 33,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 16246,
+     "description": "To the north lies By A Large Decorated Door In The Wall."
+    },
+    "west": {
+     "to_room": 16244,
+     "description": "To the west lies Along The Wall Of The Building."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "16246": {
+   "vnum": 16246,
+   "name": "By A Large Decorated Door In The Wall",
+   "map": {
+    "x": 13,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 16247,
+     "description": "To the north lies Along The Wall Of The Building."
+    },
+    "east": {
+     "to_room": 16255,
+     "description": "To the east lies On The Shore Of A Lake Of Blood.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 16245,
+     "description": "To the south lies Along The Wall Of The Building."
+    },
+    "west": {
+     "to_room": 16252,
+     "description": "To the west lies Hall Of Pillars."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16247": {
+   "vnum": 16247,
+   "name": "Along The Wall Of The Building",
+   "map": {
+    "x": 13,
+    "y": 35,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 16246,
+     "description": "To the south lies By A Large Decorated Door In The Wall."
+    },
+    "west": {
+     "to_room": 16248,
+     "description": "To the west lies Along The Wall Of The Building."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead south and west.",
+   "placeholder": true
+  },
+  "16248": {
+   "vnum": 16248,
+   "name": "Along The Wall Of The Building",
+   "map": {
+    "x": 12,
+    "y": 35,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 16247,
+     "description": "To the east lies Along The Wall Of The Building."
+    },
+    "south": {
+     "to_room": 16252,
+     "description": "To the south lies Hall Of Pillars."
+    },
+    "west": {
+     "to_room": 16249,
+     "description": "To the west lies By A Door In The Wall."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "16249": {
+   "vnum": 16249,
+   "name": "By A Door In The Wall",
+   "map": {
+    "x": 11,
+    "y": 35,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 16253,
+     "description": "To the north lies By A Mindboggling, Winding Staircase."
+    },
+    "east": {
+     "to_room": 16248,
+     "description": "To the east lies Along The Wall Of The Building."
+    },
+    "south": {
+     "to_room": 16251,
+     "description": "To the south lies Hall Of Pillars."
+    },
+    "west": {
+     "to_room": 16250,
+     "description": "To the west lies Along The Wall Of The Building."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16250": {
+   "vnum": 16250,
+   "name": "Along The Wall Of The Building",
+   "map": {
+    "x": 10,
+    "y": 35,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 16249,
+     "description": "To the east lies By A Door In The Wall."
+    },
+    "south": {
+     "to_room": 16241,
+     "description": "To the south lies Inside The Deformed Gate."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "16251": {
+   "vnum": 16251,
+   "name": "Hall Of Pillars",
+   "map": {
+    "x": 11,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 16249,
+     "description": "To the north lies By A Door In The Wall."
+    },
+    "east": {
+     "to_room": 16252,
+     "description": "To the east lies Hall Of Pillars."
+    },
+    "south": {
+     "to_room": 16243,
+     "description": "To the south lies By A Door In The Wall."
+    },
+    "west": {
+     "to_room": 16241,
+     "description": "To the west lies Inside The Deformed Gate."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16252": {
+   "vnum": 16252,
+   "name": "Hall Of Pillars",
+   "map": {
+    "x": 12,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 16248,
+     "description": "To the north lies Along The Wall Of The Building."
+    },
+    "east": {
+     "to_room": 16246,
+     "description": "To the east lies By A Large Decorated Door In The Wall."
+    },
+    "south": {
+     "to_room": 16244,
+     "description": "To the south lies Along The Wall Of The Building."
+    },
+    "west": {
+     "to_room": 16251,
+     "description": "To the west lies Hall Of Pillars."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16253": {
+   "vnum": 16253,
+   "name": "By A Mindboggling, Winding Staircase",
+   "map": {
+    "x": 11,
+    "y": 37,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 16249,
+     "description": "To the south lies By A Door In The Wall.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "up": {
+     "to_room": 16200,
+     "description": "To the up lies Outside A Large Cabin."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and up.",
+   "placeholder": true
+  },
+  "16254": {
+   "vnum": 16254,
+   "name": "By A Mindboggling, Winding Staircase",
+   "map": {
+    "x": 11,
+    "y": 31,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 16243,
+     "description": "To the north lies By A Door In The Wall."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads north.",
+   "placeholder": true
+  },
+  "16255": {
+   "vnum": 16255,
+   "name": "On The Shore Of A Lake Of Blood",
+   "map": {
+    "x": 15,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16276,
+     "description": "To the north lies On The Shore Of A Lake Of Blood."
+    },
+    "east": {
+     "to_room": 16256,
+     "description": "To the east lies On The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16262,
+     "description": "To the south lies On The Shore Of A Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16246,
+     "description": "To the west lies By A Large Decorated Door In The Wall."
+    }
+   },
+   "description": "A narrow path winds between the hillocks. Rocks break through the thin\nsoil of the slope. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16256": {
+   "vnum": 16256,
+   "name": "On The Lake Of Blood",
+   "map": {
+    "x": 16,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16277,
+     "description": "To the north lies On The Lake Of Blood."
+    },
+    "east": {
+     "to_room": 16257,
+     "description": "To the east lies On The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16263,
+     "description": "To the south lies On The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16255,
+     "description": "To the west lies On The Shore Of A Lake Of Blood."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16257": {
+   "vnum": 16257,
+   "name": "On The Lake Of Blood",
+   "map": {
+    "x": 17,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16278,
+     "description": "To the north lies On The Lake Of Blood."
+    },
+    "east": {
+     "to_room": 16258,
+     "description": "To the east lies On A Small Island In The Middle Of The Lake."
+    },
+    "south": {
+     "to_room": 16264,
+     "description": "To the south lies On The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16256,
+     "description": "To the west lies On The Lake Of Blood."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Mud and pebbles shift beneath the\nslow water. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16258": {
+   "vnum": 16258,
+   "name": "On A Small Island In The Middle Of The Lake",
+   "map": {
+    "x": 19,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16279,
+     "description": "To the north lies On The Lake Of Blood."
+    },
+    "east": {
+     "to_room": 16259,
+     "description": "To the east lies On The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16265,
+     "description": "To the south lies On The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16257,
+     "description": "To the west lies On The Lake Of Blood."
+    },
+    "down": {
+     "to_room": 9901,
+     "description": "To the down lies City Limits Of Ghenna."
+    }
+   },
+   "description": "A narrow path winds between the hillocks. Gorse and heather cling to the\nwindy rise. Ways lead north, east, south, west and down.",
+   "placeholder": true
+  },
+  "16259": {
+   "vnum": 16259,
+   "name": "On The Lake Of Blood",
+   "map": {
+    "x": 21,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16280,
+     "description": "To the north lies On The Lake Of Blood."
+    },
+    "east": {
+     "to_room": 16260,
+     "description": "To the east lies On The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16266,
+     "description": "To the south lies On The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16258,
+     "description": "To the west lies On A Small Island In The Middle Of The Lake."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16260": {
+   "vnum": 16260,
+   "name": "On The Lake Of Blood",
+   "map": {
+    "x": 22,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16281,
+     "description": "To the north lies On The Lake Of Blood."
+    },
+    "east": {
+     "to_room": 16261,
+     "description": "To the east lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16267,
+     "description": "To the south lies On The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16259,
+     "description": "To the west lies On The Lake Of Blood."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16261": {
+   "vnum": 16261,
+   "name": "On The Rocky Shore Of The Lake Of Blood",
+   "map": {
+    "x": 23,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16282,
+     "description": "To the north lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16268,
+     "description": "To the south lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16260,
+     "description": "To the west lies On The Lake Of Blood."
+    }
+   },
+   "description": "A narrow path winds between the hillocks. Rocks break through the thin\nsoil of the slope. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "16262": {
+   "vnum": 16262,
+   "name": "On The Shore Of A Lake Of Blood",
+   "map": {
+    "x": 15,
+    "y": 32,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16255,
+     "description": "To the north lies On The Shore Of A Lake Of Blood."
+    },
+    "east": {
+     "to_room": 16263,
+     "description": "To the east lies On The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16269,
+     "description": "To the south lies By A Huge Black Pillar."
+    }
+   },
+   "description": "A narrow path winds between the hillocks. Rocks break through the thin\nsoil of the slope. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "16263": {
+   "vnum": 16263,
+   "name": "On The Lake Of Blood",
+   "map": {
+    "x": 16,
+    "y": 32,
+    "z": 6
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16256,
+     "description": "To the north lies On The Lake Of Blood."
+    },
+    "east": {
+     "to_room": 16264,
+     "description": "To the east lies On The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16270,
+     "description": "To the south lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16262,
+     "description": "To the west lies On The Shore Of A Lake Of Blood."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16264": {
+   "vnum": 16264,
+   "name": "On The Lake Of Blood",
+   "map": {
+    "x": 17,
+    "y": 32,
+    "z": 6
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16257,
+     "description": "To the north lies On The Lake Of Blood."
+    },
+    "east": {
+     "to_room": 16265,
+     "description": "To the east lies On The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16271,
+     "description": "To the south lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16263,
+     "description": "To the west lies On The Lake Of Blood."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Mud and pebbles shift\nbeneath the slow water. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16265": {
+   "vnum": 16265,
+   "name": "On The Lake Of Blood",
+   "map": {
+    "x": 19,
+    "y": 32,
+    "z": 6
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16258,
+     "description": "To the north lies On A Small Island In The Middle Of The Lake."
+    },
+    "east": {
+     "to_room": 16266,
+     "description": "To the east lies On The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16272,
+     "description": "To the south lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16264,
+     "description": "To the west lies On The Lake Of Blood."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16266": {
+   "vnum": 16266,
+   "name": "On The Lake Of Blood",
+   "map": {
+    "x": 21,
+    "y": 32,
+    "z": 6
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16259,
+     "description": "To the north lies On The Lake Of Blood."
+    },
+    "east": {
+     "to_room": 16267,
+     "description": "To the east lies On The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16273,
+     "description": "To the south lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16265,
+     "description": "To the west lies On The Lake Of Blood."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Reeds rustle\nalong the water's edge. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16267": {
+   "vnum": 16267,
+   "name": "On The Lake Of Blood",
+   "map": {
+    "x": 22,
+    "y": 32,
+    "z": 6
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16260,
+     "description": "To the north lies On The Lake Of Blood."
+    },
+    "east": {
+     "to_room": 16268,
+     "description": "To the east lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16274,
+     "description": "To the south lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16266,
+     "description": "To the west lies On The Lake Of Blood."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "16268": {
+   "vnum": 16268,
+   "name": "On The Rocky Shore Of The Lake Of Blood",
+   "map": {
+    "x": 23,
+    "y": 32,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16261,
+     "description": "To the north lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16275,
+     "description": "To the south lies By A Huge Black Pillar."
+    },
+    "west": {
+     "to_room": 16267,
+     "description": "To the west lies On The Lake Of Blood."
+    }
+   },
+   "description": "The ground rises and falls in grassy folds. Gorse and heather cling to\nthe windy rise. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "16269": {
+   "vnum": 16269,
+   "name": "By A Huge Black Pillar",
+   "map": {
+    "x": 15,
+    "y": 31,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16262,
+     "description": "To the north lies On The Shore Of A Lake Of Blood."
+    },
+    "east": {
+     "to_room": 16270,
+     "description": "To the east lies On The Rocky Shore Of The Lake Of Blood."
+    }
+   },
+   "description": "From the crest the land below spreads out like a map. Gorse and heather\ncling to the windy rise. Ways lead north and east.",
+   "placeholder": true
+  },
+  "16270": {
+   "vnum": 16270,
+   "name": "On The Rocky Shore Of The Lake Of Blood",
+   "map": {
+    "x": 16,
+    "y": 31,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16263,
+     "description": "To the north lies On The Lake Of Blood."
+    },
+    "east": {
+     "to_room": 16271,
+     "description": "To the east lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16269,
+     "description": "To the west lies By A Huge Black Pillar."
+    }
+   },
+   "description": "Rocks break through the thin soil of the slope. From the crest the land\nbelow spreads out like a map. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "16271": {
+   "vnum": 16271,
+   "name": "On The Rocky Shore Of The Lake Of Blood",
+   "map": {
+    "x": 17,
+    "y": 31,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16264,
+     "description": "To the north lies On The Lake Of Blood."
+    },
+    "east": {
+     "to_room": 16272,
+     "description": "To the east lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16270,
+     "description": "To the west lies On The Rocky Shore Of The Lake Of Blood."
+    }
+   },
+   "description": "From the crest the land below spreads out like a map. The ground rises\nand falls in grassy folds. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "16272": {
+   "vnum": 16272,
+   "name": "On The Rocky Shore Of The Lake Of Blood",
+   "map": {
+    "x": 19,
+    "y": 31,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16265,
+     "description": "To the north lies On The Lake Of Blood."
+    },
+    "east": {
+     "to_room": 16273,
+     "description": "To the east lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16271,
+     "description": "To the west lies On The Rocky Shore Of The Lake Of Blood."
+    }
+   },
+   "description": "Gorse and heather cling to the windy rise. From the crest the land below\nspreads out like a map. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "16273": {
+   "vnum": 16273,
+   "name": "On The Rocky Shore Of The Lake Of Blood",
+   "map": {
+    "x": 21,
+    "y": 31,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16266,
+     "description": "To the north lies On The Lake Of Blood."
+    },
+    "east": {
+     "to_room": 16274,
+     "description": "To the east lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16272,
+     "description": "To the west lies On The Rocky Shore Of The Lake Of Blood."
+    }
+   },
+   "description": "Rocks break through the thin soil of the slope. From the crest the land\nbelow spreads out like a map. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "16274": {
+   "vnum": 16274,
+   "name": "On The Rocky Shore Of The Lake Of Blood",
+   "map": {
+    "x": 22,
+    "y": 31,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16267,
+     "description": "To the north lies On The Lake Of Blood."
+    },
+    "east": {
+     "to_room": 16275,
+     "description": "To the east lies By A Huge Black Pillar."
+    },
+    "west": {
+     "to_room": 16273,
+     "description": "To the west lies On The Rocky Shore Of The Lake Of Blood."
+    }
+   },
+   "description": "A narrow path winds between the hillocks. Rocks break through the thin\nsoil of the slope. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "16275": {
+   "vnum": 16275,
+   "name": "By A Huge Black Pillar",
+   "map": {
+    "x": 23,
+    "y": 31,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16268,
+     "description": "To the north lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16274,
+     "description": "To the west lies On The Rocky Shore Of The Lake Of Blood."
+    }
+   },
+   "description": "A narrow path winds between the hillocks. Gorse and heather cling to the\nwindy rise. Ways lead north and west.",
+   "placeholder": true
+  },
+  "16276": {
+   "vnum": 16276,
+   "name": "On The Shore Of A Lake Of Blood",
+   "map": {
+    "x": 15,
+    "y": 36,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16283,
+     "description": "To the north lies By A Huge Black Pillar."
+    },
+    "east": {
+     "to_room": 16277,
+     "description": "To the east lies On The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16255,
+     "description": "To the south lies On The Shore Of A Lake Of Blood."
+    }
+   },
+   "description": "A narrow path winds between the hillocks. From the crest the land below\nspreads out like a map. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "16277": {
+   "vnum": 16277,
+   "name": "On The Lake Of Blood",
+   "map": {
+    "x": 16,
+    "y": 36,
+    "z": 6
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16284,
+     "description": "To the north lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "east": {
+     "to_room": 16278,
+     "description": "To the east lies On The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16256,
+     "description": "To the south lies On The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16276,
+     "description": "To the west lies On The Shore Of A Lake Of Blood."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Mud and pebbles shift\nbeneath the slow water. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16278": {
+   "vnum": 16278,
+   "name": "On The Lake Of Blood",
+   "map": {
+    "x": 17,
+    "y": 36,
+    "z": 6
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16285,
+     "description": "To the north lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "east": {
+     "to_room": 16279,
+     "description": "To the east lies On The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16257,
+     "description": "To the south lies On The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16277,
+     "description": "To the west lies On The Lake Of Blood."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16279": {
+   "vnum": 16279,
+   "name": "On The Lake Of Blood",
+   "map": {
+    "x": 19,
+    "y": 36,
+    "z": 6
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16286,
+     "description": "To the north lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "east": {
+     "to_room": 16280,
+     "description": "To the east lies On The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16258,
+     "description": "To the south lies On A Small Island In The Middle Of The Lake."
+    },
+    "west": {
+     "to_room": 16278,
+     "description": "To the west lies On The Lake Of Blood."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16280": {
+   "vnum": 16280,
+   "name": "On The Lake Of Blood",
+   "map": {
+    "x": 21,
+    "y": 36,
+    "z": 6
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16287,
+     "description": "To the north lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "east": {
+     "to_room": 16281,
+     "description": "To the east lies On The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16259,
+     "description": "To the south lies On The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16279,
+     "description": "To the west lies On The Lake Of Blood."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16281": {
+   "vnum": 16281,
+   "name": "On The Lake Of Blood",
+   "map": {
+    "x": 22,
+    "y": 36,
+    "z": 6
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16288,
+     "description": "To the north lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "east": {
+     "to_room": 16282,
+     "description": "To the east lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16260,
+     "description": "To the south lies On The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16280,
+     "description": "To the west lies On The Lake Of Blood."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "16282": {
+   "vnum": 16282,
+   "name": "On The Rocky Shore Of The Lake Of Blood",
+   "map": {
+    "x": 23,
+    "y": 36,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16289,
+     "description": "To the north lies By A Huge Black Pillar."
+    },
+    "south": {
+     "to_room": 16261,
+     "description": "To the south lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16281,
+     "description": "To the west lies On The Lake Of Blood."
+    }
+   },
+   "description": "Gorse and heather cling to the windy rise. From the crest the land below\nspreads out like a map. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "16283": {
+   "vnum": 16283,
+   "name": "By A Huge Black Pillar",
+   "map": {
+    "x": 15,
+    "y": 37,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16284,
+     "description": "To the east lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16276,
+     "description": "To the south lies On The Shore Of A Lake Of Blood."
+    }
+   },
+   "description": "From the crest the land below spreads out like a map. A narrow path\nwinds between the hillocks. Ways lead east and south.",
+   "placeholder": true
+  },
+  "16284": {
+   "vnum": 16284,
+   "name": "On The Rocky Shore Of The Lake Of Blood",
+   "map": {
+    "x": 16,
+    "y": 37,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16285,
+     "description": "To the east lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16277,
+     "description": "To the south lies On The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16283,
+     "description": "To the west lies By A Huge Black Pillar."
+    }
+   },
+   "description": "Gorse and heather cling to the windy rise. Rocks break through the thin\nsoil of the slope. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "16285": {
+   "vnum": 16285,
+   "name": "On The Rocky Shore Of The Lake Of Blood",
+   "map": {
+    "x": 17,
+    "y": 37,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16286,
+     "description": "To the east lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16278,
+     "description": "To the south lies On The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16284,
+     "description": "To the west lies On The Rocky Shore Of The Lake Of Blood."
+    }
+   },
+   "description": "The ground rises and falls in grassy folds. Gorse and heather cling to\nthe windy rise. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "16286": {
+   "vnum": 16286,
+   "name": "On The Rocky Shore Of The Lake Of Blood",
+   "map": {
+    "x": 19,
+    "y": 37,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16287,
+     "description": "To the east lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16279,
+     "description": "To the south lies On The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16285,
+     "description": "To the west lies On The Rocky Shore Of The Lake Of Blood."
+    }
+   },
+   "description": "Gorse and heather cling to the windy rise. Rocks break through the thin\nsoil of the slope. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "16287": {
+   "vnum": 16287,
+   "name": "On The Rocky Shore Of The Lake Of Blood",
+   "map": {
+    "x": 21,
+    "y": 37,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16288,
+     "description": "To the east lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "south": {
+     "to_room": 16280,
+     "description": "To the south lies On The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16286,
+     "description": "To the west lies On The Rocky Shore Of The Lake Of Blood."
+    }
+   },
+   "description": "From the crest the land below spreads out like a map. Rocks break\nthrough the thin soil of the slope. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "16288": {
+   "vnum": 16288,
+   "name": "On The Rocky Shore Of The Lake Of Blood",
+   "map": {
+    "x": 22,
+    "y": 37,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16289,
+     "description": "To the east lies By A Huge Black Pillar."
+    },
+    "south": {
+     "to_room": 16281,
+     "description": "To the south lies On The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16287,
+     "description": "To the west lies On The Rocky Shore Of The Lake Of Blood."
+    }
+   },
+   "description": "Gorse and heather cling to the windy rise. A narrow path winds between\nthe hillocks. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "16289": {
+   "vnum": 16289,
+   "name": "By A Huge Black Pillar",
+   "map": {
+    "x": 23,
+    "y": 37,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 16282,
+     "description": "To the south lies On The Rocky Shore Of The Lake Of Blood."
+    },
+    "west": {
+     "to_room": 16288,
+     "description": "To the west lies On The Rocky Shore Of The Lake Of Blood."
+    }
+   },
+   "description": "Gorse and heather cling to the windy rise. A narrow path winds between\nthe hillocks. Ways lead south and west.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

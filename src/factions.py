@@ -72,13 +72,13 @@ class Faction:
 FACTIONS: Dict[str, Faction] = {
     'midgaard': Faction(
         key='midgaard',
-        name='Midgaard',
-        description='The human city-state of Midgaard, bastion of law and order. Reputation gained by helping city NPCs and completing city quests. Lost by attacking citizens or aiding the Thieves Guild.',
+        name='Garathorm',
+        description='The human city-state of Garathorm, bastion of law and order. Reputation gained by helping city NPCs and completing city quests. Lost by attacking citizens or aiding the Thieves Guild.',
         enemies=['thieves_guild', 'orc_horde'],
         allies=['mages_guild', 'holy_order'],
         quest_line=['midgaard_guard_duty', 'midgaard_city_watch', 'midgaard_honor_guard'],
         exalted_rewards={
-            'titles': ['the Shield of Midgaard'],
+            'titles': ['the Shield of Garathorm'],
             'mounts': ['warhorse'],
             'items': [9010],
         },
@@ -192,13 +192,13 @@ FACTIONS: Dict[str, Faction] = {
 
     'midgaard_guard': Faction(
         key='midgaard_guard',
-        name='Midgaard Guard',
-        description='The sworn protectors of Midgaard. Gain reputation by killing bandits and undead near the city, and completing guard quests.',
+        name='Garathorm Guard',
+        description='The sworn protectors of Garathorm. Gain reputation by killing bandits and undead near the city, and completing guard quests.',
         enemies=['thieves_guild', 'dark_brotherhood'],
         allies=['merchant_league'],
         quest_line=['guard_patrol', 'guard_bandit_hunt', 'guard_captain_trial'],
         exalted_rewards={
-            'titles': ['the Sentinel of Midgaard'],
+            'titles': ['the Sentinel of Garathorm'],
             'mounts': ['armored_warhorse'],
             'items': [9020],
         },
@@ -673,13 +673,13 @@ class FactionManager:
 # ─────────────────────────────────────────────────────────────────────
 
 FACTION_NPC_PROTOTYPES = {
-    # Midgaard Guard quartermaster — city area (zone 30, room 3005)
+    # Garathorm Guard quartermaster — city area (zone 30, room 3005)
     'guard_quartermaster': {
         'vnum': 9501,
         'name': 'Captain Aldren',
         'short_desc': 'Captain Aldren, the Guard Quartermaster',
         'long_desc': 'Captain Aldren stands here in polished plate armor, inspecting his ledger.',
-        'description': 'A grizzled veteran of the Midgaard Guard with a scar across his left cheek.',
+        'description': 'A grizzled veteran of the Garathorm Guard with a scar across his left cheek.',
         'keywords': ['captain', 'aldren', 'guard', 'quartermaster'],
         'level': 25,
         'flags': ['sentinel', 'helper'],
@@ -687,7 +687,7 @@ FACTION_NPC_PROTOTYPES = {
         'faction': 'midgaard_guard',
         'min_rep_talk_level': 'Friendly',
         'talk_responses': {
-            'default': "Captain Aldren says, 'The Guard watches over Midgaard. Prove your loyalty and I'll see you equipped.'",
+            'default': "Captain Aldren says, 'The Guard watches over Garathorm. Prove your loyalty and I'll see you equipped.'",
             'hostile': "Captain Aldren scowls. 'I have nothing to say to the likes of you.'",
         },
         'spawn_room': 3005,

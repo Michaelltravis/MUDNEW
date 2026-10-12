@@ -199,12 +199,12 @@ ACHIEVEMENTS: Dict[str, Achievement] = {
     ),
     'midgaard_native': Achievement(
         id='midgaard_native',
-        name='Midgaard Native',
-        description='Visit every room in Midgaard',
+        name='Garathorm Native',
+        description='Visit every room in Garathorm',
         category='exploration',
         icon='🏰',
         points=25,
-        reward_title='of Midgaard',
+        reward_title='of Garathorm',
     ),
     'secret_room': Achievement(
         id='secret_room',
@@ -753,9 +753,9 @@ class AchievementManager:
         visited = getattr(player, 'visited_rooms', set())
         if zone_rooms.issubset(visited):
             await cls.unlock(player, 'zone_complete')
-            # Midgaard special
+            # Garathorm special
             zone_name = getattr(zone, 'name', '').lower()
-            if 'midgaard' in zone_name or 'midgard' in zone_name:
+            if 'garathorm' in zone_name or 'midgaard' in zone_name or 'midgard' in zone_name:
                 await cls.unlock(player, 'midgaard_native')
 
         # World traveler: visited at least one room in every zone

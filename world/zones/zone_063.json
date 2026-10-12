@@ -1,1992 +1,2218 @@
 {
-  "number": 63,
-  "name": "Arachnos",
-  "lifespan": 34,
-  "rooms": {
-    "6301": {
-      "vnum": 6301,
-      "name": "The Webbed Entrance",
-      "description": "Sticky, sticky, sticky! The ground is cluttered with leaves, decayed\nremains of webbed crickets, beetle, rats, dogs, and even humans. You\nbegin to wonder about what lies ahead. The air is damp here, and even\nthe little light that shines through the canopy seems to be absorbed\ninto the webbing. The sounds of city life echo around. The smell of\nsmoke and humanity hangs in the air.",
-      "sector_type": "city",
-      "flags": [
-        "no_mob"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6302,
-          "description": "An open path leads to The Webby Passage"
-        },
-        "south": {
-          "to_room": 6132,
-          "description": "The water flows toward Up In The Tree"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6301,
-          "max": 10
-        }
-      ]
-    },
-    "6302": {
-      "vnum": 6302,
-      "name": "The Webby Passage",
-      "description": "The passage opens to that footing here is very good, almost too good.\nThe limbs are coated with cobwebs and seem unusually strong for tree\nbranches. Paths lead in four directions. The eastward path goes down a\nbit. The air is fresh and clean. Tall grass sways in a gentle breeze.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6304,
-          "description": "An open path leads to The Webby Passage"
-        },
-        "east": {
-          "to_room": 6305,
-          "description": "An open path leads to Beneath The Busy Path"
-        },
-        "south": {
-          "to_room": 6301,
-          "description": "The cobblestones lead to The Webbed Entrance"
-        },
-        "west": {
-          "to_room": 6303,
-          "description": "An open path leads to The Wasp Hive"
-        }
-      }
-    },
-    "6303": {
-      "vnum": 6303,
-      "name": "The Wasp Hive",
-      "description": "Drones scuttle about in this room. The cells on the walls are honeycomb\nin shape and many of the maggots and wasps you see have fang-marks on\ntheir bodies. You sense some order in their markings. The air is fresh\nand clean. The ground is soft underfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6302,
-          "description": "An open path leads to The Webby Passage"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6305,
-          "max": 1
-        }
-      ]
-    },
-    "6304": {
-      "vnum": 6304,
-      "name": "The Webby Passage",
-      "description": "Another webby passage, all sticky and wet. Tiny ballooning spiders fill\nthe air. It seems that these young ones are newborns. The air is fresh\nand clean. The ground is soft underfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6305,
-          "description": "An open path leads to Beneath The Busy Path"
-        },
-        "south": {
-          "to_room": 6302,
-          "description": "An open path leads to The Webby Passage"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6301,
-          "max": 10
-        }
-      ]
-    },
-    "6305": {
-      "vnum": 6305,
-      "name": "Beneath The Busy Path",
-      "description": "You here the sounds of crawling arachnids above. The rhythms of the\nfootsteps suggest a primitive order in there movement. The light seems\nbrighter upwards. The ground is soft underfoot. Tall grass sways in a\ngentle breeze.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "west": {
-          "to_room": 6304,
-          "description": "An open path leads to The Webby Passage"
-        },
-        "up": {
-          "to_room": 6306,
-          "description": "An open path leads to On The Busy Path"
-        },
-        "north": {
-          "to_room": 6308
-        }
-      }
-    },
-    "6306": {
-      "vnum": 6306,
-      "name": "On The Busy Path",
-      "description": "Spiders, spiders, everywhere! It is almost ant-like in efficiency with\none big difference. The spiders here are carrying ant-corpses, as well\nas rats, wolves, and humans. The open sky stretches overhead. The air is\nfresh and clean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6307,
-          "description": "An open path leads to On The Busy Path"
-        },
-        "down": {
-          "to_room": 6305,
-          "description": "An open path leads to Beneath The Busy Path"
-        },
-        "west": {
-          "to_room": 6308
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6301,
-          "max": 10
-        },
-        {
-          "vnum": 6301,
-          "max": 10
-        }
-      ]
-    },
-    "6307": {
-      "vnum": 6307,
-      "name": "On The Busy Path",
-      "description": "Spiders, spiders, everywhere! It is almost ant-like in efficiency with\none big difference. The spiders here are carrying ant-corpses, as well\nas cats, wolves, and humans. Wildflowers dot the landscape. The open sky\nstretches overhead.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6306,
-          "description": "An open path leads to On The Busy Path"
-        },
-        "east": {
-          "to_room": 6308,
-          "description": "An open path leads to On The Busy Path"
-        },
-        "south": {
-          "to_room": 6308
-        }
-      }
-    },
-    "6308": {
-      "vnum": 6308,
-      "name": "On The Busy Path",
-      "description": "Spiders, spiders, everywhere! It is almost ant-like in efficiency with\none big difference. The spiders here are carrying ant-corpses, as well\nas cats, dogs, and humans. Wildflowers dot the landscape. Tall grass\nsways in a gentle breeze.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6307,
-          "description": "An open path leads to On The Busy Path"
-        },
-        "east": {
-          "to_room": 6306,
-          "description": "An open path leads to On The Busy Path"
-        },
-        "south": {
-          "to_room": 6305,
-          "description": "An open path leads to Beneath The Busy Path"
-        },
-        "west": {
-          "to_room": 6309,
-          "description": "An open path leads to A Split In The Path"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6308,
-          "max": 5
-        },
-        {
-          "vnum": 6308,
-          "max": 5
-        },
-        {
-          "vnum": 6308,
-          "max": 5
-        },
-        {
-          "vnum": 6308,
-          "max": 5
-        },
-        {
-          "vnum": 6308,
-          "max": 5
-        }
-      ]
-    },
-    "6309": {
-      "vnum": 6309,
-      "name": "A Split In The Path",
-      "description": "As always, there is a split in the road. One road is strewn with cricket\nfeelers. The other is well-kept and suitable for smooth travelling. The\nwebbing that was prevalent in earlier rooms is almost non-existant now.\nThe open sky stretches overhead. The ground is soft underfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6310,
-          "description": "An open path leads to A Fuzzy Tree Limb"
-        },
-        "east": {
-          "to_room": 6308,
-          "description": "An open path leads to On The Busy Path"
-        },
-        "south": {
-          "to_room": 6320,
-          "description": "An open path leads to The Webless Path"
-        }
-      }
-    },
-    "6310": {
-      "vnum": 6310,
-      "name": "A Fuzzy Tree Limb",
-      "description": "The area is a 'fuzzy' tree limb. Interesting, since the branches seem to\nhave 'hairs' sprouting from its bark. As you look closer you see\nmillions of aphids covering each limb. The open sky stretches overhead.\nThe ground is soft underfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6309,
-          "description": "An open path leads to A Split In The Path"
-        },
-        "west": {
-          "to_room": 6311,
-          "description": "An open path leads to The Tree Trunk"
-        }
-      }
-    },
-    "6311": {
-      "vnum": 6311,
-      "name": "The Tree Trunk",
-      "description": "You feel that you can rest here safely. There is evidence of webbing\nhere, but it is of a finer quality. The open sky stretches overhead.\nWildflowers dot the landscape.",
-      "sector_type": "field",
-      "flags": [
-        "no_mob"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6310,
-          "description": "An open path leads to A Fuzzy Tree Limb"
-        },
-        "south": {
-          "to_room": 6312,
-          "description": "An open path leads to The Tree Lair Entrance"
-        }
-      }
-    },
-    "6312": {
-      "vnum": 6312,
-      "name": "The Tree Lair Entrance",
-      "description": "It seems the inhabitant of this place does not web her victims, as\nevidenced by the remains before. The area is cluttered with\ndesiccated corpses, apparently bitten but unwebbed, and drained of their\nlife juices. Wildflowers dot the landscape. Tall grass sways in a gentle\nbreeze.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6311,
-          "description": "An open path leads to The Tree Trunk"
-        },
-        "west": {
-          "to_room": 6313,
-          "description": "An open path leads to The Wolf Spider Lair"
-        }
-      }
-    },
-    "6313": {
-      "vnum": 6313,
-      "name": "The Wolf Spider Lair",
-      "description": "Very dark, as all lairs of spiders are. Not much of furnishings save an\nexit. The wolf spider keeps no corpses here, but rather throws them out\nat her leisure. Wildflowers dot the landscape. Tall grass sways in a\ngentle breeze.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6312,
-          "description": "An open path leads to The Tree Lair Entrance"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6303,
-          "max": 1
-        }
-      ]
-    },
-    "6320": {
-      "vnum": 6320,
-      "name": "The Webless Path",
-      "description": "Strange. No webbing here. In fact, no sounds whatsoever. The path\ncontinues northward, where you find that you may have to tightrope your\nway across a ravine. The air is fresh and clean. Wildflowers dot the\nlandscape.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6309,
-          "description": "An open path leads to A Split In The Path"
-        },
-        "west": {
-          "to_room": 6321,
-          "description": "An open path leads to Above The Ravine"
-        }
-      }
-    },
-    "6321": {
-      "vnum": 6321,
-      "name": "Above The Ravine",
-      "description": "Stranger still. Your feet get a real firm grip on the spiderline. You\nare above a deep ravine. This line connects you between two trees. Below\nVisible is a prismatic web with lots of animal bones caught in it: some\nbear and small deer bones in fact. No human skeletons are visible (yet).\nThe open sky stretches overhead. The air is fresh and clean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6320,
-          "description": "An open path leads to The Webless Path"
-        },
-        "south": {
-          "to_room": 6323,
-          "description": "An open path leads to The Web Forest"
-        },
-        "down": {
-          "to_room": 6322,
-          "description": "An open path leads to The Rainbow Web"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6306,
-          "max": 3
-        }
-      ]
-    },
-    "6322": {
-      "vnum": 6322,
-      "name": "The Rainbow Web",
-      "description": "This is the rainbow web -- each strand, each link, a hue of violently\nsharp colors and contrasts. The resident here seems to have a command of\nlight as well. Wildflowers dot the landscape. The ground is soft\nunderfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "up": {
-          "to_room": 6321,
-          "description": "An open path leads to Above The Ravine"
-        }
-      }
-    },
-    "6323": {
-      "vnum": 6323,
-      "name": "The Web Forest",
-      "description": "The trees here take on a different appearance -- they are not trees\nanymore, but disjointed make-shift silken made shafts, sticky to the\ntouch, and webby in texture. This is another world it would appear. Tall\ngrass sways in a gentle breeze. The air is fresh and clean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6321,
-          "description": "An open path leads to Above The Ravine"
-        },
-        "down": {
-          "to_room": 6324,
-          "description": "An open path leads to The Slave Pit"
-        }
-      }
-    },
-    "6324": {
-      "vnum": 6324,
-      "name": "The Slave Pit",
-      "description": "The entrance opens to the slave pit. A voice blares in the distance,\n'Get back to work, maggots!' Rails upon rails of mined gold and silver\nclutter the trail beneath you. Wildflowers dot the landscape. Tall grass\nsways in a gentle breeze.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6325,
-          "description": "An open path leads to The Tether Path"
-        },
-        "up": {
-          "to_room": 6323,
-          "description": "An open path leads to The Web Forest"
-        },
-        "east": {
-          "to_room": 6325
-        }
-      }
-    },
-    "6325": {
-      "vnum": 6325,
-      "name": "The Tether Path",
-      "description": "Another tether path just like the rest of them. Surprisingly well-lit by\nthe golden orbs that hang from the sides, Visible is the paths become\nfiner and finer in quality. The open sky stretches overhead. Wildflowers\ndot the landscape.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6326,
-          "description": "An open path leads to A Road Crossing"
-        },
-        "west": {
-          "to_room": 6324,
-          "description": "An open path leads to The Slave Pit"
-        },
-        "south": {
-          "to_room": 6324
-        }
-      }
-    },
-    "6326": {
-      "vnum": 6326,
-      "name": "A Road Crossing",
-      "description": "Another shifty little strand of webs, almost ethereal in nature. The\nopen sky stretches overhead. Tall grass sways in a gentle breeze. The\nopen terrain stretches out, grass swaying in the breeze. The sky hangs\nvast overhead.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "west": {
-          "to_room": 6325,
-          "description": "An open path leads to The Tether Path"
-        },
-        "up": {
-          "to_room": 6327,
-          "description": "An open path leads to A Leader Strand"
-        }
-      }
-    },
-    "6327": {
-      "vnum": 6327,
-      "name": "A Leader Strand",
-      "description": "This strand is weightier, more sturdy. It shimmers as you step on it.\nThe area is definitely not in the Midgaardian realms anymore. Just where\nThe area is you can't tell. It feels like you're moving through ether.\nYou can still get back down to more surer lands. The ground is soft\nunderfoot. Tall grass sways in a gentle breeze.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6328,
-          "description": "An open path leads to The Entrance Of The Ethereal Web"
-        },
-        "down": {
-          "to_room": 6326,
-          "description": "An open path leads to A Road Crossing"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6309,
-          "max": 2
-        }
-      ]
-    },
-    "6328": {
-      "vnum": 6328,
-      "name": "The Entrance Of The Ethereal Web",
-      "description": "This is the entrance to ethereal web. Flickering in and out, in and out,\neach strand reveals a different hue from black to green to blue. The\nopen sky stretches overhead. The air is fresh and clean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6331,
-          "description": "An open path leads to The Base Of The Web"
-        }
-      }
-    },
-    "6330": {
-      "vnum": 6330,
-      "name": "The Young Wormkin's Crib",
-      "description": "A playpen of sorts, with maggots of wasps and other baby vermin lying\nabout. You feel that humans have been played with here too, and eaten\nlater. You sense that the maker of this place has an appetite for dragon\nmeat, and uses this room as a breeding area. The ground is soft\nunderfoot. The open sky stretches overhead.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "up": {
-          "to_room": 6331,
-          "description": "An open path leads to The Base Of The Web"
-        },
-        "south": {
-          "to_room": 6331
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6306,
-          "max": 3
-        },
-        {
-          "vnum": 6316,
-          "max": 1
-        }
-      ]
-    },
-    "6331": {
-      "vnum": 6331,
-      "name": "The Base Of The Web",
-      "description": "Large strands connect at this point. The node shimmers and flickers\nwithin the ether. You see many flying creatures -- insects, pegasi, and\ndragon wormkins -- navigate the dangerous passages of the web. Exits go\nin many directions. The open sky stretches overhead. Wildflowers dot the\nlandscape.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6330,
-          "description": "An open path leads to The Young Wormkin's Crib"
-        },
-        "east": {
-          "to_room": 6332,
-          "description": "An open path leads to Through The Trees"
-        },
-        "south": {
-          "to_room": 6333,
-          "description": "An open path leads to Above The Clouds"
-        },
-        "west": {
-          "to_room": 6334,
-          "description": "An open path leads to On A Cloud"
-        },
-        "down": {
-          "to_room": 6330
-        },
-        "up": {
-          "to_room": 6334
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6306,
-          "max": 3
-        }
-      ]
-    },
-    "6332": {
-      "vnum": 6332,
-      "name": "Through The Trees",
-      "description": "This part of the web intersects through the branches of some trees.\nVarious leaves and other debris that the many drones have not picked up\nyet lie here. Tall grass sways in a gentle breeze. Wildflowers dot the\nlandscape.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6331,
-          "description": "An open path leads to The Base Of The Web"
-        },
-        "south": {
-          "to_room": 6335,
-          "description": "An open path leads to A Link In The Ethereal Web"
-        },
-        "west": {
-          "to_room": 6333,
-          "description": "An open path leads to Above The Clouds"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6304,
-          "max": 1
-        }
-      ]
-    },
-    "6333": {
-      "vnum": 6333,
-      "name": "Above The Clouds",
-      "description": "Visible is all of Midgaard in this ethereal web. Many of the larger\ndragons that do wish to fly seem to fly away from the sticky strands of\nthe web. The air is fresh and clean. Wildflowers dot the landscape.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6331,
-          "description": "An open path leads to The Base Of The Web"
-        },
-        "south": {
-          "to_room": 6334,
-          "description": "An open path leads to On A Cloud"
-        },
-        "west": {
-          "to_room": 6335,
-          "description": "An open path leads to A Link In The Ethereal Web"
-        },
-        "north": {
-          "to_room": 6331
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6307,
-          "max": 5
-        }
-      ]
-    },
-    "6334": {
-      "vnum": 6334,
-      "name": "On A Cloud",
-      "description": "This cloud is rather thick in consistency. You suddenly realize this is\nnot a typical cloud, but it might be the nest of an aerial creature. The\nground is soft underfoot. Wildflowers dot the landscape.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "down": {
-          "to_room": 6331,
-          "description": "An open path leads to The Base Of The Web"
-        },
-        "east": {
-          "to_room": 6331
-        },
-        "north": {
-          "to_room": 6333
-        }
-      }
-    },
-    "6335": {
-      "vnum": 6335,
-      "name": "A Link In The Ethereal Web",
-      "description": "This is another link in the ethereal web. Various creatures seem to get\ncaught (or hypnotized) by its sticky strands. Wildflowers dot the\nlandscape. The ground is soft underfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6336,
-          "description": "An open path leads to The Tenuous Strand"
-        },
-        "west": {
-          "to_room": 6331,
-          "description": "An open path leads to The Base Of The Web"
-        },
-        "north": {
-          "to_room": 6332
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6307,
-          "max": 5
-        }
-      ]
-    },
-    "6336": {
-      "vnum": 6336,
-      "name": "The Tenuous Strand",
-      "description": "Very windy here since it goes up into the sky somewhat. Still, it is\nsafe enough to move around. Tall grass sways in a gentle breeze. The air\nis fresh and clean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6340,
-          "description": "An open path leads to The Elder Wormkin's Room"
-        },
-        "west": {
-          "to_room": 6341,
-          "description": "An open path leads to Another Tree Limb"
-        },
-        "down": {
-          "to_room": 6331,
-          "description": "An open path leads to The Base Of The Web"
-        }
-      }
-    },
-    "6340": {
-      "vnum": 6340,
-      "name": "The Elder Wormkin's Room",
-      "description": "A more mature wormkin it seems resides here. Various tomes of arcane\nlore clutter the area, along with shards of armor and weaponry.\nWildflowers dot the landscape. The ground is soft underfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "down": {
-          "to_room": 6331,
-          "description": "An open path leads to The Base Of The Web"
-        },
-        "north": {
-          "to_room": 6336
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6317,
-          "max": 1
-        }
-      ]
-    },
-    "6341": {
-      "vnum": 6341,
-      "name": "Another Tree Limb",
-      "description": "Once again the web crosses another tree limb. To the side you see the\npossible entrance to another creature's lair. The air is fresh and\nclean. Wildflowers dot the landscape.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6342,
-          "description": "An open path leads to The Bird Spider's Lair"
-        },
-        "south": {
-          "to_room": 6334,
-          "description": "An open path leads to On A Cloud"
-        },
-        "west": {
-          "to_room": 6345,
-          "description": "An open path leads to A Link In The Ethereal Web"
-        }
-      }
-    },
-    "6342": {
-      "vnum": 6342,
-      "name": "The Bird Spider's Lair",
-      "description": "This is a big game hunter among most spiders. Crushed jewels and weapons\nsuggest the inhabitant must have powerful jaws. Beware! Tall grass sways\nin a gentle breeze. The air is fresh and clean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "down": {
-          "to_room": 6331,
-          "description": "An open path leads to The Base Of The Web"
-        },
-        "west": {
-          "to_room": 6341
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6310,
-          "max": 1
-        }
-      ]
-    },
-    "6345": {
-      "vnum": 6345,
-      "name": "A Link In The Ethereal Web",
-      "description": "This is another link in the ethereal web. Various creatures seem to get\ncaught (or hypnotized) by its sticky strands. The open sky stretches\noverhead. The ground is soft underfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6350,
-          "description": "An open path leads to The Ki-Rin Chamber"
-        },
-        "west": {
-          "to_room": 6346,
-          "description": "An open path leads to The Quiet Tree Top"
-        },
-        "up": {
-          "to_room": 6345,
-          "description": "An open path leads to A Link In The Ethereal Web"
-        },
-        "east": {
-          "to_room": 6341
-        },
-        "down": {
-          "to_room": 6345
-        }
-      }
-    },
-    "6346": {
-      "vnum": 6346,
-      "name": "The Quiet Tree Top",
-      "description": "This is a quiet tree top. Downwards Visible is a familiar path that may\nlead back to Midgaard. Tall grass sways in a gentle breeze. The ground\nis soft underfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6345,
-          "description": "An open path leads to A Link In The Ethereal Web"
-        },
-        "west": {
-          "to_room": 6347,
-          "description": "An open path leads to On The Web"
-        },
-        "down": {
-          "to_room": 6132,
-          "description": "The water flows toward Up In The Tree"
-        }
-      }
-    },
-    "6347": {
-      "vnum": 6347,
-      "name": "On The Web",
-      "description": "RRRRRRRRRRROOOOOOOOOOOOOAAAAAAAAAAAAAARR! You hear the roar of a\npowerful beast. Dragon, you think. You shiver in your boots as you\ntiptoe along this section of the web. The open sky stretches overhead.\nThe air is fresh and clean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6346,
-          "description": "An open path leads to The Quiet Tree Top"
-        },
-        "south": {
-          "to_room": 6355,
-          "description": "An open path leads to A Link In The Ethereal Web"
-        },
-        "down": {
-          "to_room": 6331,
-          "description": "An open path leads to The Base Of The Web"
-        }
-      }
-    },
-    "6350": {
-      "vnum": 6350,
-      "name": "The Ki-Rin Chamber",
-      "description": "A wise ki-rin was entrapped here many years ago. It is from her that the\nruler of this realm draws magical strength. The ground is soft\nunderfoot. Wildflowers dot the landscape.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6347,
-          "description": "An open path leads to On The Web"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6315,
-          "max": 1
-        }
-      ]
-    },
-    "6355": {
-      "vnum": 6355,
-      "name": "A Link In The Ethereal Web",
-      "description": "This is another link in the ethereal web. Various creatures seem to get\ncaught (or hypnotized) by its sticky strands. To the north you sense the\nheavy breathing of a fiery animal. The air is fresh and clean.\nWildflowers dot the landscape.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6360,
-          "description": "An open path leads to Yevaud's Lair"
-        },
-        "south": {
-          "to_room": 6365,
-          "description": "An open path leads to A Link In The Ethereal Web"
-        }
-      }
-    },
-    "6360": {
-      "vnum": 6360,
-      "name": "Yevaud's Lair",
-      "description": "Yevaud, the Usurper of Midgaard, resides here. A voice cries out,\n'BEWARE, the Usurper of Midgaard lives here! FLEE while you can!' But\neven Yevaud has his master... or so you deduce. The air is fresh and\nclean. The open sky stretches overhead.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6355,
-          "description": "An open path leads to A Link In The Ethereal Web"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6302,
-          "max": 1
-        }
-      ]
-    },
-    "6365": {
-      "vnum": 6365,
-      "name": "A Link In The Ethereal Web",
-      "description": "This is another link in the ethereal web. Various creatures seem to get\ncaught (or hypnotized) by its sticky strands. A single spider line lies\nto the north, while ghastly seemings are due southward. The grim\nentrance of Arachnos' Lair is downward. The ground is soft underfoot.\nWildflowers dot the landscape.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6371,
-          "description": "An open path leads to The Single Spider Line"
-        },
-        "east": {
-          "to_room": 6331,
-          "description": "An open path leads to The Base Of The Web"
-        },
-        "south": {
-          "to_room": 6366,
-          "description": "An open path leads to The Entrance To The Donjonkeep"
-        },
-        "down": {
-          "to_room": 6390,
-          "description": "An open path leads to The Entrance To The Arachnos' Lair"
-        }
-      }
-    },
-    "6366": {
-      "vnum": 6366,
-      "name": "The Entrance To The Donjonkeep",
-      "description": "A dark path at the end of the web strand, you see ahead a torch lit\nchamber where the souls of unavenged adventurers come and gnash their\nteeth. The howls and screams of many echo through the hall ways. You see\none definite path ahead. The ground is soft underfoot. Tall grass sways\nin a gentle breeze.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6367,
-          "description": "An open path leads to The Guardian's Room"
-        }
-      }
-    },
-    "6367": {
-      "vnum": 6367,
-      "name": "The Guardian's Room",
-      "description": "A chair sits here for a tireless guardian who ensures that no soul\nescapes. Other than that, the room is undecorated. The ground is soft\nunderfoot. Tall grass sways in a gentle breeze.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6368,
-          "description": "An open path leads to The Realm Of The Hopeless"
-        },
-        "south": {
-          "to_room": 6366
-        }
-      },
-      "extra_descs": {
-        "": "chair"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6313,
-          "max": 1
-        }
-      ]
-    },
-    "6368": {
-      "vnum": 6368,
-      "name": "The Realm Of The Hopeless",
-      "description": "Here you see many misguided souls who think they still live. They search\nfor those who killed them without warrant, and seek the free souls of\nliving beings to inhabit and perhaps adventure once more. The ground is\nsoft underfoot. The air is fresh and clean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6369,
-          "description": "An open path leads to The Realm Of The Hopeless"
-        },
-        "south": {
-          "to_room": 6367
-        }
-      }
-    },
-    "6369": {
-      "vnum": 6369,
-      "name": "The Realm Of The Hopeless",
-      "description": "Here you see many misguided souls who think they still live. They search\nfor those who killed them without warrant, and seek the free souls of\nliving beings to inhabit and perhaps adventure once more. The ground is\nsoft underfoot. The air is fresh and clean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6368,
-          "description": "An open path leads to The Realm Of The Hopeless"
-        },
-        "south": {
-          "to_room": 6370,
-          "description": "An open path leads to The Donjonkeep"
-        }
-      }
-    },
-    "6370": {
-      "vnum": 6370,
-      "name": "The Donjonkeep",
-      "description": "No souls have ever lived in this place. The wails of slaves and the\nhowls of wolves are the only way you can describe the sounds you hear.\nThe walls are thin and wispy. The only light you receive is the\nshimmering from the strand of the ethereal web you used to get here.\nTall grass sways in a gentle breeze. The air is fresh and clean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6371,
-          "description": "An open path leads to The Single Spider Line"
-        },
-        "north": {
-          "to_room": 6369
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6312,
-          "max": 1
-        }
-      ]
-    },
-    "6371": {
-      "vnum": 6371,
-      "name": "The Single Spider Line",
-      "description": "A single spider line supports you once more. As you look across the\nether you seen a single shack up ahead with a light in the window. You\nsense a great evil coming from the north and feel inclined to go back on\nthe ethereal web and take your chances there. Tall grass sways in a\ngentle breeze. The open sky stretches overhead.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6331,
-          "description": "An open path leads to The Base Of The Web"
-        },
-        "south": {
-          "to_room": 6372,
-          "description": "An open path leads to The Single Spider Line"
-        },
-        "west": {
-          "to_room": 6370
-        }
-      }
-    },
-    "6372": {
-      "vnum": 6372,
-      "name": "The Single Spider Line",
-      "description": "A single spider line supports you once more. The shack comes closer into\nview and you are even more inclined to go back now. The open sky\nstretches overhead. The air is fresh and clean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6371,
-          "description": "An open path leads to The Single Spider Line"
-        },
-        "south": {
-          "to_room": 6373,
-          "description": "An open path leads to The Hermit's Corner"
-        }
-      }
-    },
-    "6373": {
-      "vnum": 6373,
-      "name": "The Hermit's Corner",
-      "description": "Here you see evidence of a vagrant's abode. The shack is to the north,\nif you dare enter it. You get the sneaking feeling you should go back\nnow. The skies above darken and roar with the laughter of thunder.\nWildflowers dot the landscape. The air is fresh and clean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6372,
-          "description": "An open path leads to The Single Spider Line"
-        },
-        "south": {
-          "to_room": 6380,
-          "description": "A passage leads to Mahatma's Inescapable Trap"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6311,
-          "max": 1
-        }
-      ]
-    },
-    "6380": {
-      "vnum": 6380,
-      "name": "Mahatma's Inescapable Trap",
-      "description": "Mahatma, that silly thief, is here, and he steals everything you have.\nHe says 'Here, have a quick trip to the Temple of Midgaard.' He plunges\na black dagger into your back... The air is still and musty. Dust motes\ndrift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "death",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6373
-        }
-      }
-    },
-    "6390": {
-      "vnum": 6390,
-      "name": "The Entrance To The Arachnos' Lair",
-      "description": "All strands inevitably lead here, the center of the web, the entrance to\nArachnos' Lair. The air is fresh and clean. The ground is soft\nunderfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6391,
-          "description": "An open path leads to The Sticky Chamber"
-        },
-        "up": {
-          "to_room": 6365
-        }
-      }
-    },
-    "6391": {
-      "vnum": 6391,
-      "name": "The Sticky Chamber",
-      "description": "You can still bail out since your knees are shaking from the\nanticipation (or is it fear?). The sky is clear on this strand of web,\nsurprisingly unsticky. The strand does not vibrate like the others. A\nfew ballooning spiders pass by, cackling 'You're gonna die, you're gonna\nfry. Good bye!' Wildflowers dot the landscape. The air is fresh and\nclean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6392,
-          "description": "An open path leads to The Great Door"
-        },
-        "down": {
-          "to_room": 6331,
-          "description": "An open path leads to The Base Of The Web"
-        },
-        "west": {
-          "to_room": 6390
-        }
-      }
-    },
-    "6392": {
-      "vnum": 6392,
-      "name": "The Great Door",
-      "description": "ahead see a large, web-like door. Various designs of ancient runes and\nnames of Midgaard heroes are etched into the webwork. Perhaps lists of\nvictims? You can't tell. The air is fresh and clean. Wildflowers dot the\nlandscape.",
-      "sector_type": "field",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6399,
-          "description": "An open path leads to The Lair Of Arachnos",
-          "door": {
-            "name": "door",
-            "state": "open",
-            "locked": true,
-            "key_vnum": 6300
-          }
-        },
-        "west": {
-          "to_room": 6391,
-          "description": "An open path leads to The Sticky Chamber"
-        }
-      }
-    },
-    "6399": {
-      "vnum": 6399,
-      "name": "The Lair Of Arachnos",
-      "description": "This is the lair of the Empress Spider, Arachnos. Visible is a lavishly\nadorned rainbow web, her lair allows her to move to any universe she\nwishes by using her magical strands to the Prime Material Plane. Coffers\nupon coffers of gold, magical jewels and gems await. Unfortunately\nArachnos is a baggy spider too, and webs all her treasures to her\nbeautiful silken body. The air is fresh and clean. The open sky\nstretches overhead.",
-      "sector_type": "field",
-      "flags": [
-        "no_track"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 6392,
-          "description": "An open path leads to The Great Door",
-          "door": {
-            "name": "door",
-            "state": "open",
-            "locked": true,
-            "key_vnum": 6300
-          }
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6314,
-          "max": 1
-        }
-      ]
+ "number": 63,
+ "name": "Arachnos",
+ "builders": "Mahatma",
+ "atlas_area": 43,
+ "rooms": {
+  "6301": {
+   "vnum": 6301,
+   "name": "Webbed Entrance",
+   "map": {
+    "x": -37,
+    "y": -19,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [
+    "no_mob"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 6301,
+     "max": 10
     }
+   ],
+   "description": "Sticky, sticky, sticky! The ground is cluttered with leaves, decayed\nremains of webbed crickets, beetle, rats, dogs, and even humans. You\nbegin to wonder about what lies ahead. The air is damp here, and even\nthe little light that shines through the canopy seems to be absorbed\ninto the webbing. The sounds of city life echo around. The smell of\nsmoke and humanity hangs in the air.",
+   "exits": {
+    "north": {
+     "to_room": 6302,
+     "description": "An open path leads to The Webby Passage"
+    },
+    "south": {
+     "to_room": 6398,
+     "description": "To the south lies Up In The Tree."
+    }
+   }
   },
-  "mobs": {
-    "6301": {
-      "vnum": 6301,
-      "name": "spider",
-      "short_desc": "the young spider",
-      "long_desc": "The young spider is ballooning by you.",
-      "level": 3,
-      "alignment": 0,
-      "hp_dice": "3d10+52",
-      "damage_dice": "1d4+4",
-      "gold": 215,
-      "exp": 180,
-      "armor_class": 91,
-      "flags": [
-        "scavenger",
-        "stay_zone"
-      ],
-      "description": "He looks freshly hatched and sprightly.  His young fangs are just\ngrowing in as of late.",
-      "inventory": [
-        6307
-      ]
+  "6302": {
+   "vnum": 6302,
+   "name": "Webby Passage",
+   "map": {
+    "x": -37,
+    "y": -18,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "The passage opens to that footing here is very good, almost too good.\nThe limbs are coated with cobwebs and seem unusually strong for tree\nbranches. Paths lead in four directions. The eastward path goes down a\nbit. The air is fresh and clean. Tall grass sways in a gentle breeze.",
+   "exits": {
+    "north": {
+     "to_room": 6304,
+     "description": "An open path leads to The Webby Passage"
     },
-    "6302": {
-      "vnum": 6302,
-      "name": "yevaud",
-      "short_desc": "Yevaud",
-      "long_desc": "Yevaud, the Usurper of Midgaard is here, grinning evilly at you.",
-      "level": 24,
-      "alignment": -1000,
-      "hp_dice": "24d10+304",
-      "damage_dice": "7d8+6",
-      "gold": 70000,
-      "exp": 1440,
-      "armor_class": 28,
-      "flags": [
-        "special",
-        "sentinel",
-        "scavenger",
-        "aggr_good",
-        "aggr_neutral",
-        "memory"
-      ],
-      "description": "Old, scaly, but still with a lot of bite in him left.",
-      "inventory": [
-        6304,
-        7203
-      ]
+    "south": {
+     "to_room": 6301,
+     "description": "The cobblestones lead to The Webbed Entrance"
     },
-    "6303": {
-      "vnum": 6303,
-      "name": "spider",
-      "short_desc": "the wolf spider",
-      "long_desc": "The wolf spider is here, licking its bloody fangs.",
-      "level": 6,
-      "alignment": -300,
-      "hp_dice": "6d10+88",
-      "damage_dice": "2d5+5",
-      "gold": 3625,
-      "exp": 360,
-      "armor_class": 82,
-      "flags": [
-        "sentinel",
-        "aggressive"
-      ],
-      "description": "The wolf spider is hairy, very hairy.",
-      "inventory": [
-        6315
-      ]
-    },
-    "6304": {
-      "vnum": 6304,
-      "name": "orc",
-      "short_desc": "the orc",
-      "long_desc": "The orc is stuck in the web and he can't get out.",
-      "level": 2,
-      "alignment": -400,
-      "hp_dice": "2d10+40",
-      "damage_dice": "1d4+2",
-      "gold": 155,
-      "exp": 120,
-      "armor_class": 94,
-      "flags": [
-        "sentinel"
-      ],
-      "description": "You notice an evil look in his eyes, but he seems quite drained of life,\nand all he can do is glare at you while he's stuck in this web.",
-      "inventory": [
-        6300
-      ]
-    },
-    "6305": {
-      "vnum": 6305,
-      "name": "wasp",
-      "short_desc": "the queen wasp",
-      "long_desc": "The queen wasp is here, thinking how tasty you look.",
-      "level": 14,
-      "alignment": -800,
-      "hp_dice": "14d10+184",
-      "damage_dice": "4d6+9",
-      "gold": 10000,
-      "exp": 840,
-      "armor_class": 58,
-      "flags": [
-        "sentinel",
-        "aggressive"
-      ],
-      "description": "You notice a glazed look in her eyes.",
-      "inventory": [
-        6309
-      ]
-    },
-    "6306": {
-      "vnum": 6306,
-      "name": "spider",
-      "short_desc": "the drone spider",
-      "long_desc": "A drone spider walks around doing its master's bidding.",
-      "level": 6,
-      "alignment": -200,
-      "hp_dice": "6d10+88",
-      "damage_dice": "2d5+5",
-      "gold": 900,
-      "exp": 360,
-      "armor_class": 82,
-      "flags": [
-        "scavenger",
-        "stay_zone"
-      ],
-      "description": "An ordinary drone spider.",
-      "inventory": [
-        6305,
-        6305
-      ]
-    },
-    "6307": {
-      "vnum": 6307,
-      "name": "spider",
-      "short_desc": "the ethereal spider",
-      "long_desc": "An ethereal spider strides here, traveling to different worlds.",
-      "level": 13,
-      "alignment": 300,
-      "hp_dice": "13d10+172",
-      "damage_dice": "4d6+7",
-      "gold": 8625,
-      "exp": 780,
-      "armor_class": 61,
-      "flags": [
-        "scavenger",
-        "stay_zone"
-      ],
-      "description": "She winks in and out of reality.  It looks like it'd be difficult to hit her\nwithout a magical weapon.",
-      "inventory": [
-        6309
-      ]
-    },
-    "6308": {
-      "vnum": 6308,
-      "name": "slave",
-      "short_desc": "the slave",
-      "long_desc": "A human slave of Arachnos works here relentlessly.",
-      "level": 11,
-      "alignment": -50,
-      "hp_dice": "11d10+148",
-      "damage_dice": "3d6+8",
-      "gold": 7250,
-      "exp": 660,
-      "armor_class": 67,
-      "flags": [
-        "scavenger",
-        "stay_zone",
-        "memory"
-      ],
-      "description": "The slave does not mind you, but will fight like a warrior if attacked.\nHe serves the spider Empress, Arachnos, though whether it is by choice\nor because he was beguiled, you are not fully certain.",
-      "inventory": [
-        6302
-      ]
-    },
-    "6309": {
-      "vnum": 6309,
-      "name": "quasit",
-      "short_desc": "the quasit",
-      "long_desc": "A quasit blinks in and out, grinning at you.",
-      "level": 10,
-      "alignment": -300,
-      "hp_dice": "10d10+136",
-      "damage_dice": "3d6+6",
-      "gold": 6250,
-      "exp": 600,
-      "armor_class": 70,
-      "flags": [
-        "special",
-        "scavenger",
-        "stay_zone",
-        "wimpy"
-      ],
-      "description": "Demoniac in nature, but more mischievous.  He twiddles his thumbs\nand creates a magical treasure!",
-      "inventory": [
-        6310,
-        6311
-      ]
-    },
-    "6310": {
-      "vnum": 6310,
-      "name": "spider",
-      "short_desc": "the bird spider",
-      "long_desc": "The bird spider snaps its powerful jaws.",
-      "level": 14,
-      "alignment": -800,
-      "hp_dice": "14d10+184",
-      "damage_dice": "4d6+9",
-      "gold": 9875,
-      "exp": 840,
-      "armor_class": 58,
-      "flags": [
-        "sentinel",
-        "aggressive"
-      ],
-      "description": "The Bird Spider has very powerful jaws.",
-      "inventory": [
-        6314,
-        6306
-      ]
-    },
-    "6311": {
-      "vnum": 6311,
-      "name": "hermit",
-      "short_desc": "the hermit",
-      "long_desc": "The hermit sits here and warns, 'Go back before it is too late!'",
-      "level": 7,
-      "alignment": 750,
-      "hp_dice": "2d8+35",
-      "damage_dice": "1d6+5",
-      "gold": 1625,
-      "exp": 188,
-      "armor_class": 4,
-      "flags": [
-        "sentinel",
-        "scavenger",
-        "memory"
-      ],
-      "description": "A dishevelled veteran warrior in disguise is what he is, but he\nmeans well.",
-      "inventory": [
-        6302
-      ]
-    },
-    "6312": {
-      "vnum": 6312,
-      "name": "donjonkeeper",
-      "short_desc": "the Donjonkeeper",
-      "long_desc": "The Donjonkeeper eyes you and wonders how pure your soul is.",
-      "level": 25,
-      "alignment": 1000,
-      "hp_dice": "5d10+450",
-      "damage_dice": "2d8+37",
-      "gold": 70500,
-      "exp": 984,
-      "armor_class": -1,
-      "flags": [
-        "special",
-        "sentinel",
-        "scavenger",
-        "aggr_evil",
-        "memory"
-      ],
-      "description": "He delves deeper into you as you stare at him.  Only those free of taint\nwill be allowed to remain here safely.",
-      "inventory": [
-        6301,
-        6109
-      ],
-      "loot_table": [
-        {
-          "vnum": 6309,
-          "chance": 20
-        },
-        {
-          "vnum": 6310,
-          "chance": 20
-        },
-        {
-          "vnum": 6311,
-          "chance": 20
-        },
-        {
-          "vnum": 6312,
-          "chance": 20
-        },
-        {
-          "vnum": 6313,
-          "chance": 20
-        },
-        {
-          "vnum": 6314,
-          "chance": 20
-        },
-        {
-          "vnum": 6315,
-          "chance": 20
-        },
-        {
-          "vnum": 6316,
-          "chance": 20
-        },
-        {
-          "vnum": 6317,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100
-    },
-    "6313": {
-      "vnum": 6313,
-      "name": "guardian",
-      "short_desc": "the guardian",
-      "long_desc": "The guardian is obviously not doing his job.",
-      "level": 17,
-      "alignment": 250,
-      "hp_dice": "17d10+220",
-      "damage_dice": "5d7+7",
-      "gold": 12500,
-      "exp": 1020,
-      "armor_class": 49,
-      "flags": [
-        "aggressive",
-        "stay_zone"
-      ],
-      "description": "He looks like a lazy bum who sleeps half the time.",
-      "inventory": [
-        6303
-      ]
-    },
-    "6314": {
-      "vnum": 6314,
-      "name": "the Spider Queen",
-      "short_desc": "Zyraxxis the Spider Queen",
-      "long_desc": "A colossal spider queen lurks amid a throne of webs.",
-      "level": 26,
-      "alignment": -1000,
-      "hp_dice": "26d10+328",
-      "damage_dice": "7d8+9",
-      "gold": 92500,
-      "exp": 1560,
-      "armor_class": 22,
-      "flags": [
-        "no_bash",
-        "boss",
-        "scavenger",
-        "no_summmon",
-        "aggr_good",
-        "special",
-        "sentinel",
-        "memory",
-        "no_charm"
-      ],
-      "description": "She is a very attractive spider with an ornate gown.  She tempts you\ninto being one of her many slaves.  She does not possess the venomous\nfangs of normal spiders, but then, as you realize, she does not need\nthem.",
-      "inventory": [
-        6301,
-        6302,
-        6303,
-        6304
-      ],
-      "boss": true,
-      "boss_id": "spider_queen",
-      "boss_title": "the Webbreaker",
-      "boss_achievement": "boss_spider_queen",
-      "boss_loot_table": [
-        6306,
-        6307,
-        6308
-      ],
-      "boss_loot_chance": 85,
-      "boss_config": {
-        "enrage_time": 75,
-        "enrage_multiplier": 1.5,
-        "ability_interval": 4.0,
-        "phases": [
-          {
-            "threshold": 65,
-            "message": "The Spider Queen screeches and egg sacs split!",
-            "spawn_adds": {
-              "6301": 3
-            }
-          },
-          {
-            "threshold": 35,
-            "message": "The Spider Queen thrashes, exposing her underside!"
-          }
-        ],
-        "abilities": [
-          {
-            "name": "Web Trap",
-            "telegraph": "The Spider Queen lifts her forelegs, webbing the air!",
-            "cast_time": 2,
-            "cooldown": 14,
-            "damage_dice": "3d6+4",
-            "dodge": true,
-            "vulnerable_after": 3
-          },
-          {
-            "name": "Poison Spit",
-            "telegraph": "The Spider Queen gurgles, venom pooling in her maw!",
-            "cast_time": 2,
-            "cooldown": 12,
-            "damage_dice": "4d4+6",
-            "aoe": true,
-            "dodge": true
-          }
-        ]
-      },
-      "loot_table": [
-        {
-          "vnum": 6309,
-          "chance": 20
-        },
-        {
-          "vnum": 6310,
-          "chance": 20
-        },
-        {
-          "vnum": 6311,
-          "chance": 20
-        },
-        {
-          "vnum": 6312,
-          "chance": 20
-        },
-        {
-          "vnum": 6313,
-          "chance": 20
-        },
-        {
-          "vnum": 6314,
-          "chance": 20
-        },
-        {
-          "vnum": 6315,
-          "chance": 20
-        },
-        {
-          "vnum": 6316,
-          "chance": 20
-        },
-        {
-          "vnum": 6317,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100
-    },
-    "6315": {
-      "vnum": 6315,
-      "name": "ki-rin",
-      "short_desc": "the Ki-Rin",
-      "long_desc": "The Ki-Rin smiles good-naturedly to you.",
-      "level": 26,
-      "alignment": 1000,
-      "hp_dice": "6d10+650",
-      "damage_dice": "3d6+46",
-      "gold": 92500,
-      "exp": 1036,
-      "armor_class": -4,
-      "flags": [
-        "special",
-        "sentinel",
-        "scavenger",
-        "aggr_evil",
-        "memory",
-        "no_charm",
-        "no_summmon"
-      ],
-      "description": "She is the last bastion of good in this realm.  Her mission is to\nsomeday free the slaves of the Empress.  She has been trapped here for\ntime eternal, and now the evil power of Arachnos feeds upon her intense\nmagical energies.  She will never give up here fight against evil,\nthough, and will continue her work in whatever manner presents itself.",
-      "inventory": [
-        6109,
-        6109
-      ],
-      "loot_table": [
-        {
-          "vnum": 6309,
-          "chance": 20
-        },
-        {
-          "vnum": 6310,
-          "chance": 20
-        },
-        {
-          "vnum": 6311,
-          "chance": 20
-        },
-        {
-          "vnum": 6312,
-          "chance": 20
-        },
-        {
-          "vnum": 6313,
-          "chance": 20
-        },
-        {
-          "vnum": 6314,
-          "chance": 20
-        },
-        {
-          "vnum": 6315,
-          "chance": 20
-        },
-        {
-          "vnum": 6316,
-          "chance": 20
-        },
-        {
-          "vnum": 6317,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100
-    },
-    "6316": {
-      "vnum": 6316,
-      "name": "dragon",
-      "short_desc": "the young wormkin",
-      "long_desc": "A wormkin with no teeth plays here.",
-      "level": 9,
-      "alignment": 50,
-      "hp_dice": "9d10+124",
-      "damage_dice": "3d5+6",
-      "gold": 3750,
-      "exp": 540,
-      "armor_class": 73,
-      "flags": [
-        "sentinel"
-      ],
-      "description": "It is a rather small dragon, and you almost feel sad about killing it.",
-      "inventory": [
-        6301
-      ]
-    },
-    "6317": {
-      "vnum": 6317,
-      "name": "dragon",
-      "short_desc": "the elder wormkin",
-      "long_desc": "A wormkin that has grown a bit stares at you inquisitively.",
-      "level": 16,
-      "alignment": -300,
-      "hp_dice": "16d10+208",
-      "damage_dice": "5d7+6",
-      "gold": 14500,
-      "exp": 960,
-      "armor_class": 52,
-      "flags": [
-        "sentinel"
-      ],
-      "description": "A medium-sized dragon -- seems it hasn't killed anything yet by itself, \nthough there is a first time for everything...",
-      "inventory": [
-        6315,
-        6308
-      ]
+    "west": {
+     "to_room": 6303,
+     "description": "An open path leads to The Wasp Hive"
     }
+   }
   },
-  "objects": {
-    "6300": {
-      "vnum": 6300,
-      "name": "key",
-      "short_desc": "a black key",
-      "room_desc": "A somewhat plain black key has been left here.",
-      "item_type": "key",
-      "weight": 1,
-      "value": 0,
-      "type": "key"
-    },
-    "6301": {
-      "vnum": 6301,
-      "name": "knife",
-      "short_desc": "a very sharp knife",
-      "room_desc": "A very sharp knife lies here.",
-      "item_type": "weapon",
-      "weight": 9,
-      "value": 1000,
-      "damage_dice": "8d1",
-      "weapon_type": "pierce",
-      "type": "weapon"
-    },
-    "6302": {
-      "vnum": 6302,
-      "name": "hat",
-      "short_desc": "a wizard's hat",
-      "room_desc": "A blue wizard's hat lies here.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 20000,
-      "armor_bonus": 6,
-      "type": "armor",
-      "wear_slot": "head",
-      "armor": 2,
-      "armor_class": 2
-    },
-    "6303": {
-      "vnum": 6303,
-      "name": "headress",
-      "short_desc": "a pontiff's headress",
-      "room_desc": "A white cone-shaped head ornament with religious symbols lies here.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 20000,
-      "armor_bonus": 6,
-      "type": "treasure",
-      "armor": 8
-    },
-    "6304": {
-      "vnum": 6304,
-      "name": "visor",
-      "short_desc": "a black knight's visor",
-      "room_desc": "A black visor sits here.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 20000,
-      "armor_bonus": 8,
-      "type": "armor",
-      "wear_slot": "head",
-      "armor": 2,
-      "armor_class": 4
-    },
-    "6305": {
-      "vnum": 6305,
-      "name": "potion",
-      "short_desc": "a thick white potion",
-      "room_desc": "A thick white potion has been left here.",
-      "item_type": "potion",
-      "weight": 9,
-      "value": 21000,
-      "type": "potion"
-    },
-    "6306": {
-      "vnum": 6306,
-      "name": "a silken mantle",
-      "short_desc": "a silken mantle",
-      "room_desc": "A mantle woven from spider silk lies here.",
-      "type": "armor",
-      "weight": 2,
-      "cost": 1400,
-      "armor": 7,
-      "wear_slot": "shoulders",
-      "armor_class": 2
-    },
-    "6307": {
-      "vnum": 6307,
-      "name": "a venom-laced stinger",
-      "short_desc": "a venom-laced stinger",
-      "room_desc": "A wicked stinger dripping venom rests here.",
-      "type": "weapon",
-      "weight": 4,
-      "cost": 1500,
-      "damage_dice": "2d6+2",
-      "weapon_type": "pierce"
-    },
-    "6308": {
-      "vnum": 6308,
-      "name": "a broodmother idol",
-      "short_desc": "a broodmother idol",
-      "room_desc": "A small idol of a spider queen lies here.",
-      "type": "treasure",
-      "weight": 1,
-      "cost": 1200
-    },
-    "6309": {
-      "vnum": 6309,
-      "name": "spidersteel axe",
-      "short_desc": "a spidersteel axe",
-      "room_desc": "A spidersteel axe lies here.",
-      "description": "A venomous axe.",
-      "item_type": "weapon",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "wield",
-      "weapon_type": "slash",
-      "damage_dice": "2d6+4",
-      "affects": [
-        {
-          "type": "damroll",
-          "value": 3
-        }
-      ],
-      "set_id": 63,
-      "type": "weapon"
-    },
-    "6310": {
-      "vnum": 6310,
-      "name": "silkguard shield",
-      "short_desc": "a silkguard shield",
-      "room_desc": "A silkguard shield lies here.",
-      "description": "A paladin's shield.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "shield",
-      "armor_bonus": 3,
-      "affects": [
-        {
-          "type": "wis",
-          "value": 1
-        }
-      ],
-      "set_id": 63,
-      "type": "armor",
-      "armor": 3,
-      "armor_class": 2
-    },
-    "6311": {
-      "vnum": 6311,
-      "name": "venom\u2011bound sigil",
-      "short_desc": "a venom\u2011bound sigil",
-      "room_desc": "A venom\u2011bound sigil lies here.",
-      "description": "A deathknight's sigil.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "neck1",
-      "affects": [
-        {
-          "type": "damroll",
-          "value": 3
-        }
-      ],
-      "set_id": 63,
-      "type": "treasure",
-      "armor": 9
-    },
-    "6312": {
-      "vnum": 6312,
-      "name": "silk\u2011blessed relic",
-      "short_desc": "a silk\u2011blessed relic",
-      "room_desc": "A silk\u2011blessed relic lies here.",
-      "description": "A cleric's relic.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "hold",
-      "affects": [
-        {
-          "type": "wis",
-          "value": 2
-        },
-        {
-          "type": "max_mana",
-          "value": 25
-        }
-      ],
-      "set_id": 63,
-      "type": "treasure",
-      "armor": 13
-    },
-    "6313": {
-      "vnum": 6313,
-      "name": "poisonweave focus",
-      "short_desc": "a poisonweave focus",
-      "room_desc": "A poisonweave focus lies here.",
-      "description": "A mage's focus.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "hold",
-      "affects": [
-        {
-          "type": "int",
-          "value": 3
-        }
-      ],
-      "set_id": 63,
-      "type": "treasure",
-      "armor": 5
-    },
-    "6314": {
-      "vnum": 6314,
-      "name": "spinneret lute",
-      "short_desc": "a spinneret lute",
-      "room_desc": "A spinneret lute lies here.",
-      "description": "A bard's lute.",
-      "item_type": "weapon",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "wield",
-      "weapon_type": "mace",
-      "damage_dice": "1d6+2",
-      "affects": [
-        {
-          "type": "cha",
-          "value": 3
-        }
-      ],
-      "set_id": 63,
-      "type": "treasure"
-    },
-    "6315": {
-      "vnum": 6315,
-      "name": "silkfanged stiletto",
-      "short_desc": "a silkfanged stiletto",
-      "room_desc": "A silkfanged stiletto lies here.",
-      "description": "A rogue's stiletto.",
-      "item_type": "weapon",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "wield",
-      "weapon_type": "pierce",
-      "damage_dice": "1d6+3",
-      "affects": [
-        {
-          "type": "dex",
-          "value": 3
-        },
-        {
-          "type": "hitroll",
-          "value": 1
-        }
-      ],
-      "set_id": 63,
-      "type": "weapon"
-    },
-    "6316": {
-      "vnum": 6316,
-      "name": "web\u2011hunter band",
-      "short_desc": "a web\u2011hunter band",
-      "room_desc": "A web\u2011hunter band lies here.",
-      "description": "A ranger's ring.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "finger1",
-      "affects": [
-        {
-          "type": "dex",
-          "value": 2
-        },
-        {
-          "type": "hitroll",
-          "value": 1
-        }
-      ],
-      "set_id": 63,
-      "type": "armor",
-      "armor": 9,
-      "armor_class": 4
-    },
-    "6317": {
-      "vnum": 6317,
-      "name": "venomproof mantle",
-      "short_desc": "a venomproof mantle",
-      "room_desc": "A venomproof mantle lies here.",
-      "description": "A protective mantle.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "about",
-      "armor_bonus": 2,
-      "affects": [
-        {
-          "type": "poison_resist",
-          "value": 10
-        }
-      ],
-      "set_id": 63,
-      "type": "armor",
-      "armor": 1,
-      "armor_class": 2
+  "6303": {
+   "vnum": 6303,
+   "name": "Wasp Hive",
+   "map": {
+    "x": -38,
+    "y": -18,
+    "z": 1
+   },
+   "sector_type": "field",
+   "mob_resets": [
+    {
+     "vnum": 6305,
+     "max": 1
     }
+   ],
+   "flags": [],
+   "description": "Drones scuttle about in this room. The cells on the walls are honeycomb\nin shape and many of the maggots and wasps you see have fang-marks on\ntheir bodies. You sense some order in their markings. The air is fresh\nand clean. The ground is soft underfoot.",
+   "exits": {
+    "east": {
+     "to_room": 6302,
+     "description": "An open path leads to The Webby Passage"
+    }
+   }
+  },
+  "6304": {
+   "vnum": 6304,
+   "name": "Webby Passage",
+   "map": {
+    "x": -37,
+    "y": -17,
+    "z": 1
+   },
+   "sector_type": "field",
+   "mob_resets": [
+    {
+     "vnum": 6301,
+     "max": 10
+    }
+   ],
+   "flags": [],
+   "description": "Another webby passage, all sticky and wet. Tiny ballooning spiders fill\nthe air. It seems that these young ones are newborns. The air is fresh\nand clean. The ground is soft underfoot.",
+   "exits": {
+    "east": {
+     "to_room": 6305,
+     "description": "An open path leads to Beneath The Busy Path"
+    },
+    "south": {
+     "to_room": 6302,
+     "description": "An open path leads to The Webby Passage"
+    }
+   }
+  },
+  "6305": {
+   "vnum": 6305,
+   "name": "Beneath the Busy Path",
+   "map": {
+    "x": -36,
+    "y": -17,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "You here the sounds of crawling arachnids above. The rhythms of the\nfootsteps suggest a primitive order in there movement. The light seems\nbrighter upwards. The ground is soft underfoot. Tall grass sways in a\ngentle breeze.",
+   "exits": {
+    "west": {
+     "to_room": 6304,
+     "description": "An open path leads to The Webby Passage"
+    },
+    "up": {
+     "to_room": 6306,
+     "description": "An open path leads to On The Busy Path"
+    }
+   }
+  },
+  "6306": {
+   "vnum": 6306,
+   "name": "On The Busy Path",
+   "map": {
+    "x": -35,
+    "y": -16,
+    "z": 1
+   },
+   "sector_type": "field",
+   "mob_resets": [
+    {
+     "vnum": 6301,
+     "max": 10
+    },
+    {
+     "vnum": 6301,
+     "max": 10
+    }
+   ],
+   "flags": [],
+   "description": "Spiders, spiders, everywhere! It is almost ant-like in efficiency with\none big difference. The spiders here are carrying ant-corpses, as well\nas rats, wolves, and humans. The open sky stretches overhead. The air is\nfresh and clean.",
+   "exits": {
+    "south": {
+     "to_room": 6307,
+     "description": "An open path leads to On The Busy Path"
+    },
+    "down": {
+     "to_room": 6305,
+     "description": "An open path leads to Beneath The Busy Path"
+    }
+   }
+  },
+  "6307": {
+   "vnum": 6307,
+   "name": "On The Busy Path",
+   "map": {
+    "x": -35,
+    "y": -19,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "Spiders, spiders, everywhere! It is almost ant-like in efficiency with\none big difference. The spiders here are carrying ant-corpses, as well\nas cats, wolves, and humans. Wildflowers dot the landscape. The open sky\nstretches overhead.",
+   "exits": {
+    "north": {
+     "to_room": 6306,
+     "description": "An open path leads to On The Busy Path"
+    },
+    "east": {
+     "to_room": 6308,
+     "description": "An open path leads to On The Busy Path"
+    },
+    "south": {
+     "to_room": 6308
+    }
+   }
+  },
+  "6308": {
+   "vnum": 6308,
+   "name": "On The Busy Path",
+   "map": {
+    "x": -35,
+    "y": -22,
+    "z": 1
+   },
+   "sector_type": "field",
+   "mob_resets": [
+    {
+     "vnum": 6308,
+     "max": 5
+    },
+    {
+     "vnum": 6308,
+     "max": 5
+    },
+    {
+     "vnum": 6308,
+     "max": 5
+    },
+    {
+     "vnum": 6308,
+     "max": 5
+    },
+    {
+     "vnum": 6308,
+     "max": 5
+    }
+   ],
+   "flags": [],
+   "description": "Spiders, spiders, everywhere! It is almost ant-like in efficiency with\none big difference. The spiders here are carrying ant-corpses, as well\nas cats, dogs, and humans. Wildflowers dot the landscape. Tall grass\nsways in a gentle breeze.",
+   "exits": {
+    "north": {
+     "to_room": 6307,
+     "description": "An open path leads to On The Busy Path"
+    },
+    "west": {
+     "to_room": 6309,
+     "description": "An open path leads to A Split In The Path"
+    }
+   }
+  },
+  "6309": {
+   "vnum": 6309,
+   "name": "A Split In The Path",
+   "map": {
+    "x": -36,
+    "y": -22,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "As always, there is a split in the road. One road is strewn with cricket\nfeelers. The other is well-kept and suitable for smooth travelling. The\nwebbing that was prevalent in earlier rooms is almost non-existant now.\nThe open sky stretches overhead. The ground is soft underfoot.",
+   "exits": {
+    "north": {
+     "to_room": 6310,
+     "description": "An open path leads to A Fuzzy Tree Limb"
+    },
+    "east": {
+     "to_room": 6308,
+     "description": "An open path leads to On The Busy Path"
+    },
+    "south": {
+     "to_room": 6320,
+     "description": "An open path leads to The Webless Path"
+    }
+   }
+  },
+  "6310": {
+   "vnum": 6310,
+   "name": "Fuzzy Tree Limb",
+   "map": {
+    "x": -36,
+    "y": -21,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "The area is a 'fuzzy' tree limb. Interesting, since the branches seem to\nhave 'hairs' sprouting from its bark. As you look closer you see\nmillions of aphids covering each limb. The open sky stretches overhead.\nThe ground is soft underfoot.",
+   "exits": {
+    "south": {
+     "to_room": 6309,
+     "description": "An open path leads to A Split In The Path"
+    },
+    "west": {
+     "to_room": 6311,
+     "description": "An open path leads to The Tree Trunk"
+    }
+   }
+  },
+  "6311": {
+   "vnum": 6311,
+   "name": "Tree Trunk",
+   "map": {
+    "x": -37,
+    "y": -21,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [
+    "no_mob"
+   ],
+   "description": "You feel that you can rest here safely. There is evidence of webbing\nhere, but it is of a finer quality. The open sky stretches overhead.\nWildflowers dot the landscape.",
+   "exits": {
+    "east": {
+     "to_room": 6310,
+     "description": "An open path leads to A Fuzzy Tree Limb"
+    },
+    "south": {
+     "to_room": 6312,
+     "description": "An open path leads to The Tree Lair Entrance"
+    }
+   }
+  },
+  "6312": {
+   "vnum": 6312,
+   "name": "Tree Lair Entrance",
+   "map": {
+    "x": -37,
+    "y": -22,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "It seems the inhabitant of this place does not web her victims, as\nevidenced by the remains before. The area is cluttered with\ndesiccated corpses, apparently bitten but unwebbed, and drained of their\nlife juices. Wildflowers dot the landscape. Tall grass sways in a gentle\nbreeze.",
+   "exits": {
+    "north": {
+     "to_room": 6311,
+     "description": "An open path leads to The Tree Trunk"
+    },
+    "west": {
+     "to_room": 6313,
+     "description": "An open path leads to The Wolf Spider Lair"
+    }
+   }
+  },
+  "6313": {
+   "vnum": 6313,
+   "name": "Wolf Spider Lair",
+   "map": {
+    "x": -38,
+    "y": -22,
+    "z": 1
+   },
+   "sector_type": "field",
+   "mob_resets": [
+    {
+     "vnum": 6303,
+     "max": 1
+    }
+   ],
+   "flags": [],
+   "description": "Very dark, as all lairs of spiders are. Not much of furnishings save an\nexit. The wolf spider keeps no corpses here, but rather throws them out\nat her leisure. Wildflowers dot the landscape. Tall grass sways in a\ngentle breeze.",
+   "exits": {
+    "east": {
+     "to_room": 6312,
+     "description": "An open path leads to The Tree Lair Entrance"
+    }
+   }
+  },
+  "6320": {
+   "vnum": 6320,
+   "name": "The Webless Path",
+   "map": {
+    "x": -36,
+    "y": -23,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "Strange. No webbing here. In fact, no sounds whatsoever. The path\ncontinues northward, where you find that you may have to tightrope your\nway across a ravine. The air is fresh and clean. Wildflowers dot the\nlandscape.",
+   "exits": {
+    "north": {
+     "to_room": 6309,
+     "description": "An open path leads to A Split In The Path"
+    },
+    "west": {
+     "to_room": 6321,
+     "description": "An open path leads to Above The Ravine"
+    }
+   }
+  },
+  "6321": {
+   "vnum": 6321,
+   "name": "Above The Ravine",
+   "map": {
+    "x": -37,
+    "y": -23,
+    "z": 1
+   },
+   "sector_type": "field",
+   "mob_resets": [
+    {
+     "vnum": 6306,
+     "max": 3
+    }
+   ],
+   "flags": [],
+   "description": "Stranger still. Your feet get a real firm grip on the spiderline. You\nare above a deep ravine. This line connects you between two trees. Below\nVisible is a prismatic web with lots of animal bones caught in it: some\nbear and small deer bones in fact. No human skeletons are visible (yet).\nThe open sky stretches overhead. The air is fresh and clean.",
+   "exits": {
+    "east": {
+     "to_room": 6320,
+     "description": "An open path leads to The Webless Path"
+    },
+    "south": {
+     "to_room": 6323,
+     "description": "An open path leads to The Web Forest"
+    },
+    "down": {
+     "to_room": 6322,
+     "description": "An open path leads to The Rainbow Web"
+    }
+   }
+  },
+  "6322": {
+   "vnum": 6322,
+   "name": "The Rainbow Web",
+   "map": {
+    "x": -38,
+    "y": -24,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "This is the rainbow web -- each strand, each link, a hue of violently\nsharp colors and contrasts. The resident here seems to have a command of\nlight as well. Wildflowers dot the landscape. The ground is soft\nunderfoot.",
+   "exits": {
+    "up": {
+     "to_room": 6321,
+     "description": "An open path leads to Above The Ravine"
+    }
+   }
+  },
+  "6323": {
+   "vnum": 6323,
+   "name": "The Web Forest",
+   "map": {
+    "x": -37,
+    "y": -24,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "The trees here take on a different appearance -- they are not trees\nanymore, but disjointed make-shift silken made shafts, sticky to the\ntouch, and webby in texture. This is another world it would appear. Tall\ngrass sways in a gentle breeze. The air is fresh and clean.",
+   "exits": {
+    "north": {
+     "to_room": 6321,
+     "description": "An open path leads to Above The Ravine"
+    },
+    "down": {
+     "to_room": 6324,
+     "description": "An open path leads to The Slave Pit"
+    }
+   }
+  },
+  "6324": {
+   "vnum": 6324,
+   "name": "The Slave Pit",
+   "map": {
+    "x": -38,
+    "y": -25,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "The entrance opens to the slave pit. A voice blares in the distance,\n'Get back to work, maggots!' Rails upon rails of mined gold and silver\nclutter the trail beneath you. Wildflowers dot the landscape. Tall grass\nsways in a gentle breeze.",
+   "exits": {
+    "east": {
+     "to_room": 6325
+    },
+    "up": {
+     "to_room": 6323,
+     "description": "An open path leads to The Web Forest"
+    }
+   }
+  },
+  "6325": {
+   "vnum": 6325,
+   "name": "The Tether Path",
+   "map": {
+    "x": -36,
+    "y": -25,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "Another tether path just like the rest of them. Surprisingly well-lit by\nthe golden orbs that hang from the sides, Visible is the paths become\nfiner and finer in quality. The open sky stretches overhead. Wildflowers\ndot the landscape.",
+   "exits": {
+    "east": {
+     "to_room": 6326,
+     "description": "An open path leads to A Road Crossing"
+    },
+    "west": {
+     "to_room": 6324,
+     "description": "An open path leads to The Slave Pit"
+    }
+   }
+  },
+  "6326": {
+   "vnum": 6326,
+   "name": "A Road Crossing",
+   "map": {
+    "x": -35,
+    "y": -25,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "Another shifty little strand of webs, almost ethereal in nature. The\nopen sky stretches overhead. Tall grass sways in a gentle breeze. The\nopen terrain stretches out, grass swaying in the breeze. The sky hangs\nvast overhead.",
+   "exits": {
+    "west": {
+     "to_room": 6325,
+     "description": "An open path leads to The Tether Path"
+    },
+    "up": {
+     "to_room": 6327,
+     "description": "An open path leads to A Leader Strand"
+    }
+   }
+  },
+  "6327": {
+   "vnum": 6327,
+   "name": "A Leader Strand",
+   "map": {
+    "x": -34,
+    "y": -24,
+    "z": 1
+   },
+   "sector_type": "field",
+   "mob_resets": [
+    {
+     "vnum": 6309,
+     "max": 2
+    }
+   ],
+   "flags": [],
+   "description": "This strand is weightier, more sturdy. It shimmers as you step on it.\nThe area is definitely not in the Garathormian realms anymore. Just where\nThe area is you can't tell. It feels like you're moving through ether.\nYou can still get back down to more surer lands. The ground is soft\nunderfoot. Tall grass sways in a gentle breeze.",
+   "exits": {
+    "north": {
+     "to_room": 6328,
+     "description": "An open path leads to The Entrance Of The Ethereal Web"
+    },
+    "down": {
+     "to_room": 6326,
+     "description": "An open path leads to A Road Crossing"
+    }
+   }
+  },
+  "6328": {
+   "vnum": 6328,
+   "name": "The Entrance Of The Ethereal Web",
+   "map": {
+    "x": -34,
+    "y": -22,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "This is the entrance to ethereal web. Flickering in and out, in and out,\neach strand reveals a different hue from black to green to blue. The\nopen sky stretches overhead. The air is fresh and clean.",
+   "exits": {
+    "south": {
+     "to_room": 6331,
+     "description": "An open path leads to The Base Of The Web"
+    }
+   }
+  },
+  "6330": {
+   "vnum": 6330,
+   "name": "The Young Wormkin's Crib",
+   "map": {
+    "x": -33,
+    "y": -29,
+    "z": 1
+   },
+   "sector_type": "field",
+   "mob_resets": [
+    {
+     "vnum": 6306,
+     "max": 3
+    },
+    {
+     "vnum": 6316,
+     "max": 1
+    }
+   ],
+   "flags": [],
+   "description": "A playpen of sorts, with maggots of wasps and other baby vermin lying\nabout. You feel that humans have been played with here too, and eaten\nlater. You sense that the maker of this place has an appetite for dragon\nmeat, and uses this room as a breeding area. The ground is soft\nunderfoot. The open sky stretches overhead.",
+   "exits": {
+    "up": {
+     "to_room": 6331,
+     "description": "An open path leads to The Base Of The Web"
+    }
+   }
+  },
+  "6331": {
+   "vnum": 6331,
+   "name": "The Base Of The Web",
+   "map": {
+    "x": -32,
+    "y": -28,
+    "z": 1
+   },
+   "sector_type": "field",
+   "mob_resets": [
+    {
+     "vnum": 6306,
+     "max": 3
+    }
+   ],
+   "flags": [],
+   "description": "Large strands connect at this point. The node shimmers and flickers\nwithin the ether. You see many flying creatures -- insects, pegasi, and\ndragon wormkins -- navigate the dangerous passages of the web. Exits go\nin many directions. The open sky stretches overhead. Wildflowers dot the\nlandscape.",
+   "exits": {
+    "east": {
+     "to_room": 6332,
+     "description": "An open path leads to Through The Trees"
+    },
+    "south": {
+     "to_room": 6333,
+     "description": "An open path leads to Above The Clouds"
+    },
+    "west": {
+     "to_room": 6334,
+     "description": "An open path leads to On A Cloud"
+    },
+    "up": {
+     "to_room": 6340,
+     "description": "To the up lies The Elder Wormkin's Room."
+    },
+    "down": {
+     "to_room": 6330
+    }
+   }
+  },
+  "6332": {
+   "vnum": 6332,
+   "name": "Through The Trees",
+   "map": {
+    "x": -31,
+    "y": -28,
+    "z": 1
+   },
+   "sector_type": "field",
+   "mob_resets": [
+    {
+     "vnum": 6304,
+     "max": 1
+    }
+   ],
+   "flags": [],
+   "description": "This part of the web intersects through the branches of some trees.\nVarious leaves and other debris that the many drones have not picked up\nyet lie here. Tall grass sways in a gentle breeze. Wildflowers dot the\nlandscape.",
+   "exits": {
+    "south": {
+     "to_room": 6335,
+     "description": "An open path leads to A Link In The Ethereal Web"
+    },
+    "west": {
+     "to_room": 6331,
+     "description": "To the west lies The Base Of The Web."
+    }
+   }
+  },
+  "6333": {
+   "vnum": 6333,
+   "name": "Above The Clouds",
+   "map": {
+    "x": -32,
+    "y": -29,
+    "z": 1
+   },
+   "sector_type": "field",
+   "mob_resets": [
+    {
+     "vnum": 6307,
+     "max": 5
+    }
+   ],
+   "flags": [],
+   "description": "Visible is all of Garathorm in this ethereal web. Many of the larger\ndragons that do wish to fly seem to fly away from the sticky strands of\nthe web. The air is fresh and clean. Wildflowers dot the landscape.",
+   "exits": {
+    "north": {
+     "to_room": 6331
+    },
+    "east": {
+     "to_room": 6335,
+     "description": "To the east lies A Link In The Ethereal Web."
+    }
+   }
+  },
+  "6334": {
+   "vnum": 6334,
+   "name": "On A Cloud",
+   "map": {
+    "x": -34,
+    "y": -28,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "This cloud is rather thick in consistency. You suddenly realize this is\nnot a typical cloud, but it might be the nest of an aerial creature. The\nground is soft underfoot. Wildflowers dot the landscape.",
+   "exits": {
+    "east": {
+     "to_room": 6331
+    },
+    "down": {
+     "to_room": 6331,
+     "description": "An open path leads to The Base Of The Web"
+    }
+   }
+  },
+  "6335": {
+   "vnum": 6335,
+   "name": "A Link In The Ethereal Web",
+   "map": {
+    "x": -31,
+    "y": -29,
+    "z": 1
+   },
+   "sector_type": "field",
+   "mob_resets": [
+    {
+     "vnum": 6307,
+     "max": 5
+    }
+   ],
+   "flags": [],
+   "description": "This is another link in the ethereal web. Various creatures seem to get\ncaught (or hypnotized) by its sticky strands. Wildflowers dot the\nlandscape. The ground is soft underfoot.",
+   "exits": {
+    "north": {
+     "to_room": 6332
+    },
+    "east": {
+     "to_room": 6336,
+     "description": "An open path leads to The Tenuous Strand"
+    },
+    "west": {
+     "to_room": 6333,
+     "description": "To the west lies Above The Clouds."
+    }
+   }
+  },
+  "6336": {
+   "vnum": 6336,
+   "name": "The Tenuous Strand",
+   "map": {
+    "x": -30,
+    "y": -29,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "Very windy here since it goes up into the sky somewhat. Still, it is\nsafe enough to move around. Tall grass sways in a gentle breeze. The air\nis fresh and clean.",
+   "exits": {
+    "south": {
+     "to_room": 6341,
+     "description": "To the south lies Another Tree Limb."
+    },
+    "west": {
+     "to_room": 6335,
+     "description": "To the west lies A Link In The Ethereal Web."
+    }
+   }
+  },
+  "6340": {
+   "vnum": 6340,
+   "name": "The Elder Wormkin's Room",
+   "map": {
+    "x": -31,
+    "y": -27,
+    "z": 1
+   },
+   "sector_type": "field",
+   "mob_resets": [
+    {
+     "vnum": 6317,
+     "max": 1
+    }
+   ],
+   "flags": [],
+   "description": "A more mature wormkin it seems resides here. Various tomes of arcane\nlore clutter the area, along with shards of armor and weaponry.\nWildflowers dot the landscape. The ground is soft underfoot.",
+   "exits": {
+    "down": {
+     "to_room": 6331,
+     "description": "An open path leads to The Base Of The Web"
+    }
+   }
+  },
+  "6341": {
+   "vnum": 6341,
+   "name": "Another Tree Limb",
+   "map": {
+    "x": -30,
+    "y": -30,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "Once again the web crosses another tree limb. To the side you see the\npossible entrance to another creature's lair. The air is fresh and\nclean. Wildflowers dot the landscape.",
+   "exits": {
+    "north": {
+     "to_room": 6336,
+     "description": "To the north lies The Tenuous Strand."
+    },
+    "east": {
+     "to_room": 6342,
+     "description": "An open path leads to The Bird Spider's Lair"
+    },
+    "south": {
+     "to_room": 6334,
+     "description": "An open path leads to On A Cloud"
+    },
+    "west": {
+     "to_room": 6345,
+     "description": "An open path leads to A Link In The Ethereal Web"
+    }
+   }
+  },
+  "6342": {
+   "vnum": 6342,
+   "name": "The Bird Spider's Lair",
+   "map": {
+    "x": -29,
+    "y": -30,
+    "z": 1
+   },
+   "sector_type": "field",
+   "mob_resets": [
+    {
+     "vnum": 6310,
+     "max": 1
+    }
+   ],
+   "flags": [],
+   "description": "This is a big game hunter among most spiders. Crushed jewels and weapons\nsuggest the inhabitant must have powerful jaws. Beware! Tall grass sways\nin a gentle breeze. The air is fresh and clean.",
+   "exits": {
+    "west": {
+     "to_room": 6341
+    }
+   }
+  },
+  "6345": {
+   "vnum": 6345,
+   "name": "A Link In The Ethereal Web",
+   "map": {
+    "x": -37,
+    "y": -30,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "This is another link in the ethereal web. Various creatures seem to get\ncaught (or hypnotized) by its sticky strands. The open sky stretches\noverhead. The ground is soft underfoot.",
+   "exits": {
+    "south": {
+     "to_room": 6350,
+     "description": "An open path leads to The Ki-Rin Chamber"
+    },
+    "west": {
+     "to_room": 6346,
+     "description": "An open path leads to The Quiet Tree Top"
+    }
+   }
+  },
+  "6346": {
+   "vnum": 6346,
+   "name": "The Quiet Tree Top",
+   "map": {
+    "x": -38,
+    "y": -30,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "This is a quiet tree top. Downwards Visible is a familiar path that may\nlead back to Garathorm. Tall grass sways in a gentle breeze. The ground\nis soft underfoot.",
+   "exits": {
+    "east": {
+     "to_room": 6345,
+     "description": "An open path leads to A Link In The Ethereal Web"
+    },
+    "west": {
+     "to_room": 6347,
+     "description": "An open path leads to On The Web"
+    },
+    "down": {
+     "to_room": 6132,
+     "description": "To the down lies Up In The Tree."
+    }
+   }
+  },
+  "6347": {
+   "vnum": 6347,
+   "name": "On The Web",
+   "map": {
+    "x": -39,
+    "y": -30,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "RRRRRRRRRRROOOOOOOOOOOOOAAAAAAAAAAAAAARR! You hear the roar of a\npowerful beast. Dragon, you think. You shiver in your boots as you\ntiptoe along this section of the web. The open sky stretches overhead.\nThe air is fresh and clean.",
+   "exits": {
+    "east": {
+     "to_room": 6346,
+     "description": "An open path leads to The Quiet Tree Top"
+    },
+    "south": {
+     "to_room": 6355,
+     "description": "An open path leads to A Link In The Ethereal Web"
+    }
+   }
+  },
+  "6350": {
+   "vnum": 6350,
+   "name": "The Ki-Rin Chamber",
+   "map": {
+    "x": -37,
+    "y": -31,
+    "z": 1
+   },
+   "sector_type": "field",
+   "mob_resets": [
+    {
+     "vnum": 6315,
+     "max": 1
+    }
+   ],
+   "flags": [],
+   "description": "A wise ki-rin was entrapped here many years ago. It is from her that the\nruler of this realm draws magical strength. The ground is soft\nunderfoot. Wildflowers dot the landscape.",
+   "exits": {
+    "north": {
+     "to_room": 6345,
+     "description": "To the north lies A Link In The Ethereal Web."
+    }
+   }
+  },
+  "6355": {
+   "vnum": 6355,
+   "name": "A Link In The Ethereal Web",
+   "map": {
+    "x": -41,
+    "y": -34,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "This is another link in the ethereal web. Various creatures seem to get\ncaught (or hypnotized) by its sticky strands. To the north you sense the\nheavy breathing of a fiery animal. The air is fresh and clean.\nWildflowers dot the landscape.",
+   "exits": {
+    "north": {
+     "to_room": 6360,
+     "description": "An open path leads to Yevaud's Lair"
+    },
+    "south": {
+     "to_room": 6365,
+     "description": "An open path leads to A Link In The Ethereal Web"
+    }
+   }
+  },
+  "6360": {
+   "vnum": 6360,
+   "name": "Yevaud's Lair",
+   "map": {
+    "x": -41,
+    "y": -33,
+    "z": 1
+   },
+   "sector_type": "field",
+   "mob_resets": [
+    {
+     "vnum": 6302,
+     "max": 1
+    }
+   ],
+   "flags": [],
+   "description": "Yevaud, the Usurper of Garathorm, resides here. A voice cries out,\n'BEWARE, the Usurper of Garathorm lives here! FLEE while you can!' But\neven Yevaud has his master... or so you deduce. The air is fresh and\nclean. The open sky stretches overhead.",
+   "exits": {
+    "south": {
+     "to_room": 6355,
+     "description": "An open path leads to A Link In The Ethereal Web"
+    }
+   }
+  },
+  "6365": {
+   "vnum": 6365,
+   "name": "A Link In The Ethereal Web",
+   "map": {
+    "x": -41,
+    "y": -35,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "This is another link in the ethereal web. Various creatures seem to get\ncaught (or hypnotized) by its sticky strands. A single spider line lies\nto the north, while ghastly seemings are due southward. The grim\nentrance of Arachnos' Lair is downward. The ground is soft underfoot.\nWildflowers dot the landscape.",
+   "exits": {
+    "north": {
+     "to_room": 6355,
+     "description": "To the north lies A Link In The Ethereal Web."
+    },
+    "east": {
+     "to_room": 6371,
+     "description": "To the east lies The Single Spider Line."
+    },
+    "south": {
+     "to_room": 6366,
+     "description": "An open path leads to The Entrance To The Donjonkeep"
+    },
+    "down": {
+     "to_room": 6390,
+     "description": "An open path leads to The Entrance To The Arachnos' Lair"
+    }
+   }
+  },
+  "6366": {
+   "vnum": 6366,
+   "name": "Entrance To The Donjonkeep",
+   "map": {
+    "x": -39,
+    "y": -40,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "A dark path at the end of the web strand, you see ahead a torch lit\nchamber where the souls of unavenged adventurers come and gnash their\nteeth. The howls and screams of many echo through the hall ways. You see\none definite path ahead. The ground is soft underfoot. Tall grass sways\nin a gentle breeze.",
+   "exits": {
+    "north": {
+     "to_room": 6367,
+     "description": "An open path leads to The Guardian's Room"
+    }
+   }
+  },
+  "6367": {
+   "vnum": 6367,
+   "name": "The Guardian's Room",
+   "map": {
+    "x": -39,
+    "y": -39,
+    "z": 1
+   },
+   "sector_type": "field",
+   "extra_descs": {
+    "": "chair"
+   },
+   "mob_resets": [
+    {
+     "vnum": 6313,
+     "max": 1
+    }
+   ],
+   "flags": [],
+   "description": "A chair sits here for a tireless guardian who ensures that no soul\nescapes. Other than that, the room is undecorated. The ground is soft\nunderfoot. Tall grass sways in a gentle breeze.",
+   "exits": {
+    "north": {
+     "to_room": 6368,
+     "description": "An open path leads to The Realm Of The Hopeless"
+    },
+    "south": {
+     "to_room": 6366
+    }
+   }
+  },
+  "6368": {
+   "vnum": 6368,
+   "name": "Realm Of The Hopeless",
+   "map": {
+    "x": -39,
+    "y": -38,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "Here you see many misguided souls who think they still live. They search\nfor those who killed them without warrant, and seek the free souls of\nliving beings to inhabit and perhaps adventure once more. The ground is\nsoft underfoot. The air is fresh and clean.",
+   "exits": {
+    "north": {
+     "to_room": 6369,
+     "description": "An open path leads to The Realm Of The Hopeless"
+    },
+    "south": {
+     "to_room": 6367
+    }
+   }
+  },
+  "6369": {
+   "vnum": 6369,
+   "name": "Realm Of The Hopeless",
+   "map": {
+    "x": -39,
+    "y": -37,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "Here you see many misguided souls who think they still live. They search\nfor those who killed them without warrant, and seek the free souls of\nliving beings to inhabit and perhaps adventure once more. The ground is\nsoft underfoot. The air is fresh and clean.",
+   "exits": {
+    "north": {
+     "to_room": 6370,
+     "description": "To the north lies The Donjonkeep."
+    },
+    "south": {
+     "to_room": 6368,
+     "description": "To the south lies Realm Of The Hopeless."
+    }
+   }
+  },
+  "6370": {
+   "vnum": 6370,
+   "name": "The Donjonkeep",
+   "map": {
+    "x": -39,
+    "y": -36,
+    "z": 1
+   },
+   "sector_type": "field",
+   "mob_resets": [
+    {
+     "vnum": 6312,
+     "max": 1
+    }
+   ],
+   "flags": [],
+   "description": "No souls have ever lived in this place. The wails of slaves and the\nhowls of wolves are the only way you can describe the sounds you hear.\nThe walls are thin and wispy. The only light you receive is the\nshimmering from the strand of the ethereal web you used to get here.\nTall grass sways in a gentle breeze. The air is fresh and clean.",
+   "exits": {
+    "east": {
+     "to_room": 6371,
+     "description": "An open path leads to The Single Spider Line"
+    },
+    "south": {
+     "to_room": 6369,
+     "description": "To the south lies Realm Of The Hopeless."
+    }
+   }
+  },
+  "6371": {
+   "vnum": 6371,
+   "name": "The Single Spider Line",
+   "map": {
+    "x": -37,
+    "y": -35,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "A single spider line supports you once more. As you look across the\nether you seen a single shack up ahead with a light in the window. You\nsense a great evil coming from the north and feel inclined to go back on\nthe ethereal web and take your chances there. Tall grass sways in a\ngentle breeze. The open sky stretches overhead.",
+   "exits": {
+    "south": {
+     "to_room": 6372,
+     "description": "An open path leads to The Single Spider Line"
+    },
+    "west": {
+     "to_room": 6365,
+     "description": "To the west lies A Link In The Ethereal Web."
+    },
+    "north": {
+     "to_room": 6331,
+     "description": "To the north lies The Base Of The Web."
+    }
+   }
+  },
+  "6372": {
+   "vnum": 6372,
+   "name": "The Single Spider Line",
+   "map": {
+    "x": -37,
+    "y": -37,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "A single spider line supports you once more. The shack comes closer into\nview and you are even more inclined to go back now. The open sky\nstretches overhead. The air is fresh and clean.",
+   "exits": {
+    "north": {
+     "to_room": 6371,
+     "description": "An open path leads to The Single Spider Line"
+    },
+    "south": {
+     "to_room": 6373,
+     "description": "An open path leads to The Hermit's Corner"
+    }
+   }
+  },
+  "6373": {
+   "vnum": 6373,
+   "name": "The Hermit's Corner",
+   "map": {
+    "x": -37,
+    "y": -38,
+    "z": 1
+   },
+   "sector_type": "field",
+   "mob_resets": [
+    {
+     "vnum": 6311,
+     "max": 1
+    }
+   ],
+   "flags": [],
+   "description": "Here you see evidence of a vagrant's abode. The shack is to the north,\nif you dare enter it. You get the sneaking feeling you should go back\nnow. The skies above darken and roar with the laughter of thunder.\nWildflowers dot the landscape. The air is fresh and clean.",
+   "exits": {
+    "north": {
+     "to_room": 6372,
+     "description": "An open path leads to The Single Spider Line"
+    },
+    "south": {
+     "to_room": 6380,
+     "description": "A passage leads to Mahatma's Inescapable Trap"
+    }
+   }
+  },
+  "6390": {
+   "vnum": 6390,
+   "name": "The Entrance The Arachnos' Lair",
+   "map": {
+    "x": -46,
+    "y": -40,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "All strands inevitably lead here, the center of the web, the entrance to\nArachnos' Lair. The air is fresh and clean. The ground is soft\nunderfoot.",
+   "exits": {
+    "east": {
+     "to_room": 6391,
+     "description": "An open path leads to The Sticky Chamber"
+    },
+    "up": {
+     "to_room": 6365
+    }
+   }
+  },
+  "6391": {
+   "vnum": 6391,
+   "name": "The Sticky Chamber",
+   "map": {
+    "x": -44,
+    "y": -40,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "description": "You can still bail out since your knees are shaking from the\nanticipation (or is it fear?). The sky is clear on this strand of web,\nsurprisingly unsticky. The strand does not vibrate like the others. A\nfew ballooning spiders pass by, cackling 'You're gonna die, you're gonna\nfry. Good bye!' Wildflowers dot the landscape. The air is fresh and\nclean.",
+   "exits": {
+    "east": {
+     "to_room": 6392,
+     "description": "An open path leads to The Great Door"
+    },
+    "west": {
+     "to_room": 6390
+    },
+    "down": {
+     "to_room": 6331,
+     "description": "To the down lies The Base Of The Web."
+    }
+   }
+  },
+  "6392": {
+   "vnum": 6392,
+   "name": "The Great Door",
+   "map": {
+    "x": -43,
+    "y": -40,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [
+    "indoors"
+   ],
+   "description": "ahead see a large, web-like door. Various designs of ancient runes and\nnames of Garathorm heroes are etched into the webwork. Perhaps lists of\nvictims? You can't tell. The air is fresh and clean. Wildflowers dot the\nlandscape.",
+   "exits": {
+    "north": {
+     "to_room": 6399,
+     "description": "An open path leads to The Lair Of Arachnos",
+     "door": {
+      "name": "door",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 6300
+     }
+    },
+    "west": {
+     "to_room": 6391,
+     "description": "An open path leads to The Sticky Chamber"
+    }
+   }
+  },
+  "6380": {
+   "vnum": 6380,
+   "name": "In The Hermit's Shack",
+   "map": {
+    "x": -37,
+    "y": -39,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "death",
+    "indoors"
+   ],
+   "description": "Mahatma, that silly thief, is here, and he steals everything you have.\nHe says 'Here, have a quick trip to the Temple of Garathorm.' He plunges\na black dagger into your back... The air is still and musty. Dust motes\ndrift in the stale air.",
+   "exits": {
+    "north": {
+     "to_room": 6373
+    },
+    "south": {
+     "to_room": 2226,
+     "description": "To the south lies Floating In Blue Light."
+    }
+   }
+  },
+  "6398": {
+   "vnum": 6398,
+   "name": "Up In The Tree",
+   "map": {
+    "x": -37,
+    "y": -20,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 6301,
+     "description": "To the north lies Webbed Entrance."
+    },
+    "down": {
+     "to_room": 16305,
+     "description": "To the down lies A Small Path Through The Deep, Dark Forest."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and down.",
+   "placeholder": true
+  },
+  "6399": {
+   "vnum": 6399,
+   "name": "The Lair Of Arachnos",
+   "map": {
+    "x": -43,
+    "y": -38,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [
+    "no_track"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 6314,
+     "max": 1
+    }
+   ],
+   "description": "This is the lair of the Empress Spider, Arachnos. Visible is a lavishly\nadorned rainbow web, her lair allows her to move to any universe she\nwishes by using her magical strands to the Prime Material Plane. Coffers\nupon coffers of gold, magical jewels and gems await. Unfortunately\nArachnos is a baggy spider too, and webs all her treasures to her\nbeautiful silken body. The air is fresh and clean. The open sky\nstretches overhead.",
+   "exits": {
+    "south": {
+     "to_room": 6392,
+     "description": "An open path leads to The Great Door",
+     "door": {
+      "name": "door",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 6300
+     }
+    }
+   }
   }
+ },
+ "mobs": {
+  "6301": {
+   "vnum": 6301,
+   "name": "spider",
+   "short_desc": "the young spider",
+   "long_desc": "The young spider is ballooning by you.",
+   "level": 3,
+   "alignment": 0,
+   "hp_dice": "3d10+52",
+   "damage_dice": "1d4+4",
+   "gold": 215,
+   "exp": 180,
+   "armor_class": 91,
+   "flags": [
+    "scavenger",
+    "stay_zone"
+   ],
+   "description": "He looks freshly hatched and sprightly.  His young fangs are just\ngrowing in as of late.",
+   "inventory": [
+    6307
+   ]
+  },
+  "6302": {
+   "vnum": 6302,
+   "name": "yevaud",
+   "short_desc": "Yevaud",
+   "long_desc": "Yevaud, the Usurper of Garathorm is here, grinning evilly at you.",
+   "level": 24,
+   "alignment": -1000,
+   "hp_dice": "24d10+304",
+   "damage_dice": "7d8+6",
+   "gold": 70000,
+   "exp": 1440,
+   "armor_class": 28,
+   "flags": [
+    "special",
+    "sentinel",
+    "scavenger",
+    "aggr_good",
+    "aggr_neutral",
+    "memory"
+   ],
+   "description": "Old, scaly, but still with a lot of bite in him left.",
+   "inventory": [
+    6304,
+    7203
+   ]
+  },
+  "6303": {
+   "vnum": 6303,
+   "name": "spider",
+   "short_desc": "the wolf spider",
+   "long_desc": "The wolf spider is here, licking its bloody fangs.",
+   "level": 6,
+   "alignment": -300,
+   "hp_dice": "6d10+88",
+   "damage_dice": "2d5+5",
+   "gold": 3625,
+   "exp": 360,
+   "armor_class": 82,
+   "flags": [
+    "sentinel",
+    "aggressive"
+   ],
+   "description": "The wolf spider is hairy, very hairy.",
+   "inventory": [
+    6315
+   ]
+  },
+  "6304": {
+   "vnum": 6304,
+   "name": "orc",
+   "short_desc": "the orc",
+   "long_desc": "The orc is stuck in the web and he can't get out.",
+   "level": 2,
+   "alignment": -400,
+   "hp_dice": "2d10+40",
+   "damage_dice": "1d4+2",
+   "gold": 155,
+   "exp": 120,
+   "armor_class": 94,
+   "flags": [
+    "sentinel"
+   ],
+   "description": "You notice an evil look in his eyes, but he seems quite drained of life,\nand all he can do is glare at you while he's stuck in this web.",
+   "inventory": [
+    6300
+   ]
+  },
+  "6305": {
+   "vnum": 6305,
+   "name": "wasp",
+   "short_desc": "the queen wasp",
+   "long_desc": "The queen wasp is here, thinking how tasty you look.",
+   "level": 14,
+   "alignment": -800,
+   "hp_dice": "14d10+184",
+   "damage_dice": "4d6+9",
+   "gold": 10000,
+   "exp": 840,
+   "armor_class": 58,
+   "flags": [
+    "sentinel",
+    "aggressive"
+   ],
+   "description": "You notice a glazed look in her eyes.",
+   "inventory": [
+    6309
+   ]
+  },
+  "6306": {
+   "vnum": 6306,
+   "name": "spider",
+   "short_desc": "the drone spider",
+   "long_desc": "A drone spider walks around doing its master's bidding.",
+   "level": 6,
+   "alignment": -200,
+   "hp_dice": "6d10+88",
+   "damage_dice": "2d5+5",
+   "gold": 900,
+   "exp": 360,
+   "armor_class": 82,
+   "flags": [
+    "scavenger",
+    "stay_zone"
+   ],
+   "description": "An ordinary drone spider.",
+   "inventory": [
+    6305,
+    6305
+   ]
+  },
+  "6307": {
+   "vnum": 6307,
+   "name": "spider",
+   "short_desc": "the ethereal spider",
+   "long_desc": "An ethereal spider strides here, traveling to different worlds.",
+   "level": 13,
+   "alignment": 300,
+   "hp_dice": "13d10+172",
+   "damage_dice": "4d6+7",
+   "gold": 8625,
+   "exp": 780,
+   "armor_class": 61,
+   "flags": [
+    "scavenger",
+    "stay_zone"
+   ],
+   "description": "She winks in and out of reality.  It looks like it'd be difficult to hit her\nwithout a magical weapon.",
+   "inventory": [
+    6309
+   ]
+  },
+  "6308": {
+   "vnum": 6308,
+   "name": "slave",
+   "short_desc": "the slave",
+   "long_desc": "A human slave of Arachnos works here relentlessly.",
+   "level": 11,
+   "alignment": -50,
+   "hp_dice": "11d10+148",
+   "damage_dice": "3d6+8",
+   "gold": 7250,
+   "exp": 660,
+   "armor_class": 67,
+   "flags": [
+    "scavenger",
+    "stay_zone",
+    "memory"
+   ],
+   "description": "The slave does not mind you, but will fight like a warrior if attacked.\nHe serves the spider Empress, Arachnos, though whether it is by choice\nor because he was beguiled, you are not fully certain.",
+   "inventory": [
+    6302
+   ]
+  },
+  "6309": {
+   "vnum": 6309,
+   "name": "quasit",
+   "short_desc": "the quasit",
+   "long_desc": "A quasit blinks in and out, grinning at you.",
+   "level": 10,
+   "alignment": -300,
+   "hp_dice": "10d10+136",
+   "damage_dice": "3d6+6",
+   "gold": 6250,
+   "exp": 600,
+   "armor_class": 70,
+   "flags": [
+    "special",
+    "scavenger",
+    "stay_zone",
+    "wimpy"
+   ],
+   "description": "Demoniac in nature, but more mischievous.  He twiddles his thumbs\nand creates a magical treasure!",
+   "inventory": [
+    6310,
+    6311
+   ]
+  },
+  "6310": {
+   "vnum": 6310,
+   "name": "spider",
+   "short_desc": "the bird spider",
+   "long_desc": "The bird spider snaps its powerful jaws.",
+   "level": 14,
+   "alignment": -800,
+   "hp_dice": "14d10+184",
+   "damage_dice": "4d6+9",
+   "gold": 9875,
+   "exp": 840,
+   "armor_class": 58,
+   "flags": [
+    "sentinel",
+    "aggressive"
+   ],
+   "description": "The Bird Spider has very powerful jaws.",
+   "inventory": [
+    6314,
+    6306
+   ]
+  },
+  "6311": {
+   "vnum": 6311,
+   "name": "hermit",
+   "short_desc": "the hermit",
+   "long_desc": "The hermit sits here and warns, 'Go back before it is too late!'",
+   "level": 7,
+   "alignment": 750,
+   "hp_dice": "2d8+35",
+   "damage_dice": "1d6+5",
+   "gold": 1625,
+   "exp": 188,
+   "armor_class": 4,
+   "flags": [
+    "sentinel",
+    "scavenger",
+    "memory"
+   ],
+   "description": "A dishevelled veteran warrior in disguise is what he is, but he\nmeans well.",
+   "inventory": [
+    6302
+   ]
+  },
+  "6312": {
+   "vnum": 6312,
+   "name": "donjonkeeper",
+   "short_desc": "the Donjonkeeper",
+   "long_desc": "The Donjonkeeper eyes you and wonders how pure your soul is.",
+   "level": 25,
+   "alignment": 1000,
+   "hp_dice": "5d10+450",
+   "damage_dice": "2d8+37",
+   "gold": 70500,
+   "exp": 984,
+   "armor_class": -1,
+   "flags": [
+    "special",
+    "sentinel",
+    "scavenger",
+    "aggr_evil",
+    "memory"
+   ],
+   "description": "He delves deeper into you as you stare at him.  Only those free of taint\nwill be allowed to remain here safely.",
+   "inventory": [
+    6301,
+    6109
+   ],
+   "loot_table": [
+    {
+     "vnum": 6309,
+     "chance": 20
+    },
+    {
+     "vnum": 6310,
+     "chance": 20
+    },
+    {
+     "vnum": 6311,
+     "chance": 20
+    },
+    {
+     "vnum": 6312,
+     "chance": 20
+    },
+    {
+     "vnum": 6313,
+     "chance": 20
+    },
+    {
+     "vnum": 6314,
+     "chance": 20
+    },
+    {
+     "vnum": 6315,
+     "chance": 20
+    },
+    {
+     "vnum": 6316,
+     "chance": 20
+    },
+    {
+     "vnum": 6317,
+     "chance": 20
+    }
+   ],
+   "loot_chance": 100
+  },
+  "6313": {
+   "vnum": 6313,
+   "name": "guardian",
+   "short_desc": "the guardian",
+   "long_desc": "The guardian is obviously not doing his job.",
+   "level": 17,
+   "alignment": 250,
+   "hp_dice": "17d10+220",
+   "damage_dice": "5d7+7",
+   "gold": 12500,
+   "exp": 1020,
+   "armor_class": 49,
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "description": "He looks like a lazy bum who sleeps half the time.",
+   "inventory": [
+    6303
+   ]
+  },
+  "6314": {
+   "vnum": 6314,
+   "name": "the Spider Queen",
+   "short_desc": "Zyraxxis the Spider Queen",
+   "long_desc": "A colossal spider queen lurks amid a throne of webs.",
+   "level": 26,
+   "alignment": -1000,
+   "hp_dice": "26d10+328",
+   "damage_dice": "7d8+9",
+   "gold": 92500,
+   "exp": 1560,
+   "armor_class": 22,
+   "flags": [
+    "no_bash",
+    "boss",
+    "scavenger",
+    "no_summmon",
+    "aggr_good",
+    "special",
+    "sentinel",
+    "memory",
+    "no_charm"
+   ],
+   "description": "She is a very attractive spider with an ornate gown.  She tempts you\ninto being one of her many slaves.  She does not possess the venomous\nfangs of normal spiders, but then, as you realize, she does not need\nthem.",
+   "inventory": [
+    6301,
+    6302,
+    6303,
+    6304
+   ],
+   "boss": true,
+   "boss_id": "spider_queen",
+   "boss_title": "the Webbreaker",
+   "boss_achievement": "boss_spider_queen",
+   "boss_loot_table": [
+    6306,
+    6307,
+    6308
+   ],
+   "boss_loot_chance": 85,
+   "boss_config": {
+    "enrage_time": 75,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 4.0,
+    "phases": [
+     {
+      "threshold": 65,
+      "message": "The Spider Queen screeches and egg sacs split!",
+      "spawn_adds": {
+       "6301": 3
+      }
+     },
+     {
+      "threshold": 35,
+      "message": "The Spider Queen thrashes, exposing her underside!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Web Trap",
+      "telegraph": "The Spider Queen lifts her forelegs, webbing the air!",
+      "cast_time": 2,
+      "cooldown": 14,
+      "damage_dice": "3d6+4",
+      "dodge": true,
+      "vulnerable_after": 3
+     },
+     {
+      "name": "Poison Spit",
+      "telegraph": "The Spider Queen gurgles, venom pooling in her maw!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "4d4+6",
+      "aoe": true,
+      "dodge": true
+     }
+    ]
+   },
+   "loot_table": [
+    {
+     "vnum": 6309,
+     "chance": 20
+    },
+    {
+     "vnum": 6310,
+     "chance": 20
+    },
+    {
+     "vnum": 6311,
+     "chance": 20
+    },
+    {
+     "vnum": 6312,
+     "chance": 20
+    },
+    {
+     "vnum": 6313,
+     "chance": 20
+    },
+    {
+     "vnum": 6314,
+     "chance": 20
+    },
+    {
+     "vnum": 6315,
+     "chance": 20
+    },
+    {
+     "vnum": 6316,
+     "chance": 20
+    },
+    {
+     "vnum": 6317,
+     "chance": 20
+    }
+   ],
+   "loot_chance": 100
+  },
+  "6315": {
+   "vnum": 6315,
+   "name": "ki-rin",
+   "short_desc": "the Ki-Rin",
+   "long_desc": "The Ki-Rin smiles good-naturedly to you.",
+   "level": 26,
+   "alignment": 1000,
+   "hp_dice": "6d10+650",
+   "damage_dice": "3d6+46",
+   "gold": 92500,
+   "exp": 1036,
+   "armor_class": -4,
+   "flags": [
+    "special",
+    "sentinel",
+    "scavenger",
+    "aggr_evil",
+    "memory",
+    "no_charm",
+    "no_summmon"
+   ],
+   "description": "She is the last bastion of good in this realm.  Her mission is to\nsomeday free the slaves of the Empress.  She has been trapped here for\ntime eternal, and now the evil power of Arachnos feeds upon her intense\nmagical energies.  She will never give up here fight against evil,\nthough, and will continue her work in whatever manner presents itself.",
+   "inventory": [
+    6109,
+    6109
+   ],
+   "loot_table": [
+    {
+     "vnum": 6309,
+     "chance": 20
+    },
+    {
+     "vnum": 6310,
+     "chance": 20
+    },
+    {
+     "vnum": 6311,
+     "chance": 20
+    },
+    {
+     "vnum": 6312,
+     "chance": 20
+    },
+    {
+     "vnum": 6313,
+     "chance": 20
+    },
+    {
+     "vnum": 6314,
+     "chance": 20
+    },
+    {
+     "vnum": 6315,
+     "chance": 20
+    },
+    {
+     "vnum": 6316,
+     "chance": 20
+    },
+    {
+     "vnum": 6317,
+     "chance": 20
+    }
+   ],
+   "loot_chance": 100
+  },
+  "6316": {
+   "vnum": 6316,
+   "name": "dragon",
+   "short_desc": "the young wormkin",
+   "long_desc": "A wormkin with no teeth plays here.",
+   "level": 9,
+   "alignment": 50,
+   "hp_dice": "9d10+124",
+   "damage_dice": "3d5+6",
+   "gold": 3750,
+   "exp": 540,
+   "armor_class": 73,
+   "flags": [
+    "sentinel"
+   ],
+   "description": "It is a rather small dragon, and you almost feel sad about killing it.",
+   "inventory": [
+    6301
+   ]
+  },
+  "6317": {
+   "vnum": 6317,
+   "name": "dragon",
+   "short_desc": "the elder wormkin",
+   "long_desc": "A wormkin that has grown a bit stares at you inquisitively.",
+   "level": 16,
+   "alignment": -300,
+   "hp_dice": "16d10+208",
+   "damage_dice": "5d7+6",
+   "gold": 14500,
+   "exp": 960,
+   "armor_class": 52,
+   "flags": [
+    "sentinel"
+   ],
+   "description": "A medium-sized dragon -- seems it hasn't killed anything yet by itself, \nthough there is a first time for everything...",
+   "inventory": [
+    6315,
+    6308
+   ]
+  }
+ },
+ "objects": {
+  "6300": {
+   "vnum": 6300,
+   "name": "key",
+   "short_desc": "a black key",
+   "room_desc": "A somewhat plain black key has been left here.",
+   "item_type": "key",
+   "weight": 1,
+   "value": 0,
+   "type": "key"
+  },
+  "6301": {
+   "vnum": 6301,
+   "name": "knife",
+   "short_desc": "a very sharp knife",
+   "room_desc": "A very sharp knife lies here.",
+   "item_type": "weapon",
+   "weight": 9,
+   "value": 1000,
+   "damage_dice": "8d1",
+   "weapon_type": "pierce",
+   "type": "weapon"
+  },
+  "6302": {
+   "vnum": 6302,
+   "name": "hat",
+   "short_desc": "a wizard's hat",
+   "room_desc": "A blue wizard's hat lies here.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 20000,
+   "armor_bonus": 6,
+   "type": "armor",
+   "wear_slot": "head",
+   "armor": 2,
+   "armor_class": 2
+  },
+  "6303": {
+   "vnum": 6303,
+   "name": "headress",
+   "short_desc": "a pontiff's headress",
+   "room_desc": "A white cone-shaped head ornament with religious symbols lies here.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 20000,
+   "armor_bonus": 6,
+   "type": "treasure",
+   "armor": 8
+  },
+  "6304": {
+   "vnum": 6304,
+   "name": "visor",
+   "short_desc": "a black knight's visor",
+   "room_desc": "A black visor sits here.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 20000,
+   "armor_bonus": 8,
+   "type": "armor",
+   "wear_slot": "head",
+   "armor": 2,
+   "armor_class": 4
+  },
+  "6305": {
+   "vnum": 6305,
+   "name": "potion",
+   "short_desc": "a thick white potion",
+   "room_desc": "A thick white potion has been left here.",
+   "item_type": "potion",
+   "weight": 9,
+   "value": 21000,
+   "type": "potion"
+  },
+  "6306": {
+   "vnum": 6306,
+   "name": "a silken mantle",
+   "short_desc": "a silken mantle",
+   "room_desc": "A mantle woven from spider silk lies here.",
+   "type": "armor",
+   "weight": 2,
+   "cost": 1400,
+   "armor": 7,
+   "wear_slot": "shoulders",
+   "armor_class": 2
+  },
+  "6307": {
+   "vnum": 6307,
+   "name": "a venom-laced stinger",
+   "short_desc": "a venom-laced stinger",
+   "room_desc": "A wicked stinger dripping venom rests here.",
+   "type": "weapon",
+   "weight": 4,
+   "cost": 1500,
+   "damage_dice": "2d6+2",
+   "weapon_type": "pierce"
+  },
+  "6308": {
+   "vnum": 6308,
+   "name": "a broodmother idol",
+   "short_desc": "a broodmother idol",
+   "room_desc": "A small idol of a spider queen lies here.",
+   "type": "treasure",
+   "weight": 1,
+   "cost": 1200
+  },
+  "6309": {
+   "vnum": 6309,
+   "name": "spidersteel axe",
+   "short_desc": "a spidersteel axe",
+   "room_desc": "A spidersteel axe lies here.",
+   "description": "A venomous axe.",
+   "item_type": "weapon",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "wield",
+   "weapon_type": "slash",
+   "damage_dice": "2d6+4",
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 3
+    }
+   ],
+   "set_id": 63,
+   "type": "weapon"
+  },
+  "6310": {
+   "vnum": 6310,
+   "name": "silkguard shield",
+   "short_desc": "a silkguard shield",
+   "room_desc": "A silkguard shield lies here.",
+   "description": "A paladin's shield.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "shield",
+   "armor_bonus": 3,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 1
+    }
+   ],
+   "set_id": 63,
+   "type": "armor",
+   "armor": 3,
+   "armor_class": 2
+  },
+  "6311": {
+   "vnum": 6311,
+   "name": "venom‑bound sigil",
+   "short_desc": "a venom‑bound sigil",
+   "room_desc": "A venom‑bound sigil lies here.",
+   "description": "A deathknight's sigil.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "neck1",
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 3
+    }
+   ],
+   "set_id": 63,
+   "type": "treasure",
+   "armor": 9
+  },
+  "6312": {
+   "vnum": 6312,
+   "name": "silk‑blessed relic",
+   "short_desc": "a silk‑blessed relic",
+   "room_desc": "A silk‑blessed relic lies here.",
+   "description": "A cleric's relic.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "hold",
+   "affects": [
+    {
+     "type": "wis",
+     "value": 2
+    },
+    {
+     "type": "max_mana",
+     "value": 25
+    }
+   ],
+   "set_id": 63,
+   "type": "treasure",
+   "armor": 13
+  },
+  "6313": {
+   "vnum": 6313,
+   "name": "poisonweave focus",
+   "short_desc": "a poisonweave focus",
+   "room_desc": "A poisonweave focus lies here.",
+   "description": "A mage's focus.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "hold",
+   "affects": [
+    {
+     "type": "int",
+     "value": 3
+    }
+   ],
+   "set_id": 63,
+   "type": "treasure",
+   "armor": 5
+  },
+  "6314": {
+   "vnum": 6314,
+   "name": "spinneret lute",
+   "short_desc": "a spinneret lute",
+   "room_desc": "A spinneret lute lies here.",
+   "description": "A bard's lute.",
+   "item_type": "weapon",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "wield",
+   "weapon_type": "mace",
+   "damage_dice": "1d6+2",
+   "affects": [
+    {
+     "type": "cha",
+     "value": 3
+    }
+   ],
+   "set_id": 63,
+   "type": "treasure"
+  },
+  "6315": {
+   "vnum": 6315,
+   "name": "silkfanged stiletto",
+   "short_desc": "a silkfanged stiletto",
+   "room_desc": "A silkfanged stiletto lies here.",
+   "description": "A rogue's stiletto.",
+   "item_type": "weapon",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "wield",
+   "weapon_type": "pierce",
+   "damage_dice": "1d6+3",
+   "affects": [
+    {
+     "type": "dex",
+     "value": 3
+    },
+    {
+     "type": "hitroll",
+     "value": 1
+    }
+   ],
+   "set_id": 63,
+   "type": "weapon"
+  },
+  "6316": {
+   "vnum": 6316,
+   "name": "web‑hunter band",
+   "short_desc": "a web‑hunter band",
+   "room_desc": "A web‑hunter band lies here.",
+   "description": "A ranger's ring.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "finger1",
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "hitroll",
+     "value": 1
+    }
+   ],
+   "set_id": 63,
+   "type": "armor",
+   "armor": 9,
+   "armor_class": 4
+  },
+  "6317": {
+   "vnum": 6317,
+   "name": "venomproof mantle",
+   "short_desc": "a venomproof mantle",
+   "room_desc": "A venomproof mantle lies here.",
+   "description": "A protective mantle.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "about",
+   "armor_bonus": 2,
+   "affects": [
+    {
+     "type": "poison_resist",
+     "value": 10
+    }
+   ],
+   "set_id": 63,
+   "type": "armor",
+   "armor": 1,
+   "armor_class": 2
+  }
+ },
+ "lifespan": 34
 }

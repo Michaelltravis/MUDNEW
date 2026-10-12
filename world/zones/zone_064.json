@@ -1,1939 +1,1974 @@
 {
-  "number": 64,
-  "name": "Rand's Tower",
-  "lifespan": 20,
-  "rooms": {
-    "6400": {
-      "vnum": 6400,
-      "name": "A Mountain Trail",
-      "description": "This trail leads up, up, up into the mountains. You hope you don't fall\ndown, because that would hurt, hurt, hurt! The trail continues to the\neast, and you can go back down to the small hidden valley to the west.\nThe path is steep and treacherous. The wind howls around exposed peaks.",
-      "sector_type": "mountain",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6401,
-          "description": "A steep trail ascends to A Mountain Trail"
-        },
-        "west": {
-          "to_room": 4078,
-          "description": "A steep trail ascends to In The Hidden Valley"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6400,
-          "max": 3
-        }
-      ]
+ "number": 64,
+ "name": "Rand's Tower",
+ "builders": "CAW",
+ "atlas_area": 68,
+ "rooms": {
+  "6407": {
+   "vnum": 6407,
+   "name": "A Stairwell",
+   "map": {
+    "x": 20,
+    "y": 36,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 6401,
+     "max": 2
     },
-    "6401": {
-      "vnum": 6401,
-      "name": "A Mountain Trail",
-      "description": "You're really high up now. You can keep going even farther up into the\nmountains to the east, or go back down to the west. Snow clings to\nshadowed crevices. The wind howls around exposed peaks.",
-      "sector_type": "mountain",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6402,
-          "description": "A steep trail ascends to A Mountain Trail"
-        },
-        "west": {
-          "to_room": 6400,
-          "description": "A steep trail ascends to A Mountain Trail"
-        }
-      }
+    {
+     "vnum": 6401,
+     "max": 2
     },
-    "6402": {
-      "vnum": 6402,
-      "name": "A Mountain Trail",
-      "description": "Wispy clouds are beginning to surround you now, and your ears pop due to\nthe altitude. To the east, you see the summit of the mountain, and from\nthe way the nearby mountains are arranged behind it, you believe you're\non your way to a big valley. You can also go down to the west. Snow\nclings to shadowed crevices. Bare rock dominates the landscape.",
-      "sector_type": "mountain",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6403,
-          "description": "A steep trail ascends to Near The Mountain's Peak"
-        },
-        "west": {
-          "to_room": 6401,
-          "description": "A steep trail ascends to A Mountain Trail"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6400,
-          "max": 3
-        }
-      ]
+    {
+     "vnum": 6400,
+     "max": 3
     },
-    "6403": {
-      "vnum": 6403,
-      "name": "Near The Mountain's Peak",
-      "description": "The peak of this mountain is another couple hundred feet above, but\nhere is where the trail leads down into the valley... What an odd\nvalley! The valley seems to have been filled up by a hundreds of feet of\nlava many years ago. It gives the valley an odd, 'flat' look and darkish\nground. The path leads down east into the valley, and west back to\ncivilization. Snow clings to shadowed crevices. Bare rock dominates the\nlandscape.",
-      "sector_type": "mountain",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6404,
-          "description": "A steep trail ascends to The Trail To The Valley"
-        },
-        "west": {
-          "to_room": 6402,
-          "description": "A steep trail ascends to A Mountain Trail"
-        }
-      }
+    {
+     "vnum": 6400,
+     "max": 3
     },
-    "6404": {
-      "vnum": 6404,
-      "name": "The Trail To The Valley",
-      "description": "The trail leads down into the valley, where, by judging by the height of\nthe trees, the lava had cooled tens of decades ago. Down below see\nthe path lead into the small forest in the valley, and disappear out of\nsight. East leads into the valley, West back to civilization. Snow\nclings to shadowed crevices. The air is thin and cold at this altitude.",
-      "sector_type": "mountain",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6405,
-          "description": "A trail winds toward In The Valley"
-        },
-        "west": {
-          "to_room": 6403,
-          "description": "A steep trail ascends to Near The Mountain's Peak"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6400,
-          "max": 3
-        }
-      ]
-    },
-    "6405": {
-      "vnum": 6405,
-      "name": "In The Valley",
-      "description": "The ground has taken on the texture of dirt on the top, but this valley\nis far too flat and too rocky to disguise the catastrophe that happened\nhere so long ago. Looking up to the mountains ringing this area, you\nnotice several mountains look as if they had 'exploded', which is\nstrange, considering that they are not volcanos. The path leads into the\nwoods to the east, and back up the mountain to the west. Ancient trees\nrise on all sides. The forest floor is carpeted with fallen leaves.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6406,
-          "description": "A trail winds toward In A Clearing"
-        },
-        "west": {
-          "to_room": 6404,
-          "description": "A steep trail ascends to The Trail To The Valley"
-        }
-      }
-    },
-    "6406": {
-      "vnum": 6406,
-      "name": "In A Clearing",
-      "description": "You come to a small clearing now, after walking for several minutes\nthrough the silent woods. An odd block sticks up here and there in the\nground... wait a minute. These stones seem a little too regular, and\nfrom the circle formation and size you could almost swear that they\nwere... crenellations? Could some sort of building been buried by the\nlava here? A rusty ring sticks out of the earth in the center... a\ntrapdoor? This is almost too good to be true! The forest floor is\ncarpeted with fallen leaves. The scent of pine and earth fills the air.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "west": {
-          "to_room": 6405,
-          "description": "A trail winds toward In The Valley"
-        },
-        "down": {
-          "to_room": 6407,
-          "description": "An ancient trapdoor, grimed with earth and age.",
-          "door": {
-            "name": "trapdoor trap",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      }
-    },
-    "6407": {
-      "vnum": 6407,
-      "name": "A Stairwell",
-      "description": "This small room is the top of a stairwell leading down deep into the\ntower. A small trapdoor overhead leaks the light of day around its\nedges. To the south is a wooden door, preserved through the ages by\nmeans unknown. To the west is a short hall. The ceiling hangs low\noverhead. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 6408,
-          "description": "A passage leads to A Linen Closet",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "west": {
-          "to_room": 6409,
-          "description": "A passage leads to A Corridor"
-        },
-        "up": {
-          "to_room": 6406,
-          "description": "An ancient trapdoor, grimed with earth and age.",
-          "door": {
-            "name": "trapdoor trap",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "down": {
-          "to_room": 6413,
-          "description": "A passage leads to The Stairwell"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6401,
-          "max": 2
-        },
-        {
-          "vnum": 6401,
-          "max": 2
-        }
-      ]
-    },
-    "6408": {
-      "vnum": 6408,
-      "name": "A Linen Closet",
-      "description": "This small room holds many types of linen on shelves along the walls.\nThey are undoubtedly preserved by magic against the toil of the ages,\nsince they seem freshly washed and folded. You wonder what sort of mage\ncould wield so much power to waste on such little things. Shadows gather\nin the corners. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6407,
-          "description": "A passage leads to A Stairwell",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "extra_descs": {
-        "": "linen shelf shelves"
-      }
-    },
-    "6409": {
-      "vnum": 6409,
-      "name": "A Corridor",
-      "description": "This is only a clean corridor, that leads back to the stairwell to the\neast, and has doors leading to other rooms to the north and south. Dust\nmotes drift in the stale air. Shadows gather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6411,
-          "description": "A passage leads to The Master Bedroom",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "east": {
-          "to_room": 6407,
-          "description": "A passage leads to A Stairwell"
-        },
-        "south": {
-          "to_room": 6410,
-          "description": "A passage leads to A Bathroom",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      }
-    },
-    "6410": {
-      "vnum": 6410,
-      "name": "A Bathroom",
-      "description": "This is some sort of bathroom, like you've never seen before... Water\nappliances leading from nowhere deliver hot and cold running water to\nbasins that drain to... where? How strange! Shadows gather in the\ncorners. The walls are rough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6409,
-          "description": "A passage leads to A Corridor",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 6419,
-          "max": 1
-        }
-      ]
-    },
-    "6411": {
-      "vnum": 6411,
-      "name": "The Master Bedroom",
-      "description": "This is an opulent room, decorated in silks and gold. There is an ebony\ndesk against one wall, cooled lava rock spilling over its surface from\nthe window it once looked out at. A nice, spacious closet is filled with\nclothes just cleaned and pressed. The air is still and musty. Dust motes\ndrift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 6409,
-          "description": "A passage leads to A Corridor",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "extra_descs": {
-        "": "closet"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6403,
-          "max": 1
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 6404,
-          "max": 5
-        },
-        {
-          "vnum": 6409,
-          "max": 1
-        }
-      ]
-    },
-    "6412": {
-      "vnum": 6412,
-      "name": "The Library",
-      "description": "A great mages' library is contained on this floor of the tower. You feel\nyou could learn anything you wanted to if you only looked and read long\nenough. A door opens up back on the stairwell to the east. Shadows\ngather in the corners. The ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6413,
-          "description": "A passage leads to The Stairwell",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "west": {
-          "to_room": 6414,
-          "description": "A big bookcase, that looks rather odd.",
-          "door": {
-            "name": "bookcase",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "extra_descs": {
-        "": "book books"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6402,
-          "max": 1
-        }
-      ]
-    },
-    "6413": {
-      "vnum": 6413,
-      "name": "The Stairwell",
-      "description": "This stairwell continues up and down, and there is a door to the west.\nShadows gather in the corners. The air is still and musty. The air is\nstale and the walls close. Shadows pool in the corners, undisturbed.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 6412,
-          "description": "A passage leads to The Library",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "up": {
-          "to_room": 6407,
-          "description": "A passage leads to A Stairwell"
-        },
-        "down": {
-          "to_room": 6415,
-          "description": "A passage leads to A Stairwell"
-        }
-      }
-    },
-    "6414": {
-      "vnum": 6414,
-      "name": "A Hidden Hall",
-      "description": "This is a small hidden hall with a secret entrance to the library on the\nnorth end of the west wall, and a trapdoor on the south end. Dust motes\ndrift in the stale air. The ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6412,
-          "description": "The backside of a movable bookcase.",
-          "door": {
-            "name": "book bookcase",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "down": {
-          "to_room": 6416,
-          "description": "A passage leads to The Hidden Treasure Room",
-          "door": {
-            "name": "trapdoor trap",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      }
-    },
-    "6415": {
-      "vnum": 6415,
-      "name": "A Stairwell",
-      "description": "This stairwell continues up and down, and there is a door to the west\nopening up onto this level. Dust motes drift in the stale air. The\nceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 6417,
-          "description": "A passage leads to A Hallway",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "up": {
-          "to_room": 6413,
-          "description": "A passage leads to The Stairwell"
-        },
-        "down": {
-          "to_room": 6422,
-          "description": "A passage leads to The Stairwell"
-        }
-      }
-    },
-    "6416": {
-      "vnum": 6416,
-      "name": "The Hidden Treasure Room",
-      "description": "Jackpot! A small room filled with treasure chests! Go get them! Shadows\ngather in the corners. The air is still and musty. The air is stale and\nthe walls close. Shadows pool in the corners, undisturbed.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "up": {
-          "to_room": 6414,
-          "description": "A passage leads to A Hidden Hall",
-          "door": {
-            "name": "trapdoor trap",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 6416,
-          "max": 1
-        },
-        {
-          "vnum": 6417,
-          "max": 1
-        },
-        {
-          "vnum": 6418,
-          "max": 1
-        }
-      ],
-      "mob_resets": [
-        {
-          "vnum": 6404,
-          "max": 3
-        },
-        {
-          "vnum": 6404,
-          "max": 3
-        },
-        {
-          "vnum": 6404,
-          "max": 1
-        }
-      ]
-    },
-    "6417": {
-      "vnum": 6417,
-      "name": "A Hallway",
-      "description": "This hall runs through the tower. There's more hall to the west, and\ndoors to the north and south. A door to the east leads back to the\nstairwell. The walls are rough-hewn and cold to the touch. Shadows\ngather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6419,
-          "description": "A passage leads to A Servant's Room",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "east": {
-          "to_room": 6415,
-          "description": "A passage leads to A Stairwell",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "south": {
-          "to_room": 6418,
-          "description": "A passage leads to A Servant's Room",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "west": {
-          "to_room": 6420,
-          "description": "A passage leads to A Hallway"
-        }
-      }
-    },
-    "6418": {
-      "vnum": 6418,
-      "name": "A Servant's Room",
-      "description": "This seems to be a small servant's bedroom, sparsely decorated and\noutfitted with a bed, nightstand, chair and table, etc. Nothing real\nimportant here. Shadows gather in the corners. The air is still and\nmusty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6417,
-          "description": "A passage leads to A Hallway",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      }
-    },
-    "6419": {
-      "vnum": 6419,
-      "name": "A Servant's Room",
-      "description": "This seems to be a small servant's bedroom, sparsely decorated and\noutfitted with a bed, nightstand, chair and table, etc. Nothing real\nimportant here. Shadows gather in the corners. The walls are rough-hewn\nand cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 6417,
-          "description": "A passage leads to A Hallway",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      }
-    },
-    "6420": {
-      "vnum": 6420,
-      "name": "A Hallway",
-      "description": "This hallway continues to the east, and has a door to the north. You\ncould swear that the way this level is arranged... nah, couldn't be. The\nwalls are rough-hewn and cold to the touch. The ceiling hangs low\noverhead.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6421,
-          "description": "A passage leads to A Servant's Room",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "east": {
-          "to_room": 6417,
-          "description": "A passage leads to A Hallway"
-        }
-      }
-    },
-    "6421": {
-      "vnum": 6421,
-      "name": "A Servant's Room",
-      "description": "This seems to be a small servant's bedroom, sparsely decorated and\noutfitted with a bed, nightstand, chair and a table, etc. Nothing real\nimportant here. The walls are rough-hewn and cold to the touch. The\nceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 6420,
-          "description": "A passage leads to A Hallway",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      }
-    },
-    "6422": {
-      "vnum": 6422,
-      "name": "The Stairwell",
-      "description": "This stairwell leads up and down, and there is a big open room to your\nwest. The ceiling hangs low overhead. The air is still and musty. The\nair is stale and the walls close. Shadows pool in the corners,\nundisturbed.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 6423,
-          "description": "A passage leads to The Dining Hall"
-        },
-        "up": {
-          "to_room": 6415,
-          "description": "A passage leads to A Stairwell"
-        },
-        "down": {
-          "to_room": 6425,
-          "description": "A passage leads to The Stairwell"
-        }
-      }
-    },
-    "6423": {
-      "vnum": 6423,
-      "name": "The Dining Hall",
-      "description": "This is a large dining hall, with a long table that runs down the length\nof it. Chairs are set up along the sides to accomodate approximately 10\npeople. There are paintings and tapestries on the walls, adding color to\nthe stonework, The cooled lava that had poured in the windows makes the\nplace seem eerie somehow . There is a door to the north, and the\nstairwell is to the east. The walls are rough-hewn and cold to the\ntouch. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6424,
-          "description": "A passage leads to The Kitchen Area",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "east": {
-          "to_room": 6422,
-          "description": "A passage leads to The Stairwell"
-        }
-      },
-      "extra_descs": {
-        "": "tapestry tapestries painting paintings"
-      }
-    },
-    "6424": {
-      "vnum": 6424,
-      "name": "The Kitchen Area",
-      "description": "This is a well-stocked kitchen, the larders still fresh and full as if\nby magic. Perhaps this would be a good place to take a break. The walls\nare rough-hewn and cold to the touch. Shadows gather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 6423,
-          "description": "A passage leads to The Dining Hall",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 6420,
-          "max": 10
-        },
-        {
-          "vnum": 6420,
-          "max": 10
-        }
-      ]
-    },
-    "6425": {
-      "vnum": 6425,
-      "name": "The Stairwell",
-      "description": "The stairwell leads up and down here, and there is a hall you can enter\nto the west. Dust motes drift in the stale air. Shadows gather in the\ncorners.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 6426,
-          "description": "A passage leads to A Hall"
-        },
-        "up": {
-          "to_room": 6422,
-          "description": "A passage leads to The Stairwell"
-        },
-        "down": {
-          "to_room": 6429,
-          "description": "A passage leads to A Stairwell"
-        }
-      }
-    },
-    "6426": {
-      "vnum": 6426,
-      "name": "A Hall",
-      "description": "This area of the tower seems dank and oppressive. The hall runs north-\nsouth, and there is an empty cell to the west. The stairwell is to your\neast. Dust motes drift in the stale air. The ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6427,
-          "description": "A passage leads to A Hall"
-        },
-        "east": {
-          "to_room": 6425,
-          "description": "A passage leads to The Stairwell"
-        },
-        "south": {
-          "to_room": 6428,
-          "description": "A passage leads to A Hall"
-        }
-      },
-      "extra_descs": {
-        "": "cell cells"
-      }
-    },
-    "6427": {
-      "vnum": 6427,
-      "name": "A Hall",
-      "description": "This is the northern end of the hall. There are cells nearby and left,\nempty and awaiting occupants. The ceiling hangs low overhead. Shadows\ngather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 6426,
-          "description": "A passage leads to A Hall"
-        }
-      },
-      "extra_descs": {
-        "": "cell cells"
-      }
-    },
-    "6428": {
-      "vnum": 6428,
-      "name": "A Hall",
-      "description": "This is the southern end of the hall. There are cells nearby and left,\nempty and awaiting occupants. Shadows gather in the corners. The walls\nare rough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6426,
-          "description": "A passage leads to A Hall"
-        }
-      },
-      "extra_descs": {
-        "": "cell cells"
-      }
-    },
-    "6429": {
-      "vnum": 6429,
-      "name": "A Stairwell",
-      "description": "The stairwell continues up and down here. A large room opens up to the\nwest. The ceiling hangs low overhead. Dust motes drift in the stale air.\nThe air is stale and the walls close. Shadows pool in the corners,\nundisturbed.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 6430,
-          "description": "A passage leads to A Mage's Office"
-        },
-        "up": {
-          "to_room": 6425,
-          "description": "A passage leads to The Stairwell"
-        },
-        "down": {
-          "to_room": 6431,
-          "description": "A passage leads to The Stairwell"
-        }
-      }
-    },
-    "6430": {
-      "vnum": 6430,
-      "name": "A Mage's Office",
-      "description": "A small desk here is cluttered with magically preserved papers and\ndocuments. None seem of value, except perhaps to a historian. This place\nseems vaguely uninteresting... The walls are rough-hewn and cold to the\ntouch. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6429,
-          "description": "A passage leads to A Stairwell"
-        }
-      },
-      "extra_descs": {
-        "": "desk"
-      }
-    },
-    "6431": {
-      "vnum": 6431,
-      "name": "The Stairwell",
-      "description": "The stairs go up and down here, and there is a room to the west... The\nwalls are rough-hewn and cold to the touch. The air is still and musty.\nThe air is stale and the walls close. Shadows pool in the corners,\nundisturbed.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 6432,
-          "description": "A passage leads to A Sitting Room"
-        },
-        "up": {
-          "to_room": 6429,
-          "description": "A passage leads to A Stairwell"
-        },
-        "down": {
-          "to_room": 6433,
-          "description": "A passage leads to The Stairwell"
-        }
-      }
-    },
-    "6432": {
-      "vnum": 6432,
-      "name": "A Sitting Room",
-      "description": "This is a simply furnished room, with chairs all about. A fireplace is\ninset into an inner wall, the chimney undoubtedly directed by magic...\nThis would be a nice place to rest awhile... The walls are rough-hewn\nand cold to the touch. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "no_mob",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6431,
-          "description": "A passage leads to The Stairwell"
-        }
-      }
-    },
-    "6433": {
-      "vnum": 6433,
-      "name": "The Stairwell",
-      "description": "This is where the stairwell finally ends. There is a hall to the west.\nThe ceiling hangs low overhead. The air is still and musty. The air is\nstale and the walls close. Shadows pool in the corners, undisturbed.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 6434,
-          "description": "A passage leads to A Hallway"
-        },
-        "up": {
-          "to_room": 6431,
-          "description": "A passage leads to The Stairwell"
-        }
-      }
-    },
-    "6434": {
-      "vnum": 6434,
-      "name": "A Hallway",
-      "description": "This small hallway on the former 'ground floor' ran north- south. To the\neast is the stairwell that leads up into the shadowy recesses of the\ntower. To the west is the entrance way to the tower. The north is\ncompletely blocked off by lava, and the way south is still clear. Dust\nmotes drift in the stale air. Shadows gather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6433,
-          "description": "A passage leads to The Stairwell"
-        },
-        "south": {
-          "to_room": 6437,
-          "description": "A passage leads to The Hallway"
-        },
-        "west": {
-          "to_room": 6435,
-          "description": "A passage leads to The Entranceway"
-        }
-      }
-    },
-    "6435": {
-      "vnum": 6435,
-      "name": "The Entranceway",
-      "description": "This is a grand chamber with giant double-doors to the west. To the east\nis the main floor of the tower. This room is arranged highly\nattractively and very impressively, with sculptures and tapistries\neverywhere. The doors seem impenetrable... you don't think you'd be able\nto get through them if you really had to... The walls are rough-hewn and\ncold to the touch. Dust motes drift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6434,
-          "description": "A passage leads to A Hallway"
-        },
-        "west": {
-          "to_room": 6436,
-          "description": "These doors seem incredible.  Unfortunately, they're locked.",
-          "door": {
-            "name": "door double",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "extra_descs": {
-        "": "sculpture tapestry sculptures tapestries"
-      }
-    },
-    "6436": {
-      "vnum": 6436,
-      "name": "The Doorway",
-      "description": "This was the entrance to the tower. Now lava has blocked it up\ncompletely. However: It seems when the lava came down a man was outside\nthe doors. He was blasted into the doors, and died instantly, but his\nskeleton still clutches a staff in perfect condition... The air is still\nand musty. The ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6435,
-          "description": "These double doors have the outline of a man blasted into them...",
-          "door": {
-            "name": "double doors",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 6415,
-          "max": 10
-        }
-      ]
-    },
-    "6437": {
-      "vnum": 6437,
-      "name": "The Hallway",
-      "description": "This is the southern part of the hallway. There is a door to the west,\nbarred with gleaming bands of lights. To the north is more hallway. The\nwalls are rough-hewn and cold to the touch. Dust motes drift in the\nstale air.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6434,
-          "description": "A passage leads to A Hallway"
-        },
-        "west": {
-          "to_room": 6438,
-          "description": "A passage leads to The Stairs",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 6405,
-          "max": 1
-        }
-      ]
-    },
-    "6438": {
-      "vnum": 6438,
-      "name": "The Stairs",
-      "description": "Stairs lead down here into the tower's basement, or you can head east\ninto the main floor of the tower. The ceiling hangs low overhead. Dust\nmotes drift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6437,
-          "description": "A passage leads to The Hallway",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "down": {
-          "to_room": 6439,
-          "description": "A passage leads to The Stairs"
-        }
-      }
-    },
-    "6439": {
-      "vnum": 6439,
-      "name": "The Stairs",
-      "description": "Stairs lead up here to the main level, or you can go east to the\nbasement of the tower. Dust motes drift in the stale air. The air is\nstill and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6440,
-          "description": "A passage leads to An Alcove"
-        },
-        "up": {
-          "to_room": 6438,
-          "description": "A passage leads to The Stairs"
-        }
-      }
-    },
-    "6440": {
-      "vnum": 6440,
-      "name": "An Alcove",
-      "description": "This alcove leads into a huge room to the north, and to stairs leading\ndown to the east, and stairs going up to the west. The walls are rough-\nhewn and cold to the touch. The ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6441,
-          "description": "A passage leads to The Laboratory"
-        },
-        "east": {
-          "to_room": 6442,
-          "description": "A passage leads to The Stairs"
-        },
-        "west": {
-          "to_room": 6439,
-          "description": "A passage leads to The Stairs"
-        }
-      }
-    },
-    "6441": {
-      "vnum": 6441,
-      "name": "The Laboratory",
-      "description": "This laboratory has lots of stuff in it. Beakers, flasks, burners,\ntongs, mortars and pestles, jars filled with normal things, jars filled\nwith abnormal things, jars filled with things you'd rather not think\nabout... A search could reveal many things... The air is still and\nmusty. The walls are rough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 6440,
-          "description": "A passage leads to An Alcove"
-        }
-      },
-      "extra_descs": {
-        "": "mortar mortars pestle pestles jar jars"
-      },
-      "obj_resets": [
-        {
-          "vnum": 6413,
-          "max": 100
-        },
-        {
-          "vnum": 6414,
-          "max": 100
-        }
-      ]
-    },
-    "6442": {
-      "vnum": 6442,
-      "name": "The Stairs",
-      "description": "Stairs lead down here to the second level of the basement, or back west\nto the alcove. The air is still and musty. The walls are rough-hewn and\ncold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 6440,
-          "description": "A passage leads to An Alcove"
-        },
-        "down": {
-          "to_room": 6443,
-          "description": "A passage leads to The Stairs"
-        }
-      }
-    },
-    "6443": {
-      "vnum": 6443,
-      "name": "The Stairs",
-      "description": "Stairs lead up here to the first level of the basement, or you can go\neast to another big room. The air is still and musty. Shadows gather in\nthe corners.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6444,
-          "description": "A passage leads to The Summoning Room"
-        },
-        "up": {
-          "to_room": 6442,
-          "description": "A passage leads to The Stairs"
-        }
-      }
-    },
-    "6444": {
-      "vnum": 6444,
-      "name": "The Summoning Room",
-      "description": "This room is darkly lit by a giant glowing pentagram in the center of\nthe room. Bands of force encircle some sort of being trapped inside. You\nthink that going inside would be an EXTREMELY BAD idea... The walls are\nrough-hewn and cold to the touch. The ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6445,
-          "description": "A passage leads to Inside A Pentagram"
-        },
-        "west": {
-          "to_room": 6443,
-          "description": "A passage leads to The Stairs"
-        }
-      },
-      "extra_descs": {
-        "": "being"
-      }
-    },
-    "6445": {
-      "vnum": 6445,
-      "name": "Inside A Pentagram",
-      "description": "The small god entrapped by the wizard looks at you with an insane\nexpression. Four hundred years of imprisonment doesn't do much for\none's... OOPS! He killed you! The area is dead, R.I.P. Dust motes drift\nin the stale air. The walls are rough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "death",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 6444,
-          "description": "A passage leads to The Summoning Room"
-        }
-      }
+    {
+     "vnum": 6400,
+     "max": 3
     }
+   ],
+   "description": "This small room is the top of a stairwell leading down deep into the\ntower. A small trapdoor overhead leaks the light of day around its\nedges. To the south is a wooden door, preserved through the ages by\nmeans unknown. To the west is a short hall. The ceiling hangs low\noverhead. The air is still and musty.",
+   "exits": {
+    "south": {
+     "to_room": 6408,
+     "description": "A passage leads to A Linen Closet",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "west": {
+     "to_room": 6409,
+     "description": "A passage leads to A Corridor"
+    },
+    "up": {
+     "to_room": 9806,
+     "description": "To the up lies In a Clearing."
+    },
+    "down": {
+     "to_room": 6413,
+     "description": "A passage leads to The Stairwell"
+    }
+   }
   },
-  "mobs": {
-    "6400": {
-      "vnum": 6400,
-      "name": "goat",
-      "short_desc": "the mountain goat",
-      "long_desc": "A mountain goat nibbles at a piece of grass here.",
-      "level": 8,
-      "alignment": 0,
-      "hp_dice": "8d10+112",
-      "damage_dice": "3d5+5",
-      "gold": 2000,
-      "exp": 480,
-      "armor_class": 76,
-      "flags": [
-        "stay_zone",
-        "wimpy"
-      ],
-      "description": "This goat is acclimated to the rugged terrain of the \nmountains.  It looks at you and shies away a little.",
-      "inventory": [
-        6401
-      ]
-    },
-    "6401": {
-      "vnum": 6401,
-      "name": "demon",
-      "short_desc": "the Demon of Decay",
-      "long_desc": "A cloaked and clawed demon of decay comes at you viciously!",
-      "level": 12,
-      "alignment": -1000,
-      "hp_dice": "12d10+160",
-      "damage_dice": "4d6+6",
-      "gold": 5000,
-      "exp": 720,
-      "armor_class": 64,
-      "flags": [
-        "sentinel",
-        "aware",
-        "aggressive",
-        "memory",
-        "helper",
-        "no_charm",
-        "no_summmon",
-        "no_sleep",
-        "no_blind"
-      ],
-      "description": "This demon has pure malevolence for anything living.  \nOops!  You're living!  I guess that means you!",
-      "inventory": [
-        6405
-      ]
-    },
-    "6402": {
-      "vnum": 6402,
-      "name": "book",
-      "short_desc": "the Book Monster",
-      "long_desc": "A mound of books rise up into a human shape and tries to hit you!",
-      "level": 14,
-      "alignment": 0,
-      "hp_dice": "14d10+184",
-      "damage_dice": "4d6+9",
-      "gold": 9000,
-      "exp": 840,
-      "armor_class": 58,
-      "flags": [
-        "sentinel",
-        "aware",
-        "aggressive",
-        "memory",
-        "helper",
-        "no_charm",
-        "no_summmon",
-        "no_sleep",
-        "no_bash",
-        "no_blind"
-      ],
-      "description": "Ironically enough, the book-monster's head is War and\nPeace.  Hmm.",
-      "inventory": [
-        6410,
-        6411
-      ]
-    },
-    "6403": {
-      "vnum": 6403,
-      "name": "bad",
-      "short_desc": "a Bad Feeling",
-      "long_desc": "A bad feeling chokes your throat.",
-      "level": 18,
-      "alignment": 0,
-      "hp_dice": "18d10+232",
-      "damage_dice": "5d7+9",
-      "gold": 20000,
-      "exp": 1080,
-      "armor_class": 46,
-      "flags": [
-        "sentinel",
-        "aware",
-        "aggressive",
-        "memory",
-        "helper",
-        "no_charm",
-        "no_summmon",
-        "no_sleep",
-        "no_bash",
-        "no_blind"
-      ],
-      "description": "It resembles a lot of other bad feelings you've had,\nbut a lot more tangible... magic?",
-      "loot_table": [
-        {
-          "vnum": 6421,
-          "chance": 20
-        },
-        {
-          "vnum": 6422,
-          "chance": 20
-        },
-        {
-          "vnum": 6423,
-          "chance": 20
-        },
-        {
-          "vnum": 6424,
-          "chance": 20
-        },
-        {
-          "vnum": 6425,
-          "chance": 20
-        },
-        {
-          "vnum": 6426,
-          "chance": 20
-        },
-        {
-          "vnum": 6427,
-          "chance": 20
-        },
-        {
-          "vnum": 6428,
-          "chance": 20
-        },
-        {
-          "vnum": 6429,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100,
-      "inventory": [
-        6425
-      ]
-    },
-    "6404": {
-      "vnum": 6404,
-      "name": "nightmare",
-      "short_desc": "Your Worst Nightmare",
-      "long_desc": "Your worst nightmare coalesces in front of you and attacks!",
-      "level": 19,
-      "alignment": 0,
-      "hp_dice": "19d10+244",
-      "damage_dice": "5d7+10",
-      "gold": 22500,
-      "exp": 1140,
-      "armor_class": 43,
-      "flags": [
-        "sentinel",
-        "aware",
-        "aggressive",
-        "memory",
-        "helper",
-        "no_charm",
-        "no_summmon",
-        "no_sleep",
-        "no_bash",
-        "no_blind"
-      ],
-      "description": "It looks like you deepest, darkest fears personified.\nWait a minute!  It IS your deepest, darkest fears\npersonified!",
-      "loot_table": [
-        {
-          "vnum": 6421,
-          "chance": 20
-        },
-        {
-          "vnum": 6422,
-          "chance": 20
-        },
-        {
-          "vnum": 6423,
-          "chance": 20
-        },
-        {
-          "vnum": 6424,
-          "chance": 20
-        },
-        {
-          "vnum": 6425,
-          "chance": 20
-        },
-        {
-          "vnum": 6426,
-          "chance": 20
-        },
-        {
-          "vnum": 6427,
-          "chance": 20
-        },
-        {
-          "vnum": 6428,
-          "chance": 20
-        },
-        {
-          "vnum": 6429,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100,
-      "inventory": [
-        6405,
-        6424,
-        6407
-      ]
-    },
-    "6405": {
-      "vnum": 6405,
-      "name": "guardian",
-      "short_desc": "the Guardian",
-      "long_desc": "A guardian guards the door.  It looks at you and attacks!",
-      "level": 18,
-      "alignment": 0,
-      "hp_dice": "18d10+232",
-      "damage_dice": "5d7+9",
-      "gold": 17500,
-      "exp": 1080,
-      "armor_class": 46,
-      "flags": [
-        "sentinel",
-        "aware",
-        "aggressive",
-        "memory",
-        "helper",
-        "no_charm",
-        "no_summmon",
-        "no_sleep",
-        "no_blind"
-      ],
-      "description": "The guardian guards the door.  That's about all its\nbrain can handle: guarding.",
-      "loot_table": [
-        {
-          "vnum": 6421,
-          "chance": 20
-        },
-        {
-          "vnum": 6422,
-          "chance": 20
-        },
-        {
-          "vnum": 6423,
-          "chance": 20
-        },
-        {
-          "vnum": 6424,
-          "chance": 20
-        },
-        {
-          "vnum": 6425,
-          "chance": 20
-        },
-        {
-          "vnum": 6426,
-          "chance": 20
-        },
-        {
-          "vnum": 6427,
-          "chance": 20
-        },
-        {
-          "vnum": 6428,
-          "chance": 20
-        },
-        {
-          "vnum": 6429,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100,
-      "inventory": [
-        6428,
-        6405,
-        6401
-      ]
+  "6408": {
+   "vnum": 6408,
+   "name": "A Linen Closet",
+   "map": {
+    "x": 20,
+    "y": 35,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "linen shelf shelves"
+   },
+   "description": "This small room holds many types of linen on shelves along the walls.\nThey are undoubtedly preserved by magic against the toil of the ages,\nsince they seem freshly washed and folded. You wonder what sort of mage\ncould wield so much power to waste on such little things. Shadows gather\nin the corners. The air is still and musty.",
+   "exits": {
+    "north": {
+     "to_room": 6407,
+     "description": "A passage leads to A Stairwell",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
     }
+   }
   },
-  "objects": {
-    "6400": {
-      "vnum": 6400,
-      "name": "dagger",
-      "short_desc": "a glowing dagger",
-      "room_desc": "A glowing dagger glows here.",
-      "item_type": "weapon",
-      "weight": 1,
-      "value": 1000,
-      "damage_dice": "1d4",
-      "weapon_type": "pierce",
-      "type": "weapon"
+  "6409": {
+   "vnum": 6409,
+   "name": "Corridor",
+   "map": {
+    "x": 19,
+    "y": 36,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This is only a clean corridor, that leads back to the stairwell to the\neast, and has doors leading to other rooms to the north and south. Dust\nmotes drift in the stale air. Shadows gather in the corners.",
+   "exits": {
+    "north": {
+     "to_room": 6411,
+     "description": "A passage leads to The Master Bedroom",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
     },
-    "6401": {
-      "vnum": 6401,
-      "name": "platemail",
-      "short_desc": "the glowing platemail",
-      "room_desc": "Some glowing platemail lies in a heap here.",
-      "item_type": "armor",
-      "weight": 150,
-      "value": 30000,
-      "armor_bonus": 15,
-      "type": "armor",
-      "wear_slot": "body",
-      "armor": 5,
-      "armor_class": 4
+    "east": {
+     "to_room": 6407,
+     "description": "A passage leads to A Stairwell"
     },
-    "6402": {
-      "vnum": 6402,
-      "name": "agate",
-      "short_desc": "an agate",
-      "room_desc": "A small gem lies here.",
-      "item_type": "treasure",
-      "weight": 1,
-      "value": 5000,
-      "type": "treasure"
-    },
-    "6403": {
-      "vnum": 6403,
-      "name": "jade",
-      "short_desc": "a piece of jade",
-      "room_desc": "A small jewel gleams here.",
-      "item_type": "treasure",
-      "weight": 1,
-      "value": 10000,
-      "type": "treasure"
-    },
-    "6404": {
-      "vnum": 6404,
-      "name": "sculpture",
-      "short_desc": "a piece of sculpture",
-      "room_desc": "A nice piece of sculpture is here.",
-      "item_type": "treasure",
-      "weight": 75,
-      "value": 20000,
-      "type": "treasure"
-    },
-    "6405": {
-      "vnum": 6405,
-      "name": "vial",
-      "short_desc": "a vial of dragon's blood",
-      "room_desc": "A small vial filled with a red fluid lies in the dust here.",
-      "item_type": "potion",
-      "weight": 5,
-      "value": 48000,
-      "type": "treasure"
-    },
-    "6406": {
-      "vnum": 6406,
-      "name": "amulet",
-      "short_desc": "an amulet",
-      "room_desc": "An odd looking amulet has been discarded here.",
-      "item_type": "armor",
-      "weight": 3,
-      "value": 20000,
-      "armor_bonus": 0,
-      "type": "armor",
-      "wear_slot": "neck",
-      "armor": 5,
-      "armor_class": 2
-    },
-    "6407": {
-      "vnum": 6407,
-      "name": "pole",
-      "short_desc": "a tent pole",
-      "room_desc": "A tent pole has been tossed away here.",
-      "item_type": "wand",
-      "weight": 10,
-      "value": 25000,
-      "type": "treasure"
-    },
-    "6408": {
-      "vnum": 6408,
-      "name": "bag",
-      "short_desc": "a bag of powder of wealth",
-      "room_desc": "A small bag filled with powder of wealth lies here.",
-      "item_type": "money",
-      "weight": 1,
-      "value": 100000,
-      "type": "container",
-      "capacity": 100
-    },
-    "6409": {
-      "vnum": 6409,
-      "name": "desk",
-      "short_desc": "a desk",
-      "room_desc": "There is an ebony desk here.",
-      "item_type": "container",
-      "weight": 800,
-      "value": 0,
-      "capacity": 100,
-      "type": "furniture"
-    },
-    "6410": {
-      "vnum": 6410,
-      "name": "book",
-      "short_desc": "the Book of Chaos",
-      "room_desc": "A book with a title written in moving letters rests here.",
-      "item_type": "wand",
-      "weight": 25,
-      "value": 100000,
-      "type": "note"
-    },
-    "6411": {
-      "vnum": 6411,
-      "name": "book",
-      "short_desc": "the Book of the Elder",
-      "room_desc": "A grey-bound book lies here.",
-      "item_type": "wand",
-      "weight": 25,
-      "value": 300000,
-      "type": "note"
-    },
-    "6412": {
-      "vnum": 6412,
-      "name": "lens",
-      "short_desc": "the Occluded Lens",
-      "room_desc": "A smoky lens about a foot around has been scuffled in the dirt here.",
-      "item_type": "light",
-      "weight": 20,
-      "value": 200000,
-      "light_hours": 0,
-      "type": "treasure"
-    },
-    "6413": {
-      "vnum": 6413,
-      "name": "mevais",
-      "short_desc": "a leaf of mevais",
-      "room_desc": "A small black leaf of a mevais plant lies here, well preserved.",
-      "item_type": "potion",
-      "weight": 1,
-      "value": 0,
-      "type": "furniture"
-    },
-    "6414": {
-      "vnum": 6414,
-      "name": "bottle",
-      "short_desc": "a bottle of peska",
-      "room_desc": "There is a bottle of a milky fluid here.",
-      "item_type": "potion",
-      "weight": 12,
-      "value": 15000,
-      "type": "drink",
-      "drinks": 10,
-      "max_drinks": 10
-    },
-    "6415": {
-      "vnum": 6415,
-      "name": "staff",
-      "short_desc": "Rand's staff",
-      "room_desc": "There is a metal-shod staff here.",
-      "item_type": "armor",
-      "weight": 7,
-      "value": 100000,
-      "armor_bonus": 8,
-      "type": "weapon",
-      "weapon_type": "pound",
-      "damage_dice": "1d6",
-      "armor": 10
-    },
-    "6416": {
-      "vnum": 6416,
-      "name": "chest",
-      "short_desc": "a wooden chest",
-      "room_desc": "There is a wooden chest here.",
-      "item_type": "container",
-      "weight": 0,
-      "value": 0,
-      "capacity": 500,
-      "type": "container"
-    },
-    "6417": {
-      "vnum": 6417,
-      "name": "chest",
-      "short_desc": "a wooden chest",
-      "room_desc": "There is a wooden chest here.",
-      "item_type": "container",
-      "weight": 0,
-      "value": 0,
-      "capacity": 500,
-      "type": "container"
-    },
-    "6418": {
-      "vnum": 6418,
-      "name": "chest",
-      "short_desc": "a wooden chest",
-      "room_desc": "There is a wooden chest here.",
-      "item_type": "container",
-      "weight": 0,
-      "value": 0,
-      "capacity": 500,
-      "type": "container"
-    },
-    "6419": {
-      "vnum": 6419,
-      "name": "basin",
-      "short_desc": "a water basin",
-      "room_desc": "A basin filled with crisp, clean water is here.",
-      "item_type": "drinkcon",
-      "weight": 100,
-      "value": 0,
-      "capacity": 100,
-      "current": 100,
-      "type": "treasure"
-    },
-    "6420": {
-      "vnum": 6420,
-      "name": "food",
-      "short_desc": "some food",
-      "room_desc": "There's some food lying here.",
-      "item_type": "food",
-      "weight": 3,
-      "value": 20,
-      "nutrition": 8,
-      "type": "treasure"
-    },
-    "6421": {
-      "vnum": 6421,
-      "name": "towerguard blade",
-      "short_desc": "a towerguard blade",
-      "room_desc": "A towerguard blade lies here.",
-      "description": "A guard's blade.",
-      "item_type": "weapon",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "wield",
-      "weapon_type": "slash",
-      "damage_dice": "2d6+3",
-      "affects": [
-        {
-          "type": "damroll",
-          "value": 2
-        }
-      ],
-      "set_id": 64,
-      "type": "weapon"
-    },
-    "6422": {
-      "vnum": 6422,
-      "name": "sanctum shield",
-      "short_desc": "a sanctum shield",
-      "room_desc": "A sanctum shield lies here.",
-      "description": "A paladin's shield.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "shield",
-      "armor_bonus": 2,
-      "affects": [
-        {
-          "type": "wis",
-          "value": 1
-        }
-      ],
-      "set_id": 64,
-      "type": "armor",
-      "armor": 3,
-      "armor_class": 3
-    },
-    "6423": {
-      "vnum": 6423,
-      "name": "void\u2011etched sigil",
-      "short_desc": "a void\u2011etched sigil",
-      "room_desc": "A void\u2011etched sigil lies here.",
-      "description": "A deathknight's sigil.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "neck1",
-      "affects": [
-        {
-          "type": "damroll",
-          "value": 3
-        }
-      ],
-      "set_id": 64,
-      "type": "treasure",
-      "armor": 10
-    },
-    "6424": {
-      "vnum": 6424,
-      "name": "wardkeeper's seal",
-      "short_desc": "a wardkeeper's seal",
-      "room_desc": "A wardkeeper's seal lies here.",
-      "description": "A cleric's seal.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "hold",
-      "affects": [
-        {
-          "type": "wis",
-          "value": 2
-        },
-        {
-          "type": "max_mana",
-          "value": 20
-        }
-      ],
-      "set_id": 64,
-      "type": "treasure",
-      "armor": 10
-    },
-    "6425": {
-      "vnum": 6425,
-      "name": "arcane focus",
-      "short_desc": "an arcane focus",
-      "room_desc": "An arcane focus lies here.",
-      "description": "A mage's focus.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "hold",
-      "affects": [
-        {
-          "type": "int",
-          "value": 3
-        }
-      ],
-      "set_id": 64,
-      "type": "treasure",
-      "armor": 9
-    },
-    "6426": {
-      "vnum": 6426,
-      "name": "resonant lyre",
-      "short_desc": "a resonant lyre",
-      "room_desc": "A resonant lyre lies here.",
-      "description": "A bard's lyre.",
-      "item_type": "weapon",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "wield",
-      "weapon_type": "mace",
-      "damage_dice": "1d6+2",
-      "affects": [
-        {
-          "type": "cha",
-          "value": 2
-        }
-      ],
-      "set_id": 64,
-      "type": "treasure"
-    },
-    "6427": {
-      "vnum": 6427,
-      "name": "spell\u2011cut knife",
-      "short_desc": "a spell\u2011cut knife",
-      "room_desc": "A spell\u2011cut knife lies here.",
-      "description": "A rogue's knife.",
-      "item_type": "weapon",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "wield",
-      "weapon_type": "pierce",
-      "damage_dice": "1d6+2",
-      "affects": [
-        {
-          "type": "dex",
-          "value": 2
-        },
-        {
-          "type": "hitroll",
-          "value": 1
-        }
-      ],
-      "set_id": 64,
-      "type": "weapon"
-    },
-    "6428": {
-      "vnum": 6428,
-      "name": "watcher's band",
-      "short_desc": "a watcher's band",
-      "room_desc": "A watcher's band lies here.",
-      "description": "A ranger's ring.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "finger1",
-      "affects": [
-        {
-          "type": "dex",
-          "value": 2
-        }
-      ],
-      "set_id": 64,
-      "type": "armor",
-      "armor": 10,
-      "armor_class": 2
-    },
-    "6429": {
-      "vnum": 6429,
-      "name": "runic cloak",
-      "short_desc": "a runic cloak",
-      "room_desc": "A runic cloak lies here.",
-      "description": "A warded cloak.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "about",
-      "armor_bonus": 1,
-      "affects": [
-        {
-          "type": "spell_resist",
-          "value": 5
-        }
-      ],
-      "set_id": 64,
-      "type": "armor",
-      "armor": 1,
-      "armor_class": 4
+    "south": {
+     "to_room": 6410,
+     "description": "A passage leads to A Bathroom",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
     }
+   }
+  },
+  "6410": {
+   "vnum": 6410,
+   "name": "Bathroom",
+   "map": {
+    "x": 19,
+    "y": 35,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "obj_resets": [
+    {
+     "vnum": 6419,
+     "max": 1
+    }
+   ],
+   "description": "This is some sort of bathroom, like you've never seen before... Water\nappliances leading from nowhere deliver hot and cold running water to\nbasins that drain to... where? How strange! Shadows gather in the\ncorners. The walls are rough-hewn and cold to the touch.",
+   "exits": {
+    "north": {
+     "to_room": 6409,
+     "description": "A passage leads to A Corridor",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "6411": {
+   "vnum": 6411,
+   "name": "Master Bedroom",
+   "map": {
+    "x": 19,
+    "y": 37,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "closet"
+   },
+   "mob_resets": [
+    {
+     "vnum": 6403,
+     "max": 1
+    }
+   ],
+   "obj_resets": [
+    {
+     "vnum": 6404,
+     "max": 5
+    },
+    {
+     "vnum": 6409,
+     "max": 1
+    }
+   ],
+   "description": "This is an opulent room, decorated in silks and gold. There is an ebony\ndesk against one wall, cooled lava rock spilling over its surface from\nthe window it once looked out at. A nice, spacious closet is filled with\nclothes just cleaned and pressed. The air is still and musty. Dust motes\ndrift in the stale air.",
+   "exits": {
+    "south": {
+     "to_room": 6409,
+     "description": "A passage leads to A Corridor",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "6412": {
+   "vnum": 6412,
+   "name": "The Library",
+   "map": {
+    "x": 19,
+    "y": 36,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "book books"
+   },
+   "mob_resets": [
+    {
+     "vnum": 6402,
+     "max": 1
+    }
+   ],
+   "description": "A great mages' library is contained on this floor of the tower. You feel\nyou could learn anything you wanted to if you only looked and read long\nenough. A door opens up back on the stairwell to the east. Shadows\ngather in the corners. The ceiling hangs low overhead.",
+   "exits": {
+    "east": {
+     "to_room": 6413,
+     "description": "A passage leads to The Stairwell",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "west": {
+     "to_room": 6414,
+     "description": "A big bookcase, that looks rather odd.",
+     "door": {
+      "name": "bookcase",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "6413": {
+   "vnum": 6413,
+   "name": "Stairwell",
+   "map": {
+    "x": 20,
+    "y": 36,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This stairwell continues up and down, and there is a door to the west.\nShadows gather in the corners. The air is still and musty. The air is\nstale and the walls close. Shadows pool in the corners, undisturbed.",
+   "exits": {
+    "west": {
+     "to_room": 6412,
+     "description": "A passage leads to The Library",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "up": {
+     "to_room": 6407,
+     "description": "A passage leads to A Stairwell"
+    },
+    "down": {
+     "to_room": 6415,
+     "description": "A passage leads to A Stairwell"
+    }
+   }
+  },
+  "6414": {
+   "vnum": 6414,
+   "name": "A Hidden Hall",
+   "map": {
+    "x": 18,
+    "y": 36,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This is a small hidden hall with a secret entrance to the library on the\nnorth end of the west wall, and a trapdoor on the south end. Dust motes\ndrift in the stale air. The ceiling hangs low overhead.",
+   "exits": {
+    "east": {
+     "to_room": 6412,
+     "description": "The backside of a movable bookcase.",
+     "door": {
+      "name": "book bookcase",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "down": {
+     "to_room": 6416,
+     "description": "A passage leads to The Hidden Treasure Room",
+     "door": {
+      "name": "trapdoor trap",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "6415": {
+   "vnum": 6415,
+   "name": "A Stairwell",
+   "map": {
+    "x": 20,
+    "y": 36,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This stairwell continues up and down, and there is a door to the west\nopening up onto this level. Dust motes drift in the stale air. The\nceiling hangs low overhead.",
+   "exits": {
+    "west": {
+     "to_room": 6417,
+     "description": "A passage leads to A Hallway",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "up": {
+     "to_room": 6413,
+     "description": "A passage leads to The Stairwell"
+    },
+    "down": {
+     "to_room": 6422,
+     "description": "A passage leads to The Stairwell"
+    }
+   }
+  },
+  "6416": {
+   "vnum": 6416,
+   "name": "Hidden Treasure Room",
+   "map": {
+    "x": 17,
+    "y": 35,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 6404,
+     "max": 3
+    },
+    {
+     "vnum": 6404,
+     "max": 3
+    },
+    {
+     "vnum": 6404,
+     "max": 1
+    }
+   ],
+   "obj_resets": [
+    {
+     "vnum": 6416,
+     "max": 1
+    },
+    {
+     "vnum": 6417,
+     "max": 1
+    },
+    {
+     "vnum": 6418,
+     "max": 1
+    }
+   ],
+   "description": "Jackpot! A small room filled with treasure chests! Go get them! Shadows\ngather in the corners. The air is still and musty. The air is stale and\nthe walls close. Shadows pool in the corners, undisturbed.",
+   "exits": {
+    "up": {
+     "to_room": 6414,
+     "description": "A passage leads to A Hidden Hall",
+     "door": {
+      "name": "trapdoor trap",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "6417": {
+   "vnum": 6417,
+   "name": "Hallway",
+   "map": {
+    "x": 19,
+    "y": 36,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This hall runs through the tower. There's more hall to the west, and\ndoors to the north and south. A door to the east leads back to the\nstairwell. The walls are rough-hewn and cold to the touch. Shadows\ngather in the corners.",
+   "exits": {
+    "north": {
+     "to_room": 6419,
+     "description": "A passage leads to A Servant's Room",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "east": {
+     "to_room": 6415,
+     "description": "A passage leads to A Stairwell",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "south": {
+     "to_room": 6418,
+     "description": "A passage leads to A Servant's Room",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "west": {
+     "to_room": 6420,
+     "description": "A passage leads to A Hallway"
+    }
+   }
+  },
+  "6418": {
+   "vnum": 6418,
+   "name": "Servant's Room",
+   "map": {
+    "x": 19,
+    "y": 35,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This seems to be a small servant's bedroom, sparsely decorated and\noutfitted with a bed, nightstand, chair and table, etc. Nothing real\nimportant here. Shadows gather in the corners. The air is still and\nmusty.",
+   "exits": {
+    "north": {
+     "to_room": 6417,
+     "description": "A passage leads to A Hallway",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "6419": {
+   "vnum": 6419,
+   "name": "Servant's Room",
+   "map": {
+    "x": 19,
+    "y": 37,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This seems to be a small servant's bedroom, sparsely decorated and\noutfitted with a bed, nightstand, chair and table, etc. Nothing real\nimportant here. Shadows gather in the corners. The walls are rough-hewn\nand cold to the touch.",
+   "exits": {
+    "south": {
+     "to_room": 6417,
+     "description": "A passage leads to A Hallway",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "6420": {
+   "vnum": 6420,
+   "name": "Hallway",
+   "map": {
+    "x": 18,
+    "y": 36,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This hallway continues to the east, and has a door to the north. You\ncould swear that the way this level is arranged... nah, couldn't be. The\nwalls are rough-hewn and cold to the touch. The ceiling hangs low\noverhead.",
+   "exits": {
+    "north": {
+     "to_room": 6421,
+     "description": "A passage leads to A Servant's Room",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "east": {
+     "to_room": 6417,
+     "description": "A passage leads to A Hallway"
+    }
+   }
+  },
+  "6421": {
+   "vnum": 6421,
+   "name": "Servant's Room",
+   "map": {
+    "x": 18,
+    "y": 37,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This seems to be a small servant's bedroom, sparsely decorated and\noutfitted with a bed, nightstand, chair and a table, etc. Nothing real\nimportant here. The walls are rough-hewn and cold to the touch. The\nceiling hangs low overhead.",
+   "exits": {
+    "south": {
+     "to_room": 6420,
+     "description": "A passage leads to A Hallway",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "6422": {
+   "vnum": 6422,
+   "name": "Stairwell",
+   "map": {
+    "x": 20,
+    "y": 36,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This stairwell leads up and down, and there is a big open room to your\nwest. The ceiling hangs low overhead. The air is still and musty. The\nair is stale and the walls close. Shadows pool in the corners,\nundisturbed.",
+   "exits": {
+    "west": {
+     "to_room": 6423,
+     "description": "A passage leads to The Dining Hall"
+    },
+    "up": {
+     "to_room": 6415,
+     "description": "A passage leads to A Stairwell"
+    },
+    "down": {
+     "to_room": 6425,
+     "description": "A passage leads to The Stairwell"
+    }
+   }
+  },
+  "6423": {
+   "vnum": 6423,
+   "name": "Dining Hall",
+   "map": {
+    "x": 19,
+    "y": 36,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "tapestry tapestries painting paintings"
+   },
+   "description": "This is a large dining hall, with a long table that runs down the length\nof it. Chairs are set up along the sides to accomodate approximately 10\npeople. There are paintings and tapestries on the walls, adding color to\nthe stonework, The cooled lava that had poured in the windows makes the\nplace seem eerie somehow . There is a door to the north, and the\nstairwell is to the east. The walls are rough-hewn and cold to the\ntouch. The air is still and musty.",
+   "exits": {
+    "north": {
+     "to_room": 6424,
+     "description": "A passage leads to The Kitchen Area",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "east": {
+     "to_room": 6422,
+     "description": "A passage leads to The Stairwell"
+    }
+   }
+  },
+  "6424": {
+   "vnum": 6424,
+   "name": "Kitchen Area",
+   "map": {
+    "x": 19,
+    "y": 37,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "obj_resets": [
+    {
+     "vnum": 6420,
+     "max": 10
+    },
+    {
+     "vnum": 6420,
+     "max": 10
+    }
+   ],
+   "description": "This is a well-stocked kitchen, the larders still fresh and full as if\nby magic. Perhaps this would be a good place to take a break. The walls\nare rough-hewn and cold to the touch. Shadows gather in the corners.",
+   "exits": {
+    "south": {
+     "to_room": 6423,
+     "description": "A passage leads to The Dining Hall",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "6425": {
+   "vnum": 6425,
+   "name": "Stairwell",
+   "map": {
+    "x": 20,
+    "y": 36,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The stairwell leads up and down here, and there is a hall you can enter\nto the west. Dust motes drift in the stale air. Shadows gather in the\ncorners.",
+   "exits": {
+    "west": {
+     "to_room": 6426,
+     "description": "A passage leads to A Hall"
+    },
+    "up": {
+     "to_room": 6422,
+     "description": "A passage leads to The Stairwell"
+    },
+    "down": {
+     "to_room": 6429,
+     "description": "A passage leads to A Stairwell"
+    }
+   }
+  },
+  "6426": {
+   "vnum": 6426,
+   "name": "Hall",
+   "map": {
+    "x": 19,
+    "y": 36,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "cell cells"
+   },
+   "description": "This area of the tower seems dank and oppressive. The hall runs north-\nsouth, and there is an empty cell to the west. The stairwell is to your\neast. Dust motes drift in the stale air. The ceiling hangs low overhead.",
+   "exits": {
+    "north": {
+     "to_room": 6427,
+     "description": "A passage leads to A Hall"
+    },
+    "east": {
+     "to_room": 6425,
+     "description": "A passage leads to The Stairwell"
+    },
+    "south": {
+     "to_room": 6428,
+     "description": "A passage leads to A Hall"
+    }
+   }
+  },
+  "6427": {
+   "vnum": 6427,
+   "name": "Hall",
+   "map": {
+    "x": 19,
+    "y": 37,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "cell cells"
+   },
+   "description": "This is the northern end of the hall. There are cells nearby and left,\nempty and awaiting occupants. The ceiling hangs low overhead. Shadows\ngather in the corners.",
+   "exits": {
+    "south": {
+     "to_room": 6426,
+     "description": "A passage leads to A Hall"
+    }
+   }
+  },
+  "6428": {
+   "vnum": 6428,
+   "name": "Hall",
+   "map": {
+    "x": 19,
+    "y": 35,
+    "z": -5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "cell cells"
+   },
+   "description": "This is the southern end of the hall. There are cells nearby and left,\nempty and awaiting occupants. Shadows gather in the corners. The walls\nare rough-hewn and cold to the touch.",
+   "exits": {
+    "north": {
+     "to_room": 6426,
+     "description": "A passage leads to A Hall"
+    }
+   }
+  },
+  "6429": {
+   "vnum": 6429,
+   "name": "Stairwell",
+   "map": {
+    "x": 20,
+    "y": 36,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The stairwell continues up and down here. A large room opens up to the\nwest. The ceiling hangs low overhead. Dust motes drift in the stale air.\nThe air is stale and the walls close. Shadows pool in the corners,\nundisturbed.",
+   "exits": {
+    "west": {
+     "to_room": 6430,
+     "description": "A passage leads to A Mage's Office"
+    },
+    "up": {
+     "to_room": 6425,
+     "description": "A passage leads to The Stairwell"
+    },
+    "down": {
+     "to_room": 6431,
+     "description": "A passage leads to The Stairwell"
+    }
+   }
+  },
+  "6430": {
+   "vnum": 6430,
+   "name": "Mage's Study",
+   "map": {
+    "x": 19,
+    "y": 36,
+    "z": -6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "desk"
+   },
+   "description": "A small desk here is cluttered with magically preserved papers and\ndocuments. None seem of value, except perhaps to a historian. This place\nseems vaguely uninteresting... The walls are rough-hewn and cold to the\ntouch. The air is still and musty.",
+   "exits": {
+    "east": {
+     "to_room": 6429,
+     "description": "A passage leads to A Stairwell"
+    }
+   }
+  },
+  "6431": {
+   "vnum": 6431,
+   "name": "Stairwell",
+   "map": {
+    "x": 20,
+    "y": 36,
+    "z": -7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The stairs go up and down here, and there is a room to the west... The\nwalls are rough-hewn and cold to the touch. The air is still and musty.\nThe air is stale and the walls close. Shadows pool in the corners,\nundisturbed.",
+   "exits": {
+    "west": {
+     "to_room": 6432,
+     "description": "A passage leads to A Sitting Room"
+    },
+    "up": {
+     "to_room": 6429,
+     "description": "A passage leads to A Stairwell"
+    },
+    "down": {
+     "to_room": 6433,
+     "description": "A passage leads to The Stairwell"
+    }
+   }
+  },
+  "6432": {
+   "vnum": 6432,
+   "name": "Sitting Room",
+   "map": {
+    "x": 19,
+    "y": 36,
+    "z": -7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_mob"
+   ],
+   "description": "This is a simply furnished room, with chairs all about. A fireplace is\ninset into an inner wall, the chimney undoubtedly directed by magic...\nThis would be a nice place to rest awhile... The walls are rough-hewn\nand cold to the touch. The air is still and musty.",
+   "exits": {
+    "east": {
+     "to_room": 6431,
+     "description": "A passage leads to The Stairwell"
+    }
+   }
+  },
+  "6433": {
+   "vnum": 6433,
+   "name": "Stairwell",
+   "map": {
+    "x": 20,
+    "y": 36,
+    "z": -8
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This is where the stairwell finally ends. There is a hall to the west.\nThe ceiling hangs low overhead. The air is still and musty. The air is\nstale and the walls close. Shadows pool in the corners, undisturbed.",
+   "exits": {
+    "west": {
+     "to_room": 6434,
+     "description": "A passage leads to A Hallway"
+    },
+    "up": {
+     "to_room": 6431,
+     "description": "A passage leads to The Stairwell"
+    }
+   }
+  },
+  "6434": {
+   "vnum": 6434,
+   "name": "Hallway",
+   "map": {
+    "x": 19,
+    "y": 36,
+    "z": -8
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This small hallway on the former 'ground floor' ran north- south. To the\neast is the stairwell that leads up into the shadowy recesses of the\ntower. To the west is the entrance way to the tower. The north is\ncompletely blocked off by lava, and the way south is still clear. Dust\nmotes drift in the stale air. Shadows gather in the corners.",
+   "exits": {
+    "east": {
+     "to_room": 6433,
+     "description": "A passage leads to The Stairwell"
+    },
+    "south": {
+     "to_room": 6437,
+     "description": "A passage leads to The Hallway"
+    },
+    "west": {
+     "to_room": 6435,
+     "description": "A passage leads to The Entranceway"
+    }
+   }
+  },
+  "6435": {
+   "vnum": 6435,
+   "name": "Entranceway",
+   "map": {
+    "x": 18,
+    "y": 36,
+    "z": -8
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "sculpture tapestry sculptures tapestries"
+   },
+   "description": "This is a grand chamber with giant double-doors to the west. To the east\nis the main floor of the tower. This room is arranged highly\nattractively and very impressively, with sculptures and tapistries\neverywhere. The doors seem impenetrable... you don't think you'd be able\nto get through them if you really had to... The walls are rough-hewn and\ncold to the touch. Dust motes drift in the stale air.",
+   "exits": {
+    "east": {
+     "to_room": 6434,
+     "description": "A passage leads to A Hallway"
+    },
+    "west": {
+     "to_room": 6436,
+     "description": "These doors seem incredible.  Unfortunately, they're locked.",
+     "door": {
+      "name": "door double",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "6436": {
+   "vnum": 6436,
+   "name": "Doorway",
+   "map": {
+    "x": 17,
+    "y": 36,
+    "z": -8
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "obj_resets": [
+    {
+     "vnum": 6415,
+     "max": 10
+    }
+   ],
+   "description": "This was the entrance to the tower. Now lava has blocked it up\ncompletely. However: It seems when the lava came down a man was outside\nthe doors. He was blasted into the doors, and died instantly, but his\nskeleton still clutches a staff in perfect condition... The air is still\nand musty. The ceiling hangs low overhead.",
+   "exits": {
+    "east": {
+     "to_room": 6435,
+     "description": "These double doors have the outline of a man blasted into them...",
+     "door": {
+      "name": "double doors",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "6437": {
+   "vnum": 6437,
+   "name": "Hallway",
+   "map": {
+    "x": 19,
+    "y": 35,
+    "z": -8
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 6405,
+     "max": 1
+    }
+   ],
+   "description": "This is the southern part of the hallway. There is a door to the west,\nbarred with gleaming bands of lights. To the north is more hallway. The\nwalls are rough-hewn and cold to the touch. Dust motes drift in the\nstale air.",
+   "exits": {
+    "north": {
+     "to_room": 6434,
+     "description": "A passage leads to A Hallway"
+    },
+    "west": {
+     "to_room": 6438,
+     "description": "A passage leads to The Stairs",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "6438": {
+   "vnum": 6438,
+   "name": "Stairs",
+   "map": {
+    "x": 18,
+    "y": 35,
+    "z": -8
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "Stairs lead down here into the tower's basement, or you can head east\ninto the main floor of the tower. The ceiling hangs low overhead. Dust\nmotes drift in the stale air.",
+   "exits": {
+    "east": {
+     "to_room": 6437,
+     "description": "A passage leads to The Hallway",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "down": {
+     "to_room": 6439,
+     "description": "A passage leads to The Stairs"
+    }
+   }
+  },
+  "6439": {
+   "vnum": 6439,
+   "name": "Stairs",
+   "map": {
+    "x": 18,
+    "y": 35,
+    "z": -9
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "Stairs lead up here to the main level, or you can go east to the\nbasement of the tower. Dust motes drift in the stale air. The air is\nstill and musty.",
+   "exits": {
+    "east": {
+     "to_room": 6440,
+     "description": "A passage leads to An Alcove"
+    },
+    "up": {
+     "to_room": 6438,
+     "description": "A passage leads to The Stairs"
+    }
+   }
+  },
+  "6440": {
+   "vnum": 6440,
+   "name": "Alcove",
+   "map": {
+    "x": 19,
+    "y": 35,
+    "z": -9
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This alcove leads into a huge room to the north, and to stairs leading\ndown to the east, and stairs going up to the west. The walls are rough-\nhewn and cold to the touch. The ceiling hangs low overhead.",
+   "exits": {
+    "north": {
+     "to_room": 6441,
+     "description": "A passage leads to The Laboratory"
+    },
+    "east": {
+     "to_room": 6442,
+     "description": "A passage leads to The Stairs"
+    },
+    "west": {
+     "to_room": 6439,
+     "description": "A passage leads to The Stairs"
+    }
+   }
+  },
+  "6441": {
+   "vnum": 6441,
+   "name": "Laboratory",
+   "map": {
+    "x": 19,
+    "y": 36,
+    "z": -9
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "mortar mortars pestle pestles jar jars"
+   },
+   "obj_resets": [
+    {
+     "vnum": 6413,
+     "max": 100
+    },
+    {
+     "vnum": 6414,
+     "max": 100
+    }
+   ],
+   "description": "This laboratory has lots of stuff in it. Beakers, flasks, burners,\ntongs, mortars and pestles, jars filled with normal things, jars filled\nwith abnormal things, jars filled with things you'd rather not think\nabout... A search could reveal many things... The air is still and\nmusty. The walls are rough-hewn and cold to the touch.",
+   "exits": {
+    "south": {
+     "to_room": 6440,
+     "description": "A passage leads to An Alcove"
+    }
+   }
+  },
+  "6442": {
+   "vnum": 6442,
+   "name": "Stairs",
+   "map": {
+    "x": 20,
+    "y": 35,
+    "z": -9
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "Stairs lead down here to the second level of the basement, or back west\nto the alcove. The air is still and musty. The walls are rough-hewn and\ncold to the touch.",
+   "exits": {
+    "west": {
+     "to_room": 6440,
+     "description": "A passage leads to An Alcove"
+    },
+    "down": {
+     "to_room": 6443,
+     "description": "A passage leads to The Stairs"
+    }
+   }
+  },
+  "6443": {
+   "vnum": 6443,
+   "name": "Stairs",
+   "map": {
+    "x": 20,
+    "y": 35,
+    "z": -10
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "Stairs lead up here to the first level of the basement, or you can go\neast to another big room. The air is still and musty. Shadows gather in\nthe corners.",
+   "exits": {
+    "east": {
+     "to_room": 6444,
+     "description": "A passage leads to The Summoning Room"
+    },
+    "up": {
+     "to_room": 6442,
+     "description": "A passage leads to The Stairs"
+    }
+   }
+  },
+  "6444": {
+   "vnum": 6444,
+   "name": "Summoning Room",
+   "map": {
+    "x": 21,
+    "y": 35,
+    "z": -10
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "being"
+   },
+   "description": "This room is darkly lit by a giant glowing pentagram in the center of\nthe room. Bands of force encircle some sort of being trapped inside. You\nthink that going inside would be an EXTREMELY BAD idea... The walls are\nrough-hewn and cold to the touch. The ceiling hangs low overhead.",
+   "exits": {
+    "west": {
+     "to_room": 6443,
+     "description": "A passage leads to The Stairs"
+    }
+   }
   }
+ },
+ "mobs": {
+  "6400": {
+   "vnum": 6400,
+   "name": "goat",
+   "short_desc": "the mountain goat",
+   "long_desc": "A mountain goat nibbles at a piece of grass here.",
+   "level": 8,
+   "alignment": 0,
+   "hp_dice": "8d10+112",
+   "damage_dice": "3d5+5",
+   "gold": 2000,
+   "exp": 480,
+   "armor_class": 76,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "description": "This goat is acclimated to the rugged terrain of the \nmountains.  It looks at you and shies away a little.",
+   "inventory": [
+    6401
+   ]
+  },
+  "6401": {
+   "vnum": 6401,
+   "name": "demon",
+   "short_desc": "the Demon of Decay",
+   "long_desc": "A cloaked and clawed demon of decay comes at you viciously!",
+   "level": 12,
+   "alignment": -1000,
+   "hp_dice": "12d10+160",
+   "damage_dice": "4d6+6",
+   "gold": 5000,
+   "exp": 720,
+   "armor_class": 64,
+   "flags": [
+    "sentinel",
+    "aware",
+    "aggressive",
+    "memory",
+    "helper",
+    "no_charm",
+    "no_summmon",
+    "no_sleep",
+    "no_blind"
+   ],
+   "description": "This demon has pure malevolence for anything living.  \nOops!  You're living!  I guess that means you!",
+   "inventory": [
+    6405
+   ]
+  },
+  "6402": {
+   "vnum": 6402,
+   "name": "book",
+   "short_desc": "the Book Monster",
+   "long_desc": "A mound of books rise up into a human shape and tries to hit you!",
+   "level": 14,
+   "alignment": 0,
+   "hp_dice": "14d10+184",
+   "damage_dice": "4d6+9",
+   "gold": 9000,
+   "exp": 840,
+   "armor_class": 58,
+   "flags": [
+    "sentinel",
+    "aware",
+    "aggressive",
+    "memory",
+    "helper",
+    "no_charm",
+    "no_summmon",
+    "no_sleep",
+    "no_bash",
+    "no_blind"
+   ],
+   "description": "Ironically enough, the book-monster's head is War and\nPeace.  Hmm.",
+   "inventory": [
+    6410,
+    6411
+   ]
+  },
+  "6403": {
+   "vnum": 6403,
+   "name": "bad",
+   "short_desc": "a Bad Feeling",
+   "long_desc": "A bad feeling chokes your throat.",
+   "level": 18,
+   "alignment": 0,
+   "hp_dice": "18d10+232",
+   "damage_dice": "5d7+9",
+   "gold": 20000,
+   "exp": 1080,
+   "armor_class": 46,
+   "flags": [
+    "sentinel",
+    "aware",
+    "aggressive",
+    "memory",
+    "helper",
+    "no_charm",
+    "no_summmon",
+    "no_sleep",
+    "no_bash",
+    "no_blind"
+   ],
+   "description": "It resembles a lot of other bad feelings you've had,\nbut a lot more tangible... magic?",
+   "loot_table": [
+    {
+     "vnum": 6421,
+     "chance": 20
+    },
+    {
+     "vnum": 6422,
+     "chance": 20
+    },
+    {
+     "vnum": 6423,
+     "chance": 20
+    },
+    {
+     "vnum": 6424,
+     "chance": 20
+    },
+    {
+     "vnum": 6425,
+     "chance": 20
+    },
+    {
+     "vnum": 6426,
+     "chance": 20
+    },
+    {
+     "vnum": 6427,
+     "chance": 20
+    },
+    {
+     "vnum": 6428,
+     "chance": 20
+    },
+    {
+     "vnum": 6429,
+     "chance": 20
+    }
+   ],
+   "loot_chance": 100,
+   "inventory": [
+    6425
+   ]
+  },
+  "6404": {
+   "vnum": 6404,
+   "name": "nightmare",
+   "short_desc": "Your Worst Nightmare",
+   "long_desc": "Your worst nightmare coalesces in front of you and attacks!",
+   "level": 19,
+   "alignment": 0,
+   "hp_dice": "19d10+244",
+   "damage_dice": "5d7+10",
+   "gold": 22500,
+   "exp": 1140,
+   "armor_class": 43,
+   "flags": [
+    "sentinel",
+    "aware",
+    "aggressive",
+    "memory",
+    "helper",
+    "no_charm",
+    "no_summmon",
+    "no_sleep",
+    "no_bash",
+    "no_blind"
+   ],
+   "description": "It looks like you deepest, darkest fears personified.\nWait a minute!  It IS your deepest, darkest fears\npersonified!",
+   "loot_table": [
+    {
+     "vnum": 6421,
+     "chance": 20
+    },
+    {
+     "vnum": 6422,
+     "chance": 20
+    },
+    {
+     "vnum": 6423,
+     "chance": 20
+    },
+    {
+     "vnum": 6424,
+     "chance": 20
+    },
+    {
+     "vnum": 6425,
+     "chance": 20
+    },
+    {
+     "vnum": 6426,
+     "chance": 20
+    },
+    {
+     "vnum": 6427,
+     "chance": 20
+    },
+    {
+     "vnum": 6428,
+     "chance": 20
+    },
+    {
+     "vnum": 6429,
+     "chance": 20
+    }
+   ],
+   "loot_chance": 100,
+   "inventory": [
+    6405,
+    6424,
+    6407
+   ]
+  },
+  "6405": {
+   "vnum": 6405,
+   "name": "guardian",
+   "short_desc": "the Guardian",
+   "long_desc": "A guardian guards the door.  It looks at you and attacks!",
+   "level": 18,
+   "alignment": 0,
+   "hp_dice": "18d10+232",
+   "damage_dice": "5d7+9",
+   "gold": 17500,
+   "exp": 1080,
+   "armor_class": 46,
+   "flags": [
+    "sentinel",
+    "aware",
+    "aggressive",
+    "memory",
+    "helper",
+    "no_charm",
+    "no_summmon",
+    "no_sleep",
+    "no_blind"
+   ],
+   "description": "The guardian guards the door.  That's about all its\nbrain can handle: guarding.",
+   "loot_table": [
+    {
+     "vnum": 6421,
+     "chance": 20
+    },
+    {
+     "vnum": 6422,
+     "chance": 20
+    },
+    {
+     "vnum": 6423,
+     "chance": 20
+    },
+    {
+     "vnum": 6424,
+     "chance": 20
+    },
+    {
+     "vnum": 6425,
+     "chance": 20
+    },
+    {
+     "vnum": 6426,
+     "chance": 20
+    },
+    {
+     "vnum": 6427,
+     "chance": 20
+    },
+    {
+     "vnum": 6428,
+     "chance": 20
+    },
+    {
+     "vnum": 6429,
+     "chance": 20
+    }
+   ],
+   "loot_chance": 100,
+   "inventory": [
+    6428,
+    6405,
+    6401
+   ]
+  }
+ },
+ "objects": {
+  "6400": {
+   "vnum": 6400,
+   "name": "dagger",
+   "short_desc": "a glowing dagger",
+   "room_desc": "A glowing dagger glows here.",
+   "item_type": "weapon",
+   "weight": 1,
+   "value": 1000,
+   "damage_dice": "1d4",
+   "weapon_type": "pierce",
+   "type": "weapon"
+  },
+  "6401": {
+   "vnum": 6401,
+   "name": "platemail",
+   "short_desc": "the glowing platemail",
+   "room_desc": "Some glowing platemail lies in a heap here.",
+   "item_type": "armor",
+   "weight": 150,
+   "value": 30000,
+   "armor_bonus": 15,
+   "type": "armor",
+   "wear_slot": "body",
+   "armor": 5,
+   "armor_class": 4
+  },
+  "6402": {
+   "vnum": 6402,
+   "name": "agate",
+   "short_desc": "an agate",
+   "room_desc": "A small gem lies here.",
+   "item_type": "treasure",
+   "weight": 1,
+   "value": 5000,
+   "type": "treasure"
+  },
+  "6403": {
+   "vnum": 6403,
+   "name": "jade",
+   "short_desc": "a piece of jade",
+   "room_desc": "A small jewel gleams here.",
+   "item_type": "treasure",
+   "weight": 1,
+   "value": 10000,
+   "type": "treasure"
+  },
+  "6404": {
+   "vnum": 6404,
+   "name": "sculpture",
+   "short_desc": "a piece of sculpture",
+   "room_desc": "A nice piece of sculpture is here.",
+   "item_type": "treasure",
+   "weight": 75,
+   "value": 20000,
+   "type": "treasure"
+  },
+  "6405": {
+   "vnum": 6405,
+   "name": "vial",
+   "short_desc": "a vial of dragon's blood",
+   "room_desc": "A small vial filled with a red fluid lies in the dust here.",
+   "item_type": "potion",
+   "weight": 5,
+   "value": 48000,
+   "type": "treasure"
+  },
+  "6406": {
+   "vnum": 6406,
+   "name": "amulet",
+   "short_desc": "an amulet",
+   "room_desc": "An odd looking amulet has been discarded here.",
+   "item_type": "armor",
+   "weight": 3,
+   "value": 20000,
+   "armor_bonus": 0,
+   "type": "armor",
+   "wear_slot": "neck",
+   "armor": 5,
+   "armor_class": 2
+  },
+  "6407": {
+   "vnum": 6407,
+   "name": "pole",
+   "short_desc": "a tent pole",
+   "room_desc": "A tent pole has been tossed away here.",
+   "item_type": "wand",
+   "weight": 10,
+   "value": 25000,
+   "type": "treasure"
+  },
+  "6408": {
+   "vnum": 6408,
+   "name": "bag",
+   "short_desc": "a bag of powder of wealth",
+   "room_desc": "A small bag filled with powder of wealth lies here.",
+   "item_type": "money",
+   "weight": 1,
+   "value": 100000,
+   "type": "container",
+   "capacity": 100
+  },
+  "6409": {
+   "vnum": 6409,
+   "name": "desk",
+   "short_desc": "a desk",
+   "room_desc": "There is an ebony desk here.",
+   "item_type": "container",
+   "weight": 800,
+   "value": 0,
+   "capacity": 100,
+   "type": "furniture"
+  },
+  "6410": {
+   "vnum": 6410,
+   "name": "book",
+   "short_desc": "the Book of Chaos",
+   "room_desc": "A book with a title written in moving letters rests here.",
+   "item_type": "wand",
+   "weight": 25,
+   "value": 100000,
+   "type": "note"
+  },
+  "6411": {
+   "vnum": 6411,
+   "name": "book",
+   "short_desc": "the Book of the Elder",
+   "room_desc": "A grey-bound book lies here.",
+   "item_type": "wand",
+   "weight": 25,
+   "value": 300000,
+   "type": "note"
+  },
+  "6412": {
+   "vnum": 6412,
+   "name": "lens",
+   "short_desc": "the Occluded Lens",
+   "room_desc": "A smoky lens about a foot around has been scuffled in the dirt here.",
+   "item_type": "light",
+   "weight": 20,
+   "value": 200000,
+   "light_hours": 0,
+   "type": "treasure"
+  },
+  "6413": {
+   "vnum": 6413,
+   "name": "mevais",
+   "short_desc": "a leaf of mevais",
+   "room_desc": "A small black leaf of a mevais plant lies here, well preserved.",
+   "item_type": "potion",
+   "weight": 1,
+   "value": 0,
+   "type": "furniture"
+  },
+  "6414": {
+   "vnum": 6414,
+   "name": "bottle",
+   "short_desc": "a bottle of peska",
+   "room_desc": "There is a bottle of a milky fluid here.",
+   "item_type": "potion",
+   "weight": 12,
+   "value": 15000,
+   "type": "drink",
+   "drinks": 10,
+   "max_drinks": 10
+  },
+  "6415": {
+   "vnum": 6415,
+   "name": "staff",
+   "short_desc": "Rand's staff",
+   "room_desc": "There is a metal-shod staff here.",
+   "item_type": "armor",
+   "weight": 7,
+   "value": 100000,
+   "armor_bonus": 8,
+   "type": "weapon",
+   "weapon_type": "pound",
+   "damage_dice": "1d6",
+   "armor": 10
+  },
+  "6416": {
+   "vnum": 6416,
+   "name": "chest",
+   "short_desc": "a wooden chest",
+   "room_desc": "There is a wooden chest here.",
+   "item_type": "container",
+   "weight": 0,
+   "value": 0,
+   "capacity": 500,
+   "type": "container"
+  },
+  "6417": {
+   "vnum": 6417,
+   "name": "chest",
+   "short_desc": "a wooden chest",
+   "room_desc": "There is a wooden chest here.",
+   "item_type": "container",
+   "weight": 0,
+   "value": 0,
+   "capacity": 500,
+   "type": "container"
+  },
+  "6418": {
+   "vnum": 6418,
+   "name": "chest",
+   "short_desc": "a wooden chest",
+   "room_desc": "There is a wooden chest here.",
+   "item_type": "container",
+   "weight": 0,
+   "value": 0,
+   "capacity": 500,
+   "type": "container"
+  },
+  "6419": {
+   "vnum": 6419,
+   "name": "basin",
+   "short_desc": "a water basin",
+   "room_desc": "A basin filled with crisp, clean water is here.",
+   "item_type": "drinkcon",
+   "weight": 100,
+   "value": 0,
+   "capacity": 100,
+   "current": 100,
+   "type": "treasure"
+  },
+  "6420": {
+   "vnum": 6420,
+   "name": "food",
+   "short_desc": "some food",
+   "room_desc": "There's some food lying here.",
+   "item_type": "food",
+   "weight": 3,
+   "value": 20,
+   "nutrition": 8,
+   "type": "treasure"
+  },
+  "6421": {
+   "vnum": 6421,
+   "name": "towerguard blade",
+   "short_desc": "a towerguard blade",
+   "room_desc": "A towerguard blade lies here.",
+   "description": "A guard's blade.",
+   "item_type": "weapon",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "wield",
+   "weapon_type": "slash",
+   "damage_dice": "2d6+3",
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ],
+   "set_id": 64,
+   "type": "weapon"
+  },
+  "6422": {
+   "vnum": 6422,
+   "name": "sanctum shield",
+   "short_desc": "a sanctum shield",
+   "room_desc": "A sanctum shield lies here.",
+   "description": "A paladin's shield.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "shield",
+   "armor_bonus": 2,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 1
+    }
+   ],
+   "set_id": 64,
+   "type": "armor",
+   "armor": 3,
+   "armor_class": 3
+  },
+  "6423": {
+   "vnum": 6423,
+   "name": "void‑etched sigil",
+   "short_desc": "a void‑etched sigil",
+   "room_desc": "A void‑etched sigil lies here.",
+   "description": "A deathknight's sigil.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "neck1",
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 3
+    }
+   ],
+   "set_id": 64,
+   "type": "treasure",
+   "armor": 10
+  },
+  "6424": {
+   "vnum": 6424,
+   "name": "wardkeeper's seal",
+   "short_desc": "a wardkeeper's seal",
+   "room_desc": "A wardkeeper's seal lies here.",
+   "description": "A cleric's seal.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "hold",
+   "affects": [
+    {
+     "type": "wis",
+     "value": 2
+    },
+    {
+     "type": "max_mana",
+     "value": 20
+    }
+   ],
+   "set_id": 64,
+   "type": "treasure",
+   "armor": 10
+  },
+  "6425": {
+   "vnum": 6425,
+   "name": "arcane focus",
+   "short_desc": "an arcane focus",
+   "room_desc": "An arcane focus lies here.",
+   "description": "A mage's focus.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "hold",
+   "affects": [
+    {
+     "type": "int",
+     "value": 3
+    }
+   ],
+   "set_id": 64,
+   "type": "treasure",
+   "armor": 9
+  },
+  "6426": {
+   "vnum": 6426,
+   "name": "resonant lyre",
+   "short_desc": "a resonant lyre",
+   "room_desc": "A resonant lyre lies here.",
+   "description": "A bard's lyre.",
+   "item_type": "weapon",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "wield",
+   "weapon_type": "mace",
+   "damage_dice": "1d6+2",
+   "affects": [
+    {
+     "type": "cha",
+     "value": 2
+    }
+   ],
+   "set_id": 64,
+   "type": "treasure"
+  },
+  "6427": {
+   "vnum": 6427,
+   "name": "spell‑cut knife",
+   "short_desc": "a spell‑cut knife",
+   "room_desc": "A spell‑cut knife lies here.",
+   "description": "A rogue's knife.",
+   "item_type": "weapon",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "wield",
+   "weapon_type": "pierce",
+   "damage_dice": "1d6+2",
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "hitroll",
+     "value": 1
+    }
+   ],
+   "set_id": 64,
+   "type": "weapon"
+  },
+  "6428": {
+   "vnum": 6428,
+   "name": "watcher's band",
+   "short_desc": "a watcher's band",
+   "room_desc": "A watcher's band lies here.",
+   "description": "A ranger's ring.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "finger1",
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    }
+   ],
+   "set_id": 64,
+   "type": "armor",
+   "armor": 10,
+   "armor_class": 2
+  },
+  "6429": {
+   "vnum": 6429,
+   "name": "runic cloak",
+   "short_desc": "a runic cloak",
+   "room_desc": "A runic cloak lies here.",
+   "description": "A warded cloak.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "about",
+   "armor_bonus": 1,
+   "affects": [
+    {
+     "type": "spell_resist",
+     "value": 5
+    }
+   ],
+   "set_id": 64,
+   "type": "armor",
+   "armor": 1,
+   "armor_class": 4
+  }
+ },
+ "lifespan": 20
 }

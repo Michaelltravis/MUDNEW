@@ -1,0 +1,2549 @@
+{
+ "number": 519,
+ "name": "White Gold Cathedral",
+ "builders": "BigCheese",
+ "atlas_area": 119,
+ "rooms": {
+  "3400": {
+   "vnum": 3400,
+   "name": "A Shady Path",
+   "map": {
+    "x": 9,
+    "y": -63,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3401,
+     "description": "To the north lies Archway to the White Gold Cathedral."
+    },
+    "south": {
+     "to_room": 105847,
+     "description": "To the south lies A Colorful Park."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Shafts of pale light slant\nbetween the trunks. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3401": {
+   "vnum": 3401,
+   "name": "Archway to the White Gold Cathedral",
+   "map": {
+    "x": 9,
+    "y": -62,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3402,
+     "description": "To the north lies Entering the White Gold Cathedral."
+    },
+    "south": {
+     "to_room": 3400,
+     "description": "To the south lies A Shady Path."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3402": {
+   "vnum": 3402,
+   "name": "Entering the White Gold Cathedral",
+   "map": {
+    "x": 9,
+    "y": -61,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3403,
+     "description": "To the north lies The White Gold Cathedral."
+    },
+    "south": {
+     "to_room": 3401,
+     "description": "To the south lies Archway to the White Gold Cathedral."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3403": {
+   "vnum": 3403,
+   "name": "The White Gold Cathedral",
+   "map": {
+    "x": 9,
+    "y": -60,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3406,
+     "description": "To the north lies Between the Pews."
+    },
+    "east": {
+     "to_room": 3405,
+     "description": "To the east lies Behind the Pews."
+    },
+    "south": {
+     "to_room": 3402,
+     "description": "To the south lies Entering the White Gold Cathedral."
+    },
+    "west": {
+     "to_room": 3404,
+     "description": "To the west lies Behind the Pews."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "3404": {
+   "vnum": 3404,
+   "name": "Behind the Pews",
+   "map": {
+    "x": 8,
+    "y": -60,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3403,
+     "description": "To the east lies The White Gold Cathedral."
+    },
+    "west": {
+     "to_room": 3411,
+     "description": "To the west lies At the Corner of the Cathedral."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3405": {
+   "vnum": 3405,
+   "name": "Behind the Pews",
+   "map": {
+    "x": 10,
+    "y": -60,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3410,
+     "description": "To the east lies At the Corner of the Cathedral."
+    },
+    "west": {
+     "to_room": 3403,
+     "description": "To the west lies The White Gold Cathedral."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3406": {
+   "vnum": 3406,
+   "name": "Between the Pews",
+   "map": {
+    "x": 9,
+    "y": -59,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3407,
+     "description": "To the north lies Between the Pews."
+    },
+    "south": {
+     "to_room": 3403,
+     "description": "To the south lies The White Gold Cathedral."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3407": {
+   "vnum": 3407,
+   "name": "Between the Pews",
+   "map": {
+    "x": 9,
+    "y": -58,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3408,
+     "description": "To the north lies Approaching the White Gold Altar."
+    },
+    "south": {
+     "to_room": 3406,
+     "description": "To the south lies Between the Pews."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3408": {
+   "vnum": 3408,
+   "name": "Approaching the White Gold Altar",
+   "map": {
+    "x": 9,
+    "y": -57,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3409,
+     "description": "To the north lies The White Gold Altar."
+    },
+    "south": {
+     "to_room": 3407,
+     "description": "To the south lies Between the Pews."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3409": {
+   "vnum": 3409,
+   "name": "The White Gold Altar",
+   "map": {
+    "x": 9,
+    "y": -56,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3419,
+     "description": "To the east lies Approaching the White Gold Altar."
+    },
+    "south": {
+     "to_room": 3408,
+     "description": "To the south lies Approaching the White Gold Altar."
+    },
+    "west": {
+     "to_room": 3427,
+     "description": "To the west lies Approaching the White Gold Altar."
+    },
+    "down": {
+     "to_room": 3414,
+     "description": "To the down lies The Warded Labyrinth."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east, south, west and down.",
+   "placeholder": true
+  },
+  "3410": {
+   "vnum": 3410,
+   "name": "At the Corner of the Cathedral",
+   "map": {
+    "x": 11,
+    "y": -60,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3412,
+     "description": "To the north lies The Eastern Hallway."
+    },
+    "west": {
+     "to_room": 3405,
+     "description": "To the west lies Behind the Pews."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and west.",
+   "placeholder": true
+  },
+  "3411": {
+   "vnum": 3411,
+   "name": "At the Corner of the Cathedral",
+   "map": {
+    "x": 7,
+    "y": -60,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3420,
+     "description": "To the north lies The Western Hallway."
+    },
+    "east": {
+     "to_room": 3404,
+     "description": "To the east lies Behind the Pews."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "3412": {
+   "vnum": 3412,
+   "name": "The Eastern Hallway",
+   "map": {
+    "x": 11,
+    "y": -59,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3413,
+     "description": "To the north lies The Eastern Hallway."
+    },
+    "south": {
+     "to_room": 3410,
+     "description": "To the south lies At the Corner of the Cathedral."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3413": {
+   "vnum": 3413,
+   "name": "The Eastern Hallway",
+   "map": {
+    "x": 11,
+    "y": -58,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3417,
+     "description": "To the north lies The Eastern Hallway."
+    },
+    "south": {
+     "to_room": 3412,
+     "description": "To the south lies The Eastern Hallway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3414": {
+   "vnum": 3414,
+   "name": "The Warded Labyrinth",
+   "map": {
+    "x": 9,
+    "y": -56,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3423,
+     "description": "To the north lies The Enchanter's Corridor."
+    },
+    "east": {
+     "to_room": 3416,
+     "description": "To the east lies The Alchemist's Corridor."
+    },
+    "south": {
+     "to_room": 3415,
+     "description": "To the south lies The Sleeping Quarters."
+    },
+    "west": {
+     "to_room": 3425,
+     "description": "To the west lies The Wasteroom."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "3415": {
+   "vnum": 3415,
+   "name": "The Sleeping Quarters",
+   "map": {
+    "x": 9,
+    "y": -57,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3414,
+     "description": "To the north lies The Warded Labyrinth."
+    },
+    "south": {
+     "to_room": 3435,
+     "description": "To the south lies The Sleeping Quarters."
+    },
+    "west": {
+     "to_room": 3442,
+     "description": "To the west lies The Sleeping Quarters."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "3416": {
+   "vnum": 3416,
+   "name": "The Alchemist's Corridor",
+   "map": {
+    "x": 10,
+    "y": -56,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3449,
+     "description": "To the east lies The Alchemist's Corridor."
+    },
+    "west": {
+     "to_room": 3414,
+     "description": "To the west lies The Warded Labyrinth."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3417": {
+   "vnum": 3417,
+   "name": "The Eastern Hallway",
+   "map": {
+    "x": 11,
+    "y": -57,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3418,
+     "description": "To the north lies The Eastern Transept."
+    },
+    "south": {
+     "to_room": 3413,
+     "description": "To the south lies The Eastern Hallway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3418": {
+   "vnum": 3418,
+   "name": "The Eastern Transept",
+   "map": {
+    "x": 11,
+    "y": -56,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 3417,
+     "description": "To the south lies The Eastern Hallway."
+    },
+    "west": {
+     "to_room": 3419,
+     "description": "To the west lies Approaching the White Gold Altar."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead south and west.",
+   "placeholder": true
+  },
+  "3419": {
+   "vnum": 3419,
+   "name": "Approaching the White Gold Altar",
+   "map": {
+    "x": 10,
+    "y": -56,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3418,
+     "description": "To the east lies The Eastern Transept."
+    },
+    "west": {
+     "to_room": 3409,
+     "description": "To the west lies The White Gold Altar."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3420": {
+   "vnum": 3420,
+   "name": "The Western Hallway",
+   "map": {
+    "x": 7,
+    "y": -59,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3421,
+     "description": "To the north lies The Western Hallway."
+    },
+    "south": {
+     "to_room": 3411,
+     "description": "To the south lies At the Corner of the Cathedral."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3421": {
+   "vnum": 3421,
+   "name": "The Western Hallway",
+   "map": {
+    "x": 7,
+    "y": -58,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3422,
+     "description": "To the north lies The Western Hallway."
+    },
+    "south": {
+     "to_room": 3420,
+     "description": "To the south lies The Western Hallway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3422": {
+   "vnum": 3422,
+   "name": "The Western Hallway",
+   "map": {
+    "x": 7,
+    "y": -57,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3424,
+     "description": "To the north lies The Western Transept."
+    },
+    "south": {
+     "to_room": 3421,
+     "description": "To the south lies The Western Hallway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3423": {
+   "vnum": 3423,
+   "name": "The Enchanter's Corridor",
+   "map": {
+    "x": 9,
+    "y": -55,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3426,
+     "description": "To the north lies The Enchanter's Corridor."
+    },
+    "south": {
+     "to_room": 3414,
+     "description": "To the south lies The Warded Labyrinth."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3424": {
+   "vnum": 3424,
+   "name": "The Western Transept",
+   "map": {
+    "x": 7,
+    "y": -56,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3427,
+     "description": "To the east lies Approaching the White Gold Altar."
+    },
+    "south": {
+     "to_room": 3422,
+     "description": "To the south lies The Western Hallway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and south.",
+   "placeholder": true
+  },
+  "3425": {
+   "vnum": 3425,
+   "name": "The Wasteroom",
+   "map": {
+    "x": 8,
+    "y": -56,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3414,
+     "description": "To the east lies The Warded Labyrinth."
+    },
+    "south": {
+     "to_room": 3442,
+     "description": "To the south lies The Sleeping Quarters."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "3426": {
+   "vnum": 3426,
+   "name": "The Enchanter's Corridor",
+   "map": {
+    "x": 9,
+    "y": -54,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 3423,
+     "description": "To the south lies The Enchanter's Corridor."
+    },
+    "west": {
+     "to_room": 3428,
+     "description": "To the west lies The Enchanter's Corridor."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "3427": {
+   "vnum": 3427,
+   "name": "Approaching the White Gold Altar",
+   "map": {
+    "x": 8,
+    "y": -56,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3409,
+     "description": "To the east lies The White Gold Altar."
+    },
+    "west": {
+     "to_room": 3424,
+     "description": "To the west lies The Western Transept."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3428": {
+   "vnum": 3428,
+   "name": "The Enchanter's Corridor",
+   "map": {
+    "x": 8,
+    "y": -54,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3429,
+     "description": "To the north lies The Enchanter's Corridor."
+    },
+    "east": {
+     "to_room": 3426,
+     "description": "To the east lies The Enchanter's Corridor."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "3429": {
+   "vnum": 3429,
+   "name": "The Enchanter's Corridor",
+   "map": {
+    "x": 8,
+    "y": -53,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3431,
+     "description": "To the east lies The Enchanter's Corridor."
+    },
+    "south": {
+     "to_room": 3428,
+     "description": "To the south lies The Enchanter's Corridor."
+    },
+    "west": {
+     "to_room": 3430,
+     "description": "To the west lies The Master Enchanter's Quarters ."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "3430": {
+   "vnum": 3430,
+   "name": "The Master Enchanter's Quarters ",
+   "map": {
+    "x": 7,
+    "y": -53,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3429,
+     "description": "To the east lies The Enchanter's Corridor."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "3431": {
+   "vnum": 3431,
+   "name": "The Enchanter's Corridor",
+   "map": {
+    "x": 9,
+    "y": -53,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3432,
+     "description": "To the east lies The Enchanter's Corridor."
+    },
+    "west": {
+     "to_room": 3429,
+     "description": "To the west lies The Enchanter's Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3432": {
+   "vnum": 3432,
+   "name": "The Enchanter's Corridor",
+   "map": {
+    "x": 10,
+    "y": -53,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3433,
+     "description": "To the east lies The Enchanter's Corridor."
+    },
+    "west": {
+     "to_room": 3431,
+     "description": "To the west lies The Enchanter's Corridor."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3433": {
+   "vnum": 3433,
+   "name": "The Enchanter's Corridor",
+   "map": {
+    "x": 11,
+    "y": -53,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3434,
+     "description": "To the north lies The Enchanter's Corridor."
+    },
+    "west": {
+     "to_room": 3432,
+     "description": "To the west lies The Enchanter's Corridor."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "3434": {
+   "vnum": 3434,
+   "name": "The Enchanter's Corridor",
+   "map": {
+    "x": 11,
+    "y": -52,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 3433,
+     "description": "To the south lies The Enchanter's Corridor."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads south.",
+   "placeholder": true
+  },
+  "3435": {
+   "vnum": 3435,
+   "name": "The Sleeping Quarters",
+   "map": {
+    "x": 9,
+    "y": -58,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3415,
+     "description": "To the north lies The Sleeping Quarters."
+    },
+    "south": {
+     "to_room": 3436,
+     "description": "To the south lies The Sleeping Quarters."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3436": {
+   "vnum": 3436,
+   "name": "The Sleeping Quarters",
+   "map": {
+    "x": 9,
+    "y": -59,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3435,
+     "description": "To the north lies The Sleeping Quarters."
+    },
+    "west": {
+     "to_room": 3437,
+     "description": "To the west lies The Sleeping Quarters."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "3437": {
+   "vnum": 3437,
+   "name": "The Sleeping Quarters",
+   "map": {
+    "x": 8,
+    "y": -59,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3436,
+     "description": "To the east lies The Sleeping Quarters."
+    },
+    "west": {
+     "to_room": 3438,
+     "description": "To the west lies The Sleeping Quarters."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3438": {
+   "vnum": 3438,
+   "name": "The Sleeping Quarters",
+   "map": {
+    "x": 7,
+    "y": -59,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3439,
+     "description": "To the north lies The Sleeping Quarters."
+    },
+    "east": {
+     "to_room": 3437,
+     "description": "To the east lies The Sleeping Quarters."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and east.",
+   "placeholder": true
+  },
+  "3439": {
+   "vnum": 3439,
+   "name": "The Sleeping Quarters",
+   "map": {
+    "x": 7,
+    "y": -58,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3440,
+     "description": "To the north lies The Sleeping Quarters."
+    },
+    "south": {
+     "to_room": 3438,
+     "description": "To the south lies The Sleeping Quarters."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3440": {
+   "vnum": 3440,
+   "name": "The Sleeping Quarters",
+   "map": {
+    "x": 7,
+    "y": -57,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3442,
+     "description": "To the east lies The Sleeping Quarters."
+    },
+    "south": {
+     "to_room": 3439,
+     "description": "To the south lies The Sleeping Quarters."
+    },
+    "west": {
+     "to_room": 3441,
+     "description": "To the west lies The Hit Wizards Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "3441": {
+   "vnum": 3441,
+   "name": "The Hit Wizards Corridor",
+   "map": {
+    "x": 6,
+    "y": -57,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3440,
+     "description": "To the east lies The Sleeping Quarters."
+    },
+    "west": {
+     "to_room": 3444,
+     "description": "To the west lies The Hit Wizards Corridor."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3442": {
+   "vnum": 3442,
+   "name": "The Sleeping Quarters",
+   "map": {
+    "x": 8,
+    "y": -57,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3425,
+     "description": "To the north lies The Wasteroom."
+    },
+    "east": {
+     "to_room": 3415,
+     "description": "To the east lies The Sleeping Quarters."
+    },
+    "west": {
+     "to_room": 3440,
+     "description": "To the west lies The Sleeping Quarters."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "3443": {
+   "vnum": 3443,
+   "name": "The Master Hit Wizards Quarters",
+   "map": {
+    "x": 5,
+    "y": -58,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3444,
+     "description": "To the north lies The Hit Wizards Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads north.",
+   "placeholder": true
+  },
+  "3444": {
+   "vnum": 3444,
+   "name": "The Hit Wizards Corridor",
+   "map": {
+    "x": 5,
+    "y": -57,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3445,
+     "description": "To the north lies The Hit Wizards Corridor."
+    },
+    "east": {
+     "to_room": 3441,
+     "description": "To the east lies The Hit Wizards Corridor."
+    },
+    "south": {
+     "to_room": 3443,
+     "description": "To the south lies The Master Hit Wizards Quarters."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "3445": {
+   "vnum": 3445,
+   "name": "The Hit Wizards Corridor",
+   "map": {
+    "x": 5,
+    "y": -56,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3446,
+     "description": "To the north lies The Hit Wizards Corridor."
+    },
+    "south": {
+     "to_room": 3444,
+     "description": "To the south lies The Hit Wizards Corridor."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3446": {
+   "vnum": 3446,
+   "name": "The Hit Wizards Corridor",
+   "map": {
+    "x": 5,
+    "y": -55,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3447,
+     "description": "To the east lies The Hit Wizards Corridor."
+    },
+    "south": {
+     "to_room": 3445,
+     "description": "To the south lies The Hit Wizards Corridor."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and south.",
+   "placeholder": true
+  },
+  "3447": {
+   "vnum": 3447,
+   "name": "The Hit Wizards Corridor",
+   "map": {
+    "x": 6,
+    "y": -55,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3448,
+     "description": "To the east lies The Hit Wizards Corridor."
+    },
+    "west": {
+     "to_room": 3446,
+     "description": "To the west lies The Hit Wizards Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3448": {
+   "vnum": 3448,
+   "name": "The Hit Wizards Corridor",
+   "map": {
+    "x": 7,
+    "y": -55,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 3447,
+     "description": "To the west lies The Hit Wizards Corridor."
+    },
+    "down": {
+     "to_room": 3463,
+     "description": "To the down lies The Crumbling Labyrinth."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead west and down.",
+   "placeholder": true
+  },
+  "3449": {
+   "vnum": 3449,
+   "name": "The Alchemist's Corridor",
+   "map": {
+    "x": 11,
+    "y": -56,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 3450,
+     "description": "To the south lies The Alchemist's Corridor."
+    },
+    "west": {
+     "to_room": 3416,
+     "description": "To the west lies The Alchemist's Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead south and west.",
+   "placeholder": true
+  },
+  "3450": {
+   "vnum": 3450,
+   "name": "The Alchemist's Corridor",
+   "map": {
+    "x": 11,
+    "y": -57,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3449,
+     "description": "To the north lies The Alchemist's Corridor."
+    },
+    "south": {
+     "to_room": 3451,
+     "description": "To the south lies The Alchemist's Corridor."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3451": {
+   "vnum": 3451,
+   "name": "The Alchemist's Corridor",
+   "map": {
+    "x": 11,
+    "y": -58,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3450,
+     "description": "To the north lies The Alchemist's Corridor."
+    },
+    "south": {
+     "to_room": 3452,
+     "description": "To the south lies The Alchemist's Corridor."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3452": {
+   "vnum": 3452,
+   "name": "The Alchemist's Corridor",
+   "map": {
+    "x": 11,
+    "y": -59,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3451,
+     "description": "To the north lies The Alchemist's Corridor."
+    },
+    "east": {
+     "to_room": 3453,
+     "description": "To the east lies The Alchemist's Quarters."
+    },
+    "south": {
+     "to_room": 3454,
+     "description": "To the south lies The Alchemist's Corridor."
+    },
+    "west": {
+     "to_room": 3455,
+     "description": "To the west lies The Apprentice's Quarters."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "3453": {
+   "vnum": 3453,
+   "name": "The Alchemist's Quarters",
+   "map": {
+    "x": 12,
+    "y": -59,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 3452,
+     "description": "To the west lies The Alchemist's Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads west.",
+   "placeholder": true
+  },
+  "3454": {
+   "vnum": 3454,
+   "name": "The Alchemist's Corridor",
+   "map": {
+    "x": 11,
+    "y": -60,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3452,
+     "description": "To the north lies The Alchemist's Corridor."
+    },
+    "south": {
+     "to_room": 3456,
+     "description": "To the south lies The Alchemist's Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3455": {
+   "vnum": 3455,
+   "name": "The Apprentice's Quarters",
+   "map": {
+    "x": 10,
+    "y": -59,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3452,
+     "description": "To the east lies The Alchemist's Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads east.",
+   "placeholder": true
+  },
+  "3456": {
+   "vnum": 3456,
+   "name": "The Alchemist's Corridor",
+   "map": {
+    "x": 11,
+    "y": -61,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3454,
+     "description": "To the north lies The Alchemist's Corridor."
+    },
+    "east": {
+     "to_room": 3461,
+     "description": "To the east lies The Alchemist's Corridor."
+    },
+    "west": {
+     "to_room": 3457,
+     "description": "To the west lies The Alchemist's Corridor."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "3457": {
+   "vnum": 3457,
+   "name": "The Alchemist's Corridor",
+   "map": {
+    "x": 10,
+    "y": -61,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3456,
+     "description": "To the east lies The Alchemist's Corridor."
+    },
+    "west": {
+     "to_room": 3458,
+     "description": "To the west lies The Alchemy Chamber."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3458": {
+   "vnum": 3458,
+   "name": "The Alchemy Chamber",
+   "map": {
+    "x": 9,
+    "y": -61,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3457,
+     "description": "To the east lies The Alchemist's Corridor."
+    },
+    "south": {
+     "to_room": 3459,
+     "description": "To the south lies The Alchemy Chamber."
+    },
+    "west": {
+     "to_room": 3460,
+     "description": "To the west lies The Alchemy Chamber."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "3459": {
+   "vnum": 3459,
+   "name": "The Alchemy Chamber",
+   "map": {
+    "x": 9,
+    "y": -62,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3458,
+     "description": "To the north lies The Alchemy Chamber."
+    },
+    "west": {
+     "to_room": 3462,
+     "description": "To the west lies The Alchemy Chamber."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "3460": {
+   "vnum": 3460,
+   "name": "The Alchemy Chamber",
+   "map": {
+    "x": 8,
+    "y": -61,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3458,
+     "description": "To the east lies The Alchemy Chamber."
+    },
+    "south": {
+     "to_room": 3462,
+     "description": "To the south lies The Alchemy Chamber."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "3461": {
+   "vnum": 3461,
+   "name": "The Alchemist's Corridor",
+   "map": {
+    "x": 12,
+    "y": -61,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 3456,
+     "description": "To the west lies The Alchemist's Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads west.",
+   "placeholder": true
+  },
+  "3462": {
+   "vnum": 3462,
+   "name": "The Alchemy Chamber",
+   "map": {
+    "x": 8,
+    "y": -62,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3460,
+     "description": "To the north lies The Alchemy Chamber."
+    },
+    "east": {
+     "to_room": 3459,
+     "description": "To the east lies The Alchemy Chamber."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and east.",
+   "placeholder": true
+  },
+  "3463": {
+   "vnum": 3463,
+   "name": "The Crumbling Labyrinth",
+   "map": {
+    "x": 7,
+    "y": -55,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3466,
+     "description": "To the north lies The Grand Corridor."
+    },
+    "east": {
+     "to_room": 3465,
+     "description": "To the east lies The Sleeping Quarters."
+    },
+    "south": {
+     "to_room": 3464,
+     "description": "To the south lies The Elementalist's Corridor."
+    },
+    "west": {
+     "to_room": 3467,
+     "description": "To the west lies A Well Used Path."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "3464": {
+   "vnum": 3464,
+   "name": "The Elementalist's Corridor",
+   "map": {
+    "x": 7,
+    "y": -56,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3463,
+     "description": "To the north lies The Crumbling Labyrinth."
+    },
+    "south": {
+     "to_room": 3485,
+     "description": "To the south lies The Elementalist's Corridor."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3465": {
+   "vnum": 3465,
+   "name": "The Sleeping Quarters",
+   "map": {
+    "x": 8,
+    "y": -55,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3477,
+     "description": "To the east lies The Sleeping Quarters."
+    },
+    "west": {
+     "to_room": 3463,
+     "description": "To the west lies The Crumbling Labyrinth."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3466": {
+   "vnum": 3466,
+   "name": "The Grand Corridor",
+   "map": {
+    "x": 7,
+    "y": -54,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3468,
+     "description": "To the north lies The Grand Corridor."
+    },
+    "south": {
+     "to_room": 3463,
+     "description": "To the south lies The Crumbling Labyrinth."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3467": {
+   "vnum": 3467,
+   "name": "A Well Used Path",
+   "map": {
+    "x": 6,
+    "y": -55,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3463,
+     "description": "To the east lies The Crumbling Labyrinth."
+    },
+    "west": {
+     "to_room": 3484,
+     "description": "To the west lies A Well Used Path."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3468": {
+   "vnum": 3468,
+   "name": "The Grand Corridor",
+   "map": {
+    "x": 7,
+    "y": -53,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3469,
+     "description": "To the north lies The Grand Corridor."
+    },
+    "south": {
+     "to_room": 3466,
+     "description": "To the south lies The Grand Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3469": {
+   "vnum": 3469,
+   "name": "The Grand Corridor",
+   "map": {
+    "x": 7,
+    "y": -52,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3471,
+     "description": "To the north lies The Grand Corridor."
+    },
+    "south": {
+     "to_room": 3468,
+     "description": "To the south lies The Grand Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3470": {
+   "vnum": 3470,
+   "name": "The Grand Corridor",
+   "map": {
+    "x": 6,
+    "y": -51,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3471,
+     "description": "To the east lies The Grand Corridor."
+    },
+    "west": {
+     "to_room": 3498,
+     "description": "To the west lies The Grand Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3471": {
+   "vnum": 3471,
+   "name": "The Grand Corridor",
+   "map": {
+    "x": 7,
+    "y": -51,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3474,
+     "description": "To the north lies The Grand Throne."
+    },
+    "east": {
+     "to_room": 3472,
+     "description": "To the east lies The Grand Corridor."
+    },
+    "south": {
+     "to_room": 3469,
+     "description": "To the south lies The Grand Corridor."
+    },
+    "west": {
+     "to_room": 3470,
+     "description": "To the west lies The Grand Corridor."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "3472": {
+   "vnum": 3472,
+   "name": "The Grand Corridor",
+   "map": {
+    "x": 8,
+    "y": -51,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3473,
+     "description": "To the east lies The Grand Corridor."
+    },
+    "west": {
+     "to_room": 3471,
+     "description": "To the west lies The Grand Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3473": {
+   "vnum": 3473,
+   "name": "The Grand Corridor",
+   "map": {
+    "x": 9,
+    "y": -51,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3476,
+     "description": "To the north lies The Treasury."
+    },
+    "south": {
+     "to_room": 3475,
+     "description": "To the south lies The Sleeping Quarters."
+    },
+    "west": {
+     "to_room": 3472,
+     "description": "To the west lies The Grand Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "3474": {
+   "vnum": 3474,
+   "name": "The Grand Throne",
+   "map": {
+    "x": 7,
+    "y": -50,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 3471,
+     "description": "To the south lies The Grand Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "3475": {
+   "vnum": 3475,
+   "name": "The Sleeping Quarters",
+   "map": {
+    "x": 9,
+    "y": -52,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3473,
+     "description": "To the north lies The Grand Corridor."
+    },
+    "south": {
+     "to_room": 3482,
+     "description": "To the south lies The Sleeping Quarters."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3476": {
+   "vnum": 3476,
+   "name": "The Treasury",
+   "map": {
+    "x": 9,
+    "y": -50,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 3473,
+     "description": "To the south lies The Grand Corridor."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "3477": {
+   "vnum": 3477,
+   "name": "The Sleeping Quarters",
+   "map": {
+    "x": 9,
+    "y": -55,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3478,
+     "description": "To the east lies The Sleeping Quarters."
+    },
+    "west": {
+     "to_room": 3465,
+     "description": "To the west lies The Sleeping Quarters."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3478": {
+   "vnum": 3478,
+   "name": "The Sleeping Quarters",
+   "map": {
+    "x": 10,
+    "y": -55,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3479,
+     "description": "To the north lies The Sleeping Quarters."
+    },
+    "west": {
+     "to_room": 3477,
+     "description": "To the west lies The Sleeping Quarters."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "3479": {
+   "vnum": 3479,
+   "name": "The Sleeping Quarters",
+   "map": {
+    "x": 10,
+    "y": -54,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3480,
+     "description": "To the north lies The Sleeping Quarters."
+    },
+    "east": {
+     "to_room": 3481,
+     "description": "To the east lies The Sleeping Quarters."
+    },
+    "south": {
+     "to_room": 3478,
+     "description": "To the south lies The Sleeping Quarters."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "3480": {
+   "vnum": 3480,
+   "name": "The Sleeping Quarters",
+   "map": {
+    "x": 10,
+    "y": -53,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 3479,
+     "description": "To the south lies The Sleeping Quarters."
+    },
+    "west": {
+     "to_room": 3482,
+     "description": "To the west lies The Sleeping Quarters."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "3481": {
+   "vnum": 3481,
+   "name": "The Sleeping Quarters",
+   "map": {
+    "x": 11,
+    "y": -54,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 3479,
+     "description": "To the west lies The Sleeping Quarters."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "3482": {
+   "vnum": 3482,
+   "name": "The Sleeping Quarters",
+   "map": {
+    "x": 9,
+    "y": -53,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3475,
+     "description": "To the north lies The Sleeping Quarters."
+    },
+    "east": {
+     "to_room": 3480,
+     "description": "To the east lies The Sleeping Quarters."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and east.",
+   "placeholder": true
+  },
+  "3483": {
+   "vnum": 3483,
+   "name": "The Elementalist's Corridor",
+   "map": {
+    "x": 6,
+    "y": -57,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3485,
+     "description": "To the east lies The Elementalist's Corridor."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "3484": {
+   "vnum": 3484,
+   "name": "A Well Used Path",
+   "map": {
+    "x": 5,
+    "y": -55,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3467,
+     "description": "To the east lies A Well Used Path."
+    },
+    "south": {
+     "to_room": 3495,
+     "description": "To the south lies The Well."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "3485": {
+   "vnum": 3485,
+   "name": "The Elementalist's Corridor",
+   "map": {
+    "x": 7,
+    "y": -57,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3464,
+     "description": "To the north lies The Elementalist's Corridor."
+    },
+    "east": {
+     "to_room": 3486,
+     "description": "To the east lies The Elementalist's Corridor."
+    },
+    "west": {
+     "to_room": 3483,
+     "description": "To the west lies The Elementalist's Corridor."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "3486": {
+   "vnum": 3486,
+   "name": "The Elementalist's Corridor",
+   "map": {
+    "x": 8,
+    "y": -57,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3487,
+     "description": "To the east lies The Elementalist's Corridor."
+    },
+    "west": {
+     "to_room": 3485,
+     "description": "To the west lies The Elementalist's Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3487": {
+   "vnum": 3487,
+   "name": "The Elementalist's Corridor",
+   "map": {
+    "x": 9,
+    "y": -57,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3489,
+     "description": "To the east lies The Elementalist's Corridor."
+    },
+    "west": {
+     "to_room": 3486,
+     "description": "To the west lies The Elementalist's Corridor."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3488": {
+   "vnum": 3488,
+   "name": "The Elementalist's Corridor",
+   "map": {
+    "x": 10,
+    "y": -58,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3489,
+     "description": "To the north lies The Elementalist's Corridor."
+    },
+    "south": {
+     "to_room": 3494,
+     "description": "To the south lies The Elementalist's Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3489": {
+   "vnum": 3489,
+   "name": "The Elementalist's Corridor",
+   "map": {
+    "x": 10,
+    "y": -57,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3490,
+     "description": "To the east lies The Elementalist's Corridor."
+    },
+    "south": {
+     "to_room": 3488,
+     "description": "To the south lies The Elementalist's Corridor."
+    },
+    "west": {
+     "to_room": 3487,
+     "description": "To the west lies The Elementalist's Corridor."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "3490": {
+   "vnum": 3490,
+   "name": "The Elementalist's Corridor",
+   "map": {
+    "x": 11,
+    "y": -57,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3491,
+     "description": "To the east lies The Elementalist's Corridor."
+    },
+    "west": {
+     "to_room": 3489,
+     "description": "To the west lies The Elementalist's Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3491": {
+   "vnum": 3491,
+   "name": "The Elementalist's Corridor",
+   "map": {
+    "x": 12,
+    "y": -57,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3492,
+     "description": "To the north lies The Elementalist's Corridor."
+    },
+    "west": {
+     "to_room": 3490,
+     "description": "To the west lies The Elementalist's Corridor."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and west.",
+   "placeholder": true
+  },
+  "3492": {
+   "vnum": 3492,
+   "name": "The Elementalist's Corridor",
+   "map": {
+    "x": 12,
+    "y": -56,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3493,
+     "description": "To the north lies The Master Elementalist's Quarters."
+    },
+    "south": {
+     "to_room": 3491,
+     "description": "To the south lies The Elementalist's Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3493": {
+   "vnum": 3493,
+   "name": "The Master Elementalist's Quarters",
+   "map": {
+    "x": 12,
+    "y": -55,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 3492,
+     "description": "To the south lies The Elementalist's Corridor."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads south.",
+   "placeholder": true
+  },
+  "3494": {
+   "vnum": 3494,
+   "name": "The Elementalist's Corridor",
+   "map": {
+    "x": 10,
+    "y": -59,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3488,
+     "description": "To the north lies The Elementalist's Corridor."
+    },
+    "south": {
+     "to_room": 3496,
+     "description": "To the south lies The Elementalist's Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3495": {
+   "vnum": 3495,
+   "name": "The Well",
+   "map": {
+    "x": 5,
+    "y": -56,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3484,
+     "description": "To the north lies A Well Used Path."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads north.",
+   "placeholder": true
+  },
+  "3496": {
+   "vnum": 3496,
+   "name": "The Elementalist's Corridor",
+   "map": {
+    "x": 10,
+    "y": -60,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3494,
+     "description": "To the north lies The Elementalist's Corridor."
+    },
+    "west": {
+     "to_room": 3497,
+     "description": "To the west lies The Elementalist's Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "3497": {
+   "vnum": 3497,
+   "name": "The Elementalist's Corridor",
+   "map": {
+    "x": 9,
+    "y": -60,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3496,
+     "description": "To the east lies The Elementalist's Corridor."
+    },
+    "down": {
+     "to_room": 12302,
+     "description": "To the down lies Entrance to the Warded Castle."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and down.",
+   "placeholder": true
+  },
+  "3498": {
+   "vnum": 3498,
+   "name": "The Grand Corridor",
+   "map": {
+    "x": 5,
+    "y": -51,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3470,
+     "description": "To the east lies The Grand Corridor."
+    },
+    "south": {
+     "to_room": 3499,
+     "description": "To the south lies The Guards Room."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and south.",
+   "placeholder": true
+  },
+  "3499": {
+   "vnum": 3499,
+   "name": "The Guards Room",
+   "map": {
+    "x": 5,
+    "y": -52,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3498,
+     "description": "To the north lies The Grand Corridor."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads north.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

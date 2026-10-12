@@ -1,0 +1,2414 @@
+{
+ "number": 419,
+ "name": "Mishrak",
+ "builders": "Helver",
+ "atlas_area": 19,
+ "rooms": {
+  "208000": {
+   "vnum": 208000,
+   "name": "Inside The Western Gate Of Mishrak",
+   "map": {
+    "x": -28,
+    "y": 30,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8004,
+     "description": "To the east lies The Western Wall Road Meets Chapel Street."
+    },
+    "west": {
+     "to_room": 8134,
+     "description": "To the west lies Outside the Gate of Kashmir."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "208001": {
+   "vnum": 208001,
+   "name": "The Western Wall Road Meets The Southern Wall Road",
+   "map": {
+    "x": -27,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 208002,
+     "description": "To the north lies The Western Wall Road."
+    },
+    "east": {
+     "to_room": 8009,
+     "description": "To the east lies The Southern Wall Road Meets Barracks Avenue."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth and east.",
+   "placeholder": true
+  },
+  "208002": {
+   "vnum": 208002,
+   "name": "The Western Wall Road",
+   "map": {
+    "x": -27,
+    "y": 25,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 208003,
+     "description": "To the north lies The Western Wall Road."
+    },
+    "south": {
+     "to_room": 208001,
+     "description": "To the south lies The Western Wall Road Meets The Southern Wall Road."
+    },
+    "down": {
+     "to_room": 8076,
+     "description": "To the down lies The Hole."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north, south and down.",
+   "placeholder": true
+  },
+  "208003": {
+   "vnum": 208003,
+   "name": "The Western Wall Road",
+   "map": {
+    "x": -27,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8004,
+     "description": "To the north lies The Western Wall Road Meets Chapel Street."
+    },
+    "south": {
+     "to_room": 208002,
+     "description": "To the south lies The Western Wall Road."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and south.",
+   "placeholder": true
+  },
+  "8004": {
+   "vnum": 8004,
+   "name": "The Western Wall Road Meets Chapel Street",
+   "map": {
+    "x": -27,
+    "y": 30,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8005,
+     "description": "To the north lies The Western Wall Road Meets Keep Street."
+    },
+    "east": {
+     "to_room": 8012,
+     "description": "To the east lies Chapel Street."
+    },
+    "south": {
+     "to_room": 208003,
+     "description": "To the south lies The Western Wall Road."
+    },
+    "west": {
+     "to_room": 208000,
+     "description": "To the west lies Inside The Western Gate Of Mishrak."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "8005": {
+   "vnum": 8005,
+   "name": "The Western Wall Road Meets Keep Street",
+   "map": {
+    "x": -27,
+    "y": 33,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8006,
+     "description": "To the north lies The Western Wall Road."
+    },
+    "east": {
+     "to_room": 8013,
+     "description": "To the east lies Keep Street."
+    },
+    "south": {
+     "to_room": 8004,
+     "description": "To the south lies The Western Wall Road Meets Chapel Street."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north, east\nand south.",
+   "placeholder": true
+  },
+  "8006": {
+   "vnum": 8006,
+   "name": "The Western Wall Road",
+   "map": {
+    "x": -27,
+    "y": 36,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8007,
+     "description": "To the north lies The Western Wall Road."
+    },
+    "south": {
+     "to_room": 8005,
+     "description": "To the south lies The Western Wall Road Meets Keep Street."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "8007": {
+   "vnum": 8007,
+   "name": "The Western Wall Road",
+   "map": {
+    "x": -27,
+    "y": 38,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8008,
+     "description": "To the north lies The Western Wall Road Meets The Northern Wall Road."
+    },
+    "south": {
+     "to_room": 8006,
+     "description": "To the south lies The Western Wall Road."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "8008": {
+   "vnum": 8008,
+   "name": "The Western Wall Road Meets The Northern Wall Road",
+   "map": {
+    "x": -27,
+    "y": 40,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8016,
+     "description": "To the east lies The Northern Wall Road."
+    },
+    "south": {
+     "to_room": 8007,
+     "description": "To the south lies The Western Wall Road."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nsouth.",
+   "placeholder": true
+  },
+  "8009": {
+   "vnum": 8009,
+   "name": "The Southern Wall Road Meets Barracks Avenue",
+   "map": {
+    "x": -24,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8010,
+     "description": "To the north lies Barracks Avenue."
+    },
+    "east": {
+     "to_room": 8017,
+     "description": "To the east lies The Southern Wall Road."
+    },
+    "west": {
+     "to_room": 208001,
+     "description": "To the west lies The Western Wall Road Meets The Southern Wall Road."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "8010": {
+   "vnum": 8010,
+   "name": "Barracks Avenue",
+   "map": {
+    "x": -24,
+    "y": 23,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8011,
+     "description": "To the north lies Mishrak Civil Barracks.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 8009,
+     "description": "To the south lies The Southern Wall Road Meets Barracks Avenue."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "8011": {
+   "vnum": 8011,
+   "name": "Mishrak Civil Barracks",
+   "map": {
+    "x": -24,
+    "y": 25,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 8019,
+     "description": "To the east lies Mishrak Civil Barracks Headquarters.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 8010,
+     "description": "To the south lies Barracks Avenue."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and south.",
+   "placeholder": true
+  },
+  "8012": {
+   "vnum": 8012,
+   "name": "Chapel Street",
+   "map": {
+    "x": -26,
+    "y": 30,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 8020,
+     "description": "To the east lies Chapel Street."
+    },
+    "west": {
+     "to_room": 8004,
+     "description": "To the west lies The Western Wall Road Meets Chapel Street."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "8013": {
+   "vnum": 8013,
+   "name": "Keep Street",
+   "map": {
+    "x": -24,
+    "y": 33,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8014,
+     "description": "To the north lies Keep Street."
+    },
+    "west": {
+     "to_room": 8005,
+     "description": "To the west lies The Western Wall Road Meets Keep Street."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand west.",
+   "placeholder": true
+  },
+  "8014": {
+   "vnum": 8014,
+   "name": "Keep Street",
+   "map": {
+    "x": -24,
+    "y": 34,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8077,
+     "description": "To the north lies The Office."
+    },
+    "east": {
+     "to_room": 8022,
+     "description": "To the east lies Keep Street."
+    },
+    "south": {
+     "to_room": 8013,
+     "description": "To the south lies Keep Street."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north, east and\nsouth.",
+   "placeholder": true
+  },
+  "8015": {
+   "vnum": 8015,
+   "name": "Guard Room",
+   "map": {
+    "x": -24,
+    "y": 38,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8016,
+     "description": "To the north lies The Northern Wall Road."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "8016": {
+   "vnum": 8016,
+   "name": "The Northern Wall Road",
+   "map": {
+    "x": -24,
+    "y": 40,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8024,
+     "description": "To the east lies The Northern Wall Road."
+    },
+    "south": {
+     "to_room": 8015,
+     "description": "To the south lies Guard Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 8008,
+     "description": "To the west lies The Western Wall Road Meets The Northern Wall Road."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east, south\nand west.",
+   "placeholder": true
+  },
+  "8017": {
+   "vnum": 8017,
+   "name": "The Southern Wall Road",
+   "map": {
+    "x": -20,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8025,
+     "description": "To the east lies The Southern Wall Road."
+    },
+    "west": {
+     "to_room": 8009,
+     "description": "To the west lies The Southern Wall Road Meets Barracks Avenue."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "8018": {
+   "vnum": 8018,
+   "name": "Western Altar",
+   "map": {
+    "x": -23,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 8026,
+     "description": "To the east lies The Chapel Of Mishrak."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads east.",
+   "placeholder": true
+  },
+  "8019": {
+   "vnum": 8019,
+   "name": "Mishrak Civil Barracks Headquarters",
+   "map": {
+    "x": -22,
+    "y": 25,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 8011,
+     "description": "To the west lies Mishrak Civil Barracks."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads west.",
+   "placeholder": true
+  },
+  "8020": {
+   "vnum": 8020,
+   "name": "Chapel Street",
+   "map": {
+    "x": -23,
+    "y": 30,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 8028,
+     "description": "To the east lies Chapel Street Meets Market Street."
+    },
+    "west": {
+     "to_room": 8012,
+     "description": "To the west lies Chapel Street."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "8021": {
+   "vnum": 8021,
+   "name": "Mishrak Marketplace",
+   "map": {
+    "x": -23,
+    "y": 33,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8029,
+     "description": "To the east lies Market Street."
+    }
+   },
+   "description": "A worn track crosses the open ground. The land lies flat and quiet in\nevery direction. A way leads east.",
+   "placeholder": true
+  },
+  "8022": {
+   "vnum": 8022,
+   "name": "Keep Street",
+   "map": {
+    "x": -23,
+    "y": 34,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8030,
+     "description": "To the east lies Keep Street Meets Market Street."
+    },
+    "west": {
+     "to_room": 8014,
+     "description": "To the west lies Keep Street."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead east\nand west.",
+   "placeholder": true
+  },
+  "8023": {
+   "vnum": 8023,
+   "name": "A Ruined House",
+   "map": {
+    "x": -20,
+    "y": 38,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8024,
+     "description": "To the north lies The Northern Wall Road."
+    },
+    "down": {
+     "to_room": 8078,
+     "description": "To the down lies The Cellar."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead north and\ndown.",
+   "placeholder": true
+  },
+  "8024": {
+   "vnum": 8024,
+   "name": "The Northern Wall Road",
+   "map": {
+    "x": -20,
+    "y": 40,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8032,
+     "description": "To the east lies The Northern Wall Road."
+    },
+    "south": {
+     "to_room": 8023,
+     "description": "To the south lies A Ruined House.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 8016,
+     "description": "To the west lies The Northern Wall Road."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "8025": {
+   "vnum": 8025,
+   "name": "The Southern Wall Road",
+   "map": {
+    "x": -17,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8033,
+     "description": "To the east lies The Southern Wall Road."
+    },
+    "west": {
+     "to_room": 8017,
+     "description": "To the west lies The Southern Wall Road."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "8026": {
+   "vnum": 8026,
+   "name": "The Chapel Of Mishrak",
+   "map": {
+    "x": -22,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8027,
+     "description": "To the north lies The Chapel Of Mishrak."
+    },
+    "east": {
+     "to_room": 8034,
+     "description": "To the east lies The Chapel Of Mishrak."
+    },
+    "west": {
+     "to_room": 8018,
+     "description": "To the west lies Western Altar."
+    },
+    "down": {
+     "to_room": 8079,
+     "description": "To the down lies The Secret Room."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, west and\ndown.",
+   "placeholder": true
+  },
+  "8027": {
+   "vnum": 8027,
+   "name": "The Chapel Of Mishrak",
+   "map": {
+    "x": -22,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8028,
+     "description": "To the north lies Chapel Street Meets Market Street."
+    },
+    "east": {
+     "to_room": 8035,
+     "description": "To the east lies The Chapel Of Mishrak."
+    },
+    "south": {
+     "to_room": 8026,
+     "description": "To the south lies The Chapel Of Mishrak."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "8028": {
+   "vnum": 8028,
+   "name": "Chapel Street Meets Market Street",
+   "map": {
+    "x": -22,
+    "y": 30,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8029,
+     "description": "To the north lies Market Street."
+    },
+    "east": {
+     "to_room": 8028,
+     "description": "To the east lies Chapel Street Meets Market Street."
+    },
+    "south": {
+     "to_room": 8027,
+     "description": "To the south lies The Chapel Of Mishrak.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 8020,
+     "description": "To the west lies Chapel Street."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "8029": {
+   "vnum": 8029,
+   "name": "Market Street",
+   "map": {
+    "x": -22,
+    "y": 33,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8030,
+     "description": "To the north lies Keep Street Meets Market Street."
+    },
+    "south": {
+     "to_room": 8028,
+     "description": "To the south lies Chapel Street Meets Market Street."
+    },
+    "west": {
+     "to_room": 8021,
+     "description": "To the west lies Mishrak Marketplace."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, south and west.",
+   "placeholder": true
+  },
+  "8030": {
+   "vnum": 8030,
+   "name": "Keep Street Meets Market Street",
+   "map": {
+    "x": -22,
+    "y": 34,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8031,
+     "description": "To the north lies Mishrak Stables.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 8039,
+     "description": "To the east lies The Entrance To Mishrak Keep."
+    },
+    "south": {
+     "to_room": 8029,
+     "description": "To the south lies Market Street."
+    },
+    "west": {
+     "to_room": 8022,
+     "description": "To the west lies Keep Street."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "8031": {
+   "vnum": 8031,
+   "name": "Mishrak Stables",
+   "map": {
+    "x": -22,
+    "y": 35,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 8030,
+     "description": "To the south lies Keep Street Meets Market Street."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. A way leads south.",
+   "placeholder": true
+  },
+  "8032": {
+   "vnum": 8032,
+   "name": "The Northern Wall Road",
+   "map": {
+    "x": -17,
+    "y": 40,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8041,
+     "description": "To the east lies The Northern Wall Road."
+    },
+    "west": {
+     "to_room": 8024,
+     "description": "To the west lies The Northern Wall Road."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and west.",
+   "placeholder": true
+  },
+  "8033": {
+   "vnum": 8033,
+   "name": "The Southern Wall Road",
+   "map": {
+    "x": -14,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8042,
+     "description": "To the east lies The Southern Wall Road."
+    },
+    "west": {
+     "to_room": 8025,
+     "description": "To the west lies The Southern Wall Road."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and west.",
+   "placeholder": true
+  },
+  "8034": {
+   "vnum": 8034,
+   "name": "The Chapel Of Mishrak",
+   "map": {
+    "x": -21,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8035,
+     "description": "To the north lies The Chapel Of Mishrak."
+    },
+    "east": {
+     "to_room": 8043,
+     "description": "To the east lies Eastern Altar."
+    },
+    "west": {
+     "to_room": 8026,
+     "description": "To the west lies The Chapel Of Mishrak."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "8035": {
+   "vnum": 8035,
+   "name": "The Chapel Of Mishrak",
+   "map": {
+    "x": -21,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8036,
+     "description": "To the north lies Head Priest's Quarters.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 8034,
+     "description": "To the south lies The Chapel Of Mishrak."
+    },
+    "west": {
+     "to_room": 8027,
+     "description": "To the west lies The Chapel Of Mishrak."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "8036": {
+   "vnum": 8036,
+   "name": "Head Priest's Quarters",
+   "map": {
+    "x": -21,
+    "y": 29,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 8035,
+     "description": "To the south lies The Chapel Of Mishrak."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "8037": {
+   "vnum": 8037,
+   "name": "Bottom Of The Narrow Stairs",
+   "map": {
+    "x": -16,
+    "y": 31,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8038,
+     "description": "To the north lies Mishrak Keep."
+    },
+    "up": {
+     "to_room": 8064,
+     "description": "To the up lies A Long Hallway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and up.",
+   "placeholder": true
+  },
+  "8038": {
+   "vnum": 8038,
+   "name": "Mishrak Keep",
+   "map": {
+    "x": -16,
+    "y": 33,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8039,
+     "description": "To the north lies The Entrance To Mishrak Keep."
+    },
+    "south": {
+     "to_room": 8037,
+     "description": "To the south lies Bottom Of The Narrow Stairs.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "8039": {
+   "vnum": 8039,
+   "name": "The Entrance To Mishrak Keep",
+   "map": {
+    "x": -16,
+    "y": 34,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8040,
+     "description": "To the north lies Guard Room."
+    },
+    "east": {
+     "to_room": 8047,
+     "description": "To the east lies Keep Street."
+    },
+    "south": {
+     "to_room": 8038,
+     "description": "To the south lies Mishrak Keep."
+    },
+    "west": {
+     "to_room": 8030,
+     "description": "To the west lies Keep Street Meets Market Street."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "8040": {
+   "vnum": 8040,
+   "name": "Guard Room",
+   "map": {
+    "x": -16,
+    "y": 35,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 8039,
+     "description": "To the south lies The Entrance To Mishrak Keep."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "8041": {
+   "vnum": 8041,
+   "name": "The Northern Wall Road",
+   "map": {
+    "x": -14,
+    "y": 40,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8049,
+     "description": "To the east lies The Northern Wall Road."
+    },
+    "west": {
+     "to_room": 8032,
+     "description": "To the west lies The Northern Wall Road."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "8042": {
+   "vnum": 8042,
+   "name": "The Southern Wall Road",
+   "map": {
+    "x": -10,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8050,
+     "description": "To the east lies The Eastern Wall Road Meets The Southern Wall Road."
+    },
+    "west": {
+     "to_room": 8033,
+     "description": "To the west lies The Southern Wall Road."
+    },
+    "down": {
+     "to_room": 8081,
+     "description": "To the down lies The Hole."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east, west and down.",
+   "placeholder": true
+  },
+  "8043": {
+   "vnum": 8043,
+   "name": "Eastern Altar",
+   "map": {
+    "x": -20,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 8034,
+     "description": "To the west lies The Chapel Of Mishrak."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads west.",
+   "placeholder": true
+  },
+  "8044": {
+   "vnum": 8044,
+   "name": "The Shop",
+   "map": {
+    "x": -8,
+    "y": 25,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8045,
+     "description": "To the north lies The Back Room."
+    },
+    "east": {
+     "to_room": 8052,
+     "description": "To the east lies The Eastern Wall Road."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and east.",
+   "placeholder": true
+  },
+  "8045": {
+   "vnum": 8045,
+   "name": "The Back Room",
+   "map": {
+    "x": -8,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 8044,
+     "description": "To the south lies The Shop."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads south.",
+   "placeholder": true
+  },
+  "8046": {
+   "vnum": 8046,
+   "name": "Keep Street",
+   "map": {
+    "x": -8,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8047,
+     "description": "To the north lies Keep Street."
+    },
+    "east": {
+     "to_room": 8054,
+     "description": "To the east lies The Eastern Wall Road Meets Keep Street."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand east.",
+   "placeholder": true
+  },
+  "8047": {
+   "vnum": 8047,
+   "name": "Keep Street",
+   "map": {
+    "x": -8,
+    "y": 34,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 8046,
+     "description": "To the south lies Keep Street."
+    },
+    "west": {
+     "to_room": 8039,
+     "description": "To the west lies The Entrance To Mishrak Keep."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead south and west.",
+   "placeholder": true
+  },
+  "8048": {
+   "vnum": 8048,
+   "name": "The Forge",
+   "map": {
+    "x": -8,
+    "y": 38,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8056,
+     "description": "To the east lies The Eastern Wall Road."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. A worn track crosses the\nopen ground. A way leads east.",
+   "placeholder": true
+  },
+  "8049": {
+   "vnum": 8049,
+   "name": "The Northern Wall Road",
+   "map": {
+    "x": -10,
+    "y": 40,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8057,
+     "description": "To the east lies The Eastern Wall Road Meets The Northern Wall Road."
+    },
+    "west": {
+     "to_room": 8041,
+     "description": "To the west lies The Northern Wall Road."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead east and west.",
+   "placeholder": true
+  },
+  "8050": {
+   "vnum": 8050,
+   "name": "The Eastern Wall Road Meets The Southern Wall Road",
+   "map": {
+    "x": -7,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8051,
+     "description": "To the north lies The Eastern Wall Road."
+    },
+    "west": {
+     "to_room": 8042,
+     "description": "To the west lies The Southern Wall Road."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth and west.",
+   "placeholder": true
+  },
+  "8051": {
+   "vnum": 8051,
+   "name": "The Eastern Wall Road",
+   "map": {
+    "x": -7,
+    "y": 24,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8052,
+     "description": "To the north lies The Eastern Wall Road."
+    },
+    "south": {
+     "to_room": 8050,
+     "description": "To the south lies The Eastern Wall Road Meets The Southern Wall Road."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north and south.",
+   "placeholder": true
+  },
+  "8052": {
+   "vnum": 8052,
+   "name": "The Eastern Wall Road",
+   "map": {
+    "x": -7,
+    "y": 25,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8053,
+     "description": "To the north lies The Eastern Wall Road."
+    },
+    "south": {
+     "to_room": 8051,
+     "description": "To the south lies The Eastern Wall Road."
+    },
+    "west": {
+     "to_room": 8044,
+     "description": "To the west lies The Shop.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, south and west.",
+   "placeholder": true
+  },
+  "8053": {
+   "vnum": 8053,
+   "name": "The Eastern Wall Road",
+   "map": {
+    "x": -7,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8054,
+     "description": "To the north lies The Eastern Wall Road Meets Keep Street."
+    },
+    "south": {
+     "to_room": 8052,
+     "description": "To the south lies The Eastern Wall Road."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north and south.",
+   "placeholder": true
+  },
+  "8054": {
+   "vnum": 8054,
+   "name": "The Eastern Wall Road Meets Keep Street",
+   "map": {
+    "x": -7,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8055,
+     "description": "To the north lies The Eastern Wall Road."
+    },
+    "east": {
+     "to_room": 8083,
+     "description": "To the east lies Inside The Eastern Gate Of Mishrak."
+    },
+    "south": {
+     "to_room": 8053,
+     "description": "To the south lies The Eastern Wall Road."
+    },
+    "west": {
+     "to_room": 8046,
+     "description": "To the west lies Keep Street."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "8055": {
+   "vnum": 8055,
+   "name": "The Eastern Wall Road",
+   "map": {
+    "x": -7,
+    "y": 36,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8056,
+     "description": "To the north lies The Eastern Wall Road."
+    },
+    "south": {
+     "to_room": 8054,
+     "description": "To the south lies The Eastern Wall Road Meets Keep Street."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "8056": {
+   "vnum": 8056,
+   "name": "The Eastern Wall Road",
+   "map": {
+    "x": -7,
+    "y": 38,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8057,
+     "description": "To the north lies The Eastern Wall Road Meets The Northern Wall Road."
+    },
+    "east": {
+     "to_room": 8083,
+     "description": "To the east lies Inside The Eastern Gate Of Mishrak."
+    },
+    "south": {
+     "to_room": 8055,
+     "description": "To the south lies The Eastern Wall Road."
+    },
+    "west": {
+     "to_room": 8048,
+     "description": "To the west lies The Forge."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "8057": {
+   "vnum": 8057,
+   "name": "The Eastern Wall Road Meets The Northern Wall Road",
+   "map": {
+    "x": -7,
+    "y": 40,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 8056,
+     "description": "To the south lies The Eastern Wall Road."
+    },
+    "west": {
+     "to_room": 8049,
+     "description": "To the west lies The Northern Wall Road."
+    },
+    "down": {
+     "to_room": 8082,
+     "description": "To the down lies The Hole."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nsouth, west and down.",
+   "placeholder": true
+  },
+  "8058": {
+   "vnum": 8058,
+   "name": "Western Grand Stairway",
+   "map": {
+    "x": -17,
+    "y": 23,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8059,
+     "description": "To the north lies Western Edge Of The Landing."
+    },
+    "up": {
+     "to_room": 8073,
+     "description": "To the up lies Third Floor Landing."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and up.",
+   "placeholder": true
+  },
+  "8059": {
+   "vnum": 8059,
+   "name": "Western Edge Of The Landing",
+   "map": {
+    "x": -17,
+    "y": 25,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 8065,
+     "description": "To the east lies The Second Floor Landing."
+    },
+    "south": {
+     "to_room": 8058,
+     "description": "To the south lies Western Grand Stairway."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and south.",
+   "placeholder": true
+  },
+  "8060": {
+   "vnum": 8060,
+   "name": "The Guest Closet",
+   "map": {
+    "x": -18,
+    "y": 30,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 8061,
+     "description": "To the east lies Guest Quarters."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "8061": {
+   "vnum": 8061,
+   "name": "Guest Quarters",
+   "map": {
+    "x": -17,
+    "y": 30,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 8062,
+     "description": "To the east lies A Long Hallway."
+    },
+    "west": {
+     "to_room": 8060,
+     "description": "To the west lies The Guest Closet.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "8062": {
+   "vnum": 8062,
+   "name": "A Long Hallway",
+   "map": {
+    "x": -16,
+    "y": 30,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 8063,
+     "description": "To the south lies A Long Hallway."
+    },
+    "west": {
+     "to_room": 8061,
+     "description": "To the west lies Guest Quarters.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead south and west.",
+   "placeholder": true
+  },
+  "8063": {
+   "vnum": 8063,
+   "name": "A Long Hallway",
+   "map": {
+    "x": -16,
+    "y": 29,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8062,
+     "description": "To the north lies A Long Hallway."
+    },
+    "east": {
+     "to_room": 8069,
+     "description": "To the east lies The Servants' Room."
+    },
+    "south": {
+     "to_room": 8064,
+     "description": "To the south lies A Long Hallway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "8064": {
+   "vnum": 8064,
+   "name": "A Long Hallway",
+   "map": {
+    "x": -16,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8063,
+     "description": "To the north lies A Long Hallway."
+    },
+    "south": {
+     "to_room": 8065,
+     "description": "To the south lies The Second Floor Landing."
+    },
+    "down": {
+     "to_room": 8037,
+     "description": "To the down lies Bottom Of The Narrow Stairs."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, south and down.",
+   "placeholder": true
+  },
+  "8065": {
+   "vnum": 8065,
+   "name": "The Second Floor Landing",
+   "map": {
+    "x": -16,
+    "y": 25,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8064,
+     "description": "To the north lies A Long Hallway."
+    },
+    "east": {
+     "to_room": 8067,
+     "description": "To the east lies Eastern Edge Of The Landing."
+    },
+    "west": {
+     "to_room": 8059,
+     "description": "To the west lies Western Edge Of The Landing."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "8066": {
+   "vnum": 8066,
+   "name": "Eastern Grand Stairway",
+   "map": {
+    "x": -15,
+    "y": 23,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8067,
+     "description": "To the north lies Eastern Edge Of The Landing."
+    },
+    "up": {
+     "to_room": 8073,
+     "description": "To the up lies Third Floor Landing."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and up.",
+   "placeholder": true
+  },
+  "8067": {
+   "vnum": 8067,
+   "name": "Eastern Edge Of The Landing",
+   "map": {
+    "x": -15,
+    "y": 25,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 8066,
+     "description": "To the south lies Eastern Grand Stairway."
+    },
+    "west": {
+     "to_room": 8065,
+     "description": "To the west lies The Second Floor Landing."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead south and west.",
+   "placeholder": true
+  },
+  "8069": {
+   "vnum": 8069,
+   "name": "The Servants' Room",
+   "map": {
+    "x": -14,
+    "y": 29,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 8070,
+     "description": "To the east lies The Balcony."
+    },
+    "west": {
+     "to_room": 8063,
+     "description": "To the west lies A Long Hallway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "8070": {
+   "vnum": 8070,
+   "name": "The Balcony",
+   "map": {
+    "x": -13,
+    "y": 29,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 8069,
+     "description": "To the west lies The Servants' Room."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. A way leads west.",
+   "placeholder": true
+  },
+  "8071": {
+   "vnum": 8071,
+   "name": "The Eastern Bedroom",
+   "map": {
+    "x": -9,
+    "y": 31,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 8073,
+     "description": "To the west lies Third Floor Landing."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "8072": {
+   "vnum": 8072,
+   "name": "The Southern Bedroom",
+   "map": {
+    "x": -11,
+    "y": 29,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8073,
+     "description": "To the north lies Third Floor Landing."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads north.",
+   "placeholder": true
+  },
+  "8073": {
+   "vnum": 8073,
+   "name": "Third Floor Landing",
+   "map": {
+    "x": -11,
+    "y": 31,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8074,
+     "description": "To the north lies The Northern Bedroom."
+    },
+    "east": {
+     "to_room": 8071,
+     "description": "To the east lies The Eastern Bedroom.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 8072,
+     "description": "To the south lies The Southern Bedroom.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 8075,
+     "description": "To the west lies The Western Bedroom."
+    },
+    "down": {
+     "to_room": 8070,
+     "description": "To the down lies The Balcony."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east, south, west and\ndown.",
+   "placeholder": true
+  },
+  "8074": {
+   "vnum": 8074,
+   "name": "The Northern Bedroom",
+   "map": {
+    "x": -11,
+    "y": 32,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 8073,
+     "description": "To the south lies Third Floor Landing."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "8075": {
+   "vnum": 8075,
+   "name": "The Western Bedroom",
+   "map": {
+    "x": -12,
+    "y": 31,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 8073,
+     "description": "To the east lies Third Floor Landing."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads east.",
+   "placeholder": true
+  },
+  "8076": {
+   "vnum": 8076,
+   "name": "The Hole",
+   "map": {
+    "x": -31,
+    "y": 19,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "up": {
+     "to_room": 208002,
+     "description": "To the up lies The Western Wall Road."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Ferns and\nmoss soften the ground beneath a dim green canopy. A way leads up.",
+   "placeholder": true
+  },
+  "8077": {
+   "vnum": 8077,
+   "name": "The Office",
+   "map": {
+    "x": -24,
+    "y": 35,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 8014,
+     "description": "To the south lies Keep Street."
+    },
+    "west": {
+     "to_room": 208099,
+     "description": "To the west lies The Operating Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead south and west.",
+   "placeholder": true
+  },
+  "8078": {
+   "vnum": 8078,
+   "name": "The Cellar",
+   "map": {
+    "x": -31,
+    "y": 34,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 8023,
+     "description": "To the up lies A Ruined House."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads up.",
+   "placeholder": true
+  },
+  "8079": {
+   "vnum": 8079,
+   "name": "The Secret Room",
+   "map": {
+    "x": -26,
+    "y": 24,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 8080,
+     "description": "To the east lies The Catacombs."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads east.",
+   "placeholder": true
+  },
+  "8080": {
+   "vnum": 8080,
+   "name": "The Catacombs",
+   "map": {
+    "x": -18,
+    "y": 26,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8098,
+     "description": "To the north lies The Catacombs."
+    },
+    "east": {
+     "to_room": 8098,
+     "description": "To the east lies The Catacombs."
+    },
+    "south": {
+     "to_room": 8098,
+     "description": "To the south lies The Catacombs."
+    },
+    "west": {
+     "to_room": 8098,
+     "description": "To the west lies The Catacombs."
+    },
+    "up": {
+     "to_room": 8034,
+     "description": "To the up lies The Chapel Of Mishrak."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south, west and up.",
+   "placeholder": true
+  },
+  "8081": {
+   "vnum": 8081,
+   "name": "The Hole",
+   "map": {
+    "x": -13,
+    "y": 19,
+    "z": -1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "up": {
+     "to_room": 8042,
+     "description": "To the up lies The Southern Wall Road."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. A way leads up.",
+   "placeholder": true
+  },
+  "8082": {
+   "vnum": 8082,
+   "name": "The Hole",
+   "map": {
+    "x": -13,
+    "y": 34,
+    "z": -1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "up": {
+     "to_room": 8057,
+     "description": "To the up lies The Eastern Wall Road Meets The Northern Wall Road."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. A way leads up.",
+   "placeholder": true
+  },
+  "8083": {
+   "vnum": 8083,
+   "name": "Inside The Eastern Gate Of Mishrak",
+   "map": {
+    "x": -6,
+    "y": 38,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8084,
+     "description": "To the east lies Outside The Eastern Gate of Mishrak.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 8056,
+     "description": "To the west lies The Eastern Wall Road."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "8084": {
+   "vnum": 8084,
+   "name": "Outside The Eastern Gate of Mishrak",
+   "map": {
+    "x": -5,
+    "y": 38,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8085,
+     "description": "To the east lies The Forested Road."
+    },
+    "west": {
+     "to_room": 8083,
+     "description": "To the west lies Inside The Eastern Gate Of Mishrak."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\neast and west.",
+   "placeholder": true
+  },
+  "8085": {
+   "vnum": 8085,
+   "name": "The Forested Road",
+   "map": {
+    "x": -4,
+    "y": 38,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8086,
+     "description": "To the east lies The Forested Road."
+    },
+    "west": {
+     "to_room": 8084,
+     "description": "To the west lies Outside The Eastern Gate of Mishrak."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead east and west.",
+   "placeholder": true
+  },
+  "8086": {
+   "vnum": 8086,
+   "name": "The Forested Road",
+   "map": {
+    "x": -3,
+    "y": 38,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8087,
+     "description": "To the east lies The Intersection In The Forested Road."
+    },
+    "west": {
+     "to_room": 8085,
+     "description": "To the west lies The Forested Road."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Old trees crowd close,\ntheir roots knotted across the path. Ways lead east and west.",
+   "placeholder": true
+  },
+  "8087": {
+   "vnum": 8087,
+   "name": "The Intersection In The Forested Road",
+   "map": {
+    "x": -2,
+    "y": 38,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8094,
+     "description": "To the north lies The End Of The Forested Road."
+    },
+    "east": {
+     "to_room": 8088,
+     "description": "To the east lies The Forested Road."
+    },
+    "west": {
+     "to_room": 8086,
+     "description": "To the west lies The Forested Road."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Fallen\nneedles and leaves muffle every step. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "8088": {
+   "vnum": 8088,
+   "name": "The Forested Road",
+   "map": {
+    "x": -1,
+    "y": 38,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8095,
+     "description": "To the east lies The Forested Road."
+    },
+    "west": {
+     "to_room": 8087,
+     "description": "To the west lies The Intersection In The Forested Road."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Ferns and\nmoss soften the ground beneath a dim green canopy. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "8094": {
+   "vnum": 8094,
+   "name": "The End Of The Forested Road",
+   "map": {
+    "x": -2,
+    "y": 39,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 8087,
+     "description": "To the south lies The Intersection In The Forested Road."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Old trees crowd\nclose, their roots knotted across the path. A way leads south.",
+   "placeholder": true
+  },
+  "8095": {
+   "vnum": 8095,
+   "name": "The Forested Road",
+   "map": {
+    "x": 0,
+    "y": 38,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 8088,
+     "description": "To the west lies The Forested Road."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Old trees\ncrowd close, their roots knotted across the path. A way leads west.",
+   "placeholder": true
+  },
+  "8096": {
+   "vnum": 8096,
+   "name": "The Abode Of Donnchadh",
+   "map": {
+    "x": -20,
+    "y": 30,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 8028,
+     "description": "To the east lies Chapel Street Meets Market Street."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads east.",
+   "placeholder": true
+  },
+  "8097": {
+   "vnum": 8097,
+   "name": "The Catacombs",
+   "map": {
+    "x": -29,
+    "y": 26,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8098,
+     "description": "To the north lies The Catacombs."
+    },
+    "east": {
+     "to_room": 8098,
+     "description": "To the east lies The Catacombs."
+    },
+    "south": {
+     "to_room": 8098,
+     "description": "To the south lies The Catacombs."
+    },
+    "west": {
+     "to_room": 8098,
+     "description": "To the west lies The Catacombs."
+    },
+    "up": {
+     "to_room": 8098,
+     "description": "To the up lies The Catacombs."
+    },
+    "down": {
+     "to_room": 8098,
+     "description": "To the down lies The Catacombs."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south, west, up and down.",
+   "placeholder": true
+  },
+  "8098": {
+   "vnum": 8098,
+   "name": "The Catacombs",
+   "map": {
+    "x": -22,
+    "y": 26,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8097,
+     "description": "To the north lies The Catacombs."
+    },
+    "east": {
+     "to_room": 8080,
+     "description": "To the east lies The Catacombs."
+    },
+    "south": {
+     "to_room": 8097,
+     "description": "To the south lies The Catacombs."
+    },
+    "west": {
+     "to_room": 8097,
+     "description": "To the west lies The Catacombs."
+    },
+    "up": {
+     "to_room": 8097,
+     "description": "To the up lies The Catacombs."
+    },
+    "down": {
+     "to_room": 8097,
+     "description": "To the down lies The Catacombs."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east, south, west, up and\ndown.",
+   "placeholder": true
+  },
+  "208099": {
+   "vnum": 208099,
+   "name": "The Operating Room",
+   "map": {
+    "x": -26,
+    "y": 35,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 8077,
+     "description": "To the east lies The Office."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads east.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

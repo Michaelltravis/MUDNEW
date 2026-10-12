@@ -1,0 +1,750 @@
+{
+ "number": 515,
+ "name": "Orcus Temple",
+ "builders": "Cohen",
+ "atlas_area": 115,
+ "rooms": {
+  "13900": {
+   "vnum": 13900,
+   "name": "Before The Temple",
+   "map": {
+    "x": 58,
+    "y": 86,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13901,
+     "description": "To the north lies In The Entranceway.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads north.",
+   "placeholder": true
+  },
+  "13901": {
+   "vnum": 13901,
+   "name": "In The Entranceway",
+   "map": {
+    "x": 58,
+    "y": 87,
+    "z": -1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13902,
+     "description": "To the north lies In The Courtyard."
+    },
+    "south": {
+     "to_room": 13900,
+     "description": "To the south lies Before The Temple."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand south.",
+   "placeholder": true
+  },
+  "13902": {
+   "vnum": 13902,
+   "name": "In The Courtyard",
+   "map": {
+    "x": 58,
+    "y": 88,
+    "z": -1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13905,
+     "description": "To the north lies In The Courtyard."
+    },
+    "east": {
+     "to_room": 13903,
+     "description": "To the east lies In The Courtyard."
+    },
+    "south": {
+     "to_room": 13901,
+     "description": "To the south lies In The Entranceway."
+    },
+    "west": {
+     "to_room": 13907,
+     "description": "To the west lies In The Courtyard."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "13903": {
+   "vnum": 13903,
+   "name": "In The Courtyard",
+   "map": {
+    "x": 59,
+    "y": 88,
+    "z": -1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13904,
+     "description": "To the north lies In The Courtyard."
+    },
+    "west": {
+     "to_room": 13902,
+     "description": "To the west lies In The Courtyard."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north and west.",
+   "placeholder": true
+  },
+  "13904": {
+   "vnum": 13904,
+   "name": "In The Courtyard",
+   "map": {
+    "x": 59,
+    "y": 89,
+    "z": -1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13910,
+     "description": "To the east lies In The Corridor.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 13903,
+     "description": "To the south lies In The Courtyard."
+    },
+    "west": {
+     "to_room": 13905,
+     "description": "To the west lies In The Courtyard."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east, south\nand west.",
+   "placeholder": true
+  },
+  "13905": {
+   "vnum": 13905,
+   "name": "In The Courtyard",
+   "map": {
+    "x": 58,
+    "y": 89,
+    "z": -1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13904,
+     "description": "To the east lies In The Courtyard."
+    },
+    "south": {
+     "to_room": 13902,
+     "description": "To the south lies In The Courtyard."
+    },
+    "west": {
+     "to_room": 13906,
+     "description": "To the west lies In The Courtyard."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead east, south\nand west.",
+   "placeholder": true
+  },
+  "13906": {
+   "vnum": 13906,
+   "name": "In The Courtyard",
+   "map": {
+    "x": 57,
+    "y": 89,
+    "z": -1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13905,
+     "description": "To the east lies In The Courtyard."
+    },
+    "south": {
+     "to_room": 13907,
+     "description": "To the south lies In The Courtyard."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east and south.",
+   "placeholder": true
+  },
+  "13907": {
+   "vnum": 13907,
+   "name": "In The Courtyard",
+   "map": {
+    "x": 57,
+    "y": 88,
+    "z": -1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13906,
+     "description": "To the north lies In The Courtyard."
+    },
+    "east": {
+     "to_room": 13902,
+     "description": "To the east lies In The Courtyard."
+    },
+    "west": {
+     "to_room": 13908,
+     "description": "To the west lies The Stable.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth, east and west.",
+   "placeholder": true
+  },
+  "13908": {
+   "vnum": 13908,
+   "name": "The Stable",
+   "map": {
+    "x": 56,
+    "y": 88,
+    "z": -1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13907,
+     "description": "To the east lies In The Courtyard."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. A way leads east.",
+   "placeholder": true
+  },
+  "13910": {
+   "vnum": 13910,
+   "name": "In The Corridor",
+   "map": {
+    "x": 60,
+    "y": 89,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13911,
+     "description": "To the north lies In The Corridor."
+    },
+    "west": {
+     "to_room": 13904,
+     "description": "To the west lies In The Courtyard."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "13911": {
+   "vnum": 13911,
+   "name": "In The Corridor",
+   "map": {
+    "x": 60,
+    "y": 90,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13912,
+     "description": "To the north lies In The Corridor."
+    },
+    "south": {
+     "to_room": 13910,
+     "description": "To the south lies In The Corridor."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13912": {
+   "vnum": 13912,
+   "name": "In The Corridor",
+   "map": {
+    "x": 60,
+    "y": 91,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13911,
+     "description": "To the south lies In The Corridor."
+    },
+    "west": {
+     "to_room": 13913,
+     "description": "To the west lies In The Corridor."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "13913": {
+   "vnum": 13913,
+   "name": "In The Corridor",
+   "map": {
+    "x": 59,
+    "y": 91,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13912,
+     "description": "To the east lies In The Corridor."
+    },
+    "south": {
+     "to_room": 13929,
+     "description": "To the south lies Room Of The Beautiful Maid.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 13914,
+     "description": "To the west lies At The Foot Of The Stair To Salvation."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "13914": {
+   "vnum": 13914,
+   "name": "At The Foot Of The Stair To Salvation",
+   "map": {
+    "x": 58,
+    "y": 91,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13913,
+     "description": "To the east lies In The Corridor."
+    },
+    "up": {
+     "to_room": 13915,
+     "description": "To the up lies On The Stair."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and up.",
+   "placeholder": true
+  },
+  "13915": {
+   "vnum": 13915,
+   "name": "On The Stair",
+   "map": {
+    "x": 59,
+    "y": 92,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13918,
+     "description": "To the east lies Disciples Quarters.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "up": {
+     "to_room": 13916,
+     "description": "To the up lies On The Stair."
+    },
+    "down": {
+     "to_room": 13914,
+     "description": "To the down lies At The Foot Of The Stair To Salvation."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east, up and down.",
+   "placeholder": true
+  },
+  "13916": {
+   "vnum": 13916,
+   "name": "On The Stair",
+   "map": {
+    "x": 60,
+    "y": 93,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13917,
+     "description": "To the east lies Priests Quarters.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "up": {
+     "to_room": 13919,
+     "description": "To the up lies Top Of The Stair."
+    },
+    "down": {
+     "to_room": 13915,
+     "description": "To the down lies On The Stair."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east, up and down.",
+   "placeholder": true
+  },
+  "13917": {
+   "vnum": 13917,
+   "name": "Priests Quarters",
+   "map": {
+    "x": 61,
+    "y": 93,
+    "z": -1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 13916,
+     "description": "To the west lies On The Stair."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. A way leads\nwest.",
+   "placeholder": true
+  },
+  "13918": {
+   "vnum": 13918,
+   "name": "Disciples Quarters",
+   "map": {
+    "x": 60,
+    "y": 92,
+    "z": -1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 13915,
+     "description": "To the west lies On The Stair."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. A way leads west.",
+   "placeholder": true
+  },
+  "13919": {
+   "vnum": 13919,
+   "name": "Top Of The Stair",
+   "map": {
+    "x": 61,
+    "y": 94,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13920,
+     "description": "To the east lies High Priests Quarters.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 13921,
+     "description": "To the west lies Hallway To Destiny.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "down": {
+     "to_room": 13916,
+     "description": "To the down lies On The Stair."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east, west and down.",
+   "placeholder": true
+  },
+  "13920": {
+   "vnum": 13920,
+   "name": "High Priests Quarters",
+   "map": {
+    "x": 62,
+    "y": 94,
+    "z": -1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 13919,
+     "description": "To the west lies Top Of The Stair."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. A way leads west.",
+   "placeholder": true
+  },
+  "13921": {
+   "vnum": 13921,
+   "name": "Hallway To Destiny",
+   "map": {
+    "x": 59,
+    "y": 94,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 13922,
+     "description": "To the west lies Hallway To Destiny."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "13922": {
+   "vnum": 13922,
+   "name": "Hallway To Destiny",
+   "map": {
+    "x": 58,
+    "y": 94,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13921,
+     "description": "To the east lies Hallway To Destiny."
+    },
+    "west": {
+     "to_room": 13923,
+     "description": "To the west lies Hallway To Destiny."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13923": {
+   "vnum": 13923,
+   "name": "Hallway To Destiny",
+   "map": {
+    "x": 57,
+    "y": 94,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13922,
+     "description": "To the east lies Hallway To Destiny."
+    },
+    "west": {
+     "to_room": 13924,
+     "description": "To the west lies Hallway To Destiny."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13924": {
+   "vnum": 13924,
+   "name": "Hallway To Destiny",
+   "map": {
+    "x": 56,
+    "y": 94,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13923,
+     "description": "To the east lies Hallway To Destiny."
+    },
+    "west": {
+     "to_room": 13925,
+     "description": "To the west lies Hallway To Destiny."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13925": {
+   "vnum": 13925,
+   "name": "Hallway To Destiny",
+   "map": {
+    "x": 55,
+    "y": 94,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13924,
+     "description": "To the east lies Hallway To Destiny."
+    },
+    "west": {
+     "to_room": 13926,
+     "description": "To the west lies Hallway To Destiny."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13926": {
+   "vnum": 13926,
+   "name": "Hallway To Destiny",
+   "map": {
+    "x": 54,
+    "y": 94,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13925,
+     "description": "To the east lies Hallway To Destiny."
+    },
+    "west": {
+     "to_room": 13927,
+     "description": "To the west lies Sanctuary Of Orcus."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13927": {
+   "vnum": 13927,
+   "name": "Sanctuary Of Orcus",
+   "map": {
+    "x": 52,
+    "y": 94,
+    "z": -1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "down": {
+     "to_room": 13928,
+     "description": "To the down lies Near The Prime Material Plane."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. A way leads down.",
+   "placeholder": true
+  },
+  "13929": {
+   "vnum": 13929,
+   "name": "Room Of The Beautiful Maid",
+   "map": {
+    "x": 59,
+    "y": 90,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13913,
+     "description": "To the north lies In The Corridor."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads north.",
+   "placeholder": true
+  },
+  "13930": {
+   "vnum": 13930,
+   "name": "Into The Void",
+   "map": {
+    "x": 56,
+    "y": 86,
+    "z": -1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13900,
+     "description": "To the east lies Before The Temple."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. A way leads\neast.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

@@ -1,0 +1,596 @@
+{
+ "number": 467,
+ "name": "Moria Deep",
+ "builders": "Smut",
+ "atlas_area": 67,
+ "rooms": {
+  "20700": {
+   "vnum": 20700,
+   "name": "On The Bridge",
+   "map": {
+    "x": 20,
+    "y": 12,
+    "z": 3
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20750,
+     "description": "To the north lies Before The Bridge To Moria Deep."
+    },
+    "south": {
+     "to_room": 20701,
+     "description": "To the south lies On The Bridge."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20701": {
+   "vnum": 20701,
+   "name": "On The Bridge",
+   "map": {
+    "x": 20,
+    "y": 11,
+    "z": 3
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20700,
+     "description": "To the north lies On The Bridge."
+    },
+    "south": {
+     "to_room": 20703,
+     "description": "To the south lies Before Moria Deep."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Old trees crowd close,\ntheir roots knotted across the path. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20703": {
+   "vnum": 20703,
+   "name": "Before Moria Deep",
+   "map": {
+    "x": 20,
+    "y": 10,
+    "z": 3
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20701,
+     "description": "To the north lies On The Bridge."
+    },
+    "south": {
+     "to_room": 20704,
+     "description": "To the south lies Inside Moria Deep.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Fallen\nneedles and leaves muffle every step. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20704": {
+   "vnum": 20704,
+   "name": "Inside Moria Deep",
+   "map": {
+    "x": 20,
+    "y": 8,
+    "z": 3
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20703,
+     "description": "To the north lies Before Moria Deep."
+    },
+    "south": {
+     "to_room": 20705,
+     "description": "To the south lies The Guard Post.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Birdsong\ndrifts down through the branches overhead. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20705": {
+   "vnum": 20705,
+   "name": "The Guard Post",
+   "map": {
+    "x": 20,
+    "y": 7,
+    "z": 3
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20704,
+     "description": "To the north lies Inside Moria Deep."
+    },
+    "south": {
+     "to_room": 20706,
+     "description": "To the south lies The End Of The Passage.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Shafts of pale light slant\nbetween the trunks. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20706": {
+   "vnum": 20706,
+   "name": "The End Of The Passage",
+   "map": {
+    "x": 20,
+    "y": 6,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20705,
+     "description": "To the north lies The Guard Post."
+    },
+    "south": {
+     "to_room": 20707,
+     "description": "To the south lies The Passageway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20707": {
+   "vnum": 20707,
+   "name": "The Passageway",
+   "map": {
+    "x": 20,
+    "y": 5,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20706,
+     "description": "To the north lies The End Of The Passage."
+    },
+    "east": {
+     "to_room": 20709,
+     "description": "To the east lies Zalygin's Yard.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 20711,
+     "description": "To the south lies The Passageway."
+    },
+    "west": {
+     "to_room": 20708,
+     "description": "To the west lies Gomel's Hole.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "20708": {
+   "vnum": 20708,
+   "name": "Gomel's Hole",
+   "map": {
+    "x": 19,
+    "y": 5,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20707,
+     "description": "To the east lies The Passageway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads east.",
+   "placeholder": true
+  },
+  "20709": {
+   "vnum": 20709,
+   "name": "Zalygin's Yard",
+   "map": {
+    "x": 21,
+    "y": 5,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 20707,
+     "description": "To the west lies The Passageway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "20710": {
+   "vnum": 20710,
+   "name": "Terasaki's Trashery",
+   "map": {
+    "x": 21,
+    "y": 4,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 20711,
+     "description": "To the west lies The Passageway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads west.",
+   "placeholder": true
+  },
+  "20711": {
+   "vnum": 20711,
+   "name": "The Passageway",
+   "map": {
+    "x": 20,
+    "y": 4,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20707,
+     "description": "To the north lies The Passageway."
+    },
+    "east": {
+     "to_room": 20710,
+     "description": "To the east lies Terasaki's Trashery.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 20713,
+     "description": "To the south lies The Mouldy Stairwell."
+    },
+    "west": {
+     "to_room": 20712,
+     "description": "To the west lies The Empty Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "20712": {
+   "vnum": 20712,
+   "name": "The Empty Room",
+   "map": {
+    "x": 18,
+    "y": 4,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach.",
+   "placeholder": true
+  },
+  "20713": {
+   "vnum": 20713,
+   "name": "The Mouldy Stairwell",
+   "map": {
+    "x": 20,
+    "y": 2,
+    "z": 3
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20711,
+     "description": "To the north lies The Passageway."
+    },
+    "up": {
+     "to_room": 20714,
+     "description": "To the up lies Top of the Stairwell."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Bare rock climbs\nsteeply on one side and falls away on the other. Ways lead north and up.",
+   "placeholder": true
+  },
+  "20714": {
+   "vnum": 20714,
+   "name": "Top of the Stairwell",
+   "map": {
+    "x": 24,
+    "y": 6,
+    "z": 3
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20715,
+     "description": "To the north lies Along The Corridor."
+    },
+    "down": {
+     "to_room": 20713,
+     "description": "To the down lies The Mouldy Stairwell."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Wind howls through\na cleft in the stone. Ways lead north and down.",
+   "placeholder": true
+  },
+  "20715": {
+   "vnum": 20715,
+   "name": "Along The Corridor",
+   "map": {
+    "x": 24,
+    "y": 7,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20718,
+     "description": "To the north lies The End Of The Corridor."
+    },
+    "east": {
+     "to_room": 20717,
+     "description": "To the east lies Morhun's Haunt.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 20714,
+     "description": "To the south lies Top of the Stairwell."
+    },
+    "west": {
+     "to_room": 20716,
+     "description": "To the west lies Riabev's Lair.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "20716": {
+   "vnum": 20716,
+   "name": "Riabev's Lair",
+   "map": {
+    "x": 23,
+    "y": 7,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20715,
+     "description": "To the east lies Along The Corridor."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "20717": {
+   "vnum": 20717,
+   "name": "Morhun's Haunt",
+   "map": {
+    "x": 25,
+    "y": 7,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 20715,
+     "description": "To the west lies Along The Corridor."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "20718": {
+   "vnum": 20718,
+   "name": "The End Of The Corridor",
+   "map": {
+    "x": 24,
+    "y": 8,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20721,
+     "description": "To the north lies Fleraw's Fate.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 20719,
+     "description": "To the east lies Dashuk's Web.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 20715,
+     "description": "To the south lies Along The Corridor."
+    },
+    "west": {
+     "to_room": 20720,
+     "description": "To the west lies Asmolov's Tyrade.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "20719": {
+   "vnum": 20719,
+   "name": "Dashuk's Web",
+   "map": {
+    "x": 25,
+    "y": 8,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 20718,
+     "description": "To the west lies The End Of The Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "20720": {
+   "vnum": 20720,
+   "name": "Asmolov's Tyrade",
+   "map": {
+    "x": 23,
+    "y": 8,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20718,
+     "description": "To the east lies The End Of The Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads east.",
+   "placeholder": true
+  },
+  "20721": {
+   "vnum": 20721,
+   "name": "Fleraw's Fate",
+   "map": {
+    "x": 24,
+    "y": 9,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20718,
+     "description": "To the south lies The End Of The Corridor."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "20750": {
+   "vnum": 20750,
+   "name": "Before The Bridge To Moria Deep",
+   "map": {
+    "x": 20,
+    "y": 13,
+    "z": 3
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20641,
+     "description": "To the north lies By The Huge Stone Gates."
+    },
+    "south": {
+     "to_room": 20700,
+     "description": "To the south lies On The Bridge."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead. Ways lead north and south.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

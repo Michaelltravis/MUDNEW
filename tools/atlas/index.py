@@ -1,9 +1,9 @@
-"""Index the atlas world: every atlas zone and every zone of ours, what each holds, how it joins
-the rest, and what each still needs (room descriptions, creatures, items, a boss), with the
-order to build them in. Reads the atlas, our zones and the matcher's output; changes nothing in
+"""Index the world laid on the Bedlam atlas: every zone, what it holds, how it joins the rest, and
+what it still needs (room descriptions, creatures, items, a boss), with the order to build them
+in. Reads the built world (world/zones), the atlas and the approved match; changes nothing in
 the game; writes docs/world/ATLAS_INDEX.md and world/atlas/index.json.
 
-    python3 tools/atlas/match.py && python3 tools/atlas/index.py
+    python3 tools/atlas/index.py
 """
 import collections
 import json
@@ -12,16 +12,16 @@ import statistics
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import (ATLAS_DIR, ROOT, SECTOR, UNDER, WATER_SECTORS, is_boss, level_of,  # noqa: E402
-                    load_atlas, load_content, load_overrides, load_world, write_json, zone_boss_vnums)
+from common import (ATLAS_DIR, OUT_DIR, ROOT, WATER_SECTORS, is_boss, level_of, load_atlas,  # noqa: E402
+                    load_content, load_overrides, load_world, write_json, zone_boss_vnums)
 
-DOC = os.path.join(ROOT, 'docs', 'world', 'ATLAS_INDEX.md')
+DOC = os.path.join(ROOT, 'docs', 'world', 'ATLAS_INDEX.md') if OUT_DIR == ATLAS_DIR else os.path.join(OUT_DIR, 'ATLAS_INDEX.md')
 SERVICE = {'shopkeeper', 'guildmaster', 'trainer', 'auctioneer', 'stable_master', 'arena_master',
            'real_estate', 'sage_aldric', 'banker', 'innkeeper', 'healer', 'postmaster'}
-GOOD_DESC = 80          # a description this long or longer counts as written
+OPP = {'north': 'south', 'south': 'north', 'east': 'west', 'west': 'east', 'up': 'down', 'down': 'up'}
 
 
-def lvl_band(levels):
+def band(levels):
     if not levels:
         return None
     levels = sorted(levels)
@@ -31,356 +31,256 @@ def lvl_band(levels):
 def band_text(b, suggested=False):
     if not b:
         return '?'
-    t = f"{b['min']}-{b['max']} (median {b['median']})"
-    return t + (' suggested' if suggested else '')
+    return f"{b['min']}-{b['max']} (median {b['median']})" + (' suggested' if suggested else '')
 
 
 def main():
     atlas = load_atlas()
     A, AREAS = atlas['rooms'], atlas['areas']
-    zones, R = load_world()
+    zones, W = load_world()                    # the world as built
     placed, MOBS, OBJS = load_content(zones)
-    boss_vnums = zone_boss_vnums()
+    bosses_by_table = zone_boss_vnums()
     ov = load_overrides()
-    with open(os.path.join(ATLAS_DIR, 'zones.json'), encoding='utf-8') as f:
-        zj = json.load(f)
-    with open(os.path.join(ATLAS_DIR, 'rooms.json'), encoding='utf-8') as f:
-        rj = json.load(f)
+    zj = json.load(open(os.path.join(ATLAS_DIR, 'zones.json'), encoding='utf-8'))
+    rj = json.load(open(os.path.join(ATLAS_DIR, 'rooms.json'), encoding='utf-8'))
+    conn = json.load(open(os.path.join(ATLAS_DIR, 'connections.json'), encoding='utf-8'))
     areas = {int(k): v for k, v in zj['areas'].items()}
     ztab = {int(k): v for k, v in zj['zones'].items()}
     hooks = {int(k): v for k, v in zj['hookups'].items()}
-    arow = {int(k): v for k, v in rj['atlas'].items()}
-    orphans = {int(k): v for k, v in rj['orphans'].items()}
     clusters = {int(k): v for k, v in rj['orphan_clusters'].items()}
-    moves = {int(k): v for k, v in rj['similar_moves'].items()}
+    orphans = {int(k): v for k, v in rj['orphans'].items()}
+    vn = {int(k): v for k, v in json.load(open(os.path.join(ATLAS_DIR, 'vnums.json'))).items()}
+    area_of_zone = {z: d.get('atlas_area') for z, d in zones.items() if d.get('atlas_area') is not None}
+    zone_of_area = {a: z for z, a in area_of_zone.items()}
+    added_by_zone = collections.defaultdict(list)
+    for c in conn['added']:
+        if c['from'] in W:
+            added_by_zone[W[c['from']]['_zone']].append(c)
 
-    # whose content each atlas room carries (its own pair, or the similar-zone rooms moved onto it)
-    carries = collections.defaultdict(list)
-    for a, row in arow.items():
-        if row.get('ours') is not None:
-            carries[a].append(row['ours'])
-    for o, a in moves.items():
-        carries[a].append(o)
-
-    def content_of(vnums):
-        mobs = [mv for v in vnums for mv in placed.get(v, {}).get('mobs', [])]
-        objs = [ov_ for v in vnums for ov_ in placed.get(v, {}).get('objs', [])]
-        return mobs, objs
-
-    # distance from the temple over the atlas, for the build order
+    # steps from the temple
     dist, q = {3001: 0}, collections.deque([3001])
     while q:
         x = q.popleft()
-        for t in A[x]['exits'].values():
-            if t in A and t not in dist:
+        for t in list(W[x]['_exits'].values()) + list(W[x]['_named_exits'].values()):
+            if t in W and t not in dist:
                 dist[t] = dist[x] + 1
                 q.append(t)
 
-    by_area = collections.defaultdict(list)
-    for a, r in A.items():
-        by_area[r['area']].append(a)
-
-    # boat sources: items of type boat placed in a room, or sold or carried by a shopkeeper
     boats = {v for v, o in OBJS.items() if (o.get('item_type') or o.get('type')) == 'boat'}
     boat_sources = []
     for v, c in placed.items():
+        if v not in W:
+            continue
         for o in c['objs']:
             if o in boats:
-                boat_sources.append({'room': v, 'zone': R[v]['_zone'] if v in R else None, 'item': o,
-                                     'how': 'lies here', 'name': (OBJS[o].get('short_desc') or '')})
+                boat_sources.append({'room': v, 'zone': W[v]['_zone'], 'item': o, 'how': 'lies here',
+                                     'name': OBJS[o].get('short_desc') or ''})
         for mv in c['mobs']:
             mob = MOBS.get(mv) or {}
-            sells = (mob.get('shop_config') or {}).get('sells') if isinstance(mob.get('shop_config'), dict) else None
-            for o in list(sells or []) + list(mob.get('inventory') or []):
+            sc = mob.get('shop_config') if isinstance(mob.get('shop_config'), dict) else {}
+            for o in list(sc.get('sells') or []):
                 try:
                     o = int(o.get('vnum') if isinstance(o, dict) else o)
                 except (TypeError, ValueError):
                     continue
                 if o in boats and mob.get('special') == 'shopkeeper':
-                    boat_sources.append({'room': v, 'zone': R[v]['_zone'] if v in R else None, 'item': o,
+                    boat_sources.append({'room': v, 'zone': W[v]['_zone'], 'item': o,
                                          'how': f"sold by {mob.get('short_desc') or mob.get('name')}",
-                                         'name': (OBJS[o].get('short_desc') or '')})
+                                         'name': OBJS[o].get('short_desc') or ''})
 
-    index = {'_about': 'Generated by tools/atlas/index.py; docs/world/ATLAS_INDEX.md is the readable form.',
-             'areas': {}, 'ours_only': {}, 'boat_sources': boat_sources}
-    totals = collections.Counter()
-    for area, ids in sorted(by_area.items()):
-        meta = areas[area]
-        rooms_out, need_desc, review_desc = [], [], []
-        mobs_all, objs_all = [], []
-        services, bosses = set(), set()
-        drift, oneway, noexit, locked, under, water = [], [], [], [], [], []
+    def zone_entry(z, status, connector, sealed, atlas_area=None):
+        vs = sorted(v for v, r in W.items() if r['_zone'] == z)
+        mobs = [m for v in vs for m in placed.get(v, {}).get('mobs', [])]
+        objs = [o for v in vs for o in placed.get(v, {}).get('objs', [])]
+        need = [v for v in vs if W[v].get('placeholder')]
+        bosses = sorted({f"{(MOBS.get(m) or {}).get('short_desc') or m} ({m})" for m in mobs
+                         if is_boss(m, MOBS.get(m) or {}, bosses_by_table)})
+        svc = sorted({(MOBS.get(m) or {}).get('special') for m in mobs
+                      if isinstance((MOBS.get(m) or {}).get('special'), str) and (MOBS.get(m) or {}).get('special') in SERVICE})
         links = collections.defaultdict(list)
-        for a in sorted(ids):
-            r = A[a]
-            row = arow[a]
-            ours = carries.get(a, [])
-            mobs, objs = content_of(ours)
-            mobs_all += mobs
-            objs_all += objs
-            for mv in mobs:
-                mob = MOBS.get(mv) or {}
-                sp = mob.get('special')
-                if isinstance(sp, str) and sp in SERVICE:
-                    services.add(sp)
-                if is_boss(mv, mob, boss_vnums):
-                    bosses.add(f"{mob.get('short_desc') or mob.get('name')} ({mv})")
-            # description state
-            if ours:
-                main_o = ours[0]
-                d = (R[main_o].get('description') or '').strip()
-                if row.get('how') == 'position' and row.get('like', 1) < 0.3 or (row.get('ours') is None):
-                    state = 'review'           # ours was written for a room of another name
-                    review_desc.append(a)
-                elif len(d) >= GOOD_DESC:
-                    state = 'ours'
-                else:
-                    state = 'short'
-                    need_desc.append(a)
-            else:
-                state = 'needed'
-                need_desc.append(a)
-            rooms_out.append({'atlas': a, 'game': row['game'], 'name': r['name'], 'ours': ours or None,
-                              'description': state, 'creatures': len(mobs), 'items': len(objs)})
-            # exits
-            if not r['exits']:
-                noexit.append(a)
-            for d, t in r['exits'].items():
-                if t in A and A[t]['exits'].get({'north': 'south', 'south': 'north', 'east': 'west', 'west': 'east', 'up': 'down', 'down': 'up'}[d]) != a:
-                    oneway.append(f'{a} {d} -> {t}')
-                if t in A and A[t]['area'] != area:
-                    links[A[t]['area']].append(f"{a} {r['name']} --{d}--> {t} {A[t]['name']}")
-            for d, kind in (r.get('doors') or {}).items():
-                if kind == 'locked door':
-                    locked.append(f'{a} {d}')
-            if row.get('ours') is not None:
-                o = row['ours']
-                want = {d: arow[t]['game'] for d, t in r['exits'].items() if t in arow}
-                have = R[o]['_exits']
-                if want != have:
-                    drift.append({'atlas': a, 'game': row['game'], 'name': r['name'], 'atlas_exits': want, 'our_exits': have})
-            else:
-                sect = SECTOR.get(r['terrain'], 'inside')
-                if sect != 'inside' and UNDER.search(r['name'].lower()):
-                    under.append(f"{a} {r['name']} ({r['terrain']})")
-            sect_now = R[row['ours']]['_sector'] if row.get('ours') is not None else SECTOR.get(r['terrain'], 'inside')
-            if sect_now in WATER_SECTORS:
-                water.append(a)
-        levels = [level_of(MOBS[mv]) for mv in mobs_all if mv in MOBS]
-        band = lvl_band(levels)
-        nearest = min((dist[a] for a in ids if a in dist), default=None)
-        terrain = collections.Counter(A[a]['terrain'] for a in ids).most_common(3)
-        state = ('open (connector)' if meta['connector'] else 'open') if meta['open'] else 'sealed until built'
+        oneway, noexit, water = [], [], []
+        for v in vs:
+            r = W[v]
+            if not r['_exits'] and not r['_named_exits']:
+                noexit.append(v)
+            if r['_sector'] in WATER_SECTORS:
+                water.append(v)
+            for d, t in r['_exits'].items():
+                if t not in W:
+                    continue
+                if W[t]['_exits'].get(OPP[d]) != v:
+                    oneway.append(f'{v} {d} -> {t}')
+                if W[t]['_zone'] != z:
+                    links[W[t]['_zone']].append(f"{r['_name']} ({v}) {d} to {W[t]['_name']} ({t})")
+        locked = []
+        if atlas_area is not None:
+            for a, ar in A.items():
+                if ar['area'] == atlas_area:
+                    for d, kind in (ar.get('doors') or {}).items():
+                        if kind == 'locked door':
+                            locked.append(f'{vn[a]} {d}')
         needs = []
-        if need_desc:
-            needs.append(f'descriptions for {len(need_desc)} rooms')
-        if review_desc:
-            needs.append(f'{len(review_desc)} borrowed descriptions to check')
-        if not mobs_all:
+        if need:
+            needs.append(f'descriptions for {len(need)} rooms')
+        if not mobs:
             needs.append('creatures')
-        if not objs_all:
+        if not objs:
             needs.append('items')
-        if not bosses and len(ids) >= 30 and not meta['connector']:
+        if not bosses and len(vs) >= 30 and not connector:
             needs.append('a boss')
-        entry = {
-            'name': meta['name'], 'builder': meta['builder'], 'status': meta['status'], 'state': state,
-            'our_zones': meta['our_zones'], 'rooms': len(ids), 'paired': meta['paired'],
-            'levels': sorted({A[a]['z'] for a in ids}), 'terrain': terrain, 'steps_from_temple': nearest,
-            'level_band': band, 'creatures': len(mobs_all), 'items': len(objs_all), 'bosses': sorted(bosses),
-            'services': sorted(services), 'needs': needs,
-            'need_description': need_desc, 'review_description': review_desc,
-            'links': {str(k): v for k, v in sorted(links.items())},
-            'drifted_exits': drift, 'one_way': oneway, 'no_exits': noexit, 'locked_doors': locked,
-            'terrain_overrides': under, 'water_rooms': water, 'room_list': rooms_out,
+        return {
+            'name': zones[z]['name'], 'zone': z, 'atlas_area': atlas_area, 'status': status,
+            'state': ('sealed until built' if sealed else 'open (connector)' if connector else 'open'),
+            'rooms': len(vs), 'steps_from_temple': min((dist[v] for v in vs if v in dist), default=None),
+            'terrain': collections.Counter(W[v]['_sector'] for v in vs).most_common(3),
+            'creatures': len(mobs), 'items': len(objs), 'bosses': bosses, 'services': svc,
+            'level_band': band([level_of(MOBS[m]) for m in mobs if m in MOBS]), 'needs': needs,
+            'need_description': need, 'links': {str(k): v for k, v in sorted(links.items())},
+            'one_way': oneway, 'no_exits': noexit, 'locked_doors_left_unlocked': locked, 'water_rooms': water,
+            'connections_added': added_by_zone.get(z, []),
         }
-        index['areas'][area] = entry
-        totals['need_desc'] += len(need_desc)
-        totals['review'] += len(review_desc)
-        totals['drift'] += len(drift)
-        totals['oneway'] += len(oneway)
-        totals['noexit'] += len(noexit)
-        totals['water'] += len(water)
 
-    # level bands suggested for areas with no creatures yet: their linked neighbours'
-    for area, e in index['areas'].items():
+    index = {'_about': 'Generated by tools/atlas/index.py from the built world; docs/world/ATLAS_INDEX.md is the readable form.',
+             'zones': {}, 'boat_sources': boat_sources}
+    conn_set = set(ov.get('connectors', []))
+    for z, d in sorted(zones.items()):
+        a = d.get('atlas_area')
+        if a is not None:
+            meta = areas[a]
+            index['zones'][z] = zone_entry(z, meta['status'], a in conn_set, bool(d.get('sealed')), a)
+        elif z in ztab and ztab[z]['status'] != 'internal':
+            index['zones'][z] = zone_entry(z, 'ours (off the atlas)', False, bool(d.get('sealed')))
+    for z, e in index['zones'].items():
         if e['level_band'] is None:
-            nb = [index['areas'][int(k)]['level_band'] for k in e['links'] if index['areas'][int(k)]['level_band']]
+            nb = [index['zones'][int(k)]['level_band'] for k in e['links'] if int(k) in index['zones'] and index['zones'][int(k)]['level_band']]
             if nb:
                 med = int(statistics.median(b['median'] for b in nb))
                 e['suggested_band'] = {'min': max(1, med - 5), 'median': med, 'max': med + 5}
-
-    for z, v in sorted(ztab.items()):
-        if v['status'] != 'ours-only':
-            continue
-        vs = [x for x, r in R.items() if r['_zone'] == z]
-        mobs, objs = content_of(vs)
-        short = [x for x in vs if len((R[x].get('description') or '').strip()) < GOOD_DESC]
-        bosses = sorted({f"{(MOBS.get(mv) or {}).get('short_desc') or mv} ({mv})" for mv in mobs if is_boss(mv, MOBS.get(mv) or {}, boss_vnums)})
-        svc = sorted({(MOBS.get(mv) or {}).get('special') for mv in mobs if isinstance((MOBS.get(mv) or {}).get('special'), str) and (MOBS.get(mv) or {}).get('special') in SERVICE})
-        index['ours_only'][z] = {'name': v['name'], 'rooms': len(vs), 'short_descriptions': short,
-                                 'creatures': len(mobs), 'items': len(objs), 'bosses': bosses, 'services': svc,
-                                 'level_band': lvl_band([level_of(MOBS[m]) for m in mobs if m in MOBS]),
-                                 'hookups': hooks.get(z, [])}
-
-    # the build-out queue: open areas first, then sealed ones, nearest the temple first
-    queue = sorted(index['areas'].items(),
-                   key=lambda kv: (0 if kv[1]['state'].startswith('open') else 1,
-                                   kv[1]['steps_from_temple'] if kv[1]['steps_from_temple'] is not None else 10 ** 6))
-    index['queue'] = [a for a, e in queue if e['needs']]
-    write_json(os.path.join(ATLAS_DIR, 'index.json'), index)
-    write_doc(index, queue, areas, ztab, hooks, clusters, orphans, moves, A, AREAS, R, totals, boat_sources)
-    print(f"index: {len(index['areas'])} atlas zones, {len(index['ours_only'])} of ours off the atlas; "
-          f"{totals['need_desc']} rooms need descriptions, {totals['review']} borrowed ones to check; "
-          f"{totals['drift']} drifted exits, {totals['oneway']} one-way, {totals['noexit']} rooms without exits; "
-          f"{len(index['queue'])} zones in the build queue -> {os.path.relpath(DOC, ROOT)}")
+    queue = sorted(index['zones'].items(), key=lambda kv: (kv[1]['state'].startswith('sealed'),
+                                                           kv[1]['steps_from_temple'] if kv[1]['steps_from_temple'] is not None else 10 ** 6))
+    index['queue'] = [z for z, e in queue if e['needs']]
+    write_json(os.path.join(OUT_DIR, 'index.json'), index)
+    write_doc(index, queue, zones, ztab, hooks, clusters, orphans, conn, A, W, boat_sources, vn)
+    tot = collections.Counter()
+    for e in index['zones'].values():
+        tot['need'] += len(e['need_description'])
+        tot['open'] += not e['state'].startswith('sealed')
+    print(f"index: {len(index['zones'])} zones ({tot['open']} open); {tot['need']} rooms need descriptions; "
+          f"{len(conn['added'])} connections added; {len(index['queue'])} zones in the build queue -> {os.path.relpath(DOC, ROOT)}")
 
 
-def write_doc(index, queue, areas, ztab, hooks, clusters, orphans, moves, A, AREAS, R, totals, boat_sources):
-    nm = lambda a: f"{A[a]['name']} ({a})" if a in A else str(a)
+def write_doc(index, queue, zones, ztab, hooks, clusters, orphans, conn, A, W, boat_sources, vn):
     L = []
     w = L.append
-    st = collections.Counter(e['status'] for e in index['areas'].values())
-    opened = sum(1 for e in index['areas'].values() if e['state'].startswith('open'))
+    Z = index['zones']
+    opened = [e for e in Z.values() if not e['state'].startswith('sealed')]
     w('# Atlas index: the world on the Bedlam atlas\n')
-    w('Generated by `python3 tools/atlas/match.py && python3 tools/atlas/index.py` from '
-      '`world/atlas/bedlam.json` (the owner\'s atlas), our zones and `world/atlas/overrides.json`. '
-      'Edit the overrides, not this page. The full room-by-room lists are in `world/atlas/index.json`.\n')
+    w('Generated by `python3 tools/atlas/index.py` from the world as built on the owner\'s atlas '
+      '(`world/atlas/bedlam.json`). The full lists are in `world/atlas/index.json`.\n')
     w('## At a glance\n')
-    w(f"- **The atlas:** {len(A):,} rooms in {len(index['areas'])} zones, joined by "
-      f"{sum(len(v) for e in index['areas'].values() for v in e['links'].values()):,} cross-zone exits.")
-    w(f"- **Matched to ours:** {st['matched']} zones are rooms we already have; {st['similar']} are like a zone "
-      f"of ours (the atlas layout replaces ours, our creatures and items move onto it); {st['atlas-only']} are new.")
-    w(f"- **Open:** {opened} zones (the matched and similar ones, the connectors and the city wall); "
-      f"the other {len(index['areas']) - opened} stay sealed until they are built.")
-    w(f"- **Our {len(index['ours_only'])} zones that are not on the atlas** keep their content and join it "
-      'through a connector (see Hookups).')
-    w(f"- **Still to write:** descriptions for {totals['need_desc']:,} rooms; {totals['review']:,} borrowed "
-      'descriptions to check (ours, written for a room the atlas names differently).')
-    w(f"- **Exits:** {totals['drift']} of our rooms have exits that differ from the atlas (the atlas wins); "
-      f"the atlas has {totals['oneway']} one-way exits and {totals['noexit']} rooms with no exits.")
-    w(f"- **Water:** {totals['water']:,} water rooms will need a boat or raft; "
-      f"{len(boat_sources)} places in our world give a boat today.\n")
+    w(f"- **{len(Z)} zones, {sum(e['rooms'] for e in Z.values()):,} rooms.** {len(opened)} are open; "
+      f"{len(Z) - len(opened)} are sealed until built (their ways in are barred).")
+    w(f"- **Every open room** can be reached from the temple and walked back from. "
+      f"{len(conn['added'])} ways were added to make it so, each with its reason (below).")
+    w(f"- **Still to write:** descriptions for {sum(len(e['need_description']) for e in Z.values()):,} rooms "
+      f"(placeholders now), {sum(len(e['need_description']) for e in opened):,} of them in open zones.")
+    w(f"- **Water** needs a boat or a raft: {sum(len(e['water_rooms']) for e in Z.values()):,} water rooms; "
+      f"{len(boat_sources)} places give a boat.\n")
 
-    w('## For the owner to review before the world is re-laid\n')
-    w('1. **Hookups:** where each of our zones joins the atlas (below). Move any by adding it to '
-      '`hookups` in `world/atlas/overrides.json`.')
-    w('2. **Similar zones:** our zone each one replaces (below). Wrong pairs: edit `similar`.')
-    w('3. **Our rooms the atlas lacks:** kept as an annex, their creatures moved, or dropped (below).')
-    w('4. **Connectors:** the zones that open now with placeholder descriptions: edit `connectors`.\n')
-
-    # hookups
-    w('## Hookups: our zones joining the atlas\n')
-    w('| our zone | how | it hung off | joins at (atlas room, side) | game vnum |')
-    w('|---|---|---|---|---|')
-    for z, hs in sorted(hooks.items()):
-        for h in hs:
-            was = h.get('was', '')
-            frm = int(was.split()[0]) if was else None
-            frm_txt = f"{R[frm]['_name']} ({was})" if frm in R else was
-            at = f"{nm(h['atlas_room'])}, **{h['dir']}**" if h.get('atlas_room') else '—'
-            w(f"| {ztab[z]['name']} ({z}) | {h['how']} | {frm_txt} | {at} | {h.get('game_room') or ''} |")
-    chained = [z for z, v in index['ours_only'].items() if not v['hookups']]
-    if chained:
-        w('\nReached only through another of our zones (they hang off it as now): ' +
-          ', '.join(f"{ztab[z]['name']} ({z})" for z in chained) + '.')
-    w('')
-
-    # similar zones
-    w('## Similar zones: the atlas layout replaces ours\n')
-    w('| atlas zone | rooms | our zone | our rooms | our rooms with creatures or items moved onto it |')
-    w('|---|---|---|---|---|')
-    for area, e in sorted(index['areas'].items()):
-        if e['status'] != 'similar':
-            continue
-        for z in e['our_zones']:
-            moved = sum(1 for o, a in moves.items() if R.get(o, {}).get('_zone') == z and A[a]['area'] == area)
-            w(f"| {e['name']} ({area}) | {e['rooms']} | {ztab[z]['name']} ({z}) | {ztab[z]['rooms']} | {moved} |")
-    w('')
-
-    # orphan clusters
-    w('## Our rooms the atlas has no room for\n')
-    kinds = collections.Counter(c['kind'] for c in clusters.values())
-    w(f"{len(orphans)} rooms in {len(clusters)} groups: " + ', '.join(f'{v} {k}' for k, v in kinds.items()) +
-      '. An **annex** keeps the rooms (a shop, a guild, an inn...) and hangs them off a free side of the atlas room '
-      'named; **move** gives their creatures and items to the atlas room beside them; **drop**: bare path, the '
-      'atlas has its own way there.\n')
-    w('| zone | rooms | kind | services | beside / joins at |')
-    w('|---|---|---|---|---|')
-    for cid, c in sorted(clusters.items(), key=lambda kv: (kv[1]['kind'] != 'annex', kv[0])):
-        names = ', '.join(f"{orphans[v]['name']} ({v})" for v in c['rooms'][:4]) + (' …' if len(c['rooms']) > 4 else '')
-        z = orphans[c['rooms'][0]]['zone']
-        where = (f"{nm(c['attach_atlas'])}, **{c['dir']}**" if c.get('attach_atlas') else
-                 (nm(c['beside_atlas']) if c.get('beside_atlas') else '—'))
-        w(f"| {z} | {names} | {c['kind']} | {', '.join(c['services']) or ''} | {where} |")
-    w('')
-
-    # queue
     w('## Build-out queue\n')
-    w('Open zones first (players can walk them), nearest the temple first; then the sealed ones. Each is '
-      'done when it has its descriptions, creatures and items at its level band, and a boss where it is '
-      'big enough for one; a sealed zone then opens.\n')
-    w('| # | zone | state | rooms | steps from temple | level band | needs |')
+    w('Open zones first, nearest the temple first; then the sealed ones (a sealed zone opens when '
+      'it is done: its `"sealed": true` comes off). Done means real descriptions, creatures and '
+      'items at its level band, and a boss where it is big enough for one.\n')
+    w('| # | zone | state | rooms | steps from temple | levels | needs |')
     w('|---|---|---|---|---|---|---|')
     n = 0
-    for area, e in queue:
+    for z, e in queue:
         if not e['needs']:
             continue
         n += 1
-        band = band_text(e['level_band']) if e['level_band'] else band_text(e.get('suggested_band'), True)
-        w(f"| {n} | {e['name']} ({area}) | {e['state']} | {e['rooms']} | {e['steps_from_temple'] if e['steps_from_temple'] is not None else '—'} | {band} | {'; '.join(e['needs'])} |")
+        b = band_text(e['level_band']) if e['level_band'] else band_text(e.get('suggested_band'), True)
+        w(f"| {n} | {e['name']} ({z}) | {e['state']} | {e['rooms']} | "
+          f"{e['steps_from_temple'] if e['steps_from_temple'] is not None else '—'} | {b} | {'; '.join(e['needs'])} |")
     w('')
 
-    # every atlas zone
-    w('## Every atlas zone\n')
-    for area, e in sorted(index['areas'].items(), key=lambda kv: kv[1]['name']):
-        ours = ', '.join(f"{ztab[z]['name']} ({z})" for z in e['our_zones']) or 'none'
-        w(f"### {e['name']} (atlas {area})\n")
-        w(f"- **{e['status']}**, {e['state']}; ours: {ours}. Built by {e['builder'] or 'unknown'}.")
-        w(f"- {e['rooms']} rooms ({e['paired']} already ours), on {len(e['levels'])} level(s); "
-          + ', '.join(f'{t} {c}' for t, c in e['terrain']) + '.')
-        band = band_text(e['level_band']) if e['level_band'] else band_text(e.get('suggested_band'), True)
-        w(f"- Creatures {e['creatures']}, items {e['items']}, levels {band}"
+    w('## Ways added so every room connects\n')
+    why = collections.Counter(c['why'] for c in conn['added'])
+    w('What the atlas left unjoined (rooms with no way in, or no way back out) was joined like this; '
+      'the full list is in `world/atlas/connections.json`.\n')
+    for k, v in why.most_common():
+        w(f'- {k}: {v}')
+    w('')
+    w('| from | way | to | why |')
+    w('|---|---|---|---|')
+    for c in conn['added']:
+        if c['from'] in W and c['to'] in W:
+            w(f"| {W[c['from']]['_name']} ({c['from']}) | {c['dir']} | {W[c['to']]['_name']} ({c['to']}) | {c['why']} |")
+    w('')
+
+    w('## Our zones off the atlas and where they join it\n')
+    w('| zone | joins at | way |')
+    w('|---|---|---|')
+    for z, hs in sorted(hooks.items()):
+        for h in hs:
+            if h.get('atlas_room'):
+                g = vn[h['atlas_room']]
+                w(f"| {ztab[z]['name']} ({z}) | {W[g]['_name'] if g in W else g} ({g}) | {h['dir']} |")
+    w('')
+    w('## Our rooms the atlas had no room for\n')
+    w('| zone | rooms | kept as | joins at |')
+    w('|---|---|---|---|')
+    def now(text):
+        return text.replace('Midgaard', 'Garathorm')
+    for cid, c in sorted(clusters.items(), key=lambda kv: (kv[1]['kind'], kv[0])):
+        names = ', '.join(f"{W[v]['_name'] if v in W else now(orphans[v]['name'])} ({v})" for v in c['rooms'][:4]) + \
+            (' …' if len(c['rooms']) > 4 else '')
+        first = c['rooms'][0]
+        if first in W:
+            zname = zones[W[first]['_zone']]['name']
+        else:
+            old = orphans[first]['zone']
+            zname = 'was ' + now(ztab[old]['name']) if old in ztab else str(old)
+        if c.get('attach_atlas'):
+            g = vn[c['attach_atlas']]
+            where = f"{W[g]['_name'] if g in W else g} ({g}), {c['dir']}"
+        elif c.get('beside_atlas'):
+            g = vn[c['beside_atlas']]
+            where = f"creatures and items to {W[g]['_name'] if g in W else g} ({g})"
+        else:
+            where = '—'
+        w(f"| {zname} | {names} | {c['kind']} | {where} |")
+    w('')
+
+    w('## Every zone\n')
+    for z, e in sorted(Z.items(), key=lambda kv: kv[1]['name']):
+        w(f"### {e['name']} (zone {z}{', atlas ' + str(e['atlas_area']) if e['atlas_area'] is not None else ''})\n")
+        w(f"- **{e['status']}**, {e['state']}. {e['rooms']} rooms; " +
+          ', '.join(f'{t} {c}' for t, c in e['terrain']) + '.')
+        b = band_text(e['level_band']) if e['level_band'] else band_text(e.get('suggested_band'), True)
+        w(f"- Creatures {e['creatures']}, items {e['items']}, levels {b}"
           + (f"; bosses: {', '.join(e['bosses'])}" if e['bosses'] else '')
           + (f"; services: {', '.join(e['services'])}" if e['services'] else '') + '.')
         if e['needs']:
             w(f"- **Needs:** {'; '.join(e['needs'])}.")
         if e['links']:
-            parts = []
-            for k, v in e['links'].items():
-                parts.append(f"{AREAS[int(k)]['name']} ×{len(v)} (e.g. {v[0].split(' --')[0].split(' ', 1)[1]} {v[0].split('--')[1]})")
-            w('- Joins: ' + '; '.join(parts) + '.')
+            w('- Joins: ' + '; '.join(f"{Z[int(k)]['name'] if int(k) in Z else 'zone ' + k} ×{len(v)}" for k, v in e['links'].items()) + '.')
         extras = []
-        if e['drifted_exits']:
-            extras.append(f"{len(e['drifted_exits'])} of our rooms' exits differ from the atlas")
+        if e['connections_added']:
+            extras.append(f"{len(e['connections_added'])} ways added to connect it")
         if e['one_way']:
-            extras.append(f"{len(e['one_way'])} one-way exits")
-        if e['no_exits']:
-            extras.append(f"{len(e['no_exits'])} rooms with no exits")
-        if e['locked_doors']:
-            extras.append(f"{len(e['locked_doors'])} locked doors (keys to decide)")
-        if e['terrain_overrides']:
-            extras.append(f"{len(e['terrain_overrides'])} rooms coded outdoors but named as under a roof (made inside)")
+            extras.append(f"{len(e['one_way'])} one-way exits (as the atlas has them)")
+        if e['locked_doors_left_unlocked']:
+            extras.append(f"{len(e['locked_doors_left_unlocked'])} doors the atlas locks, unlocked until keys are made")
         if e['water_rooms']:
             extras.append(f"{len(e['water_rooms'])} water rooms (boat or raft)")
         if extras:
             w('- ' + '; '.join(extras) + '.')
         w('')
 
-    w('## Our zones that are not on the atlas\n')
-    w('| zone | rooms | short descriptions | creatures | items | bosses | services | levels | joins the atlas |')
-    w('|---|---|---|---|---|---|---|---|---|')
-    for z, e in sorted(index['ours_only'].items()):
-        joins = '; '.join(f"{nm(h['atlas_room'])} {h['dir']}" for h in e['hookups'] if h.get('atlas_room')) or 'through another of our zones'
-        w(f"| {e['name']} ({z}) | {e['rooms']} | {len(e['short_descriptions'])} | {e['creatures']} | {e['items']} | "
-          f"{', '.join(e['bosses'])[:80]} | {', '.join(e['services'])} | {band_text(e['level_band'])} | {joins} |")
-    w('')
-
     w('## Water and boats\n')
-    w('Water will need a boat or a raft (the owner\'s rule, Push 27). Where our world gives one today:\n')
     for b in boat_sources:
-        w(f"- {b['name']} ({b['item']}): {b['how']}, room {b['room']} ({R[b['room']]['_name'] if b['room'] in R else '?'}).")
-    w('\nWater rooms by zone are in each zone above; Push 27 makes sure every water crossing on the way to '
-      'something that matters has a boat on sale or lying at the shore.\n')
+        w(f"- {b['name']} ({b['item']}): {b['how']}, room {b['room']} ({W[b['room']]['_name']}).")
+    w('')
     os.makedirs(os.path.dirname(DOC), exist_ok=True)
     with open(DOC, 'w', encoding='utf-8') as f:
         f.write('\n'.join(L) + '\n')

@@ -9,6 +9,11 @@ import re
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
 ATLAS_DIR = os.path.join(ROOT, 'world', 'atlas')
 ZONES_DIR = os.path.join(ROOT, 'world', 'zones')
+# where the tools write (a test points this at a scratch folder to compare without overwriting)
+OUT_DIR = os.environ.get('ATLAS_OUT') or ATLAS_DIR
+# the last commit with our world as it was before the re-lay: the matcher and the builder read
+# "our rooms" from it, so they give the same answer after world/zones has been rebuilt
+PRE_RELAY_REV = 'c6bcadb'
 COMPASS = ('north', 'east', 'south', 'west', 'up', 'down')
 OPPOSITE = {'north': 'south', 'south': 'north', 'east': 'west', 'west': 'east', 'up': 'down', 'down': 'up'}
 STEP = {'north': (0, 1), 'south': (0, -1), 'east': (1, 0), 'west': (-1, 0)}   # atlas axes: north is +y
@@ -58,14 +63,30 @@ def load_atlas():
     return atlas
 
 
-def load_world():
-    """Our zones as they are: {zone number: zone dict} and {vnum: room} where each room carries
-    `_zone`, a plain `_name` and `_sector` (zones 90-160 write `title` and `terrain`), and
-    `_exits` {direction: vnum} for the compass ways."""
+def _zone_files(rev):
+    """(path, text) of every zone file: the working tree's, or a commit's."""
+    if rev is None:
+        for path in sorted(glob.glob(os.path.join(ZONES_DIR, 'zone_*.json'))):
+            with open(path, encoding='utf-8') as f:
+                yield path, f.read()
+        return
+    import subprocess
+    names = subprocess.run(['git', 'ls-tree', '--name-only', rev, 'world/zones/'], cwd=ROOT,
+                           capture_output=True, text=True, check=True).stdout.split()
+    for name in sorted(n for n in names if re.match(r'world/zones/zone_\d+\.json$', n)):
+        text = subprocess.run(['git', 'show', f'{rev}:{name}'], cwd=ROOT, capture_output=True,
+                              text=True, check=True).stdout
+        yield os.path.join(ROOT, name), text
+
+
+def load_world(rev=None):
+    """Our zones: {zone number: zone dict} and {vnum: room} where each room carries `_zone`, a
+    plain `_name` and `_sector` (zones 90-160 write `title` and `terrain`), and `_exits`
+    {direction: vnum} for the compass ways. `rev`: read them as they were at that commit
+    (PRE_RELAY_REV: our world before the re-lay) instead of the working tree."""
     zones, rooms = {}, {}
-    for path in sorted(glob.glob(os.path.join(ZONES_DIR, 'zone_*.json'))):
-        with open(path, encoding='utf-8') as f:
-            z = json.load(f)
+    for path, text in _zone_files(rev):
+        z = json.loads(text)
         z['_file'] = os.path.relpath(path, ROOT)
         zones[z['number']] = z
         for key, r in (z.get('rooms') or {}).items():

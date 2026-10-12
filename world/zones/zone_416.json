@@ -1,0 +1,1282 @@
+{
+ "number": 416,
+ "name": "Castle Of Caboon",
+ "builders": "Fluid",
+ "atlas_area": 16,
+ "rooms": {
+  "2702": {
+   "vnum": 2702,
+   "name": "The Painted Hallway",
+   "map": {
+    "x": -21,
+    "y": 2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2706,
+     "description": "To the east lies The Painted Hallway."
+    },
+    "south": {
+     "to_room": 2701,
+     "description": "To the south lies Entrance To The Castle Of Caboon."
+    },
+    "west": {
+     "to_room": 2704,
+     "description": "To the west lies The West End Of The Painted Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "2704": {
+   "vnum": 2704,
+   "name": "The West End Of The Painted Hallway",
+   "map": {
+    "x": -22,
+    "y": 2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2702,
+     "description": "To the east lies The Painted Hallway."
+    },
+    "south": {
+     "to_room": 2725,
+     "description": "To the south lies The Library.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and south.",
+   "placeholder": true
+  },
+  "2706": {
+   "vnum": 2706,
+   "name": "The Painted Hallway",
+   "map": {
+    "x": -20,
+    "y": 2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2707,
+     "description": "To the north lies The Guards Room."
+    },
+    "east": {
+     "to_room": 2708,
+     "description": "To the east lies The Painted Hallway."
+    },
+    "west": {
+     "to_room": 2702,
+     "description": "To the west lies The Painted Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "2707": {
+   "vnum": 2707,
+   "name": "The Guards Room",
+   "map": {
+    "x": -20,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 2706,
+     "description": "To the south lies The Painted Hallway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "2708": {
+   "vnum": 2708,
+   "name": "The Painted Hallway",
+   "map": {
+    "x": -19,
+    "y": 2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2709,
+     "description": "To the north lies The Portal Chamber."
+    },
+    "east": {
+     "to_room": 2733,
+     "description": "To the east lies Entrance To The Graveyard."
+    },
+    "west": {
+     "to_room": 2706,
+     "description": "To the west lies The Painted Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "2709": {
+   "vnum": 2709,
+   "name": "The Portal Chamber",
+   "map": {
+    "x": -19,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2715,
+     "description": "To the north lies Teleport Room."
+    },
+    "south": {
+     "to_room": 2708,
+     "description": "To the south lies The Painted Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2715": {
+   "vnum": 2715,
+   "name": "Teleport Room",
+   "map": {
+    "x": -19,
+    "y": 4,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2716,
+     "description": "To the north lies The Circular Corridor.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 2709,
+     "description": "To the south lies The Portal Chamber."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2716": {
+   "vnum": 2716,
+   "name": "The Circular Corridor",
+   "map": {
+    "x": -19,
+    "y": 6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2727,
+     "description": "To the north lies The Chamber Of Sacrifice."
+    },
+    "east": {
+     "to_room": 2717,
+     "description": "To the east lies The Circular Corridor."
+    },
+    "south": {
+     "to_room": 2715,
+     "description": "To the south lies Teleport Room."
+    },
+    "west": {
+     "to_room": 2726,
+     "description": "To the west lies The Circular Corridor."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "2717": {
+   "vnum": 2717,
+   "name": "The Circular Corridor",
+   "map": {
+    "x": -18,
+    "y": 6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2718,
+     "description": "To the north lies The Circular Corridor."
+    },
+    "west": {
+     "to_room": 2716,
+     "description": "To the west lies The Circular Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "2718": {
+   "vnum": 2718,
+   "name": "The Circular Corridor",
+   "map": {
+    "x": -18,
+    "y": 7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2719,
+     "description": "To the east lies Mania's Chamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 2717,
+     "description": "To the south lies The Circular Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and south.",
+   "placeholder": true
+  },
+  "2719": {
+   "vnum": 2719,
+   "name": "Mania's Chamber",
+   "map": {
+    "x": -17,
+    "y": 7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 2718,
+     "description": "To the west lies The Circular Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "2721": {
+   "vnum": 2721,
+   "name": "The Circular Corridor",
+   "map": {
+    "x": -19,
+    "y": 8,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2722,
+     "description": "To the north lies Lord Khal's Altar.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 2723,
+     "description": "To the west lies The Circular Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "2722": {
+   "vnum": 2722,
+   "name": "Lord Khal's Altar",
+   "map": {
+    "x": -19,
+    "y": 9,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 2721,
+     "description": "To the south lies The Circular Corridor."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads south.",
+   "placeholder": true
+  },
+  "2723": {
+   "vnum": 2723,
+   "name": "The Circular Corridor",
+   "map": {
+    "x": -20,
+    "y": 8,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2721,
+     "description": "To the east lies The Circular Corridor."
+    },
+    "south": {
+     "to_room": 2724,
+     "description": "To the south lies The Circular Corridor."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "2724": {
+   "vnum": 2724,
+   "name": "The Circular Corridor",
+   "map": {
+    "x": -20,
+    "y": 7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2723,
+     "description": "To the north lies The Circular Corridor."
+    },
+    "south": {
+     "to_room": 2726,
+     "description": "To the south lies The Circular Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2725": {
+   "vnum": 2725,
+   "name": "The Library",
+   "map": {
+    "x": -22,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2704,
+     "description": "To the north lies The West End Of The Painted Hallway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads north.",
+   "placeholder": true
+  },
+  "2726": {
+   "vnum": 2726,
+   "name": "The Circular Corridor",
+   "map": {
+    "x": -20,
+    "y": 6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2724,
+     "description": "To the north lies The Circular Corridor."
+    },
+    "east": {
+     "to_room": 2716,
+     "description": "To the east lies The Circular Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and east.",
+   "placeholder": true
+  },
+  "2727": {
+   "vnum": 2727,
+   "name": "The Chamber Of Sacrifice",
+   "map": {
+    "x": -19,
+    "y": 7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 2716,
+     "description": "To the south lies The Circular Corridor."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads south.",
+   "placeholder": true
+  },
+  "2733": {
+   "vnum": 2733,
+   "name": "Entrance To The Graveyard",
+   "map": {
+    "x": -18,
+    "y": 2,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 2734,
+     "description": "To the south lies The Graveyard.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 2708,
+     "description": "To the west lies The Painted Hallway."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead south and west.",
+   "placeholder": true
+  },
+  "2734": {
+   "vnum": 2734,
+   "name": "The Graveyard",
+   "map": {
+    "x": -18,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2733,
+     "description": "To the north lies Entrance To The Graveyard."
+    },
+    "east": {
+     "to_room": 2735,
+     "description": "To the east lies The Burial Grounds."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead north and east.",
+   "placeholder": true
+  },
+  "2735": {
+   "vnum": 2735,
+   "name": "The Burial Grounds",
+   "map": {
+    "x": -17,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 2734,
+     "description": "To the west lies The Graveyard."
+    },
+    "down": {
+     "to_room": 2736,
+     "description": "To the down lies Under The Burial Grounds."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead west and down.",
+   "placeholder": true
+  },
+  "2736": {
+   "vnum": 2736,
+   "name": "Under The Burial Grounds",
+   "map": {
+    "x": -16,
+    "y": 1,
+    "z": -1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2737,
+     "description": "To the north lies Under The Burial Grounds."
+    },
+    "up": {
+     "to_room": 2735,
+     "description": "To the up lies The Burial Grounds."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. Wind\nhowls through a cleft in the stone. Ways lead north and up.",
+   "placeholder": true
+  },
+  "2737": {
+   "vnum": 2737,
+   "name": "Under The Burial Grounds",
+   "map": {
+    "x": -16,
+    "y": 2,
+    "z": -1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 2736,
+     "description": "To the south lies Under The Burial Grounds."
+    },
+    "west": {
+     "to_room": 2738,
+     "description": "To the west lies The Arcade Of The Undead Lords."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Bare rock climbs\nsteeply on one side and falls away on the other. Ways lead south and\nwest.",
+   "placeholder": true
+  },
+  "2738": {
+   "vnum": 2738,
+   "name": "The Arcade Of The Undead Lords",
+   "map": {
+    "x": -17,
+    "y": 2,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2740,
+     "description": "To the north lies The Arcade Of The Undead Lords."
+    },
+    "east": {
+     "to_room": 2737,
+     "description": "To the east lies Under The Burial Grounds."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "2739": {
+   "vnum": 2739,
+   "name": "The Hidden Tomb",
+   "map": {
+    "x": -18,
+    "y": 3,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2746,
+     "description": "To the east lies The Passage."
+    },
+    "up": {
+     "to_room": 2740,
+     "description": "To the up lies The Arcade Of The Undead Lords."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and up.",
+   "placeholder": true
+  },
+  "2740": {
+   "vnum": 2740,
+   "name": "The Arcade Of The Undead Lords",
+   "map": {
+    "x": -17,
+    "y": 3,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2743,
+     "description": "To the north lies The Arcade Of The Undead Lords."
+    },
+    "east": {
+     "to_room": 2741,
+     "description": "To the east lies Drindar's Tomb.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 2738,
+     "description": "To the south lies The Arcade Of The Undead Lords."
+    },
+    "west": {
+     "to_room": 2742,
+     "description": "To the west lies Mernag's Tomb.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "down": {
+     "to_room": 2739,
+     "description": "To the down lies The Hidden Tomb."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east, south, west and down.",
+   "placeholder": true
+  },
+  "2741": {
+   "vnum": 2741,
+   "name": "Drindar's Tomb",
+   "map": {
+    "x": -15,
+    "y": 3,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 2740,
+     "description": "To the west lies The Arcade Of The Undead Lords."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "2742": {
+   "vnum": 2742,
+   "name": "Mernag's Tomb",
+   "map": {
+    "x": -19,
+    "y": 3,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2740,
+     "description": "To the east lies The Arcade Of The Undead Lords."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "2743": {
+   "vnum": 2743,
+   "name": "The Arcade Of The Undead Lords",
+   "map": {
+    "x": -17,
+    "y": 4,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2744,
+     "description": "To the east lies Telgar's Tomb.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 2740,
+     "description": "To the south lies The Arcade Of The Undead Lords."
+    },
+    "west": {
+     "to_room": 2745,
+     "description": "To the west lies Audor's Tomb.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "2744": {
+   "vnum": 2744,
+   "name": "Telgar's Tomb",
+   "map": {
+    "x": -15,
+    "y": 4,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 2743,
+     "description": "To the west lies The Arcade Of The Undead Lords."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "2745": {
+   "vnum": 2745,
+   "name": "Audor's Tomb",
+   "map": {
+    "x": -19,
+    "y": 4,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2753,
+     "description": "To the north lies The Tunnel Of Death.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 2743,
+     "description": "To the east lies The Arcade Of The Undead Lords."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "2746": {
+   "vnum": 2746,
+   "name": "The Passage",
+   "map": {
+    "x": -17,
+    "y": 3,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2747,
+     "description": "To the north lies The Passage."
+    },
+    "west": {
+     "to_room": 2739,
+     "description": "To the west lies The Hidden Tomb."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "2747": {
+   "vnum": 2747,
+   "name": "The Passage",
+   "map": {
+    "x": -17,
+    "y": 4,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2748,
+     "description": "To the north lies The Passage."
+    },
+    "south": {
+     "to_room": 2746,
+     "description": "To the south lies The Passage."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2748": {
+   "vnum": 2748,
+   "name": "The Passage",
+   "map": {
+    "x": -17,
+    "y": 5,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2749,
+     "description": "To the north lies The Passage."
+    },
+    "south": {
+     "to_room": 2747,
+     "description": "To the south lies The Passage."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2749": {
+   "vnum": 2749,
+   "name": "The Passage",
+   "map": {
+    "x": -17,
+    "y": 6,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2750,
+     "description": "To the north lies The Passage."
+    },
+    "south": {
+     "to_room": 2748,
+     "description": "To the south lies The Passage."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2750": {
+   "vnum": 2750,
+   "name": "The Passage",
+   "map": {
+    "x": -17,
+    "y": 7,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2751,
+     "description": "To the north lies The Passage."
+    },
+    "south": {
+     "to_room": 2749,
+     "description": "To the south lies The Passage."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2751": {
+   "vnum": 2751,
+   "name": "The Passage",
+   "map": {
+    "x": -17,
+    "y": 8,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2752,
+     "description": "To the east lies The Keepers Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 2750,
+     "description": "To the south lies The Passage."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and south.",
+   "placeholder": true
+  },
+  "2752": {
+   "vnum": 2752,
+   "name": "The Keepers Room",
+   "map": {
+    "x": -16,
+    "y": 8,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 2751,
+     "description": "To the west lies The Passage."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads west.",
+   "placeholder": true
+  },
+  "2753": {
+   "vnum": 2753,
+   "name": "The Tunnel Of Death",
+   "map": {
+    "x": -19,
+    "y": 6,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2754,
+     "description": "To the north lies The Tunnel Of Death."
+    },
+    "south": {
+     "to_room": 2745,
+     "description": "To the south lies Audor's Tomb."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2754": {
+   "vnum": 2754,
+   "name": "The Tunnel Of Death",
+   "map": {
+    "x": -19,
+    "y": 7,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2756,
+     "description": "To the east lies The Tunnel Of Death."
+    },
+    "south": {
+     "to_room": 2753,
+     "description": "To the south lies The Tunnel Of Death."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "2756": {
+   "vnum": 2756,
+   "name": "The Tunnel Of Death",
+   "map": {
+    "x": -18,
+    "y": 7,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2758,
+     "description": "To the north lies The Tunnel Of Death."
+    },
+    "west": {
+     "to_room": 2754,
+     "description": "To the west lies The Tunnel Of Death."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and west.",
+   "placeholder": true
+  },
+  "2758": {
+   "vnum": 2758,
+   "name": "The Tunnel Of Death",
+   "map": {
+    "x": -18,
+    "y": 8,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2760,
+     "description": "To the east lies The Tunnel Of Death."
+    },
+    "south": {
+     "to_room": 2756,
+     "description": "To the south lies The Tunnel Of Death."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "2760": {
+   "vnum": 2760,
+   "name": "The Tunnel Of Death",
+   "map": {
+    "x": -17,
+    "y": 8,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2761,
+     "description": "To the east lies The Tunnel Of Death."
+    },
+    "west": {
+     "to_room": 2758,
+     "description": "To the west lies The Tunnel Of Death."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "2761": {
+   "vnum": 2761,
+   "name": "The Tunnel Of Death",
+   "map": {
+    "x": -16,
+    "y": 8,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2763,
+     "description": "To the north lies The Tunnel Of Death."
+    },
+    "west": {
+     "to_room": 2760,
+     "description": "To the west lies The Tunnel Of Death."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "2763": {
+   "vnum": 2763,
+   "name": "The Tunnel Of Death",
+   "map": {
+    "x": -16,
+    "y": 9,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2765,
+     "description": "To the east lies The Tunnel Of Death."
+    },
+    "south": {
+     "to_room": 2761,
+     "description": "To the south lies The Tunnel Of Death."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east and south.",
+   "placeholder": true
+  },
+  "2765": {
+   "vnum": 2765,
+   "name": "The Tunnel Of Death",
+   "map": {
+    "x": -15,
+    "y": 9,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2767,
+     "description": "To the north lies The Tunnel Of Death."
+    },
+    "west": {
+     "to_room": 2763,
+     "description": "To the west lies The Tunnel Of Death."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "2767": {
+   "vnum": 2767,
+   "name": "The Tunnel Of Death",
+   "map": {
+    "x": -15,
+    "y": 10,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2769,
+     "description": "To the east lies The Tunnel Of Death."
+    },
+    "south": {
+     "to_room": 2765,
+     "description": "To the south lies The Tunnel Of Death."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "2769": {
+   "vnum": 2769,
+   "name": "The Tunnel Of Death",
+   "map": {
+    "x": -14,
+    "y": 10,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2770,
+     "description": "To the east lies The End Of The Tunnel.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 2767,
+     "description": "To the west lies The Tunnel Of Death."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "2770": {
+   "vnum": 2770,
+   "name": "The End Of The Tunnel",
+   "map": {
+    "x": -13,
+    "y": 10,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 2769,
+     "description": "To the west lies The Tunnel Of Death."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads west.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

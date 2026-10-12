@@ -1,0 +1,395 @@
+{
+ "number": 455,
+ "name": "Gondor Island",
+ "builders": "Keats",
+ "atlas_area": 55,
+ "rooms": {
+  "10900": {
+   "vnum": 10900,
+   "name": "The Ocean Stream near the Rim of the World",
+   "map": {
+    "x": 25,
+    "y": -20,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10901,
+     "description": "To the east lies The Ocean Stream near the Rim of the World."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. A way leads east.",
+   "placeholder": true
+  },
+  "10901": {
+   "vnum": 10901,
+   "name": "The Ocean Stream near the Rim of the World",
+   "map": {
+    "x": 26,
+    "y": -20,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10902,
+     "description": "To the north lies The Ocean Stream near the Rim of the World."
+    },
+    "west": {
+     "to_room": 10900,
+     "description": "To the west lies The Ocean Stream near the Rim of the World."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "10902": {
+   "vnum": 10902,
+   "name": "The Ocean Stream near the Rim of the World",
+   "map": {
+    "x": 26,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 10901,
+     "description": "To the south lies The Ocean Stream near the Rim of the World."
+    },
+    "west": {
+     "to_room": 10903,
+     "description": "To the west lies The Ocean Stream near the Rim of the World."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "10903": {
+   "vnum": 10903,
+   "name": "The Ocean Stream near the Rim of the World",
+   "map": {
+    "x": 25,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10904,
+     "description": "To the north lies The Ocean Stream near the Rim of the World."
+    },
+    "east": {
+     "to_room": 10902,
+     "description": "To the east lies The Ocean Stream near the Rim of the World."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "10904": {
+   "vnum": 10904,
+   "name": "The Ocean Stream near the Rim of the World",
+   "map": {
+    "x": 25,
+    "y": -18,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10905,
+     "description": "To the north lies The Ocean Stream near the Rim of the World."
+    },
+    "south": {
+     "to_room": 10903,
+     "description": "To the south lies The Ocean Stream near the Rim of the World."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "10905": {
+   "vnum": 10905,
+   "name": "The Ocean Stream near the Rim of the World",
+   "map": {
+    "x": 25,
+    "y": -17,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 10906,
+     "description": "To the east lies The Ocean Stream near the Rim of the World."
+    },
+    "south": {
+     "to_room": 10904,
+     "description": "To the south lies The Ocean Stream near the Rim of the World."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and south.",
+   "placeholder": true
+  },
+  "10906": {
+   "vnum": 10906,
+   "name": "The Ocean Stream near the Rim of the World",
+   "map": {
+    "x": 26,
+    "y": -17,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 10907,
+     "description": "To the east lies Gulf on Gondor Island."
+    },
+    "west": {
+     "to_room": 10905,
+     "description": "To the west lies The Ocean Stream near the Rim of the World."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10907": {
+   "vnum": 10907,
+   "name": "Gulf on Gondor Island",
+   "map": {
+    "x": 27,
+    "y": -17,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10913,
+     "description": "To the north lies Nearing the Rim of the World."
+    },
+    "east": {
+     "to_room": 10908,
+     "description": "To the east lies The Ruins of an Ancient City."
+    },
+    "west": {
+     "to_room": 10906,
+     "description": "To the west lies The Ocean Stream near the Rim of the World."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10908": {
+   "vnum": 10908,
+   "name": "The Ruins of an Ancient City",
+   "map": {
+    "x": 30,
+    "y": -17,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10909,
+     "description": "To the north lies At the Mound among the Ruins."
+    },
+    "west": {
+     "to_room": 10907,
+     "description": "To the west lies Gulf on Gondor Island."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Old trees\ncrowd close, their roots knotted across the path. Ways lead north and\nwest.",
+   "placeholder": true
+  },
+  "10909": {
+   "vnum": 10909,
+   "name": "At the Mound among the Ruins",
+   "map": {
+    "x": 30,
+    "y": -16,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10911,
+     "description": "To the north lies The Ruins of an Ancient City."
+    },
+    "south": {
+     "to_room": 10908,
+     "description": "To the south lies The Ruins of an Ancient City."
+    },
+    "west": {
+     "to_room": 10912,
+     "description": "To the west lies The Ruins of an Ancient City."
+    },
+    "up": {
+     "to_room": 10910,
+     "description": "To the up lies The Mound of Concealed Demise."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, south, west and up.",
+   "placeholder": true
+  },
+  "10910": {
+   "vnum": 10910,
+   "name": "The Mound of Concealed Demise",
+   "map": {
+    "x": 28,
+    "y": -16,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "down": {
+     "to_room": 10909,
+     "description": "To the down lies At the Mound among the Ruins."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads down.",
+   "placeholder": true
+  },
+  "10911": {
+   "vnum": 10911,
+   "name": "The Ruins of an Ancient City",
+   "map": {
+    "x": 30,
+    "y": -15,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 10909,
+     "description": "To the south lies At the Mound among the Ruins."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Old trees crowd close,\ntheir roots knotted across the path. A way leads south.",
+   "placeholder": true
+  },
+  "10912": {
+   "vnum": 10912,
+   "name": "The Ruins of an Ancient City",
+   "map": {
+    "x": 29,
+    "y": -16,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10909,
+     "description": "To the east lies At the Mound among the Ruins."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Birdsong\ndrifts down through the branches overhead. A way leads east.",
+   "placeholder": true
+  },
+  "10913": {
+   "vnum": 10913,
+   "name": "Nearing the Rim of the World",
+   "map": {
+    "x": 27,
+    "y": -15,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 10914,
+     "description": "To the east lies Nearing the Rim of the World."
+    },
+    "south": {
+     "to_room": 10907,
+     "description": "To the south lies Gulf on Gondor Island."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "10914": {
+   "vnum": 10914,
+   "name": "Nearing the Rim of the World",
+   "map": {
+    "x": 28,
+    "y": -15,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10915,
+     "description": "To the north lies The Rim of the World."
+    },
+    "west": {
+     "to_room": 10913,
+     "description": "To the west lies Nearing the Rim of the World."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "10915": {
+   "vnum": 10915,
+   "name": "The Rim of the World",
+   "map": {
+    "x": 28,
+    "y": -12,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 10915,
+     "description": "To the south lies The Rim of the World."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

@@ -231,20 +231,20 @@ QUEST_DEFINITIONS = {
     },
     'scout_temple': {
         'name': 'Scout the Temple',
-        'description': 'Make sure the Temple of Midgaard is safe. Report once you have visited.',
+        'description': 'Make sure the Temple of Garathorm is safe. Report once you have visited.',
         'type': 'visit',
         'level_min': 1,
         'level_max': 12,
         'quest_giver': 3006,  # Captain Stolar
         'objectives': [
-            {'type': 'visit', 'description': 'Visit the Temple of Midgaard', 'target': '3001', 'required': 1}
+            {'type': 'visit', 'description': 'Visit the Temple of Garathorm', 'target': '3001', 'required': 1}
         ],
         'rewards': {'exp': 250, 'gold': 80, 'items': []},
         'repeatable': True
     },
     'message_for_mayor': {
         'name': 'Message for the Mayor',
-        'description': 'Captain Stolar needs you to deliver a message to the Mayor of Midgaard.',
+        'description': 'Captain Stolar needs you to deliver a message to the Mayor of Garathorm.',
         'type': 'talk',
         'level_min': 2,
         'level_max': 15,
@@ -508,7 +508,7 @@ QUEST_DEFINITIONS = {
     },
     'bank_tour': {
         'name': 'Visit the Bank',
-        'description': 'Learn about banking! Visit the First National Bank of Midgaard and check your balance.',
+        'description': 'Learn about banking! Visit the First National Bank of Garathorm and check your balance.',
         'type': 'visit',
         'level_min': 1,
         'level_max': 10,
@@ -616,7 +616,7 @@ QUEST_DEFINITIONS = {
         'level_max': 10,
         'quest_giver': 3006,
         'objectives': [
-            {'type': 'visit', 'description': 'Visit the Temple of Midgaard', 'target': '3001', 'required': 1}
+            {'type': 'visit', 'description': 'Visit the Temple of Garathorm', 'target': '3001', 'required': 1}
         ],
         'rewards': {'exp': 250, 'gold': 75, 'items': []},
         'repeatable': False,
@@ -1019,7 +1019,7 @@ QUEST_DEFINITIONS = {
     # ========== FACTION QUEST LINES ==========
     'midgaard_guard_duty': {
         'name': 'Guard Duty',
-        'description': 'Midgaard needs watchful eyes. Patrol and drive off goblin raiders.',
+        'description': 'Garathorm needs watchful eyes. Patrol and drive off goblin raiders.',
         'type': 'kill',
         'level_min': 5,
         'level_max': 18,
@@ -1032,7 +1032,7 @@ QUEST_DEFINITIONS = {
     },
     'midgaard_city_watch': {
         'name': 'City Watch',
-        'description': 'Help the City Watch root out thieves within Midgaard’s walls.',
+        'description': 'Help the City Watch root out thieves within Garathorm’s walls.',
         'type': 'kill',
         'level_min': 10,
         'level_max': 25,
@@ -1151,7 +1151,7 @@ QUEST_DEFINITIONS = {
         'level_max': 20,
         'quest_giver': 3006,
         'objectives': [
-            {'type': 'visit', 'description': 'Slip through Midgaard unnoticed', 'target': '3002', 'required': 1}
+            {'type': 'visit', 'description': 'Slip through Garathorm unnoticed', 'target': '3002', 'required': 1}
         ],
         'rewards': {'exp': 600, 'gold': 180, 'items': [], 'reputation': {'thieves_guild': 120}},
         'repeatable': False
@@ -1245,14 +1245,14 @@ QUEST_DEFINITIONS = {
     },
     'tutorial_2_look_around': {
         'name': 'Eyes Open',
-        'description': 'Learn to observe your surroundings by exploring near the Temple. Head south from the Temple to reach Temple Square, then go back north and continue north to the Temple Altar.',
+        'description': 'Learn to observe your surroundings by exploring near the Temple. Go {route:3001>3005} from the Temple to reach {name:3005}, then find {name:3054} ({route:3001>3054} from the Temple).',
         'type': 'tutorial',
         'level_min': 1,
         'level_max': 5,
         'quest_giver': 3200,
         'objectives': [
-            {'type': 'visit', 'description': 'Visit the Temple Square (go south from the Temple)', 'target': '3005', 'required': 1},
-            {'type': 'visit', 'description': 'Visit the Temple Altar (go north twice from the Temple)', 'target': '3054', 'required': 1}
+            {'type': 'visit', 'description': 'Visit {name:3005} (go {route:3001>3005} from the Temple)', 'target': '3005', 'required': 1},
+            {'type': 'visit', 'description': 'Visit {name:3054} (go {route:3001>3054} from the Temple)', 'target': '3054', 'required': 1}
         ],
         'rewards': {'exp': 75, 'gold': 15, 'items': [3]},
         'next_quest': 'tutorial_3_know_thyself',
@@ -1278,13 +1278,13 @@ QUEST_DEFINITIONS = {
     },
     'tutorial_5_combat': {
         'name': 'Blood and Steel',
-        'description': 'Learn combat by defeating a training dummy at the Training Grounds. From the Temple, go south to Temple Square, then west to the Cleric Guild entrance, then south to the Training Grounds.',
+        'description': 'Learn combat by defeating a training dummy at {name:3078}. From the Temple, go {route:3001>3078}.',
         'type': 'tutorial',
         'level_min': 1,
         'level_max': 5,
         'quest_giver': 3200,
         'objectives': [
-            {'type': 'visit', 'description': 'Go to the Training Grounds (south, west, south from Temple)', 'target': '3078', 'required': 1},
+            {'type': 'visit', 'description': 'Go to {name:3078} ({route:3001>3078} from the Temple)', 'target': '3078', 'required': 1},
             {'type': 'kill', 'description': 'Defeat a training dummy (type "kill dummy")', 'target': 'dummy', 'required': 1}
         ],
         'rewards': {'exp': 150, 'gold': 30},
@@ -1309,13 +1309,13 @@ QUEST_DEFINITIONS = {
     },
     'tutorial_7_shopping': {
         'name': 'Tools of the Trade',
-        'description': 'Learn to buy and sell at shops. The Weapon Shop is north of Main Street. From the Temple, go south to Temple Square, south to Market Square, east twice, then north to the Weapon Shop.',
+        'description': 'Learn to buy and sell at shops. From the Temple, go {route:3001>3011} to reach {name:3011}.',
         'type': 'tutorial',
         'level_min': 1,
         'level_max': 5,
         'quest_giver': 3200,
         'objectives': [
-            {'type': 'visit', 'description': 'Visit the Weapon Shop (south, south, east, east, north from Temple)', 'target': '3011', 'required': 1},
+            {'type': 'visit', 'description': 'Visit {name:3011} ({route:3001>3011} from the Temple)', 'target': '3011', 'required': 1},
             {'type': 'command', 'description': 'View shop inventory (type "list")', 'target': 'list', 'required': 1},
             {'type': 'command', 'description': 'Buy any item (type "buy <item>")', 'target': 'buy', 'required': 1}
         ],
@@ -1328,15 +1328,15 @@ QUEST_DEFINITIONS = {
         # progression-01: this used to send newcomers out the EAST gate, where the only
         # creatures are level-4 aggressive goblins; the rabbits, foxes and deer live in
         # the Light Forest beyond the WEST gate (6001 and the shaded paths north of it).
-        'description': 'Venture beyond the city walls! Head out the West Gate to the Light Forest and fight a creature there. From the Temple, go south, south, then west six times to reach the Edge of the Forest, and once more west onto the forest trail. Try fighting a rabbit or a fox — they are safe for your level. Return to the Temple when done.',
+        'description': 'Venture beyond the city walls to the Light Forest and fight a creature there. From the Temple, go {route:3001>6001} to reach the forest trail. Try fighting a rabbit or a fox — they are safe for your level. Return to the Temple when done.',
         'type': 'tutorial',
         'level_min': 1,
         'level_max': 5,
         'quest_giver': 3200,
         'objectives': [
-            {'type': 'visit', 'description': 'Reach the trail through the Light Forest (south, south, then west seven times from the Temple)', 'target': '6001', 'required': 1},
+            {'type': 'visit', 'description': 'Reach the trail through the Light Forest ({route:3001>6001} from the Temple)', 'target': '6001', 'required': 1},
             {'type': 'kill', 'description': 'Defeat a creature in the forest (try "kill rabbit" or "kill fox" — the shaded path north has both)', 'target': 'any', 'required': 1},
-            {'type': 'visit', 'description': 'Return to the Temple (east back through the West Gate, then north from Temple Square)', 'target': '3001', 'required': 1}
+            {'type': 'visit', 'description': 'Return to the Temple ({route:6001>3001})', 'target': '3001', 'required': 1}
         ],
         'rewards': {'exp': 300, 'gold': 150, 'title': 'the Initiated'},
         'next_quest': 'tutorial_9_newbie_zone',
@@ -1345,7 +1345,7 @@ QUEST_DEFINITIONS = {
     # ========== THE SHADOW CONSPIRACY (5-part Main Story Chain) ==========
     'shadow_conspiracy_1': {
         'name': 'Whispers in the Dark',
-        'description': "People have been vanishing from Midgaard's streets at night. Captain Stolar suspects foul play. Investigate the disappearance sites and question witnesses.",
+        'description': "People have been vanishing from Garathorm's streets at night. Captain Stolar suspects foul play. Investigate the disappearance sites and question witnesses.",
         'type': 'visit',
         'category': 'main_story',
         'level_min': 10,
@@ -1415,7 +1415,7 @@ QUEST_DEFINITIONS = {
     },
     'shadow_conspiracy_5': {
         'name': 'Unraveling the Conspiracy',
-        'description': "The Shadow Lord's dying words hint at a traitor within Midgaard's walls. Present evidence to the Mayor and expose the conspiracy.",
+        'description': "The Shadow Lord's dying words hint at a traitor within Garathorm's walls. Present evidence to the Mayor and expose the conspiracy.",
         'type': 'talk',
         'category': 'main_story',
         'level_min': 18,
@@ -1624,16 +1624,16 @@ QUEST_DEFINITIONS = {
 
     'tutorial_9_newbie_zone': {
         'name': 'Proving Grounds',
-        'description': 'Test your skills in the Newbie Zone! The Great Field is north of the Temple, past the Altar. From the Temple, go north four times (the field is two rooms deep) to reach the Great Field, then go east to enter the Newbie Zone. Defeat 3 creatures there, then return to the Temple.',
+        'description': 'Test your skills in the Newbie Zone! From the Temple, go {route:3001>3061} to reach {name:3061}, then {route:3061>18600} into the Newbie Zone. Defeat 3 creatures there, then return to the Temple.',
         'type': 'tutorial',
         'level_min': 1,
         'level_max': 7,
         'quest_giver': 3200,
         'objectives': [
-            {'type': 'visit', 'description': 'Find the far end of the Great Field (go north 4 times from the Temple)', 'target': '3061', 'required': 1},
-            {'type': 'visit', 'description': 'Enter the Newbie Zone (go east from the Great Field)', 'target': '18600', 'required': 1},
+            {'type': 'visit', 'description': 'Find {name:3061} ({route:3001>3061} from the Temple)', 'target': '3061', 'required': 1},
+            {'type': 'visit', 'description': 'Enter the Newbie Zone ({route:3061>18600} from {name:3061})', 'target': '18600', 'required': 1},
             {'type': 'kill', 'description': 'Defeat 3 creatures in the Newbie Zone', 'target': 'any', 'required': 3},
-            {'type': 'visit', 'description': 'Return to Sage Aldric at the Temple (go west, then south 4 times)', 'target': '3001', 'required': 1}
+            {'type': 'visit', 'description': 'Return to Sage Aldric at the Temple ({route:18600>3001})', 'target': '3001', 'required': 1}
         ],
         'rewards': {'exp': 500, 'gold': 200},
         'next_quest': 'tutorial_10_skills',
@@ -1686,6 +1686,96 @@ QUEST_DEFINITIONS = {
 }
 
 # Quest chains with branching paths and stages
+# ---------------------------------------------------------------- the way there, from the map
+# Quest texts name rooms and ways as {name:VNUM} and {route:FROM>TO}; apply_routes fills them in
+# from the world as it is loaded ("south twice, then west seven times"), so a tutorial's
+# directions stay right however the world is laid out.
+_TIMES = {2: 'twice', 3: 'three times', 4: 'four times', 5: 'five times', 6: 'six times', 7: 'seven times',
+          8: 'eight times', 9: 'nine times', 10: 'ten times'}
+_COMPASS = ('north', 'east', 'south', 'west', 'up', 'down')
+
+
+def route_dirs(world, start: int, goal: int) -> Optional[List[str]]:
+    """The fewest compass steps from one room to another on foot: no barred way into a land
+    still being built, and no stepping out onto water while that takes a boat."""
+    import collections
+    import doors
+    from config import Config
+    rooms = getattr(world, 'rooms', {}) or {}
+    if start not in rooms or goal not in rooms:
+        return None
+    wet = ('water_swim', 'water_noswim', 'water_surface')
+    prev = {start: None}
+    q = collections.deque([start])
+    while q:
+        v = q.popleft()
+        if v == goal:
+            break
+        room = rooms[v]
+        for d in _COMPASS:
+            ex = (room.exits or {}).get(d)
+            if not isinstance(ex, dict) or ex.get('hidden') or doors.is_seal(ex.get('door')):
+                continue
+            t = ex.get('to_room')
+            if t not in rooms or t in prev:
+                continue
+            if Config.WATER_NEEDS_BOAT and rooms[t].sector_type in wet and room.sector_type not in wet:
+                continue
+            prev[t] = (v, d)
+            q.append(t)
+    if goal not in prev:
+        return None
+    dirs, v = [], goal
+    while prev[v] is not None:
+        v, d = prev[v]
+        dirs.append(d)
+    return dirs[::-1]
+
+
+def route_phrase(dirs: List[str]) -> str:
+    """['south', 'south', 'west', 'west', 'west'] -> 'south twice, then west three times'."""
+    runs = []
+    for d in dirs:
+        if runs and runs[-1][0] == d:
+            runs[-1][1] += 1
+        else:
+            runs.append([d, 1])
+    parts = [d if n == 1 else f"{d} {_TIMES.get(n, f'{n} times')}" for d, n in runs]
+    if not parts:
+        return 'nowhere: you are there'
+    return parts[0] if len(parts) == 1 else ', '.join(parts[:-1]) + ', then ' + parts[-1]
+
+
+def apply_routes(world) -> List[str]:
+    """Fill every {route:A>B} and {name:V} in the quest texts from the loaded world. Returns the
+    routes it could not find (the world check fails on any)."""
+    import re as _re
+    missing = []
+
+    def name(m):
+        room = world.rooms.get(int(m.group(1)))
+        n = room.name if room else 'that place'
+        # "the Temple Fountain" reads on in a sentence; "By The Temple Altar" needs its quotes
+        return 'the ' + n[4:] if n.startswith('The ') else f'"{n}"'
+
+    def route(m):
+        a, b = int(m.group(1)), int(m.group(2))
+        dirs = route_dirs(world, a, b)
+        if dirs is None:
+            missing.append(f'{a}>{b}')
+            return 'the way the guide shows'
+        return route_phrase(dirs)
+    for qid, q in QUEST_DEFINITIONS.items():
+        for holder in [q] + list(q.get('objectives') or []):
+            tpl = holder.get('_template') or holder.get('description')
+            if not isinstance(tpl, str) or ('{route:' not in tpl and '{name:' not in tpl):
+                continue
+            holder['_template'] = tpl
+            text = _re.sub(r'\{route:(\d+)>(\d+)\}', route, tpl)
+            holder['description'] = _re.sub(r'\{name:(\d+)\}', name, text)
+    return missing
+
+
 QUEST_CHAINS = {
     'main_story': {
         'name': 'The Shattered Crown',

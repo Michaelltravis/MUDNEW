@@ -13,7 +13,7 @@ import sys
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..')
 SRC = os.path.join(ROOT, 'world', 'atlas', 'bedlam-atlas.html')
-OUT = os.path.join(ROOT, 'world', 'atlas', 'bedlam.json')
+OUT = os.path.join(os.environ.get('ATLAS_OUT') or os.path.join(ROOT, 'world', 'atlas'), 'bedlam.json')
 
 # the atlas's exit slots, in its order (it fills only the compass and up/down)
 SLOTS = ['n', 'ne', 'e', 'se', 's', 'sw', 'w', 'nw', 'up', 'down', 'in', 'out']

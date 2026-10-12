@@ -1,0 +1,4077 @@
+{
+ "number": 451,
+ "name": "Mira Retrum II",
+ "builders": "Keats",
+ "atlas_area": 51,
+ "rooms": {
+  "10530": {
+   "vnum": 10530,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 1,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10531,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10540,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10799,
+     "description": "To the west lies Cape Voogk."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Deep water stretches away,\ndark and restless. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10531": {
+   "vnum": 10531,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 2,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10532,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10541,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10530,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10532": {
+   "vnum": 10532,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 3,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10533,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10542,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10531,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10533": {
+   "vnum": 10533,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 4,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10534,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10543,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10532,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10534": {
+   "vnum": 10534,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 5,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10535,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10544,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10533,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The water runs\ndeep and cold, too deep to wade. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10535": {
+   "vnum": 10535,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 6,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10536,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10545,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10534,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Deep water stretches away,\ndark and restless. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10536": {
+   "vnum": 10536,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 7,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10537,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10546,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10535,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10537": {
+   "vnum": 10537,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 8,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10538,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10547,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10536,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10538": {
+   "vnum": 10538,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 9,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10539,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10548,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10537,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. The far shore is a\nsmudge on the horizon. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10539": {
+   "vnum": 10539,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 10,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 10549,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10538,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead south and west.",
+   "placeholder": true
+  },
+  "10540": {
+   "vnum": 10540,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 1,
+    "y": -44,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10530,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10541,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10550,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10798,
+     "description": "To the west lies Around Cape Voogk."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Deep water stretches away,\ndark and restless. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10541": {
+   "vnum": 10541,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 2,
+    "y": -44,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10531,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10542,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10551,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10540,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10542": {
+   "vnum": 10542,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 3,
+    "y": -44,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10532,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10543,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10552,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10541,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10543": {
+   "vnum": 10543,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 4,
+    "y": -44,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10533,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10544,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10553,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10542,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. The far shore is a\nsmudge on the horizon. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10544": {
+   "vnum": 10544,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 5,
+    "y": -44,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10534,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10545,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10554,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10543,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10545": {
+   "vnum": 10545,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 6,
+    "y": -44,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10535,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10546,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10555,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10544,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10546": {
+   "vnum": 10546,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 7,
+    "y": -44,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10536,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10547,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10556,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10545,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10547": {
+   "vnum": 10547,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 8,
+    "y": -44,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10537,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10548,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10557,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10546,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The water runs\ndeep and cold, too deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10548": {
+   "vnum": 10548,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 9,
+    "y": -44,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10538,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10549,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10558,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10547,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. The far shore is a\nsmudge on the horizon. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10549": {
+   "vnum": 10549,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 10,
+    "y": -44,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10539,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10559,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10548,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Waves slap against the\nhull of anything that floats here. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "10550": {
+   "vnum": 10550,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 1,
+    "y": -45,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10540,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10551,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10560,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The far shore is a smudge\non the horizon. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "10551": {
+   "vnum": 10551,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 2,
+    "y": -45,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10541,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10552,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10561,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10550,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10552": {
+   "vnum": 10552,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 3,
+    "y": -45,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10542,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10553,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10562,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10551,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Deep water stretches away,\ndark and restless. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10553": {
+   "vnum": 10553,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 4,
+    "y": -45,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10543,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10554,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10563,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10552,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The far shore is a smudge\non the horizon. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10554": {
+   "vnum": 10554,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 5,
+    "y": -45,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10544,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10555,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10564,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10553,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Deep water stretches away,\ndark and restless. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10555": {
+   "vnum": 10555,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 6,
+    "y": -45,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10545,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10556,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10565,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10554,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10556": {
+   "vnum": 10556,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 7,
+    "y": -45,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10546,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10557,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10566,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10555,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. The water runs deep and cold,\ntoo deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10557": {
+   "vnum": 10557,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 8,
+    "y": -45,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10547,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10558,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10567,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10556,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10558": {
+   "vnum": 10558,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 9,
+    "y": -45,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10548,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10559,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10568,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10557,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The far shore is a smudge\non the horizon. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10559": {
+   "vnum": 10559,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 10,
+    "y": -45,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10549,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10569,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10558,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The far shore is a smudge\non the horizon. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "10560": {
+   "vnum": 10560,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 1,
+    "y": -46,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10550,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10561,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10570,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The water runs\ndeep and cold, too deep to wade. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "10561": {
+   "vnum": 10561,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 2,
+    "y": -46,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10551,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10562,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10571,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10560,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Deep water stretches away,\ndark and restless. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10562": {
+   "vnum": 10562,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 3,
+    "y": -46,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10552,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10563,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10572,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10561,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The water runs\ndeep and cold, too deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10563": {
+   "vnum": 10563,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 4,
+    "y": -46,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10553,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10564,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10573,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10562,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The water runs\ndeep and cold, too deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10564": {
+   "vnum": 10564,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 5,
+    "y": -46,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10554,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10565,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10574,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10563,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The far shore is a smudge\non the horizon. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10565": {
+   "vnum": 10565,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 6,
+    "y": -46,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10555,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10566,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10575,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10564,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10566": {
+   "vnum": 10566,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 7,
+    "y": -46,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10556,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10567,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10576,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10565,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10567": {
+   "vnum": 10567,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 8,
+    "y": -46,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10557,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10568,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10577,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10566,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10568": {
+   "vnum": 10568,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 9,
+    "y": -46,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10558,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10569,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10578,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10567,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The far shore is a smudge\non the horizon. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10569": {
+   "vnum": 10569,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 10,
+    "y": -46,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10559,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10580,
+     "description": "To the east lies The South-Eastern End of Mira Retrum."
+    },
+    "south": {
+     "to_room": 10579,
+     "description": "To the south lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10568,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10570": {
+   "vnum": 10570,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 1,
+    "y": -47,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10560,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10571,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The water runs\ndeep and cold, too deep to wade. Ways lead north and east.",
+   "placeholder": true
+  },
+  "10571": {
+   "vnum": 10571,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 2,
+    "y": -47,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10561,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10572,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10570,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10572": {
+   "vnum": 10572,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 3,
+    "y": -47,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10562,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10573,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10571,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10573": {
+   "vnum": 10573,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 4,
+    "y": -47,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10563,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10574,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10572,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10574": {
+   "vnum": 10574,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 5,
+    "y": -47,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10564,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10575,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10573,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10575": {
+   "vnum": 10575,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 6,
+    "y": -47,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10565,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10576,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10574,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Waves slap against the\nhull of anything that floats here. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10576": {
+   "vnum": 10576,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 7,
+    "y": -47,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10566,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10577,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10575,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. The water runs deep and cold,\ntoo deep to wade. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10577": {
+   "vnum": 10577,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 8,
+    "y": -47,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10567,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10578,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10576,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10578": {
+   "vnum": 10578,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 9,
+    "y": -47,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10568,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10579,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10577,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Deep water stretches away,\ndark and restless. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10579": {
+   "vnum": 10579,
+   "name": "The South-Eastern Mira Retrum",
+   "map": {
+    "x": 10,
+    "y": -47,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10569,
+     "description": "To the north lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10578,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. The water runs deep and cold,\ntoo deep to wade. Ways lead north and west.",
+   "placeholder": true
+  },
+  "10580": {
+   "vnum": 10580,
+   "name": "The South-Eastern End of Mira Retrum",
+   "map": {
+    "x": 11,
+    "y": -46,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10581,
+     "description": "To the east lies On the Ocean Shore."
+    },
+    "west": {
+     "to_room": 10569,
+     "description": "To the west lies The South-Eastern Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The far shore is a smudge\non the horizon. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10581": {
+   "vnum": 10581,
+   "name": "On the Ocean Shore",
+   "map": {
+    "x": 12,
+    "y": -46,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10588,
+     "description": "To the north lies Along the Ocean Shore."
+    },
+    "east": {
+     "to_room": 14856,
+     "description": "To the east lies Outside The Great Forest Of MiNar."
+    },
+    "west": {
+     "to_room": 10580,
+     "description": "To the west lies The South-Eastern End of Mira Retrum."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10588": {
+   "vnum": 10588,
+   "name": "Along the Ocean Shore",
+   "map": {
+    "x": 12,
+    "y": -45,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10589,
+     "description": "To the north lies Along the Ocean Shore."
+    },
+    "south": {
+     "to_room": 10581,
+     "description": "To the south lies On the Ocean Shore."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "10589": {
+   "vnum": 10589,
+   "name": "Along the Ocean Shore",
+   "map": {
+    "x": 12,
+    "y": -44,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10590,
+     "description": "To the north lies At an Ocean Cave."
+    },
+    "south": {
+     "to_room": 10588,
+     "description": "To the south lies Along the Ocean Shore."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "10590": {
+   "vnum": 10590,
+   "name": "At an Ocean Cave",
+   "map": {
+    "x": 12,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 10589,
+     "description": "To the south lies Along the Ocean Shore."
+    },
+    "down": {
+     "to_room": 1167,
+     "description": "To the down lies A Cave-Mouth Leading Into the Sand."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead south and down.",
+   "placeholder": true
+  },
+  "10704": {
+   "vnum": 10704,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -1,
+    "y": -41,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10699,
+     "description": "To the north lies The Southern Ocean."
+    },
+    "south": {
+     "to_room": 10714,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10704,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Shallow water laps around stones\nand reeds. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "10705": {
+   "vnum": 10705,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -10,
+    "y": -42,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10706,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10715,
+     "description": "To the south lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Reeds rustle along the\nwater's edge. Ways lead east and south.",
+   "placeholder": true
+  },
+  "10706": {
+   "vnum": 10706,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -9,
+    "y": -42,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10707,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10716,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10705,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10707": {
+   "vnum": 10707,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -8,
+    "y": -42,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10708,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10717,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10706,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Reeds rustle along the\nwater's edge. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10708": {
+   "vnum": 10708,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -7,
+    "y": -42,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10709,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10718,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10707,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10709": {
+   "vnum": 10709,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -6,
+    "y": -42,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10710,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10719,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10708,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Reeds rustle\nalong the water's edge. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10710": {
+   "vnum": 10710,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -5,
+    "y": -42,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10711,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10720,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10709,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10711": {
+   "vnum": 10711,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -4,
+    "y": -42,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10712,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10721,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10710,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10712": {
+   "vnum": 10712,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -3,
+    "y": -42,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10713,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10722,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10711,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Reeds rustle along the\nwater's edge. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10713": {
+   "vnum": 10713,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -2,
+    "y": -42,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10714,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10723,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10712,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Reeds rustle along the\nwater's edge. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10714": {
+   "vnum": 10714,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -1,
+    "y": -42,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10704,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10724,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10713,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "10715": {
+   "vnum": 10715,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -10,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10705,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10716,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10725,
+     "description": "To the south lies The Southern Mira Retrum."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Shallow\nwater laps around stones and reeds. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "10716": {
+   "vnum": 10716,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -9,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10706,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10717,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10726,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10715,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10717": {
+   "vnum": 10717,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -8,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10707,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10718,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10727,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10716,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Shallow\nwater laps around stones and reeds. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10718": {
+   "vnum": 10718,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -7,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10708,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10719,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10728,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10717,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Shallow water laps around stones\nand reeds. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10719": {
+   "vnum": 10719,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -6,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10709,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10720,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10729,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10718,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Mud and pebbles shift\nbeneath the slow water. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10720": {
+   "vnum": 10720,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -5,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10710,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10721,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10730,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10719,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10721": {
+   "vnum": 10721,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -4,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10711,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10722,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10731,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10720,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10722": {
+   "vnum": 10722,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -3,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10712,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10723,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10732,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10721,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10723": {
+   "vnum": 10723,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -2,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10713,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10724,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10733,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10722,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10724": {
+   "vnum": 10724,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -1,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10714,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10799,
+     "description": "To the east lies Cape Voogk."
+    },
+    "south": {
+     "to_room": 10734,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10723,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10725": {
+   "vnum": 10725,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -10,
+    "y": -44,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10715,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10726,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10735,
+     "description": "To the south lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Shallow water laps around stones\nand reeds. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "10726": {
+   "vnum": 10726,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -9,
+    "y": -44,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10716,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10727,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10736,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10725,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. The current is gentle\nhere, clear enough to see the bottom. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10727": {
+   "vnum": 10727,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -8,
+    "y": -44,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10717,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10728,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10737,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10726,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Shallow\nwater laps around stones and reeds. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10728": {
+   "vnum": 10728,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -7,
+    "y": -44,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10718,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10729,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10738,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10727,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10729": {
+   "vnum": 10729,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -6,
+    "y": -44,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10719,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10730,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10739,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10728,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10730": {
+   "vnum": 10730,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -5,
+    "y": -44,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10720,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10731,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10740,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10729,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10731": {
+   "vnum": 10731,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -4,
+    "y": -44,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10721,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10732,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10741,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10730,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10732": {
+   "vnum": 10732,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -3,
+    "y": -44,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10722,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10733,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10742,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10731,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10733": {
+   "vnum": 10733,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -2,
+    "y": -44,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10723,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10734,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10743,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10732,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10734": {
+   "vnum": 10734,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -1,
+    "y": -44,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10724,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10798,
+     "description": "To the east lies Around Cape Voogk."
+    },
+    "south": {
+     "to_room": 10744,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10733,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Mud and pebbles shift beneath the\nslow water. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10735": {
+   "vnum": 10735,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -10,
+    "y": -45,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10725,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10736,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10745,
+     "description": "To the south lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "10736": {
+   "vnum": 10736,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -9,
+    "y": -45,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10726,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10737,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10746,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10735,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. The current is gentle\nhere, clear enough to see the bottom. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10737": {
+   "vnum": 10737,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -8,
+    "y": -45,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10727,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10738,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10747,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10736,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Mud and pebbles shift beneath the\nslow water. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10738": {
+   "vnum": 10738,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -7,
+    "y": -45,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10728,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10739,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10748,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10737,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Shallow\nwater laps around stones and reeds. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10739": {
+   "vnum": 10739,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -6,
+    "y": -45,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10729,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10740,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10749,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10738,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10740": {
+   "vnum": 10740,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -5,
+    "y": -45,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10730,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10741,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10750,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10739,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10741": {
+   "vnum": 10741,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -4,
+    "y": -45,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10731,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10742,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10751,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10740,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10742": {
+   "vnum": 10742,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -3,
+    "y": -45,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10732,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10743,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10752,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10741,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10743": {
+   "vnum": 10743,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -2,
+    "y": -45,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10733,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10744,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10753,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10742,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10744": {
+   "vnum": 10744,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -1,
+    "y": -45,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10734,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10754,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10743,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "10745": {
+   "vnum": 10745,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -10,
+    "y": -46,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10735,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10746,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10755,
+     "description": "To the south lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "10746": {
+   "vnum": 10746,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -9,
+    "y": -46,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10736,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10747,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10756,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10745,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10747": {
+   "vnum": 10747,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -8,
+    "y": -46,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10737,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10748,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10757,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10746,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Shallow water laps around stones\nand reeds. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10748": {
+   "vnum": 10748,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -7,
+    "y": -46,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10738,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10749,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10758,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10747,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10749": {
+   "vnum": 10749,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -6,
+    "y": -46,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10739,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10750,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10759,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10748,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10750": {
+   "vnum": 10750,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -5,
+    "y": -46,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10740,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10751,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10760,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10749,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10751": {
+   "vnum": 10751,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -4,
+    "y": -46,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10741,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10752,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10761,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10750,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Mud and pebbles shift beneath the\nslow water. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10752": {
+   "vnum": 10752,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -3,
+    "y": -46,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10742,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10753,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10762,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10751,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10753": {
+   "vnum": 10753,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -2,
+    "y": -46,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10743,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10754,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10763,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10752,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Mud and pebbles shift beneath the\nslow water. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10754": {
+   "vnum": 10754,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -1,
+    "y": -46,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10744,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10764,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10753,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "10755": {
+   "vnum": 10755,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -10,
+    "y": -47,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10745,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10756,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10765,
+     "description": "To the south lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Shallow water laps around stones\nand reeds. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "10756": {
+   "vnum": 10756,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -9,
+    "y": -47,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10746,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10757,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10766,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10755,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10757": {
+   "vnum": 10757,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -8,
+    "y": -47,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10747,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10758,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10767,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10756,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Mud and pebbles shift beneath the\nslow water. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10758": {
+   "vnum": 10758,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -7,
+    "y": -47,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10748,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10759,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10768,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10757,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10759": {
+   "vnum": 10759,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -6,
+    "y": -47,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10749,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10760,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10769,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10758,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Mud and pebbles shift\nbeneath the slow water. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10760": {
+   "vnum": 10760,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -5,
+    "y": -47,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10750,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10761,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10770,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10759,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Mud and pebbles shift\nbeneath the slow water. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10761": {
+   "vnum": 10761,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -4,
+    "y": -47,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10751,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10762,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10771,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10760,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Shallow water laps around stones\nand reeds. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10762": {
+   "vnum": 10762,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -3,
+    "y": -47,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10752,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10763,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10772,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10761,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10763": {
+   "vnum": 10763,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -2,
+    "y": -47,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10753,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10764,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10773,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10762,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10764": {
+   "vnum": 10764,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -1,
+    "y": -47,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10754,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10774,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10763,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "10765": {
+   "vnum": 10765,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -10,
+    "y": -48,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10755,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10766,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10775,
+     "description": "To the south lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Shallow water laps around\nstones and reeds. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "10766": {
+   "vnum": 10766,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -9,
+    "y": -48,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10756,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10767,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10776,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10765,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10767": {
+   "vnum": 10767,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -8,
+    "y": -48,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10757,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10768,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10777,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10766,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Shallow water laps around\nstones and reeds. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10768": {
+   "vnum": 10768,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -7,
+    "y": -48,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10758,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10769,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10778,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10767,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Mud and pebbles shift beneath the\nslow water. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10769": {
+   "vnum": 10769,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -6,
+    "y": -48,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10759,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10770,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10779,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10768,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10770": {
+   "vnum": 10770,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -5,
+    "y": -48,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10760,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10771,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10780,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10769,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10771": {
+   "vnum": 10771,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -4,
+    "y": -48,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10761,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10772,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10781,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10770,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Reeds rustle\nalong the water's edge. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10772": {
+   "vnum": 10772,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -3,
+    "y": -48,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10762,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10773,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10782,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10771,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10773": {
+   "vnum": 10773,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -2,
+    "y": -48,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10763,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10774,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10783,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10772,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10774": {
+   "vnum": 10774,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -1,
+    "y": -48,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10764,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10784,
+     "description": "To the south lies A Narrow Strait between two Icebergs."
+    },
+    "west": {
+     "to_room": 10773,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Shallow water laps around\nstones and reeds. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "10775": {
+   "vnum": 10775,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -10,
+    "y": -49,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10765,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10776,
+     "description": "To the east lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Shallow water laps around stones\nand reeds. Ways lead north and east.",
+   "placeholder": true
+  },
+  "10776": {
+   "vnum": 10776,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -9,
+    "y": -49,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10766,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10777,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10775,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Mud and pebbles shift beneath the\nslow water. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10777": {
+   "vnum": 10777,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -8,
+    "y": -49,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10767,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10778,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10776,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Reeds rustle\nalong the water's edge. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10778": {
+   "vnum": 10778,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -7,
+    "y": -49,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10768,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10779,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10777,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Shallow water laps around\nstones and reeds. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10779": {
+   "vnum": 10779,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -6,
+    "y": -49,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10769,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10780,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10778,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Reeds rustle\nalong the water's edge. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10780": {
+   "vnum": 10780,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -5,
+    "y": -49,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10770,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10781,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10779,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Mud and pebbles shift\nbeneath the slow water. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10781": {
+   "vnum": 10781,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -4,
+    "y": -49,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10771,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10782,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10780,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10782": {
+   "vnum": 10782,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -3,
+    "y": -49,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10772,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10783,
+     "description": "To the east lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10781,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10783": {
+   "vnum": 10783,
+   "name": "The Southern Mira Retrum",
+   "map": {
+    "x": -2,
+    "y": -49,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10773,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "east": {
+     "to_room": 10784,
+     "description": "To the east lies A Narrow Strait between two Icebergs."
+    },
+    "west": {
+     "to_room": 10782,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10784": {
+   "vnum": 10784,
+   "name": "A Narrow Strait between two Icebergs",
+   "map": {
+    "x": -1,
+    "y": -49,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10774,
+     "description": "To the north lies The Southern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10785,
+     "description": "To the south lies A Narrow Strait between two Icebergs."
+    },
+    "west": {
+     "to_room": 10783,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Reeds rustle along the\nwater's edge. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "10785": {
+   "vnum": 10785,
+   "name": "A Narrow Strait between two Icebergs",
+   "map": {
+    "x": -1,
+    "y": -50,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10784,
+     "description": "To the north lies A Narrow Strait between two Icebergs."
+    },
+    "east": {
+     "to_room": 10786,
+     "description": "To the east lies A Narrow Strait between two Icebergs."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Shallow\nwater laps around stones and reeds. Ways lead north and east.",
+   "placeholder": true
+  },
+  "10786": {
+   "vnum": 10786,
+   "name": "A Narrow Strait between two Icebergs",
+   "map": {
+    "x": 0,
+    "y": -50,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 10787,
+     "description": "To the south lies The Quiet Bay beyond the Ice Wall."
+    },
+    "west": {
+     "to_room": 10785,
+     "description": "To the west lies A Narrow Strait between two Icebergs."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Shallow water laps around\nstones and reeds. Ways lead south and west.",
+   "placeholder": true
+  },
+  "10787": {
+   "vnum": 10787,
+   "name": "The Quiet Bay beyond the Ice Wall",
+   "map": {
+    "x": 0,
+    "y": -51,
+    "z": -1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10786,
+     "description": "To the north lies A Narrow Strait between two Icebergs."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. A way leads north.",
+   "placeholder": true
+  },
+  "10798": {
+   "vnum": 10798,
+   "name": "Around Cape Voogk",
+   "map": {
+    "x": 0,
+    "y": -44,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10799,
+     "description": "To the north lies Cape Voogk."
+    },
+    "east": {
+     "to_room": 10540,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10734,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Deep water stretches away,\ndark and restless. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10799": {
+   "vnum": 10799,
+   "name": "Cape Voogk",
+   "map": {
+    "x": 0,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10530,
+     "description": "To the east lies The South-Eastern Mira Retrum."
+    },
+    "south": {
+     "to_room": 10798,
+     "description": "To the south lies Around Cape Voogk."
+    },
+    "west": {
+     "to_room": 10724,
+     "description": "To the west lies The Southern Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Mud and pebbles shift\nbeneath the slow water. Ways lead east, south and west.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {}
+}

@@ -1,0 +1,2070 @@
+{
+ "number": 481,
+ "name": "Ghenna",
+ "builders": "Nosferatu - Wren",
+ "atlas_area": 81,
+ "rooms": {
+  "9901": {
+   "vnum": 9901,
+   "name": "City Limits Of Ghenna",
+   "map": {
+    "x": 17,
+    "y": 34,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9902,
+     "description": "To the north lies A Fountain Of Tears."
+    },
+    "east": {
+     "to_room": 9959,
+     "description": "To the east lies A Street In Ghenna."
+    },
+    "south": {
+     "to_room": 9903,
+     "description": "To the south lies The Smell of Decay."
+    },
+    "west": {
+     "to_room": 9957,
+     "description": "To the west lies The Streets Of Ghenna."
+    },
+    "up": {
+     "to_room": 16258,
+     "description": "To the up lies On A Small Island In The Middle Of The Lake."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, east, south, west and up.",
+   "placeholder": true
+  },
+  "9902": {
+   "vnum": 9902,
+   "name": "A Fountain Of Tears",
+   "map": {
+    "x": 17,
+    "y": 36,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9967,
+     "description": "To the north lies A Road In Ghenna."
+    },
+    "south": {
+     "to_room": 9901,
+     "description": "To the south lies City Limits Of Ghenna."
+    },
+    "west": {
+     "to_room": 9904,
+     "description": "To the west lies A Culdesac."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, south\nand west.",
+   "placeholder": true
+  },
+  "9903": {
+   "vnum": 9903,
+   "name": "The Smell of Decay",
+   "map": {
+    "x": 17,
+    "y": 32,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9901,
+     "description": "To the north lies City Limits Of Ghenna."
+    },
+    "south": {
+     "to_room": 9905,
+     "description": "To the south lies The Twisting Hedges."
+    },
+    "west": {
+     "to_room": 9951,
+     "description": "To the west lies The Streets Of Ghenna."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead north, south\nand west.",
+   "placeholder": true
+  },
+  "9904": {
+   "vnum": 9904,
+   "name": "A Culdesac",
+   "map": {
+    "x": 16,
+    "y": 36,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9915,
+     "description": "To the north lies Blood Tavern."
+    },
+    "east": {
+     "to_room": 9902,
+     "description": "To the east lies A Fountain Of Tears."
+    },
+    "west": {
+     "to_room": 9914,
+     "description": "To the west lies The Streets Of Ghenna."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. Ways lead north, east and\nwest.",
+   "placeholder": true
+  },
+  "9905": {
+   "vnum": 9905,
+   "name": "The Twisting Hedges",
+   "map": {
+    "x": 17,
+    "y": 30,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 9998,
+     "description": "To the west lies A Dead End."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. A way leads west.",
+   "placeholder": true
+  },
+  "9906": {
+   "vnum": 9906,
+   "name": "The Twisting Hedges",
+   "map": {
+    "x": 18,
+    "y": 29,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {},
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street.",
+   "placeholder": true
+  },
+  "9907": {
+   "vnum": 9907,
+   "name": "The Twisting Hedges",
+   "map": {
+    "x": 18,
+    "y": 28,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {},
+   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand.",
+   "placeholder": true
+  },
+  "9908": {
+   "vnum": 9908,
+   "name": "The Twisting Hedges",
+   "map": {
+    "x": 18,
+    "y": 27,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {},
+   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby.",
+   "placeholder": true
+  },
+  "9909": {
+   "vnum": 9909,
+   "name": "The Twisting Hedges",
+   "map": {
+    "x": 18,
+    "y": 26,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {},
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand.",
+   "placeholder": true
+  },
+  "9910": {
+   "vnum": 9910,
+   "name": "The Realm Of The Hopeless",
+   "map": {
+    "x": 10,
+    "y": 26,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9911,
+     "description": "To the north lies An Undulating Room."
+    },
+    "up": {
+     "to_room": 9901,
+     "description": "To the up lies City Limits Of Ghenna."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth and up.",
+   "placeholder": true
+  },
+  "9911": {
+   "vnum": 9911,
+   "name": "An Undulating Room",
+   "map": {
+    "x": 10,
+    "y": 29,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 9924,
+     "description": "To the east lies A Wrinkle In The Fabric Of Time."
+    },
+    "south": {
+     "to_room": 9910,
+     "description": "To the south lies The Realm Of The Hopeless."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "9914": {
+   "vnum": 9914,
+   "name": "The Streets Of Ghenna",
+   "map": {
+    "x": 15,
+    "y": 36,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9904,
+     "description": "To the east lies A Culdesac."
+    },
+    "west": {
+     "to_room": 9943,
+     "description": "To the west lies A Musty Area Behind The Wall."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and west.",
+   "placeholder": true
+  },
+  "9915": {
+   "vnum": 9915,
+   "name": "Blood Tavern",
+   "map": {
+    "x": 16,
+    "y": 37,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9917,
+     "description": "To the north lies The Card Table."
+    },
+    "south": {
+     "to_room": 9904,
+     "description": "To the south lies A Culdesac.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 9917,
+     "description": "To the west lies The Card Table."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "9916": {
+   "vnum": 9916,
+   "name": "At The Undead Bar",
+   "map": {
+    "x": 16,
+    "y": 40,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 9917,
+     "description": "To the south lies The Card Table."
+    },
+    "up": {
+     "to_room": 9918,
+     "description": "To the up lies The Top Of The Stairs."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead south and up.",
+   "placeholder": true
+  },
+  "9917": {
+   "vnum": 9917,
+   "name": "The Card Table",
+   "map": {
+    "x": 16,
+    "y": 39,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9916,
+     "description": "To the north lies At The Undead Bar."
+    },
+    "south": {
+     "to_room": 9915,
+     "description": "To the south lies Blood Tavern."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "9918": {
+   "vnum": 9918,
+   "name": "The Top Of The Stairs",
+   "map": {
+    "x": 17,
+    "y": 41,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 9919,
+     "description": "To the east lies An Upstairs Hallway."
+    },
+    "west": {
+     "to_room": 9921,
+     "description": "To the west lies An Upstairs Hallway."
+    },
+    "down": {
+     "to_room": 9916,
+     "description": "To the down lies At The Undead Bar."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east, west and down.",
+   "placeholder": true
+  },
+  "9919": {
+   "vnum": 9919,
+   "name": "An Upstairs Hallway",
+   "map": {
+    "x": 18,
+    "y": 41,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9920,
+     "description": "To the north lies A Messy Bedroom.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 9918,
+     "description": "To the west lies The Top Of The Stairs."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "9920": {
+   "vnum": 9920,
+   "name": "A Messy Bedroom",
+   "map": {
+    "x": 18,
+    "y": 43,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 9919,
+     "description": "To the south lies An Upstairs Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads south.",
+   "placeholder": true
+  },
+  "9921": {
+   "vnum": 9921,
+   "name": "An Upstairs Hallway",
+   "map": {
+    "x": 14,
+    "y": 41,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 9918,
+     "description": "To the east lies The Top Of The Stairs."
+    },
+    "south": {
+     "to_room": 9922,
+     "description": "To the south lies The Master Suite.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "9922": {
+   "vnum": 9922,
+   "name": "The Master Suite",
+   "map": {
+    "x": 14,
+    "y": 37,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9921,
+     "description": "To the north lies An Upstairs Hallway."
+    },
+    "west": {
+     "to_room": 9923,
+     "description": "To the west lies The Bathroom."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "9923": {
+   "vnum": 9923,
+   "name": "The Bathroom",
+   "map": {
+    "x": 12,
+    "y": 37,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9943,
+     "description": "To the north lies A Musty Area Behind The Wall.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 9922,
+     "description": "To the east lies The Master Suite."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "9924": {
+   "vnum": 9924,
+   "name": "A Wrinkle In The Fabric Of Time",
+   "map": {
+    "x": 12,
+    "y": 29,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 9905,
+     "description": "To the east lies The Twisting Hedges."
+    },
+    "south": {
+     "to_room": 9925,
+     "description": "To the south lies A Labyrinth Of Bodies."
+    },
+    "west": {
+     "to_room": 9911,
+     "description": "To the west lies An Undulating Room."
+    },
+    "down": {
+     "to_room": 9914,
+     "description": "To the down lies The Streets Of Ghenna."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east, south, west and down.",
+   "placeholder": true
+  },
+  "9925": {
+   "vnum": 9925,
+   "name": "A Labyrinth Of Bodies",
+   "map": {
+    "x": 5,
+    "y": 32,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use.",
+   "placeholder": true
+  },
+  "9926": {
+   "vnum": 9926,
+   "name": "A Labyrinth Of Bodies",
+   "map": {
+    "x": 5,
+    "y": 34,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch.",
+   "placeholder": true
+  },
+  "9927": {
+   "vnum": 9927,
+   "name": "A Labyrinth Of Bodies",
+   "map": {
+    "x": 3,
+    "y": 34,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach.",
+   "placeholder": true
+  },
+  "9928": {
+   "vnum": 9928,
+   "name": "A Labyrinth Of Bodies",
+   "map": {
+    "x": 3,
+    "y": 32,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time.",
+   "placeholder": true
+  },
+  "9929": {
+   "vnum": 9929,
+   "name": "A Labyrinth Of Bodies",
+   "map": {
+    "x": 3,
+    "y": 30,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time.",
+   "placeholder": true
+  },
+  "9930": {
+   "vnum": 9930,
+   "name": "A Labyrinth Of Bodies",
+   "map": {
+    "x": 1,
+    "y": 29,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time.",
+   "placeholder": true
+  },
+  "9931": {
+   "vnum": 9931,
+   "name": "A Labyrinth Of Bodies",
+   "map": {
+    "x": 4,
+    "y": 29,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use.",
+   "placeholder": true
+  },
+  "9932": {
+   "vnum": 9932,
+   "name": "A Labyrinth Of Bodies",
+   "map": {
+    "x": 5,
+    "y": 25,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 9920,
+     "description": "To the west lies A Messy Bedroom."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "9933": {
+   "vnum": 9933,
+   "name": "The Mouth Of A Large Cave",
+   "map": {
+    "x": 5,
+    "y": 28,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 9934,
+     "description": "To the up lies Inside The Cave Entrance."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads up.",
+   "placeholder": true
+  },
+  "9934": {
+   "vnum": 9934,
+   "name": "Inside The Cave Entrance",
+   "map": {
+    "x": 38,
+    "y": 12,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9935,
+     "description": "To the north lies Eaten to Pieces."
+    },
+    "up": {
+     "to_room": 9938,
+     "description": "To the up lies A Cramped Grotto."
+    },
+    "down": {
+     "to_room": 9933,
+     "description": "To the down lies The Mouth Of A Large Cave."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, up and down.",
+   "placeholder": true
+  },
+  "9935": {
+   "vnum": 9935,
+   "name": "Eaten to Pieces",
+   "map": {
+    "x": 38,
+    "y": 13,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9936,
+     "description": "To the north lies The Lair Entrance."
+    },
+    "south": {
+     "to_room": 9934,
+     "description": "To the south lies Inside The Cave Entrance."
+    }
+   },
+   "description": "The ground rises and falls in grassy folds. A narrow path winds between\nthe hillocks. Ways lead north and south.",
+   "placeholder": true
+  },
+  "9936": {
+   "vnum": 9936,
+   "name": "The Lair Entrance",
+   "map": {
+    "x": 38,
+    "y": 14,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 9935,
+     "description": "To the south lies Eaten to Pieces."
+    },
+    "up": {
+     "to_room": 9937,
+     "description": "To the up lies The Lair Of The Deep Dragon."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead south and up.",
+   "placeholder": true
+  },
+  "9937": {
+   "vnum": 9937,
+   "name": "The Lair Of The Deep Dragon",
+   "map": {
+    "x": 39,
+    "y": 15,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 9953,
+     "description": "To the up lies Under the bones.."
+    },
+    "down": {
+     "to_room": 9936,
+     "description": "To the down lies The Lair Entrance."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead up and down.",
+   "placeholder": true
+  },
+  "9938": {
+   "vnum": 9938,
+   "name": "A Cramped Grotto",
+   "map": {
+    "x": 44,
+    "y": 18,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 9939,
+     "description": "To the west lies The Adit."
+    },
+    "down": {
+     "to_room": 9934,
+     "description": "To the down lies Inside The Cave Entrance."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead west and down.",
+   "placeholder": true
+  },
+  "9939": {
+   "vnum": 9939,
+   "name": "The Adit",
+   "map": {
+    "x": 42,
+    "y": 18,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9940,
+     "description": "To the north lies A Crawlspace."
+    },
+    "east": {
+     "to_room": 9938,
+     "description": "To the east lies A Cramped Grotto."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and east.",
+   "placeholder": true
+  },
+  "9940": {
+   "vnum": 9940,
+   "name": "A Crawlspace",
+   "map": {
+    "x": 42,
+    "y": 20,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9941,
+     "description": "To the east lies Abode Of The Efreeti."
+    }
+   },
+   "description": "Snow lingers in the shadowed hollows of the rock. Bare rock climbs\nsteeply on one side and falls away on the other. A way leads east.",
+   "placeholder": true
+  },
+  "9941": {
+   "vnum": 9941,
+   "name": "Abode Of The Efreeti",
+   "map": {
+    "x": 44,
+    "y": 20,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 9940,
+     "description": "To the west lies A Crawlspace."
+    },
+    "up": {
+     "to_room": 9953,
+     "description": "To the up lies Under the bones.."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead west and up.",
+   "placeholder": true
+  },
+  "9943": {
+   "vnum": 9943,
+   "name": "A Musty Area Behind The Wall",
+   "map": {
+    "x": 12,
+    "y": 38,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 9923,
+     "description": "To the south lies The Bathroom."
+    },
+    "down": {
+     "to_room": 9946,
+     "description": "To the down lies On The Stairs."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and down.",
+   "placeholder": true
+  },
+  "9944": {
+   "vnum": 9944,
+   "name": "The Bottom Of The Granite Staircase",
+   "map": {
+    "x": 8,
+    "y": 34,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 9947,
+     "description": "To the east lies A Backwall Niche."
+    },
+    "up": {
+     "to_room": 9945,
+     "description": "To the up lies The Granite Staircase."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and up.",
+   "placeholder": true
+  },
+  "9945": {
+   "vnum": 9945,
+   "name": "The Granite Staircase",
+   "map": {
+    "x": 10,
+    "y": 36,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 9946,
+     "description": "To the up lies On The Stairs."
+    },
+    "down": {
+     "to_room": 9944,
+     "description": "To the down lies The Bottom Of The Granite Staircase."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead up and down.",
+   "placeholder": true
+  },
+  "9946": {
+   "vnum": 9946,
+   "name": "On The Stairs",
+   "map": {
+    "x": 11,
+    "y": 37,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 9943,
+     "description": "To the up lies A Musty Area Behind The Wall."
+    },
+    "down": {
+     "to_room": 9945,
+     "description": "To the down lies The Granite Staircase."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead up and down.",
+   "placeholder": true
+  },
+  "9947": {
+   "vnum": 9947,
+   "name": "A Backwall Niche",
+   "map": {
+    "x": 9,
+    "y": 34,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9948,
+     "description": "To the north lies Pathway To Power.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 9944,
+     "description": "To the west lies The Bottom Of The Granite Staircase."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "9948": {
+   "vnum": 9948,
+   "name": "Pathway To Power",
+   "map": {
+    "x": 9,
+    "y": 38,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9949,
+     "description": "To the north lies Surrounded By Flames."
+    },
+    "east": {
+     "to_room": 9950,
+     "description": "To the east lies A Makeshift Bedroom.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 9947,
+     "description": "To the south lies A Backwall Niche."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "9949": {
+   "vnum": 9949,
+   "name": "Surrounded By Flames",
+   "map": {
+    "x": 9,
+    "y": 39,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9952,
+     "description": "To the north lies The Seat Of Power."
+    },
+    "south": {
+     "to_room": 9948,
+     "description": "To the south lies Pathway To Power."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "9950": {
+   "vnum": 9950,
+   "name": "A Makeshift Bedroom",
+   "map": {
+    "x": 10,
+    "y": 38,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 9948,
+     "description": "To the west lies Pathway To Power."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "9951": {
+   "vnum": 9951,
+   "name": "The Streets Of Ghenna",
+   "map": {
+    "x": 16,
+    "y": 32,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9903,
+     "description": "To the east lies The Smell of Decay."
+    },
+    "west": {
+     "to_room": 9954,
+     "description": "To the west lies The Streets Of Ghenna."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and west.",
+   "placeholder": true
+  },
+  "9952": {
+   "vnum": 9952,
+   "name": "The Seat Of Power",
+   "map": {
+    "x": 9,
+    "y": 40,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 9949,
+     "description": "To the south lies Surrounded By Flames."
+    },
+    "up": {
+     "to_room": 9953,
+     "description": "To the up lies Under the bones.."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead south and up.",
+   "placeholder": true
+  },
+  "9953": {
+   "vnum": 9953,
+   "name": "Under the bones.",
+   "map": {
+    "x": 21,
+    "y": 39,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 9903,
+     "description": "To the up lies The Smell of Decay."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads up.",
+   "placeholder": true
+  },
+  "9954": {
+   "vnum": 9954,
+   "name": "The Streets Of Ghenna",
+   "map": {
+    "x": 15,
+    "y": 32,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9955,
+     "description": "To the north lies The Streets Of Ghenna."
+    },
+    "east": {
+     "to_room": 9951,
+     "description": "To the east lies The Streets Of Ghenna."
+    },
+    "south": {
+     "to_room": 9998,
+     "description": "To the south lies A Dead End."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north, east and\nsouth.",
+   "placeholder": true
+  },
+  "9955": {
+   "vnum": 9955,
+   "name": "The Streets Of Ghenna",
+   "map": {
+    "x": 15,
+    "y": 33,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9957,
+     "description": "To the north lies The Streets Of Ghenna."
+    },
+    "east": {
+     "to_room": 9956,
+     "description": "To the east lies A Burned Out Building."
+    },
+    "south": {
+     "to_room": 9954,
+     "description": "To the south lies The Streets Of Ghenna."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north, east and\nsouth.",
+   "placeholder": true
+  },
+  "9956": {
+   "vnum": 9956,
+   "name": "A Burned Out Building",
+   "map": {
+    "x": 16,
+    "y": 33,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 9955,
+     "description": "To the west lies The Streets Of Ghenna."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. A way leads west.",
+   "placeholder": true
+  },
+  "9957": {
+   "vnum": 9957,
+   "name": "The Streets Of Ghenna",
+   "map": {
+    "x": 15,
+    "y": 34,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9901,
+     "description": "To the east lies City Limits Of Ghenna."
+    },
+    "south": {
+     "to_room": 9955,
+     "description": "To the south lies The Streets Of Ghenna."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nsouth.",
+   "placeholder": true
+  },
+  "9959": {
+   "vnum": 9959,
+   "name": "A Street In Ghenna",
+   "map": {
+    "x": 20,
+    "y": 34,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9960,
+     "description": "To the east lies A City Street In Ghenna."
+    },
+    "west": {
+     "to_room": 9901,
+     "description": "To the west lies City Limits Of Ghenna."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "9960": {
+   "vnum": 9960,
+   "name": "A City Street In Ghenna",
+   "map": {
+    "x": 25,
+    "y": 34,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9961,
+     "description": "To the north lies The Trading Post."
+    },
+    "east": {
+     "to_room": 9966,
+     "description": "To the east lies A City Street In Ghenna."
+    },
+    "south": {
+     "to_room": 9962,
+     "description": "To the south lies A Trashed Abode."
+    },
+    "west": {
+     "to_room": 9959,
+     "description": "To the west lies A Street In Ghenna."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north, east, south\nand west.",
+   "placeholder": true
+  },
+  "9961": {
+   "vnum": 9961,
+   "name": "The Trading Post",
+   "map": {
+    "x": 25,
+    "y": 35,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 9960,
+     "description": "To the south lies A City Street In Ghenna."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads south.",
+   "placeholder": true
+  },
+  "9962": {
+   "vnum": 9962,
+   "name": "A Trashed Abode",
+   "map": {
+    "x": 25,
+    "y": 30,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9960,
+     "description": "To the north lies A City Street In Ghenna."
+    },
+    "up": {
+     "to_room": 9963,
+     "description": "To the up lies Upstairs In A Trashed Abode."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and up.",
+   "placeholder": true
+  },
+  "9963": {
+   "vnum": 9963,
+   "name": "Upstairs In A Trashed Abode",
+   "map": {
+    "x": 27,
+    "y": 32,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9964,
+     "description": "To the north lies A Child's Room."
+    },
+    "down": {
+     "to_room": 9962,
+     "description": "To the down lies A Trashed Abode."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and down.",
+   "placeholder": true
+  },
+  "9964": {
+   "vnum": 9964,
+   "name": "A Child's Room",
+   "map": {
+    "x": 27,
+    "y": 33,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 9963,
+     "description": "To the south lies Upstairs In A Trashed Abode."
+    },
+    "west": {
+     "to_room": 9965,
+     "description": "To the west lies A Vandalized Closet."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "9965": {
+   "vnum": 9965,
+   "name": "A Vandalized Closet",
+   "map": {
+    "x": 26,
+    "y": 33,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 9964,
+     "description": "To the east lies A Child's Room."
+    },
+    "down": {
+     "to_room": 9911,
+     "description": "To the down lies An Undulating Room."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and down.",
+   "placeholder": true
+  },
+  "9966": {
+   "vnum": 9966,
+   "name": "A City Street In Ghenna",
+   "map": {
+    "x": 32,
+    "y": 34,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9968,
+     "description": "To the north lies A North-South Street In Ghenna."
+    },
+    "south": {
+     "to_room": 9978,
+     "description": "To the south lies A Covered Walkway."
+    },
+    "west": {
+     "to_room": 9960,
+     "description": "To the west lies A City Street In Ghenna."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north, south\nand west.",
+   "placeholder": true
+  },
+  "9967": {
+   "vnum": 9967,
+   "name": "A Road In Ghenna",
+   "map": {
+    "x": 17,
+    "y": 37,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9969,
+     "description": "To the east lies A Bend In The Road."
+    },
+    "south": {
+     "to_room": 9902,
+     "description": "To the south lies A Fountain Of Tears."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\neast and south.",
+   "placeholder": true
+  },
+  "9968": {
+   "vnum": 9968,
+   "name": "A North-South Street In Ghenna",
+   "map": {
+    "x": 32,
+    "y": 36,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9969,
+     "description": "To the north lies A Bend In The Road."
+    },
+    "south": {
+     "to_room": 9966,
+     "description": "To the south lies A City Street In Ghenna."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. Ways lead north and south.",
+   "placeholder": true
+  },
+  "9969": {
+   "vnum": 9969,
+   "name": "A Bend In The Road",
+   "map": {
+    "x": 32,
+    "y": 37,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 9968,
+     "description": "To the south lies A North-South Street In Ghenna."
+    },
+    "west": {
+     "to_room": 9967,
+     "description": "To the west lies A Road In Ghenna."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead south and west.",
+   "placeholder": true
+  },
+  "9978": {
+   "vnum": 9978,
+   "name": "A Covered Walkway",
+   "map": {
+    "x": 32,
+    "y": 32,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9966,
+     "description": "To the north lies A City Street In Ghenna."
+    },
+    "down": {
+     "to_room": 9979,
+     "description": "To the down lies A Slimey Footpath."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and down.",
+   "placeholder": true
+  },
+  "9979": {
+   "vnum": 9979,
+   "name": "A Slimey Footpath",
+   "map": {
+    "x": 30,
+    "y": 30,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 9980,
+     "description": "To the west lies A Slimey Footpath."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. A way leads west.",
+   "placeholder": true
+  },
+  "9980": {
+   "vnum": 9980,
+   "name": "A Slimey Footpath",
+   "map": {
+    "x": 29,
+    "y": 30,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9981,
+     "description": "To the north lies A Slimey Footpath."
+    },
+    "east": {
+     "to_room": 9979,
+     "description": "To the east lies A Slimey Footpath."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and east.",
+   "placeholder": true
+  },
+  "9981": {
+   "vnum": 9981,
+   "name": "A Slimey Footpath",
+   "map": {
+    "x": 29,
+    "y": 31,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 9980,
+     "description": "To the south lies A Slimey Footpath."
+    },
+    "west": {
+     "to_room": 9982,
+     "description": "To the west lies A Slimey Footpath."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead south and\nwest.",
+   "placeholder": true
+  },
+  "9982": {
+   "vnum": 9982,
+   "name": "A Slimey Footpath",
+   "map": {
+    "x": 28,
+    "y": 31,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9981,
+     "description": "To the east lies A Slimey Footpath."
+    },
+    "south": {
+     "to_room": 9983,
+     "description": "To the south lies A Small Clearing."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead east and\nsouth.",
+   "placeholder": true
+  },
+  "9983": {
+   "vnum": 9983,
+   "name": "A Small Clearing",
+   "map": {
+    "x": 28,
+    "y": 30,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9982,
+     "description": "To the north lies A Slimey Footpath."
+    },
+    "south": {
+     "to_room": 9984,
+     "description": "To the south lies The Mouth Of A Small Cave."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. Ways lead north and south.",
+   "placeholder": true
+  },
+  "9984": {
+   "vnum": 9984,
+   "name": "The Mouth Of A Small Cave",
+   "map": {
+    "x": 28,
+    "y": 29,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9983,
+     "description": "To the north lies A Small Clearing."
+    },
+    "down": {
+     "to_room": 9985,
+     "description": "To the down lies An Underground Cavern."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and down.",
+   "placeholder": true
+  },
+  "9985": {
+   "vnum": 9985,
+   "name": "An Underground Cavern",
+   "map": {
+    "x": 27,
+    "y": 28,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 9986,
+     "description": "To the south lies A Long Sloping Tunnel."
+    },
+    "up": {
+     "to_room": 9984,
+     "description": "To the up lies The Mouth Of A Small Cave."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead south and up.",
+   "placeholder": true
+  },
+  "9986": {
+   "vnum": 9986,
+   "name": "A Long Sloping Tunnel",
+   "map": {
+    "x": 27,
+    "y": 27,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9985,
+     "description": "To the north lies An Underground Cavern."
+    },
+    "south": {
+     "to_room": 9987,
+     "description": "To the south lies A Long Sloping Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "9987": {
+   "vnum": 9987,
+   "name": "A Long Sloping Tunnel",
+   "map": {
+    "x": 27,
+    "y": 26,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9986,
+     "description": "To the north lies A Long Sloping Tunnel."
+    },
+    "south": {
+     "to_room": 9988,
+     "description": "To the south lies A Long Sloping Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "9988": {
+   "vnum": 9988,
+   "name": "A Long Sloping Tunnel",
+   "map": {
+    "x": 27,
+    "y": 25,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9987,
+     "description": "To the north lies A Long Sloping Tunnel."
+    },
+    "south": {
+     "to_room": 9989,
+     "description": "To the south lies Tunnel's End."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "9989": {
+   "vnum": 9989,
+   "name": "Tunnel's End",
+   "map": {
+    "x": 27,
+    "y": 24,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9988,
+     "description": "To the north lies A Long Sloping Tunnel."
+    },
+    "east": {
+     "to_room": 9992,
+     "description": "To the east lies A Wide Tunnel."
+    },
+    "west": {
+     "to_room": 9990,
+     "description": "To the west lies An East-West Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "9990": {
+   "vnum": 9990,
+   "name": "An East-West Tunnel",
+   "map": {
+    "x": 26,
+    "y": 24,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 9989,
+     "description": "To the east lies Tunnel's End."
+    },
+    "west": {
+     "to_room": 9991,
+     "description": "To the west lies An East-West Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "9991": {
+   "vnum": 9991,
+   "name": "An East-West Tunnel",
+   "map": {
+    "x": 25,
+    "y": 24,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 9990,
+     "description": "To the east lies An East-West Tunnel."
+    },
+    "west": {
+     "to_room": 9953,
+     "description": "To the west lies Under the bones.."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "9992": {
+   "vnum": 9992,
+   "name": "A Wide Tunnel",
+   "map": {
+    "x": 29,
+    "y": 24,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9985,
+     "description": "To the north lies An Underground Cavern."
+    },
+    "south": {
+     "to_room": 9993,
+     "description": "To the south lies A Bug Infested Crawlspace."
+    },
+    "west": {
+     "to_room": 9989,
+     "description": "To the west lies Tunnel's End."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "9993": {
+   "vnum": 9993,
+   "name": "A Bug Infested Crawlspace",
+   "map": {
+    "x": 29,
+    "y": 23,
+    "z": 5
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9992,
+     "description": "To the north lies A Wide Tunnel."
+    },
+    "south": {
+     "to_room": 9994,
+     "description": "To the south lies The Swarming Lair."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. The air is thin and\ncold, and loose scree shifts underfoot. Ways lead north and south.",
+   "placeholder": true
+  },
+  "9994": {
+   "vnum": 9994,
+   "name": "The Swarming Lair",
+   "map": {
+    "x": 29,
+    "y": 21,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9993,
+     "description": "To the north lies A Bug Infested Crawlspace."
+    },
+    "east": {
+     "to_room": 9953,
+     "description": "To the east lies Under the bones.."
+    },
+    "west": {
+     "to_room": 9995,
+     "description": "To the west lies A Quivering Jaunt."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "9995": {
+   "vnum": 9995,
+   "name": "A Quivering Jaunt",
+   "map": {
+    "x": 27,
+    "y": 21,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9996,
+     "description": "To the north lies A Quivering Jaunt."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "9996": {
+   "vnum": 9996,
+   "name": "A Quivering Jaunt",
+   "map": {
+    "x": 27,
+    "y": 23,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 9997,
+     "description": "To the west lies The Lair Of The Deepspawn."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "9997": {
+   "vnum": 9997,
+   "name": "The Lair Of The Deepspawn",
+   "map": {
+    "x": 24,
+    "y": 23,
+    "z": 5
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 9953,
+     "description": "To the east lies Under the bones.."
+    },
+    "south": {
+     "to_room": 9911,
+     "description": "To the south lies An Undulating Room."
+    },
+    "west": {
+     "to_room": 9985,
+     "description": "To the west lies An Underground Cavern."
+    },
+    "down": {
+     "to_room": 3001,
+     "description": "To the down lies The Temple Of Garathorm."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east, south, west and\ndown.",
+   "placeholder": true
+  },
+  "9998": {
+   "vnum": 9998,
+   "name": "A Dead End",
+   "map": {
+    "x": 15,
+    "y": 30,
+    "z": 5
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9954,
+     "description": "To the north lies The Streets Of Ghenna."
+    },
+    "east": {
+     "to_room": 9905,
+     "description": "To the east lies The Twisting Hedges."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth and east.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

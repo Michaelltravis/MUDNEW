@@ -1,0 +1,3874 @@
+{
+ "number": 509,
+ "name": "Durmandel Mines I",
+ "builders": "Jack",
+ "atlas_area": 109,
+ "rooms": {
+  "13145": {
+   "vnum": 13145,
+   "name": "The Entrance To The Mines",
+   "map": {
+    "x": 34,
+    "y": 87,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13146,
+     "description": "To the north lies Ore Storage."
+    },
+    "east": {
+     "to_room": 13161,
+     "description": "To the east lies The Dump."
+    },
+    "up": {
+     "to_room": 13091,
+     "description": "To the up lies The Shaft."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east and up.",
+   "placeholder": true
+  },
+  "13146": {
+   "vnum": 13146,
+   "name": "Ore Storage",
+   "map": {
+    "x": 34,
+    "y": 88,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13147,
+     "description": "To the north lies A Mined-Out Tunnel."
+    },
+    "east": {
+     "to_room": 13162,
+     "description": "To the east lies A Mined-Out Tunnel."
+    },
+    "south": {
+     "to_room": 13145,
+     "description": "To the south lies The Entrance To The Mines."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north, east and\nsouth.",
+   "placeholder": true
+  },
+  "13147": {
+   "vnum": 13147,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 34,
+    "y": 89,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13148,
+     "description": "To the north lies A Mined-Out Tunnel."
+    },
+    "south": {
+     "to_room": 13146,
+     "description": "To the south lies Ore Storage."
+    },
+    "west": {
+     "to_room": 13154,
+     "description": "To the west lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "13148": {
+   "vnum": 13148,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 34,
+    "y": 90,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13149,
+     "description": "To the north lies A Mined-Out Tunnel."
+    },
+    "south": {
+     "to_room": 13147,
+     "description": "To the south lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13149": {
+   "vnum": 13149,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 34,
+    "y": 91,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13148,
+     "description": "To the south lies A Mined-Out Tunnel."
+    },
+    "west": {
+     "to_room": 13150,
+     "description": "To the west lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead south and west.",
+   "placeholder": true
+  },
+  "13150": {
+   "vnum": 13150,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 33,
+    "y": 91,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13149,
+     "description": "To the east lies A Mined-Out Tunnel."
+    },
+    "west": {
+     "to_room": 13151,
+     "description": "To the west lies A Three-Way Junction."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13151": {
+   "vnum": 13151,
+   "name": "A Three-Way Junction",
+   "map": {
+    "x": 32,
+    "y": 91,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13150,
+     "description": "To the east lies A Mined-Out Tunnel."
+    },
+    "south": {
+     "to_room": 13152,
+     "description": "To the south lies A Mined-Out Tunnel."
+    },
+    "west": {
+     "to_room": 13180,
+     "description": "To the west lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead east, south\nand west.",
+   "placeholder": true
+  },
+  "13152": {
+   "vnum": 13152,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 32,
+    "y": 90,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13151,
+     "description": "To the north lies A Three-Way Junction."
+    },
+    "south": {
+     "to_room": 13153,
+     "description": "To the south lies A Four-Way Crossing."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13153": {
+   "vnum": 13153,
+   "name": "A Four-Way Crossing",
+   "map": {
+    "x": 32,
+    "y": 89,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13152,
+     "description": "To the north lies A Mined-Out Tunnel."
+    },
+    "east": {
+     "to_room": 13154,
+     "description": "To the east lies A Mined-Out Tunnel."
+    },
+    "south": {
+     "to_room": 13155,
+     "description": "To the south lies A Mined-Out Tunnel."
+    },
+    "west": {
+     "to_room": 13190,
+     "description": "To the west lies End Of The Tunnel."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "13154": {
+   "vnum": 13154,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 33,
+    "y": 89,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13147,
+     "description": "To the east lies A Mined-Out Tunnel."
+    },
+    "west": {
+     "to_room": 13153,
+     "description": "To the west lies A Four-Way Crossing."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13155": {
+   "vnum": 13155,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 32,
+    "y": 88,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13153,
+     "description": "To the north lies A Four-Way Crossing."
+    },
+    "south": {
+     "to_room": 13156,
+     "description": "To the south lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13156": {
+   "vnum": 13156,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 32,
+    "y": 87,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13155,
+     "description": "To the north lies A Mined-Out Tunnel."
+    },
+    "south": {
+     "to_room": 13157,
+     "description": "To the south lies A Three-Way Junction."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13157": {
+   "vnum": 13157,
+   "name": "A Three-Way Junction",
+   "map": {
+    "x": 32,
+    "y": 86,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13156,
+     "description": "To the north lies A Mined-Out Tunnel."
+    },
+    "south": {
+     "to_room": 13158,
+     "description": "To the south lies End Of The Tunnel."
+    },
+    "west": {
+     "to_room": 13159,
+     "description": "To the west lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north, south\nand west.",
+   "placeholder": true
+  },
+  "13158": {
+   "vnum": 13158,
+   "name": "End Of The Tunnel",
+   "map": {
+    "x": 32,
+    "y": 85,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13157,
+     "description": "To the north lies A Three-Way Junction."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads north.",
+   "placeholder": true
+  },
+  "13159": {
+   "vnum": 13159,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 31,
+    "y": 86,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13157,
+     "description": "To the east lies A Three-Way Junction."
+    },
+    "west": {
+     "to_room": 13160,
+     "description": "To the west lies End Of The Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13160": {
+   "vnum": 13160,
+   "name": "End Of The Tunnel",
+   "map": {
+    "x": 30,
+    "y": 86,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13159,
+     "description": "To the east lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads east.",
+   "placeholder": true
+  },
+  "13161": {
+   "vnum": 13161,
+   "name": "The Dump",
+   "map": {
+    "x": 35,
+    "y": 87,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 13145,
+     "description": "To the west lies The Entrance To The Mines."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. A way leads\nwest.",
+   "placeholder": true
+  },
+  "13162": {
+   "vnum": 13162,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 35,
+    "y": 88,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13163,
+     "description": "To the east lies A Mined-Out Tunnel."
+    },
+    "west": {
+     "to_room": 13146,
+     "description": "To the west lies Ore Storage."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13163": {
+   "vnum": 13163,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 36,
+    "y": 88,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13164,
+     "description": "To the east lies A Mined-Out Tunnel."
+    },
+    "west": {
+     "to_room": 13162,
+     "description": "To the west lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13164": {
+   "vnum": 13164,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 37,
+    "y": 88,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13165,
+     "description": "To the east lies A Three-Way Junction."
+    },
+    "west": {
+     "to_room": 13163,
+     "description": "To the west lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13165": {
+   "vnum": 13165,
+   "name": "A Three-Way Junction",
+   "map": {
+    "x": 38,
+    "y": 88,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13168,
+     "description": "To the north lies A Mined-Out Tunnel."
+    },
+    "south": {
+     "to_room": 13166,
+     "description": "To the south lies A Mined-Out Tunnel."
+    },
+    "west": {
+     "to_room": 13164,
+     "description": "To the west lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "13166": {
+   "vnum": 13166,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 38,
+    "y": 87,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13165,
+     "description": "To the north lies A Three-Way Junction."
+    },
+    "south": {
+     "to_room": 13167,
+     "description": "To the south lies End Of The Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13167": {
+   "vnum": 13167,
+   "name": "End Of The Tunnel",
+   "map": {
+    "x": 38,
+    "y": 86,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13166,
+     "description": "To the north lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads north.",
+   "placeholder": true
+  },
+  "13168": {
+   "vnum": 13168,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 38,
+    "y": 89,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13169,
+     "description": "To the north lies A Mined-Out Tunnel."
+    },
+    "south": {
+     "to_room": 13165,
+     "description": "To the south lies A Three-Way Junction."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13169": {
+   "vnum": 13169,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 38,
+    "y": 90,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13170,
+     "description": "To the east lies A Mined-Out Tunnel."
+    },
+    "south": {
+     "to_room": 13168,
+     "description": "To the south lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and south.",
+   "placeholder": true
+  },
+  "13170": {
+   "vnum": 13170,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 39,
+    "y": 90,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13171,
+     "description": "To the north lies A Three-Way Junction."
+    },
+    "west": {
+     "to_room": 13169,
+     "description": "To the west lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and west.",
+   "placeholder": true
+  },
+  "13171": {
+   "vnum": 13171,
+   "name": "A Three-Way Junction",
+   "map": {
+    "x": 39,
+    "y": 91,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13172,
+     "description": "To the east lies A Mined-Out Tunnel."
+    },
+    "south": {
+     "to_room": 13170,
+     "description": "To the south lies A Mined-Out Tunnel."
+    },
+    "west": {
+     "to_room": 13179,
+     "description": "To the west lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. Ways lead east, south and\nwest.",
+   "placeholder": true
+  },
+  "13172": {
+   "vnum": 13172,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 40,
+    "y": 91,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13173,
+     "description": "To the north lies A Mined-Out Tunnel."
+    },
+    "west": {
+     "to_room": 13171,
+     "description": "To the west lies A Three-Way Junction."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "13173": {
+   "vnum": 13173,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 40,
+    "y": 92,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13174,
+     "description": "To the north lies A Three-Way Junction."
+    },
+    "south": {
+     "to_room": 13172,
+     "description": "To the south lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13174": {
+   "vnum": 13174,
+   "name": "A Three-Way Junction",
+   "map": {
+    "x": 40,
+    "y": 93,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13175,
+     "description": "To the north lies The Black Rock."
+    },
+    "south": {
+     "to_room": 13173,
+     "description": "To the south lies A Mined-Out Tunnel."
+    },
+    "west": {
+     "to_room": 13176,
+     "description": "To the west lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "13175": {
+   "vnum": 13175,
+   "name": "The Black Rock",
+   "map": {
+    "x": 40,
+    "y": 94,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 13174,
+     "description": "To the south lies A Three-Way Junction."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. A way leads south.",
+   "placeholder": true
+  },
+  "13176": {
+   "vnum": 13176,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 39,
+    "y": 93,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13174,
+     "description": "To the east lies A Three-Way Junction."
+    },
+    "west": {
+     "to_room": 13177,
+     "description": "To the west lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13177": {
+   "vnum": 13177,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 38,
+    "y": 93,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13176,
+     "description": "To the east lies A Mined-Out Tunnel."
+    },
+    "south": {
+     "to_room": 13178,
+     "description": "To the south lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and south.",
+   "placeholder": true
+  },
+  "13178": {
+   "vnum": 13178,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 38,
+    "y": 92,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13177,
+     "description": "To the north lies A Mined-Out Tunnel."
+    },
+    "south": {
+     "to_room": 13179,
+     "description": "To the south lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13179": {
+   "vnum": 13179,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 38,
+    "y": 91,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13178,
+     "description": "To the north lies A Mined-Out Tunnel."
+    },
+    "east": {
+     "to_room": 13171,
+     "description": "To the east lies A Three-Way Junction."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "13180": {
+   "vnum": 13180,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 31,
+    "y": 91,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13181,
+     "description": "To the north lies A Mined-Out Tunnel."
+    },
+    "east": {
+     "to_room": 13151,
+     "description": "To the east lies A Three-Way Junction."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "13181": {
+   "vnum": 13181,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 31,
+    "y": 92,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13182,
+     "description": "To the north lies A Mined-Out Tunnel."
+    },
+    "south": {
+     "to_room": 13180,
+     "description": "To the south lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13182": {
+   "vnum": 13182,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 31,
+    "y": 93,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13183,
+     "description": "To the north lies A Mined-Out Tunnel."
+    },
+    "south": {
+     "to_room": 13181,
+     "description": "To the south lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13183": {
+   "vnum": 13183,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 31,
+    "y": 94,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13182,
+     "description": "To the south lies A Mined-Out Tunnel."
+    },
+    "west": {
+     "to_room": 13184,
+     "description": "To the west lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "13184": {
+   "vnum": 13184,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 30,
+    "y": 94,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13183,
+     "description": "To the east lies A Mined-Out Tunnel."
+    },
+    "west": {
+     "to_room": 13185,
+     "description": "To the west lies Ore Storage."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13185": {
+   "vnum": 13185,
+   "name": "Ore Storage",
+   "map": {
+    "x": 29,
+    "y": 94,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13186,
+     "description": "To the north lies A Mined-Out Tunnel."
+    },
+    "east": {
+     "to_room": 13184,
+     "description": "To the east lies A Mined-Out Tunnel."
+    },
+    "south": {
+     "to_room": 13188,
+     "description": "To the south lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. Ways lead north, east and\nsouth.",
+   "placeholder": true
+  },
+  "13186": {
+   "vnum": 13186,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 29,
+    "y": 96,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13187,
+     "description": "To the north lies Entrance To The Under-Mines."
+    },
+    "south": {
+     "to_room": 13185,
+     "description": "To the south lies Ore Storage."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13187": {
+   "vnum": 13187,
+   "name": "Entrance To The Under-Mines",
+   "map": {
+    "x": 29,
+    "y": 98,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13186,
+     "description": "To the south lies A Mined-Out Tunnel."
+    },
+    "down": {
+     "to_room": 13191,
+     "description": "To the down lies The Under-Mines."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead south and down.",
+   "placeholder": true
+  },
+  "13188": {
+   "vnum": 13188,
+   "name": "A Mined-Out Tunnel",
+   "map": {
+    "x": 29,
+    "y": 93,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13185,
+     "description": "To the north lies Ore Storage."
+    },
+    "south": {
+     "to_room": 13189,
+     "description": "To the south lies End Of The Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13189": {
+   "vnum": 13189,
+   "name": "End Of The Tunnel",
+   "map": {
+    "x": 29,
+    "y": 92,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13188,
+     "description": "To the north lies A Mined-Out Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads north.",
+   "placeholder": true
+  },
+  "13190": {
+   "vnum": 13190,
+   "name": "End Of The Tunnel",
+   "map": {
+    "x": 31,
+    "y": 89,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13153,
+     "description": "To the east lies A Four-Way Crossing."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "13191": {
+   "vnum": 13191,
+   "name": "The Under-Mines",
+   "map": {
+    "x": 27,
+    "y": 96,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13192,
+     "description": "To the north lies The Under-Mines."
+    },
+    "south": {
+     "to_room": 13196,
+     "description": "To the south lies The Under-Mines."
+    },
+    "up": {
+     "to_room": 13187,
+     "description": "To the up lies Entrance To The Under-Mines."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, south and up.",
+   "placeholder": true
+  },
+  "13192": {
+   "vnum": 13192,
+   "name": "The Under-Mines",
+   "map": {
+    "x": 27,
+    "y": 97,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13193,
+     "description": "To the north lies The Under-Mines."
+    },
+    "south": {
+     "to_room": 13191,
+     "description": "To the south lies The Under-Mines."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13193": {
+   "vnum": 13193,
+   "name": "The Under-Mines",
+   "map": {
+    "x": 27,
+    "y": 98,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13194,
+     "description": "To the north lies The Under-Mines."
+    },
+    "south": {
+     "to_room": 13192,
+     "description": "To the south lies The Under-Mines."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13194": {
+   "vnum": 13194,
+   "name": "The Under-Mines",
+   "map": {
+    "x": 27,
+    "y": 99,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13219,
+     "description": "To the north lies Entrance To The Under-Mines."
+    },
+    "east": {
+     "to_room": 13195,
+     "description": "To the east lies An Unfinished Tunnel."
+    },
+    "south": {
+     "to_room": 13193,
+     "description": "To the south lies The Under-Mines."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "13195": {
+   "vnum": 13195,
+   "name": "An Unfinished Tunnel",
+   "map": {
+    "x": 28,
+    "y": 99,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 13194,
+     "description": "To the west lies The Under-Mines."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads west.",
+   "placeholder": true
+  },
+  "13196": {
+   "vnum": 13196,
+   "name": "The Under-Mines",
+   "map": {
+    "x": 27,
+    "y": 95,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13191,
+     "description": "To the north lies The Under-Mines."
+    },
+    "south": {
+     "to_room": 13197,
+     "description": "To the south lies An Unfinished Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13197": {
+   "vnum": 13197,
+   "name": "An Unfinished Tunnel",
+   "map": {
+    "x": 27,
+    "y": 94,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13196,
+     "description": "To the north lies The Under-Mines."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads north.",
+   "placeholder": true
+  },
+  "13199": {
+   "vnum": 13199,
+   "name": "The Grand Stairway",
+   "map": {
+    "x": 33,
+    "y": 116,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 13198,
+     "description": "To the up lies The Grand Stairway."
+    },
+    "down": {
+     "to_room": 13294,
+     "description": "To the down lies The War Chamber."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead up and down.",
+   "placeholder": true
+  },
+  "13200": {
+   "vnum": 13200,
+   "name": "Below The Tavern",
+   "map": {
+    "x": 38,
+    "y": 102,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13261,
+     "description": "To the east lies A Bend In The Tunnel.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 13295,
+     "description": "To the west lies Northeast Hold.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "up": {
+     "to_room": 13114,
+     "description": "To the up lies The Back Room."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east, west and up.",
+   "placeholder": true
+  },
+  "13201": {
+   "vnum": 13201,
+   "name": "The Old Mine Road",
+   "map": {
+    "x": 32,
+    "y": 113,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13294,
+     "description": "To the north lies The War Chamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 13202,
+     "description": "To the east lies The Old Mine Road."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "13202": {
+   "vnum": 13202,
+   "name": "The Old Mine Road",
+   "map": {
+    "x": 33,
+    "y": 113,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13203,
+     "description": "To the south lies The Old Mine Road."
+    },
+    "west": {
+     "to_room": 13201,
+     "description": "To the west lies The Old Mine Road."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "13203": {
+   "vnum": 13203,
+   "name": "The Old Mine Road",
+   "map": {
+    "x": 33,
+    "y": 112,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13202,
+     "description": "To the north lies The Old Mine Road."
+    },
+    "west": {
+     "to_room": 13204,
+     "description": "To the west lies The Old Mine Road."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and west.",
+   "placeholder": true
+  },
+  "13204": {
+   "vnum": 13204,
+   "name": "The Old Mine Road",
+   "map": {
+    "x": 32,
+    "y": 112,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13203,
+     "description": "To the east lies The Old Mine Road."
+    },
+    "west": {
+     "to_room": 13205,
+     "description": "To the west lies The Old Mine Road."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13205": {
+   "vnum": 13205,
+   "name": "The Old Mine Road",
+   "map": {
+    "x": 31,
+    "y": 112,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13204,
+     "description": "To the east lies The Old Mine Road."
+    },
+    "south": {
+     "to_room": 13206,
+     "description": "To the south lies A Four-Way Junction."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "13206": {
+   "vnum": 13206,
+   "name": "A Four-Way Junction",
+   "map": {
+    "x": 31,
+    "y": 111,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13205,
+     "description": "To the north lies The Old Mine Road."
+    },
+    "east": {
+     "to_room": 13238,
+     "description": "To the east lies The Mine Tunnels Of The First Deep."
+    },
+    "south": {
+     "to_room": 13207,
+     "description": "To the south lies The Old Mine Road."
+    },
+    "west": {
+     "to_room": 13296,
+     "description": "To the west lies The Hall Of Scribes."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Old trees crowd close,\ntheir roots knotted across the path. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "13207": {
+   "vnum": 13207,
+   "name": "The Old Mine Road",
+   "map": {
+    "x": 31,
+    "y": 110,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13206,
+     "description": "To the north lies A Four-Way Junction."
+    },
+    "south": {
+     "to_room": 13208,
+     "description": "To the south lies The Old Mine Road."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13208": {
+   "vnum": 13208,
+   "name": "The Old Mine Road",
+   "map": {
+    "x": 31,
+    "y": 109,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13207,
+     "description": "To the north lies The Old Mine Road."
+    },
+    "south": {
+     "to_room": 13209,
+     "description": "To the south lies The Old Mine Road."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13209": {
+   "vnum": 13209,
+   "name": "The Old Mine Road",
+   "map": {
+    "x": 31,
+    "y": 108,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13208,
+     "description": "To the north lies The Old Mine Road."
+    },
+    "south": {
+     "to_room": 13210,
+     "description": "To the south lies The Old Mine Road."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13210": {
+   "vnum": 13210,
+   "name": "The Old Mine Road",
+   "map": {
+    "x": 31,
+    "y": 107,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13209,
+     "description": "To the north lies The Old Mine Road."
+    },
+    "south": {
+     "to_room": 13211,
+     "description": "To the south lies The Old Mine Road."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13211": {
+   "vnum": 13211,
+   "name": "The Old Mine Road",
+   "map": {
+    "x": 31,
+    "y": 106,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13210,
+     "description": "To the north lies The Old Mine Road."
+    },
+    "south": {
+     "to_room": 13212,
+     "description": "To the south lies Dael's Pass."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13212": {
+   "vnum": 13212,
+   "name": "Dael's Pass",
+   "map": {
+    "x": 31,
+    "y": 104,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13211,
+     "description": "To the north lies The Old Mine Road."
+    },
+    "east": {
+     "to_room": 13220,
+     "description": "To the east lies The Mine Tunnels Of The First Deep."
+    },
+    "south": {
+     "to_room": 13279,
+     "description": "To the south lies Mines Of Khukal."
+    },
+    "west": {
+     "to_room": 13213,
+     "description": "To the west lies The Old Mine Road."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Shafts of\npale light slant between the trunks. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "13213": {
+   "vnum": 13213,
+   "name": "The Old Mine Road",
+   "map": {
+    "x": 30,
+    "y": 104,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13212,
+     "description": "To the east lies Dael's Pass."
+    },
+    "west": {
+     "to_room": 13214,
+     "description": "To the west lies The Old Mine Road."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13214": {
+   "vnum": 13214,
+   "name": "The Old Mine Road",
+   "map": {
+    "x": 29,
+    "y": 104,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13213,
+     "description": "To the east lies The Old Mine Road."
+    },
+    "west": {
+     "to_room": 13215,
+     "description": "To the west lies The Old Mine Road."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13215": {
+   "vnum": 13215,
+   "name": "The Old Mine Road",
+   "map": {
+    "x": 28,
+    "y": 104,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13214,
+     "description": "To the east lies The Old Mine Road."
+    },
+    "west": {
+     "to_room": 13216,
+     "description": "To the west lies The First Level Of Durgan's Chimney."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13216": {
+   "vnum": 13216,
+   "name": "The First Level Of Durgan's Chimney",
+   "map": {
+    "x": 27,
+    "y": 104,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13215,
+     "description": "To the east lies The Old Mine Road."
+    },
+    "south": {
+     "to_room": 13217,
+     "description": "To the south lies Accessway To The Undermines."
+    },
+    "down": {
+     "to_room": 13300,
+     "description": "To the down lies The Second Level Of Durgan's Chimney."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Shafts of\npale light slant between the trunks. Ways lead east, south and down.",
+   "placeholder": true
+  },
+  "13217": {
+   "vnum": 13217,
+   "name": "Accessway To The Undermines",
+   "map": {
+    "x": 27,
+    "y": 103,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13216,
+     "description": "To the north lies The First Level Of Durgan's Chimney."
+    },
+    "south": {
+     "to_room": 13218,
+     "description": "To the south lies Accessway To The Undermines."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Birdsong\ndrifts down through the branches overhead. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13218": {
+   "vnum": 13218,
+   "name": "Accessway To The Undermines",
+   "map": {
+    "x": 27,
+    "y": 102,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13217,
+     "description": "To the north lies Accessway To The Undermines."
+    },
+    "south": {
+     "to_room": 13219,
+     "description": "To the south lies Entrance To The Under-Mines."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13219": {
+   "vnum": 13219,
+   "name": "Entrance To The Under-Mines",
+   "map": {
+    "x": 27,
+    "y": 101,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13218,
+     "description": "To the north lies Accessway To The Undermines."
+    },
+    "south": {
+     "to_room": 13194,
+     "description": "To the south lies The Under-Mines.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13220": {
+   "vnum": 13220,
+   "name": "The Mine Tunnels Of The First Deep",
+   "map": {
+    "x": 32,
+    "y": 104,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13221,
+     "description": "To the east lies The Mine Tunnels Of The First Deep."
+    },
+    "west": {
+     "to_room": 13212,
+     "description": "To the west lies Dael's Pass."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13221": {
+   "vnum": 13221,
+   "name": "The Mine Tunnels Of The First Deep",
+   "map": {
+    "x": 33,
+    "y": 104,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13222,
+     "description": "To the east lies The Mine Tunnels Of The First Deep."
+    },
+    "west": {
+     "to_room": 13220,
+     "description": "To the west lies The Mine Tunnels Of The First Deep."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13222": {
+   "vnum": 13222,
+   "name": "The Mine Tunnels Of The First Deep",
+   "map": {
+    "x": 34,
+    "y": 104,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13223,
+     "description": "To the east lies The Mine Tunnels Of The First Deep."
+    },
+    "west": {
+     "to_room": 13221,
+     "description": "To the west lies The Mine Tunnels Of The First Deep."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13223": {
+   "vnum": 13223,
+   "name": "The Mine Tunnels Of The First Deep",
+   "map": {
+    "x": 35,
+    "y": 104,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13224,
+     "description": "To the east lies A Four-Way Junction."
+    },
+    "west": {
+     "to_room": 13222,
+     "description": "To the west lies The Mine Tunnels Of The First Deep."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13224": {
+   "vnum": 13224,
+   "name": "A Four-Way Junction",
+   "map": {
+    "x": 36,
+    "y": 104,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13225,
+     "description": "To the north lies The Mine Tunnels Of The First Deep."
+    },
+    "east": {
+     "to_room": 13244,
+     "description": "To the east lies The Mine Tunnels Of The First Deep."
+    },
+    "south": {
+     "to_room": 13254,
+     "description": "To the south lies The Mine Tunnels Of The First Deep."
+    },
+    "west": {
+     "to_room": 13223,
+     "description": "To the west lies The Mine Tunnels Of The First Deep."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Old trees crowd close,\ntheir roots knotted across the path. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "13225": {
+   "vnum": 13225,
+   "name": "The Mine Tunnels Of The First Deep",
+   "map": {
+    "x": 36,
+    "y": 106,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13226,
+     "description": "To the north lies The Mine Tunnels Of The First Deep."
+    },
+    "south": {
+     "to_room": 13224,
+     "description": "To the south lies A Four-Way Junction."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13226": {
+   "vnum": 13226,
+   "name": "The Mine Tunnels Of The First Deep",
+   "map": {
+    "x": 36,
+    "y": 107,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13227,
+     "description": "To the north lies The Mine Tunnels Of The First Deep."
+    },
+    "south": {
+     "to_room": 13225,
+     "description": "To the south lies The Mine Tunnels Of The First Deep."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13227": {
+   "vnum": 13227,
+   "name": "The Mine Tunnels Of The First Deep",
+   "map": {
+    "x": 36,
+    "y": 108,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13228,
+     "description": "To the north lies A Three-Way Junction."
+    },
+    "south": {
+     "to_room": 13226,
+     "description": "To the south lies The Mine Tunnels Of The First Deep."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13228": {
+   "vnum": 13228,
+   "name": "A Three-Way Junction",
+   "map": {
+    "x": 36,
+    "y": 109,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13243,
+     "description": "To the east lies A Bend In The Tunnel."
+    },
+    "south": {
+     "to_room": 13227,
+     "description": "To the south lies The Mine Tunnels Of The First Deep."
+    },
+    "west": {
+     "to_room": 13229,
+     "description": "To the west lies The Mine Tunnels Of The First Deep."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Birdsong\ndrifts down through the branches overhead. Ways lead east, south and\nwest.",
+   "placeholder": true
+  },
+  "13229": {
+   "vnum": 13229,
+   "name": "The Mine Tunnels Of The First Deep",
+   "map": {
+    "x": 35,
+    "y": 109,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13228,
+     "description": "To the east lies A Three-Way Junction."
+    },
+    "west": {
+     "to_room": 13230,
+     "description": "To the west lies A Three-Way Junction."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13230": {
+   "vnum": 13230,
+   "name": "A Three-Way Junction",
+   "map": {
+    "x": 33,
+    "y": 109,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13236,
+     "description": "To the north lies The Mine Tunnels Of The First Deep."
+    },
+    "east": {
+     "to_room": 13229,
+     "description": "To the east lies The Mine Tunnels Of The First Deep."
+    },
+    "south": {
+     "to_room": 13231,
+     "description": "To the south lies The Mine Tunnels Of The First Deep."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Fallen needles and leaves\nmuffle every step. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "13231": {
+   "vnum": 13231,
+   "name": "The Mine Tunnels Of The First Deep",
+   "map": {
+    "x": 33,
+    "y": 108,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13230,
+     "description": "To the north lies A Three-Way Junction."
+    },
+    "south": {
+     "to_room": 13232,
+     "description": "To the south lies A Three-Way Junction."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13232": {
+   "vnum": 13232,
+   "name": "A Three-Way Junction",
+   "map": {
+    "x": 33,
+    "y": 107,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13231,
+     "description": "To the north lies The Mine Tunnels Of The First Deep."
+    },
+    "east": {
+     "to_room": 13233,
+     "description": "To the east lies A Bend In The Tunnel."
+    },
+    "south": {
+     "to_room": 13235,
+     "description": "To the south lies A Bend In The Tunnel."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Shafts of\npale light slant between the trunks. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "13233": {
+   "vnum": 13233,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 34,
+    "y": 107,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13234,
+     "description": "To the south lies Entrance To The Smelting-Halls Of The Second Deep."
+    },
+    "west": {
+     "to_room": 13232,
+     "description": "To the west lies A Three-Way Junction."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead south and west.",
+   "placeholder": true
+  },
+  "13234": {
+   "vnum": 13234,
+   "name": "Entrance To The Smelting-Halls Of The Second Deep",
+   "map": {
+    "x": 34,
+    "y": 106,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13233,
+     "description": "To the north lies A Bend In The Tunnel."
+    },
+    "west": {
+     "to_room": 13235,
+     "description": "To the west lies A Bend In The Tunnel."
+    },
+    "down": {
+     "to_room": 13376,
+     "description": "To the down lies The Mine-Tunnels Of The Second Deep."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Old trees crowd\nclose, their roots knotted across the path. Ways lead north, west and\ndown.",
+   "placeholder": true
+  },
+  "13235": {
+   "vnum": 13235,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 33,
+    "y": 106,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13232,
+     "description": "To the north lies A Three-Way Junction."
+    },
+    "east": {
+     "to_room": 13234,
+     "description": "To the east lies Entrance To The Smelting-Halls Of The Second Deep."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "13236": {
+   "vnum": 13236,
+   "name": "The Mine Tunnels Of The First Deep",
+   "map": {
+    "x": 33,
+    "y": 110,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13237,
+     "description": "To the north lies A Three-Way Junction."
+    },
+    "south": {
+     "to_room": 13230,
+     "description": "To the south lies A Three-Way Junction."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13237": {
+   "vnum": 13237,
+   "name": "A Three-Way Junction",
+   "map": {
+    "x": 33,
+    "y": 111,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13239,
+     "description": "To the east lies The Mine Tunnels Of The First Deep."
+    },
+    "south": {
+     "to_room": 13236,
+     "description": "To the south lies The Mine Tunnels Of The First Deep."
+    },
+    "west": {
+     "to_room": 13238,
+     "description": "To the west lies The Mine Tunnels Of The First Deep."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "13238": {
+   "vnum": 13238,
+   "name": "The Mine Tunnels Of The First Deep",
+   "map": {
+    "x": 32,
+    "y": 111,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13237,
+     "description": "To the east lies A Three-Way Junction."
+    },
+    "west": {
+     "to_room": 13206,
+     "description": "To the west lies A Four-Way Junction."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13239": {
+   "vnum": 13239,
+   "name": "The Mine Tunnels Of The First Deep",
+   "map": {
+    "x": 35,
+    "y": 111,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13240,
+     "description": "To the east lies A Bend In The Tunnel."
+    },
+    "west": {
+     "to_room": 13237,
+     "description": "To the west lies A Three-Way Junction."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13240": {
+   "vnum": 13240,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 36,
+    "y": 111,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13241,
+     "description": "To the south lies A Bend In The Tunnel."
+    },
+    "west": {
+     "to_room": 13239,
+     "description": "To the west lies The Mine Tunnels Of The First Deep."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead south and west.",
+   "placeholder": true
+  },
+  "13241": {
+   "vnum": 13241,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 36,
+    "y": 110,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13240,
+     "description": "To the north lies A Bend In The Tunnel."
+    },
+    "east": {
+     "to_room": 13242,
+     "description": "To the east lies A Bend In The Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "13242": {
+   "vnum": 13242,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 37,
+    "y": 110,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13243,
+     "description": "To the south lies A Bend In The Tunnel."
+    },
+    "west": {
+     "to_room": 13241,
+     "description": "To the west lies A Bend In The Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "13243": {
+   "vnum": 13243,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 37,
+    "y": 109,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13242,
+     "description": "To the north lies A Bend In The Tunnel."
+    },
+    "west": {
+     "to_room": 13228,
+     "description": "To the west lies A Three-Way Junction."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "13244": {
+   "vnum": 13244,
+   "name": "The Mine Tunnels Of The First Deep",
+   "map": {
+    "x": 37,
+    "y": 104,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13245,
+     "description": "To the east lies The Mine Tunnels Of The First Deep."
+    },
+    "west": {
+     "to_room": 13224,
+     "description": "To the west lies A Four-Way Junction."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13245": {
+   "vnum": 13245,
+   "name": "The Mine Tunnels Of The First Deep",
+   "map": {
+    "x": 38,
+    "y": 104,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13246,
+     "description": "To the east lies A Three-Way Junction."
+    },
+    "west": {
+     "to_room": 13244,
+     "description": "To the west lies The Mine Tunnels Of The First Deep."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13246": {
+   "vnum": 13246,
+   "name": "A Three-Way Junction",
+   "map": {
+    "x": 39,
+    "y": 104,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13247,
+     "description": "To the north lies A Four-Way Junction."
+    },
+    "east": {
+     "to_room": 13249,
+     "description": "To the east lies A Bend In The Tunnel."
+    },
+    "west": {
+     "to_room": 13245,
+     "description": "To the west lies The Mine Tunnels Of The First Deep."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Old trees crowd close,\ntheir roots knotted across the path. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "13247": {
+   "vnum": 13247,
+   "name": "A Four-Way Junction",
+   "map": {
+    "x": 39,
+    "y": 106,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13250,
+     "description": "To the north lies A Bend In The Tunnel."
+    },
+    "east": {
+     "to_room": 13248,
+     "description": "To the east lies A Bend In The Tunnel."
+    },
+    "south": {
+     "to_room": 13246,
+     "description": "To the south lies A Three-Way Junction."
+    },
+    "west": {
+     "to_room": 13252,
+     "description": "To the west lies Halls Of Green Glass."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Ferns and moss\nsoften the ground beneath a dim green canopy. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "13248": {
+   "vnum": 13248,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 40,
+    "y": 106,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13249,
+     "description": "To the south lies A Bend In The Tunnel."
+    },
+    "west": {
+     "to_room": 13247,
+     "description": "To the west lies A Four-Way Junction."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "13249": {
+   "vnum": 13249,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 40,
+    "y": 104,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13248,
+     "description": "To the north lies A Bend In The Tunnel."
+    },
+    "west": {
+     "to_room": 13246,
+     "description": "To the west lies A Three-Way Junction."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and west.",
+   "placeholder": true
+  },
+  "13250": {
+   "vnum": 13250,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 39,
+    "y": 107,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13247,
+     "description": "To the south lies A Four-Way Junction."
+    },
+    "west": {
+     "to_room": 13251,
+     "description": "To the west lies A Three-Way Junction."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "13251": {
+   "vnum": 13251,
+   "name": "A Three-Way Junction",
+   "map": {
+    "x": 38,
+    "y": 107,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13250,
+     "description": "To the east lies A Bend In The Tunnel."
+    },
+    "south": {
+     "to_room": 13252,
+     "description": "To the south lies Halls Of Green Glass."
+    },
+    "west": {
+     "to_room": 13253,
+     "description": "To the west lies A Bend In The Tunnel."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Birdsong drifts down\nthrough the branches overhead. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "13252": {
+   "vnum": 13252,
+   "name": "Halls Of Green Glass",
+   "map": {
+    "x": 38,
+    "y": 106,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13251,
+     "description": "To the north lies A Three-Way Junction."
+    },
+    "east": {
+     "to_room": 13247,
+     "description": "To the east lies A Four-Way Junction."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Fallen needles and leaves\nmuffle every step. Ways lead north and east.",
+   "placeholder": true
+  },
+  "13253": {
+   "vnum": 13253,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 37,
+    "y": 107,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13243,
+     "description": "To the north lies A Bend In The Tunnel."
+    },
+    "east": {
+     "to_room": 13251,
+     "description": "To the east lies A Three-Way Junction."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and east.",
+   "placeholder": true
+  },
+  "13254": {
+   "vnum": 13254,
+   "name": "The Mine Tunnels Of The First Deep",
+   "map": {
+    "x": 36,
+    "y": 102,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13224,
+     "description": "To the north lies A Four-Way Junction."
+    },
+    "south": {
+     "to_room": 13255,
+     "description": "To the south lies The Mine Tunnels Of The First Deep."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13255": {
+   "vnum": 13255,
+   "name": "The Mine Tunnels Of The First Deep",
+   "map": {
+    "x": 36,
+    "y": 101,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13254,
+     "description": "To the north lies The Mine Tunnels Of The First Deep."
+    },
+    "south": {
+     "to_room": 13256,
+     "description": "To the south lies A Four-Way Junction."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13256": {
+   "vnum": 13256,
+   "name": "A Four-Way Junction",
+   "map": {
+    "x": 36,
+    "y": 100,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13255,
+     "description": "To the north lies The Mine Tunnels Of The First Deep."
+    },
+    "east": {
+     "to_room": 13257,
+     "description": "To the east lies The Mine Tunnels Of The First Deep."
+    },
+    "south": {
+     "to_room": 13273,
+     "description": "To the south lies A Three-Way Junction."
+    },
+    "west": {
+     "to_room": 13278,
+     "description": "To the west lies A Bend In The Tunnel."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Birdsong drifts down\nthrough the branches overhead. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "13257": {
+   "vnum": 13257,
+   "name": "The Mine Tunnels Of The First Deep",
+   "map": {
+    "x": 37,
+    "y": 100,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13258,
+     "description": "To the east lies A Bend In The Tunnel."
+    },
+    "west": {
+     "to_room": 13256,
+     "description": "To the west lies A Four-Way Junction."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13258": {
+   "vnum": 13258,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 38,
+    "y": 100,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13259,
+     "description": "To the north lies A Bend In The Tunnel."
+    },
+    "west": {
+     "to_room": 13257,
+     "description": "To the west lies The Mine Tunnels Of The First Deep."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "13259": {
+   "vnum": 13259,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 38,
+    "y": 101,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13260,
+     "description": "To the east lies A Bend In The Tunnel."
+    },
+    "south": {
+     "to_room": 13258,
+     "description": "To the south lies A Bend In The Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and south.",
+   "placeholder": true
+  },
+  "13260": {
+   "vnum": 13260,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 39,
+    "y": 101,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13261,
+     "description": "To the north lies A Bend In The Tunnel."
+    },
+    "west": {
+     "to_room": 13259,
+     "description": "To the west lies A Bend In The Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and west.",
+   "placeholder": true
+  },
+  "13261": {
+   "vnum": 13261,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 39,
+    "y": 102,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13262,
+     "description": "To the east lies A Bend In The Tunnel."
+    },
+    "south": {
+     "to_room": 13260,
+     "description": "To the south lies A Bend In The Tunnel."
+    },
+    "west": {
+     "to_room": 13200,
+     "description": "To the west lies Below The Tavern."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "13262": {
+   "vnum": 13262,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 40,
+    "y": 102,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13263,
+     "description": "To the south lies The Mine-Tunnels Of The First Deep."
+    },
+    "west": {
+     "to_room": 13261,
+     "description": "To the west lies A Bend In The Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead south and west.",
+   "placeholder": true
+  },
+  "13263": {
+   "vnum": 13263,
+   "name": "The Mine-Tunnels Of The First Deep",
+   "map": {
+    "x": 40,
+    "y": 101,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13262,
+     "description": "To the north lies A Bend In The Tunnel."
+    },
+    "south": {
+     "to_room": 13264,
+     "description": "To the south lies A Bend In The Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13264": {
+   "vnum": 13264,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 40,
+    "y": 100,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13263,
+     "description": "To the north lies The Mine-Tunnels Of The First Deep."
+    },
+    "west": {
+     "to_room": 13265,
+     "description": "To the west lies A Bend In The Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "13265": {
+   "vnum": 13265,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 39,
+    "y": 100,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13264,
+     "description": "To the east lies A Bend In The Tunnel."
+    },
+    "south": {
+     "to_room": 13266,
+     "description": "To the south lies A Three-Way Junction."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "13266": {
+   "vnum": 13266,
+   "name": "A Three-Way Junction",
+   "map": {
+    "x": 39,
+    "y": 99,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13265,
+     "description": "To the north lies A Bend In The Tunnel."
+    },
+    "south": {
+     "to_room": 13267,
+     "description": "To the south lies A Bend In The Tunnel."
+    },
+    "west": {
+     "to_room": 13275,
+     "description": "To the west lies A Three-Way Junction."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "13267": {
+   "vnum": 13267,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 39,
+    "y": 98,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13266,
+     "description": "To the north lies A Three-Way Junction."
+    },
+    "west": {
+     "to_room": 13268,
+     "description": "To the west lies A Three-Way Junction."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "13268": {
+   "vnum": 13268,
+   "name": "A Three-Way Junction",
+   "map": {
+    "x": 38,
+    "y": 98,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13275,
+     "description": "To the north lies A Three-Way Junction."
+    },
+    "east": {
+     "to_room": 13267,
+     "description": "To the east lies A Bend In The Tunnel."
+    },
+    "west": {
+     "to_room": 13269,
+     "description": "To the west lies A Bend In The Tunnel."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Fallen\nneedles and leaves muffle every step. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "13269": {
+   "vnum": 13269,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 37,
+    "y": 98,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13268,
+     "description": "To the east lies A Three-Way Junction."
+    },
+    "south": {
+     "to_room": 13270,
+     "description": "To the south lies A Bend In The Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and south.",
+   "placeholder": true
+  },
+  "13270": {
+   "vnum": 13270,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 37,
+    "y": 97,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13269,
+     "description": "To the north lies A Bend In The Tunnel."
+    },
+    "west": {
+     "to_room": 13271,
+     "description": "To the west lies A Bend In The Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "13271": {
+   "vnum": 13271,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 36,
+    "y": 97,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13272,
+     "description": "To the north lies A Three-Way Junction."
+    },
+    "east": {
+     "to_room": 13270,
+     "description": "To the east lies A Bend In The Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "13272": {
+   "vnum": 13272,
+   "name": "A Three-Way Junction",
+   "map": {
+    "x": 36,
+    "y": 98,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13273,
+     "description": "To the north lies A Three-Way Junction."
+    },
+    "south": {
+     "to_room": 13271,
+     "description": "To the south lies A Bend In The Tunnel."
+    },
+    "west": {
+     "to_room": 13276,
+     "description": "To the west lies A Bend In The Tunnel."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Fallen\nneedles and leaves muffle every step. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "13273": {
+   "vnum": 13273,
+   "name": "A Three-Way Junction",
+   "map": {
+    "x": 36,
+    "y": 99,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13256,
+     "description": "To the north lies A Four-Way Junction."
+    },
+    "east": {
+     "to_room": 13274,
+     "description": "To the east lies The Mine-Tunnels Of The First Deep."
+    },
+    "south": {
+     "to_room": 13272,
+     "description": "To the south lies A Three-Way Junction."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Shafts of\npale light slant between the trunks. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "13274": {
+   "vnum": 13274,
+   "name": "The Mine-Tunnels Of The First Deep",
+   "map": {
+    "x": 37,
+    "y": 99,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13275,
+     "description": "To the east lies A Three-Way Junction."
+    },
+    "west": {
+     "to_room": 13273,
+     "description": "To the west lies A Three-Way Junction."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13275": {
+   "vnum": 13275,
+   "name": "A Three-Way Junction",
+   "map": {
+    "x": 38,
+    "y": 99,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13266,
+     "description": "To the east lies A Three-Way Junction."
+    },
+    "south": {
+     "to_room": 13268,
+     "description": "To the south lies A Three-Way Junction."
+    },
+    "west": {
+     "to_room": 13274,
+     "description": "To the west lies The Mine-Tunnels Of The First Deep."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Shafts of pale light slant\nbetween the trunks. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "13276": {
+   "vnum": 13276,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 35,
+    "y": 98,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13277,
+     "description": "To the north lies The Mine-Tunnels Of The First Deep."
+    },
+    "east": {
+     "to_room": 13272,
+     "description": "To the east lies A Three-Way Junction."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and east.",
+   "placeholder": true
+  },
+  "13277": {
+   "vnum": 13277,
+   "name": "The Mine-Tunnels Of The First Deep",
+   "map": {
+    "x": 35,
+    "y": 99,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13278,
+     "description": "To the north lies A Bend In The Tunnel."
+    },
+    "south": {
+     "to_room": 13276,
+     "description": "To the south lies A Bend In The Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13278": {
+   "vnum": 13278,
+   "name": "A Bend In The Tunnel",
+   "map": {
+    "x": 35,
+    "y": 100,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13256,
+     "description": "To the east lies A Four-Way Junction."
+    },
+    "south": {
+     "to_room": 13277,
+     "description": "To the south lies The Mine-Tunnels Of The First Deep."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "13279": {
+   "vnum": 13279,
+   "name": "Mines Of Khukal",
+   "map": {
+    "x": 31,
+    "y": 103,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13212,
+     "description": "To the north lies Dael's Pass."
+    },
+    "east": {
+     "to_room": 13280,
+     "description": "To the east lies Mines Of Khukal."
+    },
+    "south": {
+     "to_room": 13282,
+     "description": "To the south lies Mines Of Khukal."
+    },
+    "west": {
+     "to_room": 13283,
+     "description": "To the west lies Mines Of Khukal."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "13280": {
+   "vnum": 13280,
+   "name": "Mines Of Khukal",
+   "map": {
+    "x": 32,
+    "y": 103,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13281,
+     "description": "To the south lies Mines Of Khukal."
+    },
+    "west": {
+     "to_room": 13279,
+     "description": "To the west lies Mines Of Khukal."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "13281": {
+   "vnum": 13281,
+   "name": "Mines Of Khukal",
+   "map": {
+    "x": 32,
+    "y": 102,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13280,
+     "description": "To the north lies Mines Of Khukal."
+    },
+    "west": {
+     "to_room": 13282,
+     "description": "To the west lies Mines Of Khukal."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "13282": {
+   "vnum": 13282,
+   "name": "Mines Of Khukal",
+   "map": {
+    "x": 31,
+    "y": 102,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13279,
+     "description": "To the north lies Mines Of Khukal."
+    },
+    "east": {
+     "to_room": 13281,
+     "description": "To the east lies Mines Of Khukal."
+    },
+    "south": {
+     "to_room": 13285,
+     "description": "To the south lies Mines Of Khukal."
+    },
+    "west": {
+     "to_room": 13284,
+     "description": "To the west lies Mines Of Khukal."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "13283": {
+   "vnum": 13283,
+   "name": "Mines Of Khukal",
+   "map": {
+    "x": 30,
+    "y": 103,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13279,
+     "description": "To the east lies Mines Of Khukal."
+    },
+    "south": {
+     "to_room": 13284,
+     "description": "To the south lies Mines Of Khukal."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and south.",
+   "placeholder": true
+  },
+  "13284": {
+   "vnum": 13284,
+   "name": "Mines Of Khukal",
+   "map": {
+    "x": 30,
+    "y": 102,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13283,
+     "description": "To the north lies Mines Of Khukal."
+    },
+    "east": {
+     "to_room": 13282,
+     "description": "To the east lies Mines Of Khukal."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "13285": {
+   "vnum": 13285,
+   "name": "Mines Of Khukal",
+   "map": {
+    "x": 31,
+    "y": 100,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13282,
+     "description": "To the north lies Mines Of Khukal."
+    },
+    "east": {
+     "to_room": 13280,
+     "description": "To the east lies Mines Of Khukal."
+    },
+    "west": {
+     "to_room": 13286,
+     "description": "To the west lies Mines Of Khukal."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "13286": {
+   "vnum": 13286,
+   "name": "Mines Of Khukal",
+   "map": {
+    "x": 30,
+    "y": 100,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13284,
+     "description": "To the north lies Mines Of Khukal."
+    },
+    "east": {
+     "to_room": 13285,
+     "description": "To the east lies Mines Of Khukal."
+    },
+    "south": {
+     "to_room": 13289,
+     "description": "To the south lies Mines Of Khukal."
+    },
+    "west": {
+     "to_room": 13287,
+     "description": "To the west lies Mines Of Khukal."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "13287": {
+   "vnum": 13287,
+   "name": "Mines Of Khukal",
+   "map": {
+    "x": 29,
+    "y": 100,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13286,
+     "description": "To the east lies Mines Of Khukal."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "13289": {
+   "vnum": 13289,
+   "name": "Mines Of Khukal",
+   "map": {
+    "x": 30,
+    "y": 99,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13286,
+     "description": "To the north lies Mines Of Khukal."
+    },
+    "east": {
+     "to_room": 13290,
+     "description": "To the east lies Mines Of Khukal."
+    },
+    "south": {
+     "to_room": 13292,
+     "description": "To the south lies Mines Of Khukal."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "13290": {
+   "vnum": 13290,
+   "name": "Mines Of Khukal",
+   "map": {
+    "x": 31,
+    "y": 99,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13291,
+     "description": "To the south lies Mines Of Khukal."
+    },
+    "west": {
+     "to_room": 13289,
+     "description": "To the west lies Mines Of Khukal."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead south and west.",
+   "placeholder": true
+  },
+  "13291": {
+   "vnum": 13291,
+   "name": "Mines Of Khukal",
+   "map": {
+    "x": 31,
+    "y": 98,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13290,
+     "description": "To the north lies Mines Of Khukal."
+    },
+    "south": {
+     "to_room": 13293,
+     "description": "To the south lies Mahal's Well."
+    },
+    "west": {
+     "to_room": 13292,
+     "description": "To the west lies Mines Of Khukal."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "13292": {
+   "vnum": 13292,
+   "name": "Mines Of Khukal",
+   "map": {
+    "x": 30,
+    "y": 98,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13289,
+     "description": "To the north lies Mines Of Khukal."
+    },
+    "east": {
+     "to_room": 13291,
+     "description": "To the east lies Mines Of Khukal."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and east.",
+   "placeholder": true
+  },
+  "13293": {
+   "vnum": 13293,
+   "name": "Mahal's Well",
+   "map": {
+    "x": 31,
+    "y": 97,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13291,
+     "description": "To the north lies Mines Of Khukal."
+    },
+    "down": {
+     "to_room": 13297,
+     "description": "To the down lies At The Bottom Of The Well."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Ferns and\nmoss soften the ground beneath a dim green canopy. Ways lead north and\ndown.",
+   "placeholder": true
+  },
+  "13294": {
+   "vnum": 13294,
+   "name": "The War Chamber",
+   "map": {
+    "x": 32,
+    "y": 115,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13201,
+     "description": "To the south lies The Old Mine Road."
+    },
+    "up": {
+     "to_room": 13199,
+     "description": "To the up lies The Grand Stairway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead south and up.",
+   "placeholder": true
+  },
+  "13295": {
+   "vnum": 13295,
+   "name": "Northeast Hold",
+   "map": {
+    "x": 37,
+    "y": 102,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 13200,
+     "description": "To the east lies Below The Tavern."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Fallen\nneedles and leaves muffle every step. A way leads east.",
+   "placeholder": true
+  },
+  "13296": {
+   "vnum": 13296,
+   "name": "The Hall Of Scribes",
+   "map": {
+    "x": 30,
+    "y": 111,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13206,
+     "description": "To the east lies A Four-Way Junction."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "13297": {
+   "vnum": 13297,
+   "name": "At The Bottom Of The Well",
+   "map": {
+    "x": 30,
+    "y": 96,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "up": {
+     "to_room": 13293,
+     "description": "To the up lies Mahal's Well."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. A way leads up.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

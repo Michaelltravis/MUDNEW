@@ -1,0 +1,2980 @@
+{
+ "number": 474,
+ "name": "Cave Elf Kingdom",
+ "builders": "Ceric",
+ "atlas_area": 74,
+ "rooms": {
+  "4664": {
+   "vnum": 4664,
+   "name": "In A Large Cavern",
+   "map": {
+    "x": 29,
+    "y": 39,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 4665,
+     "description": "To the west lies In A Large Cavern."
+    },
+    "up": {
+     "to_room": 6601,
+     "description": "To the up lies In The Cave."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead west and up.",
+   "placeholder": true
+  },
+  "4665": {
+   "vnum": 4665,
+   "name": "In A Large Cavern",
+   "map": {
+    "x": 28,
+    "y": 39,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 4664,
+     "description": "To the east lies In A Large Cavern."
+    },
+    "south": {
+     "to_room": 4677,
+     "description": "To the south lies In A Large Cavern."
+    },
+    "west": {
+     "to_room": 4666,
+     "description": "To the west lies In A Large Cavern."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "4666": {
+   "vnum": 4666,
+   "name": "In A Large Cavern",
+   "map": {
+    "x": 27,
+    "y": 39,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4668,
+     "description": "To the north lies In A Large Cavern."
+    },
+    "east": {
+     "to_room": 4665,
+     "description": "To the east lies In A Large Cavern."
+    },
+    "west": {
+     "to_room": 4667,
+     "description": "To the west lies In A Large Cavern."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "4667": {
+   "vnum": 4667,
+   "name": "In A Large Cavern",
+   "map": {
+    "x": 26,
+    "y": 39,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4669,
+     "description": "To the north lies In A Large Cavern."
+    },
+    "east": {
+     "to_room": 4666,
+     "description": "To the east lies In A Large Cavern."
+    },
+    "west": {
+     "to_room": 21782,
+     "description": "To the west lies In A Large Cavern."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "4668": {
+   "vnum": 4668,
+   "name": "In A Large Cavern",
+   "map": {
+    "x": 27,
+    "y": 40,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 4666,
+     "description": "To the south lies In A Large Cavern."
+    },
+    "west": {
+     "to_room": 4669,
+     "description": "To the west lies In A Large Cavern."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead south and west.",
+   "placeholder": true
+  },
+  "4669": {
+   "vnum": 4669,
+   "name": "In A Large Cavern",
+   "map": {
+    "x": 26,
+    "y": 40,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4672,
+     "description": "To the north lies In A Large Cavern."
+    },
+    "east": {
+     "to_room": 4668,
+     "description": "To the east lies In A Large Cavern."
+    },
+    "south": {
+     "to_room": 4667,
+     "description": "To the south lies In A Large Cavern."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "4672": {
+   "vnum": 4672,
+   "name": "In A Large Cavern",
+   "map": {
+    "x": 26,
+    "y": 41,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4673,
+     "description": "To the north lies In A Small Cavern."
+    },
+    "east": {
+     "to_room": 4674,
+     "description": "To the east lies In A Large Cavern."
+    },
+    "south": {
+     "to_room": 4669,
+     "description": "To the south lies In A Large Cavern."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "4673": {
+   "vnum": 4673,
+   "name": "In A Small Cavern",
+   "map": {
+    "x": 26,
+    "y": 42,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 4672,
+     "description": "To the south lies In A Large Cavern."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads south.",
+   "placeholder": true
+  },
+  "4674": {
+   "vnum": 4674,
+   "name": "In A Large Cavern",
+   "map": {
+    "x": 27,
+    "y": 41,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4676,
+     "description": "To the north lies In A Large Cavern."
+    },
+    "east": {
+     "to_room": 4675,
+     "description": "To the east lies In A Small Cavern."
+    },
+    "west": {
+     "to_room": 4672,
+     "description": "To the west lies In A Large Cavern."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "4675": {
+   "vnum": 4675,
+   "name": "In A Small Cavern",
+   "map": {
+    "x": 28,
+    "y": 41,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 4674,
+     "description": "To the west lies In A Large Cavern."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "4676": {
+   "vnum": 4676,
+   "name": "In A Large Cavern",
+   "map": {
+    "x": 27,
+    "y": 42,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 4686,
+     "description": "To the east lies In A Large Cavern."
+    },
+    "south": {
+     "to_room": 4674,
+     "description": "To the south lies In A Large Cavern."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and south.",
+   "placeholder": true
+  },
+  "4677": {
+   "vnum": 4677,
+   "name": "In A Large Cavern",
+   "map": {
+    "x": 28,
+    "y": 38,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4665,
+     "description": "To the north lies In A Large Cavern."
+    },
+    "south": {
+     "to_room": 4678,
+     "description": "To the south lies On The Underground Lake."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "4678": {
+   "vnum": 4678,
+   "name": "On The Underground Lake",
+   "map": {
+    "x": 28,
+    "y": 37,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4677,
+     "description": "To the north lies In A Large Cavern."
+    },
+    "east": {
+     "to_room": 4679,
+     "description": "To the east lies On The Underground Lake."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Reeds rustle along the\nwater's edge. Ways lead north and east.",
+   "placeholder": true
+  },
+  "4679": {
+   "vnum": 4679,
+   "name": "On The Underground Lake",
+   "map": {
+    "x": 29,
+    "y": 37,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 4680,
+     "description": "To the east lies On The Underground Lake."
+    },
+    "west": {
+     "to_room": 4678,
+     "description": "To the west lies On The Underground Lake."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Shallow water laps around\nstones and reeds. Ways lead east and west.",
+   "placeholder": true
+  },
+  "4680": {
+   "vnum": 4680,
+   "name": "On The Underground Lake",
+   "map": {
+    "x": 30,
+    "y": 37,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4681,
+     "description": "To the north lies In A Large Cavern."
+    },
+    "west": {
+     "to_room": 4679,
+     "description": "To the west lies On The Underground Lake."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Shallow water laps around\nstones and reeds. Ways lead north and west.",
+   "placeholder": true
+  },
+  "4681": {
+   "vnum": 4681,
+   "name": "In A Large Cavern",
+   "map": {
+    "x": 30,
+    "y": 38,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4682,
+     "description": "To the north lies In A Large Cavern."
+    },
+    "south": {
+     "to_room": 4680,
+     "description": "To the south lies On The Underground Lake."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "4682": {
+   "vnum": 4682,
+   "name": "In A Large Cavern",
+   "map": {
+    "x": 30,
+    "y": 39,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4683,
+     "description": "To the north lies In A Large Cavern."
+    },
+    "south": {
+     "to_room": 4681,
+     "description": "To the south lies In A Large Cavern."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "4683": {
+   "vnum": 4683,
+   "name": "In A Large Cavern",
+   "map": {
+    "x": 30,
+    "y": 42,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4684,
+     "description": "To the north lies In A Small Cavern."
+    },
+    "south": {
+     "to_room": 4682,
+     "description": "To the south lies In A Large Cavern."
+    },
+    "west": {
+     "to_room": 4685,
+     "description": "To the west lies In A Large Cavern."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "4684": {
+   "vnum": 4684,
+   "name": "In A Small Cavern",
+   "map": {
+    "x": 30,
+    "y": 43,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 4683,
+     "description": "To the south lies In A Large Cavern."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads south.",
+   "placeholder": true
+  },
+  "4685": {
+   "vnum": 4685,
+   "name": "In A Large Cavern",
+   "map": {
+    "x": 29,
+    "y": 42,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 4683,
+     "description": "To the east lies In A Large Cavern."
+    },
+    "west": {
+     "to_room": 4686,
+     "description": "To the west lies In A Large Cavern."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "4686": {
+   "vnum": 4686,
+   "name": "In A Large Cavern",
+   "map": {
+    "x": 28,
+    "y": 42,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4687,
+     "description": "To the north lies In A Large Cavern."
+    },
+    "east": {
+     "to_room": 4685,
+     "description": "To the east lies In A Large Cavern."
+    },
+    "west": {
+     "to_room": 4676,
+     "description": "To the west lies In A Large Cavern."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "4687": {
+   "vnum": 4687,
+   "name": "In A Large Cavern",
+   "map": {
+    "x": 28,
+    "y": 43,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4688,
+     "description": "To the north lies In A Large Cavern."
+    },
+    "south": {
+     "to_room": 4686,
+     "description": "To the south lies In A Large Cavern."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "4688": {
+   "vnum": 4688,
+   "name": "In A Large Cavern",
+   "map": {
+    "x": 28,
+    "y": 44,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4689,
+     "description": "To the north lies The Rough Tunnel.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 4687,
+     "description": "To the south lies In A Large Cavern."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "4689": {
+   "vnum": 4689,
+   "name": "The Rough Tunnel",
+   "map": {
+    "x": 28,
+    "y": 46,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 4688,
+     "description": "To the south lies In A Large Cavern."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads south.",
+   "placeholder": true
+  },
+  "21700": {
+   "vnum": 21700,
+   "name": "The Entrance to the Cave Elf Kingdom",
+   "map": {
+    "x": 25,
+    "y": 37,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21782,
+     "description": "To the north lies In A Large Cavern."
+    },
+    "south": {
+     "to_room": 21702,
+     "description": "To the south lies The Guarded Hallway to the Throne.."
+    },
+    "west": {
+     "to_room": 21701,
+     "description": "To the west lies Sentry Post."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "21701": {
+   "vnum": 21701,
+   "name": "Sentry Post",
+   "map": {
+    "x": 24,
+    "y": 37,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21700,
+     "description": "To the east lies The Entrance to the Cave Elf Kingdom."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads east.",
+   "placeholder": true
+  },
+  "21702": {
+   "vnum": 21702,
+   "name": "The Guarded Hallway to the Throne.",
+   "map": {
+    "x": 25,
+    "y": 36,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21700,
+     "description": "To the north lies The Entrance to the Cave Elf Kingdom."
+    },
+    "east": {
+     "to_room": 21704,
+     "description": "To the east lies Entrance to the Dungeons."
+    },
+    "south": {
+     "to_room": 21706,
+     "description": "To the south lies Before the King's Court."
+    },
+    "west": {
+     "to_room": 21703,
+     "description": "To the west lies Stairwell to the Upper Floor."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "21703": {
+   "vnum": 21703,
+   "name": "Stairwell to the Upper Floor",
+   "map": {
+    "x": 24,
+    "y": 36,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21702,
+     "description": "To the east lies The Guarded Hallway to the Throne.."
+    },
+    "up": {
+     "to_room": 21738,
+     "description": "To the up lies Entrance to the Upper Level of the Cave Elf Kingdom."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and up.",
+   "placeholder": true
+  },
+  "21704": {
+   "vnum": 21704,
+   "name": "Entrance to the Dungeons",
+   "map": {
+    "x": 26,
+    "y": 36,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 21702,
+     "description": "To the west lies The Guarded Hallway to the Throne.."
+    },
+    "down": {
+     "to_room": 21753,
+     "description": "To the down lies At the Bottom of the Dungeon Staircase."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead west and down.",
+   "placeholder": true
+  },
+  "21705": {
+   "vnum": 21705,
+   "name": "Guards Barracks",
+   "map": {
+    "x": 24,
+    "y": 35,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21706,
+     "description": "To the east lies Before the King's Court."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "21706": {
+   "vnum": 21706,
+   "name": "Before the King's Court",
+   "map": {
+    "x": 25,
+    "y": 35,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21702,
+     "description": "To the north lies The Guarded Hallway to the Throne.."
+    },
+    "east": {
+     "to_room": 21707,
+     "description": "To the east lies The War Advisor's Office.."
+    },
+    "south": {
+     "to_room": 21709,
+     "description": "To the south lies The Entrance to the King's Court."
+    },
+    "west": {
+     "to_room": 21705,
+     "description": "To the west lies Guards Barracks."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "21707": {
+   "vnum": 21707,
+   "name": "The War Advisor's Office.",
+   "map": {
+    "x": 26,
+    "y": 35,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 21706,
+     "description": "To the west lies Before the King's Court."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "21708": {
+   "vnum": 21708,
+   "name": "North West Corner of the King's Court",
+   "map": {
+    "x": 24,
+    "y": 34,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21709,
+     "description": "To the east lies The Entrance to the King's Court."
+    },
+    "south": {
+     "to_room": 21713,
+     "description": "To the south lies West Side of the King's Court."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "21709": {
+   "vnum": 21709,
+   "name": "The Entrance to the King's Court",
+   "map": {
+    "x": 25,
+    "y": 34,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21706,
+     "description": "To the north lies Before the King's Court."
+    },
+    "east": {
+     "to_room": 21710,
+     "description": "To the east lies North East Corner of the King's Court."
+    },
+    "south": {
+     "to_room": 21714,
+     "description": "To the south lies In the Centre of the King's Court."
+    },
+    "west": {
+     "to_room": 21708,
+     "description": "To the west lies North West Corner of the King's Court."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "21710": {
+   "vnum": 21710,
+   "name": "North East Corner of the King's Court",
+   "map": {
+    "x": 26,
+    "y": 34,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 21715,
+     "description": "To the south lies East Side of the King's Court."
+    },
+    "west": {
+     "to_room": 21709,
+     "description": "To the west lies The Entrance to the King's Court."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead south and west.",
+   "placeholder": true
+  },
+  "21711": {
+   "vnum": 21711,
+   "name": "The Royal Corridor",
+   "map": {
+    "x": 22,
+    "y": 33,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21712,
+     "description": "To the east lies The Royal Corridor."
+    },
+    "south": {
+     "to_room": 21718,
+     "description": "To the south lies The Royal Corridor."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east and south.",
+   "placeholder": true
+  },
+  "21712": {
+   "vnum": 21712,
+   "name": "The Royal Corridor",
+   "map": {
+    "x": 23,
+    "y": 33,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21713,
+     "description": "To the east lies West Side of the King's Court."
+    },
+    "west": {
+     "to_room": 21711,
+     "description": "To the west lies The Royal Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "21713": {
+   "vnum": 21713,
+   "name": "West Side of the King's Court",
+   "map": {
+    "x": 24,
+    "y": 33,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21708,
+     "description": "To the north lies North West Corner of the King's Court."
+    },
+    "east": {
+     "to_room": 21714,
+     "description": "To the east lies In the Centre of the King's Court."
+    },
+    "south": {
+     "to_room": 21719,
+     "description": "To the south lies South West Side of the King's Court."
+    },
+    "west": {
+     "to_room": 21712,
+     "description": "To the west lies The Royal Corridor."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "21714": {
+   "vnum": 21714,
+   "name": "In the Centre of the King's Court",
+   "map": {
+    "x": 25,
+    "y": 33,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21709,
+     "description": "To the north lies The Entrance to the King's Court."
+    },
+    "east": {
+     "to_room": 21715,
+     "description": "To the east lies East Side of the King's Court."
+    },
+    "south": {
+     "to_room": 21720,
+     "description": "To the south lies Before the Throne."
+    },
+    "west": {
+     "to_room": 21713,
+     "description": "To the west lies West Side of the King's Court."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "21715": {
+   "vnum": 21715,
+   "name": "East Side of the King's Court",
+   "map": {
+    "x": 26,
+    "y": 33,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21710,
+     "description": "To the north lies North East Corner of the King's Court."
+    },
+    "east": {
+     "to_room": 21716,
+     "description": "To the east lies The Royal Corridor."
+    },
+    "south": {
+     "to_room": 21721,
+     "description": "To the south lies South East Side of the King's Court."
+    },
+    "west": {
+     "to_room": 21714,
+     "description": "To the west lies In the Centre of the King's Court."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "21716": {
+   "vnum": 21716,
+   "name": "The Royal Corridor",
+   "map": {
+    "x": 27,
+    "y": 33,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21717,
+     "description": "To the east lies The Royal Corridor."
+    },
+    "west": {
+     "to_room": 21715,
+     "description": "To the west lies East Side of the King's Court."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "21717": {
+   "vnum": 21717,
+   "name": "The Royal Corridor",
+   "map": {
+    "x": 28,
+    "y": 33,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 21722,
+     "description": "To the south lies The Royal Corridor."
+    },
+    "west": {
+     "to_room": 21716,
+     "description": "To the west lies The Royal Corridor."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead south and west.",
+   "placeholder": true
+  },
+  "21718": {
+   "vnum": 21718,
+   "name": "The Royal Corridor",
+   "map": {
+    "x": 22,
+    "y": 31,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21711,
+     "description": "To the north lies The Royal Corridor."
+    },
+    "south": {
+     "to_room": 21723,
+     "description": "To the south lies The Royal Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "21719": {
+   "vnum": 21719,
+   "name": "South West Side of the King's Court",
+   "map": {
+    "x": 24,
+    "y": 32,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21713,
+     "description": "To the north lies West Side of the King's Court."
+    },
+    "east": {
+     "to_room": 21720,
+     "description": "To the east lies Before the Throne."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and east.",
+   "placeholder": true
+  },
+  "21720": {
+   "vnum": 21720,
+   "name": "Before the Throne",
+   "map": {
+    "x": 25,
+    "y": 32,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21714,
+     "description": "To the north lies In the Centre of the King's Court."
+    },
+    "east": {
+     "to_room": 21721,
+     "description": "To the east lies South East Side of the King's Court."
+    },
+    "south": {
+     "to_room": 21725,
+     "description": "To the south lies At the Throne of the Cave Elf King."
+    },
+    "west": {
+     "to_room": 21719,
+     "description": "To the west lies South West Side of the King's Court."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "21721": {
+   "vnum": 21721,
+   "name": "South East Side of the King's Court",
+   "map": {
+    "x": 26,
+    "y": 32,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21715,
+     "description": "To the north lies East Side of the King's Court."
+    },
+    "west": {
+     "to_room": 21720,
+     "description": "To the west lies Before the Throne."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "21722": {
+   "vnum": 21722,
+   "name": "The Royal Corridor",
+   "map": {
+    "x": 28,
+    "y": 31,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21717,
+     "description": "To the north lies The Royal Corridor."
+    },
+    "south": {
+     "to_room": 21727,
+     "description": "To the south lies The Royal Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "21723": {
+   "vnum": 21723,
+   "name": "The Royal Corridor",
+   "map": {
+    "x": 22,
+    "y": 29,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21718,
+     "description": "To the north lies The Royal Corridor."
+    },
+    "south": {
+     "to_room": 21728,
+     "description": "To the south lies The Royal Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "21724": {
+   "vnum": 21724,
+   "name": "On the Stage Next to the King's Throne",
+   "map": {
+    "x": 24,
+    "y": 31,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21725,
+     "description": "To the east lies At the Throne of the Cave Elf King."
+    },
+    "south": {
+     "to_room": 21775,
+     "description": "To the south lies The Royal Entrance to the Balcony."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "21725": {
+   "vnum": 21725,
+   "name": "At the Throne of the Cave Elf King",
+   "map": {
+    "x": 25,
+    "y": 31,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21720,
+     "description": "To the north lies Before the Throne."
+    },
+    "east": {
+     "to_room": 21726,
+     "description": "To the east lies On the Stage Next to the King's Throne."
+    },
+    "south": {
+     "to_room": 21730,
+     "description": "To the south lies The Secret Stairwell behind the Throne.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 21724,
+     "description": "To the west lies On the Stage Next to the King's Throne."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "21726": {
+   "vnum": 21726,
+   "name": "On the Stage Next to the King's Throne",
+   "map": {
+    "x": 26,
+    "y": 31,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 21780,
+     "description": "To the south lies The Royal Entrance to the Balcony."
+    },
+    "west": {
+     "to_room": 21725,
+     "description": "To the west lies At the Throne of the Cave Elf King."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead south and west.",
+   "placeholder": true
+  },
+  "21727": {
+   "vnum": 21727,
+   "name": "The Royal Corridor",
+   "map": {
+    "x": 28,
+    "y": 29,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21722,
+     "description": "To the north lies The Royal Corridor."
+    },
+    "south": {
+     "to_room": 21732,
+     "description": "To the south lies The Royal Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "21728": {
+   "vnum": 21728,
+   "name": "The Royal Corridor",
+   "map": {
+    "x": 22,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21723,
+     "description": "To the north lies The Royal Corridor."
+    },
+    "east": {
+     "to_room": 21729,
+     "description": "To the east lies The Royal Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and east.",
+   "placeholder": true
+  },
+  "21729": {
+   "vnum": 21729,
+   "name": "The Royal Corridor",
+   "map": {
+    "x": 23,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21774,
+     "description": "To the east lies On the Balcony Overlooking the Arena."
+    },
+    "west": {
+     "to_room": 21728,
+     "description": "To the west lies The Royal Corridor."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "21730": {
+   "vnum": 21730,
+   "name": "The Secret Stairwell behind the Throne",
+   "map": {
+    "x": 25,
+    "y": 29,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21725,
+     "description": "To the north lies At the Throne of the Cave Elf King."
+    },
+    "up": {
+     "to_room": 21733,
+     "description": "To the up lies Atop of a Secret Stairwell."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and up.",
+   "placeholder": true
+  },
+  "21731": {
+   "vnum": 21731,
+   "name": "The Royal Corridor",
+   "map": {
+    "x": 27,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21732,
+     "description": "To the east lies The Royal Corridor."
+    },
+    "west": {
+     "to_room": 21779,
+     "description": "To the west lies On the Balcony Overlooking the Arena."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "21732": {
+   "vnum": 21732,
+   "name": "The Royal Corridor",
+   "map": {
+    "x": 28,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21727,
+     "description": "To the north lies The Royal Corridor."
+    },
+    "west": {
+     "to_room": 21731,
+     "description": "To the west lies The Royal Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and west.",
+   "placeholder": true
+  },
+  "21733": {
+   "vnum": 21733,
+   "name": "Atop of a Secret Stairwell",
+   "map": {
+    "x": 25,
+    "y": 29,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21734,
+     "description": "To the north lies A Heavily Guarded Landing."
+    },
+    "down": {
+     "to_room": 21730,
+     "description": "To the down lies The Secret Stairwell behind the Throne."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and down.",
+   "placeholder": true
+  },
+  "21734": {
+   "vnum": 21734,
+   "name": "A Heavily Guarded Landing",
+   "map": {
+    "x": 25,
+    "y": 30,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21736,
+     "description": "To the north lies The Royal Bed Chamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 21733,
+     "description": "To the south lies Atop of a Secret Stairwell."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "21735": {
+   "vnum": 21735,
+   "name": "The Royal Nursery",
+   "map": {
+    "x": 23,
+    "y": 32,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21736,
+     "description": "To the east lies The Royal Bed Chamber."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "21736": {
+   "vnum": 21736,
+   "name": "The Royal Bed Chamber",
+   "map": {
+    "x": 25,
+    "y": 32,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21737,
+     "description": "To the east lies The Queen's Private Chamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 21734,
+     "description": "To the south lies A Heavily Guarded Landing."
+    },
+    "west": {
+     "to_room": 21735,
+     "description": "To the west lies The Royal Nursery.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "21737": {
+   "vnum": 21737,
+   "name": "The Queen's Private Chamber",
+   "map": {
+    "x": 27,
+    "y": 32,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 21736,
+     "description": "To the west lies The Royal Bed Chamber."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "21738": {
+   "vnum": 21738,
+   "name": "Entrance to the Upper Level of the Cave Elf Kingdom",
+   "map": {
+    "x": 24,
+    "y": 39,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21739,
+     "description": "To the east lies The Streets of Leisure."
+    },
+    "down": {
+     "to_room": 21703,
+     "description": "To the down lies Stairwell to the Upper Floor."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and down.",
+   "placeholder": true
+  },
+  "21739": {
+   "vnum": 21739,
+   "name": "The Streets of Leisure",
+   "map": {
+    "x": 25,
+    "y": 39,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 21741,
+     "description": "To the south lies The Streets of Leisure."
+    },
+    "west": {
+     "to_room": 21738,
+     "description": "To the west lies Entrance to the Upper Level of the Cave Elf Kingdom."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead south and west.",
+   "placeholder": true
+  },
+  "21740": {
+   "vnum": 21740,
+   "name": "The Swimming Baths",
+   "map": {
+    "x": 24,
+    "y": 38,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21741,
+     "description": "To the east lies The Streets of Leisure."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads east.",
+   "placeholder": true
+  },
+  "21741": {
+   "vnum": 21741,
+   "name": "The Streets of Leisure",
+   "map": {
+    "x": 25,
+    "y": 38,
+    "z": 1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 21739,
+     "description": "To the north lies The Streets of Leisure."
+    },
+    "east": {
+     "to_room": 21742,
+     "description": "To the east lies Glork's Taverna."
+    },
+    "south": {
+     "to_room": 21745,
+     "description": "To the south lies The Trading Chambers."
+    },
+    "west": {
+     "to_room": 21740,
+     "description": "To the west lies The Swimming Baths."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "21742": {
+   "vnum": 21742,
+   "name": "Glork's Taverna",
+   "map": {
+    "x": 26,
+    "y": 38,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 21741,
+     "description": "To the west lies The Streets of Leisure."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "21743": {
+   "vnum": 21743,
+   "name": "The Trading Chambers",
+   "map": {
+    "x": 23,
+    "y": 37,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21744,
+     "description": "To the east lies The Trading Chambers."
+    },
+    "south": {
+     "to_room": 21748,
+     "description": "To the south lies Mythor's Specialities."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "21744": {
+   "vnum": 21744,
+   "name": "The Trading Chambers",
+   "map": {
+    "x": 24,
+    "y": 37,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21745,
+     "description": "To the east lies The Trading Chambers."
+    },
+    "south": {
+     "to_room": 21749,
+     "description": "To the south lies Questor's Weapons."
+    },
+    "west": {
+     "to_room": 21743,
+     "description": "To the west lies The Trading Chambers."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "21745": {
+   "vnum": 21745,
+   "name": "The Trading Chambers",
+   "map": {
+    "x": 25,
+    "y": 37,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21741,
+     "description": "To the north lies The Streets of Leisure."
+    },
+    "east": {
+     "to_room": 21746,
+     "description": "To the east lies The Trading Chambers."
+    },
+    "south": {
+     "to_room": 21750,
+     "description": "To the south lies Valorin's Armours."
+    },
+    "west": {
+     "to_room": 21744,
+     "description": "To the west lies The Trading Chambers."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "21746": {
+   "vnum": 21746,
+   "name": "The Trading Chambers",
+   "map": {
+    "x": 26,
+    "y": 37,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21747,
+     "description": "To the east lies The Trading Chambers."
+    },
+    "south": {
+     "to_room": 21751,
+     "description": "To the south lies Lanthar's Magics."
+    },
+    "west": {
+     "to_room": 21745,
+     "description": "To the west lies The Trading Chambers."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "21747": {
+   "vnum": 21747,
+   "name": "The Trading Chambers",
+   "map": {
+    "x": 27,
+    "y": 37,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 21752,
+     "description": "To the south lies Mythelarin's Resthouse."
+    },
+    "west": {
+     "to_room": 21746,
+     "description": "To the west lies The Trading Chambers."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead south and west.",
+   "placeholder": true
+  },
+  "21748": {
+   "vnum": 21748,
+   "name": "Mythor's Specialities",
+   "map": {
+    "x": 23,
+    "y": 36,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21743,
+     "description": "To the north lies The Trading Chambers."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads north.",
+   "placeholder": true
+  },
+  "21749": {
+   "vnum": 21749,
+   "name": "Questor's Weapons",
+   "map": {
+    "x": 24,
+    "y": 36,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21744,
+     "description": "To the north lies The Trading Chambers."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads north.",
+   "placeholder": true
+  },
+  "21750": {
+   "vnum": 21750,
+   "name": "Valorin's Armours",
+   "map": {
+    "x": 25,
+    "y": 36,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21745,
+     "description": "To the north lies The Trading Chambers."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads north.",
+   "placeholder": true
+  },
+  "21751": {
+   "vnum": 21751,
+   "name": "Lanthar's Magics",
+   "map": {
+    "x": 26,
+    "y": 36,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21746,
+     "description": "To the north lies The Trading Chambers."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads north.",
+   "placeholder": true
+  },
+  "21752": {
+   "vnum": 21752,
+   "name": "Mythelarin's Resthouse",
+   "map": {
+    "x": 27,
+    "y": 36,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21747,
+     "description": "To the north lies The Trading Chambers."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads north.",
+   "placeholder": true
+  },
+  "21753": {
+   "vnum": 21753,
+   "name": "At the Bottom of the Dungeon Staircase",
+   "map": {
+    "x": 26,
+    "y": 36,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 21754,
+     "description": "To the west lies In the Dungeon."
+    },
+    "up": {
+     "to_room": 21704,
+     "description": "To the up lies Entrance to the Dungeons."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead west and up.",
+   "placeholder": true
+  },
+  "21754": {
+   "vnum": 21754,
+   "name": "In the Dungeon",
+   "map": {
+    "x": 25,
+    "y": 36,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21753,
+     "description": "To the east lies At the Bottom of the Dungeon Staircase."
+    },
+    "south": {
+     "to_room": 21757,
+     "description": "To the south lies In the Dungeon."
+    },
+    "west": {
+     "to_room": 21755,
+     "description": "To the west lies The Office of the Dungeon Keeper."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "21755": {
+   "vnum": 21755,
+   "name": "The Office of the Dungeon Keeper",
+   "map": {
+    "x": 24,
+    "y": 36,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21754,
+     "description": "To the east lies In the Dungeon."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads east.",
+   "placeholder": true
+  },
+  "21756": {
+   "vnum": 21756,
+   "name": "In a Dungeon Cell",
+   "map": {
+    "x": 23,
+    "y": 35,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21757,
+     "description": "To the east lies In the Dungeon."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads east.",
+   "placeholder": true
+  },
+  "21757": {
+   "vnum": 21757,
+   "name": "In the Dungeon",
+   "map": {
+    "x": 25,
+    "y": 35,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21754,
+     "description": "To the north lies In the Dungeon."
+    },
+    "east": {
+     "to_room": 21758,
+     "description": "To the east lies In a Dungeon Cell.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 21760,
+     "description": "To the south lies In the Dungeon."
+    },
+    "west": {
+     "to_room": 21756,
+     "description": "To the west lies In a Dungeon Cell.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "21758": {
+   "vnum": 21758,
+   "name": "In a Dungeon Cell",
+   "map": {
+    "x": 27,
+    "y": 35,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 21757,
+     "description": "To the west lies In the Dungeon."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "21759": {
+   "vnum": 21759,
+   "name": "In a Dungeon Cell",
+   "map": {
+    "x": 23,
+    "y": 34,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21760,
+     "description": "To the east lies In the Dungeon."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads east.",
+   "placeholder": true
+  },
+  "21760": {
+   "vnum": 21760,
+   "name": "In the Dungeon",
+   "map": {
+    "x": 25,
+    "y": 34,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21757,
+     "description": "To the north lies In the Dungeon."
+    },
+    "east": {
+     "to_room": 21761,
+     "description": "To the east lies In a Dungeon Cell.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 21763,
+     "description": "To the south lies In the Dungeon."
+    },
+    "west": {
+     "to_room": 21759,
+     "description": "To the west lies In a Dungeon Cell.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "21761": {
+   "vnum": 21761,
+   "name": "In a Dungeon Cell",
+   "map": {
+    "x": 27,
+    "y": 34,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 21760,
+     "description": "To the west lies In the Dungeon."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "21762": {
+   "vnum": 21762,
+   "name": "In a Dungeon Cell",
+   "map": {
+    "x": 23,
+    "y": 33,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21763,
+     "description": "To the east lies In the Dungeon."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads east.",
+   "placeholder": true
+  },
+  "21763": {
+   "vnum": 21763,
+   "name": "In the Dungeon",
+   "map": {
+    "x": 25,
+    "y": 33,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21760,
+     "description": "To the north lies In the Dungeon."
+    },
+    "east": {
+     "to_room": 21764,
+     "description": "To the east lies In a Dungeon Cell.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 21766,
+     "description": "To the south lies In the Dungeon."
+    },
+    "west": {
+     "to_room": 21762,
+     "description": "To the west lies In a Dungeon Cell.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "21764": {
+   "vnum": 21764,
+   "name": "In a Dungeon Cell",
+   "map": {
+    "x": 27,
+    "y": 33,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 21763,
+     "description": "To the west lies In the Dungeon."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "21765": {
+   "vnum": 21765,
+   "name": "In a Dungeon Cell",
+   "map": {
+    "x": 23,
+    "y": 32,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21766,
+     "description": "To the east lies In the Dungeon."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads east.",
+   "placeholder": true
+  },
+  "21766": {
+   "vnum": 21766,
+   "name": "In the Dungeon",
+   "map": {
+    "x": 25,
+    "y": 32,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21763,
+     "description": "To the north lies In the Dungeon."
+    },
+    "east": {
+     "to_room": 21767,
+     "description": "To the east lies In a Dungeon Cell.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 21769,
+     "description": "To the south lies In the Dungeon."
+    },
+    "west": {
+     "to_room": 21765,
+     "description": "To the west lies In a Dungeon Cell.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "21767": {
+   "vnum": 21767,
+   "name": "In a Dungeon Cell",
+   "map": {
+    "x": 27,
+    "y": 32,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 21766,
+     "description": "To the west lies In the Dungeon."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads west.",
+   "placeholder": true
+  },
+  "21768": {
+   "vnum": 21768,
+   "name": "Arena Holding Chamber",
+   "map": {
+    "x": 24,
+    "y": 31,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21769,
+     "description": "To the east lies In the Dungeon."
+    },
+    "south": {
+     "to_room": 21771,
+     "description": "To the south lies Champion's Tunnel to the Arena."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and south.",
+   "placeholder": true
+  },
+  "21769": {
+   "vnum": 21769,
+   "name": "In the Dungeon",
+   "map": {
+    "x": 25,
+    "y": 31,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21766,
+     "description": "To the north lies In the Dungeon."
+    },
+    "east": {
+     "to_room": 21770,
+     "description": "To the east lies Arena Holding Chamber."
+    },
+    "west": {
+     "to_room": 21768,
+     "description": "To the west lies Arena Holding Chamber."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "21770": {
+   "vnum": 21770,
+   "name": "Arena Holding Chamber",
+   "map": {
+    "x": 26,
+    "y": 31,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 21772,
+     "description": "To the south lies Challenger's Tunnel to the Arena."
+    },
+    "west": {
+     "to_room": 21769,
+     "description": "To the west lies In the Dungeon."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead south and west.",
+   "placeholder": true
+  },
+  "21771": {
+   "vnum": 21771,
+   "name": "Champion's Tunnel to the Arena",
+   "map": {
+    "x": 24,
+    "y": 30,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21768,
+     "description": "To the north lies Arena Holding Chamber."
+    },
+    "east": {
+     "to_room": 21793,
+     "description": "To the east lies The Arena of Champions."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "21772": {
+   "vnum": 21772,
+   "name": "Challenger's Tunnel to the Arena",
+   "map": {
+    "x": 26,
+    "y": 30,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21770,
+     "description": "To the north lies Arena Holding Chamber."
+    },
+    "west": {
+     "to_room": 21793,
+     "description": "To the west lies The Arena of Champions."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "21773": {
+   "vnum": 21773,
+   "name": "The Corner of the Balcony",
+   "map": {
+    "x": 24,
+    "y": 26,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21774,
+     "description": "To the north lies On the Balcony Overlooking the Arena."
+    },
+    "east": {
+     "to_room": 21776,
+     "description": "To the east lies On the Balcony Overlooking the Arena."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and east.",
+   "placeholder": true
+  },
+  "21774": {
+   "vnum": 21774,
+   "name": "On the Balcony Overlooking the Arena",
+   "map": {
+    "x": 24,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21775,
+     "description": "To the north lies The Royal Entrance to the Balcony."
+    },
+    "south": {
+     "to_room": 21773,
+     "description": "To the south lies The Corner of the Balcony."
+    },
+    "west": {
+     "to_room": 21729,
+     "description": "To the west lies The Royal Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "21775": {
+   "vnum": 21775,
+   "name": "The Royal Entrance to the Balcony",
+   "map": {
+    "x": 24,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21724,
+     "description": "To the north lies On the Stage Next to the King's Throne."
+    },
+    "east": {
+     "to_room": 21777,
+     "description": "To the east lies The Royal Seats on the Balcony."
+    },
+    "south": {
+     "to_room": 21774,
+     "description": "To the south lies On the Balcony Overlooking the Arena."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "21776": {
+   "vnum": 21776,
+   "name": "On the Balcony Overlooking the Arena",
+   "map": {
+    "x": 25,
+    "y": 26,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21778,
+     "description": "To the east lies The Corner of the Balcony."
+    },
+    "west": {
+     "to_room": 21773,
+     "description": "To the west lies The Corner of the Balcony."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "21777": {
+   "vnum": 21777,
+   "name": "The Royal Seats on the Balcony",
+   "map": {
+    "x": 25,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21780,
+     "description": "To the east lies The Royal Entrance to the Balcony."
+    },
+    "west": {
+     "to_room": 21775,
+     "description": "To the west lies The Royal Entrance to the Balcony."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "21778": {
+   "vnum": 21778,
+   "name": "The Corner of the Balcony",
+   "map": {
+    "x": 26,
+    "y": 26,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21779,
+     "description": "To the north lies On the Balcony Overlooking the Arena."
+    },
+    "west": {
+     "to_room": 21776,
+     "description": "To the west lies On the Balcony Overlooking the Arena."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "21779": {
+   "vnum": 21779,
+   "name": "On the Balcony Overlooking the Arena",
+   "map": {
+    "x": 26,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21780,
+     "description": "To the north lies The Royal Entrance to the Balcony."
+    },
+    "east": {
+     "to_room": 21731,
+     "description": "To the east lies The Royal Corridor."
+    },
+    "south": {
+     "to_room": 21778,
+     "description": "To the south lies The Corner of the Balcony."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "21780": {
+   "vnum": 21780,
+   "name": "The Royal Entrance to the Balcony",
+   "map": {
+    "x": 26,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 21726,
+     "description": "To the north lies On the Stage Next to the King's Throne."
+    },
+    "south": {
+     "to_room": 21779,
+     "description": "To the south lies On the Balcony Overlooking the Arena."
+    },
+    "west": {
+     "to_room": 21777,
+     "description": "To the west lies The Royal Seats on the Balcony."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "21782": {
+   "vnum": 21782,
+   "name": "In A Large Cavern",
+   "map": {
+    "x": 25,
+    "y": 39,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 4667,
+     "description": "To the east lies In A Large Cavern."
+    },
+    "south": {
+     "to_room": 21700,
+     "description": "To the south lies The Entrance to the Cave Elf Kingdom.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "21793": {
+   "vnum": 21793,
+   "name": "The Arena of Champions",
+   "map": {
+    "x": 25,
+    "y": 30,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21772,
+     "description": "To the east lies Challenger's Tunnel to the Arena."
+    },
+    "west": {
+     "to_room": 21771,
+     "description": "To the west lies Champion's Tunnel to the Arena."
+    },
+    "down": {
+     "to_room": 21794,
+     "description": "To the down lies The Hall of Champions."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east, west and down.",
+   "placeholder": true
+  },
+  "21794": {
+   "vnum": 21794,
+   "name": "The Hall of Champions",
+   "map": {
+    "x": 23,
+    "y": 28,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21795,
+     "description": "To the east lies The Hall of Champions."
+    },
+    "up": {
+     "to_room": 21793,
+     "description": "To the up lies The Arena of Champions."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and up.",
+   "placeholder": true
+  },
+  "21795": {
+   "vnum": 21795,
+   "name": "The Hall of Champions",
+   "map": {
+    "x": 24,
+    "y": 28,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21796,
+     "description": "To the east lies The Hall of Champions."
+    },
+    "west": {
+     "to_room": 21794,
+     "description": "To the west lies The Hall of Champions."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "21796": {
+   "vnum": 21796,
+   "name": "The Hall of Champions",
+   "map": {
+    "x": 25,
+    "y": 28,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21797,
+     "description": "To the east lies The Hall of Champions."
+    },
+    "west": {
+     "to_room": 21795,
+     "description": "To the west lies The Hall of Champions."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "21797": {
+   "vnum": 21797,
+   "name": "The Hall of Champions",
+   "map": {
+    "x": 26,
+    "y": 28,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21798,
+     "description": "To the east lies The Hall of Champions."
+    },
+    "west": {
+     "to_room": 21796,
+     "description": "To the west lies The Hall of Champions."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "21798": {
+   "vnum": 21798,
+   "name": "The Hall of Champions",
+   "map": {
+    "x": 27,
+    "y": 28,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 21799,
+     "description": "To the east lies The Shrine to Devram."
+    },
+    "west": {
+     "to_room": 21797,
+     "description": "To the west lies The Hall of Champions."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "21799": {
+   "vnum": 21799,
+   "name": "The Shrine to Devram",
+   "map": {
+    "x": 28,
+    "y": 28,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 21798,
+     "description": "To the west lies The Hall of Champions."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

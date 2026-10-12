@@ -1,0 +1,1335 @@
+{
+ "number": 518,
+ "name": "Necromancer Mines",
+ "builders": "Xarax",
+ "atlas_area": 118,
+ "rooms": {
+  "4200": {
+   "vnum": 4200,
+   "name": "Into the Mine",
+   "map": {
+    "x": 4,
+    "y": 25,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4201,
+     "description": "To the north lies Deeper Into the Mine."
+    },
+    "south": {
+     "to_room": 8573,
+     "description": "To the south lies Into The Mine."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "4201": {
+   "vnum": 4201,
+   "name": "Deeper Into the Mine",
+   "map": {
+    "x": 4,
+    "y": 26,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4202,
+     "description": "To the north lies A Crossroads in the Mine."
+    },
+    "south": {
+     "to_room": 4200,
+     "description": "To the south lies Into the Mine."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "4202": {
+   "vnum": 4202,
+   "name": "A Crossroads in the Mine",
+   "map": {
+    "x": 4,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 4205,
+     "description": "To the east lies A Dark Tunnel."
+    },
+    "south": {
+     "to_room": 4201,
+     "description": "To the south lies Deeper Into the Mine."
+    },
+    "west": {
+     "to_room": 4203,
+     "description": "To the west lies A Large Mine Shaft."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "4203": {
+   "vnum": 4203,
+   "name": "A Large Mine Shaft",
+   "map": {
+    "x": 3,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 4202,
+     "description": "To the east lies A Crossroads in the Mine."
+    },
+    "down": {
+     "to_room": 4204,
+     "description": "To the down lies The Bottom of the Mine Shaft."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and down.",
+   "placeholder": true
+  },
+  "4204": {
+   "vnum": 4204,
+   "name": "The Bottom of the Mine Shaft",
+   "map": {
+    "x": 3,
+    "y": 27,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 4218,
+     "description": "To the south lies A Lower Tunnel in the Mine."
+    },
+    "up": {
+     "to_room": 4203,
+     "description": "To the up lies A Large Mine Shaft."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead south and up.",
+   "placeholder": true
+  },
+  "4205": {
+   "vnum": 4205,
+   "name": "A Dark Tunnel",
+   "map": {
+    "x": 5,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 4206,
+     "description": "To the east lies A Dark Tunnel."
+    },
+    "west": {
+     "to_room": 4202,
+     "description": "To the west lies A Crossroads in the Mine."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "4206": {
+   "vnum": 4206,
+   "name": "A Dark Tunnel",
+   "map": {
+    "x": 6,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 4207,
+     "description": "To the east lies An Intersection in the Dark Tunnel."
+    },
+    "west": {
+     "to_room": 4205,
+     "description": "To the west lies A Dark Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "4207": {
+   "vnum": 4207,
+   "name": "An Intersection in the Dark Tunnel",
+   "map": {
+    "x": 7,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4208,
+     "description": "To the north lies A Dimly Lit Hallway."
+    },
+    "east": {
+     "to_room": 4216,
+     "description": "To the east lies A Dead End Chamber."
+    },
+    "south": {
+     "to_room": 4215,
+     "description": "To the south lies A Large Chamber."
+    },
+    "west": {
+     "to_room": 4206,
+     "description": "To the west lies A Dark Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "4208": {
+   "vnum": 4208,
+   "name": "A Dimly Lit Hallway",
+   "map": {
+    "x": 7,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4209,
+     "description": "To the north lies A Dimly Lit Hallway."
+    },
+    "east": {
+     "to_room": 4211,
+     "description": "To the east lies A Tiny Glowing Room."
+    },
+    "south": {
+     "to_room": 4207,
+     "description": "To the south lies An Intersection in the Dark Tunnel."
+    },
+    "west": {
+     "to_room": 4210,
+     "description": "To the west lies A Tiny Glowing Room."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "4209": {
+   "vnum": 4209,
+   "name": "A Dimly Lit Hallway",
+   "map": {
+    "x": 7,
+    "y": 29,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4212,
+     "description": "To the north lies The End of the Hallway."
+    },
+    "east": {
+     "to_room": 4253,
+     "description": "To the east lies A Common Room."
+    },
+    "south": {
+     "to_room": 4208,
+     "description": "To the south lies A Dimly Lit Hallway."
+    },
+    "west": {
+     "to_room": 4217,
+     "description": "To the west lies A Large Bedchamber."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "4210": {
+   "vnum": 4210,
+   "name": "A Tiny Glowing Room",
+   "map": {
+    "x": 6,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 4208,
+     "description": "To the east lies A Dimly Lit Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "4211": {
+   "vnum": 4211,
+   "name": "A Tiny Glowing Room",
+   "map": {
+    "x": 8,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 4208,
+     "description": "To the west lies A Dimly Lit Hallway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "4212": {
+   "vnum": 4212,
+   "name": "The End of the Hallway",
+   "map": {
+    "x": 7,
+    "y": 30,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4213,
+     "description": "To the north lies A Large Glowing Room."
+    },
+    "south": {
+     "to_room": 4209,
+     "description": "To the south lies A Dimly Lit Hallway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "4213": {
+   "vnum": 4213,
+   "name": "A Large Glowing Room",
+   "map": {
+    "x": 7,
+    "y": 31,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 4212,
+     "description": "To the south lies The End of the Hallway."
+    },
+    "west": {
+     "to_room": 4223,
+     "description": "To the west lies A Re-Animation Chamber."
+    },
+    "down": {
+     "to_room": 4214,
+     "description": "To the down lies An Eerie Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead south, west and down.",
+   "placeholder": true
+  },
+  "4214": {
+   "vnum": 4214,
+   "name": "An Eerie Corridor",
+   "map": {
+    "x": 7,
+    "y": 31,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4227,
+     "description": "To the north lies A Small Study."
+    },
+    "west": {
+     "to_room": 4224,
+     "description": "To the west lies An Eerie Corridor."
+    },
+    "up": {
+     "to_room": 4213,
+     "description": "To the up lies A Large Glowing Room."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, west and up.",
+   "placeholder": true
+  },
+  "4215": {
+   "vnum": 4215,
+   "name": "A Large Chamber",
+   "map": {
+    "x": 7,
+    "y": 26,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4207,
+     "description": "To the north lies An Intersection in the Dark Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "4216": {
+   "vnum": 4216,
+   "name": "A Dead End Chamber",
+   "map": {
+    "x": 8,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 4207,
+     "description": "To the west lies An Intersection in the Dark Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "4217": {
+   "vnum": 4217,
+   "name": "A Large Bedchamber",
+   "map": {
+    "x": 6,
+    "y": 29,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 4209,
+     "description": "To the east lies A Dimly Lit Hallway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "4218": {
+   "vnum": 4218,
+   "name": "A Lower Tunnel in the Mine",
+   "map": {
+    "x": 3,
+    "y": 26,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4204,
+     "description": "To the north lies The Bottom of the Mine Shaft."
+    },
+    "south": {
+     "to_room": 4219,
+     "description": "To the south lies Further Down the Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "4219": {
+   "vnum": 4219,
+   "name": "Further Down the Tunnel",
+   "map": {
+    "x": 3,
+    "y": 25,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4218,
+     "description": "To the north lies A Lower Tunnel in the Mine."
+    },
+    "east": {
+     "to_room": 4249,
+     "description": "To the east lies Eastern Mine."
+    },
+    "south": {
+     "to_room": 4233,
+     "description": "To the south lies The End of the Tunnel."
+    },
+    "west": {
+     "to_room": 4236,
+     "description": "To the west lies Western Mine."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "4220": {
+   "vnum": 4220,
+   "name": "A Cave Rat Nest",
+   "map": {
+    "x": 4,
+    "y": 23,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 4221,
+     "description": "To the east lies A Cave Rat Nest."
+    },
+    "west": {
+     "to_room": 4233,
+     "description": "To the west lies The End of the Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "4221": {
+   "vnum": 4221,
+   "name": "A Cave Rat Nest",
+   "map": {
+    "x": 6,
+    "y": 23,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4222,
+     "description": "To the north lies Cave Rat Queen Chamber."
+    },
+    "west": {
+     "to_room": 4220,
+     "description": "To the west lies A Cave Rat Nest."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "4222": {
+   "vnum": 4222,
+   "name": "Cave Rat Queen Chamber",
+   "map": {
+    "x": 6,
+    "y": 24,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 4221,
+     "description": "To the south lies A Cave Rat Nest."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads south.",
+   "placeholder": true
+  },
+  "4223": {
+   "vnum": 4223,
+   "name": "A Re-Animation Chamber",
+   "map": {
+    "x": 6,
+    "y": 31,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 4213,
+     "description": "To the east lies A Large Glowing Room."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads east.",
+   "placeholder": true
+  },
+  "4224": {
+   "vnum": 4224,
+   "name": "An Eerie Corridor",
+   "map": {
+    "x": 6,
+    "y": 31,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4225,
+     "description": "To the north lies A Dark Cell."
+    },
+    "east": {
+     "to_room": 4214,
+     "description": "To the east lies An Eerie Corridor."
+    },
+    "south": {
+     "to_room": 4226,
+     "description": "To the south lies A Dark Cell."
+    },
+    "west": {
+     "to_room": 4228,
+     "description": "To the west lies An Eerie Corridor."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "4225": {
+   "vnum": 4225,
+   "name": "A Dark Cell",
+   "map": {
+    "x": 6,
+    "y": 33,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 4224,
+     "description": "To the south lies An Eerie Corridor.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "4226": {
+   "vnum": 4226,
+   "name": "A Dark Cell",
+   "map": {
+    "x": 6,
+    "y": 29,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4224,
+     "description": "To the north lies An Eerie Corridor.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads north.",
+   "placeholder": true
+  },
+  "4227": {
+   "vnum": 4227,
+   "name": "A Small Study",
+   "map": {
+    "x": 7,
+    "y": 32,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 4214,
+     "description": "To the south lies An Eerie Corridor."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads south.",
+   "placeholder": true
+  },
+  "4228": {
+   "vnum": 4228,
+   "name": "An Eerie Corridor",
+   "map": {
+    "x": 5,
+    "y": 31,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4230,
+     "description": "To the north lies The End of the Eerie Corridor."
+    },
+    "east": {
+     "to_room": 4224,
+     "description": "To the east lies An Eerie Corridor."
+    },
+    "south": {
+     "to_room": 4229,
+     "description": "To the south lies A Dark Cell."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "4229": {
+   "vnum": 4229,
+   "name": "A Dark Cell",
+   "map": {
+    "x": 5,
+    "y": 29,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4228,
+     "description": "To the north lies An Eerie Corridor.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads north.",
+   "placeholder": true
+  },
+  "4230": {
+   "vnum": 4230,
+   "name": "The End of the Eerie Corridor",
+   "map": {
+    "x": 5,
+    "y": 32,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4231,
+     "description": "To the north lies The Sacrificial Altar."
+    },
+    "south": {
+     "to_room": 4228,
+     "description": "To the south lies An Eerie Corridor."
+    },
+    "west": {
+     "to_room": 4232,
+     "description": "To the west lies Master Necromancer's Study."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "4231": {
+   "vnum": 4231,
+   "name": "The Sacrificial Altar",
+   "map": {
+    "x": 5,
+    "y": 33,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 4230,
+     "description": "To the south lies The End of the Eerie Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads south.",
+   "placeholder": true
+  },
+  "4232": {
+   "vnum": 4232,
+   "name": "Master Necromancer's Study",
+   "map": {
+    "x": 3,
+    "y": 32,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 4230,
+     "description": "To the east lies The End of the Eerie Corridor.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "4233": {
+   "vnum": 4233,
+   "name": "The End of the Tunnel",
+   "map": {
+    "x": 3,
+    "y": 23,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4219,
+     "description": "To the north lies Further Down the Tunnel."
+    },
+    "east": {
+     "to_room": 4220,
+     "description": "To the east lies A Cave Rat Nest."
+    },
+    "down": {
+     "to_room": 4234,
+     "description": "To the down lies A Dark Cave."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and down.",
+   "placeholder": true
+  },
+  "4234": {
+   "vnum": 4234,
+   "name": "A Dark Cave",
+   "map": {
+    "x": 2,
+    "y": 22,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 4233,
+     "description": "To the up lies The End of the Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads up.",
+   "placeholder": true
+  },
+  "4236": {
+   "vnum": 4236,
+   "name": "Western Mine",
+   "map": {
+    "x": 2,
+    "y": 25,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 4219,
+     "description": "To the east lies Further Down the Tunnel."
+    },
+    "west": {
+     "to_room": 4237,
+     "description": "To the west lies T-Intersection in the Western Mine."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "4237": {
+   "vnum": 4237,
+   "name": "T-Intersection in the Western Mine",
+   "map": {
+    "x": 0,
+    "y": 25,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4238,
+     "description": "To the north lies North-Western Mine."
+    },
+    "east": {
+     "to_room": 4236,
+     "description": "To the east lies Western Mine."
+    },
+    "south": {
+     "to_room": 4240,
+     "description": "To the south lies South-Western Mine."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "4238": {
+   "vnum": 4238,
+   "name": "North-Western Mine",
+   "map": {
+    "x": 0,
+    "y": 26,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 4248,
+     "description": "To the east lies Mine Storage Room."
+    },
+    "south": {
+     "to_room": 4237,
+     "description": "To the south lies T-Intersection in the Western Mine."
+    },
+    "west": {
+     "to_room": 4239,
+     "description": "To the west lies North-Western Mine."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "4239": {
+   "vnum": 4239,
+   "name": "North-Western Mine",
+   "map": {
+    "x": -1,
+    "y": 26,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4243,
+     "description": "To the north lies Northern Mine."
+    },
+    "east": {
+     "to_room": 4238,
+     "description": "To the east lies North-Western Mine."
+    },
+    "south": {
+     "to_room": 4242,
+     "description": "To the south lies South-Western Mine Corner."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "4240": {
+   "vnum": 4240,
+   "name": "South-Western Mine",
+   "map": {
+    "x": 0,
+    "y": 24,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4237,
+     "description": "To the north lies T-Intersection in the Western Mine."
+    },
+    "west": {
+     "to_room": 4242,
+     "description": "To the west lies South-Western Mine Corner."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "4242": {
+   "vnum": 4242,
+   "name": "South-Western Mine Corner",
+   "map": {
+    "x": -1,
+    "y": 24,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4239,
+     "description": "To the north lies North-Western Mine."
+    },
+    "east": {
+     "to_room": 4240,
+     "description": "To the east lies South-Western Mine."
+    },
+    "down": {
+     "to_room": 4247,
+     "description": "To the down lies A Small Hole."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east and down.",
+   "placeholder": true
+  },
+  "4243": {
+   "vnum": 4243,
+   "name": "Northern Mine",
+   "map": {
+    "x": -1,
+    "y": 27,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4244,
+     "description": "To the north lies Northern Mine."
+    },
+    "south": {
+     "to_room": 4239,
+     "description": "To the south lies North-Western Mine."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "4244": {
+   "vnum": 4244,
+   "name": "Northern Mine",
+   "map": {
+    "x": -1,
+    "y": 28,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4246,
+     "description": "To the north lies End of the Northern Mine."
+    },
+    "south": {
+     "to_room": 4243,
+     "description": "To the south lies Northern Mine."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "4245": {
+   "vnum": 4245,
+   "name": "A Dark Cavern",
+   "map": {
+    "x": -2,
+    "y": 24,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 4247,
+     "description": "To the south lies A Small Hole."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads south.",
+   "placeholder": true
+  },
+  "4246": {
+   "vnum": 4246,
+   "name": "End of the Northern Mine",
+   "map": {
+    "x": -1,
+    "y": 29,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 4244,
+     "description": "To the south lies Northern Mine."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "4247": {
+   "vnum": 4247,
+   "name": "A Small Hole",
+   "map": {
+    "x": -2,
+    "y": 23,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4245,
+     "description": "To the north lies A Dark Cavern."
+    },
+    "up": {
+     "to_room": 4242,
+     "description": "To the up lies South-Western Mine Corner."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and up.",
+   "placeholder": true
+  },
+  "4248": {
+   "vnum": 4248,
+   "name": "Mine Storage Room",
+   "map": {
+    "x": 1,
+    "y": 26,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 4238,
+     "description": "To the west lies North-Western Mine."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "4249": {
+   "vnum": 4249,
+   "name": "Eastern Mine",
+   "map": {
+    "x": 4,
+    "y": 25,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 4251,
+     "description": "To the north lies Mine Break Room."
+    },
+    "east": {
+     "to_room": 4250,
+     "description": "To the east lies Dead End in the Eastern Mine."
+    },
+    "west": {
+     "to_room": 4219,
+     "description": "To the west lies Further Down the Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "4250": {
+   "vnum": 4250,
+   "name": "Dead End in the Eastern Mine",
+   "map": {
+    "x": 5,
+    "y": 25,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 4249,
+     "description": "To the west lies Eastern Mine."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads west.",
+   "placeholder": true
+  },
+  "4251": {
+   "vnum": 4251,
+   "name": "Mine Break Room",
+   "map": {
+    "x": 4,
+    "y": 26,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 4252,
+     "description": "To the east lies A Small Kitchen."
+    },
+    "south": {
+     "to_room": 4249,
+     "description": "To the south lies Eastern Mine."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and south.",
+   "placeholder": true
+  },
+  "4252": {
+   "vnum": 4252,
+   "name": "A Small Kitchen",
+   "map": {
+    "x": 5,
+    "y": 26,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 4251,
+     "description": "To the west lies Mine Break Room."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "4253": {
+   "vnum": 4253,
+   "name": "A Common Room",
+   "map": {
+    "x": 8,
+    "y": 29,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 4209,
+     "description": "To the west lies A Dimly Lit Hallway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads west.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

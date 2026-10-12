@@ -3,8 +3,9 @@
 Offline checks always run (fake rooms and players, the real door commands):
     python3 tests/test_doors.py
 Live checks run too when a server is up (./run.sh) with the gauntlet admin accounts
-(tools/gauntlet/README.md): the oak door 921 east / 922 west (key 900, "a golden key") with
-and without its key, `webdoor`, the push carrying both sides, and walking through.
+(tools/gauntlet/README.md): the High Tower's diamond gate, 2512 north / 2513 south (key 2500,
+"a diamond key"), with and without its key, `webdoor`, the push carrying both sides, and walking
+through. (The oak door of Minos it used before went with the re-lay on the atlas.)
 """
 import asyncio
 import json
@@ -228,7 +229,7 @@ async def live():
     tw.ACCOUNT, tw.PASSWORD, tw.CHAR = 'gauntletb', 'gauntlet1', 'Gauntletb'
     tn = tw.Telnet()
     await tn.open()
-    for line in ('wake', 'stand', 'goto 921', 'restore'):
+    for line in ('wake', 'stand', 'goto 2512', 'restore'):
         await tn.cmd(line, 0.5)
     async with aiohttp.ClientSession() as http:
         async with http.ws_connect(f'ws://{tw.HOST}:{tw.MAP}/') as ws:
@@ -248,33 +249,33 @@ async def live():
                     await asyncio.sleep(0.2)
                     for d in got:
                         for r in d.get('nearby') or []:
-                            if r['vnum'] == 921 and 'east' in (r.get('doors') or {}):
-                                return r['doors']['east']
+                            if r['vnum'] == 2512 and 'north' in (r.get('doors') or {}):
+                                return r['doors']['north']
                 return None
 
             # start closed and locked, without the key
-            await tn.cmd('oload 900', 0.5)
-            for line in ('close east', 'lock east', 'drop key', 'purge'):
+            await tn.cmd('oload 2500', 0.5)
+            for line in ('close north', 'lock north', 'drop key', 'purge'):
                 await tn.cmd(line, 0.5)
             v = await door_view()
             check(v is not None and v['state'] == 'closed' and v['locked'] and v['has_key'] is False,
-                  f"near payload: the oak door 921 east is closed, locked, has_key false ({v and v.get('label')})")
-            check(v is not None and v.get('key_name') == 'a golden key', "…and names the key it needs")
-            await tn.cmd('oload 900', 0.5)
+                  f"near payload: the diamond gate 2512 north is closed, locked, has_key false ({v and v.get('label')})")
+            check(v is not None and v.get('key_name') == 'a diamond key', "…and names the key it needs")
+            await tn.cmd('oload 2500', 0.5)
             v = await door_view()
-            check(v is not None and v['has_key'] is True, 'with the golden key: has_key true')
+            check(v is not None and v['has_key'] is True, 'with the diamond key: has_key true')
             got.clear()
-            await tn.cmd('webdoor 921 east unlockopen', 1.0)
+            await tn.cmd('webdoor 2512 north unlockopen', 1.0)
             res = [d for d in got if d.get('type') == 'door_result']
             ev = [d for d in got if d.get('type') == 'door']
             check(bool(res) and res[-1]['ok'] and res[-1]['door']['state'] == 'open', 'webdoor unlockopen -> ok, open')
             both = {(x['vnum'], x['dir']) for e in ev for x in e['doors']}
-            check({(921, 'east'), (922, 'west')} <= both, 'the door event carries both sides (921 east, 922 west)')
+            check({(2512, 'north'), (2513, 'south')} <= both, 'the door event carries both sides (2512 north, 2513 south)')
             got.clear()
-            await tn.cmd('webmove 921 922 east', 1.0)
+            await tn.cmd('webmove 2512 2513 north', 1.0)
             mv = [d for d in got if d.get('type') == 'move_result']
-            check(bool(mv) and mv[-1]['ok'] and mv[-1]['dir'] == 'east', 'walking through the opened door')
-            await tn.cmd('webmove 922 921 west', 1.0)
+            check(bool(mv) and mv[-1]['ok'] and mv[-1]['dir'] == 'north', 'walking through the opened door')
+            await tn.cmd('webmove 2513 2512 south', 1.0)
             # leave it as the zone keeps it (open, unlocked), without our key
             for line in ('drop key', 'purge'):
                 await tn.cmd(line, 0.5)

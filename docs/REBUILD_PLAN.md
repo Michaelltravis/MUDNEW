@@ -1364,3 +1364,89 @@ the world itself is re-laid in the next push.
     opens it;
   - water: no boat no water, a raft takes you out, ashore is free, flying passes, land
     creatures stay ashore and river ones don't.
+
+### The world on the Bedlam atlas, step 3: re-laid, every room connected (Push 27) (owner: "Make sure rooms connect as needed")
+The world is rebuilt on the owner's atlas: `tools/atlas/build_world.py` writes `world/zones` from
+the atlas, the approved match and our content. It reads our world as it was before the re-lay
+from git (`PRE_RELAY_REV`), so it reproduces byte for byte.
+- **125 zones and 9,251 rooms.**
+  - Every atlas zone is a zone: the matched and similar ones under their old numbers, new ones
+    under 400 + atlas id.
+  - The city is Garathorm Inner City (zone 30, its south part absorbed). The Light Forest and
+    most of the dark forest are in the Plains (60). Moria's surface is in the Mountain Range
+    (40). The three sewer levels are one Sewer (72). Port Halyon, once Rome, is in the Sea of
+    Storms (120).
+- **Every atlas room** has its atlas name, its exits exactly as the atlas has them, and its
+  place on the map (`map`, so the 3D map lays the zone out as the atlas draws it).
+- **Our content carried over:**
+  - descriptions where the pairing is sound (Midgaard read as Garathorm);
+  - flags, creatures, items, puzzles and the rest;
+  - doors where we had the same doorway. The atlas's other doors are closed doors; the 224
+    it locks stay unlocked until keys are made.
+  - **Ours where the atlas calls a room water but its name says dry land** (3 rooms, Haon-Dor's
+    spider web among them).
+- **The 6,787 new rooms** carry short placeholder descriptions built from their terrain and ways
+  out, flagged `placeholder` (the index counts them as still to write).
+- **55 zones are sealed until built:** the new cities and dungeons, barred at every way in.
+- **Our rooms the atlas lacked:**
+  - 11 annex groups kept and hung off their free side: the Grunting Boar Inn, the bank, the
+    guilds, Welmar's prison;
+  - creatures and items of the rest given to the room beside them.
+  - In a similar zone, every room of ours takes over an atlas room one for one while the atlas
+    has rooms to spare, so the arena, the stables and the warrior's quest places keep their
+    numbers.
+- **Our 32 zones off the atlas** join at the 21 reviewed hookups.
+- **Every room connects** (`tools/atlas/connect.py`):
+  - The temple reaches every open room, and you can walk back from each.
+  - What the atlas left unjoined got a way, 78 in all (each in `world/atlas/connections.json`
+    with its reason):
+    - 16 of our own old ways in (Drow City from the desert, the arena, the god rooms by the
+      temple, Minos);
+    - 11 of our own old ways out (Arachnos);
+    - 31 ways back along one-way entries;
+    - 18 ways to rooms drawn close by on the map (Minos's pits, two cells apart);
+    - 2 ways back out of a trap whose natural way was taken (the Plane of Chaos).
+  - One atlas stub, with no name and no way in or out, is left out.
+- **Water needs a boat or a raft** (`Config.WATER_NEEDS_BOAT` on).
+  - Rafts and canoes are sold at the quay (Captain Stolar, the sailor) and by New Thalos's
+    shipwright, and a hollow log lies at Haon-Dor's fallen tree. All are reachable on foot from
+    the temple.
+- **The tutorials' directions come from the map** at load (`quests.apply_routes`: "From the
+  Temple, go south three times, then west 11 times"), so they stay right however the world
+  changes. The sage's compass hints and `help stable` follow the new layout.
+- **Midgaard is Garathorm in all player-facing text** (80 places in code, quests and help). Code
+  identifiers (faction keys, achievement and quest ids) stay, and the Garathorm Native
+  achievement accepts the new name.
+- **The 3D client's zone themes** follow the new numbers: the Northern Wilderness is frozen, and
+  the Mountain Range and the Sea of Storms take their rooms' own terrain.
+- **The atlas tools** read the pre-re-lay world from git and can write to a scratch folder
+  (`ATLAS_OUT`). `tests/test_atlas.py` re-runs them there and checks they reproduce the
+  committed match exactly.
+- **`docs/world/ATLAS_INDEX.md`** now indexes the built world:
+  - the build-out queue (68 open zones, 2,692 open rooms still on placeholders);
+  - the ways added, the hookups, the annexes;
+  - each zone's needs, and water and boats.
+- **Tests:**
+  - `tests/test_world_atlas.py`:
+    - every atlas room and exit is in place;
+    - nothing is added without a reason, and nothing dangles;
+    - cells are unique;
+    - every open room is reached and walked back from;
+    - sealed ways are barred;
+    - every shop, trainer, stable, travel point and quest place is reached;
+    - a raft is reachable on foot;
+    - every room the code names exists.
+  - `test_atlas_engine.py` runs on the atlas places.
+  - `test_webmove` no longer pins the old temple's stairs.
+  - `probe_play3d.js atlas` walks the temple, the Great Field on the Trade Road, the forest and
+    the Newbie Zone in a browser.
+  - The door tests (`test_doors` live, `probe_play3d.js doors`) use the High Tower's diamond
+    gate. The oak door of Minos they used before went with the re-lay.
+- **Balance** (`tools/balance/sim.py`, all nine classes alone at 45-60, three runs each):
+  - Every fight came out exactly as before: the same deaths, and the same health at the boss.
+  - Only the walking between a quest's places grew, because the atlas's world is bigger:
+    2-9 minutes for most classes and 22 for the bard, whose quest spans the most ground.
+  - Quests now take 53-82 minutes alone, still inside the two-hour aim.
+  - The zone bosses (`tools/balance/bosses.py`) came out identical, line for line: a lone
+    hero's median worst fight is 49%, with 35 deaths in 360.
+  - Nothing was retuned.

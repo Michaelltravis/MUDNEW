@@ -1,0 +1,1105 @@
+{
+ "number": 429,
+ "name": "City of Ancients",
+ "builders": "Bigcheese",
+ "atlas_area": 29,
+ "rooms": {
+  "1600": {
+   "vnum": 1600,
+   "name": "The Path of Heroes",
+   "map": {
+    "x": -4,
+    "y": 5,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1601,
+     "description": "To the north lies The Path of Heroes."
+    },
+    "south": {
+     "to_room": 15201,
+     "description": "To the south lies The Gate Of Fameland."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand south.",
+   "placeholder": true
+  },
+  "1601": {
+   "vnum": 1601,
+   "name": "The Path of Heroes",
+   "map": {
+    "x": -4,
+    "y": 6,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1602,
+     "description": "To the north lies The Path of Heroes."
+    },
+    "south": {
+     "to_room": 1600,
+     "description": "To the south lies The Path of Heroes."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and south.",
+   "placeholder": true
+  },
+  "1602": {
+   "vnum": 1602,
+   "name": "The Path of Heroes",
+   "map": {
+    "x": -4,
+    "y": 7,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1603,
+     "description": "To the north lies The Path of Heroes."
+    },
+    "south": {
+     "to_room": 1601,
+     "description": "To the south lies The Path of Heroes."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and south.",
+   "placeholder": true
+  },
+  "1603": {
+   "vnum": 1603,
+   "name": "The Path of Heroes",
+   "map": {
+    "x": -4,
+    "y": 8,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1604,
+     "description": "To the north lies The Path of Heroes."
+    },
+    "south": {
+     "to_room": 1602,
+     "description": "To the south lies The Path of Heroes."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth and south.",
+   "placeholder": true
+  },
+  "1604": {
+   "vnum": 1604,
+   "name": "The Path of Heroes",
+   "map": {
+    "x": -4,
+    "y": 9,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1605,
+     "description": "To the north lies The Junction of Ancients."
+    },
+    "south": {
+     "to_room": 1603,
+     "description": "To the south lies The Path of Heroes."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand south.",
+   "placeholder": true
+  },
+  "1605": {
+   "vnum": 1605,
+   "name": "The Junction of Ancients",
+   "map": {
+    "x": -4,
+    "y": 10,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1608,
+     "description": "To the north lies The Way of Ancients."
+    },
+    "east": {
+     "to_room": 1607,
+     "description": "To the east lies The Walkway of Bones."
+    },
+    "south": {
+     "to_room": 1604,
+     "description": "To the south lies The Path of Heroes."
+    },
+    "west": {
+     "to_room": 1606,
+     "description": "To the west lies The Way of Heroes."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "1606": {
+   "vnum": 1606,
+   "name": "The Way of Heroes",
+   "map": {
+    "x": -5,
+    "y": 10,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1605,
+     "description": "To the east lies The Junction of Ancients."
+    },
+    "west": {
+     "to_room": 1609,
+     "description": "To the west lies The Way of Heroes."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "1607": {
+   "vnum": 1607,
+   "name": "The Walkway of Bones",
+   "map": {
+    "x": -3,
+    "y": 10,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1618,
+     "description": "To the east lies The Walkway of Bones."
+    },
+    "west": {
+     "to_room": 1605,
+     "description": "To the west lies The Junction of Ancients."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead east\nand west.",
+   "placeholder": true
+  },
+  "1608": {
+   "vnum": 1608,
+   "name": "The Way of Ancients",
+   "map": {
+    "x": -4,
+    "y": 11,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1625,
+     "description": "To the north lies The Way of Ancients."
+    },
+    "south": {
+     "to_room": 1605,
+     "description": "To the south lies The Junction of Ancients."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "1609": {
+   "vnum": 1609,
+   "name": "The Way of Heroes",
+   "map": {
+    "x": -6,
+    "y": 10,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1611,
+     "description": "To the north lies A Room of Slaying."
+    },
+    "east": {
+     "to_room": 1606,
+     "description": "To the east lies The Way of Heroes."
+    },
+    "south": {
+     "to_room": 1612,
+     "description": "To the south lies A Room of Slaying."
+    },
+    "west": {
+     "to_room": 1610,
+     "description": "To the west lies The Way of Heroes."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. Ways lead north, east, south\nand west.",
+   "placeholder": true
+  },
+  "1610": {
+   "vnum": 1610,
+   "name": "The Way of Heroes",
+   "map": {
+    "x": -7,
+    "y": 10,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1609,
+     "description": "To the east lies The Way of Heroes."
+    },
+    "south": {
+     "to_room": 1614,
+     "description": "To the south lies A Room of Slaying."
+    },
+    "west": {
+     "to_room": 1613,
+     "description": "To the west lies The Way of Heroes."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "1611": {
+   "vnum": 1611,
+   "name": "A Room of Slaying",
+   "map": {
+    "x": -6,
+    "y": 11,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 1609,
+     "description": "To the south lies The Way of Heroes."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads south.",
+   "placeholder": true
+  },
+  "1612": {
+   "vnum": 1612,
+   "name": "A Room of Slaying",
+   "map": {
+    "x": -6,
+    "y": 9,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1609,
+     "description": "To the north lies The Way of Heroes."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads north.",
+   "placeholder": true
+  },
+  "1613": {
+   "vnum": 1613,
+   "name": "The Way of Heroes",
+   "map": {
+    "x": -8,
+    "y": 10,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1615,
+     "description": "To the north lies A Room of Slaying."
+    },
+    "east": {
+     "to_room": 1610,
+     "description": "To the east lies The Way of Heroes."
+    },
+    "west": {
+     "to_room": 1616,
+     "description": "To the west lies The Way of Heroes."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north,\neast and west.",
+   "placeholder": true
+  },
+  "1614": {
+   "vnum": 1614,
+   "name": "A Room of Slaying",
+   "map": {
+    "x": -7,
+    "y": 9,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1610,
+     "description": "To the north lies The Way of Heroes."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads north.",
+   "placeholder": true
+  },
+  "1615": {
+   "vnum": 1615,
+   "name": "A Room of Slaying",
+   "map": {
+    "x": -8,
+    "y": 11,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 1613,
+     "description": "To the south lies The Way of Heroes."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads south.",
+   "placeholder": true
+  },
+  "1616": {
+   "vnum": 1616,
+   "name": "The Way of Heroes",
+   "map": {
+    "x": -9,
+    "y": 10,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1613,
+     "description": "To the east lies The Way of Heroes."
+    },
+    "south": {
+     "to_room": 1617,
+     "description": "To the south lies The Room of Might."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead east and\nsouth.",
+   "placeholder": true
+  },
+  "1617": {
+   "vnum": 1617,
+   "name": "The Room of Might",
+   "map": {
+    "x": -9,
+    "y": 9,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1616,
+     "description": "To the north lies The Way of Heroes."
+    },
+    "down": {
+     "to_room": 1624,
+     "description": "To the down lies The Room of Perseverance."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and down.",
+   "placeholder": true
+  },
+  "1618": {
+   "vnum": 1618,
+   "name": "The Walkway of Bones",
+   "map": {
+    "x": -2,
+    "y": 10,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 1619,
+     "description": "To the south lies The Walkway of Bones."
+    },
+    "west": {
+     "to_room": 1607,
+     "description": "To the west lies The Walkway of Bones."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead south\nand west.",
+   "placeholder": true
+  },
+  "1619": {
+   "vnum": 1619,
+   "name": "The Walkway of Bones",
+   "map": {
+    "x": -2,
+    "y": 9,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1618,
+     "description": "To the north lies The Walkway of Bones."
+    },
+    "south": {
+     "to_room": 1620,
+     "description": "To the south lies A Junction in The Walkway of Bones."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth and south.",
+   "placeholder": true
+  },
+  "1620": {
+   "vnum": 1620,
+   "name": "A Junction in The Walkway of Bones",
+   "map": {
+    "x": -2,
+    "y": 8,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1619,
+     "description": "To the north lies The Walkway of Bones."
+    },
+    "east": {
+     "to_room": 1623,
+     "description": "To the east lies The Room of Elders."
+    },
+    "south": {
+     "to_room": 1621,
+     "description": "To the south lies The Room of Bravery."
+    },
+    "west": {
+     "to_room": 1622,
+     "description": "To the west lies The Room of Courage."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "1621": {
+   "vnum": 1621,
+   "name": "The Room of Bravery",
+   "map": {
+    "x": -2,
+    "y": 7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1620,
+     "description": "To the north lies A Junction in The Walkway of Bones."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads north.",
+   "placeholder": true
+  },
+  "1622": {
+   "vnum": 1622,
+   "name": "The Room of Courage",
+   "map": {
+    "x": -3,
+    "y": 8,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1620,
+     "description": "To the east lies A Junction in The Walkway of Bones."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads east.",
+   "placeholder": true
+  },
+  "1623": {
+   "vnum": 1623,
+   "name": "The Room of Elders",
+   "map": {
+    "x": -1,
+    "y": 8,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1624,
+     "description": "To the east lies The Room of Perseverance."
+    },
+    "west": {
+     "to_room": 1620,
+     "description": "To the west lies A Junction in The Walkway of Bones."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "1624": {
+   "vnum": 1624,
+   "name": "The Room of Perseverance",
+   "map": {
+    "x": 0,
+    "y": 8,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 1623,
+     "description": "To the west lies The Room of Elders."
+    },
+    "up": {
+     "to_room": 1617,
+     "description": "To the up lies The Room of Might."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead west and up.",
+   "placeholder": true
+  },
+  "1625": {
+   "vnum": 1625,
+   "name": "The Way of Ancients",
+   "map": {
+    "x": -4,
+    "y": 12,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1626,
+     "description": "To the north lies The Way of Ancients."
+    },
+    "south": {
+     "to_room": 1608,
+     "description": "To the south lies The Way of Ancients."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and south.",
+   "placeholder": true
+  },
+  "1626": {
+   "vnum": 1626,
+   "name": "The Way of Ancients",
+   "map": {
+    "x": -4,
+    "y": 13,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1627,
+     "description": "To the north lies A Junction in The Way of Ancients."
+    },
+    "south": {
+     "to_room": 1625,
+     "description": "To the south lies The Way of Ancients."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "1627": {
+   "vnum": 1627,
+   "name": "A Junction in The Way of Ancients",
+   "map": {
+    "x": -4,
+    "y": 14,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1644,
+     "description": "To the east lies The Way of Ancients."
+    },
+    "south": {
+     "to_room": 1626,
+     "description": "To the south lies The Way of Ancients."
+    },
+    "west": {
+     "to_room": 1628,
+     "description": "To the west lies The Way of Ancients."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "1628": {
+   "vnum": 1628,
+   "name": "The Way of Ancients",
+   "map": {
+    "x": -5,
+    "y": 14,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1627,
+     "description": "To the east lies A Junction in The Way of Ancients."
+    },
+    "west": {
+     "to_room": 1629,
+     "description": "To the west lies The Way of Ancients."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead east\nand west.",
+   "placeholder": true
+  },
+  "1629": {
+   "vnum": 1629,
+   "name": "The Way of Ancients",
+   "map": {
+    "x": -6,
+    "y": 14,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1628,
+     "description": "To the east lies The Way of Ancients."
+    },
+    "west": {
+     "to_room": 1630,
+     "description": "To the west lies A Bend in The Way of Ancients."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "1630": {
+   "vnum": 1630,
+   "name": "A Bend in The Way of Ancients",
+   "map": {
+    "x": -7,
+    "y": 14,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1631,
+     "description": "To the north lies The Way of Ancients."
+    },
+    "east": {
+     "to_room": 1629,
+     "description": "To the east lies The Way of Ancients."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand east.",
+   "placeholder": true
+  },
+  "1631": {
+   "vnum": 1631,
+   "name": "The Way of Ancients",
+   "map": {
+    "x": -7,
+    "y": 15,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1632,
+     "description": "To the north lies The Way of Ancients."
+    },
+    "south": {
+     "to_room": 1630,
+     "description": "To the south lies A Bend in The Way of Ancients."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead north\nand south.",
+   "placeholder": true
+  },
+  "1632": {
+   "vnum": 1632,
+   "name": "The Way of Ancients",
+   "map": {
+    "x": -7,
+    "y": 16,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1633,
+     "description": "To the north lies A Bend in The Way of Ancients."
+    },
+    "south": {
+     "to_room": 1631,
+     "description": "To the south lies The Way of Ancients."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Voices and\nthe clatter of carts carry from somewhere nearby. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "1633": {
+   "vnum": 1633,
+   "name": "A Bend in The Way of Ancients",
+   "map": {
+    "x": -7,
+    "y": 17,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1634,
+     "description": "To the east lies The Way of Ancients."
+    },
+    "south": {
+     "to_room": 1632,
+     "description": "To the south lies The Way of Ancients."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead east and south.",
+   "placeholder": true
+  },
+  "1634": {
+   "vnum": 1634,
+   "name": "The Way of Ancients",
+   "map": {
+    "x": -6,
+    "y": 17,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1635,
+     "description": "To the east lies The Way of Ancients."
+    },
+    "west": {
+     "to_room": 1633,
+     "description": "To the west lies A Bend in The Way of Ancients."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "1635": {
+   "vnum": 1635,
+   "name": "The Way of Ancients",
+   "map": {
+    "x": -5,
+    "y": 17,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1636,
+     "description": "To the east lies The Road to The Temple."
+    },
+    "west": {
+     "to_room": 1634,
+     "description": "To the west lies The Way of Ancients."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\neast and west.",
+   "placeholder": true
+  },
+  "1636": {
+   "vnum": 1636,
+   "name": "The Road to The Temple",
+   "map": {
+    "x": -4,
+    "y": 17,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1637,
+     "description": "To the east lies The Way of Ancients."
+    },
+    "south": {
+     "to_room": 1645,
+     "description": "To the south lies The Rift."
+    },
+    "west": {
+     "to_room": 1635,
+     "description": "To the west lies The Way of Ancients."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "1637": {
+   "vnum": 1637,
+   "name": "The Way of Ancients",
+   "map": {
+    "x": -3,
+    "y": 17,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1638,
+     "description": "To the east lies The Way of Ancients."
+    },
+    "west": {
+     "to_room": 1636,
+     "description": "To the west lies The Road to The Temple."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "1638": {
+   "vnum": 1638,
+   "name": "The Way of Ancients",
+   "map": {
+    "x": -2,
+    "y": 17,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1639,
+     "description": "To the east lies Another Bend in The Way of Ancients."
+    },
+    "west": {
+     "to_room": 1637,
+     "description": "To the west lies The Way of Ancients."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead east and west.",
+   "placeholder": true
+  },
+  "1639": {
+   "vnum": 1639,
+   "name": "Another Bend in The Way of Ancients",
+   "map": {
+    "x": -1,
+    "y": 17,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 1640,
+     "description": "To the south lies The Way of Ancients."
+    },
+    "west": {
+     "to_room": 1638,
+     "description": "To the west lies The Way of Ancients."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nsouth and west.",
+   "placeholder": true
+  },
+  "1640": {
+   "vnum": 1640,
+   "name": "The Way of Ancients",
+   "map": {
+    "x": -1,
+    "y": 16,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1639,
+     "description": "To the north lies Another Bend in The Way of Ancients."
+    },
+    "south": {
+     "to_room": 1641,
+     "description": "To the south lies The Way of Ancients."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "1641": {
+   "vnum": 1641,
+   "name": "The Way of Ancients",
+   "map": {
+    "x": -1,
+    "y": 15,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1640,
+     "description": "To the north lies The Way of Ancients."
+    },
+    "south": {
+     "to_room": 1642,
+     "description": "To the south lies A Bend in The Way of Ancients."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north and south.",
+   "placeholder": true
+  },
+  "1642": {
+   "vnum": 1642,
+   "name": "A Bend in The Way of Ancients",
+   "map": {
+    "x": -1,
+    "y": 14,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1641,
+     "description": "To the north lies The Way of Ancients."
+    },
+    "west": {
+     "to_room": 1643,
+     "description": "To the west lies The Way of Ancients."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. Ways lead north and west.",
+   "placeholder": true
+  },
+  "1643": {
+   "vnum": 1643,
+   "name": "The Way of Ancients",
+   "map": {
+    "x": -2,
+    "y": 14,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1642,
+     "description": "To the east lies A Bend in The Way of Ancients."
+    },
+    "west": {
+     "to_room": 1644,
+     "description": "To the west lies The Way of Ancients."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "1644": {
+   "vnum": 1644,
+   "name": "The Way of Ancients",
+   "map": {
+    "x": -3,
+    "y": 14,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 1643,
+     "description": "To the east lies The Way of Ancients."
+    },
+    "west": {
+     "to_room": 1627,
+     "description": "To the west lies A Junction in The Way of Ancients."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead east and west.",
+   "placeholder": true
+  },
+  "1645": {
+   "vnum": 1645,
+   "name": "The Rift",
+   "map": {
+    "x": -4,
+    "y": 16,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 1636,
+     "description": "To the north lies The Road to The Temple."
+    },
+    "south": {
+     "to_room": 3001,
+     "description": "To the south lies The Temple Of Garathorm."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and south.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

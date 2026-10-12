@@ -303,9 +303,9 @@ class SimpleEntry:
 
 WORLD_LORE = {
     'midgaard_founding': {
-        'title': 'The Founding of Midgaard',
+        'title': 'The Founding of Garathorm',
         'content': '''Long ago, when the world was young and the gods still walked among 
-mortals, the great city of Midgaard was founded at the crossroads of the four 
+mortals, the great city of Garathorm was founded at the crossroads of the four 
 winds. Its walls were blessed by divine hands, and for centuries it has stood 
 as a beacon of civilization against the darkness that lurks beyond.'''
     },
@@ -318,13 +318,13 @@ that exist outside of time itself.'''
     },
     'moria_fall': {
         'title': 'The Fall of Moria',
-        'content': '''The dwarven kingdom of Moria once rivaled even Midgaard in its 
+        'content': '''The dwarven kingdom of Moria once rivaled even Garathorm in its 
 glory. But greed drove the miners too deep, and they awakened something ancient 
 and terrible. Now only goblins and worse things dwell in those abandoned halls.'''
     },
     'sewer_rats': {
         'title': 'The Sewer Kingdoms',
-        'content': '''Beneath the streets of Midgaard lies a vast network of ancient 
+        'content': '''Beneath the streets of Garathorm lies a vast network of ancient 
 sewers. Some say they predate the city itself. The rats that dwell there have 
 grown large and cunning, and rumors persist of a Rat King who rules the 
 darkness below.'''
@@ -376,7 +376,7 @@ NOTABLE_NPCS = {
     'sage_aldric': {
         'title': 'Sage Aldric',
         'content': '''The ancient Sage Aldric serves as guide to new adventurers in 
-Midgaard. His eyes hold the wisdom of centuries, and he is said to have once 
+Garathorm. His eyes hold the wisdom of centuries, and he is said to have once 
 walked with the gods themselves. He asks for nothing but attention from those 
 he teaches.'''
     },
@@ -389,7 +389,7 @@ he passes on his knowledge to the next generation of heroes.'''
     'puff_dragon': {
         'title': 'Puff the Dragon',
         'content': '''This peculiar little dragon can occasionally be found around 
-Midgaard. Despite being a dragon, Puff seems friendly and curious about 
+Garathorm. Despite being a dragon, Puff seems friendly and curious about 
 mortals. Some say he is actually a polymorphed wizard; others claim he is 
 the last of an ancient breed.'''
     },
@@ -397,7 +397,7 @@ the last of an ancient breed.'''
         'title': 'The Guild Receptionist',
         'content': '''Always present at the Adventurer\'s Guild desk, she processes 
 registrations and maintains the guild records. Rumor has it she knows every 
-adventurer who has ever passed through Midgaard - the living and the dead.'''
+adventurer who has ever passed through Garathorm - the living and the dead.'''
     }
 }
 

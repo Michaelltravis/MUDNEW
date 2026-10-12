@@ -1,0 +1,1565 @@
+{
+ "number": 464,
+ "name": "Brethrenmere",
+ "builders": "Smut",
+ "atlas_area": 64,
+ "rooms": {
+  "20600": {
+   "vnum": 20600,
+   "name": "Through The Rubble",
+   "map": {
+    "x": 12,
+    "y": 27,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20601,
+     "description": "To the south lies The Tunnels Of Darkness."
+    },
+    "up": {
+     "to_room": 4074,
+     "description": "To the up lies The Hole."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead south and up.",
+   "placeholder": true
+  },
+  "20601": {
+   "vnum": 20601,
+   "name": "The Tunnels Of Darkness",
+   "map": {
+    "x": 12,
+    "y": 25,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch.",
+   "placeholder": true
+  },
+  "20602": {
+   "vnum": 20602,
+   "name": "The Tunnels Of Darkness",
+   "map": {
+    "x": 12,
+    "y": 23,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach.",
+   "placeholder": true
+  },
+  "20603": {
+   "vnum": 20603,
+   "name": "The Tunnels Of Darkness",
+   "map": {
+    "x": 14,
+    "y": 23,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch.",
+   "placeholder": true
+  },
+  "20604": {
+   "vnum": 20604,
+   "name": "The Tunnels Of Darkness",
+   "map": {
+    "x": 17,
+    "y": 19,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke.",
+   "placeholder": true
+  },
+  "20605": {
+   "vnum": 20605,
+   "name": "The Tunnels Of Darkness",
+   "map": {
+    "x": 16,
+    "y": 23,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke.",
+   "placeholder": true
+  },
+  "20606": {
+   "vnum": 20606,
+   "name": "The Tunnels Of Darkness",
+   "map": {
+    "x": 18,
+    "y": 23,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch.",
+   "placeholder": true
+  },
+  "20607": {
+   "vnum": 20607,
+   "name": "The Tunnels Of Darkness",
+   "map": {
+    "x": 18,
+    "y": 27,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "down": {
+     "to_room": 20533,
+     "description": "To the down lies On The Ladder."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads down.",
+   "placeholder": true
+  },
+  "20608": {
+   "vnum": 20608,
+   "name": "The Tunnels Of Darkness",
+   "map": {
+    "x": 20,
+    "y": 27,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use.",
+   "placeholder": true
+  },
+  "20609": {
+   "vnum": 20609,
+   "name": "The Tunnels Of Darkness",
+   "map": {
+    "x": 20,
+    "y": 23,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch.",
+   "placeholder": true
+  },
+  "20610": {
+   "vnum": 20610,
+   "name": "Tunnels End",
+   "map": {
+    "x": 20,
+    "y": 19,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20604,
+     "description": "To the north lies The Tunnels Of Darkness."
+    },
+    "south": {
+     "to_room": 20615,
+     "description": "To the south lies Cavern Entrance."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20615": {
+   "vnum": 20615,
+   "name": "Cavern Entrance",
+   "map": {
+    "x": 20,
+    "y": 15,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20610,
+     "description": "To the north lies Tunnels End."
+    },
+    "east": {
+     "to_room": 20616,
+     "description": "To the east lies The Back Of The Cavern."
+    },
+    "south": {
+     "to_room": 20627,
+     "description": "To the south lies The Cavern Centre."
+    },
+    "west": {
+     "to_room": 20634,
+     "description": "To the west lies The Shopping District."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "20616": {
+   "vnum": 20616,
+   "name": "The Back Of The Cavern",
+   "map": {
+    "x": 22,
+    "y": 15,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20657,
+     "description": "To the north lies Spaymoore's Diner."
+    },
+    "east": {
+     "to_room": 20617,
+     "description": "To the east lies The Back Of The Cavern."
+    },
+    "south": {
+     "to_room": 20625,
+     "description": "To the south lies The Overseer's Pedestal."
+    },
+    "west": {
+     "to_room": 20615,
+     "description": "To the west lies Cavern Entrance."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "20617": {
+   "vnum": 20617,
+   "name": "The Back Of The Cavern",
+   "map": {
+    "x": 24,
+    "y": 15,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20618,
+     "description": "To the north lies The Living Room."
+    },
+    "east": {
+     "to_room": 20622,
+     "description": "To the east lies The North-Eastern Corner."
+    },
+    "south": {
+     "to_room": 20624,
+     "description": "To the south lies Middle Of The Cavern."
+    },
+    "west": {
+     "to_room": 20616,
+     "description": "To the west lies The Back Of The Cavern."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "20618": {
+   "vnum": 20618,
+   "name": "The Living Room",
+   "map": {
+    "x": 24,
+    "y": 16,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20620,
+     "description": "To the north lies The Hallway."
+    },
+    "east": {
+     "to_room": 20619,
+     "description": "To the east lies The Kitchen.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 20617,
+     "description": "To the south lies The Back Of The Cavern.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "20619": {
+   "vnum": 20619,
+   "name": "The Kitchen",
+   "map": {
+    "x": 25,
+    "y": 16,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 20618,
+     "description": "To the west lies The Living Room."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "20620": {
+   "vnum": 20620,
+   "name": "The Hallway",
+   "map": {
+    "x": 24,
+    "y": 17,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20618,
+     "description": "To the south lies The Living Room."
+    },
+    "up": {
+     "to_room": 20621,
+     "description": "To the up lies Upstairs In A Miner's House."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead south and up.",
+   "placeholder": true
+  },
+  "20621": {
+   "vnum": 20621,
+   "name": "Upstairs In A Miner's House",
+   "map": {
+    "x": 25,
+    "y": 18,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "down": {
+     "to_room": 20620,
+     "description": "To the down lies The Hallway."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. A way leads down.",
+   "placeholder": true
+  },
+  "20622": {
+   "vnum": 20622,
+   "name": "The North-Eastern Corner",
+   "map": {
+    "x": 27,
+    "y": 15,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20660,
+     "description": "To the north lies The Gents' Washroom."
+    },
+    "east": {
+     "to_room": 20661,
+     "description": "To the east lies The Ladies' Washroom."
+    },
+    "south": {
+     "to_room": 20623,
+     "description": "To the south lies The Far Eastern Wall."
+    },
+    "west": {
+     "to_room": 20617,
+     "description": "To the west lies The Back Of The Cavern."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "20623": {
+   "vnum": 20623,
+   "name": "The Far Eastern Wall",
+   "map": {
+    "x": 27,
+    "y": 13,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20622,
+     "description": "To the north lies The North-Eastern Corner."
+    },
+    "east": {
+     "to_room": 20664,
+     "description": "To the east lies The Newsroom."
+    },
+    "south": {
+     "to_room": 20645,
+     "description": "To the south lies The South Eastern Corner."
+    },
+    "west": {
+     "to_room": 20624,
+     "description": "To the west lies Middle Of The Cavern."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "20624": {
+   "vnum": 20624,
+   "name": "Middle Of The Cavern",
+   "map": {
+    "x": 24,
+    "y": 13,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20617,
+     "description": "To the north lies The Back Of The Cavern."
+    },
+    "east": {
+     "to_room": 20623,
+     "description": "To the east lies The Far Eastern Wall."
+    },
+    "south": {
+     "to_room": 20644,
+     "description": "To the south lies The Great Escape."
+    },
+    "west": {
+     "to_room": 20625,
+     "description": "To the west lies The Overseer's Pedestal."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "20625": {
+   "vnum": 20625,
+   "name": "The Overseer's Pedestal",
+   "map": {
+    "x": 22,
+    "y": 13,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20616,
+     "description": "To the north lies The Back Of The Cavern."
+    },
+    "east": {
+     "to_room": 20624,
+     "description": "To the east lies Middle Of The Cavern."
+    },
+    "south": {
+     "to_room": 20643,
+     "description": "To the south lies The Construction Site."
+    },
+    "west": {
+     "to_room": 20627,
+     "description": "To the west lies The Cavern Centre."
+    },
+    "up": {
+     "to_room": 20626,
+     "description": "To the up lies Atop the Pedestal."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east, south, west and up.",
+   "placeholder": true
+  },
+  "20626": {
+   "vnum": 20626,
+   "name": "Atop the Pedestal",
+   "map": {
+    "x": 23,
+    "y": 14,
+    "z": 3
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "down": {
+     "to_room": 20625,
+     "description": "To the down lies The Overseer's Pedestal."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. Bare rock\nclimbs steeply on one side and falls away on the other. A way leads\ndown.",
+   "placeholder": true
+  },
+  "20627": {
+   "vnum": 20627,
+   "name": "The Cavern Centre",
+   "map": {
+    "x": 20,
+    "y": 13,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20615,
+     "description": "To the north lies Cavern Entrance."
+    },
+    "east": {
+     "to_room": 20625,
+     "description": "To the east lies The Overseer's Pedestal."
+    },
+    "south": {
+     "to_room": 20641,
+     "description": "To the south lies By The Huge Stone Gates."
+    },
+    "west": {
+     "to_room": 20628,
+     "description": "To the west lies The Middle Of The Cavern."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "20628": {
+   "vnum": 20628,
+   "name": "The Middle Of The Cavern",
+   "map": {
+    "x": 18,
+    "y": 13,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20634,
+     "description": "To the north lies The Shopping District."
+    },
+    "east": {
+     "to_room": 20627,
+     "description": "To the east lies The Cavern Centre."
+    },
+    "south": {
+     "to_room": 20640,
+     "description": "To the south lies The Cavern Wall."
+    },
+    "west": {
+     "to_room": 20629,
+     "description": "To the west lies The Stone Fountain."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "20629": {
+   "vnum": 20629,
+   "name": "The Stone Fountain",
+   "map": {
+    "x": 16,
+    "y": 13,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20633,
+     "description": "To the north lies In Front Of The Shops."
+    },
+    "east": {
+     "to_room": 20628,
+     "description": "To the east lies The Middle Of The Cavern."
+    },
+    "south": {
+     "to_room": 20639,
+     "description": "To the south lies The Cavern Wall."
+    },
+    "west": {
+     "to_room": 20630,
+     "description": "To the west lies The Extreme Western Wall."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "20630": {
+   "vnum": 20630,
+   "name": "The Extreme Western Wall",
+   "map": {
+    "x": 14,
+    "y": 13,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20631,
+     "description": "To the north lies Entrance To The Treasury."
+    },
+    "east": {
+     "to_room": 20629,
+     "description": "To the east lies The Stone Fountain."
+    },
+    "south": {
+     "to_room": 20636,
+     "description": "To the south lies The South Western Corner."
+    },
+    "west": {
+     "to_room": 20662,
+     "description": "To the west lies The Doctor's Waiting Room."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Lantern hooks and\nfaded signboards hang over the street. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "20631": {
+   "vnum": 20631,
+   "name": "Entrance To The Treasury",
+   "map": {
+    "x": 14,
+    "y": 15,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20655,
+     "description": "To the north lies The Treasury Master's Office.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 20633,
+     "description": "To the east lies In Front Of The Shops."
+    },
+    "south": {
+     "to_room": 20630,
+     "description": "To the south lies The Extreme Western Wall."
+    },
+    "west": {
+     "to_room": 20632,
+     "description": "To the west lies The Treasury.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north,\neast, south and west.",
+   "placeholder": true
+  },
+  "20632": {
+   "vnum": 20632,
+   "name": "The Treasury",
+   "map": {
+    "x": 12,
+    "y": 15,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20631,
+     "description": "To the east lies Entrance To The Treasury."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads east.",
+   "placeholder": true
+  },
+  "20633": {
+   "vnum": 20633,
+   "name": "In Front Of The Shops",
+   "map": {
+    "x": 16,
+    "y": 15,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20635,
+     "description": "To the north lies Bits and Pieces."
+    },
+    "east": {
+     "to_room": 20634,
+     "description": "To the east lies The Shopping District."
+    },
+    "south": {
+     "to_room": 20629,
+     "description": "To the south lies The Stone Fountain."
+    },
+    "west": {
+     "to_room": 20631,
+     "description": "To the west lies Entrance To The Treasury."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "20634": {
+   "vnum": 20634,
+   "name": "The Shopping District",
+   "map": {
+    "x": 18,
+    "y": 15,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20656,
+     "description": "To the north lies Drapor's Shoe Fayre."
+    },
+    "east": {
+     "to_room": 20615,
+     "description": "To the east lies Cavern Entrance."
+    },
+    "south": {
+     "to_room": 20628,
+     "description": "To the south lies The Middle Of The Cavern."
+    },
+    "west": {
+     "to_room": 20633,
+     "description": "To the west lies In Front Of The Shops."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "20635": {
+   "vnum": 20635,
+   "name": "Bits and Pieces",
+   "map": {
+    "x": 16,
+    "y": 16,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20633,
+     "description": "To the south lies In Front Of The Shops."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads south.",
+   "placeholder": true
+  },
+  "20636": {
+   "vnum": 20636,
+   "name": "The South Western Corner",
+   "map": {
+    "x": 14,
+    "y": 11,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20630,
+     "description": "To the north lies The Extreme Western Wall."
+    },
+    "east": {
+     "to_room": 20639,
+     "description": "To the east lies The Cavern Wall."
+    },
+    "south": {
+     "to_room": 20654,
+     "description": "To the south lies The Repair Shed."
+    },
+    "west": {
+     "to_room": 20637,
+     "description": "To the west lies The Warehouse."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "20637": {
+   "vnum": 20637,
+   "name": "The Warehouse",
+   "map": {
+    "x": 12,
+    "y": 11,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 20636,
+     "description": "To the east lies The South Western Corner."
+    },
+    "west": {
+     "to_room": 20638,
+     "description": "To the west lies The Rift In Space."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. Ways lead east and west.",
+   "placeholder": true
+  },
+  "20638": {
+   "vnum": 20638,
+   "name": "The Rift In Space",
+   "map": {
+    "x": 10,
+    "y": 11,
+    "z": 3
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 203050,
+     "description": "To the west lies The Warehouse."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. A way leads west.",
+   "placeholder": true
+  },
+  "20639": {
+   "vnum": 20639,
+   "name": "The Cavern Wall",
+   "map": {
+    "x": 16,
+    "y": 11,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20629,
+     "description": "To the north lies The Stone Fountain."
+    },
+    "east": {
+     "to_room": 20640,
+     "description": "To the east lies The Cavern Wall."
+    },
+    "south": {
+     "to_room": 20642,
+     "description": "To the south lies An Empty House."
+    },
+    "west": {
+     "to_room": 20636,
+     "description": "To the west lies The South Western Corner."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "20640": {
+   "vnum": 20640,
+   "name": "The Cavern Wall",
+   "map": {
+    "x": 18,
+    "y": 11,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20628,
+     "description": "To the north lies The Middle Of The Cavern."
+    },
+    "east": {
+     "to_room": 20641,
+     "description": "To the east lies By The Huge Stone Gates."
+    },
+    "south": {
+     "to_room": 20722,
+     "description": "To the south lies The Guard House.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 20639,
+     "description": "To the west lies The Cavern Wall."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "20641": {
+   "vnum": 20641,
+   "name": "By The Huge Stone Gates",
+   "map": {
+    "x": 20,
+    "y": 11,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20627,
+     "description": "To the north lies The Cavern Centre."
+    },
+    "east": {
+     "to_room": 20643,
+     "description": "To the east lies The Construction Site."
+    },
+    "south": {
+     "to_room": 20750,
+     "description": "To the south lies Before The Bridge To Moria Deep."
+    },
+    "west": {
+     "to_room": 20640,
+     "description": "To the west lies The Cavern Wall."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "20642": {
+   "vnum": 20642,
+   "name": "An Empty House",
+   "map": {
+    "x": 16,
+    "y": 10,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20639,
+     "description": "To the north lies The Cavern Wall."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "20643": {
+   "vnum": 20643,
+   "name": "The Construction Site",
+   "map": {
+    "x": 22,
+    "y": 11,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20625,
+     "description": "To the north lies The Overseer's Pedestal."
+    },
+    "east": {
+     "to_room": 20644,
+     "description": "To the east lies The Great Escape."
+    },
+    "south": {
+     "to_room": 20652,
+     "description": "To the south lies The Hole."
+    },
+    "west": {
+     "to_room": 20641,
+     "description": "To the west lies By The Huge Stone Gates."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "20644": {
+   "vnum": 20644,
+   "name": "The Great Escape",
+   "map": {
+    "x": 24,
+    "y": 11,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20624,
+     "description": "To the north lies Middle Of The Cavern."
+    },
+    "east": {
+     "to_room": 20645,
+     "description": "To the east lies The South Eastern Corner."
+    },
+    "south": {
+     "to_room": 20651,
+     "description": "To the south lies Magluff's Tavern."
+    },
+    "west": {
+     "to_room": 20643,
+     "description": "To the west lies The Construction Site."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "20645": {
+   "vnum": 20645,
+   "name": "The South Eastern Corner",
+   "map": {
+    "x": 27,
+    "y": 11,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20623,
+     "description": "To the north lies The Far Eastern Wall."
+    },
+    "east": {
+     "to_room": 20646,
+     "description": "To the east lies The Overseer's Consultation Room."
+    },
+    "south": {
+     "to_room": 20659,
+     "description": "To the south lies The Miner's Rest."
+    },
+    "west": {
+     "to_room": 20644,
+     "description": "To the west lies The Great Escape."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "20646": {
+   "vnum": 20646,
+   "name": "The Overseer's Consultation Room",
+   "map": {
+    "x": 29,
+    "y": 11,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20648,
+     "description": "To the north lies The Study."
+    },
+    "east": {
+     "to_room": 20647,
+     "description": "To the east lies The Orangery."
+    },
+    "west": {
+     "to_room": 20645,
+     "description": "To the west lies The South Eastern Corner."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "20647": {
+   "vnum": 20647,
+   "name": "The Orangery",
+   "map": {
+    "x": 31,
+    "y": 11,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 20646,
+     "description": "To the west lies The Overseer's Consultation Room."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads west.",
+   "placeholder": true
+  },
+  "20648": {
+   "vnum": 20648,
+   "name": "The Study",
+   "map": {
+    "x": 29,
+    "y": 13,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20646,
+     "description": "To the south lies The Overseer's Consultation Room."
+    },
+    "up": {
+     "to_room": 20649,
+     "description": "To the up lies The Upstairs Bedroom."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead south and up.",
+   "placeholder": true
+  },
+  "20649": {
+   "vnum": 20649,
+   "name": "The Upstairs Bedroom",
+   "map": {
+    "x": 30,
+    "y": 14,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "down": {
+     "to_room": 20648,
+     "description": "To the down lies The Study."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads down.",
+   "placeholder": true
+  },
+  "20651": {
+   "vnum": 20651,
+   "name": "Magluff's Tavern",
+   "map": {
+    "x": 24,
+    "y": 10,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20644,
+     "description": "To the north lies The Great Escape."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads north.",
+   "placeholder": true
+  },
+  "20652": {
+   "vnum": 20652,
+   "name": "The Hole",
+   "map": {
+    "x": 22,
+    "y": 10,
+    "z": 3
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20643,
+     "description": "To the north lies The Construction Site."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. A narrow ledge picks its way\nalong the mountainside. A way leads north.",
+   "placeholder": true
+  },
+  "20654": {
+   "vnum": 20654,
+   "name": "The Repair Shed",
+   "map": {
+    "x": 14,
+    "y": 10,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20636,
+     "description": "To the north lies The South Western Corner."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. A way leads north.",
+   "placeholder": true
+  },
+  "20655": {
+   "vnum": 20655,
+   "name": "The Treasury Master's Office",
+   "map": {
+    "x": 14,
+    "y": 16,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20631,
+     "description": "To the south lies Entrance To The Treasury."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads south.",
+   "placeholder": true
+  },
+  "20656": {
+   "vnum": 20656,
+   "name": "Drapor's Shoe Fayre",
+   "map": {
+    "x": 18,
+    "y": 16,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 20634,
+     "description": "To the south lies The Shopping District."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. A way leads south.",
+   "placeholder": true
+  },
+  "20657": {
+   "vnum": 20657,
+   "name": "Spaymoore's Diner",
+   "map": {
+    "x": 22,
+    "y": 16,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20658,
+     "description": "To the north lies Spaymoore's Kitchen.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 20616,
+     "description": "To the south lies The Back Of The Cavern."
+    },
+    "west": {
+     "to_room": 20665,
+     "description": "To the west lies The Dining Area."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, south\nand west.",
+   "placeholder": true
+  },
+  "20658": {
+   "vnum": 20658,
+   "name": "Spaymoore's Kitchen",
+   "map": {
+    "x": 22,
+    "y": 17,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20657,
+     "description": "To the south lies Spaymoore's Diner."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "20659": {
+   "vnum": 20659,
+   "name": "The Miner's Rest",
+   "map": {
+    "x": 27,
+    "y": 10,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20645,
+     "description": "To the north lies The South Eastern Corner."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. A way leads north.",
+   "placeholder": true
+  },
+  "20660": {
+   "vnum": 20660,
+   "name": "The Gents' Washroom",
+   "map": {
+    "x": 27,
+    "y": 16,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 20622,
+     "description": "To the south lies The North-Eastern Corner."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. A way leads south.",
+   "placeholder": true
+  },
+  "20661": {
+   "vnum": 20661,
+   "name": "The Ladies' Washroom",
+   "map": {
+    "x": 28,
+    "y": 15,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20666,
+     "description": "To the north lies The Cubicle.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 20622,
+     "description": "To the west lies The North-Eastern Corner."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and west.",
+   "placeholder": true
+  },
+  "20662": {
+   "vnum": 20662,
+   "name": "The Doctor's Waiting Room",
+   "map": {
+    "x": 12,
+    "y": 13,
+    "z": 3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20630,
+     "description": "To the east lies The Extreme Western Wall."
+    },
+    "west": {
+     "to_room": 20663,
+     "description": "To the west lies Doctor Goldmine's Surgery.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "20663": {
+   "vnum": 20663,
+   "name": "Doctor Goldmine's Surgery",
+   "map": {
+    "x": 10,
+    "y": 13,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 20662,
+     "description": "To the east lies The Doctor's Waiting Room."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. A way leads east.",
+   "placeholder": true
+  },
+  "20664": {
+   "vnum": 20664,
+   "name": "The Newsroom",
+   "map": {
+    "x": 28,
+    "y": 13,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 20623,
+     "description": "To the west lies The Far Eastern Wall."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. A way leads west.",
+   "placeholder": true
+  },
+  "20665": {
+   "vnum": 20665,
+   "name": "The Dining Area",
+   "map": {
+    "x": 21,
+    "y": 16,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 20657,
+     "description": "To the east lies Spaymoore's Diner."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. A way leads\neast.",
+   "placeholder": true
+  },
+  "20666": {
+   "vnum": 20666,
+   "name": "The Cubicle",
+   "map": {
+    "x": 28,
+    "y": 16,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 20661,
+     "description": "To the south lies The Ladies' Washroom."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. A way leads south.",
+   "placeholder": true
+  },
+  "20722": {
+   "vnum": 20722,
+   "name": "The Guard House",
+   "map": {
+    "x": 18,
+    "y": 10,
+    "z": 3
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 20640,
+     "description": "To the north lies The Cavern Wall."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. A way leads north.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

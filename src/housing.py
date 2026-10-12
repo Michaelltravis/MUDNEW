@@ -229,7 +229,7 @@ class HouseManager:
         for owner, house in data['houses'].items():
             owned[house['plot_num']] = (owner, house)
 
-        await player.send(f"\n{c['bright_cyan']}═══ Midgaard Housing District ═══{c['reset']}")
+        await player.send(f"\n{c['bright_cyan']}═══ Garathorm Housing District ═══{c['reset']}")
         await player.send(f"{c['white']}{'Plot':>5} {'Size':<8} {'Cost':>8} {'Status':<30}{c['reset']}")
         await player.send(f"{c['white']}{'─'*55}{c['reset']}")
 

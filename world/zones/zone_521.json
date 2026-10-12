@@ -1,0 +1,1571 @@
+{
+ "number": 521,
+ "name": "The Winterwood",
+ "builders": "",
+ "atlas_area": 121,
+ "rooms": {
+  "12401": {
+   "vnum": 12401,
+   "name": "The Narrow Crack In The Glacier",
+   "map": {
+    "x": 30,
+    "y": 54,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12403,
+     "description": "To the north lies The Glacier's End."
+    },
+    "south": {
+     "to_room": 6600,
+     "description": "To the south lies The Narrow Crack In The Glacier."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "12403": {
+   "vnum": 12403,
+   "name": "The Glacier's End",
+   "map": {
+    "x": 30,
+    "y": 55,
+    "z": 1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12404,
+     "description": "To the north lies A Path Through the Winterwood."
+    },
+    "south": {
+     "to_room": 12401,
+     "description": "To the south lies The Narrow Crack In The Glacier."
+    }
+   },
+   "description": "Rocks break through the thin soil of the slope. A narrow path winds\nbetween the hillocks. Ways lead north and south.",
+   "placeholder": true
+  },
+  "12404": {
+   "vnum": 12404,
+   "name": "A Path Through the Winterwood",
+   "map": {
+    "x": 30,
+    "y": 56,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 12403,
+     "description": "To the south lies The Glacier's End."
+    },
+    "west": {
+     "to_room": 12405,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Birdsong\ndrifts down through the branches overhead. Ways lead south and west.",
+   "placeholder": true
+  },
+  "12405": {
+   "vnum": 12405,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 29,
+    "y": 56,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12406,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "east": {
+     "to_room": 12404,
+     "description": "To the east lies A Path Through the Winterwood."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Birdsong\ndrifts down through the branches overhead. Ways lead north and east.",
+   "placeholder": true
+  },
+  "12406": {
+   "vnum": 12406,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 29,
+    "y": 57,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 12405,
+     "description": "To the south lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12407,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Birdsong\ndrifts down through the branches overhead. Ways lead south and west.",
+   "placeholder": true
+  },
+  "12407": {
+   "vnum": 12407,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 28,
+    "y": 57,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12406,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12408,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Old trees\ncrowd close, their roots knotted across the path. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "12408": {
+   "vnum": 12408,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 27,
+    "y": 57,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12407,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12409,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Shafts of\npale light slant between the trunks. Ways lead east and west.",
+   "placeholder": true
+  },
+  "12409": {
+   "vnum": 12409,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 26,
+    "y": 57,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12408,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12410,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Old trees crowd\nclose, their roots knotted across the path. Ways lead east and south.",
+   "placeholder": true
+  },
+  "12410": {
+   "vnum": 12410,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 26,
+    "y": 56,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12409,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12411,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Shafts of\npale light slant between the trunks. Ways lead north and west.",
+   "placeholder": true
+  },
+  "12411": {
+   "vnum": 12411,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 25,
+    "y": 56,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12410,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12412,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Shafts of pale light slant\nbetween the trunks. Ways lead east and west.",
+   "placeholder": true
+  },
+  "12412": {
+   "vnum": 12412,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 24,
+    "y": 56,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12413,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "east": {
+     "to_room": 12411,
+     "description": "To the east lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Birdsong\ndrifts down through the branches overhead. Ways lead north and east.",
+   "placeholder": true
+  },
+  "12413": {
+   "vnum": 12413,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 24,
+    "y": 57,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 12412,
+     "description": "To the south lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12414,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Shafts of\npale light slant between the trunks. Ways lead south and west.",
+   "placeholder": true
+  },
+  "12414": {
+   "vnum": 12414,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 23,
+    "y": 57,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12415,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "east": {
+     "to_room": 12413,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12448,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "12415": {
+   "vnum": 12415,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 23,
+    "y": 58,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12416,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12414,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead north and south.",
+   "placeholder": true
+  },
+  "12416": {
+   "vnum": 12416,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 23,
+    "y": 59,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12417,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12415,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Ferns and\nmoss soften the ground beneath a dim green canopy. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "12417": {
+   "vnum": 12417,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 23,
+    "y": 60,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12418,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12416,
+     "description": "To the south lies A Path Through The Winterwood."
+    },
+    "up": {
+     "to_room": 12460,
+     "description": "To the up lies A Narrow Mountain Path."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Birdsong\ndrifts down through the branches overhead. Ways lead east, south and up.",
+   "placeholder": true
+  },
+  "12418": {
+   "vnum": 12418,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 24,
+    "y": 60,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12419,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12417,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Old trees crowd\nclose, their roots knotted across the path. Ways lead north and west.",
+   "placeholder": true
+  },
+  "12419": {
+   "vnum": 12419,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 24,
+    "y": 61,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12420,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12418,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Shafts of pale light\nslant between the trunks. Ways lead north and south.",
+   "placeholder": true
+  },
+  "12420": {
+   "vnum": 12420,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 24,
+    "y": 62,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12421,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12419,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Shafts of\npale light slant between the trunks. Ways lead north and south.",
+   "placeholder": true
+  },
+  "12421": {
+   "vnum": 12421,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 24,
+    "y": 63,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12452,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12420,
+     "description": "To the south lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12422,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Birdsong\ndrifts down through the branches overhead. Ways lead east, south and\nwest.",
+   "placeholder": true
+  },
+  "12422": {
+   "vnum": 12422,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 23,
+    "y": 63,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12423,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "east": {
+     "to_room": 12421,
+     "description": "To the east lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north and east.",
+   "placeholder": true
+  },
+  "12423": {
+   "vnum": 12423,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 23,
+    "y": 64,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 12422,
+     "description": "To the south lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12424,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Shafts of\npale light slant between the trunks. Ways lead south and west.",
+   "placeholder": true
+  },
+  "12424": {
+   "vnum": 12424,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 22,
+    "y": 64,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12425,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "east": {
+     "to_room": 12423,
+     "description": "To the east lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Birdsong\ndrifts down through the branches overhead. Ways lead north and east.",
+   "placeholder": true
+  },
+  "12425": {
+   "vnum": 12425,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 22,
+    "y": 65,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12426,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12424,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north and south.",
+   "placeholder": true
+  },
+  "12426": {
+   "vnum": 12426,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 22,
+    "y": 66,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 12425,
+     "description": "To the south lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12427,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead. Ways lead south and west.",
+   "placeholder": true
+  },
+  "12427": {
+   "vnum": 12427,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 21,
+    "y": 66,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12426,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12428,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Birdsong\ndrifts down through the branches overhead. Ways lead east and west.",
+   "placeholder": true
+  },
+  "12428": {
+   "vnum": 12428,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 20,
+    "y": 66,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12427,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12429,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead east and west.",
+   "placeholder": true
+  },
+  "12429": {
+   "vnum": 12429,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 19,
+    "y": 66,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12430,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "east": {
+     "to_room": 12428,
+     "description": "To the east lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Ferns and\nmoss soften the ground beneath a dim green canopy. Ways lead north and\neast.",
+   "placeholder": true
+  },
+  "12430": {
+   "vnum": 12430,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 19,
+    "y": 67,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 12429,
+     "description": "To the south lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12431,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Fallen\nneedles and leaves muffle every step. Ways lead south and west.",
+   "placeholder": true
+  },
+  "12431": {
+   "vnum": 12431,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 18,
+    "y": 67,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12430,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12432,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Shafts of\npale light slant between the trunks. Ways lead east and west.",
+   "placeholder": true
+  },
+  "12432": {
+   "vnum": 12432,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 17,
+    "y": 67,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12431,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12433,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Birdsong\ndrifts down through the branches overhead. Ways lead east and west.",
+   "placeholder": true
+  },
+  "12433": {
+   "vnum": 12433,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 16,
+    "y": 67,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12432,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12434,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Old trees\ncrowd close, their roots knotted across the path. Ways lead east and\nsouth.",
+   "placeholder": true
+  },
+  "12434": {
+   "vnum": 12434,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 16,
+    "y": 66,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12433,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12435,
+     "description": "To the west lies A Path Through The Winterwood."
+    },
+    "up": {
+     "to_room": 12456,
+     "description": "To the up lies A Narrow Mountain Path."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Shafts of pale light\nslant between the trunks. Ways lead north, west and up.",
+   "placeholder": true
+  },
+  "12435": {
+   "vnum": 12435,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 15,
+    "y": 66,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12434,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12436,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Fallen\nneedles and leaves muffle every step. Ways lead east and west.",
+   "placeholder": true
+  },
+  "12436": {
+   "vnum": 12436,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 14,
+    "y": 66,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12435,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12437,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead east and south.",
+   "placeholder": true
+  },
+  "12437": {
+   "vnum": 12437,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 14,
+    "y": 65,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12436,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12438,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north and west.",
+   "placeholder": true
+  },
+  "12438": {
+   "vnum": 12438,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 13,
+    "y": 65,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12437,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12439,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Old trees\ncrowd close, their roots knotted across the path. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "12439": {
+   "vnum": 12439,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 12,
+    "y": 65,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12438,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12440,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Old trees crowd close,\ntheir roots knotted across the path. Ways lead east and south.",
+   "placeholder": true
+  },
+  "12440": {
+   "vnum": 12440,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 12,
+    "y": 64,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12439,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12441,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Fallen\nneedles and leaves muffle every step. Ways lead north and west.",
+   "placeholder": true
+  },
+  "12441": {
+   "vnum": 12441,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 11,
+    "y": 64,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12440,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12442,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Birdsong\ndrifts down through the branches overhead. Ways lead east and south.",
+   "placeholder": true
+  },
+  "12442": {
+   "vnum": 12442,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 11,
+    "y": 63,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12441,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12443,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Ferns and\nmoss soften the ground beneath a dim green canopy. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "12443": {
+   "vnum": 12443,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 11,
+    "y": 62,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12442,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12444,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Old trees crowd close,\ntheir roots knotted across the path. Ways lead north and south.",
+   "placeholder": true
+  },
+  "12444": {
+   "vnum": 12444,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 11,
+    "y": 61,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12443,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12445,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Ferns and moss\nsoften the ground beneath a dim green canopy. Ways lead north and west.",
+   "placeholder": true
+  },
+  "12445": {
+   "vnum": 12445,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 10,
+    "y": 61,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12444,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12446,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Birdsong\ndrifts down through the branches overhead. Ways lead east and south.",
+   "placeholder": true
+  },
+  "12446": {
+   "vnum": 12446,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 10,
+    "y": 60,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12445,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12447,
+     "description": "To the south lies The End of The Winterwood."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead. Ways lead north and south.",
+   "placeholder": true
+  },
+  "12447": {
+   "vnum": 12447,
+   "name": "The End of The Winterwood",
+   "map": {
+    "x": 10,
+    "y": 59,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12446,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 3901,
+     "description": "To the south lies Entering the Winterlands."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead north and south.",
+   "placeholder": true
+  },
+  "12448": {
+   "vnum": 12448,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 22,
+    "y": 57,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12414,
+     "description": "To the east lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12449,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Fallen needles and leaves\nmuffle every step. Ways lead east and south.",
+   "placeholder": true
+  },
+  "12449": {
+   "vnum": 12449,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 22,
+    "y": 56,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12448,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12450,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead north and south.",
+   "placeholder": true
+  },
+  "12450": {
+   "vnum": 12450,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 22,
+    "y": 55,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12449,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12451,
+     "description": "To the west lies A Small Cave."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Fallen\nneedles and leaves muffle every step. Ways lead north and west.",
+   "placeholder": true
+  },
+  "12451": {
+   "vnum": 12451,
+   "name": "A Small Cave",
+   "map": {
+    "x": 21,
+    "y": 55,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 12450,
+     "description": "To the east lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "12452": {
+   "vnum": 12452,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 25,
+    "y": 63,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12453,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "west": {
+     "to_room": 12421,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead. Ways lead north and west.",
+   "placeholder": true
+  },
+  "12453": {
+   "vnum": 12453,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 25,
+    "y": 64,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12454,
+     "description": "To the north lies A Path Through The Winterwood."
+    },
+    "south": {
+     "to_room": 12452,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Old trees crowd\nclose, their roots knotted across the path. Ways lead north and south.",
+   "placeholder": true
+  },
+  "12454": {
+   "vnum": 12454,
+   "name": "A Path Through The Winterwood",
+   "map": {
+    "x": 25,
+    "y": 65,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12455,
+     "description": "To the east lies The End of a Path."
+    },
+    "south": {
+     "to_room": 12453,
+     "description": "To the south lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Fallen\nneedles and leaves muffle every step. Ways lead east and south.",
+   "placeholder": true
+  },
+  "12455": {
+   "vnum": 12455,
+   "name": "The End of a Path",
+   "map": {
+    "x": 26,
+    "y": 65,
+    "z": 1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 12454,
+     "description": "To the west lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Ferns and moss\nsoften the ground beneath a dim green canopy. A way leads west.",
+   "placeholder": true
+  },
+  "12456": {
+   "vnum": 12456,
+   "name": "A Narrow Mountain Path",
+   "map": {
+    "x": 16,
+    "y": 66,
+    "z": 2
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 12457,
+     "description": "To the south lies A Large Cluster Of Trees."
+    },
+    "down": {
+     "to_room": 12434,
+     "description": "To the down lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. The air is thin and cold, and\nloose scree shifts underfoot. Ways lead south and down.",
+   "placeholder": true
+  },
+  "12457": {
+   "vnum": 12457,
+   "name": "A Large Cluster Of Trees",
+   "map": {
+    "x": 16,
+    "y": 65,
+    "z": 2
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12456,
+     "description": "To the north lies A Narrow Mountain Path."
+    },
+    "east": {
+     "to_room": 12458,
+     "description": "To the east lies A Large Cluster Of Trees."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Fallen\nneedles and leaves muffle every step. Ways lead north and east.",
+   "placeholder": true
+  },
+  "12458": {
+   "vnum": 12458,
+   "name": "A Large Cluster Of Trees",
+   "map": {
+    "x": 17,
+    "y": 65,
+    "z": 2
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12459,
+     "description": "To the east lies A Large Cluster Of Trees."
+    },
+    "west": {
+     "to_room": 12457,
+     "description": "To the west lies A Large Cluster Of Trees."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Shafts of\npale light slant between the trunks. Ways lead east and west.",
+   "placeholder": true
+  },
+  "12459": {
+   "vnum": 12459,
+   "name": "A Large Cluster Of Trees",
+   "map": {
+    "x": 18,
+    "y": 65,
+    "z": 2
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12465,
+     "description": "To the east lies A Large Cluster Of Trees."
+    },
+    "south": {
+     "to_room": 12463,
+     "description": "To the south lies A Large Cluster Of Trees."
+    },
+    "west": {
+     "to_room": 12458,
+     "description": "To the west lies A Large Cluster Of Trees."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Ferns and moss\nsoften the ground beneath a dim green canopy. Ways lead east, south and\nwest.",
+   "placeholder": true
+  },
+  "12460": {
+   "vnum": 12460,
+   "name": "A Narrow Mountain Path",
+   "map": {
+    "x": 23,
+    "y": 60,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 12461,
+     "description": "To the south lies A Small Cluster Of Trees."
+    },
+    "down": {
+     "to_room": 12417,
+     "description": "To the down lies A Path Through The Winterwood."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead south and down.",
+   "placeholder": true
+  },
+  "12461": {
+   "vnum": 12461,
+   "name": "A Small Cluster Of Trees",
+   "map": {
+    "x": 23,
+    "y": 59,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12460,
+     "description": "To the north lies A Narrow Mountain Path."
+    },
+    "west": {
+     "to_room": 12462,
+     "description": "To the west lies A Small Cluster Of Trees."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "12462": {
+   "vnum": 12462,
+   "name": "A Small Cluster Of Trees",
+   "map": {
+    "x": 22,
+    "y": 59,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 12461,
+     "description": "To the east lies A Small Cluster Of Trees."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads east.",
+   "placeholder": true
+  },
+  "12463": {
+   "vnum": 12463,
+   "name": "A Large Cluster Of Trees",
+   "map": {
+    "x": 18,
+    "y": 64,
+    "z": 2
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12459,
+     "description": "To the north lies A Large Cluster Of Trees."
+    },
+    "east": {
+     "to_room": 12464,
+     "description": "To the east lies A Large Cluster Of Trees."
+    }
+   },
+   "description": "A worn track crosses the open ground. The land lies flat and quiet in\nevery direction. Ways lead north and east.",
+   "placeholder": true
+  },
+  "12464": {
+   "vnum": 12464,
+   "name": "A Large Cluster Of Trees",
+   "map": {
+    "x": 19,
+    "y": 64,
+    "z": 2
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12465,
+     "description": "To the north lies A Large Cluster Of Trees."
+    },
+    "south": {
+     "to_room": 12471,
+     "description": "To the south lies A Short Cave."
+    },
+    "west": {
+     "to_room": 12463,
+     "description": "To the west lies A Large Cluster Of Trees."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Ferns and\nmoss soften the ground beneath a dim green canopy. Ways lead north,\nsouth and west.",
+   "placeholder": true
+  },
+  "12465": {
+   "vnum": 12465,
+   "name": "A Large Cluster Of Trees",
+   "map": {
+    "x": 19,
+    "y": 65,
+    "z": 2
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12466,
+     "description": "To the east lies A Large Cluster Of Trees."
+    },
+    "south": {
+     "to_room": 12464,
+     "description": "To the south lies A Large Cluster Of Trees."
+    },
+    "west": {
+     "to_room": 12459,
+     "description": "To the west lies A Large Cluster Of Trees."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "12466": {
+   "vnum": 12466,
+   "name": "A Large Cluster Of Trees",
+   "map": {
+    "x": 20,
+    "y": 65,
+    "z": 2
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 12465,
+     "description": "To the west lies A Large Cluster Of Trees."
+    },
+    "up": {
+     "to_room": 12467,
+     "description": "To the up lies A Rocky Northern Outlook."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Ferns and moss\nsoften the ground beneath a dim green canopy. Ways lead west and up.",
+   "placeholder": true
+  },
+  "12467": {
+   "vnum": 12467,
+   "name": "A Rocky Northern Outlook",
+   "map": {
+    "x": 21,
+    "y": 66,
+    "z": 2
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "down": {
+     "to_room": 12466,
+     "description": "To the down lies A Large Cluster Of Trees."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Snow lingers in the\nshadowed hollows of the rock. A way leads down.",
+   "placeholder": true
+  },
+  "12471": {
+   "vnum": 12471,
+   "name": "A Short Cave",
+   "map": {
+    "x": 19,
+    "y": 63,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12464,
+     "description": "To the north lies A Large Cluster Of Trees."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {}
+}

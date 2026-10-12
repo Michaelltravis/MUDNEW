@@ -1,0 +1,2156 @@
+{
+ "number": 491,
+ "name": "Morvoct",
+ "builders": "Dragon-Kiera",
+ "atlas_area": 91,
+ "rooms": {
+  "15102": {
+   "vnum": 15102,
+   "name": "Hut Of Kigrint",
+   "map": {
+    "x": 41,
+    "y": -12,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 15109,
+     "description": "To the south lies The Sandy Path."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. A way leads\nsouth.",
+   "placeholder": true
+  },
+  "15103": {
+   "vnum": 15103,
+   "name": "Kyor'Glt Bakery",
+   "map": {
+    "x": 43,
+    "y": -12,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 15111,
+     "description": "To the south lies The Worn Path."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. A way\nleads south.",
+   "placeholder": true
+  },
+  "15104": {
+   "vnum": 15104,
+   "name": "The Untravelled Path",
+   "map": {
+    "x": 44,
+    "y": -12,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15101,
+     "description": "To the north lies Gate To Kyor'Glt."
+    },
+    "south": {
+     "to_room": 15112,
+     "description": "To the south lies The Worn Path."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead north and south.",
+   "placeholder": true
+  },
+  "15105": {
+   "vnum": 15105,
+   "name": "The Storage Room",
+   "map": {
+    "x": 46,
+    "y": -12,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 15114,
+     "description": "To the south lies The Brawler's Room."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "15106": {
+   "vnum": 15106,
+   "name": "Deeper In The Seaweed Forest",
+   "map": {
+    "x": 38,
+    "y": -13,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15106,
+     "description": "To the north lies Deeper In The Seaweed Forest."
+    },
+    "east": {
+     "to_room": 15107,
+     "description": "To the east lies The Seaweed Forest."
+    },
+    "south": {
+     "to_room": 15116,
+     "description": "To the south lies The Cloudy Deep."
+    },
+    "west": {
+     "to_room": 15106,
+     "description": "To the west lies Deeper In The Seaweed Forest."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "15107": {
+   "vnum": 15107,
+   "name": "The Seaweed Forest",
+   "map": {
+    "x": 39,
+    "y": -13,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 15108,
+     "description": "To the east lies The Shore."
+    },
+    "south": {
+     "to_room": 15117,
+     "description": "To the south lies Ancient Ruins."
+    },
+    "west": {
+     "to_room": 15106,
+     "description": "To the west lies Deeper In The Seaweed Forest."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. The current is gentle\nhere, clear enough to see the bottom. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "15108": {
+   "vnum": 15108,
+   "name": "The Shore",
+   "map": {
+    "x": 40,
+    "y": -13,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 15109,
+     "description": "To the east lies The Sandy Path."
+    },
+    "south": {
+     "to_room": 15118,
+     "description": "To the south lies The Seaweed Forest."
+    },
+    "west": {
+     "to_room": 15107,
+     "description": "To the west lies The Seaweed Forest."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\neast, south and west.",
+   "placeholder": true
+  },
+  "15109": {
+   "vnum": 15109,
+   "name": "The Sandy Path",
+   "map": {
+    "x": 41,
+    "y": -13,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15102,
+     "description": "To the north lies Hut Of Kigrint.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 15110,
+     "description": "To the east lies Dirt Path."
+    },
+    "west": {
+     "to_room": 15108,
+     "description": "To the west lies The Shore."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth, east and west.",
+   "placeholder": true
+  },
+  "15110": {
+   "vnum": 15110,
+   "name": "Dirt Path",
+   "map": {
+    "x": 42,
+    "y": -13,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 15111,
+     "description": "To the east lies The Worn Path."
+    },
+    "west": {
+     "to_room": 15109,
+     "description": "To the west lies The Sandy Path."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "15111": {
+   "vnum": 15111,
+   "name": "The Worn Path",
+   "map": {
+    "x": 43,
+    "y": -13,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15103,
+     "description": "To the north lies Kyor'Glt Bakery."
+    },
+    "east": {
+     "to_room": 15112,
+     "description": "To the east lies The Worn Path."
+    },
+    "south": {
+     "to_room": 15119,
+     "description": "To the south lies The Goblin Weaponry."
+    },
+    "west": {
+     "to_room": 15110,
+     "description": "To the west lies Dirt Path."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "15112": {
+   "vnum": 15112,
+   "name": "The Worn Path",
+   "map": {
+    "x": 44,
+    "y": -13,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15104,
+     "description": "To the north lies The Untravelled Path."
+    },
+    "east": {
+     "to_room": 15113,
+     "description": "To the east lies The Goblin Tavern.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 15120,
+     "description": "To the south lies The Well Worn Path."
+    },
+    "west": {
+     "to_room": 15111,
+     "description": "To the west lies The Worn Path."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north,\neast, south and west.",
+   "placeholder": true
+  },
+  "15113": {
+   "vnum": 15113,
+   "name": "The Goblin Tavern",
+   "map": {
+    "x": 45,
+    "y": -13,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15114,
+     "description": "To the east lies The Brawler's Room."
+    },
+    "west": {
+     "to_room": 15112,
+     "description": "To the west lies The Worn Path."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "15114": {
+   "vnum": 15114,
+   "name": "The Brawler's Room",
+   "map": {
+    "x": 46,
+    "y": -13,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15105,
+     "description": "To the north lies The Storage Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 15113,
+     "description": "To the west lies The Goblin Tavern."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "15115": {
+   "vnum": 15115,
+   "name": "The Eflykt Hut",
+   "map": {
+    "x": 48,
+    "y": -13,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 15124,
+     "description": "To the south lies A Turn In The Path."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. A way leads south.",
+   "placeholder": true
+  },
+  "15116": {
+   "vnum": 15116,
+   "name": "The Cloudy Deep",
+   "map": {
+    "x": 38,
+    "y": -14,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15106,
+     "description": "To the north lies Deeper In The Seaweed Forest."
+    },
+    "east": {
+     "to_room": 15117,
+     "description": "To the east lies Ancient Ruins."
+    },
+    "south": {
+     "to_room": 15126,
+     "description": "To the south lies Davy Jones' Locker."
+    },
+    "west": {
+     "to_room": 15116,
+     "description": "To the west lies The Cloudy Deep."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "15117": {
+   "vnum": 15117,
+   "name": "Ancient Ruins",
+   "map": {
+    "x": 39,
+    "y": -14,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15107,
+     "description": "To the north lies The Seaweed Forest."
+    },
+    "east": {
+     "to_room": 15118,
+     "description": "To the east lies The Seaweed Forest."
+    },
+    "south": {
+     "to_room": 15127,
+     "description": "To the south lies The Sunken Ship."
+    },
+    "west": {
+     "to_room": 15116,
+     "description": "To the west lies The Cloudy Deep."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "15118": {
+   "vnum": 15118,
+   "name": "The Seaweed Forest",
+   "map": {
+    "x": 40,
+    "y": -14,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15108,
+     "description": "To the north lies The Shore."
+    },
+    "south": {
+     "to_room": 15128,
+     "description": "To the south lies Entrance To Triton's Fortress.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 15117,
+     "description": "To the west lies Ancient Ruins."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "15119": {
+   "vnum": 15119,
+   "name": "The Goblin Weaponry",
+   "map": {
+    "x": 43,
+    "y": -14,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15111,
+     "description": "To the north lies The Worn Path."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. A way leads\nnorth.",
+   "placeholder": true
+  },
+  "15120": {
+   "vnum": 15120,
+   "name": "The Well Worn Path",
+   "map": {
+    "x": 44,
+    "y": -14,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15112,
+     "description": "To the north lies The Worn Path."
+    },
+    "east": {
+     "to_room": 15121,
+     "description": "To the east lies The Littered Path."
+    },
+    "south": {
+     "to_room": 15129,
+     "description": "To the south lies The Armory."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east\nand south.",
+   "placeholder": true
+  },
+  "15121": {
+   "vnum": 15121,
+   "name": "The Littered Path",
+   "map": {
+    "x": 45,
+    "y": -14,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 15130,
+     "description": "To the south lies The Ruined Path."
+    },
+    "west": {
+     "to_room": 15120,
+     "description": "To the west lies The Well Worn Path."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\nsouth and west.",
+   "placeholder": true
+  },
+  "15122": {
+   "vnum": 15122,
+   "name": "The Littered Path",
+   "map": {
+    "x": 46,
+    "y": -14,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 15123,
+     "description": "To the east lies The Muddy Path."
+    },
+    "south": {
+     "to_room": 15131,
+     "description": "To the south lies A Trickle Of Water."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead east and south.",
+   "placeholder": true
+  },
+  "15123": {
+   "vnum": 15123,
+   "name": "The Muddy Path",
+   "map": {
+    "x": 47,
+    "y": -14,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 15124,
+     "description": "To the east lies A Turn In The Path."
+    },
+    "west": {
+     "to_room": 15122,
+     "description": "To the west lies The Littered Path."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "15124": {
+   "vnum": 15124,
+   "name": "A Turn In The Path",
+   "map": {
+    "x": 48,
+    "y": -14,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15115,
+     "description": "To the north lies The Eflykt Hut.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 15125,
+     "description": "To the east lies The Gafftl Hut.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 15132,
+     "description": "To the south lies The Path Narrows."
+    },
+    "west": {
+     "to_room": 15123,
+     "description": "To the west lies The Muddy Path."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "15125": {
+   "vnum": 15125,
+   "name": "The Gafftl Hut",
+   "map": {
+    "x": 49,
+    "y": -14,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 15124,
+     "description": "To the west lies A Turn In The Path."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. A way\nleads west.",
+   "placeholder": true
+  },
+  "15126": {
+   "vnum": 15126,
+   "name": "Davy Jones' Locker",
+   "map": {
+    "x": 38,
+    "y": -15,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15116,
+     "description": "To the north lies The Cloudy Deep."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Shallow water laps around stones\nand reeds. A way leads north.",
+   "placeholder": true
+  },
+  "15127": {
+   "vnum": 15127,
+   "name": "The Sunken Ship",
+   "map": {
+    "x": 39,
+    "y": -15,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15117,
+     "description": "To the north lies Ancient Ruins."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. The current is gentle\nhere, clear enough to see the bottom. A way leads north.",
+   "placeholder": true
+  },
+  "15128": {
+   "vnum": 15128,
+   "name": "Entrance To Triton's Fortress",
+   "map": {
+    "x": 40,
+    "y": -15,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15118,
+     "description": "To the north lies The Seaweed Forest."
+    },
+    "south": {
+     "to_room": 15134,
+     "description": "To the south lies The Waiting Room."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Mud and pebbles shift beneath the\nslow water. Ways lead north and south.",
+   "placeholder": true
+  },
+  "15129": {
+   "vnum": 15129,
+   "name": "The Armory",
+   "map": {
+    "x": 44,
+    "y": -15,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15120,
+     "description": "To the north lies The Well Worn Path."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads north.",
+   "placeholder": true
+  },
+  "15130": {
+   "vnum": 15130,
+   "name": "The Ruined Path",
+   "map": {
+    "x": 45,
+    "y": -15,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15121,
+     "description": "To the north lies The Littered Path."
+    },
+    "east": {
+     "to_room": 15131,
+     "description": "To the east lies A Trickle Of Water."
+    },
+    "south": {
+     "to_room": 15138,
+     "description": "To the south lies A Turn In The Path."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north, east\nand south.",
+   "placeholder": true
+  },
+  "15131": {
+   "vnum": 15131,
+   "name": "A Trickle Of Water",
+   "map": {
+    "x": 46,
+    "y": -15,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15122,
+     "description": "To the north lies The Littered Path."
+    },
+    "west": {
+     "to_room": 15130,
+     "description": "To the west lies The Ruined Path."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north and west.",
+   "placeholder": true
+  },
+  "15132": {
+   "vnum": 15132,
+   "name": "The Path Narrows",
+   "map": {
+    "x": 48,
+    "y": -15,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15124,
+     "description": "To the north lies A Turn In The Path."
+    },
+    "south": {
+     "to_room": 15139,
+     "description": "To the south lies The Forest."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north and south.",
+   "placeholder": true
+  },
+  "15133": {
+   "vnum": 15133,
+   "name": "The Noble's Court",
+   "map": {
+    "x": 39,
+    "y": -16,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 15134,
+     "description": "To the east lies The Waiting Room."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. A way leads east.",
+   "placeholder": true
+  },
+  "15134": {
+   "vnum": 15134,
+   "name": "The Waiting Room",
+   "map": {
+    "x": 40,
+    "y": -16,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15128,
+     "description": "To the north lies Entrance To Triton's Fortress."
+    },
+    "south": {
+     "to_room": 15140,
+     "description": "To the south lies The Throne Room Of The Sea King."
+    },
+    "west": {
+     "to_room": 15133,
+     "description": "To the west lies The Noble's Court."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "15135": {
+   "vnum": 15135,
+   "name": "Chief Gralkt's Hut",
+   "map": {
+    "x": 42,
+    "y": -16,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 15136,
+     "description": "To the east lies The Palm Covered Path."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. A way\nleads east.",
+   "placeholder": true
+  },
+  "15136": {
+   "vnum": 15136,
+   "name": "The Palm Covered Path",
+   "map": {
+    "x": 43,
+    "y": -16,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 15137,
+     "description": "To the east lies The Palm Covered Path."
+    },
+    "west": {
+     "to_room": 15135,
+     "description": "To the west lies Chief Gralkt's Hut.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "15137": {
+   "vnum": 15137,
+   "name": "The Palm Covered Path",
+   "map": {
+    "x": 44,
+    "y": -16,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 15138,
+     "description": "To the east lies A Turn In The Path."
+    },
+    "west": {
+     "to_room": 15136,
+     "description": "To the west lies The Palm Covered Path."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\neast and west.",
+   "placeholder": true
+  },
+  "15138": {
+   "vnum": 15138,
+   "name": "A Turn In The Path",
+   "map": {
+    "x": 45,
+    "y": -16,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15130,
+     "description": "To the north lies The Ruined Path."
+    },
+    "west": {
+     "to_room": 15137,
+     "description": "To the west lies The Palm Covered Path."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north and west.",
+   "placeholder": true
+  },
+  "15139": {
+   "vnum": 15139,
+   "name": "The Forest",
+   "map": {
+    "x": 48,
+    "y": -16,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15132,
+     "description": "To the north lies The Path Narrows."
+    },
+    "south": {
+     "to_room": 15141,
+     "description": "To the south lies The Dim Forest."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Old trees crowd\nclose, their roots knotted across the path. Ways lead north and south.",
+   "placeholder": true
+  },
+  "15140": {
+   "vnum": 15140,
+   "name": "The Throne Room Of The Sea King",
+   "map": {
+    "x": 40,
+    "y": -17,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15134,
+     "description": "To the north lies The Waiting Room."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads north.",
+   "placeholder": true
+  },
+  "15141": {
+   "vnum": 15141,
+   "name": "The Dim Forest",
+   "map": {
+    "x": 48,
+    "y": -17,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15139,
+     "description": "To the north lies The Forest."
+    },
+    "south": {
+     "to_room": 15149,
+     "description": "To the south lies The Murky Woods."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Old trees\ncrowd close, their roots knotted across the path. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "15142": {
+   "vnum": 15142,
+   "name": "The Apprentice Chambers",
+   "map": {
+    "x": 51,
+    "y": -17,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15143,
+     "description": "To the east lies A Storage Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 15152,
+     "description": "To the south lies The Dark Hallway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "15143": {
+   "vnum": 15143,
+   "name": "A Storage Room",
+   "map": {
+    "x": 52,
+    "y": -17,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 15142,
+     "description": "To the west lies The Apprentice Chambers."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "15144": {
+   "vnum": 15144,
+   "name": "A Secret Passageway",
+   "map": {
+    "x": 53,
+    "y": -13,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15145,
+     "description": "To the east lies Morvoct's Inner Sanctum."
+    },
+    "south": {
+     "to_room": 15155,
+     "description": "To the south lies A Secret Passageway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "15145": {
+   "vnum": 15145,
+   "name": "Morvoct's Inner Sanctum",
+   "map": {
+    "x": 54,
+    "y": -13,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 15144,
+     "description": "To the west lies A Secret Passageway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads west.",
+   "placeholder": true
+  },
+  "15146": {
+   "vnum": 15146,
+   "name": "A Rock Plateau",
+   "map": {
+    "x": 44,
+    "y": -18,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 15147,
+     "description": "To the east lies A Clearing."
+    },
+    "south": {
+     "to_room": 15159,
+     "description": "To the south lies The Porch."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. Snow lingers in the shadowed\nhollows of the rock. Ways lead east and south.",
+   "placeholder": true
+  },
+  "15147": {
+   "vnum": 15147,
+   "name": "A Clearing",
+   "map": {
+    "x": 45,
+    "y": -18,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 15148,
+     "description": "To the east lies A Hollow."
+    },
+    "west": {
+     "to_room": 15146,
+     "description": "To the west lies A Rock Plateau."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead east\nand west.",
+   "placeholder": true
+  },
+  "15148": {
+   "vnum": 15148,
+   "name": "A Hollow",
+   "map": {
+    "x": 46,
+    "y": -18,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 15160,
+     "description": "To the south lies A Rock Pile."
+    },
+    "west": {
+     "to_room": 15147,
+     "description": "To the west lies A Clearing."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead south\nand west.",
+   "placeholder": true
+  },
+  "15149": {
+   "vnum": 15149,
+   "name": "The Murky Woods",
+   "map": {
+    "x": 48,
+    "y": -18,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15141,
+     "description": "To the north lies The Dim Forest."
+    },
+    "east": {
+     "to_room": 15150,
+     "description": "To the east lies A Few Leafless Trees."
+    },
+    "south": {
+     "to_room": 15162,
+     "description": "To the south lies The Dank Woods."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. Ways lead north, east and\nsouth.",
+   "placeholder": true
+  },
+  "15150": {
+   "vnum": 15150,
+   "name": "A Few Leafless Trees",
+   "map": {
+    "x": 49,
+    "y": -18,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 15151,
+     "description": "To the east lies The Guarded Hall."
+    },
+    "west": {
+     "to_room": 15149,
+     "description": "To the west lies The Murky Woods."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "15151": {
+   "vnum": 15151,
+   "name": "The Guarded Hall",
+   "map": {
+    "x": 50,
+    "y": -18,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15152,
+     "description": "To the east lies The Dark Hallway."
+    },
+    "south": {
+     "to_room": 15163,
+     "description": "To the south lies Guard Room."
+    },
+    "west": {
+     "to_room": 15150,
+     "description": "To the west lies A Few Leafless Trees.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "15152": {
+   "vnum": 15152,
+   "name": "The Dark Hallway",
+   "map": {
+    "x": 51,
+    "y": -18,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15142,
+     "description": "To the north lies The Apprentice Chambers."
+    },
+    "south": {
+     "to_room": 15164,
+     "description": "To the south lies Darker Hallway."
+    },
+    "west": {
+     "to_room": 15151,
+     "description": "To the west lies The Guarded Hall."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "15153": {
+   "vnum": 15153,
+   "name": "The Room Of Mists",
+   "map": {
+    "x": 55,
+    "y": -14,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 15156,
+     "description": "To the up lies The Great Hall."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads up.",
+   "placeholder": true
+  },
+  "15154": {
+   "vnum": 15154,
+   "name": "A Secret Passageway",
+   "map": {
+    "x": 52,
+    "y": -14,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15155,
+     "description": "To the east lies A Secret Passageway."
+    },
+    "south": {
+     "to_room": 15166,
+     "description": "To the south lies Room Of Dark Shadows."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and south.",
+   "placeholder": true
+  },
+  "15155": {
+   "vnum": 15155,
+   "name": "A Secret Passageway",
+   "map": {
+    "x": 53,
+    "y": -14,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15144,
+     "description": "To the north lies A Secret Passageway."
+    },
+    "west": {
+     "to_room": 15154,
+     "description": "To the west lies A Secret Passageway."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "15156": {
+   "vnum": 15156,
+   "name": "The Great Hall",
+   "map": {
+    "x": 56,
+    "y": -13,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 15168,
+     "description": "To the south lies Hall Of The Conquered."
+    },
+    "down": {
+     "to_room": 15153,
+     "description": "To the down lies The Room Of Mists."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead south and down.",
+   "placeholder": true
+  },
+  "15157": {
+   "vnum": 15157,
+   "name": "Animal Pens",
+   "map": {
+    "x": 42,
+    "y": -19,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 15158,
+     "description": "To the east lies The Cyclop's Den."
+    },
+    "south": {
+     "to_room": 15169,
+     "description": "To the south lies The Far Corner."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\neast and south.",
+   "placeholder": true
+  },
+  "15158": {
+   "vnum": 15158,
+   "name": "The Cyclop's Den",
+   "map": {
+    "x": 43,
+    "y": -19,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 15159,
+     "description": "To the east lies The Porch."
+    },
+    "south": {
+     "to_room": 15170,
+     "description": "To the south lies Fireside."
+    },
+    "west": {
+     "to_room": 15157,
+     "description": "To the west lies Animal Pens."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nVoices and the clatter of carts carry from somewhere nearby. Ways lead\neast, south and west.",
+   "placeholder": true
+  },
+  "15159": {
+   "vnum": 15159,
+   "name": "The Porch",
+   "map": {
+    "x": 44,
+    "y": -19,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15146,
+     "description": "To the north lies A Rock Plateau."
+    },
+    "west": {
+     "to_room": 15158,
+     "description": "To the west lies The Cyclop's Den.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth and west.",
+   "placeholder": true
+  },
+  "15160": {
+   "vnum": 15160,
+   "name": "A Rock Pile",
+   "map": {
+    "x": 46,
+    "y": -19,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15148,
+     "description": "To the north lies A Hollow."
+    },
+    "east": {
+     "to_room": 15161,
+     "description": "To the east lies A Waterfall."
+    },
+    "south": {
+     "to_room": 15171,
+     "description": "To the south lies A Steep Cliff."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east\nand south.",
+   "placeholder": true
+  },
+  "15161": {
+   "vnum": 15161,
+   "name": "A Waterfall",
+   "map": {
+    "x": 47,
+    "y": -19,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 15162,
+     "description": "To the east lies The Dank Woods."
+    },
+    "west": {
+     "to_room": 15160,
+     "description": "To the west lies A Rock Pile."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and west.",
+   "placeholder": true
+  },
+  "15162": {
+   "vnum": 15162,
+   "name": "The Dank Woods",
+   "map": {
+    "x": 48,
+    "y": -19,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15149,
+     "description": "To the north lies The Murky Woods."
+    },
+    "west": {
+     "to_room": 15161,
+     "description": "To the west lies A Waterfall."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\nwest.",
+   "placeholder": true
+  },
+  "15163": {
+   "vnum": 15163,
+   "name": "Guard Room",
+   "map": {
+    "x": 50,
+    "y": -19,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15151,
+     "description": "To the north lies The Guarded Hall."
+    },
+    "south": {
+     "to_room": 15172,
+     "description": "To the south lies Prison.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "15164": {
+   "vnum": 15164,
+   "name": "Darker Hallway",
+   "map": {
+    "x": 51,
+    "y": -19,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15152,
+     "description": "To the north lies The Dark Hallway."
+    },
+    "east": {
+     "to_room": 15165,
+     "description": "To the east lies Dark Hallway."
+    },
+    "south": {
+     "to_room": 15173,
+     "description": "To the south lies Apprentice Workshop."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "15165": {
+   "vnum": 15165,
+   "name": "Dark Hallway",
+   "map": {
+    "x": 52,
+    "y": -19,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 15174,
+     "description": "To the south lies Dark Hallway."
+    },
+    "west": {
+     "to_room": 15164,
+     "description": "To the west lies Darker Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead south and west.",
+   "placeholder": true
+  },
+  "15166": {
+   "vnum": 15166,
+   "name": "Room Of Dark Shadows",
+   "map": {
+    "x": 52,
+    "y": -15,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15154,
+     "description": "To the north lies A Secret Passageway."
+    },
+    "east": {
+     "to_room": 15167,
+     "description": "To the east lies Herb Garden."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "15167": {
+   "vnum": 15167,
+   "name": "Herb Garden",
+   "map": {
+    "x": 54,
+    "y": -15,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15168,
+     "description": "To the east lies Hall Of The Conquered."
+    },
+    "west": {
+     "to_room": 15166,
+     "description": "To the west lies Room Of Dark Shadows."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "15168": {
+   "vnum": 15168,
+   "name": "Hall Of The Conquered",
+   "map": {
+    "x": 56,
+    "y": -15,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15156,
+     "description": "To the north lies The Great Hall.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 15177,
+     "description": "To the south lies Hall Of The Conquered."
+    },
+    "west": {
+     "to_room": 15167,
+     "description": "To the west lies Herb Garden."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "15169": {
+   "vnum": 15169,
+   "name": "The Far Corner",
+   "map": {
+    "x": 42,
+    "y": -20,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15157,
+     "description": "To the north lies Animal Pens."
+    },
+    "east": {
+     "to_room": 15170,
+     "description": "To the east lies Fireside."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\neast.",
+   "placeholder": true
+  },
+  "15170": {
+   "vnum": 15170,
+   "name": "Fireside",
+   "map": {
+    "x": 43,
+    "y": -20,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15158,
+     "description": "To the north lies The Cyclop's Den."
+    },
+    "west": {
+     "to_room": 15169,
+     "description": "To the west lies The Far Corner."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth and west.",
+   "placeholder": true
+  },
+  "15171": {
+   "vnum": 15171,
+   "name": "A Steep Cliff",
+   "map": {
+    "x": 46,
+    "y": -20,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15160,
+     "description": "To the north lies A Rock Pile."
+    },
+    "south": {
+     "to_room": 15181,
+     "description": "To the south lies Entering The Harpy's Nest."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "15172": {
+   "vnum": 15172,
+   "name": "Prison",
+   "map": {
+    "x": 50,
+    "y": -20,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15163,
+     "description": "To the north lies Guard Room."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. A way leads north.",
+   "placeholder": true
+  },
+  "15173": {
+   "vnum": 15173,
+   "name": "Apprentice Workshop",
+   "map": {
+    "x": 51,
+    "y": -20,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15164,
+     "description": "To the north lies Darker Hallway."
+    },
+    "east": {
+     "to_room": 15174,
+     "description": "To the east lies Dark Hallway."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north and\neast.",
+   "placeholder": true
+  },
+  "15174": {
+   "vnum": 15174,
+   "name": "Dark Hallway",
+   "map": {
+    "x": 52,
+    "y": -20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15165,
+     "description": "To the north lies Dark Hallway."
+    },
+    "south": {
+     "to_room": 15182,
+     "description": "To the south lies Dragon's Domain."
+    },
+    "west": {
+     "to_room": 15173,
+     "description": "To the west lies Apprentice Workshop."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "15175": {
+   "vnum": 15175,
+   "name": "Torture Room",
+   "map": {
+    "x": 54,
+    "y": -16,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15176,
+     "description": "To the east lies Caged Animal Room."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "15176": {
+   "vnum": 15176,
+   "name": "Caged Animal Room",
+   "map": {
+    "x": 55,
+    "y": -16,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15177,
+     "description": "To the east lies Hall Of The Conquered."
+    },
+    "west": {
+     "to_room": 15175,
+     "description": "To the west lies Torture Room."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "15177": {
+   "vnum": 15177,
+   "name": "Hall Of The Conquered",
+   "map": {
+    "x": 56,
+    "y": -16,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15168,
+     "description": "To the north lies Hall Of The Conquered."
+    },
+    "south": {
+     "to_room": 15183,
+     "description": "To the south lies Hall Of The Conquered."
+    },
+    "west": {
+     "to_room": 15176,
+     "description": "To the west lies Caged Animal Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "15178": {
+   "vnum": 15178,
+   "name": "The Man Cage",
+   "map": {
+    "x": 43,
+    "y": -21,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 15179,
+     "description": "To the east lies Hallway."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. A way leads east.",
+   "placeholder": true
+  },
+  "15179": {
+   "vnum": 15179,
+   "name": "Hallway",
+   "map": {
+    "x": 44,
+    "y": -21,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15180,
+     "description": "To the east lies The Landing Perch."
+    },
+    "south": {
+     "to_room": 15184,
+     "description": "To the south lies Grub Kitchen."
+    },
+    "west": {
+     "to_room": 15178,
+     "description": "To the west lies The Man Cage."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "15180": {
+   "vnum": 15180,
+   "name": "The Landing Perch",
+   "map": {
+    "x": 45,
+    "y": -21,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 15181,
+     "description": "To the east lies Entering The Harpy's Nest."
+    },
+    "west": {
+     "to_room": 15179,
+     "description": "To the west lies Hallway."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "15181": {
+   "vnum": 15181,
+   "name": "Entering The Harpy's Nest",
+   "map": {
+    "x": 46,
+    "y": -21,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 15171,
+     "description": "To the north lies A Steep Cliff."
+    },
+    "west": {
+     "to_room": 15180,
+     "description": "To the west lies The Landing Perch."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north and west.",
+   "placeholder": true
+  },
+  "15182": {
+   "vnum": 15182,
+   "name": "Dragon's Domain",
+   "map": {
+    "x": 52,
+    "y": -21,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15174,
+     "description": "To the north lies Dark Hallway."
+    },
+    "up": {
+     "to_room": 15183,
+     "description": "To the up lies Hall Of The Conquered."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and up.",
+   "placeholder": true
+  },
+  "15183": {
+   "vnum": 15183,
+   "name": "Hall Of The Conquered",
+   "map": {
+    "x": 56,
+    "y": -17,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15177,
+     "description": "To the north lies Hall Of The Conquered."
+    },
+    "down": {
+     "to_room": 15182,
+     "description": "To the down lies Dragon's Domain."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and down.",
+   "placeholder": true
+  },
+  "15184": {
+   "vnum": 15184,
+   "name": "Grub Kitchen",
+   "map": {
+    "x": 44,
+    "y": -22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15179,
+     "description": "To the north lies Hallway."
+    },
+    "east": {
+     "to_room": 15185,
+     "description": "To the east lies Dining Hall."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "15185": {
+   "vnum": 15185,
+   "name": "Dining Hall",
+   "map": {
+    "x": 45,
+    "y": -22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15186,
+     "description": "To the east lies Piles Of Straw."
+    },
+    "west": {
+     "to_room": 15184,
+     "description": "To the west lies Grub Kitchen."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "15186": {
+   "vnum": 15186,
+   "name": "Piles Of Straw",
+   "map": {
+    "x": 46,
+    "y": -22,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 15185,
+     "description": "To the west lies Dining Hall."
+    },
+    "up": {
+     "to_room": 15187,
+     "description": "To the up lies The Harpy Queen's Nest."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead west and up.",
+   "placeholder": true
+  },
+  "15187": {
+   "vnum": 15187,
+   "name": "The Harpy Queen's Nest",
+   "map": {
+    "x": 47,
+    "y": -21,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "down": {
+     "to_room": 15186,
+     "description": "To the down lies Piles Of Straw."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. A way leads down.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

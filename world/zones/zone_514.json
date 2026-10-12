@@ -1,0 +1,856 @@
+{
+ "number": 514,
+ "name": "Morkai",
+ "builders": "Jack",
+ "atlas_area": 114,
+ "rooms": {
+  "13811": {
+   "vnum": 13811,
+   "name": "A Small Crack",
+   "map": {
+    "x": 11,
+    "y": 86,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13859,
+     "description": "To the north lies Moloch's Repose."
+    },
+    "east": {
+     "to_room": 13862,
+     "description": "To the east lies The Stone Of Sealing."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "13849": {
+   "vnum": 13849,
+   "name": "A Hot Cave Tunnel",
+   "map": {
+    "x": 11,
+    "y": 95,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13882,
+     "description": "To the east lies A Glowing Tunnel."
+    },
+    "south": {
+     "to_room": 13850,
+     "description": "To the south lies A Hot Cave Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and south.",
+   "placeholder": true
+  },
+  "13850": {
+   "vnum": 13850,
+   "name": "A Hot Cave Tunnel",
+   "map": {
+    "x": 11,
+    "y": 94,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13849,
+     "description": "To the north lies A Hot Cave Tunnel."
+    },
+    "south": {
+     "to_room": 13852,
+     "description": "To the south lies A Hot Cave Tunnel."
+    },
+    "west": {
+     "to_room": 13851,
+     "description": "To the west lies Natural Lava-Chamber."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "13851": {
+   "vnum": 13851,
+   "name": "Natural Lava-Chamber",
+   "map": {
+    "x": 10,
+    "y": 94,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13850,
+     "description": "To the east lies A Hot Cave Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads east.",
+   "placeholder": true
+  },
+  "13852": {
+   "vnum": 13852,
+   "name": "A Hot Cave Tunnel",
+   "map": {
+    "x": 11,
+    "y": 93,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13850,
+     "description": "To the north lies A Hot Cave Tunnel."
+    },
+    "east": {
+     "to_room": 13853,
+     "description": "To the east lies The Fire Vein."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "13853": {
+   "vnum": 13853,
+   "name": "The Fire Vein",
+   "map": {
+    "x": 12,
+    "y": 93,
+    "z": -2
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 13854,
+     "description": "To the south lies On A Stone Ledge."
+    },
+    "west": {
+     "to_room": 13852,
+     "description": "To the west lies A Hot Cave Tunnel."
+    }
+   },
+   "description": "Gorse and heather cling to the windy rise. From the crest the land below\nspreads out like a map. Ways lead south and west.",
+   "placeholder": true
+  },
+  "13854": {
+   "vnum": 13854,
+   "name": "On A Stone Ledge",
+   "map": {
+    "x": 12,
+    "y": 92,
+    "z": -2
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 13853,
+     "description": "To the north lies The Fire Vein."
+    },
+    "west": {
+     "to_room": 13855,
+     "description": "To the west lies At The Entrance To The Under Tombs."
+    }
+   },
+   "description": "Gorse and heather cling to the windy rise. The ground rises and falls in\ngrassy folds. Ways lead north and west.",
+   "placeholder": true
+  },
+  "13855": {
+   "vnum": 13855,
+   "name": "At The Entrance To The Under Tombs",
+   "map": {
+    "x": 11,
+    "y": 92,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13854,
+     "description": "To the east lies On A Stone Ledge."
+    },
+    "down": {
+     "to_room": 13856,
+     "description": "To the down lies The Hall Of Mirrors."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and down.",
+   "placeholder": true
+  },
+  "13856": {
+   "vnum": 13856,
+   "name": "The Hall Of Mirrors",
+   "map": {
+    "x": 11,
+    "y": 93,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13857,
+     "description": "To the south lies The Great Hall Of The Pale.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "up": {
+     "to_room": 13855,
+     "description": "To the up lies At The Entrance To The Under Tombs."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead south and up.",
+   "placeholder": true
+  },
+  "13857": {
+   "vnum": 13857,
+   "name": "The Great Hall Of The Pale",
+   "map": {
+    "x": 11,
+    "y": 92,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13856,
+     "description": "To the north lies The Hall Of Mirrors."
+    },
+    "south": {
+     "to_room": 13862,
+     "description": "To the south lies The Stone Of Sealing.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13858": {
+   "vnum": 13858,
+   "name": "The Tomb Of The Pale",
+   "map": {
+    "x": 11,
+    "y": 89,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13862,
+     "description": "To the north lies The Stone Of Sealing."
+    },
+    "south": {
+     "to_room": 13859,
+     "description": "To the south lies Moloch's Repose."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13859": {
+   "vnum": 13859,
+   "name": "Moloch's Repose",
+   "map": {
+    "x": 11,
+    "y": 87,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13811,
+     "description": "To the south lies A Small Crack."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads south.",
+   "placeholder": true
+  },
+  "13862": {
+   "vnum": 13862,
+   "name": "The Stone Of Sealing",
+   "map": {
+    "x": 11,
+    "y": 90,
+    "z": -3
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 13858,
+     "description": "To the south lies The Tomb Of The Pale."
+    }
+   },
+   "description": "Gorse and heather cling to the windy rise. Rocks break through the thin\nsoil of the slope. A way leads south.",
+   "placeholder": true
+  },
+  "13863": {
+   "vnum": 13863,
+   "name": "A Glowing Tunnel",
+   "map": {
+    "x": 15,
+    "y": 94,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13874,
+     "description": "To the north lies A Glowing Tunnel."
+    },
+    "south": {
+     "to_room": 13864,
+     "description": "To the south lies A Glowing Tunnel."
+    },
+    "west": {
+     "to_room": 13870,
+     "description": "To the west lies A Glowing Tunnel."
+    },
+    "up": {
+     "to_room": 13699,
+     "description": "To the up lies The Granite Stairs."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, south, west and up.",
+   "placeholder": true
+  },
+  "13864": {
+   "vnum": 13864,
+   "name": "A Glowing Tunnel",
+   "map": {
+    "x": 15,
+    "y": 93,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13863,
+     "description": "To the north lies A Glowing Tunnel."
+    },
+    "south": {
+     "to_room": 13865,
+     "description": "To the south lies A Glowing Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13865": {
+   "vnum": 13865,
+   "name": "A Glowing Tunnel",
+   "map": {
+    "x": 15,
+    "y": 92,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13864,
+     "description": "To the north lies A Glowing Tunnel."
+    },
+    "west": {
+     "to_room": 13866,
+     "description": "To the west lies A Glowing Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "13866": {
+   "vnum": 13866,
+   "name": "A Glowing Tunnel",
+   "map": {
+    "x": 14,
+    "y": 92,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13867,
+     "description": "To the north lies A Glowing Tunnel."
+    },
+    "east": {
+     "to_room": 13865,
+     "description": "To the east lies A Glowing Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and east.",
+   "placeholder": true
+  },
+  "13867": {
+   "vnum": 13867,
+   "name": "A Glowing Tunnel",
+   "map": {
+    "x": 14,
+    "y": 93,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13866,
+     "description": "To the south lies A Glowing Tunnel."
+    },
+    "west": {
+     "to_room": 13868,
+     "description": "To the west lies A Glowing Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "13868": {
+   "vnum": 13868,
+   "name": "A Glowing Tunnel",
+   "map": {
+    "x": 13,
+    "y": 93,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13869,
+     "description": "To the north lies A Glowing Tunnel."
+    },
+    "east": {
+     "to_room": 13867,
+     "description": "To the east lies A Glowing Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and east.",
+   "placeholder": true
+  },
+  "13869": {
+   "vnum": 13869,
+   "name": "A Glowing Tunnel",
+   "map": {
+    "x": 13,
+    "y": 94,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13870,
+     "description": "To the east lies A Glowing Tunnel."
+    },
+    "south": {
+     "to_room": 13868,
+     "description": "To the south lies A Glowing Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "13870": {
+   "vnum": 13870,
+   "name": "A Glowing Tunnel",
+   "map": {
+    "x": 14,
+    "y": 94,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13871,
+     "description": "To the north lies A Glowing Tunnel."
+    },
+    "east": {
+     "to_room": 13863,
+     "description": "To the east lies A Glowing Tunnel."
+    },
+    "west": {
+     "to_room": 13869,
+     "description": "To the west lies A Glowing Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "13871": {
+   "vnum": 13871,
+   "name": "A Glowing Tunnel",
+   "map": {
+    "x": 14,
+    "y": 95,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13872,
+     "description": "To the north lies A Glowing Tunnel."
+    },
+    "south": {
+     "to_room": 13870,
+     "description": "To the south lies A Glowing Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13872": {
+   "vnum": 13872,
+   "name": "A Glowing Tunnel",
+   "map": {
+    "x": 14,
+    "y": 96,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13878,
+     "description": "To the north lies A Glowing Tunnel."
+    },
+    "east": {
+     "to_room": 13873,
+     "description": "To the east lies A Glowing Tunnel."
+    },
+    "south": {
+     "to_room": 13871,
+     "description": "To the south lies A Glowing Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "13873": {
+   "vnum": 13873,
+   "name": "A Glowing Tunnel",
+   "map": {
+    "x": 15,
+    "y": 96,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13875,
+     "description": "To the east lies A Glowing Tunnel."
+    },
+    "south": {
+     "to_room": 13874,
+     "description": "To the south lies A Glowing Tunnel."
+    },
+    "west": {
+     "to_room": 13872,
+     "description": "To the west lies A Glowing Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "13874": {
+   "vnum": 13874,
+   "name": "A Glowing Tunnel",
+   "map": {
+    "x": 15,
+    "y": 95,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13873,
+     "description": "To the north lies A Glowing Tunnel."
+    },
+    "south": {
+     "to_room": 13863,
+     "description": "To the south lies A Glowing Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "13875": {
+   "vnum": 13875,
+   "name": "A Glowing Tunnel",
+   "map": {
+    "x": 16,
+    "y": 96,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13876,
+     "description": "To the north lies A Glowing Tunnel."
+    },
+    "west": {
+     "to_room": 13873,
+     "description": "To the west lies A Glowing Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and west.",
+   "placeholder": true
+  },
+  "13876": {
+   "vnum": 13876,
+   "name": "A Glowing Tunnel",
+   "map": {
+    "x": 16,
+    "y": 97,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 13875,
+     "description": "To the south lies A Glowing Tunnel."
+    },
+    "west": {
+     "to_room": 13877,
+     "description": "To the west lies A Glowing Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "13877": {
+   "vnum": 13877,
+   "name": "A Glowing Tunnel",
+   "map": {
+    "x": 15,
+    "y": 97,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13876,
+     "description": "To the east lies A Glowing Tunnel."
+    },
+    "west": {
+     "to_room": 13878,
+     "description": "To the west lies A Glowing Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "13878": {
+   "vnum": 13878,
+   "name": "A Glowing Tunnel",
+   "map": {
+    "x": 14,
+    "y": 97,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13877,
+     "description": "To the east lies A Glowing Tunnel."
+    },
+    "south": {
+     "to_room": 13872,
+     "description": "To the south lies A Glowing Tunnel."
+    },
+    "west": {
+     "to_room": 13879,
+     "description": "To the west lies A Glowing Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "13879": {
+   "vnum": 13879,
+   "name": "A Glowing Tunnel",
+   "map": {
+    "x": 13,
+    "y": 97,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13878,
+     "description": "To the east lies A Glowing Tunnel."
+    },
+    "south": {
+     "to_room": 13880,
+     "description": "To the south lies A Glowing Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and south.",
+   "placeholder": true
+  },
+  "13880": {
+   "vnum": 13880,
+   "name": "A Glowing Tunnel",
+   "map": {
+    "x": 13,
+    "y": 96,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13879,
+     "description": "To the north lies A Glowing Tunnel."
+    },
+    "west": {
+     "to_room": 13881,
+     "description": "To the west lies A Glowing Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "13881": {
+   "vnum": 13881,
+   "name": "A Glowing Tunnel",
+   "map": {
+    "x": 12,
+    "y": 96,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 13880,
+     "description": "To the east lies A Glowing Tunnel."
+    },
+    "south": {
+     "to_room": 13882,
+     "description": "To the south lies A Glowing Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "13882": {
+   "vnum": 13882,
+   "name": "A Glowing Tunnel",
+   "map": {
+    "x": 12,
+    "y": 95,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 13881,
+     "description": "To the north lies A Glowing Tunnel."
+    },
+    "west": {
+     "to_room": 13849,
+     "description": "To the west lies A Hot Cave Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

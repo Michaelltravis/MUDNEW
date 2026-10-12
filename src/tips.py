@@ -47,7 +47,7 @@ TIPS = {
     
     # Economy tips
     'economy': [
-        "Tip: Visit the bank in Midgaard to store your gold safely.",
+        "Tip: Visit the bank in Garathorm to store your gold safely.",
         "Tip: 'Sell' items at shops to make money.",
         "Tip: 'List' shows what a shop has for sale.",
         "Tip: Different shops buy different types of items.",

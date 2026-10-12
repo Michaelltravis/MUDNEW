@@ -1,0 +1,3267 @@
+{
+ "number": 448,
+ "name": "Mira Retrum I",
+ "builders": "Keats",
+ "atlas_area": 48,
+ "rooms": {
+  "10500": {
+   "vnum": 10500,
+   "name": "Entering Quickstream",
+   "map": {
+    "x": -15,
+    "y": -22,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10501,
+     "description": "To the east lies Further On Quickstream."
+    },
+    "south": {
+     "to_room": 10657,
+     "description": "To the south lies On Mira Retrum."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead east and south.",
+   "placeholder": true
+  },
+  "10600": {
+   "vnum": 10600,
+   "name": "On the Ocean Shore",
+   "map": {
+    "x": 6,
+    "y": -17,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 10601,
+     "description": "To the south lies On the Ocean Shore."
+    },
+    "west": {
+     "to_room": 10602,
+     "description": "To the west lies On Mira Retrum."
+    },
+    "up": {
+     "to_room": 10582,
+     "description": "To the up lies Down the Slope to a Shore."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead south, west and up.",
+   "placeholder": true
+  },
+  "10601": {
+   "vnum": 10601,
+   "name": "On the Ocean Shore",
+   "map": {
+    "x": 6,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10600,
+     "description": "To the north lies On the Ocean Shore."
+    },
+    "west": {
+     "to_room": 10603,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "10602": {
+   "vnum": 10602,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 5,
+    "y": -17,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10600,
+     "description": "To the east lies On the Ocean Shore."
+    },
+    "south": {
+     "to_room": 10603,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10604,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10603": {
+   "vnum": 10603,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 5,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10602,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10601,
+     "description": "To the east lies On the Ocean Shore."
+    },
+    "west": {
+     "to_room": 10604,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10604": {
+   "vnum": 10604,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 3,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 106271,
+     "description": "To the north lies White Sand Beach."
+    },
+    "east": {
+     "to_room": 10603,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10621,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10605,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The water runs\ndeep and cold, too deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10605": {
+   "vnum": 10605,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 2,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10604,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10622,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10606,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. The water runs deep and cold,\ntoo deep to wade. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10606": {
+   "vnum": 10606,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 1,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10605,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10623,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10607,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10607": {
+   "vnum": 10607,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 0,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10608,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10606,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10624,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10608,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10608": {
+   "vnum": 10608,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -1,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10609,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10607,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10625,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10609,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Deep water stretches away,\ndark and restless. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10609": {
+   "vnum": 10609,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -2,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10610,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10608,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10626,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10610,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10610": {
+   "vnum": 10610,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -3,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10609,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10627,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10611,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. The far shore is a\nsmudge on the horizon. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10611": {
+   "vnum": 10611,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -4,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10610,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10628,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10612,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. The far shore is a\nsmudge on the horizon. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10612": {
+   "vnum": 10612,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -5,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10611,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10629,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10613,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10613": {
+   "vnum": 10613,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -6,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10612,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10630,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10614,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10614": {
+   "vnum": 10614,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -7,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10613,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10631,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10615,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Deep water stretches away,\ndark and restless. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10615": {
+   "vnum": 10615,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -8,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10614,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10632,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10616,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The far shore is a smudge\non the horizon. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10616": {
+   "vnum": 10616,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -9,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10615,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10633,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10617,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The far shore is a smudge\non the horizon. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10617": {
+   "vnum": 10617,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -10,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10616,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10634,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10618,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The water runs\ndeep and cold, too deep to wade. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10618": {
+   "vnum": 10618,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -11,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10617,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10635,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10619,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10619": {
+   "vnum": 10619,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -12,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10618,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10636,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10620,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Waves slap against the\nhull of anything that floats here. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10620": {
+   "vnum": 10620,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -13,
+    "y": -19,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10619,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10637,
+     "description": "To the south lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead east and south.",
+   "placeholder": true
+  },
+  "10621": {
+   "vnum": 10621,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 3,
+    "y": -20,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10604,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10641,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10622,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "10622": {
+   "vnum": 10622,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 2,
+    "y": -20,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10605,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10621,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10642,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10623,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Deep water stretches away,\ndark and restless. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10623": {
+   "vnum": 10623,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 1,
+    "y": -20,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10606,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10622,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10643,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10624,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10624": {
+   "vnum": 10624,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 0,
+    "y": -20,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10607,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10623,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10644,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10625,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10625": {
+   "vnum": 10625,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -1,
+    "y": -20,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10608,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10624,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10645,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10626,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10626": {
+   "vnum": 10626,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -2,
+    "y": -20,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10609,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10625,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10646,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10627,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10627": {
+   "vnum": 10627,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -3,
+    "y": -20,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10610,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10626,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10647,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10628,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10628": {
+   "vnum": 10628,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -4,
+    "y": -20,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10611,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10627,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10648,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10629,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. The far shore is a\nsmudge on the horizon. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10629": {
+   "vnum": 10629,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -5,
+    "y": -20,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10612,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10628,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10649,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10630,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The far shore is a smudge\non the horizon. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10630": {
+   "vnum": 10630,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -6,
+    "y": -20,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10613,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10629,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10650,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10631,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The far shore is a smudge\non the horizon. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10631": {
+   "vnum": 10631,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -7,
+    "y": -20,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10614,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10630,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10651,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10632,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10632": {
+   "vnum": 10632,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -8,
+    "y": -20,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10615,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10631,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10652,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10633,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. The water runs deep and cold,\ntoo deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10633": {
+   "vnum": 10633,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -9,
+    "y": -20,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10616,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10632,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10653,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10634,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10634": {
+   "vnum": 10634,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -10,
+    "y": -20,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10617,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10633,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10654,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10635,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10635": {
+   "vnum": 10635,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -11,
+    "y": -20,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10618,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10634,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10655,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10636,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10636": {
+   "vnum": 10636,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -12,
+    "y": -20,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10619,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10635,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10656,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10637,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The far shore is a smudge\non the horizon. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10637": {
+   "vnum": 10637,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -13,
+    "y": -20,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10620,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10636,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10657,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10638,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10638": {
+   "vnum": 10638,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -17,
+    "y": -22,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10620,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10500,
+     "description": "To the east lies Entering Quickstream."
+    },
+    "south": {
+     "to_room": 10658,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10639,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10639": {
+   "vnum": 10639,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -18,
+    "y": -22,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10620,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10638,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10659,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10640,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10640": {
+   "vnum": 10640,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -19,
+    "y": -22,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10639,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10660,
+     "description": "To the south lies On Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead east and south.",
+   "placeholder": true
+  },
+  "10641": {
+   "vnum": 10641,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 3,
+    "y": -24,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10621,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10661,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10642,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "10642": {
+   "vnum": 10642,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 2,
+    "y": -24,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10622,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10641,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10662,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10643,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10643": {
+   "vnum": 10643,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 1,
+    "y": -24,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10623,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10642,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10663,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10644,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10644": {
+   "vnum": 10644,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 0,
+    "y": -24,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10624,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10643,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10664,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10645,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10645": {
+   "vnum": 10645,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -1,
+    "y": -24,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10625,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10644,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10665,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10646,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10646": {
+   "vnum": 10646,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -2,
+    "y": -24,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10626,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10645,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10666,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10647,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The far shore is a smudge\non the horizon. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10647": {
+   "vnum": 10647,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -3,
+    "y": -24,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10627,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10646,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10667,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10648,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10648": {
+   "vnum": 10648,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -4,
+    "y": -24,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10628,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10647,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10668,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10649,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10649": {
+   "vnum": 10649,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -5,
+    "y": -24,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10629,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10648,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10669,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10650,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10650": {
+   "vnum": 10650,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -6,
+    "y": -24,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10630,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10649,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10670,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10651,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10651": {
+   "vnum": 10651,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -7,
+    "y": -24,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10631,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10650,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10671,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10652,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The water runs\ndeep and cold, too deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10652": {
+   "vnum": 10652,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -8,
+    "y": -24,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10632,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10651,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10672,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10653,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10653": {
+   "vnum": 10653,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -9,
+    "y": -24,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10633,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10652,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10673,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10654,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10654": {
+   "vnum": 10654,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -10,
+    "y": -24,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10634,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10653,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10674,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10655,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10655": {
+   "vnum": 10655,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -11,
+    "y": -24,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10635,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10654,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10675,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10656,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10656": {
+   "vnum": 10656,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -12,
+    "y": -24,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10636,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10655,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10676,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10657,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10657": {
+   "vnum": 10657,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -13,
+    "y": -24,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10637,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10656,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10676,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10658,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10658": {
+   "vnum": 10658,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -17,
+    "y": -24,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10638,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10657,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10676,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10659,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Deep water stretches away,\ndark and restless. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10659": {
+   "vnum": 10659,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -18,
+    "y": -24,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10639,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10658,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10676,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10660,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. The water runs deep and cold,\ntoo deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10660": {
+   "vnum": 10660,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -19,
+    "y": -24,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10640,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10659,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10676,
+     "description": "To the south lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "10661": {
+   "vnum": 10661,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 3,
+    "y": -26,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10641,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10677,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10662,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Waves slap against the\nhull of anything that floats here. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "10662": {
+   "vnum": 10662,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 2,
+    "y": -26,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10642,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10661,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10678,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10663,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10663": {
+   "vnum": 10663,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 1,
+    "y": -26,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10643,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10662,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10679,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10664,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. The far shore is a\nsmudge on the horizon. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10664": {
+   "vnum": 10664,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 0,
+    "y": -26,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10644,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10663,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10680,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10665,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10665": {
+   "vnum": 10665,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -1,
+    "y": -26,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10645,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10664,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10681,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10666,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Deep water stretches away,\ndark and restless. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10666": {
+   "vnum": 10666,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -2,
+    "y": -26,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10646,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10665,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10682,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10667,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10667": {
+   "vnum": 10667,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -3,
+    "y": -26,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10647,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10666,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10683,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10668,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. The water runs deep and cold,\ntoo deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10668": {
+   "vnum": 10668,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -4,
+    "y": -26,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10648,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10667,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10684,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10669,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10669": {
+   "vnum": 10669,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -5,
+    "y": -26,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10649,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10668,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10684,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10670,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10670": {
+   "vnum": 10670,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -6,
+    "y": -26,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10650,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10669,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10684,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10671,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10671": {
+   "vnum": 10671,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -7,
+    "y": -26,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10651,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10670,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10684,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10672,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10672": {
+   "vnum": 10672,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -8,
+    "y": -26,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10652,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10671,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10684,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10673,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10673": {
+   "vnum": 10673,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -9,
+    "y": -26,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10653,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10672,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10684,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10674,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10674": {
+   "vnum": 10674,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -10,
+    "y": -26,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10654,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10673,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10684,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10675,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10675": {
+   "vnum": 10675,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -11,
+    "y": -26,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10655,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10674,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10684,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10676,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10676": {
+   "vnum": 10676,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -12,
+    "y": -26,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10656,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10675,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10684,
+     "description": "To the south lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "10677": {
+   "vnum": 10677,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 3,
+    "y": -28,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10661,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10685,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10678,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The water runs\ndeep and cold, too deep to wade. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "10678": {
+   "vnum": 10678,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 2,
+    "y": -28,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10662,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10677,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10686,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10679,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Deep water stretches away,\ndark and restless. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10679": {
+   "vnum": 10679,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 1,
+    "y": -28,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10663,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10678,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10687,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10680,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10680": {
+   "vnum": 10680,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 0,
+    "y": -28,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10664,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10679,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10688,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10681,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10681": {
+   "vnum": 10681,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -1,
+    "y": -28,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10665,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10680,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10689,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10682,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. The water runs deep and cold,\ntoo deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10682": {
+   "vnum": 10682,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -2,
+    "y": -28,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10666,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10681,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10690,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10683,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10683": {
+   "vnum": 10683,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -3,
+    "y": -28,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10667,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10682,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10691,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10684,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10684": {
+   "vnum": 10684,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -4,
+    "y": -28,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10668,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10683,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10692,
+     "description": "To the south lies On Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. The far shore is a\nsmudge on the horizon. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "10685": {
+   "vnum": 10685,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 3,
+    "y": -29,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10677,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10686,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. The water runs deep and cold,\ntoo deep to wade. Ways lead north and west.",
+   "placeholder": true
+  },
+  "10686": {
+   "vnum": 10686,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 2,
+    "y": -29,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10678,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10685,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10687,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. The water runs deep and cold,\ntoo deep to wade. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10687": {
+   "vnum": 10687,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 1,
+    "y": -29,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10679,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10686,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10688,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. The far shore is a\nsmudge on the horizon. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10688": {
+   "vnum": 10688,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": 0,
+    "y": -29,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10680,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10687,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10693,
+     "description": "To the south lies The Southern Ocean."
+    },
+    "west": {
+     "to_room": 10689,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10689": {
+   "vnum": 10689,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -1,
+    "y": -29,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10681,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10688,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "south": {
+     "to_room": 10694,
+     "description": "To the south lies The Southern Ocean."
+    },
+    "west": {
+     "to_room": 10690,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10690": {
+   "vnum": 10690,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -2,
+    "y": -29,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10682,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10689,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10691,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10691": {
+   "vnum": 10691,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -3,
+    "y": -29,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10683,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10690,
+     "description": "To the east lies On Mira Retrum."
+    },
+    "west": {
+     "to_room": 10692,
+     "description": "To the west lies On Mira Retrum."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. The water runs deep and cold,\ntoo deep to wade. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10692": {
+   "vnum": 10692,
+   "name": "On Mira Retrum",
+   "map": {
+    "x": -4,
+    "y": -29,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10684,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10691,
+     "description": "To the east lies On Mira Retrum."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The water runs\ndeep and cold, too deep to wade. Ways lead north and east.",
+   "placeholder": true
+  },
+  "10693": {
+   "vnum": 10693,
+   "name": "The Southern Ocean",
+   "map": {
+    "x": 0,
+    "y": -35,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10688,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10693,
+     "description": "To the east lies The Southern Ocean."
+    },
+    "south": {
+     "to_room": 10695,
+     "description": "To the south lies The Southern Ocean."
+    },
+    "west": {
+     "to_room": 10694,
+     "description": "To the west lies The Southern Ocean."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10694": {
+   "vnum": 10694,
+   "name": "The Southern Ocean",
+   "map": {
+    "x": -1,
+    "y": -35,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10689,
+     "description": "To the north lies On Mira Retrum."
+    },
+    "east": {
+     "to_room": 10693,
+     "description": "To the east lies The Southern Ocean."
+    },
+    "south": {
+     "to_room": 10696,
+     "description": "To the south lies The Southern Ocean."
+    },
+    "west": {
+     "to_room": 10694,
+     "description": "To the west lies The Southern Ocean."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Waves slap against the\nhull of anything that floats here. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10695": {
+   "vnum": 10695,
+   "name": "The Southern Ocean",
+   "map": {
+    "x": 0,
+    "y": -36,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10693,
+     "description": "To the north lies The Southern Ocean."
+    },
+    "east": {
+     "to_room": 10695,
+     "description": "To the east lies The Southern Ocean."
+    },
+    "south": {
+     "to_room": 10697,
+     "description": "To the south lies The Southern Ocean."
+    },
+    "west": {
+     "to_room": 10696,
+     "description": "To the west lies The Southern Ocean."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. The water runs deep and cold,\ntoo deep to wade. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10696": {
+   "vnum": 10696,
+   "name": "The Southern Ocean",
+   "map": {
+    "x": -1,
+    "y": -36,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10694,
+     "description": "To the north lies The Southern Ocean."
+    },
+    "east": {
+     "to_room": 10695,
+     "description": "To the east lies The Southern Ocean."
+    },
+    "south": {
+     "to_room": 10698,
+     "description": "To the south lies The Southern Ocean."
+    },
+    "west": {
+     "to_room": 10696,
+     "description": "To the west lies The Southern Ocean."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10697": {
+   "vnum": 10697,
+   "name": "The Southern Ocean",
+   "map": {
+    "x": 0,
+    "y": -41,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10695,
+     "description": "To the north lies The Southern Ocean."
+    },
+    "east": {
+     "to_room": 10695,
+     "description": "To the east lies The Southern Ocean."
+    },
+    "west": {
+     "to_room": 10699,
+     "description": "To the west lies The Southern Ocean."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10698": {
+   "vnum": 10698,
+   "name": "The Southern Ocean",
+   "map": {
+    "x": -1,
+    "y": -39,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10696,
+     "description": "To the north lies The Southern Ocean."
+    },
+    "east": {
+     "to_room": 10697,
+     "description": "To the east lies The Southern Ocean."
+    },
+    "south": {
+     "to_room": 10699,
+     "description": "To the south lies The Southern Ocean."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The far shore is a smudge\non the horizon. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "10699": {
+   "vnum": 10699,
+   "name": "The Southern Ocean",
+   "map": {
+    "x": -1,
+    "y": -41,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10698,
+     "description": "To the north lies The Southern Ocean."
+    },
+    "east": {
+     "to_room": 10697,
+     "description": "To the east lies The Southern Ocean."
+    },
+    "south": {
+     "to_room": 10704,
+     "description": "To the south lies The Southern Mira Retrum."
+    },
+    "west": {
+     "to_room": 10700,
+     "description": "To the west lies Lost in the Ocean."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Deep water stretches away,\ndark and restless. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10700": {
+   "vnum": 10700,
+   "name": "Lost in the Ocean",
+   "map": {
+    "x": -7,
+    "y": -41,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10701,
+     "description": "To the north lies Lost in the Ocean."
+    },
+    "east": {
+     "to_room": 10702,
+     "description": "To the east lies Lost in the Ocean."
+    },
+    "south": {
+     "to_room": 10701,
+     "description": "To the south lies Lost in the Ocean."
+    },
+    "west": {
+     "to_room": 10702,
+     "description": "To the west lies Lost in the Ocean."
+    },
+    "up": {
+     "to_room": 10699,
+     "description": "To the up lies The Southern Ocean."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead north, east, south, west and up.",
+   "placeholder": true
+  },
+  "10701": {
+   "vnum": 10701,
+   "name": "Lost in the Ocean",
+   "map": {
+    "x": -7,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10700,
+     "description": "To the north lies Lost in the Ocean."
+    },
+    "east": {
+     "to_room": 10703,
+     "description": "To the east lies Lost in the Ocean."
+    },
+    "south": {
+     "to_room": 10700,
+     "description": "To the south lies Lost in the Ocean."
+    },
+    "west": {
+     "to_room": 10703,
+     "description": "To the west lies Lost in the Ocean."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. Deep water stretches\naway, dark and restless. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10702": {
+   "vnum": 10702,
+   "name": "Lost in the Ocean",
+   "map": {
+    "x": -9,
+    "y": -41,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10703,
+     "description": "To the north lies Lost in the Ocean."
+    },
+    "east": {
+     "to_room": 10700,
+     "description": "To the east lies Lost in the Ocean."
+    },
+    "south": {
+     "to_room": 10703,
+     "description": "To the south lies Lost in the Ocean."
+    },
+    "west": {
+     "to_room": 10700,
+     "description": "To the west lies Lost in the Ocean."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10703": {
+   "vnum": 10703,
+   "name": "Lost in the Ocean",
+   "map": {
+    "x": -9,
+    "y": -43,
+    "z": -1
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10702,
+     "description": "To the north lies Lost in the Ocean."
+    },
+    "east": {
+     "to_room": 10701,
+     "description": "To the east lies Lost in the Ocean."
+    },
+    "south": {
+     "to_room": 10702,
+     "description": "To the south lies Lost in the Ocean."
+    },
+    "west": {
+     "to_room": 10701,
+     "description": "To the west lies Lost in the Ocean."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. The far shore is a\nsmudge on the horizon. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "106265": {
+   "vnum": 106265,
+   "name": "White Sand Beach",
+   "map": {
+    "x": 2,
+    "y": -15,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106266,
+     "description": "To the north lies White Sand Beach."
+    },
+    "south": {
+     "to_room": 106267,
+     "description": "To the south lies Beach on Leper Island."
+    },
+    "up": {
+     "to_room": 106264,
+     "description": "To the up lies Cliff."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, south and up.",
+   "placeholder": true
+  },
+  "106266": {
+   "vnum": 106266,
+   "name": "White Sand Beach",
+   "map": {
+    "x": 2,
+    "y": -14,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 106265,
+     "description": "To the south lies White Sand Beach."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads south.",
+   "placeholder": true
+  },
+  "106267": {
+   "vnum": 106267,
+   "name": "Beach on Leper Island",
+   "map": {
+    "x": 2,
+    "y": -16,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106265,
+     "description": "To the north lies White Sand Beach."
+    },
+    "east": {
+     "to_room": 106273,
+     "description": "To the east lies White Sand Beach."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "106271": {
+   "vnum": 106271,
+   "name": "White Sand Beach",
+   "map": {
+    "x": 3,
+    "y": -18,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106272,
+     "description": "To the north lies White Sand Beach."
+    },
+    "south": {
+     "to_room": 10604,
+     "description": "To the south lies On Mira Retrum."
+    },
+    "up": {
+     "to_room": 106270,
+     "description": "To the up lies Narrow Gully."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, south and up.",
+   "placeholder": true
+  },
+  "106272": {
+   "vnum": 106272,
+   "name": "White Sand Beach",
+   "map": {
+    "x": 3,
+    "y": -17,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 106273,
+     "description": "To the north lies White Sand Beach."
+    },
+    "south": {
+     "to_room": 106271,
+     "description": "To the south lies White Sand Beach."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "106273": {
+   "vnum": 106273,
+   "name": "White Sand Beach",
+   "map": {
+    "x": 3,
+    "y": -16,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 106272,
+     "description": "To the south lies White Sand Beach."
+    },
+    "west": {
+     "to_room": 106267,
+     "description": "To the west lies Beach on Leper Island."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead south and west.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {}
+}

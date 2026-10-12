@@ -1,3042 +1,3799 @@
 {
-  "number": 50,
-  "name": "The Great Eastern Desert",
-  "lifespan": 30,
-  "rooms": {
-    "5001": {
-      "vnum": 5001,
-      "name": "A Long Tunnel",
-      "description": "You encounter some rapids as you enter this tunnel cut out of the\nmountains by the river. Waves crash and foam relentlessly. The depths\nare dark and unknowable.",
-      "sector_type": "water_noswim",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5002,
-          "description": "Deep waters churn near A Long Tunnel"
-        },
-        "west": {
-          "to_room": 3205,
-          "description": "There appear to be some bars here, making passage to the west difficult."
-        }
-      }
-    },
-    "5002": {
-      "vnum": 5002,
-      "name": "A Long Tunnel",
-      "description": "The tunnel stretches endlessly through solid rock, carved by ancient\nhands or perhaps erosion from underground rivers. Limestone walls\nglisten with moisture, and your footsteps echo into the darkness ahead.\nThe depths are dark and unknowable. Waves crash and foam relentlessly.",
-      "sector_type": "water_noswim",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5008,
-          "description": "A steep trail ascends to The Cave-In"
-        },
-        "east": {
-          "to_room": 5003,
-          "description": "Deep waters churn near A Long Tunnel"
-        },
-        "west": {
-          "to_room": 5001,
-          "description": "Deep waters churn near A Long Tunnel"
-        }
-      }
-    },
-    "5003": {
-      "vnum": 5003,
-      "name": "A Long Tunnel",
-      "description": "Rough-hewn stone walls press in from both sides as the tunnel continues\nits descent. The air grows cooler here, and you can hear the distant\ndrip of water echoing through unseen chambers. The roar of water fills\nyour ears. The water churns with dangerous currents.",
-      "sector_type": "water_noswim",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5004,
-          "description": "Deep waters churn near A Tunnel Intersection"
-        },
-        "south": {
-          "to_room": 5017,
-          "description": "A steep trail ascends to A Narrow Crawlway"
-        },
-        "west": {
-          "to_room": 5002,
-          "description": "Deep waters churn near A Long Tunnel"
-        }
-      }
-    },
-    "5004": {
-      "vnum": 5004,
-      "name": "A Tunnel Intersection",
-      "description": "Multiple tunnels converge at this intersection, each passage\ndisappearing into darkness. Strange symbols are carved into the\njunction's walls, possibly markers left by whoever built these passages.\nSpray mists the air around. The depths are dark and unknowable.",
-      "sector_type": "water_noswim",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5643,
-          "description": "Deep waters churn near The River Of Lost Souls"
-        },
-        "east": {
-          "to_room": 5005,
-          "description": "Deep waters churn near An Underground Lake"
-        },
-        "south": {
-          "to_room": 5018,
-          "description": "A steep trail ascends to A Large Cavern"
-        },
-        "west": {
-          "to_room": 5003,
-          "description": "Deep waters churn near A Long Tunnel"
-        }
-      }
-    },
-    "5005": {
-      "vnum": 5005,
-      "name": "An Underground Lake",
-      "description": "The void stretches on a jet-black underground lake fed by dripping water\nand lime from above. The tunnel continues to the east and the river\nleads back west. Leading upwards to the northwest is a roughly hewn\nhallway. Spray mists the air around. Waves crash and foam relentlessly.",
-      "sector_type": "water_noswim",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5671,
-          "description": "Deep waters churn near On The Dark River"
-        },
-        "east": {
-          "to_room": 5006,
-          "description": "A steep trail ascends to A Long Narrow Tunnel"
-        },
-        "south": {
-          "to_room": 5023,
-          "description": "A steep trail ascends to A Sloping Passage"
-        },
-        "west": {
-          "to_room": 5004,
-          "description": "Deep waters churn near A Tunnel Intersection"
-        }
-      }
-    },
-    "5006": {
-      "vnum": 5006,
-      "name": "A Long Narrow Tunnel",
-      "description": "The tunnel rises sharply to the east. Another narrow tunnel leads away\nto the north. Bare rock dominates the landscape. The wind howls around\nexposed peaks.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors",
-        "tunnel"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5016,
-          "description": "A steep trail ascends to A Damp Hallway"
-        },
-        "east": {
-          "to_room": 5007,
-          "description": "A steep trail ascends to A Wide Tunnel"
-        },
-        "west": {
-          "to_room": 5005,
-          "description": "Deep waters churn near An Underground Lake"
-        }
-      }
-    },
-    "5007": {
-      "vnum": 5007,
-      "name": "A Wide Tunnel",
-      "description": "The tunnel continues east and west. To the east the tunnel dives down\ninto a bright light. A small passage way opens to the north. The path is\nsteep and treacherous. Bare rock dominates the landscape.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5026,
-          "description": "An open path leads to The Great Eastern Desert"
-        },
-        "west": {
-          "to_room": 5006,
-          "description": "A steep trail ascends to A Long Narrow Tunnel"
-        }
-      }
-    },
-    "5008": {
-      "vnum": 5008,
-      "name": "The Cave-In",
-      "description": "The area opens at the edge of a large pile of rubble created from the\nlast rockslide. Snow clings to shadowed crevices. The air is thin and\ncold at this altitude.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5002,
-          "description": "Deep waters churn near A Long Tunnel"
-        },
-        "down": {
-          "to_room": 5009,
-          "description": "You can easily slide down the rocks without getting hurt."
-        }
-      }
-    },
-    "5009": {
-      "vnum": 5009,
-      "name": "At The Foot Of The Rubble",
-      "description": "This is the bottom of a large pile of rubble. A tunnel branches off to\nthe north and east. The path is steep and treacherous. The air is thin\nand cold at this altitude.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5010,
-          "description": "A steep trail ascends to A Cave Entrance"
-        },
-        "east": {
-          "to_room": 5012,
-          "description": "A steep trail ascends to A Narrow Bend"
-        },
-        "up": {
-          "to_room": 5008,
-          "description": "A steep trail ascends to The Cave-In"
-        },
-        "down": {
-          "to_room": 5070
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5011,
-          "max": 3
-        }
-      ]
-    },
-    "5010": {
-      "vnum": 5010,
-      "name": "A Cave Entrance",
-      "description": "The area opens in the middle of a large and beautiful cave. A path leads\ndeeper into the darkness. Bare rock dominates the landscape. The path is\nsteep and treacherous.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5009,
-          "description": "A steep trail ascends to At The Foot Of The Rubble"
-        },
-        "down": {
-          "to_room": 5011,
-          "description": "You look down into the cave.  Bones are strewn about everywhere."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5098,
-          "max": 1
-        }
-      ]
-    },
-    "5011": {
-      "vnum": 5011,
-      "name": "A Giant Cave",
-      "description": "This cavern overwhelms you. The walls and ceiling seem miles away. Bones\nof previous adventurers lie strewn on the cavern floor. There is a\npassage that spirals downwards in the northeast corner of the cavern.\nBare rock dominates the landscape. The wind howls around exposed peaks.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "up": {
-          "to_room": 5010,
-          "description": "A steep trail ascends to A Cave Entrance"
-        },
-        "down": {
-          "to_room": 5100,
-          "description": "The passageway spirals down into the gloom."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5010,
-          "max": 1
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 5005,
-          "max": 1
-        }
-      ]
-    },
-    "5012": {
-      "vnum": 5012,
-      "name": "A Narrow Bend",
-      "description": "The tunnel bends sharply here, forcing you to navigate carefully around\njagged outcroppings. Water trickles down the curved wall, leaving\nmineral deposits that sparkle in any available light. Bare rock\ndominates the landscape. The air is thin and cold at this altitude.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5013,
-          "description": "A steep trail ascends to A Large Cave"
-        },
-        "west": {
-          "to_room": 5009,
-          "description": "A steep trail ascends to At The Foot Of The Rubble"
-        }
-      }
-    },
-    "5013": {
-      "vnum": 5013,
-      "name": "A Large Cave",
-      "description": "This is a large cave. Many furs are spread out on the floor. The path is\nsteep and treacherous. Snow clings to shadowed crevices. The rocky\nterrain is steep and unforgiving. Thin air makes breathing difficult.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5012,
-          "description": "A steep trail ascends to A Narrow Bend"
-        },
-        "east": {
-          "to_room": 5014,
-          "description": "A steep trail ascends to A Damp Hallway"
-        }
-      }
-    },
-    "5014": {
-      "vnum": 5014,
-      "name": "A Damp Hallway",
-      "description": "The walls here are extremely damp, as well as the floor. The path is\nsteep and treacherous. Bare rock dominates the landscape. The rocky\nterrain is steep and unforgiving. Thin air makes breathing difficult.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5015,
-          "description": "You hear drops of water."
-        },
-        "west": {
-          "to_room": 5013,
-          "description": "A steep trail ascends to A Large Cave"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5012,
-          "max": 3
-        }
-      ]
-    },
-    "5015": {
-      "vnum": 5015,
-      "name": "An Underground Pool",
-      "description": "A natural underground pool fills this chamber, its surface perfectly\nstill and dark as obsidian. The water looks deep and ancient, fed by\nunderground springs that predate the desert above. The current tugs\ngently at your limbs. Fish dart beneath the waves.",
-      "sector_type": "water_swim",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5016,
-          "description": "A steep trail ascends to A Damp Hallway"
-        },
-        "west": {
-          "to_room": 5014,
-          "description": "A steep trail ascends to A Damp Hallway"
-        }
-      }
-    },
-    "5016": {
-      "vnum": 5016,
-      "name": "A Damp Hallway",
-      "description": "The walls of the tunnel are extremely damp here. The tunnel leads\nsharply upwards to the south as it starts to get narrow. Snow clings to\nshadowed crevices. The air is thin and cold at this altitude.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5006,
-          "description": "A steep trail ascends to A Long Narrow Tunnel"
-        },
-        "west": {
-          "to_room": 5015,
-          "description": "You hear drops of water."
-        }
-      }
-    },
-    "5017": {
-      "vnum": 5017,
-      "name": "A Narrow Crawlway",
-      "description": "This crawlway is just big enough for a human to crawl through or a\nhalfling to walk through. The path is steep and treacherous. Bare rock\ndominates the landscape.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5003,
-          "description": "Deep waters churn near A Long Tunnel"
-        },
-        "east": {
-          "to_room": 5018,
-          "description": "A steep trail ascends to A Large Cavern"
-        },
-        "south": {
-          "to_room": 5019,
-          "description": "You smell the fragrant odor of fungus."
-        }
-      }
-    },
-    "5018": {
-      "vnum": 5018,
-      "name": "A Large Cavern",
-      "description": "The entrance opens to a very large cavern. The rock formations would\namaze almost any dwarf. Bare rock dominates the landscape. The path is\nsteep and treacherous.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5004,
-          "description": "Deep waters churn near A Tunnel Intersection"
-        },
-        "west": {
-          "to_room": 5017,
-          "description": "A steep trail ascends to A Narrow Crawlway"
-        }
-      }
-    },
-    "5019": {
-      "vnum": 5019,
-      "name": "A Fungus Patch",
-      "description": "As you walk through the fungus patch, you are shot at by many millions\nof spores. You can hardly breathe. Snow clings to shadowed crevices. The\nwind howls around exposed peaks.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5017,
-          "description": "A steep trail ascends to A Narrow Crawlway"
-        },
-        "east": {
-          "to_room": 5020,
-          "description": "The fragrant smell of fungus spores continues to the east."
-        }
-      }
-    },
-    "5020": {
-      "vnum": 5020,
-      "name": "The Fungus Path",
-      "description": "As you walk along the path, millions of spores are shot at you. It is\ndifficult to breathe. A section of the path feels hollow underfoot. The\npath is steep and treacherous. The air is thin and cold at this\naltitude.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5021,
-          "description": "A giant mushroom temple stands to the south."
-        },
-        "west": {
-          "to_room": 5019,
-          "description": "The fragrant smell of spores continues to the west."
-        },
-        "down": {
-          "to_room": 5074,
-          "description": "Loose stones conceal a sink into darkness.",
-          "hidden": true,
-          "search_difficulty": 55,
-          "secret": true,
-          "reveal_message": "The stones give way, revealing a hidden descent."
-        }
-      }
-    },
-    "5021": {
-      "vnum": 5021,
-      "name": "The Fungus Temple",
-      "description": "The passage opens standing inside of a giant mushroom. The inside is\ndecorated in the fashion of a temple. Bare rock dominates the landscape.\nSnow clings to shadowed crevices.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5020,
-          "description": "A steep trail ascends to The Fungus Path"
-        },
-        "east": {
-          "to_room": 5022,
-          "description": "A steep trail ascends to A Sloping Passage"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5013,
-          "max": 4
-        },
-        {
-          "vnum": 5014,
-          "max": 1
-        }
-      ]
-    },
-    "5022": {
-      "vnum": 5022,
-      "name": "A Sloping Passage",
-      "description": "You follow a path sloping down from the fungus temple. Snow clings to\nshadowed crevices. The wind howls around exposed peaks. The rocky\nterrain is steep and unforgiving. Thin air makes breathing difficult.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5023,
-          "description": "A steep trail ascends to A Sloping Passage"
-        },
-        "south": {
-          "to_room": 5021,
-          "description": "A steep trail ascends to The Fungus Temple"
-        },
-        "west": {
-          "to_room": 5021
-        }
-      }
-    },
-    "5023": {
-      "vnum": 5023,
-      "name": "A Sloping Passage",
-      "description": "The area is a path that gently slopes up from the underground pool. Snow\nclings to shadowed crevices. The air is thin and cold at this altitude.\nThe rocky terrain is steep and unforgiving. Thin air makes breathing\ndifficult.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5005,
-          "description": "You hear sounds of trickling water."
-        },
-        "south": {
-          "to_room": 5022,
-          "description": "A steep trail ascends to A Sloping Passage"
-        }
-      }
-    },
-    "5024": {
-      "vnum": 5024,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sand constantly shifting around\nyou. A pyramid lies to the east and a snow-capped mountain range to the\nwest. The open sky stretches overhead. The ground is soft underfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5030,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5034,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5025,
-          "description": "Sand as far as the eye can see."
-        }
-      }
-    },
-    "5025": {
-      "vnum": 5025,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the east and a snow-capped mountain range to the\nwest. The air is fresh and clean. The open sky stretches overhead.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5024,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5031,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5026,
-          "description": "Sand as far as the eye can see."
-        }
-      }
-    },
-    "5026": {
-      "vnum": 5026,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the east and a snow-capped mountain range to the\nwest. The hole which you tumbled out of is too high for you to reach.\nTall grass sways in a gentle breeze. The air is fresh and clean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5025,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5036,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5027,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5007
-        }
-      }
-    },
-    "5027": {
-      "vnum": 5027,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the east and a snow-capped mountain range to the\nwest. The ground is soft underfoot. The air is fresh and clean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5026,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5033,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5028,
-          "description": "Sand as far as the eye can see."
-        }
-      }
-    },
-    "5028": {
-      "vnum": 5028,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north-east and a snow-capped mountain range\nto the west. You spy a narrow dirt trail leading away to the west into\nthe foothills. Tall grass sways in a gentle breeze. The air is fresh and\nclean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5027,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5033,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5029,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 12068,
-          "description": "A small dirt trail leads off to the west where it joins a large clay road some distance away."
-        }
-      }
-    },
-    "5029": {
-      "vnum": 5029,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north-east and a snow-capped mountain range\nto the west. Wildflowers dot the landscape. Tall grass sways in a gentle\nbreeze.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5028,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5037,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5044,
-          "description": "Sand as far as the eye can see."
-        }
-      }
-    },
-    "5030": {
-      "vnum": 5030,
-      "name": "A Small Oasis",
-      "description": "The area opens beside a small pool of crystal-blue water bathed in the\nshade of a few scarce palm trees. To the north you see a small\nencampment stopped for the day. The oasis pool burbles with a hollow\necho. Wildflowers dot the landscape. Tall grass sways in a gentle\nbreeze.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5056,
-          "description": "You see three tents and some camels hitched to a stake.  Shadows moving  across the tents suggest activity."
-        },
-        "east": {
-          "to_room": 5036,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5032,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5025,
-          "description": "Sand as far as the eye can see."
-        },
-        "down": {
-          "to_room": 5073,
-          "description": "A stone hatch beneath the waterline.",
-          "hidden": true,
-          "search_difficulty": 60,
-          "secret": true,
-          "door": {
-            "name": "hatch",
-            "state": "closed",
-            "locked": true,
-            "key_vnum": 5053
-          },
-          "reveal_message": "You find a hatch hidden beneath the oasis water."
-        }
-      }
-    },
-    "5031": {
-      "vnum": 5031,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the east. Tall grass sways in a gentle breeze.\nWildflowers dot the landscape.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5031,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5031,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5032,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5024,
-          "description": "Sand as far as the eye can see."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5002,
-          "max": 5
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 5006,
-          "max": 6
-        }
-      ]
-    },
-    "5032": {
-      "vnum": 5032,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the east. The air is fresh and clean. The ground\nis soft underfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5035,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5036,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5033,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5032,
-          "description": "Sand as far as the eye can see."
-        }
-      }
-    },
-    "5033": {
-      "vnum": 5033,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north-east. The air is fresh and clean. The\nopen sky stretches overhead.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5037,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5037,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5043,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5028,
-          "description": "Sand as far as the eye can see."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5015,
-          "max": 3
-        },
-        {
-          "vnum": 5000,
-          "max": 5
-        }
-      ]
-    },
-    "5034": {
-      "vnum": 5034,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the south-east. The air is fresh and clean. The\nground is soft underfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5038,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5035,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5034,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5035,
-          "description": "Sand as far as the eye can see."
-        }
-      }
-    },
-    "5035": {
-      "vnum": 5035,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the east, it looks enormous, even from this\ndistance. The open sky stretches overhead. The ground is soft underfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5039,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5300,
-          "description": "Even from here, you can sense a great evil residing within the pyramid protruding from the sand to the east."
-        },
-        "south": {
-          "to_room": 5032,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5034,
-          "description": "Sand as far as the eye can see."
-        }
-      }
-    },
-    "5036": {
-      "vnum": 5036,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north-east. The air is fresh and clean. Tall\ngrass sways in a gentle breeze.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5035,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5041,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5032,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5030,
-          "description": "Sand as far as the eye can see."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5004,
-          "max": 1
-        }
-      ]
-    },
-    "5037": {
-      "vnum": 5037,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north-east. Wildflowers dot the landscape.\nThe open sky stretches overhead.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5048,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5033,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5042,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5033,
-          "description": "Sand as far as the eye can see."
-        }
-      }
-    },
-    "5038": {
-      "vnum": 5038,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the south. The open sky stretches overhead. Tall\ngrass sways in a gentle breeze.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5046,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5045,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5040,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5034,
-          "description": "Sand as far as the eye can see."
-        }
-      }
-    },
-    "5039": {
-      "vnum": 5039,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the south. The gates of a city lie a short\ndistance off to the north. Wildflowers dot the landscape. The open sky\nstretches overhead.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5411,
-          "description": "Some city gates stand off to the north."
-        },
-        "east": {
-          "to_room": 5039,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5048,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5039,
-          "description": "Sand as far as the eye can see."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5015,
-          "max": 3
-        }
-      ]
-    },
-    "5040": {
-      "vnum": 5040,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. The area is near a gigantic pyramid located a couple hundred meters\nto the west. From here you can sense the great evil which resides within\nthe massive structure. A patch of sand nearby feels colder than the\nrest. The air is fresh and clean. The ground is soft underfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5036,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5049,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5041,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5300,
-          "description": "The pyramid can be seen across the sands to the west."
-        },
-        "down": {
-          "to_room": 5071,
-          "description": "A sinkhole hidden beneath loose sand.",
-          "hidden": true,
-          "requires_detect_magic": true,
-          "search_difficulty": 62,
-          "secret": true,
-          "reveal_message": "The sand collapses, revealing a buried reliquary below."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5001,
-          "max": 8
-        }
-      ]
-    },
-    "5041": {
-      "vnum": 5041,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north. The ground is soft underfoot.\nWildflowers dot the landscape.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5040,
-          "description": "Even from here, you can sense a great evil residing within the pyramid protruding from the sand to the north."
-        },
-        "east": {
-          "to_room": 5048,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5041,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5037,
-          "description": "Sand as far as the eye can see."
-        }
-      }
-    },
-    "5042": {
-      "vnum": 5042,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north. The open sky stretches overhead. The\nground is soft underfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5049,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5055,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5043,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5041,
-          "description": "Sand as far as the eye can see."
-        }
-      }
-    },
-    "5043": {
-      "vnum": 5043,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north. Tall grass sways in a gentle breeze.\nThe air is fresh and clean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5042,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5055,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5044,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5033,
-          "description": "Sand as far as the eye can see."
-        }
-      }
-    },
-    "5044": {
-      "vnum": 5044,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north and a ruined city to the west. The air\nis fresh and clean. The open sky stretches overhead.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5050,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5055,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5029,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5200,
-          "description": "Sand as far as the eye can see."
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 5006,
-          "max": 6
-        }
-      ]
-    },
-    "5045": {
-      "vnum": 5045,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the south. The ground is soft underfoot. Tall\ngrass sways in a gentle breeze.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5045,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5052,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5045,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5038,
-          "description": "Sand as far as the eye can see."
-        }
-      }
-    },
-    "5046": {
-      "vnum": 5046,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the south-west. Tall grass sways in a gentle\nbreeze. Wildflowers dot the landscape.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5038,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5047,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5047,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5039,
-          "description": "Sand as far as the eye can see."
-        }
-      }
-    },
-    "5047": {
-      "vnum": 5047,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the west. The open sky stretches overhead.\nWildflowers dot the landscape.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5046,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5051,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5053,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5040,
-          "description": "Even from here, you can sense a great evil residing within the pyramid protruding from the sand to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5000,
-          "max": 5
-        }
-      ]
-    },
-    "5048": {
-      "vnum": 5048,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the west. Wildflowers dot the landscape. The open\nsky stretches overhead.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5039,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5048,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5053,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5041,
-          "description": "Sand as far as the eye can see."
-        }
-      }
-    },
-    "5049": {
-      "vnum": 5049,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north-west. Tall grass sways in a gentle\nbreeze. The ground is soft underfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5053,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5054,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5050,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5042,
-          "description": "Sand as far as the eye can see."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5015,
-          "max": 3
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 5006,
-          "max": 6
-        }
-      ]
-    },
-    "5050": {
-      "vnum": 5050,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north. A wind-carved crevice to the west is\nalmost invisible in the glare. The air is fresh and clean. The ground is\nsoft underfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5300,
-          "description": "Sand as far as the eye can see... and a pyramid in the distance."
-        },
-        "east": {
-          "to_room": 5054,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5044,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5072,
-          "description": "A narrow crevice in the dune wall.",
-          "hidden": true,
-          "requires_light": true,
-          "search_difficulty": 58,
-          "secret": true,
-          "reveal_message": "You spot a slit in the dune wall leading west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5003,
-          "max": 5
-        }
-      ]
-    },
-    "5051": {
-      "vnum": 5051,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the south-west and a deep canyon to the east. The\nair is fresh and clean. Tall grass sways in a gentle breeze.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5051,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5052,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5047,
-          "description": "Sand as far as the eye can see."
-        }
-      }
-    },
-    "5052": {
-      "vnum": 5052,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the south-west and a deep canyon to the east.\nJust below can make out a tiny ledge. The ground is soft underfoot.\nTall grass sways in a gentle breeze.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5051,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5053,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5045,
-          "description": "Sand as far as the eye can see."
-        },
-        "down": {
-          "to_room": 5063,
-          "description": "A steep trail ascends to The Wind-Swept Ledge"
-        }
-      }
-    },
-    "5053": {
-      "vnum": 5053,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the west and a deep canyon to the east. Tall\ngrass sways in a gentle breeze. The ground is soft underfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5052,
-          "description": "Sand as far as the eye can see."
-        },
-        "east": {
-          "to_room": 5062,
-          "description": "A rickety rope bridge stretches across the canyon... it doesn't look too safe."
-        },
-        "south": {
-          "to_room": 5054,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5049,
-          "description": "Sand as far as the eye can see."
-        }
-      }
-    },
-    "5054": {
-      "vnum": 5054,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the west and a deep canyon to the east. The air\nis fresh and clean. Tall grass sways in a gentle breeze.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5053,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5055,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5050,
-          "description": "Sand as far as the eye can see."
-        }
-      }
-    },
-    "5055": {
-      "vnum": 5055,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north-west and a deep canyon to the east.\nTall grass sways in a gentle breeze. The ground is soft underfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5054,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5055,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5043,
-          "description": "Sand as far as the eye can see."
-        }
-      }
-    },
-    "5056": {
-      "vnum": 5056,
-      "name": "A Nomad Camp",
-      "description": "This small group of desert nomads has stopped for the day to rest and\nrefresh themselves beside this beautiful oasis. Three tents and some\ncamels make up the party. From within two of the tents you hear muffled\nvoices, obviously surprised at your visit. Tall grass sways in a gentle\nbreeze. The open sky stretches overhead.",
-      "sector_type": "field",
-      "flags": [
-        "no_track"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5058,
-          "description": "Some camels are tied up to a mass of stakes plugged into the ground."
-        },
-        "east": {
-          "to_room": 5057,
-          "description": "You see inside one of the tents a huddled mass of people, probably slaves."
-        },
-        "south": {
-          "to_room": 5030,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5025,
-          "description": "Sand as far as the eye can see."
-        }
-      }
-    },
-    "5057": {
-      "vnum": 5057,
-      "name": "Inside A Small Tent",
-      "description": "This is a small and simple tent with few possessions in sight. Lying\nhere and there are young-looking men and women, possibly slaves to the\nleader of this band. Tall grass sways in a gentle breeze. The ground is\nsoft underfoot.",
-      "sector_type": "field",
-      "flags": [
-        "indoors",
-        "no_track"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 5056,
-          "description": "You see the center of the nomad camp."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5009,
-          "max": 10
-        }
-      ]
-    },
-    "5058": {
-      "vnum": 5058,
-      "name": "Beside The Camels",
-      "description": "Here stand about ten camels, all hitched to some stakes plugged into the\nground. To the east you see a small tent while to the north you see a\nlarger, fancier tent. The air is fresh and clean. Tall grass sways in a\ngentle breeze.",
-      "sector_type": "field",
-      "flags": [
-        "no_track"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5060,
-          "description": "This tent seems to be the temporary abode of the nomad leader.  You make a mental note to visit it before you leave."
-        },
-        "east": {
-          "to_room": 5059,
-          "description": "In this tent there are very large men, all carrying weapons."
-        },
-        "south": {
-          "to_room": 5056,
-          "description": "You see the center of the nomad camp."
-        },
-        "west": {
-          "to_room": 5024,
-          "description": "Sand as far as the eye can see."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5017,
-          "max": 1
-        }
-      ]
-    },
-    "5059": {
-      "vnum": 5059,
-      "name": "The Warriors' Tent",
-      "description": "This tent has a few furnishings, but mainly it holds the band's\nprotectors. They all stare at you coldly as you enter. Wildflowers dot\nthe landscape. Tall grass sways in a gentle breeze.",
-      "sector_type": "field",
-      "flags": [
-        "indoors",
-        "no_track"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 5058,
-          "description": "Outside you see some peaceful camels."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5008,
-          "max": 5
-        }
-      ]
-    },
-    "5060": {
-      "vnum": 5060,
-      "name": "The Main Tent",
-      "description": "This tent is as lavishly decorated on the inside as it is on the\noutside. A fancy carpet lies on the sand and numerous baskets line the\nwalls. Tall grass sways in a gentle breeze. The ground is soft\nunderfoot.",
-      "sector_type": "field",
-      "flags": [
-        "indoors",
-        "no_track"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5061,
-          "description": "An open path leads to The Main Tent"
-        },
-        "south": {
-          "to_room": 5058,
-          "description": "You see some peaceful camels."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5007,
-          "max": 1
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 5007,
-          "max": 1
-        },
-        {
-          "vnum": 5053,
-          "max": 1
-        }
-      ]
-    },
-    "5061": {
-      "vnum": 5061,
-      "name": "The Main Tent",
-      "description": "This is where the leader of this band of nomads resides. He is\ndefinitely rich as you inspect the tapestries, baskets, and a few\npaintings as well. The air is fresh and clean. Wildflowers dot the\nlandscape.",
-      "sector_type": "field",
-      "flags": [
-        "indoors",
-        "no_track"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 5060,
-          "description": "You see the entrance to this tent."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5006,
-          "max": 1
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 5008,
-          "max": 1
-        },
-        {
-          "vnum": 5009,
-          "max": 1
-        },
-        {
-          "vnum": 5010,
-          "max": 1
-        }
-      ]
-    },
-    "5062": {
-      "vnum": 5062,
-      "name": "The Rickety Rope Bridge",
-      "description": "You carefully begin to walk across the bridge, but suddenly the rope\nbreaks and you fall... ... and fall and fall and fall ... to your death\non the rocks below. The path is steep and treacherous. Bare rock\ndominates the landscape.",
-      "sector_type": "mountain",
-      "flags": [
-        "death",
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 5053,
-          "description": "An open path leads to The Great Eastern Desert"
-        }
-      }
-    },
-    "5063": {
-      "vnum": 5063,
-      "name": "The Wind-Swept Ledge",
-      "description": "Being very careful not to lose your balance, you look around and find\nthat this canyon is about a half a kilometer deep. To the west is a dark\ncave leading under the desert sands and above a rope bridge spans\nthe gap. The path is steep and treacherous. The air is thin and cold at\nthis altitude.",
-      "sector_type": "mountain",
-      "flags": [],
-      "exits": {
-        "west": {
-          "to_room": 5064,
-          "description": "A steep trail ascends to The Cave Mouth"
-        },
-        "up": {
-          "to_room": 5052,
-          "description": "The desert sands blow down in your face."
-        }
-      }
-    },
-    "5064": {
-      "vnum": 5064,
-      "name": "The Cave Mouth",
-      "description": "The air in here is MUCH cooler than outside. From the west you hear\nstrange sounds, but can see nothing. The cave slopes down into the\ndarkness. The air is thin and cold at this altitude. Snow clings to\nshadowed crevices.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5063,
-          "description": "Outside is lighter and very windy."
-        },
-        "west": {
-          "to_room": 5065,
-          "description": "A steep trail ascends to The Mysterious Lair"
-        }
-      }
-    },
-    "5065": {
-      "vnum": 5065,
-      "name": "The Mysterious Lair",
-      "description": "You have stumbled upon the home of something. From the treasure\nhaphazardly strewn about and the rotting carcasses, you would guess that\nthis is a dragon's lair. As to what type, you can't really say. The cave\nnarrows out into a tunnel to the west. To the north, a treacherous\nmountain path climbs toward distant peaks wreathed in smoke. The path is\nsteep and treacherous. The wind howls around exposed peaks.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors",
-        "no_track",
-        "no_magic"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 8001,
-          "description": "A dangerous mountain path leads upward toward smoke-wreathed peaks - the Dragon's Domain."
-        },
-        "east": {
-          "to_room": 5064,
-          "description": "A steep trail ascends to The Cave Mouth"
-        },
-        "west": {
-          "to_room": 5066,
-          "description": "A steep trail ascends to A Wide Tunnel"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5005,
-          "max": 1
-        }
-      ]
-    },
-    "5066": {
-      "vnum": 5066,
-      "name": "A Wide Tunnel",
-      "description": "This tunnel seems to go on forever into the darkness. You carefully feel\nyour way along the walls. The wind howls around exposed peaks. The path\nis steep and treacherous.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5065,
-          "description": "A steep trail ascends to The Mysterious Lair"
-        },
-        "west": {
-          "to_room": 5067,
-          "description": "A steep trail ascends to A Narrower Tunnel"
-        }
-      }
-    },
-    "5067": {
-      "vnum": 5067,
-      "name": "A Narrower Tunnel",
-      "description": "The tunnel becomes very narrow and you fight to squeeze your way\nthrough. The floor seems to level off a little. The path is steep and\ntreacherous. The wind howls around exposed peaks.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5066,
-          "description": "A steep trail ascends to A Wide Tunnel"
-        },
-        "south": {
-          "to_room": 5068,
-          "description": "A steep trail ascends to A Narrow Crack"
-        }
-      }
-    },
-    "5068": {
-      "vnum": 5068,
-      "name": "A Narrow Crack",
-      "description": "This part of the tunnel is the hardest to move through as the walls move\nin to meet you. The wind howls around exposed peaks. The air is thin and\ncold at this altitude.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors",
-        "tunnel"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5067,
-          "description": "A steep trail ascends to A Narrower Tunnel"
-        },
-        "west": {
-          "to_room": 5069,
-          "description": "A steep trail ascends to A Small Cavern"
-        }
-      }
-    },
-    "5069": {
-      "vnum": 5069,
-      "name": "A Small Cavern",
-      "description": "It is dark and damp and bats hang from the ceiling. A narrow crack is in\nthe east wall. The floor now slopes upwards. The path is steep and\ntreacherous. Bare rock dominates the landscape.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5068,
-          "description": "A steep trail ascends to A Narrow Crack"
-        },
-        "west": {
-          "to_room": 5070,
-          "description": "A steep trail ascends to A Small Shaft"
-        }
-      }
-    },
-    "5070": {
-      "vnum": 5070,
-      "name": "A Small Shaft",
-      "description": "From within this shaft Visible is a narrow hole in the roof just large\nenough for one person. Back east is the cavern. The air is thin and cold\nat this altitude. Snow clings to shadowed crevices.",
-      "sector_type": "mountain",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5069,
-          "description": "A steep trail ascends to A Small Cavern"
-        },
-        "up": {
-          "to_room": 5009,
-          "description": "A steep trail ascends to At The Foot Of The Rubble"
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 5023,
-          "max": 1
-        }
-      ]
-    },
-    "5071": {
-      "vnum": 5071,
-      "name": "A Buried Reliquary",
-      "description": "An ancient chamber sealed under the dunes. Carved reliefs depict a sun\ncult and a lost caravan. Shadows gather in the corners. The walls are\nrough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "up": {
-          "to_room": 5040,
-          "description": "The sinkhole leads back up."
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 5050,
-          "max": 1
-        }
-      ]
-    },
-    "5072": {
-      "vnum": 5072,
-      "name": "A Wind-Carved Grotto",
-      "description": "This tiny grotto is cool and still. Wind-scoured stones form natural\nshelves. Shadows gather in the corners. Dust motes drift in the stale\nair.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5050,
-          "description": "The crevice returns to the desert."
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 5052,
-          "max": 1
-        }
-      ]
-    },
-    "5073": {
-      "vnum": 5073,
-      "name": "The Oasis Cellar",
-      "description": "Beneath the oasis, a stone cellar keeps the air cool. A bundle of\nletters is tucked into a niche. The air is still and musty. Shadows\ngather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "up": {
-          "to_room": 5030,
-          "description": "The hatch leads back to the oasis."
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 5051,
-          "max": 1
-        },
-        {
-          "vnum": 5054,
-          "max": 1
-        }
-      ]
-    },
-    "5074": {
-      "vnum": 5074,
-      "name": "A Shifting Dune Sink",
-      "description": "A narrow sink drops to a sandy hollow. The walls whisper as the dunes\nshift above. The ceiling hangs low overhead. Dust motes drift in the\nstale air.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "up": {
-          "to_room": 5020,
-          "description": "The loose stones lead back up."
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 5052,
-          "max": 1
-        }
-      ]
+ "number": 50,
+ "name": "Great Eastern Desert",
+ "builders": "Rorschach",
+ "atlas_area": 25,
+ "rooms": {
+  "1859": {
+   "vnum": 1859,
+   "name": "Climbing The Mountain",
+   "map": {
+    "x": -5,
+    "y": 7,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "up": {
+     "to_room": 1860,
+     "description": "To the up lies Climbing The Mountain."
+    },
+    "down": {
+     "to_room": 1853,
+     "description": "To the down lies The Rangers Camp."
     }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead up and down.",
+   "placeholder": true
   },
-  "mobs": {
-    "5000": {
-      "vnum": 5000,
-      "name": "dervish",
-      "short_desc": "the dervish",
-      "long_desc": "A raggity dervish walks on aimlessly.",
-      "level": 5,
-      "alignment": 900,
-      "hp_dice": "2d4+0",
-      "damage_dice": "1d4+2",
-      "gold": 535,
-      "exp": 121,
-      "armor_class": 5,
-      "flags": [
-        "scavenger",
-        "stay_zone",
-        "wimpy"
-      ],
-      "description": "Dressed in loose fitting rags, this man looks like he could use some rest.",
-      "equipment": {
-        "wield": 7211
-      },
-      "inventory": [
-        5018,
-        5007
-      ]
+  "1860": {
+   "vnum": 1860,
+   "name": "Climbing The Mountain",
+   "map": {
+    "x": -3,
+    "y": 8,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "up": {
+     "to_room": 1861,
+     "description": "To the up lies At The Cave."
     },
-    "5001": {
-      "vnum": 5001,
-      "name": "dervish",
-      "short_desc": "the dervish",
-      "long_desc": "A large dervish watches for signs of trouble.",
-      "level": 8,
-      "alignment": 650,
-      "hp_dice": "8d10+112",
-      "damage_dice": "3d5+5",
-      "gold": 3575,
-      "exp": 480,
-      "armor_class": 76,
-      "flags": [
-        "aggressive",
-        "stay_zone"
-      ],
-      "description": "Dressed in loose fitting rags, this man looks like he could use LOTS of\nrest.",
-      "equipment": {
-        "wield": 3022
-      },
-      "inventory": [
-        5029
-      ]
-    },
-    "5002": {
-      "vnum": 5002,
-      "name": "snake",
-      "short_desc": "the coral snake",
-      "long_desc": "A brightly colored snake slithers along the sands.",
-      "level": 4,
-      "alignment": -10,
-      "hp_dice": "4d10+64",
-      "damage_dice": "2d4+3",
-      "gold": 300,
-      "exp": 240,
-      "armor_class": 88,
-      "flags": [
-        "stay_zone"
-      ],
-      "description": "This relatively harmless snake has bright alternating bands of red, yellow\nand black.",
-      "inventory": [
-        5019
-      ]
-    },
-    "5003": {
-      "vnum": 5003,
-      "name": "scorpion",
-      "short_desc": "the small scorpion",
-      "long_desc": "A small, red scorpion scuttles away at your approach.",
-      "level": 3,
-      "alignment": -50,
-      "hp_dice": "3d10+52",
-      "damage_dice": "1d4+4",
-      "gold": 250,
-      "exp": 180,
-      "armor_class": 91,
-      "flags": [
-        "stay_zone"
-      ],
-      "description": "The little tail is mighty dangerous for such a small creature.",
-      "inventory": [
-        5019
-      ]
-    },
-    "5004": {
-      "vnum": 5004,
-      "name": "worm",
-      "short_desc": "the sand worm",
-      "long_desc": "A giant, purple sand worm thrusts up out of the sand and attacks!",
-      "level": 21,
-      "alignment": -300,
-      "hp_dice": "21d10+268",
-      "damage_dice": "6d8+6",
-      "gold": 8000,
-      "exp": 1260,
-      "armor_class": 37,
-      "flags": [
-        "special",
-        "sentinel",
-        "aware",
-        "aggressive",
-        "memory",
-        "no_sleep",
-        "no_blind"
-      ],
-      "description": "He's big, mean, and purple.  Watch out!",
-      "inventory": [
-        5019,
-        5020,
-        5021
-      ],
-      "loot_table": [
-        {
-          "vnum": 5055,
-          "chance": 20
-        },
-        {
-          "vnum": 5056,
-          "chance": 20
-        },
-        {
-          "vnum": 5057,
-          "chance": 20
-        },
-        {
-          "vnum": 5058,
-          "chance": 20
-        },
-        {
-          "vnum": 5059,
-          "chance": 20
-        },
-        {
-          "vnum": 5060,
-          "chance": 20
-        },
-        {
-          "vnum": 5061,
-          "chance": 20
-        },
-        {
-          "vnum": 5062,
-          "chance": 20
-        },
-        {
-          "vnum": 5063,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100
-    },
-    "5005": {
-      "vnum": 5005,
-      "name": "dragon",
-      "short_desc": "the brass dragon",
-      "long_desc": "A very large brass dragon steps out of the darkness and says 'Hello.'",
-      "level": 20,
-      "alignment": 950,
-      "hp_dice": "20d10+256",
-      "damage_dice": "6d8+5",
-      "gold": 8000,
-      "exp": 1200,
-      "armor_class": 40,
-      "flags": [
-        "special",
-        "sentinel",
-        "aware",
-        "aggressive",
-        "no_bash"
-      ],
-      "description": "Then adds to it, 'Prepare to die, have a nice day!'",
-      "inventory": [
-        5024,
-        5022
-      ],
-      "loot_table": [
-        {
-          "vnum": 5055,
-          "chance": 20
-        },
-        {
-          "vnum": 5056,
-          "chance": 20
-        },
-        {
-          "vnum": 5057,
-          "chance": 20
-        },
-        {
-          "vnum": 5058,
-          "chance": 20
-        },
-        {
-          "vnum": 5059,
-          "chance": 20
-        },
-        {
-          "vnum": 5060,
-          "chance": 20
-        },
-        {
-          "vnum": 5061,
-          "chance": 20
-        },
-        {
-          "vnum": 5062,
-          "chance": 20
-        },
-        {
-          "vnum": 5063,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100
-    },
-    "5006": {
-      "vnum": 5006,
-      "name": "nomad",
-      "short_desc": "the nomad leader",
-      "long_desc": "The nomad leader sits silently in prayer.",
-      "level": 14,
-      "alignment": 950,
-      "hp_dice": "3d10+112",
-      "damage_dice": "1d8+14",
-      "gold": 4000,
-      "exp": 463,
-      "armor_class": 0,
-      "flags": [
-        "sentinel",
-        "wimpy",
-        "memory"
-      ],
-      "description": "He is clad in silk robes lined with gold thread. At his side is a large,\nengraved cutlass.  He has an especially haughty air about him.",
-      "equipment": {
-        "wield": 5016
-      },
-      "inventory": [
-        5007,
-        5000
-      ]
-    },
-    "5007": {
-      "vnum": 5007,
-      "name": "nomad",
-      "short_desc": "the nomad commander",
-      "long_desc": "The nomad commander stands here staring at you suspiciously.",
-      "level": 12,
-      "alignment": 900,
-      "hp_dice": "3d10+96",
-      "damage_dice": "1d8+12",
-      "gold": 3000,
-      "exp": 379,
-      "armor_class": 1,
-      "flags": [
-        "sentinel",
-        "wimpy",
-        "memory"
-      ],
-      "description": "This is the nomad leader's second in command.  His clothes are richly woven\nof silk and gold thread.  A nasty cutlass hangs at his side.",
-      "equipment": {
-        "wield": 5017
-      },
-      "inventory": [
-        5019
-      ]
-    },
-    "5008": {
-      "vnum": 5008,
-      "name": "nomad",
-      "short_desc": "the nomad warrior",
-      "long_desc": "A proud nomad warrior stands here.",
-      "level": 10,
-      "alignment": 700,
-      "hp_dice": "2d8+50",
-      "damage_dice": "1d6+8",
-      "gold": 3650,
-      "exp": 299,
-      "armor_class": 2,
-      "flags": [
-        "sentinel"
-      ],
-      "description": "This warrior is dressed in typical nomad clothing and looks quite mean.",
-      "equipment": {
-        "wield": 5018
-      },
-      "inventory": [
-        5030,
-        5032
-      ]
-    },
-    "5009": {
-      "vnum": 5009,
-      "name": "slave",
-      "short_desc": "the slave",
-      "long_desc": "A young slave sits here staring at you with pleading eyes.",
-      "level": 3,
-      "alignment": 1000,
-      "hp_dice": "1d5+0",
-      "damage_dice": "1d4+1",
-      "gold": 150,
-      "exp": 62,
-      "armor_class": 9,
-      "flags": [
-        "sentinel",
-        "wimpy"
-      ],
-      "description": "She looks quite thin and weak.",
-      "inventory": [
-        5005
-      ]
-    },
-    "5010": {
-      "vnum": 5010,
-      "name": "dracolich",
-      "short_desc": "the dracolich",
-      "long_desc": "A pile of bones rises up to form a skeletal dracolich.",
-      "level": 24,
-      "alignment": -1000,
-      "hp_dice": "24d10+304",
-      "damage_dice": "7d8+6",
-      "gold": 20000,
-      "exp": 1440,
-      "armor_class": 28,
-      "flags": [
-        "special",
-        "sentinel",
-        "aware",
-        "aggressive",
-        "memory",
-        "no_charm",
-        "no_summmon",
-        "no_sleep",
-        "no_bash"
-      ],
-      "description": "The dracolich is now only bone with pieces of flesh hanging from it.\nObviously it no longer fears death.",
-      "equipment": {
-        "body": 5001,
-        "wield": 5002
-      },
-      "loot_table": [
-        {
-          "vnum": 5055,
-          "chance": 20
-        },
-        {
-          "vnum": 5056,
-          "chance": 20
-        },
-        {
-          "vnum": 5057,
-          "chance": 20
-        },
-        {
-          "vnum": 5058,
-          "chance": 20
-        },
-        {
-          "vnum": 5059,
-          "chance": 20
-        },
-        {
-          "vnum": 5060,
-          "chance": 20
-        },
-        {
-          "vnum": 5061,
-          "chance": 20
-        },
-        {
-          "vnum": 5062,
-          "chance": 20
-        },
-        {
-          "vnum": 5063,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100,
-      "inventory": [
-        5026,
-        5021
-      ]
-    },
-    "5011": {
-      "vnum": 5011,
-      "name": "drider",
-      "short_desc": "the drider",
-      "long_desc": "The drider looks at you viciously while it draws its sword.",
-      "level": 8,
-      "alignment": -1000,
-      "hp_dice": "8d10+112",
-      "damage_dice": "3d5+5",
-      "gold": 2100,
-      "exp": 480,
-      "armor_class": 76,
-      "flags": [
-        "aggressive",
-        "stay_zone"
-      ],
-      "description": "This half-spider, half-drow creature is a formidable opponent.",
-      "equipment": {
-        "wield": 3022
-      },
-      "inventory": [
-        5005,
-        5018
-      ]
-    },
-    "5012": {
-      "vnum": 5012,
-      "name": "duergar",
-      "short_desc": "the dark dwarf",
-      "long_desc": "A duergar is here mining precious stones with his pick.",
-      "level": 5,
-      "alignment": -850,
-      "hp_dice": "5d10+76",
-      "damage_dice": "2d5+3",
-      "gold": 710,
-      "exp": 300,
-      "armor_class": 85,
-      "flags": [
-        "aggressive",
-        "stay_zone"
-      ],
-      "description": "The duergar could probably crush your head as easily as he does those\nrocks.",
-      "equipment": {
-        "wield": 5000
-      },
-      "inventory": [
-        5063
-      ]
-    },
-    "5013": {
-      "vnum": 5013,
-      "name": "myconoid",
-      "short_desc": "the myconoid",
-      "long_desc": "A myconoid lumbers along peacefully.",
-      "level": 6,
-      "alignment": 850,
-      "hp_dice": "2d8+30",
-      "damage_dice": "1d6+4",
-      "gold": 325,
-      "exp": 154,
-      "armor_class": 4,
-      "flags": [
-        "stay_zone",
-        "wimpy"
-      ],
-      "description": "The myconoid looks something like a giant mushroom (and probably has the\nsame effect).",
-      "inventory": [
-        5062
-      ]
-    },
-    "5014": {
-      "vnum": 5014,
-      "name": "myconoid",
-      "short_desc": "the myconoid shaman",
-      "long_desc": "A rather large myconoid stands here chanting in a strange tongue.",
-      "level": 14,
-      "alignment": 950,
-      "hp_dice": "3d10+112",
-      "damage_dice": "1d8+14",
-      "gold": 10250,
-      "exp": 463,
-      "armor_class": 1,
-      "flags": [
-        "special",
-        "scavenger",
-        "aggr_evil",
-        "memory"
-      ],
-      "description": "The shaman shoots spores into the air.",
-      "equipment": {
-        "neck1": 5003
-      },
-      "inventory": [
-        5029,
-        5026
-      ]
-    },
-    "5015": {
-      "vnum": 5015,
-      "name": "dustdigger",
-      "short_desc": "the dustdigger",
-      "long_desc": "A small oasis invites you to dive in.",
-      "level": 7,
-      "alignment": -200,
-      "hp_dice": "7d10+100",
-      "damage_dice": "2d5+6",
-      "gold": 1350,
-      "exp": 420,
-      "armor_class": 79,
-      "flags": [
-        "sentinel",
-        "scavenger",
-        "aggressive",
-        "no_bash",
-        "no_blind"
-      ],
-      "description": "Looking a little closer at this oasis, you begin to wonder why\nit seems to be moving about...",
-      "inventory": [
-        5021,
-        5055
-      ]
-    },
-    "5017": {
-      "vnum": 5017,
-      "name": "camel",
-      "short_desc": "the camel",
-      "long_desc": "A very dangerous creature, a camel, snorts at you.",
-      "level": 5,
-      "alignment": -351,
-      "hp_dice": "5d10+76",
-      "damage_dice": "2d5+3",
-      "gold": 585,
-      "exp": 300,
-      "armor_class": 85,
-      "flags": [
-        "sentinel",
-        "aggressive",
-        "no_bash"
-      ],
-      "description": "It is advisable not to mess with this creature.  After all, you\nhave heard many a horror story about experiences with camels.\nBad experiences.",
-      "inventory": [
-        5030,
-        5018
-      ]
-    },
-    "5098": {
-      "vnum": 5098,
-      "name": "trembling torchbearer",
-      "short_desc": "a trembling torchbearer",
-      "long_desc": "A trembling torchbearer crouches here, his torch barely flickering.",
-      "description": "He was hired to light the way for an expedition that never returned. Now he sits alone in the dark, too afraid to go forward, too lost to go back.",
-      "level": 28,
-      "alignment": 0,
-      "hp_dice": "28d10+450",
-      "damage_dice": "1d4+1",
-      "gold": 0,
-      "exp": 0,
-      "armor_class": 100,
-      "flags": [
-        "sentinel"
-      ],
-      "special": "flavor_npc",
-      "talk_responses": {
-        "hello": "The torchbearer's voice cracks. 'They went deeper. All of them. Said there was treasure past the underground lake. None came back. I can still hear the echoes of their screams sometimes... or maybe that's just the wind.'",
-        "treasure": "He laughs bitterly. 'Gold means nothing when you're dead. But if you must know \u2014 the richest veins are near the lake. That's where the worst things live, too.'",
-        "default": "The torchbearer clutches his guttering torch. 'Please... do you know the way out?'"
-      },
-      "inventory": [
-        5030
-      ]
+    "down": {
+     "to_room": 1853,
+     "description": "To the down lies The Rangers Camp."
     }
+   },
+   "description": "Shafts of pale light slant between the trunks. Birdsong drifts down\nthrough the branches overhead. Ways lead up and down.",
+   "placeholder": true
   },
-  "objects": {
-    "5000": {
-      "vnum": 5000,
-      "name": "pick",
-      "short_desc": "a small mining pick",
-      "room_desc": "A small mining pick made of what appears to be silver lies on the ground.",
-      "item_type": "weapon",
-      "weight": 3,
-      "value": 600,
-      "damage_dice": "1d9",
-      "weapon_type": "pierce",
-      "type": "treasure"
+  "1861": {
+   "vnum": 1861,
+   "name": "At The Cave",
+   "map": {
+    "x": 0,
+    "y": 11,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 5008,
+     "description": "To the south lies The Cave-In."
     },
-    "5002": {
-      "vnum": 5002,
-      "name": "halberd",
-      "short_desc": "a halberd",
-      "room_desc": "A mighty halberd lies against the wall.",
-      "item_type": "weapon",
-      "weight": 16,
-      "value": 12000,
-      "damage_dice": "3d5",
-      "weapon_type": "slash",
-      "type": "weapon"
-    },
-    "5003": {
-      "vnum": 5003,
-      "name": "amulet",
-      "short_desc": "a mushroom amulet",
-      "room_desc": "A mushroom-shaped amulet lies on the ground.",
-      "item_type": "armor",
-      "weight": 2,
-      "value": 1500,
-      "armor_bonus": 0,
-      "type": "armor",
-      "wear_slot": "neck",
-      "armor": 8,
-      "armor_class": 2
-    },
-    "5005": {
-      "vnum": 5005,
-      "name": "bone",
-      "short_desc": "a large leg bone",
-      "room_desc": "A large leg bone rests on the ground.",
-      "item_type": "weapon",
-      "weight": 5,
-      "value": 300,
-      "damage_dice": "1d4",
-      "weapon_type": "pound",
-      "type": "trash"
-    },
-    "5006": {
-      "vnum": 5006,
-      "name": "cactus",
-      "short_desc": "a small cactus cup",
-      "room_desc": "A small cactus cup lies on the ground.",
-      "item_type": "drinkcon",
-      "weight": 6,
-      "value": 30,
-      "capacity": 5,
-      "current": 5,
-      "type": "drink",
-      "drinks": 10,
-      "max_drinks": 10
-    },
-    "5007": {
-      "vnum": 5007,
-      "name": "basket",
-      "short_desc": "a small wicker basket",
-      "room_desc": "A small wicker basket sits on the ground.",
-      "item_type": "container",
-      "weight": 50,
-      "value": 5000,
-      "capacity": 100,
-      "type": "container"
-    },
-    "5009": {
-      "vnum": 5009,
-      "name": "basket",
-      "short_desc": "a small wicker basket",
-      "room_desc": "A small wicker basket sits on the ground.",
-      "item_type": "container",
-      "weight": 50,
-      "value": 5000,
-      "capacity": 100,
-      "type": "container"
-    },
-    "5010": {
-      "vnum": 5010,
-      "name": "basket",
-      "short_desc": "a small wicker basket",
-      "room_desc": "A small wicker basket sits on the ground.",
-      "item_type": "container",
-      "weight": 50,
-      "value": 5000,
-      "capacity": 100,
-      "type": "container"
-    },
-    "5011": {
-      "vnum": 5011,
-      "name": "rope",
-      "short_desc": "a coil of rope",
-      "room_desc": "A long coil of rope lies on the ground.",
-      "item_type": "treasure",
-      "weight": 12,
-      "value": 450,
-      "type": "treasure"
-    },
-    "5012": {
-      "vnum": 5012,
-      "name": "stakes",
-      "short_desc": "a bunch of stakes",
-      "room_desc": "A small bundle of stakes lies here.",
-      "item_type": "weapon",
-      "weight": 6,
-      "value": 250,
-      "damage_dice": "1d2",
-      "weapon_type": "pierce",
-      "type": "treasure"
-    },
-    "5013": {
-      "vnum": 5013,
-      "name": "map",
-      "short_desc": "an old, tattered map",
-      "room_desc": "An old, tattered, and much faded map lies here.",
-      "item_type": "treasure",
-      "weight": 1,
-      "value": 300,
-      "type": "note"
-    },
-    "5014": {
-      "vnum": 5014,
-      "name": "turban",
-      "short_desc": "a thick padded turban",
-      "room_desc": "A thick padded turban lies here.",
-      "item_type": "armor",
-      "weight": 15,
-      "value": 4300,
-      "armor_bonus": 0,
-      "type": "armor",
-      "wear_slot": "head",
-      "armor": 2,
-      "armor_class": 1
-    },
-    "5015": {
-      "vnum": 5015,
-      "name": "coins",
-      "short_desc": "a great pile of treasure",
-      "room_desc": "A great, gleaming pile of treasure lies at your feet.",
-      "item_type": "money",
-      "weight": 0,
-      "value": 0,
-      "type": "treasure"
-    },
-    "5016": {
-      "vnum": 5016,
-      "name": "sabre",
-      "short_desc": "a long, curved sabre",
-      "room_desc": "A long, curved sabre stands upright in the ground.",
-      "item_type": "weapon",
-      "weight": 7,
-      "value": 1050,
-      "damage_dice": "1d8",
-      "weapon_type": "slash",
-      "type": "weapon"
-    },
-    "5017": {
-      "vnum": 5017,
-      "name": "scimitar",
-      "short_desc": "a curved scimitar",
-      "room_desc": "A curved scimitar lies at your feet.",
-      "item_type": "weapon",
-      "weight": 6,
-      "value": 600,
-      "damage_dice": "1d7",
-      "weapon_type": "slash",
-      "type": "weapon"
-    },
-    "5018": {
-      "vnum": 5018,
-      "name": "cutlass",
-      "short_desc": "a long, pointed cutlass",
-      "room_desc": "A long, pointed cutlass lies here.",
-      "item_type": "weapon",
-      "weight": 5,
-      "value": 550,
-      "damage_dice": "1d7",
-      "weapon_type": "slash",
-      "type": "weapon"
-    },
-    "5019": {
-      "vnum": 5019,
-      "name": "potion",
-      "short_desc": "a pink potion",
-      "room_desc": "A pink potion stands here.",
-      "item_type": "potion",
-      "weight": 6,
-      "value": 600,
-      "type": "potion"
-    },
-    "5020": {
-      "vnum": 5020,
-      "name": "wand",
-      "short_desc": "a platinum wand",
-      "room_desc": "A platinum wand lies here.",
-      "item_type": "wand",
-      "weight": 8,
-      "value": 1900,
-      "type": "wand"
-    },
-    "5021": {
-      "vnum": 5021,
-      "name": "bow",
-      "short_desc": "a golden bow",
-      "room_desc": "A powerful golden bow lies here.",
-      "item_type": "weapon",
-      "weight": 20,
-      "value": 150000,
-      "damage_dice": "4d6",
-      "weapon_type": "blast",
-      "type": "weapon"
-    },
-    "5022": {
-      "vnum": 5022,
-      "name": "scroll",
-      "short_desc": "an encrypted scroll",
-      "room_desc": "An encrypted scroll lies at your feet.",
-      "item_type": "scroll",
-      "weight": 7,
-      "value": 1500,
-      "type": "scroll"
-    },
-    "5023": {
-      "vnum": 5023,
-      "name": "chest",
-      "short_desc": "an iron bound chest",
-      "room_desc": "An iron bound chest with a shiny lock sits here.",
-      "item_type": "container",
-      "weight": 200,
-      "value": 1000,
-      "capacity": 200,
-      "key_vnum": 5024,
-      "type": "container"
-    },
-    "5024": {
-      "vnum": 5024,
-      "name": "key",
-      "short_desc": "a golden key",
-      "room_desc": "A shiny golden key lies here.",
-      "item_type": "key",
-      "weight": 1,
-      "value": 150,
-      "type": "key"
-    },
-    "5025": {
-      "vnum": 5025,
-      "name": "bracelet",
-      "short_desc": "a copper bracelet",
-      "room_desc": "A tarnished copper bracelet lies at your feet.",
-      "item_type": "armor",
-      "weight": 10,
-      "value": 23000,
-      "armor_bonus": -5,
-      "type": "armor",
-      "wear_slot": "wrist",
-      "armor": 1,
-      "armor_class": 3
-    },
-    "5026": {
-      "vnum": 5026,
-      "name": "ruby",
-      "short_desc": "a large ruby",
-      "room_desc": "A large ruby lies on the ground, collecting dust.",
-      "item_type": "treasure",
-      "weight": 9,
-      "value": 4000,
-      "type": "treasure"
-    },
-    "5027": {
-      "vnum": 5027,
-      "name": "diamond",
-      "short_desc": "a glittering diamond",
-      "room_desc": "A glittering diamond lies at your feet.",
-      "item_type": "treasure",
-      "weight": 10,
-      "value": 9500,
-      "type": "treasure"
-    },
-    "5028": {
-      "vnum": 5028,
-      "name": "sapphire",
-      "short_desc": "a brilliant sapphire",
-      "room_desc": "A brilliant sapphire lies here, twinkling happily.",
-      "item_type": "treasure",
-      "weight": 7,
-      "value": 3500,
-      "type": "treasure"
-    },
-    "5029": {
-      "vnum": 5029,
-      "name": "lapis",
-      "short_desc": "a deep blue lapis lazuli",
-      "room_desc": "A deep blue lapis lazuli gem lies here.",
-      "item_type": "treasure",
-      "weight": 11,
-      "value": 8500,
-      "type": "treasure"
-    },
-    "5030": {
-      "vnum": 5030,
-      "name": "jewel",
-      "short_desc": "the Tiger Jewel",
-      "room_desc": "The Tiger Jewel lies here blazing.",
-      "item_type": "treasure",
-      "weight": 23,
-      "value": 43000,
-      "type": "treasure"
-    },
-    "5031": {
-      "vnum": 5031,
-      "name": "jewel",
-      "short_desc": "the red-eyed jewel",
-      "room_desc": "The red-eyed jewel glares at you greedily.",
-      "item_type": "treasure",
-      "weight": 30,
-      "value": 35000,
-      "type": "treasure"
-    },
-    "5032": {
-      "vnum": 5032,
-      "name": "emerald",
-      "short_desc": "a fiery green emerald",
-      "room_desc": "A fiery green emerald sits here.",
-      "item_type": "treasure",
-      "weight": 7,
-      "value": 5500,
-      "type": "treasure"
-    },
-    "5050": {
-      "vnum": 5050,
-      "name": "a sand-worn tablet",
-      "short_desc": "a sand-worn tablet",
-      "room_desc": "A sand-worn tablet rests against the wall.",
-      "description": "Faded carvings depict a sun disk and a winding road.",
-      "type": "note",
-      "weight": 3,
-      "cost": 70,
-      "lore_id": "desert_tablet",
-      "lore_title": "Tablet of the Sun Cult",
-      "lore_zone": 50,
-      "lore_text": "\"We followed the star that burned at noon and found the well that never dried.\""
-    },
-    "5051": {
-      "vnum": 5051,
-      "name": "a nomad's letter",
-      "short_desc": "a nomad's letter",
-      "room_desc": "A bundle of letters lies here.",
-      "description": "The paper is brittle but still legible.",
-      "type": "note",
-      "weight": 1,
-      "cost": 40,
-      "lore_id": "desert_letter",
-      "lore_title": "Nomad Letter",
-      "lore_zone": 50,
-      "lore_text": "\"The dunes shift each night. Trust the rocks, not the stars.\""
-    },
-    "5052": {
-      "vnum": 5052,
-      "name": "a sun-baked reliquary chest",
-      "short_desc": "a sun-baked reliquary chest",
-      "room_desc": "A sun-baked chest is half-buried here.",
-      "description": "The lid is etched with a blazing sun.",
-      "type": "container",
-      "capacity": 6,
-      "is_closed": true,
-      "is_locked": false,
-      "weight": 6,
-      "cost": 130
-    },
-    "5053": {
-      "vnum": 5053,
-      "name": "an oasis copper key",
-      "short_desc": "an oasis copper key",
-      "room_desc": "A copper key glints at the edge of the pool.",
-      "description": "The key smells faintly of fresh water.",
-      "type": "key",
-      "weight": 1,
-      "cost": 5
-    },
-    "5054": {
-      "vnum": 5054,
-      "name": "a scorpionglass amulet",
-      "short_desc": "a scorpionglass amulet",
-      "room_desc": "A dark amulet glints in the shade.",
-      "description": "A piece of black glass carved into a scorpion.",
-      "type": "armor",
-      "wear_slot": "neck",
-      "armor": 1,
-      "weight": 1,
-      "cost": 230,
-      "armor_class": 2
-    },
-    "5055": {
-      "vnum": 5055,
-      "name": "dune\u2011breaker axe",
-      "short_desc": "a dune\u2011breaker axe",
-      "room_desc": "A dune\u2011breaker axe lies here.",
-      "description": "A heavy desert axe.",
-      "item_type": "weapon",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "wield",
-      "weapon_type": "slash",
-      "damage_dice": "2d6+3",
-      "affects": [
-        {
-          "type": "damroll",
-          "value": 2
-        }
-      ],
-      "set_id": 50,
-      "type": "weapon"
-    },
-    "5056": {
-      "vnum": 5056,
-      "name": "sunward shield",
-      "short_desc": "a sunward shield",
-      "room_desc": "A sunward shield lies here.",
-      "description": "A paladin's shield.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "shield",
-      "armor_bonus": 2,
-      "affects": [
-        {
-          "type": "cha",
-          "value": 1
-        }
-      ],
-      "set_id": 50,
-      "type": "armor",
-      "armor": 3,
-      "armor_class": 1
-    },
-    "5057": {
-      "vnum": 5057,
-      "name": "ashwind sigil",
-      "short_desc": "an ashwind sigil",
-      "room_desc": "An ashwind sigil lies here.",
-      "description": "A deathknight's sigil.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "neck1",
-      "affects": [
-        {
-          "type": "damroll",
-          "value": 2
-        }
-      ],
-      "set_id": 50,
-      "type": "treasure",
-      "armor": 7
-    },
-    "5058": {
-      "vnum": 5058,
-      "name": "sandsong relic",
-      "short_desc": "a sandsong relic",
-      "room_desc": "A sandsong relic lies here.",
-      "description": "A cleric's relic.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "hold",
-      "affects": [
-        {
-          "type": "wis",
-          "value": 2
-        },
-        {
-          "type": "max_mana",
-          "value": 15
-        }
-      ],
-      "set_id": 50,
-      "type": "treasure",
-      "armor": 8
-    },
-    "5059": {
-      "vnum": 5059,
-      "name": "glass\u2011etched orb",
-      "short_desc": "a glass\u2011etched orb",
-      "room_desc": "A glass\u2011etched orb lies here.",
-      "description": "A mage's orb.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "hold",
-      "affects": [
-        {
-          "type": "int",
-          "value": 2
-        }
-      ],
-      "set_id": 50,
-      "type": "treasure",
-      "armor": 6
-    },
-    "5060": {
-      "vnum": 5060,
-      "name": "desert lute",
-      "short_desc": "a desert lute",
-      "room_desc": "A desert lute lies here.",
-      "description": "A bard's lute.",
-      "item_type": "weapon",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "wield",
-      "weapon_type": "mace",
-      "damage_dice": "1d6+1",
-      "affects": [
-        {
-          "type": "cha",
-          "value": 2
-        }
-      ],
-      "set_id": 50,
-      "type": "treasure"
-    },
-    "5061": {
-      "vnum": 5061,
-      "name": "sandspine dagger",
-      "short_desc": "a sandspine dagger",
-      "room_desc": "A sandspine dagger lies here.",
-      "description": "A rogue's dagger.",
-      "item_type": "weapon",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "wield",
-      "weapon_type": "pierce",
-      "damage_dice": "1d6+2",
-      "affects": [
-        {
-          "type": "dex",
-          "value": 2
-        }
-      ],
-      "set_id": 50,
-      "type": "weapon"
-    },
-    "5062": {
-      "vnum": 5062,
-      "name": "nomad bow",
-      "short_desc": "a nomad bow",
-      "room_desc": "A nomad bow lies here.",
-      "description": "A ranger's bow.",
-      "item_type": "weapon",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "wield",
-      "weapon_type": "pierce",
-      "damage_dice": "1d6+2",
-      "affects": [
-        {
-          "type": "dex",
-          "value": 2
-        },
-        {
-          "type": "hitroll",
-          "value": 1
-        }
-      ],
-      "set_id": 50,
-      "type": "weapon"
-    },
-    "5063": {
-      "vnum": 5063,
-      "name": "scarf of the wastes",
-      "short_desc": "a scarf of the wastes",
-      "room_desc": "A scarf of the wastes lies here.",
-      "description": "A desert scarf.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "neck1",
-      "affects": [
-        {
-          "type": "con",
-          "value": 1
-        }
-      ],
-      "set_id": 50,
-      "type": "treasure",
-      "armor": 5
+    "down": {
+     "to_room": 1860,
+     "description": "To the down lies Climbing The Mountain."
     }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead south and down.",
+   "placeholder": true
+  },
+  "3200": {
+   "vnum": 3200,
+   "name": "Under The Bridge",
+   "map": {
+    "x": -14,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "extra_descs": {
+    "": "wall"
+   },
+   "flags": [],
+   "description": "The arch under the bridge is covered by seaweed about a foot above the\nsurface of the river. The water gently flows through an opening in the\nlower part of the city wall. The roar of water fills your ears. The\ndepths are dark and unknowable.",
+   "exits": {
+    "east": {
+     "to_room": 3201,
+     "description": "Deep waters churn near On The River"
+    },
+    "west": {
+     "to_room": 3206,
+     "description": "To the west lies On The River."
+    }
+   }
+  },
+  "3201": {
+   "vnum": 3201,
+   "name": "On The River",
+   "map": {
+    "x": -13,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "description": "North of here you see the miserable buildings of Poor Alley. The river\nflows west towards the bridge. The riverbanks are too steep to climb.\nThe roar of water fills your ears. The depths are dark and unknowable.",
+   "exits": {
+    "east": {
+     "to_room": 3202,
+     "description": "Deep waters churn near On The River"
+    },
+    "west": {
+     "to_room": 3200,
+     "description": "Deep waters churn near Under The Bridge"
+    }
+   }
+  },
+  "3202": {
+   "vnum": 3202,
+   "name": "On The River",
+   "map": {
+    "x": -12,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "description": "North of here you see the dump. The river flows from east to west. The\nriverbanks are too steep to climb. Spray mists the air around. The\nwater churns with dangerous currents.",
+   "exits": {
+    "east": {
+     "to_room": 3203,
+     "description": "Deep waters churn near On The River"
+    },
+    "west": {
+     "to_room": 3201,
+     "description": "Deep waters churn near On The River"
+    }
+   }
+  },
+  "3203": {
+   "vnum": 3203,
+   "name": "On The River",
+   "map": {
+    "x": -11,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "description": "The levee is directly north of here. The river flows in an east west\ndirection. The roar of water fills your ears. Waves crash and foam\nrelentlessly.",
+   "exits": {
+    "north": {
+     "to_room": 3049,
+     "description": "The cobblestones lead to The Levee"
+    },
+    "east": {
+     "to_room": 3204,
+     "description": "Deep waters churn near On The River"
+    },
+    "west": {
+     "to_room": 3202,
+     "description": "Deep waters churn near On The River"
+    }
+   }
+  },
+  "3204": {
+   "vnum": 3204,
+   "name": "On The River",
+   "map": {
+    "x": -10,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "description": "You see the warehouse on the northern riverbank. East of here you see\nthe city wall. The river flows west towards the levee. Spray mists the\nair around. The depths are dark and unknowable.",
+   "exits": {
+    "east": {
+     "to_room": 3205,
+     "description": "Deep waters churn near On The River"
+    },
+    "west": {
+     "to_room": 3203,
+     "description": "Deep waters churn near On The River"
+    },
+    "south": {
+     "to_room": 13000,
+     "description": "To the south lies None."
+    }
+   }
+  },
+  "3205": {
+   "vnum": 3205,
+   "name": "On The River",
+   "map": {
+    "x": -9,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "description": "The river enters from a hole in the eastern city wall. The hole has been\nblocked by several vertically positioned iron bars set into the wall.\nSpray mists the air around. The water churns with dangerous\ncurrents.",
+   "exits": {
+    "east": {
+     "to_room": 203211,
+     "description": "To the east lies On The River."
+    },
+    "west": {
+     "to_room": 3204,
+     "description": "Deep waters churn near On The River"
+    }
+   }
+  },
+  "3206": {
+   "vnum": 3206,
+   "name": "On The River",
+   "map": {
+    "x": -15,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3200,
+     "description": "To the east lies Under The Bridge."
+    },
+    "west": {
+     "to_room": 3207,
+     "description": "To the west lies On The River."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3207": {
+   "vnum": 3207,
+   "name": "On The River",
+   "map": {
+    "x": -16,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3206,
+     "description": "To the east lies On The River."
+    },
+    "west": {
+     "to_room": 3208,
+     "description": "To the west lies On The River."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3208": {
+   "vnum": 3208,
+   "name": "On The River",
+   "map": {
+    "x": -17,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3207,
+     "description": "To the east lies On The River."
+    },
+    "west": {
+     "to_room": 3209,
+     "description": "To the west lies On The River."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3209": {
+   "vnum": 3209,
+   "name": "On The River",
+   "map": {
+    "x": -18,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3208,
+     "description": "To the east lies On The River."
+    },
+    "west": {
+     "to_room": 203210,
+     "description": "To the west lies On The River."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "203210": {
+   "vnum": 203210,
+   "name": "On The River",
+   "map": {
+    "x": -19,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3209,
+     "description": "To the east lies On The River."
+    },
+    "west": {
+     "to_room": 8907,
+     "description": "To the west lies The Meeting Of Rivers."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "203211": {
+   "vnum": 203211,
+   "name": "On The River",
+   "map": {
+    "x": -8,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 203212,
+     "description": "To the east lies On The River."
+    },
+    "west": {
+     "to_room": 3205,
+     "description": "To the west lies On The River."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead east and west.",
+   "placeholder": true
+  },
+  "203212": {
+   "vnum": 203212,
+   "name": "On The River",
+   "map": {
+    "x": -7,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 203213,
+     "description": "To the east lies On The River."
+    },
+    "west": {
+     "to_room": 203211,
+     "description": "To the west lies On The River."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead east and west.",
+   "placeholder": true
+  },
+  "203213": {
+   "vnum": 203213,
+   "name": "On The River",
+   "map": {
+    "x": -6,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3214,
+     "description": "To the east lies On The River."
+    },
+    "west": {
+     "to_room": 203212,
+     "description": "To the west lies On The River."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3214": {
+   "vnum": 3214,
+   "name": "On The River",
+   "map": {
+    "x": -5,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3215,
+     "description": "To the east lies On The River."
+    },
+    "west": {
+     "to_room": 203213,
+     "description": "To the west lies On The River."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3215": {
+   "vnum": 3215,
+   "name": "On The River",
+   "map": {
+    "x": -4,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3216,
+     "description": "To the east lies On The River."
+    },
+    "west": {
+     "to_room": 3214,
+     "description": "To the west lies On The River."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3216": {
+   "vnum": 3216,
+   "name": "On The River",
+   "map": {
+    "x": -3,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3217,
+     "description": "To the east lies On The River."
+    },
+    "west": {
+     "to_room": 3215,
+     "description": "To the west lies On The River."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3217": {
+   "vnum": 3217,
+   "name": "On The River",
+   "map": {
+    "x": -2,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 5001,
+     "description": "To the east lies Entering The Mountain."
+    },
+    "west": {
+     "to_room": 3216,
+     "description": "To the west lies On The River."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead east and west.",
+   "placeholder": true
+  },
+  "5001": {
+   "vnum": 5001,
+   "name": "Entering The Mountain",
+   "map": {
+    "x": -1,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "You encounter some rapids as you enter this tunnel cut out of the\nmountains by the river. Waves crash and foam relentlessly. The depths\nare dark and unknowable.",
+   "exits": {
+    "east": {
+     "to_room": 5002,
+     "description": "Deep waters churn near A Long Tunnel"
+    },
+    "west": {
+     "to_room": 3217,
+     "description": "To the west lies On The River."
+    }
+   }
+  },
+  "5002": {
+   "vnum": 5002,
+   "name": "A Narrowing In The Tunnel",
+   "map": {
+    "x": 0,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The tunnel stretches endlessly through solid rock, carved by ancient\nhands or perhaps erosion from underground rivers. Limestone walls\nglisten with moisture, and your footsteps echo into the darkness ahead.\nThe depths are dark and unknowable. Waves crash and foam relentlessly.",
+   "exits": {
+    "north": {
+     "to_room": 5008,
+     "description": "A steep trail ascends to The Cave-In"
+    },
+    "east": {
+     "to_room": 5003,
+     "description": "Deep waters churn near A Long Tunnel"
+    },
+    "west": {
+     "to_room": 5001,
+     "description": "Deep waters churn near A Long Tunnel"
+    }
+   }
+  },
+  "5003": {
+   "vnum": 5003,
+   "name": "Riding The Rapids",
+   "map": {
+    "x": 7,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5004,
+     "description": "Deep waters churn near A Tunnel Intersection"
+    },
+    "south": {
+     "to_room": 5017,
+     "description": "A steep trail ascends to A Narrow Crawlway"
+    },
+    "west": {
+     "to_room": 5002,
+     "description": "Deep waters churn near A Long Tunnel"
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "5004": {
+   "vnum": 5004,
+   "name": "Deep Under The Mountain",
+   "map": {
+    "x": 8,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "Multiple tunnels converge at this intersection, each passage\ndisappearing into darkness. Strange symbols are carved into the\njunction's walls, possibly markers left by whoever built these passages.\nSpray mists the air around. The depths are dark and unknowable.",
+   "exits": {
+    "east": {
+     "to_room": 5005,
+     "description": "Deep waters churn near An Underground Lake"
+    },
+    "south": {
+     "to_room": 5018,
+     "description": "A steep trail ascends to A Large Cavern"
+    },
+    "west": {
+     "to_room": 5003,
+     "description": "Deep waters churn near A Long Tunnel"
+    },
+    "north": {
+     "to_room": 5643,
+     "description": "To the north lies The River Of Lost Souls."
+    }
+   }
+  },
+  "5005": {
+   "vnum": 5005,
+   "name": "An Underground Lake",
+   "map": {
+    "x": 9,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The void stretches on a jet-black underground lake fed by dripping water\nand lime from above. The tunnel continues to the east and the river\nleads back west. Leading upwards to the northwest is a roughly hewn\nhallway. Spray mists the air around. Waves crash and foam relentlessly.",
+   "exits": {
+    "north": {
+     "to_room": 5016,
+     "description": "To the north lies The Damp Hallway."
+    },
+    "east": {
+     "to_room": 205072,
+     "description": "To the east lies An Underground Lake."
+    },
+    "south": {
+     "to_room": 5023,
+     "description": "A steep trail ascends to A Sloping Passage"
+    },
+    "west": {
+     "to_room": 5004,
+     "description": "Deep waters churn near A Tunnel Intersection"
+    }
+   }
+  },
+  "5006": {
+   "vnum": 5006,
+   "name": "A Dry Narrow Tunnel",
+   "map": {
+    "x": 10,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors",
+    "tunnel"
+   ],
+   "description": "The tunnel rises sharply to the east. Another narrow tunnel leads away\nto the north. Bare rock dominates the landscape. The wind howls around\nexposed peaks.",
+   "exits": {
+    "north": {
+     "to_room": 205072,
+     "description": "To the north lies An Underground Lake."
+    },
+    "east": {
+     "to_room": 5007,
+     "description": "A steep trail ascends to A Wide Tunnel"
+    }
+   }
+  },
+  "5007": {
+   "vnum": 5007,
+   "name": "A Hot Tunnel",
+   "map": {
+    "x": 11,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The tunnel continues east and west. To the east the tunnel dives down\ninto a bright light. A small passage way opens to the north. The path is\nsteep and treacherous. Bare rock dominates the landscape.",
+   "exits": {
+    "east": {
+     "to_room": 5026,
+     "description": "An open path leads to The Great Eastern Desert"
+    },
+    "west": {
+     "to_room": 5006,
+     "description": "A steep trail ascends to A Long Narrow Tunnel"
+    }
+   }
+  },
+  "5008": {
+   "vnum": 5008,
+   "name": "The Cave-In",
+   "map": {
+    "x": 0,
+    "y": 8,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The area opens at the edge of a large pile of rubble created from the\nlast rockslide. Snow clings to shadowed crevices. The air is thin and\ncold at this altitude.",
+   "exits": {
+    "north": {
+     "to_room": 1861,
+     "description": "To the north lies At The Cave."
+    },
+    "south": {
+     "to_room": 5002,
+     "description": "Deep waters churn near A Long Tunnel"
+    },
+    "down": {
+     "to_room": 5009,
+     "description": "You can easily slide down the rocks without getting hurt."
+    }
+   }
+  },
+  "5009": {
+   "vnum": 5009,
+   "name": "At The Foot Of The Rubble",
+   "map": {
+    "x": 6,
+    "y": 9,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5011,
+     "max": 3
+    }
+   ],
+   "description": "This is the bottom of a large pile of rubble. A tunnel branches off to\nthe north and east. The path is steep and treacherous. The air is thin\nand cold at this altitude.",
+   "exits": {
+    "north": {
+     "to_room": 5010,
+     "description": "A steep trail ascends to A Cave Entrance"
+    },
+    "east": {
+     "to_room": 5012,
+     "description": "A steep trail ascends to A Narrow Bend"
+    },
+    "up": {
+     "to_room": 5008,
+     "description": "A steep trail ascends to The Cave-In"
+    }
+   }
+  },
+  "5010": {
+   "vnum": 5010,
+   "name": "Cave Entrance",
+   "map": {
+    "x": 6,
+    "y": 10,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5098,
+     "max": 1
+    }
+   ],
+   "description": "The area opens in the middle of a large and beautiful cave. A path leads\ndeeper into the darkness. Bare rock dominates the landscape. The path is\nsteep and treacherous.",
+   "exits": {
+    "south": {
+     "to_room": 5009,
+     "description": "A steep trail ascends to At The Foot Of The Rubble"
+    },
+    "down": {
+     "to_room": 5011,
+     "description": "You look down into the cave.  Bones are strewn about everywhere."
+    }
+   }
+  },
+  "5011": {
+   "vnum": 5011,
+   "name": "A Giant Cave",
+   "map": {
+    "x": 4,
+    "y": 8,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5010,
+     "max": 1
+    }
+   ],
+   "obj_resets": [
+    {
+     "vnum": 5005,
+     "max": 1
+    }
+   ],
+   "description": "This cavern overwhelms you. The walls and ceiling seem miles away. Bones\nof previous adventurers lie strewn on the cavern floor. There is a\npassage that spirals downwards in the northeast corner of the cavern.\nBare rock dominates the landscape. The wind howls around exposed peaks.",
+   "exits": {
+    "up": {
+     "to_room": 5010,
+     "description": "A steep trail ascends to A Cave Entrance"
+    },
+    "down": {
+     "to_room": 5101,
+     "description": "To the down lies A Bend In The City Street."
+    }
+   }
+  },
+  "5012": {
+   "vnum": 5012,
+   "name": "Narrow Bend",
+   "map": {
+    "x": 7,
+    "y": 9,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The tunnel bends sharply here, forcing you to navigate carefully around\njagged outcroppings. Water trickles down the curved wall, leaving\nmineral deposits that sparkle in any available light. Bare rock\ndominates the landscape. The air is thin and cold at this altitude.",
+   "exits": {
+    "south": {
+     "to_room": 5013,
+     "description": "A steep trail ascends to A Large Cave"
+    },
+    "west": {
+     "to_room": 5009,
+     "description": "A steep trail ascends to At The Foot Of The Rubble"
+    }
+   }
+  },
+  "5013": {
+   "vnum": 5013,
+   "name": "A Large Cave",
+   "map": {
+    "x": 7,
+    "y": 5,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This is a large cave. Many furs are spread out on the floor. The path is\nsteep and treacherous. Snow clings to shadowed crevices. The rocky\nterrain is steep and unforgiving. Thin air makes breathing difficult.",
+   "exits": {
+    "north": {
+     "to_room": 5012,
+     "description": "A steep trail ascends to A Narrow Bend"
+    },
+    "east": {
+     "to_room": 5014,
+     "description": "A steep trail ascends to A Damp Hallway"
+    },
+    "west": {
+     "to_room": 20300,
+     "description": "To the west lies Outside Of An Old Cave."
+    }
+   }
+  },
+  "5014": {
+   "vnum": 5014,
+   "name": "A Damp Hallway",
+   "map": {
+    "x": 8,
+    "y": 5,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5012,
+     "max": 3
+    }
+   ],
+   "description": "The walls here are extremely damp, as well as the floor. The path is\nsteep and treacherous. Bare rock dominates the landscape. The rocky\nterrain is steep and unforgiving. Thin air makes breathing difficult.",
+   "exits": {
+    "east": {
+     "to_room": 5015,
+     "description": "You hear drops of water."
+    },
+    "west": {
+     "to_room": 5013,
+     "description": "A steep trail ascends to A Large Cave"
+    }
+   }
+  },
+  "5015": {
+   "vnum": 5015,
+   "name": "An Underground Pool",
+   "map": {
+    "x": 9,
+    "y": 5,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "A natural underground pool fills this chamber, its surface perfectly\nstill and dark as obsidian. The water looks deep and ancient, fed by\nunderground springs that predate the desert above. The current tugs\ngently at your limbs. Fish dart beneath the waves.",
+   "exits": {
+    "south": {
+     "to_room": 5016,
+     "description": "To the south lies The Damp Hallway."
+    },
+    "west": {
+     "to_room": 5014,
+     "description": "A steep trail ascends to A Damp Hallway"
+    }
+   }
+  },
+  "5016": {
+   "vnum": 5016,
+   "name": "The Damp Hallway",
+   "map": {
+    "x": 9,
+    "y": 4,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The walls of the tunnel are extremely damp here. The tunnel leads\nsharply upwards to the south as it starts to get narrow. Snow clings to\nshadowed crevices. The air is thin and cold at this altitude.",
+   "exits": {
+    "north": {
+     "to_room": 5015,
+     "description": "To the north lies An Underground Pool."
+    },
+    "south": {
+     "to_room": 5005,
+     "description": "To the south lies An Underground Lake."
+    },
+    "east": {
+     "to_room": 5671,
+     "description": "To the east lies On The Dark River."
+    }
+   }
+  },
+  "5017": {
+   "vnum": 5017,
+   "name": "Narrow Crawlway",
+   "map": {
+    "x": 7,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This crawlway is just big enough for a human to crawl through or a\nhalfling to walk through. The path is steep and treacherous. Bare rock\ndominates the landscape.",
+   "exits": {
+    "north": {
+     "to_room": 5003,
+     "description": "Deep waters churn near A Long Tunnel"
+    },
+    "east": {
+     "to_room": 5018,
+     "description": "A steep trail ascends to A Large Cavern"
+    },
+    "south": {
+     "to_room": 5019,
+     "description": "You smell the fragrant odor of fungus."
+    }
+   }
+  },
+  "5018": {
+   "vnum": 5018,
+   "name": "A Wonderful Cavern",
+   "map": {
+    "x": 8,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The entrance opens to a very large cavern. The rock formations would\namaze almost any dwarf. Bare rock dominates the landscape. The path is\nsteep and treacherous.",
+   "exits": {
+    "north": {
+     "to_room": 5004,
+     "description": "Deep waters churn near A Tunnel Intersection"
+    },
+    "west": {
+     "to_room": 5017,
+     "description": "A steep trail ascends to A Narrow Crawlway"
+    }
+   }
+  },
+  "5019": {
+   "vnum": 5019,
+   "name": "The Fungus Patch",
+   "map": {
+    "x": 7,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "As you walk through the fungus patch, you are shot at by many millions\nof spores. You can hardly breathe. Snow clings to shadowed crevices. The\nwind howls around exposed peaks.",
+   "exits": {
+    "north": {
+     "to_room": 5017,
+     "description": "A steep trail ascends to A Narrow Crawlway"
+    },
+    "east": {
+     "to_room": 5020,
+     "description": "The fragrant smell of fungus spores continues to the east."
+    }
+   }
+  },
+  "5020": {
+   "vnum": 5020,
+   "name": "Fungus Patch",
+   "map": {
+    "x": 8,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "As you walk along the path, millions of spores are shot at you. It is\ndifficult to breathe. A section of the path feels hollow underfoot. The\npath is steep and treacherous. The air is thin and cold at this\naltitude.",
+   "exits": {
+    "south": {
+     "to_room": 5021,
+     "description": "A giant mushroom temple stands to the south."
+    },
+    "west": {
+     "to_room": 5019,
+     "description": "The fragrant smell of spores continues to the west."
+    }
+   },
+   "obj_resets": [
+    {
+     "vnum": 5052,
+     "max": 1
+    }
+   ]
+  },
+  "5021": {
+   "vnum": 5021,
+   "name": "The Fungus Temple",
+   "map": {
+    "x": 8,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5013,
+     "max": 4
+    },
+    {
+     "vnum": 5014,
+     "max": 1
+    }
+   ],
+   "description": "The passage opens standing inside of a giant mushroom. The inside is\ndecorated in the fashion of a temple. Bare rock dominates the landscape.\nSnow clings to shadowed crevices.",
+   "exits": {
+    "north": {
+     "to_room": 5020,
+     "description": "A steep trail ascends to The Fungus Path"
+    },
+    "east": {
+     "to_room": 5022,
+     "description": "A steep trail ascends to A Sloping Passage"
+    }
+   }
+  },
+  "5022": {
+   "vnum": 5022,
+   "name": "A Sloping Passage",
+   "map": {
+    "x": 9,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "You follow a path sloping down from the fungus temple. Snow clings to\nshadowed crevices. The wind howls around exposed peaks. The rocky\nterrain is steep and unforgiving. Thin air makes breathing difficult.",
+   "exits": {
+    "north": {
+     "to_room": 5023,
+     "description": "A steep trail ascends to A Sloping Passage"
+    },
+    "west": {
+     "to_room": 5021
+    },
+    "down": {
+     "to_room": 5023,
+     "description": "To the down lies A Sloping Passage."
+    }
+   }
+  },
+  "5023": {
+   "vnum": 5023,
+   "name": "A Sloping Passage",
+   "map": {
+    "x": 9,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The area is a path that gently slopes up from the underground pool. Snow\nclings to shadowed crevices. The air is thin and cold at this altitude.\nThe rocky terrain is steep and unforgiving. Thin air makes breathing\ndifficult.",
+   "exits": {
+    "north": {
+     "to_room": 5005,
+     "description": "You hear sounds of trickling water."
+    },
+    "south": {
+     "to_room": 5022,
+     "description": "A steep trail ascends to A Sloping Passage"
+    },
+    "up": {
+     "to_room": 5022,
+     "description": "To the up lies A Sloping Passage."
+    }
+   }
+  },
+  "5063": {
+   "vnum": 5063,
+   "name": "The Wind-Swept Ledge",
+   "map": {
+    "x": 35,
+    "y": 16,
+    "z": -1
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "description": "Being very careful not to lose your balance, you look around and find\nthat this canyon is about a half a kilometer deep. To the west is a dark\ncave leading under the desert sands and above a rope bridge spans\nthe gap. The path is steep and treacherous. The air is thin and cold at\nthis altitude.",
+   "exits": {
+    "west": {
+     "to_room": 5064,
+     "description": "A steep trail ascends to The Cave Mouth"
+    },
+    "up": {
+     "to_room": 5052,
+     "description": "The desert sands blow down in your face."
+    }
+   }
+  },
+  "5064": {
+   "vnum": 5064,
+   "name": "The Cavemouth",
+   "map": {
+    "x": 34,
+    "y": 16,
+    "z": -1
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The air in here is MUCH cooler than outside. From the west you hear\nstrange sounds, but can see nothing. The cave slopes down into the\ndarkness. The air is thin and cold at this altitude. Snow clings to\nshadowed crevices.",
+   "exits": {
+    "east": {
+     "to_room": 5063,
+     "description": "Outside is lighter and very windy."
+    },
+    "west": {
+     "to_room": 5065,
+     "description": "A steep trail ascends to The Mysterious Lair"
+    }
+   }
+  },
+  "5065": {
+   "vnum": 5065,
+   "name": "The Mysterious Lair",
+   "map": {
+    "x": 33,
+    "y": 16,
+    "z": -1
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors",
+    "no_magic",
+    "no_track"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5005,
+     "max": 1
+    }
+   ],
+   "description": "You have stumbled upon the home of something. From the treasure\nhaphazardly strewn about and the rotting carcasses, you would guess that\nthis is a dragon's lair. As to what type, you can't really say. The cave\nnarrows out into a tunnel to the west. To the north, a treacherous\nmountain path climbs toward distant peaks wreathed in smoke. The path is\nsteep and treacherous. The wind howls around exposed peaks.",
+   "exits": {
+    "east": {
+     "to_room": 5064,
+     "description": "A steep trail ascends to The Cave Mouth"
+    },
+    "west": {
+     "to_room": 5066,
+     "description": "A steep trail ascends to A Wide Tunnel"
+    },
+    "north": {
+     "to_room": 8001,
+     "description": "To the north lies The Mountain Pass."
+    }
+   }
+  },
+  "5066": {
+   "vnum": 5066,
+   "name": "A Wide Tunnel",
+   "map": {
+    "x": 32,
+    "y": 16,
+    "z": -1
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "This tunnel seems to go on forever into the darkness. You carefully feel\nyour way along the walls. The wind howls around exposed peaks. The path\nis steep and treacherous.",
+   "exits": {
+    "east": {
+     "to_room": 5065,
+     "description": "A steep trail ascends to The Mysterious Lair"
+    },
+    "west": {
+     "to_room": 5067,
+     "description": "A steep trail ascends to A Narrower Tunnel"
+    }
+   }
+  },
+  "5067": {
+   "vnum": 5067,
+   "name": "A Narrower Tunnel",
+   "map": {
+    "x": 31,
+    "y": 16,
+    "z": -1
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The tunnel becomes very narrow and you fight to squeeze your way\nthrough. The floor seems to level off a little. The path is steep and\ntreacherous. The wind howls around exposed peaks.",
+   "exits": {
+    "east": {
+     "to_room": 5066,
+     "description": "A steep trail ascends to A Wide Tunnel"
+    },
+    "south": {
+     "to_room": 5068,
+     "description": "A steep trail ascends to A Narrow Crack"
+    }
+   }
+  },
+  "5068": {
+   "vnum": 5068,
+   "name": "A Narrow Crack",
+   "map": {
+    "x": 31,
+    "y": 15,
+    "z": -1
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors",
+    "tunnel"
+   ],
+   "description": "This part of the tunnel is the hardest to move through as the walls move\nin to meet you. The wind howls around exposed peaks. The air is thin and\ncold at this altitude.",
+   "exits": {
+    "north": {
+     "to_room": 5067,
+     "description": "A steep trail ascends to A Narrower Tunnel"
+    },
+    "west": {
+     "to_room": 5069,
+     "description": "A steep trail ascends to A Small Cavern"
+    }
+   }
+  },
+  "5069": {
+   "vnum": 5069,
+   "name": "The Bat Cave",
+   "map": {
+    "x": 30,
+    "y": 15,
+    "z": -1
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "It is dark and damp and bats hang from the ceiling. A narrow crack is in\nthe east wall. The floor now slopes upwards. The path is steep and\ntreacherous. Bare rock dominates the landscape.",
+   "exits": {
+    "north": {
+     "to_room": 5070,
+     "description": "To the north lies A Small Shaft."
+    },
+    "east": {
+     "to_room": 5068,
+     "description": "A steep trail ascends to A Narrow Crack"
+    }
+   }
+  },
+  "5070": {
+   "vnum": 5070,
+   "name": "A Small Shaft",
+   "map": {
+    "x": 30,
+    "y": 16,
+    "z": -1
+   },
+   "sector_type": "mountain",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "obj_resets": [
+    {
+     "vnum": 5023,
+     "max": 1
+    }
+   ],
+   "description": "From within this shaft Visible is a narrow hole in the roof just large\nenough for one person. Back east is the cavern. The air is thin and cold\nat this altitude. Snow clings to shadowed crevices.",
+   "exits": {
+    "south": {
+     "to_room": 5069,
+     "description": "To the south lies The Bat Cave."
+    },
+    "up": {
+     "to_room": 5009,
+     "description": "A steep trail ascends to At The Foot Of The Rubble"
+    }
+   }
+  },
+  "205072": {
+   "vnum": 205072,
+   "name": "An Underground Lake",
+   "map": {
+    "x": 10,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 205073,
+     "description": "To the east lies On An Underground River."
+    },
+    "south": {
+     "to_room": 5006,
+     "description": "To the south lies A Dry Narrow Tunnel."
+    },
+    "west": {
+     "to_room": 5005,
+     "description": "To the west lies An Underground Lake."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "205073": {
+   "vnum": 205073,
+   "name": "On An Underground River",
+   "map": {
+    "x": 11,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 205074,
+     "description": "To the east lies On An Underground River."
+    },
+    "west": {
+     "to_room": 205072,
+     "description": "To the west lies An Underground Lake."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. Deep water\nstretches away, dark and restless. Ways lead east and west.",
+   "placeholder": true
+  },
+  "205074": {
+   "vnum": 205074,
+   "name": "On An Underground River",
+   "map": {
+    "x": 12,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 5075,
+     "description": "To the east lies In A Waterfall."
+    },
+    "west": {
+     "to_room": 205073,
+     "description": "To the west lies On An Underground River."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. Ways lead east and west.",
+   "placeholder": true
+  },
+  "5075": {
+   "vnum": 5075,
+   "name": "In A Waterfall",
+   "map": {
+    "x": 14,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 205074,
+     "description": "To the west lies On An Underground River."
+    },
+    "down": {
+     "to_room": 5076,
+     "description": "To the down lies Falling In A Waterfall."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. Ways lead west and down.",
+   "placeholder": true
+  },
+  "5076": {
+   "vnum": 5076,
+   "name": "Falling In A Waterfall",
+   "map": {
+    "x": 13,
+    "y": 2,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "down": {
+     "to_room": 5077,
+     "description": "To the down lies In A River Gorge."
+    }
+   },
+   "description": "The far shore is a smudge on the horizon. Waves slap against the hull of\nanything that floats here. A way leads down.",
+   "placeholder": true
+  },
+  "5077": {
+   "vnum": 5077,
+   "name": "In A River Gorge",
+   "map": {
+    "x": 12,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 5078,
+     "description": "To the east lies In A River Gorge."
+    }
+   },
+   "description": "Waves slap against the hull of anything that floats here. The far shore\nis a smudge on the horizon. A way leads east.",
+   "placeholder": true
+  },
+  "5078": {
+   "vnum": 5078,
+   "name": "In A River Gorge",
+   "map": {
+    "x": 13,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 5079,
+     "description": "To the east lies In A River Gorge."
+    },
+    "west": {
+     "to_room": 5077,
+     "description": "To the west lies In A River Gorge."
+    }
+   },
+   "description": "The water runs deep and cold, too deep to wade. The far shore is a\nsmudge on the horizon. Ways lead east and west.",
+   "placeholder": true
+  },
+  "5079": {
+   "vnum": 5079,
+   "name": "In A River Gorge",
+   "map": {
+    "x": 14,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 5080,
+     "description": "To the east lies On A High Banked River."
+    },
+    "west": {
+     "to_room": 5078,
+     "description": "To the west lies In A River Gorge."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. The water runs deep and\ncold, too deep to wade. Ways lead east and west.",
+   "placeholder": true
+  },
+  "5080": {
+   "vnum": 5080,
+   "name": "On A High Banked River",
+   "map": {
+    "x": 15,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "water_noswim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 5081,
+     "description": "To the east lies On A High Banked River."
+    },
+    "west": {
+     "to_room": 5079,
+     "description": "To the west lies In A River Gorge."
+    }
+   },
+   "description": "Deep water stretches away, dark and restless. Waves slap against the\nhull of anything that floats here. Ways lead east and west.",
+   "placeholder": true
+  },
+  "5081": {
+   "vnum": 5081,
+   "name": "On A High Banked River",
+   "map": {
+    "x": 16,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 5082,
+     "description": "To the east lies On A Wide River."
+    },
+    "west": {
+     "to_room": 5080,
+     "description": "To the west lies On A High Banked River."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead east and west.",
+   "placeholder": true
+  },
+  "5082": {
+   "vnum": 5082,
+   "name": "On A Wide River",
+   "map": {
+    "x": 17,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 5083,
+     "description": "To the east lies On A Wide River."
+    },
+    "west": {
+     "to_room": 5081,
+     "description": "To the west lies On A High Banked River."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead east and west.",
+   "placeholder": true
+  },
+  "5083": {
+   "vnum": 5083,
+   "name": "On A Wide River",
+   "map": {
+    "x": 18,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 5084,
+     "description": "To the east lies On A Wide River."
+    },
+    "west": {
+     "to_room": 5082,
+     "description": "To the west lies On A Wide River."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Shallow water laps around stones\nand reeds. Ways lead east and west.",
+   "placeholder": true
+  },
+  "5084": {
+   "vnum": 5084,
+   "name": "On A Wide River",
+   "map": {
+    "x": 19,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 12006,
+     "description": "To the east lies On A Wide River."
+    },
+    "west": {
+     "to_room": 5083,
+     "description": "To the west lies On A Wide River."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead east and west.",
+   "placeholder": true
+  },
+  "8903": {
+   "vnum": 8903,
+   "name": "The Split Of The River",
+   "map": {
+    "x": -23,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8904,
+     "description": "To the north lies The Northern Branch Of The River."
+    },
+    "south": {
+     "to_room": 8908,
+     "description": "To the south lies The Slow Part Of The River."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Reeds rustle along the\nwater's edge. Ways lead north and south.",
+   "placeholder": true
+  },
+  "8904": {
+   "vnum": 8904,
+   "name": "The Northern Branch Of The River",
+   "map": {
+    "x": -23,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8905,
+     "description": "To the east lies The Northern Branch Of The River."
+    },
+    "south": {
+     "to_room": 8903,
+     "description": "To the south lies The Split Of The River."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead east and south.",
+   "placeholder": true
+  },
+  "8905": {
+   "vnum": 8905,
+   "name": "The Northern Branch Of The River",
+   "map": {
+    "x": -22,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8906,
+     "description": "To the east lies The Northern Branch Of The River."
+    },
+    "west": {
+     "to_room": 8904,
+     "description": "To the west lies The Northern Branch Of The River."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Reeds rustle\nalong the water's edge. Ways lead east and west.",
+   "placeholder": true
+  },
+  "8906": {
+   "vnum": 8906,
+   "name": "The Northern Branch Of The River",
+   "map": {
+    "x": -21,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8907,
+     "description": "To the east lies The Meeting Of Rivers."
+    },
+    "west": {
+     "to_room": 8905,
+     "description": "To the west lies The Northern Branch Of The River."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead east and west.",
+   "placeholder": true
+  },
+  "8907": {
+   "vnum": 8907,
+   "name": "The Meeting Of Rivers",
+   "map": {
+    "x": -20,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 203210,
+     "description": "To the east lies On The River."
+    },
+    "west": {
+     "to_room": 8906,
+     "description": "To the west lies The Northern Branch Of The River."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead east and west.",
+   "placeholder": true
+  },
+  "8908": {
+   "vnum": 8908,
+   "name": "The Slow Part Of The River",
+   "map": {
+    "x": -23,
+    "y": -2,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8903,
+     "description": "To the north lies The Split Of The River."
+    },
+    "south": {
+     "to_room": 8909,
+     "description": "To the south lies In The Riverbend."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Reeds rustle\nalong the water's edge. Ways lead north and south.",
+   "placeholder": true
+  },
+  "8909": {
+   "vnum": 8909,
+   "name": "In The Riverbend",
+   "map": {
+    "x": -23,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8908,
+     "description": "To the north lies The Slow Part Of The River."
+    },
+    "west": {
+     "to_room": 8910,
+     "description": "To the west lies In The Riverbend."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Shallow water laps around\nstones and reeds. Ways lead north and west.",
+   "placeholder": true
+  },
+  "8910": {
+   "vnum": 8910,
+   "name": "In The Riverbend",
+   "map": {
+    "x": -24,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8911,
+     "description": "To the north lies In The Riverbend."
+    },
+    "east": {
+     "to_room": 8909,
+     "description": "To the east lies In The Riverbend."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead north and east.",
+   "placeholder": true
+  },
+  "8911": {
+   "vnum": 8911,
+   "name": "In The Riverbend",
+   "map": {
+    "x": -24,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 8910,
+     "description": "To the south lies In The Riverbend."
+    },
+    "west": {
+     "to_room": 8912,
+     "description": "To the west lies On The River."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead south and west.",
+   "placeholder": true
+  },
+  "8912": {
+   "vnum": 8912,
+   "name": "On The River",
+   "map": {
+    "x": -25,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8911,
+     "description": "To the east lies In The Riverbend."
+    },
+    "west": {
+     "to_room": 8913,
+     "description": "To the west lies In The Riverbend."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Mud and pebbles shift\nbeneath the slow water. Ways lead east and west.",
+   "placeholder": true
+  },
+  "8913": {
+   "vnum": 8913,
+   "name": "In The Riverbend",
+   "map": {
+    "x": -26,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8914,
+     "description": "To the north lies On The River."
+    },
+    "east": {
+     "to_room": 8912,
+     "description": "To the east lies On The River."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead north and east.",
+   "placeholder": true
+  },
+  "8914": {
+   "vnum": 8914,
+   "name": "On The River",
+   "map": {
+    "x": -26,
+    "y": -2,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 8913,
+     "description": "To the south lies In The Riverbend."
+    },
+    "west": {
+     "to_room": 8915,
+     "description": "To the west lies On The River."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead south and west.",
+   "placeholder": true
+  },
+  "8915": {
+   "vnum": 8915,
+   "name": "On The River",
+   "map": {
+    "x": -28,
+    "y": -2,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8914,
+     "description": "To the east lies On The River."
+    },
+    "west": {
+     "to_room": 8916,
+     "description": "To the west lies At The Waterfall."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead east and west.",
+   "placeholder": true
+  },
+  "8916": {
+   "vnum": 8916,
+   "name": "At The Waterfall",
+   "map": {
+    "x": -29,
+    "y": -2,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8915,
+     "description": "To the east lies On The River."
+    },
+    "down": {
+     "to_room": 8917,
+     "description": "To the down lies The Lake."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead east and down.",
+   "placeholder": true
+  },
+  "8917": {
+   "vnum": 8917,
+   "name": "The Lake",
+   "map": {
+    "x": -32,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8923,
+     "description": "To the north lies The Lake."
+    },
+    "east": {
+     "to_room": 8918,
+     "description": "To the east lies Behind The Waterfall."
+    },
+    "south": {
+     "to_room": 8919,
+     "description": "To the south lies The Lake."
+    },
+    "west": {
+     "to_room": 8921,
+     "description": "To the west lies The Lake."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Shallow water laps around stones\nand reeds. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "8918": {
+   "vnum": 8918,
+   "name": "Behind The Waterfall",
+   "map": {
+    "x": -31,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 8917,
+     "description": "To the west lies The Lake."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "8919": {
+   "vnum": 8919,
+   "name": "The Lake",
+   "map": {
+    "x": -32,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8917,
+     "description": "To the north lies The Lake."
+    },
+    "west": {
+     "to_room": 8920,
+     "description": "To the west lies The Lake."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. The current is gentle\nhere, clear enough to see the bottom. Ways lead north and west.",
+   "placeholder": true
+  },
+  "8920": {
+   "vnum": 8920,
+   "name": "The Lake",
+   "map": {
+    "x": -33,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8921,
+     "description": "To the north lies The Lake."
+    },
+    "east": {
+     "to_room": 8919,
+     "description": "To the east lies The Lake."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead north and east.",
+   "placeholder": true
+  },
+  "8921": {
+   "vnum": 8921,
+   "name": "The Lake",
+   "map": {
+    "x": -33,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8922,
+     "description": "To the north lies The Lake."
+    },
+    "east": {
+     "to_room": 8917,
+     "description": "To the east lies The Lake."
+    },
+    "south": {
+     "to_room": 8920,
+     "description": "To the south lies The Lake."
+    },
+    "west": {
+     "to_room": 8924,
+     "description": "To the west lies The Dark River."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Reeds rustle along the\nwater's edge. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "8922": {
+   "vnum": 8922,
+   "name": "The Lake",
+   "map": {
+    "x": -33,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8923,
+     "description": "To the east lies The Lake."
+    },
+    "south": {
+     "to_room": 8921,
+     "description": "To the south lies The Lake."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Reeds rustle\nalong the water's edge. Ways lead east and south.",
+   "placeholder": true
+  },
+  "8923": {
+   "vnum": 8923,
+   "name": "The Lake",
+   "map": {
+    "x": -32,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 8917,
+     "description": "To the south lies The Lake."
+    },
+    "west": {
+     "to_room": 8922,
+     "description": "To the west lies The Lake."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Shallow water laps around\nstones and reeds. Ways lead south and west.",
+   "placeholder": true
+  },
+  "8924": {
+   "vnum": 8924,
+   "name": "The Dark River",
+   "map": {
+    "x": -34,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8921,
+     "description": "To the east lies The Lake."
+    },
+    "west": {
+     "to_room": 8925,
+     "description": "To the west lies The Dark River."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead east and west.",
+   "placeholder": true
+  },
+  "8925": {
+   "vnum": 8925,
+   "name": "The Dark River",
+   "map": {
+    "x": -35,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8924,
+     "description": "To the east lies The Dark River."
+    },
+    "west": {
+     "to_room": 8926,
+     "description": "To the west lies Split Of The Dark River."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead east and west.",
+   "placeholder": true
+  },
+  "8926": {
+   "vnum": 8926,
+   "name": "Split Of The Dark River",
+   "map": {
+    "x": -36,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8936,
+     "description": "To the north lies The Dark River."
+    },
+    "east": {
+     "to_room": 8925,
+     "description": "To the east lies The Dark River."
+    },
+    "south": {
+     "to_room": 8927,
+     "description": "To the south lies In The Bend Of The River."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. The current is gentle\nhere, clear enough to see the bottom. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "8927": {
+   "vnum": 8927,
+   "name": "In The Bend Of The River",
+   "map": {
+    "x": -36,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8926,
+     "description": "To the north lies Split Of The Dark River."
+    },
+    "south": {
+     "to_room": 8928,
+     "description": "To the south lies In The Undergrowth."
+    },
+    "west": {
+     "to_room": 8929,
+     "description": "To the west lies The Dark River."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "8928": {
+   "vnum": 8928,
+   "name": "In The Undergrowth",
+   "map": {
+    "x": -36,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8927,
+     "description": "To the north lies In The Bend Of The River."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Ferns and moss\nsoften the ground beneath a dim green canopy. A way leads north.",
+   "placeholder": true
+  },
+  "8929": {
+   "vnum": 8929,
+   "name": "The Dark River",
+   "map": {
+    "x": -37,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8927,
+     "description": "To the east lies In The Bend Of The River."
+    },
+    "west": {
+     "to_room": 8930,
+     "description": "To the west lies In The River Bend."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Shallow water laps around stones\nand reeds. Ways lead east and west.",
+   "placeholder": true
+  },
+  "8930": {
+   "vnum": 8930,
+   "name": "In The River Bend",
+   "map": {
+    "x": -38,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8931,
+     "description": "To the north lies The Dark River."
+    },
+    "east": {
+     "to_room": 8929,
+     "description": "To the east lies The Dark River."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Mud and pebbles shift\nbeneath the slow water. Ways lead north and east.",
+   "placeholder": true
+  },
+  "8931": {
+   "vnum": 8931,
+   "name": "The Dark River",
+   "map": {
+    "x": -38,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8932,
+     "description": "To the north lies The Dark River."
+    },
+    "south": {
+     "to_room": 8930,
+     "description": "To the south lies In The River Bend."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Shallow water laps around\nstones and reeds. Ways lead north and south.",
+   "placeholder": true
+  },
+  "8932": {
+   "vnum": 8932,
+   "name": "The Dark River",
+   "map": {
+    "x": -38,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8933,
+     "description": "To the north lies In The River Bend."
+    },
+    "south": {
+     "to_room": 8931,
+     "description": "To the south lies The Dark River."
+    },
+    "west": {
+     "to_room": 8939,
+     "description": "To the west lies The Dark River."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Reeds rustle\nalong the water's edge. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "8933": {
+   "vnum": 8933,
+   "name": "In The River Bend",
+   "map": {
+    "x": -38,
+    "y": -2,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8934,
+     "description": "To the east lies The Dark River."
+    },
+    "south": {
+     "to_room": 8932,
+     "description": "To the south lies The Dark River."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Mud and pebbles shift\nbeneath the slow water. Ways lead east and south.",
+   "placeholder": true
+  },
+  "8934": {
+   "vnum": 8934,
+   "name": "The Dark River",
+   "map": {
+    "x": -37,
+    "y": -2,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8935,
+     "description": "To the east lies In The River Bend."
+    },
+    "west": {
+     "to_room": 8933,
+     "description": "To the west lies In The River Bend."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. The current is gentle\nhere, clear enough to see the bottom. Ways lead east and west.",
+   "placeholder": true
+  },
+  "8935": {
+   "vnum": 8935,
+   "name": "In The River Bend",
+   "map": {
+    "x": -36,
+    "y": -2,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 8936,
+     "description": "To the south lies The Dark River."
+    },
+    "west": {
+     "to_room": 8934,
+     "description": "To the west lies The Dark River."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Shallow water laps around\nstones and reeds. Ways lead south and west.",
+   "placeholder": true
+  },
+  "8936": {
+   "vnum": 8936,
+   "name": "The Dark River",
+   "map": {
+    "x": -36,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8935,
+     "description": "To the north lies In The River Bend."
+    },
+    "south": {
+     "to_room": 8926,
+     "description": "To the south lies Split Of The Dark River."
+    },
+    "west": {
+     "to_room": 8937,
+     "description": "To the west lies The Small Island."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "8937": {
+   "vnum": 8937,
+   "name": "The Small Island",
+   "map": {
+    "x": -37,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8936,
+     "description": "To the east lies The Dark River."
+    },
+    "south": {
+     "to_room": 8938,
+     "description": "To the south lies Inside The Cabin."
+    }
+   },
+   "description": "A worn track crosses the open ground. Open grassland rolls away under a\nwide sky. Ways lead east and south.",
+   "placeholder": true
+  },
+  "8938": {
+   "vnum": 8938,
+   "name": "Inside The Cabin",
+   "map": {
+    "x": -37,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8937,
+     "description": "To the north lies The Small Island."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Shuttered windows\nand old doorways crowd in on either hand. A way leads north.",
+   "placeholder": true
+  },
+  "8939": {
+   "vnum": 8939,
+   "name": "The Dark River",
+   "map": {
+    "x": -39,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8932,
+     "description": "To the east lies The Dark River."
+    },
+    "west": {
+     "to_room": 8940,
+     "description": "To the west lies In The River Bend."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Reeds rustle\nalong the water's edge. Ways lead east and west.",
+   "placeholder": true
+  },
+  "8940": {
+   "vnum": 8940,
+   "name": "In The River Bend",
+   "map": {
+    "x": -40,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8939,
+     "description": "To the east lies The Dark River."
+    },
+    "south": {
+     "to_room": 8941,
+     "description": "To the south lies In The River Bend."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Shallow\nwater laps around stones and reeds. Ways lead east and south.",
+   "placeholder": true
+  },
+  "8941": {
+   "vnum": 8941,
+   "name": "In The River Bend",
+   "map": {
+    "x": -40,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8940,
+     "description": "To the north lies In The River Bend."
+    },
+    "west": {
+     "to_room": 8942,
+     "description": "To the west lies The Dark River."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead north and west.",
+   "placeholder": true
+  },
+  "8942": {
+   "vnum": 8942,
+   "name": "The Dark River",
+   "map": {
+    "x": -41,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 900,
+     "description": "To the north lies On The Swift Flowing River."
+    },
+    "east": {
+     "to_room": 8941,
+     "description": "To the east lies In The River Bend."
+    },
+    "west": {
+     "to_room": 900,
+     "description": "To the west lies On The Swift Flowing River."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Shallow water laps around stones\nand reeds. Ways lead north, east and west.",
+   "placeholder": true
   }
+ },
+ "mobs": {
+  "5000": {
+   "vnum": 5000,
+   "name": "dervish",
+   "short_desc": "the dervish",
+   "long_desc": "A raggity dervish walks on aimlessly.",
+   "level": 5,
+   "alignment": 900,
+   "hp_dice": "2d4+0",
+   "damage_dice": "1d4+2",
+   "gold": 535,
+   "exp": 121,
+   "armor_class": 5,
+   "flags": [
+    "scavenger",
+    "stay_zone",
+    "wimpy"
+   ],
+   "description": "Dressed in loose fitting rags, this man looks like he could use some rest.",
+   "equipment": {
+    "wield": 7211
+   },
+   "inventory": [
+    5018,
+    5007
+   ]
+  },
+  "5001": {
+   "vnum": 5001,
+   "name": "dervish",
+   "short_desc": "the dervish",
+   "long_desc": "A large dervish watches for signs of trouble.",
+   "level": 8,
+   "alignment": 650,
+   "hp_dice": "8d10+112",
+   "damage_dice": "3d5+5",
+   "gold": 3575,
+   "exp": 480,
+   "armor_class": 76,
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "description": "Dressed in loose fitting rags, this man looks like he could use LOTS of\nrest.",
+   "equipment": {
+    "wield": 3022
+   },
+   "inventory": [
+    5029
+   ]
+  },
+  "5002": {
+   "vnum": 5002,
+   "name": "snake",
+   "short_desc": "the coral snake",
+   "long_desc": "A brightly colored snake slithers along the sands.",
+   "level": 4,
+   "alignment": -10,
+   "hp_dice": "4d10+64",
+   "damage_dice": "2d4+3",
+   "gold": 300,
+   "exp": 240,
+   "armor_class": 88,
+   "flags": [
+    "stay_zone"
+   ],
+   "description": "This relatively harmless snake has bright alternating bands of red, yellow\nand black.",
+   "inventory": [
+    5019
+   ]
+  },
+  "5003": {
+   "vnum": 5003,
+   "name": "scorpion",
+   "short_desc": "the small scorpion",
+   "long_desc": "A small, red scorpion scuttles away at your approach.",
+   "level": 3,
+   "alignment": -50,
+   "hp_dice": "3d10+52",
+   "damage_dice": "1d4+4",
+   "gold": 250,
+   "exp": 180,
+   "armor_class": 91,
+   "flags": [
+    "stay_zone"
+   ],
+   "description": "The little tail is mighty dangerous for such a small creature.",
+   "inventory": [
+    5019
+   ]
+  },
+  "5004": {
+   "vnum": 5004,
+   "name": "worm",
+   "short_desc": "the sand worm",
+   "long_desc": "A giant, purple sand worm thrusts up out of the sand and attacks!",
+   "level": 21,
+   "alignment": -300,
+   "hp_dice": "21d10+268",
+   "damage_dice": "6d8+6",
+   "gold": 8000,
+   "exp": 1260,
+   "armor_class": 37,
+   "flags": [
+    "special",
+    "sentinel",
+    "aware",
+    "aggressive",
+    "memory",
+    "no_sleep",
+    "no_blind"
+   ],
+   "description": "He's big, mean, and purple.  Watch out!",
+   "inventory": [
+    5019,
+    5020,
+    5021
+   ],
+   "loot_table": [
+    {
+     "vnum": 5055,
+     "chance": 20
+    },
+    {
+     "vnum": 5056,
+     "chance": 20
+    },
+    {
+     "vnum": 5057,
+     "chance": 20
+    },
+    {
+     "vnum": 5058,
+     "chance": 20
+    },
+    {
+     "vnum": 5059,
+     "chance": 20
+    },
+    {
+     "vnum": 5060,
+     "chance": 20
+    },
+    {
+     "vnum": 5061,
+     "chance": 20
+    },
+    {
+     "vnum": 5062,
+     "chance": 20
+    },
+    {
+     "vnum": 5063,
+     "chance": 20
+    }
+   ],
+   "loot_chance": 100
+  },
+  "5005": {
+   "vnum": 5005,
+   "name": "dragon",
+   "short_desc": "the brass dragon",
+   "long_desc": "A very large brass dragon steps out of the darkness and says 'Hello.'",
+   "level": 20,
+   "alignment": 950,
+   "hp_dice": "20d10+256",
+   "damage_dice": "6d8+5",
+   "gold": 8000,
+   "exp": 1200,
+   "armor_class": 40,
+   "flags": [
+    "special",
+    "sentinel",
+    "aware",
+    "aggressive",
+    "no_bash"
+   ],
+   "description": "Then adds to it, 'Prepare to die, have a nice day!'",
+   "inventory": [
+    5024,
+    5022
+   ],
+   "loot_table": [
+    {
+     "vnum": 5055,
+     "chance": 20
+    },
+    {
+     "vnum": 5056,
+     "chance": 20
+    },
+    {
+     "vnum": 5057,
+     "chance": 20
+    },
+    {
+     "vnum": 5058,
+     "chance": 20
+    },
+    {
+     "vnum": 5059,
+     "chance": 20
+    },
+    {
+     "vnum": 5060,
+     "chance": 20
+    },
+    {
+     "vnum": 5061,
+     "chance": 20
+    },
+    {
+     "vnum": 5062,
+     "chance": 20
+    },
+    {
+     "vnum": 5063,
+     "chance": 20
+    }
+   ],
+   "loot_chance": 100
+  },
+  "5006": {
+   "vnum": 5006,
+   "name": "nomad",
+   "short_desc": "the nomad leader",
+   "long_desc": "The nomad leader sits silently in prayer.",
+   "level": 14,
+   "alignment": 950,
+   "hp_dice": "3d10+112",
+   "damage_dice": "1d8+14",
+   "gold": 4000,
+   "exp": 463,
+   "armor_class": 0,
+   "flags": [
+    "sentinel",
+    "wimpy",
+    "memory"
+   ],
+   "description": "He is clad in silk robes lined with gold thread. At his side is a large,\nengraved cutlass.  He has an especially haughty air about him.",
+   "equipment": {
+    "wield": 5016
+   },
+   "inventory": [
+    5007,
+    5000
+   ]
+  },
+  "5007": {
+   "vnum": 5007,
+   "name": "nomad",
+   "short_desc": "the nomad commander",
+   "long_desc": "The nomad commander stands here staring at you suspiciously.",
+   "level": 12,
+   "alignment": 900,
+   "hp_dice": "3d10+96",
+   "damage_dice": "1d8+12",
+   "gold": 3000,
+   "exp": 379,
+   "armor_class": 1,
+   "flags": [
+    "sentinel",
+    "wimpy",
+    "memory"
+   ],
+   "description": "This is the nomad leader's second in command.  His clothes are richly woven\nof silk and gold thread.  A nasty cutlass hangs at his side.",
+   "equipment": {
+    "wield": 5017
+   },
+   "inventory": [
+    5019
+   ]
+  },
+  "5008": {
+   "vnum": 5008,
+   "name": "nomad",
+   "short_desc": "the nomad warrior",
+   "long_desc": "A proud nomad warrior stands here.",
+   "level": 10,
+   "alignment": 700,
+   "hp_dice": "2d8+50",
+   "damage_dice": "1d6+8",
+   "gold": 3650,
+   "exp": 299,
+   "armor_class": 2,
+   "flags": [
+    "sentinel"
+   ],
+   "description": "This warrior is dressed in typical nomad clothing and looks quite mean.",
+   "equipment": {
+    "wield": 5018
+   },
+   "inventory": [
+    5030,
+    5032
+   ]
+  },
+  "5009": {
+   "vnum": 5009,
+   "name": "slave",
+   "short_desc": "the slave",
+   "long_desc": "A young slave sits here staring at you with pleading eyes.",
+   "level": 3,
+   "alignment": 1000,
+   "hp_dice": "1d5+0",
+   "damage_dice": "1d4+1",
+   "gold": 150,
+   "exp": 62,
+   "armor_class": 9,
+   "flags": [
+    "sentinel",
+    "wimpy"
+   ],
+   "description": "She looks quite thin and weak.",
+   "inventory": [
+    5005
+   ]
+  },
+  "5010": {
+   "vnum": 5010,
+   "name": "dracolich",
+   "short_desc": "the dracolich",
+   "long_desc": "A pile of bones rises up to form a skeletal dracolich.",
+   "level": 24,
+   "alignment": -1000,
+   "hp_dice": "24d10+304",
+   "damage_dice": "7d8+6",
+   "gold": 20000,
+   "exp": 1440,
+   "armor_class": 28,
+   "flags": [
+    "special",
+    "sentinel",
+    "aware",
+    "aggressive",
+    "memory",
+    "no_charm",
+    "no_summmon",
+    "no_sleep",
+    "no_bash"
+   ],
+   "description": "The dracolich is now only bone with pieces of flesh hanging from it.\nObviously it no longer fears death.",
+   "equipment": {
+    "body": 5001,
+    "wield": 5002
+   },
+   "loot_table": [
+    {
+     "vnum": 5055,
+     "chance": 20
+    },
+    {
+     "vnum": 5056,
+     "chance": 20
+    },
+    {
+     "vnum": 5057,
+     "chance": 20
+    },
+    {
+     "vnum": 5058,
+     "chance": 20
+    },
+    {
+     "vnum": 5059,
+     "chance": 20
+    },
+    {
+     "vnum": 5060,
+     "chance": 20
+    },
+    {
+     "vnum": 5061,
+     "chance": 20
+    },
+    {
+     "vnum": 5062,
+     "chance": 20
+    },
+    {
+     "vnum": 5063,
+     "chance": 20
+    }
+   ],
+   "loot_chance": 100,
+   "inventory": [
+    5026,
+    5021
+   ]
+  },
+  "5011": {
+   "vnum": 5011,
+   "name": "drider",
+   "short_desc": "the drider",
+   "long_desc": "The drider looks at you viciously while it draws its sword.",
+   "level": 8,
+   "alignment": -1000,
+   "hp_dice": "8d10+112",
+   "damage_dice": "3d5+5",
+   "gold": 2100,
+   "exp": 480,
+   "armor_class": 76,
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "description": "This half-spider, half-drow creature is a formidable opponent.",
+   "equipment": {
+    "wield": 3022
+   },
+   "inventory": [
+    5005,
+    5018
+   ]
+  },
+  "5012": {
+   "vnum": 5012,
+   "name": "duergar",
+   "short_desc": "the dark dwarf",
+   "long_desc": "A duergar is here mining precious stones with his pick.",
+   "level": 5,
+   "alignment": -850,
+   "hp_dice": "5d10+76",
+   "damage_dice": "2d5+3",
+   "gold": 710,
+   "exp": 300,
+   "armor_class": 85,
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "description": "The duergar could probably crush your head as easily as he does those\nrocks.",
+   "equipment": {
+    "wield": 5000
+   },
+   "inventory": [
+    5063
+   ]
+  },
+  "5013": {
+   "vnum": 5013,
+   "name": "myconoid",
+   "short_desc": "the myconoid",
+   "long_desc": "A myconoid lumbers along peacefully.",
+   "level": 6,
+   "alignment": 850,
+   "hp_dice": "2d8+30",
+   "damage_dice": "1d6+4",
+   "gold": 325,
+   "exp": 154,
+   "armor_class": 4,
+   "flags": [
+    "stay_zone",
+    "wimpy"
+   ],
+   "description": "The myconoid looks something like a giant mushroom (and probably has the\nsame effect).",
+   "inventory": [
+    5062
+   ]
+  },
+  "5014": {
+   "vnum": 5014,
+   "name": "myconoid",
+   "short_desc": "the myconoid shaman",
+   "long_desc": "A rather large myconoid stands here chanting in a strange tongue.",
+   "level": 14,
+   "alignment": 950,
+   "hp_dice": "3d10+112",
+   "damage_dice": "1d8+14",
+   "gold": 10250,
+   "exp": 463,
+   "armor_class": 1,
+   "flags": [
+    "special",
+    "scavenger",
+    "aggr_evil",
+    "memory"
+   ],
+   "description": "The shaman shoots spores into the air.",
+   "equipment": {
+    "neck1": 5003
+   },
+   "inventory": [
+    5029,
+    5026
+   ]
+  },
+  "5015": {
+   "vnum": 5015,
+   "name": "dustdigger",
+   "short_desc": "the dustdigger",
+   "long_desc": "A small oasis invites you to dive in.",
+   "level": 7,
+   "alignment": -200,
+   "hp_dice": "7d10+100",
+   "damage_dice": "2d5+6",
+   "gold": 1350,
+   "exp": 420,
+   "armor_class": 79,
+   "flags": [
+    "sentinel",
+    "scavenger",
+    "aggressive",
+    "no_bash",
+    "no_blind"
+   ],
+   "description": "Looking a little closer at this oasis, you begin to wonder why\nit seems to be moving about...",
+   "inventory": [
+    5021,
+    5055
+   ]
+  },
+  "5017": {
+   "vnum": 5017,
+   "name": "camel",
+   "short_desc": "the camel",
+   "long_desc": "A very dangerous creature, a camel, snorts at you.",
+   "level": 5,
+   "alignment": -351,
+   "hp_dice": "5d10+76",
+   "damage_dice": "2d5+3",
+   "gold": 585,
+   "exp": 300,
+   "armor_class": 85,
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "no_bash"
+   ],
+   "description": "It is advisable not to mess with this creature.  After all, you\nhave heard many a horror story about experiences with camels.\nBad experiences.",
+   "inventory": [
+    5030,
+    5018
+   ]
+  },
+  "5098": {
+   "vnum": 5098,
+   "name": "trembling torchbearer",
+   "short_desc": "a trembling torchbearer",
+   "long_desc": "A trembling torchbearer crouches here, his torch barely flickering.",
+   "description": "He was hired to light the way for an expedition that never returned. Now he sits alone in the dark, too afraid to go forward, too lost to go back.",
+   "level": 28,
+   "alignment": 0,
+   "hp_dice": "28d10+450",
+   "damage_dice": "1d4+1",
+   "gold": 0,
+   "exp": 0,
+   "armor_class": 100,
+   "flags": [
+    "sentinel"
+   ],
+   "special": "flavor_npc",
+   "talk_responses": {
+    "hello": "The torchbearer's voice cracks. 'They went deeper. All of them. Said there was treasure past the underground lake. None came back. I can still hear the echoes of their screams sometimes... or maybe that's just the wind.'",
+    "treasure": "He laughs bitterly. 'Gold means nothing when you're dead. But if you must know — the richest veins are near the lake. That's where the worst things live, too.'",
+    "default": "The torchbearer clutches his guttering torch. 'Please... do you know the way out?'"
+   },
+   "inventory": [
+    5030
+   ]
+  }
+ },
+ "objects": {
+  "5000": {
+   "vnum": 5000,
+   "name": "pick",
+   "short_desc": "a small mining pick",
+   "room_desc": "A small mining pick made of what appears to be silver lies on the ground.",
+   "item_type": "weapon",
+   "weight": 3,
+   "value": 600,
+   "damage_dice": "1d9",
+   "weapon_type": "pierce",
+   "type": "treasure"
+  },
+  "5002": {
+   "vnum": 5002,
+   "name": "halberd",
+   "short_desc": "a halberd",
+   "room_desc": "A mighty halberd lies against the wall.",
+   "item_type": "weapon",
+   "weight": 16,
+   "value": 12000,
+   "damage_dice": "3d5",
+   "weapon_type": "slash",
+   "type": "weapon"
+  },
+  "5003": {
+   "vnum": 5003,
+   "name": "amulet",
+   "short_desc": "a mushroom amulet",
+   "room_desc": "A mushroom-shaped amulet lies on the ground.",
+   "item_type": "armor",
+   "weight": 2,
+   "value": 1500,
+   "armor_bonus": 0,
+   "type": "armor",
+   "wear_slot": "neck",
+   "armor": 8,
+   "armor_class": 2
+  },
+  "5005": {
+   "vnum": 5005,
+   "name": "bone",
+   "short_desc": "a large leg bone",
+   "room_desc": "A large leg bone rests on the ground.",
+   "item_type": "weapon",
+   "weight": 5,
+   "value": 300,
+   "damage_dice": "1d4",
+   "weapon_type": "pound",
+   "type": "trash"
+  },
+  "5006": {
+   "vnum": 5006,
+   "name": "cactus",
+   "short_desc": "a small cactus cup",
+   "room_desc": "A small cactus cup lies on the ground.",
+   "item_type": "drinkcon",
+   "weight": 6,
+   "value": 30,
+   "capacity": 5,
+   "current": 5,
+   "type": "drink",
+   "drinks": 10,
+   "max_drinks": 10
+  },
+  "5007": {
+   "vnum": 5007,
+   "name": "basket",
+   "short_desc": "a small wicker basket",
+   "room_desc": "A small wicker basket sits on the ground.",
+   "item_type": "container",
+   "weight": 50,
+   "value": 5000,
+   "capacity": 100,
+   "type": "container"
+  },
+  "5009": {
+   "vnum": 5009,
+   "name": "basket",
+   "short_desc": "a small wicker basket",
+   "room_desc": "A small wicker basket sits on the ground.",
+   "item_type": "container",
+   "weight": 50,
+   "value": 5000,
+   "capacity": 100,
+   "type": "container"
+  },
+  "5010": {
+   "vnum": 5010,
+   "name": "basket",
+   "short_desc": "a small wicker basket",
+   "room_desc": "A small wicker basket sits on the ground.",
+   "item_type": "container",
+   "weight": 50,
+   "value": 5000,
+   "capacity": 100,
+   "type": "container"
+  },
+  "5011": {
+   "vnum": 5011,
+   "name": "rope",
+   "short_desc": "a coil of rope",
+   "room_desc": "A long coil of rope lies on the ground.",
+   "item_type": "treasure",
+   "weight": 12,
+   "value": 450,
+   "type": "treasure"
+  },
+  "5012": {
+   "vnum": 5012,
+   "name": "stakes",
+   "short_desc": "a bunch of stakes",
+   "room_desc": "A small bundle of stakes lies here.",
+   "item_type": "weapon",
+   "weight": 6,
+   "value": 250,
+   "damage_dice": "1d2",
+   "weapon_type": "pierce",
+   "type": "treasure"
+  },
+  "5013": {
+   "vnum": 5013,
+   "name": "map",
+   "short_desc": "an old, tattered map",
+   "room_desc": "An old, tattered, and much faded map lies here.",
+   "item_type": "treasure",
+   "weight": 1,
+   "value": 300,
+   "type": "note"
+  },
+  "5014": {
+   "vnum": 5014,
+   "name": "turban",
+   "short_desc": "a thick padded turban",
+   "room_desc": "A thick padded turban lies here.",
+   "item_type": "armor",
+   "weight": 15,
+   "value": 4300,
+   "armor_bonus": 0,
+   "type": "armor",
+   "wear_slot": "head",
+   "armor": 2,
+   "armor_class": 1
+  },
+  "5015": {
+   "vnum": 5015,
+   "name": "coins",
+   "short_desc": "a great pile of treasure",
+   "room_desc": "A great, gleaming pile of treasure lies at your feet.",
+   "item_type": "money",
+   "weight": 0,
+   "value": 0,
+   "type": "treasure"
+  },
+  "5016": {
+   "vnum": 5016,
+   "name": "sabre",
+   "short_desc": "a long, curved sabre",
+   "room_desc": "A long, curved sabre stands upright in the ground.",
+   "item_type": "weapon",
+   "weight": 7,
+   "value": 1050,
+   "damage_dice": "1d8",
+   "weapon_type": "slash",
+   "type": "weapon"
+  },
+  "5017": {
+   "vnum": 5017,
+   "name": "scimitar",
+   "short_desc": "a curved scimitar",
+   "room_desc": "A curved scimitar lies at your feet.",
+   "item_type": "weapon",
+   "weight": 6,
+   "value": 600,
+   "damage_dice": "1d7",
+   "weapon_type": "slash",
+   "type": "weapon"
+  },
+  "5018": {
+   "vnum": 5018,
+   "name": "cutlass",
+   "short_desc": "a long, pointed cutlass",
+   "room_desc": "A long, pointed cutlass lies here.",
+   "item_type": "weapon",
+   "weight": 5,
+   "value": 550,
+   "damage_dice": "1d7",
+   "weapon_type": "slash",
+   "type": "weapon"
+  },
+  "5019": {
+   "vnum": 5019,
+   "name": "potion",
+   "short_desc": "a pink potion",
+   "room_desc": "A pink potion stands here.",
+   "item_type": "potion",
+   "weight": 6,
+   "value": 600,
+   "type": "potion"
+  },
+  "5020": {
+   "vnum": 5020,
+   "name": "wand",
+   "short_desc": "a platinum wand",
+   "room_desc": "A platinum wand lies here.",
+   "item_type": "wand",
+   "weight": 8,
+   "value": 1900,
+   "type": "wand"
+  },
+  "5021": {
+   "vnum": 5021,
+   "name": "bow",
+   "short_desc": "a golden bow",
+   "room_desc": "A powerful golden bow lies here.",
+   "item_type": "weapon",
+   "weight": 20,
+   "value": 150000,
+   "damage_dice": "4d6",
+   "weapon_type": "blast",
+   "type": "weapon"
+  },
+  "5022": {
+   "vnum": 5022,
+   "name": "scroll",
+   "short_desc": "an encrypted scroll",
+   "room_desc": "An encrypted scroll lies at your feet.",
+   "item_type": "scroll",
+   "weight": 7,
+   "value": 1500,
+   "type": "scroll"
+  },
+  "5023": {
+   "vnum": 5023,
+   "name": "chest",
+   "short_desc": "an iron bound chest",
+   "room_desc": "An iron bound chest with a shiny lock sits here.",
+   "item_type": "container",
+   "weight": 200,
+   "value": 1000,
+   "capacity": 200,
+   "key_vnum": 5024,
+   "type": "container"
+  },
+  "5024": {
+   "vnum": 5024,
+   "name": "key",
+   "short_desc": "a golden key",
+   "room_desc": "A shiny golden key lies here.",
+   "item_type": "key",
+   "weight": 1,
+   "value": 150,
+   "type": "key"
+  },
+  "5025": {
+   "vnum": 5025,
+   "name": "bracelet",
+   "short_desc": "a copper bracelet",
+   "room_desc": "A tarnished copper bracelet lies at your feet.",
+   "item_type": "armor",
+   "weight": 10,
+   "value": 23000,
+   "armor_bonus": -5,
+   "type": "armor",
+   "wear_slot": "wrist",
+   "armor": 1,
+   "armor_class": 3
+  },
+  "5026": {
+   "vnum": 5026,
+   "name": "ruby",
+   "short_desc": "a large ruby",
+   "room_desc": "A large ruby lies on the ground, collecting dust.",
+   "item_type": "treasure",
+   "weight": 9,
+   "value": 4000,
+   "type": "treasure"
+  },
+  "5027": {
+   "vnum": 5027,
+   "name": "diamond",
+   "short_desc": "a glittering diamond",
+   "room_desc": "A glittering diamond lies at your feet.",
+   "item_type": "treasure",
+   "weight": 10,
+   "value": 9500,
+   "type": "treasure"
+  },
+  "5028": {
+   "vnum": 5028,
+   "name": "sapphire",
+   "short_desc": "a brilliant sapphire",
+   "room_desc": "A brilliant sapphire lies here, twinkling happily.",
+   "item_type": "treasure",
+   "weight": 7,
+   "value": 3500,
+   "type": "treasure"
+  },
+  "5029": {
+   "vnum": 5029,
+   "name": "lapis",
+   "short_desc": "a deep blue lapis lazuli",
+   "room_desc": "A deep blue lapis lazuli gem lies here.",
+   "item_type": "treasure",
+   "weight": 11,
+   "value": 8500,
+   "type": "treasure"
+  },
+  "5030": {
+   "vnum": 5030,
+   "name": "jewel",
+   "short_desc": "the Tiger Jewel",
+   "room_desc": "The Tiger Jewel lies here blazing.",
+   "item_type": "treasure",
+   "weight": 23,
+   "value": 43000,
+   "type": "treasure"
+  },
+  "5031": {
+   "vnum": 5031,
+   "name": "jewel",
+   "short_desc": "the red-eyed jewel",
+   "room_desc": "The red-eyed jewel glares at you greedily.",
+   "item_type": "treasure",
+   "weight": 30,
+   "value": 35000,
+   "type": "treasure"
+  },
+  "5032": {
+   "vnum": 5032,
+   "name": "emerald",
+   "short_desc": "a fiery green emerald",
+   "room_desc": "A fiery green emerald sits here.",
+   "item_type": "treasure",
+   "weight": 7,
+   "value": 5500,
+   "type": "treasure"
+  },
+  "5050": {
+   "vnum": 5050,
+   "name": "a sand-worn tablet",
+   "short_desc": "a sand-worn tablet",
+   "room_desc": "A sand-worn tablet rests against the wall.",
+   "description": "Faded carvings depict a sun disk and a winding road.",
+   "type": "note",
+   "weight": 3,
+   "cost": 70,
+   "lore_id": "desert_tablet",
+   "lore_title": "Tablet of the Sun Cult",
+   "lore_zone": 50,
+   "lore_text": "\"We followed the star that burned at noon and found the well that never dried.\""
+  },
+  "5051": {
+   "vnum": 5051,
+   "name": "a nomad's letter",
+   "short_desc": "a nomad's letter",
+   "room_desc": "A bundle of letters lies here.",
+   "description": "The paper is brittle but still legible.",
+   "type": "note",
+   "weight": 1,
+   "cost": 40,
+   "lore_id": "desert_letter",
+   "lore_title": "Nomad Letter",
+   "lore_zone": 50,
+   "lore_text": "\"The dunes shift each night. Trust the rocks, not the stars.\""
+  },
+  "5052": {
+   "vnum": 5052,
+   "name": "a sun-baked reliquary chest",
+   "short_desc": "a sun-baked reliquary chest",
+   "room_desc": "A sun-baked chest is half-buried here.",
+   "description": "The lid is etched with a blazing sun.",
+   "type": "container",
+   "capacity": 6,
+   "is_closed": true,
+   "is_locked": false,
+   "weight": 6,
+   "cost": 130
+  },
+  "5053": {
+   "vnum": 5053,
+   "name": "an oasis copper key",
+   "short_desc": "an oasis copper key",
+   "room_desc": "A copper key glints at the edge of the pool.",
+   "description": "The key smells faintly of fresh water.",
+   "type": "key",
+   "weight": 1,
+   "cost": 5
+  },
+  "5054": {
+   "vnum": 5054,
+   "name": "a scorpionglass amulet",
+   "short_desc": "a scorpionglass amulet",
+   "room_desc": "A dark amulet glints in the shade.",
+   "description": "A piece of black glass carved into a scorpion.",
+   "type": "armor",
+   "wear_slot": "neck",
+   "armor": 1,
+   "weight": 1,
+   "cost": 230,
+   "armor_class": 2
+  },
+  "5055": {
+   "vnum": 5055,
+   "name": "dune‑breaker axe",
+   "short_desc": "a dune‑breaker axe",
+   "room_desc": "A dune‑breaker axe lies here.",
+   "description": "A heavy desert axe.",
+   "item_type": "weapon",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "wield",
+   "weapon_type": "slash",
+   "damage_dice": "2d6+3",
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ],
+   "set_id": 50,
+   "type": "weapon"
+  },
+  "5056": {
+   "vnum": 5056,
+   "name": "sunward shield",
+   "short_desc": "a sunward shield",
+   "room_desc": "A sunward shield lies here.",
+   "description": "A paladin's shield.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "shield",
+   "armor_bonus": 2,
+   "affects": [
+    {
+     "type": "cha",
+     "value": 1
+    }
+   ],
+   "set_id": 50,
+   "type": "armor",
+   "armor": 3,
+   "armor_class": 1
+  },
+  "5057": {
+   "vnum": 5057,
+   "name": "ashwind sigil",
+   "short_desc": "an ashwind sigil",
+   "room_desc": "An ashwind sigil lies here.",
+   "description": "A deathknight's sigil.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "neck1",
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 2
+    }
+   ],
+   "set_id": 50,
+   "type": "treasure",
+   "armor": 7
+  },
+  "5058": {
+   "vnum": 5058,
+   "name": "sandsong relic",
+   "short_desc": "a sandsong relic",
+   "room_desc": "A sandsong relic lies here.",
+   "description": "A cleric's relic.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "hold",
+   "affects": [
+    {
+     "type": "wis",
+     "value": 2
+    },
+    {
+     "type": "max_mana",
+     "value": 15
+    }
+   ],
+   "set_id": 50,
+   "type": "treasure",
+   "armor": 8
+  },
+  "5059": {
+   "vnum": 5059,
+   "name": "glass‑etched orb",
+   "short_desc": "a glass‑etched orb",
+   "room_desc": "A glass‑etched orb lies here.",
+   "description": "A mage's orb.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "hold",
+   "affects": [
+    {
+     "type": "int",
+     "value": 2
+    }
+   ],
+   "set_id": 50,
+   "type": "treasure",
+   "armor": 6
+  },
+  "5060": {
+   "vnum": 5060,
+   "name": "desert lute",
+   "short_desc": "a desert lute",
+   "room_desc": "A desert lute lies here.",
+   "description": "A bard's lute.",
+   "item_type": "weapon",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "wield",
+   "weapon_type": "mace",
+   "damage_dice": "1d6+1",
+   "affects": [
+    {
+     "type": "cha",
+     "value": 2
+    }
+   ],
+   "set_id": 50,
+   "type": "treasure"
+  },
+  "5061": {
+   "vnum": 5061,
+   "name": "sandspine dagger",
+   "short_desc": "a sandspine dagger",
+   "room_desc": "A sandspine dagger lies here.",
+   "description": "A rogue's dagger.",
+   "item_type": "weapon",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "wield",
+   "weapon_type": "pierce",
+   "damage_dice": "1d6+2",
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    }
+   ],
+   "set_id": 50,
+   "type": "weapon"
+  },
+  "5062": {
+   "vnum": 5062,
+   "name": "nomad bow",
+   "short_desc": "a nomad bow",
+   "room_desc": "A nomad bow lies here.",
+   "description": "A ranger's bow.",
+   "item_type": "weapon",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "wield",
+   "weapon_type": "pierce",
+   "damage_dice": "1d6+2",
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "hitroll",
+     "value": 1
+    }
+   ],
+   "set_id": 50,
+   "type": "weapon"
+  },
+  "5063": {
+   "vnum": 5063,
+   "name": "scarf of the wastes",
+   "short_desc": "a scarf of the wastes",
+   "room_desc": "A scarf of the wastes lies here.",
+   "description": "A desert scarf.",
+   "item_type": "armor",
+   "weight": 4,
+   "value": 4000,
+   "wear_slot": "neck1",
+   "affects": [
+    {
+     "type": "con",
+     "value": 1
+    }
+   ],
+   "set_id": 50,
+   "type": "treasure",
+   "armor": 5
+  }
+ },
+ "lifespan": 30
 }

@@ -1,0 +1,2409 @@
+{
+ "number": 458,
+ "name": "Castle Varok",
+ "builders": "Kaan",
+ "atlas_area": 58,
+ "rooms": {
+  "105700": {
+   "vnum": 105700,
+   "name": "Wide Road Through the Foothills",
+   "map": {
+    "x": 19,
+    "y": 18,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105763,
+     "description": "To the north lies Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105751,
+     "description": "To the south lies The Rolling Foothills."
+    },
+    "west": {
+     "to_room": 105701,
+     "description": "To the west lies Wide Road Through the Foothills."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "105701": {
+   "vnum": 105701,
+   "name": "Wide Road Through the Foothills",
+   "map": {
+    "x": 18,
+    "y": 18,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105762,
+     "description": "To the north lies Rolling Foothills."
+    },
+    "east": {
+     "to_room": 105700,
+     "description": "To the east lies Wide Road Through the Foothills."
+    },
+    "south": {
+     "to_room": 105750,
+     "description": "To the south lies The Rolling Foothills."
+    },
+    "west": {
+     "to_room": 105781,
+     "description": "To the west lies Wide Road Through the Foothills."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105702": {
+   "vnum": 105702,
+   "name": "Entrance to Castle Varok",
+   "map": {
+    "x": 15,
+    "y": 18,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105759,
+     "description": "To the north lies A Side Path."
+    },
+    "east": {
+     "to_room": 105782,
+     "description": "To the east lies Wide Road Through the Foothills."
+    },
+    "south": {
+     "to_room": 105747,
+     "description": "To the south lies Along the Castle Wall."
+    },
+    "west": {
+     "to_room": 105703,
+     "description": "To the west lies Foyer."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "105703": {
+   "vnum": 105703,
+   "name": "Foyer",
+   "map": {
+    "x": 13,
+    "y": 18,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105704,
+     "description": "To the north lies Short Hallway.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 105702,
+     "description": "To the east lies Entrance to Castle Varok.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 105707,
+     "description": "To the south lies Short Hallway.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 105710,
+     "description": "To the west lies The Main Hall."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105704": {
+   "vnum": 105704,
+   "name": "Short Hallway",
+   "map": {
+    "x": 13,
+    "y": 19,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105705,
+     "description": "To the north lies Short Hallway."
+    },
+    "south": {
+     "to_room": 105703,
+     "description": "To the south lies Foyer."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "105705": {
+   "vnum": 105705,
+   "name": "Short Hallway",
+   "map": {
+    "x": 13,
+    "y": 20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105706,
+     "description": "To the north lies The Lord's State Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 105704,
+     "description": "To the south lies Short Hallway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "105706": {
+   "vnum": 105706,
+   "name": "The Lord's State Room",
+   "map": {
+    "x": 13,
+    "y": 21,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 105705,
+     "description": "To the south lies Short Hallway."
+    },
+    "west": {
+     "to_room": 105714,
+     "description": "To the west lies Back Hall.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "105707": {
+   "vnum": 105707,
+   "name": "Short Hallway",
+   "map": {
+    "x": 13,
+    "y": 16,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105703,
+     "description": "To the north lies Foyer."
+    },
+    "south": {
+     "to_room": 105708,
+     "description": "To the south lies Short Hallway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "105708": {
+   "vnum": 105708,
+   "name": "Short Hallway",
+   "map": {
+    "x": 13,
+    "y": 15,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105707,
+     "description": "To the north lies Short Hallway."
+    },
+    "south": {
+     "to_room": 105709,
+     "description": "To the south lies The Lord and Lady's Bedchamber.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "105709": {
+   "vnum": 105709,
+   "name": "The Lord and Lady's Bedchamber",
+   "map": {
+    "x": 13,
+    "y": 13,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105708,
+     "description": "To the north lies Short Hallway."
+    },
+    "west": {
+     "to_room": 105722,
+     "description": "To the west lies Southern Hallway.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and west.",
+   "placeholder": true
+  },
+  "105710": {
+   "vnum": 105710,
+   "name": "The Main Hall",
+   "map": {
+    "x": 10,
+    "y": 18,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105713,
+     "description": "To the north lies The Grand Ballroom."
+    },
+    "east": {
+     "to_room": 105703,
+     "description": "To the east lies Foyer."
+    },
+    "south": {
+     "to_room": 105719,
+     "description": "To the south lies Kitchen."
+    },
+    "west": {
+     "to_room": 105711,
+     "description": "To the west lies The Main Hall."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "105711": {
+   "vnum": 105711,
+   "name": "The Main Hall",
+   "map": {
+    "x": 9,
+    "y": 18,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105712,
+     "description": "To the north lies The Grand Ballroom."
+    },
+    "east": {
+     "to_room": 105710,
+     "description": "To the east lies The Main Hall."
+    },
+    "west": {
+     "to_room": 105726,
+     "description": "To the west lies The Base of the Stairwell.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "105712": {
+   "vnum": 105712,
+   "name": "The Grand Ballroom",
+   "map": {
+    "x": 9,
+    "y": 19,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105713,
+     "description": "To the east lies The Grand Ballroom."
+    },
+    "south": {
+     "to_room": 105711,
+     "description": "To the south lies The Main Hall."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and south.",
+   "placeholder": true
+  },
+  "105713": {
+   "vnum": 105713,
+   "name": "The Grand Ballroom",
+   "map": {
+    "x": 10,
+    "y": 19,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 105710,
+     "description": "To the south lies The Main Hall."
+    },
+    "west": {
+     "to_room": 105712,
+     "description": "To the west lies The Grand Ballroom."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "105714": {
+   "vnum": 105714,
+   "name": "Back Hall",
+   "map": {
+    "x": 12,
+    "y": 21,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105706,
+     "description": "To the east lies The Lord's State Room."
+    },
+    "west": {
+     "to_room": 105715,
+     "description": "To the west lies Back Hall."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "105715": {
+   "vnum": 105715,
+   "name": "Back Hall",
+   "map": {
+    "x": 11,
+    "y": 21,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105714,
+     "description": "To the east lies Back Hall."
+    },
+    "west": {
+     "to_room": 105716,
+     "description": "To the west lies Back Hall."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "105716": {
+   "vnum": 105716,
+   "name": "Back Hall",
+   "map": {
+    "x": 10,
+    "y": 21,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105717,
+     "description": "To the north lies The Back Exit."
+    },
+    "east": {
+     "to_room": 105715,
+     "description": "To the east lies Back Hall."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "105717": {
+   "vnum": 105717,
+   "name": "The Back Exit",
+   "map": {
+    "x": 10,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 105716,
+     "description": "To the south lies Back Hall."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads south.",
+   "placeholder": true
+  },
+  "105718": {
+   "vnum": 105718,
+   "name": "Storage",
+   "map": {
+    "x": 9,
+    "y": 16,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105719,
+     "description": "To the east lies Kitchen."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "105719": {
+   "vnum": 105719,
+   "name": "Kitchen",
+   "map": {
+    "x": 10,
+    "y": 16,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105710,
+     "description": "To the north lies The Main Hall."
+    },
+    "south": {
+     "to_room": 105783,
+     "description": "To the south lies Cold Storage.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 105718,
+     "description": "To the west lies Storage."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "105720": {
+   "vnum": 105720,
+   "name": "Southern Hallway",
+   "map": {
+    "x": 8,
+    "y": 13,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105721,
+     "description": "To the east lies Southern Hallway."
+    },
+    "west": {
+     "to_room": 105723,
+     "description": "To the west lies A Bend in the Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "105721": {
+   "vnum": 105721,
+   "name": "Southern Hallway",
+   "map": {
+    "x": 10,
+    "y": 13,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105722,
+     "description": "To the east lies Southern Hallway."
+    },
+    "west": {
+     "to_room": 105720,
+     "description": "To the west lies Southern Hallway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "105722": {
+   "vnum": 105722,
+   "name": "Southern Hallway",
+   "map": {
+    "x": 12,
+    "y": 13,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105709,
+     "description": "To the east lies The Lord and Lady's Bedchamber."
+    },
+    "west": {
+     "to_room": 105721,
+     "description": "To the west lies Southern Hallway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "105723": {
+   "vnum": 105723,
+   "name": "A Bend in the Hallway",
+   "map": {
+    "x": 7,
+    "y": 13,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105724,
+     "description": "To the north lies Western Hallway."
+    },
+    "east": {
+     "to_room": 105720,
+     "description": "To the east lies Southern Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "105724": {
+   "vnum": 105724,
+   "name": "Western Hallway",
+   "map": {
+    "x": 7,
+    "y": 15,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105725,
+     "description": "To the north lies Western Hallway."
+    },
+    "south": {
+     "to_room": 105723,
+     "description": "To the south lies A Bend in the Hallway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "105725": {
+   "vnum": 105725,
+   "name": "Western Hallway",
+   "map": {
+    "x": 7,
+    "y": 16,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105726,
+     "description": "To the north lies The Base of the Stairwell.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 105724,
+     "description": "To the south lies Western Hallway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "105726": {
+   "vnum": 105726,
+   "name": "The Base of the Stairwell",
+   "map": {
+    "x": 7,
+    "y": 18,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105711,
+     "description": "To the east lies The Main Hall."
+    },
+    "south": {
+     "to_room": 105725,
+     "description": "To the south lies Western Hallway."
+    },
+    "up": {
+     "to_room": 105732,
+     "description": "To the up lies Upper Hallway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east, south and up.",
+   "placeholder": true
+  },
+  "105727": {
+   "vnum": 105727,
+   "name": "Guest Room",
+   "map": {
+    "x": 10,
+    "y": 22,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 105730,
+     "description": "To the south lies Upper Hallway."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads south.",
+   "placeholder": true
+  },
+  "105728": {
+   "vnum": 105728,
+   "name": "Guest Room",
+   "map": {
+    "x": 14,
+    "y": 20,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 105729,
+     "description": "To the west lies Northern End of the Hall."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads west.",
+   "placeholder": true
+  },
+  "105729": {
+   "vnum": 105729,
+   "name": "Northern End of the Hall",
+   "map": {
+    "x": 12,
+    "y": 20,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105728,
+     "description": "To the east lies Guest Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 105730,
+     "description": "To the west lies Upper Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "105730": {
+   "vnum": 105730,
+   "name": "Upper Hallway",
+   "map": {
+    "x": 10,
+    "y": 20,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105727,
+     "description": "To the north lies Guest Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 105729,
+     "description": "To the east lies Northern End of the Hall."
+    },
+    "south": {
+     "to_room": 105731,
+     "description": "To the south lies Upper Hallway."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "105731": {
+   "vnum": 105731,
+   "name": "Upper Hallway",
+   "map": {
+    "x": 10,
+    "y": 19,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105730,
+     "description": "To the north lies Upper Hallway."
+    },
+    "east": {
+     "to_room": 105742,
+     "description": "To the east lies Guest Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 105732,
+     "description": "To the south lies Upper Hallway."
+    },
+    "west": {
+     "to_room": 105743,
+     "description": "To the west lies Guest Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105732": {
+   "vnum": 105732,
+   "name": "Upper Hallway",
+   "map": {
+    "x": 10,
+    "y": 18,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105731,
+     "description": "To the north lies Upper Hallway."
+    },
+    "east": {
+     "to_room": 105741,
+     "description": "To the east lies Guest Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 105733,
+     "description": "To the south lies Upper Hallway."
+    },
+    "west": {
+     "to_room": 105744,
+     "description": "To the west lies Guest Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "down": {
+     "to_room": 105726,
+     "description": "To the down lies The Base of the Stairwell."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east, south, west and down.",
+   "placeholder": true
+  },
+  "105733": {
+   "vnum": 105733,
+   "name": "Upper Hallway",
+   "map": {
+    "x": 10,
+    "y": 17,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105732,
+     "description": "To the north lies Upper Hallway."
+    },
+    "east": {
+     "to_room": 105740,
+     "description": "To the east lies Guest Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 105734,
+     "description": "To the south lies Upper Hallway."
+    },
+    "west": {
+     "to_room": 105745,
+     "description": "To the west lies Guest Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105734": {
+   "vnum": 105734,
+   "name": "Upper Hallway",
+   "map": {
+    "x": 10,
+    "y": 16,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105733,
+     "description": "To the north lies Upper Hallway."
+    },
+    "east": {
+     "to_room": 105739,
+     "description": "To the east lies Guest Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 105735,
+     "description": "To the south lies Upper Hallway."
+    },
+    "west": {
+     "to_room": 105746,
+     "description": "To the west lies Guest Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105735": {
+   "vnum": 105735,
+   "name": "Upper Hallway",
+   "map": {
+    "x": 10,
+    "y": 15,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105734,
+     "description": "To the north lies Upper Hallway."
+    },
+    "east": {
+     "to_room": 105736,
+     "description": "To the east lies Southern End of the Hall."
+    },
+    "south": {
+     "to_room": 105738,
+     "description": "To the south lies Guest Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "105736": {
+   "vnum": 105736,
+   "name": "Southern End of the Hall",
+   "map": {
+    "x": 12,
+    "y": 15,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105737,
+     "description": "To the east lies Guest Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 105735,
+     "description": "To the west lies Upper Hallway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "105737": {
+   "vnum": 105737,
+   "name": "Guest Room",
+   "map": {
+    "x": 14,
+    "y": 15,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 105736,
+     "description": "To the west lies Southern End of the Hall."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads west.",
+   "placeholder": true
+  },
+  "105738": {
+   "vnum": 105738,
+   "name": "Guest Room",
+   "map": {
+    "x": 10,
+    "y": 13,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105735,
+     "description": "To the north lies Upper Hallway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads north.",
+   "placeholder": true
+  },
+  "105739": {
+   "vnum": 105739,
+   "name": "Guest Room",
+   "map": {
+    "x": 12,
+    "y": 16,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 105734,
+     "description": "To the west lies Upper Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "105740": {
+   "vnum": 105740,
+   "name": "Guest Room",
+   "map": {
+    "x": 12,
+    "y": 17,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 105733,
+     "description": "To the west lies Upper Hallway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "105741": {
+   "vnum": 105741,
+   "name": "Guest Room",
+   "map": {
+    "x": 12,
+    "y": 18,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 105732,
+     "description": "To the west lies Upper Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads west.",
+   "placeholder": true
+  },
+  "105742": {
+   "vnum": 105742,
+   "name": "Guest Room",
+   "map": {
+    "x": 12,
+    "y": 19,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 105731,
+     "description": "To the west lies Upper Hallway."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "105743": {
+   "vnum": 105743,
+   "name": "Guest Room",
+   "map": {
+    "x": 8,
+    "y": 19,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105731,
+     "description": "To the east lies Upper Hallway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "105744": {
+   "vnum": 105744,
+   "name": "Guest Room",
+   "map": {
+    "x": 8,
+    "y": 18,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105732,
+     "description": "To the east lies Upper Hallway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "105745": {
+   "vnum": 105745,
+   "name": "Guest Room",
+   "map": {
+    "x": 8,
+    "y": 17,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105733,
+     "description": "To the east lies Upper Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads east.",
+   "placeholder": true
+  },
+  "105746": {
+   "vnum": 105746,
+   "name": "Guest Room",
+   "map": {
+    "x": 8,
+    "y": 16,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105734,
+     "description": "To the east lies Upper Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads east.",
+   "placeholder": true
+  },
+  "105747": {
+   "vnum": 105747,
+   "name": "Along the Castle Wall",
+   "map": {
+    "x": 15,
+    "y": 17,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105702,
+     "description": "To the north lies Entrance to Castle Varok."
+    },
+    "east": {
+     "to_room": 105748,
+     "description": "To the east lies The Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105752,
+     "description": "To the south lies Along the Castle Wall."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "105748": {
+   "vnum": 105748,
+   "name": "The Rolling Foothills",
+   "map": {
+    "x": 16,
+    "y": 17,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105782,
+     "description": "To the north lies Wide Road Through the Foothills."
+    },
+    "east": {
+     "to_room": 105749,
+     "description": "To the east lies The Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105754,
+     "description": "To the south lies The Rolling Foothills."
+    },
+    "west": {
+     "to_room": 105747,
+     "description": "To the west lies Along the Castle Wall."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105749": {
+   "vnum": 105749,
+   "name": "The Rolling Foothills",
+   "map": {
+    "x": 17,
+    "y": 17,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105781,
+     "description": "To the north lies Wide Road Through the Foothills."
+    },
+    "east": {
+     "to_room": 105750,
+     "description": "To the east lies The Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105755,
+     "description": "To the south lies The Rolling Foothills."
+    },
+    "west": {
+     "to_room": 105748,
+     "description": "To the west lies The Rolling Foothills."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105750": {
+   "vnum": 105750,
+   "name": "The Rolling Foothills",
+   "map": {
+    "x": 18,
+    "y": 17,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105701,
+     "description": "To the north lies Wide Road Through the Foothills."
+    },
+    "east": {
+     "to_room": 105751,
+     "description": "To the east lies The Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105758,
+     "description": "To the south lies The Rolling Foothills."
+    },
+    "west": {
+     "to_room": 105749,
+     "description": "To the west lies The Rolling Foothills."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105751": {
+   "vnum": 105751,
+   "name": "The Rolling Foothills",
+   "map": {
+    "x": 19,
+    "y": 17,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105700,
+     "description": "To the north lies Wide Road Through the Foothills."
+    },
+    "west": {
+     "to_room": 105750,
+     "description": "To the west lies The Rolling Foothills."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "105752": {
+   "vnum": 105752,
+   "name": "Along the Castle Wall",
+   "map": {
+    "x": 15,
+    "y": 16,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105747,
+     "description": "To the north lies Along the Castle Wall."
+    },
+    "east": {
+     "to_room": 105754,
+     "description": "To the east lies The Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105753,
+     "description": "To the south lies Along the Castle Wall."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "105753": {
+   "vnum": 105753,
+   "name": "Along the Castle Wall",
+   "map": {
+    "x": 15,
+    "y": 15,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105752,
+     "description": "To the north lies Along the Castle Wall."
+    },
+    "east": {
+     "to_room": 105756,
+     "description": "To the east lies The Rolling Foothills."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "105754": {
+   "vnum": 105754,
+   "name": "The Rolling Foothills",
+   "map": {
+    "x": 16,
+    "y": 16,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105748,
+     "description": "To the north lies The Rolling Foothills."
+    },
+    "east": {
+     "to_room": 105755,
+     "description": "To the east lies The Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105756,
+     "description": "To the south lies The Rolling Foothills."
+    },
+    "west": {
+     "to_room": 105752,
+     "description": "To the west lies Along the Castle Wall."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105755": {
+   "vnum": 105755,
+   "name": "The Rolling Foothills",
+   "map": {
+    "x": 17,
+    "y": 16,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105749,
+     "description": "To the north lies The Rolling Foothills."
+    },
+    "east": {
+     "to_room": 105758,
+     "description": "To the east lies The Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105757,
+     "description": "To the south lies The Rolling Foothills."
+    },
+    "west": {
+     "to_room": 105754,
+     "description": "To the west lies The Rolling Foothills."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105756": {
+   "vnum": 105756,
+   "name": "The Rolling Foothills",
+   "map": {
+    "x": 16,
+    "y": 15,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105754,
+     "description": "To the north lies The Rolling Foothills."
+    },
+    "east": {
+     "to_room": 105757,
+     "description": "To the east lies The Rolling Foothills."
+    },
+    "west": {
+     "to_room": 105753,
+     "description": "To the west lies Along the Castle Wall."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "105757": {
+   "vnum": 105757,
+   "name": "The Rolling Foothills",
+   "map": {
+    "x": 17,
+    "y": 15,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105755,
+     "description": "To the north lies The Rolling Foothills."
+    },
+    "west": {
+     "to_room": 105756,
+     "description": "To the west lies The Rolling Foothills."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and west.",
+   "placeholder": true
+  },
+  "105758": {
+   "vnum": 105758,
+   "name": "The Rolling Foothills",
+   "map": {
+    "x": 18,
+    "y": 16,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105750,
+     "description": "To the north lies The Rolling Foothills."
+    },
+    "west": {
+     "to_room": 105755,
+     "description": "To the west lies The Rolling Foothills."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and west.",
+   "placeholder": true
+  },
+  "105759": {
+   "vnum": 105759,
+   "name": "A Side Path",
+   "map": {
+    "x": 15,
+    "y": 19,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105764,
+     "description": "To the north lies A Side Path."
+    },
+    "east": {
+     "to_room": 105760,
+     "description": "To the east lies Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105702,
+     "description": "To the south lies Entrance to Castle Varok."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "105760": {
+   "vnum": 105760,
+   "name": "Rolling Foothills",
+   "map": {
+    "x": 16,
+    "y": 19,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105765,
+     "description": "To the north lies Rolling Foothills."
+    },
+    "east": {
+     "to_room": 105761,
+     "description": "To the east lies Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105782,
+     "description": "To the south lies Wide Road Through the Foothills."
+    },
+    "west": {
+     "to_room": 105759,
+     "description": "To the west lies A Side Path."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105761": {
+   "vnum": 105761,
+   "name": "Rolling Foothills",
+   "map": {
+    "x": 17,
+    "y": 19,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105766,
+     "description": "To the north lies Rolling Foothills."
+    },
+    "east": {
+     "to_room": 105762,
+     "description": "To the east lies Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105781,
+     "description": "To the south lies Wide Road Through the Foothills."
+    },
+    "west": {
+     "to_room": 105760,
+     "description": "To the west lies Rolling Foothills."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105762": {
+   "vnum": 105762,
+   "name": "Rolling Foothills",
+   "map": {
+    "x": 18,
+    "y": 19,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105767,
+     "description": "To the north lies Rolling Foothills."
+    },
+    "east": {
+     "to_room": 105763,
+     "description": "To the east lies Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105701,
+     "description": "To the south lies Wide Road Through the Foothills."
+    },
+    "west": {
+     "to_room": 105761,
+     "description": "To the west lies Rolling Foothills."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105763": {
+   "vnum": 105763,
+   "name": "Rolling Foothills",
+   "map": {
+    "x": 19,
+    "y": 19,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 105700,
+     "description": "To the south lies Wide Road Through the Foothills."
+    },
+    "west": {
+     "to_room": 105762,
+     "description": "To the west lies Rolling Foothills."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "105764": {
+   "vnum": 105764,
+   "name": "A Side Path",
+   "map": {
+    "x": 15,
+    "y": 20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105770,
+     "description": "To the north lies A Side Path."
+    },
+    "east": {
+     "to_room": 105765,
+     "description": "To the east lies Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105759,
+     "description": "To the south lies A Side Path."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "105765": {
+   "vnum": 105765,
+   "name": "Rolling Foothills",
+   "map": {
+    "x": 16,
+    "y": 20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105769,
+     "description": "To the north lies Rolling Foothills."
+    },
+    "east": {
+     "to_room": 105766,
+     "description": "To the east lies Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105760,
+     "description": "To the south lies Rolling Foothills."
+    },
+    "west": {
+     "to_room": 105764,
+     "description": "To the west lies A Side Path."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105766": {
+   "vnum": 105766,
+   "name": "Rolling Foothills",
+   "map": {
+    "x": 17,
+    "y": 20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105768,
+     "description": "To the north lies Rolling Foothills."
+    },
+    "east": {
+     "to_room": 105767,
+     "description": "To the east lies Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105761,
+     "description": "To the south lies Rolling Foothills."
+    },
+    "west": {
+     "to_room": 105765,
+     "description": "To the west lies Rolling Foothills."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105767": {
+   "vnum": 105767,
+   "name": "Rolling Foothills",
+   "map": {
+    "x": 18,
+    "y": 20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 105762,
+     "description": "To the south lies Rolling Foothills."
+    },
+    "west": {
+     "to_room": 105766,
+     "description": "To the west lies Rolling Foothills."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead south and west.",
+   "placeholder": true
+  },
+  "105768": {
+   "vnum": 105768,
+   "name": "Rolling Foothills",
+   "map": {
+    "x": 17,
+    "y": 21,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105776,
+     "description": "To the north lies Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105766,
+     "description": "To the south lies Rolling Foothills."
+    },
+    "west": {
+     "to_room": 105769,
+     "description": "To the west lies Rolling Foothills."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "105769": {
+   "vnum": 105769,
+   "name": "Rolling Foothills",
+   "map": {
+    "x": 16,
+    "y": 21,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105775,
+     "description": "To the north lies Rolling Foothills."
+    },
+    "east": {
+     "to_room": 105768,
+     "description": "To the east lies Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105765,
+     "description": "To the south lies Rolling Foothills."
+    },
+    "west": {
+     "to_room": 105770,
+     "description": "To the west lies A Side Path."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105770": {
+   "vnum": 105770,
+   "name": "A Side Path",
+   "map": {
+    "x": 15,
+    "y": 21,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105771,
+     "description": "To the north lies A Side Path."
+    },
+    "east": {
+     "to_room": 105769,
+     "description": "To the east lies Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105764,
+     "description": "To the south lies A Side Path."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "105771": {
+   "vnum": 105771,
+   "name": "A Side Path",
+   "map": {
+    "x": 15,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105772,
+     "description": "To the north lies Barn."
+    },
+    "east": {
+     "to_room": 105775,
+     "description": "To the east lies Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105770,
+     "description": "To the south lies A Side Path."
+    },
+    "west": {
+     "to_room": 105774,
+     "description": "To the west lies Stable."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105772": {
+   "vnum": 105772,
+   "name": "Barn",
+   "map": {
+    "x": 15,
+    "y": 23,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 105771,
+     "description": "To the south lies A Side Path."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads south.",
+   "placeholder": true
+  },
+  "105773": {
+   "vnum": 105773,
+   "name": "Rolling Foothills",
+   "map": {
+    "x": 15,
+    "y": 24,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8271,
+     "description": "To the north lies An Intersection In The King's Road."
+    },
+    "east": {
+     "to_room": 105779,
+     "description": "To the east lies Rolling Foothills."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "105774": {
+   "vnum": 105774,
+   "name": "Stable",
+   "map": {
+    "x": 14,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105771,
+     "description": "To the east lies A Side Path."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "105775": {
+   "vnum": 105775,
+   "name": "Rolling Foothills",
+   "map": {
+    "x": 16,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105777,
+     "description": "To the north lies Rolling Foothills."
+    },
+    "east": {
+     "to_room": 105776,
+     "description": "To the east lies Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105769,
+     "description": "To the south lies Rolling Foothills."
+    },
+    "west": {
+     "to_room": 105771,
+     "description": "To the west lies A Side Path."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105776": {
+   "vnum": 105776,
+   "name": "Rolling Foothills",
+   "map": {
+    "x": 17,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105778,
+     "description": "To the north lies Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105768,
+     "description": "To the south lies Rolling Foothills."
+    },
+    "west": {
+     "to_room": 105775,
+     "description": "To the west lies Rolling Foothills."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "105777": {
+   "vnum": 105777,
+   "name": "Rolling Foothills",
+   "map": {
+    "x": 16,
+    "y": 23,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105779,
+     "description": "To the north lies Rolling Foothills."
+    },
+    "east": {
+     "to_room": 105778,
+     "description": "To the east lies Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105775,
+     "description": "To the south lies Rolling Foothills."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "105778": {
+   "vnum": 105778,
+   "name": "Rolling Foothills",
+   "map": {
+    "x": 17,
+    "y": 23,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105780,
+     "description": "To the north lies Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105776,
+     "description": "To the south lies Rolling Foothills."
+    },
+    "west": {
+     "to_room": 105777,
+     "description": "To the west lies Rolling Foothills."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "105779": {
+   "vnum": 105779,
+   "name": "Rolling Foothills",
+   "map": {
+    "x": 16,
+    "y": 24,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 105780,
+     "description": "To the east lies Rolling Foothills."
+    },
+    "south": {
+     "to_room": 105777,
+     "description": "To the south lies Rolling Foothills."
+    },
+    "west": {
+     "to_room": 105773,
+     "description": "To the west lies Rolling Foothills."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "105780": {
+   "vnum": 105780,
+   "name": "Rolling Foothills",
+   "map": {
+    "x": 17,
+    "y": 24,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 105778,
+     "description": "To the south lies Rolling Foothills."
+    },
+    "west": {
+     "to_room": 105779,
+     "description": "To the west lies Rolling Foothills."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead south and west.",
+   "placeholder": true
+  },
+  "105781": {
+   "vnum": 105781,
+   "name": "Wide Road Through the Foothills",
+   "map": {
+    "x": 17,
+    "y": 18,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105761,
+     "description": "To the north lies Rolling Foothills."
+    },
+    "east": {
+     "to_room": 105701,
+     "description": "To the east lies Wide Road Through the Foothills."
+    },
+    "south": {
+     "to_room": 105749,
+     "description": "To the south lies The Rolling Foothills."
+    },
+    "west": {
+     "to_room": 105782,
+     "description": "To the west lies Wide Road Through the Foothills."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "105782": {
+   "vnum": 105782,
+   "name": "Wide Road Through the Foothills",
+   "map": {
+    "x": 16,
+    "y": 18,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105760,
+     "description": "To the north lies Rolling Foothills."
+    },
+    "east": {
+     "to_room": 105781,
+     "description": "To the east lies Wide Road Through the Foothills."
+    },
+    "south": {
+     "to_room": 105748,
+     "description": "To the south lies The Rolling Foothills."
+    },
+    "west": {
+     "to_room": 105702,
+     "description": "To the west lies Entrance to Castle Varok."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "105783": {
+   "vnum": 105783,
+   "name": "Cold Storage",
+   "map": {
+    "x": 10,
+    "y": 15,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 105719,
+     "description": "To the north lies Kitchen."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads north.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

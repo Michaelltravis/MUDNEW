@@ -680,13 +680,13 @@ class World:
 
         # Canary check: if zone 30 loaded but looks like the tiny default-world
         # stub (the old bootstrap bug overwrote real zone files with it), the
-        # big Midgaard - Market Square, the gates, the sewers - is missing.
+        # big Garathorm - Market Square, the gates, the sewers - is missing.
         # Try to self-heal from git, then reload once.
         if not getattr(self, '_world_heal_attempted', False) and self._world_looks_corrupted():
             self._world_heal_attempted = True
             logger.error(
                 "WORLD DATA CORRUPTED: zone 30 is the 13-room stub town, not "
-                "Northern Midgaard (Market Square/sewers missing). Attempting "
+                "Northern Garathorm (Market Square/sewers missing). Attempting "
                 "automatic restore from git..."
             )
             if self._restore_world_from_git():
@@ -740,6 +740,14 @@ class World:
         except Exception as e:
             logger.warning(f"Failed to work out item levels: {e}")
 
+        # the tutorials' directions, from the map as it is ("south twice, then west three times")
+        try:
+            import quests
+            for missing in quests.apply_routes(self):
+                logger.warning(f"quest route not found: {missing}")
+        except Exception as e:
+            logger.warning(f"Failed to work out quest routes: {e}")
+
         logger.info(f"World loaded: {len(self.zones)} zones, {len(self.rooms)} rooms")
         
     def zone_of_vnum(self, vnum: int) -> int:
@@ -755,7 +763,7 @@ class World:
 
     def _world_looks_corrupted(self):
         """True when zone 30 is present but is the default-world stub: the
-        real Northern Midgaard has 70+ rooms including 3054 (Temple Altar)
+        real Northern Garathorm has 70+ rooms including 3054 (Temple Altar)
         and sewer links; the stub has 13 rooms and neither."""
         z30 = self.zones.get(30)
         if not z30:

@@ -1,0 +1,1426 @@
+{
+ "number": 479,
+ "name": "Ancalador",
+ "builders": "Mercutio",
+ "atlas_area": 79,
+ "rooms": {
+  "205501": {
+   "vnum": 205501,
+   "name": "Wild Valley",
+   "map": {
+    "x": 47,
+    "y": 32,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 205502,
+     "description": "To the east lies Before The Dragon."
+    },
+    "west": {
+     "to_room": 2345,
+     "description": "To the west lies Entrance To The Wild Valley."
+    }
+   },
+   "description": "The ground rises and falls in grassy folds. A narrow path winds between\nthe hillocks. Ways lead east and west.",
+   "placeholder": true
+  },
+  "205502": {
+   "vnum": 205502,
+   "name": "Before The Dragon",
+   "map": {
+    "x": 48,
+    "y": 32,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 205503,
+     "description": "To the east lies In The Dragon's Mouth."
+    },
+    "west": {
+     "to_room": 205501,
+     "description": "To the west lies Wild Valley."
+    }
+   },
+   "description": "From the crest the land below spreads out like a map. Gorse and heather\ncling to the windy rise. Ways lead east and west.",
+   "placeholder": true
+  },
+  "205503": {
+   "vnum": 205503,
+   "name": "In The Dragon's Mouth",
+   "map": {
+    "x": 49,
+    "y": 32,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 205504,
+     "description": "To the east lies By Stone Tonsils."
+    },
+    "west": {
+     "to_room": 205502,
+     "description": "To the west lies Before The Dragon."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "205504": {
+   "vnum": 205504,
+   "name": "By Stone Tonsils",
+   "map": {
+    "x": 50,
+    "y": 32,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 205503,
+     "description": "To the west lies In The Dragon's Mouth."
+    },
+    "down": {
+     "to_room": 205505,
+     "description": "To the down lies Throat Of Stone."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead west and down.",
+   "placeholder": true
+  },
+  "205505": {
+   "vnum": 205505,
+   "name": "Throat Of Stone",
+   "map": {
+    "x": 48,
+    "y": 30,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 205504,
+     "description": "To the up lies By Stone Tonsils."
+    },
+    "down": {
+     "to_room": 205506,
+     "description": "To the down lies Further Down The Dragon's Throat."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead up and down.",
+   "placeholder": true
+  },
+  "205506": {
+   "vnum": 205506,
+   "name": "Further Down The Dragon's Throat",
+   "map": {
+    "x": 46,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 205507,
+     "description": "To the east lies Intestinal Junction."
+    },
+    "up": {
+     "to_room": 205505,
+     "description": "To the up lies Throat Of Stone."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and up.",
+   "placeholder": true
+  },
+  "205507": {
+   "vnum": 205507,
+   "name": "Intestinal Junction",
+   "map": {
+    "x": 49,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 205508,
+     "description": "To the north lies Stone Tunnel."
+    },
+    "east": {
+     "to_room": 205560,
+     "description": "To the east lies Stone Tunnel."
+    },
+    "south": {
+     "to_room": 205511,
+     "description": "To the south lies Stone Tunnel."
+    },
+    "west": {
+     "to_room": 205506,
+     "description": "To the west lies Further Down The Dragon's Throat."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "205508": {
+   "vnum": 205508,
+   "name": "Stone Tunnel",
+   "map": {
+    "x": 49,
+    "y": 30,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 205507,
+     "description": "To the south lies Intestinal Junction."
+    },
+    "up": {
+     "to_room": 205509,
+     "description": "To the up lies Dragon Lung."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead south and up.",
+   "placeholder": true
+  },
+  "205509": {
+   "vnum": 205509,
+   "name": "Dragon Lung",
+   "map": {
+    "x": 50,
+    "y": 31,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "down": {
+     "to_room": 205508,
+     "description": "To the down lies Stone Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads down.",
+   "placeholder": true
+  },
+  "205511": {
+   "vnum": 205511,
+   "name": "Stone Tunnel",
+   "map": {
+    "x": 49,
+    "y": 26,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 205507,
+     "description": "To the north lies Intestinal Junction."
+    },
+    "up": {
+     "to_room": 205512,
+     "description": "To the up lies Dragon Lung."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and up.",
+   "placeholder": true
+  },
+  "205512": {
+   "vnum": 205512,
+   "name": "Dragon Lung",
+   "map": {
+    "x": 50,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "down": {
+     "to_room": 205511,
+     "description": "To the down lies Stone Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads down.",
+   "placeholder": true
+  },
+  "205513": {
+   "vnum": 205513,
+   "name": "Ancalagor's Stomach",
+   "map": {
+    "x": 51,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 205514,
+     "description": "To the east lies Wooden Bridge."
+    },
+    "west": {
+     "to_room": 205560,
+     "description": "To the west lies Stone Tunnel."
+    },
+    "down": {
+     "to_room": 205521,
+     "description": "To the down lies Acid Forest."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east, west and down.",
+   "placeholder": true
+  },
+  "205514": {
+   "vnum": 205514,
+   "name": "Wooden Bridge",
+   "map": {
+    "x": 52,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 205515,
+     "description": "To the east lies Wooden Bridge."
+    },
+    "west": {
+     "to_room": 205513,
+     "description": "To the west lies Ancalagor's Stomach."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "205515": {
+   "vnum": 205515,
+   "name": "Wooden Bridge",
+   "map": {
+    "x": 53,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 205516,
+     "description": "To the east lies Wooden Bridge."
+    },
+    "west": {
+     "to_room": 205514,
+     "description": "To the west lies Wooden Bridge."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "205516": {
+   "vnum": 205516,
+   "name": "Wooden Bridge",
+   "map": {
+    "x": 54,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 205527,
+     "description": "To the east lies End Of The Stomach."
+    },
+    "west": {
+     "to_room": 205515,
+     "description": "To the west lies Wooden Bridge."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "205518": {
+   "vnum": 205518,
+   "name": "Acid Forest",
+   "map": {
+    "x": 54,
+    "y": 29,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 205519,
+     "description": "To the east lies Acid Forest."
+    },
+    "south": {
+     "to_room": 205521,
+     "description": "To the south lies Acid Forest."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead east and south.",
+   "placeholder": true
+  },
+  "205519": {
+   "vnum": 205519,
+   "name": "Acid Forest",
+   "map": {
+    "x": 55,
+    "y": 29,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 205520,
+     "description": "To the east lies Acid Forest."
+    },
+    "south": {
+     "to_room": 205522,
+     "description": "To the south lies Acid Forest."
+    },
+    "west": {
+     "to_room": 205518,
+     "description": "To the west lies Acid Forest."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "205520": {
+   "vnum": 205520,
+   "name": "Acid Forest",
+   "map": {
+    "x": 56,
+    "y": 29,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 205523,
+     "description": "To the south lies Acid Forest."
+    },
+    "west": {
+     "to_room": 205519,
+     "description": "To the west lies Acid Forest."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Shafts of pale light\nslant between the trunks. Ways lead south and west.",
+   "placeholder": true
+  },
+  "205521": {
+   "vnum": 205521,
+   "name": "Acid Forest",
+   "map": {
+    "x": 54,
+    "y": 28,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 205518,
+     "description": "To the north lies Acid Forest."
+    },
+    "east": {
+     "to_room": 205522,
+     "description": "To the east lies Acid Forest."
+    },
+    "south": {
+     "to_room": 205524,
+     "description": "To the south lies Acid Forest."
+    },
+    "up": {
+     "to_room": 205513,
+     "description": "To the up lies Ancalagor's Stomach."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Old trees crowd close,\ntheir roots knotted across the path. Ways lead north, east, south and\nup.",
+   "placeholder": true
+  },
+  "205522": {
+   "vnum": 205522,
+   "name": "Acid Forest",
+   "map": {
+    "x": 55,
+    "y": 28,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 205519,
+     "description": "To the north lies Acid Forest."
+    },
+    "east": {
+     "to_room": 205523,
+     "description": "To the east lies Acid Forest."
+    },
+    "south": {
+     "to_room": 205525,
+     "description": "To the south lies Acid Forest."
+    },
+    "west": {
+     "to_room": 205521,
+     "description": "To the west lies Acid Forest."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Shafts of\npale light slant between the trunks. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "205523": {
+   "vnum": 205523,
+   "name": "Acid Forest",
+   "map": {
+    "x": 56,
+    "y": 28,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 205520,
+     "description": "To the north lies Acid Forest."
+    },
+    "south": {
+     "to_room": 205526,
+     "description": "To the south lies Acid Forest."
+    },
+    "west": {
+     "to_room": 205522,
+     "description": "To the west lies Acid Forest."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Old trees\ncrowd close, their roots knotted across the path. Ways lead north, south\nand west.",
+   "placeholder": true
+  },
+  "205524": {
+   "vnum": 205524,
+   "name": "Acid Forest",
+   "map": {
+    "x": 54,
+    "y": 27,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 205521,
+     "description": "To the north lies Acid Forest."
+    },
+    "east": {
+     "to_room": 205525,
+     "description": "To the east lies Acid Forest."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead north and east.",
+   "placeholder": true
+  },
+  "205525": {
+   "vnum": 205525,
+   "name": "Acid Forest",
+   "map": {
+    "x": 55,
+    "y": 27,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 205522,
+     "description": "To the north lies Acid Forest."
+    },
+    "east": {
+     "to_room": 205526,
+     "description": "To the east lies Acid Forest."
+    },
+    "west": {
+     "to_room": 205524,
+     "description": "To the west lies Acid Forest."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Shafts of\npale light slant between the trunks. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "205526": {
+   "vnum": 205526,
+   "name": "Acid Forest",
+   "map": {
+    "x": 56,
+    "y": 27,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 205523,
+     "description": "To the north lies Acid Forest."
+    },
+    "west": {
+     "to_room": 205525,
+     "description": "To the west lies Acid Forest."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Shafts of\npale light slant between the trunks. Ways lead north and west.",
+   "placeholder": true
+  },
+  "205527": {
+   "vnum": 205527,
+   "name": "End Of The Stomach",
+   "map": {
+    "x": 55,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 205561,
+     "description": "To the east lies Stone Corridor.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 205516,
+     "description": "To the west lies Wooden Bridge."
+    },
+    "down": {
+     "to_room": 205523,
+     "description": "To the down lies Acid Forest."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east, west and down.",
+   "placeholder": true
+  },
+  "205528": {
+   "vnum": 205528,
+   "name": "The Dragon's Pancreas",
+   "map": {
+    "x": 57,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 205561,
+     "description": "To the north lies Stone Corridor."
+    },
+    "east": {
+     "to_room": 205550,
+     "description": "To the east lies Undead Garden."
+    },
+    "down": {
+     "to_room": 205554,
+     "description": "To the down lies Cold Storage."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east and down.",
+   "placeholder": true
+  },
+  "205529": {
+   "vnum": 205529,
+   "name": "Small Intestine",
+   "map": {
+    "x": 60,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 205530,
+     "description": "To the north lies Small Intestine."
+    },
+    "west": {
+     "to_room": 205561,
+     "description": "To the west lies Stone Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "205530": {
+   "vnum": 205530,
+   "name": "Small Intestine",
+   "map": {
+    "x": 60,
+    "y": 29,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 205531,
+     "description": "To the east lies Small Intestine."
+    },
+    "south": {
+     "to_room": 205529,
+     "description": "To the south lies Small Intestine."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and south.",
+   "placeholder": true
+  },
+  "205531": {
+   "vnum": 205531,
+   "name": "Small Intestine",
+   "map": {
+    "x": 61,
+    "y": 29,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 205532,
+     "description": "To the south lies Small Intestine."
+    },
+    "west": {
+     "to_room": 205530,
+     "description": "To the west lies Small Intestine."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "205532": {
+   "vnum": 205532,
+   "name": "Small Intestine",
+   "map": {
+    "x": 61,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 205531,
+     "description": "To the north lies Small Intestine."
+    },
+    "south": {
+     "to_room": 205533,
+     "description": "To the south lies Small Intestine."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "205533": {
+   "vnum": 205533,
+   "name": "Small Intestine",
+   "map": {
+    "x": 61,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 205532,
+     "description": "To the north lies Small Intestine."
+    },
+    "down": {
+     "to_room": 205534,
+     "description": "To the down lies Small Intestine."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and down.",
+   "placeholder": true
+  },
+  "205534": {
+   "vnum": 205534,
+   "name": "Small Intestine",
+   "map": {
+    "x": 63,
+    "y": 25,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 205535,
+     "description": "To the north lies Small Intestine."
+    },
+    "up": {
+     "to_room": 205533,
+     "description": "To the up lies Small Intestine."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and up.",
+   "placeholder": true
+  },
+  "205535": {
+   "vnum": 205535,
+   "name": "Small Intestine",
+   "map": {
+    "x": 63,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 205536,
+     "description": "To the north lies Small Intestine."
+    },
+    "south": {
+     "to_room": 205534,
+     "description": "To the south lies Small Intestine."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "205536": {
+   "vnum": 205536,
+   "name": "Small Intestine",
+   "map": {
+    "x": 63,
+    "y": 30,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 205537,
+     "description": "To the east lies Small Intestine."
+    },
+    "south": {
+     "to_room": 205535,
+     "description": "To the south lies Small Intestine."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and south.",
+   "placeholder": true
+  },
+  "205537": {
+   "vnum": 205537,
+   "name": "Small Intestine",
+   "map": {
+    "x": 64,
+    "y": 30,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 205538,
+     "description": "To the south lies Small Intestine."
+    },
+    "west": {
+     "to_room": 205536,
+     "description": "To the west lies Small Intestine."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "205538": {
+   "vnum": 205538,
+   "name": "Small Intestine",
+   "map": {
+    "x": 64,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 205537,
+     "description": "To the north lies Small Intestine."
+    },
+    "east": {
+     "to_room": 205537,
+     "description": "To the east lies Small Intestine."
+    },
+    "south": {
+     "to_room": 205541,
+     "description": "To the south lies Large Intestine."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "205541": {
+   "vnum": 205541,
+   "name": "Large Intestine",
+   "map": {
+    "x": 64,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 205538,
+     "description": "To the north lies Small Intestine."
+    },
+    "east": {
+     "to_room": 205542,
+     "description": "To the east lies Large Intestine."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and east.",
+   "placeholder": true
+  },
+  "205542": {
+   "vnum": 205542,
+   "name": "Large Intestine",
+   "map": {
+    "x": 67,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 205543,
+     "description": "To the north lies Large Intestine."
+    },
+    "west": {
+     "to_room": 205541,
+     "description": "To the west lies Large Intestine."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "205543": {
+   "vnum": 205543,
+   "name": "Large Intestine",
+   "map": {
+    "x": 67,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 205544,
+     "description": "To the north lies Large Intestine."
+    },
+    "south": {
+     "to_room": 205542,
+     "description": "To the south lies Large Intestine."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "205544": {
+   "vnum": 205544,
+   "name": "Large Intestine",
+   "map": {
+    "x": 67,
+    "y": 29,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 205545,
+     "description": "To the east lies Large Intestine."
+    },
+    "south": {
+     "to_room": 205543,
+     "description": "To the south lies Large Intestine."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and south.",
+   "placeholder": true
+  },
+  "205545": {
+   "vnum": 205545,
+   "name": "Large Intestine",
+   "map": {
+    "x": 68,
+    "y": 29,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 205546,
+     "description": "To the south lies Stony Sphincter."
+    },
+    "west": {
+     "to_room": 205544,
+     "description": "To the west lies Large Intestine."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead south and west.",
+   "placeholder": true
+  },
+  "205546": {
+   "vnum": 205546,
+   "name": "Stony Sphincter",
+   "map": {
+    "x": 68,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 205545,
+     "description": "To the north lies Large Intestine."
+    },
+    "east": {
+     "to_room": 205547,
+     "description": "To the east lies Dragon's Tail."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and east.",
+   "placeholder": true
+  },
+  "205547": {
+   "vnum": 205547,
+   "name": "Dragon's Tail",
+   "map": {
+    "x": 70,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 205502,
+     "description": "To the west lies Before The Dragon."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Old trees\ncrowd close, their roots knotted across the path. A way leads west.",
+   "placeholder": true
+  },
+  "205550": {
+   "vnum": 205550,
+   "name": "Undead Garden",
+   "map": {
+    "x": 59,
+    "y": 27,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 205528,
+     "description": "To the west lies The Dragon's Pancreas."
+    },
+    "down": {
+     "to_room": 205555,
+     "description": "To the down lies Kennel Of The Demised."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead west and down.",
+   "placeholder": true
+  },
+  "205551": {
+   "vnum": 205551,
+   "name": "Private Chambers",
+   "map": {
+    "x": 60,
+    "y": 19,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 205552,
+     "description": "To the west lies Macabre Amphitheater.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads west.",
+   "placeholder": true
+  },
+  "205552": {
+   "vnum": 205552,
+   "name": "Macabre Amphitheater",
+   "map": {
+    "x": 55,
+    "y": 19,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 205551,
+     "description": "To the east lies Private Chambers."
+    },
+    "west": {
+     "to_room": 205553,
+     "description": "To the west lies Temple To Death."
+    },
+    "down": {
+     "to_room": 205556,
+     "description": "To the down lies Operating Room."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east, west and down.",
+   "placeholder": true
+  },
+  "205553": {
+   "vnum": 205553,
+   "name": "Temple To Death",
+   "map": {
+    "x": 54,
+    "y": 19,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 205552,
+     "description": "To the east lies Macabre Amphitheater."
+    },
+    "down": {
+     "to_room": 205557,
+     "description": "To the down lies Guild Hall."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and down.",
+   "placeholder": true
+  },
+  "205554": {
+   "vnum": 205554,
+   "name": "Cold Storage",
+   "map": {
+    "x": 53,
+    "y": 24,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 205557,
+     "description": "To the south lies Guild Hall."
+    },
+    "up": {
+     "to_room": 205528,
+     "description": "To the up lies The Dragon's Pancreas."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead south and up.",
+   "placeholder": true
+  },
+  "205555": {
+   "vnum": 205555,
+   "name": "Kennel Of The Demised",
+   "map": {
+    "x": 55,
+    "y": 24,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 205556,
+     "description": "To the south lies Operating Room."
+    },
+    "up": {
+     "to_room": 205550,
+     "description": "To the up lies Undead Garden."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead south and up.",
+   "placeholder": true
+  },
+  "205556": {
+   "vnum": 205556,
+   "name": "Operating Room",
+   "map": {
+    "x": 55,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 205555,
+     "description": "To the north lies Kennel Of The Demised."
+    },
+    "up": {
+     "to_room": 205552,
+     "description": "To the up lies Macabre Amphitheater."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and up.",
+   "placeholder": true
+  },
+  "205557": {
+   "vnum": 205557,
+   "name": "Guild Hall",
+   "map": {
+    "x": 53,
+    "y": 18,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 205554,
+     "description": "To the north lies Cold Storage."
+    },
+    "west": {
+     "to_room": 205558,
+     "description": "To the west lies The Altar Of Annihilation.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "up": {
+     "to_room": 205553,
+     "description": "To the up lies Temple To Death."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, west and up.",
+   "placeholder": true
+  },
+  "205558": {
+   "vnum": 205558,
+   "name": "The Altar Of Annihilation",
+   "map": {
+    "x": 52,
+    "y": 18,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 205557,
+     "description": "To the east lies Guild Hall."
+    },
+    "down": {
+     "to_room": 205559,
+     "description": "To the down lies The Darken Pit."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and down.",
+   "placeholder": true
+  },
+  "205559": {
+   "vnum": 205559,
+   "name": "The Darken Pit",
+   "map": {
+    "x": 51,
+    "y": 17,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 205558,
+     "description": "To the up lies The Altar Of Annihilation."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads up.",
+   "placeholder": true
+  },
+  "205560": {
+   "vnum": 205560,
+   "name": "Stone Tunnel",
+   "map": {
+    "x": 50,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 205513,
+     "description": "To the east lies Ancalagor's Stomach."
+    },
+    "west": {
+     "to_room": 205507,
+     "description": "To the west lies Intestinal Junction."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "205561": {
+   "vnum": 205561,
+   "name": "Stone Corridor",
+   "map": {
+    "x": 57,
+    "y": 28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 205529,
+     "description": "To the east lies Small Intestine."
+    },
+    "south": {
+     "to_room": 205528,
+     "description": "To the south lies The Dragon's Pancreas.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 205527,
+     "description": "To the west lies End Of The Stomach."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east, south and west.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

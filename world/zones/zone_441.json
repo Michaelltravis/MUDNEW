@@ -1,0 +1,245 @@
+{
+ "number": 441,
+ "name": "King's Forest",
+ "builders": "Jack",
+ "atlas_area": 41,
+ "rooms": {
+  "8665": {
+   "vnum": 8665,
+   "name": "A Small Rocky Path",
+   "map": {
+    "x": 20,
+    "y": 21,
+    "z": -1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 8666,
+     "description": "To the south lies A Small Rocky Path."
+    },
+    "up": {
+     "to_room": 8613,
+     "description": "To the up lies The King's Road."
+    }
+   },
+   "description": "A narrow path winds between the hillocks. Rocks break through the thin\nsoil of the slope. Ways lead south and up.",
+   "placeholder": true
+  },
+  "8666": {
+   "vnum": 8666,
+   "name": "A Small Rocky Path",
+   "map": {
+    "x": 20,
+    "y": 20,
+    "z": -1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8665,
+     "description": "To the north lies A Small Rocky Path."
+    },
+    "south": {
+     "to_room": 8667,
+     "description": "To the south lies A Small Rocky Path."
+    }
+   },
+   "description": "The ground rises and falls in grassy folds. A narrow path winds between\nthe hillocks. Ways lead north and south.",
+   "placeholder": true
+  },
+  "8667": {
+   "vnum": 8667,
+   "name": "A Small Rocky Path",
+   "map": {
+    "x": 20,
+    "y": 19,
+    "z": -1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8666,
+     "description": "To the north lies A Small Rocky Path."
+    },
+    "south": {
+     "to_room": 8668,
+     "description": "To the south lies A Small Rocky Path."
+    }
+   },
+   "description": "The ground rises and falls in grassy folds. Gorse and heather cling to\nthe windy rise. Ways lead north and south.",
+   "placeholder": true
+  },
+  "8668": {
+   "vnum": 8668,
+   "name": "A Small Rocky Path",
+   "map": {
+    "x": 20,
+    "y": 18,
+    "z": -1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8667,
+     "description": "To the north lies A Small Rocky Path."
+    },
+    "south": {
+     "to_room": 8669,
+     "description": "To the south lies A Small Rocky Path."
+    }
+   },
+   "description": "A narrow path winds between the hillocks. Rocks break through the thin\nsoil of the slope. Ways lead north and south.",
+   "placeholder": true
+  },
+  "8669": {
+   "vnum": 8669,
+   "name": "A Small Rocky Path",
+   "map": {
+    "x": 20,
+    "y": 17,
+    "z": -1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8668,
+     "description": "To the north lies A Small Rocky Path."
+    },
+    "south": {
+     "to_room": 8670,
+     "description": "To the south lies Inside The Cave."
+    }
+   },
+   "description": "From the crest the land below spreads out like a map. Rocks break\nthrough the thin soil of the slope. Ways lead north and south.",
+   "placeholder": true
+  },
+  "8670": {
+   "vnum": 8670,
+   "name": "Inside The Cave",
+   "map": {
+    "x": 20,
+    "y": 16,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8669,
+     "description": "To the north lies A Small Rocky Path."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads north.",
+   "placeholder": true
+  },
+  "8694": {
+   "vnum": 8694,
+   "name": "The Hiding Place",
+   "map": {
+    "x": 17,
+    "y": -6,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8695,
+     "description": "To the north lies The Bottom Of A Well."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Ferns and moss soften the\nground beneath a dim green canopy. A way leads north.",
+   "placeholder": true
+  },
+  "8695": {
+   "vnum": 8695,
+   "name": "The Bottom Of A Well",
+   "map": {
+    "x": 17,
+    "y": -5,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 8694,
+     "description": "To the south lies The Hiding Place."
+    },
+    "up": {
+     "to_room": 8690,
+     "description": "To the up lies In The Ruined City."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead south and up.",
+   "placeholder": true
+  },
+  "8742": {
+   "vnum": 8742,
+   "name": "The Barrow Mound",
+   "map": {
+    "x": 26,
+    "y": 0,
+    "z": -1
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "up": {
+     "to_room": 8727,
+     "description": "To the up lies The Small Island."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. The paving is\nuneven here, patched with newer stone. A way leads up.",
+   "placeholder": true
+  },
+  "8745": {
+   "vnum": 8745,
+   "name": "The Stone Ledge",
+   "map": {
+    "x": 16,
+    "y": 25,
+    "z": -1
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "up": {
+     "to_room": 8631,
+     "description": "To the up lies The Animal Path."
+    }
+   },
+   "description": "Gorse and heather cling to the windy rise. The ground rises and falls in\ngrassy folds. A way leads up.",
+   "placeholder": true
+  },
+  "8746": {
+   "vnum": 8746,
+   "name": "A Badger Borrow",
+   "map": {
+    "x": 19,
+    "y": 23,
+    "z": -1
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "up": {
+     "to_room": 8629,
+     "description": "To the up lies The Trail."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Old trees crowd\nclose, their roots knotted across the path. A way leads up.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {}
+}

@@ -933,14 +933,14 @@ class CommandHandler:
                             await player.send(
                                 f"\r\n{c['bright_cyan']}Sage Aldric tells you, "
                                 f"'You grow strong, {player.name}! "
-                                f"The Great Northern Forest to the north holds challenges worthy of your skill. "
+                                f"The Great Northern Forest to the north-east holds challenges worthy of your skill. "
                                 f"Or seek the Orc Enclave if you crave real danger!'{c['reset']}"
                             )
                         else:
                             await player.send(
                                 f"\r\n{c['bright_cyan']}Sage Aldric tells you, "
                                 f"'You have outgrown my teachings, {player.name}! "
-                                f"Seek Grimjaw in the Mines of Moria, or travel east to the city of Thalos. "
+                                f"Seek Grimjaw in the Mines of Moria, or travel north-east to the city of Thalos. "
                                 f"The quest board in Temple Square lists all known adventures!'{c['reset']}"
                             )
                 break
@@ -2508,7 +2508,7 @@ class CommandHandler:
         await player.send(f"{c['cyan']}═══ MAP LEGEND ═══{c['reset']}")
         await player.send(f"  {c['bright_green']}[YOU]{c['reset']} - Your current zone")
         await player.send(f"  {c['cyan']}###{c['reset']}  - Zone number (use 'goto' to travel)")
-        await player.send(f"  {c['yellow']}Recall{c['reset']} to return to Temple of Midgaard (zone 30)")
+        await player.send(f"  {c['yellow']}Recall{c['reset']} to return to Temple of Garathorm (zone 30)")
         await player.send("")
         await player.send(f"{c['white']}Total: {c['bright_green']}37 zones{c['white']}, {c['bright_green']}2,002 rooms{c['white']}, {c['bright_green']}48 shops{c['reset']}")
         await player.send(f"{c['cyan']}═════════════════════════════════════════════════════════════════════════{c['reset']}")
@@ -2526,7 +2526,7 @@ class CommandHandler:
         zone_maps = {
             30: """
 {cyan}╔════════════════════════════════════════════════════════════╗
-║{bright_yellow}              The City of Midgaard - Map                    {cyan}║
+║{bright_yellow}              The City of Garathorm - Map                    {cyan}║
 ╠════════════════════════════════════════════════════════════╣
 ║{white}                                                            {cyan}║
 ║{white}                         [Temple]                          {cyan}║
@@ -2544,7 +2544,7 @@ class CommandHandler:
 """,
             35: """
 {cyan}╔════════════════════════════════════════════════════════════╗
-║{bright_yellow}           The Sewers of Midgaard - Map                    {cyan}║
+║{bright_yellow}           The Sewers of Garathorm - Map                    {cyan}║
 ╠════════════════════════════════════════════════════════════╣
 ║{white}                                                            {cyan}║
 ║{white}              [City Exit]                                  {cyan}║
@@ -2564,7 +2564,7 @@ class CommandHandler:
 ║{white}                                                            {cyan}║
 ║{white}                      [Clearing]                           {cyan}║
 ║{white}                           |                               {cyan}║
-║{white}         [Midgaard]---[Entrance]---[Dark Path]            {cyan}║
+║{white}         [Garathorm]---[Entrance]---[Dark Path]            {cyan}║
 ║{white}                           |                               {cyan}║
 ║{white}                      [Oak Grove]                          {cyan}║
 ║{white}                           |                               {cyan}║
@@ -2588,7 +2588,7 @@ class CommandHandler:
 
         # Replace room names with highlighted version if player is there
         room_markers = {
-            # Zone 30 - Midgaard
+            # Zone 30 - Garathorm
             3001: "Temple",
             3002: "Square",
             3003: "East St",
@@ -13964,7 +13964,7 @@ class CommandHandler:
         await player.send(f"")
         await player.send(f"{c['cyan']}The Realms await your exploration.{c['reset']}")
         await player.send(f"{c['cyan']}New players: Head south to the Market Square,{c['reset']}")
-        await player.send(f"{c['cyan']}then explore the city of Midgaard.{c['reset']}")
+        await player.send(f"{c['cyan']}then explore the city of Garathorm.{c['reset']}")
         await player.send(f"")
         await player.send(f"{c['bright_green']}Quickstart:{c['reset']}")
         await player.send(f"  {c['white']}look  | score  | inventory  | equipment{c['reset']}")
@@ -14307,7 +14307,7 @@ class CommandHandler:
         # 75% chance goes to donation room, 25% junked
         import random
         if random.randint(1, 100) <= 75:
-            # Find donation room (3002 in Midgaard)
+            # Find donation room (3002 in Garathorm)
             donation_room = player.world.rooms.get(3002) if hasattr(player, 'world') else None
             if donation_room:
                 donation_room.items.append(item)
@@ -16194,7 +16194,7 @@ class CommandHandler:
         if not args:
             await player.send(f"{c['yellow']}Usage: goto <room_vnum> or goto <zone_number>{c['reset']}")
             await player.send(f"{c['cyan']}Examples:{c['reset']}")
-            await player.send(f"{c['white']}  goto 3001    {c['yellow']}# Go to Temple of Midgaard{c['reset']}")
+            await player.send(f"{c['white']}  goto 3001    {c['yellow']}# Go to Temple of Garathorm{c['reset']}")
             await player.send(f"{c['white']}  goto 30      {c['yellow']}# Go to zone 30 entrance{c['reset']}")
             await player.send(f"{c['white']}  goto 80      {c['yellow']}# Go to Dragon's Domain{c['reset']}")
             return
@@ -16462,7 +16462,7 @@ class CommandHandler:
             return
 
         if not args or args[0].lower() == 'list':
-            await player.send(f"\n{c['bright_cyan']}═══════════ Midgaard Stables ═══════════{c['reset']}")
+            await player.send(f"\n{c['bright_cyan']}═══════════ Garathorm Stables ═══════════{c['reset']}")
             await player.send(f"{c['cyan']}Available for purchase:{c['reset']}")
             for name, info in MountManager.list_purchasable_mounts().items():
                 cost_str = f"{info['cost']} gold" if info['cost'] > 0 else "Not for sale"

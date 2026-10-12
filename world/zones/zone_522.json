@@ -1,0 +1,2108 @@
+{
+ "number": 522,
+ "name": "The Winterlands",
+ "builders": "",
+ "atlas_area": 122,
+ "rooms": {
+  "3900": {
+   "vnum": 3900,
+   "name": "Across a Snow Covered Bridge",
+   "map": {
+    "x": 10,
+    "y": 57,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3901,
+     "description": "To the north lies Entering the Winterlands."
+    },
+    "south": {
+     "to_room": 3902,
+     "description": "To the south lies A Frozen Walkway."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3901": {
+   "vnum": 3901,
+   "name": "Entering the Winterlands",
+   "map": {
+    "x": 10,
+    "y": 58,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 12447,
+     "description": "To the north lies The End of The Winterwood."
+    },
+    "south": {
+     "to_room": 3900,
+     "description": "To the south lies Across a Snow Covered Bridge."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. A worn track\ncrosses the open ground. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3902": {
+   "vnum": 3902,
+   "name": "A Frozen Walkway",
+   "map": {
+    "x": 10,
+    "y": 56,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3900,
+     "description": "To the north lies Across a Snow Covered Bridge."
+    },
+    "east": {
+     "to_room": 3989,
+     "description": "To the east lies Lost in the Blizzard."
+    },
+    "south": {
+     "to_room": 3903,
+     "description": "To the south lies A Frozen Walkway."
+    },
+    "west": {
+     "to_room": 3989,
+     "description": "To the west lies Lost in the Blizzard."
+    }
+   },
+   "description": "A worn track crosses the open ground. The land lies flat and quiet in\nevery direction. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "3903": {
+   "vnum": 3903,
+   "name": "A Frozen Walkway",
+   "map": {
+    "x": 10,
+    "y": 55,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3902,
+     "description": "To the north lies A Frozen Walkway."
+    },
+    "east": {
+     "to_room": 3989,
+     "description": "To the east lies Lost in the Blizzard."
+    },
+    "south": {
+     "to_room": 3904,
+     "description": "To the south lies Around the Winterland Monument."
+    },
+    "west": {
+     "to_room": 3989,
+     "description": "To the west lies Lost in the Blizzard."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "3904": {
+   "vnum": 3904,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 10,
+    "y": 52,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3903,
+     "description": "To the north lies A Frozen Walkway."
+    },
+    "east": {
+     "to_room": 3911,
+     "description": "To the east lies Around the Winterland Monument."
+    },
+    "west": {
+     "to_room": 3905,
+     "description": "To the west lies Around the Winterland Monument."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "3905": {
+   "vnum": 3905,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 9,
+    "y": 52,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3904,
+     "description": "To the east lies Around the Winterland Monument."
+    },
+    "south": {
+     "to_room": 3906,
+     "description": "To the south lies Around the Winterland Monument."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. The land lies\nflat and quiet in every direction. Ways lead east and south.",
+   "placeholder": true
+  },
+  "3906": {
+   "vnum": 3906,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 9,
+    "y": 51,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3905,
+     "description": "To the north lies Around the Winterland Monument."
+    },
+    "south": {
+     "to_room": 3907,
+     "description": "To the south lies Around the Winterland Monument."
+    }
+   },
+   "description": "A worn track crosses the open ground. Open grassland rolls away under a\nwide sky. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3907": {
+   "vnum": 3907,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 9,
+    "y": 50,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3906,
+     "description": "To the north lies Around the Winterland Monument."
+    },
+    "east": {
+     "to_room": 3908,
+     "description": "To the east lies Around the Winterland Monument."
+    }
+   },
+   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north and east.",
+   "placeholder": true
+  },
+  "3908": {
+   "vnum": 3908,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 10,
+    "y": 50,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3909,
+     "description": "To the east lies Around the Winterland Monument."
+    },
+    "west": {
+     "to_room": 3907,
+     "description": "To the west lies Around the Winterland Monument."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3909": {
+   "vnum": 3909,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 11,
+    "y": 50,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3910,
+     "description": "To the north lies Around the Winterland Monument."
+    },
+    "west": {
+     "to_room": 3908,
+     "description": "To the west lies Around the Winterland Monument."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead north and west.",
+   "placeholder": true
+  },
+  "3910": {
+   "vnum": 3910,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 11,
+    "y": 51,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3911,
+     "description": "To the north lies Around the Winterland Monument."
+    },
+    "east": {
+     "to_room": 3912,
+     "description": "To the east lies A Frozen Walkway."
+    },
+    "south": {
+     "to_room": 3909,
+     "description": "To the south lies Around the Winterland Monument."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "3911": {
+   "vnum": 3911,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 11,
+    "y": 52,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 3910,
+     "description": "To the south lies Around the Winterland Monument."
+    },
+    "west": {
+     "to_room": 3904,
+     "description": "To the west lies Around the Winterland Monument."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead south and west.",
+   "placeholder": true
+  },
+  "3912": {
+   "vnum": 3912,
+   "name": "A Frozen Walkway",
+   "map": {
+    "x": 12,
+    "y": 51,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3913,
+     "description": "To the east lies A Frozen Walkway."
+    },
+    "west": {
+     "to_room": 3910,
+     "description": "To the west lies Around the Winterland Monument."
+    }
+   },
+   "description": "A worn track crosses the open ground. The land lies flat and quiet in\nevery direction. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3913": {
+   "vnum": 3913,
+   "name": "A Frozen Walkway",
+   "map": {
+    "x": 13,
+    "y": 51,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3914,
+     "description": "To the east lies A Frozen Walkway."
+    },
+    "west": {
+     "to_room": 3912,
+     "description": "To the west lies A Frozen Walkway."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3914": {
+   "vnum": 3914,
+   "name": "A Frozen Walkway",
+   "map": {
+    "x": 14,
+    "y": 51,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3915,
+     "description": "To the east lies Before a Massive Portcullis."
+    },
+    "west": {
+     "to_room": 3913,
+     "description": "To the west lies A Frozen Walkway."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3915": {
+   "vnum": 3915,
+   "name": "Before a Massive Portcullis",
+   "map": {
+    "x": 15,
+    "y": 51,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 3914,
+     "description": "To the west lies A Frozen Walkway."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. A way leads west.",
+   "placeholder": true
+  },
+  "3917": {
+   "vnum": 3917,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 3,
+    "y": 50,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3903,
+     "description": "To the north lies A Frozen Walkway."
+    },
+    "east": {
+     "to_room": 3918,
+     "description": "To the east lies Around the Winterland Monument."
+    },
+    "south": {
+     "to_room": 3924,
+     "description": "To the south lies Around the Winterland Monument."
+    }
+   },
+   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "3918": {
+   "vnum": 3918,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 4,
+    "y": 50,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3919,
+     "description": "To the east lies Around the Winterland Monument."
+    },
+    "west": {
+     "to_room": 3917,
+     "description": "To the west lies Around the Winterland Monument."
+    }
+   },
+   "description": "A worn track crosses the open ground. Open grassland rolls away under a\nwide sky. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3919": {
+   "vnum": 3919,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 5,
+    "y": 50,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 3920,
+     "description": "To the south lies Around the Winterland Monument."
+    },
+    "west": {
+     "to_room": 3918,
+     "description": "To the west lies Around the Winterland Monument."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead south and west.",
+   "placeholder": true
+  },
+  "3920": {
+   "vnum": 3920,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 5,
+    "y": 49,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3919,
+     "description": "To the north lies Around the Winterland Monument."
+    },
+    "south": {
+     "to_room": 3921,
+     "description": "To the south lies Around the Winterland Monument."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wind moves through the\ntall grass in long, slow waves. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3921": {
+   "vnum": 3921,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 5,
+    "y": 48,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3920,
+     "description": "To the north lies Around the Winterland Monument."
+    },
+    "west": {
+     "to_room": 3922,
+     "description": "To the west lies Around the Winterland Monument."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead north and west.",
+   "placeholder": true
+  },
+  "3922": {
+   "vnum": 3922,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 4,
+    "y": 48,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3921,
+     "description": "To the east lies Around the Winterland Monument."
+    },
+    "west": {
+     "to_room": 3923,
+     "description": "To the west lies Around the Winterland Monument."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3923": {
+   "vnum": 3923,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 3,
+    "y": 48,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3924,
+     "description": "To the north lies Around the Winterland Monument."
+    },
+    "east": {
+     "to_room": 3922,
+     "description": "To the east lies Around the Winterland Monument."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. Open grassland\nrolls away under a wide sky. Ways lead north and east.",
+   "placeholder": true
+  },
+  "3924": {
+   "vnum": 3924,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 3,
+    "y": 49,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3917,
+     "description": "To the north lies Around the Winterland Monument."
+    },
+    "south": {
+     "to_room": 3923,
+     "description": "To the south lies Around the Winterland Monument."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3925": {
+   "vnum": 3925,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 7,
+    "y": 46,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3903,
+     "description": "To the north lies A Frozen Walkway."
+    },
+    "east": {
+     "to_room": 3926,
+     "description": "To the east lies Around the Winterland Monument."
+    },
+    "south": {
+     "to_room": 3932,
+     "description": "To the south lies Around the Winterland Monument."
+    }
+   },
+   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "3926": {
+   "vnum": 3926,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 8,
+    "y": 46,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3927,
+     "description": "To the east lies Around the Winterland Monument."
+    },
+    "west": {
+     "to_room": 3925,
+     "description": "To the west lies Around the Winterland Monument."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3927": {
+   "vnum": 3927,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 9,
+    "y": 46,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 3928,
+     "description": "To the south lies Around the Winterland Monument."
+    },
+    "west": {
+     "to_room": 3926,
+     "description": "To the west lies Around the Winterland Monument."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead south and west.",
+   "placeholder": true
+  },
+  "3928": {
+   "vnum": 3928,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 9,
+    "y": 45,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3927,
+     "description": "To the north lies Around the Winterland Monument."
+    },
+    "south": {
+     "to_room": 3929,
+     "description": "To the south lies Around the Winterland Monument."
+    }
+   },
+   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3929": {
+   "vnum": 3929,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 9,
+    "y": 44,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3928,
+     "description": "To the north lies Around the Winterland Monument."
+    },
+    "west": {
+     "to_room": 3930,
+     "description": "To the west lies Around the Winterland Monument."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. Ways lead north and west.",
+   "placeholder": true
+  },
+  "3930": {
+   "vnum": 3930,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 8,
+    "y": 44,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3929,
+     "description": "To the east lies Around the Winterland Monument."
+    },
+    "west": {
+     "to_room": 3931,
+     "description": "To the west lies Around the Winterland Monument."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3931": {
+   "vnum": 3931,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 7,
+    "y": 44,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3932,
+     "description": "To the north lies Around the Winterland Monument."
+    },
+    "east": {
+     "to_room": 3930,
+     "description": "To the east lies Around the Winterland Monument."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead north and east.",
+   "placeholder": true
+  },
+  "3932": {
+   "vnum": 3932,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 7,
+    "y": 45,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3925,
+     "description": "To the north lies Around the Winterland Monument."
+    },
+    "south": {
+     "to_room": 3931,
+     "description": "To the south lies Around the Winterland Monument."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3933": {
+   "vnum": 3933,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 15,
+    "y": 45,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3934,
+     "description": "To the east lies Around the Winterland Monument."
+    },
+    "south": {
+     "to_room": 3940,
+     "description": "To the south lies Around the Winterland Monument."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. Ways lead east and south.",
+   "placeholder": true
+  },
+  "3934": {
+   "vnum": 3934,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 16,
+    "y": 45,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3935,
+     "description": "To the east lies Around the Winterland Monument."
+    },
+    "west": {
+     "to_room": 3933,
+     "description": "To the west lies Around the Winterland Monument."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3935": {
+   "vnum": 3935,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 17,
+    "y": 45,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 3936,
+     "description": "To the south lies Around the Winterland Monument."
+    },
+    "west": {
+     "to_room": 3934,
+     "description": "To the west lies Around the Winterland Monument."
+    }
+   },
+   "description": "A worn track crosses the open ground. The land lies flat and quiet in\nevery direction. Ways lead south and west.",
+   "placeholder": true
+  },
+  "3936": {
+   "vnum": 3936,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 17,
+    "y": 44,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3935,
+     "description": "To the north lies Around the Winterland Monument."
+    },
+    "south": {
+     "to_room": 3937,
+     "description": "To the south lies Around the Winterland Monument."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3937": {
+   "vnum": 3937,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 17,
+    "y": 43,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3936,
+     "description": "To the north lies Around the Winterland Monument."
+    },
+    "west": {
+     "to_room": 3938,
+     "description": "To the west lies Around the Winterland Monument."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead north and west.",
+   "placeholder": true
+  },
+  "3938": {
+   "vnum": 3938,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 16,
+    "y": 43,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 3937,
+     "description": "To the east lies Around the Winterland Monument."
+    },
+    "west": {
+     "to_room": 3939,
+     "description": "To the west lies Around the Winterland Monument."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3939": {
+   "vnum": 3939,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 15,
+    "y": 43,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3940,
+     "description": "To the north lies Around the Winterland Monument."
+    },
+    "east": {
+     "to_room": 3938,
+     "description": "To the east lies Around the Winterland Monument."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. Ways lead north and east.",
+   "placeholder": true
+  },
+  "3940": {
+   "vnum": 3940,
+   "name": "Around the Winterland Monument",
+   "map": {
+    "x": 15,
+    "y": 44,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3933,
+     "description": "To the north lies Around the Winterland Monument."
+    },
+    "south": {
+     "to_room": 3939,
+     "description": "To the south lies Around the Winterland Monument."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead north and south.",
+   "placeholder": true
+  },
+  "3941": {
+   "vnum": 3941,
+   "name": "A Crudely Formed Staircase",
+   "map": {
+    "x": 11,
+    "y": 39,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 3998,
+     "description": "To the west lies Entrance to the Winterland Monument."
+    },
+    "down": {
+     "to_room": 3980,
+     "description": "To the down lies A Crudely Formed Staircase."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead west and down.",
+   "placeholder": true
+  },
+  "3942": {
+   "vnum": 3942,
+   "name": "The Bottom of a Crude Staircase",
+   "map": {
+    "x": 5,
+    "y": 33,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3943,
+     "description": "To the east lies A Cavern Entrance."
+    },
+    "up": {
+     "to_room": 3981,
+     "description": "To the up lies A Crudely Formed Staircase."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and up.",
+   "placeholder": true
+  },
+  "3943": {
+   "vnum": 3943,
+   "name": "A Cavern Entrance",
+   "map": {
+    "x": 10,
+    "y": 33,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3944,
+     "description": "To the north lies North West Corner of a Cavern."
+    },
+    "east": {
+     "to_room": 3945,
+     "description": "To the east lies Center of a Cavern."
+    },
+    "south": {
+     "to_room": 3946,
+     "description": "To the south lies South West Corner of a Cavern."
+    },
+    "west": {
+     "to_room": 3942,
+     "description": "To the west lies The Bottom of a Crude Staircase."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "3944": {
+   "vnum": 3944,
+   "name": "North West Corner of a Cavern",
+   "map": {
+    "x": 10,
+    "y": 34,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3947,
+     "description": "To the east lies Northern End of a Cavern."
+    },
+    "south": {
+     "to_room": 3943,
+     "description": "To the south lies A Cavern Entrance."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and south.",
+   "placeholder": true
+  },
+  "3945": {
+   "vnum": 3945,
+   "name": "Center of a Cavern",
+   "map": {
+    "x": 11,
+    "y": 33,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3947,
+     "description": "To the north lies Northern End of a Cavern."
+    },
+    "east": {
+     "to_room": 3950,
+     "description": "To the east lies Eastern End of a Cavern."
+    },
+    "south": {
+     "to_room": 3948,
+     "description": "To the south lies Southern End of a Cavern."
+    },
+    "west": {
+     "to_room": 3943,
+     "description": "To the west lies A Cavern Entrance."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "3946": {
+   "vnum": 3946,
+   "name": "South West Corner of a Cavern",
+   "map": {
+    "x": 10,
+    "y": 32,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3943,
+     "description": "To the north lies A Cavern Entrance."
+    },
+    "east": {
+     "to_room": 3948,
+     "description": "To the east lies Southern End of a Cavern."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "3947": {
+   "vnum": 3947,
+   "name": "Northern End of a Cavern",
+   "map": {
+    "x": 11,
+    "y": 34,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3949,
+     "description": "To the east lies North East Corner of a Cavern."
+    },
+    "south": {
+     "to_room": 3945,
+     "description": "To the south lies Center of a Cavern."
+    },
+    "west": {
+     "to_room": 3944,
+     "description": "To the west lies North West Corner of a Cavern."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "3948": {
+   "vnum": 3948,
+   "name": "Southern End of a Cavern",
+   "map": {
+    "x": 11,
+    "y": 32,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3945,
+     "description": "To the north lies Center of a Cavern."
+    },
+    "east": {
+     "to_room": 3951,
+     "description": "To the east lies South East Corner of a Cavern."
+    },
+    "west": {
+     "to_room": 3946,
+     "description": "To the west lies South West Corner of a Cavern."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "3949": {
+   "vnum": 3949,
+   "name": "North East Corner of a Cavern",
+   "map": {
+    "x": 12,
+    "y": 34,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 3950,
+     "description": "To the south lies Eastern End of a Cavern."
+    },
+    "west": {
+     "to_room": 3947,
+     "description": "To the west lies Northern End of a Cavern."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "3950": {
+   "vnum": 3950,
+   "name": "Eastern End of a Cavern",
+   "map": {
+    "x": 12,
+    "y": 33,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3949,
+     "description": "To the north lies North East Corner of a Cavern."
+    },
+    "east": {
+     "to_room": 3952,
+     "description": "To the east lies A Massive Hallway.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 3951,
+     "description": "To the south lies South East Corner of a Cavern."
+    },
+    "west": {
+     "to_room": 3945,
+     "description": "To the west lies Center of a Cavern."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "3951": {
+   "vnum": 3951,
+   "name": "South East Corner of a Cavern",
+   "map": {
+    "x": 12,
+    "y": 32,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3950,
+     "description": "To the north lies Eastern End of a Cavern."
+    },
+    "west": {
+     "to_room": 3948,
+     "description": "To the west lies Southern End of a Cavern."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "3952": {
+   "vnum": 3952,
+   "name": "A Massive Hallway",
+   "map": {
+    "x": 14,
+    "y": 33,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3953,
+     "description": "To the east lies A Massive Hallway."
+    },
+    "west": {
+     "to_room": 3950,
+     "description": "To the west lies Eastern End of a Cavern."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3953": {
+   "vnum": 3953,
+   "name": "A Massive Hallway",
+   "map": {
+    "x": 15,
+    "y": 33,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3954,
+     "description": "To the east lies A Massive Hallway."
+    },
+    "west": {
+     "to_room": 3952,
+     "description": "To the west lies A Massive Hallway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3954": {
+   "vnum": 3954,
+   "name": "A Massive Hallway",
+   "map": {
+    "x": 16,
+    "y": 33,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3955,
+     "description": "To the east lies A Large Cavern.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 3953,
+     "description": "To the west lies A Massive Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "3955": {
+   "vnum": 3955,
+   "name": "A Large Cavern",
+   "map": {
+    "x": 18,
+    "y": 33,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3956,
+     "description": "To the north lies A Large Cavern."
+    },
+    "east": {
+     "to_room": 3957,
+     "description": "To the east lies A Large Cavern."
+    },
+    "south": {
+     "to_room": 3958,
+     "description": "To the south lies A Large Cavern."
+    },
+    "west": {
+     "to_room": 3954,
+     "description": "To the west lies A Massive Hallway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "3956": {
+   "vnum": 3956,
+   "name": "A Large Cavern",
+   "map": {
+    "x": 18,
+    "y": 34,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3961,
+     "description": "To the east lies A Large Cavern."
+    },
+    "south": {
+     "to_room": 3955,
+     "description": "To the south lies A Large Cavern."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "3957": {
+   "vnum": 3957,
+   "name": "A Large Cavern",
+   "map": {
+    "x": 19,
+    "y": 33,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3961,
+     "description": "To the north lies A Large Cavern."
+    },
+    "east": {
+     "to_room": 3967,
+     "description": "To the east lies A Large Cavern."
+    },
+    "south": {
+     "to_room": 3962,
+     "description": "To the south lies A Large Cavern."
+    },
+    "west": {
+     "to_room": 3955,
+     "description": "To the west lies A Large Cavern."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "3958": {
+   "vnum": 3958,
+   "name": "A Large Cavern",
+   "map": {
+    "x": 18,
+    "y": 32,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3955,
+     "description": "To the north lies A Large Cavern."
+    },
+    "east": {
+     "to_room": 3962,
+     "description": "To the east lies A Large Cavern."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and east.",
+   "placeholder": true
+  },
+  "3960": {
+   "vnum": 3960,
+   "name": "A Large Cavern",
+   "map": {
+    "x": 19,
+    "y": 35,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3965,
+     "description": "To the east lies A Large Cavern."
+    },
+    "south": {
+     "to_room": 3961,
+     "description": "To the south lies A Large Cavern."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east and south.",
+   "placeholder": true
+  },
+  "3961": {
+   "vnum": 3961,
+   "name": "A Large Cavern",
+   "map": {
+    "x": 19,
+    "y": 34,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3960,
+     "description": "To the north lies A Large Cavern."
+    },
+    "east": {
+     "to_room": 3966,
+     "description": "To the east lies A Large Cavern."
+    },
+    "south": {
+     "to_room": 3957,
+     "description": "To the south lies A Large Cavern."
+    },
+    "west": {
+     "to_room": 3956,
+     "description": "To the west lies A Large Cavern."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "3962": {
+   "vnum": 3962,
+   "name": "A Large Cavern",
+   "map": {
+    "x": 19,
+    "y": 32,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3957,
+     "description": "To the north lies A Large Cavern."
+    },
+    "east": {
+     "to_room": 3968,
+     "description": "To the east lies A Large Cavern."
+    },
+    "south": {
+     "to_room": 3963,
+     "description": "To the south lies A Large Cavern."
+    },
+    "west": {
+     "to_room": 3958,
+     "description": "To the west lies A Large Cavern."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "3963": {
+   "vnum": 3963,
+   "name": "A Large Cavern",
+   "map": {
+    "x": 19,
+    "y": 31,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3962,
+     "description": "To the north lies A Large Cavern."
+    },
+    "east": {
+     "to_room": 3969,
+     "description": "To the east lies A Large Cavern."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and east.",
+   "placeholder": true
+  },
+  "3965": {
+   "vnum": 3965,
+   "name": "A Large Cavern",
+   "map": {
+    "x": 20,
+    "y": 35,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 3974,
+     "description": "To the east lies A Large Cavern."
+    },
+    "south": {
+     "to_room": 3966,
+     "description": "To the south lies A Large Cavern."
+    },
+    "west": {
+     "to_room": 3960,
+     "description": "To the west lies A Large Cavern."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "3966": {
+   "vnum": 3966,
+   "name": "A Large Cavern",
+   "map": {
+    "x": 20,
+    "y": 34,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3965,
+     "description": "To the north lies A Large Cavern."
+    },
+    "east": {
+     "to_room": 3973,
+     "description": "To the east lies A Large Cavern."
+    },
+    "south": {
+     "to_room": 3967,
+     "description": "To the south lies A Large Cavern."
+    },
+    "west": {
+     "to_room": 3961,
+     "description": "To the west lies A Large Cavern."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "3967": {
+   "vnum": 3967,
+   "name": "A Large Cavern",
+   "map": {
+    "x": 20,
+    "y": 33,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3966,
+     "description": "To the north lies A Large Cavern."
+    },
+    "east": {
+     "to_room": 3972,
+     "description": "To the east lies A Large Cavern."
+    },
+    "south": {
+     "to_room": 3968,
+     "description": "To the south lies A Large Cavern."
+    },
+    "west": {
+     "to_room": 3957,
+     "description": "To the west lies A Large Cavern."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "3968": {
+   "vnum": 3968,
+   "name": "A Large Cavern",
+   "map": {
+    "x": 20,
+    "y": 32,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3967,
+     "description": "To the north lies A Large Cavern."
+    },
+    "east": {
+     "to_room": 3971,
+     "description": "To the east lies A Large Cavern."
+    },
+    "south": {
+     "to_room": 3969,
+     "description": "To the south lies A Large Cavern."
+    },
+    "west": {
+     "to_room": 3962,
+     "description": "To the west lies A Large Cavern."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "3969": {
+   "vnum": 3969,
+   "name": "A Large Cavern",
+   "map": {
+    "x": 20,
+    "y": 31,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3968,
+     "description": "To the north lies A Large Cavern."
+    },
+    "east": {
+     "to_room": 3970,
+     "description": "To the east lies A Large Cavern."
+    },
+    "west": {
+     "to_room": 3963,
+     "description": "To the west lies A Large Cavern."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "3970": {
+   "vnum": 3970,
+   "name": "A Large Cavern",
+   "map": {
+    "x": 21,
+    "y": 31,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3971,
+     "description": "To the north lies A Large Cavern."
+    },
+    "west": {
+     "to_room": 3969,
+     "description": "To the west lies A Large Cavern."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "3971": {
+   "vnum": 3971,
+   "name": "A Large Cavern",
+   "map": {
+    "x": 21,
+    "y": 32,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3972,
+     "description": "To the north lies A Large Cavern."
+    },
+    "east": {
+     "to_room": 3978,
+     "description": "To the east lies A Large Cavern."
+    },
+    "south": {
+     "to_room": 3970,
+     "description": "To the south lies A Large Cavern."
+    },
+    "west": {
+     "to_room": 3968,
+     "description": "To the west lies A Large Cavern."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "3972": {
+   "vnum": 3972,
+   "name": "A Large Cavern",
+   "map": {
+    "x": 21,
+    "y": 33,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3973,
+     "description": "To the north lies A Large Cavern."
+    },
+    "east": {
+     "to_room": 3977,
+     "description": "To the east lies A Large Cavern."
+    },
+    "south": {
+     "to_room": 3971,
+     "description": "To the south lies A Large Cavern."
+    },
+    "west": {
+     "to_room": 3967,
+     "description": "To the west lies A Large Cavern."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "3973": {
+   "vnum": 3973,
+   "name": "A Large Cavern",
+   "map": {
+    "x": 21,
+    "y": 34,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3974,
+     "description": "To the north lies A Large Cavern."
+    },
+    "east": {
+     "to_room": 3976,
+     "description": "To the east lies A Large Cavern."
+    },
+    "south": {
+     "to_room": 3972,
+     "description": "To the south lies A Large Cavern."
+    },
+    "west": {
+     "to_room": 3966,
+     "description": "To the west lies A Large Cavern."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "3974": {
+   "vnum": 3974,
+   "name": "A Large Cavern",
+   "map": {
+    "x": 21,
+    "y": 35,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 3973,
+     "description": "To the south lies A Large Cavern."
+    },
+    "west": {
+     "to_room": 3965,
+     "description": "To the west lies A Large Cavern."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "3976": {
+   "vnum": 3976,
+   "name": "A Large Cavern",
+   "map": {
+    "x": 22,
+    "y": 34,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 3977,
+     "description": "To the south lies A Large Cavern."
+    },
+    "west": {
+     "to_room": 3973,
+     "description": "To the west lies A Large Cavern."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "3977": {
+   "vnum": 3977,
+   "name": "A Large Cavern",
+   "map": {
+    "x": 22,
+    "y": 33,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3976,
+     "description": "To the north lies A Large Cavern."
+    },
+    "east": {
+     "to_room": 3999,
+     "description": "To the east lies The Creator's Workshop.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 3978,
+     "description": "To the south lies A Large Cavern."
+    },
+    "west": {
+     "to_room": 3972,
+     "description": "To the west lies A Large Cavern."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "3978": {
+   "vnum": 3978,
+   "name": "A Large Cavern",
+   "map": {
+    "x": 22,
+    "y": 32,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3977,
+     "description": "To the north lies A Large Cavern."
+    },
+    "west": {
+     "to_room": 3971,
+     "description": "To the west lies A Large Cavern."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and west.",
+   "placeholder": true
+  },
+  "3980": {
+   "vnum": 3980,
+   "name": "A Crudely Formed Staircase",
+   "map": {
+    "x": 9,
+    "y": 37,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 3941,
+     "description": "To the up lies A Crudely Formed Staircase."
+    },
+    "down": {
+     "to_room": 3981,
+     "description": "To the down lies A Crudely Formed Staircase."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead up and down.",
+   "placeholder": true
+  },
+  "3981": {
+   "vnum": 3981,
+   "name": "A Crudely Formed Staircase",
+   "map": {
+    "x": 7,
+    "y": 35,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 3980,
+     "description": "To the up lies A Crudely Formed Staircase."
+    },
+    "down": {
+     "to_room": 3942,
+     "description": "To the down lies The Bottom of a Crude Staircase."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead up and down.",
+   "placeholder": true
+  },
+  "3989": {
+   "vnum": 3989,
+   "name": "Lost in the Blizzard",
+   "map": {
+    "x": 7,
+    "y": 56,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 3989,
+     "description": "To the north lies Lost in the Blizzard."
+    },
+    "east": {
+     "to_room": 3989,
+     "description": "To the east lies Lost in the Blizzard."
+    },
+    "south": {
+     "to_room": 3989,
+     "description": "To the south lies Lost in the Blizzard."
+    },
+    "west": {
+     "to_room": 3989,
+     "description": "To the west lies Lost in the Blizzard."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. Ways lead north, east, south\nand west.",
+   "placeholder": true
+  },
+  "3998": {
+   "vnum": 3998,
+   "name": "Entrance to the Winterland Monument",
+   "map": {
+    "x": 10,
+    "y": 39,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 3933,
+     "description": "To the north lies Around the Winterland Monument."
+    },
+    "east": {
+     "to_room": 3941,
+     "description": "To the east lies A Crudely Formed Staircase."
+    },
+    "south": {
+     "to_room": 3939,
+     "description": "To the south lies Around the Winterland Monument."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "3999": {
+   "vnum": 3999,
+   "name": "The Creator's Workshop",
+   "map": {
+    "x": 24,
+    "y": 33,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 3977,
+     "description": "To the west lies A Large Cavern."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

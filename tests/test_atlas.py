@@ -16,7 +16,7 @@ import sys
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 sys.path.insert(0, os.path.join(ROOT, 'tools', 'atlas'))
-from common import load_atlas, load_world  # noqa: E402
+from common import PRE_RELAY_REV, load_atlas, load_world  # noqa: E402
 
 failures = []
 
@@ -28,13 +28,17 @@ def check(cond, msg):
 
 
 def main():
-    # the tools run clean from the committed atlas, and give the same answer twice
+    # the tools run clean, into a scratch folder: the atlas, re-read, and the match, re-run on our
+    # world as it was before the re-lay, come out exactly as committed
+    import tempfile
+    tmp = tempfile.mkdtemp(prefix='atlas-')
+    env = dict(os.environ, ATLAS_OUT=tmp)
     for tool in ('extract.py', 'match.py', 'index.py'):
-        r = subprocess.run([sys.executable, os.path.join(ROOT, 'tools', 'atlas', tool)], capture_output=True, text=True)
-        check(r.returncode == 0, f'tools/atlas/{tool} runs ({(r.stderr or r.stdout).strip()[-200:]})')
-    before = open(os.path.join(ROOT, 'world', 'atlas', 'rooms.json')).read()
-    subprocess.run([sys.executable, os.path.join(ROOT, 'tools', 'atlas', 'match.py')], capture_output=True)
-    check(open(os.path.join(ROOT, 'world', 'atlas', 'rooms.json')).read() == before, 'the matcher gives the same answer twice')
+        r = subprocess.run([sys.executable, os.path.join(ROOT, 'tools', 'atlas', tool)], capture_output=True, text=True, env=env)
+        check(r.returncode == 0, f'tools/atlas/{tool} runs ({(r.stderr or r.stdout).strip()[-160:]})')
+    for name in ('bedlam.json', 'rooms.json', 'zones.json', 'vnums.json'):
+        same = open(os.path.join(tmp, name)).read() == open(os.path.join(ROOT, 'world', 'atlas', name)).read()
+        check(same, f'{name} comes out exactly as committed')
 
     atlas = load_atlas()
     A = atlas['rooms']
@@ -48,7 +52,7 @@ def main():
     check(A[3001]['name'] == 'The Temple Of Garathorm' and A[3001]['exits'].get('south') == 3005,
           'the temple is where the atlas puts it')
 
-    zones, ours = load_world()
+    zones, ours = load_world(PRE_RELAY_REV)        # our world as it was before the re-lay
     rooms = json.load(open(os.path.join(ROOT, 'world', 'atlas', 'rooms.json')))
     zj = json.load(open(os.path.join(ROOT, 'world', 'atlas', 'zones.json')))
     vn = json.load(open(os.path.join(ROOT, 'world', 'atlas', 'vnums.json')))
@@ -103,17 +107,17 @@ def main():
     check(nb['how'] == 'same place' and A[nb['atlas_room']]['name'] == 'The Great Field Of Garathorm',
           'the Newbie Zone stays where it was, off the Great Field')
 
-    # the index
+    # the index, of the world as built
     idx = json.load(open(os.path.join(ROOT, 'world', 'atlas', 'index.json')))
-    check(len(idx['areas']) == 91 and len(idx['ours_only']) == sum(1 for s in status.values() if s == 'ours-only'),
-          'the index has every atlas zone and every zone of ours off the atlas')
-    total_rooms = sum(len(e['room_list']) for e in idx['areas'].values())
-    check(total_rooms == 8038, 'the index lists every atlas room once')
+    covered = {e['atlas_area'] for e in idx['zones'].values() if e['atlas_area'] is not None}
+    check(covered == set(atlas['areas']), f'the index has a zone for every atlas area ({len(covered)} of {len(atlas["areas"])})')
+    check(sum(1 for e in idx['zones'].values() if e['atlas_area'] is None) == sum(1 for s in status.values() if s == 'ours-only'),
+          'and every zone of ours off the atlas')
     doc = open(os.path.join(ROOT, 'docs', 'world', 'ATLAS_INDEX.md')).read()
-    missing = [e['name'] for e in idx['areas'].values() if f"### {e['name']} (atlas" not in doc]
-    check(not missing, f'the readable index has a section for every atlas zone ({missing[:3]})')
-    check(idx['queue'] and idx['areas'][str(idx['queue'][0])]['state'].startswith('open'), 'the build queue starts with an open zone')
-    conn = [e for e in idx['areas'].values() if e['state'] == 'open (connector)']
+    missing = [e['name'] for e in idx['zones'].values() if f"### {e['name']} (zone" not in doc]
+    check(not missing, f'the readable index has a section for every zone ({missing[:3]})')
+    check(idx['queue'] and not idx['zones'][str(idx['queue'][0])]['state'].startswith('sealed'), 'the build queue starts with an open zone')
+    conn = [e for e in idx['zones'].values() if e['state'] == 'open (connector)']
     check(len(conn) == len(json.load(open(os.path.join(ROOT, 'world', 'atlas', 'overrides.json')))['connectors']),
           f'every connector the owner named is open ({len(conn)})')
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")

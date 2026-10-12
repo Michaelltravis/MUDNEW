@@ -28,7 +28,7 @@ class Config:
     MAP_VIEW_SIZE = 11
     
     # Game Settings
-    STARTING_ROOM = 3001  # Temple of Midgaard equivalent
+    STARTING_ROOM = 3001  # Temple of Garathorm equivalent
     VOID_ROOM = 1  # Limbo
     MORTAL_START_ROOM = 3001
     IMMORTAL_START_ROOM = 1200
@@ -153,9 +153,9 @@ class Config:
                           'frost', 'necrotic', 'poison', 'nature', 'sound', 'disease'}
 
     # Going out on the water takes a boat or a raft, and creatures keep off it unless they live
-    # there. Switched on with the world re-laid on the atlas, once every place that matters is
-    # checked to be reachable with a raft bought on the way (tests/test_world_atlas.py).
-    WATER_NEEDS_BOAT = False
+    # there. On since the world was re-laid on the atlas: every place that matters is checked to
+    # be reachable with a raft bought on the way (tests/test_world_atlas.py).
+    WATER_NEEDS_BOAT = True
 
     # Shield-style evasion bonuses
     SHIELD_EVASION_BONUSES = {

@@ -1710,7 +1710,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
                'syntax': 'holysmite',
                'title': 'Holysmite'},
  'house': {'category': 'command',
-           'description': 'Player Housing System — own a home in the Midgaard Housing District!\n\n'
+           'description': 'Player Housing System — own a home in the Garathorm Housing District!\n\n'
                           'COMMANDS:\n'
                           '  house list              — View all plots (available and owned)\n'
                           '  house buy               — Purchase the plot you\'re standing on\n'
@@ -2695,7 +2695,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
                                '  rep                  - Shortcut alias\n'
                                '\n'
                                'FACTIONS:\n'
-                               '  Midgaard Guard    - City protectors (kill bandits/undead, guard quests)\n'
+                               '  Garathorm Guard    - City protectors (kill bandits/undead, guard quests)\n'
                                '  Thieves Guild     - Underground syndicate (pickpocket, steal, shady quests)\n'
                                '  Arcane Circle     - Mage scholars (identify items, kill magical creatures)\n'
                                "  Nature's Wardens  - Druids/rangers (kill undead, protect animals, forage)\n"
@@ -2712,7 +2712,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
                                '  Exalted  - Unique mount/pet, powerful item\n'
                                '\n'
                                'OPPOSING FACTIONS:\n'
-                               '  Thieves Guild vs Midgaard Guard\n'
+                               '  Thieves Guild vs Garathorm Guard\n'
                                "  Dark Brotherhood vs Nature's Wardens\n"
                                '  Gaining rep with one loses rep with its rival.\n',
                 'syntax': 'reputation',
@@ -3089,13 +3089,14 @@ HELP_TOPICS = {'auction': {'category': 'command',
            'syntax': 'split <amount>',
            'title': 'Split'},
  'stable': {'category': 'command',
-            'description': 'Access the Midgaard Royal Stables.\n\n'
+            'description': 'Access the Garathorm Royal Stables.\n\n'
                            'COMMANDS:\n'
                            '  stable list       - View available mounts and prices\n'
                            '  stable buy <mount> - Purchase a mount\n'
                            '  stable store      - Safely stable your current mount\n\n'
-                           'The stables are located south of the East Gate of Midgaard (room 3211).\n'
-                           'Brynn the Stable Master can answer questions about different mounts.\n\n'
+                           'The stables are at the Stable Entrance, in the Stable & Temple quarter\n'
+                           'north-east of the Temple. Brynn the Stable Master there can answer\n'
+                           'questions about different mounts.\n\n'
                            'PURCHASABLE MOUNTS:\n'
                            '  Horse        - 2,000 gold (+50% speed)\n'
                            '  War Horse    - 5,000 gold (+50% speed, +2 damroll, combat-ready)\n\n'
@@ -4800,7 +4801,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
                              '  craft list        — Show recipes available at current station\n'
                              '  craft <recipe_id> — Craft an item (must be at correct station)\n'
                              '  recipes [discipline] — Show all your known recipes\n\n'
-                             'CRAFTING STATIONS (found in Midgaard shops):\n'
+                             'CRAFTING STATIONS (found in Garathorm shops):\n'
                              '  Forge (Weapon Shop / Armory) — Blacksmithing\n'
                              '  Alchemy Table (Magic Shop) — Alchemy\n'
                              '  Workbench (General Store) — Leatherworking\n'

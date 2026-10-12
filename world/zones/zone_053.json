@@ -1,3438 +1,3552 @@
 {
-  "number": 53,
-  "name": "The Great Pyramid",
-  "lifespan": 20,
-  "rooms": {
-    "5300": {
-      "vnum": 5300,
-      "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. Rising out of the sand to the north you see a mighty pyramid. The\nground is soft underfoot. The air is fresh and clean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5301,
-          "description": "The sands of the desert continue onward towards the pyramid."
-        },
-        "east": {
-          "to_room": 5040,
-          "description": "Sand as far as the eye can see."
-        },
-        "south": {
-          "to_room": 5050,
-          "description": "Sand as far as the eye can see."
-        },
-        "west": {
-          "to_room": 5035,
-          "description": "Sand as far as the eye can see."
-        }
-      },
-      "extra_descs": {
-        "": "pyramid"
-      }
+ "number": 53,
+ "name": "Great Pyramid",
+ "builders": "Andersen",
+ "atlas_area": 98,
+ "rooms": {
+  "5300": {
+   "vnum": 5300,
+   "name": "The Great Eastern Desert",
+   "map": {
+    "x": 8,
+    "y": 17,
+    "z": 1
+   },
+   "sector_type": "field",
+   "extra_descs": {
+    "": "pyramid"
+   },
+   "flags": [],
+   "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. Rising out of the sand to the north you see a mighty pyramid. The\nground is soft underfoot. The air is fresh and clean.",
+   "exits": {
+    "north": {
+     "to_room": 5301,
+     "description": "The sands of the desert continue onward towards the pyramid."
     },
-    "5301": {
-      "vnum": 5301,
-      "name": "At The Base Of The Pyramid",
-      "description": "The mighty pyramid towers above out of the hot desert sands, made\nfrom huge blocks of stone that have been coated over with a rough sandy\nplaster-like substance. The face of the pyramid is steep, but you think\nyou might be able to climb it. Wildflowers dot the landscape. Tall grass\nsways in a gentle breeze.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 5300,
-          "description": "Sand as far as the eye can see."
-        },
-        "up": {
-          "to_room": 5302,
-          "description": "The steep slope of the pyramid rises up before you."
-        }
-      },
-      "extra_descs": {
-        "": "pyramid"
-      }
-    },
-    "5302": {
-      "vnum": 5302,
-      "name": "Climbing The Great Pyramid",
-      "description": "Hot air rises off the sides of the pyramid, and the wind chokes you with\na flurry of sand and dust. So far you have made it halfway up the side.\nThe walls of the pyramid are quite steep. Snow clings to shadowed\ncrevices. Bare rock dominates the landscape.",
-      "sector_type": "mountain",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5303,
-          "description": "If you are daring you could try to skirt around to the northern side."
-        },
-        "south": {
-          "to_room": 5304,
-          "description": "If you are daring you could try to skirt around to the southern side."
-        },
-        "up": {
-          "to_room": 5307,
-          "description": "It looks too dangerous to try to climb any higher."
-        },
-        "down": {
-          "to_room": 5301,
-          "description": "Far below you are the burning sands of the desert."
-        },
-        "east": {
-          "to_room": 5303
-        }
-      },
-      "extra_descs": {
-        "": "pyramid"
-      },
-      "mob_resets": [
-        {
-          "vnum": 5300,
-          "max": 6
-        }
-      ]
-    },
-    "5303": {
-      "vnum": 5303,
-      "name": "Climbing The Great Pyramid",
-      "description": "Hot air rises off the sides of the pyramid, and the wind chokes you with\na flurry of sand and dust. The walls of the pyramid are quite steep, and\nThe area is having trouble keeping from sliding down into the sands\nbelow. The air is thin and cold at this altitude. The wind howls around\nexposed peaks.",
-      "sector_type": "mountain",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 5305,
-          "description": "If you are daring you could try to skirt around to the eastern side."
-        },
-        "west": {
-          "to_room": 5302,
-          "description": "If you are daring you could try to skirt around to the western side."
-        },
-        "up": {
-          "to_room": 5307,
-          "description": "It looks too dangerous to try to climb any higher."
-        },
-        "down": {
-          "to_room": 5307,
-          "description": "This side of the pyramid has a dangerous drop before the sandy floor."
-        },
-        "south": {
-          "to_room": 5302
-        }
-      },
-      "extra_descs": {
-        "": "pyramid"
-      },
-      "mob_resets": [
-        {
-          "vnum": 5301,
-          "max": 4
-        }
-      ]
-    },
-    "5304": {
-      "vnum": 5304,
-      "name": "Climbing The Great Pyramid",
-      "description": "Hot air rises off the sides of the pyramid, and the wind chokes you with\na flurry of sand and dust. The walls of the pyramid are quite steep, and\nThe area is having trouble keeping from sliding down into the sands\nbelow. The wind howls around exposed peaks. Snow clings to shadowed\ncrevices.",
-      "sector_type": "mountain",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 5305,
-          "description": "If you are daring you could try to skirt around to the eastern side."
-        },
-        "west": {
-          "to_room": 5302,
-          "description": "If you are daring you could try to skirt around to the western side."
-        },
-        "up": {
-          "to_room": 5307,
-          "description": "It looks too dangerous to try to climb any higher."
-        },
-        "down": {
-          "to_room": 5307,
-          "description": "This side of the pyramid has a dangerous drop before the sandy floor."
-        },
-        "north": {
-          "to_room": 5302
-        }
-      },
-      "extra_descs": {
-        "": "pyramid"
-      }
-    },
-    "5305": {
-      "vnum": 5305,
-      "name": "Climbing The Great Pyramid",
-      "description": "Here on the eastern side of the pyramid there is a little more shelter\nfrom the heat and wind. The stone side is not nearly so slippery smooth\nfrom the ravages of time, and you think you may be able to even reach\nthe top from here. The path is steep and treacherous. Bare rock\ndominates the landscape.",
-      "sector_type": "mountain",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5303,
-          "description": "If you are daring you could try to skirt around to the northern side."
-        },
-        "south": {
-          "to_room": 5304,
-          "description": "If you are daring you could try to skirt around to the southern side."
-        },
-        "up": {
-          "to_room": 5306,
-          "description": "You see the apex of the pyramid many yards above you."
-        },
-        "down": {
-          "to_room": 5307,
-          "description": "This side of the pyramid has a dangerous drop before the sandy floor."
-        },
-        "west": {
-          "to_room": 5303
-        }
-      },
-      "extra_descs": {
-        "": "pyramid"
-      },
-      "mob_resets": [
-        {
-          "vnum": 5300,
-          "max": 6
-        }
-      ]
-    },
-    "5306": {
-      "vnum": 5306,
-      "name": "The Apex Of The Great Pyramid",
-      "description": "Bathed in sweat, you have managed to reach the summit of the great\npyramid. The four sides of the pyramid slope sharply down into the hot\nsands in all four cardinal directions. A plaque has been set into the\nsandy stones beneath your feet. The sounds of city life echo around.\nThe cobblestones are worn smooth by countless feet.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5307,
-          "description": "The north side of the pyramid slopes down into the sands. It looks really dangerous.  I wouldn't go that way."
-        },
-        "east": {
-          "to_room": 5305,
-          "description": "The east side of the pyramid slopes down into the sands."
-        },
-        "south": {
-          "to_room": 5307,
-          "description": "The south side of the pyramid slopes down into the sands. It looks really dangerous.  I wouldn't go that way."
-        },
-        "west": {
-          "to_room": 5307,
-          "description": "The west side of the pyramid slopes down into the sands. It looks really dangerous.  I wouldn't go that way."
-        },
-        "down": {
-          "to_room": 5308,
-          "description": "You see some sandy stones pressed closely together to form a hard surface.",
-          "door": {
-            "name": "stones",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "extra_descs": {
-        "": "plaque"
-      },
-      "mob_resets": [
-        {
-          "vnum": 5302,
-          "max": 3
-        }
-      ]
-    },
-    "5307": {
-      "vnum": 5307,
-      "name": "On The Dangerous Stones",
-      "description": "Here the elements have carved away at the sides of the pyramid quite a\nbit. You aren't so sure of your footing anymore... Suddenly the wind\npicks up, and you lose your balance! You tumble down the side of the\npyramid, and fall to your death! SPLAT. Ouch. Shadows gather in the\ncorners. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "death",
-        "indoors"
-      ],
-      "exits": {
-        "up": {
-          "to_room": 5306,
-          "description": "The apex of the pyramid is above."
-        },
-        "down": {
-          "to_room": 5308,
-          "description": "A ladder descends into darkness."
-        },
-        "south": {
-          "to_room": 5306
-        },
-        "north": {
-          "to_room": 5306
-        },
-        "east": {
-          "to_room": 5306
-        }
-      }
-    },
-    "5308": {
-      "vnum": 5308,
-      "name": "A Ladder",
-      "description": "The area is climbing an ancient ladder that leads down into the depths\nof the pyramid. The air around is thick with layers of dust and a\nstrange musty smell. above you see tiny beams of light coming through\nthe stones of the ceiling. Dust motes drift in the stale air. The air is\nstill and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "no_mob",
-        "indoors"
-      ],
-      "exits": {
-        "up": {
-          "to_room": 5306,
-          "description": "You see the sandy stones of the ceiling.",
-          "door": {
-            "name": "stones",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "down": {
-          "to_room": 5309,
-          "description": "You see a small dusty chamber."
-        }
-      },
-      "extra_descs": {
-        "": "stones"
-      }
-    },
-    "5309": {
-      "vnum": 5309,
-      "name": "A Musty Chamber",
-      "description": "This is a dank, musty chamber just inside the pyramid. Footprints and\nother strange marks are set into the dusty floor here. It would seem\nthat some of the tenants of this monument are still alive. Exits lead in\nall directions. The door to the west is covered with inscriptions.\nShadows gather in the corners. The walls are rough-hewn and cold to the\ntouch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5312,
-          "description": "You see a tiny crawlway raised about three feet off the ground."
-        },
-        "east": {
-          "to_room": 5339,
-          "description": "A dust-covered hallway leads off to the east."
-        },
-        "south": {
-          "to_room": 5324,
-          "description": "You see a small crack in the wall through which you might be able to slide."
-        },
-        "west": {
-          "to_room": 5310,
-          "description": "You see a large stone door, covered in sigils and hieroglyphs.",
-          "door": {
-            "name": "door stone",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "up": {
-          "to_room": 5308,
-          "description": "A small rickety ladder leads up."
-        }
-      },
-      "extra_descs": {
-        "": "sigils hieroglyphs inscriptions writing"
-      },
-      "mob_resets": [
-        {
-          "vnum": 5303,
-          "max": 6
-        },
-        {
-          "vnum": 5303,
-          "max": 6
-        }
-      ]
-    },
-    "5310": {
-      "vnum": 5310,
-      "name": "The Fire Pool",
-      "description": "This room is dominated by a massive raised pool that is filled with not\nwater but flames of intense heat. The multicoloured flames lick out at\nyou, searching for things to burn. The pool proceeds to the east into a\nsmall chamber. The walls are rough-hewn and cold to the touch. The air\nis still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "no_mob",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5309,
-          "description": "You see a large stone door.",
-          "door": {
-            "name": "door stone",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "west": {
-          "to_room": 5311,
-          "description": "You see a small chamber filled with fire."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5398,
-          "max": 1
-        }
-      ]
-    },
-    "5311": {
-      "vnum": 5311,
-      "name": "The Chamber Of The Efreet",
-      "description": "You make your way across the fire pool, and into a small stone chamber.\nHere the flames are nearly as high as your head, singeing your face and\nevaporating your sweat instantaneously. The depths are dark and\nunknowable. Waves crash and foam relentlessly.",
-      "sector_type": "water_noswim",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5310,
-          "description": "The pool of fire ends to the east."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5309,
-          "max": 1
-        }
-      ]
-    },
-    "5312": {
-      "vnum": 5312,
-      "name": "A Tiny Crawlway",
-      "description": "You have to go down onto your hands and knees to fit inside this tiny\nspace. The crawlway is thick with sand and dust, and markings of the\npassage of other creatures. The ceiling hangs low overhead. Dust motes\ndrift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5313,
-          "description": "The crawlway continues to the north."
-        },
-        "south": {
-          "to_room": 5309,
-          "description": "The crawlway ends to the south in a musty chamber."
-        },
-        "up": {
-          "to_room": 5337,
-          "description": "A small hole above your head leads into a dank chamber."
-        },
-        "east": {
-          "to_room": 5337
-        }
-      }
-    },
-    "5313": {
-      "vnum": 5313,
-      "name": "A Tiny Crawlway",
-      "description": "The area is your hands and knees, inside a small crawlway that winds\nthrough the inside of the pyramid. The crawlway is thick with sand,\ndust, and markings of the passage of other creatures. The walls are\nrough-hewn and cold to the touch. Shadows gather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5312,
-          "description": "The crawlway continues to the south."
-        },
-        "west": {
-          "to_room": 5314,
-          "description": "The crawlway continues to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5300,
-          "max": 6
-        }
-      ]
-    },
-    "5314": {
-      "vnum": 5314,
-      "name": "A Tiny Crawlway",
-      "description": "The area is your hands and knees, inside a small crawlway that winds\nthrough the inside of the pyramid. The crawlway is thick with sand,\ndust, and markings of the passage of other creatures. Dust motes drift\nin the stale air. The walls are rough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5313,
-          "description": "The crawlway continues to the east."
-        },
-        "west": {
-          "to_room": 5315,
-          "description": "The crawlway gets a little tighter to the west."
-        }
-      }
-    },
-    "5315": {
-      "vnum": 5315,
-      "name": "A Tightening In The Crawlway",
-      "description": "Here you are forced to slide on your belly through a particularly tight\nsection of the crawlway, as the stones of the pyramid close together\nabout you. below is a small, slippery-looking hole that plummets\ninto blackness. Dust motes drift in the stale air. Shadows gather in the\ncorners.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5314,
-          "description": "The crawlway gets a little larger to the east."
-        },
-        "south": {
-          "to_room": 5316,
-          "description": "The crawlway continues to diminish in size to the south."
-        },
-        "down": {
-          "to_room": 5317,
-          "description": "The hole looks very slippery and very dark."
-        }
-      }
-    },
-    "5316": {
-      "vnum": 5316,
-      "name": "The Crawlway's End",
-      "description": "The crawlway shrinks away to nothing as the sandy stones of the pyramid\nclose together into a space through which only a snake could fit. There\nis barely enough space to turn around and make your way back through the\ntiny crawlway to the north. The walls are rough-hewn and cold to the\ntouch. Shadows gather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5315,
-          "description": "The crawlway gets a little larger to the north."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5302,
-          "max": 3
-        }
-      ]
-    },
-    "5317": {
-      "vnum": 5317,
-      "name": "A Slippery Hole",
-      "description": "The sides of this hole are slippery-smooth. You lower yourself in, and\nproceed to move downward... when suddenly you lose your purchase! You\nfall for what seems like an eternity, and smash into the stones below...\nUnder The Hole You are in a small chamber underneath the slippery hole,\nfar below the pyramid now. The floor is strewn with bones. To the south\nis a small rocky crevasse. Shadows gather in the corners. Dust motes\ndrift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "no_mob",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5319,
-          "description": "You see a rocky crevasse that proceeds deep under the pyramid."
-        },
-        "up": {
-          "to_room": 5315
-        }
-      },
-      "extra_descs": {
-        "": "bones"
-      }
-    },
-    "5318": {
-      "vnum": 5318,
-      "name": "Under The Hole",
-      "description": "This is a small chamber underneath the slippery hole, far below the\npyramid now. The floor is strewn with bones. To the south is a small\nrocky crevasse. Shadows gather in the corners. Dust motes drift in the\nstale air.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5319,
-          "description": "You see a rocky crevasse that proceeds deep under the pyramid."
-        }
-      },
-      "extra_descs": {
-        "": "bones"
-      }
-    },
-    "5319": {
-      "vnum": 5319,
-      "name": "A Rough Crevasse",
-      "description": "The area is now exploring deep within a strange rocky crevasse that\nplunges down into the rock on which the pyramid was constructed. To the\nsouth you see the flickering light of a fire, and the crevasse proceeds\ndownward. The ceiling hangs low overhead. The walls are rough-hewn and\ncold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5318,
-          "description": "You see a small stone chamber littered with bones."
-        },
-        "south": {
-          "to_room": 5320,
-          "description": "You see the flickering light of a small fire."
-        },
-        "down": {
-          "to_room": 5321,
-          "description": "The crevasse continues downward into total darkness."
-        }
-      },
-      "extra_descs": {
-        "": "rough"
-      },
-      "obj_resets": [
-        {
-          "vnum": 5323,
-          "max": 1
-        }
-      ]
-    },
-    "5320": {
-      "vnum": 5320,
-      "name": "A Small Fire",
-      "description": "Here a small fire burns in a nook in the rocks, providing some warmth\nand comforting light in the cold, dark, dry air. Standing here is a\nstrange-looking old man, who stares at you balefully. The walls are\nrough-hewn and cold to the touch. The ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5319,
-          "description": "You see a massive crevasse that plunges into darkness."
-        }
-      },
-      "extra_descs": {
-        "": "man old"
-      },
-      "mob_resets": [
-        {
-          "vnum": 5399,
-          "max": 1
-        }
-      ]
-    },
-    "5321": {
-      "vnum": 5321,
-      "name": "Down The Crevasse",
-      "description": "The crevasse proceeds downward into the dark depths of the earth. The\nair about you is now cold and quite dry, and your light source gutters\nin a cool breeze that wafts up from below. The walls are rough-hewn and\ncold to the touch. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "up": {
-          "to_room": 5319,
-          "description": "It is too dark for you to see any further along the crevasse."
-        },
-        "down": {
-          "to_room": 5322,
-          "description": "It is too dark for you to see any further along the crevasse."
-        }
-      }
-    },
-    "5322": {
-      "vnum": 5322,
-      "name": "At The Crevasse's End",
-      "description": "Here the crevasse comes to an abrupt end. A chilling wind howls at your\nface from a black shape to the south, but the light from your source is\ntoo dim to see exactly what it is. The air is still and musty. The\nceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5323,
-          "description": "You see a strange-looking black shape.",
-          "door": {
-            "name": "sesame",
-            "state": "open",
-            "locked": true,
-            "key_vnum": 5323
-          }
-        },
-        "up": {
-          "to_room": 5321,
-          "description": "It is too dark for you to see anything along the crevasse."
-        }
-      },
-      "extra_descs": {
-        "": "tiger head animal sesame"
-      }
-    },
-    "5323": {
-      "vnum": 5323,
-      "name": "The Vault Of The Lamp",
-      "description": "The jaws of the massive stone tiger part wide to reveal a great vault.\nAn arched ceiling lies far above your head... and all about you is a low\nguttural rumbling noise and a chill wind. Giant heaps of ancient\ntreasure, gold coins, and valuables surround you on all sides. The air\nis still and musty. The ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5322,
-          "description": "Through the jaws of the tiger you see the blackness of the crevasse.",
-          "door": {
-            "name": "north door",
-            "state": "open",
-            "locked": true,
-            "key_vnum": 5323
-          }
-        }
-      },
-      "extra_descs": {
-        "": "treasure gold coins valuables"
-      },
-      "mob_resets": [
-        {
-          "vnum": 5306,
-          "max": 1
-        },
-        {
-          "vnum": 5311,
-          "max": 1
-        }
-      ]
-    },
-    "5324": {
-      "vnum": 5324,
-      "name": "A Crack In The Wall",
-      "description": "You exhale, and squeeze yourself into the narrow crack in the wall. Dust\nfills your eyes as you disturb it, and chunks of mortar and stone mixed\nwith a touch of sand fall on you as you scrape your way through. Dust\nmotes drift in the stale air. The ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5309,
-          "description": "You see a musty chamber."
-        },
-        "south": {
-          "to_room": 5325,
-          "description": "You see a tomb."
-        }
-      }
-    },
-    "5325": {
-      "vnum": 5325,
-      "name": "A Looted Tomb",
-      "description": "The floor of this small tomb is littered with the lids of smashed\nsarcophagi, bits of treasure dropped by thieves and looters, and corpses\npulled from their resting places. The ceiling hangs low overhead.\nShadows gather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5324,
-          "description": "You see a small crack in the wall through which you might be able to slide."
-        },
-        "east": {
-          "to_room": 5333,
-          "description": "To the east is another tomb."
-        },
-        "west": {
-          "to_room": 5326,
-          "description": "To the west is another tomb."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5304,
-          "max": 6
-        },
-        {
-          "vnum": 5307,
-          "max": 4
-        },
-        {
-          "vnum": 5307,
-          "max": 4
-        }
-      ]
-    },
-    "5326": {
-      "vnum": 5326,
-      "name": "A Demolished Tomb",
-      "description": "This tomb has been utterly destroyed by thieves and looters in search of\nthe treasures of the pharoahs. Nothing of interest remains in this room,\nexcept a large stone coffin that leans against the western wall. The air\nis still and musty. The walls are rough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5325,
-          "description": "To the east is another tomb."
-        },
-        "west": {
-          "to_room": 5327,
-          "description": "You see a large stone coffin.",
-          "door": {
-            "name": "coffin lid",
-            "state": "open",
-            "locked": true,
-            "key_vnum": 5312
-          }
-        }
-      },
-      "extra_descs": {
-        "": "man garments pharoah"
-      },
-      "mob_resets": [
-        {
-          "vnum": 5302,
-          "max": 3
-        },
-        {
-          "vnum": 5304,
-          "max": 6
-        }
-      ]
-    },
-    "5327": {
-      "vnum": 5327,
-      "name": "A Stairway",
-      "description": "The area opens now at the head of a stairway that goes down into\ndarkness. The steps and walls are smooth sandy stone, covered with a\nthick layer of dust. Some inscriptions are carved into the wall here.\nThe walls are rough-hewn and cold to the touch. Dust motes drift in the\nstale air.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5326,
-          "description": "You see the backside of the coffin lid, featureless stone.",
-          "door": {
-            "name": "coffin lid",
-            "state": "open",
-            "locked": true,
-            "key_vnum": null
-          }
-        },
-        "down": {
-          "to_room": 5328,
-          "description": "It is too dark to see down the stairway."
-        }
-      },
-      "extra_descs": {
-        "": "coffin lid"
-      }
-    },
-    "5328": {
-      "vnum": 5328,
-      "name": "A Stairway",
-      "description": "The area is a stairway that disappears into darkness in both directions.\nThe smooth, uneven steps of the stairway have not been travelled in what\nappears to be centuries. The ceiling hangs low overhead. The air is\nstill and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "up": {
-          "to_room": 5327,
-          "description": "It is too dark to see up the stairway."
-        },
-        "down": {
-          "to_room": 5329,
-          "description": "It is too dark to see down the stairway."
-        }
-      }
-    },
-    "5329": {
-      "vnum": 5329,
-      "name": "A Stairway",
-      "description": "The area opens now at the base of the uneven stairway. The walls, floor,\nand ceiling of this small landing are covered with strange\nhieroglyphics. The ceiling hangs low overhead. Dust motes drift in the\nstale air.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5330,
-          "description": "You see a seam in the stone wall.",
-          "door": {
-            "name": "stone",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "up": {
-          "to_room": 5328,
-          "description": "It is too dark to see up the stairway."
-        }
-      },
-      "extra_descs": {
-        "": "walls floor ceiling hieroglyphics"
-      }
-    },
-    "5330": {
-      "vnum": 5330,
-      "name": "The Ancient Hall",
-      "description": "Here the air is deathly still, motes of dust thickly obscuring your\nvision. Several stone statues line the walls of the hall, depicting the\ngods of an ancient society. Strange glyphs and sigils cover the walls, a\npeculiar pictorial form of written language that you don't understand.\nSome steps lead to a raised dais to the south. The air is still and\nmusty. Dust motes drift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5329,
-          "description": "You see a seam in the stone wall.",
-          "door": {
-            "name": "stone",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "south": {
-          "to_room": 5331,
-          "description": "You see a small raised dais."
-        }
-      },
-      "extra_descs": {
-        "": "writings glyphs sigils hieroglyphics symbols"
-      }
-    },
-    "5331": {
-      "vnum": 5331,
-      "name": "A Raised Dais",
-      "description": "This is the southern end of the ancient hall, the dust and darkness\nabsorbing your light so that you cannot see past the steps of the dais.\nA low pedestal rests here. You see something written into the face of\nit. Dust motes drift in the stale air. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5330,
-          "description": "You cannot see past the steps of the dais."
-        },
-        "down": {
-          "to_room": 5332,
-          "description": "You see a seam in the stone floor.",
-          "door": {
-            "name": "tomb",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "extra_descs": {
-        "": "pedestal writings"
-      }
-    },
-    "5332": {
-      "vnum": 5332,
-      "name": "The Tomb Of Ramses",
-      "description": "The area opens in an empty tomb, a cubicle no more then ten feet to a\nside. Dust motes drift in the stale air. The ceiling hangs low overhead.\nThe air is stale and the walls close. Shadows pool in the corners,\nundisturbed.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "up": {
-          "to_room": 5331,
-          "description": "That leads back the way you came.",
-          "door": {
-            "name": "tomb",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5317,
-          "max": 1
-        }
-      ]
-    },
-    "5333": {
-      "vnum": 5333,
-      "name": "A Ransacked Tomb",
-      "description": "This tomb has been completely ransacked and destroyed by the actions of\npyramid thieves and looters. The floor is littered with junk. The\nceiling hangs low overhead. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5334,
-          "description": "To the east is a low-ceilinged tunnel."
-        },
-        "west": {
-          "to_room": 5325,
-          "description": "To the west is another tomb."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5304,
-          "max": 6
-        }
-      ]
-    },
-    "5334": {
-      "vnum": 5334,
-      "name": "A Tunnel",
-      "description": "Ancient stone blocks form the walls of this narrow tunnel, each carved\nwith hieroglyphs that glow faintly in the darkness. The air is stale and\nheavy with the weight of millennia, and sand sifts down from hidden\ncracks above. The air is still and musty. The walls are rough-hewn and\ncold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5335,
-          "description": "You cannot see into the darkness of the low tunnel."
-        },
-        "west": {
-          "to_room": 5333,
-          "description": "You see a tomb."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5304,
-          "max": 6
-        }
-      ]
-    },
-    "5335": {
-      "vnum": 5335,
-      "name": "A Fork In The Tunnel",
-      "description": "Here the tunnel forks off through a gaping hole down in the southern\nwall, continuing onward to the east and west as well. Dust motes drift\nin the stale air. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5336,
-          "description": "You cannot see into the darkness of the low tunnel."
-        },
-        "west": {
-          "to_room": 5334,
-          "description": "You cannot see into the darkness of the low tunnel."
-        },
-        "down": {
-          "to_room": 5346,
-          "description": "Through the hole you see rubble and sand."
-        }
-      },
-      "extra_descs": {
-        "": "hole"
-      },
-      "mob_resets": [
-        {
-          "vnum": 5304,
-          "max": 6
-        }
-      ]
-    },
-    "5336": {
-      "vnum": 5336,
-      "name": "A Tunnel",
-      "description": "The low-ceilinged tunnel makes a turn to the west and ends to the north\nas it spills out into a dusty hallway. Dust motes drift in the stale\nair. The walls are rough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5342,
-          "description": "The mouth of the tunnel is stone that has been torn away by looters."
-        },
-        "west": {
-          "to_room": 5335,
-          "description": "You cannot see into the darkness of the low tunnel."
-        }
-      }
-    },
-    "5337": {
-      "vnum": 5337,
-      "name": "A Dank Chamber",
-      "description": "This chamber has a dank, dusty, musty smell to it. Small footprints in\nthe dust betray the recent passage of some sort of creatures. A hole in\nthe floor lies to the west and a stairway is to the east. The ceiling\nhangs low overhead. Dust motes drift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5338,
-          "description": "You see a spiral stone stairway."
-        },
-        "west": {
-          "to_room": 5312,
-          "description": "You see only blackness through the hole in the floor."
-        },
-        "down": {
-          "to_room": 5312
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5303,
-          "max": 6
-        },
-        {
-          "vnum": 5303,
-          "max": 6
-        },
-        {
-          "vnum": 5307,
-          "max": 4
-        }
-      ]
-    },
-    "5338": {
-      "vnum": 5338,
-      "name": "A Spiral Stairway",
-      "description": "Some dusty, broken stone stairs here spiral slowly in a constricted\nspace down towards a dusty hallway. The ceiling hangs low overhead. The\nwalls are rough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "up": {
-          "to_room": 5337,
-          "description": "The stairs spiral up into a dank chamber."
-        },
-        "down": {
-          "to_room": 5341,
-          "description": "The stairs spiral down into a dusty hallway."
-        },
-        "west": {
-          "to_room": 5337
-        }
-      }
-    },
-    "5339": {
-      "vnum": 5339,
-      "name": "A Dust-Covered Hallway",
-      "description": "This hallway is covered with dust that has accumulated over the\ncenturies that the pyramid has stood. Small markings and footprints in\nthe dust betray the recent passage of others -- perhaps thieves? Dust\nmotes drift in the stale air. Shadows gather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5340,
-          "description": "The hallway proceeds to the east towards a strange smell."
-        },
-        "west": {
-          "to_room": 5309,
-          "description": "The hallway proceeds towards the west towards a musty smell."
-        }
-      }
-    },
-    "5340": {
-      "vnum": 5340,
-      "name": "A Smelly Chamber",
-      "description": "This small chamber has a sickly putrescent smell to it, the smell of\nformaldehyde and other ointments used to preserve the corpses of those\nwho died ages ago. The air is still and musty. The ceiling hangs low\noverhead.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5341,
-          "description": "You see a dusty hallway."
-        },
-        "west": {
-          "to_room": 5339,
-          "description": "You a dusty hallway."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5300,
-          "max": 6
-        },
-        {
-          "vnum": 5303,
-          "max": 6
-        },
-        {
-          "vnum": 5303,
-          "max": 6
-        }
-      ]
-    },
-    "5341": {
-      "vnum": 5341,
-      "name": "A Dust-Covered Hallway",
-      "description": "This hallway is covered with a thick, choking dust that rises up to\nobscure your light source and sting your eyes. Small marks and\nfootprints in the dust betray the recent passage of others. Dust motes\ndrift in the stale air. Shadows gather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5342,
-          "description": "The hallway turns to the north."
-        },
-        "west": {
-          "to_room": 5340,
-          "description": "You smell something peculiar over there."
-        },
-        "up": {
-          "to_room": 5338,
-          "description": "A tightly spiralling stone stairway leads up."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5301,
-          "max": 4
-        },
-        {
-          "vnum": 5307,
-          "max": 4
-        }
-      ]
-    },
-    "5342": {
-      "vnum": 5342,
-      "name": "A Turn In The Hallway",
-      "description": "This is an elbow turn in a dust-covered stone hallway, that dead ends to\nthe north and continues on to the west. To the south the stones of the\npyramid have been torn asunder by thieves, making a low- ceilinged\ntunnel. The walls are rough-hewn and cold to the touch. Dust motes drift\nin the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5343,
-          "description": "The hallway ends to the north."
-        },
-        "south": {
-          "to_room": 5336,
-          "description": "The tunnel is dark."
-        },
-        "west": {
-          "to_room": 5341,
-          "description": "The dust-covered hallway continues to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5304,
-          "max": 6
-        }
-      ]
-    },
-    "5343": {
-      "vnum": 5343,
-      "name": "A Dead End",
-      "description": "The dust-covered hallway has come to an abrupt end at a stony,\nfeatureless wall. Here and there are signs of the recent passage of\nothers in the dust. The walls are rough-hewn and cold to the touch.\nShadows gather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5342,
-          "description": "The dusty hall continues to the south."
-        },
-        "down": {
-          "to_room": 5344,
-          "description": "The floor is quite dusty, and made of stone.  You see some cracks.",
-          "door": {
-            "name": "floor",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "extra_descs": {
-        "": "cracks"
-      },
-      "mob_resets": [
-        {
-          "vnum": 5305,
-          "max": 1
-        }
-      ]
-    },
-    "5344": {
-      "vnum": 5344,
-      "name": "The Tomb Entrance",
-      "description": "This is a small, dark chamber that has stood undisturbed for many years.\nTo the north stands a massive stone tomb, which is covered in\nhieroglyphics and gold-lined carvings that mark it as the final resting\nplace of the mighty pharoahs of this land. Shadows gather in the\ncorners. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "no_mob",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5345,
-          "description": "You see the tomb of the pharoahs.",
-          "door": {
-            "name": "tomb",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "up": {
-          "to_room": 5343,
-          "description": "The stone ceiling has some cracks in it, through which a dim light streams.",
-          "door": {
-            "name": "ceiling",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "extra_descs": {
-        "": "hieroglyphics carvings"
-      }
-    },
-    "5345": {
-      "vnum": 5345,
-      "name": "The Tomb Of The Pharoahs",
-      "description": "Great golden sarcophogai line the walls of this massive tomb. It has\nwithstood the passage of time intact, untouched by the hands of thieves\nand looters. The treasures taken by the pharoahs to their graves still\nlie before your feet. The air is still and musty. The walls are rough-\nhewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5344,
-          "description": "That way leads back out of the tomb.",
-          "door": {
-            "name": "tomb",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "extra_descs": {
-        "": "treasures"
-      },
-      "mob_resets": [
-        {
-          "vnum": 5310,
-          "max": 2
-        },
-        {
-          "vnum": 5310,
-          "max": 2
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 5310,
-          "max": 1
-        }
-      ]
-    },
-    "5346": {
-      "vnum": 5346,
-      "name": "A Rubble-Strewn Hallway",
-      "description": "This hallway formerly had a beautiful arch to the ceiling, now collapsed\nunder the weight of the slowly settling stones of the pyramid. Now, a\nmassive pile of rubble leads up into a hole high in the northern portion\nof the hallway. To the south, through the rubble and fallen stones you\nsee a sandstone crypt. The walls are rough-hewn and cold to the touch.\nDust motes drift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "no_mob",
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 5347,
-          "description": "You see a sandstone crypt."
-        },
-        "up": {
-          "to_room": 5335,
-          "description": "From here you see only darkness."
-        }
-      }
-    },
-    "5347": {
-      "vnum": 5347,
-      "name": "A Sandstone Crypt",
-      "description": "This small crypt is lit by a hole in the wall to the south, through\nwhich sand pours from the desert outside. A hot wind blows in from the\ndesert, drying your skin instantly. To the east and north the arched\nhallway continues. The walls are rough-hewn and cold to the touch. The\nair is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5346,
-          "description": "The arched hallway collapses into rubble shortly to the north."
-        },
-        "east": {
-          "to_room": 5348,
-          "description": "You see a beautifully arched hallway."
-        },
-        "south": {
-          "to_room": 5353,
-          "description": "You see a lot of sand."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5315,
-          "max": 1
-        }
-      ]
-    },
-    "5348": {
-      "vnum": 5348,
-      "name": "An Arched Hall",
-      "description": "This hallway has a beautiful arch to it, formed painstakingly and\nexquisitely out of the sandy stones of the pyramid. The dust that covers\nmost of the rest of the pyramid interior is not present here, scoured\naway by the blowing of the desert winds that howl about your ears. Dust\nmotes drift in the stale air. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5349,
-          "description": "The arched hall proceeds to the east, making a sharp southward turn."
-        },
-        "west": {
-          "to_room": 5347,
-          "description": "The arched hall proceeds into a sandstone crypt."
-        },
-        "south": {
-          "to_room": 5349
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5312,
-          "max": 3
-        }
-      ]
-    },
-    "5349": {
-      "vnum": 5349,
-      "name": "An Arched Hall",
-      "description": "This hallway has a beautiful arch to it, formed painstakingly and\nexquisitely out of the sandy stones of the pyramid. To the east is a\nsmall, golden-coloured crypt, and the hall proceeds to the south and\nnorth. Shadows gather in the corners. The walls are rough-hewn and cold\nto the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5348,
-          "description": "The arched hall proceeds to the north, making a sharp westward turn."
-        },
-        "east": {
-          "to_room": 5350,
-          "description": "A small golden crypt lies to the east."
-        },
-        "south": {
-          "to_room": 5351,
-          "description": "The arched hall proceeds to the south."
-        },
-        "west": {
-          "to_room": 5348
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5312,
-          "max": 3
-        }
-      ]
-    },
-    "5350": {
-      "vnum": 5350,
-      "name": "A Golden Crypt",
-      "description": "The area opens inside a small crypt with walls and ceiling made of\ngolden bricks that obscure the large sandy stones of the pyramid. Small\nrugs and tapestries are scattered about the floor here, and they appear\nto have been used recently. The ceiling hangs low overhead. The walls\nare rough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 5349,
-          "description": "You see an arched hall."
-        }
-      },
-      "extra_descs": {
-        "": "bricks"
-      },
-      "mob_resets": [
-        {
-          "vnum": 5313,
-          "max": 2
-        },
-        {
-          "vnum": 5313,
-          "max": 2
-        },
-        {
-          "vnum": 5318,
-          "max": 1
-        }
-      ]
-    },
-    "5351": {
-      "vnum": 5351,
-      "name": "An Arched Hall",
-      "description": "This hallway has a beautiful arch to it, formed painstakingly and\nexquisitely out of the sandy stones of the pyramid. The arched hall\nproceeds to the north and ends to the south in a small vault. The air is\nstill and musty. The walls are rough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5349,
-          "description": "The arched hall continues to the north."
-        },
-        "south": {
-          "to_room": 5352,
-          "description": "You see a small vault from which a shining light issues."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5312,
-          "max": 3
-        }
-      ]
-    },
-    "5352": {
-      "vnum": 5352,
-      "name": "A Shining Vault",
-      "description": "The stones of the pyramid here take on a strange, twinkling quality,\nalmost seeming to shine with an internal light. As you look closer you\nsee tiny glass-like glittery particles within the stones, that reflect\nthe light from your light source so perfectly that they seem to shine.\nShadows gather in the corners. Dust motes drift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5351,
-          "description": "You see a hall with a beautifully arched ceiling."
-        }
-      },
-      "extra_descs": {
-        "": "particles glass"
-      },
-      "mob_resets": [
-        {
-          "vnum": 5314,
-          "max": 2
-        },
-        {
-          "vnum": 5314,
-          "max": 2
-        }
-      ]
-    },
-    "5353": {
-      "vnum": 5353,
-      "name": "A Massive Sand Dune",
-      "description": "The area opens now on a massive sand dune on the southern side of the\npyramid. At the foot of the sand dune to the north you see a small hole\nwhere the stones of the pyramid have collapsed. Not far to the south is\na massive roiling sandstorm; the wind from the storm howls and bites at\nyour face even here. The ground is soft underfoot. The open sky\nstretches overhead.",
-      "sector_type": "field",
-      "flags": [
-        "no_mob"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5347,
-          "description": "You see a small hole leading back into the pyramid."
-        },
-        "south": {
-          "to_room": 5354,
-          "description": "You see only a wall of whirling, blowing, dry sand."
-        }
-      },
-      "extra_descs": {
-        "": "sand dune sandstorm"
-      }
-    },
-    "5354": {
-      "vnum": 5354,
-      "name": "A Swirling Sandstorm",
-      "description": "The area is caught in the midst of a massive sandstorm. Howling winds\nbuffet you from all sides, and the sand tears at your skin, blinding you\nand choking you. You have lost all sense of direction. Wildflowers dot\nthe landscape. The air is fresh and clean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5353,
-          "description": "You see only a wall of whirling, blowing, dry sand."
-        },
-        "east": {
-          "to_room": 5354,
-          "description": "You see only a wall of whirling, blowing, dry sand."
-        },
-        "south": {
-          "to_room": 5355,
-          "description": "You see only a wall of whirling, blowing, dry sand."
-        },
-        "west": {
-          "to_room": 5354,
-          "description": "You see only a wall of whirling, blowing, dry sand."
-        }
-      },
-      "extra_descs": {
-        "": "sand"
-      },
-      "mob_resets": [
-        {
-          "vnum": 5308,
-          "max": 4
-        }
-      ]
-    },
-    "5355": {
-      "vnum": 5355,
-      "name": "A Swirling Sandstorm",
-      "description": "The area is caught in the midst of a massive sandstorm. Howling winds\nbuffet you from all sides, and the sand tears at your skin, blinding you\nand choking you. You have lost all sense of direction. The ground is\nsoft underfoot. The air is fresh and clean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5354,
-          "description": "You see only a wall of whirling, blowing, dry sand."
-        },
-        "east": {
-          "to_room": 5355,
-          "description": "You see only a wall of whirling, blowing, dry sand."
-        },
-        "south": {
-          "to_room": 5356,
-          "description": "You see only a wall of whirling, blowing, dry sand."
-        },
-        "west": {
-          "to_room": 5355,
-          "description": "You see only a wall of whirling, blowing, dry sand."
-        }
-      },
-      "extra_descs": {
-        "": "sand"
-      },
-      "mob_resets": [
-        {
-          "vnum": 5308,
-          "max": 4
-        }
-      ]
-    },
-    "5356": {
-      "vnum": 5356,
-      "name": "A Swirling Sandstorm",
-      "description": "The area is caught in the midst of a massive sandstorm. Howling winds\nbuffet you from all sides, and the sand tears at your skin, blinding you\nand choking you. You have lost all sense of direction. Tall grass sways\nin a gentle breeze. The open sky stretches overhead.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5355,
-          "description": "You see only a wall of whirling, blowing, dry sand."
-        },
-        "east": {
-          "to_room": 5356,
-          "description": "You see only a wall of whirling, blowing, dry sand."
-        },
-        "south": {
-          "to_room": 5357,
-          "description": "You see only a wall of whirling, blowing, dry sand."
-        },
-        "west": {
-          "to_room": 5356,
-          "description": "You see only a wall of whirling, blowing, dry sand."
-        }
-      },
-      "extra_descs": {
-        "": "sand"
-      },
-      "mob_resets": [
-        {
-          "vnum": 5308,
-          "max": 4
-        }
-      ]
-    },
-    "5357": {
-      "vnum": 5357,
-      "name": "A Swirling Sandstorm",
-      "description": "The area is caught in the midst of a massive sandstorm. Howling winds\nbuffet you from all sides, and the sand tears at your skin, blinding you\nand choking you. You have lost all sense of direction. Tall grass sways\nin a gentle breeze. The air is fresh and clean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5356,
-          "description": "You see only a wall of whirling, blowing, dry sand."
-        },
-        "east": {
-          "to_room": 5357,
-          "description": "You see only a wall of whirling, blowing, dry sand."
-        },
-        "south": {
-          "to_room": 5358,
-          "description": "You see only a wall of whirling, blowing, dry sand."
-        },
-        "west": {
-          "to_room": 5357,
-          "description": "You see only a wall of whirling, blowing, dry sand."
-        }
-      },
-      "extra_descs": {
-        "": "sand"
-      },
-      "mob_resets": [
-        {
-          "vnum": 5308,
-          "max": 4
-        }
-      ]
-    },
-    "5358": {
-      "vnum": 5358,
-      "name": "A Massive Sand Dune",
-      "description": "Somehow you managed to make your way through the howling winds of the\nsandstorm, and clamber up on this sand dune. Visible is the storm to the\nto the north, and presumably the pyramid is somewhere beyond it. Nothing\nbut flat, featureless, open dunes of sand lie in every other direction.\nThe open sky stretches overhead. Wildflowers dot the landscape.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5357,
-          "description": "You see only a wall of whirling, blowing, dry sand."
-        },
-        "south": {
-          "to_room": 5359,
-          "description": "On the southern side of the sand dune is a small hole in the sand. For some reason you seem unable to get to it.",
-          "door": {
-            "name": "riddle",
-            "state": "open",
-            "locked": true,
-            "key_vnum": 5317
-          }
-        },
-        "down": {
-          "to_room": 5359
-        }
-      },
-      "extra_descs": {
-        "": "hieroglyphics symbols"
-      },
-      "mob_resets": [
-        {
-          "vnum": 5316,
-          "max": 1
-        }
-      ]
-    },
-    "5359": {
-      "vnum": 5359,
-      "name": "Through The Hole In The Sand",
-      "description": "You squeeze through the small hole in the sand and land in a small white\nchamber. above is a small hole, reachable by climbing up the small\nsandy slope down which you slid. The walls are rough-hewn and cold to\nthe touch. Dust motes drift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "no_mob",
-        "indoors"
-      ],
-      "exits": {
-        "up": {
-          "to_room": 5358,
-          "description": "You see a sand dune."
-        },
-        "down": {
-          "to_room": 5360,
-          "description": "The way leads to Bronze Dragon Lair"
-        },
-        "north": {
-          "to_room": 5358
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 5318,
-          "max": 1
-        },
-        {
-          "vnum": 5324,
-          "max": 1
-        },
-        {
-          "vnum": 5325,
-          "max": 1
-        },
-        {
-          "vnum": 5326,
-          "max": 1
-        },
-        {
-          "vnum": 5327,
-          "max": 1
-        }
-      ]
-    },
-    "5360": {
-      "vnum": 5360,
-      "name": "Bronze Dragon Lair",
-      "description": "A towering bronze dragon lies amid ancient relics and gleaming armor.\nThe air crackles with static, and the walls hum with old magic. The\nfloor is slick with moisture. The stone walls press close, cold and\ndamp.",
-      "sector_type": "dungeon",
-      "flags": [],
-      "exits": {
-        "up": {
-          "to_room": 5359,
-          "description": "A passage leads to Through The Hole In The Sand"
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 5360,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
+    "south": {
+     "to_room": 5046,
+     "description": "To the south lies The Great Eastern Desert."
     }
+   }
   },
-  "mobs": {
-    "5300": {
-      "vnum": 5300,
-      "name": "asp",
-      "short_desc": "the horrible asp",
-      "long_desc": "A small, poisonous asp slithers over your feet.",
-      "level": 5,
-      "alignment": 0,
-      "hp_dice": "5d10+76",
-      "damage_dice": "2d5+3",
-      "gold": 505,
-      "exp": 300,
-      "armor_class": 85,
-      "flags": [
-        "special",
-        "aggressive",
-        "stay_zone"
-      ],
-      "description": "The asp is a small, smooth-scaled snake the color of worn pottery.\nThe poison bite of this snake has felled many a mighty pharoah.",
-      "inventory": [
-        5326
-      ]
+  "5301": {
+   "vnum": 5301,
+   "name": "At The Base Of The Pyramid",
+   "map": {
+    "x": 8,
+    "y": 18,
+    "z": 1
+   },
+   "sector_type": "field",
+   "extra_descs": {
+    "": "pyramid"
+   },
+   "flags": [],
+   "description": "The mighty pyramid towers above out of the hot desert sands, made\nfrom huge blocks of stone that have been coated over with a rough sandy\nplaster-like substance. The face of the pyramid is steep, but you think\nyou might be able to climb it. Wildflowers dot the landscape. Tall grass\nsways in a gentle breeze.",
+   "exits": {
+    "south": {
+     "to_room": 5300,
+     "description": "Sand as far as the eye can see."
     },
-    "5301": {
-      "vnum": 5301,
-      "name": "cobra",
-      "short_desc": "the hooded cobra snake",
-      "long_desc": "A cobra snake rears up and opens its fearsome hood.",
-      "level": 7,
-      "alignment": 0,
-      "hp_dice": "7d10+100",
-      "damage_dice": "2d5+6",
-      "gold": 1012,
-      "exp": 420,
-      "armor_class": 79,
-      "flags": [
-        "special",
-        "aggressive",
-        "stay_zone"
-      ],
-      "description": "The cobra snake waves back and forth before you, its hood displaying brilliant\ncolors designed to serve notice to its prey that it is about to strike.",
-      "inventory": [
-        5325,
-        9205
-      ]
-    },
-    "5302": {
-      "vnum": 5302,
-      "name": "mongoose",
-      "short_desc": "the wily little mongoose",
-      "long_desc": "A small mongoose slinks along the ground, hunting snakes.",
-      "level": 11,
-      "alignment": 10,
-      "hp_dice": "11d10+148",
-      "damage_dice": "3d6+8",
-      "gold": 5050,
-      "exp": 660,
-      "armor_class": 67,
-      "flags": [
-        "aggressive",
-        "stay_zone"
-      ],
-      "description": "The mongoose is a wily rodent, a quick hunter of nasty poisonous snakes.\nShe sniffs you and appears to be looking for food in your hand.",
-      "inventory": [
-        9207
-      ]
-    },
-    "5303": {
-      "vnum": 5303,
-      "name": "pyramid",
-      "short_desc": "the pyramid watcher",
-      "long_desc": "The pyramid watcher protects the tombs from intruders.",
-      "level": 8,
-      "alignment": 250,
-      "hp_dice": "8d10+112",
-      "damage_dice": "3d5+5",
-      "gold": 1975,
-      "exp": 480,
-      "armor_class": 76,
-      "flags": [
-        "sentinel",
-        "aware",
-        "helper"
-      ],
-      "description": "The pyramid watcher has made a pledge to destroy any would-be looters of\nthe tombs of the pharoahs.  He is clad from head to foot in utilitarian\nsand-colored clothing.",
-      "equipment": {
-        "wield": 5300,
-        "about": 5301
-      },
-      "inventory": [
-        53091
-      ]
-    },
-    "5304": {
-      "vnum": 5304,
-      "name": "thief",
-      "short_desc": "the tomb thief",
-      "long_desc": "A sneaky tomb thief moves about in search of treasure.",
-      "level": 10,
-      "alignment": -250,
-      "hp_dice": "10d10+136",
-      "damage_dice": "3d6+6",
-      "gold": 4750,
-      "exp": 600,
-      "armor_class": 70,
-      "flags": [
-        "special",
-        "stay_zone",
-        "wimpy"
-      ],
-      "description": "The thief brushes against you briefly, then slinks back into the shadows.",
-      "equipment": {
-        "wield": 5302
-      },
-      "inventory": [
-        9207,
-        53093
-      ]
-    },
-    "5305": {
-      "vnum": 5305,
-      "name": "ali",
-      "short_desc": "Ali Baba",
-      "long_desc": "Ali Baba is here, hunting for the pharoah's tomb.",
-      "level": 18,
-      "alignment": -300,
-      "hp_dice": "18d10+232",
-      "damage_dice": "5d7+9",
-      "gold": 15500,
-      "exp": 1080,
-      "armor_class": 46,
-      "flags": [
-        "special",
-        "scavenger",
-        "aware",
-        "stay_zone",
-        "memory"
-      ],
-      "description": "You see a tall, full-bearded man with a mischevious glint in his eye.  Ali Baba\nhas made his life from stealing things from others, including many items stolen\nrecently from under the nose of the hapless guardians of this pyramid.  Someday\nhe might get caught, but not today...",
-      "equipment": {
-        "head": 5303,
-        "wield": 5302
-      },
-      "inventory": [
-        5324,
-        5312
-      ]
-    },
-    "5306": {
-      "vnum": 5306,
-      "name": "magic",
-      "short_desc": "the magic carpet",
-      "long_desc": "A small woven carpet lies under your feet.",
-      "level": 9,
-      "alignment": 500,
-      "hp_dice": "9d10+124",
-      "damage_dice": "3d5+6",
-      "gold": 3125,
-      "exp": 540,
-      "armor_class": 73,
-      "flags": [
-        "sentinel",
-        "aware",
-        "memory",
-        "no_charm",
-        "no_summmon",
-        "no_sleep",
-        "no_bash",
-        "no_blind"
-      ],
-      "description": "The carpet is simply beautiful, made from intricately woven silken material.  \nIt seems to rise up at the touch of your feet.  Wait, it is rising, a few feet\nabove the ground!  In fact, it seems to be ALIVE!",
-      "inventory": [
-        9204,
-        5313
-      ]
-    },
-    "5307": {
-      "vnum": 5307,
-      "name": "mummy",
-      "short_desc": "the mummy",
-      "long_desc": "A mummy reaches for you, disturbed by your presence.",
-      "level": 12,
-      "alignment": -600,
-      "hp_dice": "12d10+160",
-      "damage_dice": "4d6+6",
-      "gold": 7875,
-      "exp": 720,
-      "armor_class": 64,
-      "flags": [
-        "aggressive",
-        "stay_zone",
-        "no_charm",
-        "no_summmon",
-        "no_sleep",
-        "no_blind"
-      ],
-      "description": "You only see the disfigured, rotting features of decaying human flesh,\nanimated by the distempered spirit of a long-deceased person.",
-      "equipment": {
-        "body": 5304
-      },
-      "inventory": [
-        5306,
-        5305
-      ]
-    },
-    "5308": {
-      "vnum": 5308,
-      "name": "sand",
-      "short_desc": "the sandman",
-      "long_desc": "A sandman rises up from the desert floor.",
-      "level": 14,
-      "alignment": 0,
-      "hp_dice": "14d10+184",
-      "damage_dice": "4d6+9",
-      "gold": 9750,
-      "exp": 840,
-      "armor_class": 58,
-      "flags": [
-        "aware",
-        "aggressive",
-        "stay_zone",
-        "memory",
-        "no_charm",
-        "no_summmon",
-        "no_sleep",
-        "no_blind"
-      ],
-      "description": "The sandman is exactly that -- some sort of strange being formed from the sands\nof the desert floor.  It seems quite large and strong and at home in the heat\nand sandy winds.",
-      "inventory": [
-        9205,
-        5310
-      ]
-    },
-    "5309": {
-      "vnum": 5309,
-      "name": "efreeti",
-      "short_desc": "the efreeti",
-      "long_desc": "The efreeti stands here, sheathed in a column of fire.",
-      "level": 20,
-      "alignment": -600,
-      "hp_dice": "20d10+256",
-      "damage_dice": "6d8+5",
-      "gold": 25500,
-      "exp": 1200,
-      "armor_class": 40,
-      "flags": [
-        "special",
-        "sentinel",
-        "aware",
-        "aggressive",
-        "memory",
-        "no_charm",
-        "no_summmon",
-        "no_sleep",
-        "no_bash",
-        "no_blind"
-      ],
-      "description": "The efreeti is a mighty being formed from living fire.  He gazes down at\nyou with disdain and scorn, arms folded across his mighty chest.",
-      "equipment": {
-        "hold": 5307
-      },
-      "inventory": [
-        53092,
-        5304,
-        9211
-      ]
-    },
-    "5310": {
-      "vnum": 5310,
-      "name": "caryatid",
-      "short_desc": "the caryatid",
-      "long_desc": "A sandstone column stands here, carved into a feminine figure.",
-      "level": 24,
-      "alignment": 0,
-      "hp_dice": "24d10+304",
-      "damage_dice": "7d8+6",
-      "gold": 67500,
-      "exp": 1440,
-      "armor_class": 28,
-      "flags": [
-        "sentinel",
-        "aware",
-        "memory",
-        "helper",
-        "no_charm",
-        "no_summmon",
-        "no_sleep",
-        "no_bash",
-        "no_blind"
-      ],
-      "description": "The column has been carved into a set of four shapely women, each facing\noutward into the room.  The sandstone of the caryatid is smooth with age,\nbut you can still make out a deadly stone sword in the hands of each figure.",
-      "equipment": {
-        "wield": 5308
-      },
-      "inventory": [
-        5309
-      ]
-    },
-    "5311": {
-      "vnum": 5311,
-      "name": "djinn",
-      "short_desc": "the djinn",
-      "long_desc": "The djinn issues forth from the confines of a small lamp.",
-      "level": 28,
-      "alignment": 600,
-      "hp_dice": "6d10+700",
-      "damage_dice": "3d6+50",
-      "gold": 40000,
-      "exp": 1141,
-      "armor_class": -6,
-      "flags": [
-        "special",
-        "sentinel",
-        "aware",
-        "memory",
-        "no_charm",
-        "no_summmon",
-        "no_sleep",
-        "no_bash",
-        "no_blind"
-      ],
-      "description": "The djinn is a mighty being formed from the air itself and frequently\nimprisoned in a small lamp, used to do the bidding of those who find him.\nHe smiles down at you congenially, arms folded across his blue-tinged \nskin, and strokes his goatee.",
-      "equipment": {
-        "hold": 5313
-      },
-      "inventory": [
-        9211,
-        5322
-      ]
-    },
-    "5312": {
-      "vnum": 5312,
-      "name": "hieracosphinx",
-      "short_desc": "the hieracosphinx",
-      "long_desc": "A hieracosphinx looks at you cunningly.",
-      "level": 15,
-      "alignment": -200,
-      "hp_dice": "15d10+196",
-      "damage_dice": "4d7+8",
-      "gold": 14250,
-      "exp": 900,
-      "armor_class": 55,
-      "flags": [
-        "aware",
-        "aggressive",
-        "stay_zone",
-        "memory",
-        "no_charm",
-        "no_summmon",
-        "no_bash"
-      ],
-      "description": "The hieracosphinx are cunning, small, but nasty creatures, having the heads\nof birds, mighty wingspans, and a full set of four paws to rend their victims\nto pieces.  They tend to be quite jealous of the sharper wits of their older\ncousins.",
-      "inventory": [
-        53091
-      ]
-    },
-    "5313": {
-      "vnum": 5313,
-      "name": "gynosphinx",
-      "short_desc": "the gynosphinx",
-      "long_desc": "A gynosphinx sits here, befuddled by a riddle.",
-      "level": 19,
-      "alignment": 100,
-      "hp_dice": "19d10+244",
-      "damage_dice": "5d7+10",
-      "gold": 22500,
-      "exp": 1140,
-      "armor_class": 43,
-      "flags": [
-        "special",
-        "sentinel",
-        "aware",
-        "memory",
-        "no_charm",
-        "no_summmon",
-        "no_bash"
-      ],
-      "description": "The gynosphinx is a crafty but gentle creature, having the body of a\nbeautiful dark-skinned woman from the waist up, a feathery set of wings\nand the hind legs of a mighty cat.  Right now she is confused, having \njust heard a puzzling riddle from a cousin criosphinx.",
-      "inventory": [
-        5314
-      ]
-    },
-    "5314": {
-      "vnum": 5314,
-      "name": "criosphinx",
-      "short_desc": "the criosphinx",
-      "long_desc": "A criosphinx calmly watches you.",
-      "level": 23,
-      "alignment": 300,
-      "hp_dice": "23d10+292",
-      "damage_dice": "6d8+9",
-      "gold": 52500,
-      "exp": 1380,
-      "armor_class": 31,
-      "flags": [
-        "special",
-        "sentinel",
-        "aware",
-        "memory",
-        "no_charm",
-        "no_summmon",
-        "no_bash"
-      ],
-      "description": "The criosphinx is a calm and friendly creature, having the head of a ram atop\nthe body of a well-furred feline with eagle-like wings.  He delights in riddles,\nand in poking occasional fun at his easily confused lesser cousins.",
-      "inventory": [
-        5315
-      ]
-    },
-    "5315": {
-      "vnum": 5315,
-      "name": "androsphinx",
-      "short_desc": "the androsphinx",
-      "long_desc": "A mighty androsphinx tosses its lion-like mane.",
-      "level": 27,
-      "alignment": 400,
-      "hp_dice": "27d10+340",
-      "damage_dice": "7d8+11",
-      "gold": 30000,
-      "exp": 1620,
-      "armor_class": 19,
-      "flags": [
-        "special",
-        "sentinel",
-        "aware",
-        "memory",
-        "no_charm",
-        "no_summmon",
-        "no_bash"
-      ],
-      "description": "The mighty androsphinx is a huge creature, with the body of a lion whose\nface  is quite man-like, perhaps even handsome, and a massive pair of feathered\nwings.  Tales are told of pharoahs that were rendered permanently deaf by the \nmighty roar of this sphinx.",
-      "inventory": [
-        5316
-      ]
-    },
-    "5316": {
-      "vnum": 5316,
-      "name": "great",
-      "short_desc": "the great sphinx",
-      "long_desc": "A mighty sphinx rests here in the sand, dormant now for centuries.",
-      "level": 41,
-      "alignment": 500,
-      "hp_dice": "41d10+508",
-      "damage_dice": "11d8+14",
-      "gold": 75000,
-      "exp": 2460,
-      "armor_class": -10,
-      "flags": [
-        "special",
-        "sentinel",
-        "aware",
-        "memory",
-        "no_charm",
-        "no_summmon",
-        "no_sleep",
-        "no_bash",
-        "no_blind"
-      ],
-      "description": "The great sphinx towers tens of feet above you, resting here in a state of \ndormancy.  It has become almost indistinguishable from the sand that surrounds\nit, although you can still make out the features of the handsome face that once\nadvised many rulers.",
-      "equipment": {
-        "hold": 5317
-      },
-      "loot_table": [
-        {
-          "vnum": 9204,
-          "chance": 20
-        },
-        {
-          "vnum": 9205,
-          "chance": 20
-        },
-        {
-          "vnum": 9206,
-          "chance": 20
-        },
-        {
-          "vnum": 9207,
-          "chance": 20
-        },
-        {
-          "vnum": 9208,
-          "chance": 20
-        },
-        {
-          "vnum": 9209,
-          "chance": 20
-        },
-        {
-          "vnum": 9210,
-          "chance": 20
-        },
-        {
-          "vnum": 9211,
-          "chance": 20
-        },
-        {
-          "vnum": 9212,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100,
-      "inventory": [
-        9204,
-        5308,
-        53093,
-        9201
-      ]
-    },
-    "5317": {
-      "vnum": 5317,
-      "name": "ramses",
-      "short_desc": "Ramses the Damned",
-      "long_desc": "You have awakened the mighty servant to the pharoahs, Ramses.",
-      "level": 38,
-      "alignment": 150,
-      "hp_dice": "38d10+472",
-      "damage_dice": "10d8+14",
-      "gold": 60000,
-      "exp": 2280,
-      "armor_class": -10,
-      "flags": [
-        "special",
-        "sentinel",
-        "aware",
-        "memory",
-        "no_charm",
-        "no_summmon",
-        "no_sleep",
-        "no_blind"
-      ],
-      "description": "As your light spills over his face and body, you can see his features\nbegin to fill out, swell, and harden, until an apparently healthy man \nstands before you, clad only in the raiments he was left in when he last \nslept.  His hair is a soft black, his skin a deep chocolate, and his \ntall frame is totally still, his chest not even moving to breathe.",
-      "inventory": [
-        5319,
-        5320,
-        5321,
-        5321
-      ],
-      "equipment": {
-        "head": 5322
-      },
-      "loot_table": [
-        {
-          "vnum": 9204,
-          "chance": 20
-        },
-        {
-          "vnum": 9205,
-          "chance": 20
-        },
-        {
-          "vnum": 9206,
-          "chance": 20
-        },
-        {
-          "vnum": 9207,
-          "chance": 20
-        },
-        {
-          "vnum": 9208,
-          "chance": 20
-        },
-        {
-          "vnum": 9209,
-          "chance": 20
-        },
-        {
-          "vnum": 9210,
-          "chance": 20
-        },
-        {
-          "vnum": 9211,
-          "chance": 20
-        },
-        {
-          "vnum": 9212,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100
-    },
-    "5318": {
-      "vnum": 5318,
-      "name": "the Necromancer",
-      "short_desc": "Kharzul the Necromancer",
-      "long_desc": "A necromancer wrapped in black robes mutters in an ancient tongue.",
-      "level": 28,
-      "hp_dice": "28d10+352",
-      "damage_dice": "8d8+8",
-      "gold": 1200,
-      "exp": 1680,
-      "alignment": -900,
-      "flags": [
-        "caster",
-        "boss",
-        "sentinel"
-      ],
-      "special": "necromancer",
-      "boss": true,
-      "boss_id": "necromancer",
-      "boss_title": "the Cryptbreaker",
-      "boss_achievement": "boss_necromancer",
-      "boss_loot_table": [
-        5328,
-        5329,
-        5330,
-        {
-          "vnum": 5320,
-          "chance": 20
-        },
-        {
-          "vnum": 5321,
-          "chance": 20
-        },
-        {
-          "vnum": 5322,
-          "chance": 20
-        },
-        {
-          "vnum": 5323,
-          "chance": 20
-        }
-      ],
-      "boss_loot_chance": 85,
-      "boss_config": {
-        "enrage_time": 90,
-        "enrage_multiplier": 1.6,
-        "ability_interval": 4.5,
-        "phases": [
-          {
-            "threshold": 70,
-            "message": "The Necromancer tears open a grave portal!",
-            "spawn_adds": {
-              "5307": 2
-            }
-          },
-          {
-            "threshold": 40,
-            "message": "The Necromancer fades into shadow and reappears with a howl!"
-          }
-        ],
-        "abilities": [
-          {
-            "name": "Drain Life",
-            "telegraph": "The Necromancer begins a dark siphoning chant!",
-            "cast_time": 3,
-            "cooldown": 14,
-            "damage_dice": "4d6+6",
-            "interruptible": true,
-            "vulnerable_after": 4,
-            "on_success_message": "Dark energy pours into the Necromancer!",
-            "heal_pct": 10
-          },
-          {
-            "name": "Shadow Nova",
-            "telegraph": "The Necromancer spreads his arms, shadow building to a burst!",
-            "cast_time": 2,
-            "cooldown": 16,
-            "damage_dice": "3d6+5",
-            "aoe": true,
-            "dodge": true
-          }
-        ]
-      },
-      "armor_class": 16,
-      "inventory": [
-        9202,
-        5304,
-        5324
-      ]
-    },
-    "5360": {
-      "vnum": 5360,
-      "name": "Aurexus the Bronze Dragon",
-      "short_desc": "Aurexus the Bronze Dragon",
-      "long_desc": "A bronze dragon watches you with ancient, storm-lit eyes.",
-      "level": 44,
-      "alignment": -200,
-      "hp_dice": "44d10+520",
-      "damage_dice": "11d8+14",
-      "gold": 7000,
-      "exp": 4200,
-      "armor_class": -6,
-      "flags": [
-        "boss",
-        "sentinel"
-      ],
-      "special": "dragon",
-      "boss": true,
-      "boss_id": "bronze_dragon",
-      "boss_title": "the Stormslayer",
-      "boss_achievement": "boss_bronze_dragon",
-      "boss_loot_table": [
-        {
-          "vnum": 9203,
-          "chance": 100
-        },
-        {
-          "vnum": 9201,
-          "chance": 35
-        },
-        {
-          "vnum": 9202,
-          "chance": 35
-        },
-        {
-          "vnum": 53090,
-          "chance": 25
-        },
-        {
-          "vnum": 53091,
-          "chance": 10
-        },
-        {
-          "vnum": 53092,
-          "chance": 10
-        },
-        {
-          "vnum": 53093,
-          "chance": 10
-        }
-      ],
-      "boss_loot_chance": 80,
-      "boss_config": {
-        "enrage_time": 120,
-        "enrage_multiplier": 1.7,
-        "ability_interval": 5.0,
-        "phases": [
-          {
-            "threshold": 70,
-            "message": "Aurexus crackles with lightning!"
-          },
-          {
-            "threshold": 35,
-            "message": "Aurexus beats its wings, storm winds roaring!"
-          }
-        ],
-        "abilities": [
-          {
-            "name": "Lightning Breath",
-            "telegraph": "Aurexus draws lightning into its maw!",
-            "cast_time": 3,
-            "cooldown": 18,
-            "damage_dice": "6d6+10",
-            "aoe": true,
-            "dodge": true
-          },
-          {
-            "name": "Thunderclap",
-            "telegraph": "Aurexus slams the ground in a thunderous clap!",
-            "cast_time": 1,
-            "cooldown": 10,
-            "damage_dice": "3d8+6",
-            "dodge": true
-          }
-        ]
-      },
-      "equipment_rolls": [
-        {
-          "slot": "shield",
-          "vnum": 9201,
-          "chance": 50
-        }
-      ],
-      "loot_table": [
-        {
-          "vnum": 9204,
-          "chance": 20
-        },
-        {
-          "vnum": 9205,
-          "chance": 20
-        },
-        {
-          "vnum": 9206,
-          "chance": 20
-        },
-        {
-          "vnum": 9207,
-          "chance": 20
-        },
-        {
-          "vnum": 9208,
-          "chance": 20
-        },
-        {
-          "vnum": 9209,
-          "chance": 20
-        },
-        {
-          "vnum": 9210,
-          "chance": 20
-        },
-        {
-          "vnum": 9211,
-          "chance": 20
-        },
-        {
-          "vnum": 9212,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100,
-      "inventory": [
-        5314,
-        5321,
-        9208
-      ]
-    },
-    "5398": {
-      "vnum": 5398,
-      "name": "tomb robber",
-      "short_desc": "a shadowy tomb robber",
-      "long_desc": "A tomb robber hides here in a shadowy alcove, clutching a half-empty sack.",
-      "description": "He's lean and wiry, dressed in dark wrappings that blend with the pyramid's shadows. His fingers are stained with ancient dust and his eyes dart constantly to every sound.",
-      "level": 32,
-      "alignment": 0,
-      "hp_dice": "32d10+550",
-      "damage_dice": "1d4+1",
-      "gold": 0,
-      "exp": 0,
-      "armor_class": 100,
-      "flags": [
-        "sentinel"
-      ],
-      "special": "flavor_npc",
-      "talk_responses": {
-        "hello": "The tomb robber hisses. 'Keep your voice down! The deeper chambers have pressure plates \u2014 step on the wrong stone and the ceiling comes down. I lost my partner that way. Also, the mummies... they don't stay dead. Burn them if you can.'",
-        "traps": "He traces a pattern in the dust. 'The builders were clever. Look for discolored stones \u2014 those are usually triggers. And never touch golden sarcophagi directly. Always check for needles in the lid seams.'",
-        "default": "The tomb robber eyes you warily. 'You didn't see me here. I wasn't here. Got it?'",
-        "next": "The tomb robber's eyes gleam with fear and greed. 'The Necropolis makes this tomb look like a children's playground. Seek Paladin Dawnguard there if you dare. And I've heard whispers of a Frostspire in the frozen north \u2014 ancient magic and terrible cold.'"
-      },
-      "inventory": [
-        5322,
-        5314
-      ]
-    },
-    "5399": {
-      "vnum": 5399,
-      "name": "ghostly servant",
-      "short_desc": "a ghostly pharaoh's servant",
-      "long_desc": "The translucent shade of a pharaoh's servant drifts here, endlessly sweeping with a spectral broom.",
-      "description": "Its form flickers like a candle in the wind. Ancient linen wrappings trail behind it, and its hollow eyes stare through you as if seeing another time entirely.",
-      "level": 40,
-      "alignment": 0,
-      "hp_dice": "40d10+800",
-      "damage_dice": "1d4+1",
-      "gold": 0,
-      "exp": 0,
-      "armor_class": 100,
-      "flags": [
-        "sentinel"
-      ],
-      "special": "flavor_npc",
-      "talk_responses": {
-        "hello": "The ghost pauses its eternal sweeping. 'The master sleeps... but not peacefully. His tomb was sealed with blood and bone. Those who disturb his rest join his court \u2014 forever. The pharaoh's curse is not metaphor, traveler. It is promise.'",
-        "pharaoh": "The ghost's voice echoes. 'He was a god among men, and cruel as the desert sun. Even death could not humble him. His treasure room lies in the deepest chamber, but the way is guarded by those who served him in life... and now in death.'",
-        "default": "The ghostly servant resumes sweeping, murmuring in a forgotten language."
-      },
-      "inventory": [
-        5300,
-        9202
-      ]
+    "up": {
+     "to_room": 5302,
+     "description": "The steep slope of the pyramid rises up before you."
     }
+   }
   },
-  "objects": {
-    "5300": {
-      "vnum": 5300,
-      "name": "mace",
-      "short_desc": "an egyptian mace",
-      "room_desc": "A hierogylph-engraved mace has been left here.",
-      "item_type": "weapon",
-      "weight": 10,
-      "value": 800,
-      "damage_dice": "2d6",
-      "weapon_type": "pound",
-      "type": "weapon"
+  "5302": {
+   "vnum": 5302,
+   "name": "Climbing The Great Pyramid",
+   "map": {
+    "x": 9,
+    "y": 19,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "extra_descs": {
+    "": "pyramid"
+   },
+   "mob_resets": [
+    {
+     "vnum": 5300,
+     "max": 6
     },
-    "5301": {
-      "vnum": 5301,
-      "name": "robe",
-      "short_desc": "some sand-colored robes",
-      "room_desc": "Sand-colored robes lie here.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 500,
-      "armor_bonus": 4,
-      "type": "armor",
-      "wear_slot": "body",
-      "armor": 1,
-      "armor_class": 2
-    },
-    "5302": {
-      "vnum": 5302,
-      "name": "dirk",
-      "short_desc": "an obsidian dirk",
-      "room_desc": "A flat dirk made of chipped obsidian lies here.",
-      "item_type": "weapon",
-      "weight": 8,
-      "value": 1000,
-      "damage_dice": "3d3",
-      "weapon_type": "pierce",
-      "type": "weapon"
-    },
-    "5303": {
-      "vnum": 5303,
-      "name": "turban",
-      "short_desc": "a dirty cloth turban",
-      "room_desc": "A dirty cloth turban has been forgotten here.",
-      "item_type": "armor",
-      "weight": 10,
-      "value": 1500,
-      "armor_bonus": 5,
-      "type": "armor",
-      "wear_slot": "head",
-      "armor": 2,
-      "armor_class": 2
-    },
-    "5304": {
-      "vnum": 5304,
-      "name": "wrappings",
-      "short_desc": "some cloth wrappings",
-      "room_desc": "Long cloth wrappings lie on the ground in a pile.",
-      "item_type": "armor",
-      "weight": 15,
-      "value": 1250,
-      "armor_bonus": 5,
-      "type": "treasure",
-      "armor": 6
-    },
-    "5305": {
-      "vnum": 5305,
-      "name": "bottle",
-      "short_desc": "a bottle of embalming fluid",
-      "room_desc": "A dusty bottle lies here on the ground.",
-      "item_type": "potion",
-      "weight": 5,
-      "value": 250,
-      "type": "drink",
-      "drinks": 10,
-      "max_drinks": 10
-    },
-    "5306": {
-      "vnum": 5306,
-      "name": "jar",
-      "short_desc": "a jar of formaldehyde",
-      "room_desc": "A small jar lies here on the ground.",
-      "item_type": "potion",
-      "weight": 6,
-      "value": 300,
-      "type": "treasure"
-    },
-    "5307": {
-      "vnum": 5307,
-      "name": "ball",
-      "short_desc": "a small hot ball of fire",
-      "room_desc": "A little ball of fire hovers in the air before your eyes.",
-      "item_type": "light",
-      "weight": 10,
-      "value": 3500,
-      "light_hours": -1,
-      "type": "treasure"
-    },
-    "5308": {
-      "vnum": 5308,
-      "name": "scimitar",
-      "short_desc": "a stone scimitar",
-      "room_desc": "A curved scimitar made of stone rests on the ground.",
-      "item_type": "weapon",
-      "weight": 18,
-      "value": 10000,
-      "damage_dice": "4d3",
-      "weapon_type": "slash",
-      "type": "weapon"
-    },
-    "5309": {
-      "vnum": 5309,
-      "name": "key",
-      "short_desc": "a stone key",
-      "room_desc": "A stone key has been dropped here.",
-      "item_type": "key",
-      "weight": 15,
-      "value": 0,
-      "type": "key"
-    },
-    "5310": {
-      "vnum": 5310,
-      "name": "sarcophagus",
-      "short_desc": "a mighty stone sarcophagus",
-      "room_desc": "A mighty stone sarcophagus lies in the center of the tomb.",
-      "item_type": "container",
-      "weight": 5000,
-      "value": 5000,
-      "capacity": 500,
-      "key_vnum": 5309,
-      "type": "treasure"
-    },
-    "5311": {
-      "vnum": 5311,
-      "name": "dust",
-      "short_desc": "some ancient dust",
-      "room_desc": "A small pile of dust is being scattered by the breeze.",
-      "item_type": "treasure",
-      "weight": 1,
-      "value": 1,
-      "type": "trash"
-    },
-    "5312": {
-      "vnum": 5312,
-      "name": "scarab",
-      "short_desc": "a small emerald scarab",
-      "room_desc": "A small emerald scarab lies here on the ground.",
-      "item_type": "key",
-      "weight": 5,
-      "value": 0,
-      "type": "treasure"
-    },
-    "5313": {
-      "vnum": 5313,
-      "name": "lamp",
-      "short_desc": "the lamp",
-      "room_desc": "A small, tarnished, battered lamp has been dropped here.",
-      "item_type": "staff",
-      "weight": 10,
-      "value": 25000,
-      "type": "light",
-      "light_hours": 24
-    },
-    "5314": {
-      "vnum": 5314,
-      "name": "ankh",
-      "short_desc": "an ankh",
-      "room_desc": "A small brass ankh has been left here.",
-      "item_type": "armor",
-      "weight": 9,
-      "value": 10000,
-      "armor_bonus": 7,
-      "type": "treasure",
-      "armor": 9
-    },
-    "5315": {
-      "vnum": 5315,
-      "name": "book",
-      "short_desc": "a book of riddles",
-      "room_desc": "A medium-sized parchment book with well-worn pages lies here.",
-      "item_type": "scroll",
-      "weight": 15,
-      "value": 7500,
-      "type": "furniture"
-    },
-    "5316": {
-      "vnum": 5316,
-      "name": "paw",
-      "short_desc": "a lion's paw",
-      "room_desc": "The mighty paw of a lion-like creature has been dropped here.",
-      "item_type": "weapon",
-      "weight": 20,
-      "value": 18000,
-      "damage_dice": "1d14",
-      "weapon_type": "bludgeon",
-      "type": "treasure"
-    },
-    "5317": {
-      "vnum": 5317,
-      "name": "parchment",
-      "short_desc": "the answer",
-      "room_desc": "A small piece of parchment covered in hieroglyphics lies here.",
-      "item_type": "key",
-      "weight": 1,
-      "value": 1,
-      "type": "note"
-    },
-    "5318": {
-      "vnum": 5318,
-      "name": "treasure",
-      "short_desc": "the treasure of the sphinx",
-      "room_desc": "The massive treasure of the sphinx lies here in a big pile.",
-      "item_type": "money",
-      "weight": 23,
-      "value": 23850,
-      "type": "treasure"
-    },
-    "5319": {
-      "vnum": 5319,
-      "name": "sand",
-      "short_desc": "a pile of sand",
-      "room_desc": "You see a small pile of sand.",
-      "item_type": "money",
-      "weight": 12,
-      "value": 12986,
-      "type": "trash"
-    },
-    "5320": {
-      "vnum": 5320,
-      "name": "golden armor of the pharaoh",
-      "short_desc": "golden armor of the pharaoh",
-      "room_desc": "Gleaming golden armor lies here.",
-      "description": "Ancient golden armor inscribed with hieroglyphs.",
-      "item_type": "armor",
-      "weight": 8,
-      "value": 6000,
-      "wear_slot": "body",
-      "armor_class": 7,
-      "affects": [
-        {
-          "type": "wis",
-          "value": 2
-        }
-      ],
-      "set_id": "pharaohs_legacy",
-      "type": "armor",
-      "min_level": 25,
-      "armor": 7
-    },
-    "5321": {
-      "vnum": 5321,
-      "name": "pharaoh's crown",
-      "short_desc": "a pharaoh's crown",
-      "room_desc": "A golden crown rests here.",
-      "description": "A crown of the ancient pharaohs.",
-      "item_type": "armor",
-      "weight": 2,
-      "value": 5000,
-      "wear_slot": "head",
-      "armor_class": 4,
-      "affects": [
-        {
-          "type": "int",
-          "value": 2
-        }
-      ],
-      "set_id": "pharaohs_legacy",
-      "type": "armor",
-      "min_level": 25,
-      "armor": 5
-    },
-    "5322": {
-      "vnum": 5322,
-      "name": "pharaoh's scepter",
-      "short_desc": "a pharaoh's scepter",
-      "room_desc": "A golden scepter lies here.",
-      "description": "A jeweled scepter of power.",
-      "item_type": "weapon",
-      "weight": 4,
-      "value": 5500,
-      "wear_slot": "wield",
-      "weapon_type": "pound",
-      "damage_dice": "2d6+5",
-      "affects": [
-        {
-          "type": "wis",
-          "value": 2
-        }
-      ],
-      "set_id": "pharaohs_legacy",
-      "type": "weapon",
-      "min_level": 25
-    },
-    "5323": {
-      "vnum": 5323,
-      "name": "pharaoh's sandals",
-      "short_desc": "a pair of pharaoh's sandals",
-      "room_desc": "Golden sandals lie here.",
-      "description": "Ornate golden sandals.",
-      "item_type": "armor",
-      "weight": 1,
-      "value": 3500,
-      "wear_slot": "feet",
-      "armor_class": 3,
-      "affects": [
-        {
-          "type": "max_mana",
-          "value": 15
-        }
-      ],
-      "set_id": "pharaohs_legacy",
-      "type": "armor",
-      "min_level": 25,
-      "armor": 8
-    },
-    "5324": {
-      "vnum": 5324,
-      "name": "wand",
-      "short_desc": "a blazing sun wand",
-      "room_desc": "A small length of brass pipe shines here with its own light.",
-      "item_type": "wand",
-      "weight": 10,
-      "value": 25000,
-      "type": "wand"
-    },
-    "5325": {
-      "vnum": 5325,
-      "name": "ring",
-      "short_desc": "a sandy-coloured ring",
-      "room_desc": "A small sandy-coloured ring has been carelessly dropped here.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 20000,
-      "armor_bonus": 8,
-      "type": "armor",
-      "wear_slot": "finger",
-      "armor": 9,
-      "armor_class": 4
-    },
-    "5326": {
-      "vnum": 5326,
-      "name": "sphinx",
-      "short_desc": "a small golden sphinx",
-      "room_desc": "A small golden sphinx glints in the light.",
-      "item_type": "treasure",
-      "weight": 5,
-      "value": 50000,
-      "type": "treasure"
-    },
-    "5327": {
-      "vnum": 5327,
-      "name": "leggings",
-      "short_desc": "a pair of sphinxian leggings",
-      "room_desc": "Massive leggings formed from the body of a sphinx stand here.",
-      "item_type": "armor",
-      "weight": 20,
-      "value": 20000,
-      "armor_bonus": 10,
-      "type": "armor",
-      "wear_slot": "legs",
-      "armor": 2,
-      "armor_class": 4
-    },
-    "5328": {
-      "vnum": 5328,
-      "name": "a necromancer staff",
-      "short_desc": "a necromancer staff",
-      "room_desc": "A blackwood staff hums with dark power.",
-      "type": "weapon",
-      "weight": 6,
-      "cost": 1800,
-      "damage_dice": "2d6+3",
-      "weapon_type": "blunt"
-    },
-    "5329": {
-      "vnum": 5329,
-      "name": "a bone-etched grimoire",
-      "short_desc": "a bone-etched grimoire",
-      "room_desc": "A grimoire bound in bone lies here.",
-      "type": "treasure",
-      "weight": 3,
-      "cost": 1500
-    },
-    "5330": {
-      "vnum": 5330,
-      "name": "a shroud of the crypt",
-      "short_desc": "a shroud of the crypt",
-      "room_desc": "A shroud woven from shadowy cloth rests here.",
-      "type": "armor",
-      "weight": 4,
-      "cost": 1600,
-      "armor": 8,
-      "wear_slot": "body",
-      "armor_class": 4
-    },
-    "9201": {
-      "vnum": 9201,
-      "name": "aegis of the tempest",
-      "short_desc": "\u001b[33mthe \u001b[93mAegis\u001b[0m\u001b[33m of the Tempest\u001b[0m",
-      "room_desc": "\u001b[33mA bronze \u001b[93mAegis\u001b[0m\u001b[33m crackling with static lies here.\u001b[0m",
-      "description": "A paladin\u2019s shield forged in stormfire.",
-      "item_type": "armor",
-      "wear_slot": "shield",
-      "armor_bonus": 6,
-      "weight": 10,
-      "value": 17000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "wis",
-          "value": 2
-        },
-        {
-          "type": "cha",
-          "value": 2
-        }
-      ],
-      "set_id": 53,
-      "type": "armor",
-      "armor": 3,
-      "armor_class": 4
-    },
-    "9202": {
-      "vnum": 9202,
-      "name": "stormcaller reliquary",
-      "short_desc": "\u001b[33ma stormcaller \u001b[93mreliquary\u001b[0m\u001b[33m\u001b[0m",
-      "room_desc": "\u001b[33mA \u001b[93mreliquary\u001b[0m\u001b[33m etched with lightning sigils rests here.\u001b[0m",
-      "description": "A cleric\u2019s relic humming with divine thunder.",
-      "item_type": "armor",
-      "wear_slot": "neck1",
-      "armor_bonus": 2,
-      "weight": 2,
-      "value": 15000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "wis",
-          "value": 3
-        },
-        {
-          "type": "max_mana",
-          "value": 40
-        }
-      ],
-      "set_id": 53,
-      "type": "treasure",
-      "armor": 10
-    },
-    "9203": {
-      "vnum": 9203,
-      "name": "scale of the bronze dragon",
-      "short_desc": "\u001b[33ma scale of the bronze dragon\u001b[0m",
-      "room_desc": "\u001b[33mA bronze dragon scale lies here, warm with stormlight.\u001b[0m",
-      "description": "A storm\u2011kissed scale from Aurexus.",
-      "item_type": "armor",
-      "wear_slot": "neck1",
-      "armor_bonus": 4,
-      "weight": 2,
-      "value": 15000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "spell_resist",
-          "value": 5
-        }
-      ],
-      "set_id": 53,
-      "type": "treasure",
-      "armor": 14
-    },
-    "9204": {
-      "vnum": 9204,
-      "name": "ankh\u2011forged blade",
-      "short_desc": "\u001b[33man ankh\u2011forged \u001b[91mblade\u001b[0m\u001b[33m\u001b[0m",
-      "room_desc": "\u001b[33mAn ankh\u2011forged \u001b[91mblade\u001b[0m\u001b[33m lies here.\u001b[0m",
-      "description": "A relic blade.",
-      "item_type": "weapon",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "wield",
-      "weapon_type": "slash",
-      "damage_dice": "2d6+6",
-      "affects": [
-        {
-          "type": "damroll",
-          "value": 4
-        }
-      ],
-      "set_id": 53,
-      "type": "weapon"
-    },
-    "9205": {
-      "vnum": 9205,
-      "name": "solar aegis",
-      "short_desc": "\u001b[33ma solar \u001b[93maegis\u001b[0m\u001b[33m\u001b[0m",
-      "room_desc": "\u001b[33mA solar \u001b[93maegis\u001b[0m\u001b[33m lies here.\u001b[0m",
-      "description": "A paladin's shield.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "shield",
-      "armor_bonus": 3,
-      "affects": [
-        {
-          "type": "wis",
-          "value": 1
-        }
-      ],
-      "set_id": 53,
-      "type": "armor",
-      "armor": 3,
-      "armor_class": 4
-    },
-    "9206": {
-      "vnum": 9206,
-      "name": "pharaoh's sigil",
-      "short_desc": "\u001b[33ma pharaoh's \u001b[35msigil\u001b[0m\u001b[33m\u001b[0m",
-      "room_desc": "\u001b[33mA pharaoh's \u001b[35msigil\u001b[0m\u001b[33m lies here.\u001b[0m",
-      "description": "A deathknight's sigil.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "neck1",
-      "affects": [
-        {
-          "type": "damroll",
-          "value": 4
-        }
-      ],
-      "set_id": 53,
-      "type": "treasure",
-      "armor": 9
-    },
-    "9207": {
-      "vnum": 9207,
-      "name": "scarab relic",
-      "short_desc": "\u001b[33ma scarab \u001b[93mrelic\u001b[0m\u001b[33m\u001b[0m",
-      "room_desc": "\u001b[33mA scarab \u001b[93mrelic\u001b[0m\u001b[33m lies here.\u001b[0m",
-      "description": "A cleric's relic.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "hold",
-      "affects": [
-        {
-          "type": "wis",
-          "value": 3
-        },
-        {
-          "type": "max_mana",
-          "value": 35
-        }
-      ],
-      "set_id": 53,
-      "type": "treasure",
-      "armor": 7
-    },
-    "9208": {
-      "vnum": 9208,
-      "name": "sandglass focus",
-      "short_desc": "\u001b[33ma sandglass \u001b[96mfocus\u001b[0m\u001b[33m\u001b[0m",
-      "room_desc": "\u001b[33mA sandglass \u001b[96mfocus\u001b[0m\u001b[33m lies here.\u001b[0m",
-      "description": "A mage's focus.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "hold",
-      "affects": [
-        {
-          "type": "int",
-          "value": 4
-        }
-      ],
-      "set_id": 53,
-      "type": "treasure",
-      "armor": 7
-    },
-    "9209": {
-      "vnum": 9209,
-      "name": "desert harp",
-      "short_desc": "\u001b[33ma desert \u001b[95mharp\u001b[0m\u001b[33m\u001b[0m",
-      "room_desc": "\u001b[33mA desert \u001b[95mharp\u001b[0m\u001b[33m lies here.\u001b[0m",
-      "description": "A bard's harp.",
-      "item_type": "weapon",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "wield",
-      "weapon_type": "mace",
-      "damage_dice": "1d6+3",
-      "affects": [
-        {
-          "type": "cha",
-          "value": 3
-        }
-      ],
-      "set_id": 53,
-      "type": "treasure"
-    },
-    "9210": {
-      "vnum": 9210,
-      "name": "tombknife",
-      "short_desc": "\u001b[33ma tomb\u001b[92mknife\u001b[0m\u001b[33m\u001b[0m",
-      "room_desc": "\u001b[33mA tomb\u001b[92mknife\u001b[0m\u001b[33m lies here.\u001b[0m",
-      "description": "A rogue's knife.",
-      "item_type": "weapon",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "wield",
-      "weapon_type": "pierce",
-      "damage_dice": "1d6+3",
-      "affects": [
-        {
-          "type": "dex",
-          "value": 3
-        },
-        {
-          "type": "hitroll",
-          "value": 1
-        }
-      ],
-      "set_id": 53,
-      "type": "weapon"
-    },
-    "9211": {
-      "vnum": 9211,
-      "name": "dune\u2011hunter band",
-      "short_desc": "\u001b[33ma dune\u2011hunter \u001b[92mband\u001b[0m\u001b[33m\u001b[0m",
-      "room_desc": "\u001b[33mA dune\u2011hunter \u001b[92mband\u001b[0m\u001b[33m lies here.\u001b[0m",
-      "description": "A ranger's ring.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "finger1",
-      "affects": [
-        {
-          "type": "dex",
-          "value": 2
-        },
-        {
-          "type": "hitroll",
-          "value": 1
-        }
-      ],
-      "set_id": 53,
-      "type": "armor",
-      "armor": 9,
-      "armor_class": 4
-    },
-    "9212": {
-      "vnum": 9212,
-      "name": "scarab mantle",
-      "short_desc": "\u001b[33ma scarab mantle\u001b[0m",
-      "room_desc": "\u001b[33mA scarab mantle lies here.\u001b[0m",
-      "description": "A cursed mantle.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "about",
-      "armor_bonus": 2,
-      "affects": [
-        {
-          "type": "curse_resist",
-          "value": 10
-        }
-      ],
-      "set_id": 53,
-      "type": "armor",
-      "armor": 1,
-      "armor_class": 4
-    },
-    "53090": {
-      "vnum": 53090,
-      "name": "boots of the bronze whisper",
-      "short_desc": "\u001b[93mboots of the bronze whisper\u001b[0m",
-      "room_desc": "\u001b[93mA pair of bronze\u2011stitched boots rests here.\u001b[0m",
-      "description": "Soft\u2011soled boots that hush each step like distant thunder.",
-      "item_type": "armor",
-      "wear_slot": "feet",
-      "armor_bonus": 3,
-      "weight": 2,
-      "value": 18000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "sneak",
-          "value": 7
-        }
-      ],
-      "type": "armor",
-      "armor": 2,
-      "armor_class": 3
-    },
-    "53091": {
-      "vnum": 53091,
-      "name": "stormblessed signet",
-      "short_desc": "\u001b[93mthe stormblessed signet\u001b[0m",
-      "room_desc": "\u001b[93mA crackling signet ring lies here.\u001b[0m",
-      "description": "A signet that channels holy thunder into your smite.",
-      "item_type": "armor",
-      "wear_slot": "finger1",
-      "armor_bonus": 1,
-      "weight": 1,
-      "value": 22000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "smite",
-          "value": 12
-        }
-      ],
-      "type": "armor",
-      "armor": 14,
-      "armor_class": 4
-    },
-    "53092": {
-      "vnum": 53092,
-      "name": "auric clasp",
-      "short_desc": "\u001b[93mthe auric clasp\u001b[0m",
-      "room_desc": "\u001b[93mA sun\u2011etched clasp rests here.\u001b[0m",
-      "description": "A clasp that strengthens the spell Heal.",
-      "item_type": "armor",
-      "wear_slot": "neck1",
-      "armor_bonus": 1,
-      "weight": 1,
-      "value": 22000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "heal",
-          "value": 12
-        }
-      ],
-      "type": "treasure",
-      "armor": 10
-    },
-    "53093": {
-      "vnum": 53093,
-      "name": "sunward sigil",
-      "short_desc": "\u001b[93mthe sunward sigil\u001b[0m",
-      "room_desc": "\u001b[93mA radiant sigil rests here.\u001b[0m",
-      "description": "A sigil that empowers holy smite.",
-      "item_type": "armor",
-      "wear_slot": "neck2",
-      "armor_bonus": 1,
-      "weight": 1,
-      "value": 24000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "holy_smite",
-          "value": 12
-        }
-      ],
-      "type": "treasure",
-      "armor": 8
+    {
+     "vnum": 5300,
+     "max": 6
     }
+   ],
+   "flags": [],
+   "description": "Hot air rises off the sides of the pyramid, and the wind chokes you with\na flurry of sand and dust. So far you have made it halfway up the side.\nThe walls of the pyramid are quite steep. Snow clings to shadowed\ncrevices. Bare rock dominates the landscape.",
+   "exits": {
+    "north": {
+     "to_room": 5303,
+     "description": "If you are daring you could try to skirt around to the northern side."
+    },
+    "down": {
+     "to_room": 5301,
+     "description": "Far below you are the burning sands of the desert."
+    }
+   }
+  },
+  "5303": {
+   "vnum": 5303,
+   "name": "Climbing The Great Pyramid",
+   "map": {
+    "x": 9,
+    "y": 20,
+    "z": 1
+   },
+   "sector_type": "mountain",
+   "extra_descs": {
+    "": "pyramid"
+   },
+   "mob_resets": [
+    {
+     "vnum": 5301,
+     "max": 4
+    }
+   ],
+   "flags": [],
+   "description": "Hot air rises off the sides of the pyramid, and the wind chokes you with\na flurry of sand and dust. The walls of the pyramid are quite steep, and\nThe area is having trouble keeping from sliding down into the sands\nbelow. The air is thin and cold at this altitude. The wind howls around\nexposed peaks.",
+   "exits": {
+    "north": {
+     "to_room": 80304,
+     "description": "To the north lies Climbing The Great Pyramid."
+    },
+    "south": {
+     "to_room": 5302
+    }
+   }
+  },
+  "80304": {
+   "vnum": 80304,
+   "name": "Climbing The Great Pyramid",
+   "map": {
+    "x": 9,
+    "y": 21,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 80305,
+     "description": "To the east lies Climbing The Great Pyramid."
+    },
+    "south": {
+     "to_room": 5303,
+     "description": "To the south lies Climbing The Great Pyramid."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "80305": {
+   "vnum": 80305,
+   "name": "Climbing The Great Pyramid",
+   "map": {
+    "x": 10,
+    "y": 21,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 80304,
+     "description": "To the west lies Climbing The Great Pyramid."
+    },
+    "up": {
+     "to_room": 5306,
+     "description": "To the up lies The Apex Of The Great Pyramid."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead west and up.",
+   "placeholder": true
+  },
+  "5306": {
+   "vnum": 5306,
+   "name": "The Apex Of The Great Pyramid",
+   "map": {
+    "x": 11,
+    "y": 22,
+    "z": 1
+   },
+   "sector_type": "city",
+   "extra_descs": {
+    "": "plaque"
+   },
+   "mob_resets": [
+    {
+     "vnum": 5302,
+     "max": 3
+    }
+   ],
+   "flags": [],
+   "description": "Bathed in sweat, you have managed to reach the summit of the great\npyramid. The four sides of the pyramid slope sharply down into the hot\nsands in all four cardinal directions. A plaque has been set into the\nsandy stones beneath your feet. The sounds of city life echo around.\nThe cobblestones are worn smooth by countless feet.",
+   "exits": {
+    "east": {
+     "to_room": 5308,
+     "description": "To the east lies A Ladder."
+    },
+    "west": {
+     "to_room": 5306,
+     "description": "To the west lies The Apex Of The Great Pyramid."
+    },
+    "down": {
+     "to_room": 80305,
+     "description": "To the down lies Climbing The Great Pyramid."
+    }
+   }
+  },
+  "5308": {
+   "vnum": 5308,
+   "name": "A Ladder",
+   "map": {
+    "x": 20,
+    "y": 22,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_mob"
+   ],
+   "extra_descs": {
+    "": "stones"
+   },
+   "description": "The area is climbing an ancient ladder that leads down into the depths\nof the pyramid. The air around is thick with layers of dust and a\nstrange musty smell. above you see tiny beams of light coming through\nthe stones of the ceiling. Dust motes drift in the stale air. The air is\nstill and musty.",
+   "exits": {
+    "west": {
+     "to_room": 5306,
+     "description": "To the west lies The Apex Of The Great Pyramid."
+    },
+    "down": {
+     "to_room": 5309,
+     "description": "You see a small dusty chamber."
+    }
+   }
+  },
+  "5309": {
+   "vnum": 5309,
+   "name": "A Musty Chamber",
+   "map": {
+    "x": 16,
+    "y": 18,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "sigils hieroglyphs inscriptions writing"
+   },
+   "mob_resets": [
+    {
+     "vnum": 5303,
+     "max": 6
+    },
+    {
+     "vnum": 5303,
+     "max": 6
+    }
+   ],
+   "description": "This is a dank, musty chamber just inside the pyramid. Footprints and\nother strange marks are set into the dusty floor here. It would seem\nthat some of the tenants of this monument are still alive. Exits lead in\nall directions. The door to the west is covered with inscriptions.\nShadows gather in the corners. The walls are rough-hewn and cold to the\ntouch.",
+   "exits": {
+    "north": {
+     "to_room": 5312,
+     "description": "You see a tiny crawlway raised about three feet off the ground."
+    },
+    "east": {
+     "to_room": 5339,
+     "description": "A dust-covered hallway leads off to the east."
+    },
+    "south": {
+     "to_room": 5324,
+     "description": "You see a small crack in the wall through which you might be able to slide."
+    },
+    "west": {
+     "to_room": 5310,
+     "description": "You see a large stone door, covered in sigils and hieroglyphs.",
+     "door": {
+      "name": "door stone",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "up": {
+     "to_room": 5308,
+     "description": "A small rickety ladder leads up."
+    }
+   }
+  },
+  "5310": {
+   "vnum": 5310,
+   "name": "The Fire Pool",
+   "map": {
+    "x": 15,
+    "y": 18,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_mob"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5398,
+     "max": 1
+    }
+   ],
+   "description": "This room is dominated by a massive raised pool that is filled with not\nwater but flames of intense heat. The multicoloured flames lick out at\nyou, searching for things to burn. The pool proceeds to the east into a\nsmall chamber. The walls are rough-hewn and cold to the touch. The air\nis still and musty.",
+   "exits": {
+    "east": {
+     "to_room": 5309,
+     "description": "You see a large stone door.",
+     "door": {
+      "name": "door stone",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "west": {
+     "to_room": 5311,
+     "description": "You see a small chamber filled with fire."
+    }
+   }
+  },
+  "5311": {
+   "vnum": 5311,
+   "name": "The Chamber Of The Efreet",
+   "map": {
+    "x": 14,
+    "y": 18,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5309,
+     "max": 1
+    }
+   ],
+   "description": "You make your way across the fire pool, and into a small stone chamber.\nHere the flames are nearly as high as your head, singeing your face and\nevaporating your sweat instantaneously. The depths are dark and\nunknowable. Waves crash and foam relentlessly.",
+   "exits": {
+    "east": {
+     "to_room": 5310,
+     "description": "The pool of fire ends to the east."
+    }
+   }
+  },
+  "5312": {
+   "vnum": 5312,
+   "name": "A Tiny Crawlway",
+   "map": {
+    "x": 16,
+    "y": 20,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "You have to go down onto your hands and knees to fit inside this tiny\nspace. The crawlway is thick with sand and dust, and markings of the\npassage of other creatures. The ceiling hangs low overhead. Dust motes\ndrift in the stale air.",
+   "exits": {
+    "north": {
+     "to_room": 5313,
+     "description": "The crawlway continues to the north."
+    },
+    "south": {
+     "to_room": 5309,
+     "description": "The crawlway ends to the south in a musty chamber."
+    },
+    "up": {
+     "to_room": 5337,
+     "description": "A small hole above your head leads into a dank chamber."
+    }
+   }
+  },
+  "5313": {
+   "vnum": 5313,
+   "name": "A Tiny Crawlway",
+   "map": {
+    "x": 16,
+    "y": 21,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5300,
+     "max": 6
+    }
+   ],
+   "description": "The area is your hands and knees, inside a small crawlway that winds\nthrough the inside of the pyramid. The crawlway is thick with sand,\ndust, and markings of the passage of other creatures. The walls are\nrough-hewn and cold to the touch. Shadows gather in the corners.",
+   "exits": {
+    "south": {
+     "to_room": 5312,
+     "description": "The crawlway continues to the south."
+    },
+    "west": {
+     "to_room": 5314,
+     "description": "The crawlway continues to the west."
+    }
+   }
+  },
+  "5314": {
+   "vnum": 5314,
+   "name": "A Tiny Crawlway",
+   "map": {
+    "x": 15,
+    "y": 21,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The area is your hands and knees, inside a small crawlway that winds\nthrough the inside of the pyramid. The crawlway is thick with sand,\ndust, and markings of the passage of other creatures. Dust motes drift\nin the stale air. The walls are rough-hewn and cold to the touch.",
+   "exits": {
+    "east": {
+     "to_room": 5313,
+     "description": "The crawlway continues to the east."
+    },
+    "west": {
+     "to_room": 5315,
+     "description": "The crawlway gets a little tighter to the west."
+    }
+   }
+  },
+  "5315": {
+   "vnum": 5315,
+   "name": "A Tightening In The Crawlway",
+   "map": {
+    "x": 14,
+    "y": 21,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "Here you are forced to slide on your belly through a particularly tight\nsection of the crawlway, as the stones of the pyramid close together\nabout you. below is a small, slippery-looking hole that plummets\ninto blackness. Dust motes drift in the stale air. Shadows gather in the\ncorners.",
+   "exits": {
+    "east": {
+     "to_room": 5314,
+     "description": "The crawlway gets a little larger to the east."
+    },
+    "south": {
+     "to_room": 5316,
+     "description": "The crawlway continues to diminish in size to the south."
+    },
+    "down": {
+     "to_room": 5317,
+     "description": "The hole looks very slippery and very dark."
+    }
+   }
+  },
+  "5316": {
+   "vnum": 5316,
+   "name": "The Crawlway's End",
+   "map": {
+    "x": 14,
+    "y": 20,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5302,
+     "max": 3
+    }
+   ],
+   "description": "The crawlway shrinks away to nothing as the sandy stones of the pyramid\nclose together into a space through which only a snake could fit. There\nis barely enough space to turn around and make your way back through the\ntiny crawlway to the north. The walls are rough-hewn and cold to the\ntouch. Shadows gather in the corners.",
+   "exits": {
+    "north": {
+     "to_room": 5315,
+     "description": "The crawlway gets a little larger to the north."
+    }
+   }
+  },
+  "5317": {
+   "vnum": 5317,
+   "name": "A Slippery Hole",
+   "map": {
+    "x": 12,
+    "y": 19,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors",
+    "no_mob"
+   ],
+   "extra_descs": {
+    "": "bones"
+   },
+   "description": "The sides of this hole are slippery-smooth. You lower yourself in, and\nproceed to move downward... when suddenly you lose your purchase! You\nfall for what seems like an eternity, and smash into the stones below...\nUnder The Hole You are in a small chamber underneath the slippery hole,\nfar below the pyramid now. The floor is strewn with bones. To the south\nis a small rocky crevasse. Shadows gather in the corners. Dust motes\ndrift in the stale air.",
+   "exits": {
+    "south": {
+     "to_room": 5318,
+     "description": "To the south lies Under The Hole."
+    },
+    "up": {
+     "to_room": 5315,
+     "description": "To the up lies A Tightening In The Crawlway."
+    }
+   }
+  },
+  "5318": {
+   "vnum": 5318,
+   "name": "Under The Hole",
+   "map": {
+    "x": 12,
+    "y": 18,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "bones"
+   },
+   "description": "This is a small chamber underneath the slippery hole, far below the\npyramid now. The floor is strewn with bones. To the south is a small\nrocky crevasse. Shadows gather in the corners. Dust motes drift in the\nstale air.",
+   "exits": {
+    "north": {
+     "to_room": 5317,
+     "description": "To the north lies A Slippery Hole."
+    },
+    "south": {
+     "to_room": 5319,
+     "description": "You see a rocky crevasse that proceeds deep under the pyramid."
+    }
+   }
+  },
+  "5319": {
+   "vnum": 5319,
+   "name": "A Rough Crevasse",
+   "map": {
+    "x": 12,
+    "y": 17,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "rough"
+   },
+   "obj_resets": [
+    {
+     "vnum": 5323,
+     "max": 1
+    }
+   ],
+   "description": "The area is now exploring deep within a strange rocky crevasse that\nplunges down into the rock on which the pyramid was constructed. To the\nsouth you see the flickering light of a fire, and the crevasse proceeds\ndownward. The ceiling hangs low overhead. The walls are rough-hewn and\ncold to the touch.",
+   "exits": {
+    "north": {
+     "to_room": 5318,
+     "description": "You see a small stone chamber littered with bones."
+    },
+    "south": {
+     "to_room": 5320,
+     "description": "You see the flickering light of a small fire."
+    },
+    "down": {
+     "to_room": 5321,
+     "description": "The crevasse continues downward into total darkness."
+    }
+   }
+  },
+  "5320": {
+   "vnum": 5320,
+   "name": "A Small Fire",
+   "map": {
+    "x": 12,
+    "y": 16,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "man old"
+   },
+   "mob_resets": [
+    {
+     "vnum": 5399,
+     "max": 1
+    }
+   ],
+   "description": "Here a small fire burns in a nook in the rocks, providing some warmth\nand comforting light in the cold, dark, dry air. Standing here is a\nstrange-looking old man, who stares at you balefully. The walls are\nrough-hewn and cold to the touch. The ceiling hangs low overhead.",
+   "exits": {
+    "north": {
+     "to_room": 5319,
+     "description": "You see a massive crevasse that plunges into darkness."
+    }
+   }
+  },
+  "5321": {
+   "vnum": 5321,
+   "name": "Down The Crevasse",
+   "map": {
+    "x": 11,
+    "y": 16,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The crevasse proceeds downward into the dark depths of the earth. The\nair about you is now cold and quite dry, and your light source gutters\nin a cool breeze that wafts up from below. The walls are rough-hewn and\ncold to the touch. The air is still and musty.",
+   "exits": {
+    "up": {
+     "to_room": 5319,
+     "description": "It is too dark for you to see any further along the crevasse."
+    },
+    "down": {
+     "to_room": 5322,
+     "description": "It is too dark for you to see any further along the crevasse."
+    }
+   }
+  },
+  "5322": {
+   "vnum": 5322,
+   "name": "At The Crevasse's End",
+   "map": {
+    "x": 10,
+    "y": 15,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "tiger head animal sesame"
+   },
+   "description": "Here the crevasse comes to an abrupt end. A chilling wind howls at your\nface from a black shape to the south, but the light from your source is\ntoo dim to see exactly what it is. The air is still and musty. The\nceiling hangs low overhead.",
+   "exits": {
+    "south": {
+     "to_room": 5323,
+     "description": "You see a strange-looking black shape.",
+     "door": {
+      "name": "sesame",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 5323
+     }
+    },
+    "up": {
+     "to_room": 5321,
+     "description": "It is too dark for you to see anything along the crevasse."
+    }
+   }
+  },
+  "5323": {
+   "vnum": 5323,
+   "name": "The Vault Of The Lamp",
+   "map": {
+    "x": 10,
+    "y": 14,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "treasure gold coins valuables"
+   },
+   "mob_resets": [
+    {
+     "vnum": 5306,
+     "max": 1
+    },
+    {
+     "vnum": 5311,
+     "max": 1
+    }
+   ],
+   "description": "The jaws of the massive stone tiger part wide to reveal a great vault.\nAn arched ceiling lies far above your head... and all about you is a low\nguttural rumbling noise and a chill wind. Giant heaps of ancient\ntreasure, gold coins, and valuables surround you on all sides. The air\nis still and musty. The ceiling hangs low overhead.",
+   "exits": {
+    "north": {
+     "to_room": 5322,
+     "description": "Through the jaws of the tiger you see the blackness of the crevasse.",
+     "door": {
+      "name": "north door",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 5323
+     }
+    }
+   }
+  },
+  "5324": {
+   "vnum": 5324,
+   "name": "A Crack In The Wall",
+   "map": {
+    "x": 16,
+    "y": 17,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "You exhale, and squeeze yourself into the narrow crack in the wall. Dust\nfills your eyes as you disturb it, and chunks of mortar and stone mixed\nwith a touch of sand fall on you as you scrape your way through. Dust\nmotes drift in the stale air. The ceiling hangs low overhead.",
+   "exits": {
+    "north": {
+     "to_room": 5309,
+     "description": "You see a musty chamber."
+    },
+    "south": {
+     "to_room": 5325,
+     "description": "You see a tomb."
+    }
+   }
+  },
+  "5325": {
+   "vnum": 5325,
+   "name": "A Looted Tomb",
+   "map": {
+    "x": 16,
+    "y": 16,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5304,
+     "max": 6
+    },
+    {
+     "vnum": 5307,
+     "max": 4
+    },
+    {
+     "vnum": 5307,
+     "max": 4
+    }
+   ],
+   "description": "The floor of this small tomb is littered with the lids of smashed\nsarcophagi, bits of treasure dropped by thieves and looters, and corpses\npulled from their resting places. The ceiling hangs low overhead.\nShadows gather in the corners.",
+   "exits": {
+    "north": {
+     "to_room": 5324,
+     "description": "You see a small crack in the wall through which you might be able to slide."
+    },
+    "east": {
+     "to_room": 5333,
+     "description": "To the east is another tomb."
+    },
+    "west": {
+     "to_room": 5326,
+     "description": "To the west is another tomb."
+    }
+   }
+  },
+  "5326": {
+   "vnum": 5326,
+   "name": "A Demolished Tomb",
+   "map": {
+    "x": 15,
+    "y": 16,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "man garments pharoah"
+   },
+   "mob_resets": [
+    {
+     "vnum": 5302,
+     "max": 3
+    },
+    {
+     "vnum": 5304,
+     "max": 6
+    }
+   ],
+   "description": "This tomb has been utterly destroyed by thieves and looters in search of\nthe treasures of the pharoahs. Nothing of interest remains in this room,\nexcept a large stone coffin that leans against the western wall. The air\nis still and musty. The walls are rough-hewn and cold to the touch.",
+   "exits": {
+    "east": {
+     "to_room": 5325,
+     "description": "To the east is another tomb."
+    },
+    "west": {
+     "to_room": 5327,
+     "description": "You see a large stone coffin.",
+     "door": {
+      "name": "coffin lid",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 5312
+     }
+    }
+   }
+  },
+  "5327": {
+   "vnum": 5327,
+   "name": "A Stairway",
+   "map": {
+    "x": 14,
+    "y": 16,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "coffin lid"
+   },
+   "description": "The area opens now at the head of a stairway that goes down into\ndarkness. The steps and walls are smooth sandy stone, covered with a\nthick layer of dust. Some inscriptions are carved into the wall here.\nThe walls are rough-hewn and cold to the touch. Dust motes drift in the\nstale air.",
+   "exits": {
+    "east": {
+     "to_room": 5326,
+     "description": "You see the backside of the coffin lid, featureless stone.",
+     "door": {
+      "name": "coffin lid",
+      "state": "open",
+      "locked": true,
+      "key_vnum": null
+     }
+    },
+    "down": {
+     "to_room": 5328,
+     "description": "It is too dark to see down the stairway."
+    }
+   }
+  },
+  "5328": {
+   "vnum": 5328,
+   "name": "A Stairway",
+   "map": {
+    "x": 13,
+    "y": 15,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The area is a stairway that disappears into darkness in both directions.\nThe smooth, uneven steps of the stairway have not been travelled in what\nappears to be centuries. The ceiling hangs low overhead. The air is\nstill and musty.",
+   "exits": {
+    "up": {
+     "to_room": 5327,
+     "description": "It is too dark to see up the stairway."
+    },
+    "down": {
+     "to_room": 5329,
+     "description": "It is too dark to see down the stairway."
+    }
+   }
+  },
+  "5329": {
+   "vnum": 5329,
+   "name": "A Stairway",
+   "map": {
+    "x": 12,
+    "y": 14,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "walls floor ceiling hieroglyphics"
+   },
+   "description": "The area opens now at the base of the uneven stairway. The walls, floor,\nand ceiling of this small landing are covered with strange\nhieroglyphics. The ceiling hangs low overhead. Dust motes drift in the\nstale air.",
+   "exits": {
+    "south": {
+     "to_room": 5330,
+     "description": "You see a seam in the stone wall.",
+     "door": {
+      "name": "stone",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "up": {
+     "to_room": 5328,
+     "description": "It is too dark to see up the stairway."
+    }
+   }
+  },
+  "5330": {
+   "vnum": 5330,
+   "name": "The Ancient Hall",
+   "map": {
+    "x": 12,
+    "y": 13,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "writings glyphs sigils hieroglyphics symbols"
+   },
+   "description": "Here the air is deathly still, motes of dust thickly obscuring your\nvision. Several stone statues line the walls of the hall, depicting the\ngods of an ancient society. Strange glyphs and sigils cover the walls, a\npeculiar pictorial form of written language that you don't understand.\nSome steps lead to a raised dais to the south. The air is still and\nmusty. Dust motes drift in the stale air.",
+   "exits": {
+    "north": {
+     "to_room": 5329,
+     "description": "You see a seam in the stone wall.",
+     "door": {
+      "name": "stone",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "south": {
+     "to_room": 5331,
+     "description": "You see a small raised dais."
+    }
+   }
+  },
+  "5331": {
+   "vnum": 5331,
+   "name": "A Raised Dais",
+   "map": {
+    "x": 12,
+    "y": 12,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "pedestal writings"
+   },
+   "description": "This is the southern end of the ancient hall, the dust and darkness\nabsorbing your light so that you cannot see past the steps of the dais.\nA low pedestal rests here. You see something written into the face of\nit. Dust motes drift in the stale air. The air is still and musty.",
+   "exits": {
+    "north": {
+     "to_room": 5330,
+     "description": "You cannot see past the steps of the dais."
+    },
+    "down": {
+     "to_room": 5332,
+     "description": "You see a seam in the stone floor.",
+     "door": {
+      "name": "tomb",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "5332": {
+   "vnum": 5332,
+   "name": "The Tomb Of Ramses",
+   "map": {
+    "x": 11,
+    "y": 11,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5317,
+     "max": 1
+    }
+   ],
+   "description": "The area opens in an empty tomb, a cubicle no more then ten feet to a\nside. Dust motes drift in the stale air. The ceiling hangs low overhead.\nThe air is stale and the walls close. Shadows pool in the corners,\nundisturbed.",
+   "exits": {
+    "up": {
+     "to_room": 5331,
+     "description": "That leads back the way you came.",
+     "door": {
+      "name": "tomb",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "5333": {
+   "vnum": 5333,
+   "name": "A Ransacked Tomb",
+   "map": {
+    "x": 18,
+    "y": 16,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5304,
+     "max": 6
+    }
+   ],
+   "description": "This tomb has been completely ransacked and destroyed by the actions of\npyramid thieves and looters. The floor is littered with junk. The\nceiling hangs low overhead. The air is still and musty.",
+   "exits": {
+    "east": {
+     "to_room": 5334,
+     "description": "To the east is a low-ceilinged tunnel."
+    },
+    "west": {
+     "to_room": 5325,
+     "description": "To the west is another tomb."
+    }
+   }
+  },
+  "5334": {
+   "vnum": 5334,
+   "name": "A Tunnel",
+   "map": {
+    "x": 19,
+    "y": 16,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5304,
+     "max": 6
+    }
+   ],
+   "description": "Ancient stone blocks form the walls of this narrow tunnel, each carved\nwith hieroglyphs that glow faintly in the darkness. The air is stale and\nheavy with the weight of millennia, and sand sifts down from hidden\ncracks above. The air is still and musty. The walls are rough-hewn and\ncold to the touch.",
+   "exits": {
+    "east": {
+     "to_room": 5335,
+     "description": "You cannot see into the darkness of the low tunnel."
+    },
+    "west": {
+     "to_room": 5333,
+     "description": "You see a tomb."
+    }
+   }
+  },
+  "5335": {
+   "vnum": 5335,
+   "name": "A Fork In The Tunnel",
+   "map": {
+    "x": 21,
+    "y": 16,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "hole"
+   },
+   "mob_resets": [
+    {
+     "vnum": 5304,
+     "max": 6
+    }
+   ],
+   "description": "Here the tunnel forks off through a gaping hole down in the southern\nwall, continuing onward to the east and west as well. Dust motes drift\nin the stale air. The air is still and musty.",
+   "exits": {
+    "east": {
+     "to_room": 5336,
+     "description": "You cannot see into the darkness of the low tunnel."
+    },
+    "west": {
+     "to_room": 5334,
+     "description": "You cannot see into the darkness of the low tunnel."
+    },
+    "down": {
+     "to_room": 5346,
+     "description": "Through the hole you see rubble and sand."
+    }
+   }
+  },
+  "5336": {
+   "vnum": 5336,
+   "name": "A Tunnel",
+   "map": {
+    "x": 23,
+    "y": 16,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "description": "The low-ceilinged tunnel makes a turn to the west and ends to the north\nas it spills out into a dusty hallway. Dust motes drift in the stale\nair. The walls are rough-hewn and cold to the touch.",
+   "exits": {
+    "north": {
+     "to_room": 5342,
+     "description": "The mouth of the tunnel is stone that has been torn away by looters."
+    },
+    "west": {
+     "to_room": 5335,
+     "description": "You cannot see into the darkness of the low tunnel."
+    }
+   }
+  },
+  "5337": {
+   "vnum": 5337,
+   "name": "A Dank Chamber",
+   "map": {
+    "x": 21,
+    "y": 20,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5303,
+     "max": 6
+    },
+    {
+     "vnum": 5303,
+     "max": 6
+    },
+    {
+     "vnum": 5307,
+     "max": 4
+    }
+   ],
+   "description": "This chamber has a dank, dusty, musty smell to it. Small footprints in\nthe dust betray the recent passage of some sort of creatures. A hole in\nthe floor lies to the west and a stairway is to the east. The ceiling\nhangs low overhead. Dust motes drift in the stale air.",
+   "exits": {
+    "down": {
+     "to_room": 5338,
+     "description": "To the down lies A Spiral Stairway."
+    }
+   }
+  },
+  "5338": {
+   "vnum": 5338,
+   "name": "A Spiral Stairway",
+   "map": {
+    "x": 20,
+    "y": 19,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "description": "Some dusty, broken stone stairs here spiral slowly in a constricted\nspace down towards a dusty hallway. The ceiling hangs low overhead. The\nwalls are rough-hewn and cold to the touch.",
+   "exits": {
+    "up": {
+     "to_room": 5337,
+     "description": "The stairs spiral up into a dank chamber."
+    },
+    "down": {
+     "to_room": 5341,
+     "description": "The stairs spiral down into a dusty hallway."
+    }
+   }
+  },
+  "5339": {
+   "vnum": 5339,
+   "name": "A Dust-Covered Hallway",
+   "map": {
+    "x": 17,
+    "y": 18,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "description": "This hallway is covered with dust that has accumulated over the\ncenturies that the pyramid has stood. Small markings and footprints in\nthe dust betray the recent passage of others -- perhaps thieves? Dust\nmotes drift in the stale air. Shadows gather in the corners.",
+   "exits": {
+    "east": {
+     "to_room": 5340,
+     "description": "The hallway proceeds to the east towards a strange smell."
+    },
+    "west": {
+     "to_room": 5309,
+     "description": "The hallway proceeds towards the west towards a musty smell."
+    }
+   }
+  },
+  "5340": {
+   "vnum": 5340,
+   "name": "A Smelly Chamber",
+   "map": {
+    "x": 18,
+    "y": 18,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5300,
+     "max": 6
+    },
+    {
+     "vnum": 5303,
+     "max": 6
+    },
+    {
+     "vnum": 5303,
+     "max": 6
+    }
+   ],
+   "description": "This small chamber has a sickly putrescent smell to it, the smell of\nformaldehyde and other ointments used to preserve the corpses of those\nwho died ages ago. The air is still and musty. The ceiling hangs low\noverhead.",
+   "exits": {
+    "east": {
+     "to_room": 5341,
+     "description": "You see a dusty hallway."
+    },
+    "west": {
+     "to_room": 5339,
+     "description": "You a dusty hallway."
+    }
+   }
+  },
+  "5341": {
+   "vnum": 5341,
+   "name": "A Dust-Covered Hallway",
+   "map": {
+    "x": 19,
+    "y": 18,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5301,
+     "max": 4
+    },
+    {
+     "vnum": 5307,
+     "max": 4
+    }
+   ],
+   "description": "This hallway is covered with a thick, choking dust that rises up to\nobscure your light source and sting your eyes. Small marks and\nfootprints in the dust betray the recent passage of others. Dust motes\ndrift in the stale air. Shadows gather in the corners.",
+   "exits": {
+    "east": {
+     "to_room": 5342,
+     "description": "The hallway turns to the north."
+    },
+    "west": {
+     "to_room": 5340,
+     "description": "You smell something peculiar over there."
+    },
+    "up": {
+     "to_room": 5338,
+     "description": "A tightly spiralling stone stairway leads up."
+    }
+   }
+  },
+  "5342": {
+   "vnum": 5342,
+   "name": "A Turn In The Hallway",
+   "map": {
+    "x": 23,
+    "y": 18,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5304,
+     "max": 6
+    }
+   ],
+   "description": "This is an elbow turn in a dust-covered stone hallway, that dead ends to\nthe north and continues on to the west. To the south the stones of the\npyramid have been torn asunder by thieves, making a low- ceilinged\ntunnel. The walls are rough-hewn and cold to the touch. Dust motes drift\nin the stale air.",
+   "exits": {
+    "north": {
+     "to_room": 5343,
+     "description": "The hallway ends to the north."
+    },
+    "south": {
+     "to_room": 5336,
+     "description": "The tunnel is dark."
+    },
+    "west": {
+     "to_room": 5341,
+     "description": "The dust-covered hallway continues to the west."
+    }
+   }
+  },
+  "5343": {
+   "vnum": 5343,
+   "name": "A Dead End",
+   "map": {
+    "x": 23,
+    "y": 20,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "cracks"
+   },
+   "mob_resets": [
+    {
+     "vnum": 5305,
+     "max": 1
+    }
+   ],
+   "description": "The dust-covered hallway has come to an abrupt end at a stony,\nfeatureless wall. Here and there are signs of the recent passage of\nothers in the dust. The walls are rough-hewn and cold to the touch.\nShadows gather in the corners.",
+   "exits": {
+    "south": {
+     "to_room": 5342,
+     "description": "The dusty hall continues to the south."
+    },
+    "down": {
+     "to_room": 5344,
+     "description": "The floor is quite dusty, and made of stone.  You see some cracks.",
+     "door": {
+      "name": "floor",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "5344": {
+   "vnum": 5344,
+   "name": "The Tomb Entrance",
+   "map": {
+    "x": 22,
+    "y": 19,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors",
+    "no_mob"
+   ],
+   "extra_descs": {
+    "": "hieroglyphics carvings"
+   },
+   "description": "This is a small, dark chamber that has stood undisturbed for many years.\nTo the north stands a massive stone tomb, which is covered in\nhieroglyphics and gold-lined carvings that mark it as the final resting\nplace of the mighty pharoahs of this land. Shadows gather in the\ncorners. The air is still and musty.",
+   "exits": {
+    "north": {
+     "to_room": 5345,
+     "description": "You see the tomb of the pharoahs.",
+     "door": {
+      "name": "tomb",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "up": {
+     "to_room": 5343,
+     "description": "The stone ceiling has some cracks in it, through which a dim light streams.",
+     "door": {
+      "name": "ceiling",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "5345": {
+   "vnum": 5345,
+   "name": "The Tomb of the Pharaohs",
+   "map": {
+    "x": 22,
+    "y": 20,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "treasures"
+   },
+   "mob_resets": [
+    {
+     "vnum": 5310,
+     "max": 2
+    },
+    {
+     "vnum": 5310,
+     "max": 2
+    }
+   ],
+   "obj_resets": [
+    {
+     "vnum": 5310,
+     "max": 1
+    }
+   ],
+   "description": "Great golden sarcophogai line the walls of this massive tomb. It has\nwithstood the passage of time intact, untouched by the hands of thieves\nand looters. The treasures taken by the pharoahs to their graves still\nlie before your feet. The air is still and musty. The walls are rough-\nhewn and cold to the touch.",
+   "exits": {
+    "south": {
+     "to_room": 5344,
+     "description": "That way leads back out of the tomb.",
+     "door": {
+      "name": "tomb",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "5346": {
+   "vnum": 5346,
+   "name": "A Rubble-Strewn Hallway",
+   "map": {
+    "x": 20,
+    "y": 15,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors",
+    "no_mob"
+   ],
+   "description": "This hallway formerly had a beautiful arch to the ceiling, now collapsed\nunder the weight of the slowly settling stones of the pyramid. Now, a\nmassive pile of rubble leads up into a hole high in the northern portion\nof the hallway. To the south, through the rubble and fallen stones you\nsee a sandstone crypt. The walls are rough-hewn and cold to the touch.\nDust motes drift in the stale air.",
+   "exits": {
+    "south": {
+     "to_room": 5347,
+     "description": "You see a sandstone crypt."
+    },
+    "up": {
+     "to_room": 5335,
+     "description": "From here you see only darkness."
+    }
+   }
+  },
+  "5347": {
+   "vnum": 5347,
+   "name": "A Sandstone Crypt",
+   "map": {
+    "x": 20,
+    "y": 14,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5315,
+     "max": 1
+    }
+   ],
+   "description": "This small crypt is lit by a hole in the wall to the south, through\nwhich sand pours from the desert outside. A hot wind blows in from the\ndesert, drying your skin instantly. To the east and north the arched\nhallway continues. The walls are rough-hewn and cold to the touch. The\nair is still and musty.",
+   "exits": {
+    "north": {
+     "to_room": 5346,
+     "description": "The arched hallway collapses into rubble shortly to the north."
+    },
+    "east": {
+     "to_room": 5348,
+     "description": "You see a beautifully arched hallway."
+    },
+    "south": {
+     "to_room": 5353,
+     "description": "You see a lot of sand."
+    }
+   }
+  },
+  "5348": {
+   "vnum": 5348,
+   "name": "An Arched Hall",
+   "map": {
+    "x": 22,
+    "y": 14,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5312,
+     "max": 3
+    }
+   ],
+   "description": "This hallway has a beautiful arch to it, formed painstakingly and\nexquisitely out of the sandy stones of the pyramid. The dust that covers\nmost of the rest of the pyramid interior is not present here, scoured\naway by the blowing of the desert winds that howl about your ears. Dust\nmotes drift in the stale air. The air is still and musty.",
+   "exits": {
+    "south": {
+     "to_room": 5349
+    },
+    "west": {
+     "to_room": 5347,
+     "description": "The arched hall proceeds into a sandstone crypt."
+    }
+   }
+  },
+  "5349": {
+   "vnum": 5349,
+   "name": "An Arched Hall",
+   "map": {
+    "x": 22,
+    "y": 12,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5312,
+     "max": 3
+    }
+   ],
+   "description": "This hallway has a beautiful arch to it, formed painstakingly and\nexquisitely out of the sandy stones of the pyramid. To the east is a\nsmall, golden-coloured crypt, and the hall proceeds to the south and\nnorth. Shadows gather in the corners. The walls are rough-hewn and cold\nto the touch.",
+   "exits": {
+    "north": {
+     "to_room": 5348,
+     "description": "The arched hall proceeds to the north, making a sharp westward turn."
+    },
+    "east": {
+     "to_room": 5350,
+     "description": "A small golden crypt lies to the east."
+    },
+    "south": {
+     "to_room": 5351,
+     "description": "The arched hall proceeds to the south."
+    }
+   }
+  },
+  "5350": {
+   "vnum": 5350,
+   "name": "A Golden Crypt",
+   "map": {
+    "x": 23,
+    "y": 12,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "bricks"
+   },
+   "mob_resets": [
+    {
+     "vnum": 5313,
+     "max": 2
+    },
+    {
+     "vnum": 5313,
+     "max": 2
+    },
+    {
+     "vnum": 5318,
+     "max": 1
+    }
+   ],
+   "description": "The area opens inside a small crypt with walls and ceiling made of\ngolden bricks that obscure the large sandy stones of the pyramid. Small\nrugs and tapestries are scattered about the floor here, and they appear\nto have been used recently. The ceiling hangs low overhead. The walls\nare rough-hewn and cold to the touch.",
+   "exits": {
+    "west": {
+     "to_room": 5349,
+     "description": "You see an arched hall."
+    }
+   }
+  },
+  "5351": {
+   "vnum": 5351,
+   "name": "An Arched Hall",
+   "map": {
+    "x": 22,
+    "y": 11,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 5312,
+     "max": 3
+    }
+   ],
+   "description": "This hallway has a beautiful arch to it, formed painstakingly and\nexquisitely out of the sandy stones of the pyramid. The arched hall\nproceeds to the north and ends to the south in a small vault. The air is\nstill and musty. The walls are rough-hewn and cold to the touch.",
+   "exits": {
+    "north": {
+     "to_room": 5349,
+     "description": "The arched hall continues to the north."
+    },
+    "south": {
+     "to_room": 5352,
+     "description": "You see a small vault from which a shining light issues."
+    }
+   }
+  },
+  "5352": {
+   "vnum": 5352,
+   "name": "A Shining Vault",
+   "map": {
+    "x": 22,
+    "y": 10,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "particles glass"
+   },
+   "mob_resets": [
+    {
+     "vnum": 5314,
+     "max": 2
+    },
+    {
+     "vnum": 5314,
+     "max": 2
+    }
+   ],
+   "description": "The stones of the pyramid here take on a strange, twinkling quality,\nalmost seeming to shine with an internal light. As you look closer you\nsee tiny glass-like glittery particles within the stones, that reflect\nthe light from your light source so perfectly that they seem to shine.\nShadows gather in the corners. Dust motes drift in the stale air.",
+   "exits": {
+    "north": {
+     "to_room": 5351,
+     "description": "You see a hall with a beautifully arched ceiling."
+    }
+   }
+  },
+  "5353": {
+   "vnum": 5353,
+   "name": "A Massive Sand Dune",
+   "map": {
+    "x": 20,
+    "y": 13,
+    "z": 1
+   },
+   "sector_type": "field",
+   "flags": [
+    "no_mob"
+   ],
+   "extra_descs": {
+    "": "sand dune sandstorm"
+   },
+   "description": "The area opens now on a massive sand dune on the southern side of the\npyramid. At the foot of the sand dune to the north you see a small hole\nwhere the stones of the pyramid have collapsed. Not far to the south is\na massive roiling sandstorm; the wind from the storm howls and bites at\nyour face even here. The ground is soft underfoot. The open sky\nstretches overhead.",
+   "exits": {
+    "north": {
+     "to_room": 5347,
+     "description": "You see a small hole leading back into the pyramid."
+    },
+    "south": {
+     "to_room": 5354,
+     "description": "You see only a wall of whirling, blowing, dry sand."
+    }
+   }
+  },
+  "5354": {
+   "vnum": 5354,
+   "name": "A Swirling Sandstorm",
+   "map": {
+    "x": 20,
+    "y": 12,
+    "z": 1
+   },
+   "sector_type": "field",
+   "extra_descs": {
+    "": "sand"
+   },
+   "mob_resets": [
+    {
+     "vnum": 5308,
+     "max": 4
+    }
+   ],
+   "flags": [],
+   "description": "The area is caught in the midst of a massive sandstorm. Howling winds\nbuffet you from all sides, and the sand tears at your skin, blinding you\nand choking you. You have lost all sense of direction. Wildflowers dot\nthe landscape. The air is fresh and clean.",
+   "exits": {
+    "north": {
+     "to_room": 5353,
+     "description": "You see only a wall of whirling, blowing, dry sand."
+    },
+    "south": {
+     "to_room": 5355,
+     "description": "You see only a wall of whirling, blowing, dry sand."
+    }
+   }
+  },
+  "5355": {
+   "vnum": 5355,
+   "name": "A Swirling Sandstorm",
+   "map": {
+    "x": 20,
+    "y": 11,
+    "z": 1
+   },
+   "sector_type": "field",
+   "extra_descs": {
+    "": "sand"
+   },
+   "mob_resets": [
+    {
+     "vnum": 5308,
+     "max": 4
+    }
+   ],
+   "flags": [],
+   "description": "The area is caught in the midst of a massive sandstorm. Howling winds\nbuffet you from all sides, and the sand tears at your skin, blinding you\nand choking you. You have lost all sense of direction. The ground is\nsoft underfoot. The air is fresh and clean.",
+   "exits": {
+    "north": {
+     "to_room": 5354,
+     "description": "You see only a wall of whirling, blowing, dry sand."
+    },
+    "south": {
+     "to_room": 5356,
+     "description": "You see only a wall of whirling, blowing, dry sand."
+    }
+   }
+  },
+  "5356": {
+   "vnum": 5356,
+   "name": "A Swirling Sandstorm",
+   "map": {
+    "x": 20,
+    "y": 10,
+    "z": 1
+   },
+   "sector_type": "field",
+   "extra_descs": {
+    "": "sand"
+   },
+   "mob_resets": [
+    {
+     "vnum": 5308,
+     "max": 4
+    }
+   ],
+   "flags": [],
+   "description": "The area is caught in the midst of a massive sandstorm. Howling winds\nbuffet you from all sides, and the sand tears at your skin, blinding you\nand choking you. You have lost all sense of direction. Tall grass sways\nin a gentle breeze. The open sky stretches overhead.",
+   "exits": {
+    "north": {
+     "to_room": 5355,
+     "description": "You see only a wall of whirling, blowing, dry sand."
+    },
+    "south": {
+     "to_room": 5357,
+     "description": "You see only a wall of whirling, blowing, dry sand."
+    }
+   }
+  },
+  "5357": {
+   "vnum": 5357,
+   "name": "A Swirling Sandstorm",
+   "map": {
+    "x": 20,
+    "y": 9,
+    "z": 1
+   },
+   "sector_type": "field",
+   "extra_descs": {
+    "": "sand"
+   },
+   "mob_resets": [
+    {
+     "vnum": 5308,
+     "max": 4
+    }
+   ],
+   "flags": [],
+   "description": "The area is caught in the midst of a massive sandstorm. Howling winds\nbuffet you from all sides, and the sand tears at your skin, blinding you\nand choking you. You have lost all sense of direction. Tall grass sways\nin a gentle breeze. The air is fresh and clean.",
+   "exits": {
+    "north": {
+     "to_room": 5356,
+     "description": "You see only a wall of whirling, blowing, dry sand."
+    },
+    "south": {
+     "to_room": 5358,
+     "description": "You see only a wall of whirling, blowing, dry sand."
+    }
+   }
+  },
+  "5358": {
+   "vnum": 5358,
+   "name": "A Massive Sand Dune",
+   "map": {
+    "x": 20,
+    "y": 8,
+    "z": 1
+   },
+   "sector_type": "field",
+   "extra_descs": {
+    "": "hieroglyphics symbols"
+   },
+   "mob_resets": [
+    {
+     "vnum": 5316,
+     "max": 1
+    }
+   ],
+   "flags": [],
+   "description": "Somehow you managed to make your way through the howling winds of the\nsandstorm, and clamber up on this sand dune. Visible is the storm to the\nto the north, and presumably the pyramid is somewhere beyond it. Nothing\nbut flat, featureless, open dunes of sand lie in every other direction.\nThe open sky stretches overhead. Wildflowers dot the landscape.",
+   "exits": {
+    "north": {
+     "to_room": 5357,
+     "description": "You see only a wall of whirling, blowing, dry sand."
+    },
+    "down": {
+     "to_room": 5359
+    }
+   }
+  },
+  "5359": {
+   "vnum": 5359,
+   "name": "Through The Hole In The Sand",
+   "map": {
+    "x": 19,
+    "y": 7,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "dark",
+    "indoors",
+    "no_mob"
+   ],
+   "obj_resets": [
+    {
+     "vnum": 5318,
+     "max": 1
+    },
+    {
+     "vnum": 5324,
+     "max": 1
+    },
+    {
+     "vnum": 5325,
+     "max": 1
+    },
+    {
+     "vnum": 5326,
+     "max": 1
+    },
+    {
+     "vnum": 5327,
+     "max": 1
+    }
+   ],
+   "description": "You squeeze through the small hole in the sand and land in a small white\nchamber. above is a small hole, reachable by climbing up the small\nsandy slope down which you slid. The walls are rough-hewn and cold to\nthe touch. Dust motes drift in the stale air.",
+   "exits": {
+    "up": {
+     "to_room": 5358,
+     "description": "You see a sand dune."
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 5360,
+     "max": 1
+    }
+   ]
   }
+ },
+ "mobs": {
+  "5300": {
+   "vnum": 5300,
+   "name": "asp",
+   "short_desc": "the horrible asp",
+   "long_desc": "A small, poisonous asp slithers over your feet.",
+   "level": 5,
+   "alignment": 0,
+   "hp_dice": "5d10+76",
+   "damage_dice": "2d5+3",
+   "gold": 505,
+   "exp": 300,
+   "armor_class": 85,
+   "flags": [
+    "special",
+    "aggressive",
+    "stay_zone"
+   ],
+   "description": "The asp is a small, smooth-scaled snake the color of worn pottery.\nThe poison bite of this snake has felled many a mighty pharoah.",
+   "inventory": [
+    5326
+   ]
+  },
+  "5301": {
+   "vnum": 5301,
+   "name": "cobra",
+   "short_desc": "the hooded cobra snake",
+   "long_desc": "A cobra snake rears up and opens its fearsome hood.",
+   "level": 7,
+   "alignment": 0,
+   "hp_dice": "7d10+100",
+   "damage_dice": "2d5+6",
+   "gold": 1012,
+   "exp": 420,
+   "armor_class": 79,
+   "flags": [
+    "special",
+    "aggressive",
+    "stay_zone"
+   ],
+   "description": "The cobra snake waves back and forth before you, its hood displaying brilliant\ncolors designed to serve notice to its prey that it is about to strike.",
+   "inventory": [
+    5325,
+    9205
+   ]
+  },
+  "5302": {
+   "vnum": 5302,
+   "name": "mongoose",
+   "short_desc": "the wily little mongoose",
+   "long_desc": "A small mongoose slinks along the ground, hunting snakes.",
+   "level": 11,
+   "alignment": 10,
+   "hp_dice": "11d10+148",
+   "damage_dice": "3d6+8",
+   "gold": 5050,
+   "exp": 660,
+   "armor_class": 67,
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "description": "The mongoose is a wily rodent, a quick hunter of nasty poisonous snakes.\nShe sniffs you and appears to be looking for food in your hand.",
+   "inventory": [
+    9207
+   ]
+  },
+  "5303": {
+   "vnum": 5303,
+   "name": "pyramid",
+   "short_desc": "the pyramid watcher",
+   "long_desc": "The pyramid watcher protects the tombs from intruders.",
+   "level": 8,
+   "alignment": 250,
+   "hp_dice": "8d10+112",
+   "damage_dice": "3d5+5",
+   "gold": 1975,
+   "exp": 480,
+   "armor_class": 76,
+   "flags": [
+    "sentinel",
+    "aware",
+    "helper"
+   ],
+   "description": "The pyramid watcher has made a pledge to destroy any would-be looters of\nthe tombs of the pharoahs.  He is clad from head to foot in utilitarian\nsand-colored clothing.",
+   "equipment": {
+    "wield": 5300,
+    "about": 5301
+   },
+   "inventory": [
+    53091
+   ]
+  },
+  "5304": {
+   "vnum": 5304,
+   "name": "thief",
+   "short_desc": "the tomb thief",
+   "long_desc": "A sneaky tomb thief moves about in search of treasure.",
+   "level": 10,
+   "alignment": -250,
+   "hp_dice": "10d10+136",
+   "damage_dice": "3d6+6",
+   "gold": 4750,
+   "exp": 600,
+   "armor_class": 70,
+   "flags": [
+    "special",
+    "stay_zone",
+    "wimpy"
+   ],
+   "description": "The thief brushes against you briefly, then slinks back into the shadows.",
+   "equipment": {
+    "wield": 5302
+   },
+   "inventory": [
+    9207,
+    53093
+   ]
+  },
+  "5305": {
+   "vnum": 5305,
+   "name": "ali",
+   "short_desc": "Ali Baba",
+   "long_desc": "Ali Baba is here, hunting for the pharoah's tomb.",
+   "level": 18,
+   "alignment": -300,
+   "hp_dice": "18d10+232",
+   "damage_dice": "5d7+9",
+   "gold": 15500,
+   "exp": 1080,
+   "armor_class": 46,
+   "flags": [
+    "special",
+    "scavenger",
+    "aware",
+    "stay_zone",
+    "memory"
+   ],
+   "description": "You see a tall, full-bearded man with a mischevious glint in his eye.  Ali Baba\nhas made his life from stealing things from others, including many items stolen\nrecently from under the nose of the hapless guardians of this pyramid.  Someday\nhe might get caught, but not today...",
+   "equipment": {
+    "head": 5303,
+    "wield": 5302
+   },
+   "inventory": [
+    5324,
+    5312
+   ]
+  },
+  "5306": {
+   "vnum": 5306,
+   "name": "magic",
+   "short_desc": "the magic carpet",
+   "long_desc": "A small woven carpet lies under your feet.",
+   "level": 9,
+   "alignment": 500,
+   "hp_dice": "9d10+124",
+   "damage_dice": "3d5+6",
+   "gold": 3125,
+   "exp": 540,
+   "armor_class": 73,
+   "flags": [
+    "sentinel",
+    "aware",
+    "memory",
+    "no_charm",
+    "no_summmon",
+    "no_sleep",
+    "no_bash",
+    "no_blind"
+   ],
+   "description": "The carpet is simply beautiful, made from intricately woven silken material.  \nIt seems to rise up at the touch of your feet.  Wait, it is rising, a few feet\nabove the ground!  In fact, it seems to be ALIVE!",
+   "inventory": [
+    9204,
+    5313
+   ]
+  },
+  "5307": {
+   "vnum": 5307,
+   "name": "mummy",
+   "short_desc": "the mummy",
+   "long_desc": "A mummy reaches for you, disturbed by your presence.",
+   "level": 12,
+   "alignment": -600,
+   "hp_dice": "12d10+160",
+   "damage_dice": "4d6+6",
+   "gold": 7875,
+   "exp": 720,
+   "armor_class": 64,
+   "flags": [
+    "aggressive",
+    "stay_zone",
+    "no_charm",
+    "no_summmon",
+    "no_sleep",
+    "no_blind"
+   ],
+   "description": "You only see the disfigured, rotting features of decaying human flesh,\nanimated by the distempered spirit of a long-deceased person.",
+   "equipment": {
+    "body": 5304
+   },
+   "inventory": [
+    5306,
+    5305
+   ]
+  },
+  "5308": {
+   "vnum": 5308,
+   "name": "sand",
+   "short_desc": "the sandman",
+   "long_desc": "A sandman rises up from the desert floor.",
+   "level": 14,
+   "alignment": 0,
+   "hp_dice": "14d10+184",
+   "damage_dice": "4d6+9",
+   "gold": 9750,
+   "exp": 840,
+   "armor_class": 58,
+   "flags": [
+    "aware",
+    "aggressive",
+    "stay_zone",
+    "memory",
+    "no_charm",
+    "no_summmon",
+    "no_sleep",
+    "no_blind"
+   ],
+   "description": "The sandman is exactly that -- some sort of strange being formed from the sands\nof the desert floor.  It seems quite large and strong and at home in the heat\nand sandy winds.",
+   "inventory": [
+    9205,
+    5310
+   ]
+  },
+  "5309": {
+   "vnum": 5309,
+   "name": "efreeti",
+   "short_desc": "the efreeti",
+   "long_desc": "The efreeti stands here, sheathed in a column of fire.",
+   "level": 20,
+   "alignment": -600,
+   "hp_dice": "20d10+256",
+   "damage_dice": "6d8+5",
+   "gold": 25500,
+   "exp": 1200,
+   "armor_class": 40,
+   "flags": [
+    "special",
+    "sentinel",
+    "aware",
+    "aggressive",
+    "memory",
+    "no_charm",
+    "no_summmon",
+    "no_sleep",
+    "no_bash",
+    "no_blind"
+   ],
+   "description": "The efreeti is a mighty being formed from living fire.  He gazes down at\nyou with disdain and scorn, arms folded across his mighty chest.",
+   "equipment": {
+    "hold": 5307
+   },
+   "inventory": [
+    53092,
+    5304,
+    9211
+   ]
+  },
+  "5310": {
+   "vnum": 5310,
+   "name": "caryatid",
+   "short_desc": "the caryatid",
+   "long_desc": "A sandstone column stands here, carved into a feminine figure.",
+   "level": 24,
+   "alignment": 0,
+   "hp_dice": "24d10+304",
+   "damage_dice": "7d8+6",
+   "gold": 67500,
+   "exp": 1440,
+   "armor_class": 28,
+   "flags": [
+    "sentinel",
+    "aware",
+    "memory",
+    "helper",
+    "no_charm",
+    "no_summmon",
+    "no_sleep",
+    "no_bash",
+    "no_blind"
+   ],
+   "description": "The column has been carved into a set of four shapely women, each facing\noutward into the room.  The sandstone of the caryatid is smooth with age,\nbut you can still make out a deadly stone sword in the hands of each figure.",
+   "equipment": {
+    "wield": 5308
+   },
+   "inventory": [
+    5309
+   ]
+  },
+  "5311": {
+   "vnum": 5311,
+   "name": "djinn",
+   "short_desc": "the djinn",
+   "long_desc": "The djinn issues forth from the confines of a small lamp.",
+   "level": 28,
+   "alignment": 600,
+   "hp_dice": "6d10+700",
+   "damage_dice": "3d6+50",
+   "gold": 40000,
+   "exp": 1141,
+   "armor_class": -6,
+   "flags": [
+    "special",
+    "sentinel",
+    "aware",
+    "memory",
+    "no_charm",
+    "no_summmon",
+    "no_sleep",
+    "no_bash",
+    "no_blind"
+   ],
+   "description": "The djinn is a mighty being formed from the air itself and frequently\nimprisoned in a small lamp, used to do the bidding of those who find him.\nHe smiles down at you congenially, arms folded across his blue-tinged \nskin, and strokes his goatee.",
+   "equipment": {
+    "hold": 5313
+   },
+   "inventory": [
+    9211,
+    5322
+   ]
+  },
+  "5312": {
+   "vnum": 5312,
+   "name": "hieracosphinx",
+   "short_desc": "the hieracosphinx",
+   "long_desc": "A hieracosphinx looks at you cunningly.",
+   "level": 15,
+   "alignment": -200,
+   "hp_dice": "15d10+196",
+   "damage_dice": "4d7+8",
+   "gold": 14250,
+   "exp": 900,
+   "armor_class": 55,
+   "flags": [
+    "aware",
+    "aggressive",
+    "stay_zone",
+    "memory",
+    "no_charm",
+    "no_summmon",
+    "no_bash"
+   ],
+   "description": "The hieracosphinx are cunning, small, but nasty creatures, having the heads\nof birds, mighty wingspans, and a full set of four paws to rend their victims\nto pieces.  They tend to be quite jealous of the sharper wits of their older\ncousins.",
+   "inventory": [
+    53091
+   ]
+  },
+  "5313": {
+   "vnum": 5313,
+   "name": "gynosphinx",
+   "short_desc": "the gynosphinx",
+   "long_desc": "A gynosphinx sits here, befuddled by a riddle.",
+   "level": 19,
+   "alignment": 100,
+   "hp_dice": "19d10+244",
+   "damage_dice": "5d7+10",
+   "gold": 22500,
+   "exp": 1140,
+   "armor_class": 43,
+   "flags": [
+    "special",
+    "sentinel",
+    "aware",
+    "memory",
+    "no_charm",
+    "no_summmon",
+    "no_bash"
+   ],
+   "description": "The gynosphinx is a crafty but gentle creature, having the body of a\nbeautiful dark-skinned woman from the waist up, a feathery set of wings\nand the hind legs of a mighty cat.  Right now she is confused, having \njust heard a puzzling riddle from a cousin criosphinx.",
+   "inventory": [
+    5314
+   ]
+  },
+  "5314": {
+   "vnum": 5314,
+   "name": "criosphinx",
+   "short_desc": "the criosphinx",
+   "long_desc": "A criosphinx calmly watches you.",
+   "level": 23,
+   "alignment": 300,
+   "hp_dice": "23d10+292",
+   "damage_dice": "6d8+9",
+   "gold": 52500,
+   "exp": 1380,
+   "armor_class": 31,
+   "flags": [
+    "special",
+    "sentinel",
+    "aware",
+    "memory",
+    "no_charm",
+    "no_summmon",
+    "no_bash"
+   ],
+   "description": "The criosphinx is a calm and friendly creature, having the head of a ram atop\nthe body of a well-furred feline with eagle-like wings.  He delights in riddles,\nand in poking occasional fun at his easily confused lesser cousins.",
+   "inventory": [
+    5315
+   ]
+  },
+  "5315": {
+   "vnum": 5315,
+   "name": "androsphinx",
+   "short_desc": "the androsphinx",
+   "long_desc": "A mighty androsphinx tosses its lion-like mane.",
+   "level": 27,
+   "alignment": 400,
+   "hp_dice": "27d10+340",
+   "damage_dice": "7d8+11",
+   "gold": 30000,
+   "exp": 1620,
+   "armor_class": 19,
+   "flags": [
+    "special",
+    "sentinel",
+    "aware",
+    "memory",
+    "no_charm",
+    "no_summmon",
+    "no_bash"
+   ],
+   "description": "The mighty androsphinx is a huge creature, with the body of a lion whose\nface  is quite man-like, perhaps even handsome, and a massive pair of feathered\nwings.  Tales are told of pharoahs that were rendered permanently deaf by the \nmighty roar of this sphinx.",
+   "inventory": [
+    5316
+   ]
+  },
+  "5316": {
+   "vnum": 5316,
+   "name": "great",
+   "short_desc": "the great sphinx",
+   "long_desc": "A mighty sphinx rests here in the sand, dormant now for centuries.",
+   "level": 41,
+   "alignment": 500,
+   "hp_dice": "41d10+508",
+   "damage_dice": "11d8+14",
+   "gold": 75000,
+   "exp": 2460,
+   "armor_class": -10,
+   "flags": [
+    "special",
+    "sentinel",
+    "aware",
+    "memory",
+    "no_charm",
+    "no_summmon",
+    "no_sleep",
+    "no_bash",
+    "no_blind"
+   ],
+   "description": "The great sphinx towers tens of feet above you, resting here in a state of \ndormancy.  It has become almost indistinguishable from the sand that surrounds\nit, although you can still make out the features of the handsome face that once\nadvised many rulers.",
+   "equipment": {
+    "hold": 5317
+   },
+   "loot_table": [
+    {
+     "vnum": 9204,
+     "chance": 20
+    },
+    {
+     "vnum": 9205,
+     "chance": 20
+    },
+    {
+     "vnum": 9206,
+     "chance": 20
+    },
+    {
+     "vnum": 9207,
+     "chance": 20
+    },
+    {
+     "vnum": 9208,
+     "chance": 20
+    },
+    {
+     "vnum": 9209,
+     "chance": 20
+    },
+    {
+     "vnum": 9210,
+     "chance": 20
+    },
+    {
+     "vnum": 9211,
+     "chance": 20
+    },
+    {
+     "vnum": 9212,
+     "chance": 20
+    }
+   ],
+   "loot_chance": 100,
+   "inventory": [
+    9204,
+    5308,
+    53093,
+    9201
+   ]
+  },
+  "5317": {
+   "vnum": 5317,
+   "name": "ramses",
+   "short_desc": "Ramses the Damned",
+   "long_desc": "You have awakened the mighty servant to the pharoahs, Ramses.",
+   "level": 38,
+   "alignment": 150,
+   "hp_dice": "38d10+472",
+   "damage_dice": "10d8+14",
+   "gold": 60000,
+   "exp": 2280,
+   "armor_class": -10,
+   "flags": [
+    "special",
+    "sentinel",
+    "aware",
+    "memory",
+    "no_charm",
+    "no_summmon",
+    "no_sleep",
+    "no_blind"
+   ],
+   "description": "As your light spills over his face and body, you can see his features\nbegin to fill out, swell, and harden, until an apparently healthy man \nstands before you, clad only in the raiments he was left in when he last \nslept.  His hair is a soft black, his skin a deep chocolate, and his \ntall frame is totally still, his chest not even moving to breathe.",
+   "inventory": [
+    5319,
+    5320,
+    5321,
+    5321
+   ],
+   "equipment": {
+    "head": 5322
+   },
+   "loot_table": [
+    {
+     "vnum": 9204,
+     "chance": 20
+    },
+    {
+     "vnum": 9205,
+     "chance": 20
+    },
+    {
+     "vnum": 9206,
+     "chance": 20
+    },
+    {
+     "vnum": 9207,
+     "chance": 20
+    },
+    {
+     "vnum": 9208,
+     "chance": 20
+    },
+    {
+     "vnum": 9209,
+     "chance": 20
+    },
+    {
+     "vnum": 9210,
+     "chance": 20
+    },
+    {
+     "vnum": 9211,
+     "chance": 20
+    },
+    {
+     "vnum": 9212,
+     "chance": 20
+    }
+   ],
+   "loot_chance": 100
+  },
+  "5318": {
+   "vnum": 5318,
+   "name": "the Necromancer",
+   "short_desc": "Kharzul the Necromancer",
+   "long_desc": "A necromancer wrapped in black robes mutters in an ancient tongue.",
+   "level": 28,
+   "hp_dice": "28d10+352",
+   "damage_dice": "8d8+8",
+   "gold": 1200,
+   "exp": 1680,
+   "alignment": -900,
+   "flags": [
+    "caster",
+    "boss",
+    "sentinel"
+   ],
+   "special": "necromancer",
+   "boss": true,
+   "boss_id": "necromancer",
+   "boss_title": "the Cryptbreaker",
+   "boss_achievement": "boss_necromancer",
+   "boss_loot_table": [
+    5328,
+    5329,
+    5330,
+    {
+     "vnum": 5320,
+     "chance": 20
+    },
+    {
+     "vnum": 5321,
+     "chance": 20
+    },
+    {
+     "vnum": 5322,
+     "chance": 20
+    },
+    {
+     "vnum": 5323,
+     "chance": 20
+    }
+   ],
+   "boss_loot_chance": 85,
+   "boss_config": {
+    "enrage_time": 90,
+    "enrage_multiplier": 1.6,
+    "ability_interval": 4.5,
+    "phases": [
+     {
+      "threshold": 70,
+      "message": "The Necromancer tears open a grave portal!",
+      "spawn_adds": {
+       "5307": 2
+      }
+     },
+     {
+      "threshold": 40,
+      "message": "The Necromancer fades into shadow and reappears with a howl!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Drain Life",
+      "telegraph": "The Necromancer begins a dark siphoning chant!",
+      "cast_time": 3,
+      "cooldown": 14,
+      "damage_dice": "4d6+6",
+      "interruptible": true,
+      "vulnerable_after": 4,
+      "on_success_message": "Dark energy pours into the Necromancer!",
+      "heal_pct": 10
+     },
+     {
+      "name": "Shadow Nova",
+      "telegraph": "The Necromancer spreads his arms, shadow building to a burst!",
+      "cast_time": 2,
+      "cooldown": 16,
+      "damage_dice": "3d6+5",
+      "aoe": true,
+      "dodge": true
+     }
+    ]
+   },
+   "armor_class": 16,
+   "inventory": [
+    9202,
+    5304,
+    5324
+   ]
+  },
+  "5360": {
+   "vnum": 5360,
+   "name": "Aurexus the Bronze Dragon",
+   "short_desc": "Aurexus the Bronze Dragon",
+   "long_desc": "A bronze dragon watches you with ancient, storm-lit eyes.",
+   "level": 44,
+   "alignment": -200,
+   "hp_dice": "44d10+520",
+   "damage_dice": "11d8+14",
+   "gold": 7000,
+   "exp": 4200,
+   "armor_class": -6,
+   "flags": [
+    "boss",
+    "sentinel"
+   ],
+   "special": "dragon",
+   "boss": true,
+   "boss_id": "bronze_dragon",
+   "boss_title": "the Stormslayer",
+   "boss_achievement": "boss_bronze_dragon",
+   "boss_loot_table": [
+    {
+     "vnum": 9203,
+     "chance": 100
+    },
+    {
+     "vnum": 9201,
+     "chance": 35
+    },
+    {
+     "vnum": 9202,
+     "chance": 35
+    },
+    {
+     "vnum": 53090,
+     "chance": 25
+    },
+    {
+     "vnum": 53091,
+     "chance": 10
+    },
+    {
+     "vnum": 53092,
+     "chance": 10
+    },
+    {
+     "vnum": 53093,
+     "chance": 10
+    }
+   ],
+   "boss_loot_chance": 80,
+   "boss_config": {
+    "enrage_time": 120,
+    "enrage_multiplier": 1.7,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 70,
+      "message": "Aurexus crackles with lightning!"
+     },
+     {
+      "threshold": 35,
+      "message": "Aurexus beats its wings, storm winds roaring!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Lightning Breath",
+      "telegraph": "Aurexus draws lightning into its maw!",
+      "cast_time": 3,
+      "cooldown": 18,
+      "damage_dice": "6d6+10",
+      "aoe": true,
+      "dodge": true
+     },
+     {
+      "name": "Thunderclap",
+      "telegraph": "Aurexus slams the ground in a thunderous clap!",
+      "cast_time": 1,
+      "cooldown": 10,
+      "damage_dice": "3d8+6",
+      "dodge": true
+     }
+    ]
+   },
+   "equipment_rolls": [
+    {
+     "slot": "shield",
+     "vnum": 9201,
+     "chance": 50
+    }
+   ],
+   "loot_table": [
+    {
+     "vnum": 9204,
+     "chance": 20
+    },
+    {
+     "vnum": 9205,
+     "chance": 20
+    },
+    {
+     "vnum": 9206,
+     "chance": 20
+    },
+    {
+     "vnum": 9207,
+     "chance": 20
+    },
+    {
+     "vnum": 9208,
+     "chance": 20
+    },
+    {
+     "vnum": 9209,
+     "chance": 20
+    },
+    {
+     "vnum": 9210,
+     "chance": 20
+    },
+    {
+     "vnum": 9211,
+     "chance": 20
+    },
+    {
+     "vnum": 9212,
+     "chance": 20
+    }
+   ],
+   "loot_chance": 100,
+   "inventory": [
+    5314,
+    5321,
+    9208
+   ]
+  },
+  "5398": {
+   "vnum": 5398,
+   "name": "tomb robber",
+   "short_desc": "a shadowy tomb robber",
+   "long_desc": "A tomb robber hides here in a shadowy alcove, clutching a half-empty sack.",
+   "description": "He's lean and wiry, dressed in dark wrappings that blend with the pyramid's shadows. His fingers are stained with ancient dust and his eyes dart constantly to every sound.",
+   "level": 32,
+   "alignment": 0,
+   "hp_dice": "32d10+550",
+   "damage_dice": "1d4+1",
+   "gold": 0,
+   "exp": 0,
+   "armor_class": 100,
+   "flags": [
+    "sentinel"
+   ],
+   "special": "flavor_npc",
+   "talk_responses": {
+    "hello": "The tomb robber hisses. 'Keep your voice down! The deeper chambers have pressure plates — step on the wrong stone and the ceiling comes down. I lost my partner that way. Also, the mummies... they don't stay dead. Burn them if you can.'",
+    "traps": "He traces a pattern in the dust. 'The builders were clever. Look for discolored stones — those are usually triggers. And never touch golden sarcophagi directly. Always check for needles in the lid seams.'",
+    "default": "The tomb robber eyes you warily. 'You didn't see me here. I wasn't here. Got it?'",
+    "next": "The tomb robber's eyes gleam with fear and greed. 'The Necropolis makes this tomb look like a children's playground. Seek Paladin Dawnguard there if you dare. And I've heard whispers of a Frostspire in the frozen north — ancient magic and terrible cold.'"
+   },
+   "inventory": [
+    5322,
+    5314
+   ]
+  },
+  "5399": {
+   "vnum": 5399,
+   "name": "ghostly servant",
+   "short_desc": "a ghostly pharaoh's servant",
+   "long_desc": "The translucent shade of a pharaoh's servant drifts here, endlessly sweeping with a spectral broom.",
+   "description": "Its form flickers like a candle in the wind. Ancient linen wrappings trail behind it, and its hollow eyes stare through you as if seeing another time entirely.",
+   "level": 40,
+   "alignment": 0,
+   "hp_dice": "40d10+800",
+   "damage_dice": "1d4+1",
+   "gold": 0,
+   "exp": 0,
+   "armor_class": 100,
+   "flags": [
+    "sentinel"
+   ],
+   "special": "flavor_npc",
+   "talk_responses": {
+    "hello": "The ghost pauses its eternal sweeping. 'The master sleeps... but not peacefully. His tomb was sealed with blood and bone. Those who disturb his rest join his court — forever. The pharaoh's curse is not metaphor, traveler. It is promise.'",
+    "pharaoh": "The ghost's voice echoes. 'He was a god among men, and cruel as the desert sun. Even death could not humble him. His treasure room lies in the deepest chamber, but the way is guarded by those who served him in life... and now in death.'",
+    "default": "The ghostly servant resumes sweeping, murmuring in a forgotten language."
+   },
+   "inventory": [
+    5300,
+    9202
+   ]
+  }
+ },
+ "objects": {
+  "5300": {
+   "vnum": 5300,
+   "name": "mace",
+   "short_desc": "an egyptian mace",
+   "room_desc": "A hierogylph-engraved mace has been left here.",
+   "item_type": "weapon",
+   "weight": 10,
+   "value": 800,
+   "damage_dice": "2d6",
+   "weapon_type": "pound",
+   "type": "weapon"
+  },
+  "5301": {
+   "vnum": 5301,
+   "name": "robe",
+   "short_desc": "some sand-colored robes",
+   "room_desc": "Sand-colored robes lie here.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 500,
+   "armor_bonus": 4,
+   "type": "armor",
+   "wear_slot": "body",
+   "armor": 1,
+   "armor_class": 2
+  },
+  "5302": {
+   "vnum": 5302,
+   "name": "dirk",
+   "short_desc": "an obsidian dirk",
+   "room_desc": "A flat dirk made of chipped obsidian lies here.",
+   "item_type": "weapon",
+   "weight": 8,
+   "value": 1000,
+   "damage_dice": "3d3",
+   "weapon_type": "pierce",
+   "type": "weapon"
+  },
+  "5303": {
+   "vnum": 5303,
+   "name": "turban",
+   "short_desc": "a dirty cloth turban",
+   "room_desc": "A dirty cloth turban has been forgotten here.",
+   "item_type": "armor",
+   "weight": 10,
+   "value": 1500,
+   "armor_bonus": 5,
+   "type": "armor",
+   "wear_slot": "head",
+   "armor": 2,
+   "armor_class": 2
+  },
+  "5304": {
+   "vnum": 5304,
+   "name": "wrappings",
+   "short_desc": "some cloth wrappings",
+   "room_desc": "Long cloth wrappings lie on the ground in a pile.",
+   "item_type": "armor",
+   "weight": 15,
+   "value": 1250,
+   "armor_bonus": 5,
+   "type": "treasure",
+   "armor": 6
+  },
+  "5305": {
+   "vnum": 5305,
+   "name": "bottle",
+   "short_desc": "a bottle of embalming fluid",
+   "room_desc": "A dusty bottle lies here on the ground.",
+   "item_type": "potion",
+   "weight": 5,
+   "value": 250,
+   "type": "drink",
+   "drinks": 10,
+   "max_drinks": 10
+  },
+  "5306": {
+   "vnum": 5306,
+   "name": "jar",
+   "short_desc": "a jar of formaldehyde",
+   "room_desc": "A small jar lies here on the ground.",
+   "item_type": "potion",
+   "weight": 6,
+   "value": 300,
+   "type": "treasure"
+  },
+  "5307": {
+   "vnum": 5307,
+   "name": "ball",
+   "short_desc": "a small hot ball of fire",
+   "room_desc": "A little ball of fire hovers in the air before your eyes.",
+   "item_type": "light",
+   "weight": 10,
+   "value": 3500,
+   "light_hours": -1,
+   "type": "treasure"
+  },
+  "5308": {
+   "vnum": 5308,
+   "name": "scimitar",
+   "short_desc": "a stone scimitar",
+   "room_desc": "A curved scimitar made of stone rests on the ground.",
+   "item_type": "weapon",
+   "weight": 18,
+   "value": 10000,
+   "damage_dice": "4d3",
+   "weapon_type": "slash",
+   "type": "weapon"
+  },
+  "5309": {
+   "vnum": 5309,
+   "name": "key",
+   "short_desc": "a stone key",
+   "room_desc": "A stone key has been dropped here.",
+   "item_type": "key",
+   "weight": 15,
+   "value": 0,
+   "type": "key"
+  },
+  "5310": {
+   "vnum": 5310,
+   "name": "sarcophagus",
+   "short_desc": "a mighty stone sarcophagus",
+   "room_desc": "A mighty stone sarcophagus lies in the center of the tomb.",
+   "item_type": "container",
+   "weight": 5000,
+   "value": 5000,
+   "capacity": 500,
+   "key_vnum": 5309,
+   "type": "treasure"
+  },
+  "5311": {
+   "vnum": 5311,
+   "name": "dust",
+   "short_desc": "some ancient dust",
+   "room_desc": "A small pile of dust is being scattered by the breeze.",
+   "item_type": "treasure",
+   "weight": 1,
+   "value": 1,
+   "type": "trash"
+  },
+  "5312": {
+   "vnum": 5312,
+   "name": "scarab",
+   "short_desc": "a small emerald scarab",
+   "room_desc": "A small emerald scarab lies here on the ground.",
+   "item_type": "key",
+   "weight": 5,
+   "value": 0,
+   "type": "treasure"
+  },
+  "5313": {
+   "vnum": 5313,
+   "name": "lamp",
+   "short_desc": "the lamp",
+   "room_desc": "A small, tarnished, battered lamp has been dropped here.",
+   "item_type": "staff",
+   "weight": 10,
+   "value": 25000,
+   "type": "light",
+   "light_hours": 24
+  },
+  "5314": {
+   "vnum": 5314,
+   "name": "ankh",
+   "short_desc": "an ankh",
+   "room_desc": "A small brass ankh has been left here.",
+   "item_type": "armor",
+   "weight": 9,
+   "value": 10000,
+   "armor_bonus": 7,
+   "type": "treasure",
+   "armor": 9
+  },
+  "5315": {
+   "vnum": 5315,
+   "name": "book",
+   "short_desc": "a book of riddles",
+   "room_desc": "A medium-sized parchment book with well-worn pages lies here.",
+   "item_type": "scroll",
+   "weight": 15,
+   "value": 7500,
+   "type": "furniture"
+  },
+  "5316": {
+   "vnum": 5316,
+   "name": "paw",
+   "short_desc": "a lion's paw",
+   "room_desc": "The mighty paw of a lion-like creature has been dropped here.",
+   "item_type": "weapon",
+   "weight": 20,
+   "value": 18000,
+   "damage_dice": "1d14",
+   "weapon_type": "bludgeon",
+   "type": "treasure"
+  },
+  "5317": {
+   "vnum": 5317,
+   "name": "parchment",
+   "short_desc": "the answer",
+   "room_desc": "A small piece of parchment covered in hieroglyphics lies here.",
+   "item_type": "key",
+   "weight": 1,
+   "value": 1,
+   "type": "note"
+  },
+  "5318": {
+   "vnum": 5318,
+   "name": "treasure",
+   "short_desc": "the treasure of the sphinx",
+   "room_desc": "The massive treasure of the sphinx lies here in a big pile.",
+   "item_type": "money",
+   "weight": 23,
+   "value": 23850,
+   "type": "treasure"
+  },
+  "5319": {
+   "vnum": 5319,
+   "name": "sand",
+   "short_desc": "a pile of sand",
+   "room_desc": "You see a small pile of sand.",
+   "item_type": "money",
+   "weight": 12,
+   "value": 12986,
+   "type": "trash"
+  },
+  "5320": {
+   "vnum": 5320,
+   "name": "golden armor of the pharaoh",
+   "short_desc": "golden armor of the pharaoh",
+   "room_desc": "Gleaming golden armor lies here.",
+   "description": "Ancient golden armor inscribed with hieroglyphs.",
+   "item_type": "armor",
+   "weight": 8,
+   "value": 6000,
+   "wear_slot": "body",
+   "armor_class": 7,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 2
+    }
+   ],
+   "set_id": "pharaohs_legacy",
+   "type": "armor",
+   "min_level": 25,
+   "armor": 7
+  },
+  "5321": {
+   "vnum": 5321,
+   "name": "pharaoh's crown",
+   "short_desc": "a pharaoh's crown",
+   "room_desc": "A golden crown rests here.",
+   "description": "A crown of the ancient pharaohs.",
+   "item_type": "armor",
+   "weight": 2,
+   "value": 5000,
+   "wear_slot": "head",
+   "armor_class": 4,
+   "affects": [
+    {
+     "type": "int",
+     "value": 2
+    }
+   ],
+   "set_id": "pharaohs_legacy",
+   "type": "armor",
+   "min_level": 25,
+   "armor": 5
+  },
+  "5322": {
+   "vnum": 5322,
+   "name": "pharaoh's scepter",
+   "short_desc": "a pharaoh's scepter",
+   "room_desc": "A golden scepter lies here.",
+   "description": "A jeweled scepter of power.",
+   "item_type": "weapon",
+   "weight": 4,
+   "value": 5500,
+   "wear_slot": "wield",
+   "weapon_type": "pound",
+   "damage_dice": "2d6+5",
+   "affects": [
+    {
+     "type": "wis",
+     "value": 2
+    }
+   ],
+   "set_id": "pharaohs_legacy",
+   "type": "weapon",
+   "min_level": 25
+  },
+  "5323": {
+   "vnum": 5323,
+   "name": "pharaoh's sandals",
+   "short_desc": "a pair of pharaoh's sandals",
+   "room_desc": "Golden sandals lie here.",
+   "description": "Ornate golden sandals.",
+   "item_type": "armor",
+   "weight": 1,
+   "value": 3500,
+   "wear_slot": "feet",
+   "armor_class": 3,
+   "affects": [
+    {
+     "type": "max_mana",
+     "value": 15
+    }
+   ],
+   "set_id": "pharaohs_legacy",
+   "type": "armor",
+   "min_level": 25,
+   "armor": 8
+  },
+  "5324": {
+   "vnum": 5324,
+   "name": "wand",
+   "short_desc": "a blazing sun wand",
+   "room_desc": "A small length of brass pipe shines here with its own light.",
+   "item_type": "wand",
+   "weight": 10,
+   "value": 25000,
+   "type": "wand"
+  },
+  "5325": {
+   "vnum": 5325,
+   "name": "ring",
+   "short_desc": "a sandy-coloured ring",
+   "room_desc": "A small sandy-coloured ring has been carelessly dropped here.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 20000,
+   "armor_bonus": 8,
+   "type": "armor",
+   "wear_slot": "finger",
+   "armor": 9,
+   "armor_class": 4
+  },
+  "5326": {
+   "vnum": 5326,
+   "name": "sphinx",
+   "short_desc": "a small golden sphinx",
+   "room_desc": "A small golden sphinx glints in the light.",
+   "item_type": "treasure",
+   "weight": 5,
+   "value": 50000,
+   "type": "treasure"
+  },
+  "5327": {
+   "vnum": 5327,
+   "name": "leggings",
+   "short_desc": "a pair of sphinxian leggings",
+   "room_desc": "Massive leggings formed from the body of a sphinx stand here.",
+   "item_type": "armor",
+   "weight": 20,
+   "value": 20000,
+   "armor_bonus": 10,
+   "type": "armor",
+   "wear_slot": "legs",
+   "armor": 2,
+   "armor_class": 4
+  },
+  "5328": {
+   "vnum": 5328,
+   "name": "a necromancer staff",
+   "short_desc": "a necromancer staff",
+   "room_desc": "A blackwood staff hums with dark power.",
+   "type": "weapon",
+   "weight": 6,
+   "cost": 1800,
+   "damage_dice": "2d6+3",
+   "weapon_type": "blunt"
+  },
+  "5329": {
+   "vnum": 5329,
+   "name": "a bone-etched grimoire",
+   "short_desc": "a bone-etched grimoire",
+   "room_desc": "A grimoire bound in bone lies here.",
+   "type": "treasure",
+   "weight": 3,
+   "cost": 1500
+  },
+  "5330": {
+   "vnum": 5330,
+   "name": "a shroud of the crypt",
+   "short_desc": "a shroud of the crypt",
+   "room_desc": "A shroud woven from shadowy cloth rests here.",
+   "type": "armor",
+   "weight": 4,
+   "cost": 1600,
+   "armor": 8,
+   "wear_slot": "body",
+   "armor_class": 4
+  },
+  "9201": {
+   "vnum": 9201,
+   "name": "aegis of the tempest",
+   "short_desc": "\u001b[33mthe \u001b[93mAegis\u001b[0m\u001b[33m of the Tempest\u001b[0m",
+   "room_desc": "\u001b[33mA bronze \u001b[93mAegis\u001b[0m\u001b[33m crackling with static lies here.\u001b[0m",
+   "description": "A paladin’s shield forged in stormfire.",
+   "item_type": "armor",
+   "wear_slot": "shield",
+   "armor_bonus": 6,
+   "weight": 10,
+   "value": 17000,
+   "flags": [
+    "magic"
+   ],
+   "affects": [
+    {
+     "type": "wis",
+     "value": 2
+    },
+    {
+     "type": "cha",
+     "value": 2
+    }
+   ],
+   "set_id": 53,
+   "type": "armor",
+   "armor": 3,
+   "armor_class": 4
+  },
+  "9202": {
+   "vnum": 9202,
+   "name": "stormcaller reliquary",
+   "short_desc": "\u001b[33ma stormcaller \u001b[93mreliquary\u001b[0m\u001b[33m\u001b[0m",
+   "room_desc": "\u001b[33mA \u001b[93mreliquary\u001b[0m\u001b[33m etched with lightning sigils rests here.\u001b[0m",
+   "description": "A cleric’s relic humming with divine thunder.",
+   "item_type": "armor",
+   "wear_slot": "neck1",
+   "armor_bonus": 2,
+   "weight": 2,
+   "value": 15000,
+   "flags": [
+    "magic"
+   ],
+   "affects": [
+    {
+     "type": "wis",
+     "value": 3
+    },
+    {
+     "type": "max_mana",
+     "value": 40
+    }
+   ],
+   "set_id": 53,
+   "type": "treasure",
+   "armor": 10
+  },
+  "9203": {
+   "vnum": 9203,
+   "name": "scale of the bronze dragon",
+   "short_desc": "\u001b[33ma scale of the bronze dragon\u001b[0m",
+   "room_desc": "\u001b[33mA bronze dragon scale lies here, warm with stormlight.\u001b[0m",
+   "description": "A storm‑kissed scale from Aurexus.",
+   "item_type": "armor",
+   "wear_slot": "neck1",
+   "armor_bonus": 4,
+   "weight": 2,
+   "value": 15000,
+   "flags": [
+    "magic"
+   ],
+   "affects": [
+    {
+     "type": "spell_resist",
+     "value": 5
+    }
+   ],
+   "set_id": 53,
+   "type": "treasure",
+   "armor": 14
+  },
+  "9204": {
+   "vnum": 9204,
+   "name": "ankh‑forged blade",
+   "short_desc": "\u001b[33man ankh‑forged \u001b[91mblade\u001b[0m\u001b[33m\u001b[0m",
+   "room_desc": "\u001b[33mAn ankh‑forged \u001b[91mblade\u001b[0m\u001b[33m lies here.\u001b[0m",
+   "description": "A relic blade.",
+   "item_type": "weapon",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "wield",
+   "weapon_type": "slash",
+   "damage_dice": "2d6+6",
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 4
+    }
+   ],
+   "set_id": 53,
+   "type": "weapon"
+  },
+  "9205": {
+   "vnum": 9205,
+   "name": "solar aegis",
+   "short_desc": "\u001b[33ma solar \u001b[93maegis\u001b[0m\u001b[33m\u001b[0m",
+   "room_desc": "\u001b[33mA solar \u001b[93maegis\u001b[0m\u001b[33m lies here.\u001b[0m",
+   "description": "A paladin's shield.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "shield",
+   "armor_bonus": 3,
+   "affects": [
+    {
+     "type": "wis",
+     "value": 1
+    }
+   ],
+   "set_id": 53,
+   "type": "armor",
+   "armor": 3,
+   "armor_class": 4
+  },
+  "9206": {
+   "vnum": 9206,
+   "name": "pharaoh's sigil",
+   "short_desc": "\u001b[33ma pharaoh's \u001b[35msigil\u001b[0m\u001b[33m\u001b[0m",
+   "room_desc": "\u001b[33mA pharaoh's \u001b[35msigil\u001b[0m\u001b[33m lies here.\u001b[0m",
+   "description": "A deathknight's sigil.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "neck1",
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 4
+    }
+   ],
+   "set_id": 53,
+   "type": "treasure",
+   "armor": 9
+  },
+  "9207": {
+   "vnum": 9207,
+   "name": "scarab relic",
+   "short_desc": "\u001b[33ma scarab \u001b[93mrelic\u001b[0m\u001b[33m\u001b[0m",
+   "room_desc": "\u001b[33mA scarab \u001b[93mrelic\u001b[0m\u001b[33m lies here.\u001b[0m",
+   "description": "A cleric's relic.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "hold",
+   "affects": [
+    {
+     "type": "wis",
+     "value": 3
+    },
+    {
+     "type": "max_mana",
+     "value": 35
+    }
+   ],
+   "set_id": 53,
+   "type": "treasure",
+   "armor": 7
+  },
+  "9208": {
+   "vnum": 9208,
+   "name": "sandglass focus",
+   "short_desc": "\u001b[33ma sandglass \u001b[96mfocus\u001b[0m\u001b[33m\u001b[0m",
+   "room_desc": "\u001b[33mA sandglass \u001b[96mfocus\u001b[0m\u001b[33m lies here.\u001b[0m",
+   "description": "A mage's focus.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "hold",
+   "affects": [
+    {
+     "type": "int",
+     "value": 4
+    }
+   ],
+   "set_id": 53,
+   "type": "treasure",
+   "armor": 7
+  },
+  "9209": {
+   "vnum": 9209,
+   "name": "desert harp",
+   "short_desc": "\u001b[33ma desert \u001b[95mharp\u001b[0m\u001b[33m\u001b[0m",
+   "room_desc": "\u001b[33mA desert \u001b[95mharp\u001b[0m\u001b[33m lies here.\u001b[0m",
+   "description": "A bard's harp.",
+   "item_type": "weapon",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "wield",
+   "weapon_type": "mace",
+   "damage_dice": "1d6+3",
+   "affects": [
+    {
+     "type": "cha",
+     "value": 3
+    }
+   ],
+   "set_id": 53,
+   "type": "treasure"
+  },
+  "9210": {
+   "vnum": 9210,
+   "name": "tombknife",
+   "short_desc": "\u001b[33ma tomb\u001b[92mknife\u001b[0m\u001b[33m\u001b[0m",
+   "room_desc": "\u001b[33mA tomb\u001b[92mknife\u001b[0m\u001b[33m lies here.\u001b[0m",
+   "description": "A rogue's knife.",
+   "item_type": "weapon",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "wield",
+   "weapon_type": "pierce",
+   "damage_dice": "1d6+3",
+   "affects": [
+    {
+     "type": "dex",
+     "value": 3
+    },
+    {
+     "type": "hitroll",
+     "value": 1
+    }
+   ],
+   "set_id": 53,
+   "type": "weapon"
+  },
+  "9211": {
+   "vnum": 9211,
+   "name": "dune‑hunter band",
+   "short_desc": "\u001b[33ma dune‑hunter \u001b[92mband\u001b[0m\u001b[33m\u001b[0m",
+   "room_desc": "\u001b[33mA dune‑hunter \u001b[92mband\u001b[0m\u001b[33m lies here.\u001b[0m",
+   "description": "A ranger's ring.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "finger1",
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "hitroll",
+     "value": 1
+    }
+   ],
+   "set_id": 53,
+   "type": "armor",
+   "armor": 9,
+   "armor_class": 4
+  },
+  "9212": {
+   "vnum": 9212,
+   "name": "scarab mantle",
+   "short_desc": "\u001b[33ma scarab mantle\u001b[0m",
+   "room_desc": "\u001b[33mA scarab mantle lies here.\u001b[0m",
+   "description": "A cursed mantle.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "about",
+   "armor_bonus": 2,
+   "affects": [
+    {
+     "type": "curse_resist",
+     "value": 10
+    }
+   ],
+   "set_id": 53,
+   "type": "armor",
+   "armor": 1,
+   "armor_class": 4
+  },
+  "53090": {
+   "vnum": 53090,
+   "name": "boots of the bronze whisper",
+   "short_desc": "\u001b[93mboots of the bronze whisper\u001b[0m",
+   "room_desc": "\u001b[93mA pair of bronze‑stitched boots rests here.\u001b[0m",
+   "description": "Soft‑soled boots that hush each step like distant thunder.",
+   "item_type": "armor",
+   "wear_slot": "feet",
+   "armor_bonus": 3,
+   "weight": 2,
+   "value": 18000,
+   "flags": [
+    "magic"
+   ],
+   "affects": [
+    {
+     "type": "sneak",
+     "value": 7
+    }
+   ],
+   "type": "armor",
+   "armor": 2,
+   "armor_class": 3
+  },
+  "53091": {
+   "vnum": 53091,
+   "name": "stormblessed signet",
+   "short_desc": "\u001b[93mthe stormblessed signet\u001b[0m",
+   "room_desc": "\u001b[93mA crackling signet ring lies here.\u001b[0m",
+   "description": "A signet that channels holy thunder into your smite.",
+   "item_type": "armor",
+   "wear_slot": "finger1",
+   "armor_bonus": 1,
+   "weight": 1,
+   "value": 22000,
+   "flags": [
+    "magic"
+   ],
+   "affects": [
+    {
+     "type": "smite",
+     "value": 12
+    }
+   ],
+   "type": "armor",
+   "armor": 14,
+   "armor_class": 4
+  },
+  "53092": {
+   "vnum": 53092,
+   "name": "auric clasp",
+   "short_desc": "\u001b[93mthe auric clasp\u001b[0m",
+   "room_desc": "\u001b[93mA sun‑etched clasp rests here.\u001b[0m",
+   "description": "A clasp that strengthens the spell Heal.",
+   "item_type": "armor",
+   "wear_slot": "neck1",
+   "armor_bonus": 1,
+   "weight": 1,
+   "value": 22000,
+   "flags": [
+    "magic"
+   ],
+   "affects": [
+    {
+     "type": "heal",
+     "value": 12
+    }
+   ],
+   "type": "treasure",
+   "armor": 10
+  },
+  "53093": {
+   "vnum": 53093,
+   "name": "sunward sigil",
+   "short_desc": "\u001b[93mthe sunward sigil\u001b[0m",
+   "room_desc": "\u001b[93mA radiant sigil rests here.\u001b[0m",
+   "description": "A sigil that empowers holy smite.",
+   "item_type": "armor",
+   "wear_slot": "neck2",
+   "armor_bonus": 1,
+   "weight": 1,
+   "value": 24000,
+   "flags": [
+    "magic"
+   ],
+   "affects": [
+    {
+     "type": "holy_smite",
+     "value": 12
+    }
+   ],
+   "type": "treasure",
+   "armor": 8
+  }
+ },
+ "lifespan": 20
 }

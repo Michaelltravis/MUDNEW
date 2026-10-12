@@ -84,29 +84,30 @@
 
   // ---------------- zone number -> theme ----------------
   const Z = {
-    9: 'meadow',        // River Island Of Minos
-    12: 'temple',       // God Simplex
+    9: 'meadow',        // Minos River Island
+    12: 'temple',       // God Rooms
     15: 'desert',       // The Straight Path
-    25: 'arcane',       // High Tower Of Magic
-    30: 'midgaard', 31: 'midgaard', 32: 'midgaard', 260: 'midgaard',
+    25: 'arcane', 469: 'arcane',   // High Tower Of Magic I and II
+    30: 'midgaard', 32: 'midgaard', 260: 'midgaard',   // Garathorm (once Midgaard): the city, the stables, housing
+    403: 'midgaard', 418: 'midgaard', 431: 'midgaard', 517: 'midgaard',   // its wall, vineyard, cathedral, school
     33: 'autumn',       // Three Of Swords
-    35: 'forest',       // Miden'Nir
-    36: 'chessboard',   // Chessboard of Midgaard
-    40: 'mines',        // Moria
+    36: 'chessboard',   // Chessboard of Garathorm
+    // 40 is the Mountain Range now (Moria's surface among it): its rooms' own terrain decides
     50: 'desert', 53: 'sandstone', 52: 'sandstone', 54: 'sandstone',
     51: 'drow',
     60: 'forest', 61: 'darkforest', 62: 'darkforest', 63: 'darkforest',
     64: 'arcane',       // Rand's Tower
     65: 'dwarvenhall', 100: 'mines',
-    66: 'autumn', 67: 'autumn',
+    66: 'frozen',       // Northern Wilderness (tundra and glacier)
+    67: 'autumn',
     68: 'sunken',       // Sunken Coast
     69: 'volcanic',     // Ashlands
-    70: 'sewer', 71: 'sewer', 72: 'sewer', 73: 'sewer',
+    70: 'sewer', 72: 'sewer', 73: 'sewer',   // the Sewer (one zone now, 72)
     79: 'castle',       // Redferne's Residence
     80: 'volcanic',     // Dragon's Domain
     90: 'swamp',
     110: 'elven',
-    120: 'rome',
+    // 120 is the Sea of Storms now (Port Halyon, once Rome, among it): its rooms' own terrain decides
     130: 'sunken',      // Atal'narath
     140: 'necropolis',
     150: 'castle',      // King Welmar's
@@ -115,7 +116,7 @@
     186: 'meadow',      // Newbie Zone
     200: 'darkforest',  // Forest of Shadows
     210: 'mines',       // Tunnel of Sticks
-    220: 'darkcastle',  // Castle Apocalypse
+    220: 'darkcastle', 457: 'darkcastle',  // Castle of the Apocalypse II and I
     235: 'darkforest',  // Goblin Warrens
     238: 'necropolis',  // Haunted Monastery
     240: 'sunken', 285: 'sunken',

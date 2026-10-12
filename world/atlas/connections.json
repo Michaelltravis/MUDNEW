@@ -1,0 +1,474 @@
+{
+ "_about": "Exits the connection pass added beyond the atlas (tools/atlas/connect.py), with why; hookups and annex ways are in zones.json and rooms.json.",
+ "added": [
+  {
+   "from": 910,
+   "dir": "down",
+   "to": 922,
+   "why": "our old way in"
+  },
+  {
+   "from": 922,
+   "dir": "up",
+   "to": 910,
+   "why": "our old way in (back)"
+  },
+  {
+   "from": 910,
+   "dir": "up",
+   "to": 923,
+   "why": "our old way in"
+  },
+  {
+   "from": 923,
+   "dir": "down",
+   "to": 910,
+   "why": "our old way in (back)"
+  },
+  {
+   "from": 3001,
+   "dir": "down",
+   "to": 1204,
+   "why": "our old way in"
+  },
+  {
+   "from": 1204,
+   "dir": "up",
+   "to": 3001,
+   "why": "our old way in (back)"
+  },
+  {
+   "from": 5011,
+   "dir": "down",
+   "to": 5101,
+   "why": "our old way in"
+  },
+  {
+   "from": 5101,
+   "dir": "up",
+   "to": 5011,
+   "why": "our old way in (back)"
+  },
+  {
+   "from": 6548,
+   "dir": "north",
+   "to": 6549,
+   "why": "our old way in"
+  },
+  {
+   "from": 6549,
+   "dir": "south",
+   "to": 6548,
+   "why": "our old way in (back)"
+  },
+  {
+   "from": 3044,
+   "dir": "up",
+   "to": 25000,
+   "why": "our old way in"
+  },
+  {
+   "from": 25000,
+   "dir": "down",
+   "to": 3044,
+   "why": "our old way in (back)"
+  },
+  {
+   "from": 916,
+   "dir": "west",
+   "to": 915,
+   "why": "our old way out"
+  },
+  {
+   "from": 2592,
+   "dir": "north",
+   "to": 2590,
+   "why": "our old way out"
+  },
+  {
+   "from": 5317,
+   "dir": "up",
+   "to": 5315,
+   "why": "our old way out"
+  },
+  {
+   "from": 6346,
+   "dir": "down",
+   "to": 6132,
+   "why": "our old way out"
+  },
+  {
+   "from": 6548,
+   "dir": "south",
+   "to": 6547,
+   "why": "our old way out"
+  },
+  {
+   "from": 7284,
+   "dir": "east",
+   "to": 7283,
+   "why": "our old way out"
+  },
+  {
+   "from": 1203,
+   "dir": "west",
+   "to": 1201,
+   "why": "our old way in"
+  },
+  {
+   "from": 1201,
+   "dir": "east",
+   "to": 1203,
+   "why": "our old way in (back)"
+  },
+  {
+   "from": 6549,
+   "dir": "west",
+   "to": 6550,
+   "why": "our old way in"
+  },
+  {
+   "from": 6550,
+   "dir": "east",
+   "to": 6549,
+   "why": "our old way in (back)"
+  },
+  {
+   "from": 917,
+   "dir": "north",
+   "to": 916,
+   "why": "our old way out"
+  },
+  {
+   "from": 920,
+   "dir": "up",
+   "to": 923,
+   "why": "our old way out"
+  },
+  {
+   "from": 921,
+   "dir": "east",
+   "to": 922,
+   "why": "our old way out"
+  },
+  {
+   "from": 6371,
+   "dir": "north",
+   "to": 6331,
+   "why": "our old way out"
+  },
+  {
+   "from": 6391,
+   "dir": "down",
+   "to": 6331,
+   "why": "our old way out"
+  },
+  {
+   "from": 9144,
+   "dir": "south",
+   "to": 9143,
+   "why": "the way back"
+  },
+  {
+   "from": 9145,
+   "dir": "south",
+   "to": 9144,
+   "why": "the way back"
+  },
+  {
+   "from": 9146,
+   "dir": "south",
+   "to": 9145,
+   "why": "the way back"
+  },
+  {
+   "from": 9147,
+   "dir": "south",
+   "to": 9146,
+   "why": "the way back"
+  },
+  {
+   "from": 10501,
+   "dir": "west",
+   "to": 10500,
+   "why": "the way back"
+  },
+  {
+   "from": 12147,
+   "dir": "south",
+   "to": 12148,
+   "why": "the way back"
+  },
+  {
+   "from": 12177,
+   "dir": "up",
+   "to": 12178,
+   "why": "the way back"
+  },
+  {
+   "from": 15301,
+   "dir": "east",
+   "to": 15009,
+   "why": "the way back"
+  },
+  {
+   "from": 203641,
+   "dir": "west",
+   "to": 203640,
+   "why": "the way back"
+  },
+  {
+   "from": 10502,
+   "dir": "west",
+   "to": 10501,
+   "why": "the way back"
+  },
+  {
+   "from": 12176,
+   "dir": "north",
+   "to": 12177,
+   "why": "the way back"
+  },
+  {
+   "from": 10503,
+   "dir": "west",
+   "to": 10502,
+   "why": "the way back"
+  },
+  {
+   "from": 10504,
+   "dir": "west",
+   "to": 10503,
+   "why": "the way back"
+  },
+  {
+   "from": 10505,
+   "dir": "west",
+   "to": 10504,
+   "why": "the way back"
+  },
+  {
+   "from": 10506,
+   "dir": "west",
+   "to": 10505,
+   "why": "the way back"
+  },
+  {
+   "from": 10507,
+   "dir": "west",
+   "to": 10506,
+   "why": "the way back"
+  },
+  {
+   "from": 10508,
+   "dir": "west",
+   "to": 10507,
+   "why": "the way back"
+  },
+  {
+   "from": 10509,
+   "dir": "west",
+   "to": 10508,
+   "why": "the way back"
+  },
+  {
+   "from": 10510,
+   "dir": "west",
+   "to": 10509,
+   "why": "the way back"
+  },
+  {
+   "from": 10511,
+   "dir": "west",
+   "to": 10510,
+   "why": "the way back"
+  },
+  {
+   "from": 10512,
+   "dir": "west",
+   "to": 10511,
+   "why": "the way back"
+  },
+  {
+   "from": 10513,
+   "dir": "west",
+   "to": 10512,
+   "why": "the way back"
+  },
+  {
+   "from": 10514,
+   "dir": "west",
+   "to": 10513,
+   "why": "the way back"
+  },
+  {
+   "from": 10515,
+   "dir": "west",
+   "to": 10514,
+   "why": "the way back"
+  },
+  {
+   "from": 10516,
+   "dir": "west",
+   "to": 10515,
+   "why": "the way back"
+  },
+  {
+   "from": 10517,
+   "dir": "west",
+   "to": 10516,
+   "why": "the way back"
+  },
+  {
+   "from": 10518,
+   "dir": "west",
+   "to": 10517,
+   "why": "the way back"
+  },
+  {
+   "from": 10519,
+   "dir": "west",
+   "to": 10518,
+   "why": "the way back"
+  },
+  {
+   "from": 10520,
+   "dir": "west",
+   "to": 10519,
+   "why": "the way back"
+  },
+  {
+   "from": 10521,
+   "dir": "west",
+   "to": 10520,
+   "why": "the way back"
+  },
+  {
+   "from": 10522,
+   "dir": "west",
+   "to": 10521,
+   "why": "the way back"
+  },
+  {
+   "from": 926,
+   "dir": "west",
+   "to": 923,
+   "why": "map neighbour"
+  },
+  {
+   "from": 923,
+   "dir": "east",
+   "to": 926,
+   "why": "map neighbour"
+  },
+  {
+   "from": 9147,
+   "dir": "east",
+   "to": 8348,
+   "why": "map neighbour"
+  },
+  {
+   "from": 8348,
+   "dir": "west",
+   "to": 9147,
+   "why": "map neighbour"
+  },
+  {
+   "from": 928,
+   "dir": "west",
+   "to": 926,
+   "why": "map neighbour"
+  },
+  {
+   "from": 926,
+   "dir": "east",
+   "to": 928,
+   "why": "map neighbour"
+  },
+  {
+   "from": 929,
+   "dir": "west",
+   "to": 928,
+   "why": "map neighbour"
+  },
+  {
+   "from": 928,
+   "dir": "east",
+   "to": 929,
+   "why": "map neighbour"
+  },
+  {
+   "from": 930,
+   "dir": "west",
+   "to": 929,
+   "why": "map neighbour"
+  },
+  {
+   "from": 929,
+   "dir": "east",
+   "to": 930,
+   "why": "map neighbour"
+  },
+  {
+   "from": 931,
+   "dir": "west",
+   "to": 930,
+   "why": "map neighbour"
+  },
+  {
+   "from": 930,
+   "dir": "east",
+   "to": 931,
+   "why": "map neighbour"
+  },
+  {
+   "from": 932,
+   "dir": "west",
+   "to": 931,
+   "why": "map neighbour"
+  },
+  {
+   "from": 931,
+   "dir": "east",
+   "to": 932,
+   "why": "map neighbour"
+  },
+  {
+   "from": 933,
+   "dir": "west",
+   "to": 932,
+   "why": "map neighbour"
+  },
+  {
+   "from": 932,
+   "dir": "east",
+   "to": 933,
+   "why": "map neighbour"
+  },
+  {
+   "from": 934,
+   "dir": "south",
+   "to": 933,
+   "why": "map neighbour"
+  },
+  {
+   "from": 933,
+   "dir": "north",
+   "to": 934,
+   "why": "map neighbour"
+  },
+  {
+   "from": 10700,
+   "dir": "up",
+   "to": 10699,
+   "why": "a way back out"
+  },
+  {
+   "from": 16000,
+   "dir": "up",
+   "to": 8001,
+   "why": "a way back out"
+  }
+ ],
+ "still_cut_off": []
+}

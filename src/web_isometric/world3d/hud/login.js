@@ -37,7 +37,7 @@ const FIRST = new Set(['warrior', 'cleric', 'ranger']);
 const LORE = [
   'Lanterns burn blue where the dead have walked.',
   'The hollow was a lake once. On still nights, it remembers.',
-  'Midgaard\u2019s temple bells ring at dusk to call the lost home.',
+  'Garathorm\u2019s temple bells ring at dusk to call the lost home.',
   'Every blade remembers its first battle, say the guildmasters.',
   'Beyond the Ashlands, the dragons count the years in embers.',
   'Not every voice in the mist belongs to the living.',

@@ -1,0 +1,2552 @@
+{
+ "number": 505,
+ "name": "Lost Crypt I",
+ "builders": "Lavyn",
+ "atlas_area": 105,
+ "rooms": {
+  "224801": {
+   "vnum": 224801,
+   "name": "Entrance To The Lost Crypt",
+   "map": {
+    "x": 42,
+    "y": 59,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 224802,
+     "description": "To the east lies Strange Tunnel."
+    },
+    "south": {
+     "to_room": 24874,
+     "description": "To the south lies Strange Tunnel."
+    },
+    "west": {
+     "to_room": 24870,
+     "description": "To the west lies Strange Tunnel."
+    },
+    "up": {
+     "to_room": 224800,
+     "description": "To the up lies The Graveyard Of Aredrel Dwarven."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east, south, west and up.",
+   "placeholder": true
+  },
+  "224802": {
+   "vnum": 224802,
+   "name": "Strange Tunnel",
+   "map": {
+    "x": 43,
+    "y": 59,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 224803,
+     "description": "To the east lies Ancient Tunnel."
+    },
+    "south": {
+     "to_room": 24875,
+     "description": "To the south lies Strange Tunnel."
+    },
+    "west": {
+     "to_room": 224801,
+     "description": "To the west lies Entrance To The Lost Crypt."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "224803": {
+   "vnum": 224803,
+   "name": "Ancient Tunnel",
+   "map": {
+    "x": 44,
+    "y": 59,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 224804,
+     "description": "To the east lies Ancient Tunnel."
+    },
+    "west": {
+     "to_room": 224802,
+     "description": "To the west lies Strange Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "224804": {
+   "vnum": 224804,
+   "name": "Ancient Tunnel",
+   "map": {
+    "x": 45,
+    "y": 59,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 224805,
+     "description": "To the east lies A Bend In The Ancient Tunnel."
+    },
+    "west": {
+     "to_room": 224803,
+     "description": "To the west lies Ancient Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "224805": {
+   "vnum": 224805,
+   "name": "A Bend In The Ancient Tunnel",
+   "map": {
+    "x": 46,
+    "y": 59,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 224806,
+     "description": "To the north lies Ancient Tunnel."
+    },
+    "west": {
+     "to_room": 224804,
+     "description": "To the west lies Ancient Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "224806": {
+   "vnum": 224806,
+   "name": "Ancient Tunnel",
+   "map": {
+    "x": 46,
+    "y": 60,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 224807,
+     "description": "To the north lies Three Way Junction."
+    },
+    "south": {
+     "to_room": 224805,
+     "description": "To the south lies A Bend In The Ancient Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "224807": {
+   "vnum": 224807,
+   "name": "Three Way Junction",
+   "map": {
+    "x": 46,
+    "y": 61,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24851,
+     "description": "To the north lies A Bend In The Ancient Tunnel."
+    },
+    "east": {
+     "to_room": 224808,
+     "description": "To the east lies Ancient Tunnel."
+    },
+    "south": {
+     "to_room": 224806,
+     "description": "To the south lies Ancient Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "224808": {
+   "vnum": 224808,
+   "name": "Ancient Tunnel",
+   "map": {
+    "x": 47,
+    "y": 61,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 224809,
+     "description": "To the east lies T-Cross Junction."
+    },
+    "west": {
+     "to_room": 224807,
+     "description": "To the west lies Three Way Junction."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "224809": {
+   "vnum": 224809,
+   "name": "T-Cross Junction",
+   "map": {
+    "x": 48,
+    "y": 61,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 224810,
+     "description": "To the south lies Ancient Tunnel."
+    },
+    "west": {
+     "to_room": 224808,
+     "description": "To the west lies Ancient Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "224810": {
+   "vnum": 224810,
+   "name": "Ancient Tunnel",
+   "map": {
+    "x": 48,
+    "y": 60,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 224809,
+     "description": "To the north lies T-Cross Junction."
+    },
+    "south": {
+     "to_room": 224811,
+     "description": "To the south lies Three Way Junction."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "224811": {
+   "vnum": 224811,
+   "name": "Three Way Junction",
+   "map": {
+    "x": 48,
+    "y": 59,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 224810,
+     "description": "To the north lies Ancient Tunnel."
+    },
+    "east": {
+     "to_room": 224812,
+     "description": "To the east lies Ancient Tunnel."
+    },
+    "south": {
+     "to_room": 24853,
+     "description": "To the south lies A Bend In The Ancient Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "224812": {
+   "vnum": 224812,
+   "name": "Ancient Tunnel",
+   "map": {
+    "x": 49,
+    "y": 59,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 224813,
+     "description": "To the east lies T-Cross Junction."
+    },
+    "west": {
+     "to_room": 224811,
+     "description": "To the west lies Three Way Junction."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "224813": {
+   "vnum": 224813,
+   "name": "T-Cross Junction",
+   "map": {
+    "x": 50,
+    "y": 59,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 224814,
+     "description": "To the east lies Three Way Junction."
+    },
+    "south": {
+     "to_room": 24855,
+     "description": "To the south lies Ancient Tunnel."
+    },
+    "west": {
+     "to_room": 224812,
+     "description": "To the west lies Ancient Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "224814": {
+   "vnum": 224814,
+   "name": "Three Way Junction",
+   "map": {
+    "x": 51,
+    "y": 59,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 224825,
+     "description": "To the north lies Ancient Tunnel."
+    },
+    "east": {
+     "to_room": 224815,
+     "description": "To the east lies Ancient Tunnel."
+    },
+    "west": {
+     "to_room": 224813,
+     "description": "To the west lies T-Cross Junction."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "224815": {
+   "vnum": 224815,
+   "name": "Ancient Tunnel",
+   "map": {
+    "x": 52,
+    "y": 59,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 224816,
+     "description": "To the east lies The Crossing."
+    },
+    "west": {
+     "to_room": 224814,
+     "description": "To the west lies Three Way Junction."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "224816": {
+   "vnum": 224816,
+   "name": "The Crossing",
+   "map": {
+    "x": 53,
+    "y": 59,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24859,
+     "description": "To the north lies Three Way Junction."
+    },
+    "east": {
+     "to_room": 24862,
+     "description": "To the east lies Three Way Junction."
+    },
+    "south": {
+     "to_room": 224817,
+     "description": "To the south lies Ancient Tunnel."
+    },
+    "west": {
+     "to_room": 224815,
+     "description": "To the west lies Ancient Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "224817": {
+   "vnum": 224817,
+   "name": "Ancient Tunnel",
+   "map": {
+    "x": 53,
+    "y": 58,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 224816,
+     "description": "To the north lies The Crossing."
+    },
+    "south": {
+     "to_room": 224818,
+     "description": "To the south lies A Bend In The Ancient Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "224818": {
+   "vnum": 224818,
+   "name": "A Bend In The Ancient Tunnel",
+   "map": {
+    "x": 53,
+    "y": 57,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 224817,
+     "description": "To the north lies Ancient Tunnel."
+    },
+    "east": {
+     "to_room": 224819,
+     "description": "To the east lies A Bend In The Ancient Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "224819": {
+   "vnum": 224819,
+   "name": "A Bend In The Ancient Tunnel",
+   "map": {
+    "x": 54,
+    "y": 57,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 224820,
+     "description": "To the south lies A Bend In The Ancient Tunnel."
+    },
+    "west": {
+     "to_room": 224818,
+     "description": "To the west lies A Bend In The Ancient Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead south and west.",
+   "placeholder": true
+  },
+  "224820": {
+   "vnum": 224820,
+   "name": "A Bend In The Ancient Tunnel",
+   "map": {
+    "x": 54,
+    "y": 56,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 224819,
+     "description": "To the north lies A Bend In The Ancient Tunnel."
+    },
+    "west": {
+     "to_room": 224821,
+     "description": "To the west lies Ancient Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "224821": {
+   "vnum": 224821,
+   "name": "Ancient Tunnel",
+   "map": {
+    "x": 53,
+    "y": 56,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 224820,
+     "description": "To the east lies A Bend In The Ancient Tunnel."
+    },
+    "west": {
+     "to_room": 224822,
+     "description": "To the west lies Ancient Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "224822": {
+   "vnum": 224822,
+   "name": "Ancient Tunnel",
+   "map": {
+    "x": 52,
+    "y": 56,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 224821,
+     "description": "To the east lies Ancient Tunnel."
+    },
+    "west": {
+     "to_room": 224823,
+     "description": "To the west lies A Bend In The Ancient Tunnel."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "224823": {
+   "vnum": 224823,
+   "name": "A Bend In The Ancient Tunnel",
+   "map": {
+    "x": 51,
+    "y": 56,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 224822,
+     "description": "To the east lies Ancient Tunnel."
+    },
+    "south": {
+     "to_room": 224824,
+     "description": "To the south lies A Dead End."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and south.",
+   "placeholder": true
+  },
+  "224824": {
+   "vnum": 224824,
+   "name": "A Dead End",
+   "map": {
+    "x": 51,
+    "y": 55,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 224823,
+     "description": "To the north lies A Bend In The Ancient Tunnel."
+    },
+    "south": {
+     "to_room": 24858,
+     "description": "To the south lies Bone Gnasher's Lair.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "224825": {
+   "vnum": 224825,
+   "name": "Ancient Tunnel",
+   "map": {
+    "x": 51,
+    "y": 60,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 224827,
+     "description": "To the north lies Tunnel Of Confusion."
+    },
+    "south": {
+     "to_room": 224814,
+     "description": "To the south lies Three Way Junction."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "224826": {
+   "vnum": 224826,
+   "name": "Tunnel Of Confusion",
+   "map": {
+    "x": 54,
+    "y": 67,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use.",
+   "placeholder": true
+  },
+  "224827": {
+   "vnum": 224827,
+   "name": "Tunnel Of Confusion",
+   "map": {
+    "x": 53,
+    "y": 67,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use.",
+   "placeholder": true
+  },
+  "224828": {
+   "vnum": 224828,
+   "name": "Tunnel Of Confusion",
+   "map": {
+    "x": 52,
+    "y": 67,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use.",
+   "placeholder": true
+  },
+  "224829": {
+   "vnum": 224829,
+   "name": "Tunnel Of Confusion",
+   "map": {
+    "x": 52,
+    "y": 69,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time.",
+   "placeholder": true
+  },
+  "24830": {
+   "vnum": 24830,
+   "name": "Tunnel Of Confusion",
+   "map": {
+    "x": 53,
+    "y": 69,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach.",
+   "placeholder": true
+  },
+  "24831": {
+   "vnum": 24831,
+   "name": "Tunnel Of Confusion",
+   "map": {
+    "x": 54,
+    "y": 69,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch.",
+   "placeholder": true
+  },
+  "24832": {
+   "vnum": 24832,
+   "name": "Tunnel Of Confusion",
+   "map": {
+    "x": 55,
+    "y": 69,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach.",
+   "placeholder": true
+  },
+  "24833": {
+   "vnum": 24833,
+   "name": "Tunnel Of Confusion",
+   "map": {
+    "x": 56,
+    "y": 69,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time.",
+   "placeholder": true
+  },
+  "24834": {
+   "vnum": 24834,
+   "name": "Tunnel Of Confusion",
+   "map": {
+    "x": 57,
+    "y": 69,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach.",
+   "placeholder": true
+  },
+  "24835": {
+   "vnum": 24835,
+   "name": "Tunnel Of Confusion",
+   "map": {
+    "x": 58,
+    "y": 69,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use.",
+   "placeholder": true
+  },
+  "24836": {
+   "vnum": 24836,
+   "name": "Tunnel Of Confusion",
+   "map": {
+    "x": 59,
+    "y": 69,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach.",
+   "placeholder": true
+  },
+  "24837": {
+   "vnum": 24837,
+   "name": "Tunnel Of Confusion",
+   "map": {
+    "x": 60,
+    "y": 69,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach.",
+   "placeholder": true
+  },
+  "24838": {
+   "vnum": 24838,
+   "name": "Tunnel Of Confusion",
+   "map": {
+    "x": 56,
+    "y": 75,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24839,
+     "description": "To the east lies Hidden Tomb."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "24839": {
+   "vnum": 24839,
+   "name": "Hidden Tomb",
+   "map": {
+    "x": 58,
+    "y": 75,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24864,
+     "description": "To the east lies Hidden Tomb."
+    },
+    "west": {
+     "to_room": 24838,
+     "description": "To the west lies Tunnel Of Confusion."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24840": {
+   "vnum": 24840,
+   "name": "Tunnel Of Confusion",
+   "map": {
+    "x": 56,
+    "y": 73,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch.",
+   "placeholder": true
+  },
+  "24841": {
+   "vnum": 24841,
+   "name": "Tunnel Of Confusion",
+   "map": {
+    "x": 55,
+    "y": 73,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch.",
+   "placeholder": true
+  },
+  "24842": {
+   "vnum": 24842,
+   "name": "Tunnel Of Confusion",
+   "map": {
+    "x": 54,
+    "y": 73,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch.",
+   "placeholder": true
+  },
+  "24843": {
+   "vnum": 24843,
+   "name": "Tunnel Of Confusion",
+   "map": {
+    "x": 53,
+    "y": 73,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke.",
+   "placeholder": true
+  },
+  "24844": {
+   "vnum": 24844,
+   "name": "Tunnel Of Confusion",
+   "map": {
+    "x": 52,
+    "y": 73,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time.",
+   "placeholder": true
+  },
+  "24845": {
+   "vnum": 24845,
+   "name": "Tunnel Of Confusion",
+   "map": {
+    "x": 51,
+    "y": 73,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time.",
+   "placeholder": true
+  },
+  "24846": {
+   "vnum": 24846,
+   "name": "Tunnel Of Confusion",
+   "map": {
+    "x": 50,
+    "y": 73,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke.",
+   "placeholder": true
+  },
+  "24847": {
+   "vnum": 24847,
+   "name": "Tunnel Of Confusion",
+   "map": {
+    "x": 50,
+    "y": 72,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time.",
+   "placeholder": true
+  },
+  "24848": {
+   "vnum": 24848,
+   "name": "Tunnel Of Confusion",
+   "map": {
+    "x": 50,
+    "y": 71,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "down": {
+     "to_room": 24957,
+     "description": "To the down lies At The Narrow Stairway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads down.",
+   "placeholder": true
+  },
+  "24849": {
+   "vnum": 24849,
+   "name": "A Dead End",
+   "map": {
+    "x": 45,
+    "y": 63,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 24850,
+     "description": "To the south lies A Bend In The Ancient Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads south.",
+   "placeholder": true
+  },
+  "24850": {
+   "vnum": 24850,
+   "name": "A Bend In The Ancient Tunnel",
+   "map": {
+    "x": 45,
+    "y": 62,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24849,
+     "description": "To the north lies A Dead End."
+    },
+    "east": {
+     "to_room": 24851,
+     "description": "To the east lies A Bend In The Ancient Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and east.",
+   "placeholder": true
+  },
+  "24851": {
+   "vnum": 24851,
+   "name": "A Bend In The Ancient Tunnel",
+   "map": {
+    "x": 46,
+    "y": 62,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 224807,
+     "description": "To the south lies Three Way Junction."
+    },
+    "west": {
+     "to_room": 24850,
+     "description": "To the west lies A Bend In The Ancient Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "24853": {
+   "vnum": 24853,
+   "name": "A Bend In The Ancient Tunnel",
+   "map": {
+    "x": 48,
+    "y": 58,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 224811,
+     "description": "To the north lies Three Way Junction."
+    },
+    "west": {
+     "to_room": 24854,
+     "description": "To the west lies A Dead End."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "24854": {
+   "vnum": 24854,
+   "name": "A Dead End",
+   "map": {
+    "x": 47,
+    "y": 58,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24853,
+     "description": "To the east lies A Bend In The Ancient Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "24855": {
+   "vnum": 24855,
+   "name": "Ancient Tunnel",
+   "map": {
+    "x": 50,
+    "y": 58,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 224813,
+     "description": "To the north lies T-Cross Junction."
+    },
+    "south": {
+     "to_room": 24856,
+     "description": "To the south lies Ancient Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24856": {
+   "vnum": 24856,
+   "name": "Ancient Tunnel",
+   "map": {
+    "x": 50,
+    "y": 57,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24855,
+     "description": "To the north lies Ancient Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads north.",
+   "placeholder": true
+  },
+  "24857": {
+   "vnum": 24857,
+   "name": "Void Of Sunlight",
+   "map": {
+    "x": 61,
+    "y": 79,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24890,
+     "description": "To the north lies Around The Lost Cave."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads north.",
+   "placeholder": true
+  },
+  "24858": {
+   "vnum": 24858,
+   "name": "Bone Gnasher's Lair",
+   "map": {
+    "x": 51,
+    "y": 54,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 224824,
+     "description": "To the north lies A Dead End."
+    },
+    "down": {
+     "to_room": 24940,
+     "description": "To the down lies Demlag's Hidden Treasury Cave."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and down.",
+   "placeholder": true
+  },
+  "24859": {
+   "vnum": 24859,
+   "name": "Three Way Junction",
+   "map": {
+    "x": 53,
+    "y": 60,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24860,
+     "description": "To the north lies A Dead End."
+    },
+    "east": {
+     "to_room": 24861,
+     "description": "To the east lies Three Way Junction."
+    },
+    "south": {
+     "to_room": 224816,
+     "description": "To the south lies The Crossing."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "24860": {
+   "vnum": 24860,
+   "name": "A Dead End",
+   "map": {
+    "x": 53,
+    "y": 61,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 24859,
+     "description": "To the south lies Three Way Junction."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "24861": {
+   "vnum": 24861,
+   "name": "Three Way Junction",
+   "map": {
+    "x": 54,
+    "y": 60,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 24862,
+     "description": "To the south lies Three Way Junction."
+    },
+    "west": {
+     "to_room": 24859,
+     "description": "To the west lies Three Way Junction."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "24862": {
+   "vnum": 24862,
+   "name": "Three Way Junction",
+   "map": {
+    "x": 54,
+    "y": 59,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24861,
+     "description": "To the north lies Three Way Junction."
+    },
+    "south": {
+     "to_room": 24863,
+     "description": "To the south lies A Dead End."
+    },
+    "west": {
+     "to_room": 224816,
+     "description": "To the west lies The Crossing."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "24863": {
+   "vnum": 24863,
+   "name": "A Dead End",
+   "map": {
+    "x": 54,
+    "y": 58,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24862,
+     "description": "To the north lies Three Way Junction."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. A way leads north.",
+   "placeholder": true
+  },
+  "24864": {
+   "vnum": 24864,
+   "name": "Hidden Tomb",
+   "map": {
+    "x": 59,
+    "y": 75,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24865,
+     "description": "To the east lies Hidden Tomb.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 24839,
+     "description": "To the west lies Hidden Tomb."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24865": {
+   "vnum": 24865,
+   "name": "Hidden Tomb",
+   "map": {
+    "x": 60,
+    "y": 75,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24866,
+     "description": "To the east lies T-Cross Junction."
+    },
+    "west": {
+     "to_room": 24864,
+     "description": "To the west lies Hidden Tomb."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24866": {
+   "vnum": 24866,
+   "name": "T-Cross Junction",
+   "map": {
+    "x": 61,
+    "y": 75,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24889,
+     "description": "To the north lies Hidden Cave."
+    },
+    "south": {
+     "to_room": 24867,
+     "description": "To the south lies Hidden Tomb."
+    },
+    "west": {
+     "to_room": 24865,
+     "description": "To the west lies Hidden Tomb."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "24867": {
+   "vnum": 24867,
+   "name": "Hidden Tomb",
+   "map": {
+    "x": 61,
+    "y": 73,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24866,
+     "description": "To the north lies T-Cross Junction."
+    },
+    "south": {
+     "to_room": 24868,
+     "description": "To the south lies Hidden Tomb."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24868": {
+   "vnum": 24868,
+   "name": "Hidden Tomb",
+   "map": {
+    "x": 61,
+    "y": 72,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24867,
+     "description": "To the north lies Hidden Tomb."
+    },
+    "down": {
+     "to_room": 24880,
+     "description": "To the down lies Around The Sealed Crypt."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and down.",
+   "placeholder": true
+  },
+  "24870": {
+   "vnum": 24870,
+   "name": "Strange Tunnel",
+   "map": {
+    "x": 41,
+    "y": 59,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 224801,
+     "description": "To the east lies Entrance To The Lost Crypt."
+    },
+    "south": {
+     "to_room": 24873,
+     "description": "To the south lies Strange Tunnel."
+    },
+    "west": {
+     "to_room": 24871,
+     "description": "To the west lies Strange Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "24871": {
+   "vnum": 24871,
+   "name": "Strange Tunnel",
+   "map": {
+    "x": 39,
+    "y": 59,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24870,
+     "description": "To the east lies Strange Tunnel."
+    },
+    "south": {
+     "to_room": 24872,
+     "description": "To the south lies Strange Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "24872": {
+   "vnum": 24872,
+   "name": "Strange Tunnel",
+   "map": {
+    "x": 39,
+    "y": 57,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24871,
+     "description": "To the north lies Strange Tunnel."
+    },
+    "east": {
+     "to_room": 24873,
+     "description": "To the east lies Strange Tunnel."
+    },
+    "south": {
+     "to_room": 24879,
+     "description": "To the south lies Strange Tunnel."
+    },
+    "west": {
+     "to_room": 24900,
+     "description": "To the west lies Tunnel Of Living Dead."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "24873": {
+   "vnum": 24873,
+   "name": "Strange Tunnel",
+   "map": {
+    "x": 41,
+    "y": 57,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24870,
+     "description": "To the north lies Strange Tunnel."
+    },
+    "east": {
+     "to_room": 24874,
+     "description": "To the east lies Strange Tunnel."
+    },
+    "south": {
+     "to_room": 24878,
+     "description": "To the south lies Strange Tunnel."
+    },
+    "west": {
+     "to_room": 24872,
+     "description": "To the west lies Strange Tunnel."
+    },
+    "down": {
+     "to_room": 24998,
+     "description": "To the down lies A Secret Treasury Room."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east, south, west and down.",
+   "placeholder": true
+  },
+  "24874": {
+   "vnum": 24874,
+   "name": "Strange Tunnel",
+   "map": {
+    "x": 42,
+    "y": 57,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 224801,
+     "description": "To the north lies Entrance To The Lost Crypt."
+    },
+    "east": {
+     "to_room": 24875,
+     "description": "To the east lies Strange Tunnel."
+    },
+    "south": {
+     "to_room": 24877,
+     "description": "To the south lies Strange Tunnel."
+    },
+    "west": {
+     "to_room": 24873,
+     "description": "To the west lies Strange Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "24875": {
+   "vnum": 24875,
+   "name": "Strange Tunnel",
+   "map": {
+    "x": 43,
+    "y": 57,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 224802,
+     "description": "To the north lies Strange Tunnel."
+    },
+    "south": {
+     "to_room": 24876,
+     "description": "To the south lies Strange Tunnel."
+    },
+    "west": {
+     "to_room": 24874,
+     "description": "To the west lies Strange Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "24876": {
+   "vnum": 24876,
+   "name": "Strange Tunnel",
+   "map": {
+    "x": 43,
+    "y": 55,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24875,
+     "description": "To the north lies Strange Tunnel."
+    },
+    "west": {
+     "to_room": 24877,
+     "description": "To the west lies Strange Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "24877": {
+   "vnum": 24877,
+   "name": "Strange Tunnel",
+   "map": {
+    "x": 42,
+    "y": 55,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24874,
+     "description": "To the north lies Strange Tunnel."
+    },
+    "east": {
+     "to_room": 24876,
+     "description": "To the east lies Strange Tunnel."
+    },
+    "west": {
+     "to_room": 24878,
+     "description": "To the west lies Strange Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "24878": {
+   "vnum": 24878,
+   "name": "Strange Tunnel",
+   "map": {
+    "x": 41,
+    "y": 55,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24873,
+     "description": "To the north lies Strange Tunnel."
+    },
+    "east": {
+     "to_room": 24877,
+     "description": "To the east lies Strange Tunnel."
+    },
+    "west": {
+     "to_room": 24879,
+     "description": "To the west lies Strange Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "24879": {
+   "vnum": 24879,
+   "name": "Strange Tunnel",
+   "map": {
+    "x": 39,
+    "y": 55,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24872,
+     "description": "To the north lies Strange Tunnel."
+    },
+    "east": {
+     "to_room": 24878,
+     "description": "To the east lies Strange Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "24880": {
+   "vnum": 24880,
+   "name": "Around The Sealed Crypt",
+   "map": {
+    "x": 63,
+    "y": 71,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24881,
+     "description": "To the east lies Around The Sealed Crypt."
+    },
+    "up": {
+     "to_room": 24868,
+     "description": "To the up lies Hidden Tomb."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead east and up.",
+   "placeholder": true
+  },
+  "24881": {
+   "vnum": 24881,
+   "name": "Around The Sealed Crypt",
+   "map": {
+    "x": 65,
+    "y": 71,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24882,
+     "description": "To the east lies Around The Sealed Crypt."
+    },
+    "west": {
+     "to_room": 24880,
+     "description": "To the west lies Around The Sealed Crypt."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24882": {
+   "vnum": 24882,
+   "name": "Around The Sealed Crypt",
+   "map": {
+    "x": 67,
+    "y": 71,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 24883,
+     "description": "To the south lies Around The Sealed Crypt."
+    },
+    "west": {
+     "to_room": 24881,
+     "description": "To the west lies Around The Sealed Crypt."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "24883": {
+   "vnum": 24883,
+   "name": "Around The Sealed Crypt",
+   "map": {
+    "x": 67,
+    "y": 69,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24882,
+     "description": "To the north lies Around The Sealed Crypt."
+    },
+    "south": {
+     "to_room": 24884,
+     "description": "To the south lies Around The Sealed Crypt."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24884": {
+   "vnum": 24884,
+   "name": "Around The Sealed Crypt",
+   "map": {
+    "x": 67,
+    "y": 67,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24883,
+     "description": "To the north lies Around The Sealed Crypt."
+    },
+    "west": {
+     "to_room": 24885,
+     "description": "To the west lies Around The Sealed Crypt."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and west.",
+   "placeholder": true
+  },
+  "24885": {
+   "vnum": 24885,
+   "name": "Around The Sealed Crypt",
+   "map": {
+    "x": 65,
+    "y": 67,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24884,
+     "description": "To the east lies Around The Sealed Crypt."
+    },
+    "west": {
+     "to_room": 24886,
+     "description": "To the west lies Around The Sealed Crypt."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24886": {
+   "vnum": 24886,
+   "name": "Around The Sealed Crypt",
+   "map": {
+    "x": 63,
+    "y": 67,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24887,
+     "description": "To the north lies Around The Sealed Crypt."
+    },
+    "east": {
+     "to_room": 24885,
+     "description": "To the east lies Around The Sealed Crypt."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and east.",
+   "placeholder": true
+  },
+  "24887": {
+   "vnum": 24887,
+   "name": "Around The Sealed Crypt",
+   "map": {
+    "x": 63,
+    "y": 70,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24888,
+     "description": "To the east lies Above The Sealed Crypt."
+    },
+    "south": {
+     "to_room": 24886,
+     "description": "To the south lies Around The Sealed Crypt."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east and south.",
+   "placeholder": true
+  },
+  "24888": {
+   "vnum": 24888,
+   "name": "Above The Sealed Crypt",
+   "map": {
+    "x": 65,
+    "y": 70,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 24887,
+     "description": "To the west lies Around The Sealed Crypt."
+    },
+    "down": {
+     "to_room": 24899,
+     "description": "To the down lies Estorgoth's Den."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead west and down.",
+   "placeholder": true
+  },
+  "24889": {
+   "vnum": 24889,
+   "name": "Hidden Cave",
+   "map": {
+    "x": 61,
+    "y": 77,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24857,
+     "description": "To the north lies Void Of Sunlight."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "24890": {
+   "vnum": 24890,
+   "name": "Around The Lost Cave",
+   "map": {
+    "x": 61,
+    "y": 81,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24891,
+     "description": "To the east lies Around The Lost Cave."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads east.",
+   "placeholder": true
+  },
+  "24891": {
+   "vnum": 24891,
+   "name": "Around The Lost Cave",
+   "map": {
+    "x": 62,
+    "y": 81,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24892,
+     "description": "To the east lies Around The Lost Cave."
+    },
+    "west": {
+     "to_room": 24890,
+     "description": "To the west lies Around The Lost Cave."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "24892": {
+   "vnum": 24892,
+   "name": "Around The Lost Cave",
+   "map": {
+    "x": 63,
+    "y": 81,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24893,
+     "description": "To the north lies Around The Lost Cave."
+    },
+    "west": {
+     "to_room": 24891,
+     "description": "To the west lies Around The Lost Cave."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "24893": {
+   "vnum": 24893,
+   "name": "Around The Lost Cave",
+   "map": {
+    "x": 63,
+    "y": 82,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24894,
+     "description": "To the north lies Around The Lost Cave."
+    },
+    "south": {
+     "to_room": 24892,
+     "description": "To the south lies Around The Lost Cave."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "24894": {
+   "vnum": 24894,
+   "name": "Around The Lost Cave",
+   "map": {
+    "x": 63,
+    "y": 83,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 24893,
+     "description": "To the south lies Around The Lost Cave."
+    },
+    "west": {
+     "to_room": 24895,
+     "description": "To the west lies Around The Lost Cave."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "24895": {
+   "vnum": 24895,
+   "name": "Around The Lost Cave",
+   "map": {
+    "x": 62,
+    "y": 83,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 24894,
+     "description": "To the east lies Around The Lost Cave."
+    },
+    "south": {
+     "to_room": 24896,
+     "description": "To the south lies Around The Lost Cave."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and south.",
+   "placeholder": true
+  },
+  "24896": {
+   "vnum": 24896,
+   "name": "Around The Lost Cave",
+   "map": {
+    "x": 62,
+    "y": 82,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24895,
+     "description": "To the north lies Around The Lost Cave."
+    },
+    "west": {
+     "to_room": 24897,
+     "description": "To the west lies Entrance To The Lost Cave."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and west.",
+   "placeholder": true
+  },
+  "24897": {
+   "vnum": 24897,
+   "name": "Entrance To The Lost Cave",
+   "map": {
+    "x": 61,
+    "y": 82,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 24898,
+     "description": "To the north lies The Lost Cave."
+    },
+    "east": {
+     "to_room": 24896,
+     "description": "To the east lies Around The Lost Cave."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "24898": {
+   "vnum": 24898,
+   "name": "The Lost Cave",
+   "map": {
+    "x": 61,
+    "y": 83,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 24897,
+     "description": "To the south lies Entrance To The Lost Cave."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "24899": {
+   "vnum": 24899,
+   "name": "Estorgoth's Den",
+   "map": {
+    "x": 64,
+    "y": 69,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 24888,
+     "description": "To the up lies Above The Sealed Crypt."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads up.",
+   "placeholder": true
+  },
+  "24940": {
+   "vnum": 24940,
+   "name": "Demlag's Hidden Treasury Cave",
+   "map": {
+    "x": 50,
+    "y": 53,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 24858,
+     "description": "To the up lies Bone Gnasher's Lair."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads up.",
+   "placeholder": true
+  },
+  "24957": {
+   "vnum": 24957,
+   "name": "At The Narrow Stairway",
+   "map": {
+    "x": 48,
+    "y": 69,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 24848,
+     "description": "To the up lies Tunnel Of Confusion."
+    },
+    "down": {
+     "to_room": 24958,
+     "description": "To the down lies At The Narrow Stairway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead up and down.",
+   "placeholder": true
+  },
+  "24958": {
+   "vnum": 24958,
+   "name": "At The Narrow Stairway",
+   "map": {
+    "x": 47,
+    "y": 68,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 24957,
+     "description": "To the up lies At The Narrow Stairway."
+    },
+    "down": {
+     "to_room": 24959,
+     "description": "To the down lies At The Narrow Stairway."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead up and down.",
+   "placeholder": true
+  },
+  "24959": {
+   "vnum": 24959,
+   "name": "At The Narrow Stairway",
+   "map": {
+    "x": 46,
+    "y": 67,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 24958,
+     "description": "To the up lies At The Narrow Stairway."
+    },
+    "down": {
+     "to_room": 24960,
+     "description": "To the down lies At The Narrow Stairway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead up and down.",
+   "placeholder": true
+  },
+  "24960": {
+   "vnum": 24960,
+   "name": "At The Narrow Stairway",
+   "map": {
+    "x": 45,
+    "y": 66,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 24959,
+     "description": "To the up lies At The Narrow Stairway."
+    },
+    "down": {
+     "to_room": 24961,
+     "description": "To the down lies At The Narrow Stairway."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead up and down.",
+   "placeholder": true
+  },
+  "24961": {
+   "vnum": 24961,
+   "name": "At The Narrow Stairway",
+   "map": {
+    "x": 44,
+    "y": 65,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 24960,
+     "description": "To the up lies At The Narrow Stairway."
+    },
+    "down": {
+     "to_room": 24962,
+     "description": "To the down lies At The Narrow Stairway."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead up and down.",
+   "placeholder": true
+  },
+  "24962": {
+   "vnum": 24962,
+   "name": "At The Narrow Stairway",
+   "map": {
+    "x": 43,
+    "y": 64,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 24961,
+     "description": "To the up lies At The Narrow Stairway."
+    },
+    "down": {
+     "to_room": 24963,
+     "description": "To the down lies At The Narrow Stairway."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead up and down.",
+   "placeholder": true
+  },
+  "24963": {
+   "vnum": 24963,
+   "name": "At The Narrow Stairway",
+   "map": {
+    "x": 42,
+    "y": 63,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 24962,
+     "description": "To the up lies At The Narrow Stairway."
+    },
+    "down": {
+     "to_room": 24964,
+     "description": "To the down lies At The Narrow Stairway."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead up and down.",
+   "placeholder": true
+  },
+  "24964": {
+   "vnum": 24964,
+   "name": "At The Narrow Stairway",
+   "map": {
+    "x": 41,
+    "y": 62,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 24963,
+     "description": "To the up lies At The Narrow Stairway."
+    },
+    "down": {
+     "to_room": 24965,
+     "description": "To the down lies End Of The Narrow Stairway."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead up and down.",
+   "placeholder": true
+  },
+  "24998": {
+   "vnum": 24998,
+   "name": "A Secret Treasury Room",
+   "map": {
+    "x": 40,
+    "y": 56,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 24873,
+     "description": "To the up lies Strange Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads up.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

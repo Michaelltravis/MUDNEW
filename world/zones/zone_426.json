@@ -1,0 +1,1147 @@
+{
+ "number": 426,
+ "name": "Troglodyte Mines",
+ "builders": "Heroslayer",
+ "atlas_area": 26,
+ "rooms": {
+  "20300": {
+   "vnum": 20300,
+   "name": "Outside Of An Old Cave",
+   "map": {
+    "x": 6,
+    "y": 8,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 5013,
+     "description": "To the east lies A Large Cave."
+    },
+    "west": {
+     "to_room": 20301,
+     "description": "To the west lies Entrance Of An Old Cave."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "20301": {
+   "vnum": 20301,
+   "name": "Entrance Of An Old Cave",
+   "map": {
+    "x": 5,
+    "y": 8,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20302,
+     "description": "To the north lies The Tunnel Of An Old Cave."
+    },
+    "east": {
+     "to_room": 20300,
+     "description": "To the east lies Outside Of An Old Cave."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and east.",
+   "placeholder": true
+  },
+  "20302": {
+   "vnum": 20302,
+   "name": "The Tunnel Of An Old Cave",
+   "map": {
+    "x": 5,
+    "y": 9,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20303,
+     "description": "To the north lies The Tunnel Of An Old Cave."
+    },
+    "south": {
+     "to_room": 20301,
+     "description": "To the south lies Entrance Of An Old Cave."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20303": {
+   "vnum": 20303,
+   "name": "The Tunnel Of An Old Cave",
+   "map": {
+    "x": 5,
+    "y": 10,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20304,
+     "description": "To the north lies Fork In The Tunnel."
+    },
+    "south": {
+     "to_room": 20302,
+     "description": "To the south lies The Tunnel Of An Old Cave."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20304": {
+   "vnum": 20304,
+   "name": "Fork In The Tunnel",
+   "map": {
+    "x": 5,
+    "y": 11,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20310,
+     "description": "To the north lies A Thin Ledge Going Through A Chasm."
+    },
+    "east": {
+     "to_room": 20305,
+     "description": "To the east lies Meeting Chamber."
+    },
+    "south": {
+     "to_room": 20303,
+     "description": "To the south lies The Tunnel Of An Old Cave."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "20305": {
+   "vnum": 20305,
+   "name": "Meeting Chamber",
+   "map": {
+    "x": 6,
+    "y": 11,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20307,
+     "description": "To the north lies Meat Locker."
+    },
+    "east": {
+     "to_room": 20308,
+     "description": "To the east lies Guard Chamber."
+    },
+    "south": {
+     "to_room": 20306,
+     "description": "To the south lies Troglodyte Barracks.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 20304,
+     "description": "To the west lies Fork In The Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "20306": {
+   "vnum": 20306,
+   "name": "Troglodyte Barracks",
+   "map": {
+    "x": 6,
+    "y": 10,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20305,
+     "description": "To the north lies Meeting Chamber."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads north.",
+   "placeholder": true
+  },
+  "20307": {
+   "vnum": 20307,
+   "name": "Meat Locker",
+   "map": {
+    "x": 6,
+    "y": 12,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20305,
+     "description": "To the south lies Meeting Chamber."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "20308": {
+   "vnum": 20308,
+   "name": "Guard Chamber",
+   "map": {
+    "x": 7,
+    "y": 11,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20309,
+     "description": "To the east lies Giant's Lair.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 20305,
+     "description": "To the west lies Meeting Chamber."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "20309": {
+   "vnum": 20309,
+   "name": "Giant's Lair",
+   "map": {
+    "x": 8,
+    "y": 11,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 20308,
+     "description": "To the west lies Guard Chamber."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "20310": {
+   "vnum": 20310,
+   "name": "A Thin Ledge Going Through A Chasm",
+   "map": {
+    "x": 5,
+    "y": 12,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20312,
+     "description": "To the north lies A Thin Ledge Going Through A Chasm."
+    },
+    "south": {
+     "to_room": 20304,
+     "description": "To the south lies Fork In The Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20312": {
+   "vnum": 20312,
+   "name": "A Thin Ledge Going Through A Chasm",
+   "map": {
+    "x": 5,
+    "y": 13,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20313,
+     "description": "To the north lies A Thin Ledge Going Through A Chasm."
+    },
+    "south": {
+     "to_room": 20310,
+     "description": "To the south lies A Thin Ledge Going Through A Chasm."
+    },
+    "down": {
+     "to_room": 20340,
+     "description": "To the down lies Almost Falling Down The Deep Chasm."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, south and down.",
+   "placeholder": true
+  },
+  "20313": {
+   "vnum": 20313,
+   "name": "A Thin Ledge Going Through A Chasm",
+   "map": {
+    "x": 5,
+    "y": 14,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20314,
+     "description": "To the north lies A Tunnel In The Mountain."
+    },
+    "south": {
+     "to_room": 20312,
+     "description": "To the south lies A Thin Ledge Going Through A Chasm."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20314": {
+   "vnum": 20314,
+   "name": "A Tunnel In The Mountain",
+   "map": {
+    "x": 5,
+    "y": 15,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20315,
+     "description": "To the north lies Entrance To The Gnome Silver Mine."
+    },
+    "south": {
+     "to_room": 20313,
+     "description": "To the south lies A Thin Ledge Going Through A Chasm."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20315": {
+   "vnum": 20315,
+   "name": "Entrance To The Gnome Silver Mine",
+   "map": {
+    "x": 5,
+    "y": 16,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20314,
+     "description": "To the south lies A Tunnel In The Mountain."
+    },
+    "west": {
+     "to_room": 20316,
+     "description": "To the west lies A Bend In The Mine's Tunnels."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead south and west.",
+   "placeholder": true
+  },
+  "20316": {
+   "vnum": 20316,
+   "name": "A Bend In The Mine's Tunnels",
+   "map": {
+    "x": 4,
+    "y": 16,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20317,
+     "description": "To the north lies A Tunnel In The Mine."
+    },
+    "east": {
+     "to_room": 20315,
+     "description": "To the east lies Entrance To The Gnome Silver Mine."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and east.",
+   "placeholder": true
+  },
+  "20317": {
+   "vnum": 20317,
+   "name": "A Tunnel In The Mine",
+   "map": {
+    "x": 4,
+    "y": 17,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20318,
+     "description": "To the north lies More Tunnels In The Silver Mine."
+    },
+    "south": {
+     "to_room": 20316,
+     "description": "To the south lies A Bend In The Mine's Tunnels."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20318": {
+   "vnum": 20318,
+   "name": "More Tunnels In The Silver Mine",
+   "map": {
+    "x": 4,
+    "y": 18,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20326,
+     "description": "To the north lies More Tunnels In The Mine."
+    },
+    "east": {
+     "to_room": 20344,
+     "description": "To the east lies Passage To The Guard Chamber."
+    },
+    "south": {
+     "to_room": 20317,
+     "description": "To the south lies A Tunnel In The Mine."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "20319": {
+   "vnum": 20319,
+   "name": "Chamber Of Cells",
+   "map": {
+    "x": 6,
+    "y": 18,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20320,
+     "description": "To the north lies Outside Of A Cell."
+    },
+    "east": {
+     "to_room": 20322,
+     "description": "To the east lies Outside Of A Cell."
+    },
+    "south": {
+     "to_room": 20324,
+     "description": "To the south lies Outside Of A Cell."
+    },
+    "west": {
+     "to_room": 20344,
+     "description": "To the west lies Passage To The Guard Chamber."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "20320": {
+   "vnum": 20320,
+   "name": "Outside Of A Cell",
+   "map": {
+    "x": 6,
+    "y": 19,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20321,
+     "description": "To the north lies Inside A Cell.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 20319,
+     "description": "To the south lies Chamber Of Cells."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20321": {
+   "vnum": 20321,
+   "name": "Inside A Cell",
+   "map": {
+    "x": 6,
+    "y": 20,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20320,
+     "description": "To the south lies Outside Of A Cell."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads south.",
+   "placeholder": true
+  },
+  "20322": {
+   "vnum": 20322,
+   "name": "Outside Of A Cell",
+   "map": {
+    "x": 7,
+    "y": 18,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20323,
+     "description": "To the east lies Inside A Cell.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 20319,
+     "description": "To the west lies Chamber Of Cells."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "20323": {
+   "vnum": 20323,
+   "name": "Inside A Cell",
+   "map": {
+    "x": 8,
+    "y": 18,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 20322,
+     "description": "To the west lies Outside Of A Cell."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads west.",
+   "placeholder": true
+  },
+  "20324": {
+   "vnum": 20324,
+   "name": "Outside Of A Cell",
+   "map": {
+    "x": 6,
+    "y": 17,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20319,
+     "description": "To the north lies Chamber Of Cells."
+    },
+    "south": {
+     "to_room": 20325,
+     "description": "To the south lies Inside A Cell.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20325": {
+   "vnum": 20325,
+   "name": "Inside A Cell",
+   "map": {
+    "x": 6,
+    "y": 16,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20324,
+     "description": "To the north lies Outside Of A Cell."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "20326": {
+   "vnum": 20326,
+   "name": "More Tunnels In The Mine",
+   "map": {
+    "x": 4,
+    "y": 19,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20327,
+     "description": "To the north lies Crossroads In The Silver Mine."
+    },
+    "south": {
+     "to_room": 20318,
+     "description": "To the south lies More Tunnels In The Silver Mine."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20327": {
+   "vnum": 20327,
+   "name": "Crossroads In The Silver Mine",
+   "map": {
+    "x": 4,
+    "y": 20,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20334,
+     "description": "To the north lies Deep Mining Tunnel."
+    },
+    "east": {
+     "to_room": 20328,
+     "description": "To the east lies Slave Pen.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 20326,
+     "description": "To the south lies More Tunnels In The Mine."
+    },
+    "west": {
+     "to_room": 20329,
+     "description": "To the west lies Mining Tunnel."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "20328": {
+   "vnum": 20328,
+   "name": "Slave Pen",
+   "map": {
+    "x": 5,
+    "y": 20,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 20327,
+     "description": "To the west lies Crossroads In The Silver Mine."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads west.",
+   "placeholder": true
+  },
+  "20329": {
+   "vnum": 20329,
+   "name": "Mining Tunnel",
+   "map": {
+    "x": 3,
+    "y": 20,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20327,
+     "description": "To the east lies Crossroads In The Silver Mine."
+    },
+    "west": {
+     "to_room": 20330,
+     "description": "To the west lies A Section Of A Mining Tunnel."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "20330": {
+   "vnum": 20330,
+   "name": "A Section Of A Mining Tunnel",
+   "map": {
+    "x": 2,
+    "y": 20,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20329,
+     "description": "To the east lies Mining Tunnel."
+    },
+    "west": {
+     "to_room": 20331,
+     "description": "To the west lies A Mining Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "20331": {
+   "vnum": 20331,
+   "name": "A Mining Tunnel",
+   "map": {
+    "x": 1,
+    "y": 20,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20330,
+     "description": "To the east lies A Section Of A Mining Tunnel."
+    },
+    "west": {
+     "to_room": 20332,
+     "description": "To the west lies Tomb Of A Gnome King.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "20332": {
+   "vnum": 20332,
+   "name": "Tomb Of A Gnome King",
+   "map": {
+    "x": 0,
+    "y": 20,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20331,
+     "description": "To the east lies A Mining Tunnel."
+    },
+    "down": {
+     "to_room": 20333,
+     "description": "To the down lies The Lost Tomb Of King Lindon."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and down.",
+   "placeholder": true
+  },
+  "20333": {
+   "vnum": 20333,
+   "name": "The Lost Tomb Of King Lindon",
+   "map": {
+    "x": -1,
+    "y": 19,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 20332,
+     "description": "To the up lies Tomb Of A Gnome King."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads up.",
+   "placeholder": true
+  },
+  "20334": {
+   "vnum": 20334,
+   "name": "Deep Mining Tunnel",
+   "map": {
+    "x": 4,
+    "y": 21,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20335,
+     "description": "To the north lies Fork In The Deep Mining Tunnel."
+    },
+    "south": {
+     "to_room": 20327,
+     "description": "To the south lies Crossroads In The Silver Mine."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20335": {
+   "vnum": 20335,
+   "name": "Fork In The Deep Mining Tunnel",
+   "map": {
+    "x": 4,
+    "y": 22,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20338,
+     "description": "To the north lies End Of The Tunnel."
+    },
+    "east": {
+     "to_room": 20336,
+     "description": "To the east lies Guard Chamber."
+    },
+    "south": {
+     "to_room": 20334,
+     "description": "To the south lies Deep Mining Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "20336": {
+   "vnum": 20336,
+   "name": "Guard Chamber",
+   "map": {
+    "x": 5,
+    "y": 22,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20337,
+     "description": "To the east lies Treasure Vault.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 20335,
+     "description": "To the west lies Fork In The Deep Mining Tunnel."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "20337": {
+   "vnum": 20337,
+   "name": "Treasure Vault",
+   "map": {
+    "x": 6,
+    "y": 22,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 20336,
+     "description": "To the west lies Guard Chamber."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads west.",
+   "placeholder": true
+  },
+  "20338": {
+   "vnum": 20338,
+   "name": "End Of The Tunnel",
+   "map": {
+    "x": 4,
+    "y": 23,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20335,
+     "description": "To the south lies Fork In The Deep Mining Tunnel."
+    },
+    "down": {
+     "to_room": 20339,
+     "description": "To the down lies Chamber Of The Slave Master."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead south and down.",
+   "placeholder": true
+  },
+  "20339": {
+   "vnum": 20339,
+   "name": "Chamber Of The Slave Master",
+   "map": {
+    "x": 3,
+    "y": 22,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 20338,
+     "description": "To the up lies End Of The Tunnel."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads up.",
+   "placeholder": true
+  },
+  "20340": {
+   "vnum": 20340,
+   "name": "Almost Falling Down The Deep Chasm",
+   "map": {
+    "x": 4,
+    "y": 12,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 20312,
+     "description": "To the up lies A Thin Ledge Going Through A Chasm."
+    },
+    "down": {
+     "to_room": 20341,
+     "description": "To the down lies Outside A Cave."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead up and down.",
+   "placeholder": true
+  },
+  "20341": {
+   "vnum": 20341,
+   "name": "Outside A Cave",
+   "map": {
+    "x": 3,
+    "y": 11,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20342,
+     "description": "To the north lies Room Of The Queen Puffer Spider."
+    },
+    "up": {
+     "to_room": 20340,
+     "description": "To the up lies Almost Falling Down The Deep Chasm."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and up.",
+   "placeholder": true
+  },
+  "20342": {
+   "vnum": 20342,
+   "name": "Room Of The Queen Puffer Spider",
+   "map": {
+    "x": 3,
+    "y": 12,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 20343,
+     "description": "To the north lies Breeding Room."
+    },
+    "south": {
+     "to_room": 20341,
+     "description": "To the south lies Outside A Cave."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "20343": {
+   "vnum": 20343,
+   "name": "Breeding Room",
+   "map": {
+    "x": 3,
+    "y": 13,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 20342,
+     "description": "To the south lies Room Of The Queen Puffer Spider."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "20344": {
+   "vnum": 20344,
+   "name": "Passage To The Guard Chamber",
+   "map": {
+    "x": 5,
+    "y": 18,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 20319,
+     "description": "To the east lies Chamber Of Cells."
+    },
+    "west": {
+     "to_room": 20318,
+     "description": "To the west lies More Tunnels In The Silver Mine."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

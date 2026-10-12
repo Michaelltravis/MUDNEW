@@ -1,204 +1,506 @@
 {
-  "number": 250,
-  "name": "The Blood Pit Arena",
-  "lifespan": 30,
-  "reset_mode": 2,
-  "description": "A legendary arena where warriors test their mettle in opt-in PvP combat. No death, no item loss \u2014 only glory.",
-  "rooms": {
-    "25000": {
-      "vnum": 25000,
-      "name": "The Arena Lobby",
-      "description": "A grand atrium of polished obsidian and bronze torches greets you. Banners\nof past champions hang from the vaulted ceiling, their names stitched in\ngold thread. The Arena Master stands behind a carved stone podium, ready to\nfacilitate matches. A massive archway to the north leads toward the fighting\npits, while stairs spiral upward to a spectator gallery.\n\nThis is a safe zone \u2014 no combat is permitted here.",
-      "sector_type": "city",
-      "flags": [
-        "indoors",
-        "safe",
-        "no_mob",
-        "arena_lobby"
-      ],
-      "exits": {
-        "up": {
-          "to_room": 25006,
-          "description": "Stairs lead up to the spectator gallery."
-        },
-        "south": {
-          "to_room": 3044
-        },
-        "north": {
-          "to_room": 25001
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 25000,
-          "max": 1
-        }
-      ]
-    },
-    "25001": {
-      "vnum": 25001,
-      "name": "Arena: The Open Sands",
-      "description": "A vast circular pit of golden sand stretches before you, surrounded by\ntowering stone walls. The roar of spectators echoes from the gallery above.\nThere is nowhere to hide here \u2014 only raw skill determines the victor.\nBlood stains darken patches of the sand.",
-      "sector_type": "desert",
-      "flags": [
-        "arena_combat"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 25000
-        },
-        "east": {
-          "to_room": 25002
-        },
-        "south": {
-          "to_room": 25000
-        },
-        "north": {
-          "to_room": 25002
-        }
-      }
-    },
-    "25002": {
-      "vnum": 25002,
-      "name": "Arena: The Pillared Hall",
-      "description": "Massive stone pillars rise from the arena floor, providing cover and\ncreating deadly corridors. Shadows dance between the columns as torchlight\nflickers. A shrewd fighter can use these pillars to their advantage,\nbreaking line of sight and setting up ambushes.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors",
-        "arena_combat"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 25001
-        },
-        "east": {
-          "to_room": 25003
-        },
-        "south": {
-          "to_room": 25001
-        },
-        "north": {
-          "to_room": 25003
-        }
-      }
-    },
-    "25003": {
-      "vnum": 25003,
-      "name": "Arena: The Elevated Platforms",
-      "description": "A series of stone platforms rise at varying heights above a shallow pit.\nNarrow bridges connect the platforms, and the footing is treacherous.\nCombatants must balance aggression with caution \u2014 one wrong step\ncould leave you at a dangerous disadvantage.",
-      "sector_type": "mountain",
-      "flags": [
-        "arena_combat"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 25002
-        },
-        "east": {
-          "to_room": 25004
-        },
-        "south": {
-          "to_room": 25002
-        },
-        "north": {
-          "to_room": 25004
-        }
-      }
-    },
-    "25004": {
-      "vnum": 25004,
-      "name": "Arena: The Water Pit",
-      "description": "Ankle-deep water covers the floor of this sunken arena. Waves ripple\noutward with every movement, and the footing is slippery on the submerged\nstone tiles. Rusted grates along the walls drain the water slowly, but\nit never quite empties. The damp air carries the scent of iron and salt.",
-      "sector_type": "water_swim",
-      "flags": [
-        "arena_combat"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 25003
-        },
-        "east": {
-          "to_room": 25005
-        },
-        "south": {
-          "to_room": 25003
-        },
-        "north": {
-          "to_room": 25005
-        }
-      }
-    },
-    "25005": {
-      "vnum": 25005,
-      "name": "Arena: The Lava Bridge",
-      "description": "A narrow stone bridge spans a bubbling pit of molten rock. The heat is\nnearly unbearable, and waves of shimmering air distort your vision.\nThe bridge is barely wide enough for two combatants to face each other.\nOne solid blow could send a fighter tumbling toward the lava below \u2014\nthough enchantments prevent actual death.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors",
-        "arena_combat"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 25004
-        },
-        "east": {
-          "to_room": 25006
-        },
-        "south": {
-          "to_room": 25004
-        },
-        "north": {
-          "to_room": 25006
-        }
-      }
-    },
-    "25006": {
-      "vnum": 25006,
-      "name": "The Spectator Gallery",
-      "description": "Tiered stone benches overlook the arena pits below through enchanted\ncrystal panels. The magic of the arena projects images of ongoing fights\nonto the panels, allowing spectators to watch every blow in vivid detail.\nCheers and gasps fill the air as combatants clash below. Stairs lead\nback down to the lobby.",
-      "sector_type": "city",
-      "flags": [
-        "indoors",
-        "safe",
-        "no_mob",
-        "arena_gallery"
-      ],
-      "exits": {
-        "down": {
-          "to_room": 25000,
-          "description": "Stairs lead down to the arena lobby."
-        },
-        "south": {
-          "to_room": 25005
-        }
-      }
+ "number": 250,
+ "name": "Bedlam Arena",
+ "builders": "",
+ "atlas_area": 138,
+ "rooms": {
+  "25000": {
+   "vnum": 25000,
+   "name": "The Arena Center",
+   "map": {
+    "x": 2,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "arena_lobby",
+    "indoors",
+    "no_mob",
+    "safe"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 25000,
+     "max": 1
     }
-  },
-  "mobs": {
-    "25000": {
-      "vnum": 25000,
-      "name": "arena master",
-      "short_desc": "the Arena Master",
-      "long_desc": "The Arena Master stands here, arms crossed, surveying the crowd.",
-      "level": 50,
-      "alignment": 0,
-      "hp_dice": "20d10+2000",
-      "damage_dice": "5d8+30",
-      "gold": 0,
-      "exp": 0,
-      "armor_class": -50,
-      "flags": [
-        "sentinel",
-        "no_charm",
-        "no_summon",
-        "no_sleep",
-        "no_bash",
-        "no_blind",
-        "no_kill"
-      ],
-      "special": "arena_master",
-      "description": "A towering figure clad in ceremonial black and gold armor. Countless scars\ntell the tale of a lifetime in the arena. His eyes miss nothing."
+   ],
+   "description": "A grand atrium of polished obsidian and bronze torches greets you. Banners\nof past champions hang from the vaulted ceiling, their names stitched in\ngold thread. The Arena Master stands behind a carved stone podium, ready to\nfacilitate matches. A massive archway to the north leads toward the fighting\npits, while stairs spiral upward to a spectator gallery.\n\nThis is a safe zone — no combat is permitted here.",
+   "exits": {
+    "north": {
+     "to_room": 404,
+     "description": "To the north lies The Arena Tar Pit."
+    },
+    "south": {
+     "to_room": 417,
+     "description": "To the south lies The Arena Spikewall."
+    },
+    "west": {
+     "to_room": 408,
+     "description": "To the west lies The Arena Dirt Ditch."
+    },
+    "down": {
+     "to_room": 3044,
+     "description": "To the down lies The Dark Alley."
     }
+   }
   },
-  "objects": {}
+  "404": {
+   "vnum": 404,
+   "name": "The Arena Tar Pit",
+   "map": {
+    "x": 2,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 25001,
+     "description": "To the east lies The Arena Ramp."
+    },
+    "south": {
+     "to_room": 25000,
+     "description": "To the south lies The Arena Center."
+    },
+    "west": {
+     "to_room": 418,
+     "description": "To the west lies The Arena Gauntlet."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "25001": {
+   "vnum": 25001,
+   "name": "The Arena Ramp",
+   "map": {
+    "x": 5,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "arena_combat"
+   ],
+   "description": "A vast circular pit of golden sand stretches before you, surrounded by\ntowering stone walls. The roar of spectators echoes from the gallery above.\nThere is nowhere to hide here — only raw skill determines the victor.\nBlood stains darken patches of the sand.",
+   "exits": {
+    "south": {
+     "to_room": 25002,
+     "description": "To the south lies The Arena Edge."
+    },
+    "west": {
+     "to_room": 404,
+     "description": "To the west lies The Arena Tar Pit."
+    },
+    "up": {
+     "to_room": 25005,
+     "description": "To the up lies The Arena Scaffold."
+    }
+   }
+  },
+  "25002": {
+   "vnum": 25002,
+   "name": "The Arena Edge",
+   "map": {
+    "x": 5,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "arena_combat",
+    "indoors"
+   ],
+   "description": "Massive stone pillars rise from the arena floor, providing cover and\ncreating deadly corridors. Shadows dance between the columns as torchlight\nflickers. A shrewd fighter can use these pillars to their advantage,\nbreaking line of sight and setting up ambushes.",
+   "exits": {
+    "north": {
+     "to_room": 25001,
+     "description": "To the north lies The Arena Ramp."
+    },
+    "south": {
+     "to_room": 25004,
+     "description": "To the south lies The Arena Stepladder."
+    },
+    "west": {
+     "to_room": 25000,
+     "description": "To the west lies The Arena Center."
+    }
+   }
+  },
+  "25004": {
+   "vnum": 25004,
+   "name": "The Arena Stepladder",
+   "map": {
+    "x": 5,
+    "y": -2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "arena_combat"
+   ],
+   "description": "Ankle-deep water covers the floor of this sunken arena. Waves ripple\noutward with every movement, and the footing is slippery on the submerged\nstone tiles. Rusted grates along the walls drain the water slowly, but\nit never quite empties. The damp air carries the scent of iron and salt.",
+   "exits": {
+    "north": {
+     "to_room": 25002,
+     "description": "To the north lies The Arena Edge."
+    },
+    "up": {
+     "to_room": 415,
+     "description": "To the up lies The Arena Arc."
+    }
+   }
+  },
+  "408": {
+   "vnum": 408,
+   "name": "The Arena Dirt Ditch",
+   "map": {
+    "x": 0,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 25000,
+     "description": "To the east lies The Arena Center."
+    },
+    "south": {
+     "to_room": 25006,
+     "description": "To the south lies The Arena Crawlspace."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "25005": {
+   "vnum": 25005,
+   "name": "The Arena Scaffold",
+   "map": {
+    "x": 7,
+    "y": 5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "arena_combat",
+    "indoors"
+   ],
+   "description": "A narrow stone bridge spans a bubbling pit of molten rock. The heat is\nnearly unbearable, and waves of shimmering air distort your vision.\nThe bridge is barely wide enough for two combatants to face each other.\nOne solid blow could send a fighter tumbling toward the lava below —\nthough enchantments prevent actual death.",
+   "exits": {
+    "west": {
+     "to_room": 410,
+     "description": "To the west lies The Arena Catwalk."
+    },
+    "down": {
+     "to_room": 25002,
+     "description": "To the down lies The Arena Edge."
+    }
+   }
+  },
+  "410": {
+   "vnum": 410,
+   "name": "The Arena Catwalk",
+   "map": {
+    "x": 4,
+    "y": 5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 25005,
+     "description": "To the east lies The Arena Scaffold."
+    },
+    "south": {
+     "to_room": 25003,
+     "description": "To the south lies The Arena Slide."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "25003": {
+   "vnum": 25003,
+   "name": "The Arena Slide",
+   "map": {
+    "x": 4,
+    "y": 4,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [
+    "arena_combat"
+   ],
+   "description": "A series of stone platforms rise at varying heights above a shallow pit.\nNarrow bridges connect the platforms, and the footing is treacherous.\nCombatants must balance aggression with caution — one wrong step\ncould leave you at a dangerous disadvantage.",
+   "exits": {
+    "north": {
+     "to_room": 410,
+     "description": "To the north lies The Arena Catwalk."
+    },
+    "down": {
+     "to_room": 25000,
+     "description": "To the down lies The Arena Center."
+    }
+   }
+  },
+  "25006": {
+   "vnum": 25006,
+   "name": "The Arena Crawlspace",
+   "map": {
+    "x": 0,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "arena_gallery",
+    "indoors",
+    "no_mob",
+    "safe"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 408,
+     "description": "To the north lies The Arena Dirt Ditch."
+    },
+    "down": {
+     "to_room": 413,
+     "description": "To the down lies The Arena Mudbasin."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and down.",
+   "placeholder": true
+  },
+  "413": {
+   "vnum": 413,
+   "name": "The Arena Mudbasin",
+   "map": {
+    "x": -1,
+    "y": -2,
+    "z": 0
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 414,
+     "description": "To the east lies The Arena Hideaway."
+    },
+    "up": {
+     "to_room": 25006,
+     "description": "To the up lies The Arena Crawlspace."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Shallow water laps around stones\nand reeds. Ways lead east and up.",
+   "placeholder": true
+  },
+  "414": {
+   "vnum": 414,
+   "name": "The Arena Hideaway",
+   "map": {
+    "x": 0,
+    "y": -2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 413,
+     "description": "To the west lies The Arena Mudbasin."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "415": {
+   "vnum": 415,
+   "name": "The Arena Arc",
+   "map": {
+    "x": 6,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 416,
+     "description": "To the west lies The Arena Sunblaze."
+    },
+    "down": {
+     "to_room": 25004,
+     "description": "To the down lies The Arena Stepladder."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead west and down.",
+   "placeholder": true
+  },
+  "416": {
+   "vnum": 416,
+   "name": "The Arena Sunblaze",
+   "map": {
+    "x": 3,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 415,
+     "description": "To the east lies The Arena Arc."
+    },
+    "down": {
+     "to_room": 417,
+     "description": "To the down lies The Arena Spikewall."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east and down.",
+   "placeholder": true
+  },
+  "417": {
+   "vnum": 417,
+   "name": "The Arena Spikewall",
+   "map": {
+    "x": 2,
+    "y": -2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 25000,
+     "description": "To the north lies The Arena Center."
+    },
+    "up": {
+     "to_room": 416,
+     "description": "To the up lies The Arena Sunblaze."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and up.",
+   "placeholder": true
+  },
+  "418": {
+   "vnum": 418,
+   "name": "The Arena Gauntlet",
+   "map": {
+    "x": 1,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 404,
+     "description": "To the east lies The Arena Tar Pit."
+    },
+    "west": {
+     "to_room": 419,
+     "description": "To the west lies The Arena Fire Circle."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "419": {
+   "vnum": 419,
+   "name": "The Arena Fire Circle",
+   "map": {
+    "x": 0,
+    "y": 3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 420,
+     "description": "To the north lies The Arena Dead End."
+    },
+    "east": {
+     "to_room": 418,
+     "description": "To the east lies The Arena Gauntlet."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and east.",
+   "placeholder": true
+  },
+  "420": {
+   "vnum": 420,
+   "name": "The Arena Dead End",
+   "map": {
+    "x": 0,
+    "y": 5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 25000,
+     "description": "To the south lies The Arena Center."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads south.",
+   "placeholder": true
+  }
+ },
+ "mobs": {
+  "25000": {
+   "vnum": 25000,
+   "name": "arena master",
+   "short_desc": "the Arena Master",
+   "long_desc": "The Arena Master stands here, arms crossed, surveying the crowd.",
+   "level": 50,
+   "alignment": 0,
+   "hp_dice": "20d10+2000",
+   "damage_dice": "5d8+30",
+   "gold": 0,
+   "exp": 0,
+   "armor_class": -50,
+   "flags": [
+    "sentinel",
+    "no_charm",
+    "no_summon",
+    "no_sleep",
+    "no_bash",
+    "no_blind",
+    "no_kill"
+   ],
+   "special": "arena_master",
+   "description": "A towering figure clad in ceremonial black and gold armor. Countless scars\ntell the tale of a lifetime in the arena. His eyes miss nothing."
+  }
+ },
+ "objects": {},
+ "lifespan": 30,
+ "reset_mode": 2,
+ "description": "A legendary arena where warriors test their mettle in opt-in PvP combat. No death, no item loss — only glory."
 }

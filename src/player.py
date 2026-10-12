@@ -567,7 +567,7 @@ class Player(Character):
         self.prompt_enabled = True   # Show prompt
 
         # Recall system
-        self.recall_point = 3001  # Default recall point (Temple of Midgaard)
+        self.recall_point = 3001  # Default recall point (Temple of Garathorm)
         # the marquee quest (marquee.py): the quest you run or help with, and the marquee
         # abilities' long cooldowns (marquee_abilities.py), kept across logins
         self.marquee = None

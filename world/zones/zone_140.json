@@ -1,2419 +1,2419 @@
 {
-  "number": 140,
-  "name": "The Necropolis of Eternal Night",
-  "description": "A cursed city where the dead walk and death itself holds dominion",
-  "level_range": [
-    20,
-    28
-  ],
-  "author": "Misthollow Team",
-  "reset_time": 2100,
-  "rooms": {
-    "14000": {
-      "title": "Gates of the Dead",
-      "description": "Massive iron gates stand open, rusted and covered in dark stains. Beyond\nlies a city shrouded in perpetual gloom - no matter the time of day,\ndarkness reigns here. The gates are worked with images of skulls and\nbones, and inscriptions in dead languages warn visitors away. The air is\ncold and still, carrying the stench of decay. From within comes the\nsound of moaning and the scrape of bone on stone. The stone walls press\nclose, cold and damp. Darkness clings to every surface.",
-      "terrain": "undead",
-      "exits": {
-        "north": {
-          "to_room": 7099,
-          "description": "A passage leads to The Threshold Of The Necropolis"
-        },
-        "south": {
-          "to_room": 14001,
-          "description": "The way leads to Avenue of Tombs"
-        },
-        "up": {
-          "to_room": 7000,
-          "description": "You see an exit up."
-        }
-      },
-      "vnum": 14000,
-      "name": "Gates of the Dead",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14002,
-          "max": 1
-        },
-        {
-          "vnum": 14005,
-          "max": 1
-        }
-      ],
-      "obj_resets": [],
-      "extra_descs": {
-        "gates": "The Gates of the Dead stand open. They have always stood open. The dead, the inscription notes, are patient about visitors."
-      }
-    },
-    "14001": {
-      "title": "Avenue of Tombs",
-      "description": "A wide street stretches into the necropolis, lined on both sides with\nmausoleums and tombs. Many stand open, their doors torn from hinges,\ntheir occupants gone. The cobblestones are cracked and broken, with\nweeds growing between. Street lamps that once burned with eternal flame\nare dark and cold. Shambling figures can be seen in the distance, moving\nwith the jerky gait of the undead. The floor is slick with moisture. The\nair is thick and hard to breathe.",
-      "terrain": "undead",
-      "exits": {
-        "north": {
-          "to_room": 14000,
-          "description": "The way leads to Gates of the Dead"
-        },
-        "south": {
-          "to_room": 14002,
-          "description": "The way leads to Plaza of Bones"
-        },
-        "east": {
-          "to_room": 14003,
-          "description": "The way leads to Crypt Row"
-        },
-        "west": {
-          "to_room": 14004,
-          "description": "The way leads to The Pauper's Field"
-        }
-      },
-      "vnum": 14001,
-      "name": "Avenue of Tombs",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        }
-      ],
-      "obj_resets": []
-    },
-    "14002": {
-      "title": "Plaza of Bones",
-      "description": "This central plaza is paved with bones - skulls, ribs, femurs, all\nfitted together in grotesque mosaic. A fountain at the center once\nflowed with water; now it weeps blood that never stops. Broken statues\nring the plaza, their faces chiseled away. This was once the heart of\nthe city. Now it's a gathering place for the undead, where they stand in\nsilent congregation. The stone walls press close, cold and damp.\nDarkness clings to every surface.",
-      "terrain": "undead",
-      "exits": {
-        "north": {
-          "to_room": 14001,
-          "description": "The way leads to Avenue of Tombs"
-        },
-        "south": {
-          "to_room": 14005,
-          "description": "The way leads to Temple of the Death God"
-        },
-        "east": {
-          "to_room": 14006,
-          "description": "The way leads to Mausoleum District"
-        },
-        "west": {
-          "to_room": 14007,
-          "description": "The way leads to The Charnel House"
-        }
-      },
-      "vnum": 14002,
-      "name": "Plaza of Bones",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14002,
-          "max": 1
-        },
-        {
-          "vnum": 14005,
-          "max": 1
-        },
-        {
-          "vnum": 14099,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14003": {
-      "title": "Crypt Row",
-      "description": "Family crypts line this street, each grander than the last - competition\nin death as in life. Many are ornately carved with family crests and\naccomplishments. The doors are sealed with chains and locks, but many\nhave been broken from within. Scraping sounds come from inside the\ncrypts, and shadows move in the darkness. The wealthy dead do not rest\neasy here. The air is thick and hard to breathe. The stone walls press\nclose, cold and damp.",
-      "terrain": "undead",
-      "exits": {
-        "west": {
-          "to_room": 14001,
-          "description": "The way leads to Avenue of Tombs"
-        },
-        "south": {
-          "to_room": 14006,
-          "description": "The way leads to Mausoleum District"
-        },
-        "east": {
-          "to_room": 14028
-        }
-      },
-      "vnum": 14003,
-      "name": "Crypt Row",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14002,
-          "max": 1
-        },
-        {
-          "vnum": 14003,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14004": {
-      "title": "The Pauper's Field",
-      "description": "Here the poor were buried in mass graves, unmarked and unmourned. The\nground has opened, vomiting forth its dead. Skeletal hands reach from\nthe earth, and corpses drag themselves from shallow graves. The smell is\noverwhelming. These undead are mindless and vicious, attacking anything\nliving that approaches. This is the most dangerous area for the\nunprepared. The floor is slick with moisture. The silence is oppressive\nand watchful.",
-      "terrain": "undead",
-      "exits": {
-        "east": {
-          "to_room": 14001,
-          "description": "The way leads to Avenue of Tombs"
-        },
-        "south": {
-          "to_room": 14016
-        }
-      },
-      "vnum": 14004,
-      "name": "The Pauper's Field",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14002,
-          "max": 1
-        },
-        {
-          "vnum": 14006,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14005": {
-      "title": "Temple of the Death God",
-      "description": "This temple was dedicated to the god of death - not as evil, but as\nnatural transition. But the necromancers perverted it, turning it into a\nshrine to undeath. The altar is stained black with blood sacrifices.\nCandles burn with cold flames that give no warmth. The air itself seems\ndead here. Necromancers use this place for their darkest rituals. The\nstone walls press close, cold and damp. The air is thick and hard to\nbreathe.",
-      "terrain": "undead",
-      "exits": {
-        "north": {
-          "to_room": 14002,
-          "description": "The way leads to Plaza of Bones"
-        },
-        "south": {
-          "to_room": 14008,
-          "description": "The way leads to Sanctum of Dark Rites"
-        },
-        "east": {
-          "to_room": 14019
-        }
-      },
-      "vnum": 14005,
-      "name": "Temple of the Death God",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14005,
-          "max": 1
-        },
-        {
-          "vnum": 14004,
-          "max": 1
-        },
-        {
-          "vnum": 14098,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14006": {
-      "title": "Mausoleum District",
-      "description": "Elaborate mausoleums dominate this district, some rising three stories\nhigh. They're built of marble and granite, designed to last forever.\nStatues of angels with broken wings stand watch. Inside, the wealthy\ndead sleep in ornate coffins - or at least they used to. Many have risen\nas vampires, retaining intelligence and cunning along with terrible\nhunger. The silence is oppressive and watchful. The stone walls press\nclose, cold and damp.",
-      "terrain": "undead",
-      "exits": {
-        "north": {
-          "to_room": 14003,
-          "description": "The way leads to Crypt Row"
-        },
-        "west": {
-          "to_room": 14002,
-          "description": "The way leads to Plaza of Bones"
-        },
-        "south": {
-          "to_room": 14009,
-          "description": "The way leads to Vampire's Mausoleum"
-        }
-      },
-      "vnum": 14006,
-      "name": "Mausoleum District",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        }
-      ],
-      "obj_resets": []
-    },
-    "14007": {
-      "title": "The Charnel House",
-      "description": "This building was used to process the dead - preparing bodies for\nburial. Now it's a horror show. Bodies in various states of decay lie on\ntables. Bones are sorted in piles. The tools of the undertaker's trade\nhang on walls. Ghouls have claimed this place, feeding on the dead and\noccasionally the living. The smell is indescribable. Darkness clings to\nevery surface. The floor is slick with moisture.",
-      "terrain": "undead",
-      "exits": {
-        "east": {
-          "to_room": 14002,
-          "description": "The way leads to Plaza of Bones"
-        },
-        "south": {
-          "to_room": 14010,
-          "description": "The way leads to Ghoul Warren"
-        },
-        "west": {
-          "to_room": 14025
-        }
-      },
-      "vnum": 14007,
-      "name": "The Charnel House",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14003,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14008": {
-      "title": "Sanctum of Dark Rites",
-      "description": "Deep within the temple, the necromancers perform their most forbidden\nrituals. A circle of power is drawn on the floor in blood and ash.\nSkulls arranged in patterns channel dark energy. Books of necromancy lie\nopen on lecterns. This is where the living are transformed into undead,\nwhere souls are trapped, where death itself is twisted. The evil here is\npalpable. The stone walls press close, cold and damp. The floor is slick\nwith moisture.",
-      "terrain": "undead",
-      "exits": {
-        "north": {
-          "to_room": 14005,
-          "description": "The way leads to Temple of the Death God"
-        }
-      },
-      "vnum": 14008,
-      "name": "Sanctum of Dark Rites",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        }
-      ],
-      "obj_resets": []
-    },
-    "14009": {
-      "title": "Vampire's Mausoleum",
-      "description": "This grand mausoleum belongs to an ancient vampire. The coffin within is\ncarved from a single piece of obsidian and lined with silk. The vampire\nsleeps here during the day, venturing out at night to feed. The\nmausoleum is richly appointed - paintings, tapestries, furniture - as if\nstill inhabited by the living. But everything is gray with dust and age.\nThe floor is slick with moisture. The stone walls press close, cold and\ndamp.",
-      "terrain": "undead",
-      "exits": {
-        "north": {
-          "to_room": 14006,
-          "description": "The way leads to Mausoleum District"
-        }
-      },
-      "vnum": 14009,
-      "name": "Vampire's Mausoleum",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14005,
-          "max": 1
-        },
-        {
-          "vnum": 14006,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14010": {
-      "title": "Ghoul Warren",
-      "description": "Ghouls have burrowed into the ground here, creating a warren of tunnels.\nThe entrances are surrounded by gnawed bones. These creatures are\nconstantly hungry, feeding on the dead and dragging fresh corpses below.\nThey're intelligent enough to set traps and ambushes. Venturing into\ntheir territory is extremely dangerous. The tunnels lead deep\nunderground. The air is thick and hard to breathe. The silence is\noppressive and watchful.",
-      "terrain": "undead",
-      "exits": {
-        "north": {
-          "to_room": 14007,
-          "description": "The way leads to The Charnel House"
-        },
-        "down": {
-          "to_room": 14011,
-          "description": "The way leads to Underground Burial Chambers"
-        }
-      },
-      "vnum": 14010,
-      "name": "Ghoul Warren",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14005,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14011": {
-      "title": "Underground Burial Chambers",
-      "description": "These chambers were cut from bedrock to hold the overflow when the\nsurface graveyards filled. Niches in the walls hold thousands of bodies.\nThe air is stale and thick with decay. Weak undead inhabit these\nchambers - zombies and skeletons that mindlessly patrol. The darkness is\noppressive, broken only by occasional phosphorescent fungi. Darkness\nclings to every surface. The silence is oppressive and watchful.",
-      "terrain": "underground",
-      "exits": {
-        "up": {
-          "to_room": 14010,
-          "description": "The way leads to Ghoul Warren"
-        },
-        "south": {
-          "to_room": 14012,
-          "description": "The way leads to The Ossuary"
-        },
-        "east": {
-          "to_room": 14013,
-          "description": "The way leads to Catacombs"
-        }
-      },
-      "vnum": 14011,
-      "name": "Underground Burial Chambers",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14002,
-          "max": 1
-        },
-        {
-          "vnum": 14003,
-          "max": 1
-        },
-        {
-          "vnum": 14004,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14012": {
-      "title": "The Ossuary",
-      "description": "When bodies decayed, their bones were moved here - a room dedicated to\nhousing remains. Bones are stacked floor to ceiling in artistic\npatterns. Skulls grin from elaborate arrangements. Femurs are stacked\nlike cord wood. The sheer number of dead represented here is staggering\n- tens of thousands. Something powerful moves among the bones. The air\nis thick and hard to breathe. The stone walls press close, cold and\ndamp.",
-      "terrain": "underground",
-      "exits": {
-        "north": {
-          "to_room": 14011,
-          "description": "The way leads to Underground Burial Chambers"
-        }
-      },
-      "vnum": 14012,
-      "name": "The Ossuary",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14002,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14013": {
-      "title": "Catacombs",
-      "description": "Ancient tunnels wind through the earth beneath the necropolis. These\ncatacombs are far older than the city above, carved by a civilization\nlong forgotten. Strange glyphs cover the walls. The passages branch and\ntwist, forming a maze. Wraiths haunt these tunnels, the ghosts of those\nburied before recorded history. They hate the living with ancient\nmalice. The air is thick and hard to breathe. The silence is oppressive\nand watchful.",
-      "terrain": "underground",
-      "exits": {
-        "west": {
-          "to_room": 14011,
-          "description": "The way leads to Underground Burial Chambers"
-        },
-        "south": {
-          "to_room": 14014,
-          "description": "The way leads to The Deep Crypts"
-        }
-      },
-      "vnum": 14013,
-      "name": "Catacombs",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14002,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14014": {
-      "title": "The Deep Crypts",
-      "description": "The oldest and deepest burial chambers lie here, sealed centuries ago.\nThe doors are warded with powerful magic meant to keep things in, not\nout. Whatever was buried here was important - and dangerous. The seals\nhave weakened with age. Strange sounds emanate from beyond the doors,\nand dark power leaks through cracks. The silence is oppressive and\nwatchful. Darkness clings to every surface.",
-      "terrain": "underground",
-      "exits": {
-        "north": {
-          "to_room": 14013,
-          "description": "The way leads to Catacombs"
-        },
-        "east": {
-          "to_room": 14015,
-          "description": "The way leads to Ancient Burial Chamber"
-        }
-      },
-      "vnum": 14014,
-      "name": "The Deep Crypts",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14006,
-          "max": 1
-        },
-        {
-          "vnum": 14010,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14015": {
-      "title": "Ancient Burial Chamber",
-      "description": "This chamber predates the necropolis by millennia. The walls are carved\nwith symbols of an unknown culture. A stone sarcophagus dominates the\ncenter, its lid carved with the image of a king. The magic here is\nancient and powerful. Something terrible sleeps within - an ancient evil\nthat should never wake. The temperature drops near the sarcophagus. The\nsilence is oppressive and watchful. Darkness clings to every surface.",
-      "terrain": "underground",
-      "exits": {
-        "west": {
-          "to_room": 14014,
-          "description": "The way leads to The Deep Crypts"
-        }
-      },
-      "vnum": 14015,
-      "name": "Ancient Burial Chamber",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14002,
-          "max": 1
-        },
-        {
-          "vnum": 14005,
-          "max": 1
-        },
-        {
-          "vnum": 14003,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14016": {
-      "title": "Necromancer's Quarter",
-      "description": "Living necromancers make their homes in this district, maintaining their\nmortality while studying death. The buildings are surprisingly well-kept\n- these scholars value their comfort. Lights burn in windows, and the\nsmell of cooking wafts from chimneys. But the atmosphere is still wrong.\nThese are people who have embraced darkness, who see the undead as tools\nand death as a resource. The silence is oppressive and watchful.\nDarkness clings to every surface.",
-      "terrain": "undead",
-      "exits": {
-        "north": {
-          "to_room": 14004
-        },
-        "south": {
-          "to_room": 14017,
-          "description": "The way leads to The Black Library"
-        },
-        "east": {
-          "to_room": 14018,
-          "description": "The way leads to Summoning Chamber"
-        },
-        "west": {
-          "to_room": 14029
-        }
-      },
-      "vnum": 14016,
-      "name": "Necromancer's Quarter",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14002,
-          "max": 1
-        },
-        {
-          "vnum": 14005,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14017": {
-      "title": "The Black Library",
-      "description": "This library contains the collected knowledge of necromancy from across\nthe ages. Shelves hold thousands of grimoires, tomes, and scrolls - all\ndedicated to death magic. The rarest and most dangerous books are kept\nin locked cages. Simply reading some of these texts could drive one mad\nor corrupt the soul. Guards patrol constantly, both living and undead.\nThe silence is oppressive and watchful. The air is thick and hard to\nbreathe.",
-      "terrain": "undead",
-      "exits": {
-        "north": {
-          "to_room": 14016,
-          "description": "The way leads to Necromancer's Quarter"
-        }
-      },
-      "vnum": 14017,
-      "name": "The Black Library",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14004,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14018": {
-      "title": "Summoning Chamber",
-      "description": "Necromancers use this room to summon and bind undead servants. Circles\nof power are drawn on the floor. Chains and shackles hang from walls for\nrestraining the rebellious. Jars hold components for dark rituals -\npreserved organs, rare herbs, ground bones. The room reeks of death and\ndark magic. Apprentices practice here under watchful supervision.\nDarkness clings to every surface. The floor is slick with moisture.",
-      "terrain": "undead",
-      "exits": {
-        "west": {
-          "to_room": 14016,
-          "description": "The way leads to Necromancer's Quarter"
-        }
-      },
-      "vnum": 14018,
-      "name": "Summoning Chamber",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14002,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14019": {
-      "title": "The Lich Tower Approach",
-      "description": "A tower of black stone rises from the necropolis, taller than any other\nstructure. This is the domain of the ancient lich who rules here. The\ntower seems to absorb light, and no bird will fly near it. The ground\naround it is dead - not even weeds grow. A sense of overwhelming dread\nemanates from the tower. Only the powerful or foolish approach. The\nstone walls press close, cold and damp. The silence is oppressive and\nwatchful.",
-      "terrain": "undead",
-      "exits": {
-        "west": {
-          "to_room": 14005
-        },
-        "up": {
-          "to_room": 14020,
-          "description": "The way leads to Tower Entrance Hall"
-        },
-        "south": {
-          "to_room": 14027
-        }
-      },
-      "vnum": 14019,
-      "name": "The Lich Tower Approach",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14002,
-          "max": 1
-        },
-        {
-          "vnum": 14005,
-          "max": 1
-        },
-        {
-          "vnum": 14003,
-          "max": 1
-        },
-        {
-          "vnum": 14006,
-          "max": 1
-        },
-        {
-          "vnum": 14007,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14020": {
-      "title": "Tower Entrance Hall",
-      "description": "The tower interior is surprisingly ornate. Tapestries that should have\nrotted centuries ago still hang on walls. Candles burn with cold flames.\nThe floor is polished marble, and a grand staircase winds upward. But\neverything is wrong - the tapestries depict scenes of death, the candles\ngive no warmth, and the very air feels thin and lifeless. Skeleton\nwarriors stand guard. Darkness clings to every surface. The air is thick\nand hard to breathe.",
-      "terrain": "undead",
-      "exits": {
-        "down": {
-          "to_room": 14019,
-          "description": "The way leads to The Lich Tower Approach"
-        },
-        "up": {
-          "to_room": 14021,
-          "description": "The way leads to Trophy Hall"
-        }
-      },
-      "vnum": 14020,
-      "name": "Tower Entrance Hall",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14002,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14021": {
-      "title": "Trophy Hall",
-      "description": "The lich displays trophies from victims here. Suits of armor stand\nempty, their wearers long dead. Weapons of defeated heroes hang on\nwalls. Magical items that couldn't save their owners are arranged in\ncases. Each trophy has a plaque describing the victim and how they died.\nIt's both memorial and warning - even the mighty fall to the lich. The\nstone walls press close, cold and damp. Darkness clings to every\nsurface.",
-      "terrain": "undead",
-      "exits": {
-        "down": {
-          "to_room": 14020,
-          "description": "The way leads to Tower Entrance Hall"
-        },
-        "up": {
-          "to_room": 14022,
-          "description": "The way leads to Library of the Damned"
-        }
-      },
-      "vnum": 14021,
-      "name": "Trophy Hall",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        }
-      ],
-      "obj_resets": []
-    },
-    "14022": {
-      "title": "Library of the Damned",
-      "description": "The lich's personal library makes the Black Library look tame. These are\nthe rarest texts in existence - books that mere mortals shouldn't touch.\nSome are bound in human skin, others written in blood, still others seem\nto be alive in some horrible way. The knowledge here could reshape the\nworld - or destroy it. The lich guards this collection jealously. The\nsilence is oppressive and watchful. The stone walls press close, cold\nand damp.",
-      "terrain": "undead",
-      "exits": {
-        "down": {
-          "to_room": 14021,
-          "description": "The way leads to Trophy Hall"
-        },
-        "up": {
-          "to_room": 14023,
-          "description": "The way leads to The Ritual Chamber"
-        }
-      },
-      "vnum": 14022,
-      "name": "Library of the Damned",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        }
-      ],
-      "obj_resets": []
-    },
-    "14023": {
-      "title": "The Ritual Chamber",
-      "description": "This room is dedicated to the lich's darkest work. The floor is one\nmassive circle of power, inlaid with precious metals and gems.\nChanneling this much power would kill a normal mage - only the lich's\nundead form allows it. The air crackles with potential energy. This is\nwhere the lich performs the rituals that maintain the necropolis and\nextend its power. The stone walls press close, cold and damp. The floor\nis slick with moisture.",
-      "terrain": "undead",
-      "exits": {
-        "down": {
-          "to_room": 14022,
-          "description": "The way leads to Library of the Damned"
-        },
-        "up": {
-          "to_room": 14024,
-          "description": "The way leads to The Phylactery Chamber"
-        }
-      },
-      "vnum": 14023,
-      "name": "The Ritual Chamber",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14005,
-          "max": 1
-        },
-        {
-          "vnum": 14003,
-          "max": 1
-        },
-        {
-          "vnum": 14004,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14024": {
-      "title": "The Phylactery Chamber",
-      "description": "At the tower's pinnacle lies the lich's most guarded secret - its\nphylactery, the vessel containing its soul. As long as the phylactery\nexists, the lich cannot be permanently destroyed. The chamber is warded\nwith every protection spell known. Guardians stand eternal watch. The\nphylactery itself is hidden, disguised as one of many identical objects.\nFinding and destroying it is the only way to truly kill the lich. The\nstone walls press close, cold and damp. The air is thick and hard to\nbreathe.",
-      "terrain": "undead",
-      "exits": {
-        "down": {
-          "to_room": 14023,
-          "description": "The way leads to The Ritual Chamber"
-        }
-      },
-      "vnum": 14024,
-      "name": "The Phylactery Chamber",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14006,
-          "max": 1
-        },
-        {
-          "vnum": 14009,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14025": {
-      "title": "Graveyard of Heroes",
-      "description": "This section contains the graves of those who died fighting the undead -\npaladins, clerics, warriors of light. Their graves are marked with holy\nsymbols and prayers. But even here, corruption has taken hold. Some have\nrisen as death knights, their nobility twisted into service of evil.\nOthers remain at rest, but their graves are desecrated. It's a sad\nreminder that even heroes fall. The air is thick and hard to breathe.\nThe silence is oppressive and watchful.",
-      "terrain": "undead",
-      "exits": {
-        "east": {
-          "to_room": 14007
-        },
-        "south": {
-          "to_room": 14026,
-          "description": "The way leads to Chapel of Lost Hope"
-        }
-      },
-      "vnum": 14025,
-      "name": "Graveyard of Heroes",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14002,
-          "max": 1
-        },
-        {
-          "vnum": 14005,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14026": {
-      "title": "Chapel of Lost Hope",
-      "description": "This chapel was built by survivors of the necropolis's fall, a place to\npray for deliverance. But the prayers went unanswered. The chapel stands\nabandoned, its altar broken, its holy symbols defaced. Dust covers\neverything. The only visitors now are undead who mock what this place\nonce represented. A sense of profound sadness permeates the air. The air\nis thick and hard to breathe. The floor is slick with moisture.",
-      "terrain": "undead",
-      "exits": {
-        "north": {
-          "to_room": 14025,
-          "description": "The way leads to Graveyard of Heroes"
-        }
-      },
-      "vnum": 14026,
-      "name": "Chapel of Lost Hope",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14002,
-          "max": 1
-        },
-        {
-          "vnum": 14005,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14027": {
-      "title": "The Bone Throne",
-      "description": "In a grand hall sits a throne constructed entirely of bones - human and\notherwise. This is where the lich holds court, issuing commands to\nlesser undead and receiving tribute from necromancer servants. The\nthrone radiates power and malevolence. The lich rarely occupies it\nphysically, preferring to work in the tower, but the throne represents\nits authority over this realm of death. Darkness clings to every\nsurface. The air is thick and hard to breathe.",
-      "terrain": "undead",
-      "exits": {
-        "north": {
-          "to_room": 14019,
-          "description": "The way leads to The Lich Tower Approach"
-        }
-      },
-      "vnum": 14027,
-      "name": "The Bone Throne",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14002,
-          "max": 1
-        },
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14005,
-          "max": 1
-        },
-        {
-          "vnum": 14003,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14028": {
-      "title": "Execution Square",
-      "description": "When the necropolis was alive, criminals were executed here. The\ngallows, headsman's block, and stakes remain. Now the square has a new\npurpose - the undead bring captured living here for transformation into\ntheir ranks. The rituals performed here are brutal and terrifying.\nScreams echo from this square at all hours. Bloodstains cover the\nancient stones. The air is thick and hard to breathe. The silence is\noppressive and watchful.",
-      "terrain": "undead",
-      "exits": {
-        "west": {
-          "to_room": 14003
-        }
-      },
-      "vnum": 14028,
-      "name": "Execution Square",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14002,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14029": {
-      "title": "The Corpse Market",
-      "description": "In a grotesque mockery of commerce, necromancers trade in corpses and\nparts here. Bodies are displayed like meat at a butcher shop, sorted by\nquality and freshness. Organs are sold separately. Special components -\nhearts of virgins, eyes of seers, bones of children - command premium\nprices. The market is always busy, with necromancers haggling over their\ngruesome wares. The stone walls press close, cold and damp. The air is\nthick and hard to breathe.",
-      "terrain": "undead",
-      "exits": {
-        "east": {
-          "to_room": 14016,
-          "description": "The way leads to Necromancer's Quarter"
-        },
-        "west": {
-          "to_room": 14030,
-          "description": "The way leads to Verdant Dragon Lair"
-        }
-      },
-      "vnum": 14029,
-      "name": "The Corpse Market",
-      "sector_type": "dungeon",
-      "flags": [],
-      "mob_resets": [
-        {
-          "vnum": 14001,
-          "max": 2
-        },
-        {
-          "vnum": 14002,
-          "max": 1
-        },
-        {
-          "vnum": 14005,
-          "max": 1
-        },
-        {
-          "vnum": 14006,
-          "max": 1
-        },
-        {
-          "vnum": 14004,
-          "max": 1
-        },
-        {
-          "vnum": 14008,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "14030": {
-      "vnum": 14030,
-      "name": "Verdant Dragon Lair",
-      "description": "Thick green vapors coil through this cavern, pooling over mounds of bone\nand treasure. The air burns the lungs. Vines strangle the stone itself,\nfeeding on the dragon's poisonous breath. Darkness clings to every\nsurface. The silence is oppressive and watchful.",
-      "sector_type": "dungeon",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 14029,
-          "description": "The way leads to The Corpse Market"
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 14030,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    }
+ "number": 140,
+ "name": "The Necropolis of Eternal Night",
+ "description": "A cursed city where the dead walk and death itself holds dominion",
+ "level_range": [
+  20,
+  28
+ ],
+ "author": "Misthollow Team",
+ "reset_time": 2100,
+ "mobiles": {
+  "14000": {
+   "name": "skeleton warrior",
+   "short_desc": "an armored skeleton warrior",
+   "long_desc": "A skeleton in ancient armor patrols here, sword in bony hand.",
+   "description": "This skeleton was once a warrior, and death hasn't erased its martial skill. It wears rusted plate armor and wields a notched sword with surprising competence. Unlike mindless zombies, these skeletons retain combat training from life. They're tireless, fearless, and never stop. Red flame burns in empty eye sockets, suggesting some intelligence remains.",
+   "level": 20,
+   "race": "undead",
+   "size": "medium",
+   "hp_dice": "14d8+28",
+   "damage_dice": "2d8+3",
+   "armor_class": 50,
+   "exp_value": 1100,
+   "gold": 50,
+   "behaviors": [
+    "aggressive",
+    "wander"
+   ],
+   "special_abilities": [
+    "undead_traits",
+    "immune_to_cold"
+   ],
+   "ai_config": {
+    "behaviors": [
+     "patrol",
+     "assist"
+    ],
+    "patrol_route": [
+     14001,
+     14002,
+     14019,
+     14020,
+     14021,
+     14020,
+     14019,
+     14002
+    ],
+    "assist_allies": [
+     "skeleton warrior",
+     "wraith",
+     "vampire"
+    ]
+   },
+   "spawn_rooms": [
+    14001,
+    14002,
+    14003,
+    14006,
+    14020,
+    14021
+   ],
+   "max_in_zone": 8,
+   "vnum": 14000
   },
-  "mobiles": {
-    "14000": {
-      "name": "skeleton warrior",
-      "short_desc": "an armored skeleton warrior",
-      "long_desc": "A skeleton in ancient armor patrols here, sword in bony hand.",
-      "description": "This skeleton was once a warrior, and death hasn't erased its martial skill. It wears rusted plate armor and wields a notched sword with surprising competence. Unlike mindless zombies, these skeletons retain combat training from life. They're tireless, fearless, and never stop. Red flame burns in empty eye sockets, suggesting some intelligence remains.",
-      "level": 20,
-      "race": "undead",
-      "size": "medium",
-      "hp_dice": "14d8+28",
-      "damage_dice": "2d8+3",
-      "armor_class": 50,
-      "exp_value": 1100,
-      "gold": 50,
-      "behaviors": [
-        "aggressive",
-        "wander"
-      ],
-      "special_abilities": [
-        "undead_traits",
-        "immune_to_cold"
-      ],
-      "ai_config": {
-        "behaviors": [
-          "patrol",
-          "assist"
-        ],
-        "patrol_route": [
-          14001,
-          14002,
-          14019,
-          14020,
-          14021,
-          14020,
-          14019,
-          14002
-        ],
-        "assist_allies": [
-          "skeleton warrior",
-          "wraith",
-          "vampire"
-        ]
-      },
-      "spawn_rooms": [
-        14001,
-        14002,
-        14003,
-        14006,
-        14020,
-        14021
-      ],
-      "max_in_zone": 8,
-      "vnum": 14000
-    },
-    "14001": {
-      "name": "ghoul",
-      "short_desc": "a feral ghoul",
-      "long_desc": "A hunched, pale creature with long claws sniffs the air hungrily.",
-      "description": "Ghouls are created when people consume the flesh of the dead - a punishment that transforms them into monsters. This ghoul is barely recognizable as human. Its skin is pale and waxy, its fingers elongated into claws, its teeth filed to points. It moves with bestial grace, constantly hungry. Ghouls are intelligent enough to be truly dangerous, setting ambushes and working in packs.",
-      "level": 22,
-      "race": "undead",
-      "size": "medium",
-      "hp_dice": "15d8+45",
-      "damage_dice": "2d6+4",
-      "armor_class": 55,
-      "exp_value": 1250,
-      "gold": 30,
-      "behaviors": [
-        "aggressive"
-      ],
-      "special_abilities": [
-        "undead_traits",
-        "paralysis_touch"
-      ],
-      "ai_config": {
-        "behaviors": [
-          "pack",
-          "ambush"
-        ],
-        "pack_call_radius": 2,
-        "ambush_room": 14010
-      },
-      "spawn_rooms": [
-        14007,
-        14010,
-        14011
-      ],
-      "max_in_zone": 6,
-      "vnum": 14001
-    },
-    "14002": {
-      "name": "wraith",
-      "short_desc": "a shadowy wraith",
-      "long_desc": "A dark figure drifts here, its form barely visible and utterly terrifying.",
-      "description": "Wraiths are the spirits of the truly evil, bound to the world by their malice. This creature is incorporeal, a shadow barely distinguishable from darkness. Its touch drains life force itself, weakening victims with each strike. Wraiths hate the living with a passion that transcends death. They can phase through walls and are immune to normal weapons. Only magic can harm them.",
-      "level": 24,
-      "race": "undead",
-      "size": "medium",
-      "hp_dice": "16d8+48",
-      "damage_dice": "2d8+4",
-      "armor_class": 40,
-      "exp_value": 1400,
-      "gold": 0,
-      "behaviors": [
-        "aggressive"
-      ],
-      "special_abilities": [
-        "undead_traits",
-        "incorporeal",
-        "life_drain"
-      ],
-      "ai_config": {
-        "behaviors": [
-          "ambush"
-        ],
-        "ambush_room": 14013
-      },
-      "spawn_rooms": [
-        14013,
-        14014,
-        14025
-      ],
-      "max_in_zone": 4,
-      "vnum": 14002
-    },
-    "14003": {
-      "name": "vampire",
-      "short_desc": "an ancient vampire",
-      "long_desc": "A pale figure of terrible beauty watches you with predatory eyes.",
-      "description": "This vampire is centuries old, a master of undeath. It appears almost human - pale and beautiful, dressed in finery from a bygone age. But the illusion shatters when it opens its mouth to reveal fangs, or when you see the complete absence of humanity in its eyes. Vampires are incredibly strong, fast, and cunning. They can charm victims, turn into mist, and command lesser undead. Sunlight would destroy them, but here in eternal darkness they reign supreme.",
-      "level": 26,
-      "race": "undead",
-      "size": "medium",
-      "hp_dice": "18d8+72",
-      "damage_dice": "3d6+5",
-      "armor_class": 35,
-      "exp_value": 1600,
-      "gold": 500,
-      "behaviors": [
-        "aggressive"
-      ],
-      "special_abilities": [
-        "undead_traits",
-        "charm",
-        "mist_form",
-        "regeneration"
-      ],
-      "special_attacks": [
-        "blood_drain"
-      ],
-      "ai_config": {
-        "behaviors": [
-          "flee_heal",
-          "spellcaster"
-        ],
-        "flee_hp_percent": 25,
-        "preferred_spells": [
-          "charm_person",
-          "darkness"
-        ]
-      },
-      "spawn_rooms": [
-        14009
-      ],
-      "max_in_zone": 2,
-      "vnum": 14003
-    },
-    "14004": {
-      "name": "lich",
-      "short_desc": "Malachar the Undying, Master of the Necropolis",
-      "long_desc": "An ancient lich wrapped in rotting robes stands here, eyes burning with unholy power.",
-      "description": "Malachar was once a great archmage who chose lichdom over death. That was over a thousand years ago. Now he's something beyond human understanding - a being of pure will and magic housed in a desiccated corpse. His bones show through dried flesh, and his eyes are pits of green flame. He wears robes that were once magnificent, now moth-eaten and stained. But none of this diminishes his power. He's one of the most powerful spellcasters in existence, wielding necromancy that could threaten kingdoms. His phylactery makes him nearly immortal.",
-      "level": 28,
-      "race": "undead",
-      "size": "medium",
-      "hp_dice": "20d8+80",
-      "damage_dice": "3d8+6",
-      "armor_class": 30,
-      "exp_value": 2000,
-      "gold": 2000,
-      "behaviors": [
-        "aggressive"
-      ],
-      "special_abilities": [
-        "undead_traits",
-        "spell_resistance",
-        "legendary_resistance",
-        "paralysis_touch"
-      ],
-      "spells": [
-        "finger_of_death",
-        "power_word_kill",
-        "animate_dead",
-        "cone_of_cold",
-        "disintegrate",
-        "time_stop"
-      ],
-      "ai_config": {
-        "behaviors": [
-          "spellcaster",
-          "flee_heal"
-        ],
-        "preferred_spells": [
-          "finger_of_death",
-          "cone_of_cold",
-          "power_word_kill"
-        ],
-        "flee_hp_percent": 15
-      },
-      "spawn_rooms": [
-        14024
-      ],
-      "max_in_zone": 1,
-      "vnum": 14004
-    },
-    "14005": {
-      "name": "necromancer",
-      "short_desc": "a dark necromancer",
-      "long_desc": "A robed figure studies a tome of forbidden knowledge, dark energy crackling around their fingers.",
-      "description": "This necromancer is still among the living, though they've dedicated their life to death magic. They're pale from spending time indoors studying, with dark circles under their eyes. Their robes are black and covered in arcane symbols. They can summon and command undead, drain life energy, and cast curses. While not as powerful as the lich master, they're still dangerous spellcasters. They see undeath as the next stage of existence and actively work toward transformation.",
-      "level": 23,
-      "race": "human",
-      "size": "medium",
-      "hp_dice": "15d6+30",
-      "damage_dice": "1d6+2",
-      "armor_class": 60,
-      "exp_value": 1300,
-      "gold": 300,
-      "behaviors": [
-        "aggressive"
-      ],
-      "spells": [
-        "animate_dead",
-        "ray_of_enfeeblement",
-        "cause_fear",
-        "vampiric_touch"
-      ],
-      "ai_config": {
-        "behaviors": [
-          "spellcaster",
-          "flee_heal"
-        ],
-        "preferred_spells": [
-          "animate_dead",
-          "vampiric_touch",
-          "cause_fear"
-        ],
-        "flee_hp_percent": 30
-      },
-      "spawn_rooms": [
-        14005,
-        14008,
-        14016,
-        14017,
-        14018
-      ],
-      "max_in_zone": 5,
-      "vnum": 14005
-    }
+  "14001": {
+   "name": "ghoul",
+   "short_desc": "a feral ghoul",
+   "long_desc": "A hunched, pale creature with long claws sniffs the air hungrily.",
+   "description": "Ghouls are created when people consume the flesh of the dead - a punishment that transforms them into monsters. This ghoul is barely recognizable as human. Its skin is pale and waxy, its fingers elongated into claws, its teeth filed to points. It moves with bestial grace, constantly hungry. Ghouls are intelligent enough to be truly dangerous, setting ambushes and working in packs.",
+   "level": 22,
+   "race": "undead",
+   "size": "medium",
+   "hp_dice": "15d8+45",
+   "damage_dice": "2d6+4",
+   "armor_class": 55,
+   "exp_value": 1250,
+   "gold": 30,
+   "behaviors": [
+    "aggressive"
+   ],
+   "special_abilities": [
+    "undead_traits",
+    "paralysis_touch"
+   ],
+   "ai_config": {
+    "behaviors": [
+     "pack",
+     "ambush"
+    ],
+    "pack_call_radius": 2,
+    "ambush_room": 14010
+   },
+   "spawn_rooms": [
+    14007,
+    14010,
+    14011
+   ],
+   "max_in_zone": 6,
+   "vnum": 14001
   },
-  "objects": {
-    "14000": {
-      "name": "necronomicon",
-      "short_desc": "an ancient book bound in strange leather",
-      "long_desc": "A tome of forbidden knowledge lies here, radiating dark power.",
-      "description": "This is one of the legendary books of necromancy, containing spells and rituals of immense power. The pages are human skin, the ink is blood, and the binding is something you can't identify and don't want to. Simply reading it could drive one mad, but the knowledge within could grant power over death itself. Necromancers would kill for this book.",
-      "item_type": "book",
-      "value": 5000,
-      "weight": 10,
-      "magic_bonus": 3,
-      "special_properties": [
-        "teaches_necromancy"
-      ],
-      "spawn_rooms": [
-        14017,
-        14022
-      ],
-      "max_in_zone": 2,
-      "vnum": 14000,
-      "type": "note"
-    },
-    "14001": {
-      "vnum": 14001,
-      "name": "bone plate armor",
-      "short_desc": "bone plate armor",
-      "room_desc": "Armor made of fused bones lies here.",
-      "description": "Necromantic bone armor.",
-      "item_type": "armor",
-      "weight": 8,
-      "value": 14000,
-      "wear_slot": "body",
-      "armor_class": 9,
-      "affects": [
-        {
-          "type": "int",
-          "value": 2
-        },
-        {
-          "type": "shadow_resist",
-          "value": 5
-        }
-      ],
-      "set_id": "necromancers_regalia",
-      "type": "armor",
-      "min_level": 35,
-      "armor": 17
-    },
-    "14002": {
-      "vnum": 14002,
-      "name": "skull-topped staff",
-      "short_desc": "a skull-topped staff",
-      "room_desc": "A staff topped with a skull lies here.",
-      "description": "A necromancer's staff.",
-      "item_type": "weapon",
-      "weight": 5,
-      "value": 13000,
-      "wear_slot": "wield",
-      "weapon_type": "pound",
-      "damage_dice": "3d6+4",
-      "affects": [
-        {
-          "type": "int",
-          "value": 2
-        },
-        {
-          "type": "damroll",
-          "value": 3
-        }
-      ],
-      "set_id": "necromancers_regalia",
-      "type": "weapon",
-      "min_level": 35
-    },
-    "14003": {
-      "vnum": 14003,
-      "name": "death shroud cloak",
-      "short_desc": "a death shroud cloak",
-      "room_desc": "A cloak of deathly shrouds lies here.",
-      "description": "Woven from grave cloth.",
-      "item_type": "armor",
-      "weight": 2,
-      "value": 11000,
-      "wear_slot": "about",
-      "armor_class": 4,
-      "affects": [
-        {
-          "type": "shadow_resist",
-          "value": 10
-        }
-      ],
-      "set_id": "necromancers_regalia",
-      "type": "armor",
-      "min_level": 35,
-      "armor": 9
-    },
-    "14004": {
-      "vnum": 14004,
-      "name": "ring of the lich",
-      "short_desc": "a ring of the lich",
-      "room_desc": "A ring pulsing with dark energy lies here.",
-      "description": "Cold to the touch.",
-      "item_type": "armor",
-      "weight": 0,
-      "value": 12000,
-      "wear_slot": "finger",
-      "armor_class": 2,
-      "affects": [
-        {
-          "type": "max_mana",
-          "value": 30
-        }
-      ],
-      "set_id": "necromancers_regalia",
-      "type": "armor",
-      "min_level": 35,
-      "armor": 11
-    },
-    "14005": {
-      "name": "phylactery shard",
-      "short_desc": "a fragment of shattered phylactery",
-      "long_desc": "A broken piece of gem-studded metal pulses with residual power.",
-      "description": "This is a piece of a destroyed phylactery - the vessel that held a lich's soul. Though broken, it still holds fragments of necromantic power. A skilled enchanter could use it as a component for powerful magic items. Simply carrying it makes you feel cold inside.",
-      "item_type": "ingredient",
-      "value": 3000,
-      "weight": 2,
-      "magic_bonus": 3,
-      "spawn_rooms": [
-        14024
-      ],
-      "max_in_zone": 1,
-      "vnum": 14005,
-      "type": "trash"
-    },
-    "14010": {
-      "vnum": 14010,
-      "name": "a phylactery shard",
-      "short_desc": "a phylactery shard",
-      "room_desc": "A shard of a lich phylactery lies here.",
-      "type": "treasure",
-      "weight": 1,
-      "cost": 3000
-    },
-    "14011": {
-      "vnum": 14011,
-      "name": "a bone circlet",
-      "short_desc": "a bone circlet",
-      "room_desc": "A circlet fashioned from bone rests here.",
-      "type": "armor",
-      "weight": 2,
-      "cost": 2600,
-      "armor": 10,
-      "wear_slot": "head",
-      "armor_class": 4
-    },
-    "14012": {
-      "vnum": 14012,
-      "name": "a soulreaver blade",
-      "short_desc": "a soulreaver blade",
-      "room_desc": "A blade wreathed in pale flame lies here.",
-      "type": "weapon",
-      "weight": 8,
-      "cost": 3500,
-      "damage_dice": "3d6+4",
-      "weapon_type": "slash"
-    },
-    "9101": {
-      "vnum": 9101,
-      "name": "verdant longbow",
-      "short_desc": "\u001b[95ma verdant long\u001b[92mbow\u001b[0m\u001b[95m\u001b[0m",
-      "room_desc": "\u001b[95mA verdant long\u001b[92mbow\u001b[0m\u001b[95m of living wood lies here.\u001b[0m",
-      "description": "A ranger\u2019s bow infused with poison\u2011green sap.",
-      "item_type": "weapon",
-      "wear_slot": "wield",
-      "weapon_type": "pierce",
-      "damage_dice": "2d6+4",
-      "weight": 8,
-      "value": 14000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "dex",
-          "value": 2
-        },
-        {
-          "type": "hitroll",
-          "value": 2
-        }
-      ],
-      "set_id": 140,
-      "type": "weapon"
-    },
-    "9102": {
-      "vnum": 9102,
-      "name": "shadowfang dagger",
-      "short_desc": "\u001b[95ma shadow\u001b[92mfang\u001b[0m\u001b[95m \u001b[92mfang\u001b[0m\u001b[95m\u001b[0m",
-      "room_desc": "\u001b[95mA shadowy \u001b[92mfang\u001b[0m\u001b[95m rests here, edge whispering.\u001b[0m",
-      "description": "A rogue\u2019s dagger that drinks the light.",
-      "item_type": "weapon",
-      "wear_slot": "wield",
-      "weapon_type": "pierce",
-      "damage_dice": "2d4+4",
-      "weight": 2,
-      "value": 12000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "dex",
-          "value": 3
-        },
-        {
-          "type": "hitroll",
-          "value": 2
-        }
-      ],
-      "set_id": 140,
-      "type": "weapon"
-    },
-    "9103": {
-      "vnum": 9103,
-      "name": "venomblood sigil",
-      "short_desc": "\u001b[95ma venomblood \u001b[35msigil\u001b[0m\u001b[95m\u001b[0m",
-      "room_desc": "\u001b[95mA venom\u2011etched \u001b[35msigil\u001b[0m\u001b[95m lies here.\u001b[0m",
-      "description": "A deathknight\u2019s sigil pulsing with toxic power.",
-      "item_type": "armor",
-      "wear_slot": "neck1",
-      "armor_bonus": 3,
-      "weight": 3,
-      "value": 16000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "damroll",
-          "value": 3
-        },
-        {
-          "type": "con",
-          "value": 2
-        }
-      ],
-      "set_id": 140,
-      "type": "treasure",
-      "armor": 10
-    },
-    "9104": {
-      "vnum": 9104,
-      "name": "scale of the green dragon",
-      "short_desc": "\u001b[95ma scale of the green dragon\u001b[0m",
-      "room_desc": "\u001b[95mA green dragon scale lies here, slick with venom.\u001b[0m",
-      "description": "A toxic scale from Verdraxx.",
-      "item_type": "armor",
-      "wear_slot": "neck1",
-      "armor_bonus": 4,
-      "weight": 2,
-      "value": 15000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "poison_resist",
-          "value": 10
-        }
-      ],
-      "set_id": 140,
-      "type": "treasure",
-      "armor": 13
-    },
-    "14013": {
-      "vnum": 14013,
-      "name": "gravetide cleaver",
-      "short_desc": "\u001b[95ma gravetide \u001b[91mcleaver\u001b[0m\u001b[95m\u001b[0m",
-      "room_desc": "\u001b[95mA gravetide \u001b[91mcleaver\u001b[0m\u001b[95m lies here.\u001b[0m",
-      "description": "A heavy cleaver.",
-      "item_type": "weapon",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "wield",
-      "weapon_type": "slash",
-      "damage_dice": "2d6+7",
-      "affects": [
-        {
-          "type": "damroll",
-          "value": 5
-        }
-      ],
-      "set_id": 140,
-      "type": "weapon"
-    },
-    "14014": {
-      "vnum": 14014,
-      "name": "lightbearer shield",
-      "short_desc": "\u001b[95ma lightbearer \u001b[93mshield\u001b[0m\u001b[95m\u001b[0m",
-      "room_desc": "\u001b[95mA lightbearer \u001b[93mshield\u001b[0m\u001b[95m lies here.\u001b[0m",
-      "description": "A paladin's shield.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "shield",
-      "armor_bonus": 3,
-      "affects": [
-        {
-          "type": "cha",
-          "value": 2
-        }
-      ],
-      "set_id": 140,
-      "type": "armor",
-      "armor": 3,
-      "armor_class": 3
-    },
-    "14015": {
-      "vnum": 14015,
-      "name": "soulforged sigil",
-      "short_desc": "\u001b[95ma soulforged \u001b[35msigil\u001b[0m\u001b[95m\u001b[0m",
-      "room_desc": "\u001b[95mA soulforged \u001b[35msigil\u001b[0m\u001b[95m lies here.\u001b[0m",
-      "description": "A deathknight's sigil.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "neck1",
-      "affects": [
-        {
-          "type": "damroll",
-          "value": 5
-        }
-      ],
-      "set_id": 140,
-      "type": "treasure",
-      "armor": 8
-    },
-    "14016": {
-      "vnum": 14016,
-      "name": "reliquary of dawn",
-      "short_desc": "\u001b[95ma \u001b[93mreliquary\u001b[0m\u001b[95m of dawn\u001b[0m",
-      "room_desc": "\u001b[95mA \u001b[93mreliquary\u001b[0m\u001b[95m of dawn lies here.\u001b[0m",
-      "description": "A cleric's reliquary.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "hold",
-      "affects": [
-        {
-          "type": "wis",
-          "value": 4
-        },
-        {
-          "type": "max_mana",
-          "value": 40
-        }
-      ],
-      "set_id": 140,
-      "type": "treasure",
-      "armor": 12
-    },
-    "14017": {
-      "vnum": 14017,
-      "name": "nightglass focus",
-      "short_desc": "\u001b[95ma nightglass \u001b[96mfocus\u001b[0m\u001b[95m\u001b[0m",
-      "room_desc": "\u001b[95mA nightglass \u001b[96mfocus\u001b[0m\u001b[95m lies here.\u001b[0m",
-      "description": "A mage's focus.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "hold",
-      "affects": [
-        {
-          "type": "int",
-          "value": 4
-        },
-        {
-          "type": "max_mana",
-          "value": 40
-        }
-      ],
-      "set_id": 140,
-      "type": "treasure",
-      "armor": 11
-    },
-    "14018": {
-      "vnum": 14018,
-      "name": "dirge lyre",
-      "short_desc": "\u001b[95ma dirge \u001b[95mlyre\u001b[0m\u001b[95m\u001b[0m",
-      "room_desc": "\u001b[95mA dirge \u001b[95mlyre\u001b[0m\u001b[95m lies here.\u001b[0m",
-      "description": "A bard's lyre.",
-      "item_type": "weapon",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "wield",
-      "weapon_type": "mace",
-      "damage_dice": "1d6+4",
-      "affects": [
-        {
-          "type": "cha",
-          "value": 4
-        }
-      ],
-      "set_id": 140,
-      "type": "treasure"
-    },
-    "14019": {
-      "vnum": 14019,
-      "name": "grave\u2011edge stiletto",
-      "short_desc": "\u001b[95ma grave\u2011edge \u001b[92mstiletto\u001b[0m\u001b[95m\u001b[0m",
-      "room_desc": "\u001b[95mA grave\u2011edge \u001b[92mstiletto\u001b[0m\u001b[95m lies here.\u001b[0m",
-      "description": "A rogue's stiletto.",
-      "item_type": "weapon",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "wield",
-      "weapon_type": "pierce",
-      "damage_dice": "1d6+4",
-      "affects": [
-        {
-          "type": "dex",
-          "value": 4
-        },
-        {
-          "type": "hitroll",
-          "value": 2
-        }
-      ],
-      "set_id": 140,
-      "type": "weapon"
-    },
-    "14020": {
-      "vnum": 14020,
-      "name": "wraith\u2011hunter band",
-      "short_desc": "\u001b[95ma wraith\u2011hunter \u001b[92mband\u001b[0m\u001b[95m\u001b[0m",
-      "room_desc": "\u001b[95mA wraith\u2011hunter \u001b[92mband\u001b[0m\u001b[95m lies here.\u001b[0m",
-      "description": "A ranger's ring.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "finger1",
-      "affects": [
-        {
-          "type": "dex",
-          "value": 3
-        },
-        {
-          "type": "hitroll",
-          "value": 1
-        }
-      ],
-      "set_id": 140,
-      "type": "armor",
-      "armor": 10,
-      "armor_class": 5
-    },
-    "14021": {
-      "vnum": 14021,
-      "name": "mantle of dusk",
-      "short_desc": "\u001b[95ma mantle of dusk\u001b[0m",
-      "room_desc": "\u001b[95mA mantle of dusk lies here.\u001b[0m",
-      "description": "A dusk mantle.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "about",
-      "armor_bonus": 3,
-      "affects": [
-        {
-          "type": "shadow_resist",
-          "value": 10
-        }
-      ],
-      "set_id": 140,
-      "type": "armor",
-      "armor": 1,
-      "armor_class": 4
-    },
-    "14090": {
-      "vnum": 14090,
-      "name": "verdant shroud",
-      "short_desc": "\u001b[92mthe verdant shroud\u001b[0m",
-      "room_desc": "\u001b[92mA verdant shroud rustles here.\u001b[0m",
-      "description": "A moss\u2011lined shroud that swallows footsteps in the wild.",
-      "item_type": "armor",
-      "weight": 3,
-      "value": 18000,
-      "wear_slot": "back",
-      "armor_bonus": 2,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "sneak",
-          "value": 7
-        }
-      ],
-      "type": "armor",
-      "armor": 1,
-      "armor_class": 4
-    },
-    "14091": {
-      "vnum": 14091,
-      "name": "stalker band",
-      "short_desc": "\u001b[92mthe stalker band\u001b[0m",
-      "room_desc": "\u001b[92mA hunter's band lies here.\u001b[0m",
-      "description": "A band that sharpens the strike of an ambush.",
-      "item_type": "armor",
-      "wear_slot": "finger1",
-      "armor_bonus": 1,
-      "weight": 1,
-      "value": 20000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "ambush",
-          "value": 10
-        }
-      ],
-      "type": "treasure",
-      "armor": 10
-    },
-    "14092": {
-      "vnum": 14092,
-      "name": "wildpath charm",
-      "short_desc": "\u001b[92mthe wildpath charm\u001b[0m",
-      "room_desc": "\u001b[92mA charm of woven vine rests here.\u001b[0m",
-      "description": "A charm that sharpens the senses for tracking.",
-      "item_type": "armor",
-      "wear_slot": "neck1",
-      "armor_bonus": 1,
-      "weight": 1,
-      "value": 22000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "track",
-          "value": 10
-        }
-      ],
-      "type": "treasure",
-      "armor": 8
-    },
-    "14093": {
-      "vnum": 14093,
-      "name": "venomleaf talisman",
-      "short_desc": "\u001b[92mthe venomleaf talisman\u001b[0m",
-      "room_desc": "\u001b[92mA talisman of dark leaves rests here.\u001b[0m",
-      "description": "A talisman that empowers poison magic.",
-      "item_type": "armor",
-      "wear_slot": "neck2",
-      "armor_bonus": 1,
-      "weight": 1,
-      "value": 24000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "poison_cloud",
-          "value": 12
-        }
-      ],
-      "type": "treasure",
-      "armor": 10
-    }
+  "14002": {
+   "name": "wraith",
+   "short_desc": "a shadowy wraith",
+   "long_desc": "A dark figure drifts here, its form barely visible and utterly terrifying.",
+   "description": "Wraiths are the spirits of the truly evil, bound to the world by their malice. This creature is incorporeal, a shadow barely distinguishable from darkness. Its touch drains life force itself, weakening victims with each strike. Wraiths hate the living with a passion that transcends death. They can phase through walls and are immune to normal weapons. Only magic can harm them.",
+   "level": 24,
+   "race": "undead",
+   "size": "medium",
+   "hp_dice": "16d8+48",
+   "damage_dice": "2d8+4",
+   "armor_class": 40,
+   "exp_value": 1400,
+   "gold": 0,
+   "behaviors": [
+    "aggressive"
+   ],
+   "special_abilities": [
+    "undead_traits",
+    "incorporeal",
+    "life_drain"
+   ],
+   "ai_config": {
+    "behaviors": [
+     "ambush"
+    ],
+    "ambush_room": 14013
+   },
+   "spawn_rooms": [
+    14013,
+    14014,
+    14025
+   ],
+   "max_in_zone": 4,
+   "vnum": 14002
   },
-  "mobs": {
-    "14001": {
-      "vnum": 14001,
-      "name": "skeleton",
-      "short_desc": "a skeletal warrior",
-      "long_desc": "A skeleton in rusted armor raises its sword.",
-      "description": "You see a skeletal warrior.",
-      "level": 25,
-      "alignment": -1000,
-      "hp_dice": "25d10+316",
-      "damage_dice": "7d8+8",
-      "gold": 194,
-      "exp": 1500,
-      "armor_class": 25,
-      "flags": [
-        "aggressive",
-        "undead"
-      ],
-      "inventory": [
-        9101
-      ]
-    },
-    "14002": {
-      "vnum": 14002,
-      "name": "zombie",
-      "short_desc": "a rotting zombie",
-      "long_desc": "A shambling corpse reaches for you with decayed hands.",
-      "description": "You see a rotting zombie.",
-      "level": 26,
-      "alignment": -1000,
-      "hp_dice": "26d10+328",
-      "damage_dice": "7d8+9",
-      "gold": 102,
-      "exp": 1560,
-      "armor_class": 22,
-      "flags": [
-        "aggressive",
-        "undead"
-      ],
-      "inventory": [
-        14019,
-        9103,
-        14021
-      ]
-    },
-    "14003": {
-      "vnum": 14003,
-      "name": "wraith",
-      "short_desc": "a dark wraith",
-      "long_desc": "A shadowy wraith floats through the air, its eyes glowing red.",
-      "description": "You see a dark wraith.",
-      "level": 28,
-      "alignment": -1000,
-      "hp_dice": "28d10+352",
-      "damage_dice": "8d8+8",
-      "gold": 213,
-      "exp": 1680,
-      "armor_class": 16,
-      "flags": [
-        "aggressive",
-        "undead",
-        "fly"
-      ],
-      "inventory": [
-        14016,
-        9101,
-        14003
-      ]
-    },
-    "14004": {
-      "vnum": 14004,
-      "name": "vampire",
-      "short_desc": "a vampire spawn",
-      "long_desc": "A pale vampire hisses, revealing its fangs.",
-      "description": "You see a vampire spawn.",
-      "level": 30,
-      "alignment": -1000,
-      "hp_dice": "30d10+376",
-      "damage_dice": "8d8+11",
-      "gold": 248,
-      "exp": 1800,
-      "armor_class": 10,
-      "flags": [
-        "aggressive",
-        "undead",
-        "sentinel"
-      ],
-      "inventory": [
-        14021
-      ]
-    },
-    "14005": {
-      "vnum": 14005,
-      "name": "ghast",
-      "short_desc": "a ghast",
-      "long_desc": "A ghast emits a nauseating stench as it approaches.",
-      "description": "You see a ghast.",
-      "level": 27,
-      "alignment": -1000,
-      "hp_dice": "27d10+340",
-      "damage_dice": "7d8+11",
-      "gold": 179,
-      "exp": 1620,
-      "armor_class": 19,
-      "flags": [
-        "aggressive",
-        "undead"
-      ],
-      "inventory": [
-        14003,
-        14091,
-        9102
-      ]
-    },
-    "14006": {
-      "vnum": 14006,
-      "name": "specter",
-      "short_desc": "a specter",
-      "long_desc": "A translucent specter phases through the walls.",
-      "description": "You see a specter.",
-      "level": 29,
-      "alignment": -1000,
-      "hp_dice": "29d10+364",
-      "damage_dice": "8d8+9",
-      "gold": 82,
-      "exp": 1740,
-      "armor_class": 13,
-      "flags": [
-        "aggressive",
-        "undead",
-        "fly"
-      ],
-      "inventory": [
-        14012,
-        14093
-      ]
-    },
-    "14007": {
-      "vnum": 14007,
-      "name": "necromancer",
-      "short_desc": "a dark necromancer",
-      "long_desc": "A robed necromancer channels dark energy.",
-      "description": "You see a dark necromancer.",
-      "level": 32,
-      "alignment": -1000,
-      "hp_dice": "32d10+400",
-      "damage_dice": "9d8+9",
-      "gold": 176,
-      "exp": 1920,
-      "armor_class": 4,
-      "flags": [
-        "aggressive",
-        "sentinel",
-        "spellcaster"
-      ],
-      "inventory": [
-        9102
-      ]
-    },
-    "14008": {
-      "vnum": 14008,
-      "name": "lich",
-      "short_desc": "an ancient lich",
-      "long_desc": "An ancient lich sits upon a throne of bones, power radiating from its form.",
-      "description": "You see an ancient lich.",
-      "level": 35,
-      "alignment": -1000,
-      "hp_dice": "35d10+436",
-      "damage_dice": "9d8+14",
-      "gold": 298,
-      "exp": 2100,
-      "armor_class": -5,
-      "flags": [
-        "aggressive",
-        "sentinel",
-        "spellcaster"
-      ],
-      "is_boss": true,
-      "loot_table": [
-        {
-          "vnum": 14013,
-          "chance": 20
-        },
-        {
-          "vnum": 14014,
-          "chance": 20
-        },
-        {
-          "vnum": 14015,
-          "chance": 20
-        },
-        {
-          "vnum": 14016,
-          "chance": 20
-        },
-        {
-          "vnum": 14017,
-          "chance": 20
-        },
-        {
-          "vnum": 14018,
-          "chance": 20
-        },
-        {
-          "vnum": 14019,
-          "chance": 20
-        },
-        {
-          "vnum": 14020,
-          "chance": 20
-        },
-        {
-          "vnum": 14021,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100,
-      "inventory": [
-        14018,
-        14015
-      ]
-    },
-    "14009": {
-      "vnum": 14009,
-      "name": "death knight",
-      "short_desc": "a death knight",
-      "long_desc": "A death knight in black plate armor stands guard.",
-      "description": "You see a death knight.",
-      "level": 33,
-      "alignment": -1000,
-      "hp_dice": "33d10+412",
-      "damage_dice": "9d8+11",
-      "gold": 73,
-      "exp": 1980,
-      "armor_class": 1,
-      "flags": [
-        "aggressive",
-        "sentinel",
-        "undead"
-      ],
-      "loot_table": [
-        {
-          "vnum": 14013,
-          "chance": 20
-        },
-        {
-          "vnum": 14014,
-          "chance": 20
-        },
-        {
-          "vnum": 14015,
-          "chance": 20
-        },
-        {
-          "vnum": 14016,
-          "chance": 20
-        },
-        {
-          "vnum": 14017,
-          "chance": 20
-        },
-        {
-          "vnum": 14018,
-          "chance": 20
-        },
-        {
-          "vnum": 14019,
-          "chance": 20
-        },
-        {
-          "vnum": 14020,
-          "chance": 20
-        },
-        {
-          "vnum": 14021,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100,
-      "inventory": [
-        14012
-      ]
-    },
-    "14010": {
-      "vnum": 14010,
-      "name": "banshee",
-      "short_desc": "a wailing banshee",
-      "long_desc": "A banshee shrieks, its voice chilling your soul.",
-      "description": "You see a wailing banshee.",
-      "level": 31,
-      "alignment": -1000,
-      "hp_dice": "31d10+388",
-      "damage_dice": "8d8+12",
-      "gold": 221,
-      "exp": 1860,
-      "armor_class": 7,
-      "flags": [
-        "aggressive",
-        "undead",
-        "fly"
-      ],
-      "inventory": [
-        14091,
-        14003,
-        14010
-      ]
-    },
-    "14030": {
-      "vnum": 14030,
-      "name": "Verdraxx the Green Dragon",
-      "short_desc": "Verdraxx the Green Dragon",
-      "long_desc": "A massive green dragon lurks here, poison dripping from its fangs.",
-      "level": 47,
-      "alignment": -800,
-      "hp_dice": "47d10+560",
-      "damage_dice": "12d8+16",
-      "gold": 8000,
-      "exp": 4500,
-      "armor_class": -8,
-      "flags": [
-        "boss",
-        "sentinel"
-      ],
-      "special": "dragon",
-      "boss": true,
-      "boss_id": "green_dragon",
-      "boss_title": "the Venomslayer",
-      "boss_achievement": "boss_green_dragon",
-      "boss_loot_table": [
-        {
-          "vnum": 9104,
-          "chance": 100
-        },
-        {
-          "vnum": 9101,
-          "chance": 35
-        },
-        {
-          "vnum": 9102,
-          "chance": 35
-        },
-        {
-          "vnum": 9103,
-          "chance": 35
-        },
-        {
-          "vnum": 14090,
-          "chance": 25
-        },
-        {
-          "vnum": 14091,
-          "chance": 10
-        },
-        {
-          "vnum": 14092,
-          "chance": 10
-        },
-        {
-          "vnum": 14093,
-          "chance": 10
-        },
-        {
-          "vnum": 14001,
-          "chance": 25
-        },
-        {
-          "vnum": 14002,
-          "chance": 25
-        },
-        {
-          "vnum": 14003,
-          "chance": 25
-        },
-        {
-          "vnum": 14004,
-          "chance": 25
-        }
-      ],
-      "boss_loot_chance": 85,
-      "boss_config": {
-        "enrage_time": 120,
-        "enrage_multiplier": 1.8,
-        "ability_interval": 4.5,
-        "phases": [
-          {
-            "threshold": 40,
-            "message": "\u001b[32mVerdraxx summons the dead from the earth! A necrotic aura fills the chamber!\u001b[0m",
-            "spawn_adds": {
-              "14008": 2
-            }
-          }
-        ],
-        "abilities": [
-          {
-            "name": "Poison Breath",
-            "telegraph": "\u001b[32mVerdraxx inhales deeply, green mist swirling!\u001b[0m",
-            "cast_time": 3,
-            "cooldown": 16,
-            "damage_dice": "6d6+12",
-            "aoe": true,
-            "dodge": true,
-            "interruptible": true,
-            "vulnerable_after": 4
-          },
-          {
-            "name": "Vine Entangle",
-            "telegraph": "Vines erupt from the ground, grasping at you!",
-            "cast_time": 2,
-            "cooldown": 12,
-            "damage_dice": "3d6+6",
-            "aoe": true,
-            "dodge": true
-          },
-          {
-            "name": "Venom Spit",
-            "telegraph": "Verdraxx spits a glob of venom!",
-            "cast_time": 1,
-            "cooldown": 8,
-            "damage_dice": "3d8+8",
-            "dodge": true
-          },
-          {
-            "name": "Necrotic Breath",
-            "telegraph": "\u001b[35mVerdraxx exhales a wave of necrotic energy!\u001b[0m",
-            "cast_time": 3,
-            "cooldown": 15,
-            "damage_dice": "5d8+15",
-            "aoe": true,
-            "dodge": true,
-            "interruptible": true,
-            "min_phase": 1
-          },
-          {
-            "name": "Raise Dead",
-            "telegraph": "Verdraxx commands the dead to rise!",
-            "cast_time": 3,
-            "cooldown": 25,
-            "damage": 0,
-            "min_phase": 1,
-            "summon": {
-              "14008": 2
-            }
-          }
-        ]
-      },
-      "equipment_rolls": [
-        {
-          "slot": "wield",
-          "vnum": 9102,
-          "chance": 40
-        }
-      ],
-      "loot_table": [
-        {
-          "vnum": 14013,
-          "chance": 20
-        },
-        {
-          "vnum": 14014,
-          "chance": 20
-        },
-        {
-          "vnum": 14015,
-          "chance": 20
-        },
-        {
-          "vnum": 14016,
-          "chance": 20
-        },
-        {
-          "vnum": 14017,
-          "chance": 20
-        },
-        {
-          "vnum": 14018,
-          "chance": 20
-        },
-        {
-          "vnum": 14019,
-          "chance": 20
-        },
-        {
-          "vnum": 14020,
-          "chance": 20
-        },
-        {
-          "vnum": 14021,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100,
-      "inventory": [
-        14001,
-        14093
-      ]
-    },
-    "14098": {
-      "vnum": 14098,
-      "name": "restless ghost",
-      "short_desc": "a restless ghost",
-      "long_desc": "A translucent ghost floats here, wringing its spectral hands in eternal distress.",
-      "description": "The ghost wears the faded remnants of a noble's attire. Its face is frozen in an expression of profound regret, and faint chains of ethereal light bind it to this place.",
-      "level": 42,
-      "alignment": 0,
-      "hp_dice": "42d10+800",
-      "damage_dice": "1d4+1",
-      "gold": 0,
-      "exp": 0,
-      "armor_class": 100,
-      "flags": [
-        "sentinel"
-      ],
-      "special": "flavor_npc",
-      "talk_responses": {
-        "hello": "The ghost wails softly. 'I was a lord of these lands, once. I sought eternal life and found eternal death instead. The necromancer promised salvation \u2014 he delivered damnation. His phylactery is hidden in the deepest crypt, pulsing with stolen souls. Destroy it, and perhaps we can all finally rest.'",
-        "necromancer": "The ghost's form flickers with rage. 'He was my court wizard. I trusted him. He murdered us all in a single night and raised us as his servants. The crypt beneath the great mausoleum \u2014 that is where his power dwells.'",
-        "default": "The ghost stares at its translucent hands, murmuring. 'What have I become...'",
-        "next": "The ghost's hollow voice echoes. 'There are places darker still than this graveyard. The Dragon's Domain... fire and death await there. And the Plane of Eternal Chaos \u2014 reality itself unravels. Only the truly powerful survive such places.'"
-      },
-      "inventory": [
-        9101,
-        14092
-      ]
-    },
-    "14099": {
-      "vnum": 14099,
-      "name": "grave keeper",
-      "short_desc": "a morose grave keeper",
-      "long_desc": "A hunched grave keeper shuffles here, lantern in one hand and shovel in the other.",
-      "description": "He is the only living soul who dwells in the Necropolis willingly. His skin is sallow, his eyes permanently red-rimmed, and he speaks to the dead more than the living.",
-      "level": 35,
-      "alignment": 0,
-      "hp_dice": "35d10+600",
-      "damage_dice": "1d4+1",
-      "gold": 0,
-      "exp": 0,
-      "armor_class": 100,
-      "flags": [
-        "sentinel"
-      ],
-      "special": "flavor_npc",
-      "talk_responses": {
-        "hello": "The grave keeper eyes you wearily. 'Another hero come to cleanse the dead. They all say that. Most end up joining my... residents. Word of advice \u2014 the skeletons are mindless, easy. The ghouls are cunning. But the wraiths... the wraiths remember who they were. That makes them dangerous. And angry.'",
-        "dead": "He leans on his shovel. 'Don't disturb the sealed tombs. Some things are buried for a reason. The ones with iron chains on the doors? Those aren't to keep robbers out. They're to keep what's inside IN.'",
-        "default": "The grave keeper hums a funeral dirge and adjusts a crooked headstone."
-      },
-      "inventory": [
-        9101,
-        14004,
-        14012
-      ]
-    }
+  "14003": {
+   "name": "vampire",
+   "short_desc": "an ancient vampire",
+   "long_desc": "A pale figure of terrible beauty watches you with predatory eyes.",
+   "description": "This vampire is centuries old, a master of undeath. It appears almost human - pale and beautiful, dressed in finery from a bygone age. But the illusion shatters when it opens its mouth to reveal fangs, or when you see the complete absence of humanity in its eyes. Vampires are incredibly strong, fast, and cunning. They can charm victims, turn into mist, and command lesser undead. Sunlight would destroy them, but here in eternal darkness they reign supreme.",
+   "level": 26,
+   "race": "undead",
+   "size": "medium",
+   "hp_dice": "18d8+72",
+   "damage_dice": "3d6+5",
+   "armor_class": 35,
+   "exp_value": 1600,
+   "gold": 500,
+   "behaviors": [
+    "aggressive"
+   ],
+   "special_abilities": [
+    "undead_traits",
+    "charm",
+    "mist_form",
+    "regeneration"
+   ],
+   "special_attacks": [
+    "blood_drain"
+   ],
+   "ai_config": {
+    "behaviors": [
+     "flee_heal",
+     "spellcaster"
+    ],
+    "flee_hp_percent": 25,
+    "preferred_spells": [
+     "charm_person",
+     "darkness"
+    ]
+   },
+   "spawn_rooms": [
+    14009
+   ],
+   "max_in_zone": 2,
+   "vnum": 14003
+  },
+  "14004": {
+   "name": "lich",
+   "short_desc": "Malachar the Undying, Master of the Necropolis",
+   "long_desc": "An ancient lich wrapped in rotting robes stands here, eyes burning with unholy power.",
+   "description": "Malachar was once a great archmage who chose lichdom over death. That was over a thousand years ago. Now he's something beyond human understanding - a being of pure will and magic housed in a desiccated corpse. His bones show through dried flesh, and his eyes are pits of green flame. He wears robes that were once magnificent, now moth-eaten and stained. But none of this diminishes his power. He's one of the most powerful spellcasters in existence, wielding necromancy that could threaten kingdoms. His phylactery makes him nearly immortal.",
+   "level": 28,
+   "race": "undead",
+   "size": "medium",
+   "hp_dice": "20d8+80",
+   "damage_dice": "3d8+6",
+   "armor_class": 30,
+   "exp_value": 2000,
+   "gold": 2000,
+   "behaviors": [
+    "aggressive"
+   ],
+   "special_abilities": [
+    "undead_traits",
+    "spell_resistance",
+    "legendary_resistance",
+    "paralysis_touch"
+   ],
+   "spells": [
+    "finger_of_death",
+    "power_word_kill",
+    "animate_dead",
+    "cone_of_cold",
+    "disintegrate",
+    "time_stop"
+   ],
+   "ai_config": {
+    "behaviors": [
+     "spellcaster",
+     "flee_heal"
+    ],
+    "preferred_spells": [
+     "finger_of_death",
+     "cone_of_cold",
+     "power_word_kill"
+    ],
+    "flee_hp_percent": 15
+   },
+   "spawn_rooms": [
+    14024
+   ],
+   "max_in_zone": 1,
+   "vnum": 14004
+  },
+  "14005": {
+   "name": "necromancer",
+   "short_desc": "a dark necromancer",
+   "long_desc": "A robed figure studies a tome of forbidden knowledge, dark energy crackling around their fingers.",
+   "description": "This necromancer is still among the living, though they've dedicated their life to death magic. They're pale from spending time indoors studying, with dark circles under their eyes. Their robes are black and covered in arcane symbols. They can summon and command undead, drain life energy, and cast curses. While not as powerful as the lich master, they're still dangerous spellcasters. They see undeath as the next stage of existence and actively work toward transformation.",
+   "level": 23,
+   "race": "human",
+   "size": "medium",
+   "hp_dice": "15d6+30",
+   "damage_dice": "1d6+2",
+   "armor_class": 60,
+   "exp_value": 1300,
+   "gold": 300,
+   "behaviors": [
+    "aggressive"
+   ],
+   "spells": [
+    "animate_dead",
+    "ray_of_enfeeblement",
+    "cause_fear",
+    "vampiric_touch"
+   ],
+   "ai_config": {
+    "behaviors": [
+     "spellcaster",
+     "flee_heal"
+    ],
+    "preferred_spells": [
+     "animate_dead",
+     "vampiric_touch",
+     "cause_fear"
+    ],
+    "flee_hp_percent": 30
+   },
+   "spawn_rooms": [
+    14005,
+    14008,
+    14016,
+    14017,
+    14018
+   ],
+   "max_in_zone": 5,
+   "vnum": 14005
   }
+ },
+ "objects": {
+  "14000": {
+   "name": "necronomicon",
+   "short_desc": "an ancient book bound in strange leather",
+   "long_desc": "A tome of forbidden knowledge lies here, radiating dark power.",
+   "description": "This is one of the legendary books of necromancy, containing spells and rituals of immense power. The pages are human skin, the ink is blood, and the binding is something you can't identify and don't want to. Simply reading it could drive one mad, but the knowledge within could grant power over death itself. Necromancers would kill for this book.",
+   "item_type": "book",
+   "value": 5000,
+   "weight": 10,
+   "magic_bonus": 3,
+   "special_properties": [
+    "teaches_necromancy"
+   ],
+   "spawn_rooms": [
+    14017,
+    14022
+   ],
+   "max_in_zone": 2,
+   "vnum": 14000,
+   "type": "note"
+  },
+  "14001": {
+   "vnum": 14001,
+   "name": "bone plate armor",
+   "short_desc": "bone plate armor",
+   "room_desc": "Armor made of fused bones lies here.",
+   "description": "Necromantic bone armor.",
+   "item_type": "armor",
+   "weight": 8,
+   "value": 14000,
+   "wear_slot": "body",
+   "armor_class": 9,
+   "affects": [
+    {
+     "type": "int",
+     "value": 2
+    },
+    {
+     "type": "shadow_resist",
+     "value": 5
+    }
+   ],
+   "set_id": "necromancers_regalia",
+   "type": "armor",
+   "min_level": 35,
+   "armor": 17
+  },
+  "14002": {
+   "vnum": 14002,
+   "name": "skull-topped staff",
+   "short_desc": "a skull-topped staff",
+   "room_desc": "A staff topped with a skull lies here.",
+   "description": "A necromancer's staff.",
+   "item_type": "weapon",
+   "weight": 5,
+   "value": 13000,
+   "wear_slot": "wield",
+   "weapon_type": "pound",
+   "damage_dice": "3d6+4",
+   "affects": [
+    {
+     "type": "int",
+     "value": 2
+    },
+    {
+     "type": "damroll",
+     "value": 3
+    }
+   ],
+   "set_id": "necromancers_regalia",
+   "type": "weapon",
+   "min_level": 35
+  },
+  "14003": {
+   "vnum": 14003,
+   "name": "death shroud cloak",
+   "short_desc": "a death shroud cloak",
+   "room_desc": "A cloak of deathly shrouds lies here.",
+   "description": "Woven from grave cloth.",
+   "item_type": "armor",
+   "weight": 2,
+   "value": 11000,
+   "wear_slot": "about",
+   "armor_class": 4,
+   "affects": [
+    {
+     "type": "shadow_resist",
+     "value": 10
+    }
+   ],
+   "set_id": "necromancers_regalia",
+   "type": "armor",
+   "min_level": 35,
+   "armor": 9
+  },
+  "14004": {
+   "vnum": 14004,
+   "name": "ring of the lich",
+   "short_desc": "a ring of the lich",
+   "room_desc": "A ring pulsing with dark energy lies here.",
+   "description": "Cold to the touch.",
+   "item_type": "armor",
+   "weight": 0,
+   "value": 12000,
+   "wear_slot": "finger",
+   "armor_class": 2,
+   "affects": [
+    {
+     "type": "max_mana",
+     "value": 30
+    }
+   ],
+   "set_id": "necromancers_regalia",
+   "type": "armor",
+   "min_level": 35,
+   "armor": 11
+  },
+  "14005": {
+   "name": "phylactery shard",
+   "short_desc": "a fragment of shattered phylactery",
+   "long_desc": "A broken piece of gem-studded metal pulses with residual power.",
+   "description": "This is a piece of a destroyed phylactery - the vessel that held a lich's soul. Though broken, it still holds fragments of necromantic power. A skilled enchanter could use it as a component for powerful magic items. Simply carrying it makes you feel cold inside.",
+   "item_type": "ingredient",
+   "value": 3000,
+   "weight": 2,
+   "magic_bonus": 3,
+   "spawn_rooms": [
+    14024
+   ],
+   "max_in_zone": 1,
+   "vnum": 14005,
+   "type": "trash"
+  },
+  "14010": {
+   "vnum": 14010,
+   "name": "a phylactery shard",
+   "short_desc": "a phylactery shard",
+   "room_desc": "A shard of a lich phylactery lies here.",
+   "type": "treasure",
+   "weight": 1,
+   "cost": 3000
+  },
+  "14011": {
+   "vnum": 14011,
+   "name": "a bone circlet",
+   "short_desc": "a bone circlet",
+   "room_desc": "A circlet fashioned from bone rests here.",
+   "type": "armor",
+   "weight": 2,
+   "cost": 2600,
+   "armor": 10,
+   "wear_slot": "head",
+   "armor_class": 4
+  },
+  "14012": {
+   "vnum": 14012,
+   "name": "a soulreaver blade",
+   "short_desc": "a soulreaver blade",
+   "room_desc": "A blade wreathed in pale flame lies here.",
+   "type": "weapon",
+   "weight": 8,
+   "cost": 3500,
+   "damage_dice": "3d6+4",
+   "weapon_type": "slash"
+  },
+  "9101": {
+   "vnum": 9101,
+   "name": "verdant longbow",
+   "short_desc": "\u001b[95ma verdant long\u001b[92mbow\u001b[0m\u001b[95m\u001b[0m",
+   "room_desc": "\u001b[95mA verdant long\u001b[92mbow\u001b[0m\u001b[95m of living wood lies here.\u001b[0m",
+   "description": "A ranger’s bow infused with poison‑green sap.",
+   "item_type": "weapon",
+   "wear_slot": "wield",
+   "weapon_type": "pierce",
+   "damage_dice": "2d6+4",
+   "weight": 8,
+   "value": 14000,
+   "flags": [
+    "magic"
+   ],
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "hitroll",
+     "value": 2
+    }
+   ],
+   "set_id": 140,
+   "type": "weapon"
+  },
+  "9102": {
+   "vnum": 9102,
+   "name": "shadowfang dagger",
+   "short_desc": "\u001b[95ma shadow\u001b[92mfang\u001b[0m\u001b[95m \u001b[92mfang\u001b[0m\u001b[95m\u001b[0m",
+   "room_desc": "\u001b[95mA shadowy \u001b[92mfang\u001b[0m\u001b[95m rests here, edge whispering.\u001b[0m",
+   "description": "A rogue’s dagger that drinks the light.",
+   "item_type": "weapon",
+   "wear_slot": "wield",
+   "weapon_type": "pierce",
+   "damage_dice": "2d4+4",
+   "weight": 2,
+   "value": 12000,
+   "flags": [
+    "magic"
+   ],
+   "affects": [
+    {
+     "type": "dex",
+     "value": 3
+    },
+    {
+     "type": "hitroll",
+     "value": 2
+    }
+   ],
+   "set_id": 140,
+   "type": "weapon"
+  },
+  "9103": {
+   "vnum": 9103,
+   "name": "venomblood sigil",
+   "short_desc": "\u001b[95ma venomblood \u001b[35msigil\u001b[0m\u001b[95m\u001b[0m",
+   "room_desc": "\u001b[95mA venom‑etched \u001b[35msigil\u001b[0m\u001b[95m lies here.\u001b[0m",
+   "description": "A deathknight’s sigil pulsing with toxic power.",
+   "item_type": "armor",
+   "wear_slot": "neck1",
+   "armor_bonus": 3,
+   "weight": 3,
+   "value": 16000,
+   "flags": [
+    "magic"
+   ],
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 3
+    },
+    {
+     "type": "con",
+     "value": 2
+    }
+   ],
+   "set_id": 140,
+   "type": "treasure",
+   "armor": 10
+  },
+  "9104": {
+   "vnum": 9104,
+   "name": "scale of the green dragon",
+   "short_desc": "\u001b[95ma scale of the green dragon\u001b[0m",
+   "room_desc": "\u001b[95mA green dragon scale lies here, slick with venom.\u001b[0m",
+   "description": "A toxic scale from Verdraxx.",
+   "item_type": "armor",
+   "wear_slot": "neck1",
+   "armor_bonus": 4,
+   "weight": 2,
+   "value": 15000,
+   "flags": [
+    "magic"
+   ],
+   "affects": [
+    {
+     "type": "poison_resist",
+     "value": 10
+    }
+   ],
+   "set_id": 140,
+   "type": "treasure",
+   "armor": 13
+  },
+  "14013": {
+   "vnum": 14013,
+   "name": "gravetide cleaver",
+   "short_desc": "\u001b[95ma gravetide \u001b[91mcleaver\u001b[0m\u001b[95m\u001b[0m",
+   "room_desc": "\u001b[95mA gravetide \u001b[91mcleaver\u001b[0m\u001b[95m lies here.\u001b[0m",
+   "description": "A heavy cleaver.",
+   "item_type": "weapon",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "wield",
+   "weapon_type": "slash",
+   "damage_dice": "2d6+7",
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 5
+    }
+   ],
+   "set_id": 140,
+   "type": "weapon"
+  },
+  "14014": {
+   "vnum": 14014,
+   "name": "lightbearer shield",
+   "short_desc": "\u001b[95ma lightbearer \u001b[93mshield\u001b[0m\u001b[95m\u001b[0m",
+   "room_desc": "\u001b[95mA lightbearer \u001b[93mshield\u001b[0m\u001b[95m lies here.\u001b[0m",
+   "description": "A paladin's shield.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "shield",
+   "armor_bonus": 3,
+   "affects": [
+    {
+     "type": "cha",
+     "value": 2
+    }
+   ],
+   "set_id": 140,
+   "type": "armor",
+   "armor": 3,
+   "armor_class": 3
+  },
+  "14015": {
+   "vnum": 14015,
+   "name": "soulforged sigil",
+   "short_desc": "\u001b[95ma soulforged \u001b[35msigil\u001b[0m\u001b[95m\u001b[0m",
+   "room_desc": "\u001b[95mA soulforged \u001b[35msigil\u001b[0m\u001b[95m lies here.\u001b[0m",
+   "description": "A deathknight's sigil.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "neck1",
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 5
+    }
+   ],
+   "set_id": 140,
+   "type": "treasure",
+   "armor": 8
+  },
+  "14016": {
+   "vnum": 14016,
+   "name": "reliquary of dawn",
+   "short_desc": "\u001b[95ma \u001b[93mreliquary\u001b[0m\u001b[95m of dawn\u001b[0m",
+   "room_desc": "\u001b[95mA \u001b[93mreliquary\u001b[0m\u001b[95m of dawn lies here.\u001b[0m",
+   "description": "A cleric's reliquary.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "hold",
+   "affects": [
+    {
+     "type": "wis",
+     "value": 4
+    },
+    {
+     "type": "max_mana",
+     "value": 40
+    }
+   ],
+   "set_id": 140,
+   "type": "treasure",
+   "armor": 12
+  },
+  "14017": {
+   "vnum": 14017,
+   "name": "nightglass focus",
+   "short_desc": "\u001b[95ma nightglass \u001b[96mfocus\u001b[0m\u001b[95m\u001b[0m",
+   "room_desc": "\u001b[95mA nightglass \u001b[96mfocus\u001b[0m\u001b[95m lies here.\u001b[0m",
+   "description": "A mage's focus.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "hold",
+   "affects": [
+    {
+     "type": "int",
+     "value": 4
+    },
+    {
+     "type": "max_mana",
+     "value": 40
+    }
+   ],
+   "set_id": 140,
+   "type": "treasure",
+   "armor": 11
+  },
+  "14018": {
+   "vnum": 14018,
+   "name": "dirge lyre",
+   "short_desc": "\u001b[95ma dirge \u001b[95mlyre\u001b[0m\u001b[95m\u001b[0m",
+   "room_desc": "\u001b[95mA dirge \u001b[95mlyre\u001b[0m\u001b[95m lies here.\u001b[0m",
+   "description": "A bard's lyre.",
+   "item_type": "weapon",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "wield",
+   "weapon_type": "mace",
+   "damage_dice": "1d6+4",
+   "affects": [
+    {
+     "type": "cha",
+     "value": 4
+    }
+   ],
+   "set_id": 140,
+   "type": "treasure"
+  },
+  "14019": {
+   "vnum": 14019,
+   "name": "grave‑edge stiletto",
+   "short_desc": "\u001b[95ma grave‑edge \u001b[92mstiletto\u001b[0m\u001b[95m\u001b[0m",
+   "room_desc": "\u001b[95mA grave‑edge \u001b[92mstiletto\u001b[0m\u001b[95m lies here.\u001b[0m",
+   "description": "A rogue's stiletto.",
+   "item_type": "weapon",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "wield",
+   "weapon_type": "pierce",
+   "damage_dice": "1d6+4",
+   "affects": [
+    {
+     "type": "dex",
+     "value": 4
+    },
+    {
+     "type": "hitroll",
+     "value": 2
+    }
+   ],
+   "set_id": 140,
+   "type": "weapon"
+  },
+  "14020": {
+   "vnum": 14020,
+   "name": "wraith‑hunter band",
+   "short_desc": "\u001b[95ma wraith‑hunter \u001b[92mband\u001b[0m\u001b[95m\u001b[0m",
+   "room_desc": "\u001b[95mA wraith‑hunter \u001b[92mband\u001b[0m\u001b[95m lies here.\u001b[0m",
+   "description": "A ranger's ring.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "finger1",
+   "affects": [
+    {
+     "type": "dex",
+     "value": 3
+    },
+    {
+     "type": "hitroll",
+     "value": 1
+    }
+   ],
+   "set_id": 140,
+   "type": "armor",
+   "armor": 10,
+   "armor_class": 5
+  },
+  "14021": {
+   "vnum": 14021,
+   "name": "mantle of dusk",
+   "short_desc": "\u001b[95ma mantle of dusk\u001b[0m",
+   "room_desc": "\u001b[95mA mantle of dusk lies here.\u001b[0m",
+   "description": "A dusk mantle.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "about",
+   "armor_bonus": 3,
+   "affects": [
+    {
+     "type": "shadow_resist",
+     "value": 10
+    }
+   ],
+   "set_id": 140,
+   "type": "armor",
+   "armor": 1,
+   "armor_class": 4
+  },
+  "14090": {
+   "vnum": 14090,
+   "name": "verdant shroud",
+   "short_desc": "\u001b[92mthe verdant shroud\u001b[0m",
+   "room_desc": "\u001b[92mA verdant shroud rustles here.\u001b[0m",
+   "description": "A moss‑lined shroud that swallows footsteps in the wild.",
+   "item_type": "armor",
+   "weight": 3,
+   "value": 18000,
+   "wear_slot": "back",
+   "armor_bonus": 2,
+   "flags": [
+    "magic"
+   ],
+   "affects": [
+    {
+     "type": "sneak",
+     "value": 7
+    }
+   ],
+   "type": "armor",
+   "armor": 1,
+   "armor_class": 4
+  },
+  "14091": {
+   "vnum": 14091,
+   "name": "stalker band",
+   "short_desc": "\u001b[92mthe stalker band\u001b[0m",
+   "room_desc": "\u001b[92mA hunter's band lies here.\u001b[0m",
+   "description": "A band that sharpens the strike of an ambush.",
+   "item_type": "armor",
+   "wear_slot": "finger1",
+   "armor_bonus": 1,
+   "weight": 1,
+   "value": 20000,
+   "flags": [
+    "magic"
+   ],
+   "affects": [
+    {
+     "type": "ambush",
+     "value": 10
+    }
+   ],
+   "type": "treasure",
+   "armor": 10
+  },
+  "14092": {
+   "vnum": 14092,
+   "name": "wildpath charm",
+   "short_desc": "\u001b[92mthe wildpath charm\u001b[0m",
+   "room_desc": "\u001b[92mA charm of woven vine rests here.\u001b[0m",
+   "description": "A charm that sharpens the senses for tracking.",
+   "item_type": "armor",
+   "wear_slot": "neck1",
+   "armor_bonus": 1,
+   "weight": 1,
+   "value": 22000,
+   "flags": [
+    "magic"
+   ],
+   "affects": [
+    {
+     "type": "track",
+     "value": 10
+    }
+   ],
+   "type": "treasure",
+   "armor": 8
+  },
+  "14093": {
+   "vnum": 14093,
+   "name": "venomleaf talisman",
+   "short_desc": "\u001b[92mthe venomleaf talisman\u001b[0m",
+   "room_desc": "\u001b[92mA talisman of dark leaves rests here.\u001b[0m",
+   "description": "A talisman that empowers poison magic.",
+   "item_type": "armor",
+   "wear_slot": "neck2",
+   "armor_bonus": 1,
+   "weight": 1,
+   "value": 24000,
+   "flags": [
+    "magic"
+   ],
+   "affects": [
+    {
+     "type": "poison_cloud",
+     "value": 12
+    }
+   ],
+   "type": "treasure",
+   "armor": 10
+  }
+ },
+ "mobs": {
+  "14001": {
+   "vnum": 14001,
+   "name": "skeleton",
+   "short_desc": "a skeletal warrior",
+   "long_desc": "A skeleton in rusted armor raises its sword.",
+   "description": "You see a skeletal warrior.",
+   "level": 25,
+   "alignment": -1000,
+   "hp_dice": "25d10+316",
+   "damage_dice": "7d8+8",
+   "gold": 194,
+   "exp": 1500,
+   "armor_class": 25,
+   "flags": [
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [
+    9101
+   ]
+  },
+  "14002": {
+   "vnum": 14002,
+   "name": "zombie",
+   "short_desc": "a rotting zombie",
+   "long_desc": "A shambling corpse reaches for you with decayed hands.",
+   "description": "You see a rotting zombie.",
+   "level": 26,
+   "alignment": -1000,
+   "hp_dice": "26d10+328",
+   "damage_dice": "7d8+9",
+   "gold": 102,
+   "exp": 1560,
+   "armor_class": 22,
+   "flags": [
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [
+    14019,
+    9103,
+    14021
+   ]
+  },
+  "14003": {
+   "vnum": 14003,
+   "name": "wraith",
+   "short_desc": "a dark wraith",
+   "long_desc": "A shadowy wraith floats through the air, its eyes glowing red.",
+   "description": "You see a dark wraith.",
+   "level": 28,
+   "alignment": -1000,
+   "hp_dice": "28d10+352",
+   "damage_dice": "8d8+8",
+   "gold": 213,
+   "exp": 1680,
+   "armor_class": 16,
+   "flags": [
+    "aggressive",
+    "undead",
+    "fly"
+   ],
+   "inventory": [
+    14016,
+    9101,
+    14003
+   ]
+  },
+  "14004": {
+   "vnum": 14004,
+   "name": "vampire",
+   "short_desc": "a vampire spawn",
+   "long_desc": "A pale vampire hisses, revealing its fangs.",
+   "description": "You see a vampire spawn.",
+   "level": 30,
+   "alignment": -1000,
+   "hp_dice": "30d10+376",
+   "damage_dice": "8d8+11",
+   "gold": 248,
+   "exp": 1800,
+   "armor_class": 10,
+   "flags": [
+    "aggressive",
+    "undead",
+    "sentinel"
+   ],
+   "inventory": [
+    14021
+   ]
+  },
+  "14005": {
+   "vnum": 14005,
+   "name": "ghast",
+   "short_desc": "a ghast",
+   "long_desc": "A ghast emits a nauseating stench as it approaches.",
+   "description": "You see a ghast.",
+   "level": 27,
+   "alignment": -1000,
+   "hp_dice": "27d10+340",
+   "damage_dice": "7d8+11",
+   "gold": 179,
+   "exp": 1620,
+   "armor_class": 19,
+   "flags": [
+    "aggressive",
+    "undead"
+   ],
+   "inventory": [
+    14003,
+    14091,
+    9102
+   ]
+  },
+  "14006": {
+   "vnum": 14006,
+   "name": "specter",
+   "short_desc": "a specter",
+   "long_desc": "A translucent specter phases through the walls.",
+   "description": "You see a specter.",
+   "level": 29,
+   "alignment": -1000,
+   "hp_dice": "29d10+364",
+   "damage_dice": "8d8+9",
+   "gold": 82,
+   "exp": 1740,
+   "armor_class": 13,
+   "flags": [
+    "aggressive",
+    "undead",
+    "fly"
+   ],
+   "inventory": [
+    14012,
+    14093
+   ]
+  },
+  "14007": {
+   "vnum": 14007,
+   "name": "necromancer",
+   "short_desc": "a dark necromancer",
+   "long_desc": "A robed necromancer channels dark energy.",
+   "description": "You see a dark necromancer.",
+   "level": 32,
+   "alignment": -1000,
+   "hp_dice": "32d10+400",
+   "damage_dice": "9d8+9",
+   "gold": 176,
+   "exp": 1920,
+   "armor_class": 4,
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "spellcaster"
+   ],
+   "inventory": [
+    9102
+   ]
+  },
+  "14008": {
+   "vnum": 14008,
+   "name": "lich",
+   "short_desc": "an ancient lich",
+   "long_desc": "An ancient lich sits upon a throne of bones, power radiating from its form.",
+   "description": "You see an ancient lich.",
+   "level": 35,
+   "alignment": -1000,
+   "hp_dice": "35d10+436",
+   "damage_dice": "9d8+14",
+   "gold": 298,
+   "exp": 2100,
+   "armor_class": -5,
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "spellcaster"
+   ],
+   "is_boss": true,
+   "loot_table": [
+    {
+     "vnum": 14013,
+     "chance": 20
+    },
+    {
+     "vnum": 14014,
+     "chance": 20
+    },
+    {
+     "vnum": 14015,
+     "chance": 20
+    },
+    {
+     "vnum": 14016,
+     "chance": 20
+    },
+    {
+     "vnum": 14017,
+     "chance": 20
+    },
+    {
+     "vnum": 14018,
+     "chance": 20
+    },
+    {
+     "vnum": 14019,
+     "chance": 20
+    },
+    {
+     "vnum": 14020,
+     "chance": 20
+    },
+    {
+     "vnum": 14021,
+     "chance": 20
+    }
+   ],
+   "loot_chance": 100,
+   "inventory": [
+    14018,
+    14015
+   ]
+  },
+  "14009": {
+   "vnum": 14009,
+   "name": "death knight",
+   "short_desc": "a death knight",
+   "long_desc": "A death knight in black plate armor stands guard.",
+   "description": "You see a death knight.",
+   "level": 33,
+   "alignment": -1000,
+   "hp_dice": "33d10+412",
+   "damage_dice": "9d8+11",
+   "gold": 73,
+   "exp": 1980,
+   "armor_class": 1,
+   "flags": [
+    "aggressive",
+    "sentinel",
+    "undead"
+   ],
+   "loot_table": [
+    {
+     "vnum": 14013,
+     "chance": 20
+    },
+    {
+     "vnum": 14014,
+     "chance": 20
+    },
+    {
+     "vnum": 14015,
+     "chance": 20
+    },
+    {
+     "vnum": 14016,
+     "chance": 20
+    },
+    {
+     "vnum": 14017,
+     "chance": 20
+    },
+    {
+     "vnum": 14018,
+     "chance": 20
+    },
+    {
+     "vnum": 14019,
+     "chance": 20
+    },
+    {
+     "vnum": 14020,
+     "chance": 20
+    },
+    {
+     "vnum": 14021,
+     "chance": 20
+    }
+   ],
+   "loot_chance": 100,
+   "inventory": [
+    14012
+   ]
+  },
+  "14010": {
+   "vnum": 14010,
+   "name": "banshee",
+   "short_desc": "a wailing banshee",
+   "long_desc": "A banshee shrieks, its voice chilling your soul.",
+   "description": "You see a wailing banshee.",
+   "level": 31,
+   "alignment": -1000,
+   "hp_dice": "31d10+388",
+   "damage_dice": "8d8+12",
+   "gold": 221,
+   "exp": 1860,
+   "armor_class": 7,
+   "flags": [
+    "aggressive",
+    "undead",
+    "fly"
+   ],
+   "inventory": [
+    14091,
+    14003,
+    14010
+   ]
+  },
+  "14030": {
+   "vnum": 14030,
+   "name": "Verdraxx the Green Dragon",
+   "short_desc": "Verdraxx the Green Dragon",
+   "long_desc": "A massive green dragon lurks here, poison dripping from its fangs.",
+   "level": 47,
+   "alignment": -800,
+   "hp_dice": "47d10+560",
+   "damage_dice": "12d8+16",
+   "gold": 8000,
+   "exp": 4500,
+   "armor_class": -8,
+   "flags": [
+    "boss",
+    "sentinel"
+   ],
+   "special": "dragon",
+   "boss": true,
+   "boss_id": "green_dragon",
+   "boss_title": "the Venomslayer",
+   "boss_achievement": "boss_green_dragon",
+   "boss_loot_table": [
+    {
+     "vnum": 9104,
+     "chance": 100
+    },
+    {
+     "vnum": 9101,
+     "chance": 35
+    },
+    {
+     "vnum": 9102,
+     "chance": 35
+    },
+    {
+     "vnum": 9103,
+     "chance": 35
+    },
+    {
+     "vnum": 14090,
+     "chance": 25
+    },
+    {
+     "vnum": 14091,
+     "chance": 10
+    },
+    {
+     "vnum": 14092,
+     "chance": 10
+    },
+    {
+     "vnum": 14093,
+     "chance": 10
+    },
+    {
+     "vnum": 14001,
+     "chance": 25
+    },
+    {
+     "vnum": 14002,
+     "chance": 25
+    },
+    {
+     "vnum": 14003,
+     "chance": 25
+    },
+    {
+     "vnum": 14004,
+     "chance": 25
+    }
+   ],
+   "boss_loot_chance": 85,
+   "boss_config": {
+    "enrage_time": 120,
+    "enrage_multiplier": 1.8,
+    "ability_interval": 4.5,
+    "phases": [
+     {
+      "threshold": 40,
+      "message": "\u001b[32mVerdraxx summons the dead from the earth! A necrotic aura fills the chamber!\u001b[0m",
+      "spawn_adds": {
+       "14008": 2
+      }
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Poison Breath",
+      "telegraph": "\u001b[32mVerdraxx inhales deeply, green mist swirling!\u001b[0m",
+      "cast_time": 3,
+      "cooldown": 16,
+      "damage_dice": "6d6+12",
+      "aoe": true,
+      "dodge": true,
+      "interruptible": true,
+      "vulnerable_after": 4
+     },
+     {
+      "name": "Vine Entangle",
+      "telegraph": "Vines erupt from the ground, grasping at you!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d6+6",
+      "aoe": true,
+      "dodge": true
+     },
+     {
+      "name": "Venom Spit",
+      "telegraph": "Verdraxx spits a glob of venom!",
+      "cast_time": 1,
+      "cooldown": 8,
+      "damage_dice": "3d8+8",
+      "dodge": true
+     },
+     {
+      "name": "Necrotic Breath",
+      "telegraph": "\u001b[35mVerdraxx exhales a wave of necrotic energy!\u001b[0m",
+      "cast_time": 3,
+      "cooldown": 15,
+      "damage_dice": "5d8+15",
+      "aoe": true,
+      "dodge": true,
+      "interruptible": true,
+      "min_phase": 1
+     },
+     {
+      "name": "Raise Dead",
+      "telegraph": "Verdraxx commands the dead to rise!",
+      "cast_time": 3,
+      "cooldown": 25,
+      "damage": 0,
+      "min_phase": 1,
+      "summon": {
+       "14008": 2
+      }
+     }
+    ]
+   },
+   "equipment_rolls": [
+    {
+     "slot": "wield",
+     "vnum": 9102,
+     "chance": 40
+    }
+   ],
+   "loot_table": [
+    {
+     "vnum": 14013,
+     "chance": 20
+    },
+    {
+     "vnum": 14014,
+     "chance": 20
+    },
+    {
+     "vnum": 14015,
+     "chance": 20
+    },
+    {
+     "vnum": 14016,
+     "chance": 20
+    },
+    {
+     "vnum": 14017,
+     "chance": 20
+    },
+    {
+     "vnum": 14018,
+     "chance": 20
+    },
+    {
+     "vnum": 14019,
+     "chance": 20
+    },
+    {
+     "vnum": 14020,
+     "chance": 20
+    },
+    {
+     "vnum": 14021,
+     "chance": 20
+    }
+   ],
+   "loot_chance": 100,
+   "inventory": [
+    14001,
+    14093
+   ]
+  },
+  "14098": {
+   "vnum": 14098,
+   "name": "restless ghost",
+   "short_desc": "a restless ghost",
+   "long_desc": "A translucent ghost floats here, wringing its spectral hands in eternal distress.",
+   "description": "The ghost wears the faded remnants of a noble's attire. Its face is frozen in an expression of profound regret, and faint chains of ethereal light bind it to this place.",
+   "level": 42,
+   "alignment": 0,
+   "hp_dice": "42d10+800",
+   "damage_dice": "1d4+1",
+   "gold": 0,
+   "exp": 0,
+   "armor_class": 100,
+   "flags": [
+    "sentinel"
+   ],
+   "special": "flavor_npc",
+   "talk_responses": {
+    "hello": "The ghost wails softly. 'I was a lord of these lands, once. I sought eternal life and found eternal death instead. The necromancer promised salvation — he delivered damnation. His phylactery is hidden in the deepest crypt, pulsing with stolen souls. Destroy it, and perhaps we can all finally rest.'",
+    "necromancer": "The ghost's form flickers with rage. 'He was my court wizard. I trusted him. He murdered us all in a single night and raised us as his servants. The crypt beneath the great mausoleum — that is where his power dwells.'",
+    "default": "The ghost stares at its translucent hands, murmuring. 'What have I become...'",
+    "next": "The ghost's hollow voice echoes. 'There are places darker still than this graveyard. The Dragon's Domain... fire and death await there. And the Plane of Eternal Chaos — reality itself unravels. Only the truly powerful survive such places.'"
+   },
+   "inventory": [
+    9101,
+    14092
+   ]
+  },
+  "14099": {
+   "vnum": 14099,
+   "name": "grave keeper",
+   "short_desc": "a morose grave keeper",
+   "long_desc": "A hunched grave keeper shuffles here, lantern in one hand and shovel in the other.",
+   "description": "He is the only living soul who dwells in the Necropolis willingly. His skin is sallow, his eyes permanently red-rimmed, and he speaks to the dead more than the living.",
+   "level": 35,
+   "alignment": 0,
+   "hp_dice": "35d10+600",
+   "damage_dice": "1d4+1",
+   "gold": 0,
+   "exp": 0,
+   "armor_class": 100,
+   "flags": [
+    "sentinel"
+   ],
+   "special": "flavor_npc",
+   "talk_responses": {
+    "hello": "The grave keeper eyes you wearily. 'Another hero come to cleanse the dead. They all say that. Most end up joining my... residents. Word of advice — the skeletons are mindless, easy. The ghouls are cunning. But the wraiths... the wraiths remember who they were. That makes them dangerous. And angry.'",
+    "dead": "He leans on his shovel. 'Don't disturb the sealed tombs. Some things are buried for a reason. The ones with iron chains on the doors? Those aren't to keep robbers out. They're to keep what's inside IN.'",
+    "default": "The grave keeper hums a funeral dirge and adjusts a crooked headstone."
+   },
+   "inventory": [
+    9101,
+    14004,
+    14012
+   ]
+  }
+ },
+ "rooms": {
+  "14000": {
+   "title": "Gates of the Dead",
+   "description": "Massive iron gates stand open, rusted and covered in dark stains. Beyond\nlies a city shrouded in perpetual gloom - no matter the time of day,\ndarkness reigns here. The gates are worked with images of skulls and\nbones, and inscriptions in dead languages warn visitors away. The air is\ncold and still, carrying the stench of decay. From within comes the\nsound of moaning and the scrape of bone on stone. The stone walls press\nclose, cold and damp. Darkness clings to every surface.",
+   "terrain": "undead",
+   "exits": {
+    "south": {
+     "to_room": 14001,
+     "description": "The way leads to Avenue of Tombs"
+    },
+    "up": {
+     "to_room": 7000,
+     "description": "To the up lies The Fissure Under The Ledge."
+    },
+    "west": {
+     "to_room": 7068,
+     "description": "To the west lies The Watery Sewer Bend."
+    }
+   },
+   "vnum": 14000,
+   "name": "Gates of the Dead",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14002,
+     "max": 1
+    },
+    {
+     "vnum": 14005,
+     "max": 1
+    }
+   ],
+   "obj_resets": [],
+   "extra_descs": {
+    "gates": "The Gates of the Dead stand open. They have always stood open. The dead, the inscription notes, are patient about visitors."
+   }
+  },
+  "14001": {
+   "title": "Avenue of Tombs",
+   "description": "A wide street stretches into the necropolis, lined on both sides with\nmausoleums and tombs. Many stand open, their doors torn from hinges,\ntheir occupants gone. The cobblestones are cracked and broken, with\nweeds growing between. Street lamps that once burned with eternal flame\nare dark and cold. Shambling figures can be seen in the distance, moving\nwith the jerky gait of the undead. The floor is slick with moisture. The\nair is thick and hard to breathe.",
+   "terrain": "undead",
+   "exits": {
+    "north": {
+     "to_room": 14000,
+     "description": "The way leads to Gates of the Dead"
+    },
+    "south": {
+     "to_room": 14002,
+     "description": "The way leads to Plaza of Bones"
+    },
+    "east": {
+     "to_room": 14003,
+     "description": "The way leads to Crypt Row"
+    },
+    "west": {
+     "to_room": 14004,
+     "description": "The way leads to The Pauper's Field"
+    }
+   },
+   "vnum": 14001,
+   "name": "Avenue of Tombs",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    }
+   ],
+   "obj_resets": []
+  },
+  "14002": {
+   "title": "Plaza of Bones",
+   "description": "This central plaza is paved with bones - skulls, ribs, femurs, all\nfitted together in grotesque mosaic. A fountain at the center once\nflowed with water; now it weeps blood that never stops. Broken statues\nring the plaza, their faces chiseled away. This was once the heart of\nthe city. Now it's a gathering place for the undead, where they stand in\nsilent congregation. The stone walls press close, cold and damp.\nDarkness clings to every surface.",
+   "terrain": "undead",
+   "exits": {
+    "north": {
+     "to_room": 14001,
+     "description": "The way leads to Avenue of Tombs"
+    },
+    "south": {
+     "to_room": 14005,
+     "description": "The way leads to Temple of the Death God"
+    },
+    "east": {
+     "to_room": 14006,
+     "description": "The way leads to Mausoleum District"
+    },
+    "west": {
+     "to_room": 14007,
+     "description": "The way leads to The Charnel House"
+    }
+   },
+   "vnum": 14002,
+   "name": "Plaza of Bones",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14002,
+     "max": 1
+    },
+    {
+     "vnum": 14005,
+     "max": 1
+    },
+    {
+     "vnum": 14099,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14003": {
+   "title": "Crypt Row",
+   "description": "Family crypts line this street, each grander than the last - competition\nin death as in life. Many are ornately carved with family crests and\naccomplishments. The doors are sealed with chains and locks, but many\nhave been broken from within. Scraping sounds come from inside the\ncrypts, and shadows move in the darkness. The wealthy dead do not rest\neasy here. The air is thick and hard to breathe. The stone walls press\nclose, cold and damp.",
+   "terrain": "undead",
+   "exits": {
+    "west": {
+     "to_room": 14001,
+     "description": "The way leads to Avenue of Tombs"
+    },
+    "south": {
+     "to_room": 14006,
+     "description": "The way leads to Mausoleum District"
+    },
+    "east": {
+     "to_room": 14028
+    }
+   },
+   "vnum": 14003,
+   "name": "Crypt Row",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14002,
+     "max": 1
+    },
+    {
+     "vnum": 14003,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14004": {
+   "title": "The Pauper's Field",
+   "description": "Here the poor were buried in mass graves, unmarked and unmourned. The\nground has opened, vomiting forth its dead. Skeletal hands reach from\nthe earth, and corpses drag themselves from shallow graves. The smell is\noverwhelming. These undead are mindless and vicious, attacking anything\nliving that approaches. This is the most dangerous area for the\nunprepared. The floor is slick with moisture. The silence is oppressive\nand watchful.",
+   "terrain": "undead",
+   "exits": {
+    "east": {
+     "to_room": 14001,
+     "description": "The way leads to Avenue of Tombs"
+    },
+    "south": {
+     "to_room": 14016
+    }
+   },
+   "vnum": 14004,
+   "name": "The Pauper's Field",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14002,
+     "max": 1
+    },
+    {
+     "vnum": 14006,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14005": {
+   "title": "Temple of the Death God",
+   "description": "This temple was dedicated to the god of death - not as evil, but as\nnatural transition. But the necromancers perverted it, turning it into a\nshrine to undeath. The altar is stained black with blood sacrifices.\nCandles burn with cold flames that give no warmth. The air itself seems\ndead here. Necromancers use this place for their darkest rituals. The\nstone walls press close, cold and damp. The air is thick and hard to\nbreathe.",
+   "terrain": "undead",
+   "exits": {
+    "north": {
+     "to_room": 14002,
+     "description": "The way leads to Plaza of Bones"
+    },
+    "south": {
+     "to_room": 14008,
+     "description": "The way leads to Sanctum of Dark Rites"
+    },
+    "east": {
+     "to_room": 14019
+    }
+   },
+   "vnum": 14005,
+   "name": "Temple of the Death God",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14005,
+     "max": 1
+    },
+    {
+     "vnum": 14004,
+     "max": 1
+    },
+    {
+     "vnum": 14098,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14006": {
+   "title": "Mausoleum District",
+   "description": "Elaborate mausoleums dominate this district, some rising three stories\nhigh. They're built of marble and granite, designed to last forever.\nStatues of angels with broken wings stand watch. Inside, the wealthy\ndead sleep in ornate coffins - or at least they used to. Many have risen\nas vampires, retaining intelligence and cunning along with terrible\nhunger. The silence is oppressive and watchful. The stone walls press\nclose, cold and damp.",
+   "terrain": "undead",
+   "exits": {
+    "north": {
+     "to_room": 14003,
+     "description": "The way leads to Crypt Row"
+    },
+    "west": {
+     "to_room": 14002,
+     "description": "The way leads to Plaza of Bones"
+    },
+    "south": {
+     "to_room": 14009,
+     "description": "The way leads to Vampire's Mausoleum"
+    }
+   },
+   "vnum": 14006,
+   "name": "Mausoleum District",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    }
+   ],
+   "obj_resets": []
+  },
+  "14007": {
+   "title": "The Charnel House",
+   "description": "This building was used to process the dead - preparing bodies for\nburial. Now it's a horror show. Bodies in various states of decay lie on\ntables. Bones are sorted in piles. The tools of the undertaker's trade\nhang on walls. Ghouls have claimed this place, feeding on the dead and\noccasionally the living. The smell is indescribable. Darkness clings to\nevery surface. The floor is slick with moisture.",
+   "terrain": "undead",
+   "exits": {
+    "east": {
+     "to_room": 14002,
+     "description": "The way leads to Plaza of Bones"
+    },
+    "south": {
+     "to_room": 14010,
+     "description": "The way leads to Ghoul Warren"
+    },
+    "west": {
+     "to_room": 14025
+    }
+   },
+   "vnum": 14007,
+   "name": "The Charnel House",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14003,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14008": {
+   "title": "Sanctum of Dark Rites",
+   "description": "Deep within the temple, the necromancers perform their most forbidden\nrituals. A circle of power is drawn on the floor in blood and ash.\nSkulls arranged in patterns channel dark energy. Books of necromancy lie\nopen on lecterns. This is where the living are transformed into undead,\nwhere souls are trapped, where death itself is twisted. The evil here is\npalpable. The stone walls press close, cold and damp. The floor is slick\nwith moisture.",
+   "terrain": "undead",
+   "exits": {
+    "north": {
+     "to_room": 14005,
+     "description": "The way leads to Temple of the Death God"
+    }
+   },
+   "vnum": 14008,
+   "name": "Sanctum of Dark Rites",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    }
+   ],
+   "obj_resets": []
+  },
+  "14009": {
+   "title": "Vampire's Mausoleum",
+   "description": "This grand mausoleum belongs to an ancient vampire. The coffin within is\ncarved from a single piece of obsidian and lined with silk. The vampire\nsleeps here during the day, venturing out at night to feed. The\nmausoleum is richly appointed - paintings, tapestries, furniture - as if\nstill inhabited by the living. But everything is gray with dust and age.\nThe floor is slick with moisture. The stone walls press close, cold and\ndamp.",
+   "terrain": "undead",
+   "exits": {
+    "north": {
+     "to_room": 14006,
+     "description": "The way leads to Mausoleum District"
+    }
+   },
+   "vnum": 14009,
+   "name": "Vampire's Mausoleum",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14005,
+     "max": 1
+    },
+    {
+     "vnum": 14006,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14010": {
+   "title": "Ghoul Warren",
+   "description": "Ghouls have burrowed into the ground here, creating a warren of tunnels.\nThe entrances are surrounded by gnawed bones. These creatures are\nconstantly hungry, feeding on the dead and dragging fresh corpses below.\nThey're intelligent enough to set traps and ambushes. Venturing into\ntheir territory is extremely dangerous. The tunnels lead deep\nunderground. The air is thick and hard to breathe. The silence is\noppressive and watchful.",
+   "terrain": "undead",
+   "exits": {
+    "north": {
+     "to_room": 14007,
+     "description": "The way leads to The Charnel House"
+    },
+    "down": {
+     "to_room": 14011,
+     "description": "The way leads to Underground Burial Chambers"
+    }
+   },
+   "vnum": 14010,
+   "name": "Ghoul Warren",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14005,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14011": {
+   "title": "Underground Burial Chambers",
+   "description": "These chambers were cut from bedrock to hold the overflow when the\nsurface graveyards filled. Niches in the walls hold thousands of bodies.\nThe air is stale and thick with decay. Weak undead inhabit these\nchambers - zombies and skeletons that mindlessly patrol. The darkness is\noppressive, broken only by occasional phosphorescent fungi. Darkness\nclings to every surface. The silence is oppressive and watchful.",
+   "terrain": "underground",
+   "exits": {
+    "up": {
+     "to_room": 14010,
+     "description": "The way leads to Ghoul Warren"
+    },
+    "south": {
+     "to_room": 14012,
+     "description": "The way leads to The Ossuary"
+    },
+    "east": {
+     "to_room": 14013,
+     "description": "The way leads to Catacombs"
+    }
+   },
+   "vnum": 14011,
+   "name": "Underground Burial Chambers",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14002,
+     "max": 1
+    },
+    {
+     "vnum": 14003,
+     "max": 1
+    },
+    {
+     "vnum": 14004,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14012": {
+   "title": "The Ossuary",
+   "description": "When bodies decayed, their bones were moved here - a room dedicated to\nhousing remains. Bones are stacked floor to ceiling in artistic\npatterns. Skulls grin from elaborate arrangements. Femurs are stacked\nlike cord wood. The sheer number of dead represented here is staggering\n- tens of thousands. Something powerful moves among the bones. The air\nis thick and hard to breathe. The stone walls press close, cold and\ndamp.",
+   "terrain": "underground",
+   "exits": {
+    "north": {
+     "to_room": 14011,
+     "description": "The way leads to Underground Burial Chambers"
+    }
+   },
+   "vnum": 14012,
+   "name": "The Ossuary",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14002,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14013": {
+   "title": "Catacombs",
+   "description": "Ancient tunnels wind through the earth beneath the necropolis. These\ncatacombs are far older than the city above, carved by a civilization\nlong forgotten. Strange glyphs cover the walls. The passages branch and\ntwist, forming a maze. Wraiths haunt these tunnels, the ghosts of those\nburied before recorded history. They hate the living with ancient\nmalice. The air is thick and hard to breathe. The silence is oppressive\nand watchful.",
+   "terrain": "underground",
+   "exits": {
+    "west": {
+     "to_room": 14011,
+     "description": "The way leads to Underground Burial Chambers"
+    },
+    "south": {
+     "to_room": 14014,
+     "description": "The way leads to The Deep Crypts"
+    }
+   },
+   "vnum": 14013,
+   "name": "Catacombs",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14002,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14014": {
+   "title": "The Deep Crypts",
+   "description": "The oldest and deepest burial chambers lie here, sealed centuries ago.\nThe doors are warded with powerful magic meant to keep things in, not\nout. Whatever was buried here was important - and dangerous. The seals\nhave weakened with age. Strange sounds emanate from beyond the doors,\nand dark power leaks through cracks. The silence is oppressive and\nwatchful. Darkness clings to every surface.",
+   "terrain": "underground",
+   "exits": {
+    "north": {
+     "to_room": 14013,
+     "description": "The way leads to Catacombs"
+    },
+    "east": {
+     "to_room": 14015,
+     "description": "The way leads to Ancient Burial Chamber"
+    }
+   },
+   "vnum": 14014,
+   "name": "The Deep Crypts",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14006,
+     "max": 1
+    },
+    {
+     "vnum": 14010,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14015": {
+   "title": "Ancient Burial Chamber",
+   "description": "This chamber predates the necropolis by millennia. The walls are carved\nwith symbols of an unknown culture. A stone sarcophagus dominates the\ncenter, its lid carved with the image of a king. The magic here is\nancient and powerful. Something terrible sleeps within - an ancient evil\nthat should never wake. The temperature drops near the sarcophagus. The\nsilence is oppressive and watchful. Darkness clings to every surface.",
+   "terrain": "underground",
+   "exits": {
+    "west": {
+     "to_room": 14014,
+     "description": "The way leads to The Deep Crypts"
+    }
+   },
+   "vnum": 14015,
+   "name": "Ancient Burial Chamber",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14002,
+     "max": 1
+    },
+    {
+     "vnum": 14005,
+     "max": 1
+    },
+    {
+     "vnum": 14003,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14016": {
+   "title": "Necromancer's Quarter",
+   "description": "Living necromancers make their homes in this district, maintaining their\nmortality while studying death. The buildings are surprisingly well-kept\n- these scholars value their comfort. Lights burn in windows, and the\nsmell of cooking wafts from chimneys. But the atmosphere is still wrong.\nThese are people who have embraced darkness, who see the undead as tools\nand death as a resource. The silence is oppressive and watchful.\nDarkness clings to every surface.",
+   "terrain": "undead",
+   "exits": {
+    "north": {
+     "to_room": 14004
+    },
+    "south": {
+     "to_room": 14017,
+     "description": "The way leads to The Black Library"
+    },
+    "east": {
+     "to_room": 14018,
+     "description": "The way leads to Summoning Chamber"
+    },
+    "west": {
+     "to_room": 14029
+    }
+   },
+   "vnum": 14016,
+   "name": "Necromancer's Quarter",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14002,
+     "max": 1
+    },
+    {
+     "vnum": 14005,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14017": {
+   "title": "The Black Library",
+   "description": "This library contains the collected knowledge of necromancy from across\nthe ages. Shelves hold thousands of grimoires, tomes, and scrolls - all\ndedicated to death magic. The rarest and most dangerous books are kept\nin locked cages. Simply reading some of these texts could drive one mad\nor corrupt the soul. Guards patrol constantly, both living and undead.\nThe silence is oppressive and watchful. The air is thick and hard to\nbreathe.",
+   "terrain": "undead",
+   "exits": {
+    "north": {
+     "to_room": 14016,
+     "description": "The way leads to Necromancer's Quarter"
+    }
+   },
+   "vnum": 14017,
+   "name": "The Black Library",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14004,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14018": {
+   "title": "Summoning Chamber",
+   "description": "Necromancers use this room to summon and bind undead servants. Circles\nof power are drawn on the floor. Chains and shackles hang from walls for\nrestraining the rebellious. Jars hold components for dark rituals -\npreserved organs, rare herbs, ground bones. The room reeks of death and\ndark magic. Apprentices practice here under watchful supervision.\nDarkness clings to every surface. The floor is slick with moisture.",
+   "terrain": "undead",
+   "exits": {
+    "west": {
+     "to_room": 14016,
+     "description": "The way leads to Necromancer's Quarter"
+    }
+   },
+   "vnum": 14018,
+   "name": "Summoning Chamber",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14002,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14019": {
+   "title": "The Lich Tower Approach",
+   "description": "A tower of black stone rises from the necropolis, taller than any other\nstructure. This is the domain of the ancient lich who rules here. The\ntower seems to absorb light, and no bird will fly near it. The ground\naround it is dead - not even weeds grow. A sense of overwhelming dread\nemanates from the tower. Only the powerful or foolish approach. The\nstone walls press close, cold and damp. The silence is oppressive and\nwatchful.",
+   "terrain": "undead",
+   "exits": {
+    "west": {
+     "to_room": 14005
+    },
+    "up": {
+     "to_room": 14020,
+     "description": "The way leads to Tower Entrance Hall"
+    },
+    "south": {
+     "to_room": 14027
+    }
+   },
+   "vnum": 14019,
+   "name": "The Lich Tower Approach",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14002,
+     "max": 1
+    },
+    {
+     "vnum": 14005,
+     "max": 1
+    },
+    {
+     "vnum": 14003,
+     "max": 1
+    },
+    {
+     "vnum": 14006,
+     "max": 1
+    },
+    {
+     "vnum": 14007,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14020": {
+   "title": "Tower Entrance Hall",
+   "description": "The tower interior is surprisingly ornate. Tapestries that should have\nrotted centuries ago still hang on walls. Candles burn with cold flames.\nThe floor is polished marble, and a grand staircase winds upward. But\neverything is wrong - the tapestries depict scenes of death, the candles\ngive no warmth, and the very air feels thin and lifeless. Skeleton\nwarriors stand guard. Darkness clings to every surface. The air is thick\nand hard to breathe.",
+   "terrain": "undead",
+   "exits": {
+    "down": {
+     "to_room": 14019,
+     "description": "The way leads to The Lich Tower Approach"
+    },
+    "up": {
+     "to_room": 14021,
+     "description": "The way leads to Trophy Hall"
+    }
+   },
+   "vnum": 14020,
+   "name": "Tower Entrance Hall",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14002,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14021": {
+   "title": "Trophy Hall",
+   "description": "The lich displays trophies from victims here. Suits of armor stand\nempty, their wearers long dead. Weapons of defeated heroes hang on\nwalls. Magical items that couldn't save their owners are arranged in\ncases. Each trophy has a plaque describing the victim and how they died.\nIt's both memorial and warning - even the mighty fall to the lich. The\nstone walls press close, cold and damp. Darkness clings to every\nsurface.",
+   "terrain": "undead",
+   "exits": {
+    "down": {
+     "to_room": 14020,
+     "description": "The way leads to Tower Entrance Hall"
+    },
+    "up": {
+     "to_room": 14022,
+     "description": "The way leads to Library of the Damned"
+    }
+   },
+   "vnum": 14021,
+   "name": "Trophy Hall",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    }
+   ],
+   "obj_resets": []
+  },
+  "14022": {
+   "title": "Library of the Damned",
+   "description": "The lich's personal library makes the Black Library look tame. These are\nthe rarest texts in existence - books that mere mortals shouldn't touch.\nSome are bound in human skin, others written in blood, still others seem\nto be alive in some horrible way. The knowledge here could reshape the\nworld - or destroy it. The lich guards this collection jealously. The\nsilence is oppressive and watchful. The stone walls press close, cold\nand damp.",
+   "terrain": "undead",
+   "exits": {
+    "down": {
+     "to_room": 14021,
+     "description": "The way leads to Trophy Hall"
+    },
+    "up": {
+     "to_room": 14023,
+     "description": "The way leads to The Ritual Chamber"
+    }
+   },
+   "vnum": 14022,
+   "name": "Library of the Damned",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    }
+   ],
+   "obj_resets": []
+  },
+  "14023": {
+   "title": "The Ritual Chamber",
+   "description": "This room is dedicated to the lich's darkest work. The floor is one\nmassive circle of power, inlaid with precious metals and gems.\nChanneling this much power would kill a normal mage - only the lich's\nundead form allows it. The air crackles with potential energy. This is\nwhere the lich performs the rituals that maintain the necropolis and\nextend its power. The stone walls press close, cold and damp. The floor\nis slick with moisture.",
+   "terrain": "undead",
+   "exits": {
+    "down": {
+     "to_room": 14022,
+     "description": "The way leads to Library of the Damned"
+    },
+    "up": {
+     "to_room": 14024,
+     "description": "The way leads to The Phylactery Chamber"
+    }
+   },
+   "vnum": 14023,
+   "name": "The Ritual Chamber",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14005,
+     "max": 1
+    },
+    {
+     "vnum": 14003,
+     "max": 1
+    },
+    {
+     "vnum": 14004,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14024": {
+   "title": "The Phylactery Chamber",
+   "description": "At the tower's pinnacle lies the lich's most guarded secret - its\nphylactery, the vessel containing its soul. As long as the phylactery\nexists, the lich cannot be permanently destroyed. The chamber is warded\nwith every protection spell known. Guardians stand eternal watch. The\nphylactery itself is hidden, disguised as one of many identical objects.\nFinding and destroying it is the only way to truly kill the lich. The\nstone walls press close, cold and damp. The air is thick and hard to\nbreathe.",
+   "terrain": "undead",
+   "exits": {
+    "down": {
+     "to_room": 14023,
+     "description": "The way leads to The Ritual Chamber"
+    }
+   },
+   "vnum": 14024,
+   "name": "The Phylactery Chamber",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14006,
+     "max": 1
+    },
+    {
+     "vnum": 14009,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14025": {
+   "title": "Graveyard of Heroes",
+   "description": "This section contains the graves of those who died fighting the undead -\npaladins, clerics, warriors of light. Their graves are marked with holy\nsymbols and prayers. But even here, corruption has taken hold. Some have\nrisen as death knights, their nobility twisted into service of evil.\nOthers remain at rest, but their graves are desecrated. It's a sad\nreminder that even heroes fall. The air is thick and hard to breathe.\nThe silence is oppressive and watchful.",
+   "terrain": "undead",
+   "exits": {
+    "east": {
+     "to_room": 14007
+    },
+    "south": {
+     "to_room": 14026,
+     "description": "The way leads to Chapel of Lost Hope"
+    }
+   },
+   "vnum": 14025,
+   "name": "Graveyard of Heroes",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14002,
+     "max": 1
+    },
+    {
+     "vnum": 14005,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14026": {
+   "title": "Chapel of Lost Hope",
+   "description": "This chapel was built by survivors of the necropolis's fall, a place to\npray for deliverance. But the prayers went unanswered. The chapel stands\nabandoned, its altar broken, its holy symbols defaced. Dust covers\neverything. The only visitors now are undead who mock what this place\nonce represented. A sense of profound sadness permeates the air. The air\nis thick and hard to breathe. The floor is slick with moisture.",
+   "terrain": "undead",
+   "exits": {
+    "north": {
+     "to_room": 14025,
+     "description": "The way leads to Graveyard of Heroes"
+    }
+   },
+   "vnum": 14026,
+   "name": "Chapel of Lost Hope",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14002,
+     "max": 1
+    },
+    {
+     "vnum": 14005,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14027": {
+   "title": "The Bone Throne",
+   "description": "In a grand hall sits a throne constructed entirely of bones - human and\notherwise. This is where the lich holds court, issuing commands to\nlesser undead and receiving tribute from necromancer servants. The\nthrone radiates power and malevolence. The lich rarely occupies it\nphysically, preferring to work in the tower, but the throne represents\nits authority over this realm of death. Darkness clings to every\nsurface. The air is thick and hard to breathe.",
+   "terrain": "undead",
+   "exits": {
+    "north": {
+     "to_room": 14019,
+     "description": "The way leads to The Lich Tower Approach"
+    }
+   },
+   "vnum": 14027,
+   "name": "The Bone Throne",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14002,
+     "max": 1
+    },
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14005,
+     "max": 1
+    },
+    {
+     "vnum": 14003,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14028": {
+   "title": "Execution Square",
+   "description": "When the necropolis was alive, criminals were executed here. The\ngallows, headsman's block, and stakes remain. Now the square has a new\npurpose - the undead bring captured living here for transformation into\ntheir ranks. The rituals performed here are brutal and terrifying.\nScreams echo from this square at all hours. Bloodstains cover the\nancient stones. The air is thick and hard to breathe. The silence is\noppressive and watchful.",
+   "terrain": "undead",
+   "exits": {
+    "west": {
+     "to_room": 14003
+    }
+   },
+   "vnum": 14028,
+   "name": "Execution Square",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14002,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14029": {
+   "title": "The Corpse Market",
+   "description": "In a grotesque mockery of commerce, necromancers trade in corpses and\nparts here. Bodies are displayed like meat at a butcher shop, sorted by\nquality and freshness. Organs are sold separately. Special components -\nhearts of virgins, eyes of seers, bones of children - command premium\nprices. The market is always busy, with necromancers haggling over their\ngruesome wares. The stone walls press close, cold and damp. The air is\nthick and hard to breathe.",
+   "terrain": "undead",
+   "exits": {
+    "east": {
+     "to_room": 14016,
+     "description": "The way leads to Necromancer's Quarter"
+    },
+    "west": {
+     "to_room": 14030,
+     "description": "The way leads to Verdant Dragon Lair"
+    }
+   },
+   "vnum": 14029,
+   "name": "The Corpse Market",
+   "sector_type": "dungeon",
+   "flags": [],
+   "mob_resets": [
+    {
+     "vnum": 14001,
+     "max": 2
+    },
+    {
+     "vnum": 14002,
+     "max": 1
+    },
+    {
+     "vnum": 14005,
+     "max": 1
+    },
+    {
+     "vnum": 14006,
+     "max": 1
+    },
+    {
+     "vnum": 14004,
+     "max": 1
+    },
+    {
+     "vnum": 14008,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  },
+  "14030": {
+   "vnum": 14030,
+   "name": "Verdant Dragon Lair",
+   "description": "Thick green vapors coil through this cavern, pooling over mounds of bone\nand treasure. The air burns the lungs. Vines strangle the stone itself,\nfeeding on the dragon's poisonous breath. Darkness clings to every\nsurface. The silence is oppressive and watchful.",
+   "sector_type": "dungeon",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 14029,
+     "description": "The way leads to The Corpse Market"
+    }
+   },
+   "extra_descs": {},
+   "mob_resets": [
+    {
+     "vnum": 14030,
+     "max": 1
+    }
+   ],
+   "obj_resets": []
+  }
+ }
 }

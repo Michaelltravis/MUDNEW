@@ -159,7 +159,7 @@ class PathManager:
             return
         if current and not getattr(player, 'path_switch_available', False):
             await player.send(f"{c['red']}Your path is set. Complete the Trial of Unlearning "
-                              f"(Sage Aldric, the Temple of Midgaard) to walk a different one.{c['reset']}")
+                              f"(Sage Aldric, the Temple of Garathorm) to walk a different one.{c['reset']}")
             return
         player.path = choice
         if current:

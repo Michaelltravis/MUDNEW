@@ -1,0 +1,520 @@
+{
+ "number": 415,
+ "name": "Quickstream",
+ "builders": "Keats",
+ "atlas_area": 15,
+ "rooms": {
+  "10501": {
+   "vnum": 10501,
+   "name": "Further On Quickstream",
+   "map": {
+    "x": 8,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10502,
+     "description": "To the east lies Riding Quickstream."
+    },
+    "west": {
+     "to_room": 10500,
+     "description": "To the west lies Entering Quickstream."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Shallow water laps around\nstones and reeds. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10502": {
+   "vnum": 10502,
+   "name": "Riding Quickstream",
+   "map": {
+    "x": 9,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10503,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10501,
+     "description": "To the west lies Further On Quickstream."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Mud and pebbles shift beneath the\nslow water. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10503": {
+   "vnum": 10503,
+   "name": "On Quickstream",
+   "map": {
+    "x": 10,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10504,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10502,
+     "description": "To the west lies Riding Quickstream."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10504": {
+   "vnum": 10504,
+   "name": "On Quickstream",
+   "map": {
+    "x": 11,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10505,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10503,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Shallow water laps around\nstones and reeds. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10505": {
+   "vnum": 10505,
+   "name": "On Quickstream",
+   "map": {
+    "x": 12,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10506,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10504,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Reeds rustle\nalong the water's edge. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10506": {
+   "vnum": 10506,
+   "name": "On Quickstream",
+   "map": {
+    "x": 13,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10507,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10505,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Mud and pebbles shift beneath the\nslow water. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10507": {
+   "vnum": 10507,
+   "name": "On Quickstream",
+   "map": {
+    "x": 14,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10508,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10506,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Mud and pebbles shift beneath the\nslow water. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10508": {
+   "vnum": 10508,
+   "name": "On Quickstream",
+   "map": {
+    "x": 15,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10509,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10507,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Reeds rustle along the\nwater's edge. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10509": {
+   "vnum": 10509,
+   "name": "On Quickstream",
+   "map": {
+    "x": 16,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10510,
+     "description": "To the east lies Into the Southern Ocean."
+    },
+    "west": {
+     "to_room": 10508,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10510": {
+   "vnum": 10510,
+   "name": "Into the Southern Ocean",
+   "map": {
+    "x": 17,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10511,
+     "description": "To the east lies On Quickstream in the Southern Ocean."
+    },
+    "west": {
+     "to_room": 10509,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10511": {
+   "vnum": 10511,
+   "name": "On Quickstream in the Southern Ocean",
+   "map": {
+    "x": 18,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10512,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10510,
+     "description": "To the west lies Into the Southern Ocean."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10512": {
+   "vnum": 10512,
+   "name": "On Quickstream",
+   "map": {
+    "x": 20,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 49400,
+     "description": "To the north lies Entering a Volcanic Island."
+    },
+    "east": {
+     "to_room": 10513,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10511,
+     "description": "To the west lies On Quickstream in the Southern Ocean."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10513": {
+   "vnum": 10513,
+   "name": "On Quickstream",
+   "map": {
+    "x": 21,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10514,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10512,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. Shallow water laps around stones\nand reeds. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10514": {
+   "vnum": 10514,
+   "name": "On Quickstream",
+   "map": {
+    "x": 22,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10515,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10513,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10515": {
+   "vnum": 10515,
+   "name": "On Quickstream",
+   "map": {
+    "x": 23,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10516,
+     "description": "To the east lies Passing by Cape Voogk."
+    },
+    "west": {
+     "to_room": 10514,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. Reeds rustle along the\nwater's edge. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10516": {
+   "vnum": 10516,
+   "name": "Passing by Cape Voogk",
+   "map": {
+    "x": 24,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10517,
+     "description": "To the east lies Heading East On Quickstream."
+    },
+    "west": {
+     "to_room": 10515,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Reeds rustle along the\nwater's edge. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10517": {
+   "vnum": 10517,
+   "name": "Heading East On Quickstream",
+   "map": {
+    "x": 25,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10900,
+     "description": "To the north lies The Ocean Stream near the Rim of the World."
+    },
+    "east": {
+     "to_room": 10518,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10516,
+     "description": "To the west lies Passing by Cape Voogk."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Mud and\npebbles shift beneath the slow water. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10518": {
+   "vnum": 10518,
+   "name": "On Quickstream",
+   "map": {
+    "x": 26,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10519,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10517,
+     "description": "To the west lies Heading East On Quickstream."
+    }
+   },
+   "description": "Reeds rustle along the water's edge. The current is gentle here, clear\nenough to see the bottom. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10519": {
+   "vnum": 10519,
+   "name": "On Quickstream",
+   "map": {
+    "x": 27,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10520,
+     "description": "To the east lies On Quickstream."
+    },
+    "west": {
+     "to_room": 10518,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10520": {
+   "vnum": 10520,
+   "name": "On Quickstream",
+   "map": {
+    "x": 28,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10521,
+     "description": "To the east lies Quickstream Fading."
+    },
+    "west": {
+     "to_room": 10519,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "The current is gentle here, clear enough to see the bottom. Reeds rustle\nalong the water's edge. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10521": {
+   "vnum": 10521,
+   "name": "Quickstream Fading",
+   "map": {
+    "x": 29,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10522,
+     "description": "To the east lies Quickstream Faded."
+    },
+    "west": {
+     "to_room": 10520,
+     "description": "To the west lies On Quickstream."
+    }
+   },
+   "description": "Mud and pebbles shift beneath the slow water. Shallow water laps around\nstones and reeds. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10522": {
+   "vnum": 10522,
+   "name": "Quickstream Faded",
+   "map": {
+    "x": 30,
+    "y": -21,
+    "z": -1
+   },
+   "sector_type": "water_swim",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 10521,
+     "description": "To the west lies Quickstream Fading."
+    }
+   },
+   "description": "Shallow water laps around stones and reeds. The current is gentle here,\nclear enough to see the bottom. A way leads west.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {}
+}

@@ -7,7 +7,7 @@
   "quests": {
     "tutorial_1_awakening": {
       "name": "Awakening",
-      "description": "You've arrived in Midgaard, the greatest city in the Realms. Sage Aldric at the Temple can help you find your footing.",
+      "description": "You've arrived in Garathorm, the greatest city in the Realms. Sage Aldric at the Temple can help you find your footing.",
       "type": "tutorial",
       "level_min": 1,
       "level_max": 5,
@@ -24,15 +24,15 @@
       "next_quest": "tutorial_2_look_around",
       "dialogue": {
         "start": {
-          "text": "Ah, a new arrival! Welcome to Midgaard, young one. I am Sage Aldric, and I've guided many adventurers on their first steps.\n\nThe world can be dangerous, but knowledge is your greatest weapon. Let me teach you the ways of survival.\n\nFirst, you must learn to observe your surroundings. Type 'look' to see where you are, or 'look <object>' to examine something specific.",
+          "text": "Ah, a new arrival! Welcome to Garathorm, young one. I am Sage Aldric, and I've guided many adventurers on their first steps.\n\nThe world can be dangerous, but knowledge is your greatest weapon. Let me teach you the ways of survival.\n\nFirst, you must learn to observe your surroundings. Type 'look' to see where you are, or 'look <object>' to examine something specific.",
           "choices": [
             {"text": "I'm ready to learn.", "next_node": "accept"},
-            {"text": "Tell me more about Midgaard.", "next_node": "about_midgaard"},
+            {"text": "Tell me more about Garathorm.", "next_node": "about_midgaard"},
             {"text": "What dangers should I know about?", "next_node": "about_dangers"}
           ]
         },
         "about_midgaard": {
-          "text": "Midgaard is the heart of civilization in these lands. Founded centuries ago, it stands as a beacon of hope against the darkness.\n\nThe Temple where we stand is sacred ground - a place of healing and safety. No violence is permitted here.\n\nBeyond these walls, you'll find shops, taverns, guilds, and the great square where adventurers gather.",
+          "text": "Garathorm is the heart of civilization in these lands. Founded centuries ago, it stands as a beacon of hope against the darkness.\n\nThe Temple where we stand is sacred ground - a place of healing and safety. No violence is permitted here.\n\nBeyond these walls, you'll find shops, taverns, guilds, and the great square where adventurers gather.",
           "choices": [
             {"text": "I'm ready to learn.", "next_node": "accept"},
             {"text": "What dangers should I know about?", "next_node": "about_dangers"}
@@ -283,7 +283,7 @@
       "objectives": [
         {
           "type": "visit",
-          "description": "Visit the South Gate of Midgaard",
+          "description": "Visit the South Gate of Garathorm",
           "target": "3053",
           "required": 1
         },
@@ -304,7 +304,7 @@
       "next_quest": null,
       "dialogue": {
         "start": {
-          "text": "You've learned much, but true wisdom comes from experience.\n\nVenture to the South Gate of Midgaard and step outside the city walls. Defeat any creature you encounter, then return to me.\n\nUse 'map' to see the world, 'where' to see who's nearby, and 'recall' if you get lost - it will bring you back to the Temple.\n\nGo forth, adventurer. Prove yourself!",
+          "text": "You've learned much, but true wisdom comes from experience.\n\nVenture to the South Gate of Garathorm and step outside the city walls. Defeat any creature you encounter, then return to me.\n\nUse 'map' to see the world, 'where' to see who's nearby, and 'recall' if you get lost - it will bring you back to the Temple.\n\nGo forth, adventurer. Prove yourself!",
           "effects": [{"type": "start_quest"}],
           "end": true
         }

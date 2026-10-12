@@ -1,0 +1,2198 @@
+{
+ "number": 520,
+ "name": "Warded Castle",
+ "builders": "",
+ "atlas_area": 120,
+ "rooms": {
+  "12301": {
+   "vnum": 12301,
+   "name": "Around the Warded Castle",
+   "map": {
+    "x": 10,
+    "y": -60,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 12354,
+     "description": "To the east lies Around the Warded Castle."
+    },
+    "west": {
+     "to_room": 12302,
+     "description": "To the west lies Entrance to the Warded Castle."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east and west.",
+   "placeholder": true
+  },
+  "12302": {
+   "vnum": 12302,
+   "name": "Entrance to the Warded Castle",
+   "map": {
+    "x": 9,
+    "y": -60,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12305,
+     "description": "To the north lies Inside the Gatehouse."
+    },
+    "east": {
+     "to_room": 12301,
+     "description": "To the east lies Around the Warded Castle."
+    },
+    "south": {
+     "to_room": 12304,
+     "description": "To the south lies A Hidden Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 12303,
+     "description": "To the west lies Around the Warded Castle."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "12303": {
+   "vnum": 12303,
+   "name": "Around the Warded Castle",
+   "map": {
+    "x": 8,
+    "y": -60,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 12302,
+     "description": "To the east lies Entrance to the Warded Castle."
+    },
+    "west": {
+     "to_room": 12350,
+     "description": "To the west lies Around the Warded Castle."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "12304": {
+   "vnum": 12304,
+   "name": "A Hidden Room",
+   "map": {
+    "x": 9,
+    "y": -61,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12302,
+     "description": "To the north lies Entrance to the Warded Castle."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads north.",
+   "placeholder": true
+  },
+  "12305": {
+   "vnum": 12305,
+   "name": "Inside the Gatehouse",
+   "map": {
+    "x": 9,
+    "y": -59,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12306,
+     "description": "To the north lies On the Castle Grounds."
+    },
+    "east": {
+     "to_room": 12308,
+     "description": "To the east lies A Grey Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 12302,
+     "description": "To the south lies Entrance to the Warded Castle."
+    },
+    "west": {
+     "to_room": 12307,
+     "description": "To the west lies A White Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "12306": {
+   "vnum": 12306,
+   "name": "On the Castle Grounds",
+   "map": {
+    "x": 9,
+    "y": -58,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12345,
+     "description": "To the north lies Pathway To The Keep."
+    },
+    "east": {
+     "to_room": 12310,
+     "description": "To the east lies The Stable."
+    },
+    "south": {
+     "to_room": 12305,
+     "description": "To the south lies Inside the Gatehouse."
+    },
+    "west": {
+     "to_room": 12309,
+     "description": "To the west lies Servants Quarters."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "12307": {
+   "vnum": 12307,
+   "name": "A White Room",
+   "map": {
+    "x": 7,
+    "y": -59,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch.",
+   "placeholder": true
+  },
+  "12308": {
+   "vnum": 12308,
+   "name": "A Grey Room",
+   "map": {
+    "x": 11,
+    "y": -59,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch.",
+   "placeholder": true
+  },
+  "12309": {
+   "vnum": 12309,
+   "name": "Servants Quarters",
+   "map": {
+    "x": 8,
+    "y": -58,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12334,
+     "description": "To the north lies Servants Quarters."
+    },
+    "east": {
+     "to_room": 12306,
+     "description": "To the east lies On the Castle Grounds."
+    },
+    "west": {
+     "to_room": 12311,
+     "description": "To the west lies Servants Quarters."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "12310": {
+   "vnum": 12310,
+   "name": "The Stable",
+   "map": {
+    "x": 10,
+    "y": -58,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12344,
+     "description": "To the north lies The Stable."
+    },
+    "east": {
+     "to_room": 12313,
+     "description": "To the east lies The Stable."
+    },
+    "west": {
+     "to_room": 12306,
+     "description": "To the west lies On the Castle Grounds."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "12311": {
+   "vnum": 12311,
+   "name": "Servants Quarters",
+   "map": {
+    "x": 7,
+    "y": -58,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12332,
+     "description": "To the north lies Servants Quarters."
+    },
+    "east": {
+     "to_room": 12309,
+     "description": "To the east lies Servants Quarters."
+    },
+    "west": {
+     "to_room": 12312,
+     "description": "To the west lies The Mushroom Farm."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "12312": {
+   "vnum": 12312,
+   "name": "The Mushroom Farm",
+   "map": {
+    "x": 6,
+    "y": -58,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12329,
+     "description": "To the north lies The Mushroom Farm."
+    },
+    "east": {
+     "to_room": 12311,
+     "description": "To the east lies Servants Quarters."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and east.",
+   "placeholder": true
+  },
+  "12313": {
+   "vnum": 12313,
+   "name": "The Stable",
+   "map": {
+    "x": 11,
+    "y": -58,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12343,
+     "description": "To the north lies The Stable."
+    },
+    "east": {
+     "to_room": 12314,
+     "description": "To the east lies The Stable."
+    },
+    "west": {
+     "to_room": 12310,
+     "description": "To the west lies The Stable."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "12314": {
+   "vnum": 12314,
+   "name": "The Stable",
+   "map": {
+    "x": 12,
+    "y": -58,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12315,
+     "description": "To the north lies The Stable."
+    },
+    "west": {
+     "to_room": 12313,
+     "description": "To the west lies The Stable."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "12315": {
+   "vnum": 12315,
+   "name": "The Stable",
+   "map": {
+    "x": 12,
+    "y": -57,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12316,
+     "description": "To the north lies The Workshop."
+    },
+    "south": {
+     "to_room": 12314,
+     "description": "To the south lies The Stable."
+    },
+    "west": {
+     "to_room": 12343,
+     "description": "To the west lies The Stable."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "12316": {
+   "vnum": 12316,
+   "name": "The Workshop",
+   "map": {
+    "x": 12,
+    "y": -56,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12317,
+     "description": "To the north lies The Workshop."
+    },
+    "south": {
+     "to_room": 12315,
+     "description": "To the south lies The Stable."
+    },
+    "west": {
+     "to_room": 12342,
+     "description": "To the west lies The Workshop."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "12317": {
+   "vnum": 12317,
+   "name": "The Workshop",
+   "map": {
+    "x": 12,
+    "y": -55,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12318,
+     "description": "To the north lies The Workshop."
+    },
+    "south": {
+     "to_room": 12316,
+     "description": "To the south lies The Workshop."
+    },
+    "west": {
+     "to_room": 12341,
+     "description": "To the west lies The Workshop."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "12318": {
+   "vnum": 12318,
+   "name": "The Workshop",
+   "map": {
+    "x": 12,
+    "y": -54,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12319,
+     "description": "To the north lies The Guards Quarters."
+    },
+    "south": {
+     "to_room": 12317,
+     "description": "To the south lies The Workshop."
+    },
+    "west": {
+     "to_room": 12340,
+     "description": "To the west lies The Workshop."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "12319": {
+   "vnum": 12319,
+   "name": "The Guards Quarters",
+   "map": {
+    "x": 12,
+    "y": -53,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 12318,
+     "description": "To the south lies The Workshop."
+    },
+    "west": {
+     "to_room": 12320,
+     "description": "To the west lies The Guards Quarters."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead south and west.",
+   "placeholder": true
+  },
+  "12320": {
+   "vnum": 12320,
+   "name": "The Guards Quarters",
+   "map": {
+    "x": 11,
+    "y": -53,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 12319,
+     "description": "To the east lies The Guards Quarters."
+    },
+    "south": {
+     "to_room": 12340,
+     "description": "To the south lies The Workshop."
+    },
+    "west": {
+     "to_room": 12321,
+     "description": "To the west lies The Guards Quarters."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "12321": {
+   "vnum": 12321,
+   "name": "The Guards Quarters",
+   "map": {
+    "x": 10,
+    "y": -53,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 12320,
+     "description": "To the east lies The Guards Quarters."
+    },
+    "south": {
+     "to_room": 12339,
+     "description": "To the south lies The Inner Ward."
+    },
+    "west": {
+     "to_room": 12322,
+     "description": "To the west lies Pathway To The Keep."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "12322": {
+   "vnum": 12322,
+   "name": "Pathway To The Keep",
+   "map": {
+    "x": 9,
+    "y": -53,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12360,
+     "description": "To the north lies Inside the Warded Keep."
+    },
+    "east": {
+     "to_room": 12321,
+     "description": "To the east lies The Guards Quarters."
+    },
+    "south": {
+     "to_room": 12338,
+     "description": "To the south lies The Inner Ward."
+    },
+    "west": {
+     "to_room": 12323,
+     "description": "To the west lies The Gallows."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "12323": {
+   "vnum": 12323,
+   "name": "The Gallows",
+   "map": {
+    "x": 8,
+    "y": -53,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 12322,
+     "description": "To the east lies Pathway To The Keep."
+    },
+    "south": {
+     "to_room": 12337,
+     "description": "To the south lies The Inner Ward."
+    },
+    "west": {
+     "to_room": 12324,
+     "description": "To the west lies The Gallows."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "12324": {
+   "vnum": 12324,
+   "name": "The Gallows",
+   "map": {
+    "x": 7,
+    "y": -53,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 12323,
+     "description": "To the east lies The Gallows."
+    },
+    "south": {
+     "to_room": 12330,
+     "description": "To the south lies The Kitchen."
+    },
+    "west": {
+     "to_room": 12325,
+     "description": "To the west lies The Gallows."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "12325": {
+   "vnum": 12325,
+   "name": "The Gallows",
+   "map": {
+    "x": 6,
+    "y": -53,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 12324,
+     "description": "To the east lies The Gallows."
+    },
+    "south": {
+     "to_room": 12326,
+     "description": "To the south lies The Kitchen."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "12326": {
+   "vnum": 12326,
+   "name": "The Kitchen",
+   "map": {
+    "x": 6,
+    "y": -54,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12325,
+     "description": "To the north lies The Gallows."
+    },
+    "east": {
+     "to_room": 12330,
+     "description": "To the east lies The Kitchen."
+    },
+    "south": {
+     "to_room": 12327,
+     "description": "To the south lies The Kitchen."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "12327": {
+   "vnum": 12327,
+   "name": "The Kitchen",
+   "map": {
+    "x": 6,
+    "y": -55,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12326,
+     "description": "To the north lies The Kitchen."
+    },
+    "east": {
+     "to_room": 12331,
+     "description": "To the east lies The Kitchen."
+    },
+    "south": {
+     "to_room": 12328,
+     "description": "To the south lies The Kitchen."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "12328": {
+   "vnum": 12328,
+   "name": "The Kitchen",
+   "map": {
+    "x": 6,
+    "y": -56,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12327,
+     "description": "To the north lies The Kitchen."
+    },
+    "east": {
+     "to_room": 12333,
+     "description": "To the east lies The Kitchen."
+    },
+    "south": {
+     "to_room": 12329,
+     "description": "To the south lies The Mushroom Farm."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "12329": {
+   "vnum": 12329,
+   "name": "The Mushroom Farm",
+   "map": {
+    "x": 6,
+    "y": -57,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12328,
+     "description": "To the north lies The Kitchen."
+    },
+    "east": {
+     "to_room": 12332,
+     "description": "To the east lies Servants Quarters."
+    },
+    "south": {
+     "to_room": 12312,
+     "description": "To the south lies The Mushroom Farm."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "12330": {
+   "vnum": 12330,
+   "name": "The Kitchen",
+   "map": {
+    "x": 7,
+    "y": -54,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12324,
+     "description": "To the north lies The Gallows."
+    },
+    "east": {
+     "to_room": 12337,
+     "description": "To the east lies The Inner Ward."
+    },
+    "south": {
+     "to_room": 12331,
+     "description": "To the south lies The Kitchen."
+    },
+    "west": {
+     "to_room": 12326,
+     "description": "To the west lies The Kitchen."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "12331": {
+   "vnum": 12331,
+   "name": "The Kitchen",
+   "map": {
+    "x": 7,
+    "y": -55,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12330,
+     "description": "To the north lies The Kitchen."
+    },
+    "east": {
+     "to_room": 12336,
+     "description": "To the east lies The Inner Ward."
+    },
+    "south": {
+     "to_room": 12333,
+     "description": "To the south lies The Kitchen."
+    },
+    "west": {
+     "to_room": 12327,
+     "description": "To the west lies The Kitchen."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "12332": {
+   "vnum": 12332,
+   "name": "Servants Quarters",
+   "map": {
+    "x": 7,
+    "y": -57,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12333,
+     "description": "To the north lies The Kitchen."
+    },
+    "east": {
+     "to_room": 12334,
+     "description": "To the east lies Servants Quarters."
+    },
+    "south": {
+     "to_room": 12311,
+     "description": "To the south lies Servants Quarters."
+    },
+    "west": {
+     "to_room": 12329,
+     "description": "To the west lies The Mushroom Farm."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "12333": {
+   "vnum": 12333,
+   "name": "The Kitchen",
+   "map": {
+    "x": 7,
+    "y": -56,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12331,
+     "description": "To the north lies The Kitchen."
+    },
+    "east": {
+     "to_room": 12335,
+     "description": "To the east lies The Inner Ward."
+    },
+    "south": {
+     "to_room": 12332,
+     "description": "To the south lies Servants Quarters."
+    },
+    "west": {
+     "to_room": 12328,
+     "description": "To the west lies The Kitchen."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "12334": {
+   "vnum": 12334,
+   "name": "Servants Quarters",
+   "map": {
+    "x": 8,
+    "y": -57,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12335,
+     "description": "To the north lies The Inner Ward."
+    },
+    "east": {
+     "to_room": 12345,
+     "description": "To the east lies Pathway To The Keep."
+    },
+    "south": {
+     "to_room": 12309,
+     "description": "To the south lies Servants Quarters."
+    },
+    "west": {
+     "to_room": 12332,
+     "description": "To the west lies Servants Quarters."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "12335": {
+   "vnum": 12335,
+   "name": "The Inner Ward",
+   "map": {
+    "x": 8,
+    "y": -56,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12336,
+     "description": "To the north lies The Inner Ward."
+    },
+    "east": {
+     "to_room": 12346,
+     "description": "To the east lies The Inner Ward."
+    },
+    "south": {
+     "to_room": 12334,
+     "description": "To the south lies Servants Quarters."
+    },
+    "west": {
+     "to_room": 12333,
+     "description": "To the west lies The Kitchen."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "12336": {
+   "vnum": 12336,
+   "name": "The Inner Ward",
+   "map": {
+    "x": 8,
+    "y": -55,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12337,
+     "description": "To the north lies The Inner Ward."
+    },
+    "east": {
+     "to_room": 12347,
+     "description": "To the east lies The Centre Ward."
+    },
+    "south": {
+     "to_room": 12335,
+     "description": "To the south lies The Inner Ward."
+    },
+    "west": {
+     "to_room": 12331,
+     "description": "To the west lies The Kitchen."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "12337": {
+   "vnum": 12337,
+   "name": "The Inner Ward",
+   "map": {
+    "x": 8,
+    "y": -54,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12323,
+     "description": "To the north lies The Gallows."
+    },
+    "east": {
+     "to_room": 12338,
+     "description": "To the east lies The Inner Ward."
+    },
+    "south": {
+     "to_room": 12336,
+     "description": "To the south lies The Inner Ward."
+    },
+    "west": {
+     "to_room": 12330,
+     "description": "To the west lies The Kitchen."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "12338": {
+   "vnum": 12338,
+   "name": "The Inner Ward",
+   "map": {
+    "x": 9,
+    "y": -54,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12322,
+     "description": "To the north lies Pathway To The Keep."
+    },
+    "east": {
+     "to_room": 12339,
+     "description": "To the east lies The Inner Ward."
+    },
+    "south": {
+     "to_room": 12347,
+     "description": "To the south lies The Centre Ward."
+    },
+    "west": {
+     "to_room": 12337,
+     "description": "To the west lies The Inner Ward."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "12339": {
+   "vnum": 12339,
+   "name": "The Inner Ward",
+   "map": {
+    "x": 10,
+    "y": -54,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12321,
+     "description": "To the north lies The Guards Quarters."
+    },
+    "east": {
+     "to_room": 12340,
+     "description": "To the east lies The Workshop."
+    },
+    "south": {
+     "to_room": 12348,
+     "description": "To the south lies The Inner Ward."
+    },
+    "west": {
+     "to_room": 12338,
+     "description": "To the west lies The Inner Ward."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "12340": {
+   "vnum": 12340,
+   "name": "The Workshop",
+   "map": {
+    "x": 11,
+    "y": -54,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12320,
+     "description": "To the north lies The Guards Quarters."
+    },
+    "east": {
+     "to_room": 12318,
+     "description": "To the east lies The Workshop."
+    },
+    "south": {
+     "to_room": 12341,
+     "description": "To the south lies The Workshop."
+    },
+    "west": {
+     "to_room": 12339,
+     "description": "To the west lies The Inner Ward."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "12341": {
+   "vnum": 12341,
+   "name": "The Workshop",
+   "map": {
+    "x": 11,
+    "y": -55,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12340,
+     "description": "To the north lies The Workshop."
+    },
+    "east": {
+     "to_room": 12317,
+     "description": "To the east lies The Workshop."
+    },
+    "south": {
+     "to_room": 12342,
+     "description": "To the south lies The Workshop."
+    },
+    "west": {
+     "to_room": 12348,
+     "description": "To the west lies The Inner Ward."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "12342": {
+   "vnum": 12342,
+   "name": "The Workshop",
+   "map": {
+    "x": 11,
+    "y": -56,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12341,
+     "description": "To the north lies The Workshop."
+    },
+    "east": {
+     "to_room": 12316,
+     "description": "To the east lies The Workshop."
+    },
+    "south": {
+     "to_room": 12343,
+     "description": "To the south lies The Stable."
+    },
+    "west": {
+     "to_room": 12349,
+     "description": "To the west lies The Inner Ward."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "12343": {
+   "vnum": 12343,
+   "name": "The Stable",
+   "map": {
+    "x": 11,
+    "y": -57,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12342,
+     "description": "To the north lies The Workshop."
+    },
+    "east": {
+     "to_room": 12315,
+     "description": "To the east lies The Stable."
+    },
+    "south": {
+     "to_room": 12313,
+     "description": "To the south lies The Stable."
+    },
+    "west": {
+     "to_room": 12344,
+     "description": "To the west lies The Stable."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "12344": {
+   "vnum": 12344,
+   "name": "The Stable",
+   "map": {
+    "x": 10,
+    "y": -57,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12349,
+     "description": "To the north lies The Inner Ward."
+    },
+    "east": {
+     "to_room": 12343,
+     "description": "To the east lies The Stable."
+    },
+    "south": {
+     "to_room": 12310,
+     "description": "To the south lies The Stable."
+    },
+    "west": {
+     "to_room": 12345,
+     "description": "To the west lies Pathway To The Keep."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "12345": {
+   "vnum": 12345,
+   "name": "Pathway To The Keep",
+   "map": {
+    "x": 9,
+    "y": -57,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12346,
+     "description": "To the north lies The Inner Ward."
+    },
+    "east": {
+     "to_room": 12344,
+     "description": "To the east lies The Stable."
+    },
+    "south": {
+     "to_room": 12306,
+     "description": "To the south lies On the Castle Grounds."
+    },
+    "west": {
+     "to_room": 12334,
+     "description": "To the west lies Servants Quarters."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "12346": {
+   "vnum": 12346,
+   "name": "The Inner Ward",
+   "map": {
+    "x": 9,
+    "y": -56,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12347,
+     "description": "To the north lies The Centre Ward."
+    },
+    "east": {
+     "to_room": 12349,
+     "description": "To the east lies The Inner Ward."
+    },
+    "south": {
+     "to_room": 12345,
+     "description": "To the south lies Pathway To The Keep."
+    },
+    "west": {
+     "to_room": 12335,
+     "description": "To the west lies The Inner Ward."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "12347": {
+   "vnum": 12347,
+   "name": "The Centre Ward",
+   "map": {
+    "x": 9,
+    "y": -55,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12338,
+     "description": "To the north lies The Inner Ward."
+    },
+    "east": {
+     "to_room": 12348,
+     "description": "To the east lies The Inner Ward."
+    },
+    "south": {
+     "to_room": 12346,
+     "description": "To the south lies The Inner Ward."
+    },
+    "west": {
+     "to_room": 12336,
+     "description": "To the west lies The Inner Ward."
+    },
+    "down": {
+     "to_room": 12388,
+     "description": "To the down lies The Sacrificial Altar."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east, south, west and down.",
+   "placeholder": true
+  },
+  "12348": {
+   "vnum": 12348,
+   "name": "The Inner Ward",
+   "map": {
+    "x": 10,
+    "y": -55,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12339,
+     "description": "To the north lies The Inner Ward."
+    },
+    "east": {
+     "to_room": 12341,
+     "description": "To the east lies The Workshop."
+    },
+    "south": {
+     "to_room": 12349,
+     "description": "To the south lies The Inner Ward."
+    },
+    "west": {
+     "to_room": 12347,
+     "description": "To the west lies The Centre Ward."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "12349": {
+   "vnum": 12349,
+   "name": "The Inner Ward",
+   "map": {
+    "x": 10,
+    "y": -56,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12348,
+     "description": "To the north lies The Inner Ward."
+    },
+    "east": {
+     "to_room": 12342,
+     "description": "To the east lies The Workshop."
+    },
+    "south": {
+     "to_room": 12344,
+     "description": "To the south lies The Stable."
+    },
+    "west": {
+     "to_room": 12346,
+     "description": "To the west lies The Inner Ward."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "12350": {
+   "vnum": 12350,
+   "name": "Around the Warded Castle",
+   "map": {
+    "x": 7,
+    "y": -60,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 12303,
+     "description": "To the east lies Around the Warded Castle."
+    },
+    "west": {
+     "to_room": 12351,
+     "description": "To the west lies Around the Warded Castle."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "12351": {
+   "vnum": 12351,
+   "name": "Around the Warded Castle",
+   "map": {
+    "x": 6,
+    "y": -60,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 12350,
+     "description": "To the east lies Around the Warded Castle."
+    },
+    "west": {
+     "to_room": 12352,
+     "description": "To the west lies A Bend Around The Castle."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "12352": {
+   "vnum": 12352,
+   "name": "A Bend Around The Castle",
+   "map": {
+    "x": 5,
+    "y": -60,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 12351,
+     "description": "To the east lies Around the Warded Castle."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads east.",
+   "placeholder": true
+  },
+  "12354": {
+   "vnum": 12354,
+   "name": "Around the Warded Castle",
+   "map": {
+    "x": 11,
+    "y": -60,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 12355,
+     "description": "To the east lies Around the Warded Castle."
+    },
+    "west": {
+     "to_room": 12301,
+     "description": "To the west lies Around the Warded Castle."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "12355": {
+   "vnum": 12355,
+   "name": "Around the Warded Castle",
+   "map": {
+    "x": 12,
+    "y": -60,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 12356,
+     "description": "To the east lies A Bend Around The Castle."
+    },
+    "west": {
+     "to_room": 12354,
+     "description": "To the west lies Around the Warded Castle."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "12356": {
+   "vnum": 12356,
+   "name": "A Bend Around The Castle",
+   "map": {
+    "x": 13,
+    "y": -60,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12357,
+     "description": "To the north lies Around the Warded Castle."
+    },
+    "west": {
+     "to_room": 12355,
+     "description": "To the west lies Around the Warded Castle."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and west.",
+   "placeholder": true
+  },
+  "12357": {
+   "vnum": 12357,
+   "name": "Around the Warded Castle",
+   "map": {
+    "x": 13,
+    "y": -59,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12358,
+     "description": "To the north lies Around the Warded Castle."
+    },
+    "south": {
+     "to_room": 12356,
+     "description": "To the south lies A Bend Around The Castle."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "12358": {
+   "vnum": 12358,
+   "name": "Around the Warded Castle",
+   "map": {
+    "x": 13,
+    "y": -58,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12359,
+     "description": "To the north lies A Pile of Rubble."
+    },
+    "south": {
+     "to_room": 12357,
+     "description": "To the south lies Around the Warded Castle."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "12359": {
+   "vnum": 12359,
+   "name": "A Pile of Rubble",
+   "map": {
+    "x": 13,
+    "y": -57,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 12358,
+     "description": "To the south lies Around the Warded Castle."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads south.",
+   "placeholder": true
+  },
+  "12360": {
+   "vnum": 12360,
+   "name": "Inside the Warded Keep",
+   "map": {
+    "x": 9,
+    "y": -52,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12370,
+     "description": "To the north lies On the Spiral Staircase."
+    },
+    "east": {
+     "to_room": 12362,
+     "description": "To the east lies Inside the Warded Keep."
+    },
+    "south": {
+     "to_room": 12322,
+     "description": "To the south lies Pathway To The Keep."
+    },
+    "west": {
+     "to_room": 12361,
+     "description": "To the west lies Inside the Warded Keep."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "12361": {
+   "vnum": 12361,
+   "name": "Inside the Warded Keep",
+   "map": {
+    "x": 8,
+    "y": -52,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12369,
+     "description": "To the north lies Inside the Warded Keep."
+    },
+    "east": {
+     "to_room": 12360,
+     "description": "To the east lies Inside the Warded Keep."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "12362": {
+   "vnum": 12362,
+   "name": "Inside the Warded Keep",
+   "map": {
+    "x": 10,
+    "y": -52,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12363,
+     "description": "To the north lies Inside the Warded Keep."
+    },
+    "west": {
+     "to_room": 12360,
+     "description": "To the west lies Inside the Warded Keep."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "12363": {
+   "vnum": 12363,
+   "name": "Inside the Warded Keep",
+   "map": {
+    "x": 10,
+    "y": -51,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12364,
+     "description": "To the north lies Inside the Warded Keep."
+    },
+    "south": {
+     "to_room": 12362,
+     "description": "To the south lies Inside the Warded Keep."
+    },
+    "west": {
+     "to_room": 12370,
+     "description": "To the west lies On the Spiral Staircase."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "12364": {
+   "vnum": 12364,
+   "name": "Inside the Warded Keep",
+   "map": {
+    "x": 10,
+    "y": -50,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 12363,
+     "description": "To the south lies Inside the Warded Keep."
+    },
+    "west": {
+     "to_room": 12365,
+     "description": "To the west lies Inside the Warded Keep."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead south and west.",
+   "placeholder": true
+  },
+  "12365": {
+   "vnum": 12365,
+   "name": "Inside the Warded Keep",
+   "map": {
+    "x": 9,
+    "y": -50,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 12364,
+     "description": "To the east lies Inside the Warded Keep."
+    },
+    "south": {
+     "to_room": 12370,
+     "description": "To the south lies On the Spiral Staircase."
+    },
+    "west": {
+     "to_room": 12368,
+     "description": "To the west lies Inside the Warded Keep."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "12368": {
+   "vnum": 12368,
+   "name": "Inside the Warded Keep",
+   "map": {
+    "x": 8,
+    "y": -50,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 12365,
+     "description": "To the east lies Inside the Warded Keep."
+    },
+    "south": {
+     "to_room": 12369,
+     "description": "To the south lies Inside the Warded Keep."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead east and south.",
+   "placeholder": true
+  },
+  "12369": {
+   "vnum": 12369,
+   "name": "Inside the Warded Keep",
+   "map": {
+    "x": 8,
+    "y": -51,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12368,
+     "description": "To the north lies Inside the Warded Keep."
+    },
+    "east": {
+     "to_room": 12370,
+     "description": "To the east lies On the Spiral Staircase."
+    },
+    "south": {
+     "to_room": 12361,
+     "description": "To the south lies Inside the Warded Keep."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "12370": {
+   "vnum": 12370,
+   "name": "On the Spiral Staircase",
+   "map": {
+    "x": 9,
+    "y": -51,
+    "z": -3
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12365,
+     "description": "To the north lies Inside the Warded Keep."
+    },
+    "east": {
+     "to_room": 12363,
+     "description": "To the east lies Inside the Warded Keep."
+    },
+    "south": {
+     "to_room": 12360,
+     "description": "To the south lies Inside the Warded Keep."
+    },
+    "west": {
+     "to_room": 12369,
+     "description": "To the west lies Inside the Warded Keep."
+    },
+    "up": {
+     "to_room": 12371,
+     "description": "To the up lies Climbing the Spiral Staircase."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south, west and up.",
+   "placeholder": true
+  },
+  "12371": {
+   "vnum": 12371,
+   "name": "Climbing the Spiral Staircase",
+   "map": {
+    "x": 9,
+    "y": -51,
+    "z": -2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 12376,
+     "description": "To the up lies Climbing the Spiral Staircase."
+    },
+    "down": {
+     "to_room": 12370,
+     "description": "To the down lies On the Spiral Staircase."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead up and down.",
+   "placeholder": true
+  },
+  "12376": {
+   "vnum": 12376,
+   "name": "Climbing the Spiral Staircase",
+   "map": {
+    "x": 9,
+    "y": -51,
+    "z": -1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 12381,
+     "description": "To the up lies The Top of the Keep."
+    },
+    "down": {
+     "to_room": 12371,
+     "description": "To the down lies Climbing the Spiral Staircase."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead up and down.",
+   "placeholder": true
+  },
+  "12381": {
+   "vnum": 12381,
+   "name": "The Top of the Keep",
+   "map": {
+    "x": 9,
+    "y": -51,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12383,
+     "description": "To the north lies A White Room."
+    },
+    "east": {
+     "to_room": 12384,
+     "description": "To the east lies A White Room."
+    },
+    "south": {
+     "to_room": 12382,
+     "description": "To the south lies A Destroyed Hall.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "down": {
+     "to_room": 12376,
+     "description": "To the down lies Climbing the Spiral Staircase."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east, south and down.",
+   "placeholder": true
+  },
+  "12382": {
+   "vnum": 12382,
+   "name": "A Destroyed Hall",
+   "map": {
+    "x": 9,
+    "y": -53,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 12385,
+     "description": "To the west lies A Destroyed Hall.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "12383": {
+   "vnum": 12383,
+   "name": "A White Room",
+   "map": {
+    "x": 9,
+    "y": -49,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke.",
+   "placeholder": true
+  },
+  "12384": {
+   "vnum": 12384,
+   "name": "A White Room",
+   "map": {
+    "x": 11,
+    "y": -51,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use.",
+   "placeholder": true
+  },
+  "12385": {
+   "vnum": 12385,
+   "name": "A Destroyed Hall",
+   "map": {
+    "x": 7,
+    "y": -53,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12386,
+     "description": "To the north lies A Destroyed Hall.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads north.",
+   "placeholder": true
+  },
+  "12386": {
+   "vnum": 12386,
+   "name": "A Destroyed Hall",
+   "map": {
+    "x": 7,
+    "y": -51,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 12387,
+     "description": "To the north lies The Fallen Angel's Prison.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "12387": {
+   "vnum": 12387,
+   "name": "The Fallen Angel's Prison",
+   "map": {
+    "x": 7,
+    "y": -49,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {},
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke.",
+   "placeholder": true
+  },
+  "12388": {
+   "vnum": 12388,
+   "name": "The Sacrificial Altar",
+   "map": {
+    "x": 9,
+    "y": -55,
+    "z": -4
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 12347,
+     "description": "To the up lies The Centre Ward."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads up.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

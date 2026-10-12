@@ -6,7 +6,7 @@
 //   stairs: the zone map download is delayed 3 s (the race that sent every zone hop twice);
 //           taking the temple's ▲ stairs must send exactly one move, show no "can't go", land
 //           beside the destination's ▼ stairs, and a key held into them must not hop back.
-//   doors:  the oak door at 921 east: the prompt says what E does, E opens it (one webdoor),
+//   doors:  the diamond gate at 2512 north: the prompt says what E does, E opens it (one webdoor),
 //           and a locked door without the key says which key it needs.
 //   camera: a right-drag turns the view (no menu), W follows the camera, drag up tilts, Home
 //           snaps back north.
@@ -75,7 +75,7 @@ async function waitFor(page, fn, arg, secs = 60) {
   };
 
   if (MODE === 'stairs') {
-    check(await goto(3001), 'in the Temple of Midgaard (3001)');
+    check(await goto(3001), 'in the Temple of Garathorm (3001)');
     await sleep(1500);
     // stand 1.3 m west of the ▲ stairs and walk onto them on purpose
     const info = await page.evaluate(() => {
@@ -112,48 +112,48 @@ async function waitFor(page, fn, arg, secs = 60) {
   }
 
   if (MODE === 'doors') {
-    check(await goto(921), 'at the oak door (921)');
-    await page.evaluate(() => { MH.sendCommand('open east', false); });
+    check(await goto(2512), 'at the diamond gate (2512)');
+    await page.evaluate(() => { MH.sendCommand('open north', false); });
     await sleep(800);
-    await page.evaluate(() => MH.sendCommand('close east', false));
-    await waitFor(page, () => MH3D.heroRoom().doors.east && MH3D.heroRoom().doors.east.closed, null, 20);
+    await page.evaluate(() => MH.sendCommand('close north', false));
+    await waitFor(page, () => MH3D.heroRoom().doors.north && MH3D.heroRoom().doors.north.closed, null, 20);
     const at = await page.evaluate(() => {
       const r = MH3D.heroRoom();
       const p = MH3D.hero.root.position;
-      p.set(r.ox + 24 - 1.6, 0, r.oz + 7.5);
+      p.set(r.ox + 12, 0, r.oz + 1.6);
       return [p.x, p.z];
     });
     await sleep(2500);
     const text = await page.evaluate(() => !document.getElementById('prompt').classList.contains('hidden') && document.querySelector('#prompt span').textContent);
-    check(/open the oak door/i.test(text || ''), `prompt: "${text}"`);
+    check(/open the diamond gate/i.test(text || ''), `prompt: "${text}"`);
     await page.screenshot({ path: path.join(OUT, 'door-prompt.png') });
     await page.evaluate(() => { window.__sent.length = 0; });
     await page.keyboard.press('e');
-    const opened = await waitFor(page, () => MH3D.heroRoom().doors.east && !MH3D.heroRoom().doors.east.closed, null, 20);
+    const opened = await waitFor(page, () => MH3D.heroRoom().doors.north && !MH3D.heroRoom().doors.north.closed, null, 20);
     const sent = await page.evaluate(() => window.__sent.filter(c => c.startsWith('webdoor')));
-    check(opened && sent.length === 1 && sent[0] === 'webdoor 921 east open', `E opened it with one webdoor: ${JSON.stringify(sent)}`);
+    check(opened && sent.length === 1 && sent[0] === 'webdoor 2512 north open', `E opened it with one webdoor: ${JSON.stringify(sent)}`);
     const meshOpen = await page.evaluate(() => {
       const r = MH3D.heroRoom();
-      const m = r.built && r.built.doors && r.built.doors.east;
+      const m = r.built && r.built.doors && r.built.doors.north;
       return m ? m.userData.open : 'no mesh';
     });
     check(meshOpen === true, `the door mesh swung open (${meshOpen})`);
     // lock it without the key: the prompt names the key
-    await page.evaluate(() => { for (const c of ['oload 900', 'close east', 'lock east', 'drop key', 'drop key', 'drop key', 'purge']) MH.sendCommand(c, false); });
+    await page.evaluate(() => { for (const c of ['oload 2500', 'close north', 'lock north', 'drop key', 'drop key', 'drop key', 'purge']) MH.sendCommand(c, false); });
     await sleep(2500);
     await page.evaluate(() => MH.refreshState && MH.refreshState());   // keys are per viewer: ask again
-    await waitFor(page, () => MH3D.heroRoom().doors.east && MH3D.heroRoom().doors.east.locked, null, 20);
+    await waitFor(page, () => MH3D.heroRoom().doors.north && MH3D.heroRoom().doors.north.locked, null, 20);
     await sleep(2500);
     const locked = await page.evaluate(() => document.querySelector('#prompt span').textContent);
-    check(/needs a golden key/i.test(locked || ''), `locked prompt: "${locked}"`);
+    check(/needs a diamond key/i.test(locked || ''), `locked prompt: "${locked}"`);
     await page.screenshot({ path: path.join(OUT, 'door-locked.png') });
     // leave it as the zone keeps it
-    await page.evaluate(() => { for (const c of ['oload 900', 'unlock east', 'open east', 'drop key', 'drop key', 'drop key', 'purge']) MH.sendCommand(c, false); });
+    await page.evaluate(() => { for (const c of ['oload 2500', 'unlock north', 'open north', 'drop key', 'drop key', 'drop key', 'purge']) MH.sendCommand(c, false); });
     await sleep(2000);
   }
 
   if (MODE === 'camera') {
-    check(await goto(3001), 'in the Temple of Midgaard (3001)');
+    check(await goto(3001), 'in the Temple of Garathorm (3001)');
     await sleep(1500);
     const box = await page.evaluate(() => { const r = MH3D.engine.renderer.domElement.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; });
     // right-drag 120 px to the right: the view turns right, and no menu opens
@@ -234,7 +234,7 @@ async function waitFor(page, fn, arg, secs = 60) {
   }
 
   if (MODE === 'spellbook') {
-    check(await goto(3001), 'in the Temple of Midgaard (3001)');
+    check(await goto(3001), 'in the Temple of Garathorm (3001)');
     await page.evaluate(() => MH.sendCommand('webbar', false));          // no arguments: forget the arranged bar
     await sleep(1500);
     await page.evaluate(() => MH.refreshState && MH.refreshState());
@@ -299,7 +299,7 @@ async function waitFor(page, fn, arg, secs = 60) {
   }
 
   if (MODE === 'trainer') {
-    check(await goto(3001), 'in the Temple of Midgaard (3001)');
+    check(await goto(3001), 'in the Temple of Garathorm (3001)');
     const guild = await page.evaluate(() => MH.state.player && MH.state.player.guild);
     check(guild && guild.vnum, `the payload names your guild's trainer (${guild && guild.trainer}, ${guild && guild.room})`);
     await page.evaluate(n => MH.sendCommand(`set ${n} skill bash 85`, false), CFG.character.name.toLowerCase());
@@ -383,7 +383,7 @@ async function waitFor(page, fn, arg, secs = 60) {
   }
 
   if (MODE === 'creatures') {
-    check(await goto(3001), 'in the Temple of Midgaard (3001)');
+    check(await goto(3001), 'in the Temple of Garathorm (3001)');
     const want = { 3068: 'slime', 5202: 'chest', 5423: 'knight still', 3602: 'knight', 3016: 'knight', 23506: 'greendemon', 6115: 'mage', 6402: 'book_single', 3014: 'rat' };
     await page.evaluate(vs => { for (const c of ['purge', ...vs.map(v => `mload ${v}`)]) MH.sendCommand(c, false); }, Object.keys(want));
     await sleep(1500);
@@ -464,6 +464,31 @@ async function waitFor(page, fn, arg, secs = 60) {
     check(played >= 2, `${played} of ${pick.length} abilities played their own look from the key press and the server's event`);
     await page.evaluate(() => MH.sendCommand('purge', false));
     await sleep(800);
+  }
+
+  if (MODE === 'atlas') {
+    // the world re-laid on the Bedlam atlas: the city, the long trade road, the forest and the
+    // Newbie Zone through its hookup each load and draw without page errors
+    check(await goto(3001), 'in the Temple of Garathorm (3001)');
+    const city = await page.evaluate(() => ({ name: MH3D.zone().name, n: MH3D.zone().rooms.size, room: MH3D.heroRoom().name }));
+    check(/Garathorm/.test(city.name) && city.n > 150, `the city is the atlas's Garathorm (${city.name}, ${city.n} rooms)`);
+    check(/Temple Of Garathorm/i.test(city.room), `the temple has its atlas name (${city.room})`);
+    await page.screenshot({ path: path.join(OUT, 'atlas-temple.png') });
+    for (const [v, label] of [[3061, 'the Great Field, on the Trade Road'], [6001, 'the Light Forest trail, on the Plains'], [18600, 'the Newbie Zone']]) {
+      const t = Date.now();
+      const ok = await goto(v);
+      const info = await page.evaluate(() => ({ name: MH3D.zone().name, n: MH3D.zone().rooms.size }));
+      check(ok, `${label}: arrived, zone ${info.name} (${info.n} rooms) in ${((Date.now() - t) / 1000).toFixed(1)} s`);
+      await sleep(1500);
+    }
+    // walk the hookup as a player would: from the Great Field east into the Newbie Zone
+    await goto(3061);
+    await sleep(1000);
+    await page.evaluate(() => MH.sendCommand('east', false));
+    check(await waitFor(page, () => MH3D.heroRoom() && MH3D.heroRoom().vnum === 18600 && !MH3D.hop(), null, 90),
+      'east from the Great Field walks into the Newbie Zone');
+    await page.screenshot({ path: path.join(OUT, 'atlas-newbie.png') });
+    check(errors.length === 0, `no page errors (${errors.slice(0, 2).join(' | ')})`);
   }
 
   if (MODE === 'gear') {

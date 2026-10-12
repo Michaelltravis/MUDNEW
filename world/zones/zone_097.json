@@ -4,7 +4,6 @@
  "lifespan": 9999,
  "reset_mode": 0,
  "top": 9799,
- "rooms": {},
  "mobs": {
   "9700": {
    "vnum": 9700,
@@ -85,7 +84,7 @@
     "phases": [
      {
       "threshold": 50,
-      "message": "The Cinder Smith plunges his arm into the forge \u2014 his hammer comes out glowing white!",
+      "message": "The Cinder Smith plunges his arm into the forge — his hammer comes out glowing white!",
       "spawn_adds": {
        "9701": 1
       }
@@ -94,7 +93,7 @@
     "abilities": [
      {
       "name": "Hammerfall",
-      "telegraph": "The Cinder Smith raises his hammer high over his head \u2014 the air shimmers with heat!",
+      "telegraph": "The Cinder Smith raises his hammer high over his head — the air shimmers with heat!",
       "cast_time": 2.5,
       "cooldown": 18,
       "damage_dice": "3d10+10",
@@ -103,7 +102,7 @@
      },
      {
       "name": "Slag Wave",
-      "telegraph": "The Cinder Smith kicks over the forge \u2014 a wave of molten slag rolls outward!",
+      "telegraph": "The Cinder Smith kicks over the forge — a wave of molten slag rolls outward!",
       "cast_time": 3,
       "cooldown": 26,
       "damage_dice": "3d6+8",
@@ -222,13 +221,13 @@
      },
      {
       "threshold": 25,
-      "message": "Gorrund roars \u2014 the walls of the keep shake and dust rains from the rafters!"
+      "message": "Gorrund roars — the walls of the keep shake and dust rains from the rafters!"
      }
     ],
     "abilities": [
      {
       "name": "Rampart Crush",
-      "telegraph": "Gorrund heaves his maul overhead \u2014 he is about to bring the floor down around him!",
+      "telegraph": "Gorrund heaves his maul overhead — he is about to bring the floor down around him!",
       "cast_time": 3,
       "cooldown": 22,
       "damage_dice": "3d10+10",
@@ -238,7 +237,7 @@
      },
      {
       "name": "Siege Charge",
-      "telegraph": "Gorrund lowers his head and paws the ground like a bull \u2014 he is going to charge!",
+      "telegraph": "Gorrund lowers his head and paws the ground like a bull — he is going to charge!",
       "cast_time": 2.5,
       "cooldown": 20,
       "damage_dice": "4d10+12",
@@ -364,7 +363,7 @@
     "phases": [
      {
       "threshold": 50,
-      "message": "The Echo splits in two \u2014 and both halves keep casting!",
+      "message": "The Echo splits in two — and both halves keep casting!",
       "spawn_adds": {
        "9711": 1
       }
@@ -373,7 +372,7 @@
     "abilities": [
      {
       "name": "Arcane Torrent",
-      "telegraph": "The Echo draws a long breath of violet light \u2014 a torrent is coming!",
+      "telegraph": "The Echo draws a long breath of violet light — a torrent is coming!",
       "cast_time": 2.5,
       "cooldown": 18,
       "damage_dice": "3d10+10",
@@ -495,7 +494,7 @@
     "phases": [
      {
       "threshold": 50,
-      "message": "Vaelith tightens her coils \u2014 the star shudders and spits gravity motes!",
+      "message": "Vaelith tightens her coils — the star shudders and spits gravity motes!",
       "spawn_adds": {
        "9715": 1
       }
@@ -508,7 +507,7 @@
     "abilities": [
      {
       "name": "Event Horizon",
-      "telegraph": "Vaelith opens her jaws and the light around her bends inward \u2014 the horizon is closing!",
+      "telegraph": "Vaelith opens her jaws and the light around her bends inward — the horizon is closing!",
       "cast_time": 3,
       "cooldown": 22,
       "damage_dice": "3d10+10",
@@ -518,7 +517,7 @@
      },
      {
       "name": "Starfall",
-      "telegraph": "Vaelith lifts her head toward the star \u2014 a shard of it is about to fall on you!",
+      "telegraph": "Vaelith lifts her head toward the star — a shard of it is about to fall on you!",
       "cast_time": 2.5,
       "cooldown": 20,
       "damage_dice": "4d10+12",
@@ -656,7 +655,7 @@
      },
      {
       "name": "Gilded Wrath",
-      "telegraph": "Gold dust swirls up around the Hierophant \u2014 it is about to ignite!",
+      "telegraph": "Gold dust swirls up around the Hierophant — it is about to ignite!",
       "cast_time": 3,
       "cooldown": 26,
       "damage_dice": "3d6+8",
@@ -775,13 +774,13 @@
      },
      {
       "threshold": 25,
-      "message": "Serathiel shrieks \u2014 the black glass of its wings begins to crack!"
+      "message": "Serathiel shrieks — the black glass of its wings begins to crack!"
      }
     ],
     "abilities": [
      {
       "name": "Wrath of the Fallen",
-      "telegraph": "Serathiel spreads its six black wings \u2014 the light around it gathers to burst!",
+      "telegraph": "Serathiel spreads its six black wings — the light around it gathers to burst!",
       "cast_time": 3,
       "cooldown": 22,
       "damage_dice": "3d10+10",
@@ -940,7 +939,7 @@
     "phases": [
      {
       "threshold": 50,
-      "message": "The Templar plunges its blade into the ash \u2014 a wisp tears free!",
+      "message": "The Templar plunges its blade into the ash — a wisp tears free!",
       "spawn_adds": {
        "9751": 1
       }
@@ -1077,13 +1076,13 @@
      },
      {
       "threshold": 25,
-      "message": "Morvane roars \u2014 the black sun flares and the chapel goes dark!"
+      "message": "Morvane roars — the black sun flares and the chapel goes dark!"
      }
     ],
     "abilities": [
      {
       "name": "Black Sun",
-      "telegraph": "The black sun in Morvane's chest swells \u2014 it is about to burst!",
+      "telegraph": "The black sun in Morvane's chest swells — it is about to burst!",
       "cast_time": 3,
       "cooldown": 22,
       "damage_dice": "3d10+10",
@@ -1214,7 +1213,7 @@
     "phases": [
      {
       "threshold": 50,
-      "message": "The Soulbinder looses a chain \u2014 a shade tears free of it!",
+      "message": "The Soulbinder looses a chain — a shade tears free of it!",
       "spawn_adds": {
        "9761": 1
       }
@@ -1353,7 +1352,7 @@
      },
      {
       "threshold": 25,
-      "message": "Xal'thar laughs \u2014 and every jar in the vault begins to crack!"
+      "message": "Xal'thar laughs — and every jar in the vault begins to crack!"
      }
     ],
     "abilities": [
@@ -1467,7 +1466,7 @@
     "phases": [
      {
       "threshold": 50,
-      "message": "The Keeper rattles its mantle \u2014 a tomb warden lurches out of the dark!",
+      "message": "The Keeper rattles its mantle — a tomb warden lurches out of the dark!",
       "spawn_adds": {
        "9731": 1
       }
@@ -1504,7 +1503,7 @@
    ],
    "short_desc": "a vault sentinel",
    "long_desc": "A vault sentinel clanks forward here, its chest a strongbox with teeth.",
-   "description": "A guardian of brass and coral built by the priests of Nereus to keep their treasure \u2014 and the thieves who\ncame for it.",
+   "description": "A guardian of brass and coral built by the priests of Nereus to keep their treasure — and the thieves who\ncame for it.",
    "level": 45,
    "max_hp": 1000,
    "damage_dice": "2d6+6",
@@ -1573,7 +1572,7 @@
    ],
    "short_desc": "Auditor Mordessa",
    "long_desc": "Auditor Mordessa sits here behind a desk piled with ledgers, quill scratching.",
-   "description": "The keeper of the Vault of Ages: a gaunt woman in ink-black robes whose eyes are two gold coins. Every\ntheft that was ever planned against her vault is written in her ledger \u2014 and every thief's fate.",
+   "description": "The keeper of the Vault of Ages: a gaunt woman in ink-black robes whose eyes are two gold coins. Every\ntheft that was ever planned against her vault is written in her ledger — and every thief's fate.",
    "level": 50,
    "max_hp": 1000,
    "damage_dice": "2d5+6",
@@ -1597,20 +1596,20 @@
     "phases": [
      {
       "threshold": 50,
-      "message": "Mordessa tears a page from her ledger \u2014 it bursts into a wisp of cold fire!",
+      "message": "Mordessa tears a page from her ledger — it bursts into a wisp of cold fire!",
       "spawn_adds": {
        "9735": 1
       }
      },
      {
       "threshold": 25,
-      "message": "Mordessa screams for the guard \u2014 the vault doors begin to grind shut!"
+      "message": "Mordessa screams for the guard — the vault doors begin to grind shut!"
      }
     ],
     "abilities": [
      {
       "name": "Final Accounting",
-      "telegraph": "Mordessa slams her ledger shut \u2014 the vault itself is about to collect!",
+      "telegraph": "Mordessa slams her ledger shut — the vault itself is about to collect!",
       "cast_time": 3,
       "cooldown": 22,
       "damage_dice": "3d10+10",
@@ -1626,7 +1625,7 @@
       "damage_dice": "4d10+12",
       "dodge": true,
       "interruptible": true,
-      "on_success_message": "Your debt is called in \u2014 in blood!"
+      "on_success_message": "Your debt is called in — in blood!"
      },
      {
       "name": "Call the Guard",
@@ -1727,7 +1726,7 @@
     "abilities": [
      {
       "name": "Talon Dive",
-      "telegraph": "The Matriarch rises high on the wind \u2014 she is about to dive on you!",
+      "telegraph": "The Matriarch rises high on the wind — she is about to dive on you!",
       "cast_time": 2.5,
       "cooldown": 18,
       "damage_dice": "3d10+10",
@@ -1861,7 +1860,7 @@
     "abilities": [
      {
       "name": "Tail Sweep",
-      "telegraph": "Gloomfang coils her great tail \u2014 it is about to sweep the whole nest!",
+      "telegraph": "Gloomfang coils her great tail — it is about to sweep the whole nest!",
       "cast_time": 3,
       "cooldown": 22,
       "damage_dice": "3d10+10",
@@ -1871,7 +1870,7 @@
      },
      {
       "name": "Venom Dive",
-      "telegraph": "Gloomfang rears back, venom dripping from her sting \u2014 she is going to strike!",
+      "telegraph": "Gloomfang rears back, venom dripping from her sting — she is going to strike!",
       "cast_time": 2.5,
       "cooldown": 20,
       "damage_dice": "4d10+12",
@@ -1944,7 +1943,7 @@
    ],
    "short_desc": "the Carillon Engine",
    "long_desc": "The Carillon Engine towers here, a cathedral of bells on brass legs.",
-   "description": "A walking bell-tower of the Clockwork Foundry, its hundred bells tuned to a song nobody has heard in a\nthousand years \u2014 and the gears that remember it.",
+   "description": "A walking bell-tower of the Clockwork Foundry, its hundred bells tuned to a song nobody has heard in a\nthousand years — and the gears that remember it.",
    "level": 48,
    "max_hp": 1000,
    "damage_dice": "2d5+6",
@@ -1968,7 +1967,7 @@
     "phases": [
      {
       "threshold": 50,
-      "message": "The Engine rings out of tune \u2014 a chime automaton clatters to life!",
+      "message": "The Engine rings out of tune — a chime automaton clatters to life!",
       "spawn_adds": {
        "9771": 1
       }
@@ -1986,7 +1985,7 @@
      },
      {
       "name": "Discord Peal",
-      "telegraph": "Every bell on the Engine shudders at once \u2014 a deafening peal is coming!",
+      "telegraph": "Every bell on the Engine shudders at once — a deafening peal is coming!",
       "cast_time": 3,
       "cooldown": 26,
       "damage_dice": "3d6+8",
@@ -2105,7 +2104,7 @@
      },
      {
       "threshold": 25,
-      "message": "The Mute King rises \u2014 and for the first time in a thousand years, he screams!"
+      "message": "The Mute King rises — and for the first time in a thousand years, he screams!"
      }
     ],
     "abilities": [
@@ -2121,7 +2120,7 @@
      },
      {
       "name": "Discord",
-      "telegraph": "The Mute King points at you \u2014 the wrongest note there is gathers in his fist!",
+      "telegraph": "The Mute King points at you — the wrongest note there is gathers in his fist!",
       "cast_time": 2.5,
       "cooldown": 20,
       "damage_dice": "4d10+12",
@@ -2149,7 +2148,7 @@
     "mark"
    ],
    "short_desc": "a mirror-blade",
-   "long_desc": "A mirror-blade watches you here in a coat of silvered glass \u2014 one of the three names on your contract.",
+   "long_desc": "A mirror-blade watches you here in a coat of silvered glass — one of the three names on your contract.",
    "description": "A killer of the Shadowspire whose coat is sewn with shards of mirror, so that anyone who looks at them sees\nonly themselves. There is a price on this head, and the price is yours.",
    "level": 47,
    "max_hp": 1000,
@@ -2237,7 +2236,7 @@
      {
       "name": "Miasma",
       "element": "poison",
-      "telegraph": "The Poisoner kicks his cauldron over \u2014 a cloud of poison rolls out!",
+      "telegraph": "The Poisoner kicks his cauldron over — a cloud of poison rolls out!",
       "cast_time": 3,
       "cooldown": 26,
       "damage_dice": "3d6+8",
@@ -2347,20 +2346,20 @@
     "phases": [
      {
       "threshold": 50,
-      "message": "The Faceless One steps into a mirror \u2014 and a reflection steps out!",
+      "message": "The Faceless One steps into a mirror — and a reflection steps out!",
       "spawn_adds": {
        "9785": 1
       }
      },
      {
       "threshold": 25,
-      "message": "The Faceless One takes off its stolen face \u2014 there is nothing underneath!"
+      "message": "The Faceless One takes off its stolen face — there is nothing underneath!"
      }
     ],
     "abilities": [
      {
       "name": "Shatter",
-      "telegraph": "Every mirror in the hall cracks at once \u2014 the shards are about to fly!",
+      "telegraph": "Every mirror in the hall cracks at once — the shards are about to fly!",
       "cast_time": 3,
       "cooldown": 22,
       "damage_dice": "3d10+10",
@@ -2441,5 +2440,6 @@
   }
  },
  "objects": {},
- "resets": []
+ "resets": [],
+ "rooms": {}
 }

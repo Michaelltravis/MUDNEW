@@ -1,0 +1,531 @@
+{
+ "number": 496,
+ "name": "Isle of Lag",
+ "builders": "Mortis",
+ "atlas_area": 96,
+ "rooms": {
+  "2400": {
+   "vnum": 2400,
+   "name": "A Cluttered Beach",
+   "map": {
+    "x": 48,
+    "y": -10,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2401,
+     "description": "To the north lies The Clearing Before The Forest."
+    },
+    "west": {
+     "to_room": 9513,
+     "description": "To the west lies In front of a pier at an island."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. Ways lead north and west.",
+   "placeholder": true
+  },
+  "2401": {
+   "vnum": 2401,
+   "name": "The Clearing Before The Forest",
+   "map": {
+    "x": 48,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 2414,
+     "description": "To the east lies Entrance Into The Caves."
+    },
+    "south": {
+     "to_room": 2400,
+     "description": "To the south lies A Cluttered Beach."
+    },
+    "west": {
+     "to_room": 2402,
+     "description": "To the west lies A Well Traveled Path."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Ferns and\nmoss soften the ground beneath a dim green canopy. Ways lead east, south\nand west.",
+   "placeholder": true
+  },
+  "2402": {
+   "vnum": 2402,
+   "name": "A Well Traveled Path",
+   "map": {
+    "x": 47,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 2401,
+     "description": "To the east lies The Clearing Before The Forest."
+    },
+    "west": {
+     "to_room": 2403,
+     "description": "To the west lies A Clearing In The Path."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Birdsong\ndrifts down through the branches overhead. Ways lead east and west.",
+   "placeholder": true
+  },
+  "2403": {
+   "vnum": 2403,
+   "name": "A Clearing In The Path",
+   "map": {
+    "x": 46,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2404,
+     "description": "To the north lies The Endless Path Thru The Forest."
+    },
+    "east": {
+     "to_room": 2402,
+     "description": "To the east lies A Well Traveled Path."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Fallen\nneedles and leaves muffle every step. Ways lead north and east.",
+   "placeholder": true
+  },
+  "2404": {
+   "vnum": 2404,
+   "name": "The Endless Path Thru The Forest",
+   "map": {
+    "x": 46,
+    "y": -8,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 2405,
+     "description": "To the east lies A Small Crowded Clearing."
+    },
+    "south": {
+     "to_room": 2403,
+     "description": "To the south lies A Clearing In The Path."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Old trees crowd close,\ntheir roots knotted across the path. Ways lead east and south.",
+   "placeholder": true
+  },
+  "2405": {
+   "vnum": 2405,
+   "name": "A Small Crowded Clearing",
+   "map": {
+    "x": 47,
+    "y": -8,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2408,
+     "description": "To the north lies A Rocky Bend In The Trail."
+    },
+    "east": {
+     "to_room": 2406,
+     "description": "To the east lies A Bend In The Trail."
+    },
+    "west": {
+     "to_room": 2404,
+     "description": "To the west lies The Endless Path Thru The Forest."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Fallen\nneedles and leaves muffle every step. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "2406": {
+   "vnum": 2406,
+   "name": "A Bend In The Trail",
+   "map": {
+    "x": 48,
+    "y": -8,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2407,
+     "description": "To the north lies The Dark Tunnel."
+    },
+    "west": {
+     "to_room": 2405,
+     "description": "To the west lies A Small Crowded Clearing."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead. Ways lead north and west.",
+   "placeholder": true
+  },
+  "2407": {
+   "vnum": 2407,
+   "name": "The Dark Tunnel",
+   "map": {
+    "x": 48,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2411,
+     "description": "To the north lies Entrance To The Hills."
+    },
+    "south": {
+     "to_room": 2406,
+     "description": "To the south lies A Bend In The Trail."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "2408": {
+   "vnum": 2408,
+   "name": "A Rocky Bend In The Trail",
+   "map": {
+    "x": 47,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 2405,
+     "description": "To the south lies A Small Crowded Clearing."
+    },
+    "west": {
+     "to_room": 2409,
+     "description": "To the west lies A Deep, Dark Cave."
+    }
+   },
+   "description": "A narrow path winds between the hillocks. The ground rises and falls in\ngrassy folds. Ways lead south and west.",
+   "placeholder": true
+  },
+  "2409": {
+   "vnum": 2409,
+   "name": "A Deep, Dark Cave",
+   "map": {
+    "x": 46,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2408,
+     "description": "To the east lies A Rocky Bend In The Trail."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "2410": {
+   "vnum": 2410,
+   "name": "A Sharp Curve In The Path",
+   "map": {
+    "x": 47,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2412,
+     "description": "To the north lies Another Bend In The Trail."
+    },
+    "east": {
+     "to_room": 2411,
+     "description": "To the east lies Entrance To The Hills."
+    }
+   },
+   "description": "The ground rises and falls in grassy folds. Rocks break through the thin\nsoil of the slope. Ways lead north and east.",
+   "placeholder": true
+  },
+  "2411": {
+   "vnum": 2411,
+   "name": "Entrance To The Hills",
+   "map": {
+    "x": 48,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 2407,
+     "description": "To the south lies The Dark Tunnel."
+    },
+    "west": {
+     "to_room": 2410,
+     "description": "To the west lies A Sharp Curve In The Path."
+    }
+   },
+   "description": "The ground rises and falls in grassy folds. Rocks break through the thin\nsoil of the slope. Ways lead south and west.",
+   "placeholder": true
+  },
+  "2412": {
+   "vnum": 2412,
+   "name": "Another Bend In The Trail",
+   "map": {
+    "x": 47,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 2413,
+     "description": "To the east lies Before The Summit."
+    },
+    "south": {
+     "to_room": 2410,
+     "description": "To the south lies A Sharp Curve In The Path."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Wind howls through\na cleft in the stone. Ways lead east and south.",
+   "placeholder": true
+  },
+  "2413": {
+   "vnum": 2413,
+   "name": "Before The Summit",
+   "map": {
+    "x": 48,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 2422,
+     "description": "To the north lies The Final Plateau."
+    },
+    "west": {
+     "to_room": 2412,
+     "description": "To the west lies Another Bend In The Trail."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. The air is thin and cold, and\nloose scree shifts underfoot. Ways lead north and west.",
+   "placeholder": true
+  },
+  "2414": {
+   "vnum": 2414,
+   "name": "Entrance Into The Caves",
+   "map": {
+    "x": 50,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2415,
+     "description": "To the east lies A Curve In The Caves."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads east.",
+   "placeholder": true
+  },
+  "2415": {
+   "vnum": 2415,
+   "name": "A Curve In The Caves",
+   "map": {
+    "x": 51,
+    "y": -9,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2417,
+     "description": "To the north lies A Sharp Bend."
+    },
+    "west": {
+     "to_room": 2414,
+     "description": "To the west lies Entrance Into The Caves."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "2416": {
+   "vnum": 2416,
+   "name": "Another Curve",
+   "map": {
+    "x": 50,
+    "y": -8,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2418,
+     "description": "To the north lies A Narrow Twist."
+    },
+    "east": {
+     "to_room": 2417,
+     "description": "To the east lies A Sharp Bend."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and east.",
+   "placeholder": true
+  },
+  "2417": {
+   "vnum": 2417,
+   "name": "A Sharp Bend",
+   "map": {
+    "x": 51,
+    "y": -8,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 2415,
+     "description": "To the south lies A Curve In The Caves."
+    },
+    "west": {
+     "to_room": 2416,
+     "description": "To the west lies Another Curve."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead south and west.",
+   "placeholder": true
+  },
+  "2418": {
+   "vnum": 2418,
+   "name": "A Narrow Twist",
+   "map": {
+    "x": 50,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 2419,
+     "description": "To the east lies The Final Bend."
+    },
+    "south": {
+     "to_room": 2416,
+     "description": "To the south lies Another Curve."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and south.",
+   "placeholder": true
+  },
+  "2419": {
+   "vnum": 2419,
+   "name": "The Final Bend",
+   "map": {
+    "x": 51,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 2420,
+     "description": "To the north lies The Cave Of Doom."
+    },
+    "west": {
+     "to_room": 2418,
+     "description": "To the west lies A Narrow Twist."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "2420": {
+   "vnum": 2420,
+   "name": "The Cave Of Doom",
+   "map": {
+    "x": 51,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 2419,
+     "description": "To the south lies The Final Bend."
+    },
+    "up": {
+     "to_room": 2400,
+     "description": "To the up lies A Cluttered Beach."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and up.",
+   "placeholder": true
+  },
+  "2422": {
+   "vnum": 2422,
+   "name": "The Final Plateau",
+   "map": {
+    "x": 48,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 2413,
+     "description": "To the south lies Before The Summit."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. Bare rock climbs steeply on one\nside and falls away on the other. A way leads south.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

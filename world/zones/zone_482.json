@@ -1,0 +1,1364 @@
+{
+ "number": 482,
+ "name": "Haunted House",
+ "builders": "Pi",
+ "atlas_area": 82,
+ "rooms": {
+  "1900": {
+   "vnum": 1900,
+   "name": "The Gate",
+   "map": {
+    "x": -5,
+    "y": -28,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1901,
+     "description": "To the north lies The Front Yard."
+    },
+    "south": {
+     "to_room": 4414,
+     "description": "To the south lies The Field."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "1901": {
+   "vnum": 1901,
+   "name": "The Front Yard",
+   "map": {
+    "x": -5,
+    "y": -26,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1902,
+     "description": "To the north lies The Grand Foyer.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 1900,
+     "description": "To the south lies The Gate.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "1902": {
+   "vnum": 1902,
+   "name": "The Grand Foyer",
+   "map": {
+    "x": -5,
+    "y": -24,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1907,
+     "description": "To the north lies The Kitchen."
+    },
+    "east": {
+     "to_room": 1905,
+     "description": "To the east lies The Living Room."
+    },
+    "south": {
+     "to_room": 1901,
+     "description": "To the south lies The Front Yard."
+    },
+    "west": {
+     "to_room": 1903,
+     "description": "To the west lies The Sitting Room."
+    },
+    "up": {
+     "to_room": 1917,
+     "description": "To the up lies On The Grand Staircase."
+    },
+    "down": {
+     "to_room": 1929,
+     "description": "To the down lies The Basement Laboratory.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east, south, west, up and down.",
+   "placeholder": true
+  },
+  "1903": {
+   "vnum": 1903,
+   "name": "The Sitting Room",
+   "map": {
+    "x": -6,
+    "y": -24,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1916,
+     "description": "To the north lies The Dining Room."
+    },
+    "east": {
+     "to_room": 1902,
+     "description": "To the east lies The Grand Foyer."
+    },
+    "west": {
+     "to_room": 1904,
+     "description": "To the west lies The Library.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "1904": {
+   "vnum": 1904,
+   "name": "The Library",
+   "map": {
+    "x": -7,
+    "y": -24,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1927,
+     "description": "To the north lies The Hidden Staircase.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 1903,
+     "description": "To the east lies The Sitting Room."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "1905": {
+   "vnum": 1905,
+   "name": "The Living Room",
+   "map": {
+    "x": -4,
+    "y": -24,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 1902,
+     "description": "To the west lies The Grand Foyer."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads west.",
+   "placeholder": true
+  },
+  "1906": {
+   "vnum": 1906,
+   "name": "The Greenhouse",
+   "map": {
+    "x": -4,
+    "y": -21,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 1907,
+     "description": "To the west lies The Kitchen."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads west.",
+   "placeholder": true
+  },
+  "1907": {
+   "vnum": 1907,
+   "name": "The Kitchen",
+   "map": {
+    "x": -5,
+    "y": -21,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1906,
+     "description": "To the east lies The Greenhouse."
+    },
+    "south": {
+     "to_room": 1902,
+     "description": "To the south lies The Grand Foyer."
+    },
+    "west": {
+     "to_room": 1908,
+     "description": "To the west lies The Servants Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "1908": {
+   "vnum": 1908,
+   "name": "The Servants Corridor",
+   "map": {
+    "x": -6,
+    "y": -21,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1913,
+     "description": "To the north lies The Housekeeper's Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 1907,
+     "description": "To the east lies The Kitchen."
+    },
+    "south": {
+     "to_room": 1912,
+     "description": "To the south lies The Cook's Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 1909,
+     "description": "To the west lies The End Of The Servants Corridor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "1909": {
+   "vnum": 1909,
+   "name": "The End Of The Servants Corridor",
+   "map": {
+    "x": -8,
+    "y": -21,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1915,
+     "description": "To the north lies The Butler's Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "east": {
+     "to_room": 1908,
+     "description": "To the east lies The Servants Corridor."
+    },
+    "south": {
+     "to_room": 1910,
+     "description": "To the south lies The Chef's Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "1910": {
+   "vnum": 1910,
+   "name": "The Chef's Room",
+   "map": {
+    "x": -8,
+    "y": -22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1909,
+     "description": "To the north lies The End Of The Servants Corridor."
+    },
+    "east": {
+     "to_room": 1911,
+     "description": "To the east lies The Water Closet.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north and east.",
+   "placeholder": true
+  },
+  "1911": {
+   "vnum": 1911,
+   "name": "The Water Closet",
+   "map": {
+    "x": -7,
+    "y": -22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1912,
+     "description": "To the east lies The Cook's Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 1910,
+     "description": "To the west lies The Chef's Room."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "1912": {
+   "vnum": 1912,
+   "name": "The Cook's Room",
+   "map": {
+    "x": -6,
+    "y": -22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1908,
+     "description": "To the north lies The Servants Corridor."
+    },
+    "west": {
+     "to_room": 1911,
+     "description": "To the west lies The Water Closet."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "1913": {
+   "vnum": 1913,
+   "name": "The Housekeeper's Room",
+   "map": {
+    "x": -6,
+    "y": -20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 1908,
+     "description": "To the south lies The Servants Corridor."
+    },
+    "west": {
+     "to_room": 1914,
+     "description": "To the west lies The Water Closet."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead south and west.",
+   "placeholder": true
+  },
+  "1914": {
+   "vnum": 1914,
+   "name": "The Water Closet",
+   "map": {
+    "x": -7,
+    "y": -20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1913,
+     "description": "To the east lies The Housekeeper's Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 1915,
+     "description": "To the west lies The Butler's Room."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "1915": {
+   "vnum": 1915,
+   "name": "The Butler's Room",
+   "map": {
+    "x": -8,
+    "y": -20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1914,
+     "description": "To the east lies The Water Closet.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 1909,
+     "description": "To the south lies The End Of The Servants Corridor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead east and south.",
+   "placeholder": true
+  },
+  "1916": {
+   "vnum": 1916,
+   "name": "The Dining Room",
+   "map": {
+    "x": -6,
+    "y": -23,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 1903,
+     "description": "To the south lies The Sitting Room."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads south.",
+   "placeholder": true
+  },
+  "1917": {
+   "vnum": 1917,
+   "name": "On The Grand Staircase",
+   "map": {
+    "x": -3,
+    "y": -22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 1918,
+     "description": "To the up lies At The Top Of The Grand Staircase."
+    },
+    "down": {
+     "to_room": 1902,
+     "description": "To the down lies The Grand Foyer."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead up and down.",
+   "placeholder": true
+  },
+  "1918": {
+   "vnum": 1918,
+   "name": "At The Top Of The Grand Staircase",
+   "map": {
+    "x": -1,
+    "y": -20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1922,
+     "description": "To the east lies The Maid's Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 1919,
+     "description": "To the south lies The Center Of The Hall."
+    },
+    "west": {
+     "to_room": 1921,
+     "description": "To the west lies The Upstairs Water Closet.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "down": {
+     "to_room": 1917,
+     "description": "To the down lies On The Grand Staircase."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east, south, west and down.",
+   "placeholder": true
+  },
+  "1919": {
+   "vnum": 1919,
+   "name": "The Center Of The Hall",
+   "map": {
+    "x": -1,
+    "y": -22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1918,
+     "description": "To the north lies At The Top Of The Grand Staircase."
+    },
+    "east": {
+     "to_room": 1924,
+     "description": "To the east lies The Master Bedroom.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 1920,
+     "description": "To the south lies The End Of The Hall."
+    },
+    "west": {
+     "to_room": 1923,
+     "description": "To the west lies A Little Girl's Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "1920": {
+   "vnum": 1920,
+   "name": "The End Of The Hall",
+   "map": {
+    "x": -1,
+    "y": -24,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1919,
+     "description": "To the north lies The Center Of The Hall."
+    },
+    "east": {
+     "to_room": 1926,
+     "description": "To the east lies The Sitting Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 1925,
+     "description": "To the west lies The Guest Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "1921": {
+   "vnum": 1921,
+   "name": "The Upstairs Water Closet",
+   "map": {
+    "x": -2,
+    "y": -20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1918,
+     "description": "To the east lies At The Top Of The Grand Staircase."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads east.",
+   "placeholder": true
+  },
+  "1922": {
+   "vnum": 1922,
+   "name": "The Maid's Room",
+   "map": {
+    "x": 0,
+    "y": -20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 1924,
+     "description": "To the south lies The Master Bedroom."
+    },
+    "west": {
+     "to_room": 1918,
+     "description": "To the west lies At The Top Of The Grand Staircase."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead south and west.",
+   "placeholder": true
+  },
+  "1923": {
+   "vnum": 1923,
+   "name": "A Little Girl's Room",
+   "map": {
+    "x": -2,
+    "y": -22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1919,
+     "description": "To the east lies The Center Of The Hall."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads east.",
+   "placeholder": true
+  },
+  "1924": {
+   "vnum": 1924,
+   "name": "The Master Bedroom",
+   "map": {
+    "x": 0,
+    "y": -22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1922,
+     "description": "To the north lies The Maid's Room."
+    },
+    "south": {
+     "to_room": 1926,
+     "description": "To the south lies The Sitting Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 1919,
+     "description": "To the west lies The Center Of The Hall."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "1925": {
+   "vnum": 1925,
+   "name": "The Guest Room",
+   "map": {
+    "x": -2,
+    "y": -24,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1920,
+     "description": "To the east lies The End Of The Hall."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads east.",
+   "placeholder": true
+  },
+  "1926": {
+   "vnum": 1926,
+   "name": "The Sitting Room",
+   "map": {
+    "x": 0,
+    "y": -24,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1924,
+     "description": "To the north lies The Master Bedroom."
+    },
+    "west": {
+     "to_room": 1920,
+     "description": "To the west lies The End Of The Hall."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "1927": {
+   "vnum": 1927,
+   "name": "The Hidden Staircase",
+   "map": {
+    "x": -7,
+    "y": -23,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 1904,
+     "description": "To the south lies The Library."
+    },
+    "down": {
+     "to_room": 1928,
+     "description": "To the down lies The Hidden Room."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead south and down.",
+   "placeholder": true
+  },
+  "1928": {
+   "vnum": 1928,
+   "name": "The Hidden Room",
+   "map": {
+    "x": -8,
+    "y": -24,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 1927,
+     "description": "To the up lies The Hidden Staircase."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads up.",
+   "placeholder": true
+  },
+  "1929": {
+   "vnum": 1929,
+   "name": "The Basement Laboratory",
+   "map": {
+    "x": -6,
+    "y": -25,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 1902,
+     "description": "To the up lies The Grand Foyer."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads up.",
+   "placeholder": true
+  },
+  "1930": {
+   "vnum": 1930,
+   "name": "The Main Gate to the Carnival",
+   "map": {
+    "x": 4,
+    "y": -4,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1931,
+     "description": "To the north lies The Main Carnival Grounds."
+    },
+    "south": {
+     "to_room": 15070,
+     "description": "To the south lies The Eastern Gatehouse."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "1931": {
+   "vnum": 1931,
+   "name": "The Main Carnival Grounds",
+   "map": {
+    "x": 4,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1932,
+     "description": "To the north lies The Northern End of the Carnival."
+    },
+    "east": {
+     "to_room": 1934,
+     "description": "To the east lies Hall of the Dancing Nymphs."
+    },
+    "south": {
+     "to_room": 1930,
+     "description": "To the south lies The Main Gate to the Carnival."
+    },
+    "west": {
+     "to_room": 1935,
+     "description": "To the west lies Sorcha the Seer of the Future, Teller of Fortunes."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "1932": {
+   "vnum": 1932,
+   "name": "The Northern End of the Carnival",
+   "map": {
+    "x": 4,
+    "y": 0,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1937,
+     "description": "To the north lies The Fiery Depths of Hades!."
+    },
+    "east": {
+     "to_room": 1933,
+     "description": "To the east lies North-East End of the Carnival."
+    },
+    "south": {
+     "to_room": 1931,
+     "description": "To the south lies The Main Carnival Grounds."
+    },
+    "west": {
+     "to_room": 1936,
+     "description": "To the west lies Strongman Hall of Fame."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "1933": {
+   "vnum": 1933,
+   "name": "North-East End of the Carnival",
+   "map": {
+    "x": 5,
+    "y": 0,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1939,
+     "description": "To the north lies The Lair of the Two-Headed Tiger."
+    },
+    "east": {
+     "to_room": 1940,
+     "description": "To the east lies Sammy the Stupendous Sword Swallower."
+    },
+    "south": {
+     "to_room": 1938,
+     "description": "To the south lies The Eastern Carnival Grounds."
+    },
+    "west": {
+     "to_room": 1932,
+     "description": "To the west lies The Northern End of the Carnival."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "1934": {
+   "vnum": 1934,
+   "name": "Hall of the Dancing Nymphs",
+   "map": {
+    "x": 5,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 1931,
+     "description": "To the west lies The Main Carnival Grounds."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "1935": {
+   "vnum": 1935,
+   "name": "Sorcha the Seer of the Future, Teller of Fortunes",
+   "map": {
+    "x": 3,
+    "y": -3,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1931,
+     "description": "To the east lies The Main Carnival Grounds."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. A way leads east.",
+   "placeholder": true
+  },
+  "1936": {
+   "vnum": 1936,
+   "name": "Strongman Hall of Fame",
+   "map": {
+    "x": 3,
+    "y": 0,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1932,
+     "description": "To the east lies The Northern End of the Carnival."
+    },
+    "down": {
+     "to_room": 1943,
+     "description": "To the down lies Below the Carnival."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead east and down.",
+   "placeholder": true
+  },
+  "1937": {
+   "vnum": 1937,
+   "name": "The Fiery Depths of Hades!",
+   "map": {
+    "x": 4,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 1932,
+     "description": "To the south lies The Northern End of the Carnival."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "1938": {
+   "vnum": 1938,
+   "name": "The Eastern Carnival Grounds",
+   "map": {
+    "x": 5,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1933,
+     "description": "To the north lies North-East End of the Carnival."
+    },
+    "east": {
+     "to_room": 1941,
+     "description": "To the east lies Sideshow Freaks."
+    },
+    "south": {
+     "to_room": 1931,
+     "description": "To the south lies The Main Carnival Grounds."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "1939": {
+   "vnum": 1939,
+   "name": "The Lair of the Two-Headed Tiger",
+   "map": {
+    "x": 5,
+    "y": 1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1942,
+     "description": "To the north lies The Tiger's Den."
+    },
+    "south": {
+     "to_room": 1933,
+     "description": "To the south lies North-East End of the Carnival."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "1940": {
+   "vnum": 1940,
+   "name": "Sammy the Stupendous Sword Swallower",
+   "map": {
+    "x": 6,
+    "y": 0,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 1933,
+     "description": "To the west lies North-East End of the Carnival."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "1941": {
+   "vnum": 1941,
+   "name": "Sideshow Freaks",
+   "map": {
+    "x": 6,
+    "y": -1,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 1938,
+     "description": "To the west lies The Eastern Carnival Grounds."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "1942": {
+   "vnum": 1942,
+   "name": "The Tiger's Den",
+   "map": {
+    "x": 5,
+    "y": 2,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 1939,
+     "description": "To the south lies The Lair of the Two-Headed Tiger."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads south.",
+   "placeholder": true
+  },
+  "1943": {
+   "vnum": 1943,
+   "name": "Below the Carnival",
+   "map": {
+    "x": -2,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1944,
+     "description": "To the east lies A Dank Passage."
+    },
+    "up": {
+     "to_room": 1936,
+     "description": "To the up lies Strongman Hall of Fame."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and up.",
+   "placeholder": true
+  },
+  "1944": {
+   "vnum": 1944,
+   "name": "A Dank Passage",
+   "map": {
+    "x": -1,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1945,
+     "description": "To the east lies The Fun-House of Nis!."
+    },
+    "west": {
+     "to_room": 1943,
+     "description": "To the west lies Below the Carnival."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "1945": {
+   "vnum": 1945,
+   "name": "The Fun-House of Nis!",
+   "map": {
+    "x": 0,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 1946,
+     "description": "To the east lies The Begining of the Fun House."
+    },
+    "west": {
+     "to_room": 1944,
+     "description": "To the west lies A Dank Passage."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead east and west.",
+   "placeholder": true
+  },
+  "1946": {
+   "vnum": 1946,
+   "name": "The Begining of the Fun House",
+   "map": {
+    "x": 1,
+    "y": -6,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1947,
+     "description": "To the north lies A Collapsed Room."
+    },
+    "south": {
+     "to_room": 1948,
+     "description": "To the south lies A Collapsed Room."
+    },
+    "west": {
+     "to_room": 1945,
+     "description": "To the west lies The Fun-House of Nis!."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "1947": {
+   "vnum": 1947,
+   "name": "A Collapsed Room",
+   "map": {
+    "x": 1,
+    "y": -5,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 1946,
+     "description": "To the south lies The Begining of the Fun House."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. A way leads south.",
+   "placeholder": true
+  },
+  "1948": {
+   "vnum": 1948,
+   "name": "A Collapsed Room",
+   "map": {
+    "x": 1,
+    "y": -7,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 1946,
+     "description": "To the north lies The Begining of the Fun House."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads north.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

@@ -1,3394 +1,3292 @@
 {
-  "number": 150,
-  "name": "King Welmar's Castle",
-  "lifespan": 120,
-  "rooms": {
-    "15000": {
-      "vnum": 15000,
-      "name": "The King's Road",
-      "description": "The area opens at the beginning of the actual King's Road. The road is\nwide enough for several horses to ride along side by side with room to\nspare. The stones which make up the road have been put into place with\nsuch skill that the road seems to be perfectly smooth and perfectly\nstraight. You spot a small trail leading to the south through the\nundergrowth which surrounds the road at this point. A traveller passes\nby and waves cheerfully at you. Buildings crowd together on all sides.\nThe sounds of city life echo around.",
-      "sector_type": "city",
-      "flags": [
-        "no_mob"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 15001,
-          "description": "The King's Road continues in a straight line to the east towards a grand castle."
-        },
-        "south": {
-          "to_room": 15061,
-          "description": "A small overgrown trail leads through the undergrowth to the south."
-        },
-        "west": {
-          "to_room": 3502,
-          "description": "The King's Road thins out a bit into a lane just to the west."
-        }
-      },
-      "extra_descs": {
-        "": "traveller"
-      }
-    },
-    "15001": {
-      "vnum": 15001,
-      "name": "The King's Road",
-      "description": "The area opens in the center of the great King's Road. The road is very\nwell built, and goes in a straight line due east-west. Vendors and\npedestrians bustle past. The smell of smoke and humanity hangs in the\nair.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 15002,
-          "description": "The King's Road continues in a straight line to the east."
-        },
-        "west": {
-          "to_room": 15000,
-          "description": "You see that the King's Road continues westwards towards a large city."
-        }
-      }
-    },
-    "15002": {
-      "vnum": 15002,
-      "name": "The King's Road",
-      "description": "The area opens on the King's Road, which leads east and west. The skill\nof the builders is apparent, since it is impossible to notice any turn\nor irregularity in the road. The sounds of city life echo around. The\nsmell of smoke and humanity hangs in the air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 15003,
-          "description": "You see a castle in the far east."
-        },
-        "west": {
-          "to_room": 15001,
-          "description": "The King's Road continues in a straight line to the west."
-        }
-      }
-    },
-    "15003": {
-      "vnum": 15003,
-      "name": "On The King's Road Outside A Castle",
-      "description": "This area is the King's Road. before is a large Castle, evidently built\nnot so much for strength as for beauty. It is not totally without\ndefences, though, for it is surrounded by a deep moat, and its windows\nare just narrow slits for archers to shoot through. To the north there\nis a drawbridge across the moat. Buildings crowd together on all sides.\nVendors and pedestrians bustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 15004,
-          "description": "You see the drawbridge."
-        },
-        "west": {
-          "to_room": 15002,
-          "description": "The King's Road continues in a straight line to the west."
-        }
-      }
-    },
-    "15004": {
-      "vnum": 15004,
-      "name": "On The Drawbridge",
-      "description": "You have arrived at the drawbridge leading into the Castle. before\nis a huge, double-doored gate. It seems very strong. You see some whirls\nin the moat. The cobblestones are worn smooth by countless feet. The\nsounds of city life echo around.",
-      "sector_type": "city",
-      "flags": [
-        "no_mob"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15007,
-          "description": "The gate has huge, but intricately carved hinges.  As the Castle itself, it seems designed not only for strength, but also for beauty.",
-          "door": {
-            "name": "gate door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "south": {
-          "to_room": 15003,
-          "description": "You see the King's Road."
-        },
-        "west": {
-          "to_room": 3500,
-          "description": "You see an exit west."
-        }
-      },
-      "extra_descs": {
-        "": "whirls whirl moat"
-      }
-    },
-    "15005": {
-      "vnum": 15005,
-      "name": "The Kitchen",
-      "description": "This is the Kitchen. Lots of helpers hurry to do the Chief Cook's\nbidding, and there is a wonderful smell that makes you feel very hungry.\nAll around the room, there are shelves with different kinds of cooking\ngear stacked on them. There is an exit to the north, and one to the\neast; both leading to small passages. The walls are rough-hewn and cold\nto the touch. The ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15010,
-          "description": "You see a small, dimly lit passage."
-        },
-        "east": {
-          "to_room": 15006,
-          "description": "You see a small, dimly lit passage."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 15022,
-          "max": 1
-        },
-        {
-          "vnum": 15023,
-          "max": 2
-        },
-        {
-          "vnum": 15023,
-          "max": 2
-        }
-      ]
-    },
-    "15006": {
-      "vnum": 15006,
-      "name": "A Small Passage",
-      "description": "This is a small passage, that is clearly intended mostly for the\nservants of the Castle. It is only dimly lit and quite narrow. The\npassage leads west, and to the east there is a small door. The air is\nstill and musty. Shadows gather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 15007,
-          "description": "The door is small and uninteresting.",
-          "door": {
-            "name": "door small",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "west": {
-          "to_room": 15005,
-          "description": "You hear clanging of pots, and smell cooking meat."
-        }
-      }
-    },
-    "15007": {
-      "vnum": 15007,
-      "name": "The Entrance Hall",
-      "description": "This is the impressive Entrance Hall of the Castle. To the north is an\nexit into the Great Hall. There is also an exit east, and a small door\nto the west. Shadows gather in the corners. Dust motes drift in the\nstale air.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15012,
-          "description": "You see the King's Great Hall."
-        },
-        "east": {
-          "to_room": 15008,
-          "description": "There seems to be a small guard room to the east."
-        },
-        "south": {
-          "to_room": 15004,
-          "description": "To the south, there is a gate, that leads to the Drawbridge.",
-          "door": {
-            "name": "gate",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "west": {
-          "to_room": 15006,
-          "description": "The door is small and uninteresting.",
-          "door": {
-            "name": "door small",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      }
-    },
-    "15008": {
-      "vnum": 15008,
-      "name": "The Guard Room",
-      "description": "This is a small room, evidently meant for guards currently not on duty.\nThere is only one exit, back to the entrance hall. Shadows gather in the\ncorners. Dust motes drift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 15007,
-          "description": "You see the Castle Entrance."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 15009,
-          "max": 1
-        },
-        {
-          "vnum": 15026,
-          "max": 1
-        },
-        {
-          "vnum": 15027,
-          "max": 1
-        }
-      ]
-    },
-    "15009": {
-      "vnum": 15009,
-      "name": "Under The Tower",
-      "description": "The area is below one the three mighty towers of the Castle. There are\nno guards here, and you sense that this part of the Castle is largely\nunused. There are stairs going up to the tower, and there is also an\nexit to the north. The walls are rough-hewn and cold to the touch. The\nceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "no_mob",
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15014,
-          "description": "You see a small, dimly lit passage."
-        },
-        "up": {
-          "to_room": 15034,
-          "description": "The stairs are old, but in good repair. They lead up into the tower."
-        }
-      },
-      "extra_descs": {
-        "": "stairs"
-      },
-      "mob_resets": [
-        {
-          "vnum": 15029,
-          "max": 1
-        }
-      ]
-    },
-    "15010": {
-      "vnum": 15010,
-      "name": "The Small Passage",
-      "description": "This is a small passage, that is clearly intended mainly for the\nservants of the Castle. The passage leads north and south. The ceiling\nhangs low overhead. The walls are rough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15015,
-          "description": "You see a small, dimly lit passage."
-        },
-        "south": {
-          "to_room": 15005,
-          "description": "You hear the clanging of pots, and smell cooking meat."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 15017,
-          "max": 5
-        },
-        {
-          "vnum": 15017,
-          "max": 5
-        }
-      ]
-    },
-    "15011": {
-      "vnum": 15011,
-      "name": "The Great Hall",
-      "description": "This is the south-west end of the Great Hall. It is truly vast; the roof\nis so high above your head, that it seems no closer than the clouds\noutside. The roof is beautifully painted, by someone who must have been\na true master. The hall is very large, and could easily seat several\nhundred people at a banquet. The air is still and musty. The walls are\nrough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15016,
-          "description": "You see the King's Great Hall."
-        },
-        "east": {
-          "to_room": 15012,
-          "description": "You see the King's Great Hall."
-        }
-      },
-      "extra_descs": {
-        "": "roof paintings paint"
-      }
-    },
-    "15012": {
-      "vnum": 15012,
-      "name": "The Great Hall",
-      "description": "This is the southern end of the Great Hall. It is truly vast; the roof\nis so high above your head, that it seems no closer than the clouds\noutside. The roof is beautifully painted, by someone who must have been\na true master. The hall is very large, and could easily seat several\nhundred people at a banquet. to the north, you see King Welmar's great\nthrone, and to the south is the Castle Entrance. Dust motes drift in the\nstale air. The walls are rough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15017,
-          "description": "You see the part of the Great Hall where the throne is."
-        },
-        "east": {
-          "to_room": 15013,
-          "description": "You see the King's Great Hall."
-        },
-        "south": {
-          "to_room": 15007,
-          "description": "You see the Castle Entrance."
-        },
-        "west": {
-          "to_room": 15011,
-          "description": "You see the King's Great Hall."
-        }
-      },
-      "extra_descs": {
-        "": "roof paintings paint"
-      }
-    },
-    "15013": {
-      "vnum": 15013,
-      "name": "The Great Hall",
-      "description": "This is the south-east end of the Great Hall. It is truly vast; the roof\nis so high above your head, that it seems no closer than the clouds\noutside. The roof is beautifully painted, by someone who must have been\na true master. The hall is very large, and could easily seat several\nhundred people at a banquet. The walls are rough-hewn and cold to the\ntouch. Dust motes drift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15018,
-          "description": "You see the King's Great Hall."
-        },
-        "west": {
-          "to_room": 15012,
-          "description": "You see the King's Great Hall."
-        }
-      },
-      "extra_descs": {
-        "": "roof paintings paint"
-      }
-    },
-    "15014": {
-      "vnum": 15014,
-      "name": "A Passage",
-      "description": "This is a passage, that leads north and south. To the south it leads\ntowards one of towers. The walls are rough-hewn and cold to the touch.\nThe ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15019,
-          "description": "You see the small passage continue."
-        },
-        "south": {
-          "to_room": 15009,
-          "description": "A passage leads to Under The Tower"
-        }
-      }
-    },
-    "15015": {
-      "vnum": 15015,
-      "name": "The Passage",
-      "description": "This is a passage, that leads north and south. To the east there is an\nexit to the Great Hall. Dust motes drift in the stale air. The walls are\nrough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15020,
-          "description": "You see the passage continue."
-        },
-        "east": {
-          "to_room": 15016,
-          "description": "You see the King's Great Hall."
-        },
-        "south": {
-          "to_room": 15010,
-          "description": "You see the passage continue."
-        }
-      }
-    },
-    "15016": {
-      "vnum": 15016,
-      "name": "The Great Hall",
-      "description": "This is the north-west end of the Great Hall. It is truly vast; the roof\nis so high above your head, that it seems no closer than the clouds\noutside. The roof is beautifully painted, by someone who must have been\na true master. The hall is very large, and could easily seat several\nhundred people at a banquet. to the east, you see King Welmar's great\nthrone, and to the west there is an exit to a passage. Dust motes drift\nin the stale air. The walls are rough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 15017,
-          "description": "You see the part of the Great Hall where the throne is."
-        },
-        "south": {
-          "to_room": 15011,
-          "description": "You see the King's Great Hall."
-        },
-        "west": {
-          "to_room": 15015,
-          "description": "You see a passage."
-        }
-      },
-      "extra_descs": {
-        "": "roof paintings paint"
-      }
-    },
-    "15017": {
-      "vnum": 15017,
-      "name": "By The Throne In The Great Hall",
-      "description": "The area opens by the King's huge ivory throne. The throne is, to an\neven greater degree than the Hall itself, a masterpiece. It is\nintricately and beautifully carved, and it seems to be made out of a\nsingle block of ivory, though you shiver at the thought of meeting the\nanimal that died to yield a piece of that size. The Hall continues to\nthe east, west and south. The ceiling hangs low overhead. The air is\nstill and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 15018,
-          "description": "You see the King's Great Hall."
-        },
-        "south": {
-          "to_room": 15012,
-          "description": "You see the King's Great Hall."
-        },
-        "west": {
-          "to_room": 15016,
-          "description": "You see the King's Great Hall."
-        }
-      },
-      "extra_descs": {
-        "": "throne ivory"
-      },
-      "mob_resets": [
-        {
-          "vnum": 15001,
-          "max": 1
-        },
-        {
-          "vnum": 15014,
-          "max": 1
-        },
-        {
-          "vnum": 15020,
-          "max": 1
-        },
-        {
-          "vnum": 15021,
-          "max": 1
-        }
-      ]
-    },
-    "15018": {
-      "vnum": 15018,
-      "name": "The Great Hall",
-      "description": "This is the north-east end of the Great Hall. It is truly vast; the roof\nis so high above your head, that it seems no closer than the clouds\noutside. The roof is beautifully painted, by someone who must have been\na true master. The hall is very large, and could easily seat several\nhundred people at a banquet. to the west, you see King Welmar's great\nthrone, and to the east there is an exit to a small passage. The air is\nstill and musty. The ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 15019,
-          "description": "You see a passage."
-        },
-        "south": {
-          "to_room": 15013,
-          "description": "You see the King's Great Hall."
-        },
-        "west": {
-          "to_room": 15017,
-          "description": "You see the part of the Great Hall where the throne is."
-        }
-      },
-      "extra_descs": {
-        "": "roof paintings paint"
-      }
-    },
-    "15019": {
-      "vnum": 15019,
-      "name": "The Small Passage",
-      "description": "This is a small passage, that leads north and south. To the west, there\nis an exit into the Great Hall. Dust motes drift in the stale air. The\nair is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15024,
-          "description": "The passage continues to the north."
-        },
-        "south": {
-          "to_room": 15014,
-          "description": "The passage continues to the south."
-        },
-        "west": {
-          "to_room": 15018,
-          "description": "To the west you see the Great Hall."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 15011,
-          "max": 1
-        }
-      ]
-    },
-    "15020": {
-      "vnum": 15020,
-      "name": "The Passage",
-      "description": "This is a north-south leading passage. There is a door to the east. The\nair is still and musty. Dust motes drift in the stale air. The air is\nstale and the walls close. Shadows pool in the corners, undisturbed.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15025,
-          "description": "The passage leads to a staircase."
-        },
-        "east": {
-          "to_room": 15021,
-          "description": "The door is quite small and unobtrusive.",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "south": {
-          "to_room": 15015,
-          "description": "The passage continues to the south."
-        }
-      }
-    },
-    "15021": {
-      "vnum": 15021,
-      "name": "The Servants' Corridor",
-      "description": "This is a corridor, that stretches further to the east. There are doors\nto the north and west. The corridor itself is mainly used by servants,\nand lacks some of the beauty of the rest of the castle. Shadows gather\nin the corners. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15026,
-          "description": "There is a door there!",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "east": {
-          "to_room": 15022,
-          "description": "The corridor seems to come to its end a bit further east."
-        },
-        "west": {
-          "to_room": 15020,
-          "description": "The door to the west is made out of wood.",
-          "door": {
-            "name": "door wood",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      }
-    },
-    "15022": {
-      "vnum": 15022,
-      "name": "The End Of The Servants' Corridor",
-      "description": "The corridor leads only west from here, but there is a door to the\nnorth. The ceiling hangs low overhead. The air is still and musty. The\nair is stale and the walls close. Shadows pool in the corners,\nundisturbed.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15027,
-          "description": "The door leads to a room intended for the butler.",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": 15009
-          }
-        },
-        "west": {
-          "to_room": 15021,
-          "description": "You see the corridor continue."
-        }
-      }
-    },
-    "15023": {
-      "vnum": 15023,
-      "name": "The Training Room",
-      "description": "This is the Training Room of the men of the Castle guard. It is very\nlarge, with weapons standing in racks by all the walls. Most of the\nweapons seem to be intended for training only, with blunt edges and the\nlike, but there are some that might be useful for real fighting. There\nis a door to the north. The ceiling hangs low overhead. The air is still\nand musty.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15028,
-          "description": "The door is large and heavy.",
-          "door": {
-            "name": "door large heavy",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "east": {
-          "to_room": 15024,
-          "description": "You see a small passage."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 15004,
-          "max": 1
-        },
-        {
-          "vnum": 15005,
-          "max": 1
-        },
-        {
-          "vnum": 15008,
-          "max": 1
-        },
-        {
-          "vnum": 15012,
-          "max": 1
-        },
-        {
-          "vnum": 15013,
-          "max": 1
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 3020,
-          "max": 100
-        },
-        {
-          "vnum": 3021,
-          "max": 100
-        },
-        {
-          "vnum": 3022,
-          "max": 100
-        }
-      ]
-    },
-    "15024": {
-      "vnum": 15024,
-      "name": "The Small Passage",
-      "description": "This is a small passage leading north and south. There is also an exit\nto the west, from which grunts, cheers and heavy blows can be heard.\nShadows gather in the corners. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15029,
-          "description": "The passage leads north to some stairs."
-        },
-        "south": {
-          "to_room": 15019,
-          "description": "You see the passage continuing."
-        },
-        "west": {
-          "to_room": 15023,
-          "description": "You see the Training Room."
-        }
-      }
-    },
-    "15025": {
-      "vnum": 15025,
-      "name": "The Stair Room",
-      "description": "The area opens below a great staircase, that leads up to the second\nfloor of the Castle. The stairs are made of marble, and there are\npillars carved in the likenesses of trees with little animals running up\nand down the trunks. The ceiling hangs low overhead. The walls are\nrough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 15020,
-          "description": "You see the passage."
-        },
-        "up": {
-          "to_room": 15049,
-          "description": "The stairs lead up to the second floor."
-        }
-      },
-      "extra_descs": {
-        "": "pillar pillars tree trees"
-      }
-    },
-    "15026": {
-      "vnum": 15026,
-      "name": "The Servants' Quarters",
-      "description": "This is a large room, that seems to house many of the servants. The room\nis full of comfortable-looking beds. There is also a large chest,\nprobably containing some of the servants' belongings. The walls are\nrough-hewn and cold to the touch. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 15021,
-          "description": "The door is made out of wood.",
-          "door": {
-            "name": "door wood",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "extra_descs": {
-        "": "bed"
-      },
-      "obj_resets": [
-        {
-          "vnum": 15011,
-          "max": 1
-        }
-      ]
-    },
-    "15027": {
-      "vnum": 15027,
-      "name": "The Butler's Quarters",
-      "description": "You see at once that this must be the butler's room, for it lies in the\nservants' wing, and still it is large and comfortable; almost luxurious,\nin fact. There is a large bed and a drawer in the room. The only exit is\nvia the door to the south. The walls are rough-hewn and cold to the\ntouch. Dust motes drift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 15022,
-          "description": "You see the corridor.",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": 15009
-          }
-        }
-      },
-      "extra_descs": {
-        "": "bed"
-      },
-      "mob_resets": [
-        {
-          "vnum": 15016,
-          "max": 1
-        }
-      ]
-    },
-    "15028": {
-      "vnum": 15028,
-      "name": "The Guards' Barracks",
-      "description": "This is a very large room with bunks all over. It is obvious, that this\nis where the guards off duty spend most of their time, drinking and\ngambling or, probably, mostly sleeping. The ceiling hangs low overhead.\nThe walls are rough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 15023,
-          "description": "The door is large and heavy.",
-          "door": {
-            "name": "door large heavy",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      },
-      "extra_descs": {
-        "": "bunk bunks"
-      },
-      "mob_resets": [
-        {
-          "vnum": 15007,
-          "max": 1
-        }
-      ]
-    },
-    "15029": {
-      "vnum": 15029,
-      "name": "The Stairs",
-      "description": "The area opens by a staircase leading down. As you look down, you notice\nthat for the first time since you entered the castle, things are not\naesthetically made. Instead it looks more functional and prison- like.\nThe air is still and musty. The ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 15024,
-          "description": "You see the small passage."
-        },
-        "down": {
-          "to_room": 15055,
-          "description": "The stairs down lead into darkness."
-        }
-      },
-      "extra_descs": {
-        "": "stairs stair staircase"
-      }
-    },
-    "15030": {
-      "vnum": 15030,
-      "name": "At A Bend In The Corridor",
-      "description": "The area opens at a place where the corridor bends from east to north.\nThe air is still and musty. The walls are rough-hewn and cold to the\ntouch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15035,
-          "description": "You see the corridor continue."
-        },
-        "east": {
-          "to_room": 15031,
-          "description": "You see the corridor continue."
-        }
-      }
-    },
-    "15031": {
-      "vnum": 15031,
-      "name": "The Corridor",
-      "description": "This is a long corridor, decorated with tapestries depicting old times\nand old heroes. It leads east and west. The walls are rough- hewn and\ncold to the touch. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 15032,
-          "description": "You see the corridor continue."
-        },
-        "west": {
-          "to_room": 15030,
-          "description": "You see the corridor continue."
-        }
-      }
-    },
-    "15032": {
-      "vnum": 15032,
-      "name": "The Corridor",
-      "description": "This is a long corridor, decorated with tapestries depicting old times\nand old heroes. It leads east and west. Shadows gather in the corners.\nThe air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 15033,
-          "description": "You see the corridor continue."
-        },
-        "west": {
-          "to_room": 15031,
-          "description": "You see the corridor continue."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 15010,
-          "max": 1
-        }
-      ]
-    },
-    "15033": {
-      "vnum": 15033,
-      "name": "The Corridor",
-      "description": "This is a long corridor, decorated with tapestries depicting old times\nand old heroes. The corridor continues west, and to the north you see\nthe luxurious guest wing. The ceiling hangs low overhead. Shadows gather\nin the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15038,
-          "description": "You see the guest wing."
-        },
-        "west": {
-          "to_room": 15032,
-          "description": "You see the corridor continue."
-        }
-      }
-    },
-    "15034": {
-      "vnum": 15034,
-      "name": "In The South-East Tower",
-      "description": "This part of the tower is fairly uninteresting, but it leads further\nupwards... Shadows gather in the corners. The ceiling hangs low\noverhead.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "up": {
-          "to_room": 15052,
-          "description": "The room at the top of the tower seems darkish for some reason."
-        },
-        "down": {
-          "to_room": 15009,
-          "description": "You see the stairs at the bottom of the tower."
-        }
-      }
-    },
-    "15035": {
-      "vnum": 15035,
-      "name": "The Corridor",
-      "description": "This is a long corridor, decorated with tapestries depicting old times\nand old heroes. It leads north and south. There is also an exit to the\neast here. The ceiling hangs low overhead. Shadows gather in the\ncorners.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15040,
-          "description": "You see the corridor continue."
-        },
-        "east": {
-          "to_room": 15036,
-          "description": "You see a small room."
-        },
-        "south": {
-          "to_room": 15030,
-          "description": "You see the corridor continue."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 15006,
-          "max": 1
-        }
-      ]
-    },
-    "15036": {
-      "vnum": 15036,
-      "name": "By The Treasure Room",
-      "description": "The area opens by a great iron door. The door is very large, and seems\nvery solid indeed. There is a sign posted by it. Shadows gather in the\ncorners. Dust motes drift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 15037,
-          "description": "You see a large steel door.",
-          "door": {
-            "name": "door steel large",
-            "state": "open",
-            "locked": true,
-            "key_vnum": 15007
-          }
-        },
-        "west": {
-          "to_room": 15035,
-          "description": "You see the corridor."
-        }
-      },
-      "extra_descs": {
-        "": "sign"
-      },
-      "mob_resets": [
-        {
-          "vnum": 15024,
-          "max": 1
-        },
-        {
-          "vnum": 15025,
-          "max": 1
-        }
-      ]
-    },
-    "15037": {
-      "vnum": 15037,
-      "name": "The Great Treasury",
-      "description": "As you enter this room, you are astonished by the riches that are stowed\naway here; not so much in gold, but paintings, tapestries, skillful\ncarvings and sculptures all over the vast room. You realise, however,\nthat most of these things are too well known to be sold anywhere,\nwithout branding yourself as a thief, and condemning yourself to instant\ndeath at the hands of the Royal Guard. Dust motes drift in the stale\nair. The ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 15036,
-          "description": "You see a large steel door.",
-          "door": {
-            "name": "door large steel",
-            "state": "open",
-            "locked": true,
-            "key_vnum": 15007
-          }
-        }
-      },
-      "extra_descs": {
-        "": "painting paintings carving carvings sculptures tapestries"
-      },
-      "obj_resets": [
-        {
-          "vnum": 15001,
-          "max": 1
-        }
-      ]
-    },
-    "15038": {
-      "vnum": 15038,
-      "name": "The Guest Wing",
-      "description": "You have arrived at the part of the Castle where prominent guests are\nhoused. To the east there is a large, ornamented door, and a somewhat\nsmaller one leads north. The air is still and musty. The ceiling hangs\nlow overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15043,
-          "description": "The door seems to lead to a guest room.",
-          "door": {
-            "name": "door small",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "east": {
-          "to_room": 15039,
-          "description": "You see the guest suite behind the ornamented door.",
-          "door": {
-            "name": "door ornament ornamented",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "south": {
-          "to_room": 15033,
-          "description": "You see the corridor."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 15017,
-          "max": 5
-        }
-      ]
-    },
-    "15039": {
-      "vnum": 15039,
-      "name": "The Guest Suite",
-      "description": "This must be where only the most highly regarded guests stay, since it\nis luxurious beyond your wildest imagination. This is only the living\nroom of the suite, but it is huge and tastefully decorated. All the\nfurniture is not only beautiful, but also made for comfort. To the\nnorth, there is an exit to the bedroom, and there is a door to the west.\nDust motes drift in the stale air. The ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15044,
-          "description": "You see the bedroom."
-        },
-        "west": {
-          "to_room": 15038,
-          "description": "Behind the door you see the entrance to the Guest Wing.",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      }
-    },
-    "15040": {
-      "vnum": 15040,
-      "name": "The Corridor",
-      "description": "This is a long corridor, decorated with tapestries depicting old times\nand old heroes. It leads north and south. Shadows gather in the corners.\nThe walls are rough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15045,
-          "description": "You see the corridor continue."
-        },
-        "south": {
-          "to_room": 15035,
-          "description": "You see the corridor continue."
-        }
-      }
-    },
-    "15041": {
-      "vnum": 15041,
-      "name": "The Ball Room",
-      "description": "This is the great Ball Room. It is a truly large room, with a stage for\nan orchestra in the south-east end. Shadows gather in the corners. The\nwalls are rough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15046,
-          "description": "You see the Ball Room."
-        },
-        "east": {
-          "to_room": 15042,
-          "description": "To the east you see the stage."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 15017,
-          "max": 5
-        },
-        {
-          "vnum": 15017,
-          "max": 5
-        }
-      ]
-    },
-    "15042": {
-      "vnum": 15042,
-      "name": "By The Stage",
-      "description": "ahead see the stage. It is large enough for some 40 musicians to play on\nat the same time. The Ball Room continues to the west and north. The\nceiling hangs low overhead. Shadows gather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15047,
-          "description": "You see the Ball Room."
-        },
-        "west": {
-          "to_room": 15041,
-          "description": "You see the Ball Room."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 15003,
-          "max": 1
-        }
-      ]
-    },
-    "15043": {
-      "vnum": 15043,
-      "name": "A Guest Room",
-      "description": "This is a large room. Although it is comfortable enough, you can tell it\nis not meant for any of the most illustrious guests, since it lacks that\nextreme luxury found elsewhere in the Castle. Dust motes drift in the\nstale air. The ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 15038,
-          "description": "Behind the door, you see the entrance to the Guest Wing.",
-          "door": {
-            "name": "door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        }
-      }
-    },
-    "15044": {
-      "vnum": 15044,
-      "name": "The Bedroom",
-      "description": "This room is dominated by the huge four-poster bed, that stands against\nthe northern wall. The room is large and cosy, and the bed virtually\nbegs you to lie down in it and sleep. The air is still and musty. Dust\nmotes drift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 15039,
-          "description": "You see the living room of the suite."
-        }
-      },
-      "extra_descs": {
-        "": "bed"
-      }
-    },
-    "15045": {
-      "vnum": 15045,
-      "name": "The Corridor",
-      "description": "This is a long corridor, decorated with tapestries depicting old times\nand old heroes. It leads north and south. There is an exit to the east,\nthat leads to a large room. Shadows gather in the corners. The walls are\nrough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15049,
-          "description": "You see the corridor continue."
-        },
-        "east": {
-          "to_room": 15046,
-          "description": "You see the Ball Room."
-        },
-        "south": {
-          "to_room": 15040,
-          "description": "You see the corridor continue."
-        }
-      }
-    },
-    "15046": {
-      "vnum": 15046,
-      "name": "The Ball Room",
-      "description": "This is the great Ball Room. It is a truly large room, with a stage for\nan orchestra in the south-east end. The walls are rough-hewn and cold to\nthe touch. The air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 15047,
-          "description": "You see the Ball Room."
-        },
-        "south": {
-          "to_room": 15041,
-          "description": "You see the Ball Room."
-        },
-        "west": {
-          "to_room": 15045,
-          "description": "You see the corridor."
-        }
-      }
-    },
-    "15047": {
-      "vnum": 15047,
-      "name": "The Ball Room",
-      "description": "This is the great Ball Room. It is a truly large room, with a stage for\nan orchestra in the south-east end. The ceiling hangs low overhead.\nShadows gather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 15048,
-          "description": "To the east, you can enter a tower."
-        },
-        "south": {
-          "to_room": 15042,
-          "description": "To the south you see the stage."
-        },
-        "west": {
-          "to_room": 15046,
-          "description": "You see the Ball Room."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 15028,
-          "max": 1
-        }
-      ]
-    },
-    "15048": {
-      "vnum": 15048,
-      "name": "In The Tower",
-      "description": "This is the north-eastern of the three great watch- towers of the\nCastle. To the west, you can enter the Ball Room and there are stairs\nleading up into the Tower. Shadows gather in the corners. Dust motes\ndrift in the stale air.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 15047,
-          "description": "You see the Ball Room."
-        },
-        "up": {
-          "to_room": 15054,
-          "description": "The stairs lead a long way up to the top of the Tower."
-        }
-      },
-      "extra_descs": {
-        "": "stairs"
-      }
-    },
-    "15049": {
-      "vnum": 15049,
-      "name": "The Grand Staircase",
-      "description": "This area is a great staircase, that leads up and down. To the east,\nthere is a large oak door, and a corridor leads south. The walls are\nrough-hewn and cold to the touch. The ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 15050,
-          "description": "The door is large and made out of oak.",
-          "door": {
-            "name": "door oak large",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": 15014
-          }
-        },
-        "south": {
-          "to_room": 15045,
-          "description": "You see the corridor."
-        },
-        "up": {
-          "to_room": 15053,
-          "description": "The stairs continue up to the top of the tower."
-        },
-        "down": {
-          "to_room": 15025,
-          "description": "The stairs lead down to the first floor of the Castle."
-        }
-      },
-      "extra_descs": {
-        "": "stairs"
-      }
-    },
-    "15050": {
-      "vnum": 15050,
-      "name": "The Cosy Room",
-      "description": "The entrance opens to a large, cosy living room. There is a fireplace\nwith a fire burning, and a few comfortable chairs around a little table.\nThere is a door to the west, and also an exit to the east. The air is\nstill and musty. The walls are rough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 15051,
-          "description": "You see a large bedroom."
-        },
-        "west": {
-          "to_room": 15049,
-          "description": "The door is large, and made out of oak.",
-          "door": {
-            "name": "door large oak",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": 15014
-          }
-        }
-      },
-      "extra_descs": {
-        "": "chairs"
-      }
-    },
-    "15051": {
-      "vnum": 15051,
-      "name": "King Welmar's Bedroom",
-      "description": "This is a large room, with a wonderful view. To one side of the room,\nstands a large four-poster bed. All around the room there are massive\nbookshelves, filled with all kinds of books. The titles include works\nsuch as: 'A Treatise on the History of Midgaard and surrounding areas',\n'Magic - A Beginner's Introduction' and many others. There is an exit to\nthe west. The ceiling hangs low overhead. Dust motes drift in the stale\nair.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 15050,
-          "description": "There is a large and cosy room to the west."
-        }
-      },
-      "extra_descs": {
-        "": "magic"
-      }
-    },
-    "15052": {
-      "vnum": 15052,
-      "name": "Up In The Tower",
-      "description": "After a long climb, you finally reach the top of the tower. This room is\nsmall, and the only light source is a flickering candle, on a cluttered\ntable, in the middle of the room. The only obvious exit is back down the\nstairs. The ceiling hangs low overhead. The walls are rough-hewn and\ncold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "down": {
-          "to_room": 15034,
-          "description": "The stairs go down the tower."
-        }
-      },
-      "extra_descs": {
-        "": "candle"
-      },
-      "mob_resets": [
-        {
-          "vnum": 15019,
-          "max": 1
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 15005,
-          "max": 1
-        }
-      ]
-    },
-    "15053": {
-      "vnum": 15053,
-      "name": "The Top Of The Tower",
-      "description": "You have arrived at the top of the tower. This tower is pretty\nuninteresting, and seems made purely for reasons of defence and\nguarding. The windows are slits for bowmen, very narrow on the outward\nside and broad inwards to allow a wide shooting angle. The only evident\nexit is down the stairs again. The walls are rough-hewn and cold to the\ntouch. The ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "down": {
-          "to_room": 15049,
-          "description": "The stairs go down to the second floor."
-        }
-      },
-      "extra_descs": {
-        "": "window slit"
-      }
-    },
-    "15054": {
-      "vnum": 15054,
-      "name": "The Top Of The Tower",
-      "description": "This is the highest of all the towers, and is obviously used for lookout\npurposes. The view is splendid in all four directions. All around, the\nrich countryside spreads out to the horizon. To the north and east you\nsee a vast mountain range, and far to the west a beautiful lake. A bit\ncloser, the town of Midgaard lies at the end of the King's Road. The\nonly exit Visible is is down again. The walls are rough-hewn and cold to\nthe touch. Shadows gather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "down": {
-          "to_room": 15048,
-          "description": "You see the stairs going back down to the second floor."
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 15013,
-          "max": 1
-        }
-      ]
-    },
-    "15055": {
-      "vnum": 15055,
-      "name": "The Bottom Of The Stairs",
-      "description": "The stairs lead down to a damp part of the castle, you can hear water\ndripping somewhere around. The area is lit by a single torch\nflickering in the room which this staircase is built off of. The stairs\nlead upwards and they open up onto a fairly small room to the east. The\nwalls are rough-hewn and cold to the touch. Shadows gather in the\ncorners.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 15056,
-          "description": "A small room opens up to the east."
-        },
-        "up": {
-          "to_room": 15029,
-          "description": "The stairs lead upwards out of this dank, dark place."
-        }
-      }
-    },
-    "15056": {
-      "vnum": 15056,
-      "name": "The Guard Room",
-      "description": "This is a loss to explain why someone would want to spend all day down\nhere. The only explanation that seems even remotely logical to you is\nthat there must be an important prisoner kept in one of the cells\nthrough the south door. The decorations of the room are sparse, merely a\ntable, a chair, and a deck of cards. A stairwell has been built into the\nwestern wall and it leads upwards. Dust motes drift in the stale air.\nThe air is still and musty.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 15057,
-          "description": "Through the peep hole at the top of the small wooden door you can see that there is a small corridor leading past several cells.",
-          "door": {
-            "name": "door wooden",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": 15017
-          }
-        },
-        "west": {
-          "to_room": 15055,
-          "description": "A small stairwell built into the western wall of the room leads upwards."
-        }
-      },
-      "extra_descs": {
-        "": "card floor"
-      },
-      "mob_resets": [
-        {
-          "vnum": 15000,
-          "max": 1
-        }
-      ]
-    },
-    "15057": {
-      "vnum": 15057,
-      "name": "The Prison",
-      "description": "This small passage is about thirty feet long and is well lit by the\ntorches on each wall. The torches have been locked inside small metal\ncages to ensure that they are not removed. The strangest thing about the\ntorches however, is the manner in which they burn, they have what\nappears to be a constant flame in that it does not flicker whatsoever,\nand does not give off any smoke. Perhaps they have been magicked to burn\nforever... There are three cells along this passage way, one on each\nside of the corridor right near the north end and one isolated at the\nsouth end of the corridor with a small metal plaque located over the\ndoor in the keystone of the archway. Dust motes drift in the stale air.\nShadows gather in the corners.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15056,
-          "description": "A small wooden door blocks the way out of the prison.",
-          "door": {
-            "name": "door wooden",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": 15017
-          }
-        },
-        "east": {
-          "to_room": 15060,
-          "description": "A cell door is set into the eastern wall.",
-          "door": {
-            "name": "door cell",
-            "state": "open",
-            "locked": true,
-            "key_vnum": 15017
-          }
-        },
-        "south": {
-          "to_room": 15059,
-          "description": "The cell door to the south has been double padlocked and there is a plaque placed in the keystone above the door.",
-          "door": {
-            "name": "door cell",
-            "state": "open",
-            "locked": true,
-            "key_vnum": 15017
-          }
-        },
-        "west": {
-          "to_room": 15058,
-          "description": "A cell door is set into the western wall.",
-          "door": {
-            "name": "door cell",
-            "state": "open",
-            "locked": true,
-            "key_vnum": 15017
-          }
-        }
-      },
-      "extra_descs": {
-        "": "plaque keystone",
-        "rgan, Murderer of Townsbridge": ""
-      }
-    },
-    "15058": {
-      "vnum": 15058,
-      "name": "A Cell",
-      "description": "This cell is in a shambles. There is a small hole in the western wall\nwhere something has broken through the stones into the cell. There is a\ncell door in the eastern wall. The air is still and musty. The walls are\nrough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 15057,
-          "description": "The cell door to the east leads back to the prison hallway.",
-          "door": {
-            "name": "door cell",
-            "state": "open",
-            "locked": true,
-            "key_vnum": 15017
-          }
-        }
-      },
-      "extra_descs": {
-        "": "hole"
-      },
-      "mob_resets": [
-        {
-          "vnum": 15018,
-          "max": 2
-        },
-        {
-          "vnum": 15018,
-          "max": 2
-        }
-      ]
-    },
-    "15059": {
-      "vnum": 15059,
-      "name": "Ergan's Cell",
-      "description": "This large cell is almost like a living quarters with a cot in one\ncorner serving as a bed, a small table built out of the wall in another\ncorner. There is even a rug in the center of the floor to keep some\nwarmth. It seems that the prisoner kept here is treated quite well,\nalmost too well for a murderer of an entire town... Shadows gather in\nthe corners. The ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 15057,
-          "description": "The cell door to the north leads back to the prison hallway.",
-          "door": {
-            "name": "door cell",
-            "state": "open",
-            "locked": true,
-            "key_vnum": 15017
-          }
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 15015,
-          "max": 1
-        }
-      ]
-    },
-    "15060": {
-      "vnum": 15060,
-      "name": "A Cell",
-      "description": "This small cell is damp and dark and looks like noone and nothing has\nlived in it for quite some time. A small cell door is located in the\nwest wall. Shadows gather in the corners. Dust motes drift in the stale\nair.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 15057,
-          "description": "The cell door to the west leads back to the prison hallway.",
-          "door": {
-            "name": "door cell",
-            "state": "open",
-            "locked": true,
-            "key_vnum": 15017
-          }
-        }
-      }
-    },
-    "15061": {
-      "vnum": 15061,
-      "name": "An Overgrown Trail",
-      "description": "Moving off of the King's Road, you find yourself on a small fading trail\nwhich appears to have been so little used that it has almost completely\ngrown over with vegitation from the woods here. Sounds of the forest can\nbe heard all round and you feel a peaceful feeling come over you as you\nrealize that mankind has not passed this way for some time. The faded\ntrail appears to lead north and south. Rocks jut from the grassy slopes.\nThe view stretches for miles in every direction.",
-      "sector_type": "hills",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 15000,
-          "description": "The travel upon the King's Road can be heard off to the north."
-        },
-        "south": {
-          "to_room": 15062,
-          "description": "The trail continues southwards."
-        }
-      }
-    },
-    "15062": {
-      "vnum": 15062,
-      "name": "An Overgrown Trail",
-      "description": "Continuing through the heavy undergrowth, you find yourself in the\nmiddle of the forest. The sounds of the forest can be heard all round\nand you feel a peaceful feeling come over you as you realize that\nmankind has not passed this way for some time. The fading trail you are\non appears to have been so little used that it has almost completely\ngrown over with vegitation from the woods here. The faded trail appears\nto lead north and east. Rocks jut from the grassy slopes. The view\nstretches for miles in every direction.",
-      "sector_type": "hills",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 15061,
-          "description": "The trail continues northwards."
-        },
-        "east": {
-          "to_room": 15063,
-          "description": "The trail appears to continue to the east."
-        }
-      }
-    },
-    "15063": {
-      "vnum": 15063,
-      "name": "An Overgrown Trail",
-      "description": "Continuing through the heavy undergrowth, you find yourself in the\nmiddle of the forest. The sounds of the forest can be heard all round\nand you feel a peaceful feeling come over you as you realize that\nmankind has not passed this way for some time. The fading trail you are\non appears to have been so little used that it has almost completely\ngrown over with vegitation from the woods here. The faded trail appears\nto lead west and south. To the south a strange eerie silence seems to\nhang in the air, almost blocking out all the sounds that you can hear\nfrom the north and east. Rocks jut from the grassy slopes. Sheep trails\nwind between the hillocks.",
-      "sector_type": "hills",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 15064,
-          "description": "The undergrowth begins to open up to the south and you can see what appears to be a small village to the south.  It is very quiet, almost too quiet."
-        },
-        "west": {
-          "to_room": 15062,
-          "description": "The overgrown trail continues to the northwest."
-        }
-      }
-    },
-    "15064": {
-      "vnum": 15064,
-      "name": "A Dirt Road",
-      "description": "As you leave the forest to the north, you find yourself at what appears\nto be the beginning of a dirt road and a small village. Upon first\nlaying eyes on this place you realize that there is something funny\nabout this settlement... there is no sound other that the whistling wind\nhere. You would have expected to hear people going about their regular\nbusiness, but the village is silent. You cannot see any movement around\nthe village either. It is almost as still and silent as the woods to the\nnorth. There is a small sign lying by the side of the road here. Tall\ngrass sways in a gentle breeze. The air is fresh and clean.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 15063,
-          "description": "An trail leads into the heavy undergrowth to the north."
-        },
-        "south": {
-          "to_room": 15065,
-          "description": "The dirt road continues through the village to the south."
-        },
-        "west": {
-          "to_room": 15068,
-          "description": "A house stands a short distance off the west side of the road, its door hanging ajar."
-        }
-      },
-      "extra_descs": {
-        "": "sign"
-      }
-    },
-    "15065": {
-      "vnum": 15065,
-      "name": "A Small Intersection",
-      "description": "Continuing along the dirt road, you find yourself at a place where a\nsmall path splits away from the main road and leads off to the west. The\nwoods around the village seem to be pressing inwards towards you as if\nthe village hides a secret which they do not want to be spread about.\nThere is another house standing on the east side of the road. Tall grass\nsways in a gentle breeze. The ground is soft underfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 15064,
-          "description": "The dirt road continues to the north."
-        },
-        "east": {
-          "to_room": 15069,
-          "description": "You can hear a wailing sound coming from the house to the east."
-        },
-        "south": {
-          "to_room": 15066,
-          "description": "The dirt road continues towards the south where a horrible smell permeates the air."
-        },
-        "west": {
-          "to_room": 15072,
-          "description": "A small, dark trail leads off into the woods to the west."
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 15022,
-          "max": 1
-        }
-      ]
-    },
-    "15066": {
-      "vnum": 15066,
-      "name": "A Dirt Road",
-      "description": "This section of the dirt road is quiet, but there is an awful stench in\nthe air. It brings to mind rotting corpses and raw sewage. The woods\ncontiue to press closely about you, and almost totally surround the\nsmall building to the west with a thatched roof. There is a blackened\nshell of a building to the east with a small sign hanging out front from\na black and charred chain. The dirt road continues north and south. The\nair is fresh and clean. The ground is soft underfoot.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 15065,
-          "description": "The small dirt road continues towards the north."
-        },
-        "east": {
-          "to_room": 15071,
-          "description": "The building to the east is merely a shell of what it once probably was.  The walls are blackened as if they had been exposed to fire at some point in the past..."
-        },
-        "south": {
-          "to_room": 15067,
-          "description": "The stench from the south is almost overpowering now... it seems that the source wouldn't be too far from here."
-        },
-        "west": {
-          "to_room": 15070,
-          "description": "A small quiet cottage stands on the west side of the road, apparently untouched by the desecration and destruction that appears to have hit this small village."
-        }
-      },
-      "extra_descs": {
-        "": "sign"
-      }
-    },
-    "15067": {
-      "vnum": 15067,
-      "name": "A Large Pit",
-      "description": "The dirt road ends at the edge of a large pit here and you now realize\nwhere the awful smell was coming from. This pit appears to be a mass\ngrave for the citizens of the village. There are bones and corpses lying\nall over the place. A lot of the corpses look too recent to be from the\nTownsbridge murders of almost a decade ago, but the village seems to\nhave been empty for almost that long. The dirt road leads away from the\ncarnage to the north. The air is fresh and clean. Tall grass sways in a\ngentle breeze.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 15066,
-          "description": "Just near the north edge of the pit a small and narrow trail leads away."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 15030,
-          "max": 2
-        },
-        {
-          "vnum": 15030,
-          "max": 2
-        },
-        {
-          "vnum": 15031,
-          "max": 2
-        },
-        {
-          "vnum": 15031,
-          "max": 2
-        }
-      ]
-    },
-    "15068": {
-      "vnum": 15068,
-      "name": "A House",
-      "description": "This house is a wreck, furniture has been strewn all about the room, and\nit looks like a tornado landed right in the middle of the room. The\ndestruction that has taken place in this room is almost beyond belief.\nThe oddest part of it all though, is how it all seems so recent, since\nthere are no cobwebs, and there is no dust on anything. The dirt road\ncan be seen to the east through the doorway. The air is still and musty.\nThe walls are rough-hewn and cold to the touch.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 15064,
-          "description": "You can see the dirt road through the doorway to the east."
-        }
-      }
-    },
-    "15069": {
-      "vnum": 15069,
-      "name": "A House",
-      "description": "This darkened room is barely lit by the outdoor light, but what you can\nsee of it gives you the creeps. There are cobwebs dangling from\neverything, a thick layer of dust begins to rise up at your passage, and\na strange howl comes from somewhere around. The furniture in this\nhouse is old and of a type that hasn't been seen around these lands for\nsome time. If it was in better shape, you might be able to sell it as\nantique. The meager light of the road shines through the doorway to the\nwest. The walls are rough-hewn and cold to the touch. The ceiling hangs\nlow overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 15065,
-          "description": "You can see the dirt road through the doorway to the west."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 15002,
-          "max": 1
-        }
-      ]
-    },
-    "15070": {
-      "vnum": 15070,
-      "name": "A Small Cottage",
-      "description": "This cottage looks to have been left in exactly the same shape as it was\nin quite some time ago. It looks as if the residents left one day and\nhaven't returned home yet. Oddly enough, the furniture is dust free and\nthe food on the table still looks fresh. This house is really strange,\nperhaps it wuld be in your best interests to leave as soon as humanly\npossible. The road is back through the open doorway to the east. Shadows\ngather in the corners. The ceiling hangs low overhead.",
-      "sector_type": "inside",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 15066,
-          "description": "You can see the dirt road through the doorway to the east."
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 15018,
-          "max": 1
-        }
-      ]
-    },
-    "15071": {
-      "vnum": 15071,
-      "name": "The Burned Shop",
-      "description": "As you enter this small building, you notice that that blackened walls\nare due to a fire that seemed to burn here unattended for quite some\ntime. There is almost nothing left of the roof that would have once\ncovered this building, and the north and east walls have been burnt to\nalmost half the height of the other two walls. There are some burnt\ngoods around on the ground and the remains of a counter near what is\nleft of the north wall seems to indicate that this was once a shop. The\nroad lies to the west through the blackened wall. Wildflowers dot the\nlandscape. Tall grass sways in a gentle breeze.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "west": {
-          "to_room": 15066,
-          "description": "You can see the dirt road to the west."
-        }
-      }
-    },
-    "15072": {
-      "vnum": 15072,
-      "name": "A Dark Path",
-      "description": "As you move away form the open air into the darkness of the path and the\nsinister looking woods around, you get a feeling of awe and something\nalmost akin to horror. The wood around is completely silent, not even\nthe rustling of leaves or the cracking of branches breaks the silence.\nThe final thing you notice is that the darkness all around seems to be\nalmost contrived, and doesn't seem natural for this kind of vegitation.\nThe path continues west and Visible is light to the east. Vendors and\npedestrians bustle past. The sounds of city life echo around you.",
-      "sector_type": "city",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 15065,
-          "description": "The path continues towards a small intersection with a dirt road."
-        },
-        "west": {
-          "to_room": 15073,
-          "description": "The path continues through the darkness."
-        }
-      }
-    },
-    "15073": {
-      "vnum": 15073,
-      "name": "A Dark Path",
-      "description": "This narrow path leads through the overhanging trees in the unnatural\ndarkness. It seems almost as if the trees are crowding in on you here,\nas if they didn't want to feel your presence. The wood is almost totally\nsilent and you wonder silently to yourself why this could be. The path\nappears to continue east and west. Buildings crowd together on all\nsides. The cobblestones are worn smooth by countless feet.",
-      "sector_type": "city",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 15072,
-          "description": "The path continues through the darkness."
-        },
-        "west": {
-          "to_room": 15074,
-          "description": "The glow from the west appears to be quite strong, but it does not give enough light to see by here, nor can you see the source of the glow."
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 15021,
-          "max": 1
-        }
-      ]
-    },
-    "15074": {
-      "vnum": 15074,
-      "name": "The Circle Of Stones",
-      "description": "This is the edge of a circle of seven large monolith-like stones. Each\nstone towers over your head and appears to be at least double your\nheight. The stones are made of a dark black material, almost black in\ncolour. In the center of the ring of stones, Visible is a black circular\nmirror-like disk on the ground. The surface is highly reflective and\nalmost appears to be rippling. The trees surrounding the circle tower\nfar above your heads blocking out the sky. A strange glow seems to be\nemanating from each stone, almost green in colour. This glow provides\nenough light for you to see with even though the sky above has been\nblotted out. The smell of smoke and humanity hangs in the air. Buildings\ncrowd together on all sides.",
-      "sector_type": "city",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 15073,
-          "description": "A narrow path leads away into the darkness."
-        }
-      },
-      "extra_descs": {
-        "": "stones glow stone ring circle",
-        "ach stone is at least fifteen feet tall, maybe more, and the dark": "material glows with a greenish aura providing more than enough light for you to see by."
-      },
-      "mob_resets": [
-        {
-          "vnum": 15032,
-          "max": 1
-        }
-      ]
+ "number": 150,
+ "name": "Welmar's Castle",
+ "builders": "Circle",
+ "atlas_area": 21,
+ "rooms": {
+  "15004": {
+   "vnum": 15004,
+   "name": "On the Drawbridge",
+   "map": {
+    "x": 1,
+    "y": 19,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [
+    "no_mob"
+   ],
+   "extra_descs": {
+    "": "whirls whirl moat"
+   },
+   "description": "You have arrived at the drawbridge leading into the Castle. before\nis a huge, double-doored gate. It seems very strong. You see some whirls\nin the moat. The cobblestones are worn smooth by countless feet. The\nsounds of city life echo around.",
+   "exits": {
+    "north": {
+     "to_room": 15007,
+     "description": "The gate has huge, but intricately carved hinges.  As the Castle itself, it seems designed not only for strength, but also for beauty.",
+     "door": {
+      "name": "gate door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "south": {
+     "to_room": 15003,
+     "description": "You see the King's Road."
+    },
+    "east": {
+     "to_room": 15055,
+     "description": "To the east lies The Bottom Of The Stairs."
     }
+   }
   },
-  "mobs": {
-    "15000": {
-      "vnum": 15000,
-      "name": "gwydion",
-      "short_desc": "Gwydion",
-      "long_desc": "Gwydion the Royal Guard is here on duty.",
-      "level": 11,
-      "alignment": 800,
-      "hp_dice": "3d10+88",
-      "damage_dice": "1d8+11",
-      "gold": 5700,
-      "exp": 338,
-      "armor_class": 2,
-      "flags": [
-        "special",
-        "sentinel",
-        "stay_zone"
-      ],
-      "description": "As all members of the Guard, Gwydion wears the chain mail required\nof them as uniform.  He seems very well trained, and moves like an\nexperienced fighter.",
-      "equipment": {
-        "wield": 3022,
-        "body": 15015
-      },
-      "inventory": [
-        15017
-      ]
+  "15005": {
+   "vnum": 15005,
+   "name": "The Kitchen",
+   "map": {
+    "x": -1,
+    "y": 21,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 15022,
+     "max": 1
     },
-    "15001": {
-      "vnum": 15001,
-      "name": "king",
-      "short_desc": "King Welmar",
-      "long_desc": "The wise King Welmar sits here in his throne.",
-      "level": 33,
-      "alignment": 1000,
-      "hp_dice": "8d10+1155",
-      "damage_dice": "3d8+66",
-      "gold": 15000,
-      "exp": 1413,
-      "armor_class": -10,
-      "flags": [
-        "special",
-        "sentinel"
-      ],
-      "description": "In his later middle-age, with his beard starting to grey, King Welmar\nis still very powerfully built, and wouldn't take kindly to an attack.\nDespite that, you know he is well-loved throughout the land, and has\na reputation as a wise and just ruler.",
-      "equipment": {
-        "hold": 15002,
-        "head": 15003,
-        "light": 15004
-      },
-      "inventory": [
-        15014
-      ],
-      "loot_table": [
-        {
-          "vnum": 15023,
-          "chance": 20
-        },
-        {
-          "vnum": 15024,
-          "chance": 20
-        },
-        {
-          "vnum": 15025,
-          "chance": 20
-        },
-        {
-          "vnum": 15026,
-          "chance": 20
-        },
-        {
-          "vnum": 15027,
-          "chance": 20
-        },
-        {
-          "vnum": 15028,
-          "chance": 20
-        },
-        {
-          "vnum": 15029,
-          "chance": 20
-        },
-        {
-          "vnum": 15030,
-          "chance": 20
-        },
-        {
-          "vnum": 15031,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100
+    {
+     "vnum": 15023,
+     "max": 2
     },
-    "15002": {
-      "vnum": 15002,
-      "name": "ghost",
-      "short_desc": "the horrible ghost",
-      "long_desc": "You hear a frightening wail, and see a horrible ghost approaching.",
-      "level": 15,
-      "alignment": -700,
-      "hp_dice": "15d10+196",
-      "damage_dice": "4d7+8",
-      "gold": 12500,
-      "exp": 900,
-      "armor_class": 55,
-      "flags": [
-        "sentinel",
-        "scavenger",
-        "aware",
-        "aggressive",
-        "no_charm",
-        "no_summmon",
-        "no_sleep",
-        "no_bash",
-        "no_blind"
-      ],
-      "description": "The ghost is almost translucent, and looks really SCARY!",
-      "inventory": [
-        15012,
-        15006
-      ]
-    },
-    "15003": {
-      "vnum": 15003,
-      "name": "jim",
-      "short_desc": "Jim",
-      "long_desc": "Jim the Royal Guard is here on duty.",
-      "level": 11,
-      "alignment": 800,
-      "hp_dice": "3d10+88",
-      "damage_dice": "1d8+11",
-      "gold": 5700,
-      "exp": 338,
-      "armor_class": 2,
-      "flags": [
-        "special",
-        "stay_zone"
-      ],
-      "description": "As all members of the Guard, Jim wears the chain mail required of\nthem as uniform.  He seems very well trained, and moves like an\nexperienced fighter.",
-      "equipment": {
-        "wield": 3022,
-        "body": 15015
-      },
-      "inventory": [
-        15014
-      ]
-    },
-    "15004": {
-      "vnum": 15004,
-      "name": "brian",
-      "short_desc": "Brian",
-      "long_desc": "Brian the Royal Guard is here, training with the Master.",
-      "level": 11,
-      "alignment": 800,
-      "hp_dice": "3d10+88",
-      "damage_dice": "1d8+11",
-      "gold": 5700,
-      "exp": 338,
-      "armor_class": 2,
-      "flags": [
-        "special",
-        "sentinel",
-        "stay_zone"
-      ],
-      "description": "As all members of the Guard, Brian wears the chain mail required of\nthem as uniform.  He seems very well trained, and moves like an\nexperienced fighter.",
-      "equipment": {
-        "wield": 15006,
-        "body": 15015
-      },
-      "inventory": [
-        15030,
-        15002
-      ]
-    },
-    "15005": {
-      "vnum": 15005,
-      "name": "mick",
-      "short_desc": "Mick",
-      "long_desc": "Mick the Royal Guard is here, training with the Master.",
-      "level": 11,
-      "alignment": 800,
-      "hp_dice": "3d10+88",
-      "damage_dice": "1d8+11",
-      "gold": 5700,
-      "exp": 338,
-      "armor_class": 2,
-      "flags": [
-        "special",
-        "sentinel",
-        "stay_zone"
-      ],
-      "description": "As all members of the Guard, Mick wears the chain mail required of\nthem as uniform.  He seems very well trained, and moves like an\nexperienced fighter.",
-      "equipment": {
-        "wield": 15006,
-        "body": 15015
-      },
-      "inventory": [
-        15003
-      ]
-    },
-    "15006": {
-      "vnum": 15006,
-      "name": "matt",
-      "short_desc": "Matt",
-      "long_desc": "Matt the Royal Guard is here on duty.",
-      "level": 11,
-      "alignment": 800,
-      "hp_dice": "3d10+88",
-      "damage_dice": "1d8+11",
-      "gold": 5700,
-      "exp": 338,
-      "armor_class": 2,
-      "flags": [
-        "special",
-        "stay_zone"
-      ],
-      "description": "As all members of the Guard, Matt wears the chain mail required of\nthem as uniform.  He seems very well trained, and moves like an\nexperienced fighter.",
-      "equipment": {
-        "wield": 3022,
-        "body": 15015
-      },
-      "inventory": [
-        15029
-      ]
-    },
-    "15007": {
-      "vnum": 15007,
-      "name": "jochem",
-      "short_desc": "Jochem",
-      "long_desc": "Jochem the Royal Guard sits here, off duty.",
-      "level": 13,
-      "alignment": 900,
-      "hp_dice": "3d10+104",
-      "damage_dice": "1d8+13",
-      "gold": 8200,
-      "exp": 420,
-      "armor_class": 2,
-      "flags": [
-        "special",
-        "stay_zone"
-      ],
-      "description": "As all members of the Guard, Jochem wears the chain mail required of\nthem as uniform.  He seems very well trained, and moves like a fighter\nwho has seen more than one battle, and longs to see the next!",
-      "equipment": {
-        "wield": 3022,
-        "body": 15015
-      },
-      "inventory": [
-        15008
-      ]
-    },
-    "15008": {
-      "vnum": 15008,
-      "name": "anne",
-      "short_desc": "Anne",
-      "long_desc": "Anne the Royal Guard is here on duty.",
-      "level": 13,
-      "alignment": 900,
-      "hp_dice": "3d10+104",
-      "damage_dice": "1d8+13",
-      "gold": 8200,
-      "exp": 420,
-      "armor_class": 2,
-      "flags": [
-        "special",
-        "stay_zone"
-      ],
-      "description": "As all members of the Guard, Anne wears the chain mail required of\nthem as uniform.  She seems very well trained, and moves like a fighter\nwho has seen more than one battle, and longs to see the next!",
-      "equipment": {
-        "wield": 3022,
-        "body": 15015
-      },
-      "inventory": [
-        15005,
-        15024
-      ]
-    },
-    "15009": {
-      "vnum": 15009,
-      "name": "andrew",
-      "short_desc": "Andrew",
-      "long_desc": "Andrew the Royal Guard is here on duty.",
-      "level": 13,
-      "alignment": 900,
-      "hp_dice": "3d10+104",
-      "damage_dice": "1d8+13",
-      "gold": 8200,
-      "exp": 420,
-      "armor_class": 2,
-      "flags": [
-        "special",
-        "stay_zone"
-      ],
-      "description": "As all members of the Guard, Andrew wears the chain mail required of\nthem as uniform.  He seems very well trained, and moves like a fighter\nwho has seen more than one battle, and longs to see the next!",
-      "equipment": {
-        "wield": 3022,
-        "body": 15015
-      },
-      "inventory": [
-        15026
-      ]
-    },
-    "15010": {
-      "vnum": 15010,
-      "name": "bertram",
-      "short_desc": "Bertram",
-      "long_desc": "Bertram the Royal Guard is here on duty.",
-      "level": 15,
-      "alignment": 900,
-      "hp_dice": "3d10+120",
-      "damage_dice": "1d8+15",
-      "gold": 10700,
-      "exp": 507,
-      "armor_class": 1,
-      "flags": [
-        "special",
-        "stay_zone"
-      ],
-      "description": "As all members of the Guard, Bertram wears the chain mail required of\nthem as uniform.  He seems very well trained, and carries his scars\nwith pride.  This guy seems tough...",
-      "equipment": {
-        "wield": 3022,
-        "body": 15015
-      },
-      "inventory": [
-        15022,
-        15002
-      ]
-    },
-    "15011": {
-      "vnum": 15011,
-      "name": "jeanette",
-      "short_desc": "Jeanette",
-      "long_desc": "Jeanette the Royal Guard is here on duty.",
-      "level": 15,
-      "alignment": 900,
-      "hp_dice": "3d10+120",
-      "damage_dice": "1d8+15",
-      "gold": 10700,
-      "exp": 507,
-      "armor_class": 1,
-      "flags": [
-        "special",
-        "stay_zone"
-      ],
-      "description": "As all members of the Guard, Jeanette wears the chain mail required of\nthem as uniform.  She seems very well trained, and carries her scars\nwith pride.  This girl could be nasty if she wanted to...",
-      "equipment": {
-        "wield": 3022,
-        "body": 15015
-      },
-      "inventory": [
-        15016,
-        15020
-      ]
-    },
-    "15012": {
-      "vnum": 15012,
-      "name": "peter",
-      "short_desc": "Peter, the Captain of the Royal Guard",
-      "long_desc": "Peter, the Captain of the Royal Guard, walks around inspecting.",
-      "level": 19,
-      "alignment": 900,
-      "hp_dice": "4d10+228",
-      "damage_dice": "2d6+22",
-      "gold": 18000,
-      "exp": 689,
-      "armor_class": -1,
-      "flags": [
-        "special",
-        "stay_zone"
-      ],
-      "description": "As all members of the Guard, Peter wears the chain mail required of\nthem as uniform.  Even though all the other guards seem well trained,\nyou realise none of them would stand a chance against this man in a\nfight.  He stands at least two metres tall, but still moves with an\nalmost feline grace.  He actually radiates strength and confidence,\nand you have to fight a sudden urge to come to attention as you see\nhim.",
-      "equipment": {
-        "body": 15015,
-        "wield": 15016
-      },
-      "inventory": [
-        15005,
-        15024
-      ]
-    },
-    "15013": {
-      "vnum": 15013,
-      "name": "master",
-      "short_desc": "the Training Master",
-      "long_desc": "The Training Master is here, supervising.",
-      "level": 18,
-      "alignment": 950,
-      "hp_dice": "4d10+216",
-      "damage_dice": "2d6+21",
-      "gold": 15500,
-      "exp": 642,
-      "armor_class": 1,
-      "flags": [
-        "special",
-        "sentinel",
-        "stay_zone"
-      ],
-      "description": "Aged, but experienced, the Training Master is skilled in the use\nof virtually every weapon type invented by Man.",
-      "equipment": {
-        "wield": 3022
-      },
-      "inventory": [
-        15022,
-        15008
-      ]
-    },
-    "15014": {
-      "vnum": 15014,
-      "name": "herald",
-      "short_desc": "the Royal Herald",
-      "long_desc": "The Royal Herald is standing here.",
-      "level": 18,
-      "alignment": 800,
-      "hp_dice": "4d10+216",
-      "damage_dice": "2d6+21",
-      "gold": 15250,
-      "exp": 642,
-      "armor_class": -1,
-      "flags": [],
-      "description": "This is a young, powerfully built man, whose primary function\nis to make Royal Announcements.",
-      "inventory": [
-        15003,
-        15002,
-        15030
-      ]
-    },
-    "15015": {
-      "vnum": 15015,
-      "name": "ergan",
-      "short_desc": "Ergan the Murderer",
-      "long_desc": "Slumped in a corner you see Ergan, aka the Murderer of Townsbridge.",
-      "level": 13,
-      "alignment": -1000,
-      "hp_dice": "13d10+172",
-      "damage_dice": "4d6+7",
-      "gold": 9000,
-      "exp": 780,
-      "armor_class": 61,
-      "flags": [
-        "special",
-        "scavenger",
-        "aware",
-        "aggressive",
-        "wimpy",
-        "no_charm",
-        "no_summmon"
-      ],
-      "description": "You remember a time almost a decade ago, when the news of the day\nwas how this man had slaughtered the entire population of the little\nvillage of Townsbridge.  He was imprisoned, and here he is - a shadow\nof the undoubtedly great warrior he once was, but still to be reckoned\nwith.",
-      "inventory": [
-        15024
-      ]
-    },
-    "15016": {
-      "vnum": 15016,
-      "name": "butler",
-      "short_desc": "James the Butler",
-      "long_desc": "James the Butler is standing here, looking pompous.",
-      "level": 8,
-      "alignment": 500,
-      "hp_dice": "8d10+112",
-      "damage_dice": "3d5+5",
-      "gold": 1975,
-      "exp": 480,
-      "armor_class": 76,
-      "flags": [
-        "special",
-        "stay_zone"
-      ],
-      "description": "The typical perfect butler: upper middle age, a bit bald and with \nan impressive belly.",
-      "inventory": [
-        15009
-      ]
-    },
-    "15017": {
-      "vnum": 15017,
-      "name": "woman",
-      "short_desc": "the Cleaning Woman",
-      "long_desc": "There is a Cleaning Woman here, trying not be noticed.",
-      "level": 1,
-      "alignment": 800,
-      "hp_dice": "1d5+0",
-      "damage_dice": "4d6+1",
-      "gold": 55,
-      "exp": 8,
-      "armor_class": 9,
-      "flags": [
-        "special",
-        "stay_zone"
-      ],
-      "description": "Although she has a menial job, she seems to like it.",
-      "inventory": [
-        15005,
-        15020
-      ]
-    },
-    "15018": {
-      "vnum": 15018,
-      "name": "cockroach",
-      "short_desc": "the cockroach",
-      "long_desc": "A large cockroach is crawling by the wall.",
-      "level": 4,
-      "alignment": -250,
-      "hp_dice": "4d10+64",
-      "damage_dice": "2d4+3",
-      "gold": 377,
-      "exp": 240,
-      "armor_class": 88,
-      "flags": [
-        "aware",
-        "no_bash",
-        "no_blind"
-      ],
-      "description": "Very large indeed, and they say cockroaches are hard to kill...",
-      "inventory": [
-        15009
-      ]
-    },
-    "15019": {
-      "vnum": 15019,
-      "name": "astrologer",
-      "short_desc": "the Astrologer",
-      "long_desc": "The Astrologer is sitting here, studying a book.",
-      "level": 23,
-      "alignment": 900,
-      "hp_dice": "3d8+30",
-      "damage_dice": "1d1+30000",
-      "gold": 41000,
-      "exp": 6,
-      "armor_class": -2,
-      "flags": [
-        "special",
-        "sentinel",
-        "aware",
-        "memory",
-        "no_charm",
-        "no_summmon"
-      ],
-      "description": "He is old and white-haired, with a long beard.  As you see him,\nyou can almost believe the rumours about stars deciding Fate,\nand that astrology is capable of seeing the future.",
-      "special": "shopkeeper",
-      "shop_config": {
-        "sells": [
-          15012
-        ],
-        "buys": [],
-        "markup": 3050.0,
-        "markdown": 3052.0
-      },
-      "inventory": [
-        3052,
-        3050,
-        15012
-      ],
-      "loot_table": [
-        {
-          "vnum": 15023,
-          "chance": 20
-        },
-        {
-          "vnum": 15024,
-          "chance": 20
-        },
-        {
-          "vnum": 15025,
-          "chance": 20
-        },
-        {
-          "vnum": 15026,
-          "chance": 20
-        },
-        {
-          "vnum": 15027,
-          "chance": 20
-        },
-        {
-          "vnum": 15028,
-          "chance": 20
-        },
-        {
-          "vnum": 15029,
-          "chance": 20
-        },
-        {
-          "vnum": 15030,
-          "chance": 20
-        },
-        {
-          "vnum": 15031,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100
-    },
-    "15020": {
-      "vnum": 15020,
-      "name": "tim",
-      "short_desc": "Tim, the King's Lifeguard",
-      "long_desc": "Tim, the King's Lifeguard, is standing here.",
-      "level": 17,
-      "alignment": 900,
-      "hp_dice": "4d10+204",
-      "damage_dice": "2d6+20",
-      "gold": 14500,
-      "exp": 596,
-      "armor_class": 1,
-      "flags": [
-        "special",
-        "sentinel"
-      ],
-      "description": "This guy looks just like his twin, Tom.  There seems to be no\ndoubt that he is completely prepared to give his life for the\nKing, if necessary.",
-      "equipment": {
-        "wield": 3022,
-        "body": 15015
-      },
-      "inventory": [
-        15000,
-        15002,
-        15003
-      ]
-    },
-    "15021": {
-      "vnum": 15021,
-      "name": "tom",
-      "short_desc": "Tom, the King's Lifeguard",
-      "long_desc": "Tom, the King's Lifeguard, is standing here.",
-      "level": 17,
-      "alignment": 900,
-      "hp_dice": "4d10+204",
-      "damage_dice": "2d6+20",
-      "gold": 14500,
-      "exp": 596,
-      "armor_class": 1,
-      "flags": [
-        "special",
-        "sentinel"
-      ],
-      "description": "This guy looks just like his twin, Tim.  There seems to be no\ndoubt that he is completely prepared to give his life for the\nKing, if necessary.",
-      "equipment": {
-        "wield": 3022,
-        "body": 15015
-      },
-      "inventory": [
-        15006
-      ]
-    },
-    "15022": {
-      "vnum": 15022,
-      "name": "chef",
-      "short_desc": "the Chef",
-      "long_desc": "The Chef is here, shouting orders to the other cooks.",
-      "level": 19,
-      "alignment": 500,
-      "hp_dice": "4d4+14",
-      "damage_dice": "2d6+1283",
-      "gold": 20500,
-      "exp": 8,
-      "armor_class": -1,
-      "flags": [
-        "sentinel",
-        "aware",
-        "wimpy",
-        "memory",
-        "no_charm",
-        "no_summmon"
-      ],
-      "description": "It seems he has been tasting his own food a bit too enthusiastically.\nHe is, in other words, a bit fat.",
-      "special": "shopkeeper",
-      "shop_config": {
-        "sells": [
-          15019
-        ],
-        "buys": [
-          "1.1"
-        ],
-        "markup": 15020.0,
-        "markdown": -1.0
-      },
-      "inventory": [
-        15019,
-        15020
-      ]
-    },
-    "15023": {
-      "vnum": 15023,
-      "name": "cook",
-      "short_desc": "the cook",
-      "long_desc": "There is a cook here, making himself busy with a pot.",
-      "level": 4,
-      "alignment": 300,
-      "hp_dice": "4d10+64",
-      "damage_dice": "2d4+3",
-      "gold": 325,
-      "exp": 240,
-      "armor_class": 88,
-      "flags": [
-        "sentinel",
-        "wimpy"
-      ],
-      "description": "A junior cook, eager to do the Chef's bidding.",
-      "inventory": [
-        15010
-      ]
-    },
-    "15024": {
-      "vnum": 15024,
-      "name": "david",
-      "short_desc": "David",
-      "long_desc": "David, a big, mean-looking man, stands here, guarding the door.",
-      "level": 19,
-      "alignment": 250,
-      "hp_dice": "19d10+244",
-      "damage_dice": "5d7+10",
-      "gold": 18500,
-      "exp": 1140,
-      "armor_class": 43,
-      "flags": [
-        "special",
-        "sentinel"
-      ],
-      "description": "He really is big, and you get the feeling he wouldn't take kindly\nto an attempt to get past him.",
-      "equipment": {
-        "wield": 3022,
-        "body": 15015
-      },
-      "inventory": [
-        15007
-      ]
-    },
-    "15025": {
-      "vnum": 15025,
-      "name": "dick",
-      "short_desc": "Dick",
-      "long_desc": "Dick, a big, mean-looking man, stands here, guarding the door.",
-      "level": 19,
-      "alignment": 250,
-      "hp_dice": "19d10+244",
-      "damage_dice": "5d7+10",
-      "gold": 18500,
-      "exp": 1140,
-      "armor_class": 43,
-      "flags": [
-        "special",
-        "sentinel"
-      ],
-      "description": "He really is big, and you get the feeling he wouldn't take kindly\nto an attempt to get past him.",
-      "equipment": {
-        "wield": 3022,
-        "body": 15015
-      },
-      "inventory": [
-        15003
-      ]
-    },
-    "15026": {
-      "vnum": 15026,
-      "name": "jerry",
-      "short_desc": "Jerry",
-      "long_desc": "Jerry the Royal Guard is here off duty, playing dice.",
-      "level": 11,
-      "alignment": 800,
-      "hp_dice": "3d10+88",
-      "damage_dice": "1d8+11",
-      "gold": 5700,
-      "exp": 338,
-      "armor_class": 2,
-      "flags": [
-        "special",
-        "stay_zone"
-      ],
-      "description": "As all members of the Guard, Jerry wears the chain mail required\nof them as uniform.  He seems very well trained, and moves like\nan experienced fighter.",
-      "equipment": {
-        "wield": 3022,
-        "body": 15015
-      },
-      "inventory": [
-        15012
-      ]
-    },
-    "15027": {
-      "vnum": 15027,
-      "name": "michael",
-      "short_desc": "Michael",
-      "long_desc": "Michael the Royal Guard is here off duty, playing dice.",
-      "level": 11,
-      "alignment": 800,
-      "hp_dice": "3d10+88",
-      "damage_dice": "1d8+11",
-      "gold": 5700,
-      "exp": 338,
-      "armor_class": 2,
-      "flags": [
-        "special",
-        "stay_zone"
-      ],
-      "description": "As all members of the Guard, Michael wears the chain mail required\nof them as uniform.  He seems very well trained, and moves like an\nexperienced fighter.",
-      "equipment": {
-        "wield": 3022,
-        "body": 15015
-      },
-      "inventory": [
-        15028,
-        15016
-      ]
-    },
-    "15028": {
-      "vnum": 15028,
-      "name": "hans",
-      "short_desc": "Hans",
-      "long_desc": "Hans the Royal Guard is here on duty.",
-      "level": 13,
-      "alignment": 900,
-      "hp_dice": "3d10+104",
-      "damage_dice": "1d8+13",
-      "gold": 8200,
-      "exp": 420,
-      "armor_class": 2,
-      "flags": [
-        "special",
-        "stay_zone"
-      ],
-      "description": "As all members of the Guard, Hans wears the chain mail required\nof them as uniform.  He seems very well trained, and moves like\na fighter who has seen more than one battle, and longs to see\nthe next!",
-      "equipment": {
-        "wield": 3022,
-        "body": 15015
-      },
-      "inventory": [
-        15006
-      ]
-    },
-    "15029": {
-      "vnum": 15029,
-      "name": "boris",
-      "short_desc": "Boris",
-      "long_desc": "Boris the Royal Guard is here on duty.",
-      "level": 15,
-      "alignment": 900,
-      "hp_dice": "3d10+120",
-      "damage_dice": "1d8+15",
-      "gold": 10700,
-      "exp": 507,
-      "armor_class": 1,
-      "flags": [
-        "special",
-        "stay_zone"
-      ],
-      "description": "As all members of the Guard, Boris wears the chain mail required of\nthem as uniform.  He seems very well trained, and carries his scars\nwith pride.  This guy seems tough...",
-      "equipment": {
-        "wield": 3022,
-        "body": 15015
-      },
-      "inventory": [
-        15016
-      ]
-    },
-    "15030": {
-      "vnum": 15030,
-      "name": "zombie",
-      "short_desc": "the zombie",
-      "long_desc": "A zombie is shambling over some corpses here, moving quite silently.",
-      "level": 11,
-      "alignment": 0,
-      "hp_dice": "11d10+148",
-      "damage_dice": "3d6+8",
-      "gold": 5000,
-      "exp": 660,
-      "armor_class": 67,
-      "flags": [
-        "sentinel",
-        "aware",
-        "aggressive",
-        "no_charm",
-        "no_sleep",
-        "no_blind"
-      ],
-      "description": "It is entirely possible that this zombie was once one of the villagers\nof Townsbridge who has been brought to an undead life by a fuelling\ndesire for revenge.",
-      "inventory": [
-        15030
-      ]
-    },
-    "15031": {
-      "vnum": 15031,
-      "name": "skeleton",
-      "short_desc": "the skeleton",
-      "long_desc": "A skeleton is moving about with a loud clatter here, climbing over corpses.",
-      "level": 10,
-      "alignment": 0,
-      "hp_dice": "10d10+136",
-      "damage_dice": "3d6+6",
-      "gold": 4000,
-      "exp": 600,
-      "armor_class": 70,
-      "flags": [
-        "sentinel",
-        "aware",
-        "aggressive",
-        "no_charm",
-        "no_sleep",
-        "no_blind"
-      ],
-      "description": "It is entirely possible that this skeleton was once one of the villagers\nof Townsbridge who has been brought to an undead life by a fuelling desire\nfor revenge.",
-      "inventory": [
-        15008,
-        15024
-      ]
-    },
-    "15032": {
-      "vnum": 15032,
-      "name": "pit",
-      "short_desc": "the pit fiend",
-      "long_desc": "A large demon surrounded by flames rises out of the dark pool.",
-      "level": 33,
-      "alignment": 1000,
-      "hp_dice": "33d10+412",
-      "damage_dice": "9d8+11",
-      "gold": 15000,
-      "exp": 1980,
-      "armor_class": 1,
-      "flags": [
-        "special",
-        "sentinel",
-        "aware",
-        "aggressive",
-        "memory",
-        "no_charm",
-        "no_summmon",
-        "no_sleep",
-        "no_bash",
-        "no_blind"
-      ],
-      "description": "It is a horrifying thing, this demonic creature from the depths of the\nAbyss.  It glares down at you through blood-red eyes, and bares its huge\nwhite fangs and its razor-sharp talons.",
-      "equipment": {
-        "wield": 15008
-      },
-      "loot_table": [
-        {
-          "vnum": 15023,
-          "chance": 20
-        },
-        {
-          "vnum": 15024,
-          "chance": 20
-        },
-        {
-          "vnum": 15025,
-          "chance": 20
-        },
-        {
-          "vnum": 15026,
-          "chance": 20
-        },
-        {
-          "vnum": 15027,
-          "chance": 20
-        },
-        {
-          "vnum": 15028,
-          "chance": 20
-        },
-        {
-          "vnum": 15029,
-          "chance": 20
-        },
-        {
-          "vnum": 15030,
-          "chance": 20
-        },
-        {
-          "vnum": 15031,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100,
-      "inventory": [
-        15004,
-        15002
-      ]
+    {
+     "vnum": 15023,
+     "max": 2
     }
+   ],
+   "description": "This is the Kitchen. Lots of helpers hurry to do the Chief Cook's\nbidding, and there is a wonderful smell that makes you feel very hungry.\nAll around the room, there are shelves with different kinds of cooking\ngear stacked on them. There is an exit to the north, and one to the\neast; both leading to small passages. The walls are rough-hewn and cold\nto the touch. The ceiling hangs low overhead.",
+   "exits": {
+    "north": {
+     "to_room": 15010,
+     "description": "You see a small, dimly lit passage."
+    },
+    "east": {
+     "to_room": 15006,
+     "description": "You see a small, dimly lit passage."
+    }
+   }
   },
-  "objects": {
-    "15000": {
-      "vnum": 15000,
-      "name": "nothingness",
-      "short_desc": "Sapowox's Universal Nothingness",
-      "room_desc": "You are quite unable to perceive Sapowox's Universal Nothingness here.",
-      "item_type": "weapon",
-      "weight": 40,
-      "value": 0,
-      "damage_dice": "6d4",
-      "weapon_type": "sting",
-      "type": "treasure"
+  "15006": {
+   "vnum": 15006,
+   "name": "A small passage.",
+   "map": {
+    "x": 0,
+    "y": 21,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "description": "This is a small passage, that is clearly intended mostly for the\nservants of the Castle. It is only dimly lit and quite narrow. The\npassage leads west, and to the east there is a small door. The air is\nstill and musty. Shadows gather in the corners.",
+   "exits": {
+    "east": {
+     "to_room": 15007,
+     "description": "The door is small and uninteresting.",
+     "door": {
+      "name": "door small",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
     },
-    "15001": {
-      "vnum": 15001,
-      "name": "gold",
-      "short_desc": "the gold",
-      "room_desc": "A lot of gold is here.",
-      "item_type": "money",
-      "weight": 0,
-      "value": 32385,
-      "type": "treasure"
-    },
-    "15002": {
-      "vnum": 15002,
-      "name": "sceptre",
-      "short_desc": "a golden sceptre",
-      "room_desc": "A golden Royal sceptre lies on the ground.",
-      "item_type": "treasure",
-      "weight": 20,
-      "value": 15000,
-      "type": "treasure"
-    },
-    "15003": {
-      "vnum": 15003,
-      "name": "crown",
-      "short_desc": "a golden crown",
-      "room_desc": "A magnificently jewelled golden crown has been left here.",
-      "item_type": "armor",
-      "weight": 40,
-      "value": 12000,
-      "armor_bonus": 7,
-      "type": "armor",
-      "wear_slot": "head",
-      "armor": 2,
-      "armor_class": 4
-    },
-    "15004": {
-      "vnum": 15004,
-      "name": "apple",
-      "short_desc": "a golden apple",
-      "room_desc": "There is a golden apple here.",
-      "item_type": "light",
-      "weight": 5,
-      "value": 8000,
-      "light_hours": -1,
-      "type": "food",
-      "food_value": 12
-    },
-    "15005": {
-      "vnum": 15005,
-      "name": "telescope",
-      "short_desc": "a large telescope",
-      "room_desc": "There is a large telescope here, pointing at the sky.",
-      "item_type": "treasure",
-      "weight": 0,
-      "value": 0,
-      "type": "treasure"
-    },
-    "15006": {
-      "vnum": 15006,
-      "name": "sword",
-      "short_desc": "a training sword",
-      "room_desc": "A training sword with blunt edges is leaned against a wall.",
-      "item_type": "weapon",
-      "weight": 7,
-      "value": 300,
-      "damage_dice": "1d4",
-      "weapon_type": "slash",
-      "type": "weapon"
-    },
-    "15007": {
-      "vnum": 15007,
-      "name": "key",
-      "short_desc": "a huge key",
-      "room_desc": "There is a huge, heavy-looking key on the floor here.",
-      "item_type": "key",
-      "weight": 1,
-      "value": 0,
-      "type": "key"
-    },
-    "15008": {
-      "vnum": 15008,
-      "name": "Verminator",
-      "short_desc": "Verminator",
-      "room_desc": "A strange looking sword is lying upon the ground here.",
-      "item_type": "weapon",
-      "weight": 2,
-      "value": 1,
-      "damage_dice": "3d4",
-      "weapon_type": "pierce",
-      "type": "weapon"
-    },
-    "15009": {
-      "vnum": 15009,
-      "name": "key",
-      "short_desc": "the Butler's key",
-      "room_desc": "The Butler's key is here.",
-      "item_type": "key",
-      "weight": 3,
-      "value": 0,
-      "type": "key"
-    },
-    "15010": {
-      "vnum": 15010,
-      "name": "key",
-      "short_desc": "a small key",
-      "room_desc": "A small key lies here.",
-      "item_type": "key",
-      "weight": 1,
-      "value": 0,
-      "type": "key"
-    },
-    "15011": {
-      "vnum": 15011,
-      "name": "chest",
-      "short_desc": "a large wooden chest",
-      "room_desc": "A large wooden chest stands here in a corner.",
-      "item_type": "container",
-      "weight": 450,
-      "value": 400,
-      "capacity": 800,
-      "key_vnum": 15010,
-      "type": "container"
-    },
-    "15012": {
-      "vnum": 15012,
-      "name": "vial",
-      "short_desc": "a large vial",
-      "room_desc": "A large vial has been left here.",
-      "item_type": "potion",
-      "weight": 14,
-      "value": 2000,
-      "type": "treasure"
-    },
-    "15013": {
-      "vnum": 15013,
-      "name": "banner",
-      "short_desc": "a royal banner",
-      "room_desc": "The royal banner has been firmly planted in the ground here.",
-      "item_type": "treasure",
-      "weight": 0,
-      "value": 0,
-      "type": "treasure"
-    },
-    "15014": {
-      "vnum": 15014,
-      "name": "key",
-      "short_desc": "a key",
-      "room_desc": "A key lies on the floor.",
-      "item_type": "key",
-      "weight": 13,
-      "value": 0,
-      "type": "key"
-    },
-    "15015": {
-      "vnum": 15015,
-      "name": "hauberk",
-      "short_desc": "a guard's chain mail hauberk",
-      "room_desc": "A chain mail hauberk lies on the floor",
-      "item_type": "armor",
-      "weight": 60,
-      "value": 2000,
-      "armor_bonus": 5,
-      "type": "armor",
-      "wear_slot": "body",
-      "armor": 5,
-      "armor_class": 3
-    },
-    "15016": {
-      "vnum": 15016,
-      "name": "broadsword",
-      "short_desc": "a large broadsword",
-      "room_desc": "There is a large broadsword lying here.",
-      "item_type": "weapon",
-      "weight": 14,
-      "value": 1300,
-      "damage_dice": "2d6",
-      "weapon_type": "slash",
-      "type": "treasure"
-    },
-    "15017": {
-      "vnum": 15017,
-      "name": "key",
-      "short_desc": "the cell key",
-      "room_desc": "A key lies on the floor.",
-      "item_type": "key",
-      "weight": 3,
-      "value": 0,
-      "type": "key"
-    },
-    "15018": {
-      "vnum": 15018,
-      "name": "corpse",
-      "short_desc": "a corpse",
-      "room_desc": "There is a corpse lying in the middle of the floor of the building here.",
-      "item_type": "treasure",
-      "weight": 0,
-      "value": 0,
-      "type": "trash"
-    },
-    "15019": {
-      "vnum": 15019,
-      "name": "lobster",
-      "short_desc": "a delicious-looking lobster",
-      "room_desc": "A delicious-looking lobster is lying here, tempting your appetite.",
-      "item_type": "food",
-      "weight": 5,
-      "value": 100,
-      "nutrition": 7,
-      "type": "food",
-      "food_value": 12
-    },
-    "15020": {
-      "vnum": 15020,
-      "name": "caviar",
-      "short_desc": "some Russian caviar",
-      "room_desc": "There is some delicious-looking Russian caviar here, making your mouth water.",
-      "item_type": "food",
-      "weight": 1,
-      "value": 250,
-      "nutrition": 2,
-      "type": "food",
-      "food_value": 12
-    },
-    "15021": {
-      "vnum": 15021,
-      "name": "glow",
-      "short_desc": "the glow from the west",
-      "room_desc": "There is a strange glow coming from the west.",
-      "item_type": "treasure",
-      "weight": 0,
-      "value": 0,
-      "type": "treasure"
-    },
-    "15022": {
-      "vnum": 15022,
-      "name": "wail",
-      "short_desc": "the wailing sound from the east",
-      "room_desc": "There is an eerie wailing sound coming from the house to the east.",
-      "item_type": "treasure",
-      "weight": 0,
-      "value": 0,
-      "type": "treasure"
-    },
-    "15023": {
-      "vnum": 15023,
-      "name": "royal greatblade",
-      "short_desc": "\u001b[97ma royal \u001b[91mgreatblade\u001b[0m\u001b[97m\u001b[0m",
-      "room_desc": "\u001b[97mA royal \u001b[91mgreatblade\u001b[0m\u001b[97m lies here.\u001b[0m",
-      "description": "A knight's blade.",
-      "item_type": "weapon",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "wield",
-      "weapon_type": "slash",
-      "damage_dice": "2d6+6",
-      "affects": [
-        {
-          "type": "damroll",
-          "value": 4
-        }
-      ],
-      "set_id": 150,
-      "type": "weapon"
-    },
-    "15024": {
-      "vnum": 15024,
-      "name": "king's aegis",
-      "short_desc": "\u001b[97mthe king's \u001b[93maegis\u001b[0m\u001b[97m\u001b[0m",
-      "room_desc": "\u001b[97mThe king's \u001b[93maegis\u001b[0m\u001b[97m lies here.\u001b[0m",
-      "description": "A royal shield.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "shield",
-      "armor_bonus": 4,
-      "affects": [
-        {
-          "type": "cha",
-          "value": 1
-        }
-      ],
-      "set_id": 150,
-      "type": "armor",
-      "armor": 3,
-      "armor_class": 5
-    },
-    "15025": {
-      "vnum": 15025,
-      "name": "oathbreaker sigil",
-      "short_desc": "\u001b[97man oathbreaker \u001b[35msigil\u001b[0m\u001b[97m\u001b[0m",
-      "room_desc": "\u001b[97mAn oathbreaker \u001b[35msigil\u001b[0m\u001b[97m lies here.\u001b[0m",
-      "description": "A deathknight's sigil.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "neck1",
-      "affects": [
-        {
-          "type": "damroll",
-          "value": 4
-        }
-      ],
-      "set_id": 150,
-      "type": "treasure",
-      "armor": 9
-    },
-    "15026": {
-      "vnum": 15026,
-      "name": "royal reliquary",
-      "short_desc": "\u001b[97ma royal \u001b[93mreliquary\u001b[0m\u001b[97m\u001b[0m",
-      "room_desc": "\u001b[97mA royal \u001b[93mreliquary\u001b[0m\u001b[97m lies here.\u001b[0m",
-      "description": "A cleric's reliquary.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "hold",
-      "affects": [
-        {
-          "type": "wis",
-          "value": 3
-        },
-        {
-          "type": "max_mana",
-          "value": 35
-        }
-      ],
-      "set_id": 150,
-      "type": "treasure",
-      "armor": 9
-    },
-    "15027": {
-      "vnum": 15027,
-      "name": "court magus focus",
-      "short_desc": "\u001b[97ma court magus \u001b[96mfocus\u001b[0m\u001b[97m\u001b[0m",
-      "room_desc": "\u001b[97mA court magus \u001b[96mfocus\u001b[0m\u001b[97m lies here.\u001b[0m",
-      "description": "A mage's focus.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "hold",
-      "affects": [
-        {
-          "type": "int",
-          "value": 4
-        }
-      ],
-      "set_id": 150,
-      "type": "treasure",
-      "armor": 13
-    },
-    "15028": {
-      "vnum": 15028,
-      "name": "court lyre",
-      "short_desc": "\u001b[97ma court \u001b[95mlyre\u001b[0m\u001b[97m\u001b[0m",
-      "room_desc": "\u001b[97mA court \u001b[95mlyre\u001b[0m\u001b[97m lies here.\u001b[0m",
-      "description": "A bard's lyre.",
-      "item_type": "weapon",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "wield",
-      "weapon_type": "mace",
-      "damage_dice": "1d6+3",
-      "affects": [
-        {
-          "type": "cha",
-          "value": 3
-        }
-      ],
-      "set_id": 150,
-      "type": "treasure"
-    },
-    "15029": {
-      "vnum": 15029,
-      "name": "spy's dagger",
-      "short_desc": "\u001b[97ma spy's \u001b[92mdagger\u001b[0m\u001b[97m\u001b[0m",
-      "room_desc": "\u001b[97mA spy's \u001b[92mdagger\u001b[0m\u001b[97m lies here.\u001b[0m",
-      "description": "A rogue's dagger.",
-      "item_type": "weapon",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "wield",
-      "weapon_type": "pierce",
-      "damage_dice": "1d6+3",
-      "affects": [
-        {
-          "type": "dex",
-          "value": 3
-        },
-        {
-          "type": "hitroll",
-          "value": 2
-        }
-      ],
-      "set_id": 150,
-      "type": "weapon"
-    },
-    "15030": {
-      "vnum": 15030,
-      "name": "sentinel band",
-      "short_desc": "\u001b[97ma sentinel \u001b[92mband\u001b[0m\u001b[97m\u001b[0m",
-      "room_desc": "\u001b[97mA sentinel \u001b[92mband\u001b[0m\u001b[97m lies here.\u001b[0m",
-      "description": "A ranger's ring.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "finger1",
-      "affects": [
-        {
-          "type": "dex",
-          "value": 2
-        },
-        {
-          "type": "hitroll",
-          "value": 1
-        }
-      ],
-      "set_id": 150,
-      "type": "armor",
-      "armor": 8,
-      "armor_class": 4
-    },
-    "15031": {
-      "vnum": 15031,
-      "name": "knight\u2011captain cloak",
-      "short_desc": "\u001b[97ma knight\u2011captain cloak\u001b[0m",
-      "room_desc": "\u001b[97mA knight\u2011captain cloak lies here.\u001b[0m",
-      "description": "A captain's cloak.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 8000,
-      "wear_slot": "about",
-      "armor_bonus": 3,
-      "set_id": 150,
-      "type": "armor",
-      "armor": 1,
-      "armor_class": 3
+    "west": {
+     "to_room": 15005,
+     "description": "You hear clanging of pots, and smell cooking meat."
     }
+   }
+  },
+  "15007": {
+   "vnum": 15007,
+   "name": "The Entrance Hall",
+   "map": {
+    "x": 1,
+    "y": 21,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "description": "This is the impressive Entrance Hall of the Castle. To the north is an\nexit into the Great Hall. There is also an exit east, and a small door\nto the west. Shadows gather in the corners. Dust motes drift in the\nstale air.",
+   "exits": {
+    "north": {
+     "to_room": 15012,
+     "description": "You see the King's Great Hall."
+    },
+    "east": {
+     "to_room": 15008,
+     "description": "There seems to be a small guard room to the east."
+    },
+    "south": {
+     "to_room": 15004,
+     "description": "To the south, there is a gate, that leads to the Drawbridge.",
+     "door": {
+      "name": "gate",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "west": {
+     "to_room": 15006,
+     "description": "The door is small and uninteresting.",
+     "door": {
+      "name": "door small",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "15008": {
+   "vnum": 15008,
+   "name": "The Guard Room",
+   "map": {
+    "x": 2,
+    "y": 21,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 15009,
+     "max": 1
+    },
+    {
+     "vnum": 15026,
+     "max": 1
+    },
+    {
+     "vnum": 15027,
+     "max": 1
+    }
+   ],
+   "description": "This is a small room, evidently meant for guards currently not on duty.\nThere is only one exit, back to the entrance hall. Shadows gather in the\ncorners. Dust motes drift in the stale air.",
+   "exits": {
+    "west": {
+     "to_room": 15007,
+     "description": "You see the Castle Entrance."
+    }
+   }
+  },
+  "15009": {
+   "vnum": 15009,
+   "name": "Under the Tower",
+   "map": {
+    "x": 3,
+    "y": 20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors",
+    "no_mob"
+   ],
+   "extra_descs": {
+    "": "stairs"
+   },
+   "mob_resets": [
+    {
+     "vnum": 15029,
+     "max": 1
+    }
+   ],
+   "description": "The area is below one the three mighty towers of the Castle. There are\nno guards here, and you sense that this part of the Castle is largely\nunused. There are stairs going up to the tower, and there is also an\nexit to the north. The walls are rough-hewn and cold to the touch. The\nceiling hangs low overhead.",
+   "exits": {
+    "north": {
+     "to_room": 15014,
+     "description": "You see a small, dimly lit passage."
+    },
+    "west": {
+     "to_room": 15301,
+     "description": "To the west lies The Holy Altar."
+    },
+    "up": {
+     "to_room": 15034,
+     "description": "The stairs are old, but in good repair. They lead up into the tower."
+    }
+   }
+  },
+  "15010": {
+   "vnum": 15010,
+   "name": "The Small Passage",
+   "map": {
+    "x": -1,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 15017,
+     "max": 5
+    },
+    {
+     "vnum": 15017,
+     "max": 5
+    }
+   ],
+   "description": "This is a small passage, that is clearly intended mainly for the\nservants of the Castle. The passage leads north and south. The ceiling\nhangs low overhead. The walls are rough-hewn and cold to the touch.",
+   "exits": {
+    "north": {
+     "to_room": 15015,
+     "description": "You see a small, dimly lit passage."
+    },
+    "south": {
+     "to_room": 15005,
+     "description": "You hear the clanging of pots, and smell cooking meat."
+    }
+   }
+  },
+  "15011": {
+   "vnum": 15011,
+   "name": "The Great Hall",
+   "map": {
+    "x": 0,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "roof paintings paint"
+   },
+   "description": "This is the south-west end of the Great Hall. It is truly vast; the roof\nis so high above your head, that it seems no closer than the clouds\noutside. The roof is beautifully painted, by someone who must have been\na true master. The hall is very large, and could easily seat several\nhundred people at a banquet. The air is still and musty. The walls are\nrough-hewn and cold to the touch.",
+   "exits": {
+    "north": {
+     "to_room": 15016,
+     "description": "You see the King's Great Hall."
+    },
+    "east": {
+     "to_room": 15012,
+     "description": "You see the King's Great Hall."
+    }
+   }
+  },
+  "15012": {
+   "vnum": 15012,
+   "name": "The Great Hall",
+   "map": {
+    "x": 1,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "roof paintings paint"
+   },
+   "description": "This is the southern end of the Great Hall. It is truly vast; the roof\nis so high above your head, that it seems no closer than the clouds\noutside. The roof is beautifully painted, by someone who must have been\na true master. The hall is very large, and could easily seat several\nhundred people at a banquet. to the north, you see King Welmar's great\nthrone, and to the south is the Castle Entrance. Dust motes drift in the\nstale air. The walls are rough-hewn and cold to the touch.",
+   "exits": {
+    "north": {
+     "to_room": 15017,
+     "description": "You see the part of the Great Hall where the throne is."
+    },
+    "east": {
+     "to_room": 15013,
+     "description": "You see the King's Great Hall."
+    },
+    "south": {
+     "to_room": 15007,
+     "description": "You see the Castle Entrance."
+    },
+    "west": {
+     "to_room": 15011,
+     "description": "You see the King's Great Hall."
+    }
+   }
+  },
+  "15013": {
+   "vnum": 15013,
+   "name": "The Great Hall",
+   "map": {
+    "x": 2,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "roof paintings paint"
+   },
+   "description": "This is the south-east end of the Great Hall. It is truly vast; the roof\nis so high above your head, that it seems no closer than the clouds\noutside. The roof is beautifully painted, by someone who must have been\na true master. The hall is very large, and could easily seat several\nhundred people at a banquet. The walls are rough-hewn and cold to the\ntouch. Dust motes drift in the stale air.",
+   "exits": {
+    "north": {
+     "to_room": 15018,
+     "description": "You see the King's Great Hall."
+    },
+    "west": {
+     "to_room": 15012,
+     "description": "You see the King's Great Hall."
+    }
+   }
+  },
+  "15014": {
+   "vnum": 15014,
+   "name": "A Passage",
+   "map": {
+    "x": 3,
+    "y": 22,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "description": "This is a passage, that leads north and south. To the south it leads\ntowards one of towers. The walls are rough-hewn and cold to the touch.\nThe ceiling hangs low overhead.",
+   "exits": {
+    "north": {
+     "to_room": 15019,
+     "description": "You see the small passage continue."
+    },
+    "south": {
+     "to_room": 15009,
+     "description": "A passage leads to Under The Tower"
+    }
+   }
+  },
+  "15015": {
+   "vnum": 15015,
+   "name": "A Passage",
+   "map": {
+    "x": -1,
+    "y": 23,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "description": "This is a passage, that leads north and south. To the east there is an\nexit to the Great Hall. Dust motes drift in the stale air. The walls are\nrough-hewn and cold to the touch.",
+   "exits": {
+    "north": {
+     "to_room": 15020,
+     "description": "You see the passage continue."
+    },
+    "east": {
+     "to_room": 15016,
+     "description": "You see the King's Great Hall."
+    },
+    "south": {
+     "to_room": 15010,
+     "description": "You see the passage continue."
+    }
+   }
+  },
+  "15016": {
+   "vnum": 15016,
+   "name": "The Great Hall",
+   "map": {
+    "x": 0,
+    "y": 23,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "roof paintings paint"
+   },
+   "description": "This is the north-west end of the Great Hall. It is truly vast; the roof\nis so high above your head, that it seems no closer than the clouds\noutside. The roof is beautifully painted, by someone who must have been\na true master. The hall is very large, and could easily seat several\nhundred people at a banquet. to the east, you see King Welmar's great\nthrone, and to the west there is an exit to a passage. Dust motes drift\nin the stale air. The walls are rough-hewn and cold to the touch.",
+   "exits": {
+    "east": {
+     "to_room": 15017,
+     "description": "You see the part of the Great Hall where the throne is."
+    },
+    "south": {
+     "to_room": 15011,
+     "description": "You see the King's Great Hall."
+    },
+    "west": {
+     "to_room": 15015,
+     "description": "You see a passage."
+    }
+   }
+  },
+  "15017": {
+   "vnum": 15017,
+   "name": "By The Throne In The Great Hall",
+   "map": {
+    "x": 1,
+    "y": 23,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "throne ivory"
+   },
+   "mob_resets": [
+    {
+     "vnum": 15001,
+     "max": 1
+    },
+    {
+     "vnum": 15014,
+     "max": 1
+    },
+    {
+     "vnum": 15020,
+     "max": 1
+    },
+    {
+     "vnum": 15021,
+     "max": 1
+    }
+   ],
+   "description": "The area opens by the King's huge ivory throne. The throne is, to an\neven greater degree than the Hall itself, a masterpiece. It is\nintricately and beautifully carved, and it seems to be made out of a\nsingle block of ivory, though you shiver at the thought of meeting the\nanimal that died to yield a piece of that size. The Hall continues to\nthe east, west and south. The ceiling hangs low overhead. The air is\nstill and musty.",
+   "exits": {
+    "east": {
+     "to_room": 15018,
+     "description": "You see the King's Great Hall."
+    },
+    "south": {
+     "to_room": 15012,
+     "description": "You see the King's Great Hall."
+    },
+    "west": {
+     "to_room": 15016,
+     "description": "You see the King's Great Hall."
+    }
+   }
+  },
+  "15018": {
+   "vnum": 15018,
+   "name": "The Great Hall",
+   "map": {
+    "x": 2,
+    "y": 23,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "roof paintings paint"
+   },
+   "description": "This is the north-east end of the Great Hall. It is truly vast; the roof\nis so high above your head, that it seems no closer than the clouds\noutside. The roof is beautifully painted, by someone who must have been\na true master. The hall is very large, and could easily seat several\nhundred people at a banquet. to the west, you see King Welmar's great\nthrone, and to the east there is an exit to a small passage. The air is\nstill and musty. The ceiling hangs low overhead.",
+   "exits": {
+    "east": {
+     "to_room": 15019,
+     "description": "You see a passage."
+    },
+    "south": {
+     "to_room": 15013,
+     "description": "You see the King's Great Hall."
+    },
+    "west": {
+     "to_room": 15017,
+     "description": "You see the part of the Great Hall where the throne is."
+    }
+   }
+  },
+  "15019": {
+   "vnum": 15019,
+   "name": "A Small Passage",
+   "map": {
+    "x": 3,
+    "y": 23,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 15011,
+     "max": 1
+    }
+   ],
+   "description": "This is a small passage, that leads north and south. To the west, there\nis an exit into the Great Hall. Dust motes drift in the stale air. The\nair is still and musty.",
+   "exits": {
+    "north": {
+     "to_room": 15024,
+     "description": "The passage continues to the north."
+    },
+    "south": {
+     "to_room": 15014,
+     "description": "The passage continues to the south."
+    },
+    "west": {
+     "to_room": 15018,
+     "description": "To the west you see the Great Hall."
+    }
+   }
+  },
+  "15020": {
+   "vnum": 15020,
+   "name": "A Passage",
+   "map": {
+    "x": -1,
+    "y": 24,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "description": "This is a north-south leading passage. There is a door to the east. The\nair is still and musty. Dust motes drift in the stale air. The air is\nstale and the walls close. Shadows pool in the corners, undisturbed.",
+   "exits": {
+    "north": {
+     "to_room": 15025,
+     "description": "The passage leads to a staircase."
+    },
+    "east": {
+     "to_room": 15021,
+     "description": "The door is quite small and unobtrusive.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "south": {
+     "to_room": 15015,
+     "description": "The passage continues to the south."
+    }
+   }
+  },
+  "15021": {
+   "vnum": 15021,
+   "name": "The Servants' Corridor",
+   "map": {
+    "x": 0,
+    "y": 24,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "description": "This is a corridor, that stretches further to the east. There are doors\nto the north and west. The corridor itself is mainly used by servants,\nand lacks some of the beauty of the rest of the castle. Shadows gather\nin the corners. The air is still and musty.",
+   "exits": {
+    "north": {
+     "to_room": 15026,
+     "description": "There is a door there!",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "east": {
+     "to_room": 15022,
+     "description": "The corridor seems to come to its end a bit further east."
+    },
+    "west": {
+     "to_room": 15020,
+     "description": "The door to the west is made out of wood.",
+     "door": {
+      "name": "door wood",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "15022": {
+   "vnum": 15022,
+   "name": "The End Of The Servants' Corridor",
+   "map": {
+    "x": 1,
+    "y": 24,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "description": "The corridor leads only west from here, but there is a door to the\nnorth. The ceiling hangs low overhead. The air is still and musty. The\nair is stale and the walls close. Shadows pool in the corners,\nundisturbed.",
+   "exits": {
+    "north": {
+     "to_room": 15027,
+     "description": "The door leads to a room intended for the butler.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": 15009
+     }
+    },
+    "west": {
+     "to_room": 15021,
+     "description": "You see the corridor continue."
+    }
+   }
+  },
+  "15023": {
+   "vnum": 15023,
+   "name": "The Training Room",
+   "map": {
+    "x": 2,
+    "y": 24,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 15004,
+     "max": 1
+    },
+    {
+     "vnum": 15005,
+     "max": 1
+    },
+    {
+     "vnum": 15008,
+     "max": 1
+    },
+    {
+     "vnum": 15012,
+     "max": 1
+    },
+    {
+     "vnum": 15013,
+     "max": 1
+    }
+   ],
+   "obj_resets": [
+    {
+     "vnum": 3020,
+     "max": 100
+    },
+    {
+     "vnum": 3021,
+     "max": 100
+    },
+    {
+     "vnum": 3022,
+     "max": 100
+    }
+   ],
+   "description": "This is the Training Room of the men of the Castle guard. It is very\nlarge, with weapons standing in racks by all the walls. Most of the\nweapons seem to be intended for training only, with blunt edges and the\nlike, but there are some that might be useful for real fighting. There\nis a door to the north. The ceiling hangs low overhead. The air is still\nand musty.",
+   "exits": {
+    "north": {
+     "to_room": 15028,
+     "description": "The door is large and heavy.",
+     "door": {
+      "name": "door large heavy",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "east": {
+     "to_room": 15024,
+     "description": "You see a small passage."
+    }
+   }
+  },
+  "15024": {
+   "vnum": 15024,
+   "name": "A Small Passage",
+   "map": {
+    "x": 3,
+    "y": 24,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "description": "This is a small passage leading north and south. There is also an exit\nto the west, from which grunts, cheers and heavy blows can be heard.\nShadows gather in the corners. The air is still and musty.",
+   "exits": {
+    "north": {
+     "to_room": 15029,
+     "description": "The passage leads north to some stairs."
+    },
+    "south": {
+     "to_room": 15019,
+     "description": "You see the passage continuing."
+    },
+    "west": {
+     "to_room": 15023,
+     "description": "You see the Training Room."
+    }
+   }
+  },
+  "15025": {
+   "vnum": 15025,
+   "name": "The Stair Room",
+   "map": {
+    "x": -1,
+    "y": 25,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "pillar pillars tree trees"
+   },
+   "description": "The area opens below a great staircase, that leads up to the second\nfloor of the Castle. The stairs are made of marble, and there are\npillars carved in the likenesses of trees with little animals running up\nand down the trunks. The ceiling hangs low overhead. The walls are\nrough-hewn and cold to the touch.",
+   "exits": {
+    "south": {
+     "to_room": 15020,
+     "description": "You see the passage."
+    },
+    "up": {
+     "to_room": 15049,
+     "description": "The stairs lead up to the second floor."
+    }
+   }
+  },
+  "15026": {
+   "vnum": 15026,
+   "name": "The Servants' Quarters",
+   "map": {
+    "x": 0,
+    "y": 25,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "bed"
+   },
+   "obj_resets": [
+    {
+     "vnum": 15011,
+     "max": 1
+    }
+   ],
+   "description": "This is a large room, that seems to house many of the servants. The room\nis full of comfortable-looking beds. There is also a large chest,\nprobably containing some of the servants' belongings. The walls are\nrough-hewn and cold to the touch. The air is still and musty.",
+   "exits": {
+    "south": {
+     "to_room": 15021,
+     "description": "The door is made out of wood.",
+     "door": {
+      "name": "door wood",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "15027": {
+   "vnum": 15027,
+   "name": "The Butler's Quarters",
+   "map": {
+    "x": 1,
+    "y": 25,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "bed"
+   },
+   "mob_resets": [
+    {
+     "vnum": 15016,
+     "max": 1
+    }
+   ],
+   "description": "You see at once that this must be the butler's room, for it lies in the\nservants' wing, and still it is large and comfortable; almost luxurious,\nin fact. There is a large bed and a drawer in the room. The only exit is\nvia the door to the south. The walls are rough-hewn and cold to the\ntouch. Dust motes drift in the stale air.",
+   "exits": {
+    "south": {
+     "to_room": 15022,
+     "description": "You see the corridor.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": 15009
+     }
+    }
+   }
+  },
+  "15028": {
+   "vnum": 15028,
+   "name": "The Guards' Barracks",
+   "map": {
+    "x": 2,
+    "y": 25,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "bunk bunks"
+   },
+   "mob_resets": [
+    {
+     "vnum": 15007,
+     "max": 1
+    }
+   ],
+   "description": "This is a very large room with bunks all over. It is obvious, that this\nis where the guards off duty spend most of their time, drinking and\ngambling or, probably, mostly sleeping. The ceiling hangs low overhead.\nThe walls are rough-hewn and cold to the touch.",
+   "exits": {
+    "south": {
+     "to_room": 15023,
+     "description": "The door is large and heavy.",
+     "door": {
+      "name": "door large heavy",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "15029": {
+   "vnum": 15029,
+   "name": "The Stairs",
+   "map": {
+    "x": 3,
+    "y": 25,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "stairs stair staircase"
+   },
+   "description": "The area opens by a staircase leading down. As you look down, you notice\nthat for the first time since you entered the castle, things are not\naesthetically made. Instead it looks more functional and prison- like.\nThe air is still and musty. The ceiling hangs low overhead.",
+   "exits": {
+    "south": {
+     "to_room": 15024,
+     "description": "You see the small passage."
+    }
+   }
+  },
+  "15030": {
+   "vnum": 15030,
+   "name": "At A Bend In The Corridor",
+   "map": {
+    "x": -1,
+    "y": 21,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "description": "The area opens at a place where the corridor bends from east to north.\nThe air is still and musty. The walls are rough-hewn and cold to the\ntouch.",
+   "exits": {
+    "north": {
+     "to_room": 15035,
+     "description": "You see the corridor continue."
+    },
+    "east": {
+     "to_room": 15031,
+     "description": "You see the corridor continue."
+    }
+   }
+  },
+  "15031": {
+   "vnum": 15031,
+   "name": "The Corridor",
+   "map": {
+    "x": 0,
+    "y": 21,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "description": "This is a long corridor, decorated with tapestries depicting old times\nand old heroes. It leads east and west. The walls are rough- hewn and\ncold to the touch. The air is still and musty.",
+   "exits": {
+    "east": {
+     "to_room": 15032,
+     "description": "You see the corridor continue."
+    },
+    "west": {
+     "to_room": 15030,
+     "description": "You see the corridor continue."
+    }
+   }
+  },
+  "15032": {
+   "vnum": 15032,
+   "name": "The Corridor",
+   "map": {
+    "x": 1,
+    "y": 21,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 15010,
+     "max": 1
+    }
+   ],
+   "description": "This is a long corridor, decorated with tapestries depicting old times\nand old heroes. It leads east and west. Shadows gather in the corners.\nThe air is still and musty.",
+   "exits": {
+    "east": {
+     "to_room": 15033,
+     "description": "You see the corridor continue."
+    },
+    "west": {
+     "to_room": 15031,
+     "description": "You see the corridor continue."
+    }
+   }
+  },
+  "15033": {
+   "vnum": 15033,
+   "name": "The Corridor",
+   "map": {
+    "x": 2,
+    "y": 21,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "description": "This is a long corridor, decorated with tapestries depicting old times\nand old heroes. The corridor continues west, and to the north you see\nthe luxurious guest wing. The ceiling hangs low overhead. Shadows gather\nin the corners.",
+   "exits": {
+    "north": {
+     "to_room": 15038,
+     "description": "You see the guest wing."
+    },
+    "west": {
+     "to_room": 15032,
+     "description": "You see the corridor continue."
+    }
+   }
+  },
+  "15034": {
+   "vnum": 15034,
+   "name": "In The South-East Tower",
+   "map": {
+    "x": 3,
+    "y": 20,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "description": "This part of the tower is fairly uninteresting, but it leads further\nupwards... Shadows gather in the corners. The ceiling hangs low\noverhead.",
+   "exits": {
+    "up": {
+     "to_room": 15052,
+     "description": "The room at the top of the tower seems darkish for some reason."
+    },
+    "down": {
+     "to_room": 15009,
+     "description": "You see the stairs at the bottom of the tower."
+    }
+   }
+  },
+  "15035": {
+   "vnum": 15035,
+   "name": "The Corridor",
+   "map": {
+    "x": -1,
+    "y": 22,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 15006,
+     "max": 1
+    }
+   ],
+   "description": "This is a long corridor, decorated with tapestries depicting old times\nand old heroes. It leads north and south. There is also an exit to the\neast here. The ceiling hangs low overhead. Shadows gather in the\ncorners.",
+   "exits": {
+    "north": {
+     "to_room": 15040,
+     "description": "You see the corridor continue."
+    },
+    "east": {
+     "to_room": 15036,
+     "description": "You see a small room."
+    },
+    "south": {
+     "to_room": 15030,
+     "description": "You see the corridor continue."
+    }
+   }
+  },
+  "15036": {
+   "vnum": 15036,
+   "name": "By The Treasure Room",
+   "map": {
+    "x": 0,
+    "y": 22,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "sign"
+   },
+   "mob_resets": [
+    {
+     "vnum": 15024,
+     "max": 1
+    },
+    {
+     "vnum": 15025,
+     "max": 1
+    }
+   ],
+   "description": "The area opens by a great iron door. The door is very large, and seems\nvery solid indeed. There is a sign posted by it. Shadows gather in the\ncorners. Dust motes drift in the stale air.",
+   "exits": {
+    "east": {
+     "to_room": 15037,
+     "description": "You see a large steel door.",
+     "door": {
+      "name": "door steel large",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 15007
+     }
+    },
+    "west": {
+     "to_room": 15035,
+     "description": "You see the corridor."
+    }
+   }
+  },
+  "15037": {
+   "vnum": 15037,
+   "name": "The Great Treasury",
+   "map": {
+    "x": 1,
+    "y": 22,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "painting paintings carving carvings sculptures tapestries"
+   },
+   "obj_resets": [
+    {
+     "vnum": 15001,
+     "max": 1
+    }
+   ],
+   "description": "As you enter this room, you are astonished by the riches that are stowed\naway here; not so much in gold, but paintings, tapestries, skillful\ncarvings and sculptures all over the vast room. You realise, however,\nthat most of these things are too well known to be sold anywhere,\nwithout branding yourself as a thief, and condemning yourself to instant\ndeath at the hands of the Royal Guard. Dust motes drift in the stale\nair. The ceiling hangs low overhead.",
+   "exits": {
+    "west": {
+     "to_room": 15036,
+     "description": "You see a large steel door.",
+     "door": {
+      "name": "door large steel",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 15007
+     }
+    }
+   }
+  },
+  "15038": {
+   "vnum": 15038,
+   "name": "The Guest Wing",
+   "map": {
+    "x": 2,
+    "y": 22,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 15017,
+     "max": 5
+    }
+   ],
+   "description": "You have arrived at the part of the Castle where prominent guests are\nhoused. To the east there is a large, ornamented door, and a somewhat\nsmaller one leads north. The air is still and musty. The ceiling hangs\nlow overhead.",
+   "exits": {
+    "north": {
+     "to_room": 15043,
+     "description": "The door seems to lead to a guest room.",
+     "door": {
+      "name": "door small",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "east": {
+     "to_room": 15039,
+     "description": "You see the guest suite behind the ornamented door.",
+     "door": {
+      "name": "door ornament ornamented",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    },
+    "south": {
+     "to_room": 15033,
+     "description": "You see the corridor."
+    }
+   }
+  },
+  "15039": {
+   "vnum": 15039,
+   "name": "The Guest Suite",
+   "map": {
+    "x": 3,
+    "y": 22,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "description": "This must be where only the most highly regarded guests stay, since it\nis luxurious beyond your wildest imagination. This is only the living\nroom of the suite, but it is huge and tastefully decorated. All the\nfurniture is not only beautiful, but also made for comfort. To the\nnorth, there is an exit to the bedroom, and there is a door to the west.\nDust motes drift in the stale air. The ceiling hangs low overhead.",
+   "exits": {
+    "north": {
+     "to_room": 15044,
+     "description": "You see the bedroom."
+    },
+    "west": {
+     "to_room": 15038,
+     "description": "Behind the door you see the entrance to the Guest Wing.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "15040": {
+   "vnum": 15040,
+   "name": "The Corridor",
+   "map": {
+    "x": -1,
+    "y": 23,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "description": "This is a long corridor, decorated with tapestries depicting old times\nand old heroes. It leads north and south. Shadows gather in the corners.\nThe walls are rough-hewn and cold to the touch.",
+   "exits": {
+    "north": {
+     "to_room": 15045,
+     "description": "You see the corridor continue."
+    },
+    "south": {
+     "to_room": 15035,
+     "description": "You see the corridor continue."
+    }
+   }
+  },
+  "15041": {
+   "vnum": 15041,
+   "name": "The Ball Room",
+   "map": {
+    "x": 0,
+    "y": 23,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 15017,
+     "max": 5
+    },
+    {
+     "vnum": 15017,
+     "max": 5
+    }
+   ],
+   "description": "This is the great Ball Room. It is a truly large room, with a stage for\nan orchestra in the south-east end. Shadows gather in the corners. The\nwalls are rough-hewn and cold to the touch.",
+   "exits": {
+    "north": {
+     "to_room": 15046,
+     "description": "You see the Ball Room."
+    },
+    "east": {
+     "to_room": 15042,
+     "description": "To the east you see the stage."
+    }
+   }
+  },
+  "15042": {
+   "vnum": 15042,
+   "name": "By The Stage",
+   "map": {
+    "x": 1,
+    "y": 23,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 15003,
+     "max": 1
+    }
+   ],
+   "description": "ahead see the stage. It is large enough for some 40 musicians to play on\nat the same time. The Ball Room continues to the west and north. The\nceiling hangs low overhead. Shadows gather in the corners.",
+   "exits": {
+    "north": {
+     "to_room": 15047,
+     "description": "You see the Ball Room."
+    },
+    "west": {
+     "to_room": 15041,
+     "description": "You see the Ball Room."
+    }
+   }
+  },
+  "15043": {
+   "vnum": 15043,
+   "name": "A Guest Room",
+   "map": {
+    "x": 2,
+    "y": 23,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "description": "This is a large room. Although it is comfortable enough, you can tell it\nis not meant for any of the most illustrious guests, since it lacks that\nextreme luxury found elsewhere in the Castle. Dust motes drift in the\nstale air. The ceiling hangs low overhead.",
+   "exits": {
+    "south": {
+     "to_room": 15038,
+     "description": "Behind the door, you see the entrance to the Guest Wing.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null
+     }
+    }
+   }
+  },
+  "15044": {
+   "vnum": 15044,
+   "name": "The Bedroom",
+   "map": {
+    "x": 3,
+    "y": 23,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "bed"
+   },
+   "description": "This room is dominated by the huge four-poster bed, that stands against\nthe northern wall. The room is large and cosy, and the bed virtually\nbegs you to lie down in it and sleep. The air is still and musty. Dust\nmotes drift in the stale air.",
+   "exits": {
+    "south": {
+     "to_room": 15039,
+     "description": "You see the living room of the suite."
+    }
+   }
+  },
+  "15045": {
+   "vnum": 15045,
+   "name": "The Corridor",
+   "map": {
+    "x": -1,
+    "y": 24,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "description": "This is a long corridor, decorated with tapestries depicting old times\nand old heroes. It leads north and south. There is an exit to the east,\nthat leads to a large room. Shadows gather in the corners. The walls are\nrough-hewn and cold to the touch.",
+   "exits": {
+    "north": {
+     "to_room": 15049,
+     "description": "You see the corridor continue."
+    },
+    "east": {
+     "to_room": 15046,
+     "description": "You see the Ball Room."
+    },
+    "south": {
+     "to_room": 15040,
+     "description": "You see the corridor continue."
+    }
+   }
+  },
+  "15046": {
+   "vnum": 15046,
+   "name": "The Ball Room",
+   "map": {
+    "x": 0,
+    "y": 24,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "description": "This is the great Ball Room. It is a truly large room, with a stage for\nan orchestra in the south-east end. The walls are rough-hewn and cold to\nthe touch. The air is still and musty.",
+   "exits": {
+    "east": {
+     "to_room": 15047,
+     "description": "You see the Ball Room."
+    },
+    "south": {
+     "to_room": 15041,
+     "description": "You see the Ball Room."
+    },
+    "west": {
+     "to_room": 15045,
+     "description": "You see the corridor."
+    }
+   }
+  },
+  "15047": {
+   "vnum": 15047,
+   "name": "The Ball Room",
+   "map": {
+    "x": 1,
+    "y": 24,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "mob_resets": [
+    {
+     "vnum": 15028,
+     "max": 1
+    }
+   ],
+   "description": "This is the great Ball Room. It is a truly large room, with a stage for\nan orchestra in the south-east end. The ceiling hangs low overhead.\nShadows gather in the corners.",
+   "exits": {
+    "east": {
+     "to_room": 15048,
+     "description": "To the east, you can enter a tower."
+    },
+    "south": {
+     "to_room": 15042,
+     "description": "To the south you see the stage."
+    },
+    "west": {
+     "to_room": 15046,
+     "description": "You see the Ball Room."
+    }
+   }
+  },
+  "15048": {
+   "vnum": 15048,
+   "name": "In The Tower",
+   "map": {
+    "x": 2,
+    "y": 24,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "stairs"
+   },
+   "description": "This is the north-eastern of the three great watch- towers of the\nCastle. To the west, you can enter the Ball Room and there are stairs\nleading up into the Tower. Shadows gather in the corners. Dust motes\ndrift in the stale air.",
+   "exits": {
+    "west": {
+     "to_room": 15047,
+     "description": "You see the Ball Room."
+    },
+    "up": {
+     "to_room": 15054,
+     "description": "The stairs lead a long way up to the top of the Tower."
+    }
+   }
+  },
+  "15049": {
+   "vnum": 15049,
+   "name": "The Grand Staircase",
+   "map": {
+    "x": -1,
+    "y": 25,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "stairs"
+   },
+   "description": "This area is a great staircase, that leads up and down. To the east,\nthere is a large oak door, and a corridor leads south. The walls are\nrough-hewn and cold to the touch. The ceiling hangs low overhead.",
+   "exits": {
+    "east": {
+     "to_room": 15050,
+     "description": "The door is large and made out of oak.",
+     "door": {
+      "name": "door oak large",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": 15014
+     }
+    },
+    "south": {
+     "to_room": 15045,
+     "description": "You see the corridor."
+    },
+    "up": {
+     "to_room": 15053,
+     "description": "The stairs continue up to the top of the tower."
+    },
+    "down": {
+     "to_room": 15025,
+     "description": "The stairs lead down to the first floor of the Castle."
+    }
+   }
+  },
+  "15050": {
+   "vnum": 15050,
+   "name": "The Cosy Room",
+   "map": {
+    "x": 0,
+    "y": 25,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "chairs"
+   },
+   "description": "The entrance opens to a large, cosy living room. There is a fireplace\nwith a fire burning, and a few comfortable chairs around a little table.\nThere is a door to the west, and also an exit to the east. The air is\nstill and musty. The walls are rough-hewn and cold to the touch.",
+   "exits": {
+    "east": {
+     "to_room": 15051,
+     "description": "You see a large bedroom."
+    },
+    "west": {
+     "to_room": 15049,
+     "description": "The door is large, and made out of oak.",
+     "door": {
+      "name": "door large oak",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": 15014
+     }
+    }
+   }
+  },
+  "15051": {
+   "vnum": 15051,
+   "name": "The King's Bedroom",
+   "map": {
+    "x": 1,
+    "y": 25,
+    "z": 1
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "magic"
+   },
+   "description": "This is a large room, with a wonderful view. To one side of the room,\nstands a large four-poster bed. All around the room there are massive\nbookshelves, filled with all kinds of books. The titles include works\nsuch as: 'A Treatise on the History of Garathorm and surrounding areas',\n'Magic - A Beginner's Introduction' and many others. There is an exit to\nthe west. The ceiling hangs low overhead. Dust motes drift in the stale\nair.",
+   "exits": {
+    "west": {
+     "to_room": 15050,
+     "description": "There is a large and cosy room to the west."
+    }
+   }
+  },
+  "15052": {
+   "vnum": 15052,
+   "name": "Up In The Tower",
+   "map": {
+    "x": 3,
+    "y": 20,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "candle"
+   },
+   "mob_resets": [
+    {
+     "vnum": 15019,
+     "max": 1
+    }
+   ],
+   "obj_resets": [
+    {
+     "vnum": 15005,
+     "max": 1
+    }
+   ],
+   "description": "After a long climb, you finally reach the top of the tower. This room is\nsmall, and the only light source is a flickering candle, on a cluttered\ntable, in the middle of the room. The only obvious exit is back down the\nstairs. The ceiling hangs low overhead. The walls are rough-hewn and\ncold to the touch.",
+   "exits": {
+    "down": {
+     "to_room": 15034,
+     "description": "The stairs go down the tower."
+    }
+   }
+  },
+  "15053": {
+   "vnum": 15053,
+   "name": "The Top Of The Tower",
+   "map": {
+    "x": -1,
+    "y": 25,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "extra_descs": {
+    "": "window slit"
+   },
+   "description": "You have arrived at the top of the tower. This tower is pretty\nuninteresting, and seems made purely for reasons of defence and\nguarding. The windows are slits for bowmen, very narrow on the outward\nside and broad inwards to allow a wide shooting angle. The only evident\nexit is down the stairs again. The walls are rough-hewn and cold to the\ntouch. The ceiling hangs low overhead.",
+   "exits": {
+    "down": {
+     "to_room": 15049,
+     "description": "The stairs go down to the second floor."
+    }
+   }
+  },
+  "15054": {
+   "vnum": 15054,
+   "name": "The Top Of The Tower",
+   "map": {
+    "x": 2,
+    "y": 24,
+    "z": 2
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "obj_resets": [
+    {
+     "vnum": 15013,
+     "max": 1
+    }
+   ],
+   "description": "This is the highest of all the towers, and is obviously used for lookout\npurposes. The view is splendid in all four directions. All around, the\nrich countryside spreads out to the horizon. To the north and east you\nsee a vast mountain range, and far to the west a beautiful lake. A bit\ncloser, the town of Garathorm lies at the end of the King's Road. The\nonly exit Visible is is down again. The walls are rough-hewn and cold to\nthe touch. Shadows gather in the corners.",
+   "exits": {
+    "down": {
+     "to_room": 15048,
+     "description": "You see the stairs going back down to the second floor."
+    }
+   }
+  },
+  "15301": {
+   "vnum": 15301,
+   "name": "The Holy Altar",
+   "map": {
+    "x": 2,
+    "y": 20,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "down": {
+     "to_room": 15311,
+     "description": "To the down lies The Secret Room."
+    },
+    "east": {
+     "to_room": 15009,
+     "description": "To the east lies Under the Tower."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east and down.",
+   "placeholder": true
+  },
+  "15055": {
+   "vnum": 15055,
+   "name": "The Bottom Of The Stairs",
+   "description": "The stairs lead down to a damp part of the castle, you can hear water\ndripping somewhere around. The area is lit by a single torch\nflickering in the room which this staircase is built off of. The stairs\nlead upwards and they open up onto a fairly small room to the east. The\nwalls are rough-hewn and cold to the touch. Shadows gather in the\ncorners.",
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15056,
+     "description": "A small room opens up to the east."
+    },
+    "west": {
+     "to_room": 15004,
+     "description": "To the west lies On the Drawbridge."
+    }
+   }
+  },
+  "15056": {
+   "vnum": 15056,
+   "name": "The Guard Room",
+   "description": "This is a loss to explain why someone would want to spend all day down\nhere. The only explanation that seems even remotely logical to you is\nthat there must be an important prisoner kept in one of the cells\nthrough the south door. The decorations of the room are sparse, merely a\ntable, a chair, and a deck of cards. A stairwell has been built into the\nwestern wall and it leads upwards. Dust motes drift in the stale air.\nThe air is still and musty.",
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 15057,
+     "description": "Through the peep hole at the top of the small wooden door you can see that there is a small corridor leading past several cells.",
+     "door": {
+      "name": "door wooden",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": 15017
+     }
+    },
+    "west": {
+     "to_room": 15055,
+     "description": "A small stairwell built into the western wall of the room leads upwards."
+    }
+   },
+   "extra_descs": {
+    "": "card floor"
+   },
+   "mob_resets": [
+    {
+     "vnum": 15000,
+     "max": 1
+    }
+   ]
+  },
+  "15057": {
+   "vnum": 15057,
+   "name": "The Prison",
+   "description": "This small passage is about thirty feet long and is well lit by the\ntorches on each wall. The torches have been locked inside small metal\ncages to ensure that they are not removed. The strangest thing about the\ntorches however, is the manner in which they burn, they have what\nappears to be a constant flame in that it does not flicker whatsoever,\nand does not give off any smoke. Perhaps they have been magicked to burn\nforever... There are three cells along this passage way, one on each\nside of the corridor right near the north end and one isolated at the\nsouth end of the corridor with a small metal plaque located over the\ndoor in the keystone of the archway. Dust motes drift in the stale air.\nShadows gather in the corners.",
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15056,
+     "description": "A small wooden door blocks the way out of the prison.",
+     "door": {
+      "name": "door wooden",
+      "state": "closed",
+      "locked": false,
+      "key_vnum": 15017
+     }
+    },
+    "east": {
+     "to_room": 15060,
+     "description": "A cell door is set into the eastern wall.",
+     "door": {
+      "name": "door cell",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 15017
+     }
+    },
+    "south": {
+     "to_room": 15059,
+     "description": "The cell door to the south has been double padlocked and there is a plaque placed in the keystone above the door.",
+     "door": {
+      "name": "door cell",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 15017
+     }
+    },
+    "west": {
+     "to_room": 15058,
+     "description": "A cell door is set into the western wall.",
+     "door": {
+      "name": "door cell",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 15017
+     }
+    }
+   },
+   "extra_descs": {
+    "": "plaque keystone",
+    "rgan, Murderer of Townsbridge": ""
+   }
+  },
+  "15060": {
+   "vnum": 15060,
+   "name": "A Cell",
+   "description": "This small cell is damp and dark and looks like noone and nothing has\nlived in it for quite some time. A small cell door is located in the\nwest wall. Shadows gather in the corners. Dust motes drift in the stale\nair.",
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 15057,
+     "description": "The cell door to the west leads back to the prison hallway.",
+     "door": {
+      "name": "door cell",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 15017
+     }
+    }
+   }
+  },
+  "15059": {
+   "vnum": 15059,
+   "name": "Ergan's Cell",
+   "description": "This large cell is almost like a living quarters with a cot in one\ncorner serving as a bed, a small table built out of the wall in another\ncorner. There is even a rug in the center of the floor to keep some\nwarmth. It seems that the prisoner kept here is treated quite well,\nalmost too well for a murderer of an entire town... Shadows gather in\nthe corners. The ceiling hangs low overhead.",
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 15057,
+     "description": "The cell door to the north leads back to the prison hallway.",
+     "door": {
+      "name": "door cell",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 15017
+     }
+    }
+   },
+   "mob_resets": [
+    {
+     "vnum": 15015,
+     "max": 1
+    }
+   ]
+  },
+  "15058": {
+   "vnum": 15058,
+   "name": "A Cell",
+   "description": "This cell is in a shambles. There is a small hole in the western wall\nwhere something has broken through the stones into the cell. There is a\ncell door in the eastern wall. The air is still and musty. The walls are\nrough-hewn and cold to the touch.",
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 15057,
+     "description": "The cell door to the east leads back to the prison hallway.",
+     "door": {
+      "name": "door cell",
+      "state": "open",
+      "locked": true,
+      "key_vnum": 15017
+     }
+    }
+   },
+   "extra_descs": {
+    "": "hole"
+   },
+   "mob_resets": [
+    {
+     "vnum": 15018,
+     "max": 2
+    },
+    {
+     "vnum": 15018,
+     "max": 2
+    }
+   ]
   }
+ },
+ "mobs": {
+  "15000": {
+   "vnum": 15000,
+   "name": "gwydion",
+   "short_desc": "Gwydion",
+   "long_desc": "Gwydion the Royal Guard is here on duty.",
+   "level": 11,
+   "alignment": 800,
+   "hp_dice": "3d10+88",
+   "damage_dice": "1d8+11",
+   "gold": 5700,
+   "exp": 338,
+   "armor_class": 2,
+   "flags": [
+    "special",
+    "sentinel",
+    "stay_zone"
+   ],
+   "description": "As all members of the Guard, Gwydion wears the chain mail required\nof them as uniform.  He seems very well trained, and moves like an\nexperienced fighter.",
+   "equipment": {
+    "wield": 3022,
+    "body": 15015
+   },
+   "inventory": [
+    15017
+   ]
+  },
+  "15001": {
+   "vnum": 15001,
+   "name": "king",
+   "short_desc": "King Welmar",
+   "long_desc": "The wise King Welmar sits here in his throne.",
+   "level": 33,
+   "alignment": 1000,
+   "hp_dice": "8d10+1155",
+   "damage_dice": "3d8+66",
+   "gold": 15000,
+   "exp": 1413,
+   "armor_class": -10,
+   "flags": [
+    "special",
+    "sentinel"
+   ],
+   "description": "In his later middle-age, with his beard starting to grey, King Welmar\nis still very powerfully built, and wouldn't take kindly to an attack.\nDespite that, you know he is well-loved throughout the land, and has\na reputation as a wise and just ruler.",
+   "equipment": {
+    "hold": 15002,
+    "head": 15003,
+    "light": 15004
+   },
+   "inventory": [
+    15014
+   ],
+   "loot_table": [
+    {
+     "vnum": 15023,
+     "chance": 20
+    },
+    {
+     "vnum": 15024,
+     "chance": 20
+    },
+    {
+     "vnum": 15025,
+     "chance": 20
+    },
+    {
+     "vnum": 15026,
+     "chance": 20
+    },
+    {
+     "vnum": 15027,
+     "chance": 20
+    },
+    {
+     "vnum": 15028,
+     "chance": 20
+    },
+    {
+     "vnum": 15029,
+     "chance": 20
+    },
+    {
+     "vnum": 15030,
+     "chance": 20
+    },
+    {
+     "vnum": 15031,
+     "chance": 20
+    }
+   ],
+   "loot_chance": 100
+  },
+  "15002": {
+   "vnum": 15002,
+   "name": "ghost",
+   "short_desc": "the horrible ghost",
+   "long_desc": "You hear a frightening wail, and see a horrible ghost approaching.",
+   "level": 15,
+   "alignment": -700,
+   "hp_dice": "15d10+196",
+   "damage_dice": "4d7+8",
+   "gold": 12500,
+   "exp": 900,
+   "armor_class": 55,
+   "flags": [
+    "sentinel",
+    "scavenger",
+    "aware",
+    "aggressive",
+    "no_charm",
+    "no_summmon",
+    "no_sleep",
+    "no_bash",
+    "no_blind"
+   ],
+   "description": "The ghost is almost translucent, and looks really SCARY!",
+   "inventory": [
+    15012,
+    15006
+   ]
+  },
+  "15003": {
+   "vnum": 15003,
+   "name": "jim",
+   "short_desc": "Jim",
+   "long_desc": "Jim the Royal Guard is here on duty.",
+   "level": 11,
+   "alignment": 800,
+   "hp_dice": "3d10+88",
+   "damage_dice": "1d8+11",
+   "gold": 5700,
+   "exp": 338,
+   "armor_class": 2,
+   "flags": [
+    "special",
+    "stay_zone"
+   ],
+   "description": "As all members of the Guard, Jim wears the chain mail required of\nthem as uniform.  He seems very well trained, and moves like an\nexperienced fighter.",
+   "equipment": {
+    "wield": 3022,
+    "body": 15015
+   },
+   "inventory": [
+    15014
+   ]
+  },
+  "15004": {
+   "vnum": 15004,
+   "name": "brian",
+   "short_desc": "Brian",
+   "long_desc": "Brian the Royal Guard is here, training with the Master.",
+   "level": 11,
+   "alignment": 800,
+   "hp_dice": "3d10+88",
+   "damage_dice": "1d8+11",
+   "gold": 5700,
+   "exp": 338,
+   "armor_class": 2,
+   "flags": [
+    "special",
+    "sentinel",
+    "stay_zone"
+   ],
+   "description": "As all members of the Guard, Brian wears the chain mail required of\nthem as uniform.  He seems very well trained, and moves like an\nexperienced fighter.",
+   "equipment": {
+    "wield": 15006,
+    "body": 15015
+   },
+   "inventory": [
+    15030,
+    15002
+   ]
+  },
+  "15005": {
+   "vnum": 15005,
+   "name": "mick",
+   "short_desc": "Mick",
+   "long_desc": "Mick the Royal Guard is here, training with the Master.",
+   "level": 11,
+   "alignment": 800,
+   "hp_dice": "3d10+88",
+   "damage_dice": "1d8+11",
+   "gold": 5700,
+   "exp": 338,
+   "armor_class": 2,
+   "flags": [
+    "special",
+    "sentinel",
+    "stay_zone"
+   ],
+   "description": "As all members of the Guard, Mick wears the chain mail required of\nthem as uniform.  He seems very well trained, and moves like an\nexperienced fighter.",
+   "equipment": {
+    "wield": 15006,
+    "body": 15015
+   },
+   "inventory": [
+    15003
+   ]
+  },
+  "15006": {
+   "vnum": 15006,
+   "name": "matt",
+   "short_desc": "Matt",
+   "long_desc": "Matt the Royal Guard is here on duty.",
+   "level": 11,
+   "alignment": 800,
+   "hp_dice": "3d10+88",
+   "damage_dice": "1d8+11",
+   "gold": 5700,
+   "exp": 338,
+   "armor_class": 2,
+   "flags": [
+    "special",
+    "stay_zone"
+   ],
+   "description": "As all members of the Guard, Matt wears the chain mail required of\nthem as uniform.  He seems very well trained, and moves like an\nexperienced fighter.",
+   "equipment": {
+    "wield": 3022,
+    "body": 15015
+   },
+   "inventory": [
+    15029
+   ]
+  },
+  "15007": {
+   "vnum": 15007,
+   "name": "jochem",
+   "short_desc": "Jochem",
+   "long_desc": "Jochem the Royal Guard sits here, off duty.",
+   "level": 13,
+   "alignment": 900,
+   "hp_dice": "3d10+104",
+   "damage_dice": "1d8+13",
+   "gold": 8200,
+   "exp": 420,
+   "armor_class": 2,
+   "flags": [
+    "special",
+    "stay_zone"
+   ],
+   "description": "As all members of the Guard, Jochem wears the chain mail required of\nthem as uniform.  He seems very well trained, and moves like a fighter\nwho has seen more than one battle, and longs to see the next!",
+   "equipment": {
+    "wield": 3022,
+    "body": 15015
+   },
+   "inventory": [
+    15008
+   ]
+  },
+  "15008": {
+   "vnum": 15008,
+   "name": "anne",
+   "short_desc": "Anne",
+   "long_desc": "Anne the Royal Guard is here on duty.",
+   "level": 13,
+   "alignment": 900,
+   "hp_dice": "3d10+104",
+   "damage_dice": "1d8+13",
+   "gold": 8200,
+   "exp": 420,
+   "armor_class": 2,
+   "flags": [
+    "special",
+    "stay_zone"
+   ],
+   "description": "As all members of the Guard, Anne wears the chain mail required of\nthem as uniform.  She seems very well trained, and moves like a fighter\nwho has seen more than one battle, and longs to see the next!",
+   "equipment": {
+    "wield": 3022,
+    "body": 15015
+   },
+   "inventory": [
+    15005,
+    15024
+   ]
+  },
+  "15009": {
+   "vnum": 15009,
+   "name": "andrew",
+   "short_desc": "Andrew",
+   "long_desc": "Andrew the Royal Guard is here on duty.",
+   "level": 13,
+   "alignment": 900,
+   "hp_dice": "3d10+104",
+   "damage_dice": "1d8+13",
+   "gold": 8200,
+   "exp": 420,
+   "armor_class": 2,
+   "flags": [
+    "special",
+    "stay_zone"
+   ],
+   "description": "As all members of the Guard, Andrew wears the chain mail required of\nthem as uniform.  He seems very well trained, and moves like a fighter\nwho has seen more than one battle, and longs to see the next!",
+   "equipment": {
+    "wield": 3022,
+    "body": 15015
+   },
+   "inventory": [
+    15026
+   ]
+  },
+  "15010": {
+   "vnum": 15010,
+   "name": "bertram",
+   "short_desc": "Bertram",
+   "long_desc": "Bertram the Royal Guard is here on duty.",
+   "level": 15,
+   "alignment": 900,
+   "hp_dice": "3d10+120",
+   "damage_dice": "1d8+15",
+   "gold": 10700,
+   "exp": 507,
+   "armor_class": 1,
+   "flags": [
+    "special",
+    "stay_zone"
+   ],
+   "description": "As all members of the Guard, Bertram wears the chain mail required of\nthem as uniform.  He seems very well trained, and carries his scars\nwith pride.  This guy seems tough...",
+   "equipment": {
+    "wield": 3022,
+    "body": 15015
+   },
+   "inventory": [
+    15022,
+    15002
+   ]
+  },
+  "15011": {
+   "vnum": 15011,
+   "name": "jeanette",
+   "short_desc": "Jeanette",
+   "long_desc": "Jeanette the Royal Guard is here on duty.",
+   "level": 15,
+   "alignment": 900,
+   "hp_dice": "3d10+120",
+   "damage_dice": "1d8+15",
+   "gold": 10700,
+   "exp": 507,
+   "armor_class": 1,
+   "flags": [
+    "special",
+    "stay_zone"
+   ],
+   "description": "As all members of the Guard, Jeanette wears the chain mail required of\nthem as uniform.  She seems very well trained, and carries her scars\nwith pride.  This girl could be nasty if she wanted to...",
+   "equipment": {
+    "wield": 3022,
+    "body": 15015
+   },
+   "inventory": [
+    15016,
+    15020
+   ]
+  },
+  "15012": {
+   "vnum": 15012,
+   "name": "peter",
+   "short_desc": "Peter, the Captain of the Royal Guard",
+   "long_desc": "Peter, the Captain of the Royal Guard, walks around inspecting.",
+   "level": 19,
+   "alignment": 900,
+   "hp_dice": "4d10+228",
+   "damage_dice": "2d6+22",
+   "gold": 18000,
+   "exp": 689,
+   "armor_class": -1,
+   "flags": [
+    "special",
+    "stay_zone"
+   ],
+   "description": "As all members of the Guard, Peter wears the chain mail required of\nthem as uniform.  Even though all the other guards seem well trained,\nyou realise none of them would stand a chance against this man in a\nfight.  He stands at least two metres tall, but still moves with an\nalmost feline grace.  He actually radiates strength and confidence,\nand you have to fight a sudden urge to come to attention as you see\nhim.",
+   "equipment": {
+    "body": 15015,
+    "wield": 15016
+   },
+   "inventory": [
+    15005,
+    15024
+   ]
+  },
+  "15013": {
+   "vnum": 15013,
+   "name": "master",
+   "short_desc": "the Training Master",
+   "long_desc": "The Training Master is here, supervising.",
+   "level": 18,
+   "alignment": 950,
+   "hp_dice": "4d10+216",
+   "damage_dice": "2d6+21",
+   "gold": 15500,
+   "exp": 642,
+   "armor_class": 1,
+   "flags": [
+    "special",
+    "sentinel",
+    "stay_zone"
+   ],
+   "description": "Aged, but experienced, the Training Master is skilled in the use\nof virtually every weapon type invented by Man.",
+   "equipment": {
+    "wield": 3022
+   },
+   "inventory": [
+    15022,
+    15008
+   ]
+  },
+  "15014": {
+   "vnum": 15014,
+   "name": "herald",
+   "short_desc": "the Royal Herald",
+   "long_desc": "The Royal Herald is standing here.",
+   "level": 18,
+   "alignment": 800,
+   "hp_dice": "4d10+216",
+   "damage_dice": "2d6+21",
+   "gold": 15250,
+   "exp": 642,
+   "armor_class": -1,
+   "flags": [],
+   "description": "This is a young, powerfully built man, whose primary function\nis to make Royal Announcements.",
+   "inventory": [
+    15003,
+    15002,
+    15030
+   ]
+  },
+  "15015": {
+   "vnum": 15015,
+   "name": "ergan",
+   "short_desc": "Ergan the Murderer",
+   "long_desc": "Slumped in a corner you see Ergan, aka the Murderer of Townsbridge.",
+   "level": 13,
+   "alignment": -1000,
+   "hp_dice": "13d10+172",
+   "damage_dice": "4d6+7",
+   "gold": 9000,
+   "exp": 780,
+   "armor_class": 61,
+   "flags": [
+    "special",
+    "scavenger",
+    "aware",
+    "aggressive",
+    "wimpy",
+    "no_charm",
+    "no_summmon"
+   ],
+   "description": "You remember a time almost a decade ago, when the news of the day\nwas how this man had slaughtered the entire population of the little\nvillage of Townsbridge.  He was imprisoned, and here he is - a shadow\nof the undoubtedly great warrior he once was, but still to be reckoned\nwith.",
+   "inventory": [
+    15024
+   ]
+  },
+  "15016": {
+   "vnum": 15016,
+   "name": "butler",
+   "short_desc": "James the Butler",
+   "long_desc": "James the Butler is standing here, looking pompous.",
+   "level": 8,
+   "alignment": 500,
+   "hp_dice": "8d10+112",
+   "damage_dice": "3d5+5",
+   "gold": 1975,
+   "exp": 480,
+   "armor_class": 76,
+   "flags": [
+    "special",
+    "stay_zone"
+   ],
+   "description": "The typical perfect butler: upper middle age, a bit bald and with \nan impressive belly.",
+   "inventory": [
+    15009
+   ]
+  },
+  "15017": {
+   "vnum": 15017,
+   "name": "woman",
+   "short_desc": "the Cleaning Woman",
+   "long_desc": "There is a Cleaning Woman here, trying not be noticed.",
+   "level": 1,
+   "alignment": 800,
+   "hp_dice": "1d5+0",
+   "damage_dice": "4d6+1",
+   "gold": 55,
+   "exp": 8,
+   "armor_class": 9,
+   "flags": [
+    "special",
+    "stay_zone"
+   ],
+   "description": "Although she has a menial job, she seems to like it.",
+   "inventory": [
+    15005,
+    15020
+   ]
+  },
+  "15018": {
+   "vnum": 15018,
+   "name": "cockroach",
+   "short_desc": "the cockroach",
+   "long_desc": "A large cockroach is crawling by the wall.",
+   "level": 4,
+   "alignment": -250,
+   "hp_dice": "4d10+64",
+   "damage_dice": "2d4+3",
+   "gold": 377,
+   "exp": 240,
+   "armor_class": 88,
+   "flags": [
+    "aware",
+    "no_bash",
+    "no_blind"
+   ],
+   "description": "Very large indeed, and they say cockroaches are hard to kill...",
+   "inventory": [
+    15009
+   ]
+  },
+  "15019": {
+   "vnum": 15019,
+   "name": "astrologer",
+   "short_desc": "the Astrologer",
+   "long_desc": "The Astrologer is sitting here, studying a book.",
+   "level": 23,
+   "alignment": 900,
+   "hp_dice": "3d8+30",
+   "damage_dice": "1d1+30000",
+   "gold": 41000,
+   "exp": 6,
+   "armor_class": -2,
+   "flags": [
+    "special",
+    "sentinel",
+    "aware",
+    "memory",
+    "no_charm",
+    "no_summmon"
+   ],
+   "description": "He is old and white-haired, with a long beard.  As you see him,\nyou can almost believe the rumours about stars deciding Fate,\nand that astrology is capable of seeing the future.",
+   "special": "shopkeeper",
+   "shop_config": {
+    "sells": [
+     15012
+    ],
+    "buys": [],
+    "markup": 3050.0,
+    "markdown": 3052.0
+   },
+   "inventory": [
+    3052,
+    3050,
+    15012
+   ],
+   "loot_table": [
+    {
+     "vnum": 15023,
+     "chance": 20
+    },
+    {
+     "vnum": 15024,
+     "chance": 20
+    },
+    {
+     "vnum": 15025,
+     "chance": 20
+    },
+    {
+     "vnum": 15026,
+     "chance": 20
+    },
+    {
+     "vnum": 15027,
+     "chance": 20
+    },
+    {
+     "vnum": 15028,
+     "chance": 20
+    },
+    {
+     "vnum": 15029,
+     "chance": 20
+    },
+    {
+     "vnum": 15030,
+     "chance": 20
+    },
+    {
+     "vnum": 15031,
+     "chance": 20
+    }
+   ],
+   "loot_chance": 100
+  },
+  "15020": {
+   "vnum": 15020,
+   "name": "tim",
+   "short_desc": "Tim, the King's Lifeguard",
+   "long_desc": "Tim, the King's Lifeguard, is standing here.",
+   "level": 17,
+   "alignment": 900,
+   "hp_dice": "4d10+204",
+   "damage_dice": "2d6+20",
+   "gold": 14500,
+   "exp": 596,
+   "armor_class": 1,
+   "flags": [
+    "special",
+    "sentinel"
+   ],
+   "description": "This guy looks just like his twin, Tom.  There seems to be no\ndoubt that he is completely prepared to give his life for the\nKing, if necessary.",
+   "equipment": {
+    "wield": 3022,
+    "body": 15015
+   },
+   "inventory": [
+    15000,
+    15002,
+    15003
+   ]
+  },
+  "15021": {
+   "vnum": 15021,
+   "name": "tom",
+   "short_desc": "Tom, the King's Lifeguard",
+   "long_desc": "Tom, the King's Lifeguard, is standing here.",
+   "level": 17,
+   "alignment": 900,
+   "hp_dice": "4d10+204",
+   "damage_dice": "2d6+20",
+   "gold": 14500,
+   "exp": 596,
+   "armor_class": 1,
+   "flags": [
+    "special",
+    "sentinel"
+   ],
+   "description": "This guy looks just like his twin, Tim.  There seems to be no\ndoubt that he is completely prepared to give his life for the\nKing, if necessary.",
+   "equipment": {
+    "wield": 3022,
+    "body": 15015
+   },
+   "inventory": [
+    15006
+   ]
+  },
+  "15022": {
+   "vnum": 15022,
+   "name": "chef",
+   "short_desc": "the Chef",
+   "long_desc": "The Chef is here, shouting orders to the other cooks.",
+   "level": 19,
+   "alignment": 500,
+   "hp_dice": "4d4+14",
+   "damage_dice": "2d6+1283",
+   "gold": 20500,
+   "exp": 8,
+   "armor_class": -1,
+   "flags": [
+    "sentinel",
+    "aware",
+    "wimpy",
+    "memory",
+    "no_charm",
+    "no_summmon"
+   ],
+   "description": "It seems he has been tasting his own food a bit too enthusiastically.\nHe is, in other words, a bit fat.",
+   "special": "shopkeeper",
+   "shop_config": {
+    "sells": [
+     15019
+    ],
+    "buys": [
+     "1.1"
+    ],
+    "markup": 15020.0,
+    "markdown": -1.0
+   },
+   "inventory": [
+    15019,
+    15020
+   ]
+  },
+  "15023": {
+   "vnum": 15023,
+   "name": "cook",
+   "short_desc": "the cook",
+   "long_desc": "There is a cook here, making himself busy with a pot.",
+   "level": 4,
+   "alignment": 300,
+   "hp_dice": "4d10+64",
+   "damage_dice": "2d4+3",
+   "gold": 325,
+   "exp": 240,
+   "armor_class": 88,
+   "flags": [
+    "sentinel",
+    "wimpy"
+   ],
+   "description": "A junior cook, eager to do the Chef's bidding.",
+   "inventory": [
+    15010
+   ]
+  },
+  "15024": {
+   "vnum": 15024,
+   "name": "david",
+   "short_desc": "David",
+   "long_desc": "David, a big, mean-looking man, stands here, guarding the door.",
+   "level": 19,
+   "alignment": 250,
+   "hp_dice": "19d10+244",
+   "damage_dice": "5d7+10",
+   "gold": 18500,
+   "exp": 1140,
+   "armor_class": 43,
+   "flags": [
+    "special",
+    "sentinel"
+   ],
+   "description": "He really is big, and you get the feeling he wouldn't take kindly\nto an attempt to get past him.",
+   "equipment": {
+    "wield": 3022,
+    "body": 15015
+   },
+   "inventory": [
+    15007
+   ]
+  },
+  "15025": {
+   "vnum": 15025,
+   "name": "dick",
+   "short_desc": "Dick",
+   "long_desc": "Dick, a big, mean-looking man, stands here, guarding the door.",
+   "level": 19,
+   "alignment": 250,
+   "hp_dice": "19d10+244",
+   "damage_dice": "5d7+10",
+   "gold": 18500,
+   "exp": 1140,
+   "armor_class": 43,
+   "flags": [
+    "special",
+    "sentinel"
+   ],
+   "description": "He really is big, and you get the feeling he wouldn't take kindly\nto an attempt to get past him.",
+   "equipment": {
+    "wield": 3022,
+    "body": 15015
+   },
+   "inventory": [
+    15003
+   ]
+  },
+  "15026": {
+   "vnum": 15026,
+   "name": "jerry",
+   "short_desc": "Jerry",
+   "long_desc": "Jerry the Royal Guard is here off duty, playing dice.",
+   "level": 11,
+   "alignment": 800,
+   "hp_dice": "3d10+88",
+   "damage_dice": "1d8+11",
+   "gold": 5700,
+   "exp": 338,
+   "armor_class": 2,
+   "flags": [
+    "special",
+    "stay_zone"
+   ],
+   "description": "As all members of the Guard, Jerry wears the chain mail required\nof them as uniform.  He seems very well trained, and moves like\nan experienced fighter.",
+   "equipment": {
+    "wield": 3022,
+    "body": 15015
+   },
+   "inventory": [
+    15012
+   ]
+  },
+  "15027": {
+   "vnum": 15027,
+   "name": "michael",
+   "short_desc": "Michael",
+   "long_desc": "Michael the Royal Guard is here off duty, playing dice.",
+   "level": 11,
+   "alignment": 800,
+   "hp_dice": "3d10+88",
+   "damage_dice": "1d8+11",
+   "gold": 5700,
+   "exp": 338,
+   "armor_class": 2,
+   "flags": [
+    "special",
+    "stay_zone"
+   ],
+   "description": "As all members of the Guard, Michael wears the chain mail required\nof them as uniform.  He seems very well trained, and moves like an\nexperienced fighter.",
+   "equipment": {
+    "wield": 3022,
+    "body": 15015
+   },
+   "inventory": [
+    15028,
+    15016
+   ]
+  },
+  "15028": {
+   "vnum": 15028,
+   "name": "hans",
+   "short_desc": "Hans",
+   "long_desc": "Hans the Royal Guard is here on duty.",
+   "level": 13,
+   "alignment": 900,
+   "hp_dice": "3d10+104",
+   "damage_dice": "1d8+13",
+   "gold": 8200,
+   "exp": 420,
+   "armor_class": 2,
+   "flags": [
+    "special",
+    "stay_zone"
+   ],
+   "description": "As all members of the Guard, Hans wears the chain mail required\nof them as uniform.  He seems very well trained, and moves like\na fighter who has seen more than one battle, and longs to see\nthe next!",
+   "equipment": {
+    "wield": 3022,
+    "body": 15015
+   },
+   "inventory": [
+    15006
+   ]
+  },
+  "15029": {
+   "vnum": 15029,
+   "name": "boris",
+   "short_desc": "Boris",
+   "long_desc": "Boris the Royal Guard is here on duty.",
+   "level": 15,
+   "alignment": 900,
+   "hp_dice": "3d10+120",
+   "damage_dice": "1d8+15",
+   "gold": 10700,
+   "exp": 507,
+   "armor_class": 1,
+   "flags": [
+    "special",
+    "stay_zone"
+   ],
+   "description": "As all members of the Guard, Boris wears the chain mail required of\nthem as uniform.  He seems very well trained, and carries his scars\nwith pride.  This guy seems tough...",
+   "equipment": {
+    "wield": 3022,
+    "body": 15015
+   },
+   "inventory": [
+    15016
+   ]
+  },
+  "15030": {
+   "vnum": 15030,
+   "name": "zombie",
+   "short_desc": "the zombie",
+   "long_desc": "A zombie is shambling over some corpses here, moving quite silently.",
+   "level": 11,
+   "alignment": 0,
+   "hp_dice": "11d10+148",
+   "damage_dice": "3d6+8",
+   "gold": 5000,
+   "exp": 660,
+   "armor_class": 67,
+   "flags": [
+    "sentinel",
+    "aware",
+    "aggressive",
+    "no_charm",
+    "no_sleep",
+    "no_blind"
+   ],
+   "description": "It is entirely possible that this zombie was once one of the villagers\nof Townsbridge who has been brought to an undead life by a fuelling\ndesire for revenge.",
+   "inventory": [
+    15030
+   ]
+  },
+  "15031": {
+   "vnum": 15031,
+   "name": "skeleton",
+   "short_desc": "the skeleton",
+   "long_desc": "A skeleton is moving about with a loud clatter here, climbing over corpses.",
+   "level": 10,
+   "alignment": 0,
+   "hp_dice": "10d10+136",
+   "damage_dice": "3d6+6",
+   "gold": 4000,
+   "exp": 600,
+   "armor_class": 70,
+   "flags": [
+    "sentinel",
+    "aware",
+    "aggressive",
+    "no_charm",
+    "no_sleep",
+    "no_blind"
+   ],
+   "description": "It is entirely possible that this skeleton was once one of the villagers\nof Townsbridge who has been brought to an undead life by a fuelling desire\nfor revenge.",
+   "inventory": [
+    15008,
+    15024
+   ]
+  },
+  "15032": {
+   "vnum": 15032,
+   "name": "pit",
+   "short_desc": "the pit fiend",
+   "long_desc": "A large demon surrounded by flames rises out of the dark pool.",
+   "level": 33,
+   "alignment": 1000,
+   "hp_dice": "33d10+412",
+   "damage_dice": "9d8+11",
+   "gold": 15000,
+   "exp": 1980,
+   "armor_class": 1,
+   "flags": [
+    "special",
+    "sentinel",
+    "aware",
+    "aggressive",
+    "memory",
+    "no_charm",
+    "no_summmon",
+    "no_sleep",
+    "no_bash",
+    "no_blind"
+   ],
+   "description": "It is a horrifying thing, this demonic creature from the depths of the\nAbyss.  It glares down at you through blood-red eyes, and bares its huge\nwhite fangs and its razor-sharp talons.",
+   "equipment": {
+    "wield": 15008
+   },
+   "loot_table": [
+    {
+     "vnum": 15023,
+     "chance": 20
+    },
+    {
+     "vnum": 15024,
+     "chance": 20
+    },
+    {
+     "vnum": 15025,
+     "chance": 20
+    },
+    {
+     "vnum": 15026,
+     "chance": 20
+    },
+    {
+     "vnum": 15027,
+     "chance": 20
+    },
+    {
+     "vnum": 15028,
+     "chance": 20
+    },
+    {
+     "vnum": 15029,
+     "chance": 20
+    },
+    {
+     "vnum": 15030,
+     "chance": 20
+    },
+    {
+     "vnum": 15031,
+     "chance": 20
+    }
+   ],
+   "loot_chance": 100,
+   "inventory": [
+    15004,
+    15002
+   ]
+  }
+ },
+ "objects": {
+  "15000": {
+   "vnum": 15000,
+   "name": "nothingness",
+   "short_desc": "Sapowox's Universal Nothingness",
+   "room_desc": "You are quite unable to perceive Sapowox's Universal Nothingness here.",
+   "item_type": "weapon",
+   "weight": 40,
+   "value": 0,
+   "damage_dice": "6d4",
+   "weapon_type": "sting",
+   "type": "treasure"
+  },
+  "15001": {
+   "vnum": 15001,
+   "name": "gold",
+   "short_desc": "the gold",
+   "room_desc": "A lot of gold is here.",
+   "item_type": "money",
+   "weight": 0,
+   "value": 32385,
+   "type": "treasure"
+  },
+  "15002": {
+   "vnum": 15002,
+   "name": "sceptre",
+   "short_desc": "a golden sceptre",
+   "room_desc": "A golden Royal sceptre lies on the ground.",
+   "item_type": "treasure",
+   "weight": 20,
+   "value": 15000,
+   "type": "treasure"
+  },
+  "15003": {
+   "vnum": 15003,
+   "name": "crown",
+   "short_desc": "a golden crown",
+   "room_desc": "A magnificently jewelled golden crown has been left here.",
+   "item_type": "armor",
+   "weight": 40,
+   "value": 12000,
+   "armor_bonus": 7,
+   "type": "armor",
+   "wear_slot": "head",
+   "armor": 2,
+   "armor_class": 4
+  },
+  "15004": {
+   "vnum": 15004,
+   "name": "apple",
+   "short_desc": "a golden apple",
+   "room_desc": "There is a golden apple here.",
+   "item_type": "light",
+   "weight": 5,
+   "value": 8000,
+   "light_hours": -1,
+   "type": "food",
+   "food_value": 12
+  },
+  "15005": {
+   "vnum": 15005,
+   "name": "telescope",
+   "short_desc": "a large telescope",
+   "room_desc": "There is a large telescope here, pointing at the sky.",
+   "item_type": "treasure",
+   "weight": 0,
+   "value": 0,
+   "type": "treasure"
+  },
+  "15006": {
+   "vnum": 15006,
+   "name": "sword",
+   "short_desc": "a training sword",
+   "room_desc": "A training sword with blunt edges is leaned against a wall.",
+   "item_type": "weapon",
+   "weight": 7,
+   "value": 300,
+   "damage_dice": "1d4",
+   "weapon_type": "slash",
+   "type": "weapon"
+  },
+  "15007": {
+   "vnum": 15007,
+   "name": "key",
+   "short_desc": "a huge key",
+   "room_desc": "There is a huge, heavy-looking key on the floor here.",
+   "item_type": "key",
+   "weight": 1,
+   "value": 0,
+   "type": "key"
+  },
+  "15008": {
+   "vnum": 15008,
+   "name": "Verminator",
+   "short_desc": "Verminator",
+   "room_desc": "A strange looking sword is lying upon the ground here.",
+   "item_type": "weapon",
+   "weight": 2,
+   "value": 1,
+   "damage_dice": "3d4",
+   "weapon_type": "pierce",
+   "type": "weapon"
+  },
+  "15009": {
+   "vnum": 15009,
+   "name": "key",
+   "short_desc": "the Butler's key",
+   "room_desc": "The Butler's key is here.",
+   "item_type": "key",
+   "weight": 3,
+   "value": 0,
+   "type": "key"
+  },
+  "15010": {
+   "vnum": 15010,
+   "name": "key",
+   "short_desc": "a small key",
+   "room_desc": "A small key lies here.",
+   "item_type": "key",
+   "weight": 1,
+   "value": 0,
+   "type": "key"
+  },
+  "15011": {
+   "vnum": 15011,
+   "name": "chest",
+   "short_desc": "a large wooden chest",
+   "room_desc": "A large wooden chest stands here in a corner.",
+   "item_type": "container",
+   "weight": 450,
+   "value": 400,
+   "capacity": 800,
+   "key_vnum": 15010,
+   "type": "container"
+  },
+  "15012": {
+   "vnum": 15012,
+   "name": "vial",
+   "short_desc": "a large vial",
+   "room_desc": "A large vial has been left here.",
+   "item_type": "potion",
+   "weight": 14,
+   "value": 2000,
+   "type": "treasure"
+  },
+  "15013": {
+   "vnum": 15013,
+   "name": "banner",
+   "short_desc": "a royal banner",
+   "room_desc": "The royal banner has been firmly planted in the ground here.",
+   "item_type": "treasure",
+   "weight": 0,
+   "value": 0,
+   "type": "treasure"
+  },
+  "15014": {
+   "vnum": 15014,
+   "name": "key",
+   "short_desc": "a key",
+   "room_desc": "A key lies on the floor.",
+   "item_type": "key",
+   "weight": 13,
+   "value": 0,
+   "type": "key"
+  },
+  "15015": {
+   "vnum": 15015,
+   "name": "hauberk",
+   "short_desc": "a guard's chain mail hauberk",
+   "room_desc": "A chain mail hauberk lies on the floor",
+   "item_type": "armor",
+   "weight": 60,
+   "value": 2000,
+   "armor_bonus": 5,
+   "type": "armor",
+   "wear_slot": "body",
+   "armor": 5,
+   "armor_class": 3
+  },
+  "15016": {
+   "vnum": 15016,
+   "name": "broadsword",
+   "short_desc": "a large broadsword",
+   "room_desc": "There is a large broadsword lying here.",
+   "item_type": "weapon",
+   "weight": 14,
+   "value": 1300,
+   "damage_dice": "2d6",
+   "weapon_type": "slash",
+   "type": "treasure"
+  },
+  "15017": {
+   "vnum": 15017,
+   "name": "key",
+   "short_desc": "the cell key",
+   "room_desc": "A key lies on the floor.",
+   "item_type": "key",
+   "weight": 3,
+   "value": 0,
+   "type": "key"
+  },
+  "15018": {
+   "vnum": 15018,
+   "name": "corpse",
+   "short_desc": "a corpse",
+   "room_desc": "There is a corpse lying in the middle of the floor of the building here.",
+   "item_type": "treasure",
+   "weight": 0,
+   "value": 0,
+   "type": "trash"
+  },
+  "15019": {
+   "vnum": 15019,
+   "name": "lobster",
+   "short_desc": "a delicious-looking lobster",
+   "room_desc": "A delicious-looking lobster is lying here, tempting your appetite.",
+   "item_type": "food",
+   "weight": 5,
+   "value": 100,
+   "nutrition": 7,
+   "type": "food",
+   "food_value": 12
+  },
+  "15020": {
+   "vnum": 15020,
+   "name": "caviar",
+   "short_desc": "some Russian caviar",
+   "room_desc": "There is some delicious-looking Russian caviar here, making your mouth water.",
+   "item_type": "food",
+   "weight": 1,
+   "value": 250,
+   "nutrition": 2,
+   "type": "food",
+   "food_value": 12
+  },
+  "15021": {
+   "vnum": 15021,
+   "name": "glow",
+   "short_desc": "the glow from the west",
+   "room_desc": "There is a strange glow coming from the west.",
+   "item_type": "treasure",
+   "weight": 0,
+   "value": 0,
+   "type": "treasure"
+  },
+  "15022": {
+   "vnum": 15022,
+   "name": "wail",
+   "short_desc": "the wailing sound from the east",
+   "room_desc": "There is an eerie wailing sound coming from the house to the east.",
+   "item_type": "treasure",
+   "weight": 0,
+   "value": 0,
+   "type": "treasure"
+  },
+  "15023": {
+   "vnum": 15023,
+   "name": "royal greatblade",
+   "short_desc": "\u001b[97ma royal \u001b[91mgreatblade\u001b[0m\u001b[97m\u001b[0m",
+   "room_desc": "\u001b[97mA royal \u001b[91mgreatblade\u001b[0m\u001b[97m lies here.\u001b[0m",
+   "description": "A knight's blade.",
+   "item_type": "weapon",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "wield",
+   "weapon_type": "slash",
+   "damage_dice": "2d6+6",
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 4
+    }
+   ],
+   "set_id": 150,
+   "type": "weapon"
+  },
+  "15024": {
+   "vnum": 15024,
+   "name": "king's aegis",
+   "short_desc": "\u001b[97mthe king's \u001b[93maegis\u001b[0m\u001b[97m\u001b[0m",
+   "room_desc": "\u001b[97mThe king's \u001b[93maegis\u001b[0m\u001b[97m lies here.\u001b[0m",
+   "description": "A royal shield.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "shield",
+   "armor_bonus": 4,
+   "affects": [
+    {
+     "type": "cha",
+     "value": 1
+    }
+   ],
+   "set_id": 150,
+   "type": "armor",
+   "armor": 3,
+   "armor_class": 5
+  },
+  "15025": {
+   "vnum": 15025,
+   "name": "oathbreaker sigil",
+   "short_desc": "\u001b[97man oathbreaker \u001b[35msigil\u001b[0m\u001b[97m\u001b[0m",
+   "room_desc": "\u001b[97mAn oathbreaker \u001b[35msigil\u001b[0m\u001b[97m lies here.\u001b[0m",
+   "description": "A deathknight's sigil.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "neck1",
+   "affects": [
+    {
+     "type": "damroll",
+     "value": 4
+    }
+   ],
+   "set_id": 150,
+   "type": "treasure",
+   "armor": 9
+  },
+  "15026": {
+   "vnum": 15026,
+   "name": "royal reliquary",
+   "short_desc": "\u001b[97ma royal \u001b[93mreliquary\u001b[0m\u001b[97m\u001b[0m",
+   "room_desc": "\u001b[97mA royal \u001b[93mreliquary\u001b[0m\u001b[97m lies here.\u001b[0m",
+   "description": "A cleric's reliquary.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "hold",
+   "affects": [
+    {
+     "type": "wis",
+     "value": 3
+    },
+    {
+     "type": "max_mana",
+     "value": 35
+    }
+   ],
+   "set_id": 150,
+   "type": "treasure",
+   "armor": 9
+  },
+  "15027": {
+   "vnum": 15027,
+   "name": "court magus focus",
+   "short_desc": "\u001b[97ma court magus \u001b[96mfocus\u001b[0m\u001b[97m\u001b[0m",
+   "room_desc": "\u001b[97mA court magus \u001b[96mfocus\u001b[0m\u001b[97m lies here.\u001b[0m",
+   "description": "A mage's focus.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "hold",
+   "affects": [
+    {
+     "type": "int",
+     "value": 4
+    }
+   ],
+   "set_id": 150,
+   "type": "treasure",
+   "armor": 13
+  },
+  "15028": {
+   "vnum": 15028,
+   "name": "court lyre",
+   "short_desc": "\u001b[97ma court \u001b[95mlyre\u001b[0m\u001b[97m\u001b[0m",
+   "room_desc": "\u001b[97mA court \u001b[95mlyre\u001b[0m\u001b[97m lies here.\u001b[0m",
+   "description": "A bard's lyre.",
+   "item_type": "weapon",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "wield",
+   "weapon_type": "mace",
+   "damage_dice": "1d6+3",
+   "affects": [
+    {
+     "type": "cha",
+     "value": 3
+    }
+   ],
+   "set_id": 150,
+   "type": "treasure"
+  },
+  "15029": {
+   "vnum": 15029,
+   "name": "spy's dagger",
+   "short_desc": "\u001b[97ma spy's \u001b[92mdagger\u001b[0m\u001b[97m\u001b[0m",
+   "room_desc": "\u001b[97mA spy's \u001b[92mdagger\u001b[0m\u001b[97m lies here.\u001b[0m",
+   "description": "A rogue's dagger.",
+   "item_type": "weapon",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "wield",
+   "weapon_type": "pierce",
+   "damage_dice": "1d6+3",
+   "affects": [
+    {
+     "type": "dex",
+     "value": 3
+    },
+    {
+     "type": "hitroll",
+     "value": 2
+    }
+   ],
+   "set_id": 150,
+   "type": "weapon"
+  },
+  "15030": {
+   "vnum": 15030,
+   "name": "sentinel band",
+   "short_desc": "\u001b[97ma sentinel \u001b[92mband\u001b[0m\u001b[97m\u001b[0m",
+   "room_desc": "\u001b[97mA sentinel \u001b[92mband\u001b[0m\u001b[97m lies here.\u001b[0m",
+   "description": "A ranger's ring.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "finger1",
+   "affects": [
+    {
+     "type": "dex",
+     "value": 2
+    },
+    {
+     "type": "hitroll",
+     "value": 1
+    }
+   ],
+   "set_id": 150,
+   "type": "armor",
+   "armor": 8,
+   "armor_class": 4
+  },
+  "15031": {
+   "vnum": 15031,
+   "name": "knight‑captain cloak",
+   "short_desc": "\u001b[97ma knight‑captain cloak\u001b[0m",
+   "room_desc": "\u001b[97mA knight‑captain cloak lies here.\u001b[0m",
+   "description": "A captain's cloak.",
+   "item_type": "armor",
+   "weight": 5,
+   "value": 8000,
+   "wear_slot": "about",
+   "armor_bonus": 3,
+   "set_id": 150,
+   "type": "armor",
+   "armor": 1,
+   "armor_class": 3
+  }
+ },
+ "lifespan": 120
 }

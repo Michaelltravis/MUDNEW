@@ -28,7 +28,9 @@ Proxy: `map.frostpine.net/*` → :4001; `mud.frostpine.net/ws` **and `mud.frostp
    Note: did you know what to do within ten seconds? Was anything else shouting for attention?
 3. Follow the **Guide** (top-left) step by step — every step has a button. Expected route:
    temple → training dummy (**1** attack, **2** flee, **3** your class ability; **brace** when a creature
-   winds up) → West Gate → Light Forest rabbit/fox → back → Great Field (4 north) → Newbie Zone (3 kills).
+   winds up) → Light Forest rabbit/fox (south-west; the Guide gives the way) → back → Great Field (ten
+   north, on the Trade Road) → Newbie Zone (east of it, 3 kills). The world is laid on the Bedlam
+   atlas since Push 27: the city is Garathorm, and the Guide's directions come from the map.
    Note the clock at level 2 and level 5. Bots: 1.5–5.4 min to level 5, 0–1 deaths.
 4. Walk, don't teleport: hold a direction across at least three room edges.
    Note any seam, pop-in or stall at a crossing. Bots: none since world-03 round 5.

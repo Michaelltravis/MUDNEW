@@ -1,0 +1,2338 @@
+{
+ "number": 447,
+ "name": "Mahn-Tor Keep",
+ "builders": "Unknown, Keats",
+ "atlas_area": 47,
+ "rooms": {
+  "2261": {
+   "vnum": 2261,
+   "name": "On The Cliffside",
+   "map": {
+    "x": -22,
+    "y": -46,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "up": {
+     "to_room": 10162,
+     "description": "To the up lies Before The Gates Of Mahn-Tor."
+    },
+    "down": {
+     "to_room": 2260,
+     "description": "To the down lies The Edge Of The Frigid Wastes."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. The air is thin and\ncold, and loose scree shifts underfoot. Ways lead up and down.",
+   "placeholder": true
+  },
+  "10100": {
+   "vnum": 10100,
+   "name": "The City Streets Of Mahn-Tor",
+   "map": {
+    "x": -23,
+    "y": -50,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10166,
+     "description": "To the east lies The City Streets Of Mahn-Tor."
+    },
+    "west": {
+     "to_room": 10101,
+     "description": "To the west lies The City Streets Of Mahn-Tor."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "10101": {
+   "vnum": 10101,
+   "name": "The City Streets Of Mahn-Tor",
+   "map": {
+    "x": -24,
+    "y": -50,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10100,
+     "description": "To the east lies The City Streets Of Mahn-Tor."
+    },
+    "south": {
+     "to_room": 10102,
+     "description": "To the south lies The City Streets Of Mahn-Tor."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead east and\nsouth.",
+   "placeholder": true
+  },
+  "10102": {
+   "vnum": 10102,
+   "name": "The City Streets Of Mahn-Tor",
+   "map": {
+    "x": -24,
+    "y": -51,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10101,
+     "description": "To the north lies The City Streets Of Mahn-Tor."
+    },
+    "south": {
+     "to_room": 10103,
+     "description": "To the south lies The City Streets Of Mahn-Tor."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north and south.",
+   "placeholder": true
+  },
+  "10103": {
+   "vnum": 10103,
+   "name": "The City Streets Of Mahn-Tor",
+   "map": {
+    "x": -24,
+    "y": -52,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10102,
+     "description": "To the north lies The City Streets Of Mahn-Tor."
+    },
+    "south": {
+     "to_room": 10104,
+     "description": "To the south lies A Crossing in Mahn-Tor."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "10104": {
+   "vnum": 10104,
+   "name": "A Crossing in Mahn-Tor",
+   "map": {
+    "x": -24,
+    "y": -53,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10103,
+     "description": "To the north lies The City Streets Of Mahn-Tor."
+    },
+    "south": {
+     "to_room": 10105,
+     "description": "To the south lies A Street in Mahn-Tor Proper."
+    },
+    "west": {
+     "to_room": 10120,
+     "description": "To the west lies Mahn-Tor West."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north, south and\nwest.",
+   "placeholder": true
+  },
+  "10105": {
+   "vnum": 10105,
+   "name": "A Street in Mahn-Tor Proper",
+   "map": {
+    "x": -24,
+    "y": -54,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10104,
+     "description": "To the north lies A Crossing in Mahn-Tor."
+    },
+    "south": {
+     "to_room": 10106,
+     "description": "To the south lies A Street in Mahn-Tor Proper."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth and south.",
+   "placeholder": true
+  },
+  "10106": {
+   "vnum": 10106,
+   "name": "A Street in Mahn-Tor Proper",
+   "map": {
+    "x": -24,
+    "y": -55,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10105,
+     "description": "To the north lies A Street in Mahn-Tor Proper."
+    },
+    "east": {
+     "to_room": 10107,
+     "description": "To the east lies A Street in Mahn-Tor Proper."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north and\neast.",
+   "placeholder": true
+  },
+  "10107": {
+   "vnum": 10107,
+   "name": "A Street in Mahn-Tor Proper",
+   "map": {
+    "x": -23,
+    "y": -55,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10108,
+     "description": "To the east lies A Street in Mahn-Tor Proper."
+    },
+    "west": {
+     "to_room": 10106,
+     "description": "To the west lies A Street in Mahn-Tor Proper."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet. The\npaving is uneven here, patched with newer stone. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "10108": {
+   "vnum": 10108,
+   "name": "A Street in Mahn-Tor Proper",
+   "map": {
+    "x": -22,
+    "y": -55,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10109,
+     "description": "To the east lies Mahn-Tor Market Square."
+    },
+    "west": {
+     "to_room": 10107,
+     "description": "To the west lies A Street in Mahn-Tor Proper."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10109": {
+   "vnum": 10109,
+   "name": "Mahn-Tor Market Square",
+   "map": {
+    "x": -21,
+    "y": -55,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10110,
+     "description": "To the north lies Mahn-Tor Market Square."
+    },
+    "east": {
+     "to_room": 10112,
+     "description": "To the east lies Mahn-Tor Market Square."
+    },
+    "south": {
+     "to_room": 10115,
+     "description": "To the south lies A Small House in Mahn-Tor Proper."
+    },
+    "west": {
+     "to_room": 10108,
+     "description": "To the west lies A Street in Mahn-Tor Proper."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. The paving\nis uneven here, patched with newer stone. Ways lead north, east, south\nand west.",
+   "placeholder": true
+  },
+  "10110": {
+   "vnum": 10110,
+   "name": "Mahn-Tor Market Square",
+   "map": {
+    "x": -21,
+    "y": -54,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10114,
+     "description": "To the north lies Mahn-Tor Gathering Hall."
+    },
+    "east": {
+     "to_room": 10111,
+     "description": "To the east lies Mahn-Tor Market Square."
+    },
+    "south": {
+     "to_room": 10109,
+     "description": "To the south lies Mahn-Tor Market Square."
+    },
+    "west": {
+     "to_room": 10113,
+     "description": "To the west lies A Small House in Mahn-Tor Proper."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "10111": {
+   "vnum": 10111,
+   "name": "Mahn-Tor Market Square",
+   "map": {
+    "x": -20,
+    "y": -54,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10119,
+     "description": "To the north lies A Mahn-Tor Trading Post."
+    },
+    "east": {
+     "to_room": 10118,
+     "description": "To the east lies A Mahn-Tor Residence."
+    },
+    "south": {
+     "to_room": 10112,
+     "description": "To the south lies Mahn-Tor Market Square."
+    },
+    "west": {
+     "to_room": 10110,
+     "description": "To the west lies Mahn-Tor Market Square."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. Lantern\nhooks and faded signboards hang over the street. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "10112": {
+   "vnum": 10112,
+   "name": "Mahn-Tor Market Square",
+   "map": {
+    "x": -20,
+    "y": -55,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10111,
+     "description": "To the north lies Mahn-Tor Market Square."
+    },
+    "east": {
+     "to_room": 10117,
+     "description": "To the east lies A Small House in Mahn-Tor Proper."
+    },
+    "south": {
+     "to_room": 10116,
+     "description": "To the south lies A Small House in Mahn-Tor Proper."
+    },
+    "west": {
+     "to_room": 10109,
+     "description": "To the west lies Mahn-Tor Market Square."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nLantern hooks and faded signboards hang over the street. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "10113": {
+   "vnum": 10113,
+   "name": "A Small House in Mahn-Tor Proper",
+   "map": {
+    "x": -22,
+    "y": -54,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 10110,
+     "description": "To the east lies Mahn-Tor Market Square."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads east.",
+   "placeholder": true
+  },
+  "10114": {
+   "vnum": 10114,
+   "name": "Mahn-Tor Gathering Hall",
+   "map": {
+    "x": -21,
+    "y": -53,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 10110,
+     "description": "To the south lies Mahn-Tor Market Square."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads south.",
+   "placeholder": true
+  },
+  "10115": {
+   "vnum": 10115,
+   "name": "A Small House in Mahn-Tor Proper",
+   "map": {
+    "x": -21,
+    "y": -56,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10109,
+     "description": "To the north lies Mahn-Tor Market Square."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "10116": {
+   "vnum": 10116,
+   "name": "A Small House in Mahn-Tor Proper",
+   "map": {
+    "x": -20,
+    "y": -56,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10112,
+     "description": "To the north lies Mahn-Tor Market Square."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads north.",
+   "placeholder": true
+  },
+  "10117": {
+   "vnum": 10117,
+   "name": "A Small House in Mahn-Tor Proper",
+   "map": {
+    "x": -19,
+    "y": -55,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 10112,
+     "description": "To the west lies Mahn-Tor Market Square."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "10118": {
+   "vnum": 10118,
+   "name": "A Mahn-Tor Residence",
+   "map": {
+    "x": -19,
+    "y": -54,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 10111,
+     "description": "To the west lies Mahn-Tor Market Square."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads west.",
+   "placeholder": true
+  },
+  "10119": {
+   "vnum": 10119,
+   "name": "A Mahn-Tor Trading Post",
+   "map": {
+    "x": -20,
+    "y": -53,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 10111,
+     "description": "To the south lies Mahn-Tor Market Square."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads south.",
+   "placeholder": true
+  },
+  "10120": {
+   "vnum": 10120,
+   "name": "Mahn-Tor West",
+   "map": {
+    "x": -25,
+    "y": -53,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10104,
+     "description": "To the east lies A Crossing in Mahn-Tor."
+    },
+    "west": {
+     "to_room": 10121,
+     "description": "To the west lies Mahn-Tor West."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Voices and the\nclatter of carts carry from somewhere nearby. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10121": {
+   "vnum": 10121,
+   "name": "Mahn-Tor West",
+   "map": {
+    "x": -26,
+    "y": -53,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10138,
+     "description": "To the north lies A Small House in Mahn-Tor West."
+    },
+    "east": {
+     "to_room": 10120,
+     "description": "To the east lies Mahn-Tor West."
+    },
+    "south": {
+     "to_room": 10141,
+     "description": "To the south lies A Small House in Mahn-Tor West."
+    },
+    "west": {
+     "to_room": 10122,
+     "description": "To the west lies Mahn-Tor West."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "10122": {
+   "vnum": 10122,
+   "name": "Mahn-Tor West",
+   "map": {
+    "x": -27,
+    "y": -53,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10137,
+     "description": "To the north lies A Small House in Mahn-Tor West."
+    },
+    "east": {
+     "to_room": 10121,
+     "description": "To the east lies Mahn-Tor West."
+    },
+    "south": {
+     "to_room": 10140,
+     "description": "To the south lies A Small House in Mahn-Tor West."
+    },
+    "west": {
+     "to_room": 10123,
+     "description": "To the west lies Mahn-Tor West."
+    }
+   },
+   "description": "Shuttered windows and old doorways crowd in on either hand. The paving\nis uneven here, patched with newer stone. Ways lead north, east, south\nand west.",
+   "placeholder": true
+  },
+  "10123": {
+   "vnum": 10123,
+   "name": "Mahn-Tor West",
+   "map": {
+    "x": -28,
+    "y": -53,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10136,
+     "description": "To the north lies A Small House in Mahn-Tor West."
+    },
+    "east": {
+     "to_room": 10122,
+     "description": "To the east lies Mahn-Tor West."
+    },
+    "south": {
+     "to_room": 10139,
+     "description": "To the south lies A Small House in Mahn-Tor West."
+    },
+    "west": {
+     "to_room": 10124,
+     "description": "To the west lies Mahn-Tor West."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead north,\neast, south and west.",
+   "placeholder": true
+  },
+  "10124": {
+   "vnum": 10124,
+   "name": "Mahn-Tor West",
+   "map": {
+    "x": -29,
+    "y": -53,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10123,
+     "description": "To the east lies Mahn-Tor West."
+    },
+    "west": {
+     "to_room": 10125,
+     "description": "To the west lies Mahn-Tor Temple Square."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\neast and west.",
+   "placeholder": true
+  },
+  "10125": {
+   "vnum": 10125,
+   "name": "Mahn-Tor Temple Square",
+   "map": {
+    "x": -30,
+    "y": -53,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10126,
+     "description": "To the north lies Mahn-Tor Temple Square."
+    },
+    "east": {
+     "to_room": 10124,
+     "description": "To the east lies Mahn-Tor West."
+    },
+    "south": {
+     "to_room": 10132,
+     "description": "To the south lies Mahn-Tor Temple Square."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "10126": {
+   "vnum": 10126,
+   "name": "Mahn-Tor Temple Square",
+   "map": {
+    "x": -30,
+    "y": -52,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 10125,
+     "description": "To the south lies Mahn-Tor Temple Square."
+    },
+    "west": {
+     "to_room": 10127,
+     "description": "To the west lies Mahn-Tor Temple Square."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead south and west.",
+   "placeholder": true
+  },
+  "10127": {
+   "vnum": 10127,
+   "name": "Mahn-Tor Temple Square",
+   "map": {
+    "x": -31,
+    "y": -52,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10133,
+     "description": "To the north lies Mahn-Tor Steam Temple."
+    },
+    "east": {
+     "to_room": 10126,
+     "description": "To the east lies Mahn-Tor Temple Square."
+    },
+    "west": {
+     "to_room": 10128,
+     "description": "To the west lies Mahn-Tor Temple Square."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10128": {
+   "vnum": 10128,
+   "name": "Mahn-Tor Temple Square",
+   "map": {
+    "x": -32,
+    "y": -52,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 10127,
+     "description": "To the east lies Mahn-Tor Temple Square."
+    },
+    "south": {
+     "to_room": 10129,
+     "description": "To the south lies Mahn-Tor Temple Square."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and south.",
+   "placeholder": true
+  },
+  "10129": {
+   "vnum": 10129,
+   "name": "Mahn-Tor Temple Square",
+   "map": {
+    "x": -32,
+    "y": -53,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10128,
+     "description": "To the north lies Mahn-Tor Temple Square."
+    },
+    "south": {
+     "to_room": 10130,
+     "description": "To the south lies Mahn-Tor Temple Square."
+    },
+    "west": {
+     "to_room": 10134,
+     "description": "To the west lies Mahn-Tor Ice Temple."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "10130": {
+   "vnum": 10130,
+   "name": "Mahn-Tor Temple Square",
+   "map": {
+    "x": -32,
+    "y": -54,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10129,
+     "description": "To the north lies Mahn-Tor Temple Square."
+    },
+    "east": {
+     "to_room": 10131,
+     "description": "To the east lies Mahn-Tor Temple Square."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "10131": {
+   "vnum": 10131,
+   "name": "Mahn-Tor Temple Square",
+   "map": {
+    "x": -31,
+    "y": -54,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 10132,
+     "description": "To the east lies Mahn-Tor Temple Square."
+    },
+    "south": {
+     "to_room": 10135,
+     "description": "To the south lies Mahn-Tor Water Temple."
+    },
+    "west": {
+     "to_room": 10130,
+     "description": "To the west lies Mahn-Tor Temple Square."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10132": {
+   "vnum": 10132,
+   "name": "Mahn-Tor Temple Square",
+   "map": {
+    "x": -30,
+    "y": -54,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10125,
+     "description": "To the north lies Mahn-Tor Temple Square."
+    },
+    "west": {
+     "to_room": 10131,
+     "description": "To the west lies Mahn-Tor Temple Square."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The air is still and\nsmells faintly of old smoke. Ways lead north and west.",
+   "placeholder": true
+  },
+  "10133": {
+   "vnum": 10133,
+   "name": "Mahn-Tor Steam Temple",
+   "map": {
+    "x": -31,
+    "y": -51,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 10127,
+     "description": "To the south lies Mahn-Tor Temple Square."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads south.",
+   "placeholder": true
+  },
+  "10134": {
+   "vnum": 10134,
+   "name": "Mahn-Tor Ice Temple",
+   "map": {
+    "x": -33,
+    "y": -53,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 10129,
+     "description": "To the east lies Mahn-Tor Temple Square."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. A way leads east.",
+   "placeholder": true
+  },
+  "10135": {
+   "vnum": 10135,
+   "name": "Mahn-Tor Water Temple",
+   "map": {
+    "x": -31,
+    "y": -55,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10131,
+     "description": "To the north lies Mahn-Tor Temple Square."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads north.",
+   "placeholder": true
+  },
+  "10136": {
+   "vnum": 10136,
+   "name": "A Small House in Mahn-Tor West",
+   "map": {
+    "x": -28,
+    "y": -52,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 10123,
+     "description": "To the south lies Mahn-Tor West."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. A way leads south.",
+   "placeholder": true
+  },
+  "10137": {
+   "vnum": 10137,
+   "name": "A Small House in Mahn-Tor West",
+   "map": {
+    "x": -27,
+    "y": -52,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 10122,
+     "description": "To the south lies Mahn-Tor West."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads south.",
+   "placeholder": true
+  },
+  "10138": {
+   "vnum": 10138,
+   "name": "A Small House in Mahn-Tor West",
+   "map": {
+    "x": -26,
+    "y": -52,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 10121,
+     "description": "To the south lies Mahn-Tor West."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads south.",
+   "placeholder": true
+  },
+  "10139": {
+   "vnum": 10139,
+   "name": "A Small House in Mahn-Tor West",
+   "map": {
+    "x": -28,
+    "y": -54,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10123,
+     "description": "To the north lies Mahn-Tor West."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads north.",
+   "placeholder": true
+  },
+  "10140": {
+   "vnum": 10140,
+   "name": "A Small House in Mahn-Tor West",
+   "map": {
+    "x": -27,
+    "y": -54,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10122,
+     "description": "To the north lies Mahn-Tor West."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads north.",
+   "placeholder": true
+  },
+  "10141": {
+   "vnum": 10141,
+   "name": "A Small House in Mahn-Tor West",
+   "map": {
+    "x": -26,
+    "y": -54,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10121,
+     "description": "To the north lies Mahn-Tor West."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads north.",
+   "placeholder": true
+  },
+  "10142": {
+   "vnum": 10142,
+   "name": "The Great Hall",
+   "map": {
+    "x": -16,
+    "y": -51,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10180,
+     "description": "To the north lies The Hall."
+    },
+    "east": {
+     "to_room": 10182,
+     "description": "To the east lies The Great Hall."
+    }
+   },
+   "description": "The floor is worn smooth by long use. The air is still and smells\nfaintly of old smoke. Ways lead north and east.",
+   "placeholder": true
+  },
+  "10143": {
+   "vnum": 10143,
+   "name": "The Hall",
+   "map": {
+    "x": -16,
+    "y": -49,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 10144,
+     "description": "To the east lies The Grand Hall."
+    },
+    "south": {
+     "to_room": 10180,
+     "description": "To the south lies The Hall."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "10144": {
+   "vnum": 10144,
+   "name": "The Grand Hall",
+   "map": {
+    "x": -15,
+    "y": -49,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10146,
+     "description": "To the north lies A Small Corridor."
+    },
+    "east": {
+     "to_room": 10145,
+     "description": "To the east lies The Grand Hall."
+    },
+    "south": {
+     "to_room": 10181,
+     "description": "To the south lies The Grand Hall."
+    },
+    "west": {
+     "to_room": 10143,
+     "description": "To the west lies The Hall."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10145": {
+   "vnum": 10145,
+   "name": "The Grand Hall",
+   "map": {
+    "x": -14,
+    "y": -49,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 10183,
+     "description": "To the south lies Standing Before The Throne."
+    },
+    "west": {
+     "to_room": 10144,
+     "description": "To the west lies The Grand Hall."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead south and west.",
+   "placeholder": true
+  },
+  "10146": {
+   "vnum": 10146,
+   "name": "A Small Corridor",
+   "map": {
+    "x": -15,
+    "y": -48,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10147,
+     "description": "To the north lies Mahn-Tor Keep Guard Quarters."
+    },
+    "south": {
+     "to_room": 10144,
+     "description": "To the south lies The Grand Hall."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "10147": {
+   "vnum": 10147,
+   "name": "Mahn-Tor Keep Guard Quarters",
+   "map": {
+    "x": -15,
+    "y": -47,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10150,
+     "description": "To the north lies Mahn-Tor Keep Guard Quarters."
+    },
+    "south": {
+     "to_room": 10146,
+     "description": "To the south lies A Small Corridor."
+    },
+    "west": {
+     "to_room": 10148,
+     "description": "To the west lies Mahn-Tor Keep Guard Quarters."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "10148": {
+   "vnum": 10148,
+   "name": "Mahn-Tor Keep Guard Quarters",
+   "map": {
+    "x": -16,
+    "y": -47,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10149,
+     "description": "To the north lies Mahn-Tor Keep Guard Quarters."
+    },
+    "east": {
+     "to_room": 10147,
+     "description": "To the east lies Mahn-Tor Keep Guard Quarters."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and east.",
+   "placeholder": true
+  },
+  "10149": {
+   "vnum": 10149,
+   "name": "Mahn-Tor Keep Guard Quarters",
+   "map": {
+    "x": -16,
+    "y": -46,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 10150,
+     "description": "To the east lies Mahn-Tor Keep Guard Quarters."
+    },
+    "south": {
+     "to_room": 10148,
+     "description": "To the south lies Mahn-Tor Keep Guard Quarters."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. Ways lead east and south.",
+   "placeholder": true
+  },
+  "10150": {
+   "vnum": 10150,
+   "name": "Mahn-Tor Keep Guard Quarters",
+   "map": {
+    "x": -15,
+    "y": -46,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 10147,
+     "description": "To the south lies Mahn-Tor Keep Guard Quarters."
+    },
+    "west": {
+     "to_room": 10149,
+     "description": "To the west lies Mahn-Tor Keep Guard Quarters."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead south and west.",
+   "placeholder": true
+  },
+  "10162": {
+   "vnum": 10162,
+   "name": "Before The Gates Of Mahn-Tor",
+   "map": {
+    "x": -21,
+    "y": -45,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 10164,
+     "description": "To the south lies Inside The Gates Of Mahn-Tor.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "down": {
+     "to_room": 2261,
+     "description": "To the down lies On The Cliffside."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. Snow lingers in the shadowed\nhollows of the rock. Ways lead south and down.",
+   "placeholder": true
+  },
+  "10163": {
+   "vnum": 10163,
+   "name": "The City Streets Of Mahn-Tor",
+   "map": {
+    "x": -22,
+    "y": -49,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10164,
+     "description": "To the east lies Inside The Gates Of Mahn-Tor."
+    },
+    "south": {
+     "to_room": 10166,
+     "description": "To the south lies The City Streets Of Mahn-Tor."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\neast and south.",
+   "placeholder": true
+  },
+  "10164": {
+   "vnum": 10164,
+   "name": "Inside The Gates Of Mahn-Tor",
+   "map": {
+    "x": -21,
+    "y": -49,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10162,
+     "description": "To the north lies Before The Gates Of Mahn-Tor."
+    },
+    "east": {
+     "to_room": 10165,
+     "description": "To the east lies The City Streets Of Mahn-Tor."
+    },
+    "south": {
+     "to_room": 10167,
+     "description": "To the south lies The Entrance Square Of Mahn-Tor."
+    },
+    "west": {
+     "to_room": 10163,
+     "description": "To the west lies The City Streets Of Mahn-Tor."
+    }
+   },
+   "description": "Worn flagstones run between weathered walls, swept by passing feet.\nShuttered windows and old doorways crowd in on either hand. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "10165": {
+   "vnum": 10165,
+   "name": "The City Streets Of Mahn-Tor",
+   "map": {
+    "x": -20,
+    "y": -49,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 10168,
+     "description": "To the south lies The Streets Of Mahn-Tor."
+    },
+    "west": {
+     "to_room": 10164,
+     "description": "To the west lies Inside The Gates Of Mahn-Tor."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Worn flagstones\nrun between weathered walls, swept by passing feet. Ways lead south and\nwest.",
+   "placeholder": true
+  },
+  "10166": {
+   "vnum": 10166,
+   "name": "The City Streets Of Mahn-Tor",
+   "map": {
+    "x": -22,
+    "y": -50,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10163,
+     "description": "To the north lies The City Streets Of Mahn-Tor."
+    },
+    "east": {
+     "to_room": 10167,
+     "description": "To the east lies The Entrance Square Of Mahn-Tor."
+    },
+    "south": {
+     "to_room": 10169,
+     "description": "To the south lies The Inn Of The Broken Horn."
+    },
+    "west": {
+     "to_room": 10100,
+     "description": "To the west lies The City Streets Of Mahn-Tor."
+    }
+   },
+   "description": "Lantern hooks and faded signboards hang over the street. Shuttered\nwindows and old doorways crowd in on either hand. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "10167": {
+   "vnum": 10167,
+   "name": "The Entrance Square Of Mahn-Tor",
+   "map": {
+    "x": -21,
+    "y": -50,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10164,
+     "description": "To the north lies Inside The Gates Of Mahn-Tor."
+    },
+    "east": {
+     "to_room": 10168,
+     "description": "To the east lies The Streets Of Mahn-Tor."
+    },
+    "south": {
+     "to_room": 10170,
+     "description": "To the south lies The Mahn-Tor Equipment Shop."
+    },
+    "west": {
+     "to_room": 10166,
+     "description": "To the west lies The City Streets Of Mahn-Tor."
+    }
+   },
+   "description": "Voices and the clatter of carts carry from somewhere nearby. Worn\nflagstones run between weathered walls, swept by passing feet. Ways lead\nnorth, east, south and west.",
+   "placeholder": true
+  },
+  "10168": {
+   "vnum": 10168,
+   "name": "The Streets Of Mahn-Tor",
+   "map": {
+    "x": -20,
+    "y": -50,
+    "z": 0
+   },
+   "sector_type": "city",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 10165,
+     "description": "To the north lies The City Streets Of Mahn-Tor."
+    },
+    "east": {
+     "to_room": 10175,
+     "description": "To the east lies The Road To The Keep Of Mahn-Tor."
+    },
+    "south": {
+     "to_room": 10171,
+     "description": "To the south lies The Mahn-Tor General Store."
+    },
+    "west": {
+     "to_room": 10167,
+     "description": "To the west lies The Entrance Square Of Mahn-Tor."
+    }
+   },
+   "description": "The paving is uneven here, patched with newer stone. Worn flagstones run\nbetween weathered walls, swept by passing feet. Ways lead north, east,\nsouth and west.",
+   "placeholder": true
+  },
+  "10169": {
+   "vnum": 10169,
+   "name": "The Inn Of The Broken Horn",
+   "map": {
+    "x": -22,
+    "y": -51,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10166,
+     "description": "To the north lies The City Streets Of Mahn-Tor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. A way leads north.",
+   "placeholder": true
+  },
+  "10170": {
+   "vnum": 10170,
+   "name": "The Mahn-Tor Equipment Shop",
+   "map": {
+    "x": -21,
+    "y": -51,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10167,
+     "description": "To the north lies The Entrance Square Of Mahn-Tor."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads north.",
+   "placeholder": true
+  },
+  "10171": {
+   "vnum": 10171,
+   "name": "The Mahn-Tor General Store",
+   "map": {
+    "x": -20,
+    "y": -51,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10168,
+     "description": "To the north lies The Streets Of Mahn-Tor."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Dust lies thick in the\ncorners, undisturbed for some time. A way leads north.",
+   "placeholder": true
+  },
+  "10172": {
+   "vnum": 10172,
+   "name": "Gorak's Training Room",
+   "map": {
+    "x": -17,
+    "y": -53,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 10188,
+     "description": "To the east lies The Guarded Hall."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. A way leads east.",
+   "placeholder": true
+  },
+  "10173": {
+   "vnum": 10173,
+   "name": "Darkoth's Dark Study",
+   "map": {
+    "x": -17,
+    "y": -54,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 10189,
+     "description": "To the east lies The Guarded Hall."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. A way leads east.",
+   "placeholder": true
+  },
+  "10174": {
+   "vnum": 10174,
+   "name": "Tyrgoth's Inner Sanctum",
+   "map": {
+    "x": -17,
+    "y": -55,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 10192,
+     "description": "To the east lies The Guarded Hall."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads east.",
+   "placeholder": true
+  },
+  "10175": {
+   "vnum": 10175,
+   "name": "The Road To The Keep Of Mahn-Tor",
+   "map": {
+    "x": -19,
+    "y": -50,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 10177,
+     "description": "To the east lies Before The Cave Of Mahn-Tor."
+    },
+    "west": {
+     "to_room": 10168,
+     "description": "To the west lies The Streets Of Mahn-Tor."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. Snow lingers\nin the shadowed hollows of the rock. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10176": {
+   "vnum": 10176,
+   "name": "A Small Guard House",
+   "map": {
+    "x": -18,
+    "y": -49,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 10177,
+     "description": "To the south lies Before The Cave Of Mahn-Tor."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. A way leads south.",
+   "placeholder": true
+  },
+  "10177": {
+   "vnum": 10177,
+   "name": "Before The Cave Of Mahn-Tor",
+   "map": {
+    "x": -18,
+    "y": -50,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10176,
+     "description": "To the north lies A Small Guard House."
+    },
+    "east": {
+     "to_room": 10179,
+     "description": "To the east lies The Entryway To The Cave Of Mahn-Tor.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 10178,
+     "description": "To the south lies A Small Guard House."
+    },
+    "west": {
+     "to_room": 10175,
+     "description": "To the west lies The Road To The Keep Of Mahn-Tor."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Stone walls close in, cool to the\ntouch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10178": {
+   "vnum": 10178,
+   "name": "A Small Guard House",
+   "map": {
+    "x": -18,
+    "y": -51,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10177,
+     "description": "To the north lies Before The Cave Of Mahn-Tor."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. A way leads north.",
+   "placeholder": true
+  },
+  "10179": {
+   "vnum": 10179,
+   "name": "The Entryway To The Cave Of Mahn-Tor",
+   "map": {
+    "x": -17,
+    "y": -50,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 10180,
+     "description": "To the east lies The Hall."
+    },
+    "west": {
+     "to_room": 10177,
+     "description": "To the west lies Before The Cave Of Mahn-Tor."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10180": {
+   "vnum": 10180,
+   "name": "The Hall",
+   "map": {
+    "x": -16,
+    "y": -50,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10143,
+     "description": "To the north lies The Hall."
+    },
+    "east": {
+     "to_room": 10181,
+     "description": "To the east lies The Grand Hall."
+    },
+    "south": {
+     "to_room": 10142,
+     "description": "To the south lies The Great Hall."
+    },
+    "west": {
+     "to_room": 10179,
+     "description": "To the west lies The Entryway To The Cave Of Mahn-Tor."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10181": {
+   "vnum": 10181,
+   "name": "The Grand Hall",
+   "map": {
+    "x": -15,
+    "y": -50,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10144,
+     "description": "To the north lies The Grand Hall."
+    },
+    "east": {
+     "to_room": 10183,
+     "description": "To the east lies Standing Before The Throne."
+    },
+    "south": {
+     "to_room": 10182,
+     "description": "To the south lies The Great Hall."
+    },
+    "west": {
+     "to_room": 10180,
+     "description": "To the west lies The Hall."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10182": {
+   "vnum": 10182,
+   "name": "The Great Hall",
+   "map": {
+    "x": -15,
+    "y": -51,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10181,
+     "description": "To the north lies The Grand Hall."
+    },
+    "east": {
+     "to_room": 10184,
+     "description": "To the east lies The Great Hall."
+    },
+    "south": {
+     "to_room": 10187,
+     "description": "To the south lies The Guard Post."
+    },
+    "west": {
+     "to_room": 10142,
+     "description": "To the west lies The Great Hall."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10183": {
+   "vnum": 10183,
+   "name": "Standing Before The Throne",
+   "map": {
+    "x": -14,
+    "y": -50,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10145,
+     "description": "To the north lies The Grand Hall."
+    },
+    "east": {
+     "to_room": 10185,
+     "description": "To the east lies The Secret Hallway.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 10184,
+     "description": "To the south lies The Great Hall."
+    },
+    "west": {
+     "to_room": 10181,
+     "description": "To the west lies The Grand Hall."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10184": {
+   "vnum": 10184,
+   "name": "The Great Hall",
+   "map": {
+    "x": -14,
+    "y": -51,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10183,
+     "description": "To the north lies Standing Before The Throne."
+    },
+    "west": {
+     "to_room": 10182,
+     "description": "To the west lies The Great Hall."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and west.",
+   "placeholder": true
+  },
+  "10185": {
+   "vnum": 10185,
+   "name": "The Secret Hallway",
+   "map": {
+    "x": -13,
+    "y": -50,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 10186,
+     "description": "To the east lies Entry To The Royal Chambers."
+    },
+    "west": {
+     "to_room": 10183,
+     "description": "To the west lies Standing Before The Throne."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead east and west.",
+   "placeholder": true
+  },
+  "10186": {
+   "vnum": 10186,
+   "name": "Entry To The Royal Chambers",
+   "map": {
+    "x": -12,
+    "y": -50,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 10195,
+     "description": "To the east lies The Main Living Room."
+    },
+    "south": {
+     "to_room": 10193,
+     "description": "To the south lies The Harem Room."
+    },
+    "west": {
+     "to_room": 10185,
+     "description": "To the west lies The Secret Hallway."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "10187": {
+   "vnum": 10187,
+   "name": "The Guard Post",
+   "map": {
+    "x": -15,
+    "y": -52,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10182,
+     "description": "To the north lies The Great Hall."
+    },
+    "south": {
+     "to_room": 10188,
+     "description": "To the south lies The Guarded Hall."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and south.",
+   "placeholder": true
+  },
+  "10188": {
+   "vnum": 10188,
+   "name": "The Guarded Hall",
+   "map": {
+    "x": -15,
+    "y": -53,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10187,
+     "description": "To the north lies The Guard Post."
+    },
+    "east": {
+     "to_room": 10190,
+     "description": "To the east lies Sumaron's Sanctum.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 10189,
+     "description": "To the south lies The Guarded Hall."
+    },
+    "west": {
+     "to_room": 10172,
+     "description": "To the west lies Gorak's Training Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10189": {
+   "vnum": 10189,
+   "name": "The Guarded Hall",
+   "map": {
+    "x": -15,
+    "y": -54,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10188,
+     "description": "To the north lies The Guarded Hall."
+    },
+    "east": {
+     "to_room": 10191,
+     "description": "To the east lies Amyrok's Arcane Study.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 10192,
+     "description": "To the south lies The Guarded Hall."
+    },
+    "west": {
+     "to_room": 10173,
+     "description": "To the west lies Darkoth's Dark Study.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "10190": {
+   "vnum": 10190,
+   "name": "Sumaron's Sanctum",
+   "map": {
+    "x": -13,
+    "y": -53,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 10188,
+     "description": "To the west lies The Guarded Hall."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "10191": {
+   "vnum": 10191,
+   "name": "Amyrok's Arcane Study",
+   "map": {
+    "x": -13,
+    "y": -54,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 10189,
+     "description": "To the west lies The Guarded Hall."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. Shadows gather where\nthe light does not reach. A way leads west.",
+   "placeholder": true
+  },
+  "10192": {
+   "vnum": 10192,
+   "name": "The Guarded Hall",
+   "map": {
+    "x": -15,
+    "y": -55,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10189,
+     "description": "To the north lies The Guarded Hall."
+    },
+    "east": {
+     "to_room": 10194,
+     "description": "To the east lies Nasturn's Humble Abode.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 10197,
+     "description": "To the south lies The End Of The Guarded Hall."
+    },
+    "west": {
+     "to_room": 10174,
+     "description": "To the west lies Tyrgoth's Inner Sanctum.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Shadows\ngather where the light does not reach. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "10193": {
+   "vnum": 10193,
+   "name": "The Harem Room",
+   "map": {
+    "x": -12,
+    "y": -51,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10186,
+     "description": "To the north lies Entry To The Royal Chambers."
+    },
+    "east": {
+     "to_room": 10196,
+     "description": "To the east lies The Master Bedroom."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. Ways lead north and east.",
+   "placeholder": true
+  },
+  "10194": {
+   "vnum": 10194,
+   "name": "Nasturn's Humble Abode",
+   "map": {
+    "x": -13,
+    "y": -55,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 10192,
+     "description": "To the west lies The Guarded Hall."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. A way leads west.",
+   "placeholder": true
+  },
+  "10195": {
+   "vnum": 10195,
+   "name": "The Main Living Room",
+   "map": {
+    "x": -11,
+    "y": -50,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "south": {
+     "to_room": 10196,
+     "description": "To the south lies The Master Bedroom."
+    },
+    "west": {
+     "to_room": 10186,
+     "description": "To the west lies Entry To The Royal Chambers."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead south and west.",
+   "placeholder": true
+  },
+  "10196": {
+   "vnum": 10196,
+   "name": "The Master Bedroom",
+   "map": {
+    "x": -11,
+    "y": -51,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10195,
+     "description": "To the north lies The Main Living Room."
+    },
+    "west": {
+     "to_room": 10193,
+     "description": "To the west lies The Harem Room."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and west.",
+   "placeholder": true
+  },
+  "10197": {
+   "vnum": 10197,
+   "name": "The End Of The Guarded Hall",
+   "map": {
+    "x": -15,
+    "y": -56,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 10192,
+     "description": "To the north lies The Guarded Hall."
+    },
+    "east": {
+     "to_room": 10198,
+     "description": "To the east lies Dorgar's Dismal Domicile.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 10199,
+     "description": "To the west lies Belrak's Green Room.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "10198": {
+   "vnum": 10198,
+   "name": "Dorgar's Dismal Domicile",
+   "map": {
+    "x": -13,
+    "y": -56,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 10197,
+     "description": "To the west lies The End Of The Guarded Hall."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads west.",
+   "placeholder": true
+  },
+  "10199": {
+   "vnum": 10199,
+   "name": "Belrak's Green Room",
+   "map": {
+    "x": -17,
+    "y": -56,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 10197,
+     "description": "To the east lies The End Of The Guarded Hall."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. A way leads east.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {},
+ "sealed": true
+}

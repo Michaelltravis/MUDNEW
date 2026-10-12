@@ -1,0 +1,2142 @@
+{
+ "number": 472,
+ "name": "Mount Ravenmist",
+ "builders": "Kein",
+ "atlas_area": 72,
+ "rooms": {
+  "16103": {
+   "vnum": 16103,
+   "name": "In Between Two Mountain Walls",
+   "map": {
+    "x": 19,
+    "y": 32,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 16104,
+     "description": "To the south lies In Between Two Mountain Walls."
+    },
+    "down": {
+     "to_room": 6613,
+     "description": "To the down lies Up The Mountain."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. The\nair is thin and cold, and loose scree shifts underfoot. Ways lead south\nand down.",
+   "placeholder": true
+  },
+  "16104": {
+   "vnum": 16104,
+   "name": "In Between Two Mountain Walls",
+   "map": {
+    "x": 19,
+    "y": 31,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16103,
+     "description": "To the north lies In Between Two Mountain Walls."
+    },
+    "up": {
+     "to_room": 16105,
+     "description": "To the up lies On A Mountain Path."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. Bare rock climbs steeply on one\nside and falls away on the other. Ways lead north and up.",
+   "placeholder": true
+  },
+  "16105": {
+   "vnum": 16105,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 21,
+    "y": 33,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 16106,
+     "description": "To the south lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16108,
+     "description": "To the west lies On A Mountain Path."
+    },
+    "down": {
+     "to_room": 16104,
+     "description": "To the down lies In Between Two Mountain Walls."
+    }
+   },
+   "description": "Snow lingers in the shadowed hollows of the rock. The air is thin and\ncold, and loose scree shifts underfoot. Ways lead south, west and down.",
+   "placeholder": true
+  },
+  "16106": {
+   "vnum": 16106,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 21,
+    "y": 32,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16105,
+     "description": "To the north lies On A Mountain Path."
+    },
+    "up": {
+     "to_room": 16107,
+     "description": "To the up lies On The Mountain Top."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. Snow lingers in the shadowed\nhollows of the rock. Ways lead north and up.",
+   "placeholder": true
+  },
+  "16107": {
+   "vnum": 16107,
+   "name": "On The Mountain Top",
+   "map": {
+    "x": 22,
+    "y": 33,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "down": {
+     "to_room": 16106,
+     "description": "To the down lies On A Mountain Path."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. Bare rock\nclimbs steeply on one side and falls away on the other. A way leads\ndown.",
+   "placeholder": true
+  },
+  "16108": {
+   "vnum": 16108,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 20,
+    "y": 33,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16105,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "up": {
+     "to_room": 16110,
+     "description": "To the up lies On A Mountain Path."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. Bare rock climbs steeply on one\nside and falls away on the other. Ways lead east and up.",
+   "placeholder": true
+  },
+  "16109": {
+   "vnum": 16109,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 22,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 16110,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. A narrow ledge picks its way\nalong the mountainside. A way leads west.",
+   "placeholder": true
+  },
+  "16110": {
+   "vnum": 16110,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 21,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16109,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16111,
+     "description": "To the west lies On A Mountain Path."
+    },
+    "up": {
+     "to_room": 16112,
+     "description": "To the up lies On A Mountain Path."
+    },
+    "down": {
+     "to_room": 16108,
+     "description": "To the down lies On A Mountain Path."
+    }
+   },
+   "description": "Snow lingers in the shadowed hollows of the rock. Bare rock climbs\nsteeply on one side and falls away on the other. Ways lead east, west,\nup and down.",
+   "placeholder": true
+  },
+  "16111": {
+   "vnum": 16111,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 20,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16110,
+     "description": "To the east lies On A Mountain Path."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. A way leads east.",
+   "placeholder": true
+  },
+  "16112": {
+   "vnum": 16112,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 22,
+    "y": 35,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 16113,
+     "description": "To the west lies On A Mountain Path."
+    },
+    "down": {
+     "to_room": 16110,
+     "description": "To the down lies On A Mountain Path."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. Snow lingers in the shadowed\nhollows of the rock. Ways lead west and down.",
+   "placeholder": true
+  },
+  "16113": {
+   "vnum": 16113,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 20,
+    "y": 35,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16112,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16114,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "Snow lingers in the shadowed hollows of the rock. Wind howls through a\ncleft in the stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16114": {
+   "vnum": 16114,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 17,
+    "y": 35,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16113,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "south": {
+     "to_room": 16115,
+     "description": "To the south lies On A Mountain Path."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Bare rock climbs\nsteeply on one side and falls away on the other. Ways lead east and\nsouth.",
+   "placeholder": true
+  },
+  "16115": {
+   "vnum": 16115,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 17,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16114,
+     "description": "To the north lies On A Mountain Path."
+    },
+    "east": {
+     "to_room": 16116,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16117,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Snow lingers in the\nshadowed hollows of the rock. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "16116": {
+   "vnum": 16116,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 18,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 16115,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. Wind\nhowls through a cleft in the stone. A way leads west.",
+   "placeholder": true
+  },
+  "16117": {
+   "vnum": 16117,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 15,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16115,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16118,
+     "description": "To the west lies On A Mountain Path."
+    },
+    "up": {
+     "to_room": 16119,
+     "description": "To the up lies On A Mountain Path."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. Bare rock\nclimbs steeply on one side and falls away on the other. Ways lead east,\nwest and up.",
+   "placeholder": true
+  },
+  "16118": {
+   "vnum": 16118,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 14,
+    "y": 34,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16117,
+     "description": "To the east lies On A Mountain Path."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. A\nnarrow ledge picks its way along the mountainside. A way leads east.",
+   "placeholder": true
+  },
+  "16119": {
+   "vnum": 16119,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 16,
+    "y": 35,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 16120,
+     "description": "To the west lies On A Mountain Path."
+    },
+    "down": {
+     "to_room": 16117,
+     "description": "To the down lies On A Mountain Path."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Bare rock climbs\nsteeply on one side and falls away on the other. Ways lead west and\ndown.",
+   "placeholder": true
+  },
+  "16120": {
+   "vnum": 16120,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 15,
+    "y": 35,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16119,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16121,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16121": {
+   "vnum": 16121,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 13,
+    "y": 35,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16120,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16122,
+     "description": "To the west lies On A Mountain Path."
+    },
+    "down": {
+     "to_room": 16124,
+     "description": "To the down lies On A Mountain Path."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. A narrow\nledge picks its way along the mountainside. Ways lead east, west and\ndown.",
+   "placeholder": true
+  },
+  "16122": {
+   "vnum": 16122,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 12,
+    "y": 35,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16121,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16123,
+     "description": "To the west lies On A Mountain Path."
+    },
+    "up": {
+     "to_room": 16128,
+     "description": "To the up lies On A Mountain Path."
+    }
+   },
+   "description": "Snow lingers in the shadowed hollows of the rock. Bare rock climbs\nsteeply on one side and falls away on the other. Ways lead east, west\nand up.",
+   "placeholder": true
+  },
+  "16123": {
+   "vnum": 16123,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 11,
+    "y": 35,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16122,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16200,
+     "description": "To the west lies Outside A Large Cabin."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. The air is thin and cold, and\nloose scree shifts underfoot. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16124": {
+   "vnum": 16124,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 11,
+    "y": 33,
+    "z": 6
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "up": {
+     "to_room": 16121,
+     "description": "To the up lies On A Mountain Path."
+    },
+    "down": {
+     "to_room": 16125,
+     "description": "To the down lies At The Base Of The Mountain."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. Snow lingers in the shadowed\nhollows of the rock. Ways lead up and down.",
+   "placeholder": true
+  },
+  "16125": {
+   "vnum": 16125,
+   "name": "At The Base Of The Mountain",
+   "map": {
+    "x": 9,
+    "y": 31,
+    "z": 6
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16126,
+     "description": "To the north lies At The Edge Of A Forrest."
+    },
+    "up": {
+     "to_room": 16124,
+     "description": "To the up lies On A Mountain Path."
+    }
+   },
+   "description": "From the crest the land below spreads out like a map. The ground rises\nand falls in grassy folds. Ways lead north and up.",
+   "placeholder": true
+  },
+  "16126": {
+   "vnum": 16126,
+   "name": "At The Edge Of A Forrest",
+   "map": {
+    "x": 9,
+    "y": 32,
+    "z": 6
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 16305,
+     "description": "To the north lies A Small Path Through The Deep, Dark Forest."
+    },
+    "south": {
+     "to_room": 16125,
+     "description": "To the south lies At The Base Of The Mountain."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The air is\nstill and smells faintly of old smoke. Ways lead north and south.",
+   "placeholder": true
+  },
+  "16127": {
+   "vnum": 16127,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 14,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 16128,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. Snow lingers\nin the shadowed hollows of the rock. A way leads west.",
+   "placeholder": true
+  },
+  "16128": {
+   "vnum": 16128,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 13,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16127,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16129,
+     "description": "To the west lies On A Mountain Path."
+    },
+    "down": {
+     "to_room": 16122,
+     "description": "To the down lies On A Mountain Path."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. The air is thin and\ncold, and loose scree shifts underfoot. Ways lead east, west and down.",
+   "placeholder": true
+  },
+  "16129": {
+   "vnum": 16129,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 12,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16128,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16130,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Wind howls through\na cleft in the stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16130": {
+   "vnum": 16130,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 10,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16129,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16131,
+     "description": "To the west lies On A Mountain Path."
+    },
+    "up": {
+     "to_room": 16150,
+     "description": "To the up lies On A Mountain Path."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Wind howls through\na cleft in the stone. Ways lead east, west and up.",
+   "placeholder": true
+  },
+  "16131": {
+   "vnum": 16131,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 9,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16130,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16132,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "Snow lingers in the shadowed hollows of the rock. The air is thin and\ncold, and loose scree shifts underfoot. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16132": {
+   "vnum": 16132,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 8,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16131,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16133,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16133": {
+   "vnum": 16133,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 7,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16132,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16134,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. A narrow ledge picks its way\nalong the mountainside. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16134": {
+   "vnum": 16134,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 6,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16159,
+     "description": "To the north lies On Top of the Crescent Cliffs."
+    },
+    "east": {
+     "to_room": 16133,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "south": {
+     "to_room": 16147,
+     "description": "To the south lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16135,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. Snow lingers in the shadowed\nhollows of the rock. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "16135": {
+   "vnum": 16135,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 5,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16134,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16136,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. Bare rock\nclimbs steeply on one side and falls away on the other. Ways lead east\nand west.",
+   "placeholder": true
+  },
+  "16136": {
+   "vnum": 16136,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 4,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16135,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16137,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. Wind howls\nthrough a cleft in the stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16137": {
+   "vnum": 16137,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 3,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16136,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "south": {
+     "to_room": 16145,
+     "description": "To the south lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16138,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. A narrow\nledge picks its way along the mountainside. Ways lead east, south and\nwest.",
+   "placeholder": true
+  },
+  "16138": {
+   "vnum": 16138,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 2,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16137,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16139,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Snow lingers in the\nshadowed hollows of the rock. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16139": {
+   "vnum": 16139,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 1,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16138,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16140,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. Wind howls\nthrough a cleft in the stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16140": {
+   "vnum": 16140,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 0,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16175,
+     "description": "To the north lies On A Mountain Path."
+    },
+    "east": {
+     "to_room": 16139,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16141,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Snow lingers in the\nshadowed hollows of the rock. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "16141": {
+   "vnum": 16141,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": -1,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16140,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16142,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. A\nnarrow ledge picks its way along the mountainside. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "16142": {
+   "vnum": 16142,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": -15,
+    "y": 35,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16141,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "up": {
+     "to_room": 16143,
+     "description": "To the up lies On A Mountain Path."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. Wind\nhowls through a cleft in the stone. Ways lead east and up.",
+   "placeholder": true
+  },
+  "16143": {
+   "vnum": 16143,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": -13,
+    "y": 37,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 16144,
+     "description": "To the west lies At The Base Of The Mountain."
+    },
+    "up": {
+     "to_room": 16144,
+     "description": "To the up lies At The Base Of The Mountain."
+    },
+    "down": {
+     "to_room": 16142,
+     "description": "To the down lies On A Mountain Path."
+    }
+   },
+   "description": "Snow lingers in the shadowed hollows of the rock. A narrow ledge picks\nits way along the mountainside. Ways lead west, up and down.",
+   "placeholder": true
+  },
+  "16144": {
+   "vnum": 16144,
+   "name": "At The Base Of The Mountain",
+   "map": {
+    "x": -8,
+    "y": 39,
+    "z": 7
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16143,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "down": {
+     "to_room": 16153,
+     "description": "To the down lies On A Mountain Path."
+    }
+   },
+   "description": "The ground rises and falls in grassy folds. Rocks break through the thin\nsoil of the slope. Ways lead east and down.",
+   "placeholder": true
+  },
+  "16145": {
+   "vnum": 16145,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 3,
+    "y": 34,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16137,
+     "description": "To the north lies On A Mountain Path."
+    },
+    "east": {
+     "to_room": 16146,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "south": {
+     "to_room": 16152,
+     "description": "To the south lies On A Mountain Path."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. A narrow ledge picks its way\nalong the mountainside. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "16146": {
+   "vnum": 16146,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 4,
+    "y": 34,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 16145,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. Snow lingers in the shadowed\nhollows of the rock. A way leads west.",
+   "placeholder": true
+  },
+  "16147": {
+   "vnum": 16147,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 6,
+    "y": 31,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16134,
+     "description": "To the north lies On A Mountain Path."
+    },
+    "east": {
+     "to_room": 16148,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "down": {
+     "to_room": 16154,
+     "description": "To the down lies On A Mountain Path."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. Bare rock climbs steeply on one\nside and falls away on the other. Ways lead north, east and down.",
+   "placeholder": true
+  },
+  "16148": {
+   "vnum": 16148,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 7,
+    "y": 31,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16149,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16147,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "Snow lingers in the shadowed hollows of the rock. A narrow ledge picks\nits way along the mountainside. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16149": {
+   "vnum": 16149,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 8,
+    "y": 31,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16150,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16148,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. A narrow\nledge picks its way along the mountainside. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16150": {
+   "vnum": 16150,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 10,
+    "y": 31,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 16149,
+     "description": "To the west lies On A Mountain Path."
+    },
+    "up": {
+     "to_room": 16155,
+     "description": "To the up lies On A Mountain Path."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. Ways lead west and up.",
+   "placeholder": true
+  },
+  "16151": {
+   "vnum": 16151,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 2,
+    "y": 33,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16152,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "down": {
+     "to_room": 6500,
+     "description": "To the down lies Path To The Dwarven Village."
+    }
+   },
+   "description": "Snow lingers in the shadowed hollows of the rock. The air is thin and\ncold, and loose scree shifts underfoot. Ways lead east and down.",
+   "placeholder": true
+  },
+  "16152": {
+   "vnum": 16152,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 3,
+    "y": 33,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16145,
+     "description": "To the north lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16151,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. Wind howls\nthrough a cleft in the stone. Ways lead north and west.",
+   "placeholder": true
+  },
+  "16153": {
+   "vnum": 16153,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": -9,
+    "y": 33,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 16152,
+     "description": "To the west lies On A Mountain Path."
+    },
+    "up": {
+     "to_room": 16144,
+     "description": "To the up lies At The Base Of The Mountain."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. A narrow ledge picks its way\nalong the mountainside. Ways lead west and up.",
+   "placeholder": true
+  },
+  "16154": {
+   "vnum": 16154,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 5,
+    "y": 30,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "up": {
+     "to_room": 16147,
+     "description": "To the up lies On A Mountain Path."
+    },
+    "down": {
+     "to_room": 16158,
+     "description": "To the down lies At The Base Of The Mountain."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. Bare rock climbs steeply on one\nside and falls away on the other. Ways lead up and down.",
+   "placeholder": true
+  },
+  "16155": {
+   "vnum": 16155,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 11,
+    "y": 32,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16156,
+     "description": "To the east lies By A Dark Cave Entrance."
+    },
+    "down": {
+     "to_room": 16150,
+     "description": "To the down lies On A Mountain Path."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Bare rock climbs\nsteeply on one side and falls away on the other. Ways lead east and\ndown.",
+   "placeholder": true
+  },
+  "16156": {
+   "vnum": 16156,
+   "name": "By A Dark Cave Entrance",
+   "map": {
+    "x": 12,
+    "y": 32,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 16157,
+     "description": "To the east lies Inside A Dark Cave."
+    },
+    "west": {
+     "to_room": 16155,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Dust lies thick in the corners,\nundisturbed for some time. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16157": {
+   "vnum": 16157,
+   "name": "Inside A Dark Cave",
+   "map": {
+    "x": 13,
+    "y": 32,
+    "z": 7
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 16156,
+     "description": "To the west lies By A Dark Cave Entrance."
+    },
+    "down": {
+     "to_room": 24200,
+     "description": "To the down lies The Sphere Room."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. The floor is worn smooth\nby long use. Ways lead west and down.",
+   "placeholder": true
+  },
+  "16158": {
+   "vnum": 16158,
+   "name": "At The Base Of The Mountain",
+   "map": {
+    "x": 4,
+    "y": 29,
+    "z": 7
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "up": {
+     "to_room": 16154,
+     "description": "To the up lies On A Mountain Path."
+    }
+   },
+   "description": "Rocks break through the thin soil of the slope. A narrow path winds\nbetween the hillocks. A way leads up.",
+   "placeholder": true
+  },
+  "16159": {
+   "vnum": 16159,
+   "name": "On Top of the Crescent Cliffs",
+   "map": {
+    "x": 6,
+    "y": 37,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 16134,
+     "description": "To the south lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16160,
+     "description": "To the west lies On Top of the Crescent Cliffs."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. The air is thin and cold, and\nloose scree shifts underfoot. Ways lead south and west.",
+   "placeholder": true
+  },
+  "16160": {
+   "vnum": 16160,
+   "name": "On Top of the Crescent Cliffs",
+   "map": {
+    "x": 5,
+    "y": 37,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16159,
+     "description": "To the east lies On Top of the Crescent Cliffs."
+    },
+    "west": {
+     "to_room": 16161,
+     "description": "To the west lies On Top of the Crescent Cliffs."
+    }
+   },
+   "description": "Snow lingers in the shadowed hollows of the rock. The air is thin and\ncold, and loose scree shifts underfoot. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16161": {
+   "vnum": 16161,
+   "name": "On Top of the Crescent Cliffs",
+   "map": {
+    "x": 4,
+    "y": 37,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16160,
+     "description": "To the east lies On Top of the Crescent Cliffs."
+    },
+    "west": {
+     "to_room": 16162,
+     "description": "To the west lies On Top of the Crescent Cliffs."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. A\nnarrow ledge picks its way along the mountainside. Ways lead east and\nwest.",
+   "placeholder": true
+  },
+  "16162": {
+   "vnum": 16162,
+   "name": "On Top of the Crescent Cliffs",
+   "map": {
+    "x": 3,
+    "y": 37,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16163,
+     "description": "To the north lies On Top of the Crescent Cliffs."
+    },
+    "east": {
+     "to_room": 16161,
+     "description": "To the east lies On Top of the Crescent Cliffs."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Bare rock climbs\nsteeply on one side and falls away on the other. Ways lead north and\neast.",
+   "placeholder": true
+  },
+  "16163": {
+   "vnum": 16163,
+   "name": "On Top of the Crescent Cliffs",
+   "map": {
+    "x": 3,
+    "y": 38,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16164,
+     "description": "To the north lies On Top of the Crescent Cliffs."
+    },
+    "south": {
+     "to_room": 16162,
+     "description": "To the south lies On Top of the Crescent Cliffs."
+    },
+    "west": {
+     "to_room": 16172,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. The air is thin and cold, and\nloose scree shifts underfoot. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "16164": {
+   "vnum": 16164,
+   "name": "On Top of the Crescent Cliffs",
+   "map": {
+    "x": 3,
+    "y": 39,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16165,
+     "description": "To the north lies On Top of the Crescent Cliffs."
+    },
+    "south": {
+     "to_room": 16163,
+     "description": "To the south lies On Top of the Crescent Cliffs."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. A narrow\nledge picks its way along the mountainside. Ways lead north and south.",
+   "placeholder": true
+  },
+  "16165": {
+   "vnum": 16165,
+   "name": "On Top of the Crescent Cliffs",
+   "map": {
+    "x": 3,
+    "y": 40,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16167,
+     "description": "To the east lies On Top of the Crescent Cliffs."
+    },
+    "south": {
+     "to_room": 16164,
+     "description": "To the south lies On Top of the Crescent Cliffs."
+    },
+    "west": {
+     "to_room": 16166,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "Snow lingers in the shadowed hollows of the rock. A narrow ledge picks\nits way along the mountainside. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "16166": {
+   "vnum": 16166,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 2,
+    "y": 40,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16165,
+     "description": "To the east lies On Top of the Crescent Cliffs."
+    },
+    "west": {
+     "to_room": 16187,
+     "description": "To the west lies By A Tall Tower Wall."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. Wind\nhowls through a cleft in the stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16167": {
+   "vnum": 16167,
+   "name": "On Top of the Crescent Cliffs",
+   "map": {
+    "x": 4,
+    "y": 40,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16168,
+     "description": "To the east lies On Top of the Crescent Cliffs."
+    },
+    "west": {
+     "to_room": 16165,
+     "description": "To the west lies On Top of the Crescent Cliffs."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. The air is thin and\ncold, and loose scree shifts underfoot. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16168": {
+   "vnum": 16168,
+   "name": "On Top of the Crescent Cliffs",
+   "map": {
+    "x": 5,
+    "y": 40,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16169,
+     "description": "To the east lies On Top of the Crescent Cliffs."
+    },
+    "west": {
+     "to_room": 16167,
+     "description": "To the west lies On Top of the Crescent Cliffs."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Wind howls through\na cleft in the stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16169": {
+   "vnum": 16169,
+   "name": "On Top of the Crescent Cliffs",
+   "map": {
+    "x": 6,
+    "y": 40,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16170,
+     "description": "To the east lies On Top of the Crescent Cliffs."
+    },
+    "west": {
+     "to_room": 16168,
+     "description": "To the west lies On Top of the Crescent Cliffs."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. The air is thin and cold, and\nloose scree shifts underfoot. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16170": {
+   "vnum": 16170,
+   "name": "On Top of the Crescent Cliffs",
+   "map": {
+    "x": 7,
+    "y": 40,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 16169,
+     "description": "To the west lies On Top of the Crescent Cliffs."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Bare rock climbs\nsteeply on one side and falls away on the other. A way leads west.",
+   "placeholder": true
+  },
+  "16171": {
+   "vnum": 16171,
+   "name": "Overlooking A Great View",
+   "map": {
+    "x": 0,
+    "y": 43,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 16190,
+     "description": "To the south lies By A Tall Tower Wall."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. A narrow\nledge picks its way along the mountainside. A way leads south.",
+   "placeholder": true
+  },
+  "16172": {
+   "vnum": 16172,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 2,
+    "y": 38,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16163,
+     "description": "To the east lies On Top of the Crescent Cliffs."
+    },
+    "west": {
+     "to_room": 16173,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. Wind\nhowls through a cleft in the stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16173": {
+   "vnum": 16173,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 1,
+    "y": 38,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16176,
+     "description": "To the north lies On A Mountain Path."
+    },
+    "east": {
+     "to_room": 16172,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "south": {
+     "to_room": 16174,
+     "description": "To the south lies On A Mountain Path."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. Wind howls\nthrough a cleft in the stone. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "16174": {
+   "vnum": 16174,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 1,
+    "y": 37,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16173,
+     "description": "To the north lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16175,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. A\nnarrow ledge picks its way along the mountainside. Ways lead north and\nwest.",
+   "placeholder": true
+  },
+  "16175": {
+   "vnum": 16175,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 0,
+    "y": 37,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16174,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "south": {
+     "to_room": 16140,
+     "description": "To the south lies On A Mountain Path."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. Bare rock\nclimbs steeply on one side and falls away on the other. Ways lead east\nand south.",
+   "placeholder": true
+  },
+  "16176": {
+   "vnum": 16176,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 1,
+    "y": 39,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 16173,
+     "description": "To the south lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16177,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. Snow lingers\nin the shadowed hollows of the rock. Ways lead south and west.",
+   "placeholder": true
+  },
+  "16177": {
+   "vnum": 16177,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": 0,
+    "y": 39,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16186,
+     "description": "To the north lies By A Tall Tower Wall."
+    },
+    "east": {
+     "to_room": 16176,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16178,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. A narrow\nledge picks its way along the mountainside. Ways lead north, east and\nwest.",
+   "placeholder": true
+  },
+  "16178": {
+   "vnum": 16178,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": -1,
+    "y": 39,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16177,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16179,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Wind howls through\na cleft in the stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16179": {
+   "vnum": 16179,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": -2,
+    "y": 39,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16178,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16180,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Wind howls through\na cleft in the stone. Ways lead east and west.",
+   "placeholder": true
+  },
+  "16180": {
+   "vnum": 16180,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": -3,
+    "y": 39,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16179,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "south": {
+     "to_room": 16182,
+     "description": "To the south lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16181,
+     "description": "To the west lies On A Mountain Path."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. The\nair is thin and cold, and loose scree shifts underfoot. Ways lead east,\nsouth and west.",
+   "placeholder": true
+  },
+  "16181": {
+   "vnum": 16181,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": -4,
+    "y": 39,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16180,
+     "description": "To the east lies On A Mountain Path."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Wind howls through\na cleft in the stone. A way leads east.",
+   "placeholder": true
+  },
+  "16182": {
+   "vnum": 16182,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": -3,
+    "y": 38,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16180,
+     "description": "To the north lies On A Mountain Path."
+    },
+    "down": {
+     "to_room": 16183,
+     "description": "To the down lies On A Mountain Path."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Wind howls through\na cleft in the stone. Ways lead north and down.",
+   "placeholder": true
+  },
+  "16183": {
+   "vnum": 16183,
+   "name": "On A Mountain Path",
+   "map": {
+    "x": -4,
+    "y": 37,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "up": {
+     "to_room": 16182,
+     "description": "To the up lies On A Mountain Path."
+    },
+    "down": {
+     "to_room": 16184,
+     "description": "To the down lies At The Base Of The Mountain."
+    }
+   },
+   "description": "Snow lingers in the shadowed hollows of the rock. A narrow ledge picks\nits way along the mountainside. Ways lead up and down.",
+   "placeholder": true
+  },
+  "16184": {
+   "vnum": 16184,
+   "name": "At The Base Of The Mountain",
+   "map": {
+    "x": -5,
+    "y": 36,
+    "z": 7
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 4600,
+     "description": "To the north lies On The Taiga."
+    },
+    "up": {
+     "to_room": 16183,
+     "description": "To the up lies On A Mountain Path."
+    }
+   },
+   "description": "The ground rises and falls in grassy folds. From the crest the land\nbelow spreads out like a map. Ways lead north and up.",
+   "placeholder": true
+  },
+  "16185": {
+   "vnum": 16185,
+   "name": "By A Tall Tower Wall",
+   "map": {
+    "x": -1,
+    "y": 40,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16192,
+     "description": "To the north lies By A Tall Tower Wall."
+    },
+    "east": {
+     "to_room": 16186,
+     "description": "To the east lies By A Tall Tower Wall."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. Bare rock\nclimbs steeply on one side and falls away on the other. Ways lead north\nand east.",
+   "placeholder": true
+  },
+  "16186": {
+   "vnum": 16186,
+   "name": "By A Tall Tower Wall",
+   "map": {
+    "x": 0,
+    "y": 40,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16187,
+     "description": "To the east lies By A Tall Tower Wall."
+    },
+    "south": {
+     "to_room": 16177,
+     "description": "To the south lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16185,
+     "description": "To the west lies By A Tall Tower Wall."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. Snow lingers in the shadowed\nhollows of the rock. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "16187": {
+   "vnum": 16187,
+   "name": "By A Tall Tower Wall",
+   "map": {
+    "x": 1,
+    "y": 40,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16188,
+     "description": "To the north lies By A Tall Tower Wall."
+    },
+    "east": {
+     "to_room": 16166,
+     "description": "To the east lies On A Mountain Path."
+    },
+    "west": {
+     "to_room": 16186,
+     "description": "To the west lies By A Tall Tower Wall."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. Bare rock climbs steeply on one\nside and falls away on the other. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "16188": {
+   "vnum": 16188,
+   "name": "By A Tall Tower Wall",
+   "map": {
+    "x": 1,
+    "y": 41,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16189,
+     "description": "To the north lies By A Tall Tower Wall."
+    },
+    "south": {
+     "to_room": 16187,
+     "description": "To the south lies By A Tall Tower Wall."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. Bare rock climbs steeply on one\nside and falls away on the other. Ways lead north and south.",
+   "placeholder": true
+  },
+  "16189": {
+   "vnum": 16189,
+   "name": "By A Tall Tower Wall",
+   "map": {
+    "x": 1,
+    "y": 42,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24600,
+     "description": "To the east lies The Crevice Between The Paths."
+    },
+    "south": {
+     "to_room": 16188,
+     "description": "To the south lies By A Tall Tower Wall."
+    },
+    "west": {
+     "to_room": 16190,
+     "description": "To the west lies By A Tall Tower Wall."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. The air is thin and cold, and\nloose scree shifts underfoot. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "16190": {
+   "vnum": 16190,
+   "name": "By A Tall Tower Wall",
+   "map": {
+    "x": 0,
+    "y": 42,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16171,
+     "description": "To the north lies Overlooking A Great View."
+    },
+    "east": {
+     "to_room": 16189,
+     "description": "To the east lies By A Tall Tower Wall."
+    },
+    "west": {
+     "to_room": 16191,
+     "description": "To the west lies By A Tall Tower Wall."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. A\nnarrow ledge picks its way along the mountainside. Ways lead north, east\nand west.",
+   "placeholder": true
+  },
+  "16191": {
+   "vnum": 16191,
+   "name": "By A Tall Tower Wall",
+   "map": {
+    "x": -1,
+    "y": 42,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 16190,
+     "description": "To the east lies By A Tall Tower Wall."
+    },
+    "south": {
+     "to_room": 16192,
+     "description": "To the south lies By A Tall Tower Wall."
+    }
+   },
+   "description": "Snow lingers in the shadowed hollows of the rock. Wind howls through a\ncleft in the stone. Ways lead east and south.",
+   "placeholder": true
+  },
+  "16192": {
+   "vnum": 16192,
+   "name": "By A Tall Tower Wall",
+   "map": {
+    "x": -1,
+    "y": 41,
+    "z": 7
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 16191,
+     "description": "To the north lies By A Tall Tower Wall."
+    },
+    "south": {
+     "to_room": 16185,
+     "description": "To the south lies By A Tall Tower Wall."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. A narrow ledge picks its way\nalong the mountainside. Ways lead north and south.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {}
+}

@@ -538,10 +538,10 @@ PRESET_OBJECTS = {
     },
     9010: {
         'vnum': 9010,
-        'name': 'the Midgaard guard blade',
-        'short_desc': 'the Midgaard guard blade',
+        'name': 'the Garathorm guard blade',
+        'short_desc': 'the Garathorm guard blade',
         'room_desc': 'A polished guard blade rests here.',
-        'description': 'A masterwork blade awarded to the most trusted defenders of Midgaard.',
+        'description': 'A masterwork blade awarded to the most trusted defenders of Garathorm.',
         'type': 'weapon',
         'weight': 5,
         'cost': 2000,

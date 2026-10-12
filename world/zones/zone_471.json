@@ -1,0 +1,3028 @@
+{
+ "number": 471,
+ "name": "Badlands II",
+ "builders": "Jack",
+ "atlas_area": 71,
+ "rooms": {
+  "8304": {
+   "vnum": 8304,
+   "name": "At The Far End Of The Sundered Bridge",
+   "map": {
+    "x": 26,
+    "y": 58,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8305,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9100,
+     "description": "To the east lies The Badlands."
+    },
+    "south": {
+     "to_room": 19744,
+     "description": "To the south lies On The Great Northern bridge."
+    },
+    "west": {
+     "to_room": 9102,
+     "description": "To the west lies The Badlands."
+    }
+   },
+   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "8305": {
+   "vnum": 8305,
+   "name": "The Black Hills",
+   "map": {
+    "x": 26,
+    "y": 59,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8306,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9105,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 8304,
+     "description": "To the south lies At The Far End Of The Sundered Bridge."
+    },
+    "west": {
+     "to_room": 9104,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. Open grassland\nrolls away under a wide sky. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "8306": {
+   "vnum": 8306,
+   "name": "The Black Hills",
+   "map": {
+    "x": 26,
+    "y": 60,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8307,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9119,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 8305,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9120,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "The ground rises and falls in grassy folds. From the crest the land\nbelow spreads out like a map. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "8307": {
+   "vnum": 8307,
+   "name": "The Black Hills",
+   "map": {
+    "x": 26,
+    "y": 61,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8308,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 8306,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9121,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "The ground rises and falls in grassy folds. From the crest the land\nbelow spreads out like a map. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "8308": {
+   "vnum": 8308,
+   "name": "The Black Hills",
+   "map": {
+    "x": 27,
+    "y": 61,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8309,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9115,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9119,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 8307,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "Rocks break through the thin soil of the slope. From the crest the land\nbelow spreads out like a map. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "8309": {
+   "vnum": 8309,
+   "name": "The Black Hills",
+   "map": {
+    "x": 27,
+    "y": 63,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8310,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9114,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 8308,
+     "description": "To the south lies The Black Hills."
+    }
+   },
+   "description": "A narrow path winds between the hillocks. From the crest the land below\nspreads out like a map. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "8310": {
+   "vnum": 8310,
+   "name": "The Black Hills",
+   "map": {
+    "x": 27,
+    "y": 64,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8311,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 8309,
+     "description": "To the south lies The Black Hills."
+    }
+   },
+   "description": "Gorse and heather cling to the windy rise. From the crest the land below\nspreads out like a map. Ways lead east and south.",
+   "placeholder": true
+  },
+  "8311": {
+   "vnum": 8311,
+   "name": "The Black Hills",
+   "map": {
+    "x": 29,
+    "y": 64,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8312,
+     "description": "To the north lies The Hill Of The Hanged Man."
+    },
+    "east": {
+     "to_room": 9112,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9114,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 8310,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "A narrow path winds between the hillocks. Rocks break through the thin\nsoil of the slope. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "8312": {
+   "vnum": 8312,
+   "name": "The Hill Of The Hanged Man",
+   "map": {
+    "x": 29,
+    "y": 65,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8313,
+     "description": "To the north lies The Southern Edge Of Spirit Wood."
+    },
+    "south": {
+     "to_room": 8311,
+     "description": "To the south lies The Black Hills."
+    }
+   },
+   "description": "From the crest the land below spreads out like a map. A narrow path\nwinds between the hillocks. Ways lead north and south.",
+   "placeholder": true
+  },
+  "8313": {
+   "vnum": 8313,
+   "name": "The Southern Edge Of Spirit Wood",
+   "map": {
+    "x": 29,
+    "y": 66,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8314,
+     "description": "To the north lies In Spirit Wood."
+    },
+    "south": {
+     "to_room": 8312,
+     "description": "To the south lies The Hill Of The Hanged Man."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Fallen\nneedles and leaves muffle every step. Ways lead north and south.",
+   "placeholder": true
+  },
+  "8314": {
+   "vnum": 8314,
+   "name": "In Spirit Wood",
+   "map": {
+    "x": 29,
+    "y": 67,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8315,
+     "description": "To the north lies In Spirit Wood."
+    },
+    "south": {
+     "to_room": 8313,
+     "description": "To the south lies The Southern Edge Of Spirit Wood."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Fallen\nneedles and leaves muffle every step. Ways lead north and south.",
+   "placeholder": true
+  },
+  "8315": {
+   "vnum": 8315,
+   "name": "In Spirit Wood",
+   "map": {
+    "x": 29,
+    "y": 68,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8316,
+     "description": "To the north lies In Spirit Wood."
+    },
+    "south": {
+     "to_room": 8314,
+     "description": "To the south lies In Spirit Wood."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Birdsong\ndrifts down through the branches overhead. Ways lead north and south.",
+   "placeholder": true
+  },
+  "8316": {
+   "vnum": 8316,
+   "name": "In Spirit Wood",
+   "map": {
+    "x": 29,
+    "y": 69,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8317,
+     "description": "To the north lies In Spirit Wood."
+    },
+    "south": {
+     "to_room": 8315,
+     "description": "To the south lies In Spirit Wood."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Birdsong drifts down\nthrough the branches overhead. Ways lead north and south.",
+   "placeholder": true
+  },
+  "8317": {
+   "vnum": 8317,
+   "name": "In Spirit Wood",
+   "map": {
+    "x": 29,
+    "y": 70,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8319,
+     "description": "To the north lies In Spirit Wood."
+    },
+    "east": {
+     "to_room": 8320,
+     "description": "To the east lies In Spirit Wood."
+    },
+    "south": {
+     "to_room": 8316,
+     "description": "To the south lies In Spirit Wood."
+    },
+    "west": {
+     "to_room": 8318,
+     "description": "To the west lies In Spirit Wood."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "8318": {
+   "vnum": 8318,
+   "name": "In Spirit Wood",
+   "map": {
+    "x": 28,
+    "y": 70,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8317,
+     "description": "To the east lies In Spirit Wood."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Birdsong\ndrifts down through the branches overhead. A way leads east.",
+   "placeholder": true
+  },
+  "8319": {
+   "vnum": 8319,
+   "name": "In Spirit Wood",
+   "map": {
+    "x": 29,
+    "y": 71,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 8317,
+     "description": "To the south lies In Spirit Wood."
+    },
+    "down": {
+     "to_room": 8450,
+     "description": "To the down lies The Tunnel."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Shafts of\npale light slant between the trunks. Ways lead south and down.",
+   "placeholder": true
+  },
+  "8320": {
+   "vnum": 8320,
+   "name": "In Spirit Wood",
+   "map": {
+    "x": 30,
+    "y": 70,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8321,
+     "description": "To the north lies The Clearing."
+    },
+    "west": {
+     "to_room": 8317,
+     "description": "To the west lies In Spirit Wood."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Shafts of pale light slant\nbetween the trunks. Ways lead north and west.",
+   "placeholder": true
+  },
+  "8321": {
+   "vnum": 8321,
+   "name": "The Clearing",
+   "map": {
+    "x": 30,
+    "y": 72,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8322,
+     "description": "To the north lies Deeper In Spirit Wood."
+    },
+    "east": {
+     "to_room": 8323,
+     "description": "To the east lies A Small Pond."
+    },
+    "south": {
+     "to_room": 8320,
+     "description": "To the south lies In Spirit Wood."
+    },
+    "west": {
+     "to_room": 8324,
+     "description": "To the west lies The Camp."
+    }
+   },
+   "description": "Ferns and moss soften the ground beneath a dim green canopy. Shafts of\npale light slant between the trunks. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "8322": {
+   "vnum": 8322,
+   "name": "Deeper In Spirit Wood",
+   "map": {
+    "x": 30,
+    "y": 73,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8325,
+     "description": "To the north lies Deep In Spirit Wood."
+    },
+    "east": {
+     "to_room": 8327,
+     "description": "To the east lies Deep In Spirit Wood."
+    },
+    "south": {
+     "to_room": 8321,
+     "description": "To the south lies The Clearing."
+    },
+    "west": {
+     "to_room": 8326,
+     "description": "To the west lies At The Fallen Tree."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Ferns and\nmoss soften the ground beneath a dim green canopy. Ways lead north,\neast, south and west.",
+   "placeholder": true
+  },
+  "8323": {
+   "vnum": 8323,
+   "name": "A Small Pond",
+   "map": {
+    "x": 31,
+    "y": 72,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 8321,
+     "description": "To the west lies The Clearing."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Birdsong drifts down\nthrough the branches overhead. A way leads west.",
+   "placeholder": true
+  },
+  "8324": {
+   "vnum": 8324,
+   "name": "The Camp",
+   "map": {
+    "x": 29,
+    "y": 72,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8321,
+     "description": "To the east lies The Clearing."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead. A way leads east.",
+   "placeholder": true
+  },
+  "8325": {
+   "vnum": 8325,
+   "name": "Deep In Spirit Wood",
+   "map": {
+    "x": 30,
+    "y": 74,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 8322,
+     "description": "To the south lies Deeper In Spirit Wood."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Ferns and\nmoss soften the ground beneath a dim green canopy. A way leads south.",
+   "placeholder": true
+  },
+  "8326": {
+   "vnum": 8326,
+   "name": "At The Fallen Tree",
+   "map": {
+    "x": 29,
+    "y": 73,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8322,
+     "description": "To the east lies Deeper In Spirit Wood."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Birdsong drifts down\nthrough the branches overhead. A way leads east.",
+   "placeholder": true
+  },
+  "8327": {
+   "vnum": 8327,
+   "name": "Deep In Spirit Wood",
+   "map": {
+    "x": 31,
+    "y": 73,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8332,
+     "description": "To the north lies In Spirit Wood."
+    },
+    "east": {
+     "to_room": 8329,
+     "description": "To the east lies Deeper Into Spirit Wood."
+    },
+    "west": {
+     "to_room": 8322,
+     "description": "To the west lies Deeper In Spirit Wood."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "8329": {
+   "vnum": 8329,
+   "name": "Deeper Into Spirit Wood",
+   "map": {
+    "x": 32,
+    "y": 73,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8330,
+     "description": "To the east lies Deeper Into Spirit Wood."
+    },
+    "west": {
+     "to_room": 8327,
+     "description": "To the west lies Deep In Spirit Wood."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Ferns and moss soften the\nground beneath a dim green canopy. Ways lead east and west.",
+   "placeholder": true
+  },
+  "8330": {
+   "vnum": 8330,
+   "name": "Deeper Into Spirit Wood",
+   "map": {
+    "x": 33,
+    "y": 73,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8331,
+     "description": "To the east lies At The Forest Lodge."
+    },
+    "west": {
+     "to_room": 8329,
+     "description": "To the west lies Deeper Into Spirit Wood."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead east and west.",
+   "placeholder": true
+  },
+  "8331": {
+   "vnum": 8331,
+   "name": "At The Forest Lodge",
+   "map": {
+    "x": 34,
+    "y": 73,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8335,
+     "description": "To the east lies Inside The Forest Lodge.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 8330,
+     "description": "To the west lies Deeper Into Spirit Wood."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Fallen needles and\nleaves muffle every step. Ways lead east and west.",
+   "placeholder": true
+  },
+  "8332": {
+   "vnum": 8332,
+   "name": "In Spirit Wood",
+   "map": {
+    "x": 31,
+    "y": 74,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8333,
+     "description": "To the east lies In Spirit Wood."
+    },
+    "south": {
+     "to_room": 8327,
+     "description": "To the south lies Deep In Spirit Wood."
+    }
+   },
+   "description": "Birdsong drifts down through the branches overhead. Ferns and moss\nsoften the ground beneath a dim green canopy. Ways lead east and south.",
+   "placeholder": true
+  },
+  "8333": {
+   "vnum": 8333,
+   "name": "In Spirit Wood",
+   "map": {
+    "x": 32,
+    "y": 74,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8334,
+     "description": "To the north lies The Northern Edge Of Spirit Wood."
+    },
+    "west": {
+     "to_room": 8332,
+     "description": "To the west lies In Spirit Wood."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Ferns and\nmoss soften the ground beneath a dim green canopy. Ways lead north and\nwest.",
+   "placeholder": true
+  },
+  "8334": {
+   "vnum": 8334,
+   "name": "The Northern Edge Of Spirit Wood",
+   "map": {
+    "x": 32,
+    "y": 75,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8338,
+     "description": "To the north lies The Plains."
+    },
+    "south": {
+     "to_room": 8333,
+     "description": "To the south lies In Spirit Wood."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. Ways lead north and south.",
+   "placeholder": true
+  },
+  "8335": {
+   "vnum": 8335,
+   "name": "Inside The Forest Lodge",
+   "map": {
+    "x": 35,
+    "y": 73,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "east": {
+     "to_room": 8336,
+     "description": "To the east lies Behind The Forest Lodge.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 8331,
+     "description": "To the west lies At The Forest Lodge."
+    },
+    "down": {
+     "to_room": 8337,
+     "description": "To the down lies The Cellar."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The air is still and smells\nfaintly of old smoke. Ways lead east, west and down.",
+   "placeholder": true
+  },
+  "8336": {
+   "vnum": 8336,
+   "name": "Behind The Forest Lodge",
+   "map": {
+    "x": 36,
+    "y": 73,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 8335,
+     "description": "To the west lies Inside The Forest Lodge."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Ferns and moss soften the\nground beneath a dim green canopy. A way leads west.",
+   "placeholder": true
+  },
+  "8337": {
+   "vnum": 8337,
+   "name": "The Cellar",
+   "map": {
+    "x": 34,
+    "y": 72,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "up": {
+     "to_room": 8335,
+     "description": "To the up lies Inside The Forest Lodge."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. The floor is worn smooth by\nlong use. A way leads up.",
+   "placeholder": true
+  },
+  "8338": {
+   "vnum": 8338,
+   "name": "The Plains",
+   "map": {
+    "x": 32,
+    "y": 76,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9122,
+     "description": "To the north lies The Plains."
+    },
+    "east": {
+     "to_room": 9126,
+     "description": "To the east lies The Plains."
+    },
+    "south": {
+     "to_room": 8334,
+     "description": "To the south lies The Northern Edge Of Spirit Wood."
+    },
+    "west": {
+     "to_room": 9125,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "8339": {
+   "vnum": 8339,
+   "name": "The Plains",
+   "map": {
+    "x": 31,
+    "y": 79,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8343,
+     "description": "To the north lies The Mountain Trail."
+    },
+    "east": {
+     "to_room": 9124,
+     "description": "To the east lies The Icy Claw Of Malebranche."
+    },
+    "south": {
+     "to_room": 9133,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 8340,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "8340": {
+   "vnum": 8340,
+   "name": "The Plains",
+   "map": {
+    "x": 30,
+    "y": 79,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8339,
+     "description": "To the east lies The Plains."
+    },
+    "south": {
+     "to_room": 8341,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 8342,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "Shafts of pale light slant between the trunks. Old trees crowd close,\ntheir roots knotted across the path. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "8341": {
+   "vnum": 8341,
+   "name": "The Plains",
+   "map": {
+    "x": 30,
+    "y": 78,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8340,
+     "description": "To the north lies The Plains."
+    },
+    "east": {
+     "to_room": 9133,
+     "description": "To the east lies The Plains."
+    },
+    "south": {
+     "to_room": 9131,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 9135,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "Fallen needles and leaves muffle every step. Shafts of pale light slant\nbetween the trunks. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "8342": {
+   "vnum": 8342,
+   "name": "The Plains",
+   "map": {
+    "x": 29,
+    "y": 79,
+    "z": 0
+   },
+   "sector_type": "forest",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8340,
+     "description": "To the east lies The Plains."
+    },
+    "south": {
+     "to_room": 9135,
+     "description": "To the south lies The Plains."
+    }
+   },
+   "description": "Old trees crowd close, their roots knotted across the path. Ferns and\nmoss soften the ground beneath a dim green canopy. Ways lead east and\nsouth.",
+   "placeholder": true
+  },
+  "8343": {
+   "vnum": 8343,
+   "name": "The Mountain Trail",
+   "map": {
+    "x": 31,
+    "y": 80,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8344,
+     "description": "To the north lies The Mountain Trail."
+    },
+    "south": {
+     "to_room": 8339,
+     "description": "To the south lies The Plains."
+    }
+   },
+   "description": "From the crest the land below spreads out like a map. Gorse and heather\ncling to the windy rise. Ways lead north and south.",
+   "placeholder": true
+  },
+  "8344": {
+   "vnum": 8344,
+   "name": "The Mountain Trail",
+   "map": {
+    "x": 31,
+    "y": 81,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8345,
+     "description": "To the east lies The Mountain Trail."
+    },
+    "south": {
+     "to_room": 8343,
+     "description": "To the south lies The Mountain Trail."
+    }
+   },
+   "description": "A narrow path winds between the hillocks. From the crest the land below\nspreads out like a map. Ways lead east and south.",
+   "placeholder": true
+  },
+  "8345": {
+   "vnum": 8345,
+   "name": "The Mountain Trail",
+   "map": {
+    "x": 32,
+    "y": 81,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 8344,
+     "description": "To the west lies The Mountain Trail."
+    },
+    "up": {
+     "to_room": 8346,
+     "description": "To the up lies Climbing The Mountain Wall."
+    }
+   },
+   "description": "From the crest the land below spreads out like a map. A narrow path\nwinds between the hillocks. Ways lead west and up.",
+   "placeholder": true
+  },
+  "8346": {
+   "vnum": 8346,
+   "name": "Climbing The Mountain Wall",
+   "map": {
+    "x": 33,
+    "y": 82,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "up": {
+     "to_room": 8347,
+     "description": "To the up lies On A Small Landing."
+    },
+    "down": {
+     "to_room": 8345,
+     "description": "To the down lies The Mountain Trail."
+    }
+   },
+   "description": "Wind howls through a cleft in the stone. A narrow ledge picks its way\nalong the mountainside. Ways lead up and down.",
+   "placeholder": true
+  },
+  "8347": {
+   "vnum": 8347,
+   "name": "On A Small Landing",
+   "map": {
+    "x": 34,
+    "y": 83,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8356,
+     "description": "To the east lies The Small Crevice."
+    },
+    "up": {
+     "to_room": 8348,
+     "description": "To the up lies The Dark Pillars."
+    },
+    "down": {
+     "to_room": 8346,
+     "description": "To the down lies Climbing The Mountain Wall."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. The\nair is thin and cold, and loose scree shifts underfoot. Ways lead east,\nup and down.",
+   "placeholder": true
+  },
+  "8348": {
+   "vnum": 8348,
+   "name": "The Dark Pillars",
+   "map": {
+    "x": 36,
+    "y": 85,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8349,
+     "description": "To the east lies On The Mountain Road."
+    },
+    "down": {
+     "to_room": 8347,
+     "description": "To the down lies On A Small Landing."
+    },
+    "west": {
+     "to_room": 9147,
+     "description": "To the west lies Going Up The Winding Mountain-trail."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. The land lies\nflat and quiet in every direction. Ways lead east, west and down.",
+   "placeholder": true
+  },
+  "8349": {
+   "vnum": 8349,
+   "name": "On The Mountain Road",
+   "map": {
+    "x": 37,
+    "y": 85,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8350,
+     "description": "To the north lies On The Mountain Road."
+    },
+    "west": {
+     "to_room": 8348,
+     "description": "To the west lies The Dark Pillars."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. Ways lead north and west.",
+   "placeholder": true
+  },
+  "8350": {
+   "vnum": 8350,
+   "name": "On The Mountain Road",
+   "map": {
+    "x": 37,
+    "y": 86,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8353,
+     "description": "To the north lies At The Bridge Of Death."
+    },
+    "south": {
+     "to_room": 8349,
+     "description": "To the south lies On The Mountain Road."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wind moves through the\ntall grass in long, slow waves. Ways lead north and south.",
+   "placeholder": true
+  },
+  "8353": {
+   "vnum": 8353,
+   "name": "At The Bridge Of Death",
+   "map": {
+    "x": 37,
+    "y": 87,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8354,
+     "description": "To the north lies Crossing A Narrow Stone Bridge."
+    },
+    "south": {
+     "to_room": 8350,
+     "description": "To the south lies On The Mountain Road."
+    }
+   },
+   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north and south.",
+   "placeholder": true
+  },
+  "8354": {
+   "vnum": 8354,
+   "name": "Crossing A Narrow Stone Bridge",
+   "map": {
+    "x": 37,
+    "y": 88,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8355,
+     "description": "To the north lies On The Far Side Of The Ravine."
+    },
+    "south": {
+     "to_room": 8353,
+     "description": "To the south lies At The Bridge Of Death."
+    }
+   },
+   "description": "A worn track crosses the open ground. The land lies flat and quiet in\nevery direction. Ways lead north and south.",
+   "placeholder": true
+  },
+  "8355": {
+   "vnum": 8355,
+   "name": "On The Far Side Of The Ravine",
+   "map": {
+    "x": 37,
+    "y": 89,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 8354,
+     "description": "To the south lies Crossing A Narrow Stone Bridge."
+    },
+    "up": {
+     "to_room": 8357,
+     "description": "To the up lies Before The Dark Castle."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead south and up.",
+   "placeholder": true
+  },
+  "8356": {
+   "vnum": 8356,
+   "name": "The Small Crevice",
+   "map": {
+    "x": 37,
+    "y": 83,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8427,
+     "description": "To the north lies A Cave Room."
+    },
+    "west": {
+     "to_room": 8347,
+     "description": "To the west lies On A Small Landing."
+    }
+   },
+   "description": "The air is still and smells faintly of old smoke. The floor is worn\nsmooth by long use. Ways lead north and west.",
+   "placeholder": true
+  },
+  "8357": {
+   "vnum": 8357,
+   "name": "Before The Dark Castle",
+   "map": {
+    "x": 38,
+    "y": 90,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 8358,
+     "description": "To the south lies The Castle Yard."
+    },
+    "down": {
+     "to_room": 8355,
+     "description": "To the down lies On The Far Side Of The Ravine."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. Ways lead south and down.",
+   "placeholder": true
+  },
+  "9100": {
+   "vnum": 9100,
+   "name": "The Badlands",
+   "map": {
+    "x": 27,
+    "y": 58,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9105,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9101,
+     "description": "To the east lies The Badlands."
+    },
+    "west": {
+     "to_room": 8304,
+     "description": "To the west lies At The Far End Of The Sundered Bridge."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wildflowers dot the meadow,\nand insects hum among them. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "9101": {
+   "vnum": 9101,
+   "name": "The Badlands",
+   "map": {
+    "x": 29,
+    "y": 58,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9106,
+     "description": "To the north lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9100,
+     "description": "To the west lies The Badlands."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead north and west.",
+   "placeholder": true
+  },
+  "9102": {
+   "vnum": 9102,
+   "name": "The Badlands",
+   "map": {
+    "x": 25,
+    "y": 58,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9104,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 8304,
+     "description": "To the east lies At The Far End Of The Sundered Bridge."
+    },
+    "west": {
+     "to_room": 9103,
+     "description": "To the west lies The Badlands."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. Ways lead north, east and\nwest.",
+   "placeholder": true
+  },
+  "9103": {
+   "vnum": 9103,
+   "name": "The Badlands",
+   "map": {
+    "x": 24,
+    "y": 58,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9102,
+     "description": "To the east lies The Badlands."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. A worn track crosses the\nopen ground. A way leads east.",
+   "placeholder": true
+  },
+  "9104": {
+   "vnum": 9104,
+   "name": "The Black Hills",
+   "map": {
+    "x": 25,
+    "y": 59,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9120,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 8305,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9102,
+     "description": "To the south lies The Badlands."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "9105": {
+   "vnum": 9105,
+   "name": "The Black Hills",
+   "map": {
+    "x": 27,
+    "y": 59,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9119,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9106,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9100,
+     "description": "To the south lies The Badlands."
+    },
+    "west": {
+     "to_room": 8305,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead north, east, south and\nwest.",
+   "placeholder": true
+  },
+  "9106": {
+   "vnum": 9106,
+   "name": "The Black Hills",
+   "map": {
+    "x": 29,
+    "y": 59,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9118,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9107,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9101,
+     "description": "To the south lies The Badlands."
+    },
+    "west": {
+     "to_room": 9105,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wind moves through the\ntall grass in long, slow waves. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "9107": {
+   "vnum": 9107,
+   "name": "The Black Hills",
+   "map": {
+    "x": 33,
+    "y": 59,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9108,
+     "description": "To the north lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9106,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. Ways lead north and west.",
+   "placeholder": true
+  },
+  "9108": {
+   "vnum": 9108,
+   "name": "The Black Hills",
+   "map": {
+    "x": 33,
+    "y": 60,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9109,
+     "description": "To the north lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9107,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9117,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "9109": {
+   "vnum": 9109,
+   "name": "The Black Hills",
+   "map": {
+    "x": 33,
+    "y": 61,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9110,
+     "description": "To the north lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9108,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9116,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "9110": {
+   "vnum": 9110,
+   "name": "The Black Hills",
+   "map": {
+    "x": 33,
+    "y": 62,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9111,
+     "description": "To the north lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9109,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9113,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "9111": {
+   "vnum": 9111,
+   "name": "The Black Hills",
+   "map": {
+    "x": 33,
+    "y": 64,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 9110,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9112,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. A worn track crosses\nthe open ground. Ways lead south and west.",
+   "placeholder": true
+  },
+  "9112": {
+   "vnum": 9112,
+   "name": "The Black Hills",
+   "map": {
+    "x": 31,
+    "y": 64,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9111,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9113,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 8311,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "Rocks break through the thin soil of the slope. A narrow path winds\nbetween the hillocks. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "9113": {
+   "vnum": 9113,
+   "name": "The Black Hills",
+   "map": {
+    "x": 31,
+    "y": 63,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9112,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 24700,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9116,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9114,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "Gorse and heather cling to the windy rise. Rocks break through the thin\nsoil of the slope. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "9114": {
+   "vnum": 9114,
+   "name": "The Black Hills",
+   "map": {
+    "x": 29,
+    "y": 63,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8311,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9113,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9115,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 8309,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "Gorse and heather cling to the windy rise. From the crest the land below\nspreads out like a map. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "9115": {
+   "vnum": 9115,
+   "name": "The Black Hills",
+   "map": {
+    "x": 29,
+    "y": 61,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9114,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9116,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9118,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 8308,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "The ground rises and falls in grassy folds. Rocks break through the thin\nsoil of the slope. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "9116": {
+   "vnum": 9116,
+   "name": "The Black Hills",
+   "map": {
+    "x": 31,
+    "y": 61,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9113,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9109,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9117,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9115,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "Rocks break through the thin soil of the slope. Gorse and heather cling\nto the windy rise. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "9117": {
+   "vnum": 9117,
+   "name": "The Black Hills",
+   "map": {
+    "x": 31,
+    "y": 60,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9116,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9108,
+     "description": "To the east lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9118,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "A worn track crosses the open ground. The land lies flat and quiet in\nevery direction. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "9118": {
+   "vnum": 9118,
+   "name": "The Black Hills",
+   "map": {
+    "x": 29,
+    "y": 60,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9115,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9117,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9106,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9119,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "A worn track crosses the open ground. Open grassland rolls away under a\nwide sky. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "9119": {
+   "vnum": 9119,
+   "name": "The Black Hills",
+   "map": {
+    "x": 27,
+    "y": 60,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8308,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 9118,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9105,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 8306,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "A worn track crosses the open ground. Wildflowers dot the meadow, and\ninsects hum among them. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "9120": {
+   "vnum": 9120,
+   "name": "The Black Hills",
+   "map": {
+    "x": 25,
+    "y": 60,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9121,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 8306,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9104,
+     "description": "To the south lies The Black Hills."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. Ways lead north, east and\nsouth.",
+   "placeholder": true
+  },
+  "9121": {
+   "vnum": 9121,
+   "name": "The Black Hills",
+   "map": {
+    "x": 25,
+    "y": 61,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 8307,
+     "description": "To the east lies The Black Hills."
+    },
+    "south": {
+     "to_room": 9120,
+     "description": "To the south lies The Black Hills."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead east and south.",
+   "placeholder": true
+  },
+  "9122": {
+   "vnum": 9122,
+   "name": "The Plains",
+   "map": {
+    "x": 32,
+    "y": 77,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9123,
+     "description": "To the north lies The Plains."
+    },
+    "east": {
+     "to_room": 9127,
+     "description": "To the east lies The Plains."
+    },
+    "south": {
+     "to_room": 8338,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 9132,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. Wind moves through the tall\ngrass in long, slow waves. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "9123": {
+   "vnum": 9123,
+   "name": "The Plains",
+   "map": {
+    "x": 32,
+    "y": 78,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9124,
+     "description": "To the north lies The Icy Claw Of Malebranche."
+    },
+    "east": {
+     "to_room": 9128,
+     "description": "To the east lies The Plains."
+    },
+    "south": {
+     "to_room": 9122,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 9133,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "9124": {
+   "vnum": 9124,
+   "name": "The Icy Claw Of Malebranche",
+   "map": {
+    "x": 32,
+    "y": 79,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9129,
+     "description": "To the east lies The Rickety-Rope Bridge."
+    },
+    "south": {
+     "to_room": 9123,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 8339,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. A worn track crosses the\nopen ground. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "9125": {
+   "vnum": 9125,
+   "name": "The Plains",
+   "map": {
+    "x": 31,
+    "y": 76,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9132,
+     "description": "To the north lies The Plains."
+    },
+    "east": {
+     "to_room": 8338,
+     "description": "To the east lies The Plains."
+    },
+    "west": {
+     "to_room": 9130,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wind moves through the\ntall grass in long, slow waves. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "9126": {
+   "vnum": 9126,
+   "name": "The Plains",
+   "map": {
+    "x": 33,
+    "y": 76,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9127,
+     "description": "To the north lies The Plains."
+    },
+    "west": {
+     "to_room": 8338,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. Ways lead north and west.",
+   "placeholder": true
+  },
+  "9127": {
+   "vnum": 9127,
+   "name": "The Plains",
+   "map": {
+    "x": 33,
+    "y": 77,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9128,
+     "description": "To the north lies The Plains."
+    },
+    "south": {
+     "to_room": 9126,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 9122,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "9128": {
+   "vnum": 9128,
+   "name": "The Plains",
+   "map": {
+    "x": 33,
+    "y": 78,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9129,
+     "description": "To the north lies The Rickety-Rope Bridge."
+    },
+    "south": {
+     "to_room": 9127,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 9123,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. Wildflowers dot\nthe meadow, and insects hum among them. Ways lead north, south and west.",
+   "placeholder": true
+  },
+  "9129": {
+   "vnum": 9129,
+   "name": "The Rickety-Rope Bridge",
+   "map": {
+    "x": 33,
+    "y": 79,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9168,
+     "description": "To the east lies The Old Gravel Road Crossing The Desolated Plains."
+    },
+    "south": {
+     "to_room": 9128,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 9124,
+     "description": "To the west lies The Icy Claw Of Malebranche."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. The land lies\nflat and quiet in every direction. Ways lead east, south and west.",
+   "placeholder": true
+  },
+  "9130": {
+   "vnum": 9130,
+   "name": "The Plains",
+   "map": {
+    "x": 30,
+    "y": 76,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9131,
+     "description": "To the north lies The Plains."
+    },
+    "east": {
+     "to_room": 9125,
+     "description": "To the east lies The Plains."
+    }
+   },
+   "description": "A worn track crosses the open ground. The land lies flat and quiet in\nevery direction. Ways lead north and east.",
+   "placeholder": true
+  },
+  "9131": {
+   "vnum": 9131,
+   "name": "The Plains",
+   "map": {
+    "x": 30,
+    "y": 77,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8341,
+     "description": "To the north lies The Plains."
+    },
+    "east": {
+     "to_room": 9132,
+     "description": "To the east lies The Plains."
+    },
+    "south": {
+     "to_room": 9130,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 9134,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "9132": {
+   "vnum": 9132,
+   "name": "The Plains",
+   "map": {
+    "x": 31,
+    "y": 77,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9133,
+     "description": "To the north lies The Plains."
+    },
+    "east": {
+     "to_room": 9122,
+     "description": "To the east lies The Plains."
+    },
+    "south": {
+     "to_room": 9125,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 9131,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Open grassland rolls\naway under a wide sky. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "9133": {
+   "vnum": 9133,
+   "name": "The Plains",
+   "map": {
+    "x": 31,
+    "y": 78,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8339,
+     "description": "To the north lies The Plains."
+    },
+    "east": {
+     "to_room": 9123,
+     "description": "To the east lies The Plains."
+    },
+    "south": {
+     "to_room": 9132,
+     "description": "To the south lies The Plains."
+    },
+    "west": {
+     "to_room": 8341,
+     "description": "To the west lies The Plains."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. A worn track\ncrosses the open ground. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "9134": {
+   "vnum": 9134,
+   "name": "The Plains",
+   "map": {
+    "x": 29,
+    "y": 77,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9135,
+     "description": "To the north lies The Plains."
+    },
+    "east": {
+     "to_room": 9131,
+     "description": "To the east lies The Plains."
+    },
+    "west": {
+     "to_room": 2000,
+     "description": "To the west lies Entrance To The Draconian Encampment."
+    }
+   },
+   "description": "A worn track crosses the open ground. Open grassland rolls away under a\nwide sky. Ways lead north, east and west.",
+   "placeholder": true
+  },
+  "9135": {
+   "vnum": 9135,
+   "name": "The Plains",
+   "map": {
+    "x": 29,
+    "y": 78,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 8342,
+     "description": "To the north lies The Plains."
+    },
+    "east": {
+     "to_room": 8341,
+     "description": "To the east lies The Plains."
+    },
+    "south": {
+     "to_room": 9134,
+     "description": "To the south lies The Plains."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Wind moves\nthrough the tall grass in long, slow waves. Ways lead north, east and\nsouth.",
+   "placeholder": true
+  },
+  "9143": {
+   "vnum": 9143,
+   "name": "Crossing The Dark Plains",
+   "map": {
+    "x": 25,
+    "y": 76,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9144,
+     "description": "To the north lies Crossing The Dark Plains."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. A way leads north.",
+   "placeholder": true
+  },
+  "9144": {
+   "vnum": 9144,
+   "name": "Crossing The Dark Plains",
+   "map": {
+    "x": 23,
+    "y": 78,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9145,
+     "description": "To the north lies Crossing The Dark Plains."
+    },
+    "south": {
+     "to_room": 9143,
+     "description": "To the south lies Crossing The Dark Plains."
+    }
+   },
+   "description": "The floor is worn smooth by long use. Shadows gather where the light\ndoes not reach. Ways lead north and south.",
+   "placeholder": true
+  },
+  "9145": {
+   "vnum": 9145,
+   "name": "Crossing The Dark Plains",
+   "map": {
+    "x": 25,
+    "y": 82,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9146,
+     "description": "To the north lies Going Up The Winding Mountain-trail."
+    },
+    "south": {
+     "to_room": 9144,
+     "description": "To the south lies Crossing The Dark Plains."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. The floor is\nworn smooth by long use. Ways lead north and south.",
+   "placeholder": true
+  },
+  "9146": {
+   "vnum": 9146,
+   "name": "Going Up The Winding Mountain-trail",
+   "map": {
+    "x": 29,
+    "y": 84,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9147,
+     "description": "To the north lies Going Up The Winding Mountain-trail."
+    },
+    "south": {
+     "to_room": 9145,
+     "description": "To the south lies Crossing The Dark Plains."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Stone walls close in,\ncool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "9147": {
+   "vnum": 9147,
+   "name": "Going Up The Winding Mountain-trail",
+   "map": {
+    "x": 33,
+    "y": 85,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 8348,
+     "description": "To the north lies The Dark Pillars."
+    },
+    "south": {
+     "to_room": 9146,
+     "description": "To the south lies Going Up The Winding Mountain-trail."
+    },
+    "east": {
+     "to_room": 8348,
+     "description": "To the east lies The Dark Pillars."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Shadows gather where the light\ndoes not reach. Ways lead north, east and south.",
+   "placeholder": true
+  },
+  "9156": {
+   "vnum": 9156,
+   "name": "The Frozen Trail",
+   "map": {
+    "x": 41,
+    "y": 89,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9157,
+     "description": "To the north lies The Frozen Trail."
+    },
+    "south": {
+     "to_room": 9167,
+     "description": "To the south lies The Trail Along The Dim Stairs."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. The air is thin and\ncold, and loose scree shifts underfoot. Ways lead north and south.",
+   "placeholder": true
+  },
+  "9157": {
+   "vnum": 9157,
+   "name": "The Frozen Trail",
+   "map": {
+    "x": 41,
+    "y": 90,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9158,
+     "description": "To the north lies The Frozen Trail."
+    },
+    "south": {
+     "to_room": 9156,
+     "description": "To the south lies The Frozen Trail."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. A\nnarrow ledge picks its way along the mountainside. Ways lead north and\nsouth.",
+   "placeholder": true
+  },
+  "9158": {
+   "vnum": 9158,
+   "name": "The Frozen Trail",
+   "map": {
+    "x": 41,
+    "y": 91,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 9157,
+     "description": "To the south lies The Frozen Trail."
+    },
+    "up": {
+     "to_room": 9159,
+     "description": "To the up lies The Frozen Trail."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. Wind\nhowls through a cleft in the stone. Ways lead south and up.",
+   "placeholder": true
+  },
+  "9159": {
+   "vnum": 9159,
+   "name": "The Frozen Trail",
+   "map": {
+    "x": 42,
+    "y": 92,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9160,
+     "description": "To the east lies Durgar's Gate - The Doors To The Dwarven Kingdom."
+    },
+    "down": {
+     "to_room": 9158,
+     "description": "To the down lies The Frozen Trail."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. The\nair is thin and cold, and loose scree shifts underfoot. Ways lead east\nand down.",
+   "placeholder": true
+  },
+  "9160": {
+   "vnum": 9160,
+   "name": "Durgar's Gate - The Doors To The Dwarven Kingdom",
+   "map": {
+    "x": 43,
+    "y": 92,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 213000,
+     "description": "To the north lies Durgan's Gate.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "west": {
+     "to_room": 9159,
+     "description": "To the west lies The Frozen Trail."
+    }
+   },
+   "description": "Snow lingers in the shadowed hollows of the rock. A narrow ledge picks\nits way along the mountainside. Ways lead north and west.",
+   "placeholder": true
+  },
+  "9161": {
+   "vnum": 9161,
+   "name": "The Canyon Of Khel-zaram",
+   "map": {
+    "x": 41,
+    "y": 84,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9162,
+     "description": "To the north lies The Canyon Of Khel-zaram."
+    },
+    "south": {
+     "to_room": 9177,
+     "description": "To the south lies The Old Watchtower."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Snow lingers in the\nshadowed hollows of the rock. Ways lead north and south.",
+   "placeholder": true
+  },
+  "9162": {
+   "vnum": 9162,
+   "name": "The Canyon Of Khel-zaram",
+   "map": {
+    "x": 41,
+    "y": 85,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9163,
+     "description": "To the north lies The Canyon Of Khel-zaram."
+    },
+    "south": {
+     "to_room": 9161,
+     "description": "To the south lies The Canyon Of Khel-zaram."
+    }
+   },
+   "description": "Bare rock climbs steeply on one side and falls away on the other. Snow\nlingers in the shadowed hollows of the rock. Ways lead north and south.",
+   "placeholder": true
+  },
+  "9163": {
+   "vnum": 9163,
+   "name": "The Canyon Of Khel-zaram",
+   "map": {
+    "x": 41,
+    "y": 86,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9164,
+     "description": "To the east lies The Vale of Dim Streams."
+    },
+    "south": {
+     "to_room": 9162,
+     "description": "To the south lies The Canyon Of Khel-zaram."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. Bare rock\nclimbs steeply on one side and falls away on the other. Ways lead east\nand south.",
+   "placeholder": true
+  },
+  "9164": {
+   "vnum": 9164,
+   "name": "The Vale of Dim Streams",
+   "map": {
+    "x": 42,
+    "y": 86,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9165,
+     "description": "To the north lies Along The Shores Of Lake Zaram."
+    },
+    "west": {
+     "to_room": 9163,
+     "description": "To the west lies The Canyon Of Khel-zaram."
+    }
+   },
+   "description": "The air is thin and cold, and loose scree shifts underfoot. Bare rock\nclimbs steeply on one side and falls away on the other. Ways lead north\nand west.",
+   "placeholder": true
+  },
+  "9165": {
+   "vnum": 9165,
+   "name": "Along The Shores Of Lake Zaram",
+   "map": {
+    "x": 42,
+    "y": 87,
+    "z": 0
+   },
+   "sector_type": "mountain",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 9164,
+     "description": "To the south lies The Vale of Dim Streams."
+    },
+    "west": {
+     "to_room": 9166,
+     "description": "To the west lies The Trail Along The Dim Stairs."
+    }
+   },
+   "description": "A narrow ledge picks its way along the mountainside. Snow lingers in the\nshadowed hollows of the rock. Ways lead south and west.",
+   "placeholder": true
+  },
+  "9166": {
+   "vnum": 9166,
+   "name": "The Trail Along The Dim Stairs",
+   "map": {
+    "x": 41,
+    "y": 87,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9167,
+     "description": "To the north lies The Trail Along The Dim Stairs."
+    },
+    "east": {
+     "to_room": 9165,
+     "description": "To the east lies Along The Shores Of Lake Zaram."
+    }
+   },
+   "description": "Shadows gather where the light does not reach. Dust lies thick in the\ncorners, undisturbed for some time. Ways lead north and east.",
+   "placeholder": true
+  },
+  "9167": {
+   "vnum": 9167,
+   "name": "The Trail Along The Dim Stairs",
+   "map": {
+    "x": 41,
+    "y": 88,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "north": {
+     "to_room": 9156,
+     "description": "To the north lies The Frozen Trail."
+    },
+    "south": {
+     "to_room": 9166,
+     "description": "To the south lies The Trail Along The Dim Stairs."
+    }
+   },
+   "description": "Dust lies thick in the corners, undisturbed for some time. Stone walls\nclose in, cool to the touch. Ways lead north and south.",
+   "placeholder": true
+  },
+  "9168": {
+   "vnum": 9168,
+   "name": "The Old Gravel Road Crossing The Desolated Plains",
+   "map": {
+    "x": 34,
+    "y": 79,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9169,
+     "description": "To the east lies The Old Gravel Road Crossing The Desolated Plains."
+    },
+    "west": {
+     "to_room": 9129,
+     "description": "To the west lies The Rickety-Rope Bridge."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. A worn track\ncrosses the open ground. Ways lead east and west.",
+   "placeholder": true
+  },
+  "9169": {
+   "vnum": 9169,
+   "name": "The Old Gravel Road Crossing The Desolated Plains",
+   "map": {
+    "x": 35,
+    "y": 79,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9170,
+     "description": "To the east lies The Old Gravel Road Crossing The Desolated Plains."
+    },
+    "west": {
+     "to_room": 9168,
+     "description": "To the west lies The Old Gravel Road Crossing The Desolated Plains."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wind moves through the\ntall grass in long, slow waves. Ways lead east and west.",
+   "placeholder": true
+  },
+  "9170": {
+   "vnum": 9170,
+   "name": "The Old Gravel Road Crossing The Desolated Plains",
+   "map": {
+    "x": 36,
+    "y": 79,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9171,
+     "description": "To the east lies The Old Gravel Road Crossing The Desolated Plains."
+    },
+    "west": {
+     "to_room": 9169,
+     "description": "To the west lies The Old Gravel Road Crossing The Desolated Plains."
+    }
+   },
+   "description": "Open grassland rolls away under a wide sky. The land lies flat and quiet\nin every direction. Ways lead east and west.",
+   "placeholder": true
+  },
+  "9171": {
+   "vnum": 9171,
+   "name": "The Old Gravel Road Crossing The Desolated Plains",
+   "map": {
+    "x": 37,
+    "y": 79,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9172,
+     "description": "To the east lies The Old Gravel Road."
+    },
+    "west": {
+     "to_room": 9170,
+     "description": "To the west lies The Old Gravel Road Crossing The Desolated Plains."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. The land lies\nflat and quiet in every direction. Ways lead east and west.",
+   "placeholder": true
+  },
+  "9172": {
+   "vnum": 9172,
+   "name": "The Old Gravel Road",
+   "map": {
+    "x": 38,
+    "y": 79,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9173,
+     "description": "To the north lies The Old Gravel Road."
+    },
+    "west": {
+     "to_room": 9171,
+     "description": "To the west lies The Old Gravel Road Crossing The Desolated Plains."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. Open grassland\nrolls away under a wide sky. Ways lead north and west.",
+   "placeholder": true
+  },
+  "9173": {
+   "vnum": 9173,
+   "name": "The Old Gravel Road",
+   "map": {
+    "x": 38,
+    "y": 80,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "south": {
+     "to_room": 9172,
+     "description": "To the south lies The Old Gravel Road."
+    },
+    "up": {
+     "to_room": 9174,
+     "description": "To the up lies The Old Gravel Road."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. Open grassland\nrolls away under a wide sky. Ways lead south and up.",
+   "placeholder": true
+  },
+  "9174": {
+   "vnum": 9174,
+   "name": "The Old Gravel Road",
+   "map": {
+    "x": 39,
+    "y": 81,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9175,
+     "description": "To the north lies The Old Gravel Road."
+    },
+    "down": {
+     "to_room": 9173,
+     "description": "To the down lies The Old Gravel Road."
+    }
+   },
+   "description": "The land lies flat and quiet in every direction. Wildflowers dot the\nmeadow, and insects hum among them. Ways lead north and down.",
+   "placeholder": true
+  },
+  "9175": {
+   "vnum": 9175,
+   "name": "The Old Gravel Road",
+   "map": {
+    "x": 39,
+    "y": 82,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 9176,
+     "description": "To the east lies The Old Gravel Road."
+    },
+    "south": {
+     "to_room": 9174,
+     "description": "To the south lies The Old Gravel Road."
+    }
+   },
+   "description": "A worn track crosses the open ground. Wind moves through the tall grass\nin long, slow waves. Ways lead east and south.",
+   "placeholder": true
+  },
+  "9176": {
+   "vnum": 9176,
+   "name": "The Old Gravel Road",
+   "map": {
+    "x": 40,
+    "y": 82,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "west": {
+     "to_room": 9175,
+     "description": "To the west lies The Old Gravel Road."
+    },
+    "up": {
+     "to_room": 9177,
+     "description": "To the up lies The Old Watchtower."
+    }
+   },
+   "description": "Wildflowers dot the meadow, and insects hum among them. Open grassland\nrolls away under a wide sky. Ways lead west and up.",
+   "placeholder": true
+  },
+  "9177": {
+   "vnum": 9177,
+   "name": "The Old Watchtower",
+   "map": {
+    "x": 41,
+    "y": 83,
+    "z": 0
+   },
+   "sector_type": "field",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9161,
+     "description": "To the north lies The Canyon Of Khel-zaram."
+    },
+    "east": {
+     "to_room": 9178,
+     "description": "To the east lies Inside The Old Watchtower."
+    },
+    "down": {
+     "to_room": 9176,
+     "description": "To the down lies The Old Gravel Road."
+    }
+   },
+   "description": "Wind moves through the tall grass in long, slow waves. A worn track\ncrosses the open ground. Ways lead north, east and down.",
+   "placeholder": true
+  },
+  "9178": {
+   "vnum": 9178,
+   "name": "Inside The Old Watchtower",
+   "map": {
+    "x": 42,
+    "y": 83,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "west": {
+     "to_room": 9177,
+     "description": "To the west lies The Old Watchtower."
+    },
+    "up": {
+     "to_room": 9179,
+     "description": "To the up lies The Look-Out."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. Ways lead west and up.",
+   "placeholder": true
+  },
+  "9179": {
+   "vnum": 9179,
+   "name": "The Look-Out",
+   "map": {
+    "x": 43,
+    "y": 84,
+    "z": 0
+   },
+   "sector_type": "inside",
+   "flags": [
+    "indoors"
+   ],
+   "exits": {
+    "down": {
+     "to_room": 9178,
+     "description": "To the down lies Inside The Old Watchtower."
+    }
+   },
+   "description": "Stone walls close in, cool to the touch. Dust lies thick in the corners,\nundisturbed for some time. A way leads down.",
+   "placeholder": true
+  },
+  "24700": {
+   "vnum": 24700,
+   "name": "The Black Hills",
+   "map": {
+    "x": 35,
+    "y": 63,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "north": {
+     "to_room": 9111,
+     "description": "To the north lies The Black Hills."
+    },
+    "east": {
+     "to_room": 24701,
+     "description": "To the east lies Before The Bridge Across The Ravine.",
+     "door": {
+      "name": "door",
+      "state": "closed",
+      "locked": false
+     }
+    },
+    "south": {
+     "to_room": 9109,
+     "description": "To the south lies The Black Hills."
+    },
+    "west": {
+     "to_room": 9113,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "Gorse and heather cling to the windy rise. A narrow path winds between\nthe hillocks. Ways lead north, east, south and west.",
+   "placeholder": true
+  },
+  "24701": {
+   "vnum": 24701,
+   "name": "Before The Bridge Across The Ravine",
+   "map": {
+    "x": 36,
+    "y": 63,
+    "z": 0
+   },
+   "sector_type": "hills",
+   "flags": [],
+   "exits": {
+    "east": {
+     "to_room": 24702,
+     "description": "To the east lies On The Bridge Across The Ravine."
+    },
+    "west": {
+     "to_room": 24700,
+     "description": "To the west lies The Black Hills."
+    }
+   },
+   "description": "Rocks break through the thin soil of the slope. From the crest the land\nbelow spreads out like a map. Ways lead east and west.",
+   "placeholder": true
+  }
+ },
+ "mobs": {},
+ "objects": {}
+}
