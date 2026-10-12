@@ -153,6 +153,10 @@ async def main():
           f'a map gift charts every open room, not the God Rooms ({len(m.explored_rooms)})')
     check(set(WAYPOINTS) <= m.discovered_waypoints, 'and every waypoint')
     check(grants.apply_grants(m, {'mapper': {'explore_all': True, 'waypoints_all': True}}) == [], 'once')
+    g2 = hero('Placed')
+    grants.apply_grants(g2, {'placed': {'room': 14804}})
+    check(g2.room_vnum == 14804, 'a gift can set where they wake (XTC: the way down into the Tunnel of Sticks)')
+    check(grants.load_grants()['xtc'].get('room') == 14804, "XTC's gift wakes them at 14804")
     imm = hero('Imm')
     real = Player.is_immortal
     Player.is_immortal = property(lambda self: True)

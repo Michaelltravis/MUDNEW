@@ -1,7 +1,7 @@
 """One-time gifts to named characters (world/grants.json), given on their next login.
 
     {"xtc": {"mounts": ["griffin", "horse"], "ride": "griffin", "explore_all": true,
-             "waypoints_all": true, "gold": 0, "why": "..."}}
+             "waypoints_all": true, "room": 14804, "gold": 0, "why": "..."}}
 
 Each gift is given once: the save records it in `grants_received` (by the gift's own key,
 "<name>:<sorted contents>"), so editing a character's entry gives the new gift once more.
@@ -66,6 +66,14 @@ def apply_grants(player, grants=None) -> list:
         before = len(player.discovered_waypoints)
         player.discovered_waypoints.update(WAYPOINTS.keys())
         lines.append(f"Every travel waypoint is known to you ({len(player.discovered_waypoints) - before} new).")
+    if gift.get('room') and world is not None:
+        # put them somewhere (an owner testing a place): where they wake on this login
+        v = int(gift['room'])
+        if v in world.rooms:
+            player.room_vnum = v
+            lines.append(f"You find yourself at {world.rooms[v].name}.")
+        else:
+            logger.warning(f"grants: {player.name}: no room {v}")
     if gift.get('gold'):
         player.gold = (getattr(player, 'gold', 0) or 0) + int(gift['gold'])
         lines.append(f"You are given {int(gift['gold']):,} gold.")
