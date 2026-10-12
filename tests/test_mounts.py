@@ -143,6 +143,16 @@ async def main():
     again = grants.apply_grants(g, gifts)
     check(again == [] and len(g.owned_mounts) == 2, 'and is given only once')
     check('xtc' in grants.load_grants() and 'griffin' in grants.load_grants()['xtc']['mounts'], 'XTC has a griffin waiting')
+    xtc = grants.load_grants()['xtc']
+    check(xtc.get('explore_all') and xtc.get('waypoints_all'), 'and the whole map')
+    m = hero('Mapper')
+    from travel import WAYPOINTS
+    lines = grants.apply_grants(m, {'mapper': {'explore_all': True, 'waypoints_all': True}})
+    open_rooms = {r.vnum for r in world.rooms.values() if 'imm_only' not in (r.flags or ()) and not getattr(r.zone, 'sealed', False)}
+    check(open_rooms <= m.explored_rooms and not any('imm_only' in (world.rooms[v].flags or ()) for v in m.explored_rooms),
+          f'a map gift charts every open room, not the God Rooms ({len(m.explored_rooms)})')
+    check(set(WAYPOINTS) <= m.discovered_waypoints, 'and every waypoint')
+    check(grants.apply_grants(m, {'mapper': {'explore_all': True, 'waypoints_all': True}}) == [], 'once')
     imm = hero('Imm')
     real = Player.is_immortal
     Player.is_immortal = property(lambda self: True)

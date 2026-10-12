@@ -1557,11 +1557,6 @@ class Player(Character):
                 player.mount = MountManager.load_mount(active_mount_data)
             # a one-time gift waiting for them (world/grants.json), told when they enter the world
             player.grants_received = list(data.get('grants_received', []) or [])
-            try:
-                import grants
-                player._grant_notes = grants.apply_grants(player)
-            except Exception:
-                logger.exception('grants')
             # Restore combat companion
             combat_comp_data = data.get('combat_companion')
             if combat_comp_data:
@@ -1747,6 +1742,15 @@ class Player(Character):
             except Exception:
                 pass
             
+            # a one-time gift waiting for them (world/grants.json), given once everything is read
+            # (so the map it reveals isn't overwritten), told when they enter the world
+            if world is not None:
+                try:
+                    import grants
+                    player._grant_notes = grants.apply_grants(player)
+                except Exception:
+                    logger.exception('grants')
+
             logger.info(f"Loaded player: {player.name}")
             return player
             
