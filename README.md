@@ -14,6 +14,8 @@
     ╚═══════════════════════════════════════════════════════════════╝
 ```
 
+> **Start here:** [`docs/PROJECT_OVERVIEW.md`](docs/PROJECT_OVERVIEW.md): what the game is today (the 3D client at `/play`, the server's systems, the owner's data files, testing and deploy), and how it got here. The push-by-push log of the 3D rebuild is [`docs/REBUILD_PLAN.md`](docs/REBUILD_PLAN.md).
+
 A complete fantasy MUD (Multi-User Dungeon) inspired by CircleMUD, written in Python 3. 
 Features a rich fantasy world with multiple zones, character classes, magic system, 
 combat, NPCs, and more!
