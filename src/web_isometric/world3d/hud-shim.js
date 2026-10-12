@@ -15,8 +15,10 @@
       return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
     };
   };
+  // sectors, and the looks the server gives rooms (room_looks.py: a cave that was typed 'inside')
   const THEMES = ['inside', 'city', 'dungeon', 'cave', 'forest', 'field', 'hills', 'mountain', 'desert',
-    'swamp', 'water_swim', 'water_noswim', 'underwater', 'flying', 'default'];
+    'swamp', 'water_swim', 'water_noswim', 'underwater', 'flying', 'default',
+    'mine', 'crypt', 'sewer', 'snow', 'shore', 'volcanic'];
   MH.themeForSector = MH.themeForSector || (s => THEMES.includes(s) ? s : 'default');
   MH.hashStr = MH.hashStr || function (s) {
     let h = 2166136261;

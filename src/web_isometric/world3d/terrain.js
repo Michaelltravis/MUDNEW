@@ -5,14 +5,16 @@ import * as THREE from 'three';
 import { Batcher, trs } from './assets.js';
 import { cutout } from './cutout.js';
 import { townStreet, furnish, interiorKind, interiorFloorKey, graveyard, isGraveyard } from './terrain-town.js';
+import { underground, dressHall, outdoorEdge, outdoorDress, LOOK_GROUND, UNDERGROUND } from './terrain-looks.js';
 
 export const ROOM_W = 24, ROOM_H = 15;
 const FLOOR = 0, BLOCK = 1, WATER = 4;
 
-const INDOOR = new Set(['inside', 'dungeon', 'cave']);
+const INDOOR = new Set(['inside', 'dungeon', 'cave', 'mine', 'crypt', 'sewer']);
 export const isIndoor = theme => INDOOR.has(theme);
 // stone floor and walls: interiors and dungeons, and town streets (walled, open sky)
-const PAVED = new Set(['inside', 'dungeon', 'cave', 'city']);
+// (caves and mines are rock, terrain-looks.js)
+const PAVED = new Set(['inside', 'dungeon', 'crypt', 'sewer', 'city']);
 const CARD = { north: [0, -1], south: [0, 1], east: [1, 0], west: [-1, 0] };
 
 // ---- deterministic noise (world-space, so neighbouring rooms join seamlessly) ----
@@ -37,6 +39,7 @@ const GROUND = {
   desert: { a: 0xc9ab73, b: 0xdcc394, path: 0xb39062, wet: 0x8a6e48 },
   mountain: { a: 0x77746a, b: 0x8f8a7c, path: 0x6c6252, wet: 0x4a4c48 },
   default: { a: 0x5f7f44, b: 0x86a050, path: 0x85704e, wet: 0x3c5a3a },
+  ...LOOK_GROUND,
 };
 
 // occluders get their own material copies with the see-through cut; floors keep theirs
@@ -91,16 +94,23 @@ export function buildRoom(layout, ox, oz, kits, room) {
   const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? BLOCK : grid[y * W + x];
   const D = kits.dungeon, N = kits.nature;
 
-  const ctx = () => ({ layout, ox, oz, kits, room, b, rng, runs: runs(grid, W, H), occ: asOccluder, torches, owned });
-  if (PAVED.has(theme)) {
+  const ctx = () => ({ layout, ox, oz, kits, room, b, rng, runs: runs(grid, W, H), occ: asOccluder, torches, owned, group });
+  if (UNDERGROUND.has(theme)) {
+    // ---- caves and mines: rough rock ground, rock for walls (terrain-looks.js) ----
+    groundSheet(layout, ox, oz, GROUND[theme], group, owned, { paths: theme === 'mine' });
+    waterSurface(layout, ox, oz, group);
+    underground(ctx(), theme);
+  } else if (PAVED.has(theme)) {
     const town = theme === 'city';
     const kind = theme === 'inside' ? interiorKind(layout) : null;
     // ---- floor: KayKit stone tiles at 1 m ----
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
       // under everything but the wall ring (obstacles stand ON the floor)
       if (at(x, y) === BLOCK && (x === 0 || y === 0 || x === W - 1 || y === H - 1)) continue;
+      if (at(x, y) === WATER) continue;   // a sewer's channel (terrain-looks.js draws its water)
       const r = rng();
       const key = town ? (r < 0.1 ? 'floor_tile_small_weeds_A' : 'floor_tile_small_broken_A')
+        : theme === 'sewer' ? (r < 0.35 ? 'floor_tile_small_weeds_A' : r < 0.55 ? 'floor_tile_small_broken_A' : 'floor_tile_small')
         : (kind && interiorFloorKey(kind, r, layout.vnum))
         || (r < 0.07 ? 'floor_tile_small_broken_A' : r < 0.13 ? 'floor_tile_small_weeds_A' : 'floor_tile_small');
       b.add(D.get(key), trs(ox + x + 0.5, -0.05, oz + y + 0.5, Math.floor(rng() * 4) * Math.PI / 2, 0.5, 0.5, 0.5), { shadow: false });
@@ -115,7 +125,8 @@ export function buildRoom(layout, ox, oz, kits, room) {
       for (let i = 0; i < n; i++) {
         const along = run.a + (i + 0.5) * w;
         const [x, z, yaw] = run.horiz ? [ox + along, oz + run.line + 0.5, 0] : [ox + run.line + 0.5, oz + along, Math.PI / 2];
-        b.add(wall, trs(x, 0, z, yaw, w / 4, WALL_H / 4, 1));
+        const piece = theme === 'dungeon' && rng() < 0.3 ? asOccluder(D.get('wall_broken')) || wall : wall;
+        b.add(piece, trs(x, 0, z, yaw, w / 4, WALL_H / 4, 1));
       }
       // torches on the north wall, facing into the room, every ~6 m
       if (!town && run.horiz && run.line === 0 && L >= 4) {
@@ -128,9 +139,12 @@ export function buildRoom(layout, ox, oz, kits, room) {
     }
     // ---- interior obstacles (they block in the grid) ----
     if (kind && kits.furniture) furnish(ctx(), kind);
-    for (const o of (kind && kits.furniture) || (town && kits.town) ? [] : layout.obstacles || []) {
+    // a crypt's coffins and bones, a sewer's channel and pipes (terrain-looks.js)
+    const dressed = !town && !kind && dressHall(ctx(), theme);
+    for (const o of (kind && kits.furniture) || (town && kits.town) || dressed ? [] : layout.obstacles || []) {
       if (o.big) {
         const key = town ? ['crates_stacked', 'barrel_large', 'keg'][Math.floor(rng() * 3)]
+          : theme === 'dungeon' && rng() < 0.4 ? 'rubble_large'
           : rng() < 0.55 ? 'pillar' : rng() < 0.5 ? 'crates_stacked' : 'barrel_large';
         const s = key === 'pillar' ? 1 : 0.9;
         b.add(asOccluder(D.get(key)), trs(ox + o.x + 1, 0, oz + o.y + 1, Math.floor(rng() * 4) * Math.PI / 2, s, key === 'pillar' ? 0.66 : s, s));
@@ -141,7 +155,7 @@ export function buildRoom(layout, ox, oz, kits, room) {
       }
     }
     // ---- decorative props (walk-through): small things only ----
-    for (const p of (kind && kits.furniture) || (town && kits.town) ? [] : layout.props || []) {
+    for (const p of (kind && kits.furniture) || (town && kits.town) || dressed ? [] : layout.props || []) {
       if (town) {
         // a standing torch lights the street
         if (rng() < 0.5) {
@@ -156,55 +170,10 @@ export function buildRoom(layout, ox, oz, kits, room) {
     }
   } else {
     // ---- ground: one vertex-coloured sheet, noise in world space, dirt paths to exits ----
-    const pal = GROUND[theme] || GROUND.default;
-    const SEG = 2;
-    const geo = new THREE.PlaneGeometry(W, H, W * SEG, H * SEG);
-    geo.rotateX(-Math.PI / 2);
-    geo.translate(ox + W / 2, 0, oz + H / 2);
-    const pos = geo.attributes.position;
-    const col = new Float32Array(pos.count * 3);
-    const cA = new THREE.Color(pal.a), cB = new THREE.Color(pal.b), cP = new THREE.Color(pal.path), cW = new THREE.Color(pal.wet);
-    const c = new THREE.Color();
+    groundSheet(layout, ox, oz, GROUND[theme] || GROUND.default, group, owned);
+    waterSurface(layout, ox, oz, group);
     const midX = Math.floor(W / 2) + 0.5, midY = Math.floor(H / 2) + 0.5;
     const g = layout.gaps || {};
-    for (let i = 0; i < pos.count; i++) {
-      const wx = pos.getX(i), wz = pos.getZ(i);
-      const lx = wx - ox, lz = wz - oz;
-      const n = fbm(wx * 0.18, wz * 0.18);
-      c.copy(cA).lerp(cB, THREE.MathUtils.smoothstep(n, 0.3, 0.75));
-      // paths: from the room centre out through each gap
-      let d = 99;
-      if (g.north && lz <= midY) d = Math.min(d, Math.abs(lx - midX));
-      if (g.south && lz >= midY) d = Math.min(d, Math.abs(lx - midX));
-      if (g.west && lx <= midX) d = Math.min(d, Math.abs(lz - midY));
-      if (g.east && lx >= midX) d = Math.min(d, Math.abs(lz - midY));
-      d = Math.min(d, Math.hypot(lx - midX, lz - midY) - 1.2);
-      const pw = (1 - THREE.MathUtils.smoothstep(d + (n - 0.5) * 1.6, 0.6, 1.9)) * 0.85;
-      if (pw > 0) c.lerp(cP, pw);
-      // darken under the treeline and around water
-      // (vertices on the far edges belong to the last tile, not the void beyond it)
-      const tx = Math.min(W - 1, Math.floor(lx)), ty = Math.min(H - 1, Math.floor(lz));
-      if (at(tx, ty) === BLOCK) c.multiplyScalar(0.72);
-      if (at(tx, ty) === WATER) c.lerp(cW, 0.8);
-      col[i * 3] = c.r; col[i * 3 + 1] = c.g; col[i * 3 + 2] = c.b;
-      pos.setY(i, (n - 0.5) * 0.12 - (at(tx, ty) === WATER ? 0.35 : 0));
-    }
-    geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
-    geo.computeVertexNormals();
-    owned.push(geo);
-    const ground = new THREE.Mesh(geo, GROUND_MAT);
-    ground.receiveShadow = true;
-    group.add(ground);
-
-    // water surface
-    const wq = [];
-    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (at(x, y) === WATER) wq.push([x, y]);
-    if (wq.length) {
-      const wm = new THREE.InstancedMesh(WATER_GEO, WATER_MAT, wq.length);
-      wq.forEach(([x, y], i) => wm.setMatrixAt(i, trs(ox + x + 0.5, -0.12, oz + y + 0.5, 0, 1.02)));
-      wm.receiveShadow = true;
-      group.add(wm);
-    }
 
     // ---- the treeline: BLOCK cells become trees, bushes and rocks ----
     const depth = new Uint8Array(W * H).fill(255);
@@ -219,10 +188,12 @@ export function buildRoom(layout, ox, oz, kits, room) {
         if (depth[j] > depth[i] + 1) { depth[j] = depth[i] + 1; q.push(j); }
       }
     }
-    const trees = theme === 'swamp' ? ['DeadTree_1', 'DeadTree_2', 'Pine_1'] :
-      theme === 'desert' ? [] :
-      ['CommonTree_1', 'CommonTree_2', 'CommonTree_3', 'CommonTree_1', 'Pine_1', 'Pine_2'];
-    const treeP = theme === 'forest' ? 0.5 : theme === 'swamp' ? 0.3 : theme === 'desert' ? 0 : 0.22;
+    // a look's own edge (terrain-looks.js: frosted pines, scorched trees, bare sand), else the wilds'
+    const edge = outdoorEdge(theme, kits);
+    const trees = edge ? edge.trees.filter(Boolean) : theme === 'swamp' ? ['DeadTree_1', 'DeadTree_2', 'Pine_1'].map(k => N.get(k)) :
+      ['CommonTree_1', 'CommonTree_2', 'CommonTree_3', 'CommonTree_1', 'Pine_1', 'Pine_2'].map(k => N.get(k));
+    const treeP = edge ? edge.treeP : theme === 'forest' ? 0.5 : theme === 'swamp' ? 0.3 : 0.22;
+    const bare = !!edge;   // no bushes, ferns or grass
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
       if (at(x, y) !== BLOCK) continue;
       const dd = depth[y * W + x];
@@ -230,13 +201,15 @@ export function buildRoom(layout, ox, oz, kits, room) {
       const px = ox + x + 0.5 + jx, pz = oz + y + 0.5 + jz, yaw = rng() * Math.PI * 2;
       const r = rng();
       if (dd >= 2 && trees.length && r < treeP) {
-        const key = trees[Math.floor(rng() * trees.length)];
-        b.add(asOccluder(N.get(key)), trs(px, 0, pz, yaw, 0.55 + rng() * 0.3));
+        const tree = trees[Math.floor(rng() * trees.length)];
+        b.add(asOccluder(tree), trs(px, 0, pz, yaw, 0.55 + rng() * 0.3));
       } else if (dd <= 2 && r < 0.62) {
         const rr = rng();
-        const key = theme === 'desert' || rr < 0.18 ? `Rock_Medium_${1 + Math.floor(rng() * 3)}` : rr < 0.8 ? 'Bush_Common' : 'Bush_Common_Flowers';
+        const key = bare || rr < 0.18 ? `Rock_Medium_${1 + Math.floor(rng() * 3)}` : rr < 0.8 ? 'Bush_Common' : 'Bush_Common_Flowers';
         const s = key.startsWith('Rock') ? 0.45 + rng() * 0.3 : 0.75 + rng() * 0.4;
-        b.add(asOccluder(N.get(key)), trs(px, 0, pz, yaw, s));
+        b.add(asOccluder(edge && key.startsWith('Rock') ? edge.rock(key) : N.get(key)), trs(px, 0, pz, yaw, s));
+      } else if (bare) {
+        continue;
       } else if (r < 0.85) {
         b.add(N.get('Fern_1'), trs(px, 0, pz, yaw, 0.7 + rng() * 0.4), { shadow: false });
       }
@@ -244,12 +217,13 @@ export function buildRoom(layout, ox, oz, kits, room) {
     // obstacles inside the room: boulders and thickets
     for (const o of layout.obstacles || []) {
       const cx = ox + o.x + (o.big ? 1 : 0.5), cz = oz + o.y + (o.big ? 1 : 0.5);
-      const key = rng() < 0.6 ? `Rock_Medium_${1 + Math.floor(rng() * 3)}` : 'Bush_Common';
+      const key = bare || rng() < 0.6 ? `Rock_Medium_${1 + Math.floor(rng() * 3)}` : 'Bush_Common';
       const s = o.big ? 0.75 : 0.42;
-      b.add(asOccluder(N.get(key)), trs(cx, 0, cz, rng() * Math.PI * 2, key === 'Bush_Common' ? s * 1.6 : s));
+      b.add(asOccluder(edge && key.startsWith('Rock') ? edge.rock(key) : N.get(key)), trs(cx, 0, cz, rng() * Math.PI * 2, key === 'Bush_Common' ? s * 1.6 : s));
     }
-    // ground clutter on open floor (not on the paths)
-    if (theme !== 'desert') {
+    // ground clutter on open floor (not on the paths): a look's own (terrain-looks.js), or grass
+    if (bare || theme === 'desert') outdoorDress(ctx(), theme);
+    else {
       for (let y = 1; y < H - 1; y++) for (let x = 1; x < W - 1; x++) {
         if (at(x, y) !== FLOOR) continue;
         const onPath = (g.north || g.south) && Math.abs(x + 0.5 - midX) < 2 || (g.east || g.west) && Math.abs(y + 0.5 - midY) < 2;
@@ -274,6 +248,63 @@ export function buildRoom(layout, ox, oz, kits, room) {
     group.add(f);
   }
   return { group, torches, layout, ox, oz, doors, owned };
+}
+
+// the open ground: one vertex-coloured sheet, noise in world space, dirt paths from the middle
+// out through each way out (no paths: a cave's floor is rock all over), darker under the edge
+function groundSheet(layout, ox, oz, pal, group, owned, { paths = true } = {}) {
+  const { grid, W, H } = layout;
+  const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? BLOCK : grid[y * W + x];
+  const SEG = 2;
+  const geo = new THREE.PlaneGeometry(W, H, W * SEG, H * SEG);
+  geo.rotateX(-Math.PI / 2);
+  geo.translate(ox + W / 2, 0, oz + H / 2);
+  const pos = geo.attributes.position;
+  const col = new Float32Array(pos.count * 3);
+  const cA = new THREE.Color(pal.a), cB = new THREE.Color(pal.b), cP = new THREE.Color(pal.path), cW = new THREE.Color(pal.wet);
+  const c = new THREE.Color();
+  const midX = Math.floor(W / 2) + 0.5, midY = Math.floor(H / 2) + 0.5;
+  const g = layout.gaps || {};
+  for (let i = 0; i < pos.count; i++) {
+    const wx = pos.getX(i), wz = pos.getZ(i);
+    const lx = wx - ox, lz = wz - oz;
+    const n = fbm(wx * 0.18, wz * 0.18);
+    c.copy(cA).lerp(cB, THREE.MathUtils.smoothstep(n, 0.3, 0.75));
+    if (paths) {
+      let d = 99;
+      if (g.north && lz <= midY) d = Math.min(d, Math.abs(lx - midX));
+      if (g.south && lz >= midY) d = Math.min(d, Math.abs(lx - midX));
+      if (g.west && lx <= midX) d = Math.min(d, Math.abs(lz - midY));
+      if (g.east && lx >= midX) d = Math.min(d, Math.abs(lz - midY));
+      d = Math.min(d, Math.hypot(lx - midX, lz - midY) - 1.2);
+      const pw = (1 - THREE.MathUtils.smoothstep(d + (n - 0.5) * 1.6, 0.6, 1.9)) * 0.85;
+      if (pw > 0) c.lerp(cP, pw);
+    }
+    // darken under the treeline (or the rock) and around water
+    // (vertices on the far edges belong to the last tile, not the void beyond it)
+    const tx = Math.min(W - 1, Math.floor(lx)), ty = Math.min(H - 1, Math.floor(lz));
+    if (at(tx, ty) === BLOCK) c.multiplyScalar(0.72);
+    if (at(tx, ty) === WATER) c.lerp(cW, 0.8);
+    col[i * 3] = c.r; col[i * 3 + 1] = c.g; col[i * 3 + 2] = c.b;
+    pos.setY(i, (n - 0.5) * 0.12 - (at(tx, ty) === WATER ? 0.35 : 0));
+  }
+  geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+  geo.computeVertexNormals();
+  owned.push(geo);
+  const ground = new THREE.Mesh(geo, GROUND_MAT);
+  ground.receiveShadow = true;
+  group.add(ground);
+}
+
+function waterSurface(layout, ox, oz, group) {
+  const { grid, W, H } = layout;
+  const wq = [];
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (grid[y * W + x] === WATER) wq.push([x, y]);
+  if (!wq.length) return;
+  const wm = new THREE.InstancedMesh(WATER_GEO, WATER_MAT, wq.length);
+  wq.forEach(([x, y], i) => wm.setMatrixAt(i, trs(ox + x + 0.5, -0.12, oz + y + 0.5, 0, 1.02)));
+  wm.receiveShadow = true;
+  group.add(wm);
 }
 
 // ---- exits: doors in their doorways, glowing markers on passages, stairs and trapdoors ----

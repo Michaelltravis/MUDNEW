@@ -232,6 +232,9 @@
   // sewer (first real playtest). Outdoor sector themes are mapped to 'dungeon'.
   const OUTDOOR_THEMES = new Set(['forest', 'field', 'hills', 'mountain', 'city', 'default', 'desert']);
   MH.roomTheme = function roomTheme(roomData) {
+    // the server's look comes first (room_looks.py: it read the room's words and its neighbours)
+    const look = roomData.look && MH.themeForSector(roomData.look);
+    if (look && look !== 'default') return look;
     const sector = MH.themeForSector(roomData.sector || 'default');
     const zk = MH.zoneThemeKey ? MH.zoneThemeKey(roomData.zone) : null;
     const zt = zk && MH.ZONE_THEMES ? MH.ZONE_THEMES[zk] : null;
@@ -289,8 +292,8 @@
       organic.push([x, y]);
     };
     const SHAPE = {
-      forest: 3, darkforest: 3, swamp: 3, hills: 2, field: 2, desert: 2,
-      cave: 'cavern', mountain: 'cavern', underground: 'cavern',
+      forest: 3, darkforest: 3, swamp: 3, hills: 2, field: 2, desert: 2, snow: 2, shore: 2, volcanic: 2,
+      cave: 'cavern', mine: 'cavern', mountain: 'cavern', underground: 'cavern',
     }[sector];
     if (typeof SHAPE === 'number' && !swim) {
       // organic border: each side's thickness wanders 0..maxD like a treeline
@@ -334,7 +337,40 @@
       mossy: /\bmoss|overgrown|ivy|vines?\b/.test(prose),
       snowy: /\bsnow|frozen|icy|frost\b/.test(prose),
     };
-    if (!swim && /\b(stream|river|brook|creek)\b/.test(prose)) {
+    if (sector === 'shore') {
+      // the water's edge along a side with no way through (south first), wavy, a few tiles deep
+      const side = ['south', 'north', 'east', 'west'].find(d => !gaps[d]) || 'south';
+      let d = 2;
+      const len = side === 'south' || side === 'north' ? W : H;
+      // (over the shaped edge too: the sea comes right up to the room's side)
+      const wet = (x, y) => { if (!laneSafe(x, y) && x > 0 && y > 0 && x < W - 1 && y < H - 1) { set(x, y, WATER); organic.push([x, y]); } };
+      for (let i = 1; i < len - 1; i++) {
+        d += Math.floor(rng() * 3) - 1; d = Math.max(3, Math.min(5, d));
+        for (let k = 1; k <= d; k++) {
+          if (side === 'south') wet(i, H - 1 - k);
+          else if (side === 'north') wet(i, k);
+          else if (side === 'east') wet(W - 1 - k, i);
+          else wet(k, i);
+        }
+      }
+    } else if (sector === 'swamp' && !swim) {
+      // black pools among the reeds
+      for (let p = 0; p < 3; p++) {
+        const cx = 4 + Math.floor(rng() * (W - 8)), cy = 3 + Math.floor(rng() * (H - 6));
+        const rx = 1.5 + rng() * 1.5, ry = 1 + rng();
+        for (let y = cy - 2; y <= cy + 2; y++) for (let x = cx - 3; x <= cx + 3; x++) {
+          if (Math.hypot((x - cx) / rx, (y - cy) / ry) <= 1) carve(x, y, WATER);
+        }
+      }
+    } else if (sector === 'sewer') {
+      // a straight channel of foul water the length of the room, with dry crossings where the
+      // ways through cross it (a sewer is built: no winding)
+      const y0 = 3 + Math.floor(rng() * 2);
+      for (let x = 1; x < W - 1; x++) {
+        if (Math.abs(x - midX0) <= GX) continue;
+        carve(x, y0, WATER); carve(x, y0 + 1, WATER);
+      }
+    } else if (!swim && /\b(stream|river|brook|creek)\b/.test(prose)) {
       // a winding ribbon of water along one third of the room; lane crossings
       // stay dry and read as natural fords
       const vertical = rng() < 0.5;

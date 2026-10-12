@@ -61,7 +61,7 @@ export class Zone {
       const exits = {};
       for (const [d, e] of Object.entries(r.exits)) exits[d] = { to_room: e.to };
       room.layout = MH.generateRoomTopDown({
-        vnum: r.vnum, name: r.name, description: r.description, sector: r.sector,
+        vnum: r.vnum, name: r.name, description: r.description, sector: r.sector, look: r.look,
         flags: r.flags, zone: this.num, exits,
       });
     }

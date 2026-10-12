@@ -59,8 +59,11 @@ async function runDemo() {
       : g === 'gear' ? await showGearGallery(engine)
       : g === 'icons' ? (await showIconGallery()) || new THREE.Vector3()
       : g === 'sounds' ? (await showSoundGallery()) || new THREE.Vector3()
+      : g === 'rooms' ? (await import('./demo.js')).buildLooksGallery(engine, kits)
       : showGallery(engine, extra || (g === 'nature' ? kits.nature : kits.dungeon), Number(params.get('scale')) || 1);
     engine.rig.target.copy(at); engine.placeCamera(true);
+    // the rooms gallery lights its torches around wherever the camera looks, as the game does
+    if (g === 'rooms' && window.MH3D_gallery) engine.onTick((dt, t) => window.MH3D_gallery.world.update(dt, t, engine.rig.target));
     window.MH3D = { engine, THREE, gallery: window.MH3D_gallery };
   } else {
     const banner = $('#banner');
@@ -360,9 +363,14 @@ async function runGame() {
     sound.ambience(bedFor(look));
     stepSurface = surfaceFor(look);
     const hour = lastPayload && lastPayload.time ? lastPayload.time.hour : 12;
-    const dark = L.dark || L.theme === 'dungeon' || L.theme === 'cave';
-    const mood = dark ? 'crypt' : L.theme === 'inside' ? 'interior'
-      : (hour >= 20 || hour < 5) ? 'night' : (hour >= 18 || hour < 7) ? 'dusk' : L.theme === 'forest' ? 'forest' : 'day';
+    // the room's look (room_looks.py): rock is darkest, then crypts and sewers; sand, snow and ash
+    // colour the day
+    const rock = L.theme === 'cave' || L.theme === 'mine';
+    const dark = L.dark || ['dungeon', 'crypt', 'sewer'].includes(L.theme);
+    const night = hour >= 20 || hour < 5, dusk = hour >= 18 || hour < 7;
+    const mood = rock ? 'cave' : dark ? 'crypt' : L.theme === 'inside' ? 'interior'
+      : L.theme === 'volcanic' ? 'volcanic' : night ? 'night' : dusk ? 'dusk'
+      : L.theme === 'desert' ? 'desert' : L.theme === 'snow' ? 'snow' : L.theme === 'forest' ? 'forest' : 'day';
     engine.setMood(mood);
   }
 

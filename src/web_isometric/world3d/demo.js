@@ -110,3 +110,40 @@ export async function buildDemo(engine, kits, { interactive = false, banner = nu
   }
   return { world, hero, ctl, update, dispose };
 }
+
+// /play?demo&gallery=rooms: one room of every look (room_looks.py), side by side, joined up.
+// MH3D_gallery.rooms lists each look's room centre (screenshots: tests/web/probe and the
+// owner's checks).
+export const LOOK_SAMPLES = [
+  { look: 'cave', sector: 'inside', name: 'The Dripping Cavern', description: 'Water drips from the stalactites into still pools. The cave walls glitter.' },
+  { look: 'mine', sector: 'inside', name: 'The Old Mine Shaft', description: 'Timber props hold up the shaft. Ore glints in the rock where the miners left off.' },
+  { look: 'crypt', sector: 'inside', name: 'The Forgotten Crypt', description: 'Coffins line the walls of the crypt, and the dead lie unquiet.' },
+  { look: 'sewer', sector: 'inside', name: 'The Muddy Sewer', description: 'A channel of foul water runs down the middle of the sewer.' },
+  { look: 'dungeon', sector: 'inside', name: 'The Dungeon Cells', description: 'Broken walls and rubble; the cells stand empty.' },
+  { look: 'desert', sector: 'field', name: 'A Sea of Dunes', description: 'The sands roll away in dunes under a merciless sun.' },
+  { look: 'snow', sector: 'field', name: 'The Frozen Waste', description: 'Snow lies deep over the tundra, and ice glazes the rocks.' },
+  { look: 'shore', sector: 'field', name: 'The Pebbled Shore', description: 'Waves lap at a beach of sand and pebbles strewn with driftwood.' },
+  { look: 'volcanic', sector: 'field', name: 'The Ashfields', description: 'Lava glows in the cracks of the ashen ground.' },
+  { look: 'swamp', sector: 'swamp', name: 'The Sucking Mire', description: 'Dead trees stand in the black water of the swamp.' },
+  { look: 'forest', sector: 'forest', name: 'A Forest Path', description: 'Tall oaks shade the path.' },
+  { look: 'inside', sector: 'inside', name: 'The Great Hall', description: 'A plain stone hall.' },
+];
+export function buildLooksGallery(engine, kits) {
+  const world = new World(engine, kits);
+  const COLS = 4;
+  const vnumAt = (cx, cy) => 991000 + cy * COLS + cx;
+  const rooms = [];
+  LOOK_SAMPLES.forEach((r, i) => {
+    const cx = i % COLS, cy = Math.floor(i / COLS);
+    const exits = {};
+    if (cx > 0) exits.west = { to_room: vnumAt(cx - 1, cy) };
+    if (cx < COLS - 1 && i + 1 < LOOK_SAMPLES.length) exits.east = { to_room: vnumAt(cx + 1, cy) };
+    if (cy > 0) exits.north = { to_room: vnumAt(cx, cy - 1) };
+    if (i + COLS < LOOK_SAMPLES.length) exits.south = { to_room: vnumAt(cx, cy + 1) };
+    const built = world.addRoom({ ...r, vnum: vnumAt(cx, cy), exits }, cx, cy);
+    const c = world.centre(world.byVnum.get(vnumAt(cx, cy)));
+    rooms.push({ look: r.look, theme: built.theme, x: c.x, z: c.z, name: r.name });
+  });
+  window.MH3D_gallery = { rooms, world };
+  return new THREE.Vector3(rooms[0].x, 0, rooms[0].z);
+}

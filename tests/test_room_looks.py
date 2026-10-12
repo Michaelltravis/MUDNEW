@@ -1,0 +1,88 @@
+"""Every room looks like what it says it is (Push 33), offline: the world check.
+
+    python3 tests/test_room_looks.py
+
+A room whose name says cave, mine, crypt, sewer, desert, snow, shore or volcanic draws as one,
+unless world/looks.json pins it otherwise; a look a zone or the build-out states for a room never
+contradicts the room's own name; every override names a real room or zone and a known look.
+"""
+import asyncio
+import json
+import os
+import sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(HERE, '..', 'src'))
+import test_webmove as tw  # noqa: E402
+
+check, failures = tw.check, tw.failures
+
+
+async def main():
+    import logging
+    logging.disable(logging.WARNING)
+    from config import Config
+    from world import World
+    import room_looks as rl
+    world = World(Config())
+    await world.load()
+    rooms = world.rooms
+    ov = rl.load_overrides()
+
+    # ---- what a room's name says, it looks like
+    wrong = []
+    for r in rooms.values():
+        own, why = rl._own_look(r)
+        if own and why == 'name' and r.look != own and r.look_why != 'stated':
+            wrong.append((r.vnum, r.name, r.look))
+    check(not wrong, f'every room looks like what its name says ({len(wrong)} do not: {wrong[:4]})')
+
+    # ---- a stated look never contradicts the room's own name (the build-out writes one per room)
+    raw = json.load(open(rl.OVERRIDES, encoding='utf-8'))
+    pinned = {int(k) for k in (raw.get('_why') or {}) if str(k).isdigit()}
+    clash = []
+    for r in rooms.values():
+        said = getattr(r, 'stated_look', None)
+        named = rl.words_look(r.name)
+        if said and named and named != said and r.vnum not in pinned:
+            clash.append((r.vnum, r.name, said, named))
+    check(not clash, f"a room's stated look agrees with its name ({clash[:4]})")
+
+    # ---- the overrides file
+    zones = {getattr(getattr(r, 'zone', None), 'number', None) for r in rooms.values()}
+    bad = [(k, v) for k, v in ov['rooms'].items() if k not in rooms or v not in rl.LOOKS]
+    bad += [(k, v) for k, v in ov['zones'].items() if k not in zones or v not in rl.LOOKS]
+    check(not bad, f'every override names a real room or zone and a known look ({bad[:4]})')
+    why = raw.get('_why') or {}
+    check(all(str(k) in why for k in list(ov['rooms']) + list(ov['zones'])), 'and says why')
+
+    # ---- known places
+    def look_of(name, n=0):
+        found = [r for r in rooms.values() if r.name == name]
+        return found[n].look if len(found) > n else None
+    check(rooms[4469].look == 'cave', 'The Large Cave is a cave')
+    check(look_of('The Low Crawlway') == 'cave', 'a crawlway under Moria is a cave')
+    check(rooms[7001].look == 'sewer', 'The Muddy Sewer is a sewer (once typed mountain)')
+    check(rooms[5300].look == 'desert', 'The Great Eastern Desert is desert (once typed field)')
+    check(look_of('The Castle Yard') not in rl.UNDERGROUND, "a castle's yard is not underground")
+    check(look_of('Deeper and Deeper') == 'cave', "the Pale Man's caverns are caves throughout")
+    taverns = [r for r in rooms.values() if r.sector_type == 'inside' and 'tavern' in r.name.lower()]
+    check(taverns and all(r.look not in rl.UNDERGROUND for r in taverns), 'no tavern turns into a cave')
+    water = [r for r in rooms.values() if r.sector_type in rl.WATER_SECTORS]
+    check(all(r.look == r.sector_type for r in water), 'water stays water')
+
+    # ---- the payloads carry it
+    from map_system import build_zonemap
+    zm = build_zonemap(world, rooms[4469].zone.number)
+    check(any(r['vnum'] == 4469 and r.get('look') == 'cave' for r in zm['rooms']), 'the zone map sends each room its look')
+
+    s = rl.summary(world)
+    print('looks:', dict(s['looks'].most_common()))
+    print('why:', dict(s['why']))
+    print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
+    sys.exit(1 if failures else 0)
+
+
+if __name__ == '__main__':
+    asyncio.run(main())

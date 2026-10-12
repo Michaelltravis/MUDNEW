@@ -1210,6 +1210,7 @@ def build_zonemap(world, zone_num: int) -> Optional[dict]:
             exits[direction] = entry
         out_rooms.append({
             'vnum': v, 'name': room.name, 'sector': getattr(room, 'sector_type', '') or '',
+            'look': getattr(room, 'look', None) or getattr(room, 'sector_type', '') or '',   # room_looks.py
             'flags': list(room.flags) if hasattr(room, 'flags') else [],
             'description': getattr(room, 'description', '') or '',
             'cell': [cx, cy], 'level': coords[v][2], 'exits': exits,
@@ -1293,6 +1294,7 @@ def build_atlas(world) -> dict:
             'vnum': vnum, 'name': room.name, 'zone': znum,
             'x': x, 'y': y, 'z': z,
             'sector': getattr(room, 'sector_type', '') or '',
+            'look': getattr(room, 'look', None) or getattr(room, 'sector_type', '') or '',
             'exits': exits,
             # the graphical client pre-renders neighbouring rooms from the atlas;
             # the layout generator keys props and darkness off these, so without
@@ -1572,6 +1574,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'vnum': vnum,
             'name': room.name,
             'sector': room.sector_type,
+            'look': getattr(room, 'look', None) or room.sector_type,
             'zone': zone_num,
             'zoneName': zone_name,
             'x': x,
@@ -1696,6 +1699,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'name': cur.name,
             'description': getattr(cur, 'description', '') or '',
             'sector': getattr(cur, 'sector_type', '') or '',
+            'look': getattr(cur, 'look', None) or getattr(cur, 'sector_type', '') or '',
             'flags': list(cur.flags) if hasattr(cur, 'flags') else [],
             'exits': cur_exits,
             'gravestones': stones,

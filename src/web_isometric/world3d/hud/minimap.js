@@ -5,6 +5,8 @@ const SECTOR = {
   inside: '#8a8a96', dungeon: '#6f6a78', cave: '#6a6052', city: '#c7ab7c', forest: '#4f8a46', field: '#86a85a',
   hills: '#7e9a5c', mountain: '#8a857a', desert: '#d6bd86', swamp: '#56664a', water_swim: '#3f7fb0',
   water_noswim: '#2f66a0', underwater: '#2a5a8a', flying: '#a8c8e8', default: '#7d8a70',
+  // the room looks (room_looks.py)
+  mine: '#7a6450', crypt: '#5e5868', sewer: '#5a6a4a', snow: '#e4ecf4', shore: '#e0cc94', volcanic: '#7a3a2a',
 };
 const CW = 22, CH = 14;      // css px per cell (keeps the 24:15 room shape)
 
@@ -33,7 +35,7 @@ export function createMinimap(root, onPick, onNorth = null, { cell = 1 } = {}) {
       if (x < -cw || y < -ch || x > W() + cw || y > H() + ch) continue;
       const seen = explored.has(r.vnum) || r === room;
       ctx.globalAlpha = seen ? 0.95 : 0.32;
-      ctx.fillStyle = SECTOR[r.data.sector] || SECTOR.default;
+      ctx.fillStyle = SECTOR[r.data.look] || SECTOR[r.data.sector] || SECTOR.default;
       ctx.beginPath(); ctx.roundRect(x + pad, y + pad, cw - pad * 2, ch - pad * 2, 3 * S); ctx.fill();
       // openings: little bridges across the shared edge; passages: dots on the edge
       for (const [d, e] of Object.entries(r.data.exits)) {
@@ -54,7 +56,7 @@ export function createMinimap(root, onPick, onNorth = null, { cell = 1 } = {}) {
           const py = d === 'north' ? y + pad : d === 'south' ? y + ch - pad : y + ch / 2;
           ctx.beginPath(); ctx.arc(px, py, 2.2 * S, 0, Math.PI * 2); ctx.fill();
         }
-        ctx.fillStyle = SECTOR[r.data.sector] || SECTOR.default;
+        ctx.fillStyle = SECTOR[r.data.look] || SECTOR[r.data.sector] || SECTOR.default;
       }
     }
     ctx.globalAlpha = 1;

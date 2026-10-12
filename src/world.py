@@ -71,6 +71,8 @@ class Room:
         self.hidden_items = []  # [{vnum, search_difficulty, requires_light, requires_detect_magic, reveal_message}, ...]
         self.puzzles = []  # Puzzle definitions for this room
         self.map = None  # its place on the zone's map, {x, y, z} (the atlas's; north is +y)
+        self.stated_look = None  # a look its zone states (room_looks.py)
+        self.look, self.look_why = None, None
 
         # Contents
         self.characters = []  # Players and NPCs in room
@@ -492,6 +494,8 @@ class Room:
         }
         if self.map:
             out['map'] = dict(self.map)
+        if getattr(self, 'stated_look', None):
+            out['look'] = self.stated_look
         return out
         
     # some zones (90, 100, 110, 130, 160) were written with `title` and `terrain`
@@ -507,6 +511,8 @@ class Room:
         terrain = data.get('terrain')
         room.sector_type = data.get('sector_type') or (cls.TERRAIN_SECTORS.get(terrain, terrain) if terrain else 'inside')
         room.flags = set(data.get('flags', []))
+        # how the 3D client draws it, when the zone says so outright (room_looks.py)
+        room.stated_look = data.get('look')
         
         # Process exits and convert flag-based door format to door objects
         room.exits = {}
@@ -771,6 +777,13 @@ class World:
             gear_look.build_item_levels(self)
         except Exception as e:
             logger.warning(f"Failed to work out item levels: {e}")
+        # what each room looks like in 3D (room_looks.py: a cave looks like a cave)
+        try:
+            import room_looks
+            room_looks.classify(self)
+        except Exception as e:
+            logger.warning(f"Failed to work out room looks: {e}")
+
         # how many of each set's pieces one hero can wear (sets.py: every tier can be reached)
         try:
             import sets
