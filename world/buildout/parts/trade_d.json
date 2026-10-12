@@ -1,0 +1,424 @@
+{
+ "job": "trade_d",
+ "rooms": {
+  "9753": "Long counters of scarred oak divide this trading post in two, and a great brass-bound balance hangs on chains from a beam above the nearer one. Racks and bins along the back wall are chalked with merchants' marks, and bales of wool and rolled hides are stacked almost to the rafters. A slate by the counter lists the day's prices in three different scripts. The whole room smells of tallow, dust and sheep, and the door east opens back onto Esh Road.",
+  "9779": "Pasocaoa Boulevard opens here off the Trade Road, which crosses just to the north in a ceaseless rumble of wheels and hooves. Two slender pillars of blue-glazed brick mark the head of the boulevard, each crowned with a brass lamp shaped like an onion dome. Beyond them a double row of linden trees marches away south, shading a broad way paved with pale stone. The air smells of horses and, very faintly, of cinnamon.",
+  "9778": "Tall merchant houses stand back behind the lindens here, their upper floors screened by balconies of carved wooden lattice so fine that it looks like lace. A long stone trough runs beside the paving, filled by a thin stream of water from the mouth of a bronze fish. The boulevard continues north toward the Trade Road and south beneath the trees, and the trickle of the spout follows you a long way along it.",
+  "9788": "Stone benches stand in the shade of the lindens here, their seats worn into shallow hollows by years of idle sitting. The paving between them is laid in a pattern of interlocking eight-pointed stars, red stone set into grey, a fashion the founders of this quarter brought with them from far away. Over the rooftops the battlements of Garathorm's inner wall show against the sky. The boulevard runs on north and south.",
+  "9715": "A painted wooden ox head juts from the wall above a shop door on the west side of the boulevard, the sign of the Butcher's Shop. Sawdust tracked out from its floor lies scattered over the paving, and the gutter here runs faintly pink whenever the shop is washed down. Even the scent of the lindens cannot quite cover the smell of fresh meat. The boulevard leads on north and south.",
+  "9716": "The roots of an old linden have heaved the paving into a hump here, and the stones have been left to tilt rather than see the tree cut back. Behind it a chandler's shop faces the street, a gilded wooden candle hanging over its door and the warm, greasy smell of tallow seeping from its shutters. North lies the butcher's sign, and south the boulevard runs straight on between its trees.",
+  "9754": "An arched gateway faces the boulevard here, its doors of dark wood studded with brass bosses and framed in tiles glazed turquoise and green. Through a grille set in one door you can glimpse a paved courtyard and the glint of a small fountain, a cool private world hidden from the street. The lindens throw a dappled shade across the paving, which runs north and south.",
+  "9755": "The neat row of houses breaks off here, and to the west a gap opens where one of them has fallen in, leaving a mound of rubble and charred timbers grown over with weeds. Soot still streaks the walls of its neighbours where they once leaned against it. The boulevard itself is swept clean, and its lindens run on north and south as though nothing were amiss.",
+  "9756": "A public well stands in the middle of the boulevard beneath a little domed canopy on four stone pillars, its windlass worn bright where countless hands have turned it. The flagstones around it are always damp, and moss grows green in the cracks between them. A tin cup hangs from a chain on one pillar for any thirsty passer-by. Lindens shade the way as it runs north and south.",
+  "9757": "A bronze statue of a robed trader stands on a plinth beside the way, a pair of scales in one hand and the other raised to shade his eyes, as though he were watching for a caravan on the horizon. The weather has turned him a mottled green, all but the toe of one sandal, which passers-by rub bright for luck. The boulevard leads on north and south beneath the lindens.",
+  "9758": "Strings of little brass bells hang from the balconies along this stretch, and the slightest breeze sets them chiming softly over the street. The houses here are quieter than those nearer the Trade Road, their shutters painted a faded saffron and their doorsteps scrubbed white. A sundial painted on one wall has lost its pointer, so that it tells no hour at all. The boulevard goes on north and south.",
+  "9759": "On the west side of the boulevard a narrow house of grey stone bears a carved open book above its door, the sign of Sakifan's Library. A lamp burns in an iron cage beside the entrance at every hour, and a brass plate beneath it asks visitors to wipe their feet and lower their voices. North and south the lindens stretch away along the busy street.",
+  "9760": "A warehouse with a steep tiled roof fronts the boulevard here, and through its half-open doors drifts a heady smell of pepper, cloves and cumin. Painted on the wall beside the doors, in letters taller than a man, is a single word in a flowing foreign script that few in the street can read. The lindens grow thinner along this stretch, and the boulevard runs on north and south.",
+  "9761": "Three gilded balls hang from an iron bracket above a narrow and heavily barred door, the old sign of a moneylender. The paving before it has been patched with newer stones of a paler grey, where some overladen cart must once have cracked the old ones. North the boulevard runs back past the library, and south it continues beneath the lindens.",
+  "9762": "The steady knock of mallets comes from a cooper's yard behind a low wall here, where half-finished barrels stand in rows waiting for their hoops. Curls of oak shaving have blown out onto the paving and gather in drifts against the kerb. The boulevard runs north toward the heart of the quarter and south toward the place where it turns.",
+  "9763": "A stone watch box with a pointed roof stands at the edge of the paving here, just big enough for one of the town watch to shelter from the rain. Beside it a wooden board is plastered with notices, layer upon layer, their edges curling in the damp. The lindens give out a little further south, and north the boulevard runs back between its trees.",
+  "9726": "Scaffolding of lashed poles climbs the front of a house here, and stacks of timber, sand and roofing slate are piled in the yard beside it. A signboard over a door on the west side shows a plumb line and a set square, with the name Ceran's Contracting lettered neatly beneath. Fine dust from the yard settles on everything. The boulevard runs north beneath the last of the lindens and south toward its corner.",
+  "9727": "Pasocaoa Boulevard bends sharply here, turning west from its long straight run. A round corner house with a conical slate roof stands in the angle, and a stone mounting block worn into steps waits at its foot for riders. The lindens have given out, and the paving is scored by the wheels of carts swinging round the turn. North, the boulevard runs back toward the Trade Road.",
+  "9718": "This last stretch of the boulevard is narrower and plainer than the rest, lined with low houses of whitewashed brick whose doors open straight onto the street. Blue tiles still frame a few of the windows, but the grand lattices and courtyards are left behind. West, the paving changes to the heavy grey flags of Stonewalk Way, while east the boulevard swings round its corner.",
+  "9719": "Here Stonewalk Way earns its name, for raised walks of dressed stone run along both sides of the street a step above the cobbles, so that folk on foot can keep their boots out of the gutter. The houses are built of the same grey stone, solid and plain, with deep-set windows. The street runs north and south, and east it meets the tail of Pasocaoa Boulevard.",
+  "9731": "The great wall of Garathorm's inner city rises close at hand here, so tall that the street lies in its shadow for most of the day. Stonewalk Way turns at this corner, running west along the foot of the wall and south away from it. Ivy has climbed a little way up the stones before being cut back, leaving dry brown tendrils clinging to the mortar.",
+  "9725": "Narrow houses have been built right up against the inner city wall along this stretch, their roofs propped against its stones like tired men leaning on a fence. Their chimneys climb the wall in a row of soot-stained flues, and smoke drifts lazily along its face. The raised stone walk runs on east and west, its edge rounded by generations of footsteps.",
+  "9724": "A farrier's forge opens onto the street here, its wide doorway glowing red and its anvil ringing whenever there is a horse to be shod. The smell of scorched hoof and coal smoke hangs over the raised walks. West, the street opens onto the Trade Road below the gate of the inner city, and east Stonewalk Way runs on beneath the wall.",
+  "9714": "The Trade Road meets the inner city here, running north through the Gate Of The Inner City between two round towers hung with Garathorm's banners. A stone pillar at the roadside is carved with the names of distant places and the leagues to each. Stonewalk Way runs off east and west along the foot of the wall, and south the road passes beneath a long vaulted roof on its way to the outer gate.",
+  "9780": "The Trade Road runs here through the town's customs hall, a long vaulted chamber of brick open at both ends so that carts can roll straight through. A great weighing platform is set into the floor, its iron beam and counterweights hanging from the vault above. Behind a grille in one wall the clerks' desks stand heaped with ledgers, and lamps burn on chains at every hour. The way runs north toward the inner city and south to the Southern Gatehouse.",
+  "9771": "The Southern Gatehouse is a single blocky tower of rough grey stone, pierced by an arch so deep that it stays cool and dim even at midday. The vault of the arch is riddled with murder holes, long since stuffed with old swallows' nests, and the oak gates are pinned back against the walls with iron hooks. Through the arch the road runs south into open grassland. Stonewalk Way branches east and west inside the town wall, and north the Trade Road enters the customs hall.",
+  "9776": "The outer wall of the town runs along one side of the street here, lower and rougher than the great wall of the inner city, its stones patched with brick wherever they have fallen. A wheelwright has leaned a row of cartwheels against it in every stage of repair. West lies the Southern Gatehouse, and east the raised stone walks carry on along the wall.",
+  "9774": "A shop on the north side of the street stands wrecked, its shutters torn from their hinges and its painted sign split in two, dangling by a single chain. Glass from its window still glitters in the cracks of the raised walk. The neighbouring houses keep their own shutters tightly closed. Stonewalk Way runs east and west along the town wall.",
+  "9751": "Whatever this shop once sold, nothing of it is left. Its shelves have been dragged down and smashed, its counter split with an axe, and its drawers wrenched out and flung across the floor. Several floorboards have been prised up, as if someone searched for a hidden strongbox, and the air smells of damp plaster and spilled lamp oil. Pale light falls through the broken window and the doorway to the south, which opens onto Stonewalk Way.",
+  "9732": "Stonewalk Way turns a corner here, running north toward the end of Pasocaoa Boulevard and west along the inside of the town wall. An iron pump stands at the corner over a stone basin, green with slime where its drips fall. A small niche in the wall above it holds a weathered carving of a cloaked traveller, the paint long faded from its face.",
+  "9704": "Iron rings for tethering horses are set into the town wall along this stretch, and the cobbles beneath them are strewn with straw and worse. Across the way a livery stable stands with its wide doors open, breathing out the warm smell of hay and horse. East lies the Southern Gatehouse, and west Stonewalk Way runs on between the wall and the houses.",
+  "9705": "A tall, narrow house of grey stone on the north side of the street hangs out a painted board that promises ROOMS AND BOARD, CLEAN BEDS, NO BRAWLING. Its doorstep is freshly whitened and its windows are hung with patched but tidy curtains. Across the street the town wall is pocked with old scars where carts have scraped it. Stonewalk Way runs east toward the gate and west along the wall.",
+  "9743": "The front room of the boarding house is plain but scrubbed, with a row of hooks for wet cloaks beside the door and a worn rag rug before a small hearth. A high desk holds a fat ledger and an inkpot, and behind it hangs a board of numbered pegs for the keys of the rooms. A doorway leads east into a narrow hallway, and the street door opens south onto Stonewalk Way.",
+  "9744": "A narrow hallway runs back from the front room of the boarding house, its floorboards creaking at every step. Doors line both walls, each painted with a number and each firmly locked, and a single lamp in a niche at the far end gives the only light. The air smells of boiled cabbage and damp wool. The way out lies west, back to the front room.",
+  "9709": "A squat round tower bulges from the town wall at this corner, its arrow slits dark and its roof of weathered shingles sagging in the middle. Stonewalk Way bends around its foot, running north toward Danozi Avenue and east along the wall toward the Southern Gatehouse. Moss grows thick in the tower's shade, softening the edges of the raised stone walk.",
+  "9728": "Danozi Avenue begins here, opening west beneath a pair of tall chestnut trees, while Stonewalk Way carries on north and south. A carved stone post at the corner bears the names of both streets, the letters picked out in flaking red paint. The houses along this stretch are built of the same grey stone as the walks, and their doors are set deep in arched porches.",
+  "9710": "A massive buttress of the inner city wall juts into the street here, forcing Stonewalk Way to bend around it from south to east. Its lowest stones are blackened by the braziers that pedlars have lit in its shelter for generations. High above, the walls of Garathorm are crowned with crenellations, and a banner stirs on its pole above the parapet.",
+  "9711": "The common bakehouse of the quarter stands here against the inner wall, its great brick oven fired before dawn so that the whole street smells of fresh bread by first light. Flour dust whitens the raised walk outside its door, printed with the tracks of many boots. Stonewalk Way runs east toward the Trade Road and west to where the wall's great buttress turns it.",
+  "9706": "An iron fire bell hangs from a timber frame at the edge of the raised walk here, its rope looped up out of the reach of children. A painted board beneath it warns that anyone who rings it falsely will pay a silver piece to the watch. East, the street opens onto the Trade Road beneath the gate of the inner city, and west it follows the wall.",
+  "9729": "Two old chestnut trees spread their branches over the start of Danozi Avenue, and every autumn their spiny husks crunch underfoot. The avenue runs west from here between tall houses of timber and plaster, each storey jutting out a little further over the street than the one below. East, the way meets the grey stones and raised walks of Stonewalk Way.",
+  "9730": "Lines of washing are strung between the upper windows here, sheets and shirts flapping across the street like the sails of a becalmed ship. A laundry at the corner breathes out steam and the sharp smell of lye, and its gutter runs grey with soapy water. Danozi Avenue bends at this point, running north along the edge of the town and east toward Stonewalk Way.",
+  "9733": "A ship's anchor taller than a man leans against a shop on the east side of the avenue, and a carved wooden mermaid juts out above its door like the figurehead of a vessel run aground. This is the Ship Shop, a strange sight so far from any sea, though boats are always wanted on the Long Lake and the rivers. The smell of tar and hemp drifts out onto the street, which runs north and south.",
+  "9782": "Children have chalked a hopping game across the paving here, its squares numbered in a wobbly hand, and drawings of horses and dragons run along the foot of the walls. The houses on this stretch are homes rather than shops, with pots of herbs crowding every sill. The avenue runs on north beneath the chestnuts and back south toward the Ship Shop.",
+  "9717": "A joiner's workshop stands open to the street here, with a carved chair hung on a bracket above its door by way of a sign. The rasp of saws and the sweet smell of fresh-cut pine spill out of it, along with the sawdust that drifts across the paving. Danozi Avenue continues north and south between its rows of jutting houses.",
+  "9769": "Between two leaning houses a narrow alley, too tight for a cart, gives a glimpse of the town wall and a slice of green country beyond it. A rain barrel stands at the alley's mouth, brimming over and skinned with fallen leaves. Danozi Avenue runs north and south past the alley, shaded by its chestnut trees.",
+  "9770": "A wooden boot as big as a barrel hangs over a cobbler's door here, painted black and polished until it gleams. The cobbler's window is crowded with wooden lasts carved in the shapes of feet, large and small. The smell of leather grows stronger as the avenue runs north toward the leatherworker's, and south it continues beneath the chestnuts.",
+  "9777": "Hides stretched on wooden frames lean against the front of the Leatherworker's Shop, which opens on the east side of the avenue. A saddle hangs over its door for a sign, cracked with age but still oiled every spring. The sharp, sour smell of tanning hangs over this stretch of Danozi Avenue, which runs on north and south.",
+  "9772": "The clack of looms sounds from the upper windows of the houses here, and poles thrust out over the street hang with skeins of wool drying in madder red and woad blue. Drips of dye have stained the paving below in faded patches of colour. The avenue runs north and south between the weavers' houses.",
+  "9773": "A bathhouse with a low dome of green copper stands here, wisps of steam escaping from the vents around its rim. Over its door a painted panel shows a stout man up to his chin in a tub, looking deeply content with the world. The paving around the door is always wet, and the avenue runs north and south past it.",
+  "9764": "A warm, sweet smell of malt rolls down the avenue from the brewery just to the north, thick enough to taste. Empty barrels are stacked three high beneath an awning here, waiting for the brewer's dray to collect them. The houses on this stretch have small gardens behind low walls, where hops climb on strings up the fronts of the porches. Danozi Avenue runs north and south.",
+  "9721": "The Brewery fills the east side of the avenue here, a long building of brick with a tall chimney that breathes out sweet-smelling steam. Its wide doors are painted with a sheaf of barley crossed with a foaming tankard, and a ramp of planks lets barrels roll straight out into the street. North and south the avenue runs on beneath the chestnut trees.",
+  "9766": "A broad hall with a steep roof of red tile stands back from the avenue here, the meeting house of the craftsmen of the outer town. Above its door a long carved panel shows the tools of every trade in the quarter, from hammer and awl to mash paddle and jeweller's loupe. The avenue runs north and south past its steps.",
+  "9767": "The roar of a furnace comes from a glassblower's workshop here, and its window is crowded with bottles and beads in every colour, catching the light like a handful of jewels. The wall beside its door is warm to the touch even in winter. The avenue runs north toward the Jeweller's and south past the craftsmen's hall.",
+  "9700": "An iron gate on the east side of the avenue leads into the Jeweller's, a small walled yard behind a front of carved white stone. Above the gate hangs a gilded ring as big as a cartwheel, set with a great glass stone that flashes whenever the light strikes it. Danozi Avenue runs north and south past the gate.",
+  "9707": "An apothecary's narrow shop front is hung with bunches of drying herbs, and a great stone mortar and pestle stand on the step outside by way of a sign. The air around its door smells of sage, camphor and something bitter that catches in the throat. Danozi Avenue runs north toward the Trade Road and south toward the Jeweller's gate.",
+  "9720": "Squares numbered in white paint mark out pitches along the edges of the paving here, where hawkers set up their trestles on market days. Between markets the squares stand empty and the street feels oddly wide and quiet. The noise of the Trade Road carries down from the north, and the avenue runs south between its chestnut trees.",
+  "9775": "Danozi Avenue begins its long run south here, leaving the bustle of the Trade Road just to the north. A tall corner house has a clock face painted on its gable with the hands fixed forever at a quarter to noon, and many a newcomer has been fooled into hurrying. The chestnut trees of the avenue begin a few paces further on.",
+  "9723": "Four ways meet at this busy crossing, where a stone market cross stands on a round step worn hollow by sitters. The Trade Road runs west to the Western Gatehouse and east toward the gate of the inner city, while Shokogya Street leads off north beneath striped awnings and Danozi Avenue runs south. Carts jostle around the cross from every side, and the din of wheels and voices never quite dies away.",
+  "9737": "Shokogya Street begins beneath a canopy of striped awnings, red and white and saffron, stretched from house to house so that the light below is warm and coloured. Strings of paper lanterns sway between the awning poles. The street runs north from here, and south it opens onto the crossing of the Trade Road.",
+  "9708": "Cookshops crowd both sides of the street here, their counters open to passers-by and their charcoal grills sending up fragrant smoke. The smells of ginger, garlic and hot fat mingle beneath the striped awnings. The street is so narrow that the awnings almost touch overhead, and it runs on north and south.",
+  "9712": "A signboard painted with a crested water bird swings above a low door on the east side of the street, marking Grebe's Tavern. Its bow window glows with lamplight, and the hum of talk and the clink of tankards spill out whenever the door swings open. The awnings of Shokogya Street run on north and south.",
+  "9713": "A lantern-maker's shop opens onto the street here, its front hung with paper lanterns of every size, from little globes no bigger than an apple to great drums that could light a hall. Frames of split cane are stacked by its door, waiting for their paper. North, the street runs on toward its corner, and south it leads back past Grebe's Tavern.",
+  "9734": "Shokogya Street turns a corner here, running east along the inner wall and south back among the cookshops. A tea house occupies the angle, its round window framed in lacquered red wood and its doorway hung with a curtain of clicking wooden beads. The scent of smoky tea and jasmine drifts out into the street.",
+  "9789": "The houses along this stretch have roofs of glazed green tile with upturned eaves, and every ridge ends in a carved and painted dragon's head, open-mouthed to frighten off ill luck. Fewer awnings are stretched across the street here, and more daylight reaches the paving. The way runs east and west, with the grey bulk of the inner wall rising behind the rooftops.",
+  "9790": "A gap between two houses has been made into a tiny garden, no bigger than a room, where a gnarled pine leans over a pool and a stone lantern stands among raked white gravel. A low bamboo fence keeps the street out. Shokogya Street runs east and west past this small patch of calm.",
+  "9791": "A modest house with a blue-painted door faces the street on the north side, its step lined with pots of marigolds and its brass knocker shaped like a small closed hand. Unlike the shops along the street it hangs out no sign, only a little carved charm nailed above the lintel for luck. The street runs on east and west beneath its awnings.",
+  "9745": "This is the main room of a modest family home, warm and a little cluttered. A table scrubbed pale stands before a hearth where a blackened kettle hangs on its hook, and a bench along the wall is heaped with cushions stitched from scraps of bright cloth. Children's drawings are pinned to the plaster, and a curtained alcove hides a bed. The street door lies south.",
+  "9792": "A painted wooden arch spans the mouth of Shokogya Street here, its crossbeam lettered with the street's name in two scripts. Beneath it the striped awnings begin, and east the street opens onto the Trade Road, where carts rumble past toward the gate of the inner city. West, Shokogya Street wanders off among its tiled roofs and lanterns.",
+  "9752": "Grebe's Tavern is low-beamed and smoky, its ceiling hung with pewter tankards on hooks and its walls with paintings of water birds in every attitude of dignity and foolishness. A long bar of dark wood runs down one side, backed by casks with brass taps, and a fire crackles in a wide stone hearth. Benches and tables crowd every corner. The door out to Shokogya Street lies west.",
+  "9701": "The Trade Road runs east here to the West Gate of Garathorm, where two small towers built into the city wall are joined by a footbridge high above a heavy wooden gate. Carts queue along the road waiting their turn to pass inside, and the stones are rutted deep by their wheels. West, the road leads back to the market cross and on to the Western Gatehouse.",
+  "9768": "The Western Gatehouse is an old arch hung with ivy, flanked by two stout towers with conical roofs of grey slate. Its gates of iron-bound oak are folded back and wedged open with stones. West, beyond the arch, a dusty road strikes out across the grassy plains toward the distant forest of Haon-Dor, while east the Trade Road leads into the bustle of the town.",
+  "9736": "The Jeweller's is a small yard paved with white stone and walled on three sides, open to the sky so that the jeweller can work by honest daylight. A workbench fitted with tiny vices and a lens on a brass arm stands beneath a canvas awning, and a barred window in the back wall looks into the strongroom where the finer pieces are kept. The iron gate to Danozi Avenue lies west.",
+  "9739": "Great copper kettles squat over brick furnaces in this hot and steamy hall, and a row of oaken mash tuns stands along one wall, each big enough to drown an ox. The air is thick with the smell of malt and hops, and the stone floor is slick underfoot. A chalk board by the door keeps a tally of barrels sold. The way out to Danozi Avenue is west.",
+  "9741": "Hides of every shade hang from rails beneath the ceiling of the Leatherworker's Shop, from pale kidskin to oxhide as stiff as board. A long bench under the window is scarred by countless knife cuts and fitted with a clamp for stitching, and the air is heavy with the smell of tannin and neatsfoot oil. Pegs along one wall hold belts, satchels and saddlebags. The street door is west.",
+  "9750": "Coils of rope as thick as a man's wrist are heaped around the walls of the Ship Shop, and oars of every length stand racked in a corner like spears in an armoury. The half-built hull of a small rowing boat rests on trestles in the middle of the floor, its ribs bare and smelling of fresh pine and pitch. A painted chart of the Long Lake is nailed above the counter. The door to Danozi Avenue lies west.",
+  "9742": "Ceran's Contracting is more office than workshop, a cluttered room where plans of houses, walls and bridges are pinned over every inch of plaster. A broad drawing table stands beneath the window, its sheets held down with stones and set squares, and measuring rods, plumb bobs and knotted cords hang from pegs by the door. Samples of brick and tile are lined along a shelf like a collection of curiosities. The door out to Pasocaoa Boulevard is east.",
+  "9740": "Shelves of dark wood climb every wall of Sakifan's Library, crammed with books, scrolls in pigeonholes and bundles of papers tied with faded ribbon. Reading desks stand in a row beneath shaded lamps, and a lettered board by the door sets out the library's rules. The air is hushed and smells of old paper, leather and lamp oil. The door out to Pasocaoa Boulevard lies east.",
+  "9738": "Here a house once stood between its neighbours, but now there is only a hummock of tumbled stone, charred beams and broken roof tiles, grown over with nettles, gorse and tufts of heather. The soot-blackened walls of the houses on either side rise above the mound like the sides of a narrow valley, open to the sky. Wind whistles through their empty window holes. East, a rough path picks its way over the stones back to Pasocaoa Boulevard.",
+  "9735": "Iron hooks hang in rows from a rail along the ceiling of the Butcher's Shop, and a great chopping block, worn hollow by the cleaver, stands in the middle of a floor strewn with sawdust. A cold slab of slate runs the length of the counter, and a board above it chalks up the prices of mutton, pork and beef. The air is cool and smells of blood and brine. A door in the east wall lets out onto Pasocaoa Boulevard.",
+  "9703": "Here the Trade Road leaves the inner city by the Gate To The Inner City, whose two small towers rise from the wall just to the west with a footbridge slung between them above the gate's heavy timbers. The road is paved with broad flagstones that slope toward deep gutters, and the traffic of carts never seems to slacken. East, the road runs on to a busy crossing with Pasocaoa Boulevard and Esh Road.",
+  "8503": "A small path picks its way along the foot of the mountains here, squeezed between a slope of loose scree and a tumble of boulders furred with lichen. The peaks rise steep and grey above, their summits often lost in cloud, and a cold wind spills down from them. East, a weathered plank gate in a dry-stone wall leads back to the Foot Of The Mountains, and west the path ends at the timbered mouth of an old mine.",
+  "8504": "A long shed of rough timber has been built against the mountainside over the mouth of the old mine, and inside it is dim, cold and dusty. A rusted winch stands bolted to the floor beside a row of ore carts whose wheels have seized solid, and broken picks hang forgotten on pegs. In the rock face to the north a heavy door of iron-bound planks closes the way into the mine. The shed's open end lets out east onto the mountain path.",
+  "8573": "Beyond the door the mine runs straight into the mountain, a tunnel shored with timbers black with age and so low that a tall man must stoop. The air is cold and smells of wet stone, with something sour and rotten beneath it. A short way north the tunnel is closed by a grille of thick iron bars, chained and padlocked, with only darkness beyond. Behind you to the south, the door leads back out to the mine shed.",
+  "15069": "This house of Townsbridge is dark even by day, its shutters nailed fast from the inside and its air colder than any weather can explain. Broken chairs are heaped against the walls, and long scratches score the plaster as though something once tried to claw its way through it. Doorways lead north to an overgrown yard, east into another dark room, and south through a scorched gap into a burnt-out shop, while the front door opens west onto the dirt road.",
+  "8159": "An overgrown yard lies between the empty houses of the village here, the grass knee-high around a well whose wooden cover has rotted through. Nettles have swallowed what was once a vegetable garden, though a few cabbages gone wild still show among them. Doorways stand open to the north and west, the dark, shuttered house looms to the south, and the rank grass runs on east between the buildings.",
+  "8158": "A great wooden loom fills most of this room, its warp threads long since rotted and hanging in grey tatters like old cobwebs. A cradle lies tipped on its side beside the cold hearth, and a spinning wheel stands with its spokes snapped. Doorways open north and east into further rooms, and west into the smithy next door, while a back door leads south into a weedy yard.",
+  "8155": "This was the village smithy, and the great anvil still stands on its stump in the middle of the floor, red with rust. The forge is cold and choked with old ash, its leather bellows rotted to rags, and the tool rack on the wall hangs empty. Wide double doors open west onto a grassy rise, while doorways lead north to the bakehouse, east to the weaver's house and south to the alehouse.",
+  "8156": "A domed bread oven of clay and brick takes up the whole of one wall in this bakehouse, its mouth black and cold. The long kneading trough beneath the window is furred with grey mould, and the flour bins along the walls have been gnawed through and stand empty. Doorways lead west into the chapel, south into the smithy and east into the next house along.",
+  "8154": "The village chapel is a single bare room, its benches overturned and its little altar of fieldstone split clean across. A carved wooden sheaf of wheat, the sign of Helver, still hangs crookedly on the wall behind it. Leaves have drifted in through the empty windows to gather in the corners. A door opens west onto an overgrown trail, another south onto a grassy rise, and a third east into the bakehouse.",
+  "15063": "A low grassy rise lifts this corner of the village a little above its rooftops, and on its crown stands a timber frame from which the village bell once hung. The bell is gone, and only a rotted rope still dangles from the crossbeam, stirring in the wind. Beyond the trees the pale towers of Welmar's Castle can be seen. The chapel lies north, the smithy east, a small path leads south among the houses, and an overgrown trail runs west into the woods.",
+  "15064": "A small path leaves the dirt road here and wanders in among the houses of the village, its ruts grown over with plantain and clover. A weathered signpost leans at the corner, its painted board split by frost. The open door of an empty alehouse lies to the east and a wrecked house gapes to the west, while the path climbs north onto a grassy rise and runs south back to the dirt road.",
+  "8151": "This was the village alehouse, and its trestle tables still stand in rows, though every bench has been flung over and the shelf behind the bar has been swept bare. A dark stain spreads across the floorboards before the cold hearth, scrubbed at long ago and never quite removed. Doors lead out south to the dirt road, west to a small path and east into an overgrown yard, and an inner door opens north into the smithy.",
+  "203501": "The King's Road runs on here as wide and smooth as ever, its great fitted paving stones laid so true that a cart rolls along them without a jolt. Yet few wheels come this way now, and grass has begun to push up along the seams. Thick undergrowth crowds the verges on either side. East lies the Turning Point In The King's Road, and west the paving runs a short way further to its end.",
+  "203500": "The King's Road ends here as abruptly as a sentence broken off, its last paving stones finished with a carved kerb as though the builders meant to come back. West, beyond the kerb, open grassland rolls away toward a flat and distant horizon. To the south stands the long, empty front of an old roadside inn with its door gaping, and east the paved road runs back toward the Turning Point In The King's Road.",
+  "8171": "This long, low common room was once the first welcome of the inn at the end of the King's Road, but its fire has been cold for years. Tables and settles stand beneath a grey fur of dust, and the inn's painted sign, a lantern on a blue field, hangs askew above the hearth. Doors lead out north onto the road's end and east onto an overgrown trail, while inner doorways open west to the kitchen and south to the stables.",
+  "8172": "A row of wooden stalls runs down one side of this stable, their mangers still holding a little hay gone black and brittle with age. Harness pegs line the walls, all empty, and the smell of horse has long since faded into one of damp and mice. A wide door east opens onto an overgrown trail, and doorways lead north to the common room, west to a storeroom and south into the coach house.",
+  "8173": "An old coach stands propped on blocks in this coach house, its wheels gone and its doors hanging open on a seat slashed to the stuffing. Cobwebs hang in heavy grey sheets from the rafters, and the floor is printed with the tracks of bare feet. A gap knocked through the wall to the east leads into a wrecked house, and doorways open north to the stable, west to the wash-house and south into a hay barn.",
+  "8174": "Old hay is heaped high against the walls of this barn, sour and grey on top and still faintly sweet beneath. A deep hollow has been pressed into the largest heap, as though something heavy sleeps there, and the straw around it is scattered with gnawed bones. A side door opens east into a wrecked house, and doorways lead north to the coach house and west to the wash-house.",
+  "8170": "This was the inn's wash-house, with a great copper boiler set in brick in one corner and a stone sink beneath a pump that has long run dry. A mangle with rollers of pale wood stands rusting by the wall, and empty laundry lines still sag across the room. A back door opens west onto the open plains, and doorways lead north to a storeroom, east to the coach house and south to the hay barn.",
+  "8169": "Shelves rise to the ceiling in this storeroom, still lined with stoneware crocks and jars, though most are cracked and all are empty. Rows of iron hooks for hams and flitches of bacon hang bare from the beams, and something has gnawed a hole through the bottom of the flour bin. A back door opens west onto the plains, and doorways lead north to the kitchen, east to the stable and south to the wash-house.",
+  "8168": "The inn's kitchen is a big, smoke-darkened room built around an open hearth so wide that a man could stand upright in it, its spit and pot-hooks still in place above the ashes. A long table runs down the middle, warped now and split along its grain. Doors open north and west onto the grassland behind the inn, while the common room lies east and a storeroom south.",
+  "8100": "The paving of the King's Road gives out just to the east, and from here the open plains take over, rolling away beneath a wide sky in long swells of grass and clover. A path trodden by the inn's servants long ago still leads south to the kitchen door, though the grass has almost swallowed it. North and west there is nothing but grassland as far as the eye can follow.",
+  "8101": "Tall grass rises to your waist here, silver-green and ceaselessly moving, and it is hard to keep any sense of where you have come from. East and west look so alike that you might be walking in circles. A lone hawthorn grows on a hummock, bent sideways by the wind. Northward the grass runs on, and south it slopes gently toward the end of the King's Road.",
+  "8102": "A shallow pond lies in a fold of the plains here, ringed with reeds and so still that it mirrors the drifting clouds. The prints of deer and cattle crowd its muddy edges. Beyond it the land rises into a long, low ridge of tangled thorn that no path crosses, and the only ways on lie west and south through the grass.",
+  "8105": "A roofless sheepfold of piled fieldstone stands here, its walls tumbled in places and its gateway choked with brambles. Tufts of greasy wool still cling to the stones where sheep once rubbed against them, though no shepherd has penned a flock here in years. The plains stretch away east, west and south under the open sky.",
+  "8104": "A lone oak stands in the grass here, split down the middle by some old stroke of lightning, one half dead and silver-grey and the other still in leaf. The ground beneath it is bare and trampled, a favourite resting place for beasts seeking shade. Grassland runs out north, south, east and west, each way much like the others.",
+  "8103": "An old drove road crosses the plains here, a broad strip where the grass grows shorter and greener, trampled for generations by herds bound for the markets of Garathorm. A squat marker stone stands beside it, half sunk in the turf. The drove road fades away east toward the end of the King's Road and west into the grass, and the open plains run on north and south.",
+  "8166": "The back of the old inn rises just to the east, a long wall of whitewashed stone gone grey and blotched with lichen, with a kitchen door hanging open in it. A rubbish midden behind the inn has long since grassed over into a low green mound, studded with shards of broken crockery. To the west a small hut stands alone in the grass, and the plains run on north and south.",
+  "8167": "The back of the inn turns a corner around this patch of grass, with a storeroom door to the east and the wash-house door to the south, both ajar and dark within. A rusted iron ring for tethering a horse is set into the wall between them. West, a lonely hut squats in the grass, and north the plains run along the back of the inn.",
+  "8165": "This little stone hut is a shepherd's shelter, with a roof of sod, a single bunk of planks and a hearth no wider than a bucket. Its walls have slumped and split, and gaps open in all four of them onto the grassland to the north, south, east and west. Someone has kept the hearth swept and stacked a little dry kindling beside it, though there is no other sign of who.",
+  "8106": "The grass is shorter here, cropped close by grazing beasts and dotted with yellow cowslips and the white stars of daisies. A low roof of sod shows just to the south, where the shepherd's hut lies half hidden in a dip. The plains roll on north, east and west in gentle swells, broken only by the odd thorn bush.",
+  "8107": "A tall cairn of fist-sized stones stands beside a faint path here, raised stone by stone by travellers who each add one as they pass, for luck on the road. Scraps of ribbon have been tucked between the stones, faded now to the colour of dry grass. Faint paths lead away from the cairn north, south, east and west, as though it were the hub of a great wheel.",
+  "8108": "A shallow gully winds across the plains here, cut by a stream that runs only after heavy rain, and its dry bed is paved with smooth, pale pebbles. Willow scrub grows along its banks. It is easy enough to cross and go on north or south, while the gully itself leads east and west through the grass.",
+  "8109": "The ground lifts into a gentle swell here, and from its crown the plains lie spread out like a rumpled green blanket. Far off, a smudge of chimney smoke marks where Garathorm must stand, and a grey line of mountains rides the horizon. The grass slopes away south and west toward lower ground.",
+  "8113": "A ring of blackened stones marks an old campfire here, where some traveller once spent a night out on the open plains. The grass has grown back around it thick and lush, sprinkled with scarlet poppies. The plains run on east and south, with nothing to break the view but the slow march of the clouds.",
+  "8112": "A leaning post of grey wood stands in the grass here, crowned with the bleached skull of an ox. Herders set up such posts to mark the edge of safe grazing, and beyond it the grass grows taller and wilder. The plains run on north, east and south, and west toward a country where the grass seems never to end.",
+  "8111": "Badgers have heaped mounds of pale earth among the grass here, and well-worn runs lead away from the mouths of their setts. The ground is uneven and riddled with holes, treacherous going for any horse. The plains run north and south along a straggling line of hawthorns, and east toward a tall cairn of stones.",
+  "8110": "A broken cartwheel lies half sunk in the turf here, its spokes jutting up through the grass like the ribs of some long-dead beast. Thistles grow thick around it, purple-headed and humming with bees in the summer. The plains stretch away north and east, while beyond them the land falls into dense scrub that nobody has any reason to cross.",
+  "8114": "Here the ordinary plains give way to something vaster. West, the grass grows tall and unbroken, rippling away toward a horizon that never seems to come any nearer, and travellers call that country the Never Ending Plains. Few who enter it keep a straight course for long. East, friendlier grassland leads back toward the herders' skull post.",
+  "8117": "Grass taller than a man surrounds you on every side here, swaying in long, slow waves that hiss like surf on a beach. Every way looks the same, and walking west only seems to bring you back to this same trampled spot. Paths of a sort are pressed north and south through the stems, and east the grass thins toward the more ordinary plains.",
+  "8118": "The grass grows in great tussocks here, and between them the ground is soft and springy underfoot. Wander north or west and the plains only fold you back among the same tussocks and the same crushed stems. The way south seems the one sure path out. The wind has a voice in this place, a low and endless sigh.",
+  "8116": "The bleached bones of a horse lie in a hollow among the grass here, still half held together by dried sinew, with the rotted leather of a saddle beneath its ribs. Of its rider there is no sign at all. The grass runs north and south, and to the west it stretches on with a sameness that makes the eyes ache.",
+  "8115": "The sun-bleached wreck of a covered wagon lies on its side in the grass here, its canvas long gone and its iron hoops arching up like a row of empty doorways. Someone has scratched a tally of days into its tailboard, neat at first and then ragged, stopping at sixty-three. Trampled ways lead north and west through the grass.",
+  "8119": "The grass parts here around a shallow pool of brackish water, ringed by a crust of white salt and churned by the cloven prints of some heavy beast. The water tastes bitter, but it may be the only water for miles. The grass stretches on east and west, as endless as ever.",
+  "8120": "A wide swathe of grass has been trampled flat here, as though a great herd passed this way not long ago, and the earth is churned and pocked with heavy hoofprints. Flies drone over the drying dung. The trail of the herd runs north, the grass rises again to the east, and westward it closes into another dizzying sameness.",
+  "8121": "Wildflowers grow in a sudden blaze of colour here, blue cornflowers, yellow ragwort and the white lace of yarrow, so thick that the plain seems to have been painted. Their scent hangs heavy and sweet in the still air. The flowers run on north and south, but to the west the grass swallows them again.",
+  "8122": "A lone standing stone rises out of the grass here, twice the height of a man and leaning a little, its sides worn by the wind into soft ripples. Travellers lost on these plains often steer by it, only to find it behind them again an hour later. The grass runs north and south past its foot, and west it rolls on without a mark.",
+  "8123": "The plains lift into a broad, low dome here, and from its top the grass can be seen stretching away to a horizon as flat as a ruled line. Not a tree, not a roof, not a wisp of smoke breaks it anywhere. Northward the land only seems to repeat itself, but a way leads south toward a leaning stone and another west into deeper grass.",
+  "8127": "The wind blows steadily here and never seems to tire, combing the grass flat in long silver streaks. A ragged strip of red cloth is tied to a stake driven into the ground, a marker left by someone who hoped to find this place again. North, the grass closes back in on itself, while east and south it opens a little.",
+  "8126": "A deep hollow sinks into the plains here, sheltered from the wind, and at its bottom the grass grows thick and dark around a seep of muddy water. The air is close and heavy with the smell of wet earth. Ways climb out of the hollow north and south, and west the grass rolls on beyond its lip.",
+  "8125": "Grass and sky are all there is here, the one gold-green and endless, the other pale and empty. A faint trail, perhaps made by wandering beasts, bends through the stems from north to south, and another branches off west. Your own footprints vanish behind you almost as soon as you make them.",
+  "8124": "Something huge has slept here: the grass is crushed flat in a hollow the size of a cart, and the ground around it is littered with gnawed bones and the splintered staves of a wooden chest. The stink of sweat and old meat lingers in the air. A trampled way leads north, while west the grass only circles back upon itself.",
+  "8128": "A line of ancient paving stones breaks through the grass here, tilted and cracked, the first sign of some road older than any map. The turf rises and falls over them so that they appear and vanish again as you walk. The old stones lead west, and the grass runs back east into the plains.",
+  "8129": "The grass thins around the end of an old road here, whose broken paving heads off north between two toppled pillars of carved stone. South and west the plains swirl on in their endless sameness, but the road at least promises somewhere to go. East, the grass leads back toward the scattered paving stones.",
+  "8130": "The Ruined Road runs north here, its great paving slabs heaved and cracked by the roots of grass and thorn. Here and there a slab still bears the deep grooves of chariot wheels from some forgotten age, and low walls of tumbled stone line the way. South, the road fades out among the Never Ending Plains.",
+  "8131": "The road broadens as it runs north, and beside it stands the shell of a roadside shrine, a roofless box of fitted stone with an empty plinth inside. Thorn bushes have rooted in its corners, and the plinth is scored with the marks of tools, as though its figure was prised away. South, the road narrows back toward the plains.",
+  "8132": "Here the old road becomes a highway broad enough for four wagons abreast, raised on an embankment above the grass and edged with kerbs of dressed stone. Statues once lined it in pairs; now only their feet remain, standing on their plinths, enormous and sandalled. The highway runs north toward a distant shape of walls and towers, and south it narrows into the ruined road.",
+  "8133": "The highway narrows back into a ruined road as it climbs toward a great gate, whose twin towers loom just to the north. Rubble from fallen outworks lies scattered across the paving, half buried under grass and wild thyme. South, the broad highway runs back toward the plains, its line of empty plinths dwindling into the distance.",
+  "8134": "The Gate of Kashmir rises here, two massive towers of weathered yellow stone joined by an arch tall enough for a siege tower to pass beneath. Its bronze-sheathed doors stand shut and barred, green with age, and no sound comes from the city of Mishrak beyond them. The way east lies through those doors, but they will not open. South, the ruined road leads back toward the plains."
+ },
+ "extras": {
+  "9757": [
+   {
+    "keywords": "statue trader plinth bronze",
+    "description": "Letters cut into the plinth read PASOCAOA, WHO CAME WITH A MULE AND LEFT A STREET. Beneath them, in chalk and a much newer hand, someone has added AND A GREAT MANY DEBTS."
+   }
+  ],
+  "9763": [
+   {
+    "keywords": "notices board notice",
+    "description": "Most of the notices offer rewards for strayed mules or call for masons and carters. The newest, nailed over the rest, promises good silver to anyone who will carry a letter to Townsbridge and asks no questions. Across it someone has scrawled in charcoal: NOBODY LIVES THERE."
+   }
+  ],
+  "9714": [
+   {
+    "keywords": "pillar stone names leagues",
+    "description": "The pillar lists New Thalos, Port Halyon, Haon-Dor and the Dwarven Kingdom, each with a tally of leagues cut beside it. At the bottom a newer hand has carved TOWNSBRIDGE, and a later one has struck it through."
+   }
+  ],
+  "9766": [
+   {
+    "keywords": "panel carving tools",
+    "description": "The carving is crowded but skilful: awl and adze, needle and mallet, mash paddle, loupe and a dozen more, all bound together by a single carved rope. At the rope's end a smaller and less skilful hand has added a tiny tankard."
+   }
+  ],
+  "9792": [
+   {
+    "keywords": "arch crossbeam lettering",
+    "description": "The lower line plainly reads SHOKOGYA STREET. The upper line is written in a looping, hooked script that the old traders still use among themselves, and they will tell you, if asked, that it means something closer to the street where nobody goes hungry."
+   }
+  ],
+  "9750": [
+   {
+    "keywords": "chart long lake map",
+    "description": "The chart shows the Long Lake as a long blue finger among green woods, with the rangers' camp marked by a tiny tent on its shore. In the deepest water someone has painted a coiling serpent, more in jest than in warning, or so you hope."
+   }
+  ],
+  "9740": [
+   {
+    "keywords": "board rules lettered",
+    "description": "NO INK NEAR THE SCROLLS. NO FOOD. NO FIRE BUT THE LAMPS. NO SINGING, SHOUTING OR DUELLING. BOOKS LEAVE THIS ROOM BY NO MEANS WHATSOEVER, MAGICAL OR OTHERWISE. Someone has underlined the last rule twice."
+   }
+  ],
+  "8573": [
+   {
+    "keywords": "grille bars chain padlock slate",
+    "description": "The bars are old, but the chain is new and heavy, and its padlock is the size of a fist. A slate hangs from the grille with KEEP OUT scratched into it, and beneath, in smaller and shakier letters, someone has added THE DEAD ARE DIGGING."
+   }
+  ],
+  "8154": [
+   {
+    "keywords": "sheaf wheat carving helver",
+    "description": "The carving is plain country work, a sheaf bound with a carved cord and worn smooth where hands have touched it in passing. A long iron nail has been driven through its centre, hard and deliberate, pinning it to the wall."
+   }
+  ],
+  "15064": [
+   {
+    "keywords": "signpost sign board",
+    "description": "The board once read WELCOME TO TOWNSBRIDGE in cheerful green letters. Someone has gouged a line through the first word, and beneath it carved a long row of small crosses, too many to count at a glance."
+   }
+  ],
+  "203500": [
+   {
+    "keywords": "kerb kerbstone carving",
+    "description": "The kerbstones are carved with a running pattern of oak leaves, and the last of them bears a crown above the words HERE ENDS THE KING'S ROAD. Beneath, a traveller has scratched AND HERE BEGINS THE WALKING."
+   }
+  ],
+  "8103": [
+   {
+    "keywords": "marker stone notches",
+    "description": "The stone is cut with a simple picture of a cow and a row of notches, a drover's tally of the days left to market. The notches end at seven, and beside the seventh someone has carved a tiny smiling face."
+   }
+  ],
+  "8122": [
+   {
+    "keywords": "standing stone words",
+    "description": "Low on the stone, half hidden by grass, someone has cut the words I HAVE PASSED THIS STONE FOUR TIMES. Beneath them, in a different hand, is the single word FIVE."
+   }
+  ],
+  "8129": [
+   {
+    "keywords": "pillars toppled carved figures",
+    "description": "Both pillars lie on their sides, each carved with a band of marching figures in crested helmets and long cloaks. Their faces have been worn away by the wind, but their spears all point the same way, up the road."
+   }
+  ],
+  "8134": [
+   {
+    "keywords": "doors bronze gate",
+    "description": "The doors are sheathed in bronze plates, each embossed with a rayed sun, and they are barred from within. Long ago someone hammered on them hard enough to dent the metal, and no one ever answered."
+   }
+  ]
+ },
+ "creatures": [
+  {
+   "id": "lamplighter",
+   "keywords": "lamplighter old man",
+   "short_desc": "an old lamplighter",
+   "long_desc": "An old lamplighter shuffles along beneath the lantern hooks, a long brass-tipped pole over his shoulder.",
+   "description": "A stooped old man in a soot-streaked coat, with a long pole for reaching the street lamps balanced over one shoulder and a hooded brass lantern swinging from his belt. He seems to know every lamp in the outer town by name and murmurs to each one as he passes. His fingers are black with lamp oil, and his eyes are mild and kind.",
+   "kind": "humanoid",
+   "level": 4,
+   "aggressive": false,
+   "alignment": 350,
+   "rooms": [
+    "Danozi Avenue",
+    "Pasocaoa Boulevard",
+    "Stonewalk Way",
+    "Shokogya Street"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "lamplighter-lantern",
+     "chance": 30
+    }
+   ]
+  },
+  {
+   "id": "feral-hound",
+   "keywords": "hound dog feral wild",
+   "short_desc": "a feral hound",
+   "long_desc": "A feral hound slinks through the grass, ribs showing and lips curled back from yellow teeth.",
+   "description": "Once this was somebody's dog, a big rough-coated farm hound with a brindled hide and a worn leather collar still buckled about its neck. Years of running wild since its village emptied have made it gaunt and savage. It watches you with the flat, measuring stare of a beast that has learned to hunt in a pack.",
+   "kind": "animal",
+   "level": 7,
+   "aggressive": true,
+   "alignment": 0,
+   "rooms": [
+    "The Plains",
+    "End Of The King's Road"
+   ],
+   "count": 4,
+   "drops": [
+    {
+     "item": "hound-collar",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "ghoul",
+   "keywords": "ghoul gaunt corpse undead",
+   "short_desc": "a gaunt ghoul",
+   "long_desc": "A gaunt ghoul crouches low here, gnawing at something it will not let you see.",
+   "description": "It may once have been a man of Townsbridge, but its grey skin has shrunk tight over its bones and its nails have grown into thick, filthy claws. Its eyes are white and filmed, yet it turns unerringly toward the warmth of the living. The rags of a farmer's smock still hang from its shoulders, stiff with earth from the grave pit.",
+   "kind": "undead",
+   "level": 15,
+   "aggressive": true,
+   "alignment": -700,
+   "rooms": [
+    "The Plains"
+   ],
+   "count": 3,
+   "drops": [
+    {
+     "item": "villager-locket",
+     "chance": 20
+    }
+   ]
+  },
+  {
+   "id": "aurochs",
+   "keywords": "aurochs bull wild ox",
+   "short_desc": "a shaggy aurochs bull",
+   "long_desc": "A shaggy aurochs bull grazes in the tall grass, lifting its great horned head to watch you.",
+   "description": "The aurochs stands taller at the shoulder than a man, a mountain of muscle under a coat of dark brown hair with a pale stripe running down its spine. Its horns sweep forward and up in two pale curves, sharp enough to toss a horse. It is no hunter, but it will not suffer anyone to come too close.",
+   "kind": "animal",
+   "level": 20,
+   "aggressive": false,
+   "alignment": 0,
+   "rooms": [
+    "The Never Ending Plains"
+   ],
+   "count": 2
+  },
+  {
+   "id": "plains-ogre",
+   "keywords": "ogre wandering brute giant",
+   "short_desc": "a wandering ogre",
+   "long_desc": "A wandering ogre lumbers through the grass, dragging a club made from a cart axle behind it.",
+   "description": "The ogre stands half again as tall as a man, with a slab of a face, a jutting underbite and a belly sagging over a belt of knotted rope. It is draped in a patchwork of travellers' cloaks crudely stitched together, and a string of mismatched boots hangs about its neck, trophies of those who lost their way on the plains. It sniffs the wind constantly, like a hound casting for a scent.",
+   "kind": "monster",
+   "level": 26,
+   "aggressive": true,
+   "alignment": -500,
+   "rooms": [
+    "The Never Ending Plains",
+    "The Ruined Road"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "axle-club",
+     "chance": 25
+    }
+   ]
+  },
+  {
+   "id": "road-wraith",
+   "keywords": "wraith ghost warden grey spectre",
+   "short_desc": "a grey road wraith",
+   "long_desc": "A grey wraith in the shape of a helmeted warden drifts along the old road, one hand held out as if demanding a toll.",
+   "description": "Through its tattered grey substance you can see the paving behind it, yet its shape is clear enough: a soldier in a crested helm and a long cloak, a spear in one hand and the other held out palm upward. Its face is a pale smudge with two cold points of light for eyes. Wardens kept this highway long ago, and it seems that some of them never left their posts.",
+   "kind": "undead",
+   "level": 29,
+   "aggressive": true,
+   "alignment": -800,
+   "rooms": [
+    "The Ruined Road",
+    "The Ruined Highway",
+    "Outside the Gate of Kashmir"
+   ],
+   "count": 2,
+   "drops": [
+    {
+     "item": "warden-ring",
+     "chance": 20
+    }
+   ]
+  }
+ ],
+ "items": [
+  {
+   "id": "lamplighter-lantern",
+   "keywords": "lantern hooded brass",
+   "short_desc": "a hooded brass lantern",
+   "room_desc": "A hooded brass lantern sits here, its little door latched shut.",
+   "description": "A sturdy lantern of soot-darkened brass with a hinged hood that can be lowered to hide its light, and a ring on top for hanging from a pole or a belt. The glass is thick and faintly green, and the wick has been trimmed with care.",
+   "kind": "light",
+   "level": 4
+  },
+  {
+   "id": "hound-collar",
+   "keywords": "collar dog studded leather brass",
+   "short_desc": "a brass-studded dog collar",
+   "room_desc": "A worn leather dog collar studded with brass lies here.",
+   "description": "A broad collar of thick leather, cracked with age and studded with little brass bosses. A small plate riveted to it is stamped with the name of a village, TOWNSBRIDGE, though the dog's own name has long since worn away. A collector of curios might pay a few coins for it.",
+   "kind": "treasure",
+   "level": 7
+  },
+  {
+   "id": "villager-locket",
+   "keywords": "locket silver tarnished chain",
+   "short_desc": "a tarnished silver locket",
+   "room_desc": "A tarnished silver locket on a fine chain lies here.",
+   "description": "A small oval locket of silver gone black with tarnish, hung on a fine chain. Inside is a curl of fair hair tied with red thread, and the lid is engraved with two sets of initials joined by a heart. Wearing it brings an odd, quiet steadiness, as though someone were glad to see it carried into the light again.",
+   "kind": "armor",
+   "level": 15,
+   "wear_slot": "neck",
+   "bonus": {
+    "wis": 1
+   }
+  },
+  {
+   "id": "axle-club",
+   "keywords": "club axle cart heavy",
+   "short_desc": "a club made from a cart axle",
+   "room_desc": "A massive club made from a broken cart axle lies here.",
+   "description": "Someone strong beyond reason has snapped the axle from a heavy wagon and wrapped one end in rawhide for a grip, leaving the iron hub on the other end as a striking head. It is crude, ungainly and brutally effective.",
+   "kind": "weapon",
+   "level": 26,
+   "weapon_type": "pound",
+   "bonus": {
+    "damroll": 1
+   }
+  },
+  {
+   "id": "warden-ring",
+   "keywords": "ring signet bronze warden",
+   "short_desc": "a road warden's bronze signet",
+   "room_desc": "A heavy signet ring of greenish bronze lies here.",
+   "description": "A heavy ring of bronze, green with age, its flat face cut with the sign of a road running between two towers. It is cold to the touch and never quite warms, however long it is worn. The wardens who kept the old highway are said to have worn such rings as their badge of office.",
+   "kind": "armor",
+   "level": 28,
+   "wear_slot": "finger",
+   "bonus": {
+    "hitroll": 1
+   }
+  }
+ ]
+}
