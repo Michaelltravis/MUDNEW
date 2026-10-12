@@ -25,6 +25,7 @@
 //           short description and room line).
 //   gear: two browsers (Gauntlet, Gauntletb) in the temple: each hero wears its own look; when
 //           Gauntlet wields a greatblade, Gauntletb sees it re-dressed within seconds.
+//   looks: a cave, a sewer, a desert and a crawlway under Moria draw as what they are (room_looks.py).
 //   abilityfx: in the crypt with a spectre, a few of the character's own abilities each start
 //           their own recipe on the key press (abilityfx.js) and the server's event plays the
 //           rest (what flies, lands, lingers), with no page errors.
@@ -488,6 +489,19 @@ async function waitFor(page, fn, arg, secs = 60) {
     check(await waitFor(page, () => MH3D.heroRoom() && MH3D.heroRoom().vnum === 18600 && !MH3D.hop(), null, 90),
       'east from the Great Field walks into the Newbie Zone');
     await page.screenshot({ path: path.join(OUT, 'atlas-newbie.png') });
+    check(errors.length === 0, `no page errors (${errors.slice(0, 2).join(' | ')})`);
+  }
+
+  if (MODE === 'looks') {
+    // rooms look like what they say (room_looks.py): a cave typed 'inside' draws as a cave, a
+    // sewer typed 'mountain' as a sewer, a desert typed 'field' as desert
+    for (const [v, want] of [[4469, 'cave'], [7001, 'sewer'], [5300, 'desert'], [20508, 'cave']]) {
+      const ok = await goto(v);
+      await sleep(2500);
+      const got = await page.evaluate(() => { const r = MH3D.heroRoom(); const L = MH3D.zone().layoutOf(r); return { name: r.name, look: r.data.look, theme: L.theme }; });
+      check(ok && got.look === want && got.theme === want, `${got.name} (${v}) draws as ${want} (look ${got.look}, theme ${got.theme})`);
+      await page.screenshot({ path: path.join(OUT, `looks-${v}.png`) });
+    }
     check(errors.length === 0, `no page errors (${errors.slice(0, 2).join(' | ')})`);
   }
 

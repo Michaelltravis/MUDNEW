@@ -79,6 +79,12 @@ STYLE = """\
 - **The terrain decides the scene.** Outdoors: sky, weather, ground, plants. Inside: walls,
   light, furnishings, no sky. Caves and tunnels: dark, no sky. Water rooms: you are afloat (in a
   boat or on a raft), so describe the water, the swell, the shore or the ice around you.
+- **Say what a room looks like when it isn't plain.** The 3D client draws a room by its look
+  (src/room_looks.py). When a room is a cave, mine, crypt, sewer, dungeon, desert, snow, shore,
+  volcanic ground or swamp, give it that look: write the room as
+  `{"description": "...", "look": "cave"}` instead of a bare string. Let the text agree (a cave
+  room's words speak of rock, not walls and furniture); the world check fails a room whose
+  name says one thing and its look another.
 - **No creatures and no loose items in the text** (they come and go); fixed scenery is fine
   (a milestone, a well, a statue, a signpost, a wrecked cart).
 - **Names**: the city is Garathorm (never Midgaard); keep every place name exactly as given.
@@ -137,7 +143,7 @@ OUTPUT = """\
 Write one JSON file, `{out}` (UTF-8, valid JSON: escape double quotes inside text as \\"):
 ```json
 {{"job": "{job}",
- "rooms": {{"<vnum>": "The description, as one paragraph.", "...": "..."}},
+ "rooms": {{"<vnum>": "The description, as one paragraph.", "<vnum>": {{"description": "...", "look": "cave"}}}},
  "extras": {{"<vnum>": [{{"keywords": "waymark stone", "description": "..."}}]}}{design}}}
 ```
 Every one of your {n} rooms must be in `rooms`, keyed by its vnum.

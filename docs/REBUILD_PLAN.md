@@ -1657,3 +1657,55 @@ Owner: "Make gear procs and set bonuses work too", and "load XTC with gear so I 
 - **Balance:** `tools/balance/bosses.py` reads the same before and after (median worst 49%,
   25 deaths in 180). Its heroes wear ordinary gear, and creatures' gear doesn't proc.
   `tests/test_procs.py` covers each kind.
+
+### Rooms look like what they say they are (Push 33)
+Owner: "some of the rooms in the game need to be styled like the description. For instance if it
+says a cave, the room should look like a cave. Let's think how to fix this going forward."
+
+- **The problem:** the 3D client styled a room by its `sector` alone, and the sectors were wrong
+  for whole kinds of place, in the atlas source too:
+  - 340 of 342 rooms named as caves were typed `inside`, so they drew as tiled halls (with
+    invisible walls where roomgen's cavern rubble lay);
+  - every desert room was typed `field`;
+  - 52 of 54 sewer rooms were typed `mountain` or `hills`.
+- **A look per room** (`src/room_looks.py`), worked out at load. It is apart from the sector,
+  which still decides movement, water and darkness. The first rule that answers wins:
+  1. a look the zone data states (the build-out writes one) or `world/looks.json` (hand
+     overrides by room or zone, each with its reason);
+  2. the room's name (an ordered word table);
+  3. its description (two mentions, or one telling phrase);
+  4. the zone's default in looks.json;
+  5. its neighbours, a few steps within the zone. Underground looks spread only through
+     enclosed rooms that don't read as a building's (a tavern, a kitchen); outdoor looks only
+     through open country;
+  6. a plainly underground zone (a third of its enclosed rooms already underground) gives its
+     look to the rest.
+- **Today:** 1,076 rooms are caves, 303 mines, 299 crypts, 106 sewers and 95 dungeons, with 57
+  desert, 265 snow, 81 shore, 67 volcanic and 27 swamp. The rest keep their sector.
+  - Below Moria and the Castle Catacombs are set by zone in looks.json.
+  - The look rides beside `sector` in the zone map, atlas and room payloads.
+- **The 3D client draws each** (`world3d/terrain-looks.js`, `terrain.js`):
+  - **caves:** rock for walls (a darkened boulder pile on every wall and rubble cell),
+    stalagmites at the rock's foot, a fringe of stalactites, glowing crystals and mushrooms, a few
+    torches;
+  - **mines:** the same rock, with timber frames, rails on sleepers, lanterns, crates and ore
+    glints;
+  - **crypts:** coffins, bones, skull-candles and cobwebs;
+  - **sewers:** a channel of foul water with rims and pipes;
+  - **dungeons:** broken walls and rubble;
+  - **outdoors:** desert (sand, cacti, bleached bones), snow (white ground, frosted pines, ice),
+    shore (a waterline and driftwood), volcanic (ash, jagged lava cracks, scorched trees) and
+    swamp pools.
+  - **Moods** (`engine.js`): cave, desert, snow and volcanic, plus footsteps, ambience, music and
+    minimap colours by look.
+  - `/play?demo&gallery=rooms` shows one room of each look.
+- **Keeping it true:**
+  - `tests/test_room_looks.py` (the world check): every room looks like what its name says
+    unless pinned, stated looks never contradict names, overrides are valid, plus known rooms
+    and the counts.
+  - `tests/web/roomlooks.test.mjs`: every look lays out rooms you can walk through, and has its
+    theme, mood and sounds.
+  - The build-out's briefs ask writers for `{"description": ..., "look": "cave"}`, and
+    `buildout.py` validates and merges it.
+  - The browser probe's `looks` mode walks into a cave, a sewer, a desert and a crawlway.
+- **To change a room's look:** add it to `world/looks.json` (`rooms` or `zones`, with a `_why`).

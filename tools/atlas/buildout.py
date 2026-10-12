@@ -25,6 +25,8 @@ import textwrap
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import briefs  # noqa: E402
+sys.path.insert(0, os.path.join(HERE, '..', '..', 'src'))
+import room_looks  # noqa: E402
 
 ROOT = briefs.ROOT
 PARTS = os.path.join(ROOT, 'world', 'buildout', 'parts')
@@ -118,6 +120,14 @@ def check(path, world=None, quiet=False):
         if not k.isdigit() or int(k) not in w.rooms:
             continue
         v, room = int(k), w.rooms[int(k)]
+        if isinstance(text, dict):              # {"description": ..., "look": ...}
+            look = text.get('look')
+            if look and look not in room_looks.LOOKS:
+                probs.append(f'{v}: unknown look {look!r} (one of {", ".join(room_looks.LOOKS)})')
+            named = room_looks.words_look(room.get('name'))
+            if look and named and named != look:
+                probs.append(f'{v} {room.get("name")}: its name says {named}, its look says {look}')
+            text = text.get('description') or ''
         if not isinstance(text, str) or not text.strip():
             probs.append(f'{v}: empty')
             continue
@@ -345,6 +355,12 @@ def apply(new_zones, new_rooms, write=False):
             r = new_rooms.get(int(k))
             if r is None:
                 continue
+            # a room may say how it looks in 3D: {"description": ..., "look": "cave"} (room_looks.py)
+            if isinstance(text, dict):
+                if text.get('look'):
+                    r['look'] = text['look']
+                    summary['looks stated'] += 1
+                text = text.get('description') or ''
             r['description'] = textwrap.fill(' '.join(text.split()), 72)
             r.pop('placeholder', None)
             # what was looked at in the old text goes with it (the writer's own extras follow)
