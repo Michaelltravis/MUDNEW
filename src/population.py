@@ -6,6 +6,9 @@ after the zone files and before the first reset, so a rebuild of world/zones kee
                                                     # spawn here, and only here; fight mechanics
      "doors":  [{"room": 14150, "dir": "south", "key": 22051, "name": "inner gate"}]}   # locked to a key
 
+Also "creatures" (prototypes by vnum: rank regular/elite/sub-boss, helpers {group, rooms, count}),
+"spawns" [{vnum, rooms, max}] and "patrols" [{vnum, route}] (mobs.patrol_ai; allies.py).
+
 A boss placed here spawns in its room and nowhere else in the world (its other resets go). A door
 listed is closed and locked, opened by the key named (doors.py key_vnum).
 """
@@ -34,6 +37,33 @@ def apply(world, data=None) -> list:
     """Place the bosses and lock the doors; returns what could not be done."""
     problems = []
     for z, d in (data if data is not None else load()).items():
+        # the zone's own creatures (prototypes: a rebuild of world/zones keeps them)
+        for v, proto in (d.get('creatures') or {}).items():
+            p = dict(proto)
+            p['vnum'] = int(v)
+            p.setdefault('max_hp', p.get('hp', 1000))
+            world.mob_prototypes[int(v)] = p
+        # where they live: each room named gets one (max per room)
+        for sp in d.get('spawns') or []:
+            vnum = int(sp['vnum'])
+            if vnum not in world.mob_prototypes:
+                problems.append(f"zone {z}: no creature {vnum}")
+                continue
+            for rv in sp.get('rooms') or []:
+                room = world.rooms.get(int(rv))
+                if room is None:
+                    problems.append(f"zone {z}: no room {rv} for {vnum}")
+                    continue
+                room.mob_resets.append({'vnum': vnum, 'max': int(sp.get('max', 1))})
+        # patrols: start at the route's first room and walk it (mobs.patrol_ai)
+        for pt in d.get('patrols') or []:
+            vnum, route = int(pt['vnum']), [int(r) for r in pt.get('route') or []]
+            bad = [r for r in route if r not in world.rooms]
+            if vnum not in world.mob_prototypes or not route or bad:
+                problems.append(f"zone {z}: patrol {vnum} route {bad or route}")
+                continue
+            world.mob_prototypes[vnum] = dict(world.mob_prototypes[vnum], patrol_route=route)
+            world.rooms[route[0]].mob_resets.append({'vnum': vnum, 'max': 1})
         for b in d.get('bosses') or []:
             vnum, room = int(b['vnum']), world.rooms.get(int(b['room']))
             if room is None or vnum not in world.mob_prototypes:

@@ -407,6 +407,13 @@ class CombatHandler:
             return
         if not attacker or attacker.hp <= 0:
             return
+        # a creature with helpers (population.py) calls them when a player attacks it
+        if getattr(defender, 'helpers', None) and hasattr(attacker, 'connection') and not getattr(defender, 'fighting', None):
+            try:
+                import allies
+                await allies.rally(defender, attacker)
+            except Exception:
+                logger.debug('rally failed', exc_info=True)
 
         # Auto-dismount non-combat mounts
         for combatant in (attacker, defender):

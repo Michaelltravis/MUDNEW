@@ -190,6 +190,8 @@ export class Entities {
     e.plate.querySelector('.nm').textContent = w.data.name;
     if (w.kind === 'mob' && w.data.level) e.plate.querySelector('.lv').textContent = w.data.level;
     if (w.data.boss) e.plate.classList.add('boss');
+    // an elite (silver) or a sub-boss (gold): a zone's ranks (population.py)
+    if (!w.data.boss && (w.data.rank === 'elite' || w.data.rank === 'sub-boss')) e.plate.classList.add(w.data.rank === 'elite' ? 'elite' : 'subboss');
     this.plates.appendChild(e.plate);
     // another player is dressed in what they wear (equip.js); a creature gets its body from
     // looks.js, and a person their zone gave gear to wears it as a player would

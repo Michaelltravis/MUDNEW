@@ -175,6 +175,10 @@ class Mobile(Character):
         mob.short_desc = proto.get('short_desc', mob.name)
         mob.long_desc = proto.get('long_desc', f"{mob.name} is here.")
         mob.description = proto.get('description', '')
+        # a zone's population (population.py): its rank, the route it walks, who it calls when hit
+        mob.rank = proto.get('rank')
+        mob.patrol_route = list(proto.get('patrol_route') or []) or None
+        mob.helpers = proto.get('helpers')
 
         # Generate keywords from name, short_desc, and long_desc for better targeting
         # Remove common articles/verbs and split into words
@@ -542,6 +546,11 @@ class Mobile(Character):
         # Hostile faction attack on sight
         if await self.faction_aggressive_ai():
             return
+
+        # a patrol walks its route, room by room, a step every few seconds (population.py)
+        if getattr(self, 'patrol_route', None) and not self.fighting:
+            if await self.patrol_ai():
+                return
 
         # Random chance to act each tick (2% = ~0.2 actions/sec at 10 tps)
         if random.randint(1, 100) > 2:
@@ -1036,6 +1045,41 @@ class Mobile(Character):
         opposite = self.config.DIRECTIONS.get(direction, {}).get('opposite', 'somewhere')
         await target_room.send_to_room(f"{self.name} arrives from the {opposite}.")
         await self._notify_move(old_room, target_room, direction, opposite)
+
+    async def patrol_ai(self) -> bool:
+        """Step to the next room of the patrol route (there and back along it); True if it moved."""
+        import time as _t
+        now = _t.time()
+        if now < getattr(self, '_patrol_next', 0):
+            return False
+        self._patrol_next = now + random.uniform(6, 10)
+        route = self.patrol_route
+        here = getattr(self.room, 'vnum', None)
+        if here not in route:
+            return False
+        i = route.index(here)
+        step = getattr(self, '_patrol_dir', 1)
+        if not 0 <= i + step < len(route):
+            step = -step
+        self._patrol_dir = step
+        to = route[i + step]
+        for direction, ex in (self.room.exits or {}).items():
+            target = ex.get('room') if isinstance(ex, dict) else None
+            if target is None or target.vnum != to:
+                continue
+            door = ex.get('door')
+            if isinstance(door, dict) and door.get('state') == 'closed':
+                return False
+            old = self.room
+            await old.send_to_room(f"{self.name} marches {direction}.")
+            old.characters.remove(self)
+            self.room = target
+            target.characters.append(self)
+            opposite = self.config.DIRECTIONS.get(direction, {}).get('opposite', 'somewhere')
+            await target.send_to_room(f"{self.name} marches in from the {opposite}.")
+            await self._notify_move(old, target, direction, opposite)
+            return True
+        return False
 
     async def _notify_move(self, old_room, new_room, direction, opposite):
         """Tell graphical clients in both rooms: live roster + travel arrows.

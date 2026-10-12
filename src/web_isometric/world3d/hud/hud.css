@@ -39,6 +39,11 @@ button { font: inherit; color: inherit; }
 .plate.pl .nm { color: var(--ally); }
 .plate.boss .nm { font-size: calc(15px * var(--ui)); }
 .plate.boss .nm::before { content: '♛ '; color: var(--gold-hi); }
+.plate.elite .nm::before { content: '◆ '; color: #d8e0ea; }
+.plate.elite .hp, .plate.subboss .hp { display: block; }
+.plate.elite .hp { box-shadow: 0 0 0 1px #000, 0 0 0 2px rgba(200,210,225,.75); }
+.plate.subboss .nm::before { content: '❖ '; color: var(--gold); }
+.plate.subboss .hp { width: calc(90px * var(--ui)); box-shadow: 0 0 0 1px #000, 0 0 0 2px rgba(216,180,106,.6); }
 .plate.boss .hp { width: calc(110px * var(--ui)); height: calc(8px * var(--ui)); box-shadow: 0 0 0 1px #000, 0 0 0 2px rgba(216,180,106,.8), 0 0 10px rgba(243,210,140,.35); }
 /* your target: gold chevrons on either side, breathing */
 .plate.targeted .row::before, .plate.targeted .row::after { font: 900 calc(14px * var(--ui)) var(--body); color: var(--gold-hi);

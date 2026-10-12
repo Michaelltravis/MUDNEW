@@ -199,6 +199,19 @@ async function waitFor(page, fn, arg, secs = 60) {
     await page.evaluate(me => MH.sendCommand(`restore ${me}`, false), me);
   }
 
+  if (MODE === 'castlelife') {
+    // the castle is alive: the Bone Marshal (a sub-boss) at the junction, sentries in the halls
+    check(await goto(14139), 'at the Junction of the Inner Halls (14139)');
+    await sleep(3000);
+    const plates = await page.evaluate(() => [...document.querySelectorAll('.plate')].map(p => [p.className, p.querySelector('.nm').textContent]));
+    console.log(JSON.stringify(plates));
+    check(plates.some(([c, n]) => /subboss/.test(c) && /Bone Marshal/i.test(n)), 'the Bone Marshal wears a sub-boss plate');
+    await page.screenshot({ path: path.join(OUT, 'castle-marshal.png') });
+    check(await goto(14104), 'in the halls along the inner wall');
+    await sleep(3000);
+    await page.screenshot({ path: path.join(OUT, 'castle-halls.png') });
+  }
+
   if (MODE === 'horsemen') {
     // the castle's bosses fight with their rooms: Pestilence's plague pools on the ground, Death's gloom
     const me = CFG.character.name.toLowerCase();

@@ -555,7 +555,7 @@ export function createHud() {
     els.tf.className = `hud panel ornate ${kind} con-${con.key}${t.boss ? ' boss' : ''}`;
     els.tf.querySelector('.tname').textContent = t.name;
     els.tf.querySelector('.lvl').textContent = t.kind === 'player' ? (t.level || '') : (t.level || '?');
-    const role = t.shopkeeper ? ' · shopkeeper' : t.trainer ? ' · trainer' : t.boss ? ' · boss' : '';
+    const role = t.shopkeeper ? ' · shopkeeper' : t.trainer ? ' · trainer' : t.boss ? ' · boss' : t.rank === 'sub-boss' ? ' · sub-boss' : t.rank === 'elite' ? ' · elite' : '';
     els.tf.querySelector('.tsub').textContent = `${t.kind === 'player' ? `Level ${t.level || '?'} ${t.char_class || ''}` : `Level ${t.level || '?'} · ${con.label}`}${role}`;
     vbar(els.tf.querySelector('.vbar.hp'), t.maxHp ? t.hp : 1, t.maxHp || 1);
     if (!t.maxHp) els.tf.querySelector('.vbar.hp span').textContent = '';
