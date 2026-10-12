@@ -613,6 +613,10 @@ def item_info(item):
     }
     if getattr(item, 'fixed', False):
         info['fixed'] = True      # a fixture: part of the room, not loot
+    # a corpse shows what it holds, so the 3D client's loot window can list it
+    if itype == 'container' and str(info['name']).lower().startswith('corpse of'):
+        info['contents'] = [item_info(it) for it in (getattr(item, 'contents', None) or [])[:30]]
+        info['gold'] = int(getattr(item, 'gold', 0) or 0)
     if itype in ('weapon', 'armor', 'worn') or getattr(item, 'wear_slot', None):
         # the item's level (from the creatures that carry it) and how fine it looks (gear_look.py)
         try:

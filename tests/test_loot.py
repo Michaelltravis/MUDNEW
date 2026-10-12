@@ -79,6 +79,25 @@ async def main():
     check(any(len(worn & set(s['pieces'])) == len(s['pieces']) for s in NAMED_SETS.values()), 'gearup puts on a whole named set')
     check(getattr(hero.equipment.get('wield'), 'rarity', '') == 'legendary', 'gearup puts a legendary in the hand')
     check(hero.mount is not None and hero.gold >= 50000, 'gearup gives gold and a mount, ridden')
+
+    # ---- a corpse shows what it holds (the 3D loot window), and each thing can be taken
+    from combat import CombatHandler
+    from map_system import item_info
+    room = hero.room
+    victim = create_mob_from_prototype(dict(carrier), world)
+    victim.room = room
+    room.characters.append(victim)
+    victim.hp = 0
+    hero.autoloot = hero.autoloot_gold = hero.autogold = False
+    await CombatHandler.handle_death(hero, victim)
+    corpse = next((o for o in room.items if str(o.name).startswith('corpse of')), None)
+    info = item_info(corpse) if corpse else {}
+    check(corpse is not None and len(info.get('contents', [])) == len(corpse.contents) > 0,
+          f"a corpse sends what it holds to the loot window ({len(info.get('contents', []))} things)")
+    first = corpse.contents[0]
+    word = next(w for w in str(first.name).lower().split() if len(w) > 1)
+    await CommandHandler.cmd_get(hero, [word, 'from', 'corpse'])
+    check(first in hero.inventory and first not in corpse.contents, 'the window takes one thing with `get <it> from corpse`')
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
     sys.exit(1 if failures else 0)
 

@@ -46,7 +46,7 @@ function actionsFor(item, worn) {
   return a;
 }
 
-function tooltip(item) {
+export function tooltip(item) {
   const r = item.set_id ? 'set' : (item.rarity || 'common');
   const rows = [];
   rows.push(`<div class="tt-name" style="color:${RARITY[r] || RARITY.common}">${esc(item.short || item.name)}</div>`);

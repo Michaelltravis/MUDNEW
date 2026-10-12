@@ -11,6 +11,7 @@ import { createParty } from './party.js';
 import { createQuest } from './quest.js';
 import { createJournal } from './journal.js';
 import { createShop } from './shop.js';
+import { createLootWindow } from './lootwin.js';
 import { createTalk } from './talk.js';
 import { createWho, hereRows } from './who.js';
 import { createHelp } from './help.js';
@@ -76,6 +77,8 @@ export function createHud() {
     fetchShop: kw => getJSON(`/shop?player=${encodeURIComponent(me())}&keeper=${encodeURIComponent(kw || '')}`),
     send: c => MH.sendCommand(c), icon: itemCanvas, sound,
   });
+  // a corpse's loot window (lootwin.js): main.js opens it when the hero reaches a corpse
+  const lootwin = createLootWindow($('#lootwin'), { send: c => { MH.sendCommand(c); setTimeout(() => MH.refreshState && MH.refreshState(), 400); }, icon: itemCanvas, sound, toast: t => toast(t) });
   const talk = createTalk($('#talk'), {
     send: c => MH.sendCommand(c), sound,
     listen: fn => { const h = ({ text }) => fn(text || ''); MH.bus.on('terminal.output', h); return () => MH.bus.off('terminal.output', h); },
@@ -762,7 +765,7 @@ export function createHud() {
   // a window sounds as it opens and closes, however it was opened (a key, a button, a link)
   const WINDOW_SOUNDS = { inventory: ['bag_open', 'ui_close'], character: ['cloth', 'ui_close'], spellbook: ['book_open', 'book_close'],
     journal: ['book_open', 'book_close'], trainer: ['book_flip', 'ui_close'], settings: ['ui_open', 'ui_close'], bigmap: ['ui_open', 'ui_close'],
-    shop: ['coins', 'ui_close'], talk: ['ui_offer', 'ui_close'], who: ['ui_open', 'ui_close'], help: ['book_open', 'book_close'],
+    shop: ['coins', 'ui_close'], lootwin: ['leather', 'ui_close'], talk: ['ui_offer', 'ui_close'], who: ['ui_open', 'ui_close'], help: ['book_open', 'book_close'],
     talents: ['book_open', 'book_close'], almanac: ['book_open', 'book_close'], travel: ['ui_open', 'ui_close'], stable: ['leather', 'ui_close'],
     services: ['coins', 'ui_close'], legend: ['book_open', 'book_close'] };
   for (const [id, [on, off]] of Object.entries(WINDOW_SOUNDS)) {
@@ -796,10 +799,10 @@ export function createHud() {
     if (k === 'Escape') {
       const mapOpen = !$('#bigmap').classList.contains('hidden');
       const progOpen = Object.values(PROGRESS).some(w => w.open);
-      if (inventory.open || character.open || spellbook.open || trainer.open || journal.open || mapOpen || shop.open || talk.open || who.open || help.open || progOpen) {
+      if (inventory.open || character.open || spellbook.open || trainer.open || journal.open || mapOpen || shop.open || lootwin.open || talk.open || who.open || help.open || progOpen) {
         for (const w of Object.values(PROGRESS)) w.toggle(false);
         inventory.toggle(false); character.toggle(false); spellbook.toggle(false); trainer.toggle(false); journal.toggle(false);
-        shop.toggle(false); talk.toggle(false); who.toggle(false); help.toggle(false);
+        shop.toggle(false); lootwin.toggle(false); talk.toggle(false); who.toggle(false); help.toggle(false);
         MH.bus.emit('hud.map', false); return;
       }
       MH.bus.emit('hud.untarget'); els.settings.classList.add('hidden'); return;
@@ -852,6 +855,6 @@ export function createHud() {
   // whisper someone: the chat input set to tell them
   function whisper(name) { tellFrom = name; setMode('tell'); els.input.focus(); }
 
-  return { showGame, setPlayer, setTarget, targetCast, moment, fallen, suggestStrike, setRanges, setDistance, banner, toast, log, targetSkills, useAbility, prefill, openPanel, openTrainer, openShop, openTalk, giveTo, flashSlot,
+  return { showGame, setPlayer, setTarget, targetCast, moment, fallen, suggestStrike, setRanges, setDistance, banner, toast, log, targetSkills, useAbility, prefill, openPanel, openTrainer, openShop, openTalk, lootwin, giveTo, flashSlot,
     spellbook, unslot, party, quest, whisper, get player() { return st.player; }, get bar() { return st.bar.slice(); } };
 }

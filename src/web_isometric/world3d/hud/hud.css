@@ -674,6 +674,13 @@ html.fallen #vignette { background: radial-gradient(ellipse at 50% 46%, rgba(30,
 /* ---- everyday windows (Push 16): shop, talk, who, help; the wind-up prompt ---- */
 #shop, #talk, #who, #help { left: 50%; top: 50%; transform: translate(-50%, -55%) scale(var(--ui)); z-index: 16; animation: fadein .2s ease-out; }
 #shop { width: 500px; }
+#lootwin { left: 50%; top: 50%; transform: translate(-50%, -55%) scale(var(--ui)); z-index: 16; animation: fadein .2s ease-out; width: 380px; }
+#lootwin .lw-body { max-height: 52vh; overflow-y: auto; padding-right: 4px; }
+.lw-list { display: flex; flex-direction: column; gap: 6px; }
+.lw-row { cursor: default; }
+.lw-gold { display: flex; align-items: center; justify-content: center; font-size: 22px; color: var(--gold-hi); background: rgba(232,192,80,.12); }
+.lw-foot { display: flex; justify-content: flex-end; padding-top: 10px; }
+@media (max-width: 560px) { #lootwin { width: calc(100vw - 32px); } }
 #talk { width: 480px; }
 #who { width: 470px; }
 #help { width: 520px; }

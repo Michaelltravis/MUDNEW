@@ -1,3 +1,5 @@
+import { keywordFor } from './hud/shop.js';
+
 // Ground items in the map payload, and the words the MUD's `get` finds them by. Pure (no
 // three.js): tested in Node; loot.js draws them.
 
@@ -29,4 +31,14 @@ export function groundItems(payload) {
     }
   }
   return out;
+}
+
+// the rows of a corpse's window: its gold, then each thing in it, with the command that takes it
+export function lootRows(corpse, corpseKw) {
+  const rows = [];
+  const from = `from ${corpseKw || 'corpse'}`;
+  if (corpse && corpse.gold > 0) rows.push({ gold: corpse.gold, cmd: `get gold ${from}` });
+  const list = (corpse && corpse.contents) || [];
+  for (const it of list) rows.push({ item: it, cmd: `get ${keywordFor(it, list)} ${from}` });
+  return rows;
 }

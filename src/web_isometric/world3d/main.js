@@ -31,6 +31,7 @@ import { ActionClock } from './actionclock.js';
 import { musicFor, bedFor, surfaceFor } from './soundtable.js';
 import { interiorKind } from './terrain-town.js';
 import { GroundLoot } from './loot.js';
+import { groundItems } from './lootlogic.js';
 import { ReactionPrompt, threatens, REACTIONS } from './reactions.js';
 import { createWorldMap } from './hud/worldmap.js';
 
@@ -265,7 +266,7 @@ async function runGame() {
     if (!payload.player || !payload.player.vnum) return;
     if (!zone) { if (!starting) starting = start(payload).catch(err => { console.error(err); hud.toast('Could not load the world: ' + err.message); }).finally(() => { starting = null; }); return; }
     if (starting) return;
-    ents.sync(payload, MH.state.playerName); loot.sync(payload);
+    ents.sync(payload, MH.state.playerName); loot.sync(payload); followLoot(payload);
     applyPendingAggro();
     mm.setExplored((payload.rooms || []).map(r => r.vnum));
     mm.setTime(payload.time);
@@ -310,7 +311,7 @@ async function runGame() {
     engine.placeCamera(true);
     hud.showGame(true);
     hud.banner(room.name, zone.name);
-    ents.sync(payload, MH.state.playerName); loot.sync(payload);
+    ents.sync(payload, MH.state.playerName); loot.sync(payload); followLoot(payload);
     mm.setExplored((payload.rooms || []).map(r => r.vnum));
     mm.setTime(payload.time);
     window.MH3D = { engine, zone: () => zone, hero, ctl, sync, ents, loot, fx, combat, hud, cues, THREE, sound, adorn,
@@ -863,12 +864,21 @@ async function runGame() {
   // ---- what lies on the ground: walk over, then take it (a corpse: everything in it) ----
   // (taken as soon as it is within reach: the spot itself may be hard against a wall or a pillar)
   let lootWalk = null;
+  // an open loot window follows its corpse in each payload (closes when it's emptied, gone, or
+  // the hero has left the room)
+  function followLoot(payload) {
+    if (!hud.lootwin.open || !payload) return;
+    const g = groundItems(payload).find(x => x.key === hud.lootwin.key);
+    hud.lootwin.follow(g && (!heroRoom || g.vnum === heroRoom.vnum) ? g : null);
+  }
   const nearLoot = l => heroRoom && l.vnum === heroRoom.vnum && l.root
     && Math.hypot(l.root.position.x - hero.root.position.x, l.root.position.z - hero.root.position.z) < 1.8;
   function takeLoot(l) {
     if (!l || !hero || !l.root) return;
-    const cmd = l.corpse ? `get all ${l.kw}` : `get ${l.kw}`;
-    const go = () => { lootWalk = null; MH.sendCommand(cmd); setTimeout(() => MH.refreshState && MH.refreshState(), 450); };
+    // a corpse opens its loot window (hud/lootwin.js); anything else is picked up
+    const go = l.corpse
+      ? () => { lootWalk = null; hud.lootwin.show({ key: l.key, kw: l.kw, item: l.item }); }
+      : () => { lootWalk = null; MH.sendCommand(`get ${l.kw}`); setTimeout(() => MH.refreshState && MH.refreshState(), 450); };
     if (nearLoot(l)) return go();
     travel = null;
     ctl.walkTo(l.root.position.x, l.root.position.z);

@@ -108,3 +108,13 @@ test('what lies on the ground: corpses and items, each with the word `get` finds
   // fixtures (a fountain, a board: the server marks them) are part of the room, not loot
   assert.deepEqual(groundItems({ nearby: [{ vnum: 1, items: [{ name: 'fountain', fixed: true }, { name: 'iron dagger' }] }] }).map(x => x.kw), ['iron']);
 });
+
+test("a corpse's loot window: its gold, then each thing, each taken by the MUD's own `get`", async () => {
+  const { lootRows } = await import('../../src/web_isometric/world3d/lootlogic.js');
+  const corpse = { name: 'corpse of an orc', gold: 12, contents: [{ name: 'iron sword' }, { name: 'iron helm' }, { name: 'brass key' }] };
+  const rows = lootRows(corpse, '2.corpse');
+  assert.deepEqual(rows.map(r => r.cmd), ['get gold from 2.corpse', 'get iron from 2.corpse', 'get 2.iron from 2.corpse', 'get brass from 2.corpse']);
+  assert.equal(rows[0].gold, 12);
+  assert.deepEqual(lootRows({ name: 'corpse of a rat', gold: 0, contents: [] }, 'corpse'), []);
+  assert.deepEqual(lootRows(null, 'corpse'), []);
+});
