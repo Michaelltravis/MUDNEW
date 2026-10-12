@@ -673,7 +673,9 @@ const CURTAIN_TEX = curtainTexture();
 const CURTAIN_GEO = new THREE.PlaneGeometry(1, 2.5);
 const curtain = color => new THREE.MeshBasicMaterial({ color, map: CURTAIN_TEX, transparent: true, depthWrite: false,
   blending: THREE.AdditiveBlending, side: THREE.DoubleSide });
-const CURTAIN_BLUE = curtain(new THREE.Color(0.55, 0.8, 1.6));
+// a passage within the zone: a faint mist the path runs on into (it used to be an overbright sheet
+// that bloomed to a white void: the owner wants the rooms seamless); a zone's border stays gold
+const CURTAIN_BLUE = curtain(new THREE.Color(0.16, 0.2, 0.26));
 const CURTAIN_GOLD = curtain(new THREE.Color(1.8, 1.25, 0.45));
 const PORTAL_GEO = new THREE.RingGeometry(0.55, 0.85, 32);
 const PORTAL_MAT = new THREE.MeshBasicMaterial({ color: new THREE.Color(1.6, 0.9, 2.4), transparent: true, opacity: 0.85,

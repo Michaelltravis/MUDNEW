@@ -208,6 +208,17 @@ async function waitFor(page, fn, arg, secs = 60) {
     console.log('exits here:', JSON.stringify(kinds));
     check(kinds.filter(k => k === 'open').length >= kinds.filter(k => k === 'passage').length, `most ways on are walked across (${kinds})`);
     await page.screenshot({ path: path.join(OUT, 'seam-woods.png') });
+    // stand by the passage that remains and look at it
+    await page.evaluate(() => {
+      const r = MH3D.heroRoom(), z = MH3D.zone();
+      const d = Object.entries(r.data.exits).find(([k, e]) => e.kind === 'passage' && ['north', 'south', 'east', 'west'].includes(k));
+      if (!d) return;
+      const p = z.passageWorld(r, d[0]);
+      const c = z.centre(r);
+      MH3D.hero.root.position.set((p.x + c.x) / 2, 0, (p.z + c.z) / 2);
+    });
+    await sleep(2000);
+    await page.screenshot({ path: path.join(OUT, 'seam-passage.png') });
   }
 
   if (MODE === 'dnd') {
