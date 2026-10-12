@@ -175,6 +175,24 @@ export function buildRoom(layout, ox, oz, kits, room) {
     const midX = Math.floor(W / 2) + 0.5, midY = Math.floor(H / 2) + 0.5;
     const g = layout.gaps || {};
 
+    // ---- a forest has trees standing in it, not only round its edge: single trunks scattered over
+    // the open ground (BLOCK, so the hero walks round them), never on the ways through, the
+    // middle, the stairs or where creatures stand ----
+    const grove = new Set();
+    if (theme === 'forest') {
+      const mx = Math.floor(W / 2), my = Math.floor(H / 2);
+      const keep = (layout.spawnSlots || []).map(sp => [Math.floor(sp.x / 16), Math.floor(sp.y / 16)])
+        .concat([layout.stairsUp, layout.stairsDown, ...(layout.portals || [])].filter(Boolean).map(t => [t.x, t.y]));
+      const clear = (x, y) => ((g.north || g.south) && Math.abs(x - mx) <= 3) || ((g.east || g.west) && Math.abs(y - my) <= 2)
+        || (Math.abs(x - mx) <= 2 && Math.abs(y - my) <= 2) || keep.some(([kx, ky]) => Math.abs(kx - x) <= 1 && Math.abs(ky - y) <= 1);
+      for (let y = 2; y < H - 2; y++) for (let x = 2; x < W - 2; x++) {
+        if (at(x, y) !== FLOOR || clear(x, y) || rng() > 0.1) continue;
+        if ([[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [-1, -1], [1, -1], [-1, 1]].some(([dx, dy]) => grove.has((y + dy) * W + x + dx))) continue;
+        grid[y * W + x] = BLOCK;
+        grove.add(y * W + x);
+      }
+    }
+
     // ---- the treeline: BLOCK cells become trees, bushes and rocks ----
     const depth = new Uint8Array(W * H).fill(255);
     const q = [];
@@ -192,7 +210,7 @@ export function buildRoom(layout, ox, oz, kits, room) {
     const edge = outdoorEdge(theme, kits);
     const trees = edge ? edge.trees.filter(Boolean) : theme === 'swamp' ? ['DeadTree_1', 'DeadTree_2', 'Pine_1'].map(k => N.get(k)) :
       ['CommonTree_1', 'CommonTree_2', 'CommonTree_3', 'CommonTree_1', 'Pine_1', 'Pine_2'].map(k => N.get(k));
-    const treeP = edge ? edge.treeP : theme === 'forest' ? 0.5 : theme === 'swamp' ? 0.3 : 0.22;
+    const treeP = edge ? edge.treeP : theme === 'forest' ? 0.78 : theme === 'swamp' ? 0.3 : 0.22;
     const bare = !!edge;   // no bushes, ferns or grass
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
       if (at(x, y) !== BLOCK) continue;
@@ -200,7 +218,11 @@ export function buildRoom(layout, ox, oz, kits, room) {
       const jx = (rng() - 0.5) * 0.6, jz = (rng() - 0.5) * 0.6;
       const px = ox + x + 0.5 + jx, pz = oz + y + 0.5 + jz, yaw = rng() * Math.PI * 2;
       const r = rng();
-      if (dd >= 2 && trees.length && r < treeP) {
+      if (grove.has(y * W + x) && trees.length) {
+        // a trunk standing in the wood
+        const tree = trees[Math.floor(rng() * trees.length)];
+        b.add(asOccluder(tree), trs(ox + x + 0.5, 0, oz + y + 0.5, yaw, 0.5 + rng() * 0.25));
+      } else if ((dd >= 2 || (theme === 'forest' && dd >= 1)) && trees.length && r < treeP) {
         const tree = trees[Math.floor(rng() * trees.length)];
         b.add(asOccluder(tree), trs(px, 0, pz, yaw, 0.55 + rng() * 0.3));
       } else if (dd <= 2 && r < 0.62) {
