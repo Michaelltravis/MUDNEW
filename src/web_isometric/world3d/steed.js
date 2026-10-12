@@ -94,6 +94,62 @@ export function makeSteed(key, riderH = 1.7) {
   return { root, actor, saddleY, spec, update };
 }
 
+// The riding pose: the rig has no riding clip, so a rider plays their idle (or an attack, a cast)
+// and the legs are set astride on top of it each frame. Each leg bone is aimed along a direction in
+// the rider's own frame (x: out to that side, y: up, z: forward): thighs out over the steed's back,
+// shins down its flanks, feet forward in the stirrups. Aiming (not fixed angles) works whatever
+// axes the rig's bones were authored in.
+export const RIDE_POSE = {
+  upperleg: [0.85, -0.35, 0.45],
+  lowerleg: [0.12, -1, 0.1],
+  foot: [0.12, -0.25, 1],
+};
+const PARTS = [['upperleg', 'lowerleg'], ['lowerleg', 'foot'], ['foot', null]];
+const norm = n => String(n || '').toLowerCase().replace(/[^a-z]/g, '');
+function legBones(rider) {
+  const out = {};
+  rider.root.traverse(o => {
+    if (!o.isBone) return;
+    const n = norm(o.name);
+    for (const [part] of PARTS) for (const side of ['l', 'r']) {
+      if (n === part + side && !out[part + side]) out[part + side] = o;
+    }
+    if (n === 'hips' && !out.hips) out.hips = o;
+  });
+  return out;
+}
+const _a = new THREE.Vector3(), _b = new THREE.Vector3(), _want = new THREE.Vector3();
+const _qw = new THREE.Quaternion(), _qp = new THREE.Quaternion(), _qd = new THREE.Quaternion(), _qr = new THREE.Quaternion();
+// a bone's pointing direction in the world: toward its child bone (the foot has none: its own +y)
+function boneDir(bone, child, out) {
+  bone.getWorldPosition(_a);
+  if (child) return out.copy(child.getWorldPosition(_b)).sub(_a).normalize();
+  return out.set(0, 1, 0).applyQuaternion(bone.getWorldQuaternion(_qw)).normalize();
+}
+// set the legs astride (call after the rider's animation update, every frame: the mixer poses the
+// bones from the clip each time, so nothing piles up)
+export function ridePose(state, root) {
+  if (!state || !state.bones || !root) return;
+  root.updateWorldMatrix(true, true);
+  root.getWorldQuaternion(_qr);
+  for (const side of ['l', 'r']) {
+    const sx = side === 'l' ? 1 : -1;
+    for (const [part, next] of PARTS) {
+      const bone = state.bones[part + side];
+      if (!bone || !bone.parent) continue;
+      const child = next ? state.bones[next + side] : null;
+      const w = RIDE_POSE[part];
+      _want.set(w[0] * sx, w[1], w[2]).normalize().applyQuaternion(_qr);
+      const cur = boneDir(bone, child, new THREE.Vector3());
+      _qd.setFromUnitVectors(cur, _want);
+      bone.getWorldQuaternion(_qw);
+      bone.parent.getWorldQuaternion(_qp);
+      bone.quaternion.copy(_qp.invert().multiply(_qd.multiply(_qw)));
+      bone.updateWorldMatrix(false, true);
+    }
+  }
+}
+
 // Put a rider on (or off) a steed. `rider` is an actor with `.root` (its first child is the body
 // model); returns the riding state, or null on foot.
 export function mountRider(rider, key, prev = null) {
@@ -107,9 +163,17 @@ export function mountRider(rider, key, prev = null) {
   const box = new THREE.Box3().setFromObject(rider.root);
   const riderH = Math.max(0.8, (box.max.y - box.min.y) / Math.max(1e-3, rider.root.scale.y || 1));
   const steed = makeSteed(key, riderH);
-  // everything the rider is made of goes up onto the saddle (sitting: the hips at the seat)
+  // the hips' height standing: the rider goes up until their hips sit on the saddle
+  const bones = legBones(rider);
+  let hipsH = riderH * 0.42;
+  if (bones.hips) {
+    rider.root.updateMatrixWorld(true);
+    const v = bones.hips.getWorldPosition(new THREE.Vector3());
+    hipsH = (v.y - box.min.y) / Math.max(1e-3, rider.root.scale.y || 1);
+  }
+  const lift = Math.max(0, steed.saddleY - hipsH + riderH * 0.01);
   const lifted = rider.root.children.filter(c => !String(c.name).startsWith('steed_')).map(c => [c, c.position.y]);
-  for (const [c, y] of lifted) c.position.y = y + steed.saddleY - riderH * 0.04;
+  for (const [c, y] of lifted) c.position.y = y + lift;
   rider.root.add(steed.root);
-  return { key, steed, lifted };
+  return { key, steed, lifted, bones, scale: riderH, pose: () => ridePose({ bones }, rider.root) };
 }

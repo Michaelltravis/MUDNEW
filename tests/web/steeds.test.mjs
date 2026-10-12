@@ -39,7 +39,12 @@ test('the hero runs as fast as the server says, and sits while riding', () => {
   const read = f => fs.readFileSync(path.join(ROOT, 'src/web_isometric/world3d', f), 'utf8');
   const ctl = read('controller.js'), main = read('main.js'), ents = read('entities.js');
   assert.match(ctl, /\* \(this\.speedMul \|\| 1\)/, 'the run is multiplied by the speed');
-  assert.match(ctl, /this\.mounted\) this\.actor\.play\('Sit_Floor_Idle'/, 'a rider sits');
+  assert.match(ctl, /this\.mounted\) this\.actor\.play\('Idle'/, 'a rider plays their idle (the legs are posed by steed.js)');
+  assert.match(main, /riding\.pose\(/, 'the hero is posed astride each frame');
+  assert.match(ents, /e\.riding\.pose\(/, 'and so is everyone else riding');
+  const steed = read('steed.js');
+  assert.match(steed, /export function ridePose/, 'the riding pose');
+  assert.ok(!/Sit_Floor/.test(ctl + main + ents + read('demo.js')), 'no rider sits cross-legged any more');
   assert.match(main, /ctl\.speedMul = .*p\.speed/, "main sets the speed from the payload's");
   assert.match(main, /mountRider\(hero, key/, 'main seats the hero on their steed');
   assert.match(ents, /mountRider\(e\.actor, w\.data\.mount/, 'other players ride theirs too');

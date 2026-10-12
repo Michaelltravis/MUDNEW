@@ -192,7 +192,7 @@ export class Controller {
       this.yaw += d * Math.min(1, dt * 14);
     }
     this.overlay(dt);
-    if (this.lock === 0 && this.mounted) this.actor.play('Sit_Floor_Idle', 0.2);
+    if (this.lock === 0 && this.mounted) this.actor.play('Idle', 0.2);         // the legs: steed.js ridePose
     else if (this.lock === 0) {
       if (speed > 3.2) this.actor.play('Running_A', 0.15, speed / (RUN * (this.speedMul || 1)) * 1.05 * Math.sqrt(this.speedMul || 1));
       else if (speed > 0.25) this.actor.play('Walking_A', 0.15, Math.max(0.6, speed / WALK));

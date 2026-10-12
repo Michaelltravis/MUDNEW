@@ -26,7 +26,7 @@ export const MOODS = {
   dusk: { sky: 0xf0b890, ground: 0x3a2a24, hemi: 0.7, sun: 0xff9a5a, sunI: 1.5, fog: 0x6a5060, near: 30, far: 80, exposure: 1.05 },
   night: { sky: 0x5a6a9a, ground: 0x1a1a22, hemi: 0.58, sun: 0xa8bcff, sunI: 0.75, fog: 0x121a2c, near: 26, far: 70, exposure: 1.25 },
   // the room looks (room_looks.py): rock close and cold, sand hot and hazy, snow bright, ash red
-  cave: { sky: 0x8a9ab8, ground: 0x4a3c30, hemi: 1.0, sun: 0xa0b0d8, sunI: 0.55, fog: 0x0c0e14, near: 16, far: 50, exposure: 1.3 },
+  cave: { sky: 0xa8b4cc, ground: 0x5a4a3c, hemi: 1.45, sun: 0xb8c4e0, sunI: 0.85, fog: 0x161a22, near: 20, far: 60, exposure: 1.35 },
   desert: { sky: 0xfff0d0, ground: 0x8a6a40, hemi: 1.2, sun: 0xffe8b8, sunI: 2.9, fog: 0xe8d4b0, near: 30, far: 85, exposure: 1.0 },
   snow: { sky: 0xe4eeff, ground: 0x8a96a8, hemi: 1.15, sun: 0xf4f8ff, sunI: 2.2, fog: 0xd8e4f0, near: 26, far: 75, exposure: 0.95 },
   volcanic: { sky: 0x8a4a3a, ground: 0x2a0e06, hemi: 0.6, sun: 0xff8a50, sunI: 1.3, fog: 0x3a1a12, near: 22, far: 64, exposure: 1.1 },

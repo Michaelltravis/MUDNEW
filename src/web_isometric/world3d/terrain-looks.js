@@ -46,7 +46,7 @@ const PLANT_MAT = new THREE.MeshStandardMaterial({ vertexColors: true, roughness
 const WOOD_MAT = new THREE.MeshStandardMaterial({ color: 0x5a3e24, roughness: 0.9 });
 const IRON_MAT = new THREE.MeshStandardMaterial({ color: 0x3a3a3e, roughness: 0.5, metalness: 0.75 });
 const CRYSTAL_MATS = {
-  cave: new THREE.MeshBasicMaterial({ color: new THREE.Color(0.6, 1.6, 2.6) }),
+  cave: new THREE.MeshBasicMaterial({ color: new THREE.Color(0.9, 2.4, 3.8) }),
   mine: new THREE.MeshBasicMaterial({ color: new THREE.Color(2.4, 1.7, 0.5) }),
   lava: new THREE.MeshBasicMaterial({ color: new THREE.Color(1.7, 0.36, 0.03) }),
 };
@@ -104,7 +104,8 @@ export function underground(c, look) {
   const { W, H, grid } = layout;
   const N = kits.nature, D = kits.dungeon;
   const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? BLOCK : grid[y * W + x];
-  const rockTint = look === 'mine' ? 0x8a7a68 : 0x6a6670;
+  // the kit's rock is dark and mossy: lifted (a tint above 1) to a pale grey stone, warmer in a mine
+  const rockTint = look === 'mine' ? new THREE.Color(1.55, 1.35, 1.15) : new THREE.Color(1.5, 1.48, 1.62);
   const rocks = [1, 2, 3].map(i => tinted(N.get(`Rock_Medium_${i}`), rockTint, `${look}rock`)).filter(Boolean);
   // the walls: a boulder pile on every BLOCK cell, tall on the room's edge, lower inside
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
@@ -156,7 +157,7 @@ export function underground(c, look) {
         glow.push(g);
       }
     } else if (look === 'cave' && r < 0.16 && N.get('Mushroom_Common')) {
-      b.add(tinted(N.get('Mushroom_Common'), 0xa0c8ff, 'glowshroom', { emissive: 0x2a5aa0, glow: 1.4 }),
+      b.add(tinted(N.get('Mushroom_Common'), 0xa0c8ff, 'glowshroom', { emissive: 0x4a8ae0, glow: 2.2 }),
         trs(ox + x + 0.5, 0, oz + y + 0.5, rng() * 6.28, 0.9 + rng() * 0.6), { shadow: false });
     } else if (r < 0.24 && N.get('Pebble_Round_1')) {
       b.add(tinted(N.get('Pebble_Round_1'), rockTint, `${look}peb`), trs(ox + x + 0.3 + rng() * 0.4, 0, oz + y + 0.3 + rng() * 0.4, rng() * 6.28, 1.2 + rng()), { shadow: false });
@@ -165,9 +166,9 @@ export function underground(c, look) {
   addMerged(c, glow, CRYSTAL_MATS[look] || CRYSTAL_MATS.cave, { shadow: false });
   if (look === 'mine') mineWorks(c);
   else if (D) {
-    // a cave is dim: a few torches along the rock where others have passed, spread out
+    // torches along the rock where others have passed, spread out (four, to keep it readable)
     const foot = rockFoot(layout).filter(([x, y]) => !lane(layout)(x, y)).sort((p, q) => p[0] - q[0]);
-    const n = Math.min(3, foot.length);
+    const n = Math.min(4, foot.length);
     for (let i = 0; i < n; i++) {
       const [x, y] = foot[Math.floor(((i + 0.2 + rng() * 0.6) / n) * foot.length)];
       b.add(D.get('torch_lit'), trs(ox + x + 0.5, 0.4, oz + y + 0.5, 0, 1.3), { shadow: false });
@@ -378,8 +379,8 @@ function driftwood(out, x, z, yaw, rng) {
 
 // ground colours for the looks (terrain.js GROUND adds these)
 export const LOOK_GROUND = {
-  cave: { a: 0x4a4440, b: 0x625a52, path: 0x6a625a, wet: 0x22303a },
-  mine: { a: 0x40362c, b: 0x56483a, path: 0x6a5a46, wet: 0x22282a },
+  cave: { a: 0x5c5650, b: 0x766e66, path: 0x7e766c, wet: 0x2a3844 },
+  mine: { a: 0x4c4034, b: 0x645444, path: 0x76644e, wet: 0x262c2e },
   snow: { a: 0xd8e2ec, b: 0xf2f6fa, path: 0xb4c0ca, wet: 0x9cc4dc },
   shore: { a: 0xd4c08a, b: 0xe6d6a6, path: 0xc0a874, wet: 0x5a8a98 },
   volcanic: { a: 0x2a2422, b: 0x40342c, path: 0x56443a, wet: 0x4a1a08 },

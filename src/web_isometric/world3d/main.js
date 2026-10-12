@@ -1067,7 +1067,7 @@ async function runGame() {
     footsteps(dt, p);
     zone.update(dt, t, p, ctl.vel);
     hero.update(dt);
-    if (riding) riding.steed.update(dt, ctl.vel.lengthSq() > 0.06, ctl.vel.length() / 2.4);
+    if (riding) { const moving = ctl.vel.lengthSq() > 0.06; riding.steed.update(dt, moving, ctl.vel.length() / 2.4); riding.pose(t, moving); }
     if (travel && (ctl.keys.size || MH.state.inCombat)) travel = null;
     // stepping on or off stairs, sliding and hopping count as moving: only standing still
     // after you have arrived wakes the stairs beside you

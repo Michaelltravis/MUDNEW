@@ -161,11 +161,11 @@ export async function buildSteedGallery(engine, kits) {
     a.root.position.set(4 + (i % 5) * 4.4, 0, 4 + Math.floor(i / 5) * 6);
     a.root.rotation.y = 0.5;
     const riding = mountRider(a, STEED_SAMPLES[i], null);
-    a.play('Sit_Floor_Idle', 0);
     engine.scene.add(a.root);
     riders.push({ a, riding, key: STEED_SAMPLES[i] });
   }
   window.MH3D_gallery = { riders: riders.map(r => ({ key: r.key, x: r.a.root.position.x, z: r.a.root.position.z })), world };
-  engine.onTick(dt => { for (const r of riders) { r.a.play('Sit_Floor_Idle', 0.2); r.a.update(dt); r.riding.steed.update(dt, true, 1.4); } world.update(dt, 0, engine.rig.target); });
+  let tt = 0;
+  engine.onTick(dt => { tt += dt; for (const r of riders) { r.a.play('Idle', 0.2); r.a.update(dt); r.riding.steed.update(dt, true, 1.4); r.riding.pose(tt, true); } world.update(dt, 0, engine.rig.target); });
   return new THREE.Vector3(12.8, 0, 7);
 }
