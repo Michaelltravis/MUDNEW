@@ -1,0 +1,420 @@
+{
+ "zone": 479,
+ "_about": "Ancalador, the stone dragon and the Necromancers' Guild of the Bloodstone hidden inside it (levels 6-25), peopled from its original area files (circle-contrib-areas/Ancala, by Mercutio): crystal spiders in the acid forest, umber hulks and ochre jellies in the intestines, the flame dweller, the Petrified Warden, and in the guild the zombies, wraith knights and the Necromancer who answer the guild bell, the Crypt Keeper an elite, Lazarus a sub-boss, and Morticia, Guildhead of the Living Dead, raising her dead as the guild goes dark.",
+ "creatures": {
+  "47900": {
+   "name": "zombie putrid",
+   "short_desc": "the putrid zombie",
+   "long_desc": "A putrid zombie is here.",
+   "description": "It is a prime example of the undead: sickly green skin, sunken eyes with\na yellowish tinge, and sharp, dirt-encrusted claws.",
+   "level": 13,
+   "flags": [
+    "sentinel"
+   ],
+   "alignment": 0,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/Ancala-1",
+   "original_vnum": "QQ00",
+   "helpers": {
+    "group": "bloodstone_guild",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A bell tolls in the guild, and the dead rise to defend it!"
+   }
+  },
+  "47901": {
+   "name": "asp snake",
+   "short_desc": "the deadly asp",
+   "long_desc": "A poisonous asp slithers here.",
+   "description": "This small snake looks quite dangerous, better take a wide detour around\nit.",
+   "level": 12,
+   "flags": [
+    "aggressive"
+   ],
+   "alignment": 0,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/Ancala-1",
+   "original_vnum": "QQ01"
+  },
+  "47902": {
+   "name": "morticia guildhead",
+   "short_desc": "Morticia",
+   "long_desc": "Morticia, Guildhead of the Living Dead, is here.",
+   "description": "Her long, raven black hair drapes those stunning curves of hers. How did\nsuch a sweet thing become the leader of this cult? As a bard once wrote,\n'You could tell she was practiced at the art of deception by her\nbloodstained hands.'",
+   "level": 23,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "alignment": -1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/Ancala-1",
+   "original_vnum": "QQ02",
+   "rank": "boss",
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Morticia laughs: \"You will make a fine servant.\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Grave Bloom",
+      "telegraph": "Morticia spreads her arms, and the dead earth heaves!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+6",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Bone Dagger",
+      "telegraph": "Morticia lunges with a dagger of black bone!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+5",
+      "dodge": true
+     },
+     {
+      "name": "Raise the Guild",
+      "telegraph": "Morticia begins a chant to raise the dead!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+8",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  },
+  "47903": {
+   "name": "lazarus assassin physician",
+   "short_desc": "Lazarus",
+   "long_desc": "Lazarus, Assassin and Guild Physician, is here.",
+   "description": "This master herbalist was found too valuable to the Guild as a maker of\nboth soothing balms and poisons. Even death could not release him... the\nnecromancers just reanimated him.",
+   "level": 19,
+   "flags": [
+    "sentinel"
+   ],
+   "alignment": -900,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/Ancala-1",
+   "original_vnum": "QQ03",
+   "rank": "sub-boss"
+  },
+  "47904": {
+   "name": "beetle undead",
+   "short_desc": "the undead riding beetle",
+   "long_desc": "An undead riding beetle is parked here.",
+   "description": "A fine example of Necromancy, this giant beast can travel for miles with\nno need for food nor water. A most economical mount -- and sporty too!",
+   "level": 11,
+   "flags": [
+    "sentinel"
+   ],
+   "alignment": -300,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/Ancala-1",
+   "original_vnum": "QQ04"
+  },
+  "47905": {
+   "name": "wraith knight",
+   "short_desc": "the wraith knight",
+   "long_desc": "A wraith knight stands a silent watch here.",
+   "description": "This was probably some poor adventurer, like you, before the\nNecromancers got their hold on him. Now he just awaits, blade drawn,\nlike some ethereal beefeater.",
+   "level": 15,
+   "flags": [
+    "sentinel",
+    "aggressive"
+   ],
+   "alignment": -800,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/Ancala-1",
+   "original_vnum": "QQ05",
+   "helpers": {
+    "group": "bloodstone_guild",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A bell tolls in the guild, and the dead rise to defend it!"
+   }
+  },
+  "47906": {
+   "name": "keeper",
+   "short_desc": "the Crypt Keeper",
+   "long_desc": "The Crypt Keeper, grinning at you maliciously, is here.",
+   "description": "The dessicated little fellow cackles with mad glee as he approaches you.\nHe twitches from excitement so much that his scraggly hair jostles as he\nflashes his dull yellow teeth.",
+   "level": 25,
+   "flags": [
+    "sentinel",
+    "aggressive"
+   ],
+   "alignment": -1000,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/Ancala-1",
+   "original_vnum": "QQ06",
+   "rank": "elite"
+  },
+  "47907": {
+   "name": "hermit",
+   "short_desc": "the hermit",
+   "long_desc": "A Hermit, starved for company, is here.",
+   "description": "Although raving mad, the hermit has come out of his isolation since he\nhas not spoken with anyone for ages. The shaggy hermit draws you over\nand begins to tell a strange tale, 'Some 600 years ago, when I was but a\nlad, a great dragon ruled the land. His name was Ancalador. Many heroes\ncame to do battle with him, but all failed and died, horribly, I\nimagine. But one wizard challenged the Drake to a magic duel. He too\ndied, like the others, but with his last breath, the wizard turned the\nmighty Ancalador to stone! Many believed the dragon's evil reign ended,\nbut after the dancing and drinking were over, and life returned to its\nquiet pace, the people began to notice that the Dragon's presence could\nstill be felt. Ancalador did, in fact, continue to rule from his\npetrified prison through the manipulation of the minds of men. Indeed,\nhe has done so to this day. Many believe he is plotting the day he can\nreturn in the flesh, so to speak...' With that the Hermit begins to\ncackle madly, tears running down his leathery face. You can get no more\nout of him.",
+   "level": 10,
+   "flags": [
+    "sentinel"
+   ],
+   "alignment": 500,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/Ancala-1",
+   "original_vnum": "QQ07"
+  },
+  "47908": {
+   "name": "dweller flame",
+   "short_desc": "the flame dweller",
+   "long_desc": "A flame dweller is basking in fire here.",
+   "description": "Its shape changes like the flame it lives in. One moment it may resemble\na serpent, the next, a man. It seems to be thoroughly enjoying itself.",
+   "level": 14,
+   "flags": [
+    "sentinel"
+   ],
+   "alignment": -50,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/Ancala-1",
+   "original_vnum": "QQ09"
+  },
+  "47909": {
+   "name": "spider green",
+   "short_desc": "the green crystal spider",
+   "long_desc": "A green crystal spider is roaming here.",
+   "description": "The fantastic beast seems to be made of a crystalline substance which is\ngiving off a green light. It clicks its crystal mandibles in irritation\nwith you.",
+   "level": 8,
+   "flags": [
+    "wimpy"
+   ],
+   "alignment": -400,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/Ancala-1",
+   "original_vnum": "QQ10"
+  },
+  "47910": {
+   "name": "spider yellow",
+   "short_desc": "the yellow crystal spider",
+   "long_desc": "A yellow crystal spider is clicking its mandibles here.",
+   "description": "Slightly smaller than its green cousin, this creature also appears to be\nmade of living crystalline substance which glows yellow.",
+   "level": 7,
+   "flags": [
+    "aggressive"
+   ],
+   "alignment": -350,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/Ancala-1",
+   "original_vnum": "QQ11"
+  },
+  "47911": {
+   "name": "warden petrified",
+   "short_desc": "the Petrified Warden",
+   "long_desc": "The Petrified Warden guards the way.",
+   "description": "It wears the sneer of cold command upon its stony visage.",
+   "level": 12,
+   "flags": [
+    "sentinel"
+   ],
+   "alignment": -700,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/Ancala-1",
+   "original_vnum": "QQ12"
+  },
+  "47912": {
+   "name": "hulk umber",
+   "short_desc": "the umber hulk",
+   "long_desc": "A lumbering umber hulk is here.",
+   "description": "This great beast has huge mandibles and a mammals' mouth, angry animal\neyes set between unreadable insect eyes. The effect is confusing.",
+   "level": 18,
+   "flags": [
+    "aggressive"
+   ],
+   "alignment": -750,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/Ancala-1",
+   "original_vnum": "QQ13"
+  },
+  "47913": {
+   "name": "jello ochre",
+   "short_desc": "the ochre jello",
+   "long_desc": "A hideous ochre jello approaches.",
+   "description": "As it oozes slowly at you, you can make out items undigested within it.\nFrom past unfortunates, you presume.",
+   "level": 16,
+   "flags": [
+    "aggressive"
+   ],
+   "alignment": -700,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/Ancala-1",
+   "original_vnum": "QQ14"
+  },
+  "47914": {
+   "name": "necromancer",
+   "short_desc": "the Necromancer",
+   "long_desc": "A Necromancer of the Bloodstone, creating zombies, is here.",
+   "description": "Evil reeks from his dark robes. His hands are adorned with the long,\nwicked nails which are stained with the ichor of embalmers and malignant\nsalves.",
+   "level": 17,
+   "flags": [
+    "sentinel",
+    "aggressive",
+    "wimpy"
+   ],
+   "alignment": -900,
+   "race": "humanoid",
+   "source": "circle-contrib-areas/Ancala-1",
+   "original_vnum": "QQ15",
+   "rank": "elite",
+   "helpers": {
+    "group": "bloodstone_guild",
+    "rooms": 3,
+    "count": 2,
+    "shout": "A bell tolls in the guild, and the dead rise to defend it!"
+   }
+  }
+ },
+ "spawns": [
+  {
+   "vnum": 47900,
+   "rooms": [
+    205528,
+    205556,
+    205556
+   ]
+  },
+  {
+   "vnum": 47901,
+   "rooms": [
+    205559,
+    205559,
+    205559
+   ]
+  },
+  {
+   "vnum": 47903,
+   "rooms": [
+    205551
+   ]
+  },
+  {
+   "vnum": 47904,
+   "rooms": [
+    205550
+   ]
+  },
+  {
+   "vnum": 47905,
+   "rooms": [
+    205554,
+    205558,
+    205558,
+    205558
+   ]
+  },
+  {
+   "vnum": 47906,
+   "rooms": [
+    205559
+   ]
+  },
+  {
+   "vnum": 47907,
+   "rooms": [
+    205501
+   ]
+  },
+  {
+   "vnum": 47908,
+   "rooms": [
+    205509,
+    205512
+   ]
+  },
+  {
+   "vnum": 47909,
+   "rooms": [
+    205518,
+    205520,
+    205522,
+    205524,
+    205526
+   ]
+  },
+  {
+   "vnum": 47910,
+   "rooms": [
+    205519,
+    205521,
+    205523,
+    205526,
+    205524
+   ]
+  },
+  {
+   "vnum": 47911,
+   "rooms": [
+    205527
+   ]
+  },
+  {
+   "vnum": 47912,
+   "rooms": [
+    205530,
+    205534,
+    205537,
+    205541,
+    205542,
+    205543
+   ]
+  },
+  {
+   "vnum": 47913,
+   "rooms": [
+    205531,
+    205535,
+    205538,
+    205541,
+    205544,
+    205544
+   ]
+  },
+  {
+   "vnum": 47914,
+   "rooms": [
+    205556
+   ]
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 47902,
+   "room": 205558,
+   "why": "Morticia in the guild",
+   "mechanics": [
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "47900": 2
+     },
+     "shout": "Morticia chants, and putrid zombies claw out of the ground!",
+     "why": "the guild's dead"
+    },
+    {
+     "type": "gloom",
+     "max": 0.75,
+     "why": "the guild goes dark"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,363 @@
+{
+ "zone": 482,
+ "_about": "The Haunted House and the abandoned carnival beyond it (levels 10-20): poltergeists, the phantom servants and the haunted armour answer each other; the ghost-girl only weeps; the creation in the basement laboratory is a sub-boss; the Lord of the House in the master bedroom darkens the house and sends his poltergeists. At the carnival the dead performers answer the calliope, the two-headed tiger is an elite, Sorcha the seer only tells fortunes, and Nis the clown of the Fun-House is a sub-boss.",
+ "creatures": {
+  "48200": {
+   "name": "poltergeist",
+   "short_desc": "a poltergeist",
+   "long_desc": "A poltergeist hurls a candlestick across the room.",
+   "description": "A shape you only see out of the corner of your eye, and a temper you see all too clearly.",
+   "level": 13,
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "race": "ghost",
+   "alignment": -400,
+   "helpers": {
+    "group": "house_ghosts",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A door slams somewhere in the house, and the dead come to see!"
+   }
+  },
+  "48201": {
+   "name": "phantom butler",
+   "short_desc": "the phantom butler",
+   "long_desc": "The phantom butler stands ready, a tray of nothing in his hands.",
+   "description": "Starched collar, grey face, eyes like holes. He is still waiting for the master to ring.",
+   "level": 14,
+   "flags": [
+    "sentinel"
+   ],
+   "race": "ghost",
+   "alignment": -200,
+   "helpers": {
+    "group": "house_ghosts",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A door slams somewhere in the house, and the dead come to see!"
+   }
+  },
+  "48202": {
+   "name": "ghoulish cook",
+   "short_desc": "the ghoulish cook",
+   "long_desc": "The ghoulish cook stirs a pot of something grey.",
+   "description": "Flour-white and bloated, her apron stained with things that are not gravy.",
+   "level": 15,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "undead",
+   "alignment": -500,
+   "helpers": {
+    "group": "house_ghosts",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A door slams somewhere in the house, and the dead come to see!"
+   }
+  },
+  "48203": {
+   "name": "haunted armour suit",
+   "short_desc": "a suit of haunted armour",
+   "long_desc": "A suit of armour stands in the foyer, and its visor turns to follow you.",
+   "description": "Old plate on a stand, rust at the joints, and nothing inside but cold air and anger.",
+   "level": 16,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "construct",
+   "rank": "elite",
+   "alignment": -300,
+   "helpers": {
+    "group": "house_ghosts",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A door slams somewhere in the house, and the dead come to see!"
+   }
+  },
+  "48204": {
+   "name": "weeping maid ghost",
+   "short_desc": "the weeping maid",
+   "long_desc": "A weeping maid scrubs at a stain that will never come out.",
+   "description": "A thin girl in a maid's cap, translucent, her hands red-raw from a scrubbing that has gone on for a hundred years.",
+   "level": 12,
+   "flags": [
+    "sentinel"
+   ],
+   "race": "ghost",
+   "alignment": 0,
+   "helpers": {
+    "group": "house_ghosts",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A door slams somewhere in the house, and the dead come to see!"
+   }
+  },
+  "48205": {
+   "name": "ghost girl little",
+   "short_desc": "a little ghost-girl",
+   "long_desc": "A little ghost-girl sits on the bed, hugging a doll.",
+   "description": "A child in a nightdress, pale and solemn. She does not want to fight; she wants someone to find her mother.",
+   "level": 10,
+   "flags": [
+    "sentinel"
+   ],
+   "race": "ghost",
+   "alignment": 500
+  },
+  "48206": {
+   "name": "creation patchwork",
+   "short_desc": "the patchwork creation",
+   "long_desc": "A patchwork creation strains against its chains on the laboratory table.",
+   "description": "Stitched together from a dozen bodies, with bolts at the neck and a lightning-scar down its face. The family's last son built it, and it killed him.",
+   "level": 18,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "construct",
+   "rank": "sub-boss",
+   "alignment": -300
+  },
+  "48210": {
+   "name": "lord house ghost",
+   "short_desc": "the Lord of the House",
+   "long_desc": "The Lord of the House rises from the bed, his nightshirt stained dark.",
+   "description": "The master of the house, dead these hundred years, in the room where he died. Every ghost here belongs to him, and he does not let anyone leave.",
+   "level": 20,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "ghost",
+   "rank": "boss",
+   "alignment": -800,
+   "helpers": {
+    "group": "house_ghosts",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A door slams somewhere in the house, and the dead come to see!"
+   },
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Lord of the House roars: \"GET OUT OF MY HOUSE!\""
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Cold Wind",
+      "telegraph": "The Lord of the House screams, and an icy wind tears through the room!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+5",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Grave Grip",
+      "telegraph": "The Lord of the House reaches for your throat!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+4",
+      "dodge": true
+     },
+     {
+      "name": "Possession",
+      "telegraph": "The Lord of the House tries to climb inside you!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+6",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  },
+  "48220": {
+   "name": "dead performer carnival",
+   "short_desc": "a dead performer",
+   "long_desc": "A dead performer grins at you in faded greasepaint.",
+   "description": "Spangles, rotten silk and a painted smile on a skull. The show must go on.",
+   "level": 14,
+   "flags": [
+    "aggressive",
+    "stay_zone"
+   ],
+   "race": "undead",
+   "alignment": -400,
+   "helpers": {
+    "group": "carnival_dead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A calliope wheezes into life, and the carnival's dead come running!"
+   }
+  },
+  "48221": {
+   "name": "tiger two-headed",
+   "short_desc": "the two-headed tiger",
+   "long_desc": "The two-headed tiger paces its den, both heads snarling.",
+   "description": "A great striped cat with two heads that do not like each other, and like you less.",
+   "level": 18,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "cat",
+   "rank": "elite",
+   "alignment": 0
+  },
+  "48222": {
+   "name": "sorcha seer",
+   "short_desc": "Sorcha the seer",
+   "long_desc": "Sorcha the seer shuffles her cards and smiles.",
+   "description": "An old woman in scarves and coins, the only living soul at the carnival. Her cards are never wrong.",
+   "level": 15,
+   "flags": [
+    "sentinel"
+   ],
+   "race": "human",
+   "alignment": 300
+  },
+  "48223": {
+   "name": "nis clown",
+   "short_desc": "Nis the clown",
+   "long_desc": "Nis the clown waves from the mouth of the Fun-House, his grin far too wide.",
+   "description": "Painted white, red-nosed, his teeth filed to points. The Fun-House is his, and nobody laughs in it but him.",
+   "level": 19,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "undead",
+   "rank": "sub-boss",
+   "alignment": -700,
+   "helpers": {
+    "group": "carnival_dead",
+    "rooms": 2,
+    "count": 2,
+    "shout": "A calliope wheezes into life, and the carnival's dead come running!"
+   }
+  }
+ },
+ "spawns": [
+  {
+   "vnum": 48200,
+   "rooms": [
+    1903,
+    1905,
+    1916,
+    1919
+   ]
+  },
+  {
+   "vnum": 48201,
+   "rooms": [
+    1915
+   ]
+  },
+  {
+   "vnum": 48202,
+   "rooms": [
+    1912
+   ]
+  },
+  {
+   "vnum": 48203,
+   "rooms": [
+    1902
+   ]
+  },
+  {
+   "vnum": 48204,
+   "rooms": [
+    1922
+   ]
+  },
+  {
+   "vnum": 48205,
+   "rooms": [
+    1923
+   ]
+  },
+  {
+   "vnum": 48206,
+   "rooms": [
+    1929
+   ]
+  },
+  {
+   "vnum": 48220,
+   "rooms": [
+    1931,
+    1934,
+    1936,
+    1940,
+    1941
+   ]
+  },
+  {
+   "vnum": 48221,
+   "rooms": [
+    1942
+   ]
+  },
+  {
+   "vnum": 48222,
+   "rooms": [
+    1935
+   ]
+  },
+  {
+   "vnum": 48223,
+   "rooms": [
+    1945
+   ]
+  }
+ ],
+ "patrols": [
+  {
+   "vnum": 48200,
+   "route": [
+    1902,
+    1903,
+    1916
+   ],
+   "why": "a poltergeist roams the ground floor"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 48210,
+   "room": 1924,
+   "why": "the Lord of the House in the Master Bedroom",
+   "mechanics": [
+    {
+     "type": "gloom",
+     "max": 0.85,
+     "shout": "Every candle in the house goes out at once...",
+     "why": "the house goes dark"
+    },
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "48200": 2
+     },
+     "shout": "The Lord of the House shrieks, and poltergeists burst through the walls!",
+     "why": "his poltergeists"
+    }
+   ]
+  }
+ ]
+}
