@@ -1,9 +1,11 @@
-// What lies on the ground around the hero (the map payload's `nearby[].items`): a corpse is a
-// low mound under a slow gold ring, anything else its painted icon (shared/items.js) bobbing
-// over a ring in its rarity's colour. Click one to walk over and take it (a corpse: loot it);
+// What lies on the ground around the hero (the map payload's `nearby[].items`): a corpse is the
+// body of whoever died, lying where they fell (or, come upon later, on the room's spot for it),
+// darkened over a stain, under a slow gold ring (corpse.js); a hero's corpse is a grave. Anything
+// else is its painted icon (shared/items.js) bobbing over a ring in its rarity's colour. Click one to walk over and take it (a corpse: loot it);
 // right-click for more. Each sits on one of its room's free spots, the same spot every time.
 import * as THREE from 'three';
 import { groundItems } from './lootlogic.js';
+import { victimOf, fallOver, deaden, footprint, stain, grave } from './corpse.js';
 
 const RARITY = { common: 0xb8b0a0, uncommon: 0x6fd06f, rare: 0x5aa8ff, epic: 0xc07aff, legendary: 0xffa640, set: 0x5fe0c8 };
 
@@ -16,9 +18,12 @@ function groundRing(color, inner, outer, opacity) {
 }
 
 export class GroundLoot {
-  // slot(vnum, key) -> a free spot in that room (Entities.slot); icon(item) -> a canvas
-  constructor(engine, { slot, icon }) {
+  // slot(vnum, key) -> a free spot in that room (Entities.slot); icon(item) -> a canvas;
+  // claim(name) -> the body of a creature that just fell (Entities.claimFallen); body(name, key)
+  // -> a Promise of a body for one (Entities.body); hero(name) -> is that a player's name
+  constructor(engine, { slot, icon, claim = () => null, body = null, hero = () => false }) {
     this.engine = engine; this.slot = slot; this.icon = icon;
+    this.claim = claim; this.bodyFor = body; this.isHero = hero;
     this.list = new Map();
     this._v = new THREE.Vector3();
   }
@@ -38,28 +43,58 @@ export class GroundLoot {
   add(g, at) {
     const root = new THREE.Group();
     root.position.copy(at);
-    let bob = null;
-    if (g.corpse) {
-      const mound = new THREE.Mesh(new THREE.SphereGeometry(0.5, 14, 8), new THREE.MeshStandardMaterial({ color: 0x4a3a32, roughness: 0.95 }));
-      mound.scale.set(1.4, 0.32, 0.8);
-      mound.position.y = 0.12;
-      mound.castShadow = true;
-      root.add(mound, groundRing(0xffd27a, 0.75, 0.86, 0.55));
-    } else {
-      const canvas = this.icon(g.item);
-      const tex = new THREE.CanvasTexture(canvas);
-      tex.colorSpace = THREE.SRGBColorSpace;
-      bob = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false }));
-      bob.scale.set(0.55, 0.55, 1);
-      bob.position.y = 0.6;
-      root.add(bob, groundRing(RARITY[g.item.rarity] || RARITY.common, 0.32, 0.42, 0.7));
-    }
+    if (g.corpse) return this.addCorpse(g, at, root);
+    const canvas = this.icon(g.item);
+    const tex = new THREE.CanvasTexture(canvas);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    const bob = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false }));
+    bob.scale.set(0.55, 0.55, 1);
+    bob.position.y = 0.6;
+    root.add(bob, groundRing(RARITY[g.item.rarity] || RARITY.common, 0.32, 0.42, 0.7));
     root.userData.loot = g.key;
     this.engine.scene.add(root);
     this.list.set(g.key, { ...g, root, bob, phase: Math.random() * 6.28 });
   }
 
+  // a corpse: the body that fell (kept where it lies), a body made for it lying on its spot, or
+  // a hero's grave; a stain under it and the gold ring round it (always root's last child)
+  addCorpse(g, at, root) {
+    const victim = victimOf(g.item.name || g.item.short);
+    const l = { ...g, root, bob: null, phase: Math.random() * 6.28, body: null, fall: null, mats: [] };
+    root.userData.loot = g.key;
+    this.list.set(g.key, l);
+    const lay = (body, fall) => {
+      l.body = body; l.fall = fall;
+      l.mats = deaden(body);
+      root.position.set(body.position.x, at.y, body.position.z);
+      const r = footprint(body);
+      root.add(stain(r), groundRing(0xffd27a, r + 0.15, r + 0.26, 0.5));
+      this.engine.scene.add(root);
+    };
+    const toGrave = () => {
+      root.add(grave(), groundRing(0xffd27a, 0.85, 0.96, 0.5));
+      this.engine.scene.add(root);
+    };
+    if (this.isHero(victim)) { toGrave(); return; }
+    const fell = this.claim(victim);
+    if (fell) { lay(fell.root, fell.fall); return; }
+    if (!this.bodyFor) { toGrave(); return; }
+    // come upon later: a body for it, already lying on its spot
+    this.bodyFor(victim, g.key).then(actor => {
+      if (this.list.get(g.key) !== l) return;            // gone before it was made
+      const body = actor.root;
+      body.position.copy(at);
+      body.rotation.y = (g.key.length * 1.7) % 6.28;
+      this.engine.scene.add(body);
+      const fall = fallOver(actor, { ground: at.y, side: g.key.length % 2 ? 1 : -1 });
+      for (let i = 0; i < 40 && fall.update(0.25);) i++;
+      lay(body, null);
+    }).catch(() => { if (this.list.get(g.key) === l) toGrave(); });
+  }
+
   remove(l) {
+    if (l.body) this.engine.scene.remove(l.body);
+    for (const m of l.mats || []) m.dispose();
     this.engine.scene.remove(l.root);
     l.root.traverse(o => {
       if (o.geometry) o.geometry.dispose();
@@ -89,6 +124,7 @@ export class GroundLoot {
 
   update(dt, t) {
     for (const l of this.list.values()) {
+      if (l.fall && !l.fall.update(dt)) l.fall = null;          // a body still falling
       if (l.bob) l.bob.position.y = 0.6 + Math.sin(t * 2.2 + l.phase) * 0.08;
       const ring = l.root.children[l.root.children.length - 1];
       if (ring && ring.material) ring.material.opacity = (l.corpse ? 0.35 : 0.5) + Math.sin(t * 3 + l.phase) * 0.2;

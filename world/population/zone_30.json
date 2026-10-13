@@ -390,6 +390,25 @@
     "answer": false,
     "shout": "Guards! Guards! To me, the watch!"
    }
+  },
+  "30507": {
+   "name": "temple guard",
+   "short_desc": "a temple guard",
+   "long_desc": "A temple guard stands watch beside the altar, spear grounded.",
+   "description": "A tall guard in a white surcoat over mail, the temple's sun stitched on the breast. He keeps the peace among the pilgrims and the newly arrived, and watches the doors more than the altar.",
+   "level": 10,
+   "flags": [
+    "sentinel"
+   ],
+   "race": "human",
+   "alignment": 500,
+   "helpers": {
+    "group": "garathorm_watch",
+    "rooms": 3,
+    "count": 3,
+    "shout": "Guards! To the temple!"
+   },
+   "why": "the temple is kept: a guard by the altar"
   }
  },
  "spawns": [
@@ -423,6 +442,12 @@
    "vnum": 30506,
    "rooms": [
     3005,
+    3001
+   ]
+  },
+  {
+   "vnum": 30507,
+   "rooms": [
     3001
    ]
   }

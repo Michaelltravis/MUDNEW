@@ -886,15 +886,23 @@ it that way.
   scripts and nothing from the 2D folder, telnet wraps and the web doesn't.
 
 ### `/play` essentials: loot, shop, talk, reactions, who, help (Push 16)
-- **Loot you can see** (`world3d/loot.js`, `lootlogic.js`): corpses lie as low mounds under a
-  slow gold ring, anything else on the ground as its painted icon bobbing over a ring in its
-  rarity's colour. A click walks over and takes it (a corpse: everything in it; taken once
+- **Loot you can see** (`world3d/loot.js`, `lootlogic.js`): corpses lie under a slow gold ring
+  (see "The dead" below), anything else on the ground as its painted icon bobbing over a ring in
+  its rarity's colour. A click walks over and takes it (a corpse: everything in it; taken once
   within reach, so a spot hard against a wall still works); a right-click offers Loot / Look
   inside or Take / Look. Settings has **Auto-loot** (the server's own `autoloot`).
   - Fixtures are the room's: the server never let anything resist `get`, so a player could
     pocket the temple fountain, the bank's ATM or the quest board, and `get all` took them all.
     Objects now know when they are fixed (`Object.fixed`: furniture, a fountain, or 1,000
     weight and up); `get` refuses them, `get all` leaves them, and the payload marks them.
+- **The dead** (`world3d/corpse.js`): a creature that dies falls where it stood and stays there as
+  its corpse, darkened (on its own copies of the materials) over a dark stain. A body with a death
+  clip holds its last frame; a body built in code plays its own death; anything else, or one still
+  standing when its death ends (a bat, a crouching beetle), tips onto its side. A corpse come upon
+  later gets the same creature's body, lying on the room's spot for it. One killed in a single blow
+  (never seen hurt) still falls: its corpse claims it in the same payload. A hero's corpse is a
+  grave: a mound, a ring of stones and a wooden marker. Gallery: `/play?demo&gallery=corpses`;
+  tests: `tests/web/corpse.test.mjs`.
 - **Shop window** (`hud/shop.js`): right-click a shopkeeper → Shop. Buy and Sell tabs with the
   server's prices (`/shop`), icons, and why a row can't be bought or sold; buying goes by the
   item's number in the shop's list (`buy 3`), selling by the word the MUD knows it by.

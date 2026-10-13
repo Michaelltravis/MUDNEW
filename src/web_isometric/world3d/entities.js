@@ -10,6 +10,7 @@ import { creatureLook, hashStr, npcDress } from './looks.js';
 import { makeProc, makeProp } from './proc.js';
 import { makeKin } from './kin.js';
 import { isHostile, conOf } from './targeting.js';
+import { fallOver, nameKey } from './corpse.js';
 
 export const CLASS_MODEL = {
   warrior: ['barbarian'], paladin: ['knight'], cleric: ['knight', 0xfff0d0], mage: ['mage'],
@@ -56,6 +57,7 @@ export class Entities {
     this.list = new Map();         // key -> entity
     this.target = null;            // key of the selected entity
     this.dying = [];               // fallen creatures, removed after their death animation
+    this.vanished = [];            // gone from this payload: cleared next frame, unless its corpse claims it
     this.hero = null;              // hero position (combat facing)
     this._v = new THREE.Vector3();
   }
@@ -200,10 +202,7 @@ export class Entities {
     e.look = look;
     e.fly = (look.beast ? look.beast.fly : look.fly) || 0;
     e.still = !!look.still;        // a statue: no breathing while it stands guard
-    const npc = isPlayer ? null : npcDress(w.data, look);
-    (isPlayer ? spawnDressed(w.data.look, w.data.char_class)
-      : npc ? spawnDressed(npc.look, npc.cls, { scale: npc.scale })
-        : spawnLook(look, { kits: this.kits, seed: hashStr(key) })).then(actor => {
+    (isPlayer ? spawnDressed(w.data.look, w.data.char_class) : this.body(w.data, key, look)).then(actor => {
       if (!e.alive) return;
       e.actor = actor;
       e.root = actor.root;
@@ -215,6 +214,29 @@ export class Entities {
     }).catch(() => {});
   }
 
+  // a creature's body: its zone's gear on a person they dressed, else the body looks.js gives it
+  body(data, key, look = creatureLook(data)) {
+    const npc = npcDress(data, look);
+    return npc ? spawnDressed(npc.look, npc.cls, { scale: npc.scale }) : spawnLook(look, { kits: this.kits, seed: hashStr(key) });
+  }
+
+  // the body of a creature that just fell, for its corpse to keep (loot.js): it stays where it
+  // fell instead of being cleared away. Matched by name ("corpse of the goblin" -> the goblin).
+  // One that simply vanished (killed in one blow, never seen hurt) and left a corpse in the same
+  // payload died too: it falls now.
+  claimFallen(victim) {
+    const want = nameKey(victim);
+    const i = this.dying.findIndex(d => nameKey(d.e.data && d.e.data.name) === want);
+    if (i >= 0) {
+      const [d] = this.dying.splice(i, 1);
+      return { root: d.e.root, fall: d.fall, actor: d.e.actor };
+    }
+    const j = this.vanished.findIndex(e => e.actor && nameKey(e.data && e.data.name) === want);
+    if (j < 0) return null;
+    const [e] = this.vanished.splice(j, 1);
+    return { root: e.root, actor: e.actor, fall: fallOver(e.actor, { ground: 0, side: hashStr(e.key) % 2 ? 1 : -1 }) };
+  }
+
   remove(e, now) {
     e.alive = false;
     if (e.plate) e.plate.remove();
@@ -223,10 +245,13 @@ export class Entities {
     if (!e.root) return;
     // a creature that was fighting or out of health died: let it fall, then clear it away
     const died = !now && e.actor && e.kind === 'mob' && ((e.data.maxHp && e.data.hp <= 0) || e.data.fighting);
-    if (!died) { this.engine.scene.remove(e.root); return; }
-    e.actor.once('Death_A', 0.1, 1);
-    e.actor.play('Death_A');
-    this.dying.push({ e, left: 2.2 });
+    if (!died) {
+      if (now) this.engine.scene.remove(e.root);
+      else this.vanished.push(e);
+      return;
+    }
+    // it falls and lies there (corpse.js); unless its corpse claims the body, it is cleared away
+    this.dying.push({ e, left: 2.2, fall: fallOver(e.actor, { ground: 0, side: hashStr(e.key) % 2 ? 1 : -1 }) });
   }
 
   // a creature that turns on you gets a hostile (red) nameplate
@@ -267,9 +292,11 @@ export class Entities {
 
   update(dt, t, hero) {
     this.hero = hero;
+    for (const e of this.vanished) this.engine.scene.remove(e.root);
+    this.vanished.length = 0;
     for (let i = this.dying.length - 1; i >= 0; i--) {
       const d = this.dying[i];
-      d.e.actor.update(dt);
+      d.fall.update(dt);
       if ((d.left -= dt) <= 0) { this.engine.scene.remove(d.e.root); this.dying.splice(i, 1); }
     }
     for (const e of this.list.values()) {
