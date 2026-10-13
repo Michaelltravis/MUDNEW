@@ -1,0 +1,156 @@
+{
+ "zone": 435,
+ "_about": "MiNar's great forest and grasslands (levels 6-18): timber and prairie wolves hunt in packs, poachers help each other, the hulking owlbears are elites, and Farrot the great roc in her nest beats up gales and calls owlbears from the forest.",
+ "creatures": {
+  "643504": {
+   "helpers": {
+    "group": "minar_wolves",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The wolf howls, and the pack answers through the trees!"
+   },
+   "why": "wolves"
+  },
+  "643514": {
+   "helpers": {
+    "group": "minar_wolves",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The wolf howls, and the pack answers through the trees!"
+   },
+   "why": "wolves"
+  },
+  "643507": {
+   "helpers": {
+    "group": "minar_wolves",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The wolf howls, and the pack answers through the trees!"
+   },
+   "why": "wolves"
+  },
+  "643502": {
+   "helpers": {
+    "group": "minar_wolves",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The wolf howls, and the pack answers through the trees!"
+   },
+   "why": "wolves"
+  },
+  "643517": {
+   "helpers": {
+    "group": "poachers",
+    "rooms": 2,
+    "count": 2,
+    "shout": "The poacher whistles for his mates!"
+   },
+   "why": "poachers"
+  },
+  "643509": {
+   "rank": "elite",
+   "why": "a hulking owlbear"
+  },
+  "43550": {
+   "name": "farrot roc great",
+   "short_desc": "Farrot the great roc",
+   "long_desc": "Farrot the great roc settles on her nest, her shadow covering the clearing.",
+   "description": "A bird large enough to carry off a horse, with bronze feathers, a hooked beak like a ship's prow and talons longer than swords. The forest of MiNar falls silent when she flies.",
+   "level": 18,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "bird",
+   "rank": "boss",
+   "alignment": 0,
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "Farrot screams, and the whole forest shakes!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Gale",
+      "telegraph": "Farrot spreads her vast wings and beats down a gale!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "2d8+4",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Talon Rake",
+      "telegraph": "Farrot lifts a great taloned foot!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "2d10+3",
+      "dodge": true
+     },
+     {
+      "name": "Snatch",
+      "telegraph": "Farrot rises, eyeing you as prey!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "3d8+6",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 643504,
+   "route": [
+    14641,
+    14648,
+    14655,
+    14660,
+    14661,
+    14687,
+    14666,
+    14668,
+    14707
+   ],
+   "why": "a timber wolf ranges the great forest"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 43550,
+   "room": 1294,
+   "why": "Farrot in her nest",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Gale",
+     "school": "physical",
+     "every": 9,
+     "radius": 2.6,
+     "last": 6,
+     "pct": 0.045,
+     "why": "gales from her wings: step out"
+    },
+    {
+     "type": "waves",
+     "at": [
+      60,
+      30
+     ],
+     "adds": {
+      "643509": 1
+     },
+     "shout": "Farrot screams, and an owlbear crashes out of the forest!",
+     "why": "the forest answers her"
+    }
+   ]
+  }
+ ]
+}

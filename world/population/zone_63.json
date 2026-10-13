@@ -1,0 +1,113 @@
+{
+ "zone": 63,
+ "_about": "Arachnos, the web-realm (levels 2-26): spiders answer the thrum of the web, the guardian, the Donjonkeeper, the queen wasp and the bird spider are elites, the dragon Yevaud a sub-boss, and Zyraxxis the Spider Queen in the Lair of Arachnos poisoning the web and calling her drones.",
+ "creatures": {
+  "6301": {
+   "helpers": {
+    "group": "arachnos",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The web thrums, and spiders come racing along its strands!"
+   },
+   "why": "spiders"
+  },
+  "6303": {
+   "helpers": {
+    "group": "arachnos",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The web thrums, and spiders come racing along its strands!"
+   },
+   "why": "spiders"
+  },
+  "6306": {
+   "helpers": {
+    "group": "arachnos",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The web thrums, and spiders come racing along its strands!"
+   },
+   "why": "spiders"
+  },
+  "6307": {
+   "helpers": {
+    "group": "arachnos",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The web thrums, and spiders come racing along its strands!"
+   },
+   "why": "spiders"
+  },
+  "6313": {
+   "rank": "elite",
+   "why": "a power of Arachnos"
+  },
+  "6312": {
+   "rank": "elite",
+   "why": "a power of Arachnos"
+  },
+  "6305": {
+   "rank": "elite",
+   "why": "a power of Arachnos"
+  },
+  "6310": {
+   "rank": "elite",
+   "why": "a power of Arachnos"
+  },
+  "6302": {
+   "rank": "sub-boss",
+   "why": "Yevaud"
+  },
+  "6314": {
+   "rank": "boss",
+   "why": "Zyraxxis"
+  }
+ },
+ "patrols": [
+  {
+   "vnum": 6301,
+   "route": [
+    6301,
+    6302,
+    6304,
+    6305,
+    6306,
+    6307,
+    6308,
+    6309
+   ],
+   "why": "a young spider runs the paths"
+  }
+ ],
+ "bosses": [
+  {
+   "vnum": 6314,
+   "room": 6399,
+   "why": "Zyraxxis in the Lair of Arachnos",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Venom Web",
+     "school": "poison",
+     "every": 9,
+     "radius": 2.4,
+     "last": 12,
+     "pct": 0.045,
+     "why": "poisoned web: step out"
+    },
+    {
+     "type": "waves",
+     "at": [
+      66,
+      33
+     ],
+     "adds": {
+      "6306": 2
+     },
+     "shout": "Zyraxxis shrieks, and drone spiders drop from the ceiling!",
+     "why": "her drones"
+    }
+   ]
+  }
+ ]
+}

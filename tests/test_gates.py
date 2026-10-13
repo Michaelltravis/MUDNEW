@@ -101,6 +101,9 @@ async def main():
     check(npcs(18009)[0].room.vnum == 18024 and npcs(27016)[0].room.vnum == 27022, 'the alpha wolf in its den; the Blightlord at the Heart of Corruption')
     check(npcs(16025)[0].room.vnum == 16025 and npcs(47250)[0].room.name == 'On The Mountain Top', 'Kaleidos in its lair; the Wyvern Matriarch on Ravenmist')
     check(npcs(52150)[0].room.name == 'The End of The Winterwood', 'the Winter Witch at the end of the Winterwood')
+    # ---- MiNar, the southern sea, Arachnos
+    check(npcs(43550)[0].room.name == "Farrot's Nest" and npcs(45150)[0].room.zone.number == 451, 'Farrot in her nest; the Ice Leviathan in the southern sea')
+    check(npcs(6314)[0].room.vnum == 6399 and npcs(6302)[0].rank == 'sub-boss', 'Zyraxxis in the Lair of Arachnos; Yevaud a sub-boss')
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
     sys.exit(1 if failures else 0)
 

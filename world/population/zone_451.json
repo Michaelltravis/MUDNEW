@@ -1,0 +1,103 @@
+{
+ "zone": 451,
+ "_about": "The southern, icy Mira Retrum (levels 6-20): killer whales hunt as a pod, the frost sea serpents are elites, and the Ice Leviathan in the quiet bay beyond the ice wall sprays freezing water and calls the pod.",
+ "creatures": {
+  "645104": {
+   "helpers": {
+    "group": "orca_pod",
+    "rooms": 3,
+    "count": 2,
+    "shout": "The killer whale calls, and the pod comes knifing through the water!"
+   },
+   "why": "killer whales"
+  },
+  "645105": {
+   "rank": "elite",
+   "why": "a frost sea serpent"
+  },
+  "45150": {
+   "name": "ice leviathan",
+   "short_desc": "the Ice Leviathan",
+   "long_desc": "The Ice Leviathan breaks the surface of the bay, ice cracking from its back.",
+   "description": "A whale-sized thing of blue-white hide and jagged ice, with a jaw of glassy teeth. The southern sea freezes around it as it moves.",
+   "level": 20,
+   "flags": [
+    "aggressive",
+    "sentinel"
+   ],
+   "race": "leviathan",
+   "rank": "boss",
+   "alignment": -200,
+   "boss_config": {
+    "enrage_time": 180,
+    "enrage_multiplier": 1.5,
+    "ability_interval": 5.0,
+    "phases": [
+     {
+      "threshold": 50,
+      "message": "The Ice Leviathan rises, and the bay freezes around you!"
+     }
+    ],
+    "abilities": [
+     {
+      "name": "Freezing Spray",
+      "telegraph": "The Ice Leviathan blasts a plume of freezing water!",
+      "cast_time": 2,
+      "cooldown": 12,
+      "damage_dice": "3d8+5",
+      "aoe": true,
+      "radius": 4.5
+     },
+     {
+      "name": "Crushing Bite",
+      "telegraph": "The Ice Leviathan opens its glassy jaws!",
+      "cast_time": 1,
+      "cooldown": 7,
+      "damage_dice": "3d10+4",
+      "dodge": true
+     },
+     {
+      "name": "Undertow",
+      "telegraph": "The Ice Leviathan dives, dragging the water after it!",
+      "cast_time": 2.5,
+      "cooldown": 18,
+      "damage_dice": "4d8+6",
+      "interruptible": true,
+      "min_phase": 1
+     }
+    ]
+   }
+  }
+ },
+ "bosses": [
+  {
+   "vnum": 45150,
+   "room": 10787,
+   "why": "the Ice Leviathan in the quiet bay",
+   "mechanics": [
+    {
+     "type": "plague_pools",
+     "label": "Freezing Spray",
+     "school": "frost",
+     "every": 10,
+     "radius": 2.6,
+     "last": 10,
+     "pct": 0.04,
+     "why": "freezing water: move away"
+    },
+    {
+     "type": "waves",
+     "at": [
+      60,
+      30
+     ],
+     "adds": {
+      "645104": 1
+     },
+     "shout": "The Ice Leviathan bellows, and a killer whale answers!",
+     "why": "the pod"
+    }
+   ]
+  }
+ ]
+}
