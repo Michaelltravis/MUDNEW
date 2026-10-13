@@ -262,7 +262,17 @@ export async function spawnBody(name, opts = {}) {
   if (!entry) throw new Error(`no body ${name}`);
   if (!bodyCache.has(name)) bodyCache.set(name, load(`bodies/${name}.glb`));
   const s = opts.height ? opts.height / (entry.height || 1) : 1;
-  return actorFrom(await bodyCache.get(name), s, opts);
+  const a = actorFrom(await bodyCache.get(name), s, opts);
+  // the body's own look (bodies/index.json): a ghost is see-through, an elemental glows
+  const look = entry.look || {};
+  if (look.opacity != null || look.glow) {
+    a.root.traverse(o => {
+      if (!o.isMesh) return;
+      if (look.opacity != null) { o.material.transparent = true; o.material.opacity = look.opacity; o.material.depthWrite = look.opacity > 0.8; }
+      if (look.glow) { o.material.emissive = o.material.color.clone(); o.material.emissiveIntensity = look.glow; o.material.emissiveMap = o.material.map; }
+    });
+  }
+  return a;
 }
 
 function actorFrom(gltf, scale, opts) {
