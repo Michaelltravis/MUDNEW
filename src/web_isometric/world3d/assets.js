@@ -261,7 +261,8 @@ export async function spawnBody(name, opts = {}) {
   const entry = index[name];
   if (!entry) throw new Error(`no body ${name}`);
   if (!bodyCache.has(name)) bodyCache.set(name, load(`bodies/${name}.glb`));
-  const s = opts.height ? opts.height / (entry.height || 1) : 1;
+  // the bestiary's h is its height, or for a long low body (index ref) its length
+  const s = opts.height ? opts.height / (entry.ref || entry.height || 1) : 1;
   const a = actorFrom(await bodyCache.get(name), s, opts);
   // the body's own look (bodies/index.json): a ghost is see-through, an elemental glows
   const look = entry.look || {};

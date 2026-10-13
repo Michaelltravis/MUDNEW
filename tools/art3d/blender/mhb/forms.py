@@ -88,3 +88,83 @@ def humanoid_clips(c, gaits, frames_walk=32, swing=26, arm=22, heavy=1.0, fall=8
             k.turn(f'arm0.{s_}', 44, (1, 0, 0), -25)
         if more:
             more('Death', k, 44)
+
+
+def quadruped(s, length=1.0, height=0.6, girth=0.2, leg=1.0, neck=0.35, neck_up=0.6, head=0.12, muzzle=0.12,
+              tail=0.45, tail_r=0.05, tail_droop=0.5, sprawl=0.0, hump=0.0, width=1.0):
+    """A four-legged body: `height` at the shoulder, `length` nose-to-rump-ish, `girth` the chest's
+    radius. Bones: hips (root), spine, chest, neck, head, muzzle; fl0-3/hl0-3 per side; tail0-2.
+    `sprawl` (0..1) turns the legs out to the sides (lizards, crocodiles); `hump` raises the
+    shoulders (bears)."""
+    L, Hs, g = length, height, girth
+    w = (0.55 * g + 0.5 * sprawl * g) * width
+    s.node('hips', (0, 0.32 * L, Hs - 0.02), 0.8 * g, sx=1.05 * width)
+    s.node('spine', (0, 0.04 * L, Hs + 0.02 + 0.3 * hump * g), 0.92 * g, 'hips', sx=1.05 * width)
+    s.node('chest', (0, -0.24 * L, Hs + 0.03 + 0.6 * hump * g), g, 'spine', sx=1.0 * width)
+    ny, nz = -0.24 * L - neck * 0.5, Hs + 0.03 + neck * neck_up * 0.7 + 0.3 * hump * g
+    s.node('neck', (0, ny, nz), 0.62 * g, 'chest', sx=1.05)
+    hy_, hz_ = ny - neck * 0.45 - head * 0.3, nz + neck * neck_up * 0.35 + head * 0.2
+    s.node('head', (0, hy_, hz_), head, 'neck', sx=1.05)
+    s.node('muzzle', (0, hy_ - head * 0.8 - muzzle, hz_ - head * 0.35), head * 0.48, 'head', sx=1.0)
+    lr = 0.24 * g * leg ** 0.3
+    for side, x in (('L', 1), ('R', -1)):
+        fy, hy2 = -0.24 * L, 0.32 * L
+        out = sprawl * 0.9 * Hs
+        s.node(f'fl0.{side}', (w * x, fy, Hs - 0.35 * g), 0.5 * g, 'chest')
+        s.node(f'fl1.{side}', ((w + out) * x, fy - 0.01, Hs * 0.5 * (1 - 0.5 * sprawl)), lr, f'fl0.{side}')
+        s.node(f'fl2.{side}', ((w + out) * x, fy - 0.02, 0.06 * Hs + lr * 0.4), lr * 0.72, f'fl1.{side}')
+        s.node(f'fl3.{side}', ((w + out) * x, fy - 0.07 * Hs - lr, lr * 0.8), lr * 0.8, f'fl2.{side}')
+        s.node(f'hl0.{side}', (w * x, hy2, Hs - 0.3 * g), 0.58 * g, 'hips')
+        s.node(f'hl1.{side}', ((w + out) * x, hy2 + 0.12 * Hs * (1 - sprawl), Hs * 0.48 * (1 - 0.5 * sprawl)), lr * 1.1, f'hl0.{side}')
+        s.node(f'hl2.{side}', ((w + out) * x, hy2 + 0.03, 0.08 * Hs + lr * 0.4), lr * 0.72, f'hl1.{side}')
+        s.node(f'hl3.{side}', ((w + out) * x, hy2 - 0.05 * Hs - lr, lr * 0.8), lr * 0.8, f'hl2.{side}')
+    ty = 0.32 * L + 0.7 * g
+    s.node('tail0', (0, ty, Hs - 0.02), tail_r * 1.1, 'hips')
+    s.node('tail1', (0, ty + tail * 0.5, max(tail_r * 1.05, Hs - 0.02 - tail * 0.45 * tail_droop)), tail_r, 'tail0')
+    s.node('tail2', (0, ty + tail, max(tail_r * 0.75, Hs - 0.02 - tail * 0.9 * tail_droop)), tail_r * 0.7, 'tail1')
+    return {'head': (0, hy_, hz_), 'head_r': head, 'muzzle': (0, hy_ - head * 0.8 - muzzle, hz_ - head * 0.35),
+            'neck': (0, ny, nz), 'chest': (0, -0.24 * L, Hs), 'tail': (0, ty + tail, max(tail_r * 0.75, Hs - 0.02 - tail * 0.9 * tail_droop))}
+
+
+def quadruped_clips(c, gaits, walk=28, swing=24, lift=35, height=0.6, more=None, run=True):
+    """The usual clips for a four-legged body: idle, trot, gallop, a lunge and bite, a rear-up
+    roar, a flinch, and a roll onto its side."""
+    H = height
+    TAIL = ['tail1', 'tail2']
+    def m(name, k, f):
+        if more:
+            more(name, k, f)
+    with c.clip('Idle', 60, loop=True) as k:
+        k.loc('hips', 30, y=0.012 * H).rot('chest', 30, x=2)
+        k.rot('neck', 20, z=8).rot('neck', 45, z=-6).rot('head', 30, x=-4)
+        for i, b in enumerate(TAIL):
+            k.turn(b, 15, (0, 0, 1), 8 + 4 * i).turn(b, 45, (0, 0, 1), -8 - 4 * i)
+        m('Idle', k, 60)
+    with c.clip('Walk', walk, loop=True) as k:
+        gaits.quad(k, walk, swing=swing, lift=lift, bob=0.03 * H, tail=TAIL, head='head')
+        m('Walk', k, walk)
+    if run:
+        with c.clip('Run', max(12, walk * 4 // 7), loop=True) as k:
+            f = max(12, walk * 4 // 7)
+            gaits.quad(k, f, swing=swing * 1.6, lift=lift * 1.5, bob=0.07 * H, tail=TAIL, head='head')
+            k.rot('spine', f // 4, x=6).rot('spine', 3 * f // 4, x=-6)
+            m('Run', k, f)
+    with c.clip('Bite_Front', 20) as k:
+        k.rot('spine', 6, x=-8).rot('neck', 6, x=-18).rot('head', 6, x=-12).loc('hips', 6, y=-0.06 * H)
+        k.rot('spine', 10, x=6).rot('neck', 10, x=28).rot('head', 10, x=18).loc('chest', 10, z=-0.1 * H)
+        k.rot('neck', 13, x=20).rot('head', 13, x=-6)
+        k.rot('spine', 20).rot('neck', 20).rot('head', 20).loc('chest', 20).loc('hips', 20)
+        m('Bite_Front', k, 20)
+    with c.clip('Bite_InPlace', 32) as k:
+        # rear up and roar (a horse rears, a bear stands, a cat snarls)
+        k.rot('hips', 10, x=-14).loc('hips', 10, z=0.1 * H).rot('neck', 10, x=-30).rot('head', 10, x=-20)
+        k.rot('hips', 22, x=-16).loc('hips', 22, z=0.1 * H).rot('neck', 22, x=-32)
+        k.rot('hips', 32).loc('hips', 32).rot('neck', 32).rot('head', 32)
+        m('Bite_InPlace', k, 32)
+    with c.clip('HitRecieve', 12) as k:
+        k.rot('spine', 3, x=-10, z=6).rot('neck', 3, x=-22).rot('head', 3, x=-14).loc('hips', 3, x=0.04 * H)
+        m('HitRecieve', k, 12)
+    with c.clip('Death', 40) as k:
+        gaits.roll_over(k, 40, root='hips', drop=0.75 * H, side=-1, neck='neck',
+                        limbs=[(f'fl1.{s_}', 30) for s_ in ('L', 'R')] + [(f'hl1.{s_}', -30) for s_ in ('L', 'R')])
+        m('Death', k, 40)

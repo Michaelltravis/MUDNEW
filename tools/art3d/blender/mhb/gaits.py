@@ -9,18 +9,20 @@ SIDES = (('L', 1), ('R', -1))
 
 def quad(k, frames, swing=24, lift=35, bob=0.02, root='hips', front='fl', hind='hl', tail=None, head=None):
     """A trot: the front left and back right step together, then the other pair; a lifted leg
-    folds at the knee mid-swing, the body bobs twice a cycle, the tail sways."""
+    folds at the knee mid-swing, the body bobs twice a cycle, the tail sways. Legs turn about
+    the body's side-to-side axis, so sprawled legs (a lizard's) work as well as upright ones."""
     h = frames // 2
+    X = (1, 0, 0)
     for f, a in ((0, 1), (h, -1)):
         for side, sgn in SIDES:
-            k.rot(f'{front}1.{side}', f, x=swing * a * sgn).rot(f'{hind}1.{side}', f, x=-swing * a * sgn)
+            k.turn(f'{front}1.{side}', f, X, -swing * a * sgn).turn(f'{hind}1.{side}', f, X, swing * a * sgn)
     for side, at in (('L', h // 2), ('R', h + h // 2)):
-        k.rot(f'{front}2.{side}', at, x=-lift).rot(f'{hind}2.{side}', (at + h) % frames, x=lift)
+        k.turn(f'{front}2.{side}', at, X, lift).turn(f'{hind}2.{side}', (at + h) % frames, X, -lift)
     k.loc(root, h // 2, y=bob).loc(root, h + h // 2, y=bob)
     if head:
         k.rot(head, h // 2, x=3).rot(head, h + h // 2, x=3)
     for i, b in enumerate(tail or ()):
-        k.rot(b, h // 2, z=6 + 3 * i).rot(b, h + h // 2, z=-6 - 3 * i)
+        k.turn(b, h // 2, (0, 0, 1), 6 + 3 * i).turn(b, h + h // 2, (0, 0, 1), -6 - 3 * i)
 
 
 def biped(k, frames, swing=28, lift=30, arm=24, bob=0.03, root='hips', leg='leg', arm_bone='arm', torso=None):

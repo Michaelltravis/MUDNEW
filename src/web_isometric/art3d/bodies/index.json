@@ -262,5 +262,157 @@
   "tris": 1600,
   "height": 2.247,
   "for": "yetis, sasquatches, flesh golems, umber hulks; tinted by bestiary.js"
+ },
+ "bear": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 1934,
+  "height": 0.973,
+  "for": "bear; tinted by bestiary.js"
+ },
+ "cat": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2568,
+  "height": 0.867,
+  "for": "cat; tinted by bestiary.js"
+ },
+ "crocodile": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2064,
+  "height": 0.442,
+  "for": "crocodile; tinted by bestiary.js",
+  "ref": 2.945
+ },
+ "deer": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2572,
+  "height": 1.646,
+  "for": "deer; tinted by bestiary.js"
+ },
+ "horse": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2380,
+  "height": 2.083,
+  "for": "horse; tinted by bestiary.js"
+ },
+ "lion": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2616,
+  "height": 1.083,
+  "for": "lion; tinted by bestiary.js"
+ },
+ "lizard": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 1996,
+  "height": 0.359,
+  "for": "lizard; tinted by bestiary.js",
+  "ref": 1.718
+ },
+ "rat": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2538,
+  "height": 0.549,
+  "for": "rat; tinted by bestiary.js"
+ },
+ "rat_king": {
+  "kind": "boss",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2580,
+  "height": 0.815,
+  "for": "rat_king; tinted by bestiary.js"
+ },
+ "unicorn": {
+  "kind": "creature",
+  "anims": [
+   "Idle",
+   "Walk",
+   "Run",
+   "Bite_Front",
+   "Bite_InPlace",
+   "HitRecieve",
+   "Death"
+  ],
+  "tris": 2458,
+  "height": 2.136,
+  "for": "unicorn; tinted by bestiary.js"
  }
 }
