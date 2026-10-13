@@ -16,6 +16,7 @@ import random
 import time
 
 POOL_TICK = 2.0
+POOL_ARM = 1.5       # a pool burns only after this long: the STEP OUT cue has a moment to be heeded
 
 
 def _fighters(boss):
@@ -56,7 +57,8 @@ class Mechanic:
 
 
 class PlaguePools(Mechanic):
-    """Pools of plague where a fighter stands; a sickness each POOL_TICK to all inside."""
+    """Pools of plague where a fighter stands; once one settles (POOL_ARM), a sickness each POOL_TICK
+    to all inside."""
     def reset(self, boss):
         self.pools, self.next, self.hurt_at = [], 0, 0
 
@@ -73,19 +75,21 @@ class PlaguePools(Mechanic):
                 r, last = float(s.get('radius', 2.4)), float(s.get('last', 14))
                 if p is None:
                     last = min(last, 4.5)    # nowhere known (a telnet fighter): it catches them a moment only
-                pool = {'x': p[0] if p else None, 'z': p[1] if p else None, 'r': r, 'until': now + last, 'on': who}
+                pool = {'x': p[0] if p else None, 'z': p[1] if p else None, 'r': r, 'until': now + last, 'on': who,
+                        'from': now + POOL_ARM}
                 self.pools.append(pool)
                 area = {'shape': 'circle', 'r': r, 'x': round(p[0], 2), 'z': round(p[1], 2)} if p else None
                 _emit(boss, 'hazard', dst=who, label=s.get('label', 'Plague Pool'), area=area, ms=int(last * 1000),
                       school=s.get('school', 'poison'), id=f"pool{int(now * 1000) % 100000}")
                 await _say(boss, f"{boss.name} spits a pool of seething plague at {who.name}'s feet! Get out of it!")
-        if now - self.hurt_at < POOL_TICK or not self.pools:
+        live = [pl for pl in self.pools if pl.get('from', 0) <= now]
+        if now - self.hurt_at < POOL_TICK or not live:
             return
         self.hurt_at = now
         for ch in _fighters(boss):
             p = _pos(ch)
             inside = any((p and pl['x'] is not None and math.hypot(p[0] - pl['x'], p[1] - pl['z']) <= pl['r'])
-                         or (pl['x'] is None and pl['on'] is ch) for pl in self.pools)
+                         or (pl['x'] is None and pl['on'] is ch) for pl in live)
             if not inside:
                 continue
             dmg = max(1, int(ch.max_hp * float(self.spec.get('pct', 0.04))))

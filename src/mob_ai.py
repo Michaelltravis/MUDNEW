@@ -85,7 +85,10 @@ def classify_mob(mob) -> set:
     # Explicit flags take priority
     if 'mob_caster' in flags or 'caster' in flags:
         roles.add('caster')
-    if ('mob_boss' in flags or 'boss' in flags) and not is_boss_class:
+    # a boss's add (bosses.Boss._spawn_adds) is an add, whatever its file says: never the boss kit
+    # on top (its own minions, slams and fear)
+    is_add = getattr(mob, 'summoned_by', None) is not None
+    if ('mob_boss' in flags or 'boss' in flags) and not is_boss_class and not is_add:
         roles.add('boss')
     if is_boss_class:
         roles.add('scripted')     # bosses.py's own rotation: never the bruiser's blows on top
@@ -137,7 +140,7 @@ def classify_mob(mob) -> set:
     # Boss by HP threshold (never for bosses.py Boss instances — see above — nor for a marquee
     # quest's creatures: their health is sized to the party hunting them (marquee_scale), and the
     # boss kit — a slam on everyone in the room every 8 s, fear, adds — would ride along with it)
-    if not roles & {'boss'} and not is_boss_class and getattr(mob, 'marquee_tag', None) is None:
+    if not roles & {'boss'} and not is_boss_class and not is_add and getattr(mob, 'marquee_tag', None) is None:
         if getattr(mob, 'max_hp', 0) > 5000:
             roles.add('boss')
         elif getattr(mob, 'is_boss', False):
@@ -387,10 +390,19 @@ async def _boss_summon_adds(mob, target):
         f"\n{c['bright_red']}  🔥 {mob.name} raises a hand and dark energy surges forth!{c['reset']}\n"
         f"{c['bright_red']}  \"Come, my minions! Destroy them!\"{c['reset']}"
     )
+    # only while fewer than four of its minions still stand (as bosses.py's summons: a long fight
+    # mustn't fill the room)
+    mine = [a for a in getattr(mob, '_minions', []) if a.hp > 0 and a.room is not None and a in a.room.characters]
+    if len(mine) >= 4:
+        mob._minions = mine
+        return False
     num_adds = random.randint(1, 2)
     from mobs import Mobile
     for i in range(num_adds):
         add = Mobile(0, mob.world)
+        mine.append(add)
+        if getattr(mob, '_dmg_scale', 1) != 1:
+            add._dmg_scale = mob._dmg_scale      # weighed like its summoner's blows
         add.name = f"summoned minion"
         add.short_desc = "a summoned minion"
         add.long_desc = "A dark minion writhes with malevolent energy."
@@ -416,6 +428,7 @@ async def _boss_summon_adds(mob, target):
         await mob.room.send_to_room(
             f"{c['red']}A {add.name} materializes and attacks {target.name}!{c['reset']}"
         )
+    mob._minions = mine
     return True
 
 

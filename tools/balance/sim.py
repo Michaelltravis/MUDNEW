@@ -20,8 +20,8 @@ What it does, per class, level and party size:
   it, then a heal when someone is low, else the strongest attack that isn't cooling down, and
   their swings (CombatHandler.one_round); the weakest foe first; a necromancer keeps a raised
   servant. The creatures: each turns on any of the party (marquee._engage), their wind-ups,
-  specials and swings (mob_ai, bosses.py); a marked blow or a boss's telegraph is stepped out of
-  with --dodge probability. The world's clocks run on through it (poison, affects, regeneration);
+  specials and swings (mob_ai, bosses.py); a marked blow, a boss's telegraph or a pool on the
+  floor is stepped out of, and a hunger kept moving through, with --dodge probability. The world's clocks run on through it (poison, affects, regeneration);
 - a fight lost is fought again from the temple, against what is left of the foe (which has healed
   as creatures do out of a fight); a ritual starts over;
 - counts the time: fights, resting back to health and mana between them (the game's regeneration,
@@ -384,6 +384,39 @@ async def act(hero, party, foes, stats):
 
 
 # ---------------------------------------------------------------- a fight
+def heed_the_floor(h, tp, foes, dodge):
+    """A boss's mechanics on the floor (boss_mechanics.py), heeded or not as a marked blow is: a
+    pool is stepped out of (the hero fights on from beside its target, outside it), and against a
+    hunger the hero keeps moving, each with the --dodge chance (decided once per pool, per round
+    for the hunger)."""
+    import math
+    import combat_range as cr
+    mechs = [m for f in foes if f.hp > 0 for m in getattr(f, 'mechanics', ())]
+    avoid = []
+    for m in mechs:
+        for pl in getattr(m, 'pools', ()):
+            if pl.get('x') is None:
+                continue
+            heed = pl.setdefault('heeded', {})
+            if h.name not in heed:
+                heed[h.name] = random.random() < dodge
+            if heed[h.name]:
+                avoid.append(pl)
+    restless = any(type(m).__name__ == 'Hunger' for m in mechs) and random.random() < dodge
+    p = cr.pos_of(h)
+    inside = lambda x, z: any(math.hypot(x - pl['x'], z - pl['z']) <= pl['r'] for pl in avoid)
+    if p is None or not (restless or inside(*p)):
+        return
+    start = random.randrange(12)
+    for d in (1.2, 1.8, 2.2, 3.0, 4.0, 6.0, 9.0, 12.0):
+        for k in range(12):
+            a = (start + k) * math.pi / 6
+            x, z = tp[0] + d * math.cos(a), tp[1] + d * math.sin(a)
+            if not inside(x, z) and math.hypot(x - p[0], z - p[1]) >= 0.8:
+                cr.set_pos(h, x, z)
+                return
+
+
 async def fight(world, room, party, foes, mode, dodge, stats, max_secs=1800):
     """Fight until one side is down; returns the seconds it took."""
     from combat import CombatHandler
@@ -450,6 +483,7 @@ async def fight(world, room, party, foes, mode, dodge, stats, max_secs=1800):
             tp = cr.pos_of(h.fighting)
             if tp is not None:
                 cr.set_pos(h, tp[0] - 1.2, tp[1])
+                heed_the_floor(h, tp, foes, dodge)
             uses = 1 if mode == 'rounds' else 3      # a skill a round typed, a second apart in real time
             for _ in range(uses):
                 if not await act(h, party, foes, stats):

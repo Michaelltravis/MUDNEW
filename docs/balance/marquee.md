@@ -496,7 +496,8 @@ deaths a quest. Once a few real quests are in, that is the number to tune `ROUND
 ## Zone bosses
 
 The bosses in the world's zones (the Goblin King, the dragons, the gate guardians: 20 of them
-from level 12 to 60) had never been measured. Their files were written for far weaker heroes:
+from level 12 to 60 at first, 111 from level 10 to 60 once the zones were populated) had never
+been measured. Their files were written for far weaker heroes:
 before this pass a party of three at a boss's level felled every one in 2-6 rounds, for 0-15%
 of its health. These are not the event bosses of `world_events.py` (150,000 health, "requiring
 group effort"), and the bosses above the mortal level cap (the four horsemen, Kirgan, the
@@ -505,18 +506,23 @@ sovereigns at 62-70) keep their files' numbers: they are raid fights.
 A zone boss can't know who will fight it, so it is sized like a marquee trial's boss for a
 lone hero at its level (`bosses.size_zone_boss`):
 
-- **Health:** 40 rounds of what the median hero of its level deals (`marquee_scale.dpr`):
-  about two minutes alone (a warrior 1.6, a mage 2.7), and 0.4-1.1 minutes for a party of
+- **Health:** 40 rounds of what the median hero of its level deals (`marquee_scale.dpr`),
+  whatever its file or its rank in a population file says: about two minutes alone (a warrior
+  1.9, a mage 3.0, a boss's followers and waves included), and 0.3-1.8 minutes for a party of
   three.
 - **Damage:** each boss's own blows, abilities, poison and adds are weighed by one share of
   their own (`ZONE_BOSS_DAMAGE`), found by `tools/balance/bosses.py --calibrate`: the share at
   which a lone hero of the median class loses half their health at the worst moment, or a
-  quarter of lone heroes die, whichever comes first. The shares run from 0.11 (the
-  Necromancer, whose spells hit nine times too hard) to 1.9-2.6 (Grimclaw and the Oakfather,
-  whose files have no damage dice and hit with 1d6). Measured again in Push 22, once the
+  quarter of lone heroes die, whichever comes first. The shares run from 0.08-0.09 (Malvoran,
+  Ulgrathar and Vorlath, casters whose kits hit a dozen times too hard) and 0.11 (the
+  Necromancer) to 1.5-1.7 (the ancient guardian, Grimclaw and the Oakfather, whose files have
+  no damage dice and hit with 1d6); the median is 0.43. Measured again in Push 22, once the
   endgame gear's stats counted and an archer needed a bow in hand (the gate guardians 1.2 to
   0.95), and in Push 23, once gear's health and attributes counted: heroes carry more health,
   so most bosses hit harder (the Goblin King 0.25 to 0.40, the gate guardians 0.95 to 1.08).
+  Measured again when the zones were populated (`world/population/`): 91 new bosses, and the
+  old ones with mechanics of their own now (pools, waves, a call for help), which make a fight
+  longer, so a boss's blows weigh a little less (the Goblin King 0.59, the mindflayer 0.48).
 
 Three fixes came out of measuring them:
 
@@ -530,26 +536,49 @@ Three fixes came out of measuring them:
 - The simulator saved its heroes: an achievement (level 50) writes the player, and thousands of
   simulated heroes filled `lib/players` and the leaderboards. It no longer writes anything.
 
-What a lone hero at the boss's level meets, over the 20 bosses (two fights each;
+And four more when the populated zones' bosses were measured:
+
+- A population file's `boss` rank lifts a creature to eleven times a regular's health, about
+  1.45 times the sizing, and five designed files held 3.5-7 times it (Archon Prime 108,693 at
+  level 60, Shadow Lord Malachar, the Kraken, the Abbot's Ghost, Grizznak): a party took 3.5-6
+  minutes over them and a lone hero was called off at 15. A zone boss's health is now the
+  sizing's, never its file's.
+- A plague pool burned the moment it was laid, so the STEP OUT cue came too late to heed. It
+  now settles for 1.5 s first (`boss_mechanics.POOL_ARM`). The simulator's heroes step out of a
+  pool, and keep moving against a hunger, with the same `--dodge` chance as a marked blow;
+  before, they stood in every pool, and the pools alone cost a lone hero 20-45% whatever the
+  boss's share.
+- A boss's add whose file says boss took on the generic boss kit (`mob_ai`): the frozen dwarven
+  king, raised by Vyrkothas at half health, summoned minions of a sixth of his health each,
+  every 25 s, at full damage and without end, and killed 72% of lone heroes at any share. A
+  boss's adds are adds now, and the generic kit's minions are weighed by their summoner's share,
+  no more than four standing when it calls.
+- A boss's call for help, in the simulator, brought in the temple's neighbours (it fights by
+  the altar), and they were gone for the next fight. It now raises the boss's own followers,
+  weighed as its adds are. In the game the zone's creatures nearby still come first, at their
+  own strength: clearing the halls around a boss makes it easier.
+
+What a lone hero at the boss's level meets, over the 111 bosses (two fights each;
 [the full table](bosses.md)):
 
-| class | health at worst (median) | deaths in 40 fights | minutes (median) |
+| class | health at worst (median) | deaths in 222 fights | minutes (median) |
 |---|---|---|---|
-| paladin | 24% | 0 | 1.6 |
-| warrior | 28% | 0 | 1.5 |
-| cleric | 40% | 0 | 2.3 |
-| assassin | 46% | 0 | 1.7 |
-| bard | 52% | 0 | 2.2 |
-| necromancer | 54% | 12 | 2.1 |
-| thief | 56% | 6 | 1.8 |
-| ranger | 60% | 1 | 2.9 |
-| mage | 89% | 16 | 2.5 |
+| necromancer | 2% | 17 | 2.4 |
+| paladin | 28% | 0 | 1.9 |
+| warrior | 35% | 0 | 1.9 |
+| cleric | 49% | 0 | 3.0 |
+| assassin | 51% | 0 | 2.1 |
+| ranger | 56% | 0 | 3.4 |
+| bard | 56% | 1 | 2.9 |
+| thief | 62% | 16 | 2.1 |
+| mage | 76% | 80 | 3.0 |
 
-A party of three (warrior, cleric, mage) finishes any of them in 0.5-1.0 minutes, its
-worst-off member losing 0-21% (median 12%). (Measured again in Push 23, with gear's health and
-attributes counting: 39 deaths in 360 fights, 49 in Push 22; the mage 16, from 26, and the
-necromancer 12, from 16. And in Push 24, with gear's wards meeting the bosses' fire, poison and
-the rest: 35 deaths.)
+A party of three (warrior, cleric, mage) finishes any of them in 0.3-1.8 minutes (median 0.8),
+its worst-off member losing 0-49% (median 9%). The necromancer's bone knight takes the blows
+(2% at the median), until it falls: then it is the necromancer. (The first 20, measured in
+Push 23 with gear's health and attributes counting: 39 deaths in 360 fights, 49 in Push 22; and
+in Push 24, with gear's wards meeting the bosses' fire, poison and the rest: 35 deaths. All 111
+now: 114 deaths in 1,998 fights.)
 
 The spread between classes is the cost of a boss that can't know who fights it: a lone mage
 (about 190 health at level 45, and half the median hero's damage) or a necromancer whose bone

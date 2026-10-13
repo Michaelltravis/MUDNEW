@@ -4,7 +4,8 @@
 
 Pestilence drops plague pools (standing in one sickens you; stepping out spares you); War calls
 the castle's guards at 75% and 40%; Famine starves whoever stands still; Death raises servants
-at 75/50/25% and the room darkens as he weakens (the 3D client is told how dark).
+at 75/50/25% and the room darkens as he weakens (the 3D client is told how dark). A boss's adds
+are adds (never the generic boss kit), and that kit's minions are weighed and capped.
 """
 import asyncio
 import os
@@ -69,6 +70,8 @@ async def main():
     random.choice = real
     check(any(k == 'hazard' and f.get('area', {}).get('x') == 5 for k, f in events), 'a pool is marked where Stander stands (the 3D client draws it)')
     hp_a, hp_b = a.hp, b.hp
+    await pools.tick(pest, 101.0)
+    check(a.hp == hp_a, 'a new pool gives a moment to step out before it burns (POOL_ARM)')
     await pools.tick(pest, 103.0)
     check(a.hp < hp_a and b.hp == hp_b, f'standing in it burns; out of it, nothing ({hp_a - a.hp}, {hp_b - b.hp})')
     cr.set_pos(a, 12, 12)
@@ -130,10 +133,33 @@ async def main():
     await waves.tick(death, 0)
     await gloom.tick(death, 0)
     check(count() == c0 + 6, f'at 20%: two more waves ({count() - c0})')
+    import mob_ai
+    servant = next(c for c in death.room.characters if getattr(c, 'vnum', None) == 22040)
+    check(getattr(servant, 'summoned_by', None) is death and 'boss' not in mob_ai.classify_mob(servant), 'his servants are adds')
     levels = [f['level'] for k, f in events if k == 'gloom']
     check(levels and levels == sorted(levels) and levels[-1] >= 0.6, f'the room darkens as he weakens ({levels})')
     gloom.reset(death)
     check(events[-1][0] == 'gloom' and events[-1][1]['level'] == 0, 'and the light returns when the fight ends')
+
+    # ---- an add whose file says boss is still an add; the generic boss kit's minions are weighed
+    #      by their summoner's share, and only so many at once
+    from mobs import Mobile
+    wyrm = boss_of(19010)
+    v = hero('Climber', wyrm.room)
+    fight(wyrm, v)
+    await wyrm._spawn_adds({19007: 1})
+    king = next(c for c in wyrm.room.characters if getattr(c, 'vnum', None) == 19007 and getattr(c, 'summoned_by', None) is wyrm)
+    check('boss' not in mob_ai.classify_mob(king), "the dwarven king raised by Vyrkothas doesn't summon minions of his own")
+    lord = Mobile.from_prototype(world.mob_prototypes[19007], world)
+    lord.room = wyrm.room
+    wyrm.room.characters.append(lord)
+    lord._dmg_scale = 0.5
+    check('boss' in mob_ai.classify_mob(lord), 'a creature whose file says boss has the boss kit')
+    for _ in range(6):
+        await mob_ai._boss_summon_adds(lord, v)
+    minions = [c for c in wyrm.room.characters if getattr(c, 'name', '') == 'summoned minion']
+    check(4 <= len(minions) <= 5 and all(getattr(m, '_dmg_scale', 1) == 0.5 for m in minions),
+          f'its minions: weighed as its blows, no more than four standing when it calls ({len(minions)})')
     combat_events.emit = real_emit
     print(f"\n{'ALL OK' if not failures else f'{len(failures)} FAILED'}")
     sys.exit(1 if failures else 0)

@@ -27,6 +27,8 @@ async def main():
     from world import World
     import allies
     import population
+    import bosses
+    import marquee_scale
     world = World(Config())
     await world.load()
     npcs = lambda v: [m for m in world.npcs if getattr(m, 'vnum', None) == v]
@@ -45,6 +47,9 @@ async def main():
             if c.get('rank') and 'name' not in c:
                 ms = npcs(int(v))
                 floor = population.numbers(ms[0].level, c['rank'])['max_hp'] * 0.95 if ms else 0
+                if ms and getattr(ms[0], 'zone_sized', False):
+                    # a zone boss's health is the sizing's, whatever its rank says (bosses.size_zone_boss)
+                    floor = int(bosses.ZONE_BOSS_ROUNDS * marquee_scale.dpr(ms[0].level))
                 check(ms and all(getattr(m, 'rank', None) == c['rank'] and m.max_hp >= floor for m in ms),
                       f'zone {z}: {v} is {c["rank"]} ({count[int(v)]} of them, {ms[0].max_hp if ms else 0} health)')
         for p in d.get('patrols') or []:
